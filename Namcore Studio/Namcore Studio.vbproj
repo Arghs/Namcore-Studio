@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="Framework\Armory\API.vb" />
     <Compile Include="Framework\Constants\GlobalVariables.vb" />
+    <Compile Include="Framework\Core\BasicsHandler.vb" />
     <Compile Include="Framework\Database\CommandHandler.vb" />
     <Compile Include="Framework\Database\ConnectionHandler.vb" />
     <Compile Include="Framework\Functions\Basics.vb" />
@@ -126,7 +127,6 @@
     <Content Include="References\mysql.data.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Framework\Core\" />
     <Folder Include="Framework\Template_System\" />
     <Folder Include="Framework\Transmission\" />
   </ItemGroup>
