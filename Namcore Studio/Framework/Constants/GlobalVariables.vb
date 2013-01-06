@@ -3,7 +3,14 @@
     Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
 
     'DB table names
+    '# Character DB
     Public Shared character_tablename As String
+    Public Shared character_homebind_tablename As String
+    '# Realm DB
+    Public Shared account_tablename As String
+    Public Shared accountAccess_tablename As String
+
+
     'DB column names
     '# Character DB
     '## Character Table
@@ -28,6 +35,7 @@
     Public Shared char_taximask_columnname As String
     Public Shared char_cinematic_columnname As String
     Public Shared char_totaltime_columnname As String
+    Public Shared char_leveltime_columnname As String
     Public Shared char_stableSlots_columnname As String
     Public Shared char_zone_columnname As String
     Public Shared char_arenaPoints_columnname As String
@@ -35,6 +43,7 @@
     Public Shared char_totalKills_columnname As String
     Public Shared char_chosenTitle_columnname As String
     Public Shared char_watchedFaction_columnname As String
+    Public Shared char_extraFlags_columnname
     Public Shared char_health_columnname As String
     Public Shared char_speccount_columnname As String
     Public Shared char_activeSpec_columnname As String
@@ -48,14 +57,30 @@
     Public Shared char_bindposX_columnname As String
     Public Shared char_bindposY_columnname As String
     Public Shared char_bindposZ_columnname As String
+    Public Shared char_arcemuPlayedTime_columnname As String
+    Public Shared char_instanceModeMask_columnname As String
+    Public Shared char_atlogin_columnname As String
+    Public Shared char_knownCurrencies_columnname As String
+    Public Shared char_actionBars_columnname As String
+
+    '## Character_homebind Table
+    Public Shared homebind_guid_columnname As String
+    Public Shared homebind_map_columnname As String
+    Public Shared homebind_zone_columnname As String
+    Public Shared homebind_posx_columnname As String
+    Public Shared homebind_posy_columnname As String
+    Public Shared homebind_posz_columnname As String
 
 
     '# Realm DB
     '## Account Table
     Public Shared acc_name_columnname As String
+    Public Shared acc_id_columnname As String
+    Public Shared acc_sessionkey_columnname As String
     Public Shared acc_passHash_columnname As String
     Public Shared acc_arcemuPass_columnname As String
     Public Shared acc_email_columnname As String
+    Public Shared acc_joindate_columnname As String
     Public Shared acc_expansion_columnname As String
     Public Shared acc_arcemuFlags_columnname As String
     Public Shared acc_locale_columnname As String
@@ -63,5 +88,5 @@
     '## Account Access Table
     Public Shared accAcc_gmLevel_columnname As String
     Public Shared accAcc_realmId_columnname As String
-
+    Public Shared accAcc_accid_columnname As String
 End Class
