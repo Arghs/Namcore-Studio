@@ -1,4 +1,4 @@
-﻿Imports Namcore_Studio.GlobalVariables
+Imports Namcore_Studio.GlobalVariables
 
 Public Class EventLogging
 
