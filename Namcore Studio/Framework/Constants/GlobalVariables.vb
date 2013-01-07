@@ -1,7 +1,8 @@
 Public Class GlobalVariables
     Public Shared temporaryCharacterInformation As String
     Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
-
+    Public Shared eventlog As String
+    Public Shared eventlog_full As String
     'DB table names
     '# Character DB
     Public Shared character_tablename As String
