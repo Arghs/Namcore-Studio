@@ -77,6 +77,8 @@ Public Class GlobalVariables
     '## Account Table
     Public Shared acc_name_columnname As String
     Public Shared acc_id_columnname As String
+    Public Shared acc_v_columnname As String
+    Public Shared acc_s_columnname As String
     Public Shared acc_sessionkey_columnname As String
     Public Shared acc_passHash_columnname As String
     Public Shared acc_arcemuPass_columnname As String

@@ -79,7 +79,7 @@
     </Compile>
     <Compile Include="Framework\Armory\API.vb" />
     <Compile Include="Framework\Constants\GlobalVariables.vb" />
-    <Compile Include="Framework\Core\BasicsHandler.vb" />
+    <Compile Include="Framework\Core\CharacterBasicsHandler.vb" />
     <Compile Include="Framework\Database\CommandHandler.vb" />
     <Compile Include="Framework\Database\ConnectionHandler.vb" />
     <Compile Include="Framework\Functions\Basics.vb" />
