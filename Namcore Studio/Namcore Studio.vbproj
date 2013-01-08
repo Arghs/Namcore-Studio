@@ -80,6 +80,11 @@
     <Compile Include="Framework\Armory\API.vb" />
     <Compile Include="Framework\Constants\GlobalVariables.vb" />
     <Compile Include="Framework\Core\CharacterBasicsHandler.vb" />
+    <Compile Include="Framework\Core\CharacterQuestlogHandler.vb" />
+    <Compile Include="Framework\Core\CharacterReputationHandler.vb" />
+    <Compile Include="Framework\Core\CharacterSkillsHandler.vb" />
+    <Compile Include="Framework\Core\CharacterSpellsHandler.vb" />
+    <Compile Include="Framework\Core\CharacterTalentsHandler.vb" />
     <Compile Include="Framework\Database\CommandHandler.vb" />
     <Compile Include="Framework\Database\ConnectionHandler.vb" />
     <Compile Include="Framework\Functions\Basics.vb" />
@@ -122,6 +127,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="Resources\talent.csv" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="References\mysql.data.dll" />

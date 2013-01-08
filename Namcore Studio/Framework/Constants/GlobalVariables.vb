@@ -1,8 +1,11 @@
+Imports MySql.Data.MySqlClient
 Public Class GlobalVariables
     Public Shared temporaryCharacterInformation As String
     Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
     Public Shared eventlog As String
     Public Shared eventlog_full As String
+    Public Shared GlobalConnection As New MySqlConnection
+    Public Shared GlobalConnection_Realm As New MySqlConnection
     'DB table names
     '# Character DB
     Public Shared character_tablename As String
