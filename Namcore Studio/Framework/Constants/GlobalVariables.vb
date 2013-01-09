@@ -2,6 +2,7 @@ Imports MySql.Data.MySqlClient
 Public Class GlobalVariables
     Public Shared temporaryCharacterInformation As String
     Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
+    Public Shared expansion As Integer '1=classic, 2=tbc,...
     Public Shared eventlog As String
     Public Shared eventlog_full As String
     Public Shared GlobalConnection As New MySqlConnection

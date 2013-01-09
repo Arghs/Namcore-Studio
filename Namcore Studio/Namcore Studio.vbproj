@@ -79,7 +79,11 @@
     </Compile>
     <Compile Include="Framework\Armory\API.vb" />
     <Compile Include="Framework\Constants\GlobalVariables.vb" />
+    <Compile Include="Framework\Core\CharacterAchievementHandler.vb" />
+    <Compile Include="Framework\Core\CharacterActionsHandler.vb" />
     <Compile Include="Framework\Core\CharacterBasicsHandler.vb" />
+    <Compile Include="Framework\Core\CharacterGlyphsHandler.vb" />
+    <Compile Include="Framework\Core\CharacterInventoryHandler.vb" />
     <Compile Include="Framework\Core\CharacterQuestlogHandler.vb" />
     <Compile Include="Framework\Core\CharacterReputationHandler.vb" />
     <Compile Include="Framework\Core\CharacterSkillsHandler.vb" />
@@ -89,6 +93,7 @@
     <Compile Include="Framework\Database\ConnectionHandler.vb" />
     <Compile Include="Framework\Functions\Basics.vb" />
     <Compile Include="Framework\Functions\Conversions.vb" />
+    <Compile Include="Framework\Functions\Interface_Operator.vb" />
     <Compile Include="Framework\Functions\SpellItem_Information.vb" />
     <Compile Include="Framework\Logging\ErrorLogging.vb" />
     <Compile Include="Framework\Logging\EventLogging.vb" />
@@ -131,6 +136,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="References\mysql.data.dll" />
+    <None Include="Resources\glyphproperties.txt" />
+    <None Include="Resources\glyphproperties_335.txt" />
+    <None Include="Resources\glyphproperties_434.txt" />
+    <None Include="Resources\empty.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Framework\Template_System\" />

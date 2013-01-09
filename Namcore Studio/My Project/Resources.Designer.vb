@@ -61,6 +61,81 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property empty() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("empty", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Column 1
+        '''flags,long,long,long,
+        '''0x0,52084,2,3098,
+        '''0xA2,12320,21,0,
+        '''0x80,12297,22,0,
+        '''0x2,46831,61,0,
+        '''0x1,52084,81,0,
+        '''0x80,52085,82,0,
+        '''0x0,0,101,0,
+        '''0x40,46487,121,2681,
+        '''0x1,54292,141,3115,
+        '''0x0,54810,161,3114,
+        '''0x0,54811,162,3113,
+        '''0x0,54812,163,3312,
+        '''0x0,54813,164,3124,
+        '''0x0,54815,165,3129,
+        '''0x0,54818,166,3112,
+        '''0x0,54821,167,3128,
+        '''0x0,54824,168,3123,
+        '''0x0,54832,169,3121,
+        '''0x0,54733,170,3127,
+        '''0x0,54743,171,3098,
+        '''0x0,54754,172,3125,
+        '''0x0,54825,173,3119,
+        '''0x0,54826,174,3120,
+        '''0x0,54845,175,3117,
+        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend ReadOnly Property GlyphProperties() As String
+            Get
+                Return ResourceManager.GetString("GlyphProperties", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die &lt;entry&gt;2&lt;/entry&gt;&lt;spell&gt;52084&lt;/spell&gt;&lt;entry2&gt;2&lt;/entry2&gt;&lt;spell2&gt;52084&lt;/spell2&gt;
+        '''&lt;entry&gt;21&lt;/entry&gt;&lt;spell&gt;12320&lt;/spell&gt;&lt;entry2&gt;21&lt;/entry2&gt;&lt;spell2&gt;12320&lt;/spell2&gt;
+        '''&lt;entry&gt;22&lt;/entry&gt;&lt;spell&gt;12297&lt;/spell&gt;&lt;entry2&gt;22&lt;/entry2&gt;&lt;spell2&gt;12297&lt;/spell2&gt;
+        '''&lt;entry&gt;61&lt;/entry&gt;&lt;spell&gt;46831&lt;/spell&gt;&lt;entry2&gt;61&lt;/entry2&gt;&lt;spell2&gt;46831&lt;/spell2&gt;
+        '''&lt;entry&gt;81&lt;/entry&gt;&lt;spell&gt;52084&lt;/spell&gt;&lt;entry2&gt;81&lt;/entry2&gt;&lt;spell2&gt;52084&lt;/spell2&gt;
+        '''&lt;entry&gt;82&lt;/entry&gt;&lt;spell&gt;52085&lt;/spell&gt;&lt;entry2&gt;82&lt;/entry2&gt;&lt;spell2&gt;52085&lt;/spell2&gt;
+        '''&lt;entry&gt;101&lt;/entry&gt;&lt;spell&gt;0&lt;/spell&gt; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend ReadOnly Property GlyphProperties_335() As String
+            Get
+                Return ResourceManager.GetString("GlyphProperties_335", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die &lt;entry&gt;161&lt;/entry&gt;&lt;spell&gt;54810&lt;/spell&gt;&lt;entry2&gt;161&lt;/entry2&gt;&lt;spell2&gt;54810&lt;/spell2&gt;
+        '''&lt;entry&gt;162&lt;/entry&gt;&lt;spell&gt;54811&lt;/spell&gt;&lt;entry2&gt;162&lt;/entry2&gt;&lt;spell2&gt;54811&lt;/spell2&gt;
+        '''&lt;entry&gt;163&lt;/entry&gt;&lt;spell&gt;54812&lt;/spell&gt;&lt;entry2&gt;163&lt;/entry2&gt;&lt;spell2&gt;54812&lt;/spell2&gt;
+        '''&lt;entry&gt;164&lt;/entry&gt;&lt;spell&gt;54813&lt;/spell&gt;&lt;entry2&gt;164&lt;/entry2&gt;&lt;spell2&gt;54813&lt;/spell2&gt;
+        '''&lt;entry&gt;165&lt;/entry&gt;&lt;spell&gt;54815&lt;/spell&gt;&lt;entry2&gt;165&lt;/entry2&gt;&lt;spell2&gt;54815&lt;/spell2&gt;
+        '''&lt;entry&gt;166&lt;/entry&gt;&lt;spell&gt;54818&lt;/spell&gt;&lt;entry2&gt;166&lt;/entry2&gt;&lt;spell2&gt;54818&lt;/spell2&gt;
+        '''&lt;entry&gt;167&lt;/entry&gt;&lt;s [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend ReadOnly Property GlyphProperties_434() As String
+            Get
+                Return ResourceManager.GetString("GlyphProperties_434", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die TalentId;Rang1;Rang2;Rang3;Rang4;Rang5
         '''27;11078;11080;0;0;0
         '''1141;18459;18460;54734;0;0
