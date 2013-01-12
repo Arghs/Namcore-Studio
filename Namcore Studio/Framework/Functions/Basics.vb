@@ -25,7 +25,5 @@ Public Class Basics
             LogAppend("Error while splitting string! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "Basics_splitString", False, True)
             Return Nothing
         End Try
-
-
     End Function
 End Class

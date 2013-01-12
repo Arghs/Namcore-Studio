@@ -30,7 +30,7 @@ Public Class CharacterActionsHandler
             If Not readedcode.Length > 2 Then LogAppend("Warning! Actions1 seems to be invalid!", "CharacterActionsHandler_loadAtArcemu", False, True)
             Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
             Dim loopcounter As Integer = 0
-            Dim finalcounter As Integer = CInt(excounter / 3)
+            Dim finalcounter As Integer = tryint(excounter / 3)
             Dim partscounter As Integer = 0
             Do
                 Dim parts() As String = readedcode.Split(","c)
@@ -43,7 +43,7 @@ Public Class CharacterActionsHandler
             If Not readedcode2.Length > 2 Then LogAppend("Warning! Actions2 seems to be invalid!", "CharacterActionsHandler_loadAtArcemu", False, True)
             Dim excounter2 As Integer = UBound(readedcode2.Split(CChar(",")))
             Dim loopcounter2 As Integer = 0
-            Dim finalcounter2 As Integer = CInt(excounter2 / 3)
+            Dim finalcounter2 As Integer = tryint(excounter2 / 3)
             Dim partscounter2 As Integer = 0
             Do
                 Dim parts() As String = readedcode2.Split(","c)
@@ -63,7 +63,7 @@ Public Class CharacterActionsHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT button, `spec`, action, `type` FROM character_action WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -91,7 +91,7 @@ Public Class CharacterActionsHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT button, `spec`, action, `type` FROM character_action WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do

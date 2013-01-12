@@ -71,6 +71,71 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die effectid;effectname
+        '''1;Felsbeißer 3
+        '''2;Frostbrand
+        '''3;Flammenzunge 3
+        '''4;Flammenzunge 2
+        '''5;Flammenzunge
+        '''6;Felsbeißer 2
+        '''7;Tödliches Gift
+        '''8;Tödliches Gift II
+        '''9;Gift (15 Schaden)
+        '''10;Gift (20 Schaden)
+        '''11;Gift (25 Schaden)
+        '''12;Frostbrand 2
+        '''13;Geschärft (+3 Schaden)
+        '''14;Geschärft (+4 Schaden)
+        '''15;Verstärkt (+8 Rüstung)
+        '''16;Verstärkt (+16 Rüstung)
+        '''17;Verstärkt (+24 Rüstung)
+        '''18;Verstärkt (+32 Rüstung)
+        '''19;Beschwert (+2 Schaden)
+        '''20;Beschwert (+3 Schaden)
+        '''21;Beschwert (+4 Schaden)
+        '''22;Verkrüppelungsgift
+        '''23; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend ReadOnly Property enchant_name_de() As String
+            Get
+                Return ResourceManager.GetString("enchant_name_de", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die effectid;effectname
+        '''1;Rockbiter 3
+        '''2;Frostbrand
+        '''3;Flametongue 3
+        '''4;Flametongue 2
+        '''5;Flametongue
+        '''6;Rockbiter 2
+        '''7;Deadly Poison
+        '''8;Deadly Poison II
+        '''9;Poison (15 Dmg)
+        '''10;Poison (20 Dmg)
+        '''11;Poison (25 Dmg)
+        '''12;Frostbrand 2
+        '''13;Sharpened (+3 Damage)
+        '''14;Sharpened (+4 Damage)
+        '''15;Reinforced (+8 Armor)
+        '''16;Reinforced (+16 Armor)
+        '''17;Reinforced (+24 Armor)
+        '''18;Reinforced (+32 Armor)
+        '''19;Weighted (+2 Damage)
+        '''20;Weighted (+3 Damage)
+        '''21;Weighted (+4 Damage)
+        '''22;Crippling Poison
+        '''23;Mind-numbing Poison II
+        '''24; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend ReadOnly Property enchant_name_en() As String
+            Get
+                Return ResourceManager.GetString("enchant_name_en", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Column 1
         '''flags,long,long,long,
         '''0x0,52084,2,3098,

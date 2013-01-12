@@ -83,6 +83,7 @@
     <Compile Include="Framework\Core\CharacterActionsHandler.vb" />
     <Compile Include="Framework\Core\CharacterArmorHandler.vb" />
     <Compile Include="Framework\Core\CharacterBasicsHandler.vb" />
+    <Compile Include="Framework\Core\CharacterEnchantmentsHandler.vb" />
     <Compile Include="Framework\Core\CharacterGlyphsHandler.vb" />
     <Compile Include="Framework\Core\CharacterInventoryHandler.vb" />
     <Compile Include="Framework\Core\CharacterItemStatsHandler.vb" />
@@ -100,6 +101,7 @@
     <Compile Include="Framework\Logging\ErrorLogging.vb" />
     <Compile Include="Framework\Logging\EventLogging.vb" />
     <Compile Include="Framework\Logging\EventTypes.vb" />
+    <Compile Include="Framework\Transmission\AccountCreation.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -125,6 +127,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -134,6 +137,8 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="Resources\enchant_name_de.csv" />
+    <None Include="Resources\enchant_name_en.csv" />
     <None Include="Resources\talent.csv" />
   </ItemGroup>
   <ItemGroup>
@@ -145,7 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Framework\Template_System\" />
-    <Folder Include="Framework\Transmission\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

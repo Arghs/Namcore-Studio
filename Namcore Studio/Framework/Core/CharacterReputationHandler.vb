@@ -25,14 +25,14 @@ Public Class CharacterReputationHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT reputation FROM characters WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                     Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
                     Dim loopcounter As Integer = 0
-                    Dim finalcounter As Integer = CInt(excounter / 4)
+                    Dim finalcounter As Integer = tryint(excounter / 4)
                     Dim partscounter As Integer = 0
                     Do
                         Dim parts() As String = readedcode.Split(","c)
@@ -61,7 +61,7 @@ Public Class CharacterReputationHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT faction, standing, flags FROM character_reputation WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -88,7 +88,7 @@ Public Class CharacterReputationHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT faction, standing, flags FROM character_reputation WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do

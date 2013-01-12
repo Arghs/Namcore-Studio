@@ -20,7 +20,7 @@ Public Class Conversions
         If parseResult = 0 Then
             Return 0
         Else
-            Return CInt(parseResult)
+            Return tryint(parseResult)
         End If
         End Function
 End Class

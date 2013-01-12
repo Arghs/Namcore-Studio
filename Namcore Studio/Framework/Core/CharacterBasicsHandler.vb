@@ -15,9 +15,7 @@ Public Class CharacterBasicsHandler
                 loadAtTrinityTBC(characterGuid, setId, accountId)
             Case "mangos"
                 loadAtMangos(characterGuid, setId, accountId)
-            Case Else
-
-        End Select
+            Case Else : End Select
 
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)

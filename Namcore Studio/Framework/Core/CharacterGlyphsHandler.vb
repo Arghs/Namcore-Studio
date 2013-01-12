@@ -31,42 +31,42 @@ Public Class CharacterGlyphsHandler
        'Spec 0
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(0)))
+            Dim prevglyphid As Integer = tryint(Val(parts(0)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading majorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(3)))
+            Dim prevglyphid As Integer = tryint(Val(parts(3)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading majorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(5)))
+            Dim prevglyphid As Integer = tryint(Val(parts(5)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading majorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(1)))
+            Dim prevglyphid As Integer = tryint(Val(parts(1)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading minorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(2)))
+            Dim prevglyphid As Integer = tryint(Val(parts(2)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading minorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(4)))
+            Dim prevglyphid As Integer = tryint(Val(parts(4)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading minorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
@@ -74,47 +74,47 @@ Public Class CharacterGlyphsHandler
         'Spec 1
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(0)))
+            Dim prevglyphid As Integer = tryint(Val(parts(0)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading secmajorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(3)))
+            Dim prevglyphid As Integer = tryint(Val(parts(3)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading secmajorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(5)))
+            Dim prevglyphid As Integer = tryint(Val(parts(5)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading secmajorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(1)))
+            Dim prevglyphid As Integer = tryint(Val(parts(1)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading secminorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(2)))
+            Dim prevglyphid As Integer = tryint(Val(parts(2)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading secminorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = CInt(Val(parts(4)))
+            Dim prevglyphid As Integer = tryint(Val(parts(4)))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
         Catch ex As Exception
             LogAppend("Error while loading secminorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
-      End Sub
+    End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Glyphs @loadAtTrinity", "CharacterGlyphsHandler_loadAtTrinity", False)
         Dim tempdt As New DataTable
@@ -127,57 +127,57 @@ Public Class CharacterGlyphsHandler
             tempdtsec = ReturnDataTable("SELECT glyph1, glyph2, glyph3, glyph4, glyph5, glyph6, glyph7, glyph8, glyph9 FROM character_glyphs WHERE guid='" & charguid.ToString & "' AND spec='1'")
         End If
         Dim prevglyphid As Integer
-        Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+        Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
         If Not lastcount = 0 Then
-            prevglyphid = CInt(Val((tempdt.Rows(0).Item(0)).ToString))
+            prevglyphid = tryint(Val((tempdt.Rows(0).Item(0)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = CInt(Val((tempdt.Rows(0).Item(1)).ToString))
+            prevglyphid = tryint(Val((tempdt.Rows(0).Item(1)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = CInt(Val((tempdt.Rows(0).Item(2)).ToString))
+            prevglyphid = tryint(Val((tempdt.Rows(0).Item(2)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = CInt(Val((tempdt.Rows(0).Item(3)).ToString))
+            prevglyphid = tryint(Val((tempdt.Rows(0).Item(3)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = CInt(Val((tempdt.Rows(0).Item(4)).ToString))
+            prevglyphid = tryint(Val((tempdt.Rows(0).Item(4)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = CInt(Val((tempdt.Rows(0).Item(5)).ToString))
+            prevglyphid = tryint(Val((tempdt.Rows(0).Item(5)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
             If expansion = 4 Then
-                prevglyphid = CInt(Val((tempdt.Rows(0).Item(6)).ToString))
+                prevglyphid = tryint(Val((tempdt.Rows(0).Item(6)).ToString))
                 If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_primeglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-                prevglyphid = CInt(Val((tempdt.Rows(0).Item(7)).ToString))
+                prevglyphid = tryint(Val((tempdt.Rows(0).Item(7)).ToString))
                 If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_primeglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-                prevglyphid = CInt(Val((tempdt.Rows(0).Item(8)).ToString))
+                prevglyphid = tryint(Val((tempdt.Rows(0).Item(8)).ToString))
                 If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_primeglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
             End If
         Else
             LogAppend("No Glyphs found (spec 0)!", "CharacterGlyphsHandler_loadAtTrinity", True)
         End If
-        lastcount = CInt(Val(tempdtsec.Rows.Count.ToString))
+        lastcount = tryint(Val(tempdtsec.Rows.Count.ToString))
         If Not lastcount = 0 Then
-            prevglyphid = CInt(Val((tempdtsec.Rows(0).Item(0)).ToString))
+            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(0)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = CInt(Val((tempdtsec.Rows(0).Item(1)).ToString))
+            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(1)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = CInt(Val((tempdtsec.Rows(0).Item(2)).ToString))
+            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(2)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = CInt(Val((tempdtsec.Rows(0).Item(3)).ToString))
+            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(3)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = CInt(Val((tempdtsec.Rows(0).Item(4)).ToString))
+            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(4)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = CInt(Val((tempdtsec.Rows(0).Item(5)).ToString))
+            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(5)).ToString))
             If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
             If expansion = 4 Then
-                prevglyphid = CInt(Val((tempdtsec.Rows(0).Item(6)).ToString))
+                prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(6)).ToString))
                 If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secprimeglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-                prevglyphid = CInt(Val((tempdtsec.Rows(0).Item(7)).ToString))
+                prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(7)).ToString))
                 If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secprimeglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-                prevglyphid = CInt(Val((tempdtsec.Rows(0).Item(8)).ToString))
+                prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(8)).ToString))
                 If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secprimeglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
             End If
         Else
             LogAppend("No Glyphs found (spec 1)!", "CharacterGlyphsHandler_loadAtTrinity", True)
         End If
-        End Sub
+    End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
     End Sub
@@ -191,10 +191,10 @@ Public Class CharacterGlyphsHandler
         Dim proccounter As Integer = 0
         Do
             Try
-                prevglyphid = CInt(Val((tempdt.Rows(proccounter).Item(0)).ToString))
+                prevglyphid = tryint(Val((tempdt.Rows(proccounter).Item(0)).ToString))
                 If prevglyphid > 1 Then
-                    slot = CInt(Val((tempdt.Rows(proccounter).Item(1)).ToString))
-                    spec = CInt(Val((tempdt.Rows(proccounter).Item(2)).ToString))
+                    slot = tryint(Val((tempdt.Rows(proccounter).Item(1)).ToString))
+                    spec = tryint(Val((tempdt.Rows(proccounter).Item(2)).ToString))
                     Select Case spec
                         Case 0
                             Select Case slot
@@ -239,7 +239,7 @@ Public Class CharacterGlyphsHandler
                                     SetTemporaryCharacterInformation("@character_secprimeglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
                                 Case Else : End Select
                         Case Else : End Select
-                   End If
+                End If
             Catch ex As Exception
                 LogAppend("Something went wrong while loading character Glyphs -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtMangos", True, True)
             End Try

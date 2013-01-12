@@ -25,7 +25,7 @@ Public Class CharacterAchievementHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT achievement, `date` FROM character_achievement WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -48,7 +48,7 @@ Public Class CharacterAchievementHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT achievement, `date` FROM character_achievement WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -71,10 +71,10 @@ Public Class CharacterAchievementHandler
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Achievement @loadAtMangos", "CharacterAchievementHandler_loadAtMangos", False)
-         Dim tempdt As DataTable = ReturnDataTable("SELECT achievement, `date` FROM character_achievement WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT achievement, `date` FROM character_achievement WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do

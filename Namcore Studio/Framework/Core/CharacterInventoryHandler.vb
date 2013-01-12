@@ -28,14 +28,14 @@ Public Class CharacterInventoryHandler
         Dim tmpext As Integer
         Dim slotlist As String = ""
         Try
-            Dim lastcount As Integer = CInt(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
                     If Not slotlist.Contains("#" & readedcode & "#") Then
                         slotlist = slotlist & "#" & readedcode & "#"
-                        tmpext = CInt(Val(readedcode))
+                        tmpext = tryint(Val(readedcode))
                         Dim numresults As Integer = ReturnCountResults("SELECT containerslot FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "'")
                         If numresults = 1 Then
                             Dim containerslot As String = runSQLCommand_characters_string("SELECT containerslot FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "'")
@@ -202,14 +202,14 @@ Public Class CharacterInventoryHandler
         Dim templistzero As New List(Of String)
         Dim tmpext As Integer
         Try
-            Dim lastcount As Integer = CInt(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
-                    tmpext = CInt(Val(readedcode))
+                    tmpext = tryint(Val(readedcode))
                     Dim bagguid As String = runSQLCommand_characters_string("SELECT bag FROM character_inventory WHERE guid='" & charguid.ToString & "' AND item='" & tmpext.ToString & "'")
-                    If CInt(bagguid) = 0 Then
+                    If tryint(bagguid) = 0 Then
                         If tmpext > 18 Then
                             Dim bag As String = "0"
                             Dim item As String = "0"
@@ -275,14 +275,14 @@ Public Class CharacterInventoryHandler
         Dim templistzero As New List(Of String)
         Dim tmpext As Integer
         Try
-            Dim lastcount As Integer = CInt(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
-                    tmpext = CInt(Val(readedcode))
+                    tmpext = tryint(Val(readedcode))
                     Dim bagguid As String = runSQLCommand_characters_string("SELECT bag FROM character_inventory WHERE guid='" & charguid.ToString & "' AND item='" & tmpext.ToString & "'")
-                    If CInt(bagguid) = 0 Then
+                    If tryint(bagguid) = 0 Then
                         If tmpext > 18 Then
                             Dim bag As String = "0"
                             Dim item As String = "0"

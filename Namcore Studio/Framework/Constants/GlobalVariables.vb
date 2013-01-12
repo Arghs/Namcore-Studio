@@ -5,6 +5,7 @@ Public Class GlobalVariables
     Public Shared expansion As Integer '1=classic, 2=tbc,...
     Public Shared eventlog As String
     Public Shared eventlog_full As String
+    Public Shared effectname_dt As DataTable
     Public Shared GlobalConnection As New MySqlConnection
     Public Shared GlobalConnection_Realm As New MySqlConnection
     Public Shared TargetConnection As New MySqlConnection

@@ -36,7 +36,7 @@ Public Class CharacterTalentsHandler
                 Dim parts() As String = talentstring.Split(","c)
                 Dim ctalentid As String = parts(startcounter)
                 startcounter += 1
-                Dim rurrentrank As String = (CInt(parts(startcounter)) + 1).ToString()
+                Dim rurrentrank As String = (tryint(parts(startcounter)) + 1).ToString()
                 startcounter += 1
                 templist.Add("<spell>" & checkfield(ctalentid, rurrentrank) & "</spell><spec>0</spec>")
             Loop Until startcounter = excounter
@@ -50,7 +50,7 @@ Public Class CharacterTalentsHandler
                 Dim parts() As String = talentstring2.Split(","c)
                 Dim ctalentid As String = parts(startcounter)
                 startcounter += 1
-                Dim rurrentrank As String = (CInt(parts(startcounter)) + 1).ToString()
+                Dim rurrentrank As String = (tryint(parts(startcounter)) + 1).ToString()
                 startcounter += 1
                 templist.Add("<spell>" & checkfield(ctalentid, rurrentrank) & "</spell><spec>1</spec>")
             Loop Until startcounter = excounter
@@ -62,7 +62,7 @@ Public Class CharacterTalentsHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT spell FROM character_talent WHERE guid='" & charguid.ToString & "' AND spec='0'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -79,7 +79,7 @@ Public Class CharacterTalentsHandler
         End Try
         Dim tempdt2 As DataTable = ReturnDataTable("SELECT spell FROM character_talent WHERE guid='" & charguid.ToString & "' AND spec='1'")
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt2.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt2.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -107,7 +107,7 @@ Public Class CharacterTalentsHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT talent_id, current_rank FROM charactertalent WHERE guid='" & charguid.ToString() & "' AND spec='0'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -125,7 +125,7 @@ Public Class CharacterTalentsHandler
         End Try
         Dim tempdt2 As DataTable = ReturnDataTable("SELECT talent_id, current_rank FROM charactertalent WHERE guid='" & charguid.ToString() & "' AND spec='1'")
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt2.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt2.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -145,7 +145,7 @@ Public Class CharacterTalentsHandler
     End Sub
 
     Private Shared Function gettable() As DataTable
-       Try
+        Try
             Dim dt As New DataTable()
             Dim stext As String = My.Resources.Talent
             Dim a() As String
@@ -170,7 +170,7 @@ Public Class CharacterTalentsHandler
     End Function
     Private Shared Function checkfield(ByVal lID As String, ByVal rank As String) As String
         LogAppend("Loading SpellId of Talent " & lID & " with rank " & rank, "CharacterTalentsHandler_checkfield", False)
-        Dim _byRNK As String = executex("TalentId", lID, CInt(Val(rank)))
+        Dim _byRNK As String = executex("TalentId", lID, tryint(Val(rank)))
         If rank = "0" Then
             LogAppend("Talent Rank is 0 -> Returning " & lID & "clear", "CharacterTalentsHandler_checkfield", False)
             Return lID & "clear"

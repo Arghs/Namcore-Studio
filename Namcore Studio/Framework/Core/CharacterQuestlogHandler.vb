@@ -25,7 +25,7 @@ Public Class CharacterQuestlogHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT quest_id, completed, explored_area1, expirytimy, slot FROM questlog WHERE player_guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -39,7 +39,7 @@ Public Class CharacterQuestlogHandler
                         Dim timer As String = (tempdt.Rows(count).Item(3)).ToString
                         Dim slot As String = (tempdt.Rows(count).Item(4)).ToString
                         templist.Add("<quest>" & quest & "</quest><status>" & status & "</status><explored>" & explored & "</explored><timer>" & timer & "</timer><slot>" & slot & "</slot>")
-                        Loop Until partscounter = excounter - 1
+                    Loop Until partscounter = excounter - 1
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -56,7 +56,7 @@ Public Class CharacterQuestlogHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT quest, status, explored, timer FROM character_queststatus WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -72,10 +72,10 @@ Public Class CharacterQuestlogHandler
             End If
         Catch ex As Exception
             LogAppend("Something went wrong while loading character questlog! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterQuestlogHandler_loadAtTrinity", True, True)
-           End Try
+        End Try
         Dim tempdt2 As DataTable = ReturnDataTable("SELECT quest FROM character_queststatus_rewarded WHERE guid='" & charguid.ToString() & "'")
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt2.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt2.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -94,7 +94,7 @@ Public Class CharacterQuestlogHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT quest, status, explored, timer, rewarded FROM character_queststatus WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -117,14 +117,14 @@ Public Class CharacterQuestlogHandler
         Catch ex As Exception
             LogAppend("Something went wrong while loading character questlog! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterQuestlogHandler_loadAtTrinityTBC", True, True)
         End Try
-       SetTemporaryCharacterInformation("@character_questlog", ConvertListToString(templist), tar_setId)
-        End Sub
+        SetTemporaryCharacterInformation("@character_questlog", ConvertListToString(templist), tar_setId)
+    End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character questlog @loadAtMangos", "CharacterQuestlogHandler_loadAtMangos", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT quest, status, explored, timer, rewarded FROM character_spell WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do

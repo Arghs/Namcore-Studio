@@ -25,7 +25,7 @@ Public Class CharacterSpellsHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT spells FROM characters WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -49,22 +49,22 @@ Public Class CharacterSpellsHandler
             Exit Sub
         End Try
         SetTemporaryCharacterInformation("@character_spells", ConvertListToString(templist), tar_setId)
-      End Sub
+    End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character spells @loadAtTrinity", "CharacterSpellsHandler_loadAtTrinity", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT spell, active, disabled FROM character_spell WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
-               Do
+                Do
                     Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                     Dim spell As String = readedcode
                     Dim active As String = (tempdt.Rows(count).Item(1)).ToString
                     Dim disabled As String = (tempdt.Rows(count).Item(2)).ToString
                     templist.Add("<spell>" & spell & "</spell><active>" & active & "</active><disabled>" & disabled & "</disabled>")
-                   count += 1
+                    count += 1
                 Loop Until count = lastcount
             Else
                 LogAppend("No spells found!", "CharacterSpellsHandler_loadAtTrinity", True)
@@ -83,7 +83,7 @@ Public Class CharacterSpellsHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT spell, active, disabled FROM character_spell WHERE guid='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
-            Dim lastcount As Integer = CInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
