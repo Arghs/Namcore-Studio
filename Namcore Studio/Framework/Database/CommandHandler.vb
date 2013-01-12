@@ -2,9 +2,15 @@
 Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.GlobalVariables
 Public Class CommandHandler
-    Public Shared Function runSQLCommand_characters_string(ByVal command As String) As String
+    Public Shared Function runSQLCommand_characters_string(ByVal command As String, Optional useTargetConnection As Boolean = False) As String
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_characters_string", False)
-        Dim da As New MySqlDataAdapter(command, GlobalConnection)
+        Dim conn As MySqlConnection
+        If useTargetConnection = False Then
+            conn = GlobalConnection
+        Else
+            conn = TargetConnection
+        End If
+        Dim da As New MySqlDataAdapter(command, conn)
         Dim dt As New DataTable
         Try
             da.Fill(dt)
@@ -28,9 +34,15 @@ Public Class CommandHandler
             Return ""
         End Try
     End Function
-    Public Shared Function runSQLCommand_realm_string(ByVal command As String) As String
+    Public Shared Function runSQLCommand_realm_string(ByVal command As String, Optional useTargetConnection As Boolean = False) As String
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_realm_string", False)
-        Dim da As New MySqlDataAdapter(command, GlobalConnection_Realm)
+        Dim conn As MySqlConnection
+        If useTargetConnection = False Then
+            conn = GlobalConnection_Realm
+        Else
+            conn = TargetConnection_Realm
+        End If
+        Dim da As New MySqlDataAdapter(command, conn)
         Dim dt As New DataTable
         Try
             da.Fill(dt)
@@ -54,9 +66,15 @@ Public Class CommandHandler
             Return ""
         End Try
     End Function
-    Public Shared Function ReturnDataTable(ByVal command As String) As DataTable
+    Public Shared Function ReturnDataTable(ByVal command As String, Optional useTargetConnection As Boolean = False) As DataTable
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTable", False)
-        Dim da As New MySqlDataAdapter(command, GlobalConnection)
+        Dim conn As MySqlConnection
+        If useTargetConnection = False Then
+            conn = GlobalConnection
+        Else
+            conn = TargetConnection
+        End If
+        Dim da As New MySqlDataAdapter(command, conn)
         Dim dt As New DataTable
         Try
             da.Fill(dt)
@@ -66,9 +84,15 @@ Public Class CommandHandler
             Return dt
         End Try
     End Function
-    Public Shared Function ReturnCountResults(ByVal command As String) As Integer
+    Public Shared Function ReturnCountResults(ByVal command As String, Optional useTargetConnection As Boolean = False) As Integer
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnCountResult", False)
-        Dim da As New MySqlDataAdapter(command, GlobalConnection)
+        Dim conn As MySqlConnection
+        If useTargetConnection = False Then
+            conn = GlobalConnection
+        Else
+            conn = TargetConnection
+        End If
+        Dim da As New MySqlDataAdapter(command, conn)
         Dim dt As New DataTable
         Try
             da.Fill(dt)
@@ -79,9 +103,15 @@ Public Class CommandHandler
             Return 0
         End Try
     End Function
-    Public Shared Function ReturnResultWithRow(ByVal command As String, ByVal spalte As String, ByVal row As Integer) As String
+    Public Shared Function ReturnResultWithRow(ByVal command As String, ByVal spalte As String, ByVal row As Integer, Optional useTargetConnection As Boolean = False) As String
         LogAppend("Executing new MySQL command. Column is: " & spalte & " / Row is: " & row.ToString & " / Command is: " & command, "CommandHandler_ReturnResultWithRow", False)
-        Dim da As New MySqlDataAdapter(command, GlobalConnection)
+        Dim conn As MySqlConnection
+        If useTargetConnection = False Then
+            conn = GlobalConnection
+        Else
+            conn = TargetConnection
+        End If
+        Dim da As New MySqlDataAdapter(command, conn)
         Dim dt As New DataTable
         Try
             da.Fill(dt)

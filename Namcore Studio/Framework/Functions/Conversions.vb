@@ -15,4 +15,12 @@ Public Class Conversions
             Return ""
         End Try
     End Function
+    Public Shared Function TryInt(ByVal _string As String) As Integer
+        Dim parseResult As Integer = Integer.TryParse(_string, Nothing)
+        If parseResult = 0 Then
+            Return 0
+        Else
+            Return CInt(parseResult)
+        End If
+        End Function
 End Class

@@ -81,9 +81,11 @@
     <Compile Include="Framework\Constants\GlobalVariables.vb" />
     <Compile Include="Framework\Core\CharacterAchievementHandler.vb" />
     <Compile Include="Framework\Core\CharacterActionsHandler.vb" />
+    <Compile Include="Framework\Core\CharacterArmorHandler.vb" />
     <Compile Include="Framework\Core\CharacterBasicsHandler.vb" />
     <Compile Include="Framework\Core\CharacterGlyphsHandler.vb" />
     <Compile Include="Framework\Core\CharacterInventoryHandler.vb" />
+    <Compile Include="Framework\Core\CharacterItemStatsHandler.vb" />
     <Compile Include="Framework\Core\CharacterQuestlogHandler.vb" />
     <Compile Include="Framework\Core\CharacterReputationHandler.vb" />
     <Compile Include="Framework\Core\CharacterSkillsHandler.vb" />

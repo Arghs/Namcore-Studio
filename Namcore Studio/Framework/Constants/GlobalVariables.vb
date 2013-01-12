@@ -7,6 +7,8 @@ Public Class GlobalVariables
     Public Shared eventlog_full As String
     Public Shared GlobalConnection As New MySqlConnection
     Public Shared GlobalConnection_Realm As New MySqlConnection
+    Public Shared TargetConnection As New MySqlConnection
+    Public Shared TargetConnection_Realm As New MySqlConnection
     'DB table names
     '# Character DB
     Public Shared character_tablename As String
