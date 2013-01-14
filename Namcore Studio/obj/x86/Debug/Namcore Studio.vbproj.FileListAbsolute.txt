@@ -8,3 +8,4 @@ C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\Namcore Stud
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio.exe
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio.xml
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio.pdb
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.exe.config

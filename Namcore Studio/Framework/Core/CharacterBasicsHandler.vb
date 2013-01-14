@@ -179,7 +179,7 @@ Public Class CharacterBasicsHandler
                 templevel = 0
         End Select
         SetTemporaryCharacterInformation("@accountAccess_gmlevel", templevel, tar_setId)
-        SetTemporaryCharacterInformation("@accountAccess_realmId", "0", tar_setId)
+        SetTemporaryCharacterInformation("@accountAccess_realmId", "0", tar_setId) 'TODO multi realm support
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
