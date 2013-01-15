@@ -102,6 +102,7 @@
     <Compile Include="Framework\Logging\EventLogging.vb" />
     <Compile Include="Framework\Logging\EventTypes.vb" />
     <Compile Include="Framework\Transmission\AccountCreation.vb" />
+    <Compile Include="Framework\Transmission\CharacterCreationAdvanced.vb" />
     <Compile Include="Framework\Transmission\CharacterCreationLite.vb" />
     <Compile Include="Framework\Transmission\SkillCreation.vb" />
     <Compile Include="Framework\Transmission\SpellCreation.vb" />
