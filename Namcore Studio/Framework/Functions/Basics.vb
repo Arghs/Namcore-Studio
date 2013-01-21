@@ -26,4 +26,19 @@ Public Class Basics
             Return Nothing
         End Try
     End Function
+    Public Shared Function splitList(ByVal source As String, ByVal category As String) As String
+        LogAppend("Splitting a list. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & category, "Basics_splitList", False)
+        Try
+            Dim quellcode As String = source
+            Dim _start As String = "<" & category & ">"
+            Dim _end As String = "</" & category & ">"
+            Dim quellcodeSplit As String
+            quellcodeSplit = Split(quellcode, _start, 5)(1)
+            quellcodeSplit = Split(quellcodeSplit, _end, 6)(0)
+            Return quellcodeSplit
+        Catch ex As Exception
+            LogAppend("Error while splitting list! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "Basics_splitList", False, True)
+            Return Nothing
+        End Try
+    End Function
 End Class

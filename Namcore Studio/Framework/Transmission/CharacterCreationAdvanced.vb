@@ -25,7 +25,7 @@ Public Class CharacterCreationAdvanced
     End Sub
 
     Private Shared Sub createAtArcemu(ByVal charactername As String, ByVal accname As String, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
-        LogAppend("Creating at arcemu", "CharacterCreationLite_createAtArcemu", False)
+        LogAppend("Creating at arcemu", "CharacterCreationAdvanced_createAtArcemu", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT guid FROM characters WHERE guid=(SELECT MAX(guid) FROM characters)", True)) + 1
         Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT acct FROM accounts WHERE login='" & accname & "'", True))
         Const sqlstring As String = "INSERT INTO characters ( `guid`, `acct`, `name`, `race`, `class`, `gender`, `level`, `xp`, `gold`, `bytes`, `bytes2`, `player_flags`, `positionX`, " &
@@ -57,7 +57,7 @@ Public Class CharacterCreationAdvanced
         tempcommand.Parameters.AddWithValue("@activespec", GetTemporaryCharacterInformation("@character_activespec", targetSetId))
         tempcommand.Parameters.AddWithValue("@exploredZones", GetTemporaryCharacterInformation("@character_exploredZones", targetSetId))
         tempcommand.Parameters.AddWithValue("@knownTitles", GetTemporaryCharacterInformation("@character_knownTitles", targetSetId))
-        'PlayerBytes column might be correct! check player_bytes, bytes, bytes2
+        'PlayerBytes column might not be correct! check player_bytes, bytes, bytes2
         Try
             tempcommand.ExecuteNonQuery()
             If NameChange = True Then
@@ -68,21 +68,29 @@ Public Class CharacterCreationAdvanced
                 End If
             End If
             'Creating hearthstone
-            LogAppend("Creating character hearthstone", "CharacterCreationLite_createAtArcemu", False)
+            LogAppend("Creating character hearthstone", "CharacterCreationAdvanced_createAtArcemu", False)
             Dim newitemguid As Integer = (TryInt(runSQLCommand_characters_string("SELECT guid FROM playeritems WHERE guid=(SELECT MAX(guid) FROM playeritems)", True)) + 5)
-            runSQLCommand_characters_string("INSERT INTO playeritems ( ownerguid, guid, entry, flags, containerslot, slot ) VALUES ( '" & accid.ToString() &
+            runSQLCommand_characters_string("INSERT INTO playeritems ( ownerguid, guid, entry, flags, containerslot, slot ) VALUES ( '" & newcharguid.ToString() &
                 "', '" & newitemguid.ToString() & "', '6948', '1', '-1', '23' )", True)
             AddSpells("6603,")
             Dim tempinfo As String = GetTemporaryCharacterInformation("@character_customFaction", targetSetId)
             If Not tempinfo = "" Then runSQLCommand_characters_string("UPDATE characters SET custom_faction='" & tempinfo & "' WHERE guid='" & newcharguid.ToString & "'")
             'Setting tutorials
             runSQLCommand_characters_string("INSERT INTO `tutorials` ( playerId ) VALUES ( " & accid.ToString() & " )", True)
+            'Set home
+            LogAppend("Setting character homebind", "CharacterCreationAdvanced_createAtArcemu", False)
+            Dim tmpstring As String = GetTemporaryCharacterInformation("@character_homebind", targetSetId)
+            runSQLCommand_characters_string("UPDATE characters SET bindpositionX='" & splitList(tmpstring, "position_x") & "' WHERE guid='" & newcharguid.ToString() & "'")
+            runSQLCommand_characters_string("UPDATE characters SET bindpositionY='" & splitList(tmpstring, "position_y") & "' WHERE guid='" & newcharguid.ToString() & "'")
+            runSQLCommand_characters_string("UPDATE characters SET bindpositionZ='" & splitList(tmpstring, "position_z") & "' WHERE guid='" & newcharguid.ToString() & "'")
+            runSQLCommand_characters_string("UPDATE characters SET bindmapId='" & splitList(tmpstring, "map") & "' WHERE guid='" & newcharguid.ToString() & "'")
+            runSQLCommand_characters_string("UPDATE characters SET bindzoneId='" & splitList(tmpstring, "zone") & "' WHERE guid='" & newcharguid.ToString() & "'")
         Catch ex As Exception
-            LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationLite_createAtArcemu", False, True)
+            LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationAdvanced_createAtArcemu", False, True)
         End Try
     End Sub
     Private Shared Sub createAtTrinity(ByVal charactername As String, ByVal accname As String, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
-        LogAppend("Creating at Trinity", "CharacterCreationLite_createAtTrinity", False)
+        LogAppend("Creating at Trinity", "CharacterCreationAdvanced_createAtTrinity", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT guid FROM characters WHERE guid=(SELECT MAX(guid) FROM characters)", True)) + 1
         Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `id` FROM account WHERE username='" & accname & "'", True))
         Const sqlstring As String = "INSERT INTO characters ( `guid`, `account`, `name`, `race`, `class`, `gender`, `level`, `xp`, `money`, `playerBytes`, `playerBytes2`, " &
@@ -130,18 +138,25 @@ Public Class CharacterCreationAdvanced
                 End If
             End If
             'Creating hearthstone
-            LogAppend("Creating character hearthstone", "CharacterCreationLite_createAtArcemu", False)
+            LogAppend("Creating character hearthstone", "CharacterCreationAdvanced_createAtArcemu", False)
             Dim newitemguid As Integer = (TryInt(runSQLCommand_characters_string("SELECT guid FROM item_instance WHERE guid=(SELECT MAX(guid) FROM item_instance)", True)) + 1)
             runSQLCommand_characters_string("INSERT INTO item_instance ( guid, itemEntry, owner_guid, count, charges, enchantments, durability ) VALUES ( '" &
                newitemguid.ToString & "', '6948', '" & accid.ToString() & "', '1', '0 0 0 0 0 ', '" & newitemguid.ToString() &
                " 1191182336 3 6948 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )", True)
-            runSQLCommand_characters_string("INSERT INTO character_inventory ( guid, bag, `slot`, `item` ) VALUES ( '" & accid.ToString() & "', '0', '23', '" & newitemguid.ToString() & "')", True)
+            runSQLCommand_characters_string("INSERT INTO character_inventory ( guid, bag, `slot`, `item` ) VALUES ( '" & newcharguid.ToString() & "', '0', '23', '" & newitemguid.ToString() & "')", True)
+            'Set home
+            LogAppend("Setting character homebind", "CharacterCreationAdvanced_createAtTrinity", False)
+            Dim tmpstring As String = GetTemporaryCharacterInformation("@character_homebind", targetSetId)
+            runSQLCommand_characters_string("INSERT INTO character_homebind ( guid, " & homebind_map_columnname & ", " & homebind_zone_columnname & ", " & homebind_posx_columnname & ", " &
+                                            homebind_posy_columnname & ", " & homebind_posz_columnname & " ) VALUES ( '" & newcharguid.ToString() & "', '" & splitList(tmpstring, "map") &
+                                            "', '" & splitList(tmpstring, "zone") & "', '" & splitList(tmpstring, "position_x") & "', '" & splitList(tmpstring, "position_y") & "', '" &
+                                            splitList(tmpstring, "position_z") & "' )")
         Catch ex As Exception
-            LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationLite_createAtTrinity", False, True)
+            LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationAdvanced_createAtTrinity", False, True)
         End Try
     End Sub
     Private Shared Sub createAtMangos(ByVal charactername As String, ByVal accname As String, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
-        LogAppend("Creating at Mangos", "CharacterCreationLite_createAtMangos", False)
+        LogAppend("Creating at Mangos", "CharacterCreationAdvanced_createAtMangos", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT guid FROM characters WHERE guid=(SELECT MAX(guid) FROM characters)", True)) + 1
         Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `id` FROM account WHERE username='" & accname & "'", True))
         Const sqlstring As String = "INSERT INTO characters ( `guid`, `account`, `name`, `race`, `class`, `gender`, `level`, `xp`, `money`, `playerBytes`, `position_x`, position_y, position_z, map, orientation, taximask `health` ) VALUES " &
@@ -165,10 +180,10 @@ Public Class CharacterCreationAdvanced
                 End If
             End If
             'Creating hearthstone
-            LogAppend("Creating character hearthstone", "CharacterCreationLite_createAtArcemu", False)
+            LogAppend("Creating character hearthstone", "CharacterCreationAdvanced_createAtArcemu", False)
             Dim newitemguid As Integer = (TryInt(runSQLCommand_characters_string("SELECT guid FROM item_instance WHERE guid=(SELECT MAX(guid) FROM item_instance))", True)) + 1)
             If expansion >= 3 Then
-                runSQLCommand_characters_string("INSERT INTO item_instance ( guid, owner_guid, data ) VALUES ( '" & newitemguid.ToString() & "', '" & accid.ToString() & "', '" & newitemguid.ToString() &
+                runSQLCommand_characters_string("INSERT INTO item_instance ( guid, owner_guid, data ) VALUES ( '" & newitemguid.ToString() & "', '" & newcharguid.ToString() & "', '" & newitemguid.ToString() &
                                                 " 1191182336 3 6948 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ' )", True)
             Else
                 'MaNGOS < 3.3 Core: watch data length
@@ -177,8 +192,14 @@ Public Class CharacterCreationAdvanced
                     " 1191182336 3 6948 1065353216 0 8 0 8 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ' )", True)
             End If
             runSQLCommand_characters_string("INSERT INTO character_inventory ( guid, bag, slot, item, item_template ) VALUES ( '" & accid.ToString() & "', '0', '23', '" & newitemguid.ToString() & "', '6948')")
+            'Set home
+            LogAppend("Setting character homebind", "CharacterCreationAdvanced_createAtMangos", False)
+            Dim tmpstring As String = GetTemporaryCharacterInformation("@character_homebind", targetSetId)
+            runSQLCommand_characters_string("INSERT INTO character_homebind ( guid, " & homebind_map_columnname & ", " & homebind_zone_columnname & ", " &
+            homebind_posx_columnname & ", " & homebind_posy_columnname & ", " & homebind_posz_columnname & " ) VALUES ( '" & newcharguid.ToString() & "', '" & splitList(tmpstring, "map") & "', '" & splitList(tmpstring, "zone") &
+            "', '" & splitList(tmpstring, "position_x") & "', '" & splitList(tmpstring, "position_y") & "', '" & splitList(tmpstring, "position_z") & "' )")
         Catch ex As Exception
-            LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationLite_createAtMangos", False, True)
+            LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationAdvanced_createAtMangos", False, True)
         End Try
     End Sub
 End Class
