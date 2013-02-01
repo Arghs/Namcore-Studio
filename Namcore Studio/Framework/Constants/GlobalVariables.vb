@@ -10,6 +10,7 @@ Public Class GlobalVariables
     Public Shared GlobalConnection_Realm As New MySqlConnection
     Public Shared TargetConnection As New MySqlConnection
     Public Shared TargetConnection_Realm As New MySqlConnection
+    Public Shared characterGUID As Integer
     'DB table names
     '# Character DB
     Public Shared character_tablename As String
