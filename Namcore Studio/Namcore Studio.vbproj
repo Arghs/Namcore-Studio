@@ -106,9 +106,11 @@
     <Compile Include="Framework\Transmission\CharacterCreationAdvanced.vb" />
     <Compile Include="Framework\Transmission\CharacterCreationLite.vb" />
     <Compile Include="Framework\Transmission\GlyphCreation.vb" />
+    <Compile Include="Framework\Transmission\ModBasics.vb" />
     <Compile Include="Framework\Transmission\QuestCreation.vb" />
     <Compile Include="Framework\Transmission\SkillCreation.vb" />
     <Compile Include="Framework\Transmission\SpellCreation.vb" />
+    <Compile Include="Framework\Transmission\TalentCreation.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
