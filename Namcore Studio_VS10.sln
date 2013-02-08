@@ -1,9 +1,8 @@
-
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Namcore Studio", "Namcore Studio\Namcore Studio.vbproj", "{2484CD37-5DB3-4CC6-8132-EEAFE85C75C5}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Namcore Studio_VS10", "Namcore Studio\Namcore Studio_VS10.vbproj", "{2484CD37-5DB3-4CC6-8132-EEAFE85C75C5}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NamcoreDirectAccess", "NamcoreDirectAccess\NamcoreDirectAccess.vbproj", "{8557CE3C-0E88-43AD-B402-B87ED445B3B4}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NamcoreDirectAccess_VS10", "NamcoreDirectAccess\NamcoreDirectAccess_VS10.vbproj", "{8557CE3C-0E88-43AD-B402-B87ED445B3B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
