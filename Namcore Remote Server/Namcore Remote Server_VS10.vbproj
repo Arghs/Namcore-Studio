@@ -5,24 +5,25 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>
     </ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2484CD37-5DB3-4CC6-8132-EEAFE85C75C5}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <StartupObject>Namcore_Studio.My.MyApplication</StartupObject>
-    <RootNamespace>Namcore_Studio</RootNamespace>
-    <AssemblyName>Namcore Studio</AssemblyName>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{D2CC8A20-2128-4345-AF26-275C323ADD89}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <StartupObject>Namcore_Remote_Server.ConnectionHandler</StartupObject>
+    <RootNamespace>Namcore_Remote_Server</RootNamespace>
+    <AssemblyName>Namcore Remote Server</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>Console</MyType>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Namcore Studio.xml</DocumentationFile>
+    <DocumentationFile>Namcore Remote Server.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
@@ -32,7 +33,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Namcore Studio.xml</DocumentationFile>
+    <DocumentationFile>Namcore Remote Server.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -50,13 +51,11 @@
   <ItemGroup>
     <Reference Include="mysql.data, Version=5.2.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\mysql.data.dll</HintPath>
+      <HintPath>Resources\mysql.data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -65,51 +64,13 @@
     <Import Include="System.Collections" />
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Data" />
-    <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
-    <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Framework\Armory\API.vb" />
-    <Compile Include="Framework\Constants\GlobalVariables.vb" />
-    <Compile Include="Framework\Core\CharacterAchievementHandler.vb" />
-    <Compile Include="Framework\Core\CharacterActionsHandler.vb" />
-    <Compile Include="Framework\Core\CharacterArmorHandler.vb" />
-    <Compile Include="Framework\Core\CharacterBasicsHandler.vb" />
-    <Compile Include="Framework\Core\CharacterEnchantmentsHandler.vb" />
-    <Compile Include="Framework\Core\CharacterGlyphsHandler.vb" />
-    <Compile Include="Framework\Core\CharacterInventoryHandler.vb" />
-    <Compile Include="Framework\Core\CharacterItemStatsHandler.vb" />
-    <Compile Include="Framework\Core\CharacterQuestlogHandler.vb" />
-    <Compile Include="Framework\Core\CharacterReputationHandler.vb" />
-    <Compile Include="Framework\Core\CharacterSkillsHandler.vb" />
-    <Compile Include="Framework\Core\CharacterSpellsHandler.vb" />
-    <Compile Include="Framework\Core\CharacterTalentsHandler.vb" />
-    <Compile Include="Framework\Database\CommandHandler.vb" />
-    <Compile Include="Framework\Database\ConnectionHandler.vb" />
-    <Compile Include="Framework\Functions\Basics.vb" />
-    <Compile Include="Framework\Functions\Conversions.vb" />
-    <Compile Include="Framework\Functions\Interface_Operator.vb" />
-    <Compile Include="Framework\Functions\SpellItem_Information.vb" />
-    <Compile Include="Framework\Logging\ErrorLogging.vb" />
-    <Compile Include="Framework\Logging\EventLogging.vb" />
-    <Compile Include="Framework\Transmission\AccountCreation.vb" />
-    <Compile Include="Framework\Transmission\ArmorCreation.vb" />
-    <Compile Include="Framework\Transmission\CharacterCreationAdvanced.vb" />
-    <Compile Include="Framework\Transmission\CharacterCreationLite.vb" />
-    <Compile Include="Framework\Transmission\GlyphCreation.vb" />
-    <Compile Include="Framework\Transmission\ModBasics.vb" />
-    <Compile Include="Framework\Transmission\QuestCreation.vb" />
-    <Compile Include="Framework\Transmission\SkillCreation.vb" />
-    <Compile Include="Framework\Transmission\SpellCreation.vb" />
-    <Compile Include="Framework\Transmission\TalentCreation.vb" />
+    <Compile Include="Configuration.vb" />
+    <Compile Include="ConnectionHandler.vb" />
+    <Compile Include="mysqlHandler.vb" />
+    <Compile Include="Logging.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -135,7 +96,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -145,19 +105,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Resources\enchant_name_de.csv" />
-    <None Include="Resources\enchant_name_en.csv" />
-    <None Include="Resources\talent.csv" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="References\mysql.data.dll" />
-    <None Include="Resources\glyphproperties.txt" />
-    <None Include="Resources\glyphproperties_335.txt" />
-    <None Include="Resources\glyphproperties_434.txt" />
-    <None Include="Resources\empty.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Framework\Template_System\" />
+    <Content Include="Resources\mysql.data.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

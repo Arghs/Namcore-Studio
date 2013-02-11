@@ -101,7 +101,6 @@
     <Compile Include="Framework\Logging\ErrorLogging.vb" />
     <Compile Include="Framework\Logging\EventLogging.vb" />
     <Compile Include="Framework\Transmission\AccountCreation.vb" />
-    <Compile Include="Framework\Transmission\AchievementCreation.vb" />
     <Compile Include="Framework\Transmission\ArmorCreation.vb" />
     <Compile Include="Framework\Transmission\CharacterCreationAdvanced.vb" />
     <Compile Include="Framework\Transmission\CharacterCreationLite.vb" />

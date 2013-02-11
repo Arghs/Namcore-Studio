@@ -32,7 +32,7 @@ Public Class TalentCreation
     Private Shared TalentRank As String
     Private Shared TalentRank2 As String
     Private Shared TalentId As String
-    Private Shared
+
     Public Shared Sub SetCharacterTalents(ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Setting Talents for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "TalentCreation_SetCharacterTalents", True)
