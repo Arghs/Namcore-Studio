@@ -33,7 +33,15 @@ Public Class GlobalVariables
     Public Shared GlobalConnection_Realm As New MySqlConnection
     Public Shared TargetConnection As New MySqlConnection
     Public Shared TargetConnection_Realm As New MySqlConnection
+    Public Shared GlobalConnectionString As String
+    Public Shared GlobalConnectionString_Realm As String
+    Public Shared TargetConnectionString As String
+    Public Shared TargetConnectionString_Realm As String
     Public Shared characterGUID As Integer
+    Public Shared acctable As DataTable
+    Public Shared chartable As DataTable
+    Public Shared modifiedAccTable As DataTable
+    Public Shared modifiedCharTable As DataTable
     'DB table names
     '# Character DB
     Public Shared character_tablename As String
@@ -115,6 +123,7 @@ Public Class GlobalVariables
     Public Shared acc_arcemuPass_columnname As String
     Public Shared acc_email_columnname As String
     Public Shared acc_joindate_columnname As String
+    Public Shared acc_lastlogin_columnname As String
     Public Shared acc_expansion_columnname As String
     Public Shared acc_arcemuFlags_columnname As String
     Public Shared acc_locale_columnname As String

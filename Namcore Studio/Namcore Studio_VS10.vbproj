@@ -70,15 +70,28 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Form1.vb">
+    <Compile Include="Forms\Filter_accounts.Designer.vb">
+      <DependentUpon>Filter_accounts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Filter_accounts.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="Forms\Userwait.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Userwait.Designer.vb">
+      <DependentUpon>Userwait.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Live_View.Designer.vb">
+      <DependentUpon>Live_View.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Live_View.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Framework\Armory\API.vb" />
     <Compile Include="Framework\Constants\GlobalVariables.vb" />
+    <Compile Include="Framework\Core\Account_CharacterInformationProcessing.vb" />
     <Compile Include="Framework\Core\CharacterAchievementHandler.vb" />
     <Compile Include="Framework\Core\CharacterActionsHandler.vb" />
     <Compile Include="Framework\Core\CharacterArmorHandler.vb" />
@@ -96,7 +109,8 @@
     <Compile Include="Framework\Database\ConnectionHandler.vb" />
     <Compile Include="Framework\Functions\Basics.vb" />
     <Compile Include="Framework\Functions\Conversions.vb" />
-    <Compile Include="Framework\Functions\Interface_Operator.vb" />
+    <Compile Include="Framework\Functions\Interface\Interface_Operator.vb" />
+    <Compile Include="Framework\Functions\Interface\ListViewComparer.vb" />
     <Compile Include="Framework\Functions\SpellItem_Information.vb" />
     <Compile Include="Framework\Logging\ErrorLogging.vb" />
     <Compile Include="Framework\Logging\EventLogging.vb" />
@@ -125,13 +139,32 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Resources\UserMessages.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserMessages.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\Filter_accounts.resx">
+      <DependentUpon>Filter_accounts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Userwait.resx">
+      <DependentUpon>Userwait.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Live_View.resx">
+      <DependentUpon>Live_View.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UserMessages.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserMessages.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="References\mysql.data.dll" />
+    <Content Include="Resources\namcore_bg.jpg" />
+    <None Include="Resources\namcore_bg2.jpg" />
+    <None Include="Resources\namcore_bg1.jpg" />
     <None Include="Resources\glyphproperties.txt" />
     <None Include="Resources\glyphproperties_335.txt" />
     <None Include="Resources\glyphproperties_434.txt" />

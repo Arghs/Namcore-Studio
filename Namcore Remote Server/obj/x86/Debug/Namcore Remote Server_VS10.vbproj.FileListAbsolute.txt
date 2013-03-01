@@ -1,0 +1,3 @@
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.exe
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.xml
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.pdb

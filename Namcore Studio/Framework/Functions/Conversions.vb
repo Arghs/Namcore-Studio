@@ -23,6 +23,8 @@
 
 Imports System.Text
 Imports Namcore_Studio.EventLogging
+Imports System.Resources
+
 Public Class Conversions
 
     Public Shared Function ConvertListToString(ByVal _list As List(Of String)) As String
@@ -65,7 +67,11 @@ Public Class Conversions
         If parseResult = 0 Then
             Return 0
         Else
-            Return tryint(parseResult)
+            Return TryInt(parseResult)
         End If
-        End Function
+    End Function
+    Public Shared Function GetRaceNameById(ByVal raceid As String) As String
+        Dim RM As New ResourceManager("MyApp.MyResStrings", System.Reflection.Assembly.GetExecutingAssembly())
+        'todo
+    End Function
 End Class

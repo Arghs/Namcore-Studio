@@ -168,7 +168,7 @@ Public Class SpellItem_Information
                 Dim tmpreturn As String = "-"
                 For i = 0 To foundRows.GetUpperBound(0)
                     tmpreturn = (foundRows(i)(secfield)).ToString
-                    Next i
+                Next i
                 Return tmpreturn
             End If
         Catch ex As Exception

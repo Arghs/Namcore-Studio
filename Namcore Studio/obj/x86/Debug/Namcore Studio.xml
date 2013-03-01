@@ -6,7 +6,116 @@ NamcoreStudio
 </name>
 </assembly>
 <members>
-<member name="P:Namcore_Studio.My.Resources.Resources.ResourceManager">
+<member name="P:Namcore_Studio.My.Resources.UserMessages.ResourceManager">
+	<summary>
+  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.Culture">
+	<summary>
+  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.bloodelf">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deathknight">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Death Knight ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.draenei">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Draenei ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.druid">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Druid ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.dwarf">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Dwarf ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.female">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.gnome">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Gnome ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.goblin">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Goblin ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.human">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Human ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.hunter">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Hunter ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.mage">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Mage ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.male">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Male ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.nightelf">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Night Elf ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.orc">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Orc ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.paladin">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Paladin ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.priest">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Priest ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.rogue">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Rogue ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.shaman">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Shaman ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.tauren">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Tauren ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.troll">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Troll ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.undead">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Undead ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.warlock">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Warlock ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.warrior">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Warrior ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.worgen">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Worgen ähnelt.
+</summary>
+</member><member name="T:Namcore_Studio.My.Resources.UserMessages">
+	<summary>
+  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.ResourceManager">
 	<summary>
   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
 </summary>
@@ -123,6 +232,14 @@ flags,long,long,long,
 &lt;entry&gt;165&lt;/entry&gt;&lt;spell&gt;54815&lt;/spell&gt;&lt;entry2&gt;165&lt;/entry2&gt;&lt;spell2&gt;54815&lt;/spell2&gt;
 &lt;entry&gt;166&lt;/entry&gt;&lt;spell&gt;54818&lt;/spell&gt;&lt;entry2&gt;166&lt;/entry2&gt;&lt;spell2&gt;54818&lt;/spell2&gt;
 &lt;entry&gt;167&lt;/entry&gt;&lt;s [Rest der Zeichenfolge wurde abgeschnitten]"; ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.namcore_bg">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.namcore_bg2">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Namcore_Studio.My.Resources.Resources.Talent">
 	<summary>
