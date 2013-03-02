@@ -65,6 +65,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Are you sure? ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property areyousure() As String
+            Get
+                Return ResourceManager.GetString("areyousure", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property bloodelf() As String
@@ -79,6 +88,24 @@ Namespace My.Resources
         Friend Shared ReadOnly Property deathknight() As String
             Get
                 Return ResourceManager.GetString("deathknight", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected accounts? ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property deleteacc() As String
+            Get
+                Return ResourceManager.GetString("deleteacc", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected characters? ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property deletechar() As String
+            Get
+                Return ResourceManager.GetString("deletechar", resourceCulture)
             End Get
         End Property
         

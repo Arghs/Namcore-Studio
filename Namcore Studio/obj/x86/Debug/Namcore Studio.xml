@@ -15,6 +15,10 @@ NamcoreStudio
   Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.areyousure">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Are you sure? ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.bloodelf">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
@@ -22,6 +26,14 @@ NamcoreStudio
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.deathknight">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Death Knight ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deleteacc">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected accounts? ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deletechar">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected characters? ähnelt.
 </summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.draenei">
 	<summary>

@@ -27,6 +27,7 @@
 Imports Namcore_Studio.ConnectionHandler
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Account_CharacterInformationProcessing
+
 Public Class Live_View
     Private cmpFileListViewComparer As ListViewComparer
     Dim checkchangestatus As Boolean = False
@@ -184,19 +185,24 @@ Public Class Live_View
                 characterview.Update()
             Else
                 characterview.Items.Clear()
-                For Each rowitem As DataRow In chartable.Rows
-                    Dim str(6) As String
-                    Dim itm As ListViewItem
-                    str(0) = rowitem.Item(0)
-                    str(1) = rowitem.Item(1)
-                    str(2) = rowitem.Item(2)
-                    str(3) = rowitem.Item(3)
-                    str(4) = rowitem.Item(4)
-                    str(5) = rowitem.Item(5)
-                    str(6) = rowitem.Item(6)
-                    itm = New ListViewItem(str)
-                    characterview.Items.Add(itm)
-                    characterview.EnsureVisible(characterview.Items.Count - 1)
+                For Each listitems As ListViewItem In accountview.Items
+                    Dim accid As String = listitems.SubItems(0).Text
+                    For Each rowitem As DataRow In chartable.Rows
+                        If rowitem(1) = accid Then
+                            Dim str(6) As String
+                            Dim itm As ListViewItem
+                            str(0) = rowitem.Item(0)
+                            str(1) = rowitem.Item(1)
+                            str(2) = rowitem.Item(2)
+                            str(3) = rowitem.Item(3)
+                            str(4) = rowitem.Item(4)
+                            str(5) = rowitem.Item(5)
+                            str(6) = rowitem.Item(6)
+                            itm = New ListViewItem(str)
+                            characterview.Items.Add(itm)
+                            characterview.EnsureVisible(characterview.Items.Count - 1)
+                        End If
+                    Next
                 Next
                 characterview.Update()
             End If
@@ -225,5 +231,50 @@ Public Class Live_View
 
     Private Sub filter_acc_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles filter_acc.LinkClicked
         Filter_accounts.Show()
+    End Sub
+
+    Private Sub SelectedAccountsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedAccountsToolStripMenuItem.Click
+        Dim result = MsgBox(My.Resources.UserMessages.deleteacc, vbYesNo, My.Resources.UserMessages.areyousure)
+        If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
+            Dim accountId As String = accountview.SelectedItems(0).SubItems(0).Text
+            For I = 0 To accountview.SelectedItems.Count - 1
+                accountview.SelectedItems(I).Remove()
+                GlobalVariables.acc_id_columnname = "id" 'todo
+                Dim toBeRemovedRow As DataRow() = acctable.Select(GlobalVariables.acc_id_columnname & " = '" & accountId & "'")
+                If Not toBeRemovedRow.Length = 0 Then acctable.Rows.Remove(toBeRemovedRow(0))
+            Next
+            setaccountview(acctable)
+        End If
+    End Sub
+
+    Private Sub CheckedAccountsToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles CheckedAccountsToolStripMenuItem1.Click
+        Dim result = MsgBox(My.Resources.UserMessages.deleteacc, vbYesNo, My.Resources.UserMessages.areyousure)
+        If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
+            For Each itm As ListViewItem In accountview.CheckedItems
+                accountview.Items.Remove(itm)
+                GlobalVariables.acc_id_columnname = "id" 'todo
+                Dim toBeRemovedRow As DataRow() = acctable.Select(GlobalVariables.acc_id_columnname & " = '" & itm.SubItems(0).Text & "'")
+                If Not toBeRemovedRow.Length = 0 Then acctable.Rows.Remove(toBeRemovedRow(0))
+            Next
+            setaccountview(acctable)
+        End If
+    End Sub
+
+    Private Sub EditToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EditToolStripMenuItem.Click
+        'todo
+    End Sub
+    Private Sub accountview_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles accountview.MouseDown
+        If e.Button = MouseButtons.Right Then
+            Dim oItem As ListViewItem = accountview.GetItemAt(e.X, e.Y)
+            If oItem IsNot Nothing Then
+                For I = 0 To accountview.SelectedItems.Count - 1
+                    accountcontext.Show(accountview, e.X, e.Y)
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub filter_char_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles filter_char.LinkClicked
+        Filter_characters.Show()
     End Sub
 End Class

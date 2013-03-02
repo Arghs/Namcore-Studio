@@ -22,6 +22,7 @@ Partial Class Live_View
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.connect_panel = New System.Windows.Forms.Panel()
         Me.login1_panel = New System.Windows.Forms.Panel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -79,11 +80,17 @@ Partial Class Live_View
         Me.gmlevel = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.lastlogin = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.email = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.accountcontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.RemoveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SelectedAccountsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckedAccountsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.connect_panel.SuspendLayout()
         Me.login1_panel.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.accountcontext.SuspendLayout()
         Me.SuspendLayout()
         '
         'connect_panel
@@ -648,6 +655,7 @@ Partial Class Live_View
         Me.accountview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.accid, Me.accname, Me.gmlevel, Me.lastlogin, Me.email})
         Me.accountview.FullRowSelect = True
         Me.accountview.Location = New System.Drawing.Point(13, 65)
+        Me.accountview.MultiSelect = False
         Me.accountview.Name = "accountview"
         Me.accountview.Size = New System.Drawing.Size(448, 372)
         Me.accountview.TabIndex = 0
@@ -679,6 +687,37 @@ Partial Class Live_View
         Me.email.Text = "Email"
         Me.email.Width = 124
         '
+        'accountcontext
+        '
+        Me.accountcontext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem, Me.EditToolStripMenuItem})
+        Me.accountcontext.Name = "accountcontext"
+        Me.accountcontext.Size = New System.Drawing.Size(118, 48)
+        '
+        'RemoveToolStripMenuItem
+        '
+        Me.RemoveToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SelectedAccountsToolStripMenuItem, Me.CheckedAccountsToolStripMenuItem1})
+        Me.RemoveToolStripMenuItem.Name = "RemoveToolStripMenuItem"
+        Me.RemoveToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.RemoveToolStripMenuItem.Text = "Remove"
+        '
+        'SelectedAccountsToolStripMenuItem
+        '
+        Me.SelectedAccountsToolStripMenuItem.Name = "SelectedAccountsToolStripMenuItem"
+        Me.SelectedAccountsToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.SelectedAccountsToolStripMenuItem.Text = "Selected account"
+        '
+        'CheckedAccountsToolStripMenuItem1
+        '
+        Me.CheckedAccountsToolStripMenuItem1.Name = "CheckedAccountsToolStripMenuItem1"
+        Me.CheckedAccountsToolStripMenuItem1.Size = New System.Drawing.Size(171, 22)
+        Me.CheckedAccountsToolStripMenuItem1.Text = "Checked accounts"
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
         'Live_View
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -699,6 +738,7 @@ Partial Class Live_View
         Me.GroupBox1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.accountcontext.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -759,4 +799,9 @@ Partial Class Live_View
     Friend WithEvents charclass As System.Windows.Forms.ColumnHeader
     Friend WithEvents chargender As System.Windows.Forms.ColumnHeader
     Friend WithEvents charlevel As System.Windows.Forms.ColumnHeader
+    Friend WithEvents accountcontext As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents RemoveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SelectedAccountsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CheckedAccountsToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

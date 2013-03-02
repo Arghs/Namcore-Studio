@@ -76,6 +76,12 @@
     <Compile Include="Forms\Filter_accounts.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Filter_characters.Designer.vb">
+      <DependentUpon>Filter_characters.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Filter_characters.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Userwait.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\Filter_accounts.resx">
       <DependentUpon>Filter_accounts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Filter_characters.resx">
+      <DependentUpon>Filter_characters.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Userwait.resx">
       <DependentUpon>Userwait.vb</DependentUpon>
