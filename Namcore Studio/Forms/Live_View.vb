@@ -27,7 +27,8 @@
 Imports Namcore_Studio.ConnectionHandler
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Account_CharacterInformationProcessing
-
+Imports Namcore_Studio.CommandHandler
+Imports Namcore_Studio.Conversions
 Public Class Live_View
     Private cmpFileListViewComparer As ListViewComparer
     Dim checkchangestatus As Boolean = False
@@ -79,9 +80,9 @@ Public Class Live_View
             str(0) = rowitem.Item(0)
             str(1) = rowitem.Item(1)
             str(2) = rowitem.Item(2)
-            str(3) = rowitem.Item(3)
-            str(4) = rowitem.Item(4)
-            str(5) = rowitem.Item(5)
+            str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
+            str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
+            str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
             str(6) = rowitem.Item(6)
             itm = New ListViewItem(str)
             characterview.Items.Add(itm)
@@ -121,9 +122,9 @@ Public Class Live_View
                     str(0) = rowitem.Item(0)
                     str(1) = rowitem.Item(1)
                     str(2) = rowitem.Item(2)
-                    str(3) = rowitem.Item(3)
-                    str(4) = rowitem.Item(4)
-                    str(5) = rowitem.Item(5)
+                    str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
+                    str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
+                    str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
                     str(6) = rowitem.Item(6)
                     itm = New ListViewItem(str)
                     characterview.Items.Add(itm)
@@ -136,7 +137,48 @@ Public Class Live_View
         acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
         chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
     End Sub
-
+    Public Sub setcharacterview(ByVal charactertable As DataTable)
+        checkchangestatus = False
+        sourceCore = "trinity" 'for testing only
+        characterview.Items.Clear()
+        accountview.Items.Clear()
+        For Each rowitem As DataRow In modifiedAccTable.Rows
+            Dim str(4) As String
+            Dim itm As ListViewItem
+            str(0) = rowitem.Item(0)
+            str(1) = rowitem.Item(1)
+            str(2) = rowitem.Item(2)
+            str(3) = rowitem.Item(3)
+            str(4) = rowitem.Item(4)
+            itm = New ListViewItem(str)
+            accountview.Items.Add(itm)
+            accountview.EnsureVisible(accountview.Items.Count - 1)
+        Next
+        accountview.Update()
+        For Each accrowitem As DataRow In modifiedAccTable.Rows
+            Dim accid As String = accrowitem.Item(0)
+            For Each rowitem As DataRow In charactertable.Rows
+                If rowitem(1) = accid Then
+                    Dim str(6) As String
+                    Dim itm As ListViewItem
+                    str(0) = rowitem.Item(0)
+                    str(1) = rowitem.Item(1)
+                    str(2) = rowitem.Item(2)
+                    str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
+                    str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
+                    str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
+                    str(6) = rowitem.Item(6)
+                    itm = New ListViewItem(str)
+                    characterview.Items.Add(itm)
+                    characterview.EnsureVisible(characterview.Items.Count - 1)
+                End If
+            Next
+        Next
+        characterview.Update()
+        checkchangestatus = True
+        acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
+        chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
+    End Sub
     Private Sub Live_View_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
     End Sub
@@ -165,16 +207,16 @@ Public Class Live_View
 
                 For Each checkedrow As ListViewItem In accountview.CheckedItems
                     Dim accid As String = checkedrow.SubItems(0).Text
-                    For Each rowitem As DataRow In chartable.Rows
+                    For Each rowitem As DataRow In modifiedCharTable.Rows
                         If rowitem(1) = accid Then
                             Dim str(6) As String
                             Dim itm As ListViewItem
                             str(0) = rowitem.Item(0)
                             str(1) = rowitem.Item(1)
                             str(2) = rowitem.Item(2)
-                            str(3) = rowitem.Item(3)
-                            str(4) = rowitem.Item(4)
-                            str(5) = rowitem.Item(5)
+                            str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
+                            str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
+                            str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
                             str(6) = rowitem.Item(6)
                             itm = New ListViewItem(str)
                             characterview.Items.Add(itm)
@@ -187,16 +229,16 @@ Public Class Live_View
                 characterview.Items.Clear()
                 For Each listitems As ListViewItem In accountview.Items
                     Dim accid As String = listitems.SubItems(0).Text
-                    For Each rowitem As DataRow In chartable.Rows
+                    For Each rowitem As DataRow In modifiedCharTable.Rows
                         If rowitem(1) = accid Then
                             Dim str(6) As String
                             Dim itm As ListViewItem
                             str(0) = rowitem.Item(0)
                             str(1) = rowitem.Item(1)
                             str(2) = rowitem.Item(2)
-                            str(3) = rowitem.Item(3)
-                            str(4) = rowitem.Item(4)
-                            str(5) = rowitem.Item(5)
+                            str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
+                            str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
+                            str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
                             str(6) = rowitem.Item(6)
                             itm = New ListViewItem(str)
                             characterview.Items.Add(itm)
@@ -242,6 +284,7 @@ Public Class Live_View
                 GlobalVariables.acc_id_columnname = "id" 'todo
                 Dim toBeRemovedRow As DataRow() = acctable.Select(GlobalVariables.acc_id_columnname & " = '" & accountId & "'")
                 If Not toBeRemovedRow.Length = 0 Then acctable.Rows.Remove(toBeRemovedRow(0))
+                runSQLCommand_realm_string_setconn("DELETE FROM `" & account_tablename & "` WHERE " & acc_id_columnname & "='" & accountId & "'", GlobalConnection_Realm)
             Next
             setaccountview(acctable)
         End If
@@ -255,6 +298,7 @@ Public Class Live_View
                 GlobalVariables.acc_id_columnname = "id" 'todo
                 Dim toBeRemovedRow As DataRow() = acctable.Select(GlobalVariables.acc_id_columnname & " = '" & itm.SubItems(0).Text & "'")
                 If Not toBeRemovedRow.Length = 0 Then acctable.Rows.Remove(toBeRemovedRow(0))
+                runSQLCommand_realm_string_setconn("DELETE FROM `" & account_tablename & "` WHERE " & acc_id_columnname & "='" & itm.SubItems(0).Text & "'", GlobalConnection_Realm)
             Next
             setaccountview(acctable)
         End If
@@ -277,4 +321,6 @@ Public Class Live_View
     Private Sub filter_char_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles filter_char.LinkClicked
         Filter_characters.Show()
     End Sub
+
+   
 End Class

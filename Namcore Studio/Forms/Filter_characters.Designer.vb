@@ -22,22 +22,17 @@ Partial Class Filter_characters
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.savelogin_bt = New System.Windows.Forms.Button()
+        Me.ApplyFilter = New System.Windows.Forms.Button()
         Me.classcheck = New System.Windows.Forms.CheckBox()
         Me.racecheck = New System.Windows.Forms.CheckBox()
         Me.namecheck = New System.Windows.Forms.CheckBox()
-        Me.idcheck = New System.Windows.Forms.CheckBox()
+        Me.guidcheck = New System.Windows.Forms.CheckBox()
         Me.nametxtbox1 = New System.Windows.Forms.TextBox()
         Me.namecombo1 = New System.Windows.Forms.ComboBox()
-        Me.idtxtbox2 = New System.Windows.Forms.TextBox()
-        Me.idcombo2 = New System.Windows.Forms.ComboBox()
-        Me.idtxtbox1 = New System.Windows.Forms.TextBox()
-        Me.idcombo1 = New System.Windows.Forms.ComboBox()
-        Me.accidcheck = New System.Windows.Forms.CheckBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.accidcombo1 = New System.Windows.Forms.ComboBox()
+        Me.guidtxtbox2 = New System.Windows.Forms.TextBox()
+        Me.guidcombo2 = New System.Windows.Forms.ComboBox()
+        Me.guidtxtbox1 = New System.Windows.Forms.TextBox()
+        Me.guidcombo1 = New System.Windows.Forms.ComboBox()
         Me.levelcheck = New System.Windows.Forms.CheckBox()
         Me.leveltxtbox2 = New System.Windows.Forms.TextBox()
         Me.levelcombo2 = New System.Windows.Forms.ComboBox()
@@ -47,23 +42,23 @@ Partial Class Filter_characters
         Me.classcombo = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
-        'savelogin_bt
+        'ApplyFilter
         '
-        Me.savelogin_bt.BackColor = System.Drawing.Color.DimGray
-        Me.savelogin_bt.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.savelogin_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.savelogin_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.savelogin_bt.Location = New System.Drawing.Point(197, 210)
-        Me.savelogin_bt.Name = "savelogin_bt"
-        Me.savelogin_bt.Size = New System.Drawing.Size(121, 33)
-        Me.savelogin_bt.TabIndex = 212
-        Me.savelogin_bt.Text = "Apply"
-        Me.savelogin_bt.UseVisualStyleBackColor = False
+        Me.ApplyFilter.BackColor = System.Drawing.Color.DimGray
+        Me.ApplyFilter.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ApplyFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ApplyFilter.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.ApplyFilter.Location = New System.Drawing.Point(197, 210)
+        Me.ApplyFilter.Name = "ApplyFilter"
+        Me.ApplyFilter.Size = New System.Drawing.Size(121, 33)
+        Me.ApplyFilter.TabIndex = 212
+        Me.ApplyFilter.Text = "Apply"
+        Me.ApplyFilter.UseVisualStyleBackColor = False
         '
         'classcheck
         '
         Me.classcheck.AutoSize = True
-        Me.classcheck.Location = New System.Drawing.Point(12, 126)
+        Me.classcheck.Location = New System.Drawing.Point(12, 92)
         Me.classcheck.Name = "classcheck"
         Me.classcheck.Size = New System.Drawing.Size(51, 17)
         Me.classcheck.TabIndex = 259
@@ -73,7 +68,7 @@ Partial Class Filter_characters
         'racecheck
         '
         Me.racecheck.AutoSize = True
-        Me.racecheck.Location = New System.Drawing.Point(12, 99)
+        Me.racecheck.Location = New System.Drawing.Point(12, 65)
         Me.racecheck.Name = "racecheck"
         Me.racecheck.Size = New System.Drawing.Size(52, 17)
         Me.racecheck.TabIndex = 258
@@ -83,26 +78,26 @@ Partial Class Filter_characters
         'namecheck
         '
         Me.namecheck.AutoSize = True
-        Me.namecheck.Location = New System.Drawing.Point(12, 72)
+        Me.namecheck.Location = New System.Drawing.Point(12, 38)
         Me.namecheck.Name = "namecheck"
         Me.namecheck.Size = New System.Drawing.Size(54, 17)
         Me.namecheck.TabIndex = 257
         Me.namecheck.Text = "Name"
         Me.namecheck.UseVisualStyleBackColor = True
         '
-        'idcheck
+        'guidcheck
         '
-        Me.idcheck.AutoSize = True
-        Me.idcheck.Location = New System.Drawing.Point(12, 12)
-        Me.idcheck.Name = "idcheck"
-        Me.idcheck.Size = New System.Drawing.Size(53, 17)
-        Me.idcheck.TabIndex = 256
-        Me.idcheck.Text = "GUID"
-        Me.idcheck.UseVisualStyleBackColor = True
+        Me.guidcheck.AutoSize = True
+        Me.guidcheck.Location = New System.Drawing.Point(12, 12)
+        Me.guidcheck.Name = "guidcheck"
+        Me.guidcheck.Size = New System.Drawing.Size(53, 17)
+        Me.guidcheck.TabIndex = 256
+        Me.guidcheck.Text = "GUID"
+        Me.guidcheck.UseVisualStyleBackColor = True
         '
         'nametxtbox1
         '
-        Me.nametxtbox1.Location = New System.Drawing.Point(163, 72)
+        Me.nametxtbox1.Location = New System.Drawing.Point(163, 38)
         Me.nametxtbox1.Name = "nametxtbox1"
         Me.nametxtbox1.Size = New System.Drawing.Size(155, 20)
         Me.nametxtbox1.TabIndex = 247
@@ -111,94 +106,50 @@ Partial Class Filter_characters
         '
         Me.namecombo1.FormattingEnabled = True
         Me.namecombo1.Items.AddRange(New Object() {"", "=", "contains"})
-        Me.namecombo1.Location = New System.Drawing.Point(94, 70)
+        Me.namecombo1.Location = New System.Drawing.Point(94, 36)
         Me.namecombo1.Name = "namecombo1"
         Me.namecombo1.Size = New System.Drawing.Size(63, 21)
         Me.namecombo1.TabIndex = 246
         Me.namecombo1.Text = "Select"
         '
-        'idtxtbox2
+        'guidtxtbox2
         '
-        Me.idtxtbox2.Location = New System.Drawing.Point(393, 10)
-        Me.idtxtbox2.Name = "idtxtbox2"
-        Me.idtxtbox2.Size = New System.Drawing.Size(155, 20)
-        Me.idtxtbox2.TabIndex = 245
+        Me.guidtxtbox2.Location = New System.Drawing.Point(393, 10)
+        Me.guidtxtbox2.Name = "guidtxtbox2"
+        Me.guidtxtbox2.Size = New System.Drawing.Size(155, 20)
+        Me.guidtxtbox2.TabIndex = 245
         '
-        'idcombo2
+        'guidcombo2
         '
-        Me.idcombo2.FormattingEnabled = True
-        Me.idcombo2.Items.AddRange(New Object() {"", ">", "<"})
-        Me.idcombo2.Location = New System.Drawing.Point(324, 10)
-        Me.idcombo2.Name = "idcombo2"
-        Me.idcombo2.Size = New System.Drawing.Size(63, 21)
-        Me.idcombo2.TabIndex = 244
-        Me.idcombo2.Text = "Select"
+        Me.guidcombo2.FormattingEnabled = True
+        Me.guidcombo2.Items.AddRange(New Object() {"", ">", "<"})
+        Me.guidcombo2.Location = New System.Drawing.Point(324, 10)
+        Me.guidcombo2.Name = "guidcombo2"
+        Me.guidcombo2.Size = New System.Drawing.Size(63, 21)
+        Me.guidcombo2.TabIndex = 244
+        Me.guidcombo2.Text = "Select"
         '
-        'idtxtbox1
+        'guidtxtbox1
         '
-        Me.idtxtbox1.Location = New System.Drawing.Point(163, 11)
-        Me.idtxtbox1.Name = "idtxtbox1"
-        Me.idtxtbox1.Size = New System.Drawing.Size(155, 20)
-        Me.idtxtbox1.TabIndex = 243
+        Me.guidtxtbox1.Location = New System.Drawing.Point(163, 11)
+        Me.guidtxtbox1.Name = "guidtxtbox1"
+        Me.guidtxtbox1.Size = New System.Drawing.Size(155, 20)
+        Me.guidtxtbox1.TabIndex = 243
         '
-        'idcombo1
+        'guidcombo1
         '
-        Me.idcombo1.FormattingEnabled = True
-        Me.idcombo1.Items.AddRange(New Object() {"", "=", ">", "<"})
-        Me.idcombo1.Location = New System.Drawing.Point(94, 9)
-        Me.idcombo1.Name = "idcombo1"
-        Me.idcombo1.Size = New System.Drawing.Size(63, 21)
-        Me.idcombo1.TabIndex = 242
-        Me.idcombo1.Text = "Select"
-        '
-        'accidcheck
-        '
-        Me.accidcheck.AutoSize = True
-        Me.accidcheck.Location = New System.Drawing.Point(12, 40)
-        Me.accidcheck.Name = "accidcheck"
-        Me.accidcheck.Size = New System.Drawing.Size(80, 17)
-        Me.accidcheck.TabIndex = 267
-        Me.accidcheck.Text = "Account ID"
-        Me.accidcheck.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(393, 38)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(155, 20)
-        Me.TextBox1.TabIndex = 266
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"", ">", "<"})
-        Me.ComboBox1.Location = New System.Drawing.Point(324, 38)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(63, 21)
-        Me.ComboBox1.TabIndex = 265
-        Me.ComboBox1.Text = "Select"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(163, 39)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(155, 20)
-        Me.TextBox2.TabIndex = 264
-        '
-        'accidcombo1
-        '
-        Me.accidcombo1.FormattingEnabled = True
-        Me.accidcombo1.Items.AddRange(New Object() {"", "=", ">", "<"})
-        Me.accidcombo1.Location = New System.Drawing.Point(94, 37)
-        Me.accidcombo1.Name = "accidcombo1"
-        Me.accidcombo1.Size = New System.Drawing.Size(63, 21)
-        Me.accidcombo1.TabIndex = 263
-        Me.accidcombo1.Text = "Select"
+        Me.guidcombo1.FormattingEnabled = True
+        Me.guidcombo1.Items.AddRange(New Object() {"", "=", ">", "<"})
+        Me.guidcombo1.Location = New System.Drawing.Point(94, 9)
+        Me.guidcombo1.Name = "guidcombo1"
+        Me.guidcombo1.Size = New System.Drawing.Size(63, 21)
+        Me.guidcombo1.TabIndex = 242
+        Me.guidcombo1.Text = "Select"
         '
         'levelcheck
         '
         Me.levelcheck.AutoSize = True
-        Me.levelcheck.Location = New System.Drawing.Point(12, 157)
+        Me.levelcheck.Location = New System.Drawing.Point(12, 123)
         Me.levelcheck.Name = "levelcheck"
         Me.levelcheck.Size = New System.Drawing.Size(52, 17)
         Me.levelcheck.TabIndex = 272
@@ -207,7 +158,7 @@ Partial Class Filter_characters
         '
         'leveltxtbox2
         '
-        Me.leveltxtbox2.Location = New System.Drawing.Point(393, 155)
+        Me.leveltxtbox2.Location = New System.Drawing.Point(393, 121)
         Me.leveltxtbox2.Name = "leveltxtbox2"
         Me.leveltxtbox2.Size = New System.Drawing.Size(155, 20)
         Me.leveltxtbox2.TabIndex = 271
@@ -216,7 +167,7 @@ Partial Class Filter_characters
         '
         Me.levelcombo2.FormattingEnabled = True
         Me.levelcombo2.Items.AddRange(New Object() {"", ">", "<"})
-        Me.levelcombo2.Location = New System.Drawing.Point(324, 155)
+        Me.levelcombo2.Location = New System.Drawing.Point(324, 121)
         Me.levelcombo2.Name = "levelcombo2"
         Me.levelcombo2.Size = New System.Drawing.Size(63, 21)
         Me.levelcombo2.TabIndex = 270
@@ -224,7 +175,7 @@ Partial Class Filter_characters
         '
         'leveltxtbox1
         '
-        Me.leveltxtbox1.Location = New System.Drawing.Point(163, 156)
+        Me.leveltxtbox1.Location = New System.Drawing.Point(163, 122)
         Me.leveltxtbox1.Name = "leveltxtbox1"
         Me.leveltxtbox1.Size = New System.Drawing.Size(155, 20)
         Me.leveltxtbox1.TabIndex = 269
@@ -233,7 +184,7 @@ Partial Class Filter_characters
         '
         Me.levelcombo1.FormattingEnabled = True
         Me.levelcombo1.Items.AddRange(New Object() {"", "=", ">", "<"})
-        Me.levelcombo1.Location = New System.Drawing.Point(94, 154)
+        Me.levelcombo1.Location = New System.Drawing.Point(94, 120)
         Me.levelcombo1.Name = "levelcombo1"
         Me.levelcombo1.Size = New System.Drawing.Size(63, 21)
         Me.levelcombo1.TabIndex = 268
@@ -242,18 +193,22 @@ Partial Class Filter_characters
         'racecombo
         '
         Me.racecombo.FormattingEnabled = True
-        Me.racecombo.Location = New System.Drawing.Point(94, 97)
+        Me.racecombo.Items.AddRange(New Object() {"Human", "Orc", "Dwarf", "Night Elf", "Undead", "Tauren", "Gnome", "Troll", "Goblin", "Blood Elf", "Draenei", "Worgen"})
+        Me.racecombo.Location = New System.Drawing.Point(94, 63)
         Me.racecombo.Name = "racecombo"
         Me.racecombo.Size = New System.Drawing.Size(128, 21)
         Me.racecombo.TabIndex = 273
+        Me.racecombo.Text = "Select"
         '
         'classcombo
         '
         Me.classcombo.FormattingEnabled = True
-        Me.classcombo.Location = New System.Drawing.Point(94, 124)
+        Me.classcombo.Items.AddRange(New Object() {"Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Druid"})
+        Me.classcombo.Location = New System.Drawing.Point(94, 90)
         Me.classcombo.Name = "classcombo"
         Me.classcombo.Size = New System.Drawing.Size(128, 21)
         Me.classcombo.TabIndex = 274
+        Me.classcombo.Text = "Select"
         '
         'Filter_characters
         '
@@ -267,22 +222,17 @@ Partial Class Filter_characters
         Me.Controls.Add(Me.levelcombo2)
         Me.Controls.Add(Me.leveltxtbox1)
         Me.Controls.Add(Me.levelcombo1)
-        Me.Controls.Add(Me.accidcheck)
-        Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.ComboBox1)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.accidcombo1)
         Me.Controls.Add(Me.classcheck)
         Me.Controls.Add(Me.racecheck)
         Me.Controls.Add(Me.namecheck)
-        Me.Controls.Add(Me.idcheck)
+        Me.Controls.Add(Me.guidcheck)
         Me.Controls.Add(Me.nametxtbox1)
         Me.Controls.Add(Me.namecombo1)
-        Me.Controls.Add(Me.idtxtbox2)
-        Me.Controls.Add(Me.idcombo2)
-        Me.Controls.Add(Me.idtxtbox1)
-        Me.Controls.Add(Me.idcombo1)
-        Me.Controls.Add(Me.savelogin_bt)
+        Me.Controls.Add(Me.guidtxtbox2)
+        Me.Controls.Add(Me.guidcombo2)
+        Me.Controls.Add(Me.guidtxtbox1)
+        Me.Controls.Add(Me.guidcombo1)
+        Me.Controls.Add(Me.ApplyFilter)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "Filter_characters"
         Me.Text = "Filter_characters"
@@ -290,22 +240,17 @@ Partial Class Filter_characters
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents savelogin_bt As System.Windows.Forms.Button
+    Friend WithEvents ApplyFilter As System.Windows.Forms.Button
     Friend WithEvents classcheck As System.Windows.Forms.CheckBox
     Friend WithEvents racecheck As System.Windows.Forms.CheckBox
     Friend WithEvents namecheck As System.Windows.Forms.CheckBox
-    Friend WithEvents idcheck As System.Windows.Forms.CheckBox
+    Friend WithEvents guidcheck As System.Windows.Forms.CheckBox
     Friend WithEvents nametxtbox1 As System.Windows.Forms.TextBox
     Friend WithEvents namecombo1 As System.Windows.Forms.ComboBox
-    Friend WithEvents idtxtbox2 As System.Windows.Forms.TextBox
-    Friend WithEvents idcombo2 As System.Windows.Forms.ComboBox
-    Friend WithEvents idtxtbox1 As System.Windows.Forms.TextBox
-    Friend WithEvents idcombo1 As System.Windows.Forms.ComboBox
-    Friend WithEvents accidcheck As System.Windows.Forms.CheckBox
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-    Friend WithEvents accidcombo1 As System.Windows.Forms.ComboBox
+    Friend WithEvents guidtxtbox2 As System.Windows.Forms.TextBox
+    Friend WithEvents guidcombo2 As System.Windows.Forms.ComboBox
+    Friend WithEvents guidtxtbox1 As System.Windows.Forms.TextBox
+    Friend WithEvents guidcombo1 As System.Windows.Forms.ComboBox
     Friend WithEvents levelcheck As System.Windows.Forms.CheckBox
     Friend WithEvents leveltxtbox2 As System.Windows.Forms.TextBox
     Friend WithEvents levelcombo2 As System.Windows.Forms.ComboBox

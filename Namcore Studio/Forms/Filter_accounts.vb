@@ -1,5 +1,4 @@
-﻿
-'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 '* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
@@ -23,10 +22,11 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Public Class Filter_accounts
 
-    Private Sub savelogin_bt_Click(sender As System.Object, e As System.EventArgs) Handles savelogin_bt.Click
+    Private Sub ApplyFilter_Click(sender As System.Object, e As System.EventArgs) Handles ApplyFilter.Click
         GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Copy
         GlobalVariables.modifiedCharTable = GlobalVariables.chartable.Copy
         If idcheck.Checked = True Then
+            If idcombo1.SelectedIndex = -1 Then GoTo SkipStatement0
             Dim insertstring As String = " " & idcombo1.SelectedItem.ToString() & " '" & idtxtbox1.Text & "'"
             Dim insertstring2 As String = ""
             GlobalVariables.acc_id_columnname = "id" 'todo
@@ -37,18 +37,19 @@ Public Class Filter_accounts
             Dim clonedDT As DataTable = GlobalVariables.modifiedAccTable.Copy
             foundRows = clonedDT.Select(GlobalVariables.acc_id_columnname & insertstring & insertstring2)
             GlobalVariables.modifiedAccTable.Rows.Clear()
-           For i = 0 To foundRows.GetUpperBound(0)
-              GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
+            For i = 0 To foundRows.GetUpperBound(0)
+                GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
             Next i
         End If
-
+SkipStatement0:
         If namecheck.Checked = True Then
             Dim insertstring As String
-            Select Case namecombo1.SelectedItem.ToString()
-                Case "contains" 'todo
+            Select Case namecombo1.SelectedIndex
+                Case 0 'todo
                     insertstring = " like '%" & nametxtbox1.Text & "%'"
-                Case "="
+                Case 1
                     insertstring = " = '" & nametxtbox1.Text & "'"
+                Case Else : GoTo SkipStatement1
             End Select
             GlobalVariables.acc_name_columnname = "username" 'todo
             Dim foundRows() As DataRow
@@ -56,11 +57,12 @@ Public Class Filter_accounts
             foundRows = clonedDT.Select(GlobalVariables.acc_name_columnname & insertstring)
             GlobalVariables.modifiedAccTable.Rows.Clear()
             For i = 0 To foundRows.GetUpperBound(0)
-             GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
+                GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
             Next i
         End If
-
+SkipStatement1:
         If gmcheck.Checked = True Then
+            If gmcombo1.SelectedIndex = -1 Then GoTo SkipStatement2
             Dim insertstring As String = " " & gmcombo1.SelectedItem.ToString() & " '" & gmtxtbox1.Text & "'"
             Dim insertstring2 As String = ""
             GlobalVariables.accAcc_gmLevel_columnname = "gmlevel" 'todo
@@ -75,8 +77,9 @@ Public Class Filter_accounts
                 GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
             Next i
         End If
-
+SkipStatement2:
         If logincheck.Checked = True Then
+            If logincombo1.SelectedIndex = -1 Then GoTo SkipStatement3
             Dim insertstring As String = " " & logincombo1.SelectedItem.ToString() & " '" & datemin.Text & "'"
             Dim insertstring2 As String = ""
             GlobalVariables.acc_lastlogin_columnname = "last_login" 'todo
@@ -92,14 +95,15 @@ Public Class Filter_accounts
                 GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
             Next i
         End If
-
+SkipStatement3:
         If emailcheck.Checked = True Then
             Dim insertstring As String
-            Select Case emailcombo1.SelectedItem.ToString()
-                Case "contains" 'todo
+            Select Case emailcombo1.SelectedIndex
+                Case 0 'todo
                     insertstring = " like '%" & emailtxtbox1.Text & "%'"
-                Case "="
+                Case 1
                     insertstring = " = '" & emailtxtbox1.Text & "'"
+                Case Else : GoTo SkipStatement4
             End Select
             Dim foundRows() As DataRow
             Dim clonedDT As DataTable = GlobalVariables.modifiedAccTable.Copy
@@ -109,7 +113,7 @@ Public Class Filter_accounts
                 GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
             Next i
         End If
-
+SkipStatement4:
         For Each CurrentForm As Form In Application.OpenForms
             If CurrentForm.Name = "Live_View" Then
                 Dim liveview As Live_View = DirectCast(CurrentForm, Live_View)

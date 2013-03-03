@@ -22,7 +22,7 @@ Partial Class Filter_accounts
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.savelogin_bt = New System.Windows.Forms.Button()
+        Me.ApplyFilter = New System.Windows.Forms.Button()
         Me.idcombo1 = New System.Windows.Forms.ComboBox()
         Me.idtxtbox1 = New System.Windows.Forms.TextBox()
         Me.idtxtbox2 = New System.Windows.Forms.TextBox()
@@ -46,18 +46,18 @@ Partial Class Filter_accounts
         Me.datemax = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
-        'savelogin_bt
+        'ApplyFilter
         '
-        Me.savelogin_bt.BackColor = System.Drawing.Color.DimGray
-        Me.savelogin_bt.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.savelogin_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.savelogin_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.savelogin_bt.Location = New System.Drawing.Point(201, 191)
-        Me.savelogin_bt.Name = "savelogin_bt"
-        Me.savelogin_bt.Size = New System.Drawing.Size(121, 33)
-        Me.savelogin_bt.TabIndex = 211
-        Me.savelogin_bt.Text = "Apply"
-        Me.savelogin_bt.UseVisualStyleBackColor = False
+        Me.ApplyFilter.BackColor = System.Drawing.Color.DimGray
+        Me.ApplyFilter.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ApplyFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ApplyFilter.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.ApplyFilter.Location = New System.Drawing.Point(201, 191)
+        Me.ApplyFilter.Name = "ApplyFilter"
+        Me.ApplyFilter.Size = New System.Drawing.Size(121, 33)
+        Me.ApplyFilter.TabIndex = 211
+        Me.ApplyFilter.Text = "Apply"
+        Me.ApplyFilter.UseVisualStyleBackColor = False
         '
         'idcombo1
         '
@@ -275,7 +275,7 @@ Partial Class Filter_accounts
         Me.Controls.Add(Me.idcombo2)
         Me.Controls.Add(Me.idtxtbox1)
         Me.Controls.Add(Me.idcombo1)
-        Me.Controls.Add(Me.savelogin_bt)
+        Me.Controls.Add(Me.ApplyFilter)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "Filter_accounts"
         Me.Text = "Filter_accounts"
@@ -284,7 +284,7 @@ Partial Class Filter_accounts
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents savelogin_bt As System.Windows.Forms.Button
+    Friend WithEvents ApplyFilter As System.Windows.Forms.Button
     Friend WithEvents idcombo1 As System.Windows.Forms.ComboBox
     Friend WithEvents idtxtbox1 As System.Windows.Forms.TextBox
     Friend WithEvents idtxtbox2 As System.Windows.Forms.TextBox
