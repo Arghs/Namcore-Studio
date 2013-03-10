@@ -2,6 +2,10 @@
 #############
 /NamCore Studio/bin/Release
 /NamCore Studio/bin/Debug
+\Namcore Studio\bin\
+/Namcore Studio/bin/
+bin/
+Debug/
 Namcore Studio.suo
 Thumbs.db
 Namcore Studio.sln.DotSettings.user
