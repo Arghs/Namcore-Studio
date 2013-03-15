@@ -1,6 +1,10 @@
 # Generated #
 #############
 /NamCore Studio/bin/Release
+/NamCore Studio/bin/Debug
+\Namcore Studio\bin\
+/Namcore Studio/bin/
+bin/
 Namcore Studio.suo
 Thumbs.db
 Namcore Studio.sln.DotSettings.user
@@ -34,4 +38,4 @@ Namcore Studio.sln.DotSettings.user
 *.sbr
 [Rr]elease*/
 _ReSharper*/
-
+bin*/

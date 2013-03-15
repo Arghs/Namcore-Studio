@@ -86,7 +86,7 @@ SkipStatement2:
             If Not logincombo2.SelectedItem = Nothing Then
                 insertstring2 = " AND " & GlobalVariables.acc_lastlogin_columnname & " " & logincombo2.SelectedItem.ToString & " '" & datemax.Text & "'"
             End If
-            'Watch datetime format: mangos requires yyy-MM-dd HH:mm:ss
+            'Watch datetime format: mangos requires yyy-MM-dd HH:mm:ss todo
             Dim foundRows() As DataRow
             Dim clonedDT As DataTable = GlobalVariables.modifiedAccTable.Copy
             foundRows = clonedDT.Select(GlobalVariables.acc_lastlogin_columnname & insertstring & insertstring2)
