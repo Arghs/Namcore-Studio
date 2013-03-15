@@ -34,7 +34,7 @@ Imports MySql.Data.MySqlClient
 Public Class CharacterCreationAdvanced
     Public Shared Sub CreateNewAdvancedCharacter(ByVal charname As String, ByVal accountName As String, ByVal setId As Integer, Optional forceNameChange As Boolean = False)
         LogAppend("Creating new character: " & charname & " for account : " & accountName, "CharacterCreationAdvanced_CreateNewAdvancedCharacter", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 createAtArcemu(charname, accountName, setId, forceNameChange)
             Case "trinity"

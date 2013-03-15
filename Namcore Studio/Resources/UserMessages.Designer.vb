@@ -83,6 +83,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Connect to source server ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property connecttosource() As String
+            Get
+                Return ResourceManager.GetString("connecttosource", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Connect to target server ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property connecttotarget() As String
+            Get
+                Return ResourceManager.GetString("connecttotarget", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Death Knight ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property deathknight() As String

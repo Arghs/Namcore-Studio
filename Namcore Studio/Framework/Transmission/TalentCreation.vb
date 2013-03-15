@@ -36,7 +36,7 @@ Public Class TalentCreation
     Public Shared Sub SetCharacterTalents(ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Setting Talents for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "TalentCreation_SetCharacterTalents", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 createAtArcemu(charguid, setId)
             Case "trinity"

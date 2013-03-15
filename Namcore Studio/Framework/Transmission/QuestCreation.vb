@@ -31,7 +31,7 @@ Public Class QuestCreation
     Public Shared Sub SetCharacterQuests(ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Setting quests for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "QuestCreation_SetCharacterQuests", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 createAtArcemu(charguid, setId)
             Case "trinity"

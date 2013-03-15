@@ -34,7 +34,7 @@ Public Class ArmorCreation
     Public Shared Sub AddCharacterArmor(ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Adding armor to character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "ArmorCreation_AddCharacterArmor", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 createAtArcemu(charguid, setId)
             Case "trinity"

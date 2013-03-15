@@ -32,13 +32,13 @@ Public Class mysqlHandler
     Public Shared sqlconn2auth As New MySqlConnection
     Public Shared sqlconn2characters As New MySqlConnection
     Public Shared Sub openSQLconnection(ByRef targetConnection As MySqlConnection, ByVal connectionstring As String)
-        If targetConnection.State = False Then
+        If targetConnection.State = ConnectionState.Closed Then
             targetConnection.ConnectionString = connectionstring
             targetConnection.Open()
         End If
     End Sub
     Public Shared Sub closeSQLconnection(ByRef targetConnection As MySqlConnection)
-        If targetConnection.State = True Then
+        If targetConnection.State = ConnectionState.Open Then
             targetConnection.Close()
             targetConnection.Dispose()
         End If

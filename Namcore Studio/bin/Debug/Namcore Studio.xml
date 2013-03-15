@@ -23,6 +23,14 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.connecttosource">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Connect to source server ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.connecttotarget">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Connect to target server ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.deathknight">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Death Knight ähnelt.

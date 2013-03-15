@@ -19,7 +19,6 @@
 '* //FileInfo//
 '*      /Filename:      Live_View
 '*      /Description:   Main interface with following functions:
-'*                      -Connect to source/target database
 '*                      -List all accounts and characters
 '*                      -Editing/Deleting/Transferring accounts and characters
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -29,36 +28,23 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Account_CharacterInformationProcessing
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
+Imports System.Resources
+
 Public Class Live_View
     Private cmpFileListViewComparer As ListViewComparer
     Dim checkchangestatus As Boolean = False
+    Dim target_accchar_table As DataTable
     Private Sub connect_bt_Click(sender As System.Object, e As System.EventArgs) Handles connect_bt.Click
-        cmpFileListViewComparer = New ListViewComparer(accountview)
-        If defaultconn_radio.Checked = True Then
-            If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text) = True Then
-                If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text) = True Then
-                    GlobalConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text
-                    GlobalConnectionString_Realm = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text
-                    OpenNewMySQLConnection(GlobalConnection, GlobalConnectionString)
-                    OpenNewMySQLConnection(GlobalConnection_Realm, GlobalConnectionString_Realm)
-                    loadaccountsandchars()
-                Else
-
-                End If
-
-            Else
-
-            End If
-        Else
-
-        End If
-
+        con_operator = 1
+        DB_connect.Show()
     End Sub
     Public Sub loadaccountsandchars()
         checkchangestatus = False
         sourceCore = "trinity" 'for testing only
         acctable = returnAccountTable(GlobalConnection_Realm)
         chartable = returnCharacterTable(GlobalConnection)
+        modifiedAccTable = acctable.Copy
+        modifiedCharTable = chartable.Copy
         characterview.Items.Clear()
         accountview.Items.Clear()
         For Each rowitem As DataRow In acctable.Rows
@@ -93,6 +79,32 @@ Public Class Live_View
         checkchangestatus = True
         acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
         chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
+    End Sub
+    Public Sub loadtargetaccountsandchars()
+        targetCore = "trinity" 'for testing only
+        target_accchar_table = returnTargetAccCharTable(TargetConnection_Realm)
+        target_accounts_tree.Nodes.Clear()
+        For Each rowitem As DataRow In target_accchar_table.Rows
+            Dim foundNode() As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)
+            If foundNode.Length = 0 Then
+                Dim newnode As New TreeNode
+                With newnode
+                    .Name = rowitem.Item(0)
+                    .Text = rowitem.Item(1)
+                End With
+                target_accounts_tree.Nodes.Add(newnode)
+            Else
+                Dim Node As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)(0)
+                Dim SubNode As New TreeNode
+                With SubNode
+                    .Name = rowitem(2)
+                    .Text = rowitem(3)
+                End With
+
+                Node.Nodes.Add(SubNode)
+            End If
+        Next
+        target_accounts_tree.Update()
     End Sub
     Public Sub setaccountview(ByVal accounttable As DataTable)
         checkchangestatus = False
@@ -225,6 +237,9 @@ Public Class Live_View
                     Next
                 Next
                 characterview.Update()
+                For Each listitem As ListViewItem In characterview.Items
+                    listitem.Checked = True
+                Next
             Else
                 characterview.Items.Clear()
                 For Each listitems As ListViewItem In accountview.Items
@@ -276,7 +291,8 @@ Public Class Live_View
     End Sub
 
     Private Sub SelectedAccountsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedAccountsToolStripMenuItem.Click
-        Dim result = MsgBox(My.Resources.UserMessages.deleteacc, vbYesNo, My.Resources.UserMessages.areyousure)
+        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(RM.GetString("deleteacc") & " (" & accountview.SelectedItems(0).SubItems(1).Text & ")", vbYesNo, RM.GetString("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = accountview.SelectedItems(0).SubItems(0).Text
             For I = 0 To accountview.SelectedItems.Count - 1
@@ -285,13 +301,15 @@ Public Class Live_View
                 Dim toBeRemovedRow As DataRow() = acctable.Select(GlobalVariables.acc_id_columnname & " = '" & accountId & "'")
                 If Not toBeRemovedRow.Length = 0 Then acctable.Rows.Remove(toBeRemovedRow(0))
                 runSQLCommand_realm_string_setconn("DELETE FROM `" & account_tablename & "` WHERE " & acc_id_columnname & "='" & accountId & "'", GlobalConnection_Realm)
+                runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", GlobalConnection)
             Next
             setaccountview(acctable)
         End If
     End Sub
 
     Private Sub CheckedAccountsToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles CheckedAccountsToolStripMenuItem1.Click
-        Dim result = MsgBox(My.Resources.UserMessages.deleteacc, vbYesNo, My.Resources.UserMessages.areyousure)
+        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(RM.GetString("deleteacc"), vbYesNo, RM.GetString("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             For Each itm As ListViewItem In accountview.CheckedItems
                 accountview.Items.Remove(itm)
@@ -299,6 +317,7 @@ Public Class Live_View
                 Dim toBeRemovedRow As DataRow() = acctable.Select(GlobalVariables.acc_id_columnname & " = '" & itm.SubItems(0).Text & "'")
                 If Not toBeRemovedRow.Length = 0 Then acctable.Rows.Remove(toBeRemovedRow(0))
                 runSQLCommand_realm_string_setconn("DELETE FROM `" & account_tablename & "` WHERE " & acc_id_columnname & "='" & itm.SubItems(0).Text & "'", GlobalConnection_Realm)
+                runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & itm.SubItems(0).Text & "'", GlobalConnection)
             Next
             setaccountview(acctable)
         End If
@@ -322,5 +341,114 @@ Public Class Live_View
         Filter_characters.Show()
     End Sub
 
-   
+
+    Private Sub getlogin_bt_Click(sender As System.Object, e As System.EventArgs)
+
+    End Sub
+
+    Private Sub connect_bt_target_Click(sender As System.Object, e As System.EventArgs) Handles connect_bt_target.Click
+        con_operator = 2
+        DB_connect.Show()
+    End Sub
+
+    Private Sub accountcontext_Opening(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles accountcontext.Opening
+
+    End Sub
+
+    Private Sub RemoveToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RemoveToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub SelectedCharacterToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedCharacterToolStripMenuItem.Click
+        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(RM.GetString("deletechar") & " (" & characterview.SelectedItems(0).SubItems(2).Text & ")", vbYesNo, RM.GetString("areyousure"))
+        If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
+            Dim charId As String = characterview.SelectedItems(0).SubItems(0).Text
+            For I = 0 To characterview.SelectedItems.Count - 1
+                characterview.SelectedItems(I).Remove()
+                Dim toBeRemovedRow As DataRow() = chartable.Select(char_guid_columnname & " = '" & charId & "'")
+                If Not toBeRemovedRow.Length = 0 Then chartable.Rows.Remove(toBeRemovedRow(0))
+                runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_guid_columnname & "='" & charId & "'", GlobalConnection)
+            Next
+            setaccountview(acctable)
+        End If
+    End Sub
+
+    Private Sub CheckedCharactersToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CheckedCharactersToolStripMenuItem.Click
+        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(RM.GetString("deletechar"), vbYesNo, RM.GetString("areyousure"))
+        If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
+            For Each itm As ListViewItem In characterview.CheckedItems
+                characterview.Items.Remove(itm)
+                Dim toBeRemovedRow As DataRow() = chartable.Select(char_guid_columnname & " = '" & itm.SubItems(0).Text & "'")
+                If Not toBeRemovedRow.Length = 0 Then chartable.Rows.Remove(toBeRemovedRow(0))
+                runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_guid_columnname & "='" & itm.SubItems(0).Text & "'", GlobalConnection)
+            Next
+            setaccountview(acctable)
+        End If
+    End Sub
+
+    Private Sub targetacccontext_Opening(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles targetacccontext.Opening
+
+    End Sub
+
+    Private Sub characterview_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles characterview.MouseDown
+        If e.Button = MouseButtons.Right Then
+            Dim oItem As ListViewItem = characterview.GetItemAt(e.X, e.Y)
+            If oItem IsNot Nothing Then
+                For I = 0 To characterview.SelectedItems.Count - 1
+                    charactercontext.Show(characterview, e.X, e.Y)
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub characterview_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles characterview.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub target_accounts_tree_AfterSelect(sender As System.Object, e As System.Windows.Forms.TreeViewEventArgs) Handles target_accounts_tree.AfterSelect
+
+    End Sub
+
+    Private Sub target_accounts_tree_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles target_accounts_tree.MouseDown
+        If e.Button = MouseButtons.Right Then
+            Dim oItem As TreeNode = target_accounts_tree.GetNodeAt(e.X, e.Y)
+            If oItem IsNot Nothing Then
+                If oItem.Level = 0 Then
+                    targetacccontext.Show(target_accounts_tree, e.X, e.Y)
+                Else
+                    targetcharcontext.Show(target_accounts_tree, e.X, e.Y)
+                End If
+
+            End If
+        End If
+    End Sub
+
+    Private Sub RemoveToolStripMenuItem2_Click(sender As System.Object, e As System.EventArgs) Handles RemoveToolStripMenuItem2.Click
+        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(RM.GetString("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, RM.GetString("areyousure"))
+        If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
+            Dim accountId As String = target_accounts_tree.SelectedNode.Name
+            target_accounts_tree.SelectedNode.Remove()
+            GlobalVariables.acc_id_columnname = "id" 'todo
+            Dim toBeRemovedRow As DataRow() = target_accchar_table.Select(GlobalVariables.acc_id_columnname & " = '" & accountId & "'")
+            If Not toBeRemovedRow.Length = 0 Then target_accchar_table.Rows.Remove(toBeRemovedRow(0))
+            'runSQLCommand_realm_string_setconn("DELETE FROM `" & account_tablename & "` WHERE " & acc_id_columnname & "='" & accountId & "'", TargetConnection_Realm)
+            'runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", TargetConnection)
+        End If
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripMenuItem1.Click
+        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(RM.GetString("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, RM.GetString("areyousure"))
+        If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
+            Dim accountId As String = target_accounts_tree.SelectedNode.Name
+            target_accounts_tree.SelectedNode.Remove()
+            GlobalVariables.acc_id_columnname = "id" 'todo
+            Dim toBeRemovedRow As DataRow() = target_accchar_table.Select(GlobalVariables.acc_id_columnname & " = '" & accountId & "'")
+            If Not toBeRemovedRow.Length = 0 Then target_accchar_table.Rows.Remove(toBeRemovedRow(0))
+            'runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", TargetConnection)
+        End If
+    End Sub
 End Class

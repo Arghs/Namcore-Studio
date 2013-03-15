@@ -29,7 +29,7 @@ Imports MySql.Data.MySqlClient
 Public Class AccountCreation
     Public Shared Sub CreateNewAccount(ByVal accname As String, ByVal passhas As String, ByVal realmid As Integer, ByVal setId As Integer, Optional gmlevel As String = "A", Optional email As String = "", Optional flags As String = "0")
         LogAppend("Creating new account " & accname, "AccountCreation_CreateNewAccount", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 If ReturnResultCount("SELECT `login` FROM accounts WHERE `login`='" & accname & "'") = 0 Then
                     LogAppend("Account " & accname & " does not exist -> Creating it", "AccountCreation_CreateNewAccount", False)

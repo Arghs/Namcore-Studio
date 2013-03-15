@@ -25,6 +25,7 @@ Imports MySql.Data.MySqlClient
 Public Class GlobalVariables
     Public Shared temporaryCharacterInformation As String
     Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
+    Public Shared targetCore As String '"arcemu", "trinity", "mangos"
     Public Shared expansion As Integer '1=classic, 2=tbc,...
     Public Shared eventlog As String
     Public Shared eventlog_full As String
@@ -37,11 +38,14 @@ Public Class GlobalVariables
     Public Shared GlobalConnectionString_Realm As String
     Public Shared TargetConnectionString As String
     Public Shared TargetConnectionString_Realm As String
+    Public Shared TargetConnRealmDBname As String
+    Public Shared TargetConnCharactersDBname As String
     Public Shared characterGUID As Integer
     Public Shared acctable As DataTable
     Public Shared chartable As DataTable
     Public Shared modifiedAccTable As DataTable
     Public Shared modifiedCharTable As DataTable
+    Public Shared con_operator As Integer
     'DB table names
     '# Character DB
     Public Shared character_tablename As String

@@ -28,7 +28,7 @@ Public Class ModBasics
     Public Shared Sub SetCharacterGender(ByVal gender As Integer, ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Setting character gender to : " & gender.ToString() & " // charguid is : " & charguid.ToString(), "ModBasics_SetCharacterGender", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 runSQLCommand_characters_string("UPDATE `characters` SET gender='" & gender.ToString() & "' WHERE guid='" & charguid.ToString() & "'", True)
             Case "trinity"
@@ -44,7 +44,7 @@ Public Class ModBasics
     Public Shared Sub SetCharacterRace(ByVal race As Integer, ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Setting character race to : " & race.ToString() & " // charguid is : " & charguid.ToString(), "ModBasics_SetCharacterRace", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 runSQLCommand_characters_string("UPDATE `characters` SET race='" & race.ToString() & "' WHERE guid='" & charguid.ToString() & "'", True)
             Case "trinity"
@@ -60,7 +60,7 @@ Public Class ModBasics
     Public Shared Sub SetCharacterLevel(ByVal level As Integer, ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Setting character level to : " & level.ToString() & " // charguid is : " & charguid.ToString(), "ModBasics_SetCharacterLevel", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 runSQLCommand_characters_string("UPDATE `characters` SET level='" & level.ToString() & "' WHERE guid='" & charguid.ToString() & "'", True)
             Case "trinity"
@@ -76,7 +76,7 @@ Public Class ModBasics
     Public Shared Sub SetCharacterClass(ByVal Cclass As Integer, ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Setting character gender to : " & Cclass.ToString() & " // charguid is : " & charguid.ToString(), "ModBasics_SetCharacterClass", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 runSQLCommand_characters_string("UPDATE `characters` SET class='" & Cclass.ToString() & "' WHERE guid='" & charguid.ToString() & "'", True)
             Case "trinity"
@@ -92,7 +92,7 @@ Public Class ModBasics
     Public Shared Sub SetCharacterGold(ByVal gold As Integer, ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Setting character gold to : " & gold.ToString() & " // charguid is : " & charguid.ToString(), "ModBasics_SetCharacterGold", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 runSQLCommand_characters_string("UPDATE `characters` SET gold='" & gold.ToString() & "' WHERE guid='" & charguid.ToString() & "'", True)
             Case "trinity"

@@ -33,7 +33,7 @@ Imports MySql.Data.MySqlClient
 Public Class CharacterCreationLite
     Public Shared Sub CreateNewLiteCharacter(ByVal charname As String, ByVal accountName As String, ByVal setId As Integer, Optional forceNameChange As Boolean = False)
         LogAppend("Creating new character: " & charname & " for account : " & accountName, "CharacterCreationLite_CreateNewLiteCharacter", True)
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 createAtArcemu(charname, accountName, setId, forceNameChange)
             Case "trinity"
@@ -47,7 +47,7 @@ Public Class CharacterCreationLite
         End Select
     End Sub
     Public Shared Function CharacterExist(ByVal charname As String) As Boolean
-        Select Case sourceCore
+        Select Case targetCore
             Case "arcemu"
                 If TryInt(ReturnResultCount("SELECT * FROM characters WHERE name='" & charname & "'", True)) = 0 Then Return False Else Return True
             Case "trinity"

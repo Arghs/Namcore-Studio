@@ -70,6 +70,12 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\DB_connect.Designer.vb">
+      <DependentUpon>DB_connect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DB_connect.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Filter_accounts.Designer.vb">
       <DependentUpon>Filter_accounts.vb</DependentUpon>
     </Compile>
@@ -152,6 +158,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\DB_connect.resx">
+      <DependentUpon>DB_connect.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Filter_accounts.resx">
       <DependentUpon>Filter_accounts.vb</DependentUpon>
     </EmbeddedResource>

@@ -55,4 +55,19 @@ Public Class Account_CharacterInformationProcessing
 
         End Select
     End Function
+    Public Shared Function returnTargetAccCharTable(ByVal sqlconnection As MySqlConnection) As DataTable
+        Select Case targetCore
+            Case "arcemu"
+                Return ReturnDataTable_setconn("SELECT u1.`acct`, u1.`login`, u2.`guid`, u2.`name` FROM " & TargetConnRealmDBname & ".accounts u1 LEFT JOIN " & TargetConnCharactersDBname & ".characters u2 ON u2.`acct` = u1.`acct`", sqlconnection)
+            Case "trinity"
+                Return ReturnDataTable_setconn("SELECT u1.`id`, u1.`username`, u2.`guid`, u2.`name` FROM " & TargetConnRealmDBname & ".account u1 LEFT JOIN " & TargetConnCharactersDBname & ".characters u2 ON u2.`account` = u1.`id`", sqlconnection)
+            Case "trinitytbc"
+                'todo
+            Case "mangos"
+                Return ReturnDataTable_setconn("SELECT u1.`id`, u1.`username`, u2.`guid`, u2.`name` FROM " & TargetConnRealmDBname & ".account u1 LEFT JOIN " & TargetConnCharactersDBname & ".characters u2 ON u2.`account` = u1.`id`", sqlconnection)
+            Case Else
+
+        End Select
+
+    End Function
 End Class
