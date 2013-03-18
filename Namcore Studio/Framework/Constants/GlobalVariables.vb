@@ -46,6 +46,8 @@ Public Class GlobalVariables
     Public Shared modifiedAccTable As DataTable
     Public Shared modifiedCharTable As DataTable
     Public Shared con_operator As Integer
+    Public Shared trans_charlist As ArrayList
+    Public Shared trans_acclist As ArrayList
     'DB table names
     '# Character DB
     Public Shared character_tablename As String

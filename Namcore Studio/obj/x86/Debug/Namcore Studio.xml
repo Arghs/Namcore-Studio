@@ -55,6 +55,10 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Dwarf ähnelt.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.errorbox">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.female">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
@@ -86,6 +90,10 @@ NamcoreStudio
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.nightelf">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Night Elf ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.noaccentered">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not enter any accounts! ähnelt.
 </summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.orc">
 	<summary>

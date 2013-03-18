@@ -327,14 +327,7 @@ Public Class Live_View
         'todo
     End Sub
     Private Sub accountview_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles accountview.MouseDown
-        If e.Button = MouseButtons.Right Then
-            Dim oItem As ListViewItem = accountview.GetItemAt(e.X, e.Y)
-            If oItem IsNot Nothing Then
-                For I = 0 To accountview.SelectedItems.Count - 1
-                    accountcontext.Show(accountview, e.X, e.Y)
-                Next
-            End If
-        End If
+      
     End Sub
 
     Private Sub filter_char_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles filter_char.LinkClicked
@@ -393,13 +386,27 @@ Public Class Live_View
     End Sub
 
     Private Sub characterview_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles characterview.MouseDown
+      
+    End Sub
+
+    Private Sub characterview_MouseUp(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles characterview.MouseUp
         If e.Button = MouseButtons.Right Then
-            Dim oItem As ListViewItem = characterview.GetItemAt(e.X, e.Y)
-            If oItem IsNot Nothing Then
-                For I = 0 To characterview.SelectedItems.Count - 1
-                    charactercontext.Show(characterview, e.X, e.Y)
-                Next
+            If characterview.SelectedItems.Count = 0 And characterview.CheckedItems.Count = 0 Then Exit Sub
+            If characterview.SelectedItems.Count = 0 Then
+                SelectedCharacterToolStripMenuItem.Enabled = False
+                SelectedCharacterToolStripMenuItem1.Enabled = False
+                CheckedCharactersToolStripMenuItem.Enabled = True
+                CheckedCharactersToolStripMenuItem1.Enabled = True
+                EditToolStripMenuItem1.Enabled = False
+            Else
+                EditToolStripMenuItem1.Enabled = True
+                SelectedCharacterToolStripMenuItem.Enabled = True
+                SelectedCharacterToolStripMenuItem1.Enabled = True
+                CheckedCharactersToolStripMenuItem.Enabled = False
+                CheckedCharactersToolStripMenuItem1.Enabled = False
             End If
+            If characterview.SelectedItems.Count > 0 And characterview.CheckedItems.Count > 0 Then CheckedCharactersToolStripMenuItem.Enabled = True : CheckedCharactersToolStripMenuItem1.Enabled = True
+            charactercontext.Show(characterview, e.X, e.Y)
         End If
     End Sub
 
@@ -412,17 +419,7 @@ Public Class Live_View
     End Sub
 
     Private Sub target_accounts_tree_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles target_accounts_tree.MouseDown
-        If e.Button = MouseButtons.Right Then
-            Dim oItem As TreeNode = target_accounts_tree.GetNodeAt(e.X, e.Y)
-            If oItem IsNot Nothing Then
-                If oItem.Level = 0 Then
-                    targetacccontext.Show(target_accounts_tree, e.X, e.Y)
-                Else
-                    targetcharcontext.Show(target_accounts_tree, e.X, e.Y)
-                End If
-
-            End If
-        End If
+       
     End Sub
 
     Private Sub RemoveToolStripMenuItem2_Click(sender As System.Object, e As System.EventArgs) Handles RemoveToolStripMenuItem2.Click
@@ -451,4 +448,186 @@ Public Class Live_View
             'runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", TargetConnection)
         End If
     End Sub
+
+    Private Sub SelectedAccountToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedAccountToolStripMenuItem.Click
+        Dim temparray As New ArrayList
+        Dim acc(2) As String
+        acc(0) = accountview.SelectedItems(0).SubItems(0).Text
+        acc(1) = accountview.SelectedItems(0).SubItems(1).Text
+        temparray.Add(acc)
+        For Each checkeditem As ListViewItem In accountview.CheckedItems
+            checkeditem.Checked = False
+        Next
+        For Each checkeditem As ListViewItem In characterview.CheckedItems
+            checkeditem.Checked = False
+        Next
+        accountview.SelectedItems(0).Checked = True
+        transAccounts(temparray)
+    End Sub
+    Private Sub CheckedAccountsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CheckedAccountsToolStripMenuItem.Click
+        Dim temparray As New ArrayList
+
+        For Each CheckedAccount As ListViewItem In accountview.CheckedItems
+            Dim acc(2) As String
+            acc(0) = CheckedAccount.SubItems(0).Text
+            acc(1) = CheckedAccount.SubItems(1).Text
+            temparray.Add(acc)
+        Next
+        transAccounts(temparray)
+
+    End Sub
+    Public Sub transAccounts(ByVal accounts As ArrayList)
+        Dim needtocreate As Boolean
+        For Each NAccount() As String In accounts
+            needtocreate = True
+            For Each accountnode As TreeNode In target_accounts_tree.Nodes
+                If accountnode.Text.ToLower() = NAccount(1).ToString().ToLower() Then
+                    needtocreate = False
+                End If
+            Next
+            If needtocreate = True Then
+                Dim newaccnode As New TreeNode
+                Dim newacc As New Account(NAccount(1).ToString(), TryInt(NAccount(0).ToString()))
+                With newaccnode
+                    .Text = newacc.name
+                    .Tag = newacc
+                    .BackColor = Color.Green
+                End With
+                target_accounts_tree.Nodes.Add(newaccnode)
+            End If
+
+            For Each CheckedChar As ListViewItem In characterview.CheckedItems
+                Dim newchar As New Character(CheckedChar.SubItems(2).Text, TryInt(CheckedChar.SubItems(0).Text))
+                If CheckedChar.SubItems(1).Text = NAccount(0).ToString() Then
+                    For Each targetaccount As TreeNode In target_accounts_tree.Nodes
+                        If targetaccount.Text = NAccount(1).ToString() Then
+                            Dim newcharnode As New TreeNode
+                            With newcharnode
+                                .Text = newchar.name
+                                .Tag = newchar
+                                .BackColor = Color.Green
+                            End With
+                            targetaccount.Nodes.Add(newcharnode)
+                            '  targetaccount.Tag.transcharlist.Add(newchar)
+                        End If
+                    Next
+
+                End If
+            Next
+        Next
+    End Sub
+    Public Sub transChars_specificacc(ByVal accounts As ArrayList)
+        For Each character() As String In trans_charlist
+            For Each accountnode As TreeNode In target_accounts_tree.Nodes
+                For Each account() As String In accounts
+                    If account(1).ToLower() = accountnode.Text.ToLower() Then
+                        Dim newcharnode As New TreeNode
+                        Dim newchar As New Character(character(1), TryInt(character(0)))
+                        With newcharnode
+                            .Text = newchar.name
+                            .Tag = newchar
+                            .BackColor = Color.Green
+                        End With
+                        accountnode.Nodes.Add(newcharnode)
+                    End If
+                   next
+            Next
+        Next
+    End Sub
+    Public Sub transChars_allacc()
+        For Each character() As String In trans_charlist
+            For Each accountnode As TreeNode In target_accounts_tree.Nodes
+                Dim newcharnode As New TreeNode
+                Dim newchar As New Character(character(1), TryInt(character(0)))
+                With newcharnode
+                    .Text = newchar.name
+                    .Tag = newchar
+                    .BackColor = Color.Green
+                End With
+                accountnode.Nodes.Add(newcharnode)
+
+            Next
+        Next
+    End Sub
+
+    Private Sub Transfer_bt_Click(sender As System.Object, e As System.EventArgs) Handles Transfer_bt.Click
+
+    End Sub
+
+    Private Sub SelectedCharacterToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles SelectedCharacterToolStripMenuItem1.Click
+        trans_charlist = New ArrayList()
+        Dim charId As String = characterview.SelectedItems(0).SubItems(0).Text
+        For I = 0 To characterview.SelectedItems.Count - 1
+            Dim character(2) As String
+            character(0) = charId
+            character(1) = characterview.SelectedItems(0).SubItems(2).Text
+            trans_charlist.Add(character)
+        Next
+        Prep_chartrans.Show()
+    End Sub
+
+    Private Sub CheckedCharactersToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles CheckedCharactersToolStripMenuItem1.Click
+        trans_charlist = New ArrayList()
+        For Each itm As ListViewItem In characterview.CheckedItems
+            Dim character(2) As String
+            character(0) = itm.SubItems(0).Text
+            character(1) = itm.SubItems(2).Text
+            trans_charlist.Add(character)
+        Next
+        Prep_chartrans.Show()
+    End Sub
+
+    Private Sub charactercontext_Opening(sender As System.Object, e As System.ComponentModel.CancelEventArgs) Handles charactercontext.Opening
+
+    End Sub
+
+    Private Sub checkall_char_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles checkall_char.LinkClicked
+        For Each xitem As ListViewItem In characterview.Items
+            xitem.Checked = True
+        Next
+    End Sub
+
+    Private Sub uncheckall_char_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles uncheckall_char.LinkClicked
+        For Each xitem As ListViewItem In characterview.Items
+            xitem.Checked = False
+        Next
+    End Sub
+
+   
+    Private Sub accountview_MouseUp(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles accountview.MouseUp
+        If e.Button = MouseButtons.Right Then
+            If accountview.SelectedItems.Count = 0 And accountview.CheckedItems.Count = 0 Then Exit Sub
+            If accountview.SelectedItems.Count = 0 Then
+                SelectedAccountToolStripMenuItem.Enabled = False
+                SelectedAccountsToolStripMenuItem.Enabled = False
+                CheckedAccountsToolStripMenuItem.Enabled = True
+                CheckedAccountsToolStripMenuItem1.Enabled = True
+                EditToolStripMenuItem1.Enabled = False
+            Else
+                EditToolStripMenuItem1.Enabled = True
+                SelectedAccountToolStripMenuItem.Enabled = True
+                SelectedAccountsToolStripMenuItem.Enabled = True
+                CheckedAccountsToolStripMenuItem.Enabled = False
+                CheckedAccountsToolStripMenuItem1.Enabled = False
+            End If
+            If accountview.SelectedItems.Count > 0 And accountview.CheckedItems.Count > 0 Then CheckedAccountsToolStripMenuItem.Enabled = True : CheckedAccountsToolStripMenuItem1.Enabled = True
+            accountcontext.Show(accountview, e.X, e.Y)
+        End If
+    End Sub
+
+    Private Sub target_accounts_tree_MouseUp(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles target_accounts_tree.MouseUp
+        If e.Button = MouseButtons.Right Then
+            Dim oItem As TreeNode = target_accounts_tree.GetNodeAt(e.X, e.Y)
+            If oItem IsNot Nothing Then
+                If oItem.Level = 0 Then
+                    targetacccontext.Show(target_accounts_tree, e.X, e.Y)
+                Else
+                    targetcharcontext.Show(target_accounts_tree, e.X, e.Y)
+                End If
+
+            End If
+        End If
+    End Sub
+
+   
 End Class

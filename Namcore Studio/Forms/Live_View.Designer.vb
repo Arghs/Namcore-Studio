@@ -53,6 +53,9 @@ Partial Class Live_View
         Me.SelectedAccountsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CheckedAccountsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TransferToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SelectedAccountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckedAccountsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.connect_bt_target = New System.Windows.Forms.Button()
         Me.target_accounts_tree = New System.Windows.Forms.TreeView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -62,17 +65,14 @@ Partial Class Live_View
         Me.SelectedCharacterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CheckedCharactersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PrepareTransferToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SelectedCharacterToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckedCharactersToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.targetacccontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RemoveToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.targetcharcontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Transfer_bt = New System.Windows.Forms.Button()
-        Me.TransferToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SelectedAccountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CheckedAccountsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PrepareTransferToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SelectedCharacterToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CheckedCharactersToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1.SuspendLayout()
         Me.accountcontext.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -222,6 +222,7 @@ Partial Class Live_View
         Me.characterview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.charguid, Me.caccid, Me.charname, Me.charrace, Me.charclass, Me.chargender, Me.charlevel})
         Me.characterview.FullRowSelect = True
         Me.characterview.Location = New System.Drawing.Point(474, 65)
+        Me.characterview.MultiSelect = False
         Me.characterview.Name = "characterview"
         Me.characterview.Size = New System.Drawing.Size(477, 372)
         Me.characterview.TabIndex = 1
@@ -301,7 +302,7 @@ Partial Class Live_View
         '
         Me.accountcontext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem, Me.EditToolStripMenuItem, Me.TransferToolStripMenuItem})
         Me.accountcontext.Name = "accountcontext"
-        Me.accountcontext.Size = New System.Drawing.Size(158, 70)
+        Me.accountcontext.Size = New System.Drawing.Size(158, 92)
         '
         'RemoveToolStripMenuItem
         '
@@ -327,6 +328,25 @@ Partial Class Live_View
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.EditToolStripMenuItem.Text = "Edit"
+        '
+        'TransferToolStripMenuItem
+        '
+        Me.TransferToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SelectedAccountToolStripMenuItem, Me.CheckedAccountsToolStripMenuItem})
+        Me.TransferToolStripMenuItem.Name = "TransferToolStripMenuItem"
+        Me.TransferToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
+        Me.TransferToolStripMenuItem.Text = "Prepare transfer"
+        '
+        'SelectedAccountToolStripMenuItem
+        '
+        Me.SelectedAccountToolStripMenuItem.Name = "SelectedAccountToolStripMenuItem"
+        Me.SelectedAccountToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.SelectedAccountToolStripMenuItem.Text = "Selected account"
+        '
+        'CheckedAccountsToolStripMenuItem
+        '
+        Me.CheckedAccountsToolStripMenuItem.Name = "CheckedAccountsToolStripMenuItem"
+        Me.CheckedAccountsToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.CheckedAccountsToolStripMenuItem.Text = "Checked accounts"
         '
         'connect_bt_target
         '
@@ -399,6 +419,25 @@ Partial Class Live_View
         Me.EditToolStripMenuItem1.Size = New System.Drawing.Size(157, 22)
         Me.EditToolStripMenuItem1.Text = "Edit"
         '
+        'PrepareTransferToolStripMenuItem
+        '
+        Me.PrepareTransferToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SelectedCharacterToolStripMenuItem1, Me.CheckedCharactersToolStripMenuItem1})
+        Me.PrepareTransferToolStripMenuItem.Name = "PrepareTransferToolStripMenuItem"
+        Me.PrepareTransferToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
+        Me.PrepareTransferToolStripMenuItem.Text = "Prepare transfer"
+        '
+        'SelectedCharacterToolStripMenuItem1
+        '
+        Me.SelectedCharacterToolStripMenuItem1.Name = "SelectedCharacterToolStripMenuItem1"
+        Me.SelectedCharacterToolStripMenuItem1.Size = New System.Drawing.Size(177, 22)
+        Me.SelectedCharacterToolStripMenuItem1.Text = "Selected character"
+        '
+        'CheckedCharactersToolStripMenuItem1
+        '
+        Me.CheckedCharactersToolStripMenuItem1.Name = "CheckedCharactersToolStripMenuItem1"
+        Me.CheckedCharactersToolStripMenuItem1.Size = New System.Drawing.Size(177, 22)
+        Me.CheckedCharactersToolStripMenuItem1.Text = "Checked characters"
+        '
         'targetacccontext
         '
         Me.targetacccontext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem2})
@@ -435,44 +474,6 @@ Partial Class Live_View
         Me.Transfer_bt.TabIndex = 214
         Me.Transfer_bt.Text = "Start Transfer"
         Me.Transfer_bt.UseVisualStyleBackColor = False
-        '
-        'TransferToolStripMenuItem
-        '
-        Me.TransferToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SelectedAccountToolStripMenuItem, Me.CheckedAccountsToolStripMenuItem})
-        Me.TransferToolStripMenuItem.Name = "TransferToolStripMenuItem"
-        Me.TransferToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
-        Me.TransferToolStripMenuItem.Text = "Prepare transfer"
-        '
-        'SelectedAccountToolStripMenuItem
-        '
-        Me.SelectedAccountToolStripMenuItem.Name = "SelectedAccountToolStripMenuItem"
-        Me.SelectedAccountToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.SelectedAccountToolStripMenuItem.Text = "Selected account"
-        '
-        'CheckedAccountsToolStripMenuItem
-        '
-        Me.CheckedAccountsToolStripMenuItem.Name = "CheckedAccountsToolStripMenuItem"
-        Me.CheckedAccountsToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.CheckedAccountsToolStripMenuItem.Text = "Checked accounts"
-        '
-        'PrepareTransferToolStripMenuItem
-        '
-        Me.PrepareTransferToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SelectedCharacterToolStripMenuItem1, Me.CheckedCharactersToolStripMenuItem1})
-        Me.PrepareTransferToolStripMenuItem.Name = "PrepareTransferToolStripMenuItem"
-        Me.PrepareTransferToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
-        Me.PrepareTransferToolStripMenuItem.Text = "Prepare transfer"
-        '
-        'SelectedCharacterToolStripMenuItem1
-        '
-        Me.SelectedCharacterToolStripMenuItem1.Name = "SelectedCharacterToolStripMenuItem1"
-        Me.SelectedCharacterToolStripMenuItem1.Size = New System.Drawing.Size(177, 22)
-        Me.SelectedCharacterToolStripMenuItem1.Text = "Selected character"
-        '
-        'CheckedCharactersToolStripMenuItem1
-        '
-        Me.CheckedCharactersToolStripMenuItem1.Name = "CheckedCharactersToolStripMenuItem1"
-        Me.CheckedCharactersToolStripMenuItem1.Size = New System.Drawing.Size(177, 22)
-        Me.CheckedCharactersToolStripMenuItem1.Text = "Checked characters"
         '
         'Live_View
         '

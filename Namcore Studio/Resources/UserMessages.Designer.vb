@@ -155,6 +155,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property errorbox() As String
+            Get
+                Return ResourceManager.GetString("errorbox", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property female() As String
@@ -223,6 +232,15 @@ Namespace My.Resources
         Friend Shared ReadOnly Property nightelf() As String
             Get
                 Return ResourceManager.GetString("nightelf", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die You did not enter any accounts! ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property noaccentered() As String
+            Get
+                Return ResourceManager.GetString("noaccentered", resourceCulture)
             End Get
         End Property
         

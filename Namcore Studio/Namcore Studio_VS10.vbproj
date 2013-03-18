@@ -88,6 +88,12 @@
     <Compile Include="Forms\Filter_characters.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Prep_chartrans.Designer.vb">
+      <DependentUpon>Prep_chartrans.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Prep_chartrans.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Userwait.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Framework\Armory\API.vb" />
+    <Compile Include="Framework\Constants\Account.vb" />
+    <Compile Include="Framework\Constants\Character.vb" />
     <Compile Include="Framework\Constants\GlobalVariables.vb" />
     <Compile Include="Framework\Core\Account_CharacterInformationProcessing.vb" />
     <Compile Include="Framework\Core\CharacterAchievementHandler.vb" />
@@ -166,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Filter_characters.resx">
       <DependentUpon>Filter_characters.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Prep_chartrans.resx">
+      <DependentUpon>Prep_chartrans.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Userwait.resx">
       <DependentUpon>Userwait.vb</DependentUpon>

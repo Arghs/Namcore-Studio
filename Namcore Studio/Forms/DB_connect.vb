@@ -47,6 +47,8 @@ Public Class DB_connect
                             For Each CurrentForm As Form In Application.OpenForms
                                 If CurrentForm.Name = "Live_View" Then
                                     Dim liveview As Live_View = DirectCast(CurrentForm, Live_View)
+                                    liveview.accountview.Items.Clear()
+                                    liveview.characterview.Items.Clear()
                                     liveview.loadaccountsandchars()
                                 End If
                             Next
@@ -74,6 +76,7 @@ Public Class DB_connect
                             For Each CurrentForm As Form In Application.OpenForms
                                 If CurrentForm.Name = "Live_View" Then
                                     Dim liveview As Live_View = DirectCast(CurrentForm, Live_View)
+                                    liveview.target_accounts_tree.Nodes.Clear()
                                     liveview.loadtargetaccountsandchars()
                                 End If
                             Next
