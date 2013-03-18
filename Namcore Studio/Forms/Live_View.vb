@@ -405,7 +405,16 @@ Public Class Live_View
                 CheckedCharactersToolStripMenuItem.Enabled = False
                 CheckedCharactersToolStripMenuItem1.Enabled = False
             End If
-            If characterview.SelectedItems.Count > 0 And characterview.CheckedItems.Count > 0 Then CheckedCharactersToolStripMenuItem.Enabled = True : CheckedCharactersToolStripMenuItem1.Enabled = True
+            If characterview.SelectedItems.Count > 0 And characterview.CheckedItems.Count > 0 Then
+                CheckedCharactersToolStripMenuItem.Enabled = True
+                CheckedCharactersToolStripMenuItem1.Enabled = True
+                SelectedCharacterToolStripMenuItem.Enabled = True
+                SelectedCharacterToolStripMenuItem1.Enabled = True
+            End If
+            If Not TargetConnection.State = ConnectionState.Open Then
+                CheckedCharactersToolStripMenuItem1.Enabled = False
+                SelectedCharacterToolStripMenuItem1.Enabled = False
+            End If
             charactercontext.Show(characterview, e.X, e.Y)
         End If
     End Sub
@@ -427,12 +436,17 @@ Public Class Live_View
         Dim result = MsgBox(RM.GetString("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, RM.GetString("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = target_accounts_tree.SelectedNode.Name
-            target_accounts_tree.SelectedNode.Remove()
+            If Not target_accounts_tree.SelectedNode.BackColor = Color.Transparent Then
+                target_accounts_tree.SelectedNode.Remove()
+                Exit Sub
+            End If
             GlobalVariables.acc_id_columnname = "id" 'todo
             Dim toBeRemovedRow As DataRow() = target_accchar_table.Select(GlobalVariables.acc_id_columnname & " = '" & accountId & "'")
             If Not toBeRemovedRow.Length = 0 Then target_accchar_table.Rows.Remove(toBeRemovedRow(0))
-            'runSQLCommand_realm_string_setconn("DELETE FROM `" & account_tablename & "` WHERE " & acc_id_columnname & "='" & accountId & "'", TargetConnection_Realm)
-            'runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", TargetConnection)
+            target_accounts_tree.SelectedNode.Remove()
+            runSQLCommand_realm_string_setconn("DELETE FROM `" & account_tablename & "` WHERE " & acc_id_columnname & "='" & accountId & "'", TargetConnection_Realm)
+            runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", TargetConnection)
+
         End If
     End Sub
 
@@ -441,11 +455,15 @@ Public Class Live_View
         Dim result = MsgBox(RM.GetString("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, RM.GetString("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = target_accounts_tree.SelectedNode.Name
+            If Not target_accounts_tree.SelectedNode.BackColor = Color.Transparent Then
+                target_accounts_tree.SelectedNode.Remove()
+                Exit Sub
+            End If
             target_accounts_tree.SelectedNode.Remove()
             GlobalVariables.acc_id_columnname = "id" 'todo
             Dim toBeRemovedRow As DataRow() = target_accchar_table.Select(GlobalVariables.acc_id_columnname & " = '" & accountId & "'")
             If Not toBeRemovedRow.Length = 0 Then target_accchar_table.Rows.Remove(toBeRemovedRow(0))
-            'runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", TargetConnection)
+            runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", TargetConnection)
         End If
     End Sub
 
@@ -488,6 +506,7 @@ Public Class Live_View
             If needtocreate = True Then
                 Dim newaccnode As New TreeNode
                 Dim newacc As New Account(NAccount(1).ToString(), TryInt(NAccount(0).ToString()))
+                Dim nodes As New List(Of String)
                 With newaccnode
                     .Text = newacc.name
                     .Tag = newacc
@@ -502,10 +521,18 @@ Public Class Live_View
                     For Each targetaccount As TreeNode In target_accounts_tree.Nodes
                         If targetaccount.Text = NAccount(1).ToString() Then
                             Dim newcharnode As New TreeNode
+                            Dim nodes As New List(Of String)
+                            For Each parentNode As TreeNode In target_accounts_tree.Nodes
+                                nodes.AddRange(GetChildren(parentNode))
+                            Next
                             With newcharnode
                                 .Text = newchar.name
                                 .Tag = newchar
-                                .BackColor = Color.Green
+                                If Not nodes.Contains("'" & newchar.name & "'") Then
+                                    .BackColor = Color.Green
+                                Else
+                                    .BackColor = Color.Yellow
+                                End If
                             End With
                             targetaccount.Nodes.Add(newcharnode)
                             '  targetaccount.Tag.transcharlist.Add(newchar)
@@ -523,10 +550,18 @@ Public Class Live_View
                     If account(1).ToLower() = accountnode.Text.ToLower() Then
                         Dim newcharnode As New TreeNode
                         Dim newchar As New Character(character(1), TryInt(character(0)))
+                        Dim nodes As New List(Of String)
+                        For Each parentNode As TreeNode In target_accounts_tree.Nodes
+                            nodes.AddRange(GetChildren(parentNode))
+                        Next
                         With newcharnode
                             .Text = newchar.name
                             .Tag = newchar
-                            .BackColor = Color.Green
+                            If Not nodes.Contains("'" & newchar.name & "'") Then
+                                .BackColor = Color.Green
+                            Else
+                                .BackColor = Color.Yellow
+                            End If
                         End With
                         accountnode.Nodes.Add(newcharnode)
                     End If
@@ -539,16 +574,33 @@ Public Class Live_View
             For Each accountnode As TreeNode In target_accounts_tree.Nodes
                 Dim newcharnode As New TreeNode
                 Dim newchar As New Character(character(1), TryInt(character(0)))
+                Dim nodes As New List(Of String)
+                For Each parentNode As TreeNode In target_accounts_tree.Nodes
+                    nodes.AddRange(GetChildren(parentNode))
+                Next
                 With newcharnode
                     .Text = newchar.name
                     .Tag = newchar
-                    .BackColor = Color.Green
+                    If Not nodes.Contains("'" & newchar.name & "'") Then
+                        .BackColor = Color.Green
+                    Else
+                        .BackColor = Color.Yellow
+                    End If
                 End With
                 accountnode.Nodes.Add(newcharnode)
 
             Next
         Next
     End Sub
+    Function GetChildren(parentNode As TreeNode) As List(Of String)
+        Dim nodes As List(Of String) = New List(Of String)
+        For Each childNode As TreeNode In parentNode.Nodes
+            nodes.Add("'" & childNode.Text & "'")
+        Next
+        Return nodes
+    End Function
+
+ 
 
     Private Sub Transfer_bt_Click(sender As System.Object, e As System.EventArgs) Handles Transfer_bt.Click
 
@@ -610,7 +662,16 @@ Public Class Live_View
                 CheckedAccountsToolStripMenuItem.Enabled = False
                 CheckedAccountsToolStripMenuItem1.Enabled = False
             End If
-            If accountview.SelectedItems.Count > 0 And accountview.CheckedItems.Count > 0 Then CheckedAccountsToolStripMenuItem.Enabled = True : CheckedAccountsToolStripMenuItem1.Enabled = True
+            If accountview.SelectedItems.Count > 0 And accountview.CheckedItems.Count > 0 Then
+                CheckedAccountsToolStripMenuItem.Enabled = True
+                CheckedAccountsToolStripMenuItem1.Enabled = True
+                SelectedAccountToolStripMenuItem.Enabled = True
+                SelectedAccountsToolStripMenuItem.Enabled = True
+            End If
+            If Not TargetConnection.State = ConnectionState.Open Then
+                SelectedAccountToolStripMenuItem.Enabled = False
+                CheckedAccountsToolStripMenuItem.Enabled = False
+            End If
             accountcontext.Show(accountview, e.X, e.Y)
         End If
     End Sub

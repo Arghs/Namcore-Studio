@@ -12,10 +12,10 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Namcore Studio")> 
-<Assembly: AssemblyCopyright("Copyright ©  2013")> 
+<Assembly: AssemblyCopyright("Copyright © 2013 megasus")> 
 <Assembly: AssemblyTrademark("")> 
 
-<Assembly: ComVisible(False)>
+<Assembly: ComVisible(True)> 
 
 'Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
 <Assembly: Guid("abdcf441-3448-404f-b465-988469a7b1a3")> 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("0.0.3.44829")> 
+<Assembly: AssemblyFileVersion("0.0.3.44829")> 

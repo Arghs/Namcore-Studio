@@ -73,6 +73,8 @@ Partial Class Live_View
         Me.targetcharcontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Transfer_bt = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.accountcontext.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -302,7 +304,7 @@ Partial Class Live_View
         '
         Me.accountcontext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem, Me.EditToolStripMenuItem, Me.TransferToolStripMenuItem})
         Me.accountcontext.Name = "accountcontext"
-        Me.accountcontext.Size = New System.Drawing.Size(158, 92)
+        Me.accountcontext.Size = New System.Drawing.Size(158, 70)
         '
         'RemoveToolStripMenuItem
         '
@@ -380,6 +382,8 @@ Partial Class Live_View
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.Label2)
+        Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.target_accounts_tree)
         Me.GroupBox2.Controls.Add(Me.connect_bt_target)
         Me.GroupBox2.Location = New System.Drawing.Point(1035, 12)
@@ -475,6 +479,26 @@ Partial Class Live_View
         Me.Transfer_bt.Text = "Start Transfer"
         Me.Transfer_bt.UseVisualStyleBackColor = False
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Green
+        Me.Label1.Location = New System.Drawing.Point(39, 531)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(124, 13)
+        Me.Label1.TabIndex = 211
+        Me.Label1.Text = "Character can be copied"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Yellow
+        Me.Label2.Location = New System.Drawing.Point(39, 558)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(262, 13)
+        Me.Label2.TabIndex = 212
+        Me.Label2.Text = "Character name conflict / forced namechange at login"
+        '
         'Live_View
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -491,6 +515,7 @@ Partial Class Live_View
         Me.accountcontext.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.charactercontext.ResumeLayout(False)
         Me.targetacccontext.ResumeLayout(False)
         Me.targetcharcontext.ResumeLayout(False)
@@ -547,4 +572,6 @@ Partial Class Live_View
     Friend WithEvents SelectedCharacterToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CheckedCharactersToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Transfer_bt As System.Windows.Forms.Button
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class
