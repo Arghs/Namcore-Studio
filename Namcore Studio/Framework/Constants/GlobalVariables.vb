@@ -32,8 +32,10 @@ Public Class GlobalVariables
     Public Shared effectname_dt As DataTable
     Public Shared GlobalConnection As New MySqlConnection
     Public Shared GlobalConnection_Realm As New MySqlConnection
+    Public Shared GlobalConnection_Info As New MySqlConnection
     Public Shared TargetConnection As New MySqlConnection
     Public Shared TargetConnection_Realm As New MySqlConnection
+    Public Shared TargetConnection_Info As New MySqlConnection
     Public Shared GlobalConnectionString As String
     Public Shared GlobalConnectionString_Realm As String
     Public Shared TargetConnectionString As String

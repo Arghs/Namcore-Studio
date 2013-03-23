@@ -23,6 +23,7 @@
 
 Imports Namcore_Studio.ConnectionHandler
 Imports Namcore_Studio.GlobalVariables
+Imports MySql.Data.MySqlClient
 Imports Namcore_Studio.Account_CharacterInformationProcessing
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
@@ -32,6 +33,7 @@ Public Class DB_connect
 
     Private cmpFileListViewComparer As ListViewComparer
     Dim checkchangestatus As Boolean = False
+    Dim struc_check As New dbStruc_check
     Private Sub connect_bt_Click(sender As System.Object, e As System.EventArgs) Handles connect_bt.Click
         Select Case con_operator
             Case 1 'Source connection @live_view
@@ -44,6 +46,8 @@ Public Class DB_connect
                             GlobalConnectionString_Realm = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text
                             OpenNewMySQLConnection(GlobalConnection, GlobalConnectionString)
                             OpenNewMySQLConnection(GlobalConnection_Realm, GlobalConnectionString_Realm)
+                            GlobalConnection_Info.ConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=information_schema"
+                            struc_check.startCheck("trinity", 3, GlobalConnection, GlobalConnection_Realm, GlobalConnection_Info, chardbname_txtbox.Text, realmdbname_txtbox.Text, False) 'todo
                             For Each CurrentForm As Form In Application.OpenForms
                                 If CurrentForm.Name = "Live_View" Then
                                     Dim liveview As Live_View = DirectCast(CurrentForm, Live_View)
@@ -73,6 +77,8 @@ Public Class DB_connect
                             OpenNewMySQLConnection(TargetConnection_Realm, TargetConnectionString_Realm)
                             TargetConnRealmDBname = realmdbname_txtbox.Text
                             TargetConnCharactersDBname = chardbname_txtbox.Text
+                            TargetConnection_Info.ConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=information_schema"
+                            struc_check.startCheck("trinity", 3, TargetConnection, TargetConnection_Realm, TargetConnection_Info, chardbname_txtbox.Text, realmdbname_txtbox.Text, True) 'todo
                             For Each CurrentForm As Form In Application.OpenForms
                                 If CurrentForm.Name = "Live_View" Then
                                     Dim liveview As Live_View = DirectCast(CurrentForm, Live_View)

@@ -35,7 +35,7 @@ Public Class Account_CharacterInformationProcessing
                                                "`, `" & sourceStructure.accountAccess_tbl(0) & "`." & sourceStructure.accAcc_gmLevel_col(0) & ", `" & sourceStructure.acc_lastlogin_col(0) &
                                                "`, `" & sourceStructure.acc_email_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " JOIN `" & sourceStructure.accountAccess_tbl(0) &
                                                "` ON `" & sourceStructure.account_tbl(0) & "`." & sourceStructure.acc_id_col(0) & " = `" & sourceStructure.accountAccess_tbl(0) &
-                                               "`" & sourceStructure.accAcc_accid_col(0) & "", sqlconnection)
+                                               "`.`" & sourceStructure.accAcc_accid_col(0) & "`", sqlconnection)
             Case "trinitytbc"
                 'todo
             Case "mangos"

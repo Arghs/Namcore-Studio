@@ -65,6 +65,7 @@ Public Class dbStruc_check
                 dbstruc.char_gender_col = {"gender"}
                 dbstruc.char_level_col = {"level"}
                 dbstruc.char_gold_col = {"money"}
+                dbstruc.char_xp_col = {"xp"}
                 dbstruc.char_playerBytes_col = {"playerBytes"}
                 dbstruc.char_playerBytes2_col = {"playerBytes2"}
                 dbstruc.char_playerFlags_col = {"playerFlags"}
@@ -79,6 +80,7 @@ Public Class dbStruc_check
                 dbstruc.char_totaltime_col = {"totaltime"}
                 dbstruc.char_leveltime_col = {"leveltime"}
                 dbstruc.char_extraFlags_col = {"extra_flags"}
+                dbstruc.char_health_col = {"health"}
                 dbstruc.char_stableSlots_col = {"stable_slots"}
                 dbstruc.char_atlogin_col = {"at_login"}
                 dbstruc.char_zone_col = {"zone"}
@@ -158,10 +160,11 @@ Public Class dbStruc_check
                 dbstruc.itmins_itemEntry_col = {"itemEntry"}
                 dbstruc.itmins_ownerGuid_col = {"owner_guid"}
                 dbstruc.itmins_count_col = {"count"}
-                dbstruc.itmins_durability_col = {"durablity"}
+                dbstruc.itmins_durability_col = {"durability"}
                 dbstruc.itmins_enchantments_col = {"enchantments"}
 
-
+                check_accounts(dbstruc)
+                check_accountAccess(dbstruc)
                 check_characters(dbstruc)
                 check_character_achievement(dbstruc)
                 check_character_action(dbstruc)
@@ -181,6 +184,31 @@ Public Class dbStruc_check
         Else
             sourceStructure = dbstruc
         End If
+    End Sub
+    Private Sub check_accounts(ByVal struc As DBStructure)
+        Dim tmpReport As String = DBReport
+        DBReport = ""
+        tbl_check_realm(struc.account_tbl)
+        col_check_realm(struc.acc_id_col, struc.account_tbl)
+        col_check_realm(struc.acc_name_col, struc.account_tbl)
+        col_check_realm(struc.acc_passHash_col, struc.account_tbl)
+        col_check_realm(struc.acc_email_col, struc.account_tbl)
+        col_check_realm(struc.acc_joindate_col, struc.account_tbl)
+        col_check_realm(struc.acc_lastlogin_col, struc.account_tbl)
+        col_check_realm(struc.acc_expansion_col, struc.account_tbl)
+        col_check_realm(struc.acc_locale_col, struc.account_tbl)
+        If Not DBReport = "" Then gettablescheme(struc.account_tbl(0), authDB)
+        DBReport = tmpReport & vbNewLine & DBReport
+    End Sub
+    Private Sub check_accountAccess(ByVal struc As DBStructure)
+        Dim tmpReport As String = DBReport
+        DBReport = ""
+        tbl_check_realm(struc.accountAccess_tbl)
+        col_check_realm(struc.accAcc_accid_col, struc.accountAccess_tbl)
+        col_check_realm(struc.accAcc_gmLevel_col, struc.accountAccess_tbl)
+        col_check_realm(struc.accAcc_realmId_col, struc.accountAccess_tbl)
+        If Not DBReport = "" Then gettablescheme(struc.accountAccess_tbl(0), authDB)
+        DBReport = tmpReport & vbNewLine & DBReport
     End Sub
     Private Sub check_characters(ByVal struc As DBStructure)
         Dim tmpReport As String = DBReport
@@ -221,16 +249,6 @@ Public Class dbStruc_check
         col_check(struc.char_activeSpec_col, struc.character_tbl)
         col_check(struc.char_exploredZones_col, struc.character_tbl)
         col_check(struc.char_knownTitles_col, struc.character_tbl)
-        col_check(struc.char_arcemuTalentPoints_col, struc.character_tbl)
-        col_check(struc.char_finishedQuests_col, struc.character_tbl)
-        col_check(struc.char_customFaction_col, struc.character_tbl)
-        col_check(struc.char_bindmapid_col, struc.character_tbl)
-        col_check(struc.char_bindzoneid_col, struc.character_tbl)
-        col_check(struc.char_bindposX_col, struc.character_tbl)
-        col_check(struc.char_bindposY_col, struc.character_tbl)
-        col_check(struc.char_bindposZ_col, struc.character_tbl)
-        col_check(struc.char_arcemuPlayedTime_col, struc.character_tbl)
-        col_check(struc.char_instanceModeMask_col, struc.character_tbl)
         col_check(struc.char_atlogin_col, struc.character_tbl)
         col_check(struc.char_knownCurrencies_col, struc.character_tbl)
         col_check(struc.char_equipmentCache_col, struc.character_tbl)
@@ -443,8 +461,12 @@ Public Class dbStruc_check
                         DBReport = DBReport & "// Table " & tablename(counter) & " does not exist!"
                 End Select
             End Try
+            tmp_conn.Close()
+            tmp_conn.Dispose()
             counter += 1
         Loop Until counter = i
+        tmp_conn.Close()
+        tmp_conn.Dispose()
     End Sub
     Private Sub col_check(ByRef columnname() As String, ByVal tablename() As String)
         If Not tmp_conn.State = ConnectionState.Open Then
@@ -478,8 +500,12 @@ Public Class dbStruc_check
                         DBReport = DBReport & "// Column " & columnname(counter) & " does not exist in " & tablename(0) & "!"
                 End Select
             End Try
+            tmp_conn.Close()
+            tmp_conn.Dispose()
             counter += 1
         Loop Until counter = i
+        tmp_conn.Close()
+        tmp_conn.Dispose()
     End Sub
     Private Sub tbl_check_realm(ByVal tablename() As String)
         If Not tmp_connRealm.State = ConnectionState.Open Then
@@ -513,8 +539,12 @@ Public Class dbStruc_check
                         DBReport = DBReport & "// Table " & tablename(counter) & " does not exist!"
                 End Select
             End Try
+            tmp_connRealm.Close()
+            tmp_connRealm.Dispose()
             counter += 1
         Loop Until counter = i
+        tmp_connRealm.Close()
+        tmp_connRealm.Dispose()
     End Sub
     Private Sub col_check_realm(ByRef columnname() As String, ByVal tablename() As String)
         If Not tmp_connRealm.State = ConnectionState.Open Then
@@ -548,7 +578,11 @@ Public Class dbStruc_check
                         DBReport = DBReport & "// Column " & columnname(counter) & " does not exist in " & tablename(0) & "!"
                 End Select
             End Try
+            tmp_connRealm.Close()
+            tmp_connRealm.Dispose()
             counter += 1
         Loop Until counter = i
+        tmp_connRealm.Close()
+        tmp_connRealm.Dispose()
     End Sub
 End Class
