@@ -20,6 +20,7 @@
 '*      /Filename:      Filter_characters
 '*      /Description:   Contains functions for filtering the character list
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports Namcore_Studio.GlobalVariables
 Public Class Filter_characters
 
     Private Sub ApplyFilter_Click(sender As System.Object, e As System.EventArgs) Handles ApplyFilter.Click
@@ -29,13 +30,12 @@ Public Class Filter_characters
             If guidcombo1.SelectedIndex = -1 Then GoTo SkipStatement0
             Dim insertstring As String = " " & guidcombo1.SelectedItem.ToString() & " '" & guidtxtbox1.Text & "'"
             Dim insertstring2 As String = ""
-            GlobalVariables.char_guid_columnname = "guid" 'todo
             If Not guidcombo2.SelectedItem = Nothing Then
-                insertstring2 = " AND " & GlobalVariables.char_guid_columnname & " " & guidcombo2.SelectedItem.ToString & " '" & guidtxtbox2.Text & "'"
+                insertstring2 = " AND " & sourceStructure.char_guid_col(0) & " " & guidcombo2.SelectedItem.ToString & " '" & guidtxtbox2.Text & "'"
             End If
             Dim foundRows() As DataRow
-            Dim clonedDT As DataTable = GlobalVariables.modifiedCharTable.Copy
-            foundRows = clonedDT.Select(GlobalVariables.char_guid_columnname & insertstring & insertstring2)
+            Dim clonedDT As DataTable = modifiedCharTable.Copy
+            foundRows = clonedDT.Select(sourceStructure.char_guid_col(0) & insertstring & insertstring2)
             GlobalVariables.modifiedCharTable.Rows.Clear()
             For i = 0 To foundRows.GetUpperBound(0)
                 GlobalVariables.modifiedCharTable.ImportRow(foundRows(i))
@@ -51,10 +51,9 @@ SkipStatement0:
                     insertstring = " = '" & nametxtbox1.Text & "'"
                 Case Else : GoTo SkipStatement1
             End Select
-            GlobalVariables.char_name_columnname = "name" 'todo
             Dim foundRows() As DataRow
             Dim clonedDT As DataTable = GlobalVariables.modifiedCharTable.Copy
-            foundRows = clonedDT.Select(GlobalVariables.char_name_columnname & insertstring)
+            foundRows = clonedDT.Select(sourceStructure.char_name_col(0) & insertstring)
             GlobalVariables.modifiedCharTable.Rows.Clear()
             For i = 0 To foundRows.GetUpperBound(0)
                 GlobalVariables.modifiedCharTable.ImportRow(foundRows(i))
@@ -67,10 +66,9 @@ SkipStatement1:
                 Case 12 : id = 21
                 Case Else : GoTo SkipStatement2
             End Select
-            GlobalVariables.char_race_columnname = "race" 'todo
             Dim foundRows() As DataRow
             Dim clonedDT As DataTable = GlobalVariables.modifiedCharTable.Copy
-            foundRows = clonedDT.Select(GlobalVariables.char_race_columnname & " = '" & id.ToString() & "'")
+            foundRows = clonedDT.Select(sourceStructure.char_race_col(0) & " = '" & id.ToString() & "'")
             GlobalVariables.modifiedCharTable.Rows.Clear()
             For i = 0 To foundRows.GetUpperBound(0)
                 GlobalVariables.modifiedCharTable.ImportRow(foundRows(i))
@@ -80,10 +78,9 @@ SkipStatement2:
         If classcheck.Checked = True Then
             Dim id As Integer = classcombo.SelectedIndex + 1
             If id = -1 Then GoTo SkipStatement3
-            GlobalVariables.char_class_columnname = "class" 'todo
             Dim foundRows() As DataRow
             Dim clonedDT As DataTable = GlobalVariables.modifiedCharTable.Copy
-            foundRows = clonedDT.Select(GlobalVariables.char_class_columnname & " = '" & id.ToString() & "'")
+            foundRows = clonedDT.Select(sourceStructure.char_class_col(0) & " = '" & id.ToString() & "'")
             GlobalVariables.modifiedCharTable.Rows.Clear()
             For i = 0 To foundRows.GetUpperBound(0)
                 GlobalVariables.modifiedCharTable.ImportRow(foundRows(i))
@@ -94,13 +91,12 @@ SkipStatement3:
             If levelcombo1.SelectedIndex = -1 Then GoTo SkipStatement4
             Dim insertstring As String = " " & levelcombo1.SelectedItem.ToString() & " '" & leveltxtbox1.Text & "'"
             Dim insertstring2 As String = ""
-            GlobalVariables.char_level_columnname = "level" 'todo
             If Not levelcombo2.SelectedItem = Nothing Then
-                insertstring2 = " AND " & GlobalVariables.char_level_columnname & " " & levelcombo2.SelectedItem.ToString & " '" & leveltxtbox2.Text & "'"
+                insertstring2 = " AND " & sourceStructure.char_level_col(0) & " " & levelcombo2.SelectedItem.ToString & " '" & leveltxtbox2.Text & "'"
             End If
             Dim foundRows() As DataRow
             Dim clonedDT As DataTable = GlobalVariables.modifiedCharTable.Copy
-            foundRows = clonedDT.Select(GlobalVariables.char_level_columnname & insertstring & insertstring2)
+            foundRows = clonedDT.Select(sourceStructure.char_level_col(0) & insertstring & insertstring2)
             GlobalVariables.modifiedCharTable.Rows.Clear()
             For i = 0 To foundRows.GetUpperBound(0)
                 GlobalVariables.modifiedCharTable.ImportRow(foundRows(i))

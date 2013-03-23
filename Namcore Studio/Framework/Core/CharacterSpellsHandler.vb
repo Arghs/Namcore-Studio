@@ -46,7 +46,7 @@ Public Class CharacterSpellsHandler
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character spells @loadAtArcemu", "CharacterSpellsHandler_loadAtArcemu", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT spells FROM characters WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_spells_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -76,7 +76,8 @@ Public Class CharacterSpellsHandler
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character spells @loadAtTrinity", "CharacterSpellsHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT spell, active, disabled FROM character_spell WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.spell_spell_col(0) & ", " & sourceStructure.spell_active_col(0) & ", " & sourceStructure.spell_disabled_col(0) &
+                                                  " FROM " & sourceStructure.character_spells_tbl(0) & " WHERE " & sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -104,7 +105,8 @@ Public Class CharacterSpellsHandler
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character spells @loadAtMangos", "CharacterSpellsHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT spell, active, disabled FROM character_spell WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.spell_spell_col(0) & ", " & sourceStructure.spell_active_col(0) & ", " & sourceStructure.spell_disabled_col(0) &
+                                                  " FROM " & sourceStructure.character_spells_tbl(0) & " WHERE " & sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))

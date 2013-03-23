@@ -47,7 +47,9 @@ Public Class CharacterArmorHandler
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Armor @loadAtArcemu", "CharacterArmorHandler_loadAtArcemu", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT guid, entry, slot FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND containerslot='-1'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_itemEntry_col(0) & ", " & sourceStructure.itmins_slot_col(0) &
+                                                  " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString &
+                                                  "' AND " & sourceStructure.itmins_container_col(0) & "='-1'")
         Dim itemguid As Integer
         Dim slotname As String
         Dim itementry As Integer
@@ -194,8 +196,11 @@ Public Class CharacterArmorHandler
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Armor @loadAtTrinity", "CharacterArmorHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT item, slot, itemEntry FROM `character_inventory` JOIN `item_instance` ON `character_inventory`.item = " &
-                                                  "`item_instance`.guid WHERE `character_inventory`.guid='" & charguid.ToString() & "' AND bag='0' AND slot < '19'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.invent_item_col(0) & ", " & sourceStructure.invent_slot_col(0) & ", " & sourceStructure.itmins_itemEntry_col(0) &
+                                                  " FROM `" & sourceStructure.character_inventory_tbl(0) & "` JOIN `" & sourceStructure.item_instance_tbl(0) & "` ON `" & sourceStructure.character_inventory_tbl(0) &
+                                                  "`." & sourceStructure.invent_item_col(0) & " = " & "`" & sourceStructure.item_instance_tbl(0) & "`." & sourceStructure.itmins_guid_col(0) &
+                                                  " WHERE `" & sourceStructure.character_inventory_tbl(0) & "`." & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "' AND " & sourceStructure.invent_bag_col(0) &
+                                                  "='0' AND " & sourceStructure.invent_slot_col(0) & " < '19'")
         Dim itemguid As Integer
         Dim slotname As String
         Dim itementry As Integer
@@ -341,7 +346,9 @@ Public Class CharacterArmorHandler
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Armor @loadAtMangos", "CharacterArmorHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT item, slot, item_template FROM `character_inventory` WHERE guid='" & charguid.ToString() & "' AND bag='0' AND slot < '19'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.invent_item_col(0) & ", " & sourceStructure.invent_slot_col(0) & ", " & sourceStructure.invent_item_template_col(0) &
+                                                  " FROM `" & sourceStructure.character_inventory_tbl(0) & "` WHERE " & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() &
+                                                  "' AND " & sourceStructure.invent_bag_col(0) & "='0' AND " & sourceStructure.invent_slot_col(0) & " < '19'")
         Dim itemguid As Integer
         Dim slotname As String
         Dim itementry As Integer

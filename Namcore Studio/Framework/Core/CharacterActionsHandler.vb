@@ -46,8 +46,10 @@ Public Class CharacterActionsHandler
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Actions @loadAtArcemu", "CharacterActionsHandler_loadAtArcemu", False)
-        SetTemporaryCharacterInformation("@character_arcemuAction1", runSQLCommand_characters_string("SELECT actions1 FROM characters WHERE guid='" & charguid.ToString & "'"), tar_setId)
-        SetTemporaryCharacterInformation("@character_arcemuAction2", runSQLCommand_characters_string("SELECT actions2 FROM characters WHERE guid='" & charguid.ToString & "'"), tar_setId)
+        SetTemporaryCharacterInformation("@character_arcemuAction1", runSQLCommand_characters_string("SELECT " & sourceStructure.char_actions1_col(0) & " FROM " & sourceStructure.character_tbl(0) &
+                                                                                                     " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'"), tar_setId)
+        SetTemporaryCharacterInformation("@character_arcemuAction2", runSQLCommand_characters_string("SELECT " & sourceStructure.char_actions2_col(0) & " FROM " & sourceStructure.character_tbl(0) &
+                                                                                                     " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'"), tar_setId)
         Dim templist As New List(Of String)
         Try
             Dim readedcode As String = GetTemporaryCharacterInformation("@character_arcemuAction1", tar_setId)
@@ -84,7 +86,9 @@ Public Class CharacterActionsHandler
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Actions @loadAtTrinity", "CharacterActionsHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT button, `spec`, action, `type` FROM character_action WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.action_button_col(0) & ", `" & sourceStructure.action_spec_col(0) & "`, " & sourceStructure.action_action_col(0) &
+                                                  ", `" & sourceStructure.action_type_col(0) & "` FROM " & sourceStructure.character_action_tbl(0) & " WHERE " & sourceStructure.action_guid_col(0) &
+                                                  "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -112,7 +116,9 @@ Public Class CharacterActionsHandler
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Actions @loadAtMangos", "CharacterActionsHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT button, `spec`, action, `type` FROM character_action WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.action_button_col(0) & ", `" & sourceStructure.action_spec_col(0) & "`, " & sourceStructure.action_action_col(0) &
+                                                  ", `" & sourceStructure.action_type_col(0) & "` FROM " & sourceStructure.character_action_tbl(0) & " WHERE " & sourceStructure.action_guid_col(0) &
+                                                  "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))

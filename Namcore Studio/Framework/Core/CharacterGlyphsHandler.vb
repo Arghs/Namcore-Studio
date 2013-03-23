@@ -50,8 +50,10 @@ Public Class CharacterGlyphsHandler
         LogAppend("Loading character Glyphs @loadAtArcemu", "CharacterGlyphsHandler_loadAtArcemu", False)
         Dim glyphname As String = ""
         Dim glyphpic As Image = My.Resources.empty
-        Dim glyphstring As String = runSQLCommand_characters_string("SELECT glyphs1 from characters WHERE guid='" & charguid.ToString & "'")
-        Dim secglyphstring As String = runSQLCommand_characters_string("SELECT glyphs2 from characters WHERE guid='" & charguid.ToString & "'")
+        Dim glyphstring As String = runSQLCommand_characters_string("SELECT " & sourceStructure.char_glyphs1_col(0) & " from " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) &
+                                                                    "='" & charguid.ToString & "'")
+        Dim secglyphstring As String = runSQLCommand_characters_string("SELECT " & sourceStructure.char_glyphs2_col(0) & " from " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) &
+                                                                       "='" & charguid.ToString & "'")
        'Spec 0
         Try
             Dim parts() As String = glyphstring.Split(","c)
@@ -144,11 +146,21 @@ Public Class CharacterGlyphsHandler
         Dim tempdt As New DataTable
         Dim tempdtsec As New DataTable
         If expansion = 3 Then
-            tempdt = ReturnDataTable("SELECT glyph1, glyph2, glyph3, glyph4, glyph5, glyph6 FROM character_glyphs WHERE guid='" & charguid.ToString & "' AND spec='0'")
-            tempdtsec = ReturnDataTable("SELECT glyph1, glyph2, glyph3, glyph4, glyph5, glyph6 FROM character_glyphs WHERE guid='" & charguid.ToString & "' AND spec='1'")
+            tempdt = ReturnDataTable("SELECT " & sourceStructure.glyphs_glyph1_col(0) & ", " & sourceStructure.glyphs_glyph2_col(0) & ", " & sourceStructure.glyphs_glyph3_col(0) &
+                                     ", " & sourceStructure.glyphs_glyph4_col(0) & ", " & sourceStructure.glyphs_glyph5_col(0) & ", " & sourceStructure.glyphs_glyph6_col(0) &
+                                     " FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.glyphs_spec_col(0) & "='0'")
+            tempdtsec = ReturnDataTable("SELECT " & sourceStructure.glyphs_glyph1_col(0) & ", " & sourceStructure.glyphs_glyph2_col(0) & ", " & sourceStructure.glyphs_glyph3_col(0) &
+                                     ", " & sourceStructure.glyphs_glyph4_col(0) & ", " & sourceStructure.glyphs_glyph5_col(0) & ", " & sourceStructure.glyphs_glyph6_col(0) &
+                                     " FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.glyphs_spec_col(0) & "='1'")
         Else
-            tempdt = ReturnDataTable("SELECT glyph1, glyph2, glyph3, glyph4, glyph5, glyph6, glyph7, glyph8, glyph9 FROM character_glyphs WHERE guid='" & charguid.ToString & "' AND spec='0'")
-            tempdtsec = ReturnDataTable("SELECT glyph1, glyph2, glyph3, glyph4, glyph5, glyph6, glyph7, glyph8, glyph9 FROM character_glyphs WHERE guid='" & charguid.ToString & "' AND spec='1'")
+            tempdt = ReturnDataTable("SELECT " & sourceStructure.glyphs_glyph1_col(0) & ", " & sourceStructure.glyphs_glyph2_col(0) & ", " & sourceStructure.glyphs_glyph3_col(0) &
+                                     ", " & sourceStructure.glyphs_glyph4_col(0) & ", " & sourceStructure.glyphs_glyph5_col(0) & ", " & sourceStructure.glyphs_glyph6_col(0) &
+                                     ", " & sourceStructure.glyphs_glyph7_col(0) & ", " & sourceStructure.glyphs_glyph8_col(0) & ", " & sourceStructure.glyphs_glyph9_col(0) &
+                                     " FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.glyphs_spec_col(0) & "='0'")
+            tempdtsec = ReturnDataTable("SELECT " & sourceStructure.glyphs_glyph1_col(0) & ", " & sourceStructure.glyphs_glyph2_col(0) & ", " & sourceStructure.glyphs_glyph3_col(0) &
+                                     ", " & sourceStructure.glyphs_glyph4_col(0) & ", " & sourceStructure.glyphs_glyph5_col(0) & ", " & sourceStructure.glyphs_glyph6_col(0) &
+                                     ", " & sourceStructure.glyphs_glyph7_col(0) & ", " & sourceStructure.glyphs_glyph8_col(0) & ", " & sourceStructure.glyphs_glyph9_col(0) &
+                                     " FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.glyphs_spec_col(0) & "='1'")
         End If
         Dim prevglyphid As Integer
         Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -207,7 +219,8 @@ Public Class CharacterGlyphsHandler
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Glyphs @loadAtMangos", "CharacterGlyphsHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT glyph, slot, spec FROM character_glyphs WHERE guid='" & charguid.ToString & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.glyphs_glyph_col(0) & ", " & sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_spec_col(0) &
+                                                  " FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & "='" & charguid.ToString & "'")
         Dim prevglyphid As Integer
         Dim slot As Integer
         Dim spec As Integer

@@ -46,7 +46,7 @@ Public Class CharacterSkillsHandler
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character skills @loadAtArcemu", "CharacterSkillsHandler_loadAtArcemu", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT skills FROM characters WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_skills_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -82,7 +82,8 @@ Public Class CharacterSkillsHandler
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character skills @loadAtTrinity", "CharacterSkillsHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT skill, `value`, max FROM character_skills WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.skill_skill_col(0) & ", `" & sourceStructure.skill_value_col(0) & "`, " & sourceStructure.skill_max_col(0) &
+                                                  " FROM " & sourceStructure.character_skills_tbl(0) & " WHERE " & sourceStructure.skill_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -109,7 +110,8 @@ Public Class CharacterSkillsHandler
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character skills @loadAtMangos", "CharacterSkillsHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT skill, `value`, max FROM character_skills WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.skill_skill_col(0) & ", `" & sourceStructure.skill_value_col(0) & "`, " & sourceStructure.skill_max_col(0) &
+                                                  " FROM " & sourceStructure.character_skills_tbl(0) & " WHERE " & sourceStructure.skill_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))

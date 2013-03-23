@@ -52,7 +52,7 @@ Public Class CharacterTalentsHandler
         LogAppend("Loading character talents @loadAtArcemu", "CharacterTalentsHandler_loadAtArcemu", False)
         Dim templist As New List(Of String)
         Dim talentstring As String =
-        runSQLCommand_characters_string("SELECT talents1 FROM characters WHERE guid='" & charguid.ToString & "'")
+        runSQLCommand_characters_string("SELECT " & sourceStructure.char_talent1_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
         If talentstring.Contains(",") Then
             Dim excounter As Integer = UBound(talentstring.Split(CChar(",")))
             Dim startcounter As Integer = 0
@@ -66,7 +66,7 @@ Public Class CharacterTalentsHandler
             Loop Until startcounter = excounter
         End If
         Dim talentstring2 As String =
-        runSQLCommand_characters_string("SELECT talents2 FROM characters WHERE guid='" & charguid.ToString & "'")
+        runSQLCommand_characters_string("SELECT " & sourceStructure.char_talent2_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
         If talentstring2.Contains(",") Then
             Dim excounter As Integer = UBound(talentstring2.Split(CChar(",")))
             Dim startcounter As Integer = 0
@@ -83,7 +83,8 @@ Public Class CharacterTalentsHandler
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character talents @loadAtTrinity", "CharacterTalentsHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT spell FROM character_talent WHERE guid='" & charguid.ToString & "' AND spec='0'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_spell_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) & " WHERE " &
+                                                  sourceStructure.talent_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.talent_spec_col(0) & "='0'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -101,7 +102,8 @@ Public Class CharacterTalentsHandler
             LogAppend("Something went wrong while loading character talents (spec 0)! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterTalentsHandler_loadAtTrinity", True, True)
             Exit Sub
         End Try
-        Dim tempdt2 As DataTable = ReturnDataTable("SELECT spell FROM character_talent WHERE guid='" & charguid.ToString & "' AND spec='1'")
+        Dim tempdt2 As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_spell_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) & " WHERE " & sourceStructure.talent_guid_col(0) &
+                                                   "='" & charguid.ToString & "' AND " & sourceStructure.talent_spec_col(0) & "='1'")
         Try
             Dim lastcount As Integer = tryint(Val(tempdt2.Rows.Count.ToString))
             Dim count As Integer = 0
@@ -128,7 +130,8 @@ Public Class CharacterTalentsHandler
         SDatatable.Dispose()
         SDatatable = gettable()
         LogAppend("Loading character talents @loadAtMangos", "CharacterTalentsHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT talent_id, current_rank FROM charactertalent WHERE guid='" & charguid.ToString() & "' AND spec='0'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_talent_col(0) & ", " & sourceStructure.talent_rank_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) &
+                                                  " WHERE " & sourceStructure.talent_spec_col(0) & "='" & charguid.ToString() & "' AND " & sourceStructure.talent_spec_col(0) & "='0'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -147,7 +150,8 @@ Public Class CharacterTalentsHandler
             LogAppend("Something went wrong while loading character talents (spec 0)! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterTalentsHandler_loadAtMangos", True, True)
             Exit Sub
         End Try
-        Dim tempdt2 As DataTable = ReturnDataTable("SELECT talent_id, current_rank FROM charactertalent WHERE guid='" & charguid.ToString() & "' AND spec='1'")
+        Dim tempdt2 As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_talent_col(0) & ", " & sourceStructure.talent_rank_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) &
+                                                   " WHERE " & sourceStructure.talent_guid_col(0) & "='" & charguid.ToString() & "' AND " & sourceStructure.talent_spec_col(0) & "='1'")
         Try
             Dim lastcount As Integer = tryint(Val(tempdt2.Rows.Count.ToString))
             Dim count As Integer = 0

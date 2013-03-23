@@ -46,7 +46,7 @@ Public Class CharacterInventoryHandler
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Inventory @loadAtArcemu", "CharacterInventoryHandler_loadAtArcemu", False)
-        Dim dt As DataTable = ReturnDataTable("SELECT slot FROM playeritems WHERE guid='" & charguid.ToString() & "'")
+        Dim dt As DataTable = ReturnDataTable("SELECT " & sourceStructure.itmins_slot_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templistzero As New List(Of String)
         Dim templist As New List(Of String)
         Dim tmpext As Integer
@@ -60,12 +60,17 @@ Public Class CharacterInventoryHandler
                     If Not slotlist.Contains("#" & readedcode & "#") Then
                         slotlist = slotlist & "#" & readedcode & "#"
                         tmpext = tryint(Val(readedcode))
-                        Dim numresults As Integer = ReturnCountResults("SELECT containerslot FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "'")
+                        Dim numresults As Integer = ReturnCountResults("SELECT " & sourceStructure.itmins_container_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                       sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString & "'")
                         If numresults = 1 Then
-                            Dim containerslot As String = runSQLCommand_characters_string("SELECT containerslot FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "'")
+                            Dim containerslot As String = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_container_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                                          sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) &
+                                                                                          "='" & tmpext.ToString & "'")
                             Dim bagguid As String = "-1"
                             If Not containerslot = "-1" Then
-                                bagguid = runSQLCommand_characters_string("SELECT guid FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & containerslot & "' AND containerslot='-1'")
+                                bagguid = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                                          "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & containerslot & "' AND " & sourceStructure.itmins_container_col(0) &
+                                                                          "='-1'")
                             End If
                             If bagguid = "-1" Then
                                 If tmpext > 18 Then
@@ -75,10 +80,15 @@ Public Class CharacterInventoryHandler
                                     Dim enchantments As String
                                     Dim itemcount As String = "1"
                                     bag = bagguid
-                                    item = runSQLCommand_characters_string("SELECT guid FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "' AND containerslot='-1'")
-                                    entryid = runSQLCommand_characters_string("SELECT entry FROM playeritems WHERE guid = '" & item & "'")
-                                    enchantments = runSQLCommand_characters_string("SELECT enchantments FROM playeritems WHERE guid='" & item & "'")
-                                    itemcount = runSQLCommand_characters_string("SELECT count FROM playeritems WHERE guid='" & item & "'")
+                                    item = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                                           "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString & "' AND " & sourceStructure.itmins_container_col(0) &
+                                                                           "='-1'")
+                                    entryid = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                              sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                                    enchantments = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                                   sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                                    itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                                sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                     templistzero.Add(
                                         "<slot>" & tmpext.ToString & "</slot>" &
                                         "<bag>" & bag & "</bag>" &
@@ -95,11 +105,16 @@ Public Class CharacterInventoryHandler
                                 Dim entryid As String
                                 Dim enchantments As String
                                 Dim itemcount As String = "1"
-                                bag = runSQLCommand_characters_string("SELECT entry FROM playeritems WHERE guid = '" & bagguid & "'")
-                                item = runSQLCommand_characters_string("SELECT guid FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "'")
-                                entryid = runSQLCommand_characters_string("SELECT entry FROM playeritems WHERE guid = '" & item & "'")
-                                enchantments = runSQLCommand_characters_string("SELECT enchantments FROM playeritems WHERE guid='" & item & "'")
-                                itemcount = runSQLCommand_characters_string("SELECT count FROM playeritems WHERE guid='" & item & "'")
+                                bag = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                      " = '" & bagguid & "'")
+                                item = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                                       "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString & "'")
+                                entryid = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                          " = '" & item & "'")
+                                enchantments = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                               sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                                itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                            "='" & item & "'")
                                 templist.Add(
                                          "<slot>" & tmpext.ToString & "</slot>" &
                                          "<bag>" & bag & "</bag>" &
@@ -111,10 +126,14 @@ Public Class CharacterInventoryHandler
                                          "<oldguid>" & item & "</oldguid>")
                             End If
                         Else
-                            Dim containerslot As String = ReturnResultWithRow("SELECT containerslot FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "'", "containerslot", 0)
+                            Dim containerslot As String = ReturnResultWithRow("SELECT " & sourceStructure.itmins_container_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                              sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString &
+                                                                              "'", sourceStructure.itmins_container_col(0), 0)
                             Dim bagguid As String = "-1"
                             If Not containerslot = "-1" Then
-                                bagguid = runSQLCommand_characters_string("SELECT guid FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & containerslot & "' AND containerslot='-1'")
+                                bagguid = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                                          "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & containerslot & "' AND " & sourceStructure.itmins_container_col(0) &
+                                                                          "='-1'")
                             End If
                             If bagguid = "-1" Then
                                 If tmpext > 18 Then
@@ -124,10 +143,15 @@ Public Class CharacterInventoryHandler
                                     Dim enchantments As String
                                     Dim itemcount As String = "1"
                                     bag = bagguid
-                                    item = runSQLCommand_characters_string("SELECT guid FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "' AND containerslot='-1'")
-                                    entryid = runSQLCommand_characters_string("SELECT entry FROM playeritems WHERE guid = '" & item & "'")
-                                    enchantments = runSQLCommand_characters_string("SELECT enchantments FROM playeritems WHERE guid='" & item & "'")
-                                    itemcount = runSQLCommand_characters_string("SELECT count FROM playeritems WHERE guid='" & item & "'")
+                                    item = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                                           "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString & "' AND " & sourceStructure.itmins_container_col(0) &
+                                                                           "='-1'")
+                                    entryid = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                              sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                                    enchantments = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                                   sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                                    itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                                "='" & item & "'")
                                     templistzero.Add(
                                         "<slot>" & tmpext.ToString & "</slot>" &
                                         "<bag>" & bag & "</bag>" &
@@ -143,11 +167,16 @@ Public Class CharacterInventoryHandler
                                 Dim entryid As String
                                 Dim enchantments As String
                                 Dim itemcount As String = "1"
-                                bag = runSQLCommand_characters_string("SELECT entry FROM playeritems WHERE guid = '" & bagguid & "'")
-                                item = ReturnResultWithRow("SELECT guid FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "'", "guid", 1)
-                                entryid = runSQLCommand_characters_string("SELECT entry FROM playeritems WHERE guid = '" & item & "'")
-                                enchantments = runSQLCommand_characters_string("SELECT enchantments FROM playeritems WHERE guid='" & item & "'")
-                                itemcount = runSQLCommand_characters_string("SELECT count FROM playeritems WHERE guid='" & item & "'")
+                                bag = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                      " = '" & bagguid & "'")
+                                item = ReturnResultWithRow("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                           "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString & "'", sourceStructure.itmins_guid_col(0), 1)
+                                entryid = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                          " = '" & item & "'")
+                                enchantments = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                               sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                                itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                            "='" & item & "'")
                                 templist.Add(
                                        "<slot>" & tmpext.ToString & "</slot>" &
                                        "<bag>" & bag & "</bag>" &
@@ -158,10 +187,14 @@ Public Class CharacterInventoryHandler
                                        "<container>-1</container>" &
                                        "<oldguid>" & item & "</oldguid>")
                             End If
-                            Dim containerslot2 As String = ReturnResultWithRow("SELECT containerslot FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "'", "containerslot", 1)
+                            Dim containerslot2 As String = ReturnResultWithRow("SELECT " & sourceStructure.itmins_container_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                               sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString &
+                                                                               "'", sourceStructure.itmins_container_col(0), 1)
                             Dim bagguid2 As String = "-1"
                             If Not containerslot2 = "-1" Then
-                                bagguid2 = runSQLCommand_characters_string("SELECT guid FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & containerslot2 & "' AND containerslot='-1'")
+                                bagguid2 = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                                           "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & containerslot2 & "' AND " & sourceStructure.itmins_container_col(0) &
+                                                                           "='-1'")
                             End If
                             If bagguid2 = "-1" Then
                                 If tmpext > 18 Then
@@ -171,10 +204,15 @@ Public Class CharacterInventoryHandler
                                     Dim enchantments As String
                                     Dim itemcount As String = "1"
                                     bag = bagguid2
-                                    item = ReturnResultWithRow("SELECT guid FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "' AND containerslot='-1'", "guid", 1)
-                                    entryid = runSQLCommand_characters_string("SELECT entry FROM playeritems WHERE guid = '" & item & "'")
-                                    enchantments = runSQLCommand_characters_string("SELECT enchantments FROM playeritems WHERE guid='" & item & "'")
-                                    itemcount = runSQLCommand_characters_string("SELECT count FROM playeritems WHERE guid='" & item & "'")
+                                    item = ReturnResultWithRow("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) & "='" &
+                                                               charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString & "' AND " & sourceStructure.itmins_container_col(0) &
+                                                               "='-1'", sourceStructure.itmins_guid_col(0), 1)
+                                    entryid = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                              sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                                    enchantments = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                                   sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                                    itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                                sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                     templistzero.Add(
                                       "<slot>" & tmpext.ToString & "</slot>" &
                                       "<bag>" & bag & "</bag>" &
@@ -190,11 +228,16 @@ Public Class CharacterInventoryHandler
                                 Dim entryid As String
                                 Dim enchantments As String
                                 Dim itemcount As String = "1"
-                                bag = runSQLCommand_characters_string("SELECT entry FROM playeritems WHERE guid = '" & bagguid2 & "'")
-                                item = ReturnResultWithRow("SELECT guid FROM playeritems WHERE ownerguid='" & charguid.ToString & "' AND slot='" & tmpext.ToString & "'", "guid", 1)
-                                entryid = runSQLCommand_characters_string("SELECT entry FROM playeritems WHERE guid = '" & item & "'")
-                                enchantments = runSQLCommand_characters_string("SELECT enchantments FROM playeritems WHERE guid='" & item & "'")
-                                itemcount = runSQLCommand_characters_string("SELECT count FROM playeritems WHERE guid='" & item & "'")
+                                bag = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                      " = '" & bagguid2 & "'")
+                                item = ReturnResultWithRow("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) & "='" &
+                                                           charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString & "'", sourceStructure.itmins_guid_col(0), 1)
+                                entryid = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                          " = '" & item & "'")
+                                enchantments = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                               sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                                itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                            "='" & item & "'")
                                 templist.Add(
                                      "<slot>" & tmpext.ToString & "</slot>" &
                                      "<bag>" & bag & "</bag>" &
@@ -221,19 +264,19 @@ Public Class CharacterInventoryHandler
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Inventory @loadAtTrinity", "CharacterInventoryHandler_loadAtTrinity", False)
-        Dim dt As DataTable = ReturnDataTable("SELECT item FROM character_inventory WHERE guid='" & charguid.ToString() & "'")
+        Dim dt As DataTable = ReturnDataTable("SELECT " & sourceStructure.invent_item_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Dim templistzero As New List(Of String)
         Dim tmpext As Integer
         Try
-            Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = TryInt(Val(dt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
-                    tmpext = tryint(Val(readedcode))
-                    Dim bagguid As String = runSQLCommand_characters_string("SELECT bag FROM character_inventory WHERE guid='" & charguid.ToString & "' AND item='" & tmpext.ToString & "'")
-                    If tryint(bagguid) = 0 Then
+                    tmpext = TryInt(Val(readedcode))
+                    Dim bagguid As String = runSQLCommand_characters_string("SELECT " & sourceStructure.invent_bag_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.invent_item_col(0) & "='" & tmpext.ToString & "'")
+                    If TryInt(bagguid) = 0 Then
                         If tmpext > 18 Then
                             Dim bag As String = "0"
                             Dim item As String = "0"
@@ -243,10 +286,10 @@ Public Class CharacterInventoryHandler
                             Dim slot As String = "0"
                             bag = bagguid
                             item = tmpext.ToString()
-                            entryid = runSQLCommand_characters_string("SELECT itemEntry FROM item_instance WHERE guid = '" & item & "'")
-                            enchantments = runSQLCommand_characters_string("SELECT enchantments FROM item_instance WHERE guid = '" & item & "'")
-                            itemcount = runSQLCommand_characters_string("Select `count` FROM item_instance WHERE guid='" & item & "'")
-                            slot = runSQLCommand_characters_string("Select `slot` FROM character_inventory WHERE `item`='" & item & "'")
+                            entryid = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                            enchantments = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                            itemcount = runSQLCommand_characters_string("Select `" & sourceStructure.itmins_count_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                            slot = runSQLCommand_characters_string("Select `" & sourceStructure.invent_slot_col(0) & "` FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE `" & sourceStructure.invent_item_col(0) & "`='" & item & "'")
                             templistzero.Add(
                                 "<slot>" & slot & "</slot>" &
                                 "<bag>" & bag & "</bag>" &
@@ -263,12 +306,12 @@ Public Class CharacterInventoryHandler
                         Dim enchantments As String
                         Dim itemcount As String = "1"
                         Dim slot As String = "0"
-                        bag = runSQLCommand_characters_string("SELECT itemEntry FROM item_instance WHERE guid = '" & bagguid & "'")
+                        bag = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & bagguid & "'")
                         item = tmpext.ToString
-                        entryid = runSQLCommand_characters_string("SELECT itemEntry FROM item_instance WHERE guid = '" & item & "'")
-                        enchantments = runSQLCommand_characters_string("SELECT enchantments FROM item_instance WHERE guid = '" & item & "'")
-                        itemcount = runSQLCommand_characters_string("Select `count` FROM item_instance WHERE guid='" & item & "'")
-                        slot = runSQLCommand_characters_string("Select `slot` FROM character_inventory WHERE `item`='" & item & "'")
+                        entryid = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_itemEntry_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                        enchantments = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                        itemcount = runSQLCommand_characters_string("Select `" & sourceStructure.itmins_count_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                        slot = runSQLCommand_characters_string("Select `" & sourceStructure.invent_slot_col(0) & "` FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE `" & sourceStructure.invent_item_col(0) & "`='" & item & "'")
                         templist.Add(
                             "<slot>" & slot & "</slot>" &
                             "<bag>" & bag & "</bag>" &
@@ -286,15 +329,15 @@ Public Class CharacterInventoryHandler
             LogAppend("Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterInventoryHandler_loadAtTrinity", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_inventory", ConvertListToString(templist), tar_setId)
-        SetTemporaryCharacterInformation("@character_inventoryzero", ConvertListToString(templistzero), tar_setId)
+        SetTemporaryCharacterInformation("@" & sourceStructure.character_inventory_tbl(0) & "", ConvertListToString(templist), tar_setId)
+        SetTemporaryCharacterInformation("@" & sourceStructure.character_inventory_tbl(0) & "zero", ConvertListToString(templistzero), tar_setId)
     End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Inventory @loadAtMangos", "CharacterInventoryHandler_loadAtMangos", False)
-        Dim dt As DataTable = ReturnDataTable("SELECT item FROM character_inventory WHERE guid='" & charguid.ToString() & "'")
+        Dim dt As DataTable = ReturnDataTable("SELECT " & sourceStructure.invent_item_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Dim templistzero As New List(Of String)
         Dim tmpext As Integer
@@ -305,7 +348,7 @@ Public Class CharacterInventoryHandler
                 Do
                     Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
                     tmpext = tryint(Val(readedcode))
-                    Dim bagguid As String = runSQLCommand_characters_string("SELECT bag FROM character_inventory WHERE guid='" & charguid.ToString & "' AND item='" & tmpext.ToString & "'")
+                    Dim bagguid As String = runSQLCommand_characters_string("SELECT " & sourceStructure.invent_bag_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.invent_item_col(0) & "='" & tmpext.ToString & "'")
                     If tryint(bagguid) = 0 Then
                         If tmpext > 18 Then
                             Dim bag As String = "0"
@@ -316,10 +359,10 @@ Public Class CharacterInventoryHandler
                             Dim slot As String = "0"
                             bag = bagguid
                             item = tmpext.ToString()
-                            entryid = runSQLCommand_characters_string("SELECT item_template FROM character_inventory WHERE guid = '" & charguid.ToString & "' AND item='" & item & "'")
-                            enchantments = runSQLCommand_characters_string("SELECT `data` FROM item_instance WHERE guid = '" & item & "'")
+                            entryid = runSQLCommand_characters_string("SELECT " & sourceStructure.invent_item_template_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & " = '" & charguid.ToString & "' AND " & sourceStructure.invent_item_col(0) & "='" & item & "'")
+                            enchantments = runSQLCommand_characters_string("SELECT `" & sourceStructure.itmins_data_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
                             itemcount = splititemdata(enchantments, 14)
-                            slot = runSQLCommand_characters_string("Select `slot` FROM character_inventory WHERE `item`='" & item & "'")
+                            slot = runSQLCommand_characters_string("Select `" & sourceStructure.invent_slot_col(0) & "` FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE `" & sourceStructure.invent_item_col(0) & "`='" & item & "'")
                             templistzero.Add(
                                 "<slot>" & slot & "</slot>" &
                                 "<bag>" & bag & "</bag>" &
@@ -336,12 +379,12 @@ Public Class CharacterInventoryHandler
                         Dim enchantments As String
                         Dim itemcount As String = "1"
                         Dim slot As String = "0"
-                        bag = runSQLCommand_characters_string("SELECT item_template FROM character_inventory WHERE item = '" & bagguid & "'")
+                        bag = runSQLCommand_characters_string("SELECT " & sourceStructure.invent_item_template_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_item_col(0) & " = '" & bagguid & "'")
                         item = tmpext.ToString
-                        entryid = runSQLCommand_characters_string("SELECT item_template FROM character_inventory WHERE guid = '" & charguid.ToString & "' AND item='" & tmpext.ToString & "'")
-                        enchantments = runSQLCommand_characters_string("SELECT `data` FROM item_instance WHERE guid = '" & item & "'")
+                        entryid = runSQLCommand_characters_string("SELECT " & sourceStructure.invent_item_template_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & " = '" & charguid.ToString & "' AND " & sourceStructure.invent_item_col(0) & "='" & tmpext.ToString & "'")
+                        enchantments = runSQLCommand_characters_string("SELECT `" & sourceStructure.itmins_data_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
                         itemcount = splititemdata(enchantments, 14)
-                        slot = runSQLCommand_characters_string("Select `slot` FROM character_inventory WHERE `item`='" & item & "'")
+                        slot = runSQLCommand_characters_string("Select `" & sourceStructure.invent_slot_col(0) & "` FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE `" & sourceStructure.invent_item_col(0) & "`='" & item & "'")
                         templist.Add(
                             "<slot>" & slot & "</slot>" &
                             "<bag>" & bag & "</bag>" &

@@ -47,7 +47,7 @@ Public Class CharacterItemStatsHandler
     Private Shared Sub loadAtArcemu(ByVal item As Integer, ByVal tar_setId As Integer, ByVal info_var As String)
         LogAppend("Loading ItemStats @loadAtArcemu", "CharacterItemStatsHandler_loadAtArcemu", False)
         Try
-            SetTemporaryCharacterInformation("@character_" & info_var & "_ench", runSQLCommand_characters_string("SELECT enchantments FROM playeritems WHERE guid='" & item.ToString & "'"), tar_setId)
+            SetTemporaryCharacterInformation("@character_" & info_var & "_ench", runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'"), tar_setId)
         Catch ex As Exception
             SetTemporaryCharacterInformation("@character_" & info_var & "_ench", "-1", tar_setId)
         End Try
@@ -55,7 +55,7 @@ Public Class CharacterItemStatsHandler
     Private Shared Sub loadAtTrinity(ByVal item As Integer, ByVal tar_setId As Integer, ByVal info_var As String)
         LogAppend("Loading ItemStats @loadAtTrinity", "CharacterItemStatsHandler_loadAtTrinity", False)
         Try
-            SetTemporaryCharacterInformation("@character_" & info_var & "_ench", runSQLCommand_characters_string("SELECT enchantments FROM item_instance WHERE guid='" & item.ToString & "'"), tar_setId)
+            SetTemporaryCharacterInformation("@character_" & info_var & "_ench", runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'"), tar_setId)
         Catch ex As Exception
             SetTemporaryCharacterInformation("@character_" & info_var & "_ench", "-1", tar_setId)
         End Try
@@ -66,7 +66,7 @@ Public Class CharacterItemStatsHandler
     Private Shared Sub loadAtMangos(ByVal item As Integer, ByVal tar_setId As Integer, ByVal info_var As String)
         LogAppend("Loading character ItemStats @loadAtMangos", "CharacterItemStatsHandler_loadAtMangos", False)
         Try
-            SetTemporaryCharacterInformation("@character_" & info_var & "_ench", runSQLCommand_characters_string("SELECT `data` FROM item_instance WHERE guid='" & item.ToString & "'"), tar_setId)
+            SetTemporaryCharacterInformation("@character_" & info_var & "_ench", runSQLCommand_characters_string("SELECT `" & sourceStructure.itmins_data_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'"), tar_setId)
         Catch ex As Exception
             SetTemporaryCharacterInformation("@character_" & info_var & "_ench", "-1", tar_setId)
         End Try

@@ -46,7 +46,7 @@ Public Class CharacterAchievementHandler
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Achievement @loadAtArcemu", "CharacterAchievementHandler_loadAtArcemu", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT achievement, `date` FROM character_achievement WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) & "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -69,7 +69,7 @@ Public Class CharacterAchievementHandler
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Achievement @loadAtTrinity", "CharacterAchievementHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT achievement, `date` FROM character_achievement WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) & "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -95,7 +95,7 @@ Public Class CharacterAchievementHandler
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Achievement @loadAtMangos", "CharacterAchievementHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT achievement, `date` FROM character_achievement WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) & "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))

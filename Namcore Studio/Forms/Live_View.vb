@@ -297,11 +297,10 @@ Public Class Live_View
             Dim accountId As String = accountview.SelectedItems(0).SubItems(0).Text
             For I = 0 To accountview.SelectedItems.Count - 1
                 accountview.SelectedItems(I).Remove()
-                GlobalVariables.acc_id_columnname = "id" 'todo
-                Dim toBeRemovedRow As DataRow() = acctable.Select(GlobalVariables.acc_id_columnname & " = '" & accountId & "'")
+                Dim toBeRemovedRow As DataRow() = acctable.Select(sourceStructure.acc_id_col(0) & " = '" & accountId & "'")
                 If Not toBeRemovedRow.Length = 0 Then acctable.Rows.Remove(toBeRemovedRow(0))
-                runSQLCommand_realm_string_setconn("DELETE FROM `" & account_tablename & "` WHERE " & acc_id_columnname & "='" & accountId & "'", GlobalConnection_Realm)
-                runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", GlobalConnection)
+                runSQLCommand_realm_string_setconn("DELETE FROM `" & sourceStructure.account_tbl(0) & "` WHERE " & sourceStructure.acc_id_col(0) & "='" & accountId & "'", GlobalConnection_Realm)
+                runSQLCommand_characters_string_setconn("DELETE FROM `" & sourceStructure.character_tbl(0) & "` WHERE " & sourceStructure.char_accountId_col(0) & "='" & accountId & "'", GlobalConnection)
             Next
             setaccountview(acctable)
         End If
@@ -313,11 +312,10 @@ Public Class Live_View
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             For Each itm As ListViewItem In accountview.CheckedItems
                 accountview.Items.Remove(itm)
-                GlobalVariables.acc_id_columnname = "id" 'todo
-                Dim toBeRemovedRow As DataRow() = acctable.Select(GlobalVariables.acc_id_columnname & " = '" & itm.SubItems(0).Text & "'")
+                Dim toBeRemovedRow As DataRow() = acctable.Select(sourceStructure.acc_id_col(0) & " = '" & itm.SubItems(0).Text & "'")
                 If Not toBeRemovedRow.Length = 0 Then acctable.Rows.Remove(toBeRemovedRow(0))
-                runSQLCommand_realm_string_setconn("DELETE FROM `" & account_tablename & "` WHERE " & acc_id_columnname & "='" & itm.SubItems(0).Text & "'", GlobalConnection_Realm)
-                runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & itm.SubItems(0).Text & "'", GlobalConnection)
+                runSQLCommand_realm_string_setconn("DELETE FROM `" & sourceStructure.account_tbl(0) & "` WHERE " & sourceStructure.acc_id_col(0) & "='" & itm.SubItems(0).Text & "'", GlobalConnection_Realm)
+                runSQLCommand_characters_string_setconn("DELETE FROM `" & sourceStructure.character_tbl(0) & "` WHERE " & sourceStructure.char_accountId_col(0) & "='" & itm.SubItems(0).Text & "'", GlobalConnection)
             Next
             setaccountview(acctable)
         End If
@@ -327,7 +325,7 @@ Public Class Live_View
         'todo
     End Sub
     Private Sub accountview_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles accountview.MouseDown
-      
+
     End Sub
 
     Private Sub filter_char_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles filter_char.LinkClicked
@@ -359,9 +357,9 @@ Public Class Live_View
             Dim charId As String = characterview.SelectedItems(0).SubItems(0).Text
             For I = 0 To characterview.SelectedItems.Count - 1
                 characterview.SelectedItems(I).Remove()
-                Dim toBeRemovedRow As DataRow() = chartable.Select(char_guid_columnname & " = '" & charId & "'")
+                Dim toBeRemovedRow As DataRow() = chartable.Select(sourceStructure.char_guid_col(0) & " = '" & charId & "'")
                 If Not toBeRemovedRow.Length = 0 Then chartable.Rows.Remove(toBeRemovedRow(0))
-                runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_guid_columnname & "='" & charId & "'", GlobalConnection)
+                runSQLCommand_characters_string_setconn("DELETE FROM `" & sourceStructure.character_tbl(0) & "` WHERE " & sourceStructure.char_guid_col(0) & "='" & charId & "'", GlobalConnection)
             Next
             setaccountview(acctable)
         End If
@@ -373,9 +371,9 @@ Public Class Live_View
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             For Each itm As ListViewItem In characterview.CheckedItems
                 characterview.Items.Remove(itm)
-                Dim toBeRemovedRow As DataRow() = chartable.Select(char_guid_columnname & " = '" & itm.SubItems(0).Text & "'")
+                Dim toBeRemovedRow As DataRow() = chartable.Select(sourceStructure.char_guid_col(0) & " = '" & itm.SubItems(0).Text & "'")
                 If Not toBeRemovedRow.Length = 0 Then chartable.Rows.Remove(toBeRemovedRow(0))
-                runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_guid_columnname & "='" & itm.SubItems(0).Text & "'", GlobalConnection)
+                runSQLCommand_characters_string_setconn("DELETE FROM `" & sourceStructure.character_tbl(0) & "` WHERE " & sourceStructure.char_guid_col(0) & "='" & itm.SubItems(0).Text & "'", GlobalConnection)
             Next
             setaccountview(acctable)
         End If
@@ -386,7 +384,7 @@ Public Class Live_View
     End Sub
 
     Private Sub characterview_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles characterview.MouseDown
-      
+
     End Sub
 
     Private Sub characterview_MouseUp(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles characterview.MouseUp
@@ -428,7 +426,7 @@ Public Class Live_View
     End Sub
 
     Private Sub target_accounts_tree_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles target_accounts_tree.MouseDown
-       
+
     End Sub
 
     Private Sub RemoveToolStripMenuItem2_Click(sender As System.Object, e As System.EventArgs) Handles RemoveToolStripMenuItem2.Click
@@ -440,12 +438,11 @@ Public Class Live_View
                 target_accounts_tree.SelectedNode.Remove()
                 Exit Sub
             End If
-            GlobalVariables.acc_id_columnname = "id" 'todo
-            Dim toBeRemovedRow As DataRow() = target_accchar_table.Select(GlobalVariables.acc_id_columnname & " = '" & accountId & "'")
+            Dim toBeRemovedRow As DataRow() = target_accchar_table.Select(targetStructure.acc_id_col(0) & " = '" & accountId & "'")
             If Not toBeRemovedRow.Length = 0 Then target_accchar_table.Rows.Remove(toBeRemovedRow(0))
             target_accounts_tree.SelectedNode.Remove()
-            runSQLCommand_realm_string_setconn("DELETE FROM `" & account_tablename & "` WHERE " & acc_id_columnname & "='" & accountId & "'", TargetConnection_Realm)
-            runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", TargetConnection)
+            runSQLCommand_realm_string_setconn("DELETE FROM `" & targetStructure.account_tbl(0) & "` WHERE " & targetStructure.acc_id_col(0) & "='" & accountId & "'", TargetConnection_Realm)
+            runSQLCommand_characters_string_setconn("DELETE FROM `" & targetStructure.character_tbl(0) & "` WHERE " & targetStructure.char_accountId_col(0) & "='" & accountId & "'", TargetConnection)
 
         End If
     End Sub
@@ -460,10 +457,9 @@ Public Class Live_View
                 Exit Sub
             End If
             target_accounts_tree.SelectedNode.Remove()
-            GlobalVariables.acc_id_columnname = "id" 'todo
-            Dim toBeRemovedRow As DataRow() = target_accchar_table.Select(GlobalVariables.acc_id_columnname & " = '" & accountId & "'")
+            Dim toBeRemovedRow As DataRow() = target_accchar_table.Select(targetStructure.acc_id_col(0) & " = '" & accountId & "'")
             If Not toBeRemovedRow.Length = 0 Then target_accchar_table.Rows.Remove(toBeRemovedRow(0))
-            runSQLCommand_characters_string_setconn("DELETE FROM `" & character_tablename & "` WHERE " & char_accountId_columnname & "='" & accountId & "'", TargetConnection)
+            runSQLCommand_characters_string_setconn("DELETE FROM `" & targetStructure.character_tbl(0) & "` WHERE " & targetStructure.char_accountId_col(0) & "='" & accountId & "'", TargetConnection)
         End If
     End Sub
 

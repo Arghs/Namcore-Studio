@@ -74,18 +74,25 @@ Public Class ArmorCreation
             finalItemString = finalItemString & newItemType & " 0 "
         Next
         Dim typeCounter As Integer = 0
-        Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT guid FROM playeritems WHERE guid=(SELECT MAX(guid) FROM playeritems)"))
+        Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
+                                                                            "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " & sourceStructure.item_instance_tbl(0) & ")"))
         For Each newItemType As String In itemtypelist
             itemid = TryInt(GetTemporaryCharacterInformation("@character_" & newItemType & "Id", targetSetId))
             If itemid = 0 Then Continue For
             newItemGuid += 1
             finalItemString = finalItemString.Replace(newItemType, itemid.ToString())
-            If ReturnResultCount("SELECT * FROM playeritems WHERE ownerguid='" & characterguid.ToString() & "' AND slot = '" & typeCounter.ToString() & "' AND containerslot='-1')") > 0 Then
-                runSQLCommand_characters_string("DELETE FROM playeritems WHERE ownerguid = '" & characterguid.ToString() & "' AND slot = '" & typeCounter.ToString() & "'")
-                runSQLCommand_characters_string("INSERT INTO playeritems ( guid, ownerguid, entry, containerslot, slot) VALUES ( '" & newItemGuid.ToString() & "', '" & characterguid & "', '" &
+            If ReturnResultCount("SELECT * FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) & "='" & characterguid.ToString() & "' AND " &
+                                 sourceStructure.itmins_slot_col(0) & " = '" & typeCounter.ToString() & "' AND " & sourceStructure.itmins_container_col(0) & "='-1')") > 0 Then
+                runSQLCommand_characters_string("DELETE FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) & " = '" & characterguid.ToString() &
+                                                "' AND " & sourceStructure.itmins_slot_col(0) & " = '" & typeCounter.ToString() & "'")
+                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.item_instance_tbl(0) & " ( " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                ", " & sourceStructure.itmins_itemEntry_col(0) & ", " & sourceStructure.itmins_container_col(0) & ", " & sourceStructure.itmins_slot_col(0) &
+                                                ") VALUES ( '" & newItemGuid.ToString() & "', '" & characterguid & "', '" &
                                                 itemid.ToString & "', '-1', '" & typeCounter.ToString() & "' )")
             Else
-                runSQLCommand_characters_string("INSERT INTO playeritems ( guid, ownerguid, entry, containerslot, slot) VALUES ( '" & newItemGuid.ToString() & "', '" & characterguid & "', '" &
+                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.item_instance_tbl(0) & " ( " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                ", " & sourceStructure.itmins_itemEntry_col(0) & ", " & sourceStructure.itmins_container_col(0) & ", " & sourceStructure.itmins_slot_col(0) &
+                                                ") VALUES ( '" & newItemGuid.ToString() & "', '" & characterguid & "', '" &
                                                itemid.ToString & "', '-1', '" & typeCounter.ToString() & "' )")
             End If
             typeCounter += 1
@@ -123,20 +130,26 @@ Public Class ArmorCreation
             finalItemString = finalItemString & newItemType & " 0 "
         Next
         Dim typeCounter As Integer = 0
-        Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT guid FROM item_instance WHERE guid=(SELECT MAX(guid) FROM item_instance)"))
+        Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                            sourceStructure.itmins_guid_col(0) & "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " & sourceStructure.item_instance_tbl(0) & ")"))
         For Each newItemType As String In itemtypelist
             itemid = TryInt(GetTemporaryCharacterInformation("@character_" & newItemType & "Id", targetSetId))
             If itemid = 0 Then Continue For
             newItemGuid += 1
             finalItemString = finalItemString.Replace(newItemType, itemid.ToString())
-            runSQLCommand_characters_string("INSERT INTO item_instance ( guid, itemEntry, owner_guid, count, charges, enchantments, durability ) VALUES ( '" &
-                                            newItemGuid.ToString() & "', '" & itemid & "', '" & characterguid.ToString() &
-                                            "', '1', '0 0 0 0 0 ', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
-            If ReturnResultCount("SELECT * FROM character_inventory WHERE guid='" & characterguid.ToString() & "' AND slot = '" & typeCounter.ToString() & "')") > 0 Then
-                runSQLCommand_characters_string("DELETE FROM character_inventory WHERE guid = '" & characterguid.ToString() & "' AND slot = '" & typeCounter.ToString() & "'")
-                runSQLCommand_characters_string("INSERT INTO character_inventory ( guid, slot, item ) VALUES ( '" & characterguid.ToString() & "', '" & typeCounter.ToString() & "', '" & newItemGuid.ToString() & "' )")
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.item_instance_tbl(0) & " ( " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_itemEntry_col(0) & ", " &
+                                            sourceStructure.itmins_ownerGuid_col(0) & ", " & sourceStructure.itmins_count_col(0) & ", " & sourceStructure.itmins_enchantments_col(0) &
+                                            ", " & sourceStructure.itmins_durability_col(0) & " ) VALUES ( '" & newItemGuid.ToString() & "', '" & itemid & "', '" & characterguid.ToString() &
+                                            "', '1', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
+            If ReturnResultCount("SELECT * FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & "='" & characterguid.ToString() & "' AND " &
+                                 sourceStructure.invent_slot_col(0) & " = '" & typeCounter.ToString() & "')") > 0 Then
+                runSQLCommand_characters_string("DELETE FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & " = '" & characterguid.ToString() &
+                                                "' AND " & sourceStructure.invent_slot_col(0) & " = '" & typeCounter.ToString() & "'")
+                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_inventory_tbl(0) & " ( " & sourceStructure.invent_guid_col(0) & ", " & sourceStructure.invent_slot_col(0) &
+                                                ", " & sourceStructure.invent_item_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '" & typeCounter.ToString() & "', '" & newItemGuid.ToString() & "' )")
             Else
-                runSQLCommand_characters_string("INSERT INTO character_inventory ( guid, slot, item ) VALUES ( '" & characterguid.ToString() & "', '" & typeCounter.ToString() & "', '" & newItemGuid.ToString() & "' )")
+                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_inventory_tbl(0) & " ( " & sourceStructure.invent_guid_col(0) & ", " & sourceStructure.invent_slot_col(0) & ", " &
+                                                sourceStructure.invent_item_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '" & typeCounter.ToString() & "', '" & newItemGuid.ToString() & "' )")
             End If
             typeCounter += 1
         Next
@@ -145,7 +158,7 @@ Public Class ArmorCreation
                 finalItemString = finalItemString.Replace(itemtype, "0")
             Next
         End If
-        runSQLCommand_characters_string("UPDATE characters SET equipmentCache='" & finalItemString & "' WHERE (guid='" & characterguid.ToString() & "')")
+        runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_equipmentCache_col(0) & "='" & finalItemString & "' WHERE (" & sourceStructure.char_guid_col(0) & "='" & characterguid.ToString() & "')")
     End Sub
     Private Shared Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating armor at mangos", "ArmorCreation_createAtMangos", False)
@@ -174,27 +187,34 @@ Public Class ArmorCreation
             finalItemString = finalItemString & newItemType & " 0 "
         Next
         Dim typeCounter As Integer = 0
-        Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT guid FROM item_instance WHERE guid=(SELECT MAX(guid) FROM item_instance)"))
+        Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                                            sourceStructure.itmins_guid_col(0) & "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " & sourceStructure.item_instance_tbl(0) & ")"))
         For Each newItemType As String In itemtypelist
             itemid = TryInt(GetTemporaryCharacterInformation("@character_" & newItemType & "Id", targetSetId))
             If itemid = 0 Then Continue For
             newItemGuid += 1
             finalItemString = finalItemString.Replace(newItemType, itemid.ToString())
             If expansion >= 3 Then
-                runSQLCommand_characters_string("INSERT INTO item_instance ( guid, owner_guid, data) VALUES ( '" & newItemGuid.ToString() & "', '" & characterguid.ToString() &
+                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.item_instance_tbl(0) & " ( " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                ", " & sourceStructure.itmins_data_col(0) & ") VALUES ( '" & newItemGuid.ToString() & "', '" & characterguid.ToString() &
                                                 "', '" & newItemGuid.ToString() & " 1191182336 3 " & itemid.ToString() &
                                                 " 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 ')")
             Else
-                runSQLCommand_characters_string("INSERT INTO item_instance ( guid, owner_guid, data) VALUES ( '" & newItemGuid.ToString() & "', '" & characterguid.ToString() &
+                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.item_instance_tbl(0) & " ( " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_ownerGuid_col(0) &
+                                                ", " & sourceStructure.itmins_data_col(0) & ") VALUES ( '" & newItemGuid.ToString() & "', '" & characterguid.ToString() &
                                                 "', '" & newItemGuid.ToString() & " 1191182336 3 " & itemid.ToString() &
                                                 " 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 ')")
             End If
-            If ReturnResultCount("SELECT * FROM character_inventory WHERE guid='" & characterguid.ToString() & "' AND slot = '" & typeCounter.ToString() & "')") > 0 Then
-                runSQLCommand_characters_string("DELETE FROM character_inventory WHERE guid = '" & characterguid.ToString() & "' AND slot = '" & typeCounter.ToString() & "'")
-                runSQLCommand_characters_string("INSERT INTO character_inventory ( guid, bag, slot, item, item_template ) VALUES " &
+            If ReturnResultCount("SELECT * FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & "='" & characterguid.ToString() & "' AND " &
+                                 sourceStructure.invent_slot_col(0) & " = '" & typeCounter.ToString() & "')") > 0 Then
+                runSQLCommand_characters_string("DELETE FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & " = '" & characterguid.ToString() &
+                                                "' AND " & sourceStructure.invent_slot_col(0) & " = '" & typeCounter.ToString() & "'")
+                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_inventory_tbl(0) & " ( " & sourceStructure.invent_guid_col(0) & ", " & sourceStructure.invent_bag_col(0) &
+                                                ", " & sourceStructure.invent_slot_col(0) & ", " & sourceStructure.invent_item_col(0) & ", " & sourceStructure.invent_item_template_col(0) & " ) VALUES " &
                                                 "( '" & characterguid.ToString() & "', '0', '" & typeCounter.ToString() & "', '" & newItemGuid.ToString() & "', '" & itemid.ToString & "' )")
             Else
-                runSQLCommand_characters_string("INSERT INTO character_inventory ( guid, bag, slot, item, item_template ) VALUES " &
+                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_inventory_tbl(0) & " ( " & sourceStructure.invent_guid_col(0) & ", " & sourceStructure.invent_bag_col(0) &
+                                                ", " & sourceStructure.invent_slot_col(0) & ", " & sourceStructure.invent_item_col(0) & ", " & sourceStructure.invent_item_template_col(0) & " ) VALUES " &
                                                  "( '" & characterguid.ToString() & "', '0', '" & typeCounter.ToString() & "', '" & newItemGuid.ToString() & "', '" & itemid.ToString & "' )")
             End If
             typeCounter += 1
@@ -204,6 +224,7 @@ Public Class ArmorCreation
                 finalItemString = finalItemString.Replace(itemtype, "0")
             Next
         End If
-        runSQLCommand_characters_string("UPDATE characters SET equipmentCache='" & finalItemString & "' WHERE (guid='" & characterguid.ToString() & "')")
+        runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_equipmentCache_col(0) & "='" & finalItemString & "' WHERE (" & sourceStructure.char_guid_col(0) &
+                                        "='" & characterguid.ToString() & "')")
     End Sub
 End Class

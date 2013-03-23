@@ -46,7 +46,7 @@ Public Class CharacterReputationHandler
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character reputation @loadAtArcemu", "CharacterReputationHandler_loadAtArcemu", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT reputation FROM characters WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_reputation_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -82,7 +82,8 @@ Public Class CharacterReputationHandler
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character reputation @loadAtTrinity", "CharacterReputationHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT faction, standing, flags FROM character_reputation WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.rep_faction_col(0) & ", " & sourceStructure.rep_standing_col(0) & ", " & sourceStructure.rep_flags_col(0) &
+                                                  " FROM " & sourceStructure.character_reputation_tbl(0) & " WHERE " & sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
@@ -109,7 +110,8 @@ Public Class CharacterReputationHandler
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character reputation @loadAtMangos", "CharacterReputationHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT faction, standing, flags FROM character_reputation WHERE guid='" & charguid.ToString() & "'")
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.rep_faction_col(0) & ", " & sourceStructure.rep_standing_col(0) & ", " & sourceStructure.rep_flags_col(0) &
+                                                  " FROM " & sourceStructure.character_reputation_tbl(0) & " WHERE " & sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))

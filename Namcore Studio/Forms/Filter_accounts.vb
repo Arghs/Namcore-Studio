@@ -20,6 +20,7 @@
 '*      /Filename:      Filter_accounts
 '*      /Description:   Contains functions for filtering the account list
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports Namcore_Studio.GlobalVariables
 Public Class Filter_accounts
 
     Private Sub ApplyFilter_Click(sender As System.Object, e As System.EventArgs) Handles ApplyFilter.Click
@@ -29,13 +30,12 @@ Public Class Filter_accounts
             If idcombo1.SelectedIndex = -1 Then GoTo SkipStatement0
             Dim insertstring As String = " " & idcombo1.SelectedItem.ToString() & " '" & idtxtbox1.Text & "'"
             Dim insertstring2 As String = ""
-            GlobalVariables.acc_id_columnname = "id" 'todo
             If Not idcombo2.SelectedItem = Nothing Then
-                insertstring2 = " AND " & GlobalVariables.acc_id_columnname & " " & idcombo2.SelectedItem.ToString & " '" & idtxtbox2.Text & "'"
+                insertstring2 = " AND " & sourceStructure.acc_id_col(0) & " " & idcombo2.SelectedItem.ToString & " '" & idtxtbox2.Text & "'"
             End If
             Dim foundRows() As DataRow
             Dim clonedDT As DataTable = GlobalVariables.modifiedAccTable.Copy
-            foundRows = clonedDT.Select(GlobalVariables.acc_id_columnname & insertstring & insertstring2)
+            foundRows = clonedDT.Select(sourceStructure.acc_id_col(0) & insertstring & insertstring2)
             GlobalVariables.modifiedAccTable.Rows.Clear()
             For i = 0 To foundRows.GetUpperBound(0)
                 GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
@@ -51,10 +51,9 @@ SkipStatement0:
                     insertstring = " = '" & nametxtbox1.Text & "'"
                 Case Else : GoTo SkipStatement1
             End Select
-            GlobalVariables.acc_name_columnname = "username" 'todo
             Dim foundRows() As DataRow
             Dim clonedDT As DataTable = GlobalVariables.modifiedAccTable.Copy
-            foundRows = clonedDT.Select(GlobalVariables.acc_name_columnname & insertstring)
+            foundRows = clonedDT.Select(sourceStructure.acc_name_col(0) & insertstring)
             GlobalVariables.modifiedAccTable.Rows.Clear()
             For i = 0 To foundRows.GetUpperBound(0)
                 GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
@@ -65,13 +64,18 @@ SkipStatement1:
             If gmcombo1.SelectedIndex = -1 Then GoTo SkipStatement2
             Dim insertstring As String = " " & gmcombo1.SelectedItem.ToString() & " '" & gmtxtbox1.Text & "'"
             Dim insertstring2 As String = ""
-            GlobalVariables.accAcc_gmLevel_columnname = "gmlevel" 'todo
+            Dim gmlevelCOL As String
+            If sourceStructure.acc_gmlevel_col(0) = Nothing Then
+                gmlevelCOL = sourceStructure.accAcc_gmLevel_col(0)
+            Else
+                gmlevelCOL = sourceStructure.acc_gmlevel_col(0)
+            End If
             If Not gmcombo2.SelectedItem = Nothing Then
-                insertstring2 = " AND " & GlobalVariables.accAcc_gmLevel_columnname & " " & gmcombo2.SelectedItem.ToString & " '" & gmtxtbox2.Text & "'"
+                insertstring2 = " AND " & gmlevelCOL & " " & gmcombo2.SelectedItem.ToString & " '" & gmtxtbox2.Text & "'"
             End If
             Dim foundRows() As DataRow
             Dim clonedDT As DataTable = GlobalVariables.modifiedAccTable.Copy
-            foundRows = clonedDT.Select(GlobalVariables.accAcc_gmLevel_columnname & insertstring & insertstring2)
+            foundRows = clonedDT.Select(gmlevelCOL & insertstring & insertstring2)
             GlobalVariables.modifiedAccTable.Rows.Clear()
             For i = 0 To foundRows.GetUpperBound(0)
                 GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
@@ -82,14 +86,14 @@ SkipStatement2:
             If logincombo1.SelectedIndex = -1 Then GoTo SkipStatement3
             Dim insertstring As String = " " & logincombo1.SelectedItem.ToString() & " '" & datemin.Text & "'"
             Dim insertstring2 As String = ""
-            GlobalVariables.acc_lastlogin_columnname = "last_login" 'todo
+            sourceStructure.acc_lastlogin_col(0) = "last_login" 'todo
             If Not logincombo2.SelectedItem = Nothing Then
-                insertstring2 = " AND " & GlobalVariables.acc_lastlogin_columnname & " " & logincombo2.SelectedItem.ToString & " '" & datemax.Text & "'"
+                insertstring2 = " AND " & sourceStructure.acc_lastlogin_col(0) & " " & logincombo2.SelectedItem.ToString & " '" & datemax.Text & "'"
             End If
             'Watch datetime format: mangos requires yyy-MM-dd HH:mm:ss todo
             Dim foundRows() As DataRow
             Dim clonedDT As DataTable = GlobalVariables.modifiedAccTable.Copy
-            foundRows = clonedDT.Select(GlobalVariables.acc_lastlogin_columnname & insertstring & insertstring2)
+            foundRows = clonedDT.Select(sourceStructure.acc_lastlogin_col(0) & insertstring & insertstring2)
             GlobalVariables.modifiedAccTable.Rows.Clear()
             For i = 0 To foundRows.GetUpperBound(0)
                 GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))

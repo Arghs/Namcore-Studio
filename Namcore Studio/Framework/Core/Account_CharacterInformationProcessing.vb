@@ -28,13 +28,19 @@ Public Class Account_CharacterInformationProcessing
     Public Shared Function returnAccountTable(ByVal sqlconnection As MySqlConnection) As DataTable
         Select Case sourceCore
             Case "arcemu"
-                Return ReturnDataTable_setconn("SELECT acct, `login`, `gm`, `lastlogin`, `email` FROM accounts", sqlconnection)
+                Return ReturnDataTable_setconn("SELECT `" & sourceStructure.acc_id_col(0) & "`, `" & sourceStructure.acc_name_col(0) & "`, `" & sourceStructure.acc_gmlevel_col(0) &
+                                               "`, `" & sourceStructure.acc_lastlogin_col(0) & "`, `" & sourceStructure.acc_email_col(0) & "` FROM " & sourceStructure.account_tbl(0), sqlconnection)
             Case "trinity"
-                Return ReturnDataTable_setconn("SELECT account.`id`, `username`, `account_access`.gmlevel, `last_login`, `email` FROM account JOIN `account_access` ON `account`.id = `account_access`.id", sqlconnection)
+                Return ReturnDataTable_setconn("SELECT " & sourceStructure.account_tbl(0) & ".`" & sourceStructure.acc_id_col(0) & "`, `" & sourceStructure.acc_name_col(0) &
+                                               "`, `" & sourceStructure.accountAccess_tbl(0) & "`." & sourceStructure.accAcc_gmLevel_col(0) & ", `" & sourceStructure.acc_lastlogin_col(0) &
+                                               "`, `" & sourceStructure.acc_email_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " JOIN `" & sourceStructure.accountAccess_tbl(0) &
+                                               "` ON `" & sourceStructure.account_tbl(0) & "`." & sourceStructure.acc_id_col(0) & " = `" & sourceStructure.accountAccess_tbl(0) &
+                                               "`" & sourceStructure.accAcc_accid_col(0) & "", sqlconnection)
             Case "trinitytbc"
                 'todo
             Case "mangos"
-                Return ReturnDataTable_setconn("SELECT `id`, `username`, `gmlevel`, `last_login`, `email` FROM account", sqlconnection)
+                Return ReturnDataTable_setconn("SELECT `" & sourceStructure.acc_id_col(0) & "`, `" & sourceStructure.acc_name_col(0) & "`, `" & sourceStructure.acc_gmlevel_col(0) &
+                                               "`, " & sourceStructure.acc_lastlogin_col(0) & "`, `" & sourceStructure.acc_email_col(0) & "` FROM " & sourceStructure.account_tbl(0), sqlconnection)
             Case Else
 
         End Select
@@ -44,13 +50,19 @@ Public Class Account_CharacterInformationProcessing
     Public Shared Function returnCharacterTable(ByVal sqlconnection As MySqlConnection) As DataTable
         Select Case sourceCore
             Case "arcemu"
-                Return ReturnDataTable_setconn("SELECT guid, acct, name, race, class, gender, level FROM characters", sqlconnection)
+                Return ReturnDataTable_setconn("SELECT " & sourceStructure.char_guid_col(0) & ", " & sourceStructure.char_accountId_col(0) & ", " & sourceStructure.char_name_col(0) &
+                                               ", " & sourceStructure.char_race_col(0) & ", " & sourceStructure.char_class_col(0) & ", " & sourceStructure.char_gender_col(0) &
+                                               ", " & sourceStructure.char_level_col(0) & " FROM characters", sqlconnection)
             Case "trinity"
-                Return ReturnDataTable_setconn("SELECT guid, account, name, race, class, gender, level FROM characters", sqlconnection)
+                Return ReturnDataTable_setconn("SELECT " & sourceStructure.char_guid_col(0) & ", " & sourceStructure.char_accountId_col(0) & ", " & sourceStructure.char_name_col(0) &
+                                               ", " & sourceStructure.char_race_col(0) & ", " & sourceStructure.char_class_col(0) & ", " & sourceStructure.char_gender_col(0) &
+                                               ", " & sourceStructure.char_level_col(0) & " FROM characters", sqlconnection)
             Case "trinitytbc"
                 Return ReturnDataTable_setconn("SELECT", sqlconnection)
             Case "mangos"
-                Return ReturnDataTable_setconn("SELECT guid, account, name, race, class, gender, level FROM characters", sqlconnection)
+                Return ReturnDataTable_setconn("SELECT " & sourceStructure.char_guid_col(0) & ", " & sourceStructure.char_accountId_col(0) & ", " & sourceStructure.char_name_col(0) &
+                                               ", " & sourceStructure.char_race_col(0) & ", " & sourceStructure.char_class_col(0) & ", " & sourceStructure.char_gender_col(0) &
+                                               ", " & sourceStructure.char_level_col(0) & " FROM characters", sqlconnection)
             Case Else
 
         End Select
@@ -58,13 +70,22 @@ Public Class Account_CharacterInformationProcessing
     Public Shared Function returnTargetAccCharTable(ByVal sqlconnection As MySqlConnection) As DataTable
         Select Case targetCore
             Case "arcemu"
-                Return ReturnDataTable_setconn("SELECT u1.`acct`, u1.`login`, u2.`guid`, u2.`name` FROM " & TargetConnRealmDBname & ".accounts u1 LEFT JOIN " & TargetConnCharactersDBname & ".characters u2 ON u2.`acct` = u1.`acct`", sqlconnection)
+                Return ReturnDataTable_setconn("SELECT u1.`" & sourceStructure.acc_id_col(0) & "`, u1.`" & sourceStructure.acc_name_col(0) & "`, u2.`" & sourceStructure.char_guid_col(0) &
+                                               "`, u2.`" & sourceStructure.char_name_col(0) & "` FROM " & TargetConnRealmDBname & "." & sourceStructure.account_tbl(0) &
+                                               " u1 LEFT JOIN " & TargetConnCharactersDBname & "." & sourceStructure.character_tbl(0) & " u2 ON u2.`" & sourceStructure.char_accountId_col(0) &
+                                               "` = u1.`" & sourceStructure.acc_id_col(0) & "`", sqlconnection)
             Case "trinity"
-                Return ReturnDataTable_setconn("SELECT u1.`id`, u1.`username`, u2.`guid`, u2.`name` FROM " & TargetConnRealmDBname & ".account u1 LEFT JOIN " & TargetConnCharactersDBname & ".characters u2 ON u2.`account` = u1.`id`", sqlconnection)
+                Return ReturnDataTable_setconn("SELECT u1.`" & sourceStructure.acc_id_col(0) & "`, u1.`" & sourceStructure.acc_name_col(0) & "`, u2.`" & sourceStructure.char_guid_col(0) &
+                                               "`, u2.`" & sourceStructure.char_name_col(0) & "` FROM " & TargetConnRealmDBname & "." & sourceStructure.account_tbl(0) &
+                                               " u1 LEFT JOIN " & TargetConnCharactersDBname & "." & sourceStructure.character_tbl(0) & " u2 ON u2.`" & sourceStructure.char_accountId_col(0) &
+                                               "` = u1.`" & sourceStructure.acc_id_col(0) & "`", sqlconnection)
             Case "trinitytbc"
                 'todo
             Case "mangos"
-                Return ReturnDataTable_setconn("SELECT u1.`id`, u1.`username`, u2.`guid`, u2.`name` FROM " & TargetConnRealmDBname & ".account u1 LEFT JOIN " & TargetConnCharactersDBname & ".characters u2 ON u2.`account` = u1.`id`", sqlconnection)
+                Return ReturnDataTable_setconn("SELECT u1.`" & sourceStructure.acc_id_col(0) & "`, u1.`" & sourceStructure.acc_name_col(0) & "`, u2.`" & sourceStructure.char_guid_col(0) &
+                                               "`, u2.`" & sourceStructure.char_name_col(0) & "` FROM " & TargetConnRealmDBname & "." & sourceStructure.account_tbl(0) &
+                                               " u1 LEFT JOIN " & TargetConnCharactersDBname & "." & sourceStructure.character_tbl(0) & " u2 ON u2.`" & sourceStructure.char_accountId_col(0) &
+                                               "` = u1.`" & sourceStructure.acc_id_col(0) & "`", sqlconnection)
             Case Else
 
         End Select
