@@ -46,8 +46,8 @@ Public Class GlyphCreation
     End Sub
     Private Shared Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at arcemu", "GlyphCreation_createAtArcemu", False)
-        runSQLCommand_characters_string("DELETE glyphs1 FROM characters WHERE guid = '" & characterguid.ToString() & "'", True)
-        runSQLCommand_characters_string("DELETE glyphs2 FROM characters WHERE guid = '" & characterguid.ToString() & "'", True)
+        runSQLCommand_characters_string("DELETE " & sourceStructure.char_glyphs1_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & " = '" & characterguid.ToString() & "'", True)
+        runSQLCommand_characters_string("DELETE " & sourceStructure.char_glyphs2_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & " = '" & characterguid.ToString() & "'", True)
         Dim glyphstring1 As String = "major1,minor1,minor2,major2,minor3,major3,"
         Dim glyphstring2 As String = glyphstring1
         glyphstring1 = glyphstring1.Replace("minor1", (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_minorglyph1", targetSetId))).ToString)
@@ -62,15 +62,18 @@ Public Class GlyphCreation
         glyphstring2 = glyphstring2.Replace("major1", (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secmajorglyph1", targetSetId))).ToString)
         glyphstring2 = glyphstring2.Replace("major2", (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secmajorglyph2", targetSetId))).ToString)
         glyphstring2 = glyphstring2.Replace("major3", (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secmajorglyph3", targetSetId))).ToString)
-        runSQLCommand_characters_string("UPDATE characters SET glyphs1='" & glyphstring1 & "' WHERE guid='" & characterguid.ToString() & "'", True)
-        runSQLCommand_characters_string("UPDATE characters SET glyphs2='" & glyphstring2 & "' WHERE guid='" & characterguid.ToString() & "'", True)
+        runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_glyphs1_col(0) & "='" & glyphstring1 & "' WHERE " & sourceStructure.char_guid_col(0) & "='" & characterguid.ToString() & "'", True)
+        runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_glyphs2_col(0) & "='" & glyphstring2 & "' WHERE " & sourceStructure.char_guid_col(0) & "='" & characterguid.ToString() & "'", True)
     End Sub
     Private Shared Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Trinity", "GlyphCreation_createAtTrinity", False)
-        runSQLCommand_characters_string("DELETE FROM character_glyphs WHERE guid = '" & characterguid.ToString() & "' AND spec='0'", True)
-        runSQLCommand_characters_string("DELETE FROM character_glyphs WHERE guid = '" & characterguid.ToString() & "' AND spec='1'", True)
+        runSQLCommand_characters_string("DELETE FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & " = '" & characterguid.ToString() & "' AND " &sourceStructure.glyphs_spec_col(0) & "='0'", True)
+        runSQLCommand_characters_string("DELETE FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & " = '" & characterguid.ToString() & "' AND " & sourceStructure.glyphs_spec_col(0) & "='1'", True)
         If expansion = 4 Then
-            runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, glyph1, glyph2, glyph3, glyph4, glyph5, glyph6, glyph7, glyph8, glyph9 ) VALUES ( '" & characterguid.ToString() & "', '0', '" &
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                            sourceStructure.glyphs_glyph1_col(0) & ", " & sourceStructure.glyphs_glyph2_col(0) & ", " & sourceStructure.glyphs_glyph3_col(0) & ", " & sourceStructure.glyphs_glyph4_col(0) &
+                                            ", " & sourceStructure.glyphs_glyph5_col(0) & ", " & sourceStructure.glyphs_glyph6_col(0) & ", " & sourceStructure.glyphs_glyph7_col(0) & ", " & sourceStructure.glyphs_glyph8_col(0) &
+                                            ", " & sourceStructure.glyphs_glyph9_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '" &
                                                     (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_majorglyph1", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_minorglyph2", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_minorglyph3", targetSetId))).ToString & "', " &
@@ -80,7 +83,10 @@ Public Class GlyphCreation
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_primeglyph1", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_primeglyph2", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_primeglyph3", targetSetId))).ToString & "' )", True)
-            runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, glyph1, glyph2, glyph3, glyph4, glyph5, glyph6, glyph7, glyph8, glyph9 ) VALUES ( '" & characterguid.ToString() & "', '1', '" &
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                            sourceStructure.glyphs_glyph1_col(0) & ", " & sourceStructure.glyphs_glyph2_col(0) & ", " & sourceStructure.glyphs_glyph3_col(0) & ", " & sourceStructure.glyphs_glyph4_col(0) &
+                                            ", " & sourceStructure.glyphs_glyph5_col(0) & ", " & sourceStructure.glyphs_glyph6_col(0) & ", " & sourceStructure.glyphs_glyph7_col(0) & ", " & sourceStructure.glyphs_glyph8_col(0) &
+                                            ", " & sourceStructure.glyphs_glyph9_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '" &
                                                     (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secmajorglyph1", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secminorglyph2", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secminorglyph3", targetSetId))).ToString & "', " &
@@ -91,14 +97,18 @@ Public Class GlyphCreation
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secprimeglyph2", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secprimeglyph3", targetSetId))).ToString & "' )", True)
         ElseIf expansion = 3 Then
-            runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, glyph1, glyph2, glyph3, glyph4, glyph5, glyph6, glyph7, glyph8, glyph9 ) VALUES ( '" & characterguid.ToString() & "', '0', '" &
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                            sourceStructure.glyphs_glyph1_col(0) & ", " & sourceStructure.glyphs_glyph2_col(0) & ", " & sourceStructure.glyphs_glyph3_col(0) & ", " & sourceStructure.glyphs_glyph4_col(0) &
+                                            ", " & sourceStructure.glyphs_glyph5_col(0) & ", " & sourceStructure.glyphs_glyph6_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '" &
                                                     (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_majorglyph1", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_minorglyph2", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_minorglyph3", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_majorglyph2", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_minorglyph1", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_majorglyph3", targetSetId))).ToString & "' )", True)
-            runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, glyph1, glyph2, glyph3, glyph4, glyph5, glyph6, glyph7, glyph8, glyph9 ) VALUES ( '" & characterguid.ToString() & "', '1', '" &
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                            sourceStructure.glyphs_glyph1_col(0) & ", " & sourceStructure.glyphs_glyph2_col(0) & ", " & sourceStructure.glyphs_glyph3_col(0) & ", " & sourceStructure.glyphs_glyph4_col(0) &
+                                            ", " & sourceStructure.glyphs_glyph5_col(0) & ", " & sourceStructure.glyphs_glyph6_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '" &
                                                     (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secmajorglyph1", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secminorglyph2", targetSetId))).ToString & "', " &
                                                 "'" & (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secminorglyph3", targetSetId))).ToString & "', " &
@@ -109,45 +119,63 @@ Public Class GlyphCreation
     End Sub
     Private Shared Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Mangos", "GlyphCreation_createAtMangos", False)
-        runSQLCommand_characters_string("DELETE FROM character_glyphs WHERE guid = '" & characterguid.ToString() & "'", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '0', '4', '" &
+        runSQLCommand_characters_string("DELETE FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & " = '" & characterguid.ToString() & "'", True)
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '4', '" &
                                             (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_minorglyph1", targetSetId))).ToString() & "' )", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '0', '1', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '1', '" &
                                         (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_minorglyph2", targetSetId))).ToString() & "' )", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '0', '2', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '2', '" &
                                         (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_minorglyph3", targetSetId))).ToString() & "' )", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '0', '0', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '0', '" &
                                         (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_majorglyph1", targetSetId))).ToString() & "' )", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '0', '3', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '3', '" &
                                         (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_majorglyph2", targetSetId))).ToString() & "' )", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '0', '5', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '5', '" &
                                         (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_majorglyph3", targetSetId))).ToString() & "' )", True)
 
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '1', '4', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '4', '" &
                                            (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secminorglyph1", targetSetId))).ToString() & "' )", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '1', '1', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '1', '" &
                                         (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secminorglyph2", targetSetId))).ToString() & "' )", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '1', '2', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '2', '" &
                                         (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secminorglyph3", targetSetId))).ToString() & "' )", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '1', '0', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '0', '" &
                                         (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secmajorglyph1", targetSetId))).ToString() & "' )", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '1', '3', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '3', '" &
                                         (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secmajorglyph2", targetSetId))).ToString() & "' )", True)
-        runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '1', '5', '" &
+        runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '5', '" &
                                         (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secmajorglyph3", targetSetId))).ToString() & "' )", True)
         If expansion = 4 Then
-            runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '0', '6', '" &
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '6', '" &
                                             (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_primeglyph1", targetSetId))).ToString() & "' )", True)
-            runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '0', '7', '" &
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '7', '" &
                                             (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_primeglyph2", targetSetId))).ToString() & "' )", True)
-            runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '0', '8', '" &
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '8', '" &
                                             (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_primeglyph3", targetSetId))).ToString() & "' )", True)
 
-            runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '1', '6', '" &
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '6', '" &
                                             (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secprimeglyph1", targetSetId))).ToString() & "' )", True)
-            runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '1', '7', '" &
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '7', '" &
                                             (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secprimeglyph2", targetSetId))).ToString() & "' )", True)
-            runSQLCommand_characters_string("INSERT INTO character_glyphs ( guid, spec, slot, glyph ) VALUES ( '" & characterguid.ToString() & "', '1', '8', '" &
+            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_glyphs_tbl(0) & " ( " & sourceStructure.glyphs_guid_col(0) & ", " & sourceStructure.glyphs_spec_col(0) & ", " &
+                                        sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '8', '" &
                                             (GetGlyphIdByItemId(GetTemporaryCharacterInformation("@character_secprimeglyph3", targetSetId))).ToString() & "' )", True)
         End If
     End Sub

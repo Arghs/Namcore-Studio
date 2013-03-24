@@ -46,14 +46,17 @@ Public Class QuestCreation
     End Sub
     Private Shared Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at arcemu", "QuestCreation_createAtArcemu", False)
-        Dim lastslot As Integer = TryInt(runSQLCommand_characters_string("SELECT slot FROM questlog WHERE player_guid='" & characterguid.ToString() & "' AND slot=(SELECT MAX(slot) FROM characters)", True)) + 1
+        Dim lastslot As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.qst_slot_col(0) & " FROM " & sourceStructure.character_queststatus_tbl(0) & " WHERE " &
+                                                                         sourceStructure.qst_guid_col(0) & "='" & characterguid.ToString() & "' AND " & sourceStructure.qst_slot_col(0) &
+                                                                         "=(SELECT MAX(" & sourceStructure.qst_slot_col(0) & ") FROM " & sourceStructure.character_tbl(0) & ")", True)) + 1
         Dim character_queststatus_list As List(Of String) = ConvertStringToList(GetTemporaryCharacterInformation("@character_queststatus", targetSetId))
         If Not character_queststatus_list.Count = 0 Then
             For Each queststring As String In character_queststatus_list
                 Dim explored As String = splitList(queststring, "explored")
                 If explored = Nothing Then explored = ""
-                Dim tmpcommand As String = "INSERT INTO questlog ( player_guid, quest_id, slot, `completed`, `explored_area1` ) VALUES ( '" & characterguid.ToString() & "', '" & splitList(queststring, "quest") & "', '" &
-                                            lastslot.ToString & "', '" & splitList(queststring, "status") & "'," & " '" & explored & "')"
+                Dim tmpcommand As String = "INSERT INTO " & sourceStructure.character_queststatus_tbl(0) & " ( " & sourceStructure.qst_guid_col(0) & ", " & sourceStructure.qst_quest_col(0) & ", " &
+                    sourceStructure.qst_slot_col(0) & ", `" & sourceStructure.qst_completed_col(0) & "`, `" & sourceStructure.qst_explored_col(0) & "` ) VALUES ( '" & characterguid.ToString() & "', '" &
+                    splitList(queststring, "quest") & "', '" & lastslot.ToString & "', '" & splitList(queststring, "status") & "'," & " '" & explored & "')"
                 runSQLCommand_characters_string(tmpcommand, True)
                 lastslot += 1
             Next
@@ -68,7 +71,8 @@ Public Class QuestCreation
             For Each queststring As String In character_queststatus_list
                 Dim queststatus As String = splitList(queststring, "status")
                 If queststatus = "0" Then queststatus = "1"
-                runSQLCommand_characters_string("INSERT INTO character_queststatus ( guid, quest, `status`, `explored` ) VALUES ( '" & characterguid.ToString() & "', '" & splitList(queststring, "quest") &
+                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_queststatus_tbl(0) & " ( " & sourceStructure.qst_guid_col(0) & ", " & sourceStructure.qst_quest_col(0) & ", `" &
+                                                sourceStructure.qst_status_col(0) & "`, `" & sourceStructure.qst_explored_col(0) & "` ) VALUES ( '" & characterguid.ToString() & "', '" & splitList(queststring, "quest") &
                                                 "', '" & queststatus & "', '" & splitList(queststring, "explored") & "')", True)
             Next
         Else : LogAppend("No quests in questlog", "QuestCreation_createAtTrinity", False) : End If
@@ -80,7 +84,8 @@ Public Class QuestCreation
                 Dim startcounter As Integer = 0
                 Do
                     Dim questid As String = parts(startcounter)
-                    runSQLCommand_characters_string("INSERT IGNORE INTO character_queststatus_rewarded ( `guid`, `quest` ) VALUES ( '" & characterguid.ToString() & "', '" & questid & "' )", True)
+                    runSQLCommand_characters_string("INSERT IGNORE INTO " & sourceStructure.character_queststatus_rewarded_tbl(0) & " ( `" & sourceStructure.qstre_guid_col(0) & "`, `" & sourceStructure.qstre_quest_col(0) &
+                                                    "` ) VALUES ( '" & characterguid.ToString() & "', '" & questid & "' )", True)
                     startcounter += 1
                 Loop Until startcounter = excounter
             Catch : End Try
@@ -93,7 +98,8 @@ Public Class QuestCreation
             For Each queststring As String In character_queststatus_list
                 Dim queststatus As String = splitList(queststring, "status")
                 If queststatus = "0" Then queststatus = "1"
-                runSQLCommand_characters_string("INSERT INTO character_queststatus ( guid, quest, `status`, `explored` ) VALUES ( '" & characterguid.ToString() & "', '" & splitList(queststring, "quest") &
+                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_queststatus_tbl(0) & " ( " & sourceStructure.qst_guid_col(0) & ", " & sourceStructure.qst_quest_col(0) & ", `" &
+                                                sourceStructure.qst_status_col(0) & "`, `" & sourceStructure.qst_explored_col(0) & "` ) VALUES ( '" & characterguid.ToString() & "', '" & splitList(queststring, "quest") &
                                                 "', '" & queststatus & "', '" & splitList(queststring, "explored") & "')", True)
             Next
         Else : LogAppend("No quests in questlog", "QuestCreation_createAtMangos", False) : End If
@@ -105,7 +111,8 @@ Public Class QuestCreation
                 Dim startcounter As Integer = 0
                 Do
                     Dim questid As String = parts(startcounter)
-                    runSQLCommand_characters_string("INSERT INTO character_queststatus ( guid, quest, `status`, `rewarded` ) VALUES ( '" & characterguid.ToString() & "', '" & questid & "', '1', '1')", True)
+                    runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_queststatus_tbl(0) & " ( " & sourceStructure.qst_guid_col(0) & ", " & sourceStructure.qst_quest_col(0) & ", `" &
+                                                    sourceStructure.qst_status_col(0) & "`, `" & sourceStructure.qst_rewarded_col(0) & "` ) VALUES ( '" & characterguid.ToString() & "', '" & questid & "', '1', '1')", True)
                     startcounter += 1
                 Loop Until startcounter = excounter
             Catch : End Try

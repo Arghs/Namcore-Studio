@@ -56,9 +56,12 @@ Public Class CharacterCreationAdvanced
         Dim sqlstring As String = "INSERT INTO " & sourceStructure.character_tbl(0) & " ( `" & sourceStructure.char_guid_col(0) & "`, `" & sourceStructure.char_accountId_col(0) & "`, `" & sourceStructure.char_name_col(0) &
             "`, `" & sourceStructure.char_race_col(0) & "`, `" & sourceStructure.char_class_col(0) & "`, `" & sourceStructure.char_gender_col(0) & "`, `" & sourceStructure.char_level_col(0) & "`, `" &
             sourceStructure.char_xp_col(0) & "`, `" & sourceStructure.char_gold_col(0) & "`, `" & sourceStructure.char_playerBytes_col(0) & "`, `" & sourceStructure.char_playerBytes2_col(0) & "`, `" &
-            sourceStructure.char_playerFlags_col(0) & "`, `" & sourceStructure.char_posX_col(0) & "`, " & "" & sourceStructure.char_posY_col(0) & ", " & sourceStructure.char_posZ_col(0) & ", " & sourceStructure.char_map_col(0) & ", " & sourceStructure.char_orientation_col(0) & ", " & sourceStructure.char_taximask_col(0) & ", " & sourceStructure.char_totaltime_col(0) & ", " & sourceStructure.char_stableSlots_col(0) & ", " & sourceStructure.char_zone_col(0) & ", " & sourceStructure.char_watchedFaction_col(0) & ", current_hp, " &
-                                    "" & sourceStructure.char_speccount_col(0) & ", " & sourceStructure.char_activeSpec_col(0) & ", " & sourceStructure.char_exploredZones_col(0) & ", " & sourceStructure.char_knownTitles_col(0) & " ) VALUES " &
-                                    "( @guid, @accid, @name, '0', '0', '0', '1', '0', '0', @pBytes, pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '0 0 0 ', @stable, @zone, " &
+            sourceStructure.char_playerFlags_col(0) & "`, `" & sourceStructure.char_posX_col(0) & "`, " & "" & sourceStructure.char_posY_col(0) & ", " & sourceStructure.char_posZ_col(0) & ", " &
+            sourceStructure.char_map_col(0) & ", " & sourceStructure.char_orientation_col(0) & ", " & sourceStructure.char_taximask_col(0) & ", " & sourceStructure.char_arcemuPlayedTime_col(0) & ", " &
+            sourceStructure.char_stableSlots_col(0) & ", " & sourceStructure.char_zone_col(0) & ", " & sourceStructure.char_watchedFaction_col(0) & ", current_hp, " &
+                                    "" & sourceStructure.char_speccount_col(0) & ", " & sourceStructure.char_activeSpec_col(0) & ", " & sourceStructure.char_exploredZones_col(0) & ", " &
+                                    sourceStructure.char_knownTitles_col(0) & " ) VALUES " &
+                                    "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, gold, @pBytes, pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '0 0 0 ', @stable, @zone, " &
                                     "@title, @wFaction, '1000', @speccpunt, @activespec, @exploredZones, @knownTitles )"
         Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
         tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
@@ -67,6 +70,8 @@ Public Class CharacterCreationAdvanced
         tempcommand.Parameters.AddWithValue("@class", GetTemporaryCharacterInformation("@character_class", targetSetId))
         tempcommand.Parameters.AddWithValue("@race", GetTemporaryCharacterInformation("@character_race", targetSetId))
         tempcommand.Parameters.AddWithValue("@gender", GetTemporaryCharacterInformation("@character_gender", targetSetId))
+        tempcommand.Parameters.AddWithValue("@xp", GetTemporaryCharacterInformation("@character_xp", targetSetId))
+        tempcommand.Parameters.AddWithValue("@gold", GetTemporaryCharacterInformation("@character_gold", targetSetId))
         tempcommand.Parameters.AddWithValue("@level", GetTemporaryCharacterInformation("@character_level", targetSetId))
         tempcommand.Parameters.AddWithValue("@pBytes", GetTemporaryCharacterInformation("@character_playerBytes", targetSetId))
         tempcommand.Parameters.AddWithValue("@pBytes2", GetTemporaryCharacterInformation("@character_playerBytes2", targetSetId))
@@ -138,7 +143,7 @@ Public Class CharacterCreationAdvanced
             sourceStructure.char_atlogin_col(0) & ", " & sourceStructure.char_zone_col(0) & ", " & sourceStructure.char_chosenTitle_col(0) & ", " &
             "" & sourceStructure.char_knownCurrencies_col(0) & ", " & sourceStructure.char_watchedFaction_col(0) & ", `" & sourceStructure.char_health_col(0) & "`, " & sourceStructure.char_speccount_col(0) & ", " &
             sourceStructure.char_activeSpec_col(0) & ", " & sourceStructure.char_exploredZones_col(0) & ", " & sourceStructure.char_knownTitles_col(0) & ", " & sourceStructure.char_actionBars_col(0) & " ) VALUES " &
-            "( @guid, @accid, @name, '0', '0', '0', '1', '0', '0', @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, leveltime, @extraflags, " &
+            "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, leveltime, @extraflags, " &
             "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
         Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
         tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
@@ -148,7 +153,9 @@ Public Class CharacterCreationAdvanced
         tempcommand.Parameters.AddWithValue("@race", GetTemporaryCharacterInformation("@character_race", targetSetId))
         tempcommand.Parameters.AddWithValue("@gender", GetTemporaryCharacterInformation("@character_gender", targetSetId))
         tempcommand.Parameters.AddWithValue("@level", GetTemporaryCharacterInformation("@character_level", targetSetId))
-        tempcommand.Parameters.AddWithValue("@pBytes", GetTemporaryCharacterInformation("@character_playerBytes", targetSetId))
+        tempcommand.Parameters.AddWithValue("@xp", GetTemporaryCharacterInformation("@character_level", targetSetId))
+        tempcommand.Parameters.AddWithValue("@level", GetTemporaryCharacterInformation("@character_xp", targetSetId))
+        tempcommand.Parameters.AddWithValue("@gold", GetTemporaryCharacterInformation("@character_gold", targetSetId))
         tempcommand.Parameters.AddWithValue("@pBytes2", GetTemporaryCharacterInformation("@character_playerBytes2", targetSetId))
         tempcommand.Parameters.AddWithValue("@pFlags", GetTemporaryCharacterInformation("@character_playerFlags", targetSetId))
         tempcommand.Parameters.AddWithValue("@posx", GetTemporaryCharacterInformation("@character_posX", targetSetId))
@@ -217,7 +224,7 @@ Public Class CharacterCreationAdvanced
             sourceStructure.char_atlogin_col(0) & ", " & sourceStructure.char_zone_col(0) & ", " & sourceStructure.char_chosenTitle_col(0) & ", " &
             "" & sourceStructure.char_knownCurrencies_col(0) & ", " & sourceStructure.char_watchedFaction_col(0) & ", `" & sourceStructure.char_health_col(0) & "`, " & sourceStructure.char_speccount_col(0) & ", " &
             sourceStructure.char_activeSpec_col(0) & ", " & sourceStructure.char_exploredZones_col(0) & ", " & sourceStructure.char_knownTitles_col(0) & ", " & sourceStructure.char_actionBars_col(0) & " ) VALUES " &
-            "( @guid, @accid, @name, '0', '0', '0', '1', '0', '0', @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, leveltime, @extraflags, " &
+            "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, leveltime, @extraflags, " &
             "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
         Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
         tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
@@ -227,6 +234,8 @@ Public Class CharacterCreationAdvanced
         tempcommand.Parameters.AddWithValue("@race", GetTemporaryCharacterInformation("@character_race", targetSetId))
         tempcommand.Parameters.AddWithValue("@gender", GetTemporaryCharacterInformation("@character_gender", targetSetId))
         tempcommand.Parameters.AddWithValue("@level", GetTemporaryCharacterInformation("@character_level", targetSetId))
+        tempcommand.Parameters.AddWithValue("@xp", GetTemporaryCharacterInformation("@character_level", targetSetId))
+        tempcommand.Parameters.AddWithValue("@gold", GetTemporaryCharacterInformation("@character_gold", targetSetId))
         tempcommand.Parameters.AddWithValue("@pBytes", GetTemporaryCharacterInformation("@character_playerBytes", targetSetId))
         tempcommand.Parameters.AddWithValue("@pBytes2", GetTemporaryCharacterInformation("@character_playerBytes2", targetSetId))
         tempcommand.Parameters.AddWithValue("@pFlags", GetTemporaryCharacterInformation("@character_playerFlags", targetSetId))
