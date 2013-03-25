@@ -20,6 +20,7 @@
 '*      /Filename:      Account
 '*      /Description:   Account Object - account information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 Public Class Account
     Public id As Integer
     Public name As String
