@@ -1,4 +1,27 @@
-﻿Imports Namcore_Studio.EventLogging
+﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'*
+'* This program is free software; you can redistribute it and/or modify it
+'* under the terms of the GNU General Public License as published by the
+'* Free Software Foundation; either version 2 of the License, or (at your
+'* option) any later version.
+'*
+'* This program is distributed in the hope that it will be useful, but WITHOUT
+'* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+'* FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+'* more details.
+'*
+'* You should have received a copy of the GNU General Public License along
+'* with this program. If not, see <http://www.gnu.org/licenses/>.
+'*
+'* Developed by Alcanmage/megasus
+'*
+'* //FileInfo//
+'*      /Filename:      ItemParser
+'*      /Description:   Contains functions for loading character items from wow armory
+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.Conversions
 Imports Namcore_Studio.SpellItem_Information
 Imports Namcore_Studio.Basics
@@ -147,13 +170,37 @@ Public Class ItemParser
         If charItem.id = Nothing Then Return Nothing '//Item ID not found
         '//Loading Name
         charItem.name = splitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
+        charItem.image = LoadImageFromUrl(splitString(relevantItemContext, "<img src=""", """ alt"))
         '//Loading Sockets
         Dim socketContext As String
         If relevantItemContext.Contains("<span class=""sockets"">") Then
             'sockets available
             socketContext = splitString(sourceCode & "</div>", "<span class=""sockets"">", "</div>")
             Dim socketCount As Integer = UBound(socketContext.Split("socket-"))
-
+            Dim oneSocketContext As String = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
+            charItem.socket1_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
+            charItem.socket1_img = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt"))
+            charItem.socket1_name = GetGemEffectName(charItem.socket1_id)
+            If socketCount > 1 Then
+                socketContext = socketContext.Replace(oneSocketContext, Nothing)
+                oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
+                charItem.socket2_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
+                charItem.socket2_img = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt"))
+                charItem.socket2_name = GetGemEffectName(charItem.socket2_id)
+                If socketCount > 2 Then
+                    socketContext = socketContext.Replace(oneSocketContext, Nothing)
+                    oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
+                    charItem.socket3_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
+                    charItem.socket3_img = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt"))
+                    charItem.socket3_name = GetGemEffectName(charItem.socket3_id)
+                End If
+            End If
+        End If
+        If relevantItemContext.Contains("<span class=""enchant-") Then
+            Dim enchantContext As String = splitString(relevantItemContext, "<span class=""enchant color", "</span>")
+            charItem.enchantment_id = TryInt(splitString(enchantContext, "/item/", """>"))
+            charItem.enchantment_name = splitString(enchantContext, "/item/" & charItem.enchantment_id.ToString & """>", "</a>")
+            charItem.enchantment_type = 2
         End If
     End Function
 End Class

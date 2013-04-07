@@ -22,6 +22,8 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports Namcore_Studio.EventLogging
+Imports System.Net
+
 Public Class Basics
     Public Shared Sub SetTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
 
@@ -63,5 +65,17 @@ Public Class Basics
             LogAppend("Error while splitting list! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "Basics_splitList", False, True)
             Return Nothing
         End Try
+    End Function
+    Public Shared Function LoadImageFromUrl(ByRef url As String) As Image
+        Try
+            Dim request As HttpWebRequest = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
+            Dim response As HttpWebResponse = DirectCast(request.GetResponse, HttpWebResponse)
+            Dim img As Image = Image.FromStream(response.GetResponseStream())
+            response.Close()
+            Return img
+        Catch ex As Exception
+            Return Nothing
+        End Try
+
     End Function
 End Class

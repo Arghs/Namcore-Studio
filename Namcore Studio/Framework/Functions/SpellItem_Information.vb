@@ -156,6 +156,58 @@ Public Class SpellItem_Information
             Return nameresult
         End If
     End Function
+   
+    Public Shared Function getNameOfItem(ByVal itemid As String) As String
+        If itemid = "-" Or itemid = "" Or itemid = "0" Then Return "-"
+        Try
+            Dim nameresult As String = executex("itemid", itemid, Main.itemname_dt) 'todo
+            If nameresult = "-" Then
+                Return "Error loading itemname"
+            Else
+                Return nameresult
+            End If
+        Catch ex As Exception
+            Return "Error loading itemname"
+        End Try
+    End Function
+    Public Shared Function GetGemEffectName(ByVal socketid As Integer) As String
+        'todo
+        Try
+            Dim clienyx88 As New WebClient
+            Dim quellcodeyx88 As String
+            If My.Settings.language = "de" Then
+                quellcodeyx88 = clienyx88.DownloadString("http://de.wowhead.com/item=" & socketid.ToString & "&xml")
+            Else
+                quellcodeyx88 = clienyx88.DownloadString("http://www.wowhead.com/item=" & socketid.ToString & "&xml")
+            End If
+            Dim anfangyx88 As String = "<span class=""q1"">"
+            Dim endeyx88 As String = "</span>"
+            Dim quellcodeSplityx88 As String
+            quellcodeSplityx88 = Split(quellcodeyx88, anfangyx88, 5)(1)
+            quellcodeSplityx88 = Split(quellcodeSplityx88, endeyx88, 6)(0)
+
+
+            If quellcodeSplityx88.Contains("<a href") Then
+                Try
+                    Dim anfangyx888 As String = "<a href="""
+                    Dim endeyx888 As String = """>"
+                    Dim quellcodeSplityx888 As String
+                    quellcodeSplityx888 = Split(quellcodeSplityx88, anfangyx888, 5)(1)
+                    quellcodeSplityx888 = Split(quellcodeSplityx888, endeyx888, 6)(0)
+                    quellcodeSplityx88 = quellcodeSplityx88.Replace("<a href=""" & quellcodeSplityx888 & """>", "")
+                    quellcodeSplityx88 = quellcodeSplityx88.Replace("</a>", "")
+                    Return quellcodeSplityx88
+                Catch ex As Exception
+                    Return quellcodeSplityx88
+                End Try
+            Else
+                Return quellcodeSplityx88
+            End If
+        Catch ex As Exception
+            Return ""
+        End Try
+
+    End Function
     Private Shared Function Execute(ByVal field As String, ByVal isvalue As String, ByVal tempdatatable As DataTable, Optional secfield As Integer = 1) As String
         LogAppend("Browsing datatale (field = " & field & " // value = " & isvalue & ")", "SpellItem_Information_Execute", False)
         Try

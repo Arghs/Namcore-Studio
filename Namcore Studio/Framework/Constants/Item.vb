@@ -34,6 +34,9 @@ Public Class Item
     Public socket1_name As String
     Public socket2_name As String
     Public socket3_name As String
+    Public socket1_img As Image
+    Public socket2_img As Image
+    Public socket3_img As Image
     Public enchantment_type As Integer '1=spell;2=item
     Public enchantment_id As Integer
     Public enchantment_name As String
