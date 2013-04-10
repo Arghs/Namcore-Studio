@@ -104,6 +104,38 @@ Public Class Conversions
             Case Else : LogAppend("Invalid ClassId: " & classid.ToString() & " // Returning nothing!", "Conversions_GetClassNameById") : Return Nothing
         End Select
     End Function
+    Public Shared Function GetRaceIdByName(ByVal racename As String) As Integer
+        Select Case racename
+            Case "human" : Return 1
+            Case "orc" : Return 2
+            Case "dwarf" : Return 3
+            Case "night-elf" : Return 4
+            Case "undead" : Return 5
+            Case "tauren" : Return 6
+            Case "gnome" : Return 7
+            Case "troll" : Return 8
+            Case "goblin" : Return 9
+            Case "blood-elf" : Return 10
+            Case "draenei" : Return 11
+            Case "worgen" : Return 22
+            Case Else : LogAppend("Invalid Race name: " & racename & " // Returning nothing!", "Conversions_GetRaceIdByName") : Return Nothing
+        End Select
+    End Function
+    Public Shared Function GetClassIdByName(ByVal classname As String) As Integer
+        Select Case classname
+            Case "warrior" : Return 1
+            Case "paladin" : Return 2
+            Case "hunter" : Return 3
+            Case "rogue" : Return 4
+            Case "priest" : Return 5
+            Case "death-knight" : Return 6
+            Case "shaman" : Return 7
+            Case "mage" : Return 8
+            Case "warlock" : Return 9
+            Case "druid" : Return 11
+            Case Else : LogAppend("Invalid Class name: " & classname & " // Returning nothing!", "Conversions_GetClassIdByName") : Return Nothing
+        End Select
+    End Function
     Public Shared Function GetGenderNameById(ByVal genderid As Integer) As String
         Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Select Case genderid

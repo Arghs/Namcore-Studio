@@ -158,17 +158,17 @@ Public Class SpellItem_Information
     End Function
    
     Public Shared Function getNameOfItem(ByVal itemid As String) As String
-        If itemid = "-" Or itemid = "" Or itemid = "0" Then Return "-"
-        Try
-            Dim nameresult As String = executex("itemid", itemid, Main.itemname_dt) 'todo
-            If nameresult = "-" Then
-                Return "Error loading itemname"
-            Else
-                Return nameresult
-            End If
-        Catch ex As Exception
-            Return "Error loading itemname"
-        End Try
+        'If itemid = "-" Or itemid = "" Or itemid = "0" Then Return "-"
+        'Try
+        '    Dim nameresult As String = executex("itemid", itemid, Main.itemname_dt) 'todo
+        '    If nameresult = "-" Then
+        '        Return "Error loading itemname"
+        '    Else
+        '        Return nameresult
+        '    End If
+        'Catch ex As Exception
+        '    Return "Error loading itemname"
+        'End Try
     End Function
     Public Shared Function GetGemEffectName(ByVal socketid As Integer) As String
         'todo

@@ -24,6 +24,7 @@
 Public Class Character
     Public guid As Integer
     Public name As String
+    Public level As Integer
     Public Sub New(charname As String, charguid As Integer)
         name = charname
         guid = charguid

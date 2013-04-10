@@ -27,154 +27,122 @@ Imports Namcore_Studio.SpellItem_Information
 Imports Namcore_Studio.Basics
 Public Class ItemParser
     Public Shared Sub loadItems(ByVal source As String, ByVal setId As Integer)
-        Dim itemguid As Integer
         Dim slotname As String
-        Dim itementry As Integer
         Dim itemslot As Integer
-        Dim loopcounter As Integer = 0
-        Dim slot_st
         Do
             Try
-              
-                If itemslot > 18 Then
-                    loopcounter += 1
-                    Continue Do
+              If itemslot > 18 Then
+                    Exit Do
                 End If
                 Select Case itemslot
                     Case 0
                         slotname = "head"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 1
                         slotname = "neck"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 2
                         slotname = "shoulder"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 3
                         slotname = "shirt"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 4
                         slotname = "chest"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 5
                         slotname = "waist"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 6
                         slotname = "legs"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 7
                         slotname = "feet"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 8
                         slotname = "wrists"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 9
                         slotname = "hands"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 10
                         slotname = "finger1"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 11
                         slotname = "finger2"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 12
                         slotname = "trinket1"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 13
                         slotname = "trinket2"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 14
                         slotname = "back"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
                     Case 15
                         slotname = "main"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then
+                            SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                            LoadWeaponType(charItem.id, setId)
+                        End If
                     Case 16
                         slotname = "off"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then
+                            SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                            LoadWeaponType(charItem.id, setId)
+                        End If
                     Case 17
                         'slot 17 has been removed as of patch 5.0
                     Case 18
                         slotname = "tabard"
-                        If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
-                            LoadWeaponType(itementry, tar_setId) : End If
-                    Case Else : End Select
-
+                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                End Select
             Catch ex As Exception
                 LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterArmorHandler_loadAtArcemu", False, True)
-                loopcounter += 1
+                itemslot += 1
                 Continue Do
             End Try
-            loopcounter += 1
-        Loop Until loopcounter = entrycount
-
+            itemslot += 1
+        Loop Until itemslot = 19
     End Sub
-    Private Function getItemInfo(ByVal slot As Integer, ByVal slotname As String, ByVal sourceCode As String) As Item
-        Dim relevantItemContext As String = splitString(sourceCode, "<div data-id=""" & slot.ToString & """ data-type=", "</div>")
+    Private Shared Function GetItemInfo(ByVal slot As Integer, ByVal slotname As String, ByVal sourceCode As String) As Item
+        Dim endString As String
+        If slot = 16 Then
+            endString = "<script type=""text/javascript"">"
+        Else
+            endString = "<div data-id"
+        End If
+        Dim relevantItemContext As String = splitString(sourceCode, "<div data-id=""" & slot.ToString & """ data-type", endString)
         Dim charItem As New Item
-        '//Loading ID
+        '//Loading main Item Info
         charItem.id = TryInt(splitString(relevantItemContext, "/item/", """ class=""item"""))
+        charItem.slotname = slotname
         If charItem.id = Nothing Then Return Nothing '//Item ID not found
-        '//Loading Name
         charItem.name = splitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
         charItem.image = LoadImageFromUrl(splitString(relevantItemContext, "<img src=""", """ alt"))
-        '//Loading Sockets
+        charItem.rarity = TryInt(splitString(relevantItemContext, "item-quality-", """ style="))
         Dim socketContext As String
         If relevantItemContext.Contains("<span class=""sockets"">") Then
-            'sockets available
+            '//sockets active
             socketContext = splitString(sourceCode & "</div>", "<span class=""sockets"">", "</div>")
             Dim socketCount As Integer = UBound(socketContext.Split("socket-"))
             Dim oneSocketContext As String = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
@@ -197,10 +165,20 @@ Public Class ItemParser
             End If
         End If
         If relevantItemContext.Contains("<span class=""enchant-") Then
+            '//enchantment active
             Dim enchantContext As String = splitString(relevantItemContext, "<span class=""enchant color", "</span>")
-            charItem.enchantment_id = TryInt(splitString(enchantContext, "/item/", """>"))
-            charItem.enchantment_name = splitString(enchantContext, "/item/" & charItem.enchantment_id.ToString & """>", "</a>")
-            charItem.enchantment_type = 2
+            If enchantContext.Contains("data-spell=") Then
+                '//enchantment type: spell
+                charItem.enchantment_id = TryInt(splitString(enchantContext, """ data-spell=""", """>"))
+                charItem.enchantment_name = splitString(enchantContext, """ data-spell=""" & charItem.enchantment_id.ToString & """>", "</span>")
+                charItem.enchantment_type = 1
+            Else
+                '//enchantment type: item
+                charItem.enchantment_id = TryInt(splitString(enchantContext, "/item/", """>"))
+                charItem.enchantment_name = splitString(enchantContext, "/item/" & charItem.enchantment_id.ToString & """>", "</a>")
+                charItem.enchantment_type = 2
+            End If
         End If
+        Return charItem
     End Function
 End Class
