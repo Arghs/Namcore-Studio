@@ -47,6 +47,9 @@ Public Class SpellItem_Information
             Return 0
         End Try
     End Function
+    Public Shared Function GetIconByItemId(ByVal itemid As Integer) As Image
+        'todo
+    End Function
     Public Shared Sub LoadWeaponType(ByVal itemid As Integer, ByVal tar_set As Integer)
         If Not itemid = 0 Then
             LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType", False)

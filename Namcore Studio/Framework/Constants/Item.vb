@@ -18,7 +18,7 @@
 '*
 '* //FileInfo//
 '*      /Filename:      Item
-'*      /Description:   Item Object - item information class
+'*      /Description:   Item/Glyph Object - item/glyph information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
@@ -40,6 +40,21 @@ Public Class Item
     Public enchantment_type As Integer '1=spell;2=item
     Public enchantment_id As Integer
     Public enchantment_name As String
+    Public image As Image
+    Public Sub New()
+
+    End Sub
+
+
+End Class
+
+Public Class Glyph
+
+    Public id As Integer
+    Public type As Integer '1=minor;2=major;3=prime
+    Public spec As Integer '1;2
+    Public name As String
+    Public slotname As String 'e.g. majorglyph1
     Public image As Image
     Public Sub New()
 

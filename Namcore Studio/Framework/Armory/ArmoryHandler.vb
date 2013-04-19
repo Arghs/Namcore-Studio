@@ -24,6 +24,10 @@ Imports System.Net
 Imports System.Text
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.Conversions
+Imports Namcore_Studio.ItemParser
+Imports Namcore_Studio.ReputationParser
+Imports Namcore_Studio.AchievementParser
+Imports Namcore_Studio.GlyphParser
 Public Class ArmoryHandler
 
     Public Shared Sub LoadArmoryCharacters(ByVal LinkList As List(Of String))
@@ -48,6 +52,29 @@ Public Class ArmoryHandler
             SetTemporaryCharacterInformation("@character_gender", splitString(Client.DownloadString(APILink), """gender"":", ","""), setId)
             SetTemporaryCharacterInformation("@character_race", GetRaceIdByName(splitString(CharacterContext, "/game/race/", """ class=")), setId)
             SetTemporaryCharacterInformation("@character_class", GetClassIdByName(splitString(CharacterContext, "/game/class/", """ class=")), setId)
+            '// Character appearance
+            Try
+                Dim appearanceContext As String = Client.DownloadString(APILink & "?fields=appearance")
+                Dim app_face As String = Hex$(Long.Parse(splitString(appearanceContext, """faceVariation"":", ",")))
+                Dim app_skin As String = Hex$(Long.Parse(splitString(appearanceContext, """skinColor"":", ",")))
+                Dim app_hairStyle As String = Hex$(Long.Parse(splitString(appearanceContext, """hairVariation"":", ",")))
+                Dim app_hairColor As String = Hex$(Long.Parse(splitString(appearanceContext, """hairColor"":", ",")))
+                Dim app_featureVar As String = Hex$(Long.Parse(splitString(appearanceContext, """featureVariation"":", ",")))
+                If app_face.ToString.Length = 1 Then app_face = 0 & app_face
+                If app_skin.ToString.Length = 1 Then app_skin = 0 & app_skin
+                If app_hairStyle.ToString.Length = 1 Then app_hairStyle = 0 & app_hairStyle
+                If app_hairColor.ToString.Length = 1 Then app_hairColor = 0 & app_hairColor
+                If app_featureVar.Length = 1 Then app_featureVar = "0" & app_featureVar 'todo //not used
+                Dim byteStr As String = ((app_hairColor) & (app_hairStyle) & (app_face) & (app_skin)).ToString
+                SetTemporaryCharacterInformation("@playerBytes", (CLng("&H" & byteStr).ToString), setId)
+            Catch ex As Exception
+
+            End Try
+            SetTemporaryCharacterInformation("@character_finishedQuests", splitString(Client.DownloadString(APILink & "?fields=quests") & ",", """quests"":[", "]}"), setId)
+            loadReputation(setId, APILink)
+            loadAchievements(setId, APILink)
+            loadGlyphs(setId, APILink)
+            loadItems(CharacterContext, setId)
         Next
     End Sub
 End Class
