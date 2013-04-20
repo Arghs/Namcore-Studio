@@ -74,11 +74,38 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Attention ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property attention() As String
+            Get
+                Return ResourceManager.GetString("attention", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property bloodelf() As String
             Get
                 Return ResourceManager.GetString("bloodelf", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die You did not set any character name. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property charnamenotset() As String
+            Get
+                Return ResourceManager.GetString("charnamenotset", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Character not found! ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property charnotfound() As String
+            Get
+                Return ResourceManager.GetString("charnotfound", resourceCulture)
             End Get
         End Property
         
@@ -209,6 +236,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Entered URL is not valid! ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property invalidurl() As String
+            Get
+                Return ResourceManager.GetString("invalidurl", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Mage ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property mage() As String
@@ -272,6 +308,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die You did not set any realm name. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property realmnamenotset() As String
+            Get
+                Return ResourceManager.GetString("realmnamenotset", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die You did not select any Battle.net region. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property regionnotset() As String
+            Get
+                Return ResourceManager.GetString("regionnotset", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Rogue ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property rogue() As String
@@ -313,6 +367,15 @@ Namespace My.Resources
         Friend Shared ReadOnly Property undead() As String
             Get
                 Return ResourceManager.GetString("undead", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die You did not enter a correct url. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property urlnotset() As String
+            Get
+                Return ResourceManager.GetString("urlnotset", resourceCulture)
             End Get
         End Property
         

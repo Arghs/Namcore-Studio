@@ -28,9 +28,11 @@ Imports Namcore_Studio.ItemParser
 Imports Namcore_Studio.ReputationParser
 Imports Namcore_Studio.AchievementParser
 Imports Namcore_Studio.GlyphParser
+Imports Namcore_Studio.EventLogging
 Public Class ArmoryHandler
 
-    Public Shared Sub LoadArmoryCharacters(ByVal LinkList As List(Of String))
+    Public Sub LoadArmoryCharacters(ByVal LinkList As List(Of String))
+        LogAppend("Loading characters from Armory (" & LinkList.Count.ToString() & " characters)", "ArmoryHandler_LoadArmoryCharacters", True)
         Dim setId As Integer = 0
         Dim CharacterContext As String
         Dim APILink As String
@@ -38,15 +40,20 @@ Public Class ArmoryHandler
         Dim Client As New WebClient
         For Each ArmoryLink As String In LinkList
             Try
+                LogAppend("URL is " & ArmoryLink, "ArmoryHandler_LoadArmoryCharacters", False)
                 CharacterContext = Client.DownloadString(ArmoryLink)
                 Dim b() As Byte = Encoding.Default.GetBytes(CharacterContext)
                 CharacterContext = Encoding.UTF8.GetString(b)
             Catch ex As Exception
+                LogAppend("Failed to load character context. Exception is: " & vbNewLine & ex.ToString(), "ArmoryHandler_LoadArmoryCharacters", True, True)
                 Continue For
             End Try
             CharacterName = splitString(CharacterContext, "<meta property=""og:title"" content=""", " @ ")
+
             APILink = "http://" & splitString(ArmoryLink, "http://", ".battle") & ".battle.net/api/wow/character/" & splitString(ArmoryLink, "/character/", "/") & "/" & CharacterName
             setId += 1
+            LogAppend("Loading character " & CharacterName & " //ident is " & setId.ToString(), "ArmoryHandler_LoadArmoryCharacters", True)
+            LogAppend("Loading basic character information", "ArmoryHandler_LoadArmoryCharacters", True)
             SetTemporaryCharacterInformation("@character_name", CharacterName, setId)
             SetTemporaryCharacterInformation("@character_level", splitString(CharacterContext, "<span class=""level""><strong>", "</strong></span>"), setId)
             SetTemporaryCharacterInformation("@character_gender", splitString(Client.DownloadString(APILink), """gender"":", ","""), setId)
@@ -54,6 +61,7 @@ Public Class ArmoryHandler
             SetTemporaryCharacterInformation("@character_class", GetClassIdByName(splitString(CharacterContext, "/game/class/", """ class=")), setId)
             '// Character appearance
             Try
+                LogAppend("Loading character appearance information", "ArmoryHandler_LoadArmoryCharacters", True)
                 Dim appearanceContext As String = Client.DownloadString(APILink & "?fields=appearance")
                 Dim app_face As String = Hex$(Long.Parse(splitString(appearanceContext, """faceVariation"":", ",")))
                 Dim app_skin As String = Hex$(Long.Parse(splitString(appearanceContext, """skinColor"":", ",")))
@@ -68,8 +76,9 @@ Public Class ArmoryHandler
                 Dim byteStr As String = ((app_hairColor) & (app_hairStyle) & (app_face) & (app_skin)).ToString
                 SetTemporaryCharacterInformation("@playerBytes", (CLng("&H" & byteStr).ToString), setId)
             Catch ex As Exception
-
+                LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "ArmoryHandler_LoadArmoryCharacters", False, True)
             End Try
+            LogAppend("Loading character's finished quests", "ArmoryHandler_LoadArmoryCharacters", True)
             SetTemporaryCharacterInformation("@character_finishedQuests", splitString(Client.DownloadString(APILink & "?fields=quests") & ",", """quests"":[", "]}"), setId)
             loadReputation(setId, APILink)
             loadAchievements(setId, APILink)

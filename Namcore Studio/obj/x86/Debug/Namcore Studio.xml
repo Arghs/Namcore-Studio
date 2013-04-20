@@ -19,9 +19,21 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Are you sure? ähnelt.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.attention">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Attention ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.bloodelf">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.charnamenotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not set any character name. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.charnotfound">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Character not found! ähnelt.
 </summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.connecttosource">
 	<summary>
@@ -79,6 +91,10 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Hunter ähnelt.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.invalidurl">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Entered URL is not valid! ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.mage">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Mage ähnelt.
@@ -107,6 +123,14 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Priest ähnelt.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.realmnamenotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not set any realm name. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.regionnotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not select any Battle.net region. ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.rogue">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Rogue ähnelt.
@@ -126,6 +150,10 @@ NamcoreStudio
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.undead">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Undead ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.urlnotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not enter a correct url. ähnelt.
 </summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.warlock">
 	<summary>

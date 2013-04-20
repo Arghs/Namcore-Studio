@@ -30,6 +30,7 @@ Public Class GlobalVariables
     Public Shared eventlog As String
     Public Shared eventlog_full As String
     Public Shared effectname_dt As DataTable
+    Public Shared itemname_dt As DataTable
     Public Shared GlobalConnection As New MySqlConnection
     Public Shared GlobalConnection_Realm As New MySqlConnection
     Public Shared GlobalConnection_Info As New MySqlConnection

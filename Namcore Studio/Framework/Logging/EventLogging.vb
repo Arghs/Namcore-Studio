@@ -22,23 +22,56 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports Namcore_Studio.GlobalVariables
+Imports Namcore_Studio.Process_status
+Imports System.Threading
 
 Public Class EventLogging
-
-    Public Shared Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
+    Private Shared loadCharThread As System.Threading.Thread
+    Private Shared proc As System.Threading.Thread
+    Private Delegate Sub AppendDelegate(ByRef _event As String)
+    Public Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
         If iserror = False Then
             If userOut = True Then
+                appendStatus("[" & Now.TimeOfDay.ToString & "]" & _event)
                 eventlog = eventlog & vbNewLine & "[" & Now.TimeOfDay.ToString & "]" & _event
                 eventlog_full = eventlog_full & vbNewLine & "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event
             Else
-
+                eventlog_full = eventlog_full & vbNewLine & "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event
             End If
         Else
-
+            If userOut = True Then
+                appendStatus("[" & Now.TimeOfDay.ToString & "]" & _event)
+                eventlog = eventlog & vbNewLine & "[" & Now.TimeOfDay.ToString & "]" & _event
+                eventlog_full = eventlog_full & vbNewLine & "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event
+            Else
+                eventlog_full = eventlog_full & vbNewLine & "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event
+            End If
         End If
     End Sub
+    Private Sub appendStatus(ByVal _status As String)
 
-    Public Shared Sub LogClear()
+        d.BeginInvoke("hello world", New AsyncCallback(AddressOf MyCallback), Nothing)
+        If Not loadCharThread Is Nothing Then
+            For Each CurrentForm As Form In Application.OpenForms
+                If CurrentForm.Name = "Process_status" Then
+                    Dim statusWindow As Process_status = DirectCast(CurrentForm, Process_status)
+                    If statusWindow.InvokeRequired Then
+                        statusWindow.Invoke(New AppendDelegate(AddressOf ))
+                    End If
+
+                End If
+            Next
+        Else
+            loadCharThread = New System.Threading.Thread(AddressOf appendStatus)
+            loadCharThread.Start(_status)
+        End If
+        proc = New s
+        Process_status.Show()
+    End Sub
+    Private Sub test()
+
+    End Sub
+    Public Sub LogClear()
         eventlog = ""
     End Sub
 End Class

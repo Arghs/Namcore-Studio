@@ -28,9 +28,10 @@ Imports Namcore_Studio.Basics
 Imports System.Net
 
 Public Class GlyphParser
-    Public Shared Sub loadGlyphs(ByVal setID As Integer, ByVal apiLink As String)
+    Public Sub loadGlyphs(ByVal setID As Integer, ByVal apiLink As String)
         Dim client As New WebClient
         Try
+            LogAppend("Loading character glyph information", "GlyphParser_loadGlyphs", True)
             Dim glyphContext As String = client.DownloadString(apiLink & "?fields=talents")
             Dim slotAddition As String
             If Not glyphContext.Contains("""glyphs"":") Then Exit Sub
@@ -65,9 +66,8 @@ Public Class GlyphParser
                     loopCounter += 1
                 Loop Until loopCounter = 2
             Next i
-            
         Catch ex As Exception
-
+            LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "GlyphParser_loadGlyphs", False, True)
         End Try
 
     End Sub

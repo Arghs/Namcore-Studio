@@ -29,10 +29,11 @@ Imports Namcore_Studio.Basics
 Imports System.Net
 
 Public Class AchievementParser
-    Public Shared Sub loadAchievements(ByVal setId As Integer, ByVal apiLink As String)
+    Public Sub loadAchievements(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
         Dim avLst As New List(Of String)
         Try
+            LogAppend("Loading character achievement information", "AchievementParser_loadAchievements", True)
             Dim avContext As String = client.DownloadString(apiLink & "?fields=achievements")
             Dim avStr As String = splitString(avContext, "{""achievementsCompleted"":[", "],""") & ","
             Dim timeStr As String = splitString(avContext, """achievementsCompletedTimestamp"":[", "],""")
@@ -40,22 +41,23 @@ Public Class AchievementParser
                 Dim loopcounter As Integer = 0
                 Dim excounter As Integer = UBound(Split(avStr, ","))
                 Dim partsAV() As String = avStr.Split(","c)
-                Dim partsTIME() As String = TimeString.Split(","c)
+                Dim partsTIME() As String = timeStr.Split(","c)
                 Do
                     Dim avId As String = partsAV(loopcounter)
                     Dim timeStamp = partsTIME(loopcounter)
-                    If timestamp.Contains("000") Then
+                    If timeStamp.Contains("000") Then
                         Try
-                            timestamp = timestamp.Remove(timestamp.Length - 3, 3)
+                            timeStamp = timeStamp.Remove(timeStamp.Length - 3, 3)
                         Catch : End Try
                     End If
                     loopcounter += 1
+                    LogAppend("Adding achievement " & avId & " with timestamp " & timeStamp, "AchievementParser_loadAchievements", False)
                     avLst.Add("<av>" & avId & "</av><date>" & timeStamp & "</date>")
                 Loop Until loopcounter = excounter
                 SetTemporaryCharacterInformation("@character_achievements", ConvertListToString(avLst), setId)
             End If
         Catch ex As Exception
-
+            LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "AchievementParser_loadAchievements", False)
         End Try
     End Sub
 End Class

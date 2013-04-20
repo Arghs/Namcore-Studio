@@ -29,10 +29,11 @@ Imports Namcore_Studio.Basics
 Imports System.Net
 
 Public Class ReputationParser
-    Public Shared Sub loadReputation(ByVal setId As Integer, ByVal apiLink As String)
+    Public Sub loadReputation(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
         Dim char_replist As New List(Of String)
         Try
+            LogAppend("Loading character reputation information", "ReputationParser_loadReputation", True)
             Dim reputationContext As String = client.DownloadString(apiLink & "?fields=reputation")
             reputationContext = splitString(reputationContext, """reputation"":[", "]")
             If Not reputationContext.Length > 5 Then
@@ -49,12 +50,13 @@ Public Class ReputationParser
                     If orgstanding > 4 Then standing += 6000
                     If orgstanding > 5 Then standing += 12000
                     If orgstanding > 6 Then standing += 21000
+                    LogAppend("Adding reputation (factionID/standing):(" & factionId & "/" & standing.ToString & ")", "ReputationParser_loadReputation", False)
                     char_replist.Add("<faction>" & factionId & "</faction><standing>" & standing.ToString & "</standing><flags>1</flags>")
                 Loop Until loopcounter = exCount
                 SetTemporaryCharacterInformation("@character_reputation", ConvertListToString(char_replist), setId)
             End If
         Catch ex As Exception
-
+            LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###", "ReputationParser_loadReputation", False, True)
         End Try
     End Sub
 End Class

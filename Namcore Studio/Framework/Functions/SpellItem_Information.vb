@@ -28,7 +28,7 @@ Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.Conversions
 Imports System.Net
 Public Class SpellItem_Information
-    Public Shared Function GetGlyphIdByItemId(ByVal itemid As Integer) As Integer
+    Public Function GetGlyphIdByItemId(ByVal itemid As Integer) As Integer
         LogAppend("Loading GlyphId by ItemId " & itemid.ToString, "SpellItem_Information_GetGlyphIdByItemId", False)
         Dim xpacressource As String
         Try
@@ -47,10 +47,18 @@ Public Class SpellItem_Information
             Return 0
         End Try
     End Function
-    Public Shared Function GetIconByItemId(ByVal itemid As Integer) As Image
-        'todo
+    Public Function GetIconByItemId(ByVal itemid As Integer) As Image
+        Dim client As New WebClient
+        Try
+            LogAppend("Loading icon by ItemId " & itemid.ToString, "SpellItem_Information_GetIconByItemId", False)
+            Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
+            Return LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & splitString(itemContext, "<icon displayId=""" & splitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>") & ".jpg")
+        Catch ex As Exception
+            LogAppend("Error while loading icon! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetIconByItemId", False, True)
+            Return Nothing
+        End Try
     End Function
-    Public Shared Sub LoadWeaponType(ByVal itemid As Integer, ByVal tar_set As Integer)
+    Public Sub LoadWeaponType(ByVal itemid As Integer, ByVal tar_set As Integer)
         If Not itemid = 0 Then
             LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType", False)
             Try
@@ -119,7 +127,7 @@ Public Class SpellItem_Information
             End Try
         Else : End If
     End Sub
-    Public Shared Function GetEffectNameByEffectId(ByVal effectid As Integer) As String
+    Public Function GetEffectNameByEffectId(ByVal effectid As Integer) As String
         LogAppend("Loading effectname by effectId: " & effectid.ToString, "SpellItem_Information_GetEffectNameByEffectId", False)
         If effectname_dt.Rows.Count = 0 Then
             Try
@@ -154,64 +162,62 @@ Public Class SpellItem_Information
         Dim nameresult As String = Execute("effectid", effectid.ToString(), effectname_dt)
         If nameresult = "-" Then
             LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetEffectNameByEffectId", False, True)
-            Return "Error loading effectname"
+            Return "Error loading effect name"
         Else
             Return nameresult
         End If
     End Function
-   
-    Public Shared Function getNameOfItem(ByVal itemid As String) As String
-        'If itemid = "-" Or itemid = "" Or itemid = "0" Then Return "-"
-        'Try
-        '    Dim nameresult As String = executex("itemid", itemid, Main.itemname_dt) 'todo
-        '    If nameresult = "-" Then
-        '        Return "Error loading itemname"
-        '    Else
-        '        Return nameresult
-        '    End If
-        'Catch ex As Exception
-        '    Return "Error loading itemname"
-        'End Try
-    End Function
-    Public Shared Function GetGemEffectName(ByVal socketid As Integer) As String
-        'todo
-        Try
-            Dim clienyx88 As New WebClient
-            Dim quellcodeyx88 As String
-            If My.Settings.language = "de" Then
-                quellcodeyx88 = clienyx88.DownloadString("http://de.wowhead.com/item=" & socketid.ToString & "&xml")
-            Else
-                quellcodeyx88 = clienyx88.DownloadString("http://www.wowhead.com/item=" & socketid.ToString & "&xml")
-            End If
-            Dim anfangyx88 As String = "<span class=""q1"">"
-            Dim endeyx88 As String = "</span>"
-            Dim quellcodeSplityx88 As String
-            quellcodeSplityx88 = Split(quellcodeyx88, anfangyx88, 5)(1)
-            quellcodeSplityx88 = Split(quellcodeSplityx88, endeyx88, 6)(0)
 
-
-            If quellcodeSplityx88.Contains("<a href") Then
+    Public Function getNameOfItem(ByVal itemid As String) As String
+        LogAppend("Loading name of item: " & itemid.ToString, "SpellItem_Information_getNameOfItem", False)
+        If Not itemid = Nothing Then
+            If itemid.Length > 1 Then
+                Dim client As New WebClient
                 Try
-                    Dim anfangyx888 As String = "<a href="""
-                    Dim endeyx888 As String = """>"
-                    Dim quellcodeSplityx888 As String
-                    quellcodeSplityx888 = Split(quellcodeSplityx88, anfangyx888, 5)(1)
-                    quellcodeSplityx888 = Split(quellcodeSplityx888, endeyx888, 6)(0)
-                    quellcodeSplityx88 = quellcodeSplityx88.Replace("<a href=""" & quellcodeSplityx888 & """>", "")
-                    quellcodeSplityx88 = quellcodeSplityx88.Replace("</a>", "")
-                    Return quellcodeSplityx88
+                    If My.Settings.language = "de" Then
+                        Return splitString(client.DownloadString("http://de.wowhead.com/item=" & itemid.ToString() & "&xml"), "<name>", "</name>")
+                    Else
+                        Return splitString(client.DownloadString("http://wowhead.com/item=" & itemid.ToString() & "&xml"), "<name>", "</name>")
+                    End If
                 Catch ex As Exception
-                    Return quellcodeSplityx88
+                    LogAppend("Error while loading item name! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_getNameOfItem", False, True)
+                    Return "Error loading item name"
+                End Try
+            End If
+        End If
+        LogAppend("ItemId is nothing -> Returning error", "SpellItem_Information_getNameOfItem", False, True)
+        Return "Error loading item name"
+    End Function
+    Public Function GetGemEffectName(ByVal socketid As Integer) As String
+        LogAppend("Loading effect name of gem: " & socketid.ToString, "SpellItem_Information_GetGemEffectName", False)
+        Try
+            Dim client As New WebClient
+            Dim effectname As String
+            If My.Settings.language = "de" Then
+                effectname = client.DownloadString("http://de.wowhead.com/item=" & socketid.ToString & "&xml")
+            Else
+                effectname = client.DownloadString("http://www.wowhead.com/item=" & socketid.ToString & "&xml")
+            End If
+            effectname = splitString(effectname, "<span class=""q1"">", "</span>")
+
+            If effectname.Contains("<a href") Then
+                Try
+                    effectname = effectname.Replace("<a href=""" & splitString(effectname, "<a href=""", """>") & """>", "")
+                    effectname = effectname.Replace("</a>", "")
+                    Return effectname
+                Catch ex As Exception
+                    Return effectname
                 End Try
             Else
-                Return quellcodeSplityx88
+                Return effectname
             End If
         Catch ex As Exception
-            Return ""
+            LogAppend("Error while loading effect name! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetGemEffectName", False, True)
+            Return "Error loading effect name"
         End Try
 
     End Function
-    Private Shared Function Execute(ByVal field As String, ByVal isvalue As String, ByVal tempdatatable As DataTable, Optional secfield As Integer = 1) As String
+    Private Function Execute(ByVal field As String, ByVal isvalue As String, ByVal tempdatatable As DataTable, Optional secfield As Integer = 1) As String
         LogAppend("Browsing datatale (field = " & field & " // value = " & isvalue & ")", "SpellItem_Information_Execute", False)
         Try
             Dim foundRows() As DataRow
