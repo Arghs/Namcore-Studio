@@ -31,7 +31,7 @@ Imports Namcore_Studio.GlyphParser
 Imports Namcore_Studio.EventLogging
 Public Class ArmoryHandler
 
-    Public Sub LoadArmoryCharacters(ByVal LinkList As List(Of String))
+    Public Shared Sub LoadArmoryCharacters(ByVal LinkList As List(Of String))
         LogAppend("Loading characters from Armory (" & LinkList.Count.ToString() & " characters)", "ArmoryHandler_LoadArmoryCharacters", True)
         Dim setId As Integer = 0
         Dim CharacterContext As String

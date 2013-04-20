@@ -29,7 +29,7 @@ Imports Namcore_Studio.Basics
 Imports System.Net
 
 Public Class AchievementParser
-    Public Sub loadAchievements(ByVal setId As Integer, ByVal apiLink As String)
+    Public Shared Sub loadAchievements(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
         Dim avLst As New List(Of String)
         Try

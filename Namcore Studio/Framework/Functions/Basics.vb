@@ -25,25 +25,25 @@ Imports Namcore_Studio.EventLogging
 Imports System.Net
 
 Public Class Basics
-    Public Sub SetTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
+    Public Shared Sub SetTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
 
     End Sub
-    Public Sub AppendTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
+    Public Shared Sub AppendTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
 
     End Sub
-    Public Sub SetTCI_Item(ByVal itm As Item, ByVal targetSetId As Integer)
+    Public Shared Sub SetTCI_Item(ByVal itm As Item, ByVal targetSetId As Integer)
 
     End Sub
-    Public Sub SetTCI_Glyph(ByVal glyph As Glyph, ByVal targetSetId As Integer)
+    Public Shared Sub SetTCI_Glyph(ByVal glyph As Glyph, ByVal targetSetId As Integer)
 
     End Sub
-    Public Function GetTemporaryCharacterInformation(ByVal field As String, ByVal targetSetId As Integer) As String
+    Public Shared Function GetTemporaryCharacterInformation(ByVal field As String, ByVal targetSetId As Integer) As String
 
     End Function
-    Public Sub AbortProcess()
+    Public Shared Sub AbortProcess()
 
     End Sub
-    Public Function splitString(ByVal source As String, ByVal start As String, ByVal ending As String) As String
+    Public Shared Function splitString(ByVal source As String, ByVal start As String, ByVal ending As String) As String
         LogAppend("Splitting a string. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & start & "/-/" & ending, "Basics_splitString", False)
         Try
             Dim quellcode As String = source
@@ -57,7 +57,7 @@ Public Class Basics
             Return Nothing
         End Try
     End Function
-    Public Function splitList(ByVal source As String, ByVal category As String) As String
+    Public Shared Function splitList(ByVal source As String, ByVal category As String) As String
         LogAppend("Splitting a list. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & category, "Basics_splitList", False)
         Try
             Dim quellcode As String = source
@@ -72,7 +72,7 @@ Public Class Basics
             Return Nothing
         End Try
     End Function
-    Public Function LoadImageFromUrl(ByRef url As String) As Image
+    Public Shared Function LoadImageFromUrl(ByRef url As String) As Image
         Try
             Dim request As HttpWebRequest = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
             Dim response As HttpWebResponse = DirectCast(request.GetResponse, HttpWebResponse)

@@ -29,19 +29,19 @@ Namespace My
     Private Shared addedHandlerLockObject As New Object
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
-        Private Sub AutoSaveSettings(ByVal sender As Global.System.Object, ByVal e As Global.System.EventArgs)
+        Private Shared Sub AutoSaveSettings(ByVal sender As Global.System.Object, ByVal e As Global.System.EventArgs)
             If My.Application.SaveMySettingsOnExit Then
                 My.Settings.Save()
             End If
         End Sub
 #End If
 #End Region
-        
+
         Public Shared ReadOnly Property [Default]() As MySettings
             Get
-                
+
 #If _MyType = "WindowsForms" Then
-               If Not addedHandler Then
+                If Not addedHandler Then
                     SyncLock addedHandlerLockObject
                         If Not addedHandler Then
                             AddHandler My.Application.Shutdown, AddressOf AutoSaveSettings
@@ -53,16 +53,16 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+
+        <Global.System.Configuration.UserScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("")> _
         Public Property language() As String
             Get
-                Return CType(Me("language"),String)
+                Return CType(Me("language"), String)
             End Get
-            Set
-                Me("language") = value
+            Set(value As String)
+                Me("language") = Value
             End Set
         End Property
     End Class

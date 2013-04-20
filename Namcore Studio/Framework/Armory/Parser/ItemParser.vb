@@ -26,7 +26,7 @@ Imports Namcore_Studio.Conversions
 Imports Namcore_Studio.SpellItem_Information
 Imports Namcore_Studio.Basics
 Public Class ItemParser
-    Public Sub loadItems(ByVal source As String, ByVal setId As Integer)
+    Public Shared Sub loadItems(ByVal source As String, ByVal setId As Integer)
         Dim slotname As String
         Dim itemslot As Integer
         LogAppend("Loading character items", "ItemParser_loadItems", True)
@@ -125,7 +125,7 @@ Public Class ItemParser
             itemslot += 1
         Loop Until itemslot = 19
     End Sub
-    Private Function GetItemInfo(ByVal slot As Integer, ByVal slotname As String, ByVal sourceCode As String) As Item
+    Private Shared Function GetItemInfo(ByVal slot As Integer, ByVal slotname As String, ByVal sourceCode As String) As Item
         LogAppend("Loading item information (slot: " & slot.ToString() & ")", "ItemParser_loadItems", False)
         Dim endString As String
         If slot = 16 Then

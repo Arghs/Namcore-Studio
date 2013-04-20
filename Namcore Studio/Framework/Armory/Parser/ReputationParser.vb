@@ -29,7 +29,7 @@ Imports Namcore_Studio.Basics
 Imports System.Net
 
 Public Class ReputationParser
-    Public Sub loadReputation(ByVal setId As Integer, ByVal apiLink As String)
+    Public Shared Sub loadReputation(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
         Dim char_replist As New List(Of String)
         Try

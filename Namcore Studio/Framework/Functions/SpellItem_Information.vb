@@ -28,7 +28,7 @@ Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.Conversions
 Imports System.Net
 Public Class SpellItem_Information
-    Public Function GetGlyphIdByItemId(ByVal itemid As Integer) As Integer
+    Public Shared Function GetGlyphIdByItemId(ByVal itemid As Integer) As Integer
         LogAppend("Loading GlyphId by ItemId " & itemid.ToString, "SpellItem_Information_GetGlyphIdByItemId", False)
         Dim xpacressource As String
         Try
@@ -47,7 +47,7 @@ Public Class SpellItem_Information
             Return 0
         End Try
     End Function
-    Public Function GetIconByItemId(ByVal itemid As Integer) As Image
+    Public Shared Function GetIconByItemId(ByVal itemid As Integer) As Image
         Dim client As New WebClient
         Try
             LogAppend("Loading icon by ItemId " & itemid.ToString, "SpellItem_Information_GetIconByItemId", False)
@@ -58,7 +58,7 @@ Public Class SpellItem_Information
             Return Nothing
         End Try
     End Function
-    Public Sub LoadWeaponType(ByVal itemid As Integer, ByVal tar_set As Integer)
+    Public Shared Sub LoadWeaponType(ByVal itemid As Integer, ByVal tar_set As Integer)
         If Not itemid = 0 Then
             LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType", False)
             Try
@@ -127,7 +127,7 @@ Public Class SpellItem_Information
             End Try
         Else : End If
     End Sub
-    Public Function GetEffectNameByEffectId(ByVal effectid As Integer) As String
+    Public Shared Function GetEffectNameByEffectId(ByVal effectid As Integer) As String
         LogAppend("Loading effectname by effectId: " & effectid.ToString, "SpellItem_Information_GetEffectNameByEffectId", False)
         If effectname_dt.Rows.Count = 0 Then
             Try
@@ -168,7 +168,7 @@ Public Class SpellItem_Information
         End If
     End Function
 
-    Public Function getNameOfItem(ByVal itemid As String) As String
+    Public Shared Function getNameOfItem(ByVal itemid As String) As String
         LogAppend("Loading name of item: " & itemid.ToString, "SpellItem_Information_getNameOfItem", False)
         If Not itemid = Nothing Then
             If itemid.Length > 1 Then
@@ -188,7 +188,7 @@ Public Class SpellItem_Information
         LogAppend("ItemId is nothing -> Returning error", "SpellItem_Information_getNameOfItem", False, True)
         Return "Error loading item name"
     End Function
-    Public Function GetGemEffectName(ByVal socketid As Integer) As String
+    Public Shared Function GetGemEffectName(ByVal socketid As Integer) As String
         LogAppend("Loading effect name of gem: " & socketid.ToString, "SpellItem_Information_GetGemEffectName", False)
         Try
             Dim client As New WebClient
@@ -217,7 +217,7 @@ Public Class SpellItem_Information
         End Try
 
     End Function
-    Private Function Execute(ByVal field As String, ByVal isvalue As String, ByVal tempdatatable As DataTable, Optional secfield As Integer = 1) As String
+    Private Shared Function Execute(ByVal field As String, ByVal isvalue As String, ByVal tempdatatable As DataTable, Optional secfield As Integer = 1) As String
         LogAppend("Browsing datatale (field = " & field & " // value = " & isvalue & ")", "SpellItem_Information_Execute", False)
         Try
             Dim foundRows() As DataRow

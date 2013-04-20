@@ -29,7 +29,7 @@ Public Class EventLogging
     Private Shared loadCharThread As System.Threading.Thread
     Private Shared proc As System.Threading.Thread
     Private Delegate Sub AppendDelegate(ByRef _event As String)
-    Public Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
+    Public Shared Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
         If iserror = False Then
             If userOut = True Then
                 appendStatus("[" & Now.TimeOfDay.ToString & "]" & _event)
@@ -48,7 +48,7 @@ Public Class EventLogging
             End If
         End If
     End Sub
-    Private Sub appendStatus(ByVal _status As String)
+    Private Shared Sub appendStatus(ByVal _status As String)
 
         d.BeginInvoke("hello world", New AsyncCallback(AddressOf MyCallback), Nothing)
         If Not loadCharThread Is Nothing Then

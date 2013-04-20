@@ -28,7 +28,7 @@ Imports Namcore_Studio.Basics
 Imports System.Net
 
 Public Class GlyphParser
-    Public Sub loadGlyphs(ByVal setID As Integer, ByVal apiLink As String)
+    Public Shared Sub loadGlyphs(ByVal setID As Integer, ByVal apiLink As String)
         Dim client As New WebClient
         Try
             LogAppend("Loading character glyph information", "GlyphParser_loadGlyphs", True)
