@@ -28,7 +28,7 @@ Imports Namcore_Studio.Basics
 Public Class ItemParser
     Public Shared Sub loadItems(ByVal source As String, ByVal setId As Integer)
         Dim slotname As String
-        Dim itemslot As Integer
+        Dim itemslot As Integer = 0
         LogAppend("Loading character items", "ItemParser_loadItems", True)
         Do
             Try
@@ -39,83 +39,83 @@ Public Class ItemParser
                     Case 0
                         slotname = "head"
                         Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 1
                         slotname = "neck"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 2
                         slotname = "shoulder"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 3
                         slotname = "shirt"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 4
                         slotname = "chest"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 5
                         slotname = "waist"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 6
                         slotname = "legs"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 7
                         slotname = "feet"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 8
                         slotname = "wrists"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 9
                         slotname = "hands"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 10
                         slotname = "finger1"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 11
                         slotname = "finger2"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 12
                         slotname = "trinket1"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 13
                         slotname = "trinket2"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 14
                         slotname = "back"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                     Case 15
                         slotname = "main"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
                         If Not charItem Is Nothing Then
-                            SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                            SetTCI_Item(charItem, setId)
                             LoadWeaponType(charItem.id, setId)
                         End If
                     Case 16
                         slotname = "off"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
                         If Not charItem Is Nothing Then
-                            SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                            SetTCI_Item(charItem, setId)
                             LoadWeaponType(charItem.id, setId)
                         End If
                     Case 17
                         'slot 17 has been removed as of patch 5.0
                     Case 18
                         slotname = "tabard"
-                        Dim charItem As Item = getItemInfo(itemslot, slotname, source)
-                        If Not charItem Is Nothing Then SetTCI_Item(getItemInfo(itemslot, slotname, source), setId)
+                        Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                        If Not charItem Is Nothing Then SetTCI_Item(charItem, setId)
                 End Select
             Catch ex As Exception
                 LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###", "ItemParser_loadItems", False, True)
@@ -145,8 +145,8 @@ Public Class ItemParser
         Dim socketContext As String
         If relevantItemContext.Contains("<span class=""sockets"">") Then
             '//sockets active
-            socketContext = splitString(sourceCode & "</div>", "<span class=""sockets"">", "</div>")
-            Dim socketCount As Integer = UBound(socketContext.Split("socket-"))
+            socketContext = splitString(relevantItemContext & "</div>", "<span class=""sockets"">", "</div>")
+            Dim socketCount As Integer = UBound(Split(socketContext, "socket-"))
             Dim oneSocketContext As String = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
             charItem.socket1_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
             charItem.socket1_img = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt"))
@@ -168,7 +168,7 @@ Public Class ItemParser
         End If
         If relevantItemContext.Contains("<span class=""enchant-") Then
             '//enchantment active
-            Dim enchantContext As String = splitString(relevantItemContext, "<span class=""enchant color", "</span>")
+            Dim enchantContext As String = splitString(relevantItemContext, " class=""enchant color", "</span>")
             If enchantContext.Contains("data-spell=") Then
                 '//enchantment type: spell
                 charItem.enchantment_id = TryInt(splitString(enchantContext, """ data-spell=""", """>"))

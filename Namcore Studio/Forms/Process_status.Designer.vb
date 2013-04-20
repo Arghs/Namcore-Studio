@@ -28,6 +28,7 @@ Partial Class Process_status
         '
         'process_tb
         '
+        Me.process_tb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.process_tb.Location = New System.Drawing.Point(12, 12)
         Me.process_tb.Name = "process_tb"
         Me.process_tb.ReadOnly = True
@@ -62,6 +63,6 @@ Partial Class Process_status
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents process_tb As System.Windows.Forms.RichTextBox
     Friend WithEvents close_bt As System.Windows.Forms.Button
+    Friend Shared WithEvents process_tb As System.Windows.Forms.RichTextBox
 End Class

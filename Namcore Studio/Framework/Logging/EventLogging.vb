@@ -27,8 +27,8 @@ Imports System.Threading
 
 Public Class EventLogging
     Private Shared loadCharThread As System.Threading.Thread
-    Private Shared proc As System.Threading.Thread
-    Private Delegate Sub AppendDelegate(ByRef _event As String)
+    Public Delegate Sub IncomingEventDelegate(ByVal _event As String)
+
     Public Shared Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
         If iserror = False Then
             If userOut = True Then
@@ -49,29 +49,12 @@ Public Class EventLogging
         End If
     End Sub
     Private Shared Sub appendStatus(ByVal _status As String)
-
-        d.BeginInvoke("hello world", New AsyncCallback(AddressOf MyCallback), Nothing)
-        If Not loadCharThread Is Nothing Then
-            For Each CurrentForm As Form In Application.OpenForms
-                If CurrentForm.Name = "Process_status" Then
-                    Dim statusWindow As Process_status = DirectCast(CurrentForm, Process_status)
-                    If statusWindow.InvokeRequired Then
-                        statusWindow.Invoke(New AppendDelegate(AddressOf ))
-                    End If
-
-                End If
-            Next
-        Else
-            loadCharThread = New System.Threading.Thread(AddressOf appendStatus)
-            loadCharThread.Start(_status)
-        End If
-        proc = New s
-        Process_status.Show()
+        Dim inEvent As IncomingEventDelegate
+        inEvent = New IncomingEventDelegate(AddressOf appendEvent)
+        inEvent.Invoke(_status & vbNewLine)
     End Sub
-    Private Sub test()
-
-    End Sub
-    Public Sub LogClear()
+    
+    Public Shared Sub LogClear()
         eventlog = ""
     End Sub
 End Class

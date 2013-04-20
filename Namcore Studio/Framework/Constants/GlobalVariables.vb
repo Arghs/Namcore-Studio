@@ -53,4 +53,5 @@ Public Class GlobalVariables
     Public Shared trans_acclist As ArrayList
     Public Shared sourceStructure As DBStructure
     Public Shared targetStructure As DBStructure
+    Public Shared WithEvents m_armoryhandler As ArmoryHandler
 End Class

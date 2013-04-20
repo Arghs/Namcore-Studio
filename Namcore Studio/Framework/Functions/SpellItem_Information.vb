@@ -48,6 +48,7 @@ Public Class SpellItem_Information
         End Try
     End Function
     Public Shared Function GetIconByItemId(ByVal itemid As Integer) As Image
+        If itemid = 0 Then Return Nothing
         Dim client As New WebClient
         Try
             LogAppend("Loading icon by ItemId " & itemid.ToString, "SpellItem_Information_GetIconByItemId", False)
@@ -149,7 +150,6 @@ Public Class SpellItem_Information
                             effectname_dt.Columns.Add(value.Trim())
                         Next
                     Else
-                        Dim dr As DataRow = effectname_dt.NewRow()
                         effectname_dt.Rows.Add(strArray)
                     End If
                 Next i

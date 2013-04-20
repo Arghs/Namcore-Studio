@@ -45,22 +45,24 @@ Public Class GlyphParser
                 Dim loopCounter As Integer = 0
                 Do
                     If glyphContext.Contains("""" & gType & """") Then
-                        Dim GlyphStr As String = splitString(glyphContext, """major"":", """}]")
+                        Dim GlyphStr As String = splitString(glyphContext, """" & gType & """:", """}]")
                         Dim exCounter As Integer = UBound(Split(GlyphStr, "{""glyph"""))
                         Dim counter As Integer = 0
                         GlyphStr = GlyphStr.Replace("},", "*")
-                        Do
-                            Dim newGlyph As New Glyph
-                            Dim parts() As String = GlyphStr.Split("*"c)
-                            newGlyph.id = TryInt(splitString(parts(counter), """item"":", ","""))
-                            newGlyph.name = splitString(parts(counter), """name"":", ",""")
-                            newGlyph.slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
-                            newGlyph.image = GetIconByItemId(newGlyph.id)
-                            newGlyph.type = loopCounter + 1
-                            newGlyph.spec = i
-                            SetTCI_Glyph(newGlyph, setID)
-                            counter += 1
-                        Loop Until counter = exCounter
+                        If Not GlyphStr.Length = 3 Then
+                            Do
+                                Dim newGlyph As New Glyph
+                                Dim parts() As String = GlyphStr.Split("*"c)
+                                newGlyph.id = TryInt(splitString(parts(counter), """item"":", ","""))
+                                newGlyph.name = splitString(parts(counter), """name"":", ",""")
+                                newGlyph.slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
+                                newGlyph.image = GetIconByItemId(newGlyph.id)
+                                newGlyph.type = loopCounter + 1
+                                newGlyph.spec = i
+                                SetTCI_Glyph(newGlyph, setID)
+                                counter += 1
+                            Loop Until counter = exCounter
+                        End If
                     End If
                     gType = "major"
                     loopCounter += 1
