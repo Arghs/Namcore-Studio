@@ -34,22 +34,23 @@ Public Class GlyphParser
             LogAppend("Loading character glyph information", "GlyphParser_loadGlyphs", True)
             Dim glyphContext As String = client.DownloadString(apiLink & "?fields=talents")
             Dim slotAddition As String
+            Dim mainContext As String
             If Not glyphContext.Contains("""glyphs"":") Then Exit Sub
             For i = 1 To 2
                 Select Case i
-                    Case 1 : glyphContext = splitString(glyphContext, """glyphs"":", ",""spec"":") : slotAddition = ""
-                    Case 2 : glyphContext = splitString(glyphContext, ",""spec"":", "}]}") : slotAddition = "sec"
-                    Case Else : glyphContext = splitString(glyphContext, ",""spec"":", "}]}") : slotAddition = "sec"
+                    Case 1 : mainContext = splitString(glyphContext, """glyphs"":", ",""spec"":") : slotAddition = ""
+                    Case 2 : mainContext = splitString(glyphContext, ",""spec"":", "}]}") : slotAddition = "sec"
+                    Case Else : mainContext = splitString(glyphContext, ",""spec"":", "}]}") : slotAddition = "sec"
                 End Select
                 Dim gType As String = "minor"
                 Dim loopCounter As Integer = 0
                 Do
-                    If glyphContext.Contains("""" & gType & """") Then
-                        Dim GlyphStr As String = splitString(glyphContext, """" & gType & """:", """}]")
+                    If mainContext.Contains("""" & gType & """") Then
+                        Dim GlyphStr As String = splitString(mainContext, """" & gType & """:[", "]")
                         Dim exCounter As Integer = UBound(Split(GlyphStr, "{""glyph"""))
                         Dim counter As Integer = 0
                         GlyphStr = GlyphStr.Replace("},", "*")
-                        If Not GlyphStr.Length = 3 Then
+                        If Not GlyphStr.Length <= 3 Then
                             Do
                                 Dim newGlyph As New Glyph
                                 Dim parts() As String = GlyphStr.Split("*"c)

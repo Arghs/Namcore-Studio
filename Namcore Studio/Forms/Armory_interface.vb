@@ -4,7 +4,7 @@ Imports Namcore_Studio.Basics
 Imports Namcore_Studio.ArmoryHandler
 Imports Namcore_Studio.GlobalVariables
 Imports System.Threading
-
+Imports Namcore_Studio.Interface_Operator
 Public Class Armory_interface
 
     Private Sub addChar_bt_Click(sender As System.Object, e As System.EventArgs) Handles addChar_bt.Click
@@ -119,6 +119,7 @@ Public Class Armory_interface
     End Sub
 
     Private Sub load_bt_Click(sender As System.Object, e As System.EventArgs) Handles load_bt.Click
+        trdrunnuing = True
         My.Settings.language = "de" 'todo for testing only
         Process_status.Show()
         Dim urllst As New List(Of String)
@@ -126,9 +127,10 @@ Public Class Armory_interface
             urllst.Add(lstitm.SubItems(3).Text)
         Next
         Dim armory As New ArmoryHandler
-        Dim trd As Thread = New Thread(AddressOf armory.LoadArmoryCharacters)
+        trd = New Thread(AddressOf armory.LoadArmoryCharacters)
         trd.IsBackground = True
         trd.Start(urllst)
+        prepareLive_armory()
     End Sub
 
     Private Sub char_lst_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles char_lst.MouseDown
@@ -159,6 +161,6 @@ Public Class Armory_interface
 
 
     Private Sub Armory_interface_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
+        Process_status.Show()
     End Sub
 End Class

@@ -22,16 +22,45 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports Namcore_Studio.EventLogging
+Imports Namcore_Studio.GlobalVariables
 Imports System.Net
-
+Imports Namcore_Studio.Conversions
 Public Class Basics
     Public Shared Sub SetTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
-
+        If temporaryCharacterInformation = Nothing Then temporaryCharacterInformation = ""
+        If Not temporaryCharacterInformation.Contains("[[#INFORMATIONSET" & targetSetId.ToString & "]]") Then
+            temporaryCharacterInformation = temporaryCharacterInformation & "[[#INFORMATIONSET" & targetSetId.ToString() & "]]" & vbNewLine & "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]"
+        End If
+        temporaryCharacterInformation = temporaryCharacterInformation.Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "[/" & field & "]" & vbNewLine &
+                                                                              "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
     End Sub
     Public Shared Sub AppendTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
-
+        Dim CharacterContext As String = splitString(temporaryCharacterInformation, "[[#INFORMATIONSET" & targetSetId.ToString() & "]]", "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+        If Not CharacterContext.Contains("[" & field & "]") Then
+            temporaryCharacterInformation = temporaryCharacterInformation.Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "#VAL#[/" & field & "]" & vbNewLine &
+                                                                          "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+        End If
+        Dim newCharContext As String = CharacterContext.Replace("#VAL#[/" & field & "]", value & "#VAL#[/" & field & "]")
+        temporaryCharacterInformation = temporaryCharacterInformation.Replace(CharacterContext, newCharContext)
     End Sub
     Public Shared Sub SetTCI_Item(ByVal itm As Item, ByVal targetSetId As Integer)
+        Dim itemContext As String = "[itm:" & itm.slotname & "]" &
+            "{slot}" & itm.slotname & "{/slot}" &
+            "{id}" & NotNull(itm.id) & "{/id}" &
+            "{rarity}" & NotNull(itm.rarity) & "{/rarity}" &
+            "{socket1ID}" & NotNull(itm.socket1_id) & "{/socket1ID}" &
+            "{socket2ID}" & NotNull(itm.socket2_id) & "{/socket2ID}" &
+            "{socket3ID}" & NotNull(itm.socket3_id) & "{/socket3ID}" &
+            "{socket1NAME}" & NotNull(itm.socket1_name) & "{/socket1NAME}" &
+            "{socket2NAME}" & NotNull(itm.socket2_name) & "{/socket2NAME}" &
+            "{socket3NAME}" & NotNull(itm.socket3_name) & "{/socket3NAME}" &
+            "{enchantmentID}" & NotNull(itm.enchantment_id) & "{/enchantmentID}" &
+            "{enchantmentNAME}" & NotNull(itm.enchantment_name) & "{/enchantmentNAME}" &
+            "{enchantmentTYPE}" & NotNull(itm.enchantment_type) & "{/enchantmentTYPE}" &
+            "{image}" & ConvertImageToString(itm.image) & "{/image}" &
+            "[/itm:" & itm.slotname & "]"
+        temporaryCharacterInformation = temporaryCharacterInformation.Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", itemContext & vbNewLine &
+                                                                      "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
 
     End Sub
     Public Shared Sub SetTCI_Glyph(ByVal glyph As Glyph, ByVal targetSetId As Integer)
@@ -83,5 +112,12 @@ Public Class Basics
             Return Nothing
         End Try
 
+    End Function
+    Private Shared Function NotNull(ByVal obj As Object) As String
+        If obj Is Nothing Then
+            Return ""
+        Else
+            Return obj.ToString()
+        End If
     End Function
 End Class

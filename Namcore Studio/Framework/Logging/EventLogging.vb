@@ -26,10 +26,10 @@ Imports Namcore_Studio.Process_status
 Imports System.Threading
 
 Public Class EventLogging
-    Private Shared loadCharThread As System.Threading.Thread
     Public Delegate Sub IncomingEventDelegate(ByVal _event As String)
 
     Public Shared Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
+        userOut = True
         If iserror = False Then
             If userOut = True Then
                 appendStatus("[" & Now.TimeOfDay.ToString & "]" & _event)

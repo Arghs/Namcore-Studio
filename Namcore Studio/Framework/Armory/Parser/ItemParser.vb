@@ -134,6 +134,7 @@ Public Class ItemParser
             endString = "<div data-id"
         End If
         Dim relevantItemContext As String = splitString(sourceCode, "<div data-id=""" & slot.ToString & """ data-type", endString)
+        If Not relevantItemContext.Contains("/item/") Then Return Nothing '//Not item
         Dim charItem As New Item
         '//Loading main Item Info
         charItem.id = TryInt(splitString(relevantItemContext, "/item/", """ class=""item"""))
@@ -149,19 +150,16 @@ Public Class ItemParser
             Dim socketCount As Integer = UBound(Split(socketContext, "socket-"))
             Dim oneSocketContext As String = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
             charItem.socket1_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
-            charItem.socket1_img = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt"))
             charItem.socket1_name = GetGemEffectName(charItem.socket1_id)
             If socketCount > 1 Then
-                socketContext = socketContext.Replace(oneSocketContext, Nothing)
+                socketContext = socketContext.Replace("<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing)
                 oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                 charItem.socket2_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
-                charItem.socket2_img = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt"))
                 charItem.socket2_name = GetGemEffectName(charItem.socket2_id)
                 If socketCount > 2 Then
-                    socketContext = socketContext.Replace(oneSocketContext, Nothing)
+                    socketContext = socketContext.Replace("<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing)
                     oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                     charItem.socket3_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
-                    charItem.socket3_img = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt"))
                     charItem.socket3_name = GetGemEffectName(charItem.socket3_id)
                 End If
             End If

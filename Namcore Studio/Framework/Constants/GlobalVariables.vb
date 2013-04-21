@@ -22,6 +22,8 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports MySql.Data.MySqlClient
+Imports System.Threading
+
 Public Class GlobalVariables
     Public Shared temporaryCharacterInformation As String
     Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
@@ -53,5 +55,6 @@ Public Class GlobalVariables
     Public Shared trans_acclist As ArrayList
     Public Shared sourceStructure As DBStructure
     Public Shared targetStructure As DBStructure
-    Public Shared WithEvents m_armoryhandler As ArmoryHandler
+    Public Shared trd As Thread
+    Public Shared trdrunnuing As Boolean
 End Class

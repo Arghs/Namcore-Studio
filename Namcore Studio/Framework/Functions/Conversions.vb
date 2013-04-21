@@ -22,6 +22,8 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports System.Text
+Imports System.IO
+Imports System.Drawing.Imaging
 Imports Namcore_Studio.EventLogging
 Imports System.Resources
 
@@ -143,5 +145,47 @@ Public Class Conversions
             Case 1 : Return RM.GetString("female")
             Case Else : LogAppend("Invalid GenderId: " & genderid.ToString() & " // Returning nothing!", "Conversions_GetGenderNameById") : Return Nothing
         End Select
+    End Function
+    Public Shared Function ConvertImageToString(ByVal _img As Image) As String
+        Dim Result As String = String.Empty
+        Try
+            Dim img As Image = _img
+            Using ms As MemoryStream = New MemoryStream
+                img.Save(ms, img.RawFormat)
+                Dim Bytes() As Byte = ms.ToArray()
+                Result = Convert.ToBase64String(Bytes)
+            End Using
+        Catch ex As Exception
+
+        End Try
+        Return Result
+    End Function
+    Public Shared Function ConvertStringToImage(ByVal Base64String As String) As Image
+        Dim img As Image = Nothing
+        If Base64String Is Nothing Then
+
+        Else
+            Try
+                Dim Bytes() As Byte = Convert.FromBase64String(Base64String)
+                img = Image.FromStream(New MemoryStream(Bytes))
+            Catch ex As Exception
+
+            End Try
+        End If
+        Return img
+    End Function
+    Public Function Image2ByteArray(ByVal Bild As Image, ByVal Bildformat As ImageFormat) As Byte()
+
+        Try
+            Dim MS As New MemoryStream
+            Bild.Save(MS, Bildformat)
+            MS.Flush()
+            Return MS.ToArray
+        Catch ex As Exception
+            Dim MS As New MemoryStream
+            My.Resources.empty.Save(MS, Bildformat)
+            MS.Flush()
+            Return MS.ToArray
+        End Try
     End Function
 End Class

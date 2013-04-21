@@ -11,5 +11,7 @@ Public Class Process_status
  
     Public Shared Sub appendEvent(ByVal _status As String)
         process_tb.AppendText(_status)
+        process_tb.SelectionStart = process_tb.Text.Length
+        process_tb.ScrollToCaret()
     End Sub
 End Class

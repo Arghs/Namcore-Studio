@@ -20,8 +20,17 @@
 '*      /Filename:      Interface_Operator
 '*      /Description:   Includes operations for rendering user interfaces
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+Imports Namcore_Studio.GlobalVariables
 Public Class Interface_Operator
+    Public Shared Sub prepareLive_armory()
+        Dim i As Integer
+        While trd.IsAlive
+            i += 1
+            If i Mod 8 = 0 Then Application.DoEvents()
+        End While
+        Dim askjd As String = temporaryCharacterInformation
+        MsgBox("adas")
+    End Sub
     Public Shared Sub loadNamesAndPics()
 
     End Sub

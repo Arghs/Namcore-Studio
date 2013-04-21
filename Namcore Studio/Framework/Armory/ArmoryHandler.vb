@@ -29,7 +29,10 @@ Imports Namcore_Studio.ReputationParser
 Imports Namcore_Studio.AchievementParser
 Imports Namcore_Studio.GlyphParser
 Imports Namcore_Studio.EventLogging
+Imports Namcore_Studio.Interface_Operator
+Imports Namcore_Studio.GlobalVariables
 Public Class ArmoryHandler
+    Public Delegate Sub ENDDelegate()
 
     Public Sub LoadArmoryCharacters(ByVal LinkList As List(Of String))
         LogAppend("Loading characters from Armory (" & LinkList.Count.ToString() & " character/s)", "ArmoryHandler_LoadArmoryCharacters", True)
@@ -54,6 +57,8 @@ Public Class ArmoryHandler
             setId += 1
             LogAppend("Loading character " & CharacterName & " //ident is " & setId.ToString(), "ArmoryHandler_LoadArmoryCharacters", True)
             LogAppend("Loading basic character information", "ArmoryHandler_LoadArmoryCharacters", True)
+            SetTemporaryCharacterInformation("@account_id", "0", setId)
+            SetTemporaryCharacterInformation("@account_name", "WoW Armory", setId)
             SetTemporaryCharacterInformation("@character_name", CharacterName, setId)
             SetTemporaryCharacterInformation("@character_level", splitString(CharacterContext, "<span class=""level""><strong>", "</strong></span>"), setId)
             SetTemporaryCharacterInformation("@character_gender", splitString(Client.DownloadString(APILink), """gender"":", ","""), setId)
@@ -84,6 +89,9 @@ Public Class ArmoryHandler
             loadAchievements(setId, APILink)
             loadGlyphs(setId, APILink)
             loadItems(CharacterContext, setId)
+            LogAppend("Character loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
         Next
+        LogAppend("All characters loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
+        trd.Abort()
     End Sub
 End Class
