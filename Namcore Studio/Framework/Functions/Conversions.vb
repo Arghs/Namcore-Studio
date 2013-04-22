@@ -147,6 +147,7 @@ Public Class Conversions
         End Select
     End Function
     Public Shared Function ConvertImageToString(ByVal _img As Image) As String
+        If _img Is Nothing Then Return ""
         Dim Result As String = String.Empty
         Try
             Dim img As Image = _img
@@ -161,6 +162,7 @@ Public Class Conversions
         Return Result
     End Function
     Public Shared Function ConvertStringToImage(ByVal Base64String As String) As Image
+        If Base64String = "" Then Return Nothing
         Dim img As Image = Nothing
         If Base64String Is Nothing Then
 
@@ -174,18 +176,5 @@ Public Class Conversions
         End If
         Return img
     End Function
-    Public Function Image2ByteArray(ByVal Bild As Image, ByVal Bildformat As ImageFormat) As Byte()
-
-        Try
-            Dim MS As New MemoryStream
-            Bild.Save(MS, Bildformat)
-            MS.Flush()
-            Return MS.ToArray
-        Catch ex As Exception
-            Dim MS As New MemoryStream
-            My.Resources.empty.Save(MS, Bildformat)
-            MS.Flush()
-            Return MS.ToArray
-        End Try
-    End Function
+    
 End Class

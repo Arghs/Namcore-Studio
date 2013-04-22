@@ -23,7 +23,9 @@
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>Namcore Studio.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -33,7 +35,9 @@
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>Namcore Studio.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -70,6 +74,12 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Armory_interface.Designer.vb">
+      <DependentUpon>Armory_interface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Armory_interface.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\DB_connect.Designer.vb">
       <DependentUpon>DB_connect.vb</DependentUpon>
     </Compile>
@@ -94,6 +104,12 @@
     <Compile Include="Forms\Prep_chartrans.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Process_status.Designer.vb">
+      <DependentUpon>Process_status.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Process_status.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Userwait.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -108,8 +124,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Framework\Armory\API.vb" />
-    <Compile Include="Framework\Armory\main_procedure.vb" />
+    <Compile Include="Framework\Armory\ArmoryHandler.vb" />
+    <Compile Include="Framework\Armory\Parser\AchievementParser.vb" />
+    <Compile Include="Framework\Armory\Parser\GlyphParser.vb" />
     <Compile Include="Framework\Armory\Parser\ItemParser.vb" />
+    <Compile Include="Framework\Armory\Parser\ReputationParser.vb" />
     <Compile Include="Framework\Constants\Account.vb" />
     <Compile Include="Framework\Constants\Character.vb" />
     <Compile Include="Framework\Constants\DBStructure.vb" />
@@ -171,6 +190,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\Armory_interface.resx">
+      <DependentUpon>Armory_interface.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DB_connect.resx">
       <DependentUpon>DB_connect.vb</DependentUpon>
     </EmbeddedResource>
@@ -182,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Prep_chartrans.resx">
       <DependentUpon>Prep_chartrans.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Process_status.resx">
+      <DependentUpon>Process_status.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Userwait.resx">
       <DependentUpon>Userwait.vb</DependentUpon>

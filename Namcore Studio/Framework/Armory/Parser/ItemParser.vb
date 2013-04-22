@@ -152,12 +152,12 @@ Public Class ItemParser
             charItem.socket1_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
             charItem.socket1_name = GetGemEffectName(charItem.socket1_id)
             If socketCount > 1 Then
-                socketContext = socketContext.Replace("<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing)
+                socketContext = Replace(socketContext, "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing, , 1)
                 oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                 charItem.socket2_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
                 charItem.socket2_name = GetGemEffectName(charItem.socket2_id)
                 If socketCount > 2 Then
-                    socketContext = socketContext.Replace("<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing)
+                    socketContext = Replace(socketContext, "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing, , 1)
                     oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                     charItem.socket3_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
                     charItem.socket3_name = GetGemEffectName(charItem.socket3_id)

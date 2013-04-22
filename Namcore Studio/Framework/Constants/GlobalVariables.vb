@@ -25,7 +25,7 @@ Imports MySql.Data.MySqlClient
 Imports System.Threading
 
 Public Class GlobalVariables
-    Public Shared temporaryCharacterInformation As String
+    Public Shared temporaryCharacterInformation As List(Of String)
     Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
     Public Shared targetCore As String '"arcemu", "trinity", "mangos"
     Public Shared expansion As Integer '1=classic, 2=tbc,...

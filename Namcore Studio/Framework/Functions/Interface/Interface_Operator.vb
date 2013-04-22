@@ -28,7 +28,7 @@ Public Class Interface_Operator
             i += 1
             If i Mod 8 = 0 Then Application.DoEvents()
         End While
-        Dim askjd As String = temporaryCharacterInformation
+        Dim askjd As String = temporaryCharacterInformation.Item(1)
         MsgBox("adas")
     End Sub
     Public Shared Sub loadNamesAndPics()
