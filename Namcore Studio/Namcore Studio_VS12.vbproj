@@ -123,7 +123,6 @@
     <Compile Include="Forms\Live_View.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Framework\Armory\API.vb" />
     <Compile Include="Framework\Armory\ArmoryHandler.vb" />
     <Compile Include="Framework\Armory\Parser\AchievementParser.vb" />
     <Compile Include="Framework\Armory\Parser\GlyphParser.vb" />
@@ -257,7 +256,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

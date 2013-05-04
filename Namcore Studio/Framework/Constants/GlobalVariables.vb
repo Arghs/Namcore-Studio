@@ -50,6 +50,8 @@ Public Class GlobalVariables
     Public Shared chartable As DataTable
     Public Shared modifiedAccTable As DataTable
     Public Shared modifiedCharTable As DataTable
+    Public Shared modifiedCharInfo As List(Of String)
+    Public Shared armoryMode As Boolean
     Public Shared con_operator As Integer
     Public Shared trans_charlist As ArrayList
     Public Shared trans_acclist As ArrayList

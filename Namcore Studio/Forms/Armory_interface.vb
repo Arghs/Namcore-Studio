@@ -5,6 +5,8 @@ Imports Namcore_Studio.ArmoryHandler
 Imports Namcore_Studio.GlobalVariables
 Imports System.Threading
 Imports Namcore_Studio.Interface_Operator
+Imports System.Text
+
 Public Class Armory_interface
 
     Private Sub addChar_bt_Click(sender As System.Object, e As System.EventArgs) Handles addChar_bt.Click

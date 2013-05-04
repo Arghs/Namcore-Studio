@@ -28,21 +28,28 @@ Imports Namcore_Studio.Conversions
 Public Class Basics
     Public Shared Sub SetTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
         If temporaryCharacterInformation Is Nothing Then temporaryCharacterInformation = New List(Of String)
-        If temporaryCharacterInformation.IndexOf(targetSetId) = Nothing Then temporaryCharacterInformation.Item(targetSetId) = ""
-        If Not temporaryCharacterInformation.Item(targetSetId).Contains("[[#INFORMATIONSET" & targetSetId.ToString & "]]") Then
-            temporaryCharacterInformation.Item(targetSetId) = temporaryCharacterInformation.Item(targetSetId) & "[[#INFORMATIONSET" & targetSetId.ToString() & "]]" & vbNewLine & "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]"
-        End If
-        temporaryCharacterInformation.Item(targetSetId) = temporaryCharacterInformation.Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "[/" & field & "]" & vbNewLine &
-                                                                              "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+        With temporaryCharacterInformation
+            Select Case .Count
+                Case 0 : .Add("") : .Add("")
+                Case Is <= targetSetId : .Add("")
+            End Select
+            If Not .Item(targetSetId).Contains("[[#INFORMATIONSET" & targetSetId.ToString & "]]") Then
+                .Item(targetSetId) = .Item(targetSetId) & "[[#INFORMATIONSET" & targetSetId.ToString() & "]]" & vbNewLine & "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]"
+            End If
+            .Item(targetSetId) = .Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "[/" & field & "]" & vbNewLine &
+                                                                                  "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+        End With
     End Sub
     Public Shared Sub AppendTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
-        Dim CharacterContext As String = splitString(temporaryCharacterInformation.Item(targetSetId), "[[#INFORMATIONSET" & targetSetId.ToString() & "]]", "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
-        If Not CharacterContext.Contains("[" & field & "]") Then
-            temporaryCharacterInformation.Item(targetSetId) = temporaryCharacterInformation.Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "#VAL#[/" & field & "]" & vbNewLine &
-                                                                          "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
-        End If
-        Dim newCharContext As String = CharacterContext.Replace("#VAL#[/" & field & "]", value & "#VAL#[/" & field & "]")
-        temporaryCharacterInformation.Item(targetSetId) = temporaryCharacterInformation.Item(targetSetId).Replace(CharacterContext, newCharContext)
+        With temporaryCharacterInformation
+            Dim CharacterContext As String = splitString(.Item(targetSetId), "[[#INFORMATIONSET" & targetSetId.ToString() & "]]", "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+            If Not CharacterContext.Contains("[" & field & "]") Then
+                .Item(targetSetId) = .Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "#VAL#[/" & field & "]" & vbNewLine &
+                                                                              "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+            End If
+            Dim newCharContext As String = CharacterContext.Replace("#VAL#[/" & field & "]", value & "#VAL#[/" & field & "]")
+            .Item(targetSetId) = .Item(targetSetId).Replace(CharacterContext, newCharContext)
+        End With
     End Sub
     Public Shared Sub SetTCI_Item(ByVal itm As Item, ByVal targetSetId As Integer)
         Dim itemContext As String = "[itm:" & itm.slotname & "]" &
@@ -78,7 +85,12 @@ Public Class Basics
                                                                       "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
     End Sub
     Public Shared Function GetTemporaryCharacterInformation(ByVal field As String, ByVal targetSetId As Integer) As String
-
+        Dim CharContext As String = temporaryCharacterInformation.Item(targetSetId)
+        If CharContext.Contains("[" & field & "]") Then
+            Return splitString(CharContext, "[" & field & "]", "[/" & field & "]")
+        Else
+            Return Nothing
+        End If
     End Function
     Public Shared Sub AbortProcess()
 

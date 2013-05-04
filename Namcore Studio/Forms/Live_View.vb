@@ -26,6 +26,7 @@
 Imports Namcore_Studio.ConnectionHandler
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Account_CharacterInformationProcessing
+Imports Namcore_Studio.Basics
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
 Imports System.Resources
@@ -73,6 +74,46 @@ Public Class Live_View
             itm = New ListViewItem(str)
             characterview.Items.Add(itm)
             characterview.EnsureVisible(characterview.Items.Count - 1)
+        Next
+        characterview.Sort()
+        characterview.Update()
+        checkchangestatus = True
+        acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
+        chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
+    End Sub
+    Public Sub loadInformationSets_Armory()
+        Dim genGuid As Integer = 0
+        checkchangestatus = False
+        sourceCore = "armory" 'for testing only       
+        modifiedCharInfo = temporaryCharacterInformation
+        characterview.Items.Clear()
+        accountview.Items.Clear()
+        Dim str(4) As String
+        Dim itm As ListViewItem
+        str(0) = "0"
+        str(1) = "WoW Armory"
+        str(2) = "-"
+        str(3) = "-"
+        str(4) = "-"
+        itm = New ListViewItem(str)
+        accountview.Items.Add(itm)
+        accountview.EnsureVisible(accountview.Items.Count - 1)
+        accountview.Update()
+        For Each infoSet As String In temporaryCharacterInformation
+            If infoSet = "" Then genGuid += 1 : Continue For
+            Dim CLstr(6) As String
+            Dim CLitm As ListViewItem
+            CLstr(0) = genGuid.ToString
+            CLstr(1) = "WoW Armory"
+            CLstr(2) = GetTemporaryCharacterInformation("@character_name", genGuid)
+            CLstr(3) = GetRaceNameById(TryInt(GetTemporaryCharacterInformation("@character_race", genGuid)))
+            CLstr(4) = GetClassNameById(TryInt(GetTemporaryCharacterInformation("@character_class", genGuid)))
+            CLstr(5) = GetGenderNameById(TryInt(GetTemporaryCharacterInformation("@character_gender", genGuid)))
+            CLstr(6) = GetTemporaryCharacterInformation("@character_level", genGuid)
+            CLitm = New ListViewItem(CLstr)
+            characterview.Items.Add(CLitm)
+            characterview.EnsureVisible(characterview.Items.Count - 1)
+            genGuid += 1
         Next
         characterview.Sort()
         characterview.Update()
@@ -212,6 +253,7 @@ Public Class Live_View
 
 
     Private Sub accountview_ItemChecked1(sender As Object, e As System.Windows.Forms.ItemCheckedEventArgs) Handles accountview.ItemChecked
+        If armoryMode = True Then Exit Sub 'only test
         If checkchangestatus = True Then
             If Not accountview.CheckedItems.Count = 0 Then
                 characterview.Items.Clear()
