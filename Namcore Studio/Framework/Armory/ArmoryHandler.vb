@@ -34,7 +34,7 @@ Imports Namcore_Studio.GlobalVariables
 Public Class ArmoryHandler
     Public Delegate Sub ENDDelegate()
 
-    Public Sub LoadArmoryCharacters(ByVal LinkList As List(Of String))
+    Public Shared Sub LoadArmoryCharacters(ByVal LinkList As List(Of String))
         LogAppend("Loading characters from Armory (" & LinkList.Count.ToString() & " character/s)", "ArmoryHandler_LoadArmoryCharacters", True)
         Dim setId As Integer = 0
         Dim CharacterContext As String
@@ -92,6 +92,6 @@ Public Class ArmoryHandler
             LogAppend("Character loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
         Next
         LogAppend("All characters loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
-        trd.Abort()
+
     End Sub
 End Class

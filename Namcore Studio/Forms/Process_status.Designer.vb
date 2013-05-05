@@ -24,6 +24,8 @@ Partial Class Process_status
     Private Sub InitializeComponent()
         Me.process_tb = New System.Windows.Forms.RichTextBox()
         Me.close_bt = New System.Windows.Forms.Button()
+        Me.progressbar = New System.Windows.Forms.ProgressBar()
+        Me.cancel_bt = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'process_tb
@@ -33,7 +35,7 @@ Partial Class Process_status
         Me.process_tb.Name = "process_tb"
         Me.process_tb.ReadOnly = True
         Me.process_tb.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical
-        Me.process_tb.Size = New System.Drawing.Size(598, 247)
+        Me.process_tb.Size = New System.Drawing.Size(598, 218)
         Me.process_tb.TabIndex = 0
         Me.process_tb.Text = ""
         '
@@ -50,11 +52,33 @@ Partial Class Process_status
         Me.close_bt.Text = "Close"
         Me.close_bt.UseVisualStyleBackColor = False
         '
+        'progressbar
+        '
+        Me.progressbar.Location = New System.Drawing.Point(12, 241)
+        Me.progressbar.Name = "progressbar"
+        Me.progressbar.Size = New System.Drawing.Size(598, 27)
+        Me.progressbar.TabIndex = 210
+        '
+        'cancel_bt
+        '
+        Me.cancel_bt.BackColor = System.Drawing.Color.DimGray
+        Me.cancel_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.cancel_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cancel_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.cancel_bt.Location = New System.Drawing.Point(392, 279)
+        Me.cancel_bt.Name = "cancel_bt"
+        Me.cancel_bt.Size = New System.Drawing.Size(147, 42)
+        Me.cancel_bt.TabIndex = 211
+        Me.cancel_bt.Text = "Cancel"
+        Me.cancel_bt.UseVisualStyleBackColor = False
+        '
         'Process_status
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(622, 333)
+        Me.Controls.Add(Me.cancel_bt)
+        Me.Controls.Add(Me.progressbar)
         Me.Controls.Add(Me.close_bt)
         Me.Controls.Add(Me.process_tb)
         Me.Name = "Process_status"
@@ -64,5 +88,7 @@ Partial Class Process_status
 
     End Sub
     Friend WithEvents close_bt As System.Windows.Forms.Button
-    Friend Shared WithEvents process_tb As System.Windows.Forms.RichTextBox
+    Friend WithEvents progressbar As System.Windows.Forms.ProgressBar
+    Friend WithEvents process_tb As System.Windows.Forms.RichTextBox
+    Friend WithEvents cancel_bt As System.Windows.Forms.Button
 End Class

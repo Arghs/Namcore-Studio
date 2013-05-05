@@ -59,4 +59,5 @@ Public Class GlobalVariables
     Public Shared targetStructure As DBStructure
     Public Shared trd As Thread
     Public Shared trdrunnuing As Boolean
+    Public Shared procStatus As Process_status
 End Class

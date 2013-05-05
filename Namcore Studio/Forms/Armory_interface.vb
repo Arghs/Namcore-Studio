@@ -6,9 +6,12 @@ Imports Namcore_Studio.GlobalVariables
 Imports System.Threading
 Imports Namcore_Studio.Interface_Operator
 Imports System.Text
+Imports Namcore_Studio.Process_status
 
 Public Class Armory_interface
-
+    Public Structure Data2Thread
+        Public charLST As List(Of String)
+    End Structure
     Private Sub addChar_bt_Click(sender As System.Object, e As System.EventArgs) Handles addChar_bt.Click
         Dim templink As String = "http://#replaceregion#.battle.net/wow/#replacelang#/character/#replacerealm#/#replacecharacter#/advanced"
         Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
@@ -123,16 +126,19 @@ Public Class Armory_interface
     Private Sub load_bt_Click(sender As System.Object, e As System.EventArgs) Handles load_bt.Click
         trdrunnuing = True
         My.Settings.language = "de" 'todo for testing only
-        Process_status.Show()
         Dim urllst As New List(Of String)
         For Each lstitm As ListViewItem In char_lst.Items
             urllst.Add(lstitm.SubItems(3).Text)
         Next
-        Dim armory As New ArmoryHandler
-        trd = New Thread(AddressOf armory.LoadArmoryCharacters)
-        trd.IsBackground = True
-        trd.Start(urllst)
-        prepareLive_armory()
+       
+        Dim d As New Data2Thread() With {.charLST = urllst}
+        procStatus.ArmoryWorker.RunWorkerAsync(d)
+        procStatus.UpdateGui()
+        'Dim armory As New ArmoryHandler
+        'trd = New Thread(AddressOf armory.LoadArmoryCharacters)
+        'trd.IsBackground = True
+        'trd.Start(urllst)
+
     End Sub
 
     Private Sub char_lst_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles char_lst.MouseDown
@@ -163,6 +169,12 @@ Public Class Armory_interface
 
 
     Private Sub Armory_interface_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Process_status.Show()
+
+        Process_status.Close()
+        procStatus = New Process_status
+        procStatus.Show()
+        procStatus.ArmoryWorker = New System.ComponentModel.BackgroundWorker
+        procStatus.ArmoryWorker.WorkerReportsProgress = True
+        procStatus.ArmoryWorker.WorkerSupportsCancellation = True
     End Sub
 End Class

@@ -27,7 +27,7 @@ Imports System.Threading
 
 Public Class EventLogging
     Public Delegate Sub IncomingEventDelegate(ByVal _event As String)
-
+    Shared lastprogress As Integer
     Public Shared Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
         userOut = True
         If iserror = False Then
@@ -48,10 +48,12 @@ Public Class EventLogging
             End If
         End If
     End Sub
-    Private Shared Sub appendStatus(ByVal _status As String)
-        Dim inEvent As IncomingEventDelegate
-        inEvent = New IncomingEventDelegate(AddressOf appendEvent)
-        inEvent.Invoke(_status & vbNewLine)
+    Private Shared Sub appendStatus(ByVal _status As String, Optional progress As Integer = 0)
+        proccessTXT = proccessTXT & _status & vbNewLine
+        If lastprogress = Nothing Then lastprogress = 0
+        If progress = 0 Then progress = lastprogress
+        lastprogress = progress
+        procStatus.ArmoryWorker.ReportProgress(progress)
     End Sub
     
     Public Shared Sub LogClear()

@@ -22,12 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports Namcore_Studio.GlobalVariables
 Public Class Interface_Operator
-    Public Shared Sub prepareLive_armory()
-        Dim i As Integer
-        While trd.IsAlive
-            i += 1
-            If i Mod 8 = 0 Then Application.DoEvents()
-        End While
+    Public Sub prepareLive_armory()
         armoryMode = True
         Live_View.Close()
         Dim liveview As New Live_View

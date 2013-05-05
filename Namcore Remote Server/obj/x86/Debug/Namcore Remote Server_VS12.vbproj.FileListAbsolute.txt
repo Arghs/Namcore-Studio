@@ -1,0 +1,10 @@
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Remote Server\bin\Debug\Namcore Remote Server.exe
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Remote Server\bin\Debug\Namcore Remote Server.pdb
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Remote Server\bin\Debug\Namcore Remote Server.xml
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Remote Server\bin\Debug\mysql.data.dll
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server_VS12.vbprojResolveAssemblyReference.cache
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Remote Server\obj\x86\Debug\Namcore_Remote_Server.Resources.resources
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server_VS12.vbproj.GenerateResource.Cache
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.exe
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.xml
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.pdb
