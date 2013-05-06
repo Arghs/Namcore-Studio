@@ -88,26 +88,26 @@ Public Class Basics
                                                                       "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
     End Sub
     Public Shared Function GetTCI_Item(ByVal slot As String, ByVal targetSetId As Integer) As Item
-        Dim itemContext As String = GetTemporaryCharacterInformation("[itm:" & slot & "]", "[/itm:")
+        Dim itemContext As String = GetTemporaryCharacterInformation(("itm:" & slot), targetSetId)
         Dim itm As New Item
         itm.slotname = splitString(itemContext, "{slot}", "{/slot}")
-        itm.id = splitString(itemContext, "{id}", "{/id}")
+        itm.id = TryInt(splitString(itemContext, "{id}", "{/id}"))
         itm.name = splitString(itemContext, "{name}", "{/name}")
-        itm.rarity = splitString(itemContext, "{rarity}", "{/rarity}")
-        itm.socket1_id = splitString(itemContext, "{socket1ID}", "{/socket1ID}")
-        itm.socket2_id = splitString(itemContext, "{socket2ID}", "{/socket2ID}")
-        itm.socket3_id = splitString(itemContext, "{socket3ID}", "{/socket3ID}")
+        itm.rarity = TryInt(splitString(itemContext, "{rarity}", "{/rarity}"))
+        itm.socket1_id = TryInt(splitString(itemContext, "{socket1ID}", "{/socket1ID}"))
+        itm.socket2_id = TryInt(splitString(itemContext, "{socket2ID}", "{/socket2ID}"))
+        itm.socket3_id = TryInt(splitString(itemContext, "{socket3ID}", "{/socket3ID}"))
         itm.socket1_name = splitString(itemContext, "{socket1NAME}", "{/socket1NAME}")
         itm.socket2_name = splitString(itemContext, "{socket2NAME}", "{/socket2NAME}")
         itm.socket3_name = splitString(itemContext, "{socket3NAME}", "{/socket3NAME}")
-        itm.enchantment_id = splitString(itemContext, "{enchantmentID}", "{/enchantmentID}")
+        itm.socket1_color = splitString(itemContext, "{socket1COLOR}", "{/socket1COLOR}")
+        itm.socket2_color = splitString(itemContext, "{socket2COLOR}", "{/socket2COLOR}")
+        itm.socket3_color = splitString(itemContext, "{socket3COLOR}", "{/socket3COLOR}")
+        itm.enchantment_id = TryInt(splitString(itemContext, "{enchantmentID}", "{/enchantmentID}"))
         itm.enchantment_name = splitString(itemContext, "{enchantmentNAME}", "{/enchantmentNAME}")
-        itm.enchantment_type = splitString(itemContext, "{enchantmentTYPE}", "{/enchantmentTYPE}")
-        itm.image    = splitstring(itemcontext, "{image}") ConvertImageToString(image)) = splitstring(itemcontext, "{/image}")
-            "[/itm:") slotname) "]"
-        temporaryCharacterInformation.Item(targetSetId) = temporaryCharacterInformation.Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", itemContext & vbNewLine &
-                                                                      "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
-
+        itm.enchantment_type = TryInt(splitString(itemContext, "{enchantmentTYPE}", "{/enchantmentTYPE}"))
+        itm.image = ConvertStringToImage(splitString(itemContext, "{image}", "{/image}"))
+        Return itm
     End Function
     Public Shared Function GetTCI_Glyph(ByVal glyph As Glyph, ByVal targetSetId As Integer)
         Dim GlyphContext As String = "[glyph:" & glyph.slotname & "]" &
