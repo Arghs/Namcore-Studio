@@ -1,4 +1,27 @@
-﻿Imports System.Resources
+﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'*
+'* This program is free software; you can redistribute it and/or modify it
+'* under the terms of the GNU General Public License as published by the
+'* Free Software Foundation; either version 2 of the License, or (at your
+'* option) any later version.
+'*
+'* This program is distributed in the hope that it will be useful, but WITHOUT
+'* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+'* FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+'* more details.
+'*
+'* You should have received a copy of the GNU General Public License along
+'* with this program. If not, see <http://www.gnu.org/licenses/>.
+'*
+'* Developed by Alcanmage/megasus
+'*
+'* //FileInfo//
+'*      /Filename:      Armory_interface
+'*      /Description:   Provides an interface to load characters from WoW Armory
+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Imports System.Resources
 Imports System.Net
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.ArmoryHandler
@@ -130,10 +153,12 @@ Public Class Armory_interface
         For Each lstitm As ListViewItem In char_lst.Items
             urllst.Add(lstitm.SubItems(3).Text)
         Next
-       
-        Dim d As New Data2Thread() With {.charLST = urllst}
-        procStatus.ArmoryWorker.RunWorkerAsync(d)
-        procStatus.UpdateGui()
+        LoadArmoryCharacters(urllst)
+        Dim prepLive As New Interface_Operator
+        prepLive.prepareLive_armory()
+        'Dim d As New Data2Thread() With {.charLST = urllst}
+        'procStatus.ArmoryWorker.RunWorkerAsync(d)
+        'procStatus.UpdateGui()
         'Dim armory As New ArmoryHandler
         'trd = New Thread(AddressOf armory.LoadArmoryCharacters)
         'trd.IsBackground = True
@@ -176,5 +201,13 @@ Public Class Armory_interface
         procStatus.ArmoryWorker = New System.ComponentModel.BackgroundWorker
         procStatus.ArmoryWorker.WorkerReportsProgress = True
         procStatus.ArmoryWorker.WorkerSupportsCancellation = True
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        temporaryCharacterInformation = New List(Of String)
+        temporaryCharacterInformation.Add("")
+        temporaryCharacterInformation.Add(RichTextBox1.Text)
+        Dim prepLive As New Interface_Operator
+        prepLive.prepareLive_armory()
     End Sub
 End Class

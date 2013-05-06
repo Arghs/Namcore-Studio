@@ -44,6 +44,8 @@ Partial Class Armory_interface
         Me.back_bt = New System.Windows.Forms.Button()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.removeItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -261,11 +263,30 @@ Partial Class Armory_interface
         Me.removeItem.Size = New System.Drawing.Size(117, 22)
         Me.removeItem.Text = "Remove"
         '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Location = New System.Drawing.Point(66, 312)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(100, 96)
+        Me.RichTextBox1.TabIndex = 167
+        Me.RichTextBox1.Text = ""
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(172, 312)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 168
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Armory_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(718, 352)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.char_lst)
         Me.Controls.Add(Me.Label1)
@@ -301,4 +322,6 @@ Partial Class Armory_interface
     Friend WithEvents back_bt As System.Windows.Forms.Button
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents removeItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

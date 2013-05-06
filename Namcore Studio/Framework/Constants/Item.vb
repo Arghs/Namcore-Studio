@@ -28,9 +28,13 @@ Public Class Item
     Public name As String
     Public rarity As Integer '0=poor;1=common;2=uncommon;3=rare;4=epic;5=legendary;6=artifact/heirloom
     Public slotname As String
+    Public slot As Integer
     Public socket1_id As Integer
     Public socket2_id As Integer
     Public socket3_id As Integer
+    Public socket1_color As String
+    Public socket2_color As String
+    Public socket3_color As String
     Public socket1_name As String
     Public socket2_name As String
     Public socket3_name As String

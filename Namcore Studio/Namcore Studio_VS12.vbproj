@@ -81,6 +81,12 @@
     <Compile Include="Forms\Armory_interface.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\CharacterOverview.Designer.vb">
+      <DependentUpon>CharacterOverview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CharacterOverview.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\DB_connect.Designer.vb">
       <DependentUpon>DB_connect.vb</DependentUpon>
     </Compile>
@@ -193,6 +199,9 @@
     <EmbeddedResource Include="Forms\Armory_interface.resx">
       <DependentUpon>Armory_interface.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CharacterOverview.resx">
+      <DependentUpon>CharacterOverview.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DB_connect.resx">
       <DependentUpon>DB_connect.vb</DependentUpon>
     </EmbeddedResource>
@@ -257,7 +266,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

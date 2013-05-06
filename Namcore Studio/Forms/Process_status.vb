@@ -20,6 +20,8 @@ Public Class Process_status
         Dim d As Data2Thread = CType(e.Argument, Data2Thread)
         Dim charLst As List(Of String) = d.charLST
         LoadArmoryCharacters(charLst)
+        Dim prepLive As New Interface_Operator
+        prepLive.prepareLive_armory()
     End Sub
     Public Sub UpdateGui()
         cancel_bt.Visible = ArmoryWorker.IsBusy
@@ -34,8 +36,7 @@ Public Class Process_status
             process_tb.Text = "Canceled"
             Return
         End If
-        Dim prepLive As New Interface_Operator
-        prepLive.prepareLive_armory()
+        Return
     End Sub
     Public Sub ArmoryWorker_ProgressChanged( _
          ByVal sender As Object, ByVal e As ProgressChangedEventArgs) _

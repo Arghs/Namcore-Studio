@@ -82,6 +82,9 @@ Public Class Live_View
         chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
     End Sub
     Public Sub loadInformationSets_Armory()
+        connect_bt.Visible = False
+        filter_acc.Visible = False
+        filter_char.Visible = False
         Dim genGuid As Integer = 0
         checkchangestatus = False
         sourceCore = "armory" 'for testing only       

@@ -22,3 +22,23 @@ C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Stud
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Resources.resources
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.UserMessages.resources
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbproj.GenerateResource.Cache
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.exe.config
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio.exe
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio.xml
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio.pdb
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.exe
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.pdb
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.xml
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\mysql.data.dll
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbprojResolveAssemblyReference.cache
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Armory_interface.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.DB_connect.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Filter_accounts.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Filter_characters.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Prep_chartrans.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Process_status.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Userwait.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Live_View.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Resources.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.UserMessages.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbproj.GenerateResource.Cache

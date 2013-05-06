@@ -23,11 +23,13 @@
 Imports Namcore_Studio.GlobalVariables
 Public Class Interface_Operator
     Public Sub prepareLive_armory()
+        Dim x As String = temporaryCharacterInformation.Item(1)
         armoryMode = True
         Live_View.Close()
         Dim liveview As New Live_View
-        liveview.loadInformationSets_Armory()
         liveview.Show()
+        liveview.loadInformationSets_Armory()
+
     End Sub
     Public Shared Sub loadNamesAndPics()
 
