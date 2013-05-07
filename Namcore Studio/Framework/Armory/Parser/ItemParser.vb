@@ -150,16 +150,19 @@ Public Class ItemParser
             Dim socketCount As Integer = UBound(Split(socketContext, "socket-"))
             Dim oneSocketContext As String = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
             charItem.socket1_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
+            charItem.socket1_color = splitString(oneSocketContext, " cut ", ".jpg")
             charItem.socket1_name = GetGemEffectName(charItem.socket1_id)
             If socketCount > 1 Then
                 socketContext = Replace(socketContext, "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing, , 1)
                 oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                 charItem.socket2_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
+                charItem.socket2_color = splitString(oneSocketContext, " cut ", ".jpg")
                 charItem.socket2_name = GetGemEffectName(charItem.socket2_id)
                 If socketCount > 2 Then
                     socketContext = Replace(socketContext, "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing, , 1)
                     oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                     charItem.socket3_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
+                    charItem.socket3_color = splitString(oneSocketContext, " cut ", ".jpg")
                     charItem.socket3_name = GetGemEffectName(charItem.socket3_id)
                 End If
             End If

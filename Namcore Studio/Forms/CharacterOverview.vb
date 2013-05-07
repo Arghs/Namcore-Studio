@@ -58,9 +58,18 @@ Public Class CharacterOverview
        
     End Sub
     Private Function loadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
+        Dim itm As Item = GetTCI_Item(slot.ToString, targetSet)
         Select Case infotype
-            Case 0
-                '   Dim itm As Item = 
+            Case 0 : Return itm.name
+            Case 1 : Return itm.enchantment_name
+            Case 2
+                If itm.image Is Nothing Then
+                    Return My.Resources.empty
+                Else
+                    Return itm.image
+                End If
+            Case 3
+
         End Select
     End Function
 End Class
