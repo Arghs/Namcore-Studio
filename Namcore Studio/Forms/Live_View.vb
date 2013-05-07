@@ -81,6 +81,7 @@ Public Class Live_View
         acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
         chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
     End Sub
+  
     Public Sub loadInformationSets_Armory()
         connect_bt.Visible = False
         filter_acc.Visible = False

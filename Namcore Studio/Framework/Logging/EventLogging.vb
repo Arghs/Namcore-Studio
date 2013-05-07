@@ -53,7 +53,12 @@ Public Class EventLogging
         If lastprogress = Nothing Then lastprogress = 0
         If progress = 0 Then progress = lastprogress
         lastprogress = progress
-        procStatus.ArmoryWorker.ReportProgress(progress)
+        If procStatus.ArmoryWorker.IsBusy Then
+            procStatus.ArmoryWorker.ReportProgress(progress)
+        Else
+            procStatus.appendProc()
+        End If
+
     End Sub
     
     Public Shared Sub LogClear()

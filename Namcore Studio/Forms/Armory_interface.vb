@@ -153,17 +153,9 @@ Public Class Armory_interface
         For Each lstitm As ListViewItem In char_lst.Items
             urllst.Add(lstitm.SubItems(3).Text)
         Next
-        LoadArmoryCharacters(urllst)
-        Dim prepLive As New Interface_Operator
-        prepLive.prepareLive_armory()
-        'Dim d As New Data2Thread() With {.charLST = urllst}
-        'procStatus.ArmoryWorker.RunWorkerAsync(d)
-        'procStatus.UpdateGui()
-        'Dim armory As New ArmoryHandler
-        'trd = New Thread(AddressOf armory.LoadArmoryCharacters)
-        'trd.IsBackground = True
-        'trd.Start(urllst)
-
+        Dim d As New Data2Thread() With {.charLST = urllst}
+        procStatus.UpdateGui()
+        procStatus.ArmoryWorker.RunWorkerAsync(d)
     End Sub
 
     Private Sub char_lst_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles char_lst.MouseDown
@@ -194,7 +186,6 @@ Public Class Armory_interface
 
 
     Private Sub Armory_interface_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
         Process_status.Close()
         procStatus = New Process_status
         procStatus.Show()
@@ -208,6 +199,10 @@ Public Class Armory_interface
         temporaryCharacterInformation.Add("")
         temporaryCharacterInformation.Add(RichTextBox1.Text)
         Dim prepLive As New Interface_Operator
-        prepLive.prepareLive_armory()
+        Interface_Operator.prepareLive_armory()
     End Sub
+
+   
+   
+  
 End Class

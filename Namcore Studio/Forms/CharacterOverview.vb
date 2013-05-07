@@ -60,7 +60,7 @@ Public Class CharacterOverview
     Private Function loadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
         Select Case infotype
             Case 0
-                Dim itm As Item = 
+                '   Dim itm As Item = 
         End Select
     End Function
 End Class

@@ -21,8 +21,9 @@
 '*      /Description:   Includes operations for rendering user interfaces
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports Namcore_Studio.GlobalVariables
+Imports Namcore_Studio.Basics
 Public Class Interface_Operator
-    Public Sub prepareLive_armory()
+    Public Shared Sub prepareLive_armory()
         Dim x As String = temporaryCharacterInformation.Item(1)
         armoryMode = True
         Live_View.Close()
