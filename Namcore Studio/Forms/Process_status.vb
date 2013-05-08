@@ -39,9 +39,14 @@ Public Class Process_status
         Interface_Operator.prepareLive_armory()
     End Sub
     Public Sub appendProc()
-        process_tb.Text = proccessTXT
-        process_tb.SelectionStart = process_tb.Text.Length
-        process_tb.ScrollToCaret()
+        Try
+            process_tb.Text = proccessTXT
+            process_tb.SelectionStart = process_tb.Text.Length
+            process_tb.ScrollToCaret()
+        Catch ex As Exception
+
+        End Try
+
     End Sub
     Public Sub ArmoryWorker_ProgressChanged( _
          ByVal sender As Object, ByVal e As ProgressChangedEventArgs) _

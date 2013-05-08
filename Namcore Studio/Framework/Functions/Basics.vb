@@ -63,9 +63,9 @@ Public Class Basics
             "{socket1NAME}" & NotNull(itm.socket1_name) & "{/socket1NAME}" &
             "{socket2NAME}" & NotNull(itm.socket2_name) & "{/socket2NAME}" &
             "{socket3NAME}" & NotNull(itm.socket3_name) & "{/socket3NAME}" &
-            "{socket1COLOR}" & NotNull(itm.socket1_color) & "{/socket1COLOR}" &
-            "{socket2COLOR}" & NotNull(itm.socket2_color) & "{/socket2COLOR}" &
-            "{socket3COLOR}" & NotNull(itm.socket3_color) & "{/socket3COLOR}" &
+            "{socket1COLOR}" & ConvertImageToString(itm.socket1_pic) & "{/socket1COLOR}" &
+            "{socket2COLOR}" & ConvertImageToString(itm.socket2_pic) & "{/socket2COLOR}" &
+            "{socket3COLOR}" & ConvertImageToString(itm.socket3_pic) & "{/socket3COLOR}" &
             "{enchantmentID}" & NotNull(itm.enchantment_id) & "{/enchantmentID}" &
             "{enchantmentNAME}" & NotNull(itm.enchantment_name) & "{/enchantmentNAME}" &
             "{enchantmentTYPE}" & NotNull(itm.enchantment_type) & "{/enchantmentTYPE}" &
@@ -90,6 +90,7 @@ Public Class Basics
     Public Shared Function GetTCI_Item(ByVal slot As String, ByVal targetSetId As Integer) As Item
         Dim itemContext As String = GetTemporaryCharacterInformation(("itm:" & slot), targetSetId)
         Dim itm As New Item
+        If itemContext Is Nothing Then Return itm
         itm.slotname = splitString(itemContext, "{slot}", "{/slot}")
         itm.id = TryInt(splitString(itemContext, "{id}", "{/id}"))
         itm.name = splitString(itemContext, "{name}", "{/name}")
@@ -100,9 +101,9 @@ Public Class Basics
         itm.socket1_name = splitString(itemContext, "{socket1NAME}", "{/socket1NAME}")
         itm.socket2_name = splitString(itemContext, "{socket2NAME}", "{/socket2NAME}")
         itm.socket3_name = splitString(itemContext, "{socket3NAME}", "{/socket3NAME}")
-        itm.socket1_color = splitString(itemContext, "{socket1COLOR}", "{/socket1COLOR}")
-        itm.socket2_color = splitString(itemContext, "{socket2COLOR}", "{/socket2COLOR}")
-        itm.socket3_color = splitString(itemContext, "{socket3COLOR}", "{/socket3COLOR}")
+        itm.socket1_pic = ConvertStringToImage(splitString(itemContext, "{socket1COLOR}", "{/socket1COLOR}"))
+        itm.socket2_pic = ConvertStringToImage(splitString(itemContext, "{socket2COLOR}", "{/socket2COLOR}"))
+        itm.socket3_pic = ConvertStringToImage(splitString(itemContext, "{socket3COLOR}", "{/socket3COLOR}"))
         itm.enchantment_id = TryInt(splitString(itemContext, "{enchantmentID}", "{/enchantmentID}"))
         itm.enchantment_name = splitString(itemContext, "{enchantmentNAME}", "{/enchantmentNAME}")
         itm.enchantment_type = TryInt(splitString(itemContext, "{enchantmentTYPE}", "{/enchantmentTYPE}"))
@@ -135,6 +136,10 @@ Public Class Basics
 
     End Sub
     Public Shared Function splitString(ByVal source As String, ByVal start As String, ByVal ending As String) As String
+        If source Is Nothing Or start Is Nothing Or ending Is Nothing Then
+            LogAppend("Failed to split a string: source might be nothing", "Basics_splitString", False, True)
+            Return Nothing
+        End If
         LogAppend("Splitting a string. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & start & "/-/" & ending, "Basics_splitString", False)
         Try
             Dim quellcode As String = source

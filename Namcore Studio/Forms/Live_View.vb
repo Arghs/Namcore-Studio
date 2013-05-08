@@ -61,6 +61,7 @@ Public Class Live_View
             accountview.EnsureVisible(accountview.Items.Count - 1)
         Next
         accountview.Update()
+        Dim genSet As Integer = 0
         For Each rowitem As DataRow In chartable.Rows
             Dim str(6) As String
             Dim itm As ListViewItem
@@ -72,6 +73,8 @@ Public Class Live_View
             str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
             str(6) = rowitem.Item(6)
             itm = New ListViewItem(str)
+            genSet += 1
+            itm.Tag = genSet
             characterview.Items.Add(itm)
             characterview.EnsureVisible(characterview.Items.Count - 1)
         Next
@@ -115,6 +118,7 @@ Public Class Live_View
             CLstr(5) = GetGenderNameById(TryInt(GetTemporaryCharacterInformation("@character_gender", genGuid)))
             CLstr(6) = GetTemporaryCharacterInformation("@character_level", genGuid)
             CLitm = New ListViewItem(CLstr)
+            CLitm.Tag = genGuid
             characterview.Items.Add(CLitm)
             characterview.EnsureVisible(characterview.Items.Count - 1)
             genGuid += 1
@@ -733,4 +737,22 @@ Public Class Live_View
     End Sub
 
    
+    Private Sub EditToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem1.Click
+        Dim charview As New CharacterOverview
+        Dim setId As Integer = characterview.SelectedItems(0).Tag
+        If armoryMode = True Then
+            charview.Show()
+            charview.prepare_interface(setId)
+
+        Else
+            'todo load info
+            charview.Show()
+            charview.prepare_interface(setId)
+        End If
+
+    End Sub
+
+    Private Sub RemoveToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem1.Click
+
+    End Sub
 End Class

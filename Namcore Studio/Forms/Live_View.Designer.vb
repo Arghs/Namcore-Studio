@@ -60,6 +60,8 @@ Partial Class Live_View
         Me.target_accounts_tree = New System.Windows.Forms.TreeView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.charactercontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.RemoveToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SelectedCharacterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -73,8 +75,6 @@ Partial Class Live_View
         Me.targetcharcontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Transfer_bt = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.accountcontext.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -392,11 +392,31 @@ Partial Class Live_View
         Me.GroupBox2.TabIndex = 212
         Me.GroupBox2.TabStop = False
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Yellow
+        Me.Label2.Location = New System.Drawing.Point(39, 558)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(262, 13)
+        Me.Label2.TabIndex = 212
+        Me.Label2.Text = "Character name conflict / forced namechange at login"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Green
+        Me.Label1.Location = New System.Drawing.Point(39, 531)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(124, 13)
+        Me.Label1.TabIndex = 211
+        Me.Label1.Text = "Character can be copied"
+        '
         'charactercontext
         '
         Me.charactercontext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem1, Me.EditToolStripMenuItem1, Me.PrepareTransferToolStripMenuItem})
         Me.charactercontext.Name = "charactercontext"
-        Me.charactercontext.Size = New System.Drawing.Size(158, 70)
+        Me.charactercontext.Size = New System.Drawing.Size(158, 92)
         '
         'RemoveToolStripMenuItem1
         '
@@ -478,26 +498,6 @@ Partial Class Live_View
         Me.Transfer_bt.TabIndex = 214
         Me.Transfer_bt.Text = "Start Transfer"
         Me.Transfer_bt.UseVisualStyleBackColor = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Green
-        Me.Label1.Location = New System.Drawing.Point(39, 531)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(124, 13)
-        Me.Label1.TabIndex = 211
-        Me.Label1.Text = "Character can be copied"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Yellow
-        Me.Label2.Location = New System.Drawing.Point(39, 558)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(262, 13)
-        Me.Label2.TabIndex = 212
-        Me.Label2.Text = "Character name conflict / forced namechange at login"
         '
         'Live_View
         '

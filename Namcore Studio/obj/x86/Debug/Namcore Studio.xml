@@ -6,7 +6,26 @@ NamcoreStudio
 </name>
 </assembly>
 <members>
-<member name="P:Namcore_Studio.My.Resources.Resources.ResourceManager">
+<member name="M:Namcore_Studio.WinformControlExtensions.FindAllChildren(System.Windows.Forms.Form@)">
+	<summary>
+ Recursively find all child controls for a form
+ </summary>
+	<param name="StartingContainer"><c><seealso cref="T:System.Windows.Forms.Form">Form
+ </seealso></c> that is the starting container to check for children.</param>
+	<returns><c><seealso cref="T:System.Collections.Generic.List`1">List(Of Control)
+ </seealso></c> that contains a reference to all child controls.</returns>
+	<remarks>If you put this module in a separate namespace from your form, Visual Studio 
+ 2010 does not recognize the extension to the form.</remarks>
+</member><member name="M:Namcore_Studio.WinformControlExtensions.FindAllChildren(System.Windows.Forms.Control@)">
+	<summary>
+ Recursively find all child controls for a control
+ </summary>
+	<param name="StartingContainer"><c><seealso cref="T:System.Windows.Forms.Control">Control
+ </seealso></c> that is the starting container to check for children.</param>
+	<returns><c><seealso cref="T:System.Collections.Generic.List`1">List(Of Control)
+ </seealso></c> that contains a reference to all child controls.</returns>
+	<remarks></remarks>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.ResourceManager">
 	<summary>
   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
 </summary>

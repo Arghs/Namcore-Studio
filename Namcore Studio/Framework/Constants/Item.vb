@@ -32,9 +32,9 @@ Public Class Item
     Public socket1_id As Integer
     Public socket2_id As Integer
     Public socket3_id As Integer
-    Public socket1_color As String
-    Public socket2_color As String
-    Public socket3_color As String
+    Public socket1_pic As Image
+    Public socket2_pic As Image
+    Public socket3_pic As Image
     Public socket1_name As String
     Public socket2_name As String
     Public socket3_name As String
