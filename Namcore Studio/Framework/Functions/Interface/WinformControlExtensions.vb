@@ -9,7 +9,7 @@
     ''' <remarks>If you put this module in a separate namespace from your form, Visual Studio 
     ''' 2010 does not recognize the extension to the form.</remarks>
     <System.Runtime.CompilerServices.Extension()>
-    Public Function FindAllChildren(ByRef StartingContainer As System.Windows.Forms.Form) As List(Of System.Windows.Forms.Control)
+    Public  Function FindAllChildren(ByRef StartingContainer As System.Windows.Forms.Form) As List(Of System.Windows.Forms.Control)
         Dim Children As New List(Of System.Windows.Forms.Control)
 
         Dim oControl As System.Windows.Forms.Control

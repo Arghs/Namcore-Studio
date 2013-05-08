@@ -190,6 +190,9 @@
   <data name="invalidurl" xml:space="preserve">
     <value>Entered URL is not valid!</value>
   </data>
+  <data name="itemclassinvalid" xml:space="preserve">
+    <value>The class of the entered item does not match the source item class!</value>
+  </data>
   <data name="mage" xml:space="preserve">
     <value>Mage</value>
     <comment>character class</comment>

@@ -741,13 +741,17 @@ Public Class Live_View
         Dim charview As New CharacterOverview
         Dim setId As Integer = characterview.SelectedItems(0).Tag
         If armoryMode = True Then
-            charview.Show()
+            Userwait.Show()
             charview.prepare_interface(setId)
-
+            Userwait.Close()
+            charview.Show()
         Else
             'todo load info
-            charview.Show()
+
+            Userwait.Show()
             charview.prepare_interface(setId)
+            Userwait.Close()
+            charview.Show()
         End If
 
     End Sub

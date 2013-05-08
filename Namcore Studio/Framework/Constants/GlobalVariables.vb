@@ -60,4 +60,6 @@ Public Class GlobalVariables
     Public Shared trd As Thread
     Public Shared trdrunnuing As Boolean
     Public Shared procStatus As Process_status
+    Public Shared tempItemInfo As List(Of Item)
+    Public Shared tempItemInfoIndex As List(Of String())
 End Class

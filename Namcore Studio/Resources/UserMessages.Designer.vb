@@ -245,6 +245,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die The class of the entered item does not match the source item class! ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property itemclassinvalid() As String
+            Get
+                Return ResourceManager.GetString("itemclassinvalid", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Mage ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property mage() As String

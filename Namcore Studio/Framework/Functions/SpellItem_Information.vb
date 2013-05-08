@@ -59,6 +59,30 @@ Public Class SpellItem_Information
             Return Nothing
         End Try
     End Function
+    Public Shared Function GetRarityByItemId(ByVal itemid As Integer) As Integer
+        If itemid = 0 Then Return Nothing
+        Dim client As New WebClient
+        Try
+            LogAppend("Loading rarity by ItemId " & itemid.ToString, "SpellItem_Information_GetRarityByItemId", False)
+            Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
+            Return TryInt(splitString(itemContext, "<quality id=""", """>"))
+        Catch ex As Exception
+            LogAppend("Error while loading rarity! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetRarityByItemId", False, True)
+            Return Nothing
+        End Try
+    End Function
+    Public Shared Function GetSlotByItemId(ByVal itemid As Integer) As Integer
+        If itemid = 0 Then Return Nothing
+        Dim client As New WebClient
+        Try
+            LogAppend("Loading inventorySlot by ItemId " & itemid.ToString, "SpellItem_Information_GetSlotByItemId", False)
+            Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
+            Return TryInt(splitString(itemContext, "<inventorySlot id=""", """>"))
+        Catch ex As Exception
+            LogAppend("Error while loading inventorySlot! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetSlotByItemId", False, True)
+            Return Nothing
+        End Try
+    End Function
     Public Shared Sub LoadWeaponType(ByVal itemid As Integer, ByVal tar_set As Integer)
         If Not itemid = 0 Then
             LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType", False)
@@ -175,9 +199,11 @@ Public Class SpellItem_Information
                 Dim client As New WebClient
                 Try
                     If My.Settings.language = "de" Then
-                        Return splitString(client.DownloadString("http://de.wowhead.com/item=" & itemid.ToString() & "&xml"), "<name>", "</name>")
+                        Dim clString As String = client.DownloadString("http://de.wowhead.com/item=" & itemid.ToString() & "&xml")
+                        Return splitString(clString, "<name><![CDATA[", "]]></name>")
                     Else
-                        Return splitString(client.DownloadString("http://wowhead.com/item=" & itemid.ToString() & "&xml"), "<name>", "</name>")
+                        Dim clString As String = client.DownloadString("http://wowhead.com/item=" & itemid.ToString() & "&xml")
+                        Return splitString(clString, "<name><![CDATA[", "]]></name>")
                     End If
                 Catch ex As Exception
                     LogAppend("Error while loading item name! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_getNameOfItem", False, True)

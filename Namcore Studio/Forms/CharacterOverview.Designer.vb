@@ -22,63 +22,29 @@ Partial Class CharacterOverview
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.InventoryPanel = New System.Windows.Forms.Panel()
-        Me.slot_0_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_0_name = New System.Windows.Forms.Label()
-        Me.slot_0_color = New System.Windows.Forms.Panel()
-        Me.slot_0_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_0_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_0_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_0_enchant = New System.Windows.Forms.Label()
-        Me.slot_1_enchant = New System.Windows.Forms.Label()
-        Me.slot_1_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_1_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_1_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_1_color = New System.Windows.Forms.Panel()
-        Me.slot_1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_1_name = New System.Windows.Forms.Label()
-        Me.slot_14_enchant = New System.Windows.Forms.Label()
-        Me.slot_14_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_14_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_14_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_14_color = New System.Windows.Forms.Panel()
-        Me.slot_14_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_14_name = New System.Windows.Forms.Label()
-        Me.slot_2_enchant = New System.Windows.Forms.Label()
-        Me.slot_2_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_2_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_2_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_2_color = New System.Windows.Forms.Panel()
-        Me.slot_2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_2_name = New System.Windows.Forms.Label()
-        Me.slot_8_enchant = New System.Windows.Forms.Label()
-        Me.slot_8_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_8_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_8_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_8_color = New System.Windows.Forms.Panel()
-        Me.slot_8_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_8_name = New System.Windows.Forms.Label()
-        Me.slot_18_enchant = New System.Windows.Forms.Label()
-        Me.slot_18_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_18_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_18_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_18_color = New System.Windows.Forms.Panel()
-        Me.slot_18_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_18_name = New System.Windows.Forms.Label()
-        Me.slot_3_enchant = New System.Windows.Forms.Label()
-        Me.slot_3_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_3_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_3_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_3_color = New System.Windows.Forms.Panel()
-        Me.slot_3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_3_name = New System.Windows.Forms.Label()
-        Me.slot_4_enchant = New System.Windows.Forms.Label()
-        Me.slot_4_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_4_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_4_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_4_color = New System.Windows.Forms.Panel()
-        Me.slot_4_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_4_name = New System.Windows.Forms.Label()
+        Me.slot_17_enchant = New System.Windows.Forms.Label()
+        Me.slot_17_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_17_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_17_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_17_color = New System.Windows.Forms.Panel()
+        Me.slot_17_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_17_name = New System.Windows.Forms.Label()
+        Me.slot_15_enchant = New System.Windows.Forms.Label()
+        Me.slot_15_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_15_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_15_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_15_color = New System.Windows.Forms.Panel()
+        Me.slot_15_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_15_name = New System.Windows.Forms.Label()
+        Me.slot_16_enchant = New System.Windows.Forms.Label()
+        Me.slot_16_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_16_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_16_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_16_color = New System.Windows.Forms.Panel()
+        Me.slot_16_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_16_name = New System.Windows.Forms.Label()
         Me.slot_13_enchant = New System.Windows.Forms.Label()
         Me.slot_13_gem1_pic = New System.Windows.Forms.PictureBox()
         Me.slot_13_gem2_pic = New System.Windows.Forms.PictureBox()
@@ -135,68 +101,98 @@ Partial Class CharacterOverview
         Me.slot_9_color = New System.Windows.Forms.Panel()
         Me.slot_9_pic = New System.Windows.Forms.PictureBox()
         Me.slot_9_name = New System.Windows.Forms.Label()
-        Me.slot_16_enchant = New System.Windows.Forms.Label()
-        Me.slot_16_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_16_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_16_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_16_color = New System.Windows.Forms.Panel()
-        Me.slot_16_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_16_name = New System.Windows.Forms.Label()
-        Me.slot_15_enchant = New System.Windows.Forms.Label()
-        Me.slot_15_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_15_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_15_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_15_color = New System.Windows.Forms.Panel()
-        Me.slot_15_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_15_name = New System.Windows.Forms.Label()
-        Me.slot_17_enchant = New System.Windows.Forms.Label()
-        Me.slot_17_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_17_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_17_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_17_color = New System.Windows.Forms.Panel()
-        Me.slot_17_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_17_name = New System.Windows.Forms.Label()
+        Me.slot_8_enchant = New System.Windows.Forms.Label()
+        Me.slot_8_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_8_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_8_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_8_color = New System.Windows.Forms.Panel()
+        Me.slot_8_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_8_name = New System.Windows.Forms.Label()
+        Me.slot_18_enchant = New System.Windows.Forms.Label()
+        Me.slot_18_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_18_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_18_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_18_color = New System.Windows.Forms.Panel()
+        Me.slot_18_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_18_name = New System.Windows.Forms.Label()
+        Me.slot_3_enchant = New System.Windows.Forms.Label()
+        Me.slot_3_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_3_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_3_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_3_color = New System.Windows.Forms.Panel()
+        Me.slot_3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_3_name = New System.Windows.Forms.Label()
+        Me.slot_4_enchant = New System.Windows.Forms.Label()
+        Me.slot_4_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_4_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_4_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_4_color = New System.Windows.Forms.Panel()
+        Me.slot_4_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_4_name = New System.Windows.Forms.Label()
+        Me.slot_14_enchant = New System.Windows.Forms.Label()
+        Me.slot_14_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_14_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_14_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_14_color = New System.Windows.Forms.Panel()
+        Me.slot_14_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_14_name = New System.Windows.Forms.Label()
+        Me.slot_2_enchant = New System.Windows.Forms.Label()
+        Me.slot_2_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_2_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_2_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_2_color = New System.Windows.Forms.Panel()
+        Me.slot_2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_2_name = New System.Windows.Forms.Label()
+        Me.slot_1_enchant = New System.Windows.Forms.Label()
+        Me.slot_1_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_1_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_1_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_1_color = New System.Windows.Forms.Panel()
+        Me.slot_1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_1_name = New System.Windows.Forms.Label()
+        Me.slot_0_enchant = New System.Windows.Forms.Label()
+        Me.slot_0_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_0_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_0_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_0_color = New System.Windows.Forms.Panel()
+        Me.slot_0_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_0_name = New System.Windows.Forms.Label()
+        Me.charname = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.level_lbl = New System.Windows.Forms.Label()
+        Me.race_lbl = New System.Windows.Forms.Label()
+        Me.class_lbl = New System.Windows.Forms.Label()
+        Me.load_bt = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.changePanel = New System.Windows.Forms.Panel()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.InventoryPanel.SuspendLayout()
-        CType(Me.slot_0_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_0_color.SuspendLayout()
-        CType(Me.slot_0_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_0_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_0_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_1_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_1_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_1_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_1_color.SuspendLayout()
-        CType(Me.slot_1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_14_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_14_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_14_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_14_color.SuspendLayout()
-        CType(Me.slot_14_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_2_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_2_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_2_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_2_color.SuspendLayout()
-        CType(Me.slot_2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_8_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_8_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_8_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_8_color.SuspendLayout()
-        CType(Me.slot_8_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_18_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_18_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_18_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_18_color.SuspendLayout()
-        CType(Me.slot_18_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_3_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_3_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_3_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_3_color.SuspendLayout()
-        CType(Me.slot_3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_4_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_4_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_4_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_4_color.SuspendLayout()
-        CType(Me.slot_4_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_17_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_17_color.SuspendLayout()
+        CType(Me.slot_17_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_15_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_15_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_15_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_15_color.SuspendLayout()
+        CType(Me.slot_15_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_16_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_16_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_16_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_16_color.SuspendLayout()
+        CType(Me.slot_16_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slot_13_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slot_13_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slot_13_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -237,21 +233,48 @@ Partial Class CharacterOverview
         CType(Me.slot_9_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.slot_9_color.SuspendLayout()
         CType(Me.slot_9_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_16_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_16_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_16_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_16_color.SuspendLayout()
-        CType(Me.slot_16_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_15_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_15_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_15_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_15_color.SuspendLayout()
-        CType(Me.slot_15_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.slot_17_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.slot_17_color.SuspendLayout()
-        CType(Me.slot_17_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_8_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_8_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_8_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_8_color.SuspendLayout()
+        CType(Me.slot_8_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_18_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_18_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_18_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_18_color.SuspendLayout()
+        CType(Me.slot_18_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_3_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_3_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_3_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_3_color.SuspendLayout()
+        CType(Me.slot_3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_4_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_4_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_4_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_4_color.SuspendLayout()
+        CType(Me.slot_4_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_14_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_14_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_14_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_14_color.SuspendLayout()
+        CType(Me.slot_14_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_2_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_2_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_2_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_2_color.SuspendLayout()
+        CType(Me.slot_2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_1_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_1_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_1_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_1_color.SuspendLayout()
+        CType(Me.slot_1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_0_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_0_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_0_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_0_color.SuspendLayout()
+        CType(Me.slot_0_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.changePanel.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'InventoryPanel
@@ -370,546 +393,211 @@ Partial Class CharacterOverview
         Me.InventoryPanel.Controls.Add(Me.slot_0_gem1_pic)
         Me.InventoryPanel.Controls.Add(Me.slot_0_color)
         Me.InventoryPanel.Controls.Add(Me.slot_0_name)
-        Me.InventoryPanel.Location = New System.Drawing.Point(22, 12)
+        Me.InventoryPanel.Location = New System.Drawing.Point(12, 46)
         Me.InventoryPanel.Name = "InventoryPanel"
         Me.InventoryPanel.Size = New System.Drawing.Size(536, 602)
         Me.InventoryPanel.TabIndex = 0
         '
-        'slot_0_pic
-        '
-        Me.slot_0_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_0_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_0_pic.Name = "slot_0_pic"
-        Me.slot_0_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_0_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_0_pic.TabIndex = 0
-        Me.slot_0_pic.TabStop = False
-        '
-        'slot_0_name
-        '
-        Me.slot_0_name.AutoSize = True
-        Me.slot_0_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_0_name.Location = New System.Drawing.Point(74, 10)
-        Me.slot_0_name.Name = "slot_0_name"
-        Me.slot_0_name.Size = New System.Drawing.Size(71, 15)
-        Me.slot_0_name.TabIndex = 1
-        Me.slot_0_name.Text = "Itemname"
-        '
-        'slot_0_color
-        '
-        Me.slot_0_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_0_color.Controls.Add(Me.slot_0_pic)
-        Me.slot_0_color.Location = New System.Drawing.Point(6, 7)
-        Me.slot_0_color.Name = "slot_0_color"
-        Me.slot_0_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_0_color.TabIndex = 2
-        '
-        'slot_0_gem1_pic
-        '
-        Me.slot_0_gem1_pic.Location = New System.Drawing.Point(74, 46)
-        Me.slot_0_gem1_pic.Name = "slot_0_gem1_pic"
-        Me.slot_0_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_0_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_0_gem1_pic.TabIndex = 3
-        Me.slot_0_gem1_pic.TabStop = False
-        '
-        'slot_0_gem2_pic
-        '
-        Me.slot_0_gem2_pic.Location = New System.Drawing.Point(98, 46)
-        Me.slot_0_gem2_pic.Name = "slot_0_gem2_pic"
-        Me.slot_0_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_0_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_0_gem2_pic.TabIndex = 4
-        Me.slot_0_gem2_pic.TabStop = False
-        '
-        'slot_0_gem3_pic
-        '
-        Me.slot_0_gem3_pic.Location = New System.Drawing.Point(122, 46)
-        Me.slot_0_gem3_pic.Name = "slot_0_gem3_pic"
-        Me.slot_0_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_0_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_0_gem3_pic.TabIndex = 5
-        Me.slot_0_gem3_pic.TabStop = False
-        '
-        'slot_0_enchant
-        '
-        Me.slot_0_enchant.AutoSize = True
-        Me.slot_0_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_0_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_0_enchant.Location = New System.Drawing.Point(74, 28)
-        Me.slot_0_enchant.Name = "slot_0_enchant"
-        Me.slot_0_enchant.Size = New System.Drawing.Size(66, 13)
-        Me.slot_0_enchant.TabIndex = 6
-        Me.slot_0_enchant.Text = "Itemenchant"
-        '
-        'slot_1_enchant
-        '
-        Me.slot_1_enchant.AutoSize = True
-        Me.slot_1_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_1_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_1_enchant.Location = New System.Drawing.Point(74, 93)
-        Me.slot_1_enchant.Name = "slot_1_enchant"
-        Me.slot_1_enchant.Size = New System.Drawing.Size(66, 13)
-        Me.slot_1_enchant.TabIndex = 12
-        Me.slot_1_enchant.Text = "Itemenchant"
-        '
-        'slot_1_gem3_pic
-        '
-        Me.slot_1_gem3_pic.Location = New System.Drawing.Point(122, 111)
-        Me.slot_1_gem3_pic.Name = "slot_1_gem3_pic"
-        Me.slot_1_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_1_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_1_gem3_pic.TabIndex = 11
-        Me.slot_1_gem3_pic.TabStop = False
-        '
-        'slot_1_gem2_pic
-        '
-        Me.slot_1_gem2_pic.Location = New System.Drawing.Point(98, 111)
-        Me.slot_1_gem2_pic.Name = "slot_1_gem2_pic"
-        Me.slot_1_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_1_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_1_gem2_pic.TabIndex = 10
-        Me.slot_1_gem2_pic.TabStop = False
-        '
-        'slot_1_gem1_pic
-        '
-        Me.slot_1_gem1_pic.Location = New System.Drawing.Point(74, 111)
-        Me.slot_1_gem1_pic.Name = "slot_1_gem1_pic"
-        Me.slot_1_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_1_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_1_gem1_pic.TabIndex = 9
-        Me.slot_1_gem1_pic.TabStop = False
-        '
-        'slot_1_color
-        '
-        Me.slot_1_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_1_color.Controls.Add(Me.slot_1_pic)
-        Me.slot_1_color.Location = New System.Drawing.Point(6, 72)
-        Me.slot_1_color.Name = "slot_1_color"
-        Me.slot_1_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_1_color.TabIndex = 8
-        '
-        'slot_1_pic
-        '
-        Me.slot_1_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_1_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_1_pic.Name = "slot_1_pic"
-        Me.slot_1_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_1_pic.TabIndex = 0
-        Me.slot_1_pic.TabStop = False
-        '
-        'slot_1_name
-        '
-        Me.slot_1_name.AutoSize = True
-        Me.slot_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_1_name.Location = New System.Drawing.Point(74, 75)
-        Me.slot_1_name.Name = "slot_1_name"
-        Me.slot_1_name.Size = New System.Drawing.Size(71, 15)
-        Me.slot_1_name.TabIndex = 7
-        Me.slot_1_name.Text = "Itemname"
-        '
-        'slot_14_enchant
-        '
-        Me.slot_14_enchant.AutoSize = True
-        Me.slot_14_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_14_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_14_enchant.Location = New System.Drawing.Point(74, 223)
-        Me.slot_14_enchant.Name = "slot_14_enchant"
-        Me.slot_14_enchant.Size = New System.Drawing.Size(66, 13)
-        Me.slot_14_enchant.TabIndex = 24
-        Me.slot_14_enchant.Text = "Itemenchant"
-        '
-        'slot_14_gem3_pic
-        '
-        Me.slot_14_gem3_pic.Location = New System.Drawing.Point(122, 241)
-        Me.slot_14_gem3_pic.Name = "slot_14_gem3_pic"
-        Me.slot_14_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_14_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_14_gem3_pic.TabIndex = 23
-        Me.slot_14_gem3_pic.TabStop = False
-        '
-        'slot_14_gem2_pic
-        '
-        Me.slot_14_gem2_pic.Location = New System.Drawing.Point(98, 241)
-        Me.slot_14_gem2_pic.Name = "slot_14_gem2_pic"
-        Me.slot_14_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_14_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_14_gem2_pic.TabIndex = 22
-        Me.slot_14_gem2_pic.TabStop = False
-        '
-        'slot_14_gem1_pic
-        '
-        Me.slot_14_gem1_pic.Location = New System.Drawing.Point(74, 241)
-        Me.slot_14_gem1_pic.Name = "slot_14_gem1_pic"
-        Me.slot_14_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_14_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_14_gem1_pic.TabIndex = 21
-        Me.slot_14_gem1_pic.TabStop = False
-        '
-        'slot_14_color
-        '
-        Me.slot_14_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_14_color.Controls.Add(Me.slot_14_pic)
-        Me.slot_14_color.Location = New System.Drawing.Point(6, 202)
-        Me.slot_14_color.Name = "slot_14_color"
-        Me.slot_14_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_14_color.TabIndex = 20
-        '
-        'slot_14_pic
-        '
-        Me.slot_14_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_14_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_14_pic.Name = "slot_14_pic"
-        Me.slot_14_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_14_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_14_pic.TabIndex = 0
-        Me.slot_14_pic.TabStop = False
-        '
-        'slot_14_name
-        '
-        Me.slot_14_name.AutoSize = True
-        Me.slot_14_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_14_name.Location = New System.Drawing.Point(74, 205)
-        Me.slot_14_name.Name = "slot_14_name"
-        Me.slot_14_name.Size = New System.Drawing.Size(71, 15)
-        Me.slot_14_name.TabIndex = 19
-        Me.slot_14_name.Text = "Itemname"
-        '
-        'slot_2_enchant
-        '
-        Me.slot_2_enchant.AutoSize = True
-        Me.slot_2_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_2_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_2_enchant.Location = New System.Drawing.Point(74, 158)
-        Me.slot_2_enchant.Name = "slot_2_enchant"
-        Me.slot_2_enchant.Size = New System.Drawing.Size(66, 13)
-        Me.slot_2_enchant.TabIndex = 18
-        Me.slot_2_enchant.Text = "Itemenchant"
-        '
-        'slot_2_gem3_pic
-        '
-        Me.slot_2_gem3_pic.Location = New System.Drawing.Point(122, 176)
-        Me.slot_2_gem3_pic.Name = "slot_2_gem3_pic"
-        Me.slot_2_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_2_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_2_gem3_pic.TabIndex = 17
-        Me.slot_2_gem3_pic.TabStop = False
-        '
-        'slot_2_gem2_pic
-        '
-        Me.slot_2_gem2_pic.Location = New System.Drawing.Point(98, 176)
-        Me.slot_2_gem2_pic.Name = "slot_2_gem2_pic"
-        Me.slot_2_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_2_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_2_gem2_pic.TabIndex = 16
-        Me.slot_2_gem2_pic.TabStop = False
-        '
-        'slot_2_gem1_pic
-        '
-        Me.slot_2_gem1_pic.Location = New System.Drawing.Point(74, 176)
-        Me.slot_2_gem1_pic.Name = "slot_2_gem1_pic"
-        Me.slot_2_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_2_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_2_gem1_pic.TabIndex = 15
-        Me.slot_2_gem1_pic.TabStop = False
-        '
-        'slot_2_color
-        '
-        Me.slot_2_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_2_color.Controls.Add(Me.slot_2_pic)
-        Me.slot_2_color.Location = New System.Drawing.Point(6, 137)
-        Me.slot_2_color.Name = "slot_2_color"
-        Me.slot_2_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_2_color.TabIndex = 14
-        '
-        'slot_2_pic
-        '
-        Me.slot_2_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_2_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_2_pic.Name = "slot_2_pic"
-        Me.slot_2_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_2_pic.TabIndex = 0
-        Me.slot_2_pic.TabStop = False
-        '
-        'slot_2_name
-        '
-        Me.slot_2_name.AutoSize = True
-        Me.slot_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_2_name.Location = New System.Drawing.Point(74, 140)
-        Me.slot_2_name.Name = "slot_2_name"
-        Me.slot_2_name.Size = New System.Drawing.Size(71, 15)
-        Me.slot_2_name.TabIndex = 13
-        Me.slot_2_name.Text = "Itemname"
-        '
-        'slot_8_enchant
-        '
-        Me.slot_8_enchant.AutoSize = True
-        Me.slot_8_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_8_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_8_enchant.Location = New System.Drawing.Point(74, 483)
-        Me.slot_8_enchant.Name = "slot_8_enchant"
-        Me.slot_8_enchant.Size = New System.Drawing.Size(66, 13)
-        Me.slot_8_enchant.TabIndex = 48
-        Me.slot_8_enchant.Text = "Itemenchant"
-        '
-        'slot_8_gem3_pic
-        '
-        Me.slot_8_gem3_pic.Location = New System.Drawing.Point(122, 501)
-        Me.slot_8_gem3_pic.Name = "slot_8_gem3_pic"
-        Me.slot_8_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_8_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_8_gem3_pic.TabIndex = 47
-        Me.slot_8_gem3_pic.TabStop = False
-        '
-        'slot_8_gem2_pic
-        '
-        Me.slot_8_gem2_pic.Location = New System.Drawing.Point(98, 501)
-        Me.slot_8_gem2_pic.Name = "slot_8_gem2_pic"
-        Me.slot_8_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_8_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_8_gem2_pic.TabIndex = 46
-        Me.slot_8_gem2_pic.TabStop = False
-        '
-        'slot_8_gem1_pic
-        '
-        Me.slot_8_gem1_pic.Location = New System.Drawing.Point(74, 501)
-        Me.slot_8_gem1_pic.Name = "slot_8_gem1_pic"
-        Me.slot_8_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_8_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_8_gem1_pic.TabIndex = 45
-        Me.slot_8_gem1_pic.TabStop = False
-        '
-        'slot_8_color
-        '
-        Me.slot_8_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_8_color.Controls.Add(Me.slot_8_pic)
-        Me.slot_8_color.Location = New System.Drawing.Point(6, 462)
-        Me.slot_8_color.Name = "slot_8_color"
-        Me.slot_8_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_8_color.TabIndex = 44
-        '
-        'slot_8_pic
-        '
-        Me.slot_8_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_8_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_8_pic.Name = "slot_8_pic"
-        Me.slot_8_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_8_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_8_pic.TabIndex = 0
-        Me.slot_8_pic.TabStop = False
-        '
-        'slot_8_name
-        '
-        Me.slot_8_name.AutoSize = True
-        Me.slot_8_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_8_name.Location = New System.Drawing.Point(74, 465)
-        Me.slot_8_name.Name = "slot_8_name"
-        Me.slot_8_name.Size = New System.Drawing.Size(71, 15)
-        Me.slot_8_name.TabIndex = 43
-        Me.slot_8_name.Text = "Itemname"
-        '
-        'slot_18_enchant
-        '
-        Me.slot_18_enchant.AutoSize = True
-        Me.slot_18_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_18_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_18_enchant.Location = New System.Drawing.Point(74, 418)
-        Me.slot_18_enchant.Name = "slot_18_enchant"
-        Me.slot_18_enchant.Size = New System.Drawing.Size(66, 13)
-        Me.slot_18_enchant.TabIndex = 42
-        Me.slot_18_enchant.Text = "Itemenchant"
-        '
-        'slot_18_gem3_pic
-        '
-        Me.slot_18_gem3_pic.Location = New System.Drawing.Point(122, 436)
-        Me.slot_18_gem3_pic.Name = "slot_18_gem3_pic"
-        Me.slot_18_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_18_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_18_gem3_pic.TabIndex = 41
-        Me.slot_18_gem3_pic.TabStop = False
-        '
-        'slot_18_gem2_pic
-        '
-        Me.slot_18_gem2_pic.Location = New System.Drawing.Point(98, 436)
-        Me.slot_18_gem2_pic.Name = "slot_18_gem2_pic"
-        Me.slot_18_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_18_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_18_gem2_pic.TabIndex = 40
-        Me.slot_18_gem2_pic.TabStop = False
-        '
-        'slot_18_gem1_pic
-        '
-        Me.slot_18_gem1_pic.Location = New System.Drawing.Point(74, 436)
-        Me.slot_18_gem1_pic.Name = "slot_18_gem1_pic"
-        Me.slot_18_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_18_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_18_gem1_pic.TabIndex = 39
-        Me.slot_18_gem1_pic.TabStop = False
-        '
-        'slot_18_color
-        '
-        Me.slot_18_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_18_color.Controls.Add(Me.slot_18_pic)
-        Me.slot_18_color.Location = New System.Drawing.Point(6, 397)
-        Me.slot_18_color.Name = "slot_18_color"
-        Me.slot_18_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_18_color.TabIndex = 38
-        '
-        'slot_18_pic
-        '
-        Me.slot_18_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_18_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_18_pic.Name = "slot_18_pic"
-        Me.slot_18_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_18_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_18_pic.TabIndex = 0
-        Me.slot_18_pic.TabStop = False
-        '
-        'slot_18_name
-        '
-        Me.slot_18_name.AutoSize = True
-        Me.slot_18_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_18_name.Location = New System.Drawing.Point(74, 400)
-        Me.slot_18_name.Name = "slot_18_name"
-        Me.slot_18_name.Size = New System.Drawing.Size(71, 15)
-        Me.slot_18_name.TabIndex = 37
-        Me.slot_18_name.Text = "Itemname"
-        '
-        'slot_3_enchant
-        '
-        Me.slot_3_enchant.AutoSize = True
-        Me.slot_3_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_3_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_3_enchant.Location = New System.Drawing.Point(74, 353)
-        Me.slot_3_enchant.Name = "slot_3_enchant"
-        Me.slot_3_enchant.Size = New System.Drawing.Size(66, 13)
-        Me.slot_3_enchant.TabIndex = 36
-        Me.slot_3_enchant.Text = "Itemenchant"
-        '
-        'slot_3_gem3_pic
-        '
-        Me.slot_3_gem3_pic.Location = New System.Drawing.Point(122, 371)
-        Me.slot_3_gem3_pic.Name = "slot_3_gem3_pic"
-        Me.slot_3_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_3_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_3_gem3_pic.TabIndex = 35
-        Me.slot_3_gem3_pic.TabStop = False
-        '
-        'slot_3_gem2_pic
-        '
-        Me.slot_3_gem2_pic.Location = New System.Drawing.Point(98, 371)
-        Me.slot_3_gem2_pic.Name = "slot_3_gem2_pic"
-        Me.slot_3_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_3_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_3_gem2_pic.TabIndex = 34
-        Me.slot_3_gem2_pic.TabStop = False
-        '
-        'slot_3_gem1_pic
-        '
-        Me.slot_3_gem1_pic.Location = New System.Drawing.Point(74, 371)
-        Me.slot_3_gem1_pic.Name = "slot_3_gem1_pic"
-        Me.slot_3_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_3_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_3_gem1_pic.TabIndex = 33
-        Me.slot_3_gem1_pic.TabStop = False
-        '
-        'slot_3_color
-        '
-        Me.slot_3_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_3_color.Controls.Add(Me.slot_3_pic)
-        Me.slot_3_color.Location = New System.Drawing.Point(6, 332)
-        Me.slot_3_color.Name = "slot_3_color"
-        Me.slot_3_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_3_color.TabIndex = 32
-        '
-        'slot_3_pic
-        '
-        Me.slot_3_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_3_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_3_pic.Name = "slot_3_pic"
-        Me.slot_3_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_3_pic.TabIndex = 0
-        Me.slot_3_pic.TabStop = False
-        '
-        'slot_3_name
-        '
-        Me.slot_3_name.AutoSize = True
-        Me.slot_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_3_name.Location = New System.Drawing.Point(74, 335)
-        Me.slot_3_name.Name = "slot_3_name"
-        Me.slot_3_name.Size = New System.Drawing.Size(71, 15)
-        Me.slot_3_name.TabIndex = 31
-        Me.slot_3_name.Text = "Itemname"
-        '
-        'slot_4_enchant
-        '
-        Me.slot_4_enchant.AutoSize = True
-        Me.slot_4_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_4_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_4_enchant.Location = New System.Drawing.Point(74, 288)
-        Me.slot_4_enchant.Name = "slot_4_enchant"
-        Me.slot_4_enchant.Size = New System.Drawing.Size(66, 13)
-        Me.slot_4_enchant.TabIndex = 30
-        Me.slot_4_enchant.Text = "Itemenchant"
-        '
-        'slot_4_gem3_pic
-        '
-        Me.slot_4_gem3_pic.Location = New System.Drawing.Point(122, 306)
-        Me.slot_4_gem3_pic.Name = "slot_4_gem3_pic"
-        Me.slot_4_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_4_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_4_gem3_pic.TabIndex = 29
-        Me.slot_4_gem3_pic.TabStop = False
-        '
-        'slot_4_gem2_pic
-        '
-        Me.slot_4_gem2_pic.Location = New System.Drawing.Point(98, 306)
-        Me.slot_4_gem2_pic.Name = "slot_4_gem2_pic"
-        Me.slot_4_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_4_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_4_gem2_pic.TabIndex = 28
-        Me.slot_4_gem2_pic.TabStop = False
-        '
-        'slot_4_gem1_pic
-        '
-        Me.slot_4_gem1_pic.Location = New System.Drawing.Point(74, 306)
-        Me.slot_4_gem1_pic.Name = "slot_4_gem1_pic"
-        Me.slot_4_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_4_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_4_gem1_pic.TabIndex = 27
-        Me.slot_4_gem1_pic.TabStop = False
-        '
-        'slot_4_color
-        '
-        Me.slot_4_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_4_color.Controls.Add(Me.slot_4_pic)
-        Me.slot_4_color.Location = New System.Drawing.Point(6, 267)
-        Me.slot_4_color.Name = "slot_4_color"
-        Me.slot_4_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_4_color.TabIndex = 26
-        '
-        'slot_4_pic
-        '
-        Me.slot_4_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_4_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_4_pic.Name = "slot_4_pic"
-        Me.slot_4_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_4_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_4_pic.TabIndex = 0
-        Me.slot_4_pic.TabStop = False
-        '
-        'slot_4_name
-        '
-        Me.slot_4_name.AutoSize = True
-        Me.slot_4_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_4_name.Location = New System.Drawing.Point(74, 270)
-        Me.slot_4_name.Name = "slot_4_name"
-        Me.slot_4_name.Size = New System.Drawing.Size(71, 15)
-        Me.slot_4_name.TabIndex = 25
-        Me.slot_4_name.Text = "Itemname"
+        'slot_17_enchant
+        '
+        Me.slot_17_enchant.AutoSize = True
+        Me.slot_17_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_17_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_17_enchant.Location = New System.Drawing.Point(447, 551)
+        Me.slot_17_enchant.Name = "slot_17_enchant"
+        Me.slot_17_enchant.Size = New System.Drawing.Size(66, 13)
+        Me.slot_17_enchant.TabIndex = 114
+        Me.slot_17_enchant.Text = "Itemenchant"
+        '
+        'slot_17_gem3_pic
+        '
+        Me.slot_17_gem3_pic.Location = New System.Drawing.Point(495, 569)
+        Me.slot_17_gem3_pic.Name = "slot_17_gem3_pic"
+        Me.slot_17_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_17_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_17_gem3_pic.TabIndex = 113
+        Me.slot_17_gem3_pic.TabStop = False
+        '
+        'slot_17_gem2_pic
+        '
+        Me.slot_17_gem2_pic.Location = New System.Drawing.Point(471, 569)
+        Me.slot_17_gem2_pic.Name = "slot_17_gem2_pic"
+        Me.slot_17_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_17_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_17_gem2_pic.TabIndex = 112
+        Me.slot_17_gem2_pic.TabStop = False
+        '
+        'slot_17_gem1_pic
+        '
+        Me.slot_17_gem1_pic.Location = New System.Drawing.Point(447, 569)
+        Me.slot_17_gem1_pic.Name = "slot_17_gem1_pic"
+        Me.slot_17_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_17_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_17_gem1_pic.TabIndex = 111
+        Me.slot_17_gem1_pic.TabStop = False
+        '
+        'slot_17_color
+        '
+        Me.slot_17_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_17_color.Controls.Add(Me.slot_17_pic)
+        Me.slot_17_color.Location = New System.Drawing.Point(379, 530)
+        Me.slot_17_color.Name = "slot_17_color"
+        Me.slot_17_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_17_color.TabIndex = 110
+        '
+        'slot_17_pic
+        '
+        Me.slot_17_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_17_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_17_pic.Name = "slot_17_pic"
+        Me.slot_17_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_17_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_17_pic.TabIndex = 0
+        Me.slot_17_pic.TabStop = False
+        '
+        'slot_17_name
+        '
+        Me.slot_17_name.AutoSize = True
+        Me.slot_17_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_17_name.Location = New System.Drawing.Point(447, 533)
+        Me.slot_17_name.Name = "slot_17_name"
+        Me.slot_17_name.Size = New System.Drawing.Size(71, 15)
+        Me.slot_17_name.TabIndex = 109
+        Me.slot_17_name.Text = "Itemname"
+        '
+        'slot_15_enchant
+        '
+        Me.slot_15_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_15_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_15_enchant.Location = New System.Drawing.Point(9, 551)
+        Me.slot_15_enchant.Name = "slot_15_enchant"
+        Me.slot_15_enchant.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.slot_15_enchant.Size = New System.Drawing.Size(130, 13)
+        Me.slot_15_enchant.TabIndex = 108
+        Me.slot_15_enchant.Text = "Itemenchant"
+        Me.slot_15_enchant.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'slot_15_gem1_pic
+        '
+        Me.slot_15_gem1_pic.Location = New System.Drawing.Point(121, 569)
+        Me.slot_15_gem1_pic.Name = "slot_15_gem1_pic"
+        Me.slot_15_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_15_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_15_gem1_pic.TabIndex = 107
+        Me.slot_15_gem1_pic.TabStop = False
+        '
+        'slot_15_gem2_pic
+        '
+        Me.slot_15_gem2_pic.Location = New System.Drawing.Point(97, 569)
+        Me.slot_15_gem2_pic.Name = "slot_15_gem2_pic"
+        Me.slot_15_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_15_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_15_gem2_pic.TabIndex = 106
+        Me.slot_15_gem2_pic.TabStop = False
+        '
+        'slot_15_gem3_pic
+        '
+        Me.slot_15_gem3_pic.Location = New System.Drawing.Point(73, 569)
+        Me.slot_15_gem3_pic.Name = "slot_15_gem3_pic"
+        Me.slot_15_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_15_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_15_gem3_pic.TabIndex = 105
+        Me.slot_15_gem3_pic.TabStop = False
+        '
+        'slot_15_color
+        '
+        Me.slot_15_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_15_color.Controls.Add(Me.slot_15_pic)
+        Me.slot_15_color.Location = New System.Drawing.Point(150, 530)
+        Me.slot_15_color.Name = "slot_15_color"
+        Me.slot_15_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_15_color.TabIndex = 104
+        '
+        'slot_15_pic
+        '
+        Me.slot_15_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_15_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_15_pic.Name = "slot_15_pic"
+        Me.slot_15_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_15_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_15_pic.TabIndex = 0
+        Me.slot_15_pic.TabStop = False
+        '
+        'slot_15_name
+        '
+        Me.slot_15_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_15_name.Location = New System.Drawing.Point(6, 533)
+        Me.slot_15_name.Name = "slot_15_name"
+        Me.slot_15_name.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.slot_15_name.Size = New System.Drawing.Size(138, 15)
+        Me.slot_15_name.TabIndex = 103
+        Me.slot_15_name.Text = "Itemname"
+        Me.slot_15_name.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'slot_16_enchant
+        '
+        Me.slot_16_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_16_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_16_enchant.Location = New System.Drawing.Point(286, 551)
+        Me.slot_16_enchant.Name = "slot_16_enchant"
+        Me.slot_16_enchant.Size = New System.Drawing.Size(90, 13)
+        Me.slot_16_enchant.TabIndex = 102
+        Me.slot_16_enchant.Text = "Itemenchant"
+        '
+        'slot_16_gem3_pic
+        '
+        Me.slot_16_gem3_pic.Location = New System.Drawing.Point(334, 569)
+        Me.slot_16_gem3_pic.Name = "slot_16_gem3_pic"
+        Me.slot_16_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_16_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_16_gem3_pic.TabIndex = 101
+        Me.slot_16_gem3_pic.TabStop = False
+        '
+        'slot_16_gem2_pic
+        '
+        Me.slot_16_gem2_pic.Location = New System.Drawing.Point(310, 569)
+        Me.slot_16_gem2_pic.Name = "slot_16_gem2_pic"
+        Me.slot_16_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_16_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_16_gem2_pic.TabIndex = 100
+        Me.slot_16_gem2_pic.TabStop = False
+        '
+        'slot_16_gem1_pic
+        '
+        Me.slot_16_gem1_pic.Location = New System.Drawing.Point(286, 569)
+        Me.slot_16_gem1_pic.Name = "slot_16_gem1_pic"
+        Me.slot_16_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_16_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_16_gem1_pic.TabIndex = 99
+        Me.slot_16_gem1_pic.TabStop = False
+        '
+        'slot_16_color
+        '
+        Me.slot_16_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_16_color.Controls.Add(Me.slot_16_pic)
+        Me.slot_16_color.Location = New System.Drawing.Point(218, 530)
+        Me.slot_16_color.Name = "slot_16_color"
+        Me.slot_16_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_16_color.TabIndex = 98
+        '
+        'slot_16_pic
+        '
+        Me.slot_16_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_16_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_16_pic.Name = "slot_16_pic"
+        Me.slot_16_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_16_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_16_pic.TabIndex = 0
+        Me.slot_16_pic.TabStop = False
+        '
+        'slot_16_name
+        '
+        Me.slot_16_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_16_name.Location = New System.Drawing.Point(286, 533)
+        Me.slot_16_name.Name = "slot_16_name"
+        Me.slot_16_name.Size = New System.Drawing.Size(90, 15)
+        Me.slot_16_name.TabIndex = 97
+        Me.slot_16_name.Text = "Itemname"
         '
         'slot_13_enchant
         '
@@ -1463,257 +1151,806 @@ Partial Class CharacterOverview
         Me.slot_9_name.Text = "Itemname"
         Me.slot_9_name.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'slot_16_enchant
+        'slot_8_enchant
         '
-        Me.slot_16_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_16_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_16_enchant.Location = New System.Drawing.Point(286, 551)
-        Me.slot_16_enchant.Name = "slot_16_enchant"
-        Me.slot_16_enchant.Size = New System.Drawing.Size(90, 13)
-        Me.slot_16_enchant.TabIndex = 102
-        Me.slot_16_enchant.Text = "Itemenchant"
+        Me.slot_8_enchant.AutoSize = True
+        Me.slot_8_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_8_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_8_enchant.Location = New System.Drawing.Point(74, 483)
+        Me.slot_8_enchant.Name = "slot_8_enchant"
+        Me.slot_8_enchant.Size = New System.Drawing.Size(66, 13)
+        Me.slot_8_enchant.TabIndex = 48
+        Me.slot_8_enchant.Text = "Itemenchant"
         '
-        'slot_16_gem3_pic
+        'slot_8_gem3_pic
         '
-        Me.slot_16_gem3_pic.Location = New System.Drawing.Point(334, 569)
-        Me.slot_16_gem3_pic.Name = "slot_16_gem3_pic"
-        Me.slot_16_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_16_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_16_gem3_pic.TabIndex = 101
-        Me.slot_16_gem3_pic.TabStop = False
+        Me.slot_8_gem3_pic.Location = New System.Drawing.Point(122, 501)
+        Me.slot_8_gem3_pic.Name = "slot_8_gem3_pic"
+        Me.slot_8_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_8_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_8_gem3_pic.TabIndex = 47
+        Me.slot_8_gem3_pic.TabStop = False
         '
-        'slot_16_gem2_pic
+        'slot_8_gem2_pic
         '
-        Me.slot_16_gem2_pic.Location = New System.Drawing.Point(310, 569)
-        Me.slot_16_gem2_pic.Name = "slot_16_gem2_pic"
-        Me.slot_16_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_16_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_16_gem2_pic.TabIndex = 100
-        Me.slot_16_gem2_pic.TabStop = False
+        Me.slot_8_gem2_pic.Location = New System.Drawing.Point(98, 501)
+        Me.slot_8_gem2_pic.Name = "slot_8_gem2_pic"
+        Me.slot_8_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_8_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_8_gem2_pic.TabIndex = 46
+        Me.slot_8_gem2_pic.TabStop = False
         '
-        'slot_16_gem1_pic
+        'slot_8_gem1_pic
         '
-        Me.slot_16_gem1_pic.Location = New System.Drawing.Point(286, 569)
-        Me.slot_16_gem1_pic.Name = "slot_16_gem1_pic"
-        Me.slot_16_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_16_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_16_gem1_pic.TabIndex = 99
-        Me.slot_16_gem1_pic.TabStop = False
+        Me.slot_8_gem1_pic.Location = New System.Drawing.Point(74, 501)
+        Me.slot_8_gem1_pic.Name = "slot_8_gem1_pic"
+        Me.slot_8_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_8_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_8_gem1_pic.TabIndex = 45
+        Me.slot_8_gem1_pic.TabStop = False
         '
-        'slot_16_color
+        'slot_8_color
         '
-        Me.slot_16_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_16_color.Controls.Add(Me.slot_16_pic)
-        Me.slot_16_color.Location = New System.Drawing.Point(218, 530)
-        Me.slot_16_color.Name = "slot_16_color"
-        Me.slot_16_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_16_color.TabIndex = 98
+        Me.slot_8_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_8_color.Controls.Add(Me.slot_8_pic)
+        Me.slot_8_color.Location = New System.Drawing.Point(6, 462)
+        Me.slot_8_color.Name = "slot_8_color"
+        Me.slot_8_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_8_color.TabIndex = 44
         '
-        'slot_16_pic
+        'slot_8_pic
         '
-        Me.slot_16_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_16_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_16_pic.Name = "slot_16_pic"
-        Me.slot_16_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_16_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_16_pic.TabIndex = 0
-        Me.slot_16_pic.TabStop = False
+        Me.slot_8_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_8_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_8_pic.Name = "slot_8_pic"
+        Me.slot_8_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_8_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_8_pic.TabIndex = 0
+        Me.slot_8_pic.TabStop = False
         '
-        'slot_16_name
+        'slot_8_name
         '
-        Me.slot_16_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_16_name.Location = New System.Drawing.Point(286, 533)
-        Me.slot_16_name.Name = "slot_16_name"
-        Me.slot_16_name.Size = New System.Drawing.Size(90, 15)
-        Me.slot_16_name.TabIndex = 97
-        Me.slot_16_name.Text = "Itemname"
+        Me.slot_8_name.AutoSize = True
+        Me.slot_8_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_8_name.Location = New System.Drawing.Point(74, 465)
+        Me.slot_8_name.Name = "slot_8_name"
+        Me.slot_8_name.Size = New System.Drawing.Size(71, 15)
+        Me.slot_8_name.TabIndex = 43
+        Me.slot_8_name.Text = "Itemname"
         '
-        'slot_15_enchant
+        'slot_18_enchant
         '
-        Me.slot_15_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_15_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_15_enchant.Location = New System.Drawing.Point(9, 551)
-        Me.slot_15_enchant.Name = "slot_15_enchant"
-        Me.slot_15_enchant.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.slot_15_enchant.Size = New System.Drawing.Size(130, 13)
-        Me.slot_15_enchant.TabIndex = 108
-        Me.slot_15_enchant.Text = "Itemenchant"
-        Me.slot_15_enchant.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.slot_18_enchant.AutoSize = True
+        Me.slot_18_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_18_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_18_enchant.Location = New System.Drawing.Point(74, 418)
+        Me.slot_18_enchant.Name = "slot_18_enchant"
+        Me.slot_18_enchant.Size = New System.Drawing.Size(66, 13)
+        Me.slot_18_enchant.TabIndex = 42
+        Me.slot_18_enchant.Text = "Itemenchant"
         '
-        'slot_15_gem1_pic
+        'slot_18_gem3_pic
         '
-        Me.slot_15_gem1_pic.Location = New System.Drawing.Point(121, 569)
-        Me.slot_15_gem1_pic.Name = "slot_15_gem1_pic"
-        Me.slot_15_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_15_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_15_gem1_pic.TabIndex = 107
-        Me.slot_15_gem1_pic.TabStop = False
+        Me.slot_18_gem3_pic.Location = New System.Drawing.Point(122, 436)
+        Me.slot_18_gem3_pic.Name = "slot_18_gem3_pic"
+        Me.slot_18_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_18_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_18_gem3_pic.TabIndex = 41
+        Me.slot_18_gem3_pic.TabStop = False
         '
-        'slot_15_gem2_pic
+        'slot_18_gem2_pic
         '
-        Me.slot_15_gem2_pic.Location = New System.Drawing.Point(97, 569)
-        Me.slot_15_gem2_pic.Name = "slot_15_gem2_pic"
-        Me.slot_15_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_15_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_15_gem2_pic.TabIndex = 106
-        Me.slot_15_gem2_pic.TabStop = False
+        Me.slot_18_gem2_pic.Location = New System.Drawing.Point(98, 436)
+        Me.slot_18_gem2_pic.Name = "slot_18_gem2_pic"
+        Me.slot_18_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_18_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_18_gem2_pic.TabIndex = 40
+        Me.slot_18_gem2_pic.TabStop = False
         '
-        'slot_15_gem3_pic
+        'slot_18_gem1_pic
         '
-        Me.slot_15_gem3_pic.Location = New System.Drawing.Point(73, 569)
-        Me.slot_15_gem3_pic.Name = "slot_15_gem3_pic"
-        Me.slot_15_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_15_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_15_gem3_pic.TabIndex = 105
-        Me.slot_15_gem3_pic.TabStop = False
+        Me.slot_18_gem1_pic.Location = New System.Drawing.Point(74, 436)
+        Me.slot_18_gem1_pic.Name = "slot_18_gem1_pic"
+        Me.slot_18_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_18_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_18_gem1_pic.TabIndex = 39
+        Me.slot_18_gem1_pic.TabStop = False
         '
-        'slot_15_color
+        'slot_18_color
         '
-        Me.slot_15_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_15_color.Controls.Add(Me.slot_15_pic)
-        Me.slot_15_color.Location = New System.Drawing.Point(150, 530)
-        Me.slot_15_color.Name = "slot_15_color"
-        Me.slot_15_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_15_color.TabIndex = 104
+        Me.slot_18_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_18_color.Controls.Add(Me.slot_18_pic)
+        Me.slot_18_color.Location = New System.Drawing.Point(6, 397)
+        Me.slot_18_color.Name = "slot_18_color"
+        Me.slot_18_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_18_color.TabIndex = 38
         '
-        'slot_15_pic
+        'slot_18_pic
         '
-        Me.slot_15_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_15_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_15_pic.Name = "slot_15_pic"
-        Me.slot_15_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_15_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_15_pic.TabIndex = 0
-        Me.slot_15_pic.TabStop = False
+        Me.slot_18_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_18_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_18_pic.Name = "slot_18_pic"
+        Me.slot_18_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_18_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_18_pic.TabIndex = 0
+        Me.slot_18_pic.TabStop = False
         '
-        'slot_15_name
+        'slot_18_name
         '
-        Me.slot_15_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_15_name.Location = New System.Drawing.Point(6, 533)
-        Me.slot_15_name.Name = "slot_15_name"
-        Me.slot_15_name.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.slot_15_name.Size = New System.Drawing.Size(138, 15)
-        Me.slot_15_name.TabIndex = 103
-        Me.slot_15_name.Text = "Itemname"
-        Me.slot_15_name.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.slot_18_name.AutoSize = True
+        Me.slot_18_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_18_name.Location = New System.Drawing.Point(74, 400)
+        Me.slot_18_name.Name = "slot_18_name"
+        Me.slot_18_name.Size = New System.Drawing.Size(71, 15)
+        Me.slot_18_name.TabIndex = 37
+        Me.slot_18_name.Text = "Itemname"
         '
-        'slot_17_enchant
+        'slot_3_enchant
         '
-        Me.slot_17_enchant.AutoSize = True
-        Me.slot_17_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_17_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_17_enchant.Location = New System.Drawing.Point(447, 551)
-        Me.slot_17_enchant.Name = "slot_17_enchant"
-        Me.slot_17_enchant.Size = New System.Drawing.Size(66, 13)
-        Me.slot_17_enchant.TabIndex = 114
-        Me.slot_17_enchant.Text = "Itemenchant"
+        Me.slot_3_enchant.AutoSize = True
+        Me.slot_3_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_3_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_3_enchant.Location = New System.Drawing.Point(74, 353)
+        Me.slot_3_enchant.Name = "slot_3_enchant"
+        Me.slot_3_enchant.Size = New System.Drawing.Size(66, 13)
+        Me.slot_3_enchant.TabIndex = 36
+        Me.slot_3_enchant.Text = "Itemenchant"
         '
-        'slot_17_gem3_pic
+        'slot_3_gem3_pic
         '
-        Me.slot_17_gem3_pic.Location = New System.Drawing.Point(495, 569)
-        Me.slot_17_gem3_pic.Name = "slot_17_gem3_pic"
-        Me.slot_17_gem3_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_17_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_17_gem3_pic.TabIndex = 113
-        Me.slot_17_gem3_pic.TabStop = False
+        Me.slot_3_gem3_pic.Location = New System.Drawing.Point(122, 371)
+        Me.slot_3_gem3_pic.Name = "slot_3_gem3_pic"
+        Me.slot_3_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_3_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_3_gem3_pic.TabIndex = 35
+        Me.slot_3_gem3_pic.TabStop = False
         '
-        'slot_17_gem2_pic
+        'slot_3_gem2_pic
         '
-        Me.slot_17_gem2_pic.Location = New System.Drawing.Point(471, 569)
-        Me.slot_17_gem2_pic.Name = "slot_17_gem2_pic"
-        Me.slot_17_gem2_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_17_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_17_gem2_pic.TabIndex = 112
-        Me.slot_17_gem2_pic.TabStop = False
+        Me.slot_3_gem2_pic.Location = New System.Drawing.Point(98, 371)
+        Me.slot_3_gem2_pic.Name = "slot_3_gem2_pic"
+        Me.slot_3_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_3_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_3_gem2_pic.TabIndex = 34
+        Me.slot_3_gem2_pic.TabStop = False
         '
-        'slot_17_gem1_pic
+        'slot_3_gem1_pic
         '
-        Me.slot_17_gem1_pic.Location = New System.Drawing.Point(447, 569)
-        Me.slot_17_gem1_pic.Name = "slot_17_gem1_pic"
-        Me.slot_17_gem1_pic.Size = New System.Drawing.Size(20, 20)
-        Me.slot_17_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_17_gem1_pic.TabIndex = 111
-        Me.slot_17_gem1_pic.TabStop = False
+        Me.slot_3_gem1_pic.Location = New System.Drawing.Point(74, 371)
+        Me.slot_3_gem1_pic.Name = "slot_3_gem1_pic"
+        Me.slot_3_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_3_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_3_gem1_pic.TabIndex = 33
+        Me.slot_3_gem1_pic.TabStop = False
         '
-        'slot_17_color
+        'slot_3_color
         '
-        Me.slot_17_color.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.slot_17_color.Controls.Add(Me.slot_17_pic)
-        Me.slot_17_color.Location = New System.Drawing.Point(379, 530)
-        Me.slot_17_color.Name = "slot_17_color"
-        Me.slot_17_color.Size = New System.Drawing.Size(62, 62)
-        Me.slot_17_color.TabIndex = 110
+        Me.slot_3_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_3_color.Controls.Add(Me.slot_3_pic)
+        Me.slot_3_color.Location = New System.Drawing.Point(6, 332)
+        Me.slot_3_color.Name = "slot_3_color"
+        Me.slot_3_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_3_color.TabIndex = 32
         '
-        'slot_17_pic
+        'slot_3_pic
         '
-        Me.slot_17_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
-        Me.slot_17_pic.Location = New System.Drawing.Point(3, 3)
-        Me.slot_17_pic.Name = "slot_17_pic"
-        Me.slot_17_pic.Size = New System.Drawing.Size(56, 56)
-        Me.slot_17_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.slot_17_pic.TabIndex = 0
-        Me.slot_17_pic.TabStop = False
+        Me.slot_3_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_3_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_3_pic.Name = "slot_3_pic"
+        Me.slot_3_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_3_pic.TabIndex = 0
+        Me.slot_3_pic.TabStop = False
         '
-        'slot_17_name
+        'slot_3_name
         '
-        Me.slot_17_name.AutoSize = True
-        Me.slot_17_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_17_name.Location = New System.Drawing.Point(447, 533)
-        Me.slot_17_name.Name = "slot_17_name"
-        Me.slot_17_name.Size = New System.Drawing.Size(71, 15)
-        Me.slot_17_name.TabIndex = 109
-        Me.slot_17_name.Text = "Itemname"
+        Me.slot_3_name.AutoSize = True
+        Me.slot_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_3_name.Location = New System.Drawing.Point(74, 335)
+        Me.slot_3_name.Name = "slot_3_name"
+        Me.slot_3_name.Size = New System.Drawing.Size(71, 15)
+        Me.slot_3_name.TabIndex = 31
+        Me.slot_3_name.Text = "Itemname"
+        '
+        'slot_4_enchant
+        '
+        Me.slot_4_enchant.AutoSize = True
+        Me.slot_4_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_4_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_4_enchant.Location = New System.Drawing.Point(74, 288)
+        Me.slot_4_enchant.Name = "slot_4_enchant"
+        Me.slot_4_enchant.Size = New System.Drawing.Size(66, 13)
+        Me.slot_4_enchant.TabIndex = 30
+        Me.slot_4_enchant.Text = "Itemenchant"
+        '
+        'slot_4_gem3_pic
+        '
+        Me.slot_4_gem3_pic.Location = New System.Drawing.Point(122, 306)
+        Me.slot_4_gem3_pic.Name = "slot_4_gem3_pic"
+        Me.slot_4_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_4_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_4_gem3_pic.TabIndex = 29
+        Me.slot_4_gem3_pic.TabStop = False
+        '
+        'slot_4_gem2_pic
+        '
+        Me.slot_4_gem2_pic.Location = New System.Drawing.Point(98, 306)
+        Me.slot_4_gem2_pic.Name = "slot_4_gem2_pic"
+        Me.slot_4_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_4_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_4_gem2_pic.TabIndex = 28
+        Me.slot_4_gem2_pic.TabStop = False
+        '
+        'slot_4_gem1_pic
+        '
+        Me.slot_4_gem1_pic.Location = New System.Drawing.Point(74, 306)
+        Me.slot_4_gem1_pic.Name = "slot_4_gem1_pic"
+        Me.slot_4_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_4_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_4_gem1_pic.TabIndex = 27
+        Me.slot_4_gem1_pic.TabStop = False
+        '
+        'slot_4_color
+        '
+        Me.slot_4_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_4_color.Controls.Add(Me.slot_4_pic)
+        Me.slot_4_color.Location = New System.Drawing.Point(6, 267)
+        Me.slot_4_color.Name = "slot_4_color"
+        Me.slot_4_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_4_color.TabIndex = 26
+        '
+        'slot_4_pic
+        '
+        Me.slot_4_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_4_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_4_pic.Name = "slot_4_pic"
+        Me.slot_4_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_4_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_4_pic.TabIndex = 0
+        Me.slot_4_pic.TabStop = False
+        '
+        'slot_4_name
+        '
+        Me.slot_4_name.AutoSize = True
+        Me.slot_4_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_4_name.Location = New System.Drawing.Point(74, 270)
+        Me.slot_4_name.Name = "slot_4_name"
+        Me.slot_4_name.Size = New System.Drawing.Size(71, 15)
+        Me.slot_4_name.TabIndex = 25
+        Me.slot_4_name.Text = "Itemname"
+        '
+        'slot_14_enchant
+        '
+        Me.slot_14_enchant.AutoSize = True
+        Me.slot_14_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_14_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_14_enchant.Location = New System.Drawing.Point(74, 223)
+        Me.slot_14_enchant.Name = "slot_14_enchant"
+        Me.slot_14_enchant.Size = New System.Drawing.Size(66, 13)
+        Me.slot_14_enchant.TabIndex = 24
+        Me.slot_14_enchant.Text = "Itemenchant"
+        '
+        'slot_14_gem3_pic
+        '
+        Me.slot_14_gem3_pic.Location = New System.Drawing.Point(122, 241)
+        Me.slot_14_gem3_pic.Name = "slot_14_gem3_pic"
+        Me.slot_14_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_14_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_14_gem3_pic.TabIndex = 23
+        Me.slot_14_gem3_pic.TabStop = False
+        '
+        'slot_14_gem2_pic
+        '
+        Me.slot_14_gem2_pic.Location = New System.Drawing.Point(98, 241)
+        Me.slot_14_gem2_pic.Name = "slot_14_gem2_pic"
+        Me.slot_14_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_14_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_14_gem2_pic.TabIndex = 22
+        Me.slot_14_gem2_pic.TabStop = False
+        '
+        'slot_14_gem1_pic
+        '
+        Me.slot_14_gem1_pic.Location = New System.Drawing.Point(74, 241)
+        Me.slot_14_gem1_pic.Name = "slot_14_gem1_pic"
+        Me.slot_14_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_14_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_14_gem1_pic.TabIndex = 21
+        Me.slot_14_gem1_pic.TabStop = False
+        '
+        'slot_14_color
+        '
+        Me.slot_14_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_14_color.Controls.Add(Me.slot_14_pic)
+        Me.slot_14_color.Location = New System.Drawing.Point(6, 202)
+        Me.slot_14_color.Name = "slot_14_color"
+        Me.slot_14_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_14_color.TabIndex = 20
+        '
+        'slot_14_pic
+        '
+        Me.slot_14_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_14_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_14_pic.Name = "slot_14_pic"
+        Me.slot_14_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_14_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_14_pic.TabIndex = 0
+        Me.slot_14_pic.TabStop = False
+        '
+        'slot_14_name
+        '
+        Me.slot_14_name.AutoSize = True
+        Me.slot_14_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_14_name.Location = New System.Drawing.Point(74, 205)
+        Me.slot_14_name.Name = "slot_14_name"
+        Me.slot_14_name.Size = New System.Drawing.Size(71, 15)
+        Me.slot_14_name.TabIndex = 19
+        Me.slot_14_name.Text = "Itemname"
+        '
+        'slot_2_enchant
+        '
+        Me.slot_2_enchant.AutoSize = True
+        Me.slot_2_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_2_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_2_enchant.Location = New System.Drawing.Point(74, 158)
+        Me.slot_2_enchant.Name = "slot_2_enchant"
+        Me.slot_2_enchant.Size = New System.Drawing.Size(66, 13)
+        Me.slot_2_enchant.TabIndex = 18
+        Me.slot_2_enchant.Text = "Itemenchant"
+        '
+        'slot_2_gem3_pic
+        '
+        Me.slot_2_gem3_pic.Location = New System.Drawing.Point(122, 176)
+        Me.slot_2_gem3_pic.Name = "slot_2_gem3_pic"
+        Me.slot_2_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_2_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_2_gem3_pic.TabIndex = 17
+        Me.slot_2_gem3_pic.TabStop = False
+        '
+        'slot_2_gem2_pic
+        '
+        Me.slot_2_gem2_pic.Location = New System.Drawing.Point(98, 176)
+        Me.slot_2_gem2_pic.Name = "slot_2_gem2_pic"
+        Me.slot_2_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_2_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_2_gem2_pic.TabIndex = 16
+        Me.slot_2_gem2_pic.TabStop = False
+        '
+        'slot_2_gem1_pic
+        '
+        Me.slot_2_gem1_pic.Location = New System.Drawing.Point(74, 176)
+        Me.slot_2_gem1_pic.Name = "slot_2_gem1_pic"
+        Me.slot_2_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_2_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_2_gem1_pic.TabIndex = 15
+        Me.slot_2_gem1_pic.TabStop = False
+        '
+        'slot_2_color
+        '
+        Me.slot_2_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_2_color.Controls.Add(Me.slot_2_pic)
+        Me.slot_2_color.Location = New System.Drawing.Point(6, 137)
+        Me.slot_2_color.Name = "slot_2_color"
+        Me.slot_2_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_2_color.TabIndex = 14
+        '
+        'slot_2_pic
+        '
+        Me.slot_2_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_2_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_2_pic.Name = "slot_2_pic"
+        Me.slot_2_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_2_pic.TabIndex = 0
+        Me.slot_2_pic.TabStop = False
+        '
+        'slot_2_name
+        '
+        Me.slot_2_name.AutoSize = True
+        Me.slot_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_2_name.Location = New System.Drawing.Point(74, 140)
+        Me.slot_2_name.Name = "slot_2_name"
+        Me.slot_2_name.Size = New System.Drawing.Size(71, 15)
+        Me.slot_2_name.TabIndex = 13
+        Me.slot_2_name.Text = "Itemname"
+        '
+        'slot_1_enchant
+        '
+        Me.slot_1_enchant.AutoSize = True
+        Me.slot_1_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_1_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_1_enchant.Location = New System.Drawing.Point(74, 93)
+        Me.slot_1_enchant.Name = "slot_1_enchant"
+        Me.slot_1_enchant.Size = New System.Drawing.Size(66, 13)
+        Me.slot_1_enchant.TabIndex = 12
+        Me.slot_1_enchant.Text = "Itemenchant"
+        '
+        'slot_1_gem3_pic
+        '
+        Me.slot_1_gem3_pic.Location = New System.Drawing.Point(122, 111)
+        Me.slot_1_gem3_pic.Name = "slot_1_gem3_pic"
+        Me.slot_1_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_1_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_1_gem3_pic.TabIndex = 11
+        Me.slot_1_gem3_pic.TabStop = False
+        '
+        'slot_1_gem2_pic
+        '
+        Me.slot_1_gem2_pic.Location = New System.Drawing.Point(98, 111)
+        Me.slot_1_gem2_pic.Name = "slot_1_gem2_pic"
+        Me.slot_1_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_1_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_1_gem2_pic.TabIndex = 10
+        Me.slot_1_gem2_pic.TabStop = False
+        '
+        'slot_1_gem1_pic
+        '
+        Me.slot_1_gem1_pic.Location = New System.Drawing.Point(74, 111)
+        Me.slot_1_gem1_pic.Name = "slot_1_gem1_pic"
+        Me.slot_1_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_1_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_1_gem1_pic.TabIndex = 9
+        Me.slot_1_gem1_pic.TabStop = False
+        '
+        'slot_1_color
+        '
+        Me.slot_1_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_1_color.Controls.Add(Me.slot_1_pic)
+        Me.slot_1_color.Location = New System.Drawing.Point(6, 72)
+        Me.slot_1_color.Name = "slot_1_color"
+        Me.slot_1_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_1_color.TabIndex = 8
+        '
+        'slot_1_pic
+        '
+        Me.slot_1_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_1_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_1_pic.Name = "slot_1_pic"
+        Me.slot_1_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_1_pic.TabIndex = 0
+        Me.slot_1_pic.TabStop = False
+        '
+        'slot_1_name
+        '
+        Me.slot_1_name.AutoSize = True
+        Me.slot_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_1_name.Location = New System.Drawing.Point(74, 75)
+        Me.slot_1_name.Name = "slot_1_name"
+        Me.slot_1_name.Size = New System.Drawing.Size(71, 15)
+        Me.slot_1_name.TabIndex = 7
+        Me.slot_1_name.Text = "Itemname"
+        '
+        'slot_0_enchant
+        '
+        Me.slot_0_enchant.AutoSize = True
+        Me.slot_0_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_0_enchant.ForeColor = System.Drawing.Color.Lime
+        Me.slot_0_enchant.Location = New System.Drawing.Point(74, 28)
+        Me.slot_0_enchant.Name = "slot_0_enchant"
+        Me.slot_0_enchant.Size = New System.Drawing.Size(66, 13)
+        Me.slot_0_enchant.TabIndex = 6
+        Me.slot_0_enchant.Text = "Itemenchant"
+        '
+        'slot_0_gem3_pic
+        '
+        Me.slot_0_gem3_pic.Location = New System.Drawing.Point(122, 46)
+        Me.slot_0_gem3_pic.Name = "slot_0_gem3_pic"
+        Me.slot_0_gem3_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_0_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_0_gem3_pic.TabIndex = 5
+        Me.slot_0_gem3_pic.TabStop = False
+        '
+        'slot_0_gem2_pic
+        '
+        Me.slot_0_gem2_pic.Location = New System.Drawing.Point(98, 46)
+        Me.slot_0_gem2_pic.Name = "slot_0_gem2_pic"
+        Me.slot_0_gem2_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_0_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_0_gem2_pic.TabIndex = 4
+        Me.slot_0_gem2_pic.TabStop = False
+        '
+        'slot_0_gem1_pic
+        '
+        Me.slot_0_gem1_pic.Location = New System.Drawing.Point(74, 46)
+        Me.slot_0_gem1_pic.Name = "slot_0_gem1_pic"
+        Me.slot_0_gem1_pic.Size = New System.Drawing.Size(20, 20)
+        Me.slot_0_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_0_gem1_pic.TabIndex = 3
+        Me.slot_0_gem1_pic.TabStop = False
+        '
+        'slot_0_color
+        '
+        Me.slot_0_color.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.slot_0_color.Controls.Add(Me.slot_0_pic)
+        Me.slot_0_color.Location = New System.Drawing.Point(6, 7)
+        Me.slot_0_color.Name = "slot_0_color"
+        Me.slot_0_color.Size = New System.Drawing.Size(62, 62)
+        Me.slot_0_color.TabIndex = 2
+        '
+        'slot_0_pic
+        '
+        Me.slot_0_pic.Image = Global.Namcore_Studio.My.Resources.Resources.empty
+        Me.slot_0_pic.Location = New System.Drawing.Point(3, 3)
+        Me.slot_0_pic.Name = "slot_0_pic"
+        Me.slot_0_pic.Size = New System.Drawing.Size(56, 56)
+        Me.slot_0_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.slot_0_pic.TabIndex = 0
+        Me.slot_0_pic.TabStop = False
+        '
+        'slot_0_name
+        '
+        Me.slot_0_name.AutoSize = True
+        Me.slot_0_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.slot_0_name.Location = New System.Drawing.Point(74, 10)
+        Me.slot_0_name.Name = "slot_0_name"
+        Me.slot_0_name.Size = New System.Drawing.Size(71, 15)
+        Me.slot_0_name.TabIndex = 1
+        Me.slot_0_name.Text = "Itemname"
+        '
+        'charname
+        '
+        Me.charname.AutoSize = True
+        Me.charname.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.charname.Location = New System.Drawing.Point(14, 16)
+        Me.charname.Name = "charname"
+        Me.charname.Size = New System.Drawing.Size(132, 20)
+        Me.charname.TabIndex = 1
+        Me.charname.Text = "Charactername"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(555, 46)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(50, 16)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Level:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(555, 72)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(49, 16)
+        Me.Label3.TabIndex = 3
+        Me.Label3.Text = "Race:"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(555, 98)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(51, 16)
+        Me.Label4.TabIndex = 4
+        Me.Label4.Text = "Class:"
+        '
+        'level_lbl
+        '
+        Me.level_lbl.AutoSize = True
+        Me.level_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.level_lbl.Location = New System.Drawing.Point(609, 46)
+        Me.level_lbl.Name = "level_lbl"
+        Me.level_lbl.Size = New System.Drawing.Size(23, 15)
+        Me.level_lbl.TabIndex = 5
+        Me.level_lbl.Text = "80"
+        '
+        'race_lbl
+        '
+        Me.race_lbl.AutoSize = True
+        Me.race_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.race_lbl.Location = New System.Drawing.Point(609, 72)
+        Me.race_lbl.Name = "race_lbl"
+        Me.race_lbl.Size = New System.Drawing.Size(60, 15)
+        Me.race_lbl.TabIndex = 6
+        Me.race_lbl.Text = "Bloodelf"
+        '
+        'class_lbl
+        '
+        Me.class_lbl.AutoSize = True
+        Me.class_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.class_lbl.Location = New System.Drawing.Point(609, 98)
+        Me.class_lbl.Name = "class_lbl"
+        Me.class_lbl.Size = New System.Drawing.Size(50, 15)
+        Me.class_lbl.TabIndex = 7
+        Me.class_lbl.Text = "Hunter"
+        '
+        'load_bt
+        '
+        Me.load_bt.BackColor = System.Drawing.Color.DimGray
+        Me.load_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.load_bt.Enabled = False
+        Me.load_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.load_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.load_bt.Location = New System.Drawing.Point(558, 454)
+        Me.load_bt.Name = "load_bt"
+        Me.load_bt.Size = New System.Drawing.Size(155, 34)
+        Me.load_bt.TabIndex = 164
+        Me.load_bt.Text = "Achievements"
+        Me.load_bt.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.DimGray
+        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button1.Enabled = False
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Button1.Location = New System.Drawing.Point(558, 415)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(155, 34)
+        Me.Button1.TabIndex = 165
+        Me.Button1.Text = "Glyphs"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.DimGray
+        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button2.Enabled = False
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Button2.Location = New System.Drawing.Point(558, 494)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(155, 34)
+        Me.Button2.TabIndex = 166
+        Me.Button2.Text = "Reputation"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.DimGray
+        Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button3.Enabled = False
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Button3.Location = New System.Drawing.Point(558, 534)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(155, 34)
+        Me.Button3.TabIndex = 167
+        Me.Button3.Text = "Inventory"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.DimGray
+        Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button4.Enabled = False
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Button4.Location = New System.Drawing.Point(558, 574)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(155, 34)
+        Me.Button4.TabIndex = 168
+        Me.Button4.Text = "Spells/Skills"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Button5
+        '
+        Me.Button5.BackColor = System.Drawing.Color.DimGray
+        Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button5.Enabled = False
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Button5.Location = New System.Drawing.Point(558, 614)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(155, 34)
+        Me.Button5.TabIndex = 169
+        Me.Button5.Text = "Professions"
+        Me.Button5.UseVisualStyleBackColor = False
+        '
+        'Button6
+        '
+        Me.Button6.BackColor = System.Drawing.Color.DimGray
+        Me.Button6.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button6.Enabled = False
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Button6.Location = New System.Drawing.Point(334, 654)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(155, 34)
+        Me.Button6.TabIndex = 170
+        Me.Button6.Text = "Exit"
+        Me.Button6.UseVisualStyleBackColor = False
+        '
+        'Button7
+        '
+        Me.Button7.BackColor = System.Drawing.Color.DimGray
+        Me.Button7.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button7.Enabled = False
+        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button7.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Button7.Location = New System.Drawing.Point(173, 654)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(155, 34)
+        Me.Button7.TabIndex = 171
+        Me.Button7.Text = "Save changes"
+        Me.Button7.UseVisualStyleBackColor = False
+        '
+        'Button8
+        '
+        Me.Button8.BackColor = System.Drawing.Color.DimGray
+        Me.Button8.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button8.Enabled = False
+        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button8.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Button8.Location = New System.Drawing.Point(12, 654)
+        Me.Button8.Name = "Button8"
+        Me.Button8.Size = New System.Drawing.Size(155, 34)
+        Me.Button8.TabIndex = 172
+        Me.Button8.Text = "Reset"
+        Me.Button8.UseVisualStyleBackColor = False
+        '
+        'changePanel
+        '
+        Me.changePanel.Controls.Add(Me.PictureBox1)
+        Me.changePanel.Controls.Add(Me.TextBox1)
+        Me.changePanel.Location = New System.Drawing.Point(624, 251)
+        Me.changePanel.Name = "changePanel"
+        Me.changePanel.Size = New System.Drawing.Size(128, 24)
+        Me.changePanel.TabIndex = 173
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(3, 2)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.TabIndex = 0
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PictureBox1.Image = Global.Namcore_Studio.My.Resources.Resources.Refresh_icon
+        Me.PictureBox1.Location = New System.Drawing.Point(106, 4)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(16, 16)
+        Me.PictureBox1.TabIndex = 174
+        Me.PictureBox1.TabStop = False
         '
         'CharacterOverview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(785, 660)
+        Me.ClientSize = New System.Drawing.Size(804, 694)
+        Me.Controls.Add(Me.changePanel)
+        Me.Controls.Add(Me.Button8)
+        Me.Controls.Add(Me.Button7)
+        Me.Controls.Add(Me.Button6)
+        Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.load_bt)
+        Me.Controls.Add(Me.class_lbl)
+        Me.Controls.Add(Me.race_lbl)
+        Me.Controls.Add(Me.level_lbl)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.charname)
         Me.Controls.Add(Me.InventoryPanel)
         Me.Name = "CharacterOverview"
         Me.Text = "CharacterOverview"
         Me.InventoryPanel.ResumeLayout(False)
         Me.InventoryPanel.PerformLayout()
-        CType(Me.slot_0_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_0_color.ResumeLayout(False)
-        CType(Me.slot_0_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_0_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_0_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_1_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_1_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_1_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_1_color.ResumeLayout(False)
-        CType(Me.slot_1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_14_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_14_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_14_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_14_color.ResumeLayout(False)
-        CType(Me.slot_14_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_2_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_2_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_2_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_2_color.ResumeLayout(False)
-        CType(Me.slot_2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_8_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_8_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_8_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_8_color.ResumeLayout(False)
-        CType(Me.slot_8_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_18_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_18_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_18_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_18_color.ResumeLayout(False)
-        CType(Me.slot_18_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_3_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_3_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_3_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_3_color.ResumeLayout(False)
-        CType(Me.slot_3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_4_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_4_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_4_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_4_color.ResumeLayout(False)
-        CType(Me.slot_4_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_17_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_17_color.ResumeLayout(False)
+        CType(Me.slot_17_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_15_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_15_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_15_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_15_color.ResumeLayout(False)
+        CType(Me.slot_15_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_16_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_16_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_16_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_16_color.ResumeLayout(False)
+        CType(Me.slot_16_pic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.slot_13_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.slot_13_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.slot_13_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1754,22 +1991,51 @@ Partial Class CharacterOverview
         CType(Me.slot_9_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.slot_9_color.ResumeLayout(False)
         CType(Me.slot_9_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_16_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_16_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_16_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_16_color.ResumeLayout(False)
-        CType(Me.slot_16_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_15_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_15_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_15_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_15_color.ResumeLayout(False)
-        CType(Me.slot_15_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.slot_17_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.slot_17_color.ResumeLayout(False)
-        CType(Me.slot_17_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_8_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_8_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_8_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_8_color.ResumeLayout(False)
+        CType(Me.slot_8_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_18_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_18_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_18_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_18_color.ResumeLayout(False)
+        CType(Me.slot_18_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_3_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_3_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_3_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_3_color.ResumeLayout(False)
+        CType(Me.slot_3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_4_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_4_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_4_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_4_color.ResumeLayout(False)
+        CType(Me.slot_4_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_14_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_14_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_14_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_14_color.ResumeLayout(False)
+        CType(Me.slot_14_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_2_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_2_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_2_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_2_color.ResumeLayout(False)
+        CType(Me.slot_2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_1_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_1_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_1_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_1_color.ResumeLayout(False)
+        CType(Me.slot_1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_0_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_0_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_0_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_0_color.ResumeLayout(False)
+        CType(Me.slot_0_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.changePanel.ResumeLayout(False)
+        Me.changePanel.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents InventoryPanel As System.Windows.Forms.Panel
@@ -1906,4 +2172,24 @@ Partial Class CharacterOverview
     Friend WithEvents slot_16_color As System.Windows.Forms.Panel
     Friend WithEvents slot_16_pic As System.Windows.Forms.PictureBox
     Friend WithEvents slot_16_name As System.Windows.Forms.Label
+    Friend WithEvents charname As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents level_lbl As System.Windows.Forms.Label
+    Friend WithEvents race_lbl As System.Windows.Forms.Label
+    Friend WithEvents class_lbl As System.Windows.Forms.Label
+    Friend WithEvents load_bt As System.Windows.Forms.Button
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents Button6 As System.Windows.Forms.Button
+    Friend WithEvents Button7 As System.Windows.Forms.Button
+    Friend WithEvents Button8 As System.Windows.Forms.Button
+    Friend WithEvents changePanel As System.Windows.Forms.Panel
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 End Class

@@ -13,7 +13,8 @@
     <AssemblyName>Namcore Studio</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -80,6 +81,12 @@
     <Compile Include="Forms\Armory_interface.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\CharacterOverview.designer.vb">
+      <DependentUpon>CharacterOverview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CharacterOverview.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\DB_connect.Designer.vb">
       <DependentUpon>DB_connect.vb</DependentUpon>
     </Compile>
@@ -123,7 +130,6 @@
     <Compile Include="Forms\Live_View.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Framework\Armory\API.vb" />
     <Compile Include="Framework\Armory\ArmoryHandler.vb" />
     <Compile Include="Framework\Armory\Parser\AchievementParser.vb" />
     <Compile Include="Framework\Armory\Parser\GlyphParser.vb" />
@@ -155,6 +161,8 @@
     <Compile Include="Framework\Functions\Conversions.vb" />
     <Compile Include="Framework\Functions\Interface\Interface_Operator.vb" />
     <Compile Include="Framework\Functions\Interface\ListViewComparer.vb" />
+    <Compile Include="Framework\Functions\Interface\ReplaceItemExtension.vb" />
+    <Compile Include="Framework\Functions\Interface\WinformControlExtensions.vb" />
     <Compile Include="Framework\Functions\SpellItem_Information.vb" />
     <Compile Include="Framework\Logging\ErrorLogging.vb" />
     <Compile Include="Framework\Logging\EventLogging.vb" />
@@ -192,6 +200,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\Armory_interface.resx">
       <DependentUpon>Armory_interface.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CharacterOverview.resx">
+      <DependentUpon>CharacterOverview.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DB_connect.resx">
       <DependentUpon>DB_connect.vb</DependentUpon>
@@ -244,6 +255,7 @@
   <ItemGroup>
     <Content Include="References\mysql.data.dll" />
     <Content Include="Resources\namcore_bg.jpg" />
+    <Content Include="Resources\Refresh-icon.png" />
     <None Include="Resources\namcore_bg2.jpg" />
     <None Include="Resources\namcore_bg1.jpg" />
     <None Include="Resources\glyphproperties.txt" />

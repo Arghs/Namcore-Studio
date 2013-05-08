@@ -88,6 +88,13 @@ Public Class Basics
                                                                       "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
     End Sub
     Public Shared Function GetTCI_Item(ByVal slot As String, ByVal targetSetId As Integer) As Item
+        If tempItemInfo Is Nothing Then tempItemInfo = New List(Of Item)
+        If tempItemInfoIndex Is Nothing Then tempItemInfoIndex = New List(Of String())
+        For Each itminfoindex As String() In tempItemInfoIndex
+            If itminfoindex(0) = targetSetId.ToString() And itminfoindex(1) = slot Then
+                Return tempItemInfo(itminfoindex(2))
+            End If
+        Next
         Dim itemContext As String = GetTemporaryCharacterInformation(("itm:" & slot), targetSetId)
         Dim itm As New Item
         If itemContext Is Nothing Then Return itm
@@ -108,6 +115,14 @@ Public Class Basics
         itm.enchantment_name = splitString(itemContext, "{enchantmentNAME}", "{/enchantmentNAME}")
         itm.enchantment_type = TryInt(splitString(itemContext, "{enchantmentTYPE}", "{/enchantmentTYPE}"))
         itm.image = ConvertStringToImage(splitString(itemContext, "{image}", "{/image}"))
+
+
+        tempItemInfo.Add(itm)
+        Dim tmpString(2) As String
+        tmpString(0) = targetSetId.ToString()
+        tmpString(1) = slot
+        tmpString(2) = (tempItemInfo.Count - 1).ToString
+        tempItemInfoIndex.Add(tmpString)
         Return itm
     End Function
     Public Shared Function GetTCI_Glyph(ByVal glyph As Glyph, ByVal targetSetId As Integer)
