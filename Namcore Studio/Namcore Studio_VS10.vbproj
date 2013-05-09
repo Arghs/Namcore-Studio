@@ -256,6 +256,7 @@
     <Content Include="References\mysql.data.dll" />
     <Content Include="Resources\namcore_bg.jpg" />
     <Content Include="Resources\Refresh-icon.png" />
+    <Content Include="Resources\trash_%28delete%29_16x16.gif" />
     <None Include="Resources\namcore_bg2.jpg" />
     <None Include="Resources\namcore_bg1.jpg" />
     <None Include="Resources\glyphproperties.txt" />

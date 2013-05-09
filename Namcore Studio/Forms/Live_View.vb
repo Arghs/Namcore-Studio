@@ -98,7 +98,7 @@ Public Class Live_View
         Dim str(4) As String
         Dim itm As ListViewItem
         str(0) = "0"
-        str(1) = "WoW Armory"
+        str(1) = "Armory"
         str(2) = "-"
         str(3) = "-"
         str(4) = "-"
@@ -111,7 +111,7 @@ Public Class Live_View
             Dim CLstr(6) As String
             Dim CLitm As ListViewItem
             CLstr(0) = genGuid.ToString
-            CLstr(1) = "WoW Armory"
+            CLstr(1) = "Armory"
             CLstr(2) = GetTemporaryCharacterInformation("@character_name", genGuid)
             CLstr(3) = GetRaceNameById(TryInt(GetTemporaryCharacterInformation("@character_race", genGuid)))
             CLstr(4) = GetClassNameById(TryInt(GetTemporaryCharacterInformation("@character_class", genGuid)))

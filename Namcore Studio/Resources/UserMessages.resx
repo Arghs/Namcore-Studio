@@ -152,6 +152,9 @@
     <value>Do you really want to delete the selected characters?</value>
     <comment>msgbox msg</comment>
   </data>
+  <data name="deleteitem" xml:space="preserve">
+    <value>Do you really want to delete the selected item?</value>
+  </data>
   <data name="draenei" xml:space="preserve">
     <value>Draenei</value>
     <comment>character race</comment>

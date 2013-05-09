@@ -155,6 +155,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected item? ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property deleteitem() As String
+            Get
+                Return ResourceManager.GetString("deleteitem", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Draenei ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property draenei() As String

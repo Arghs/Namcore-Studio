@@ -59,6 +59,10 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected characters? ähnelt.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deleteitem">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected item? ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.draenei">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Draenei ähnelt.
@@ -331,6 +335,10 @@ flags,long,long,long,
 1731;31641;31642;0;0;0
 35;11124;12378;12398;12399;12400
 1733;34293 [Rest der Zeichenfolge wurde abgeschnitten]"; ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.trash__delete__16x16">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
 </member><member name="T:Namcore_Studio.My.Resources.Resources">
 	<summary>
