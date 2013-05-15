@@ -81,7 +81,7 @@
     <Compile Include="Forms\Armory_interface.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CharacterOverview.Designer.vb">
+    <Compile Include="Forms\CharacterOverview.designer.vb">
       <DependentUpon>CharacterOverview.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\CharacterOverview.vb">
@@ -161,6 +161,7 @@
     <Compile Include="Framework\Functions\Conversions.vb" />
     <Compile Include="Framework\Functions\Interface\Interface_Operator.vb" />
     <Compile Include="Framework\Functions\Interface\ListViewComparer.vb" />
+    <Compile Include="Framework\Functions\Interface\ReplaceItemExtension.vb" />
     <Compile Include="Framework\Functions\Interface\WinformControlExtensions.vb" />
     <Compile Include="Framework\Functions\SpellItem_Information.vb" />
     <Compile Include="Framework\Logging\ErrorLogging.vb" />
@@ -175,6 +176,7 @@
     <Compile Include="Framework\Transmission\SkillCreation.vb" />
     <Compile Include="Framework\Transmission\SpellCreation.vb" />
     <Compile Include="Framework\Transmission\TalentCreation.vb" />
+    <Compile Include="Framework\Transmission\TransmissionHandler.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -254,6 +256,8 @@
   <ItemGroup>
     <Content Include="References\mysql.data.dll" />
     <Content Include="Resources\namcore_bg.jpg" />
+    <Content Include="Resources\Refresh-icon.png" />
+    <Content Include="Resources\trash_%28delete%29_16x16.gif" />
     <None Include="Resources\namcore_bg2.jpg" />
     <None Include="Resources\namcore_bg1.jpg" />
     <None Include="Resources\glyphproperties.txt" />
@@ -267,7 +271,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

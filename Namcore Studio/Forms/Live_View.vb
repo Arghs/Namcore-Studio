@@ -241,7 +241,9 @@ Public Class Live_View
         chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
     End Sub
     Private Sub Live_View_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
+        createAccountsIndex = New List(Of Integer)
+        accountInfo = New List(Of Account)
+        charactersToCreate = New List(Of String)
     End Sub
 
     Private Sub accountview_ColumnClick(sender As Object, e As System.Windows.Forms.ColumnClickEventArgs) Handles accountview.ColumnClick
@@ -559,6 +561,8 @@ Public Class Live_View
                     .BackColor = Color.Green
                 End With
                 target_accounts_tree.Nodes.Add(newaccnode)
+                accountInfo.Add(newacc)
+                createAccountsIndex.Add(accountInfo.Count - 1)
             End If
 
             For Each CheckedChar As ListViewItem In characterview.CheckedItems
@@ -581,6 +585,7 @@ Public Class Live_View
                                 End If
                             End With
                             targetaccount.Nodes.Add(newcharnode)
+                            charactersToCreate.Add("{AccountId}" & targetaccount.Name & "{/AccountId}{setId}" & CheckedChar.Tag.ToString() & "{/setId}")
                             '  targetaccount.Tag.transcharlist.Add(newchar)
                         End If
                     Next
@@ -610,6 +615,8 @@ Public Class Live_View
                             End If
                         End With
                         accountnode.Nodes.Add(newcharnode)
+                        charactersToCreate.Add("{AccountId}" & accountnode.Name & "{/AccountId}{setId}" & character(2) & "{/setId}")
+
                     End If
                    next
             Next
@@ -659,6 +666,7 @@ Public Class Live_View
             Dim character(2) As String
             character(0) = charId
             character(1) = characterview.SelectedItems(0).SubItems(2).Text
+            character(2) = characterview.SelectedItems(0).Tag.ToString
             trans_charlist.Add(character)
         Next
         Prep_chartrans.Show()
@@ -670,6 +678,7 @@ Public Class Live_View
             Dim character(2) As String
             character(0) = itm.SubItems(0).Text
             character(1) = itm.SubItems(2).Text
+            character(2) = itm.Tag.ToString
             trans_charlist.Add(character)
         Next
         Prep_chartrans.Show()

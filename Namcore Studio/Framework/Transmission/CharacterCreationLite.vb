@@ -31,17 +31,17 @@ Imports Namcore_Studio.SpellCreation
 Imports Namcore_Studio.SkillCreation
 Imports MySql.Data.MySqlClient
 Public Class CharacterCreationLite
-    Public Shared Sub CreateNewLiteCharacter(ByVal charname As String, ByVal accountName As String, ByVal setId As Integer, Optional forceNameChange As Boolean = False)
-        LogAppend("Creating new character: " & charname & " for account : " & accountName, "CharacterCreationLite_CreateNewLiteCharacter", True)
+    Public Shared Sub CreateNewLiteCharacter(ByVal charname As String, ByVal accountId As Integer, ByVal setId As Integer, Optional forceNameChange As Boolean = False)
+        LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString, "CharacterCreationLite_CreateNewLiteCharacter", True)
         Select Case targetCore
             Case "arcemu"
-                createAtArcemu(charname, accountName, setId, forceNameChange)
+                createAtArcemu(charname, accountId.ToString, setId, forceNameChange)
             Case "trinity"
-                createAtTrinity(charname, accountName, setId, forceNameChange)
+                createAtTrinity(charname, accountId.ToString, setId, forceNameChange)
             Case "trinitytbc"
 
             Case "mangos"
-                createAtMangos(charname, accountName, setId, forceNameChange)
+                createAtMangos(charname, accountId.ToString, setId, forceNameChange)
             Case Else
 
         End Select
@@ -59,11 +59,11 @@ Public Class CharacterCreationLite
             Case Else : End Select
     End Function
 
-    Private Shared Sub createAtArcemu(ByVal charactername As String, ByVal accname As String, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
+    Private Shared Sub createAtArcemu(ByVal charactername As String, ByVal accId As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at arcemu", "CharacterCreationLite_createAtArcemu", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.char_guid_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " &
                                                                             sourceStructure.char_guid_col(0) & "=(SELECT MAX(" & sourceStructure.char_guid_col(0) & ") FROM " & sourceStructure.character_tbl(0) & ")", True)) + 1
-        Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT " & sourceStructure.acc_id_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_name_col(0) & "='" & accname & "'", True))
+        '   Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT " & sourceStructure.acc_id_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_name_col(0) & "='" & accname & "'", True))
         Dim sqlstring As String = "INSERT INTO " & sourceStructure.character_tbl(0) & " ( `" & sourceStructure.char_accountId_col(0) & "`, `" & sourceStructure.char_guid_col(0) & "`, `" & sourceStructure.char_name_col(0) &
             "`, `" & sourceStructure.char_race_col(0) & "`, `" & sourceStructure.char_class_col(0) & "`, `" & sourceStructure.char_gender_col(0) & "`, `" & sourceStructure.char_level_col(0) & "`, `" &
             sourceStructure.char_xp_col(0) & "`, `" & sourceStructure.char_gold_col(0) & "`, current_hp, `" & sourceStructure.char_playerBytes_col(0) & "`, `" & sourceStructure.char_posX_col(0) & "`, " &
@@ -312,11 +312,11 @@ Public Class CharacterCreationLite
             LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationLite_createAtArcemu", False, True)
         End Try
     End Sub
-    Private Shared Sub createAtTrinity(ByVal charactername As String, ByVal accname As String, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
+    Private Shared Sub createAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at Trinity", "CharacterCreationLite_createAtTrinity", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.char_guid_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) &
                                                                                "=(SELECT MAX(" & sourceStructure.char_guid_col(0) & ") FROM " & sourceStructure.character_tbl(0) & ")", True)) + 1
-        Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & sourceStructure.acc_id_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_name_col(0) & "='" & accname & "'", True))
+        '   Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & sourceStructure.acc_id_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_name_col(0) & "='" & accname & "'", True))
         Dim sqlstring As String = "INSERT INTO characters ( `" & sourceStructure.char_guid_col(0) & "`, `" & sourceStructure.char_accountId_col(0) & "`, `" & sourceStructure.char_name_col(0) & "`, `" &
             sourceStructure.char_race_col(0) & "`, `" & sourceStructure.char_class_col(0) & "`, `" & sourceStructure.char_gender_col(0) & "`, `" & sourceStructure.char_level_col(0) & "`, `" & sourceStructure.char_xp_col(0) &
             "`, `" & sourceStructure.char_gold_col(0) & "`, `" & sourceStructure.char_playerBytes_col(0) & "`, `" & sourceStructure.char_posX_col(0) & "`, " & sourceStructure.char_posY_col(0) &
@@ -357,11 +357,11 @@ Public Class CharacterCreationLite
             LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationLite_createAtTrinity", False, True)
         End Try
     End Sub
-    Private Shared Sub createAtMangos(ByVal charactername As String, ByVal accname As String, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
+    Private Shared Sub createAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at Mangos", "CharacterCreationLite_createAtMangos", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.char_guid_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) &
                                                                                "=(SELECT MAX(" & sourceStructure.char_guid_col(0) & ") FROM " & sourceStructure.character_tbl(0) & ")", True)) + 1
-        Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & sourceStructure.acc_id_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_name_col(0) & "='" & accname & "'", True))
+        ' Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & sourceStructure.acc_id_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_name_col(0) & "='" & accname & "'", True))
         Dim sqlstring As String = "INSERT INTO characters ( `" & sourceStructure.char_guid_col(0) & "`, `" & sourceStructure.char_accountId_col(0) & "`, `" & sourceStructure.char_name_col(0) & "`, `" &
             sourceStructure.char_race_col(0) & "`, `" & sourceStructure.char_class_col(0) & "`, `" & sourceStructure.char_gender_col(0) & "`, `" & sourceStructure.char_level_col(0) & "`, `" & sourceStructure.char_xp_col(0) &
             "`, `" & sourceStructure.char_gold_col(0) & "`, `" & sourceStructure.char_playerBytes_col(0) & "`, `" & sourceStructure.char_posX_col(0) & "`, " & sourceStructure.char_posY_col(0) &
