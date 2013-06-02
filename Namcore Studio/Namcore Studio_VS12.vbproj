@@ -105,6 +105,12 @@
     <Compile Include="Forms\Filter_characters.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Glyphs_interface.Designer.vb">
+      <DependentUpon>Glyphs_interface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Glyphs_interface.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Prep_chartrans.Designer.vb">
       <DependentUpon>Prep_chartrans.vb</DependentUpon>
     </Compile>
@@ -176,7 +182,6 @@
     <Compile Include="Framework\Transmission\SkillCreation.vb" />
     <Compile Include="Framework\Transmission\SpellCreation.vb" />
     <Compile Include="Framework\Transmission\TalentCreation.vb" />
-    <Compile Include="Framework\Transmission\TransmissionHandler.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -213,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Filter_characters.resx">
       <DependentUpon>Filter_characters.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Glyphs_interface.resx">
+      <DependentUpon>Glyphs_interface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Prep_chartrans.resx">
       <DependentUpon>Prep_chartrans.vb</DependentUpon>
