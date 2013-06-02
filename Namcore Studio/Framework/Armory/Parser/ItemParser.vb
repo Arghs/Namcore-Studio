@@ -150,9 +150,11 @@ Public Class ItemParser
             socketContext = splitString(relevantItemContext & "</div>", "<span class=""sockets"">", "</div>")
             Dim socketCount As Integer = UBound(Split(socketContext, "socket-"))
             Dim oneSocketContext As String = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
-            charItem.socket1_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
-            charItem.socket1_pic = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt="""))
-            charItem.socket1_name = GetGemEffectName(charItem.socket1_id)
+            If Not oneSocketContext.Length <= 49 Then
+                charItem.socket1_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
+                charItem.socket1_pic = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt="""))
+                charItem.socket1_name = GetGemEffectName(charItem.socket1_id)
+            End If
             If socketCount > 1 Then
                 socketContext = Replace(socketContext, "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing, , 1)
                 oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
