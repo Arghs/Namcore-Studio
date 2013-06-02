@@ -53,7 +53,7 @@ Public Class SpellItem_Information
         Try
             LogAppend("Loading icon by ItemId " & itemid.ToString, "SpellItem_Information_GetIconByItemId", False)
             Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
-            Return LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & splitString(itemContext, "<icon displayId=""" & splitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>") & ".jpg")
+            Return LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & (splitString(itemContext, "<icon displayId=""" & splitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>")).ToLower() & ".jpg")
         Catch ex As Exception
             LogAppend("Error while loading icon! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetIconByItemId", False, True)
             Return Nothing

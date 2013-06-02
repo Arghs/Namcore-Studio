@@ -105,6 +105,12 @@
     <Compile Include="Forms\Filter_characters.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Glyphs_interface.Designer.vb">
+      <DependentUpon>Glyphs_interface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Glyphs_interface.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Prep_chartrans.Designer.vb">
       <DependentUpon>Prep_chartrans.vb</DependentUpon>
     </Compile>
@@ -213,6 +219,9 @@
     <EmbeddedResource Include="Forms\Filter_characters.resx">
       <DependentUpon>Filter_characters.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Glyphs_interface.resx">
+      <DependentUpon>Glyphs_interface.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Prep_chartrans.resx">
       <DependentUpon>Prep_chartrans.vb</DependentUpon>
     </EmbeddedResource>
@@ -270,7 +279,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -125,17 +125,31 @@ Public Class Basics
         tempItemInfoIndex.Add(tmpString)
         Return itm
     End Function
-    Public Shared Function GetTCI_Glyph(ByVal glyph As Glyph, ByVal targetSetId As Integer)
-        Dim GlyphContext As String = "[glyph:" & glyph.slotname & "]" &
-            "{slot}" & glyph.slotname & "{/slot}" &
-            "{id}" & NotNull(glyph.id) & "{/id}" &
-            "{name}" & NotNull(glyph.name) & "{/name}" &
-            "{type}" & NotNull(glyph.type) & "{/type}" &
-            "{spec}" & NotNull(glyph.spec) & "{/spec}" &
-            "{image}" & ConvertImageToString(glyph.image) & "{/image}" &
-            "[/glyph:" & glyph.slotname & "]"
-        temporaryCharacterInformation.Item(targetSetId) = temporaryCharacterInformation.Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", GlyphContext & vbNewLine &
-                                                                      "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+    Public Shared Function GetTCI_Glyph(ByVal slot As String, ByVal targetSetId As Integer) As Glyph
+        If tempGlyphInfo Is Nothing Then tempGlyphInfo = New List(Of Glyph)
+        If tempGlyphInfoIndex Is Nothing Then tempGlyphInfoIndex = New List(Of String())
+        For Each infoindex As String() In tempGlyphInfoIndex
+            If infoindex(0) = targetSetId.ToString() And infoindex(1) = slot Then
+                Return tempGlyphInfo(infoindex(2))
+            End If
+        Next
+        Dim glyphContext As String = GetTemporaryCharacterInformation(("glyph:" & slot), targetSetId)
+        Dim gly As New Glyph
+        If glyphContext Is Nothing Then Return gly
+        gly.slotname = splitString(glyphContext, "{slot}", "{/slot}")
+        gly.id = TryInt(splitString(glyphContext, "{id}", "{/id}"))
+        gly.name = splitString(glyphContext, "{name}", "{/name}")
+        gly.type = TryInt(splitString(glyphContext, "{type}", "{/type}"))
+        gly.spec = TryInt(splitString(glyphContext, "{spec}", "{/spec}"))
+        gly.image = ConvertStringToImage(splitString(glyphContext, "{image}", "{/image}"))
+        tempGlyphInfo.Add(gly)
+        Dim tmpString(2) As String
+        tmpString(0) = targetSetId.ToString()
+        tmpString(1) = slot
+        tmpString(2) = (tempGlyphInfo.Count - 1).ToString
+        tempGlyphInfoIndex.Add(tmpString)
+        Return gly
+        
     End Function
     Public Shared Function GetTemporaryCharacterInformation(ByVal field As String, ByVal targetSetId As Integer) As String
         Dim CharContext As String = temporaryCharacterInformation.Item(targetSetId)

@@ -176,15 +176,15 @@ Partial Class CharacterOverview
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.racepanel = New System.Windows.Forms.Panel()
-        Me.racerefresh = New System.Windows.Forms.PictureBox()
         Me.racecombo = New System.Windows.Forms.ComboBox()
+        Me.racerefresh = New System.Windows.Forms.PictureBox()
         Me.classpanel = New System.Windows.Forms.Panel()
         Me.classcombo = New System.Windows.Forms.ComboBox()
         Me.classrefresh = New System.Windows.Forms.PictureBox()
         Me.selectenchpanel = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.itmench = New System.Windows.Forms.Label()
         Me.spellench = New System.Windows.Forms.Label()
+        Me.itmench = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel36 = New System.Windows.Forms.Panel()
         Me.PictureBox38 = New System.Windows.Forms.PictureBox()
@@ -197,34 +197,6 @@ Partial Class CharacterOverview
         Me.Panel38 = New System.Windows.Forms.Panel()
         Me.PictureBox40 = New System.Windows.Forms.PictureBox()
         Me.bagpanel = New System.Windows.Forms.Panel()
-        Me.Panel10 = New System.Windows.Forms.Panel()
-        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
-        Me.Panel11 = New System.Windows.Forms.Panel()
-        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
-        Me.Panel12 = New System.Windows.Forms.Panel()
-        Me.PictureBox14 = New System.Windows.Forms.PictureBox()
-        Me.Panel13 = New System.Windows.Forms.Panel()
-        Me.PictureBox15 = New System.Windows.Forms.PictureBox()
-        Me.Panel14 = New System.Windows.Forms.Panel()
-        Me.PictureBox16 = New System.Windows.Forms.PictureBox()
-        Me.Panel15 = New System.Windows.Forms.Panel()
-        Me.PictureBox17 = New System.Windows.Forms.PictureBox()
-        Me.Panel16 = New System.Windows.Forms.Panel()
-        Me.picbagslot = New System.Windows.Forms.PictureBox()
-        Me.Panel18 = New System.Windows.Forms.Panel()
-        Me.PictureBox20 = New System.Windows.Forms.PictureBox()
-        Me.Panel19 = New System.Windows.Forms.Panel()
-        Me.PictureBox21 = New System.Windows.Forms.PictureBox()
-        Me.Panel20 = New System.Windows.Forms.Panel()
-        Me.PictureBox22 = New System.Windows.Forms.PictureBox()
-        Me.Panel21 = New System.Windows.Forms.Panel()
-        Me.PictureBox23 = New System.Windows.Forms.PictureBox()
-        Me.Panel22 = New System.Windows.Forms.Panel()
-        Me.PictureBox24 = New System.Windows.Forms.PictureBox()
-        Me.Panel23 = New System.Windows.Forms.Panel()
-        Me.PictureBox25 = New System.Windows.Forms.PictureBox()
-        Me.Panel24 = New System.Windows.Forms.Panel()
-        Me.PictureBox26 = New System.Windows.Forms.PictureBox()
         Me.Panel26 = New System.Windows.Forms.Panel()
         Me.PictureBox28 = New System.Windows.Forms.PictureBox()
         Me.Panel27 = New System.Windows.Forms.Panel()
@@ -253,6 +225,34 @@ Partial Class CharacterOverview
         Me.PictureBox46 = New System.Windows.Forms.PictureBox()
         Me.Panel45 = New System.Windows.Forms.Panel()
         Me.PictureBox47 = New System.Windows.Forms.PictureBox()
+        Me.Panel18 = New System.Windows.Forms.Panel()
+        Me.PictureBox20 = New System.Windows.Forms.PictureBox()
+        Me.Panel19 = New System.Windows.Forms.Panel()
+        Me.PictureBox21 = New System.Windows.Forms.PictureBox()
+        Me.Panel20 = New System.Windows.Forms.Panel()
+        Me.PictureBox22 = New System.Windows.Forms.PictureBox()
+        Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.PictureBox23 = New System.Windows.Forms.PictureBox()
+        Me.Panel22 = New System.Windows.Forms.Panel()
+        Me.PictureBox24 = New System.Windows.Forms.PictureBox()
+        Me.Panel23 = New System.Windows.Forms.Panel()
+        Me.PictureBox25 = New System.Windows.Forms.PictureBox()
+        Me.Panel24 = New System.Windows.Forms.Panel()
+        Me.PictureBox26 = New System.Windows.Forms.PictureBox()
+        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
+        Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
+        Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.PictureBox14 = New System.Windows.Forms.PictureBox()
+        Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.PictureBox15 = New System.Windows.Forms.PictureBox()
+        Me.Panel14 = New System.Windows.Forms.Panel()
+        Me.PictureBox16 = New System.Windows.Forms.PictureBox()
+        Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.PictureBox17 = New System.Windows.Forms.PictureBox()
+        Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.picbagslot = New System.Windows.Forms.PictureBox()
         Me.InventoryPanel.SuspendLayout()
         CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -368,34 +368,6 @@ Partial Class CharacterOverview
         Me.Panel38.SuspendLayout()
         CType(Me.PictureBox40, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.bagpanel.SuspendLayout()
-        Me.Panel10.SuspendLayout()
-        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel11.SuspendLayout()
-        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel12.SuspendLayout()
-        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel13.SuspendLayout()
-        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel14.SuspendLayout()
-        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel15.SuspendLayout()
-        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel16.SuspendLayout()
-        CType(Me.picbagslot, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel18.SuspendLayout()
-        CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel19.SuspendLayout()
-        CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel20.SuspendLayout()
-        CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel21.SuspendLayout()
-        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel22.SuspendLayout()
-        CType(Me.PictureBox24, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel23.SuspendLayout()
-        CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel24.SuspendLayout()
-        CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel26.SuspendLayout()
         CType(Me.PictureBox28, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel27.SuspendLayout()
@@ -424,6 +396,34 @@ Partial Class CharacterOverview
         CType(Me.PictureBox46, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel45.SuspendLayout()
         CType(Me.PictureBox47, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel18.SuspendLayout()
+        CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel19.SuspendLayout()
+        CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel20.SuspendLayout()
+        CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel21.SuspendLayout()
+        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel22.SuspendLayout()
+        CType(Me.PictureBox24, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel23.SuspendLayout()
+        CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel24.SuspendLayout()
+        CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel10.SuspendLayout()
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel11.SuspendLayout()
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel12.SuspendLayout()
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel13.SuspendLayout()
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel14.SuspendLayout()
+        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel15.SuspendLayout()
+        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel16.SuspendLayout()
+        CType(Me.picbagslot, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'InventoryPanel
@@ -1909,7 +1909,6 @@ Partial Class CharacterOverview
         '
         Me.Button1.BackColor = System.Drawing.Color.DimGray
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.Enabled = False
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Button1.Location = New System.Drawing.Point(558, 455)
@@ -2050,6 +2049,15 @@ Partial Class CharacterOverview
         Me.racepanel.Size = New System.Drawing.Size(144, 25)
         Me.racepanel.TabIndex = 174
         '
+        'racecombo
+        '
+        Me.racecombo.FormattingEnabled = True
+        Me.racecombo.Items.AddRange(New Object() {"Human", "Orc", "Dwarf", "Night Elf", "Undead", "Tauren", "Gnome", "Troll", "Goblin", "Blood Elf", "Draenei", "Worgen"})
+        Me.racecombo.Location = New System.Drawing.Point(3, 2)
+        Me.racecombo.Name = "racecombo"
+        Me.racecombo.Size = New System.Drawing.Size(115, 21)
+        Me.racecombo.TabIndex = 175
+        '
         'racerefresh
         '
         Me.racerefresh.Cursor = System.Windows.Forms.Cursors.Hand
@@ -2059,15 +2067,6 @@ Partial Class CharacterOverview
         Me.racerefresh.Size = New System.Drawing.Size(16, 16)
         Me.racerefresh.TabIndex = 174
         Me.racerefresh.TabStop = False
-        '
-        'racecombo
-        '
-        Me.racecombo.FormattingEnabled = True
-        Me.racecombo.Items.AddRange(New Object() {"Human", "Orc", "Dwarf", "Night Elf", "Undead", "Tauren", "Gnome", "Troll", "Goblin", "Blood Elf", "Draenei", "Worgen"})
-        Me.racecombo.Location = New System.Drawing.Point(3, 2)
-        Me.racecombo.Name = "racecombo"
-        Me.racecombo.Size = New System.Drawing.Size(115, 21)
-        Me.racecombo.TabIndex = 175
         '
         'classpanel
         '
@@ -2108,16 +2107,14 @@ Partial Class CharacterOverview
         Me.selectenchpanel.Size = New System.Drawing.Size(156, 86)
         Me.selectenchpanel.TabIndex = 176
         '
-        'Label1
+        'spellench
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Red
-        Me.Label1.Location = New System.Drawing.Point(6, 3)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(145, 39)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Namcore has found two " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "matching enchantments:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Select one!)"
+        Me.spellench.AutoSize = True
+        Me.spellench.Location = New System.Drawing.Point(8, 68)
+        Me.spellench.Name = "spellench"
+        Me.spellench.Size = New System.Drawing.Size(39, 13)
+        Me.spellench.TabIndex = 2
+        Me.spellench.Text = "Label6"
         '
         'itmench
         '
@@ -2128,14 +2125,16 @@ Partial Class CharacterOverview
         Me.itmench.TabIndex = 1
         Me.itmench.Text = "Label5"
         '
-        'spellench
+        'Label1
         '
-        Me.spellench.AutoSize = True
-        Me.spellench.Location = New System.Drawing.Point(8, 68)
-        Me.spellench.Name = "spellench"
-        Me.spellench.Size = New System.Drawing.Size(39, 13)
-        Me.spellench.TabIndex = 2
-        Me.spellench.Text = "Label6"
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Red
+        Me.Label1.Location = New System.Drawing.Point(6, 3)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(145, 39)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Namcore has found two " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "matching enchantments:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Select one!)"
         '
         'Button3
         '
@@ -2276,258 +2275,6 @@ Partial Class CharacterOverview
         Me.bagpanel.Name = "bagpanel"
         Me.bagpanel.Size = New System.Drawing.Size(331, 192)
         Me.bagpanel.TabIndex = 178
-        '
-        'Panel10
-        '
-        Me.Panel10.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel10.Controls.Add(Me.PictureBox12)
-        Me.Panel10.Location = New System.Drawing.Point(277, 1)
-        Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(45, 45)
-        Me.Panel10.TabIndex = 197
-        '
-        'PictureBox12
-        '
-        Me.PictureBox12.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox12.Name = "PictureBox12"
-        Me.PictureBox12.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox12.TabIndex = 0
-        Me.PictureBox12.TabStop = False
-        '
-        'Panel11
-        '
-        Me.Panel11.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel11.Controls.Add(Me.PictureBox13)
-        Me.Panel11.Location = New System.Drawing.Point(231, 1)
-        Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(45, 45)
-        Me.Panel11.TabIndex = 196
-        '
-        'PictureBox13
-        '
-        Me.PictureBox13.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox13.Name = "PictureBox13"
-        Me.PictureBox13.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox13.TabIndex = 0
-        Me.PictureBox13.TabStop = False
-        '
-        'Panel12
-        '
-        Me.Panel12.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel12.Controls.Add(Me.PictureBox14)
-        Me.Panel12.Location = New System.Drawing.Point(185, 1)
-        Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(45, 45)
-        Me.Panel12.TabIndex = 195
-        '
-        'PictureBox14
-        '
-        Me.PictureBox14.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox14.Name = "PictureBox14"
-        Me.PictureBox14.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox14.TabIndex = 0
-        Me.PictureBox14.TabStop = False
-        '
-        'Panel13
-        '
-        Me.Panel13.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel13.Controls.Add(Me.PictureBox15)
-        Me.Panel13.Location = New System.Drawing.Point(139, 1)
-        Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(45, 45)
-        Me.Panel13.TabIndex = 194
-        '
-        'PictureBox15
-        '
-        Me.PictureBox15.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox15.Name = "PictureBox15"
-        Me.PictureBox15.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox15.TabIndex = 0
-        Me.PictureBox15.TabStop = False
-        '
-        'Panel14
-        '
-        Me.Panel14.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel14.Controls.Add(Me.PictureBox16)
-        Me.Panel14.Location = New System.Drawing.Point(93, 1)
-        Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(45, 45)
-        Me.Panel14.TabIndex = 193
-        '
-        'PictureBox16
-        '
-        Me.PictureBox16.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox16.Name = "PictureBox16"
-        Me.PictureBox16.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox16.TabIndex = 0
-        Me.PictureBox16.TabStop = False
-        '
-        'Panel15
-        '
-        Me.Panel15.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel15.Controls.Add(Me.PictureBox17)
-        Me.Panel15.Location = New System.Drawing.Point(47, 1)
-        Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(45, 45)
-        Me.Panel15.TabIndex = 192
-        '
-        'PictureBox17
-        '
-        Me.PictureBox17.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox17.Name = "PictureBox17"
-        Me.PictureBox17.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox17.TabIndex = 0
-        Me.PictureBox17.TabStop = False
-        '
-        'Panel16
-        '
-        Me.Panel16.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel16.Controls.Add(Me.picbagslot)
-        Me.Panel16.Location = New System.Drawing.Point(1, 1)
-        Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(45, 45)
-        Me.Panel16.TabIndex = 191
-        '
-        'picbagslot
-        '
-        Me.picbagslot.Location = New System.Drawing.Point(3, 3)
-        Me.picbagslot.Name = "picbagslot"
-        Me.picbagslot.Size = New System.Drawing.Size(39, 39)
-        Me.picbagslot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.picbagslot.TabIndex = 0
-        Me.picbagslot.TabStop = False
-        '
-        'Panel18
-        '
-        Me.Panel18.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel18.Controls.Add(Me.PictureBox20)
-        Me.Panel18.Location = New System.Drawing.Point(277, 47)
-        Me.Panel18.Name = "Panel18"
-        Me.Panel18.Size = New System.Drawing.Size(45, 45)
-        Me.Panel18.TabIndex = 205
-        '
-        'PictureBox20
-        '
-        Me.PictureBox20.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox20.Name = "PictureBox20"
-        Me.PictureBox20.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox20.TabIndex = 0
-        Me.PictureBox20.TabStop = False
-        '
-        'Panel19
-        '
-        Me.Panel19.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel19.Controls.Add(Me.PictureBox21)
-        Me.Panel19.Location = New System.Drawing.Point(231, 47)
-        Me.Panel19.Name = "Panel19"
-        Me.Panel19.Size = New System.Drawing.Size(45, 45)
-        Me.Panel19.TabIndex = 204
-        '
-        'PictureBox21
-        '
-        Me.PictureBox21.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox21.Name = "PictureBox21"
-        Me.PictureBox21.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox21.TabIndex = 0
-        Me.PictureBox21.TabStop = False
-        '
-        'Panel20
-        '
-        Me.Panel20.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel20.Controls.Add(Me.PictureBox22)
-        Me.Panel20.Location = New System.Drawing.Point(185, 47)
-        Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(45, 45)
-        Me.Panel20.TabIndex = 203
-        '
-        'PictureBox22
-        '
-        Me.PictureBox22.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox22.Name = "PictureBox22"
-        Me.PictureBox22.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox22.TabIndex = 0
-        Me.PictureBox22.TabStop = False
-        '
-        'Panel21
-        '
-        Me.Panel21.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel21.Controls.Add(Me.PictureBox23)
-        Me.Panel21.Location = New System.Drawing.Point(139, 47)
-        Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(45, 45)
-        Me.Panel21.TabIndex = 202
-        '
-        'PictureBox23
-        '
-        Me.PictureBox23.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox23.Name = "PictureBox23"
-        Me.PictureBox23.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox23.TabIndex = 0
-        Me.PictureBox23.TabStop = False
-        '
-        'Panel22
-        '
-        Me.Panel22.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel22.Controls.Add(Me.PictureBox24)
-        Me.Panel22.Location = New System.Drawing.Point(93, 47)
-        Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(45, 45)
-        Me.Panel22.TabIndex = 201
-        '
-        'PictureBox24
-        '
-        Me.PictureBox24.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox24.Name = "PictureBox24"
-        Me.PictureBox24.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox24.TabIndex = 0
-        Me.PictureBox24.TabStop = False
-        '
-        'Panel23
-        '
-        Me.Panel23.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel23.Controls.Add(Me.PictureBox25)
-        Me.Panel23.Location = New System.Drawing.Point(47, 47)
-        Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(45, 45)
-        Me.Panel23.TabIndex = 200
-        '
-        'PictureBox25
-        '
-        Me.PictureBox25.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox25.Name = "PictureBox25"
-        Me.PictureBox25.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox25.TabIndex = 0
-        Me.PictureBox25.TabStop = False
-        '
-        'Panel24
-        '
-        Me.Panel24.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.Panel24.Controls.Add(Me.PictureBox26)
-        Me.Panel24.Location = New System.Drawing.Point(1, 47)
-        Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(45, 45)
-        Me.Panel24.TabIndex = 199
-        '
-        'PictureBox26
-        '
-        Me.PictureBox26.Location = New System.Drawing.Point(3, 3)
-        Me.PictureBox26.Name = "PictureBox26"
-        Me.PictureBox26.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox26.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox26.TabIndex = 0
-        Me.PictureBox26.TabStop = False
         '
         'Panel26
         '
@@ -2781,6 +2528,258 @@ Partial Class CharacterOverview
         Me.PictureBox47.TabIndex = 0
         Me.PictureBox47.TabStop = False
         '
+        'Panel18
+        '
+        Me.Panel18.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel18.Controls.Add(Me.PictureBox20)
+        Me.Panel18.Location = New System.Drawing.Point(277, 47)
+        Me.Panel18.Name = "Panel18"
+        Me.Panel18.Size = New System.Drawing.Size(45, 45)
+        Me.Panel18.TabIndex = 205
+        '
+        'PictureBox20
+        '
+        Me.PictureBox20.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox20.Name = "PictureBox20"
+        Me.PictureBox20.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox20.TabIndex = 0
+        Me.PictureBox20.TabStop = False
+        '
+        'Panel19
+        '
+        Me.Panel19.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel19.Controls.Add(Me.PictureBox21)
+        Me.Panel19.Location = New System.Drawing.Point(231, 47)
+        Me.Panel19.Name = "Panel19"
+        Me.Panel19.Size = New System.Drawing.Size(45, 45)
+        Me.Panel19.TabIndex = 204
+        '
+        'PictureBox21
+        '
+        Me.PictureBox21.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox21.Name = "PictureBox21"
+        Me.PictureBox21.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox21.TabIndex = 0
+        Me.PictureBox21.TabStop = False
+        '
+        'Panel20
+        '
+        Me.Panel20.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel20.Controls.Add(Me.PictureBox22)
+        Me.Panel20.Location = New System.Drawing.Point(185, 47)
+        Me.Panel20.Name = "Panel20"
+        Me.Panel20.Size = New System.Drawing.Size(45, 45)
+        Me.Panel20.TabIndex = 203
+        '
+        'PictureBox22
+        '
+        Me.PictureBox22.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox22.Name = "PictureBox22"
+        Me.PictureBox22.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox22.TabIndex = 0
+        Me.PictureBox22.TabStop = False
+        '
+        'Panel21
+        '
+        Me.Panel21.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel21.Controls.Add(Me.PictureBox23)
+        Me.Panel21.Location = New System.Drawing.Point(139, 47)
+        Me.Panel21.Name = "Panel21"
+        Me.Panel21.Size = New System.Drawing.Size(45, 45)
+        Me.Panel21.TabIndex = 202
+        '
+        'PictureBox23
+        '
+        Me.PictureBox23.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox23.Name = "PictureBox23"
+        Me.PictureBox23.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox23.TabIndex = 0
+        Me.PictureBox23.TabStop = False
+        '
+        'Panel22
+        '
+        Me.Panel22.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel22.Controls.Add(Me.PictureBox24)
+        Me.Panel22.Location = New System.Drawing.Point(93, 47)
+        Me.Panel22.Name = "Panel22"
+        Me.Panel22.Size = New System.Drawing.Size(45, 45)
+        Me.Panel22.TabIndex = 201
+        '
+        'PictureBox24
+        '
+        Me.PictureBox24.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox24.Name = "PictureBox24"
+        Me.PictureBox24.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox24.TabIndex = 0
+        Me.PictureBox24.TabStop = False
+        '
+        'Panel23
+        '
+        Me.Panel23.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel23.Controls.Add(Me.PictureBox25)
+        Me.Panel23.Location = New System.Drawing.Point(47, 47)
+        Me.Panel23.Name = "Panel23"
+        Me.Panel23.Size = New System.Drawing.Size(45, 45)
+        Me.Panel23.TabIndex = 200
+        '
+        'PictureBox25
+        '
+        Me.PictureBox25.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox25.Name = "PictureBox25"
+        Me.PictureBox25.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox25.TabIndex = 0
+        Me.PictureBox25.TabStop = False
+        '
+        'Panel24
+        '
+        Me.Panel24.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel24.Controls.Add(Me.PictureBox26)
+        Me.Panel24.Location = New System.Drawing.Point(1, 47)
+        Me.Panel24.Name = "Panel24"
+        Me.Panel24.Size = New System.Drawing.Size(45, 45)
+        Me.Panel24.TabIndex = 199
+        '
+        'PictureBox26
+        '
+        Me.PictureBox26.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox26.Name = "PictureBox26"
+        Me.PictureBox26.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox26.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox26.TabIndex = 0
+        Me.PictureBox26.TabStop = False
+        '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel10.Controls.Add(Me.PictureBox12)
+        Me.Panel10.Location = New System.Drawing.Point(277, 1)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(45, 45)
+        Me.Panel10.TabIndex = 197
+        '
+        'PictureBox12
+        '
+        Me.PictureBox12.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox12.Name = "PictureBox12"
+        Me.PictureBox12.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox12.TabIndex = 0
+        Me.PictureBox12.TabStop = False
+        '
+        'Panel11
+        '
+        Me.Panel11.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel11.Controls.Add(Me.PictureBox13)
+        Me.Panel11.Location = New System.Drawing.Point(231, 1)
+        Me.Panel11.Name = "Panel11"
+        Me.Panel11.Size = New System.Drawing.Size(45, 45)
+        Me.Panel11.TabIndex = 196
+        '
+        'PictureBox13
+        '
+        Me.PictureBox13.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox13.Name = "PictureBox13"
+        Me.PictureBox13.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox13.TabIndex = 0
+        Me.PictureBox13.TabStop = False
+        '
+        'Panel12
+        '
+        Me.Panel12.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel12.Controls.Add(Me.PictureBox14)
+        Me.Panel12.Location = New System.Drawing.Point(185, 1)
+        Me.Panel12.Name = "Panel12"
+        Me.Panel12.Size = New System.Drawing.Size(45, 45)
+        Me.Panel12.TabIndex = 195
+        '
+        'PictureBox14
+        '
+        Me.PictureBox14.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox14.Name = "PictureBox14"
+        Me.PictureBox14.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox14.TabIndex = 0
+        Me.PictureBox14.TabStop = False
+        '
+        'Panel13
+        '
+        Me.Panel13.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel13.Controls.Add(Me.PictureBox15)
+        Me.Panel13.Location = New System.Drawing.Point(139, 1)
+        Me.Panel13.Name = "Panel13"
+        Me.Panel13.Size = New System.Drawing.Size(45, 45)
+        Me.Panel13.TabIndex = 194
+        '
+        'PictureBox15
+        '
+        Me.PictureBox15.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox15.Name = "PictureBox15"
+        Me.PictureBox15.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox15.TabIndex = 0
+        Me.PictureBox15.TabStop = False
+        '
+        'Panel14
+        '
+        Me.Panel14.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel14.Controls.Add(Me.PictureBox16)
+        Me.Panel14.Location = New System.Drawing.Point(93, 1)
+        Me.Panel14.Name = "Panel14"
+        Me.Panel14.Size = New System.Drawing.Size(45, 45)
+        Me.Panel14.TabIndex = 193
+        '
+        'PictureBox16
+        '
+        Me.PictureBox16.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox16.Name = "PictureBox16"
+        Me.PictureBox16.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox16.TabIndex = 0
+        Me.PictureBox16.TabStop = False
+        '
+        'Panel15
+        '
+        Me.Panel15.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel15.Controls.Add(Me.PictureBox17)
+        Me.Panel15.Location = New System.Drawing.Point(47, 1)
+        Me.Panel15.Name = "Panel15"
+        Me.Panel15.Size = New System.Drawing.Size(45, 45)
+        Me.Panel15.TabIndex = 192
+        '
+        'PictureBox17
+        '
+        Me.PictureBox17.Location = New System.Drawing.Point(3, 3)
+        Me.PictureBox17.Name = "PictureBox17"
+        Me.PictureBox17.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox17.TabIndex = 0
+        Me.PictureBox17.TabStop = False
+        '
+        'Panel16
+        '
+        Me.Panel16.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.Panel16.Controls.Add(Me.picbagslot)
+        Me.Panel16.Location = New System.Drawing.Point(1, 1)
+        Me.Panel16.Name = "Panel16"
+        Me.Panel16.Size = New System.Drawing.Size(45, 45)
+        Me.Panel16.TabIndex = 191
+        '
+        'picbagslot
+        '
+        Me.picbagslot.Location = New System.Drawing.Point(3, 3)
+        Me.picbagslot.Name = "picbagslot"
+        Me.picbagslot.Size = New System.Drawing.Size(39, 39)
+        Me.picbagslot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picbagslot.TabIndex = 0
+        Me.picbagslot.TabStop = False
+        '
         'CharacterOverview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2933,34 +2932,6 @@ Partial Class CharacterOverview
         Me.Panel38.ResumeLayout(False)
         CType(Me.PictureBox40, System.ComponentModel.ISupportInitialize).EndInit()
         Me.bagpanel.ResumeLayout(False)
-        Me.Panel10.ResumeLayout(False)
-        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel11.ResumeLayout(False)
-        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel12.ResumeLayout(False)
-        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel13.ResumeLayout(False)
-        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel14.ResumeLayout(False)
-        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel15.ResumeLayout(False)
-        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel16.ResumeLayout(False)
-        CType(Me.picbagslot, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel18.ResumeLayout(False)
-        CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel19.ResumeLayout(False)
-        CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel20.ResumeLayout(False)
-        CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel21.ResumeLayout(False)
-        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel22.ResumeLayout(False)
-        CType(Me.PictureBox24, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel23.ResumeLayout(False)
-        CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel24.ResumeLayout(False)
-        CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel26.ResumeLayout(False)
         CType(Me.PictureBox28, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel27.ResumeLayout(False)
@@ -2989,6 +2960,34 @@ Partial Class CharacterOverview
         CType(Me.PictureBox46, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel45.ResumeLayout(False)
         CType(Me.PictureBox47, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel18.ResumeLayout(False)
+        CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel19.ResumeLayout(False)
+        CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel20.ResumeLayout(False)
+        CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel21.ResumeLayout(False)
+        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel22.ResumeLayout(False)
+        CType(Me.PictureBox24, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel23.ResumeLayout(False)
+        CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel24.ResumeLayout(False)
+        CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel10.ResumeLayout(False)
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel11.ResumeLayout(False)
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel12.ResumeLayout(False)
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel13.ResumeLayout(False)
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel14.ResumeLayout(False)
+        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel15.ResumeLayout(False)
+        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel16.ResumeLayout(False)
+        CType(Me.picbagslot, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

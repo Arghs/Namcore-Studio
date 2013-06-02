@@ -62,6 +62,12 @@ Public Class GlobalVariables
     Public Shared procStatus As Process_status
     Public Shared tempItemInfo As List(Of Item)
     Public Shared tempItemInfoIndex As List(Of String())
+<<<<<<< HEAD
+    Public Shared accountInfo As List(Of Account)
+    Public Shared createAccountsIndex As List(Of Integer)
+    Public Shared charactersToCreate As List(Of String)
+=======
     Public Shared tempGlyphInfo As List(Of Glyph)
     Public Shared tempGlyphInfoIndex As List(Of String())
+>>>>>>> d964ea50c6b53a1094f4f48cb9413c82413f62e6
 End Class

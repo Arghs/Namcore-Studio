@@ -32,6 +32,7 @@ Public Class CharacterOverview
     Dim pubItm As Item
     Dim tempValue As String
     Dim tempSender As Object
+    Dim tmpSetId As Integer
     Private Sub CharacterOverview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -39,6 +40,7 @@ Public Class CharacterOverview
 
 
     Public Sub prepare_interface(ByVal setId As Integer)
+        tmpSetId = setId
         controlLST = New List(Of Control)
         controlLST = FindAllChildren()
         charname_lbl.Text = GetTemporaryCharacterInformation("@character_name", setId)
@@ -496,5 +498,15 @@ Public Class CharacterOverview
 
     Private Sub bagpanel_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs) Handles bagpanel.Paint
 
+    End Sub
+
+    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+        Glyphs_interface.Close()
+        Dim glyphInterface As New Glyphs_interface
+        Userwait.Show()
+        Application.DoEvents()
+        glyphInterface.prepareGlyphsInterface(tmpSetId)
+        glyphInterface.Show()
+        Userwait.Close()
     End Sub
 End Class
