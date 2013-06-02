@@ -62,4 +62,6 @@ Public Class GlobalVariables
     Public Shared procStatus As Process_status
     Public Shared tempItemInfo As List(Of Item)
     Public Shared tempItemInfoIndex As List(Of String())
+    Public Shared tempGlyphInfo As List(Of Glyph)
+    Public Shared tempGlyphInfoIndex As List(Of String())
 End Class
