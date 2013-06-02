@@ -182,6 +182,7 @@
     <Compile Include="Framework\Transmission\SkillCreation.vb" />
     <Compile Include="Framework\Transmission\SpellCreation.vb" />
     <Compile Include="Framework\Transmission\TalentCreation.vb" />
+    <Compile Include="Framework\Transmission\TransmissionHandler.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -279,7 +280,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
