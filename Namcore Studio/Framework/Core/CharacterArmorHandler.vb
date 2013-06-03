@@ -50,6 +50,7 @@ Public Class CharacterArmorHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_itemEntry_col(0) & ", " & sourceStructure.itmins_slot_col(0) &
                                                   " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString &
                                                   "' AND " & sourceStructure.itmins_container_col(0) & "='-1'")
+        Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Dim itemguid As Integer
         Dim slotname As String
         Dim itementry As Integer
@@ -73,6 +74,7 @@ Public Class CharacterArmorHandler
                     Case 0
                         slotname = "head"
                         If itementry > 1 Then
+                            Dim itm As New Item
                             SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
                             GetItemStats(itemguid, slotname, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If

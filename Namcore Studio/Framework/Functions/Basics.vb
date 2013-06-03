@@ -51,6 +51,23 @@ Public Class Basics
             .Item(targetSetId) = .Item(targetSetId).Replace(CharacterContext, newCharContext)
         End With
     End Sub
+    Public Shared Function GetCharacterSetBySetId(ByVal setId As Integer) As Character
+        If CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
+            'found
+            Return CharacterSets(TryInt(splitString(CharacterSetsIndex, "[setId:" & setId.ToString() & "|@", "]")))
+        Else
+            'not found
+            Return Nothing
+        End If
+    End Function
+    Public Shared Sub SetCharacterSet(ByVal setId As Integer, ByVal TCharacter As Character)
+        If CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
+            'found
+            CharacterSets(TryInt(splitString(CharacterSetsIndex, "[setId:" & setId.ToString() & "|@", "]"))) = TCharacter
+        Else
+            'not found
+        End If
+    End Sub
     Public Shared Sub SetTCI_Item(ByVal itm As Item, ByVal targetSetId As Integer)
         Dim itemContext As String = "[itm:" & itm.slotname & "][itm:" & itm.slot.ToString & "]" &
             "{slot}" & itm.slotname & "{/slot}" &

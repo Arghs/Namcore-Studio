@@ -46,16 +46,19 @@ Public Class CharacterAchievementHandler
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Achievement @loadAtArcemu", "CharacterAchievementHandler_loadAtArcemu", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) & "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) &
+                                                  "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
-                    Dim avid As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim xdate As String = (tempdt.Rows(count).Item(1)).ToString
-                    templist.Add("<av>" & avid & "</av><date>" & xdate & "</date>")
+                    Dim tmpAv As New Achievement
+                    tmpAv.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                    tmpAv.OwnerSet = tar_setId
+                    tmpAv.GainDate = (tempdt.Rows(count).Item(1)).ToString
+                    tmpCharacter.Achievements.Add(tmpAv)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -65,20 +68,23 @@ Public Class CharacterAchievementHandler
             LogAppend("Something went wrong while loading character Achievements! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterAchievementHandler_loadAtArcemu", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_achievements", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, tmpCharacter)
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Achievement @loadAtTrinity", "CharacterAchievementHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) & "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) &
+                                                  "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
-                    Dim avid As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim xdate As String = (tempdt.Rows(count).Item(1)).ToString
-                    templist.Add("<av>" & avid & "</av><date>" & xdate & "</date>")
+                    Dim tmpAv As New Achievement
+                    tmpAv.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                    tmpAv.OwnerSet = tar_setId
+                    tmpAv.GainDate = (tempdt.Rows(count).Item(1)).ToString
+                    tmpCharacter.Achievements.Add(tmpAv)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -88,23 +94,26 @@ Public Class CharacterAchievementHandler
             LogAppend("Something went wrong while loading character Achievement! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterAchievementHandler_loadAtTrinity", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_achievements", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, tmpCharacter)
     End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Achievement @loadAtMangos", "CharacterAchievementHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) & "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
+        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) &
+                                                  "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
-                    Dim avid As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim xdate As String = (tempdt.Rows(count).Item(1)).ToString
-                    templist.Add("<av>" & avid & "</av><date>" & xdate & "</date>")
+                    Dim tmpAv As New Achievement
+                    tmpAv.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                    tmpAv.OwnerSet = tar_setId
+                    tmpAv.GainDate = (tempdt.Rows(count).Item(1)).ToString
+                    tmpCharacter.Achievements.Add(tmpAv)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -114,6 +123,6 @@ Public Class CharacterAchievementHandler
             LogAppend("Something went wrong while loading character Achievement! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterAchievementHandler_loadAtMangos", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_achievements", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, tmpCharacter)
     End Sub
 End Class

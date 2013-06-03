@@ -63,3 +63,29 @@ Public Class Glyph
 
 
 End Class
+Public Class Achievement
+
+    Public Id As Integer
+    Public GainDate As String
+    Public OwnerSet As Integer
+   
+    Public Sub New()
+
+    End Sub
+
+
+End Class
+Public Class Action
+
+    Public Button As Integer
+    Public Spec As Integer
+    Public ActionId As Integer
+    Public ActionType As Integer
+    Public OwnerSet As Integer
+
+    Public Sub New()
+
+    End Sub
+
+
+End Class

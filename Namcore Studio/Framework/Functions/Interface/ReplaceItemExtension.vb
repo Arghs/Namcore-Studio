@@ -12,7 +12,7 @@ Module ReplaceItemExtension
         itm.image = GetIconByItemId(newitemid)
         itm.rarity = GetRarityByItemId(newitemid)
         Return itm
-      
+
     End Function
 
 End Module
