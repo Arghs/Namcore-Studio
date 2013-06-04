@@ -6,7 +6,11 @@ NamcoreStudio
 </name>
 </assembly>
 <members>
-<member name="P:Namcore_Studio.My.Resources.UserMessages.ResourceManager">
+<member name="M:Namcore_Studio.ReplaceItemExtension.ReplaceItem(Namcore_Studio.Item@,System.Int32)">
+	<summary>
+ Replaces an Item
+ </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.ResourceManager">
 	<summary>
   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
 </summary>
@@ -359,10 +363,6 @@ flags,long,long,long,
 	<returns><c><seealso cref="T:System.Collections.Generic.List`1">List(Of Control)
  </seealso></c> that contains a reference to all child controls.</returns>
 	<remarks></remarks>
-</member><member name="M:Namcore_Studio.ReplaceItemExtension.ReplaceItem(Namcore_Studio.Item@,System.Int32)">
-	<summary>
- Replaces an Item
- </summary>
 </member>
 </members>
 </doc>

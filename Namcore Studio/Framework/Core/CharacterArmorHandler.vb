@@ -80,6 +80,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 1
@@ -91,6 +92,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 2
@@ -102,6 +104,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 3
@@ -113,6 +116,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 4
@@ -124,6 +128,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 5
@@ -135,6 +140,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 6
@@ -146,6 +152,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 7
@@ -157,6 +164,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 8
@@ -168,6 +176,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 9
@@ -179,6 +188,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 10
@@ -190,6 +200,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 11
@@ -201,6 +212,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 12
@@ -212,6 +224,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 13
@@ -223,6 +236,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 14
@@ -234,6 +248,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 15
@@ -245,6 +260,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 16
@@ -256,6 +272,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 17
@@ -267,6 +284,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 18
@@ -278,6 +296,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case Else : End Select
@@ -333,6 +352,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 2
@@ -344,6 +364,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 3
@@ -355,6 +376,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 4
@@ -366,6 +388,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 5
@@ -377,6 +400,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 6
@@ -388,6 +412,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 7
@@ -399,6 +424,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 8
@@ -410,6 +436,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 9
@@ -421,6 +448,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 10
@@ -432,6 +460,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 11
@@ -443,6 +472,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 12
@@ -454,6 +484,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 13
@@ -465,6 +496,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 14
@@ -476,6 +508,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 15
@@ -487,6 +520,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 16
@@ -498,6 +532,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 17
@@ -509,6 +544,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 18
@@ -520,6 +556,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                         End If
                     Case Else : End Select
@@ -565,6 +602,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 1
@@ -576,6 +614,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 2
@@ -587,6 +626,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 3
@@ -598,6 +638,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 4
@@ -609,6 +650,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 5
@@ -620,6 +662,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 6
@@ -631,6 +674,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 7
@@ -642,6 +686,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 8
@@ -653,6 +698,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 9
@@ -664,6 +710,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 10
@@ -675,6 +722,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 11
@@ -686,6 +734,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 12
@@ -697,6 +746,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 13
@@ -708,6 +758,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 14
@@ -719,6 +770,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 15
@@ -730,6 +782,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 16
@@ -741,6 +794,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 17
@@ -752,6 +806,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 18
@@ -763,6 +818,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             SetCharacterInventoryItem(player, itm)
+                            SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case Else : End Select
