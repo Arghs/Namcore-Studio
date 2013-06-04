@@ -68,6 +68,20 @@ Public Class Basics
             'not found
         End If
     End Sub
+    Public Shared Sub SetCharacterInventoryItem(ByRef player As Character, ByVal itm As Item)
+        If player.InventoryItemsIndex.Contains("[slot:" & itm.slotname & "|@") Then
+            player.InventoryItems(TryInt(splitString(player.InventoryItemsIndex, "[slot:" & itm.slotname & "|@", "]"))) = itm
+        Else
+
+        End If
+    End Sub
+    Public Shared Function GetCharacterInventoryItem(ByVal player As Character, ByVal slot As String) As Item
+        If player.InventoryItemsIndex.Contains("[slot:" & slot & "|@") Then
+            Return player.InventoryItems(TryInt(splitString(player.InventoryItemsIndex, "[slot:" & slot & "|@", "]")))
+        Else
+            Return Nothing
+        End If
+    End Function
     Public Shared Sub SetTCI_Item(ByVal itm As Item, ByVal targetSetId As Integer)
         Dim itemContext As String = "[itm:" & itm.slotname & "][itm:" & itm.slot.ToString & "]" &
             "{slot}" & itm.slotname & "{/slot}" &

@@ -41,6 +41,7 @@ Public Class Item
     Public enchantment_type As Integer '1=spell;2=item
     Public enchantment_id As Integer
     Public enchantment_name As String
+    Public enchstring As String
     Public image As Image
     Public Sub New()
 

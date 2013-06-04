@@ -50,49 +50,56 @@ Public Class CharacterEnchantmentsHandler
         Dim slotname(19) As String
         slotname = {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance", "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
         Dim loopcounter As Integer = 0
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
+
         Do
-            SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_enchant_text", ArcSplitEnchantString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), "@character_" & slotname(loopcounter) & "_enchant_id", tar_setId), tar_setId)
+            Dim itm As New Item
+            itm = GetCharacterInventoryItem(player, slotname(loopcounter))
+            itm.enchantment_name = ArcSplitEnchantString(itm.enchstring, player, itm)
             If Not loopcounter = 17 Or 18 Then
-                SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_gem1_text", ArcSplitGemString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), tar_setId, 29), tar_setId)
-                SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_gem2_text", ArcSplitGemString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), tar_setId, 32), tar_setId)
-                SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_gem3_text", ArcSplitGemString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), tar_setId, 35), tar_setId)
+                itm.socket1_name = ArcSplitGemString(itm.enchstring, tar_setId, 29)
+                itm.socket2_name = ArcSplitGemString(itm.enchstring, tar_setId, 32)
+                itm.socket3_name = ArcSplitGemString(itm.enchstring, tar_setId, 35)
             End If
             If loopcounter = 13 Then
-                Dim resultString As String = ArcSplitGemString(GetTemporaryCharacterInformation("@character_waist_ench", tar_setId), tar_setId, 38) = ""
-                If Not resultString = "" Then SetTemporaryCharacterInformation("@character_beltbuckle", TryInt(resultString), tar_setId)
+                Dim resultString As String = ArcSplitGemString(itm.enchstring, tar_setId, 38) = ""
+                If Not resultString = "" Then player.BeltBuckle = TryInt(resultString)
             End If
             loopcounter += 1
+            SetCharacterInventoryItem(player, itm)
+            SetCharacterSet(tar_setId, player)
         Loop Until loopcounter = 18
+
         End Sub
-    Private Shared Function ArcSplitEnchantString(ByVal input As String, ByVal obvalue As String, ByVal targetSetId As Integer) As String
-        LogAppend("ArcSplitEnchantString call (input=" & input & " // obvalue=" & obvalue & ")", "CharacterEnchantmentsHandler_ArcSplitEnchantString", False)
+    Private Shared Function ArcSplitEnchantString(ByVal input As String, ByVal player As Character, ByRef itm As Item) As String
+        LogAppend("ArcSplitEnchantString call (input=" & input & " // character name=" & player.Name & " // itemslot= " & itm.slotname & ")", "CharacterEnchantmentsHandler_ArcSplitEnchantString", False)
         Try
             If input.Contains(";") Then
                 Dim parts() As String = input.Split(";"c)
                 If parts(0).Contains("0,0") Then
                     Dim parts2() As String = parts(0).Split(","c)
-                    SetTemporaryCharacterInformation(obvalue, parts2(0), targetSetId)
-                    Return GetEffectNameByEffectId(obvalue)
+                    itm.enchantment_id = TryInt(parts2(0))
+                    Return GetEffectNameByEffectId(parts2(0))
                 ElseIf parts(1).Contains("0,0") Then
                     Dim parts2() As String = parts(1).Split(","c)
-                    SetTemporaryCharacterInformation(obvalue, parts2(0), targetSetId)
-                    Return GetEffectNameByEffectId(obvalue)
+                    itm.enchantment_id = TryInt(parts2(0))
+                    Return GetEffectNameByEffectId(parts2(0))
                 ElseIf parts(2).Contains("0,0") Then
                     Dim parts2() As String = parts(2).Split(","c)
-                    SetTemporaryCharacterInformation(obvalue, parts2(0), targetSetId)
-                    Return GetEffectNameByEffectId(obvalue)
+                    itm.enchantment_id = TryInt(parts2(0))
+                    Return GetEffectNameByEffectId(parts2(0))
                 ElseIf parts(3).Contains("0,0") Then
                     Dim parts2() As String = parts(3).Split(","c)
-                    SetTemporaryCharacterInformation(obvalue, parts2(0), targetSetId)
-                    Return GetEffectNameByEffectId(obvalue)
+                    itm.enchantment_id = TryInt(parts2(0))
+                    Return GetEffectNameByEffectId(parts2(0))
                 ElseIf parts(4).Contains("0,0") Then
                     Dim parts2() As String = parts(4).Split(","c)
-                    SetTemporaryCharacterInformation(obvalue, parts2(0), targetSetId)
-                    Return GetEffectNameByEffectId(obvalue)
+                    itm.enchantment_id = TryInt(parts2(0))
+                    Return GetEffectNameByEffectId(parts2(0))
                 ElseIf parts(5).Contains("0,0") Then
                     Dim parts2() As String = parts(5).Split(","c)
-                    SetTemporaryCharacterInformation(obvalue, parts2(0), targetSetId)
-                    Return GetEffectNameByEffectId(obvalue)
+                    itm.enchantment_id = TryInt(parts2(0))
+                    Return GetEffectNameByEffectId(parts2(0))
                 Else
                     Return ""
                 End If
@@ -167,26 +174,31 @@ Public Class CharacterEnchantmentsHandler
         Dim slotname(19) As String
         slotname = {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance", "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
         Dim loopcounter As Integer = 0
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Do
-            SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_enchant_text", TrinitySplitEnchantString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), "@character_" & slotname(loopcounter) & "_enchant_id", tar_setId), tar_setId)
+            Dim itm As New Item
+            itm = GetCharacterInventoryItem(player, slotname(loopcounter))
+            itm.enchantment_name = TrinitySplitEnchantString(itm.enchstring, itm, tar_setId)
             If Not loopcounter = 17 Or 18 Then
-                SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_gem1_text", TrinitySplitGemString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), tar_setId, 6, "@character_" & slotname(loopcounter) & "_gem1_id"), tar_setId)
-                SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_gem2_text", TrinitySplitGemString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), tar_setId, 9, "@character_" & slotname(loopcounter) & "_gem2_id"), tar_setId)
-                SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_gem3_text", TrinitySplitGemString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), tar_setId, 12, "@character_" & slotname(loopcounter) & "_gem3_id"), tar_setId)
+                itm.socket1_name = TrinitySplitGemString(itm.enchstring, tar_setId, 6, itm, 1)
+                itm.socket2_name = TrinitySplitGemString(itm.enchstring, tar_setId, 9, itm, 2)
+                itm.socket3_name = TrinitySplitGemString(itm.enchstring, tar_setId, 12, itm, 3)
             End If
             If loopcounter = 13 Then
                 '// TODO: Load belt buckle
             End If
             loopcounter += 1
+            SetCharacterInventoryItem(player, itm)
+            SetCharacterSet(tar_setId, player)
         Loop Until loopcounter = 18
     End Sub
-    Private Shared Function TrinitySplitEnchantString(ByVal input As String, ByRef obvalue As Integer, ByVal targetSetId As Integer) As String
-        LogAppend("TrinitySplitEnchantString call (input=" & input & " // obvalue=" & obvalue & ")", "CharacterEnchantmentsHandler_TrinitySplitEnchantString", False)
+    Private Shared Function TrinitySplitEnchantString(ByVal input As String, ByRef itm As Item, ByVal targetSetId As Integer) As String
+        LogAppend("TrinitySplitEnchantString call (input=" & input & " // itemslot=" & itm.slotname & ")", "CharacterEnchantmentsHandler_TrinitySplitEnchantString", False)
         Try
             If input.Contains(" ") Then
                 Dim parts() As String = input.Split(" "c)
                 If Not parts(0) = "0" Then
-                    SetTemporaryCharacterInformation(obvalue, parts(0), targetSetId)
+                    itm.enchantment_id = TryInt(parts(0))
                     Return GetEffectNameByEffectId(TryInt(parts(0)))
                 Else
                     Return ""
@@ -200,12 +212,16 @@ Public Class CharacterEnchantmentsHandler
         End Try
     End Function
 
-    Private Shared Function TrinitySplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer, ByVal obvalue As String) As String
-        LogAppend("TrinitySplitGemString call (input=" & input & " // obvalue=" & obvalue & ")", "CharacterEnchantmentsHandler_TrinitySplitGemString", False)
+    Private Shared Function TrinitySplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer, ByRef itm As Item, ByVal gemnum As Integer) As String
+        LogAppend("TrinitySplitGemString call (input=" & input & " // itemslot=" & itm.slotname & ")", "CharacterEnchantmentsHandler_TrinitySplitGemString", False)
         Try
             Dim parts() As String = input.Split(" "c)
             If Not parts(position) = "0" Then
-                SetTemporaryCharacterInformation(obvalue, parts(0), targetSetId)
+                Select Case gemnum
+                    Case 1 : itm.socket1_id = TryInt(parts(0))
+                    Case 2 : itm.socket2_id = TryInt(parts(0))
+                    Case 3 : itm.socket3_id = TryInt(parts(0))
+                End Select
                 Return GetEffectNameByEffectId(TryInt(parts(position)))
             Else
                 Return ""
@@ -223,26 +239,31 @@ Public Class CharacterEnchantmentsHandler
         Dim slotname(19) As String
         slotname = {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance", "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
         Dim loopcounter As Integer = 0
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Do
-            SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_enchant_text", MangosSplitEnchantString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), "@character_" & slotname(loopcounter) & "_enchant_id", tar_setId), tar_setId)
+            Dim itm As New Item
+            itm = GetCharacterInventoryItem(player, slotname(loopcounter))
+            itm.enchantment_name = MangosSplitEnchantString(itm.enchstring, itm, tar_setId)
             If Not loopcounter = 17 Or 18 Then
-                SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_gem1_text", MangosSplitGemString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), tar_setId, 29, "@character_" & slotname(loopcounter) & "_gem1_id"), tar_setId)
-                SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_gem2_text", MangosSplitGemString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), tar_setId, 32, "@character_" & slotname(loopcounter) & "_gem2_id"), tar_setId)
-                SetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_gem3_text", MangosSplitGemString(GetTemporaryCharacterInformation("@character_" & slotname(loopcounter) & "_ench", tar_setId), tar_setId, 35, "@character_" & slotname(loopcounter) & "_gem3_id"), tar_setId)
+                itm.socket1_name = MangosSplitGemString(itm.enchstring, tar_setId, 29, itm, 1)
+                itm.socket2_name = MangosSplitGemString(itm.enchstring, tar_setId, 32, itm, 2)
+                itm.socket3_name = MangosSplitGemString(itm.enchstring, tar_setId, 35, itm, 3)
             End If
             If loopcounter = 13 Then
                 '// TODO: Load belt buckle
             End If
             loopcounter += 1
+            SetCharacterInventoryItem(player, itm)
+            SetCharacterSet(tar_setId, player)
         Loop Until loopcounter = 18
     End Sub
-    Private Shared Function MangosSplitEnchantString(ByVal input As String, ByRef obvalue As Integer, ByVal targetSetId As Integer) As String
-        LogAppend("MangosSplitEnchantString call (input=" & input & " // obvalue=" & obvalue & ")", "CharacterEnchantmentsHandler_MangosSplitEnchantString", False)
+    Private Shared Function MangosSplitEnchantString(ByVal input As String, ByRef itm As Item, ByVal targetSetId As Integer) As String
+        LogAppend("MangosSplitEnchantString call (input=" & input & " // itemslot=" & itm.slotname & ")", "CharacterEnchantmentsHandler_MangosSplitEnchantString", False)
         Try
             If input.Contains(" ") Then
                 Dim parts() As String = input.Split(" "c)
                 If Not parts(22) = "0" Then
-                    obvalue = CInt(parts(22))
+                    itm.enchantment_id = CInt(parts(22))
                     Return GetEffectNameByEffectId(CInt(parts(22)))
                 Else
                     Return ""
@@ -256,12 +277,16 @@ Public Class CharacterEnchantmentsHandler
         End Try
     End Function
 
-    Private Shared Function MangosSplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer, ByVal obvalue As String) As String
-        LogAppend("MangosSplitGemString call (input=" & input & " // obvalue=" & obvalue & ")", "CharacterEnchantmentsHandler_MangosSplitGemString", False)
+    Private Shared Function MangosSplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer, ByRef itm As Item, ByVal gemnum As Integer) As String
+        LogAppend("MangosSplitGemString call (input=" & input & " // slotname=" & itm.slotname & ")", "CharacterEnchantmentsHandler_MangosSplitGemString", False)
         Try
             Dim parts() As String = input.Split(" "c)
             If Not parts(position - 1) = "0" Then
-                obvalue = CInt(parts(position - 1))
+                Select Case gemnum
+                    Case 1 : itm.socket1_id = CInt(parts(position - 1))
+                    Case 2 : itm.socket2_id = CInt(parts(position - 1))
+                    Case 3 : itm.socket3_id = CInt(parts(position - 1))
+                End Select
                 Return GetEffectNameByEffectId(CInt(parts(position - 1)))
             Else
                 Return ""

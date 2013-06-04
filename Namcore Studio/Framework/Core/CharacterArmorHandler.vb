@@ -75,116 +75,210 @@ Public Class CharacterArmorHandler
                         slotname = "head"
                         If itementry > 1 Then
                             Dim itm As New Item
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 1
                         slotname = "neck"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 2
                         slotname = "shoulder"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 3
                         slotname = "shirt"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 4
                         slotname = "chest"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 5
                         slotname = "waist"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 6
                         slotname = "legs"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 7
                         slotname = "feet"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 8
                         slotname = "wrists"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 9
                         slotname = "hands"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 10
                         slotname = "finger1"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 11
                         slotname = "finger2"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 12
                         slotname = "trinket1"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 13
                         slotname = "trinket2"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 14
                         slotname = "back"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 15
                         slotname = "main"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 16
                         slotname = "off"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 17
                         slotname = "distance"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 18
                         slotname = "tabard"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case Else : End Select
 
@@ -222,116 +316,211 @@ Public Class CharacterArmorHandler
                     Case 0
                         slotname = "head"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 1
                         slotname = "neck"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 2
                         slotname = "shoulder"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 3
                         slotname = "shirt"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 4
                         slotname = "chest"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 5
                         slotname = "waist"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 6
                         slotname = "legs"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 7
                         slotname = "feet"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 8
                         slotname = "wrists"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 9
                         slotname = "hands"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 10
                         slotname = "finger1"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 11
                         slotname = "finger2"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 12
                         slotname = "trinket1"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 13
                         slotname = "trinket2"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 14
                         slotname = "back"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 15
                         slotname = "main"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 16
                         slotname = "off"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 17
                         slotname = "distance"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 18
                         slotname = "tabard"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                         End If
                     Case Else : End Select
 
@@ -370,116 +559,211 @@ Public Class CharacterArmorHandler
                     Case 0
                         slotname = "head"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 1
                         slotname = "neck"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 2
                         slotname = "shoulder"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 3
                         slotname = "shirt"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 4
                         slotname = "chest"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 5
                         slotname = "waist"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 6
                         slotname = "legs"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 7
                         slotname = "feet"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 8
                         slotname = "wrists"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 9
                         slotname = "hands"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 10
                         slotname = "finger1"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 11
                         slotname = "finger2"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 12
                         slotname = "trinket1"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 13
                         slotname = "trinket2"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 14
                         slotname = "back"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 15
                         slotname = "main"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 16
                         slotname = "off"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 17
                         slotname = "distance"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 18
                         slotname = "tabard"
                         If itementry > 1 Then
-                            SetTemporaryCharacterInformation("@character_" & slotname & "Id", itementry.ToString(), tar_setId)
-                            GetItemStats(itemguid, slotname, tar_setId)
+                            Dim itm As New Item
+                            itm.slotname = slotname
+                            itm.slot = itemslot
+                            itm.id = itementry
+                            Dim player As Character = GetCharacterSetBySetId(tar_setId)
+                            SetCharacterInventoryItem(player, itm)
+                            GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case Else : End Select
             Catch ex As Exception

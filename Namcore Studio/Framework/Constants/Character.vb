@@ -97,6 +97,7 @@ Public Class Character
     Public PlayerGlyphsIndex As String
     Public Achievements As List(Of Achievement)
     Public Actions As List(Of Action)
+    Public BeltBuckle As Integer
 
     Public Sub New(charname As String, charguid As Integer)
         Name = charname
