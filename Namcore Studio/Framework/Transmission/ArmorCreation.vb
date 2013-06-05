@@ -22,6 +22,7 @@
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Imports System.Linq
 Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.GlobalVariables
@@ -69,10 +70,7 @@ Public Class ArmorCreation
         itemtypelist(8) = "wrists" : itemtypelist(9) = "hands" : itemtypelist(10) = "finger1" : itemtypelist(11) = "finger2" : itemtypelist(12) = "trinket1" : itemtypelist(13) = "trinket2" : itemtypelist(14) = "back"
         itemtypelist(15) = "main" : itemtypelist(16) = "off" : itemtypelist(17) = "distance" : itemtypelist(18) = "tabard"
         'Build item type string
-        Dim finalItemString As String = ""
-        For Each newItemType As String In itemtypelist
-            finalItemString = finalItemString & newItemType & " 0 "
-        Next
+        Dim finalItemString As String = itemtypelist.Aggregate("", Function(current, newItemType) current & newItemType & " 0 ")
         Dim typeCounter As Integer = 0
         Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
                                                                             "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " & sourceStructure.item_instance_tbl(0) & ")"))
@@ -103,7 +101,7 @@ Public Class ArmorCreation
             Next
         End If
     End Sub
-  Private Shared Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Shared Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating armor at trinity", "ArmorCreation_createAtTrinity", False)
         LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtTrinity", False)
         'Adding weapon specific spells and skills
@@ -125,10 +123,7 @@ Public Class ArmorCreation
         itemtypelist(8) = "wrists" : itemtypelist(9) = "hands" : itemtypelist(10) = "finger1" : itemtypelist(11) = "finger2" : itemtypelist(12) = "trinket1" : itemtypelist(13) = "trinket2" : itemtypelist(14) = "back"
         itemtypelist(15) = "main" : itemtypelist(16) = "off" : itemtypelist(17) = "distance" : itemtypelist(18) = "tabard"
         'Build item type string
-        Dim finalItemString As String = ""
-        For Each newItemType As String In itemtypelist
-            finalItemString = finalItemString & newItemType & " 0 "
-        Next
+        Dim finalItemString As String = itemtypelist.Aggregate("", Function(current, newItemType) current & newItemType & " 0 ")
         Dim typeCounter As Integer = 0
         Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                                             sourceStructure.itmins_guid_col(0) & "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " & sourceStructure.item_instance_tbl(0) & ")"))
@@ -154,9 +149,7 @@ Public Class ArmorCreation
             typeCounter += 1
         Next
         If Not Regex.IsMatch(finalItemString, "^[0-9 ]+$") Then
-            For Each itemtype As String In itemtypelist
-                finalItemString = finalItemString.Replace(itemtype, "0")
-            Next
+            finalItemString = itemtypelist.Aggregate(finalItemString, Function(current, itemtype) current.Replace(itemtype, "0"))
         End If
         runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_equipmentCache_col(0) & "='" & finalItemString & "' WHERE (" & sourceStructure.char_guid_col(0) & "='" & characterguid.ToString() & "')")
     End Sub
@@ -182,10 +175,7 @@ Public Class ArmorCreation
         itemtypelist(8) = "wrists" : itemtypelist(9) = "hands" : itemtypelist(10) = "finger1" : itemtypelist(11) = "finger2" : itemtypelist(12) = "trinket1" : itemtypelist(13) = "trinket2" : itemtypelist(14) = "back"
         itemtypelist(15) = "main" : itemtypelist(16) = "off" : itemtypelist(17) = "distance" : itemtypelist(18) = "tabard"
         'Build item type string
-        Dim finalItemString As String = ""
-        For Each newItemType As String In itemtypelist
-            finalItemString = finalItemString & newItemType & " 0 "
-        Next
+        Dim finalItemString As String = itemtypelist.Aggregate("", Function(current, newItemType) current & newItemType & " 0 ")
         Dim typeCounter As Integer = 0
         Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                                             sourceStructure.itmins_guid_col(0) & "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " & sourceStructure.item_instance_tbl(0) & ")"))
@@ -220,9 +210,7 @@ Public Class ArmorCreation
             typeCounter += 1
         Next
         If Not Regex.IsMatch(finalItemString, "^[0-9 ]+$") Then
-            For Each itemtype As String In itemtypelist
-                finalItemString = finalItemString.Replace(itemtype, "0")
-            Next
+            finalItemString = itemtypelist.Aggregate(finalItemString, Function(current, itemtype) current.Replace(itemtype, "0"))
         End If
         runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_equipmentCache_col(0) & "='" & finalItemString & "' WHERE (" & sourceStructure.char_guid_col(0) &
                                         "='" & characterguid.ToString() & "')")
