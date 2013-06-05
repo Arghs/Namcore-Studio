@@ -47,13 +47,13 @@ Public Class CharacterItemStatsHandler
     Private Shared Sub loadAtArcemu(ByVal item As Integer, ByVal tar_setId As Integer, ByRef itm As Item, ByRef player As Character)
         LogAppend("Loading ItemStats @loadAtArcemu", "CharacterItemStatsHandler_loadAtArcemu", False)
         itm.enchstring = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
-        SetCharacterInventoryItem(player, itm)
+        SetCharacterArmorItem(player, itm)
         SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinity(ByVal item As Integer, ByVal tar_setId As Integer, ByRef itm As Item, ByRef player As Character)
         LogAppend("Loading ItemStats @loadAtTrinity", "CharacterItemStatsHandler_loadAtTrinity", False)
         itm.enchstring = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
-        SetCharacterInventoryItem(player, itm)
+        SetCharacterArmorItem(player, itm)
         SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal item As Integer, ByVal tar_setId As Integer, ByRef itm As Item, ByRef player As Character)
@@ -62,7 +62,7 @@ Public Class CharacterItemStatsHandler
     Private Shared Sub loadAtMangos(ByVal item As Integer, ByVal tar_setId As Integer, ByRef itm As Item, ByRef player As Character)
         LogAppend("Loading character ItemStats @loadAtMangos", "CharacterItemStatsHandler_loadAtMangos", False)
         itm.enchstring = runSQLCommand_characters_string("SELECT `" & sourceStructure.itmins_data_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
-        SetCharacterInventoryItem(player, itm)
+        SetCharacterArmorItem(player, itm)
         SetCharacterSet(tar_setId, player)
     End Sub
 End Class

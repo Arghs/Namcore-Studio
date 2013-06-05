@@ -47,7 +47,7 @@ Public Class CharacterSkillsHandler
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character skills @loadAtArcemu", "CharacterSkillsHandler_loadAtArcemu", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_skills_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
@@ -59,14 +59,15 @@ Public Class CharacterSkillsHandler
                     Dim finalcounter As Integer = tryint(excounter / 3)
                     Dim partscounter As Integer = 0
                     Do
+                        Dim skl As New Skill
                         Dim parts() As String = readedcode.Split(","c)
-                        Dim skill As String = parts(partscounter).ToString
+                        skl.id = TryInt(parts(partscounter).ToString)
                         partscounter += 1
-                        Dim value As String = parts(partscounter).ToString
+                        skl.value = TryInt(parts(partscounter).ToString)
                         partscounter += 1
-                        Dim max As String = parts(partscounter).ToString
+                        skl.max = TryInt(parts(partscounter).ToString)
                         partscounter += 1
-                        templist.Add("<skill>" & skill & "</skill><value>" & value & "</value><max>" & max & "</max>")
+                        player.Skills.Add(skl)
                         loopcounter += 1
                     Loop Until loopcounter = finalcounter
                     count += 1
@@ -78,22 +79,23 @@ Public Class CharacterSkillsHandler
             LogAppend("Something went wrong while loading character skills! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterSkillsHandler_loadAtArcemu", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_skills", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character skills @loadAtTrinity", "CharacterSkillsHandler_loadAtTrinity", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.skill_skill_col(0) & ", `" & sourceStructure.skill_value_col(0) & "`, " & sourceStructure.skill_max_col(0) &
                                                   " FROM " & sourceStructure.character_skills_tbl(0) & " WHERE " & sourceStructure.skill_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
-                    Dim skill As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim value As String = (tempdt.Rows(count).Item(1)).ToString
-                    Dim max As String = (tempdt.Rows(count).Item(2)).ToString
-                    templist.Add("<skill>" & skill & "</skill><value>" & value & "</value><max>" & max & "</max>")
+                    Dim skl As New Skill
+                    skl.id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                    skl.value = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                    skl.max = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    player.Skills.Add(skl)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -103,7 +105,7 @@ Public Class CharacterSkillsHandler
             LogAppend("Something went wrong while loading character skills! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterSkillsHandler_loadAtTrinity", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_skills", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
@@ -112,16 +114,17 @@ Public Class CharacterSkillsHandler
         LogAppend("Loading character skills @loadAtMangos", "CharacterSkillsHandler_loadAtMangos", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.skill_skill_col(0) & ", `" & sourceStructure.skill_value_col(0) & "`, " & sourceStructure.skill_max_col(0) &
                                                   " FROM " & sourceStructure.character_skills_tbl(0) & " WHERE " & sourceStructure.skill_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
-                    Dim skill As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim value As String = (tempdt.Rows(count).Item(1)).ToString
-                    Dim max As String = (tempdt.Rows(count).Item(2)).ToString
-                    templist.Add("<skill>" & skill & "</skill><value>" & value & "</value><max>" & max & "</max>")
+                    Dim skl As New Skill
+                    skl.id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                    skl.value = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                    skl.max = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    player.Skills.Add(skl)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -131,6 +134,11 @@ Public Class CharacterSkillsHandler
             LogAppend("Something went wrong while loading character skills! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterSkillsHandler_loadAtMangos", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_skills", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
+
+   
+
+   
+
 End Class

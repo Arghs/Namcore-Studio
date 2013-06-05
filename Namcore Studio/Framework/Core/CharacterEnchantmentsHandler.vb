@@ -54,7 +54,7 @@ Public Class CharacterEnchantmentsHandler
 
         Do
             Dim itm As New Item
-            itm = GetCharacterInventoryItem(player, slotname(loopcounter))
+            itm = GetCharacterArmorItem(player, slotname(loopcounter))
             itm.enchantment_name = ArcSplitEnchantString(itm.enchstring, player, itm)
             If Not loopcounter = 17 Or 18 Then
                 itm.socket1_name = ArcSplitGemString(itm.enchstring, tar_setId, 29)
@@ -66,11 +66,11 @@ Public Class CharacterEnchantmentsHandler
                 If Not resultString = "" Then player.BeltBuckle = TryInt(resultString)
             End If
             loopcounter += 1
-            SetCharacterInventoryItem(player, itm)
+            SetCharacterArmorItem(player, itm)
             SetCharacterSet(tar_setId, player)
         Loop Until loopcounter = 18
 
-        End Sub
+    End Sub
     Private Shared Function ArcSplitEnchantString(ByVal input As String, ByVal player As Character, ByRef itm As Item) As String
         LogAppend("ArcSplitEnchantString call (input=" & input & " // character name=" & player.Name & " // itemslot= " & itm.slotname & ")", "CharacterEnchantmentsHandler_ArcSplitEnchantString", False)
         Try
@@ -115,7 +115,7 @@ Public Class CharacterEnchantmentsHandler
     Private Shared Function ArcSplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer) As String
         LogAppend("ArcSplitGemString call (input=" & input & " // position=" & position.ToString() & ")", "CharacterEnchantmentsHandler_ArcSplitGemString", False)
         Dim obvalue As String
-       Try
+        Try
             Dim parts() As String = input.Split(";"c)
             Dim xvalue As String = ""
             If position = 23 Then
@@ -177,7 +177,7 @@ Public Class CharacterEnchantmentsHandler
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Do
             Dim itm As New Item
-            itm = GetCharacterInventoryItem(player, slotname(loopcounter))
+            itm = GetCharacterArmorItem(player, slotname(loopcounter))
             itm.enchantment_name = TrinitySplitEnchantString(itm.enchstring, itm, tar_setId)
             If Not loopcounter = 17 Or 18 Then
                 itm.socket1_name = TrinitySplitGemString(itm.enchstring, tar_setId, 6, itm, 1)
@@ -188,7 +188,7 @@ Public Class CharacterEnchantmentsHandler
                 '// TODO: Load belt buckle
             End If
             loopcounter += 1
-            SetCharacterInventoryItem(player, itm)
+            SetCharacterArmorItem(player, itm)
             SetCharacterSet(tar_setId, player)
         Loop Until loopcounter = 18
     End Sub
@@ -242,7 +242,7 @@ Public Class CharacterEnchantmentsHandler
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Do
             Dim itm As New Item
-            itm = GetCharacterInventoryItem(player, slotname(loopcounter))
+            itm = GetCharacterArmorItem(player, slotname(loopcounter))
             itm.enchantment_name = MangosSplitEnchantString(itm.enchstring, itm, tar_setId)
             If Not loopcounter = 17 Or 18 Then
                 itm.socket1_name = MangosSplitGemString(itm.enchstring, tar_setId, 29, itm, 1)
@@ -253,7 +253,7 @@ Public Class CharacterEnchantmentsHandler
                 '// TODO: Load belt buckle
             End If
             loopcounter += 1
-            SetCharacterInventoryItem(player, itm)
+            SetCharacterArmorItem(player, itm)
             SetCharacterSet(tar_setId, player)
         Loop Until loopcounter = 18
     End Sub

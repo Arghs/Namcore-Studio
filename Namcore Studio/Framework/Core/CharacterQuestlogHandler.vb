@@ -49,7 +49,7 @@ Public Class CharacterQuestlogHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.qst_quest_col(0) & ", " & sourceStructure.qst_completed_col(0) & ", " & sourceStructure.qst_explored_col(0) &
                                                   ", " & sourceStructure.qst_timer_col(0) & ", " & sourceStructure.qst_slot_col(0) & " FROM " & sourceStructure.character_queststatus_tbl(0) &
                                                   " WHERE " & sourceStructure.qst_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
@@ -57,14 +57,15 @@ Public Class CharacterQuestlogHandler
                 Do
                     Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                     Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
-                    Dim partscounter As Integer = 0
+                    Const partscounter As Integer = 0
                     Do
-                        Dim quest As String = (tempdt.Rows(count).Item(0)).ToString
-                        Dim status As String = (tempdt.Rows(count).Item(1)).ToString
-                        Dim explored As String = (tempdt.Rows(count).Item(2)).ToString
-                        Dim timer As String = (tempdt.Rows(count).Item(3)).ToString
-                        Dim slot As String = (tempdt.Rows(count).Item(4)).ToString
-                        templist.Add("<quest>" & quest & "</quest><status>" & status & "</status><explored>" & explored & "</explored><timer>" & timer & "</timer><slot>" & slot & "</slot>")
+                        Dim qst As New Quest
+                        qst.id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                        qst.status = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        qst.explored = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        qst.timer = TryInt((tempdt.Rows(count).Item(3)).ToString)
+                        qst.slot = TryInt((tempdt.Rows(count).Item(4)).ToString)
+                        player.Quests.Add(qst)
                     Loop Until partscounter = excounter - 1
                     count += 1
                 Loop Until count = lastcount
@@ -75,24 +76,25 @@ Public Class CharacterQuestlogHandler
             LogAppend("Something went wrong while loading character questlog! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterQuestlogHandler_loadAtArcemu", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_questlog", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character questlog @loadAtTrinity", "CharacterQuestlogHandler_loadAtTrinity", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.qst_quest_col(0) & ", " & sourceStructure.qst_status_col(0) & ", " & sourceStructure.qst_explored_col(0) &
                                                   ", " & sourceStructure.qst_timer_col(0) & " FROM " & sourceStructure.character_queststatus_tbl(0) & " WHERE " & sourceStructure.qst_guid_col(0) &
                                                   "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
-                    Dim quest As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim status As String = (tempdt.Rows(count).Item(1)).ToString
-                    Dim explored As String = (tempdt.Rows(count).Item(2)).ToString
-                    Dim timer As String = (tempdt.Rows(count).Item(3)).ToString
-                    templist.Add("<quest>" & quest & "</quest><status>" & status & "</status><explored>" & explored & "</explored><timer>" & timer & "</timer>")
+                    Dim qst As New Quest
+                    qst.id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                    qst.status = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                    qst.explored = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    qst.timer = TryInt((tempdt.Rows(count).Item(3)).ToString)
+                    player.Quests.Add(qst)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -109,37 +111,38 @@ Public Class CharacterQuestlogHandler
             If Not lastcount = 0 Then
                 Do
                     Dim quest As String = (tempdt2.Rows(count).Item(0)).ToString
-                    If Not quest = "" Then AppendTemporaryCharacterInformation("@character_finishedQuests", quest & ",", tar_setId)
+                    If Not quest = "" Then player.FinishedQuests = quest & ","
                     count += 1
                 Loop Until count = lastcount
             End If
         Catch ex As Exception
             LogAppend("Something went wrong while loading character finishedQuests! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterQuestlogHandler_loadAtTrinity", True, True)
         End Try
-        SetTemporaryCharacterInformation("@character_questlog", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character questlog @loadAtTrinityTBC", "CharacterQuestlogHandler_loadAtTrinityTBC", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.qst_quest_col(0) & ", " & sourceStructure.qst_status_col(0) & ", " & sourceStructure.qst_explored_col(0) &
                                                   ", " & sourceStructure.qst_timer_col(0) & ", " & sourceStructure.qst_rewarded_col(0) & " FROM " & sourceStructure.character_queststatus_tbl(0) &
                                                   " WHERE " & sourceStructure.qst_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = TryInt(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
-                    Dim quest As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim status As String = (tempdt.Rows(count).Item(1)).ToString
-                    Dim explored As String = (tempdt.Rows(count).Item(2)).ToString
-                    Dim timer As String = (tempdt.Rows(count).Item(3)).ToString
+                    Dim qst As New Quest
+                    qst.id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                    qst.status = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                    qst.explored = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    qst.timer = TryInt((tempdt.Rows(count).Item(3)).ToString)
                     Dim rewarded As String = (tempdt.Rows(count).Item(4)).ToString
+                    qst.rewarded = TryInt(rewarded)
                     If rewarded = "1" Then
-                        AppendTemporaryCharacterInformation("@character_finishedQuests", quest & ",", tar_setId)
+                        player.FinishedQuests = qst.id & ","
                     Else
-                        templist.Add("<quest>" & quest & "</quest><status>" & status & "</status><explored>" & explored & "</explored><timer>" & timer & "</timer>")
+                        player.Quests.Add(qst)
                     End If
-
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -148,28 +151,30 @@ Public Class CharacterQuestlogHandler
         Catch ex As Exception
             LogAppend("Something went wrong while loading character questlog! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterQuestlogHandler_loadAtTrinityTBC", True, True)
         End Try
-        SetTemporaryCharacterInformation("@character_questlog", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character questlog @loadAtMangos", "CharacterQuestlogHandler_loadAtMangos", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.qst_quest_col(0) & ", " & sourceStructure.qst_status_col(0) & ", " & sourceStructure.qst_explored_col(0) &
                                                   ", " & sourceStructure.qst_timer_col(0) & ", " & sourceStructure.qst_rewarded_col(0) & " FROM " & sourceStructure.character_queststatus_tbl(0) &
                                                   " WHERE " & sourceStructure.qst_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
-                    Dim quest As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim status As String = (tempdt.Rows(count).Item(1)).ToString
-                    Dim explored As String = (tempdt.Rows(count).Item(2)).ToString
-                    Dim timer As String = (tempdt.Rows(count).Item(3)).ToString
+                    Dim qst As New Quest
+                    qst.id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                    qst.status = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                    qst.explored = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    qst.timer = TryInt((tempdt.Rows(count).Item(3)).ToString)
                     Dim rewarded As String = (tempdt.Rows(count).Item(4)).ToString
+                    qst.rewarded = TryInt(rewarded)
                     If rewarded = "1" Then
-                        AppendTemporaryCharacterInformation("@character_finishedQuests", quest & ",", tar_setId)
+                        player.FinishedQuests = qst.id & ","
                     Else
-                        templist.Add("<quest>" & quest & "</quest><status>" & status & "</status><explored>" & explored & "</explored><timer>" & timer & "</timer>")
+                        player.Quests.Add(qst)
                     End If
                     count += 1
                 Loop Until count = lastcount
@@ -180,6 +185,6 @@ Public Class CharacterQuestlogHandler
             LogAppend("Something went wrong while loading character questlog! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterQuestlogHandler_loadAtMangos", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_questlog", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
 End Class

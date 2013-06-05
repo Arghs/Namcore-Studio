@@ -48,13 +48,12 @@ Public Class CharacterGlyphsHandler
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Glyphs @loadAtArcemu", "CharacterGlyphsHandler_loadAtArcemu", False)
-        Dim glyphname As String = ""
-        Dim glyphpic As Image = My.Resources.empty
         Dim glyphstring As String = runSQLCommand_characters_string("SELECT " & sourceStructure.char_glyphs1_col(0) & " from " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) &
                                                                     "='" & charguid.ToString & "'")
         Dim secglyphstring As String = runSQLCommand_characters_string("SELECT " & sourceStructure.char_glyphs2_col(0) & " from " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) &
                                                                        "='" & charguid.ToString & "'")
-       'Spec 0
+        'Spec 0
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim parts() As String = glyphstring.Split(","c)
             Dim prevglyphid As Integer = TryInt(Val(parts(0)))
@@ -64,49 +63,53 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "majorglyph1"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 2
-                SetCharacterGlyph(GetCharacterSetBySetId(tar_setId), tmpGlyph)
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
             LogAppend("Error while loading majorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(3)))
+            Dim prevglyphid As Integer = TryInt(Val(parts(3)))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
                 tmpGlyph.slotname = "majorglyph2"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 2
-                SetCharacterGlyph(GetCharacterSetBySetId(tar_setId), tmpGlyph)
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
             LogAppend("Error while loading majorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(5)))
+            Dim prevglyphid As Integer = TryInt(Val(parts(5)))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
                 tmpGlyph.slotname = "majorglyph3"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 2
-                SetCharacterGlyph(GetCharacterSetBySetId(tar_setId), tmpGlyph)
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
             LogAppend("Error while loading majorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(1)))
+            Dim prevglyphid As Integer = TryInt(Val(parts(1)))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
                 tmpGlyph.slotname = "minorglyph1"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 1
-                SetCharacterGlyph(GetCharacterSetBySetId(tar_setId), tmpGlyph)
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
             LogAppend("Error while loading minorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
@@ -114,14 +117,30 @@ Public Class CharacterGlyphsHandler
         Try
             Dim parts() As String = glyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(2)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "minorglyph2"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading minorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(4)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "minorglyph3"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading minorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
@@ -129,42 +148,90 @@ Public Class CharacterGlyphsHandler
         Try
             Dim parts() As String = secglyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(0)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secmajorglyph1"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 2
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading secmajorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(3)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secmajorglyph2"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 2
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading secmajorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(5)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secmajorglyph3"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 2
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading secmajorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(1)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secminorglyph1"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading secminorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(2)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secminorglyph2"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading secminorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(4)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secminorglyph3"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading secminorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
@@ -191,52 +258,197 @@ Public Class CharacterGlyphsHandler
                                      " FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.glyphs_spec_col(0) & "='1'")
         End If
         Dim prevglyphid As Integer
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
         If Not lastcount = 0 Then
             prevglyphid = tryint(Val((tempdt.Rows(0).Item(0)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = tryint(Val((tempdt.Rows(0).Item(1)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = tryint(Val((tempdt.Rows(0).Item(2)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = tryint(Val((tempdt.Rows(0).Item(3)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = tryint(Val((tempdt.Rows(0).Item(4)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = tryint(Val((tempdt.Rows(0).Item(5)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "majorglyph1"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 2
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
+            prevglyphid = TryInt(Val((tempdt.Rows(0).Item(1)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "minorglyph1"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
+            prevglyphid = TryInt(Val((tempdt.Rows(0).Item(2)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "minorglyph2"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
+            prevglyphid = TryInt(Val((tempdt.Rows(0).Item(3)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "majorglyph2"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 2
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
+            prevglyphid = TryInt(Val((tempdt.Rows(0).Item(4)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "minorglyph3"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
+            prevglyphid = TryInt(Val((tempdt.Rows(0).Item(5)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "majorglyph3"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 2
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
             If expansion = 4 Then
-                prevglyphid = tryint(Val((tempdt.Rows(0).Item(6)).ToString))
-                If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_primeglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-                prevglyphid = tryint(Val((tempdt.Rows(0).Item(7)).ToString))
-                If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_primeglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-                prevglyphid = tryint(Val((tempdt.Rows(0).Item(8)).ToString))
-                If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_primeglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                prevglyphid = TryInt(Val((tempdt.Rows(0).Item(6)).ToString))
+                If prevglyphid > 1 Then
+                    Dim tmpGlyph As New Glyph
+                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                    tmpGlyph.slotname = "primeglyph1"
+                    tmpGlyph.spec = 0
+                    tmpGlyph.type = 3
+                    SetCharacterGlyph(player, tmpGlyph)
+                    SetCharacterSet(tar_setId, player)
+                End If
+                prevglyphid = TryInt(Val((tempdt.Rows(0).Item(7)).ToString))
+                If prevglyphid > 1 Then
+                    Dim tmpGlyph As New Glyph
+                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                    tmpGlyph.slotname = "primeglyph2"
+                    tmpGlyph.spec = 0
+                    tmpGlyph.type = 3
+                    SetCharacterGlyph(player, tmpGlyph)
+                    SetCharacterSet(tar_setId, player)
+                End If
+                prevglyphid = TryInt(Val((tempdt.Rows(0).Item(8)).ToString))
+                If prevglyphid > 1 Then
+                    Dim tmpGlyph As New Glyph
+                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                    tmpGlyph.slotname = "primeglyph3"
+                    tmpGlyph.spec = 0
+                    tmpGlyph.type = 3
+                    SetCharacterGlyph(player, tmpGlyph)
+                    SetCharacterSet(tar_setId, player)
+                End If
             End If
         Else
             LogAppend("No Glyphs found (spec 0)!", "CharacterGlyphsHandler_loadAtTrinity", True)
         End If
-        lastcount = tryint(Val(tempdtsec.Rows.Count.ToString))
+        lastcount = TryInt(Val(tempdtsec.Rows.Count.ToString))
         If Not lastcount = 0 Then
-            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(0)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(1)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(2)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(3)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(4)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secminorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
-            prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(5)).ToString))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secmajorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(0)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secmajorglyph1"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 2
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
+            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(1)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secminorglyph1"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
+            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(2)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secminorglyph2"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
+            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(3)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secmajorglyph2"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 2
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
+            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(4)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secminorglyph3"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 1
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
+            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(5)).ToString))
+            If prevglyphid > 1 Then
+                Dim tmpGlyph As New Glyph
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "secmajorglyph3"
+                tmpGlyph.spec = 1
+                tmpGlyph.type = 2
+                SetCharacterGlyph(player, tmpGlyph)
+                SetCharacterSet(tar_setId, player)
+            End If
             If expansion = 4 Then
-                prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(6)).ToString))
-                If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secprimeglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
-                prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(7)).ToString))
-                If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secprimeglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
-                prevglyphid = tryint(Val((tempdtsec.Rows(0).Item(8)).ToString))
-                If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_secprimeglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(6)).ToString))
+                If prevglyphid > 1 Then
+                    Dim tmpGlyph As New Glyph
+                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                    tmpGlyph.slotname = "secprimeglyph1"
+                    tmpGlyph.spec = 1
+                    tmpGlyph.type = 3
+                    SetCharacterGlyph(player, tmpGlyph)
+                    SetCharacterSet(tar_setId, player)
+                End If
+                prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(7)).ToString))
+                If prevglyphid > 1 Then
+                    Dim tmpGlyph As New Glyph
+                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                    tmpGlyph.slotname = "secprimeglyph2"
+                    tmpGlyph.spec = 1
+                    tmpGlyph.type = 3
+                    SetCharacterGlyph(player, tmpGlyph)
+                    SetCharacterSet(tar_setId, player)
+                End If
+                prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(8)).ToString))
+                If prevglyphid > 1 Then
+                    Dim tmpGlyph As New Glyph
+                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                    tmpGlyph.slotname = "secprimeglyph3"
+                    tmpGlyph.spec = 1
+                    tmpGlyph.type = 3
+                    SetCharacterGlyph(player, tmpGlyph)
+                    SetCharacterSet(tar_setId, player)
+                End If
             End If
         Else
             LogAppend("No Glyphs found (spec 1)!", "CharacterGlyphsHandler_loadAtTrinity", True)
@@ -254,6 +466,7 @@ Public Class CharacterGlyphsHandler
         Dim spec As Integer
         Dim resultquantity As Integer = tempdt.Rows.Count
         Dim proccounter As Integer = 0
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Do
             Try
                 prevglyphid = tryint(Val((tempdt.Rows(proccounter).Item(0)).ToString))
@@ -264,44 +477,152 @@ Public Class CharacterGlyphsHandler
                         Case 0
                             Select Case slot
                                 Case 0
-                                    SetTemporaryCharacterInformation("@character_majorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "majorglyph1"
+                                    tmpGlyph.spec = 0
+                                    tmpGlyph.type = 2
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 1
-                                    SetTemporaryCharacterInformation("@character_minorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "minorglyph2"
+                                    tmpGlyph.spec = 0
+                                    tmpGlyph.type = 1
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 2
-                                    SetTemporaryCharacterInformation("@character_minorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "minorglyph3"
+                                    tmpGlyph.spec = 0
+                                    tmpGlyph.type = 1
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 3
-                                    SetTemporaryCharacterInformation("@character_majorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "majorglyph2"
+                                    tmpGlyph.spec = 0
+                                    tmpGlyph.type = 2
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 4
-                                    SetTemporaryCharacterInformation("@character_minorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "minorglyph1"
+                                    tmpGlyph.spec = 0
+                                    tmpGlyph.type = 1
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 5
-                                    SetTemporaryCharacterInformation("@character_majorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "majorglyph3"
+                                    tmpGlyph.spec = 0
+                                    tmpGlyph.type = 2
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 6
-                                    SetTemporaryCharacterInformation("@character_primeglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "primeglyph1"
+                                    tmpGlyph.spec = 0
+                                    tmpGlyph.type = 3
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 7
-                                    SetTemporaryCharacterInformation("@character_primeglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "primeglyph2"
+                                    tmpGlyph.spec = 0
+                                    tmpGlyph.type = 3
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 8
-                                    SetTemporaryCharacterInformation("@character_primeglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "primeglyph3"
+                                    tmpGlyph.spec = 0
+                                    tmpGlyph.type = 3
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case Else : End Select
                         Case 1
                             Select Case slot
                                 Case 0
-                                    SetTemporaryCharacterInformation("@character_secmajorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "secmajorglyph1"
+                                    tmpGlyph.spec = 1
+                                    tmpGlyph.type = 2
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 1
-                                    SetTemporaryCharacterInformation("@character_secminorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "secminorglyph2"
+                                    tmpGlyph.spec = 1
+                                    tmpGlyph.type = 1
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 2
-                                    SetTemporaryCharacterInformation("@character_secminorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "secminorglyph3"
+                                    tmpGlyph.spec = 1
+                                    tmpGlyph.type = 1
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 3
-                                    SetTemporaryCharacterInformation("@character_secmajorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "secmajorglyph2"
+                                    tmpGlyph.spec = 1
+                                    tmpGlyph.type = 2
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 4
-                                    SetTemporaryCharacterInformation("@character_secminorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "secminorglyph1"
+                                    tmpGlyph.spec = 1
+                                    tmpGlyph.type = 1
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 5
-                                    SetTemporaryCharacterInformation("@character_secmajorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "secmajorglyph3"
+                                    tmpGlyph.spec = 1
+                                    tmpGlyph.type = 2
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 6
-                                    SetTemporaryCharacterInformation("@character_secprimeglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "secprimeglyph1"
+                                    tmpGlyph.spec = 1
+                                    tmpGlyph.type = 3
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 7
-                                    SetTemporaryCharacterInformation("@character_secprimeglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "secprimeglyph2"
+                                    tmpGlyph.spec = 1
+                                    tmpGlyph.type = 3
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case 8
-                                    SetTemporaryCharacterInformation("@character_secprimeglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+                                    Dim tmpGlyph As New Glyph
+                                    tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                                    tmpGlyph.slotname = "secprimeglyph3"
+                                    tmpGlyph.spec = 1
+                                    tmpGlyph.type = 3
+                                    SetCharacterGlyph(player, tmpGlyph)
+                                    SetCharacterSet(tar_setId, player)
                                 Case Else : End Select
                         Case Else : End Select
                 End If

@@ -91,13 +91,20 @@ Public Class Character
 
     'Misc
 
-    Public InventoryItems As List(Of Item)
-    Public InventoryItemsIndex As String
+    Public ArmorItems As List(Of Item)
+    Public ArmorItemsIndex As String
+    Public InventoryItems As List(Of InventItem)
+    Public InventoryZeroItems As List(Of InventItem)
+    Public Quests As List(Of Quest)
     Public PlayerGlyphs As List(Of Glyph)
     Public PlayerGlyphsIndex As String
     Public Achievements As List(Of Achievement)
     Public Actions As List(Of Action)
     Public BeltBuckle As Integer
+    Public PlayerReputation As List(Of Reputation)
+    Public Skills As List(Of Skill)
+    Public Spells As List(Of Spell)
+    Public Talents As List(Of Talent)
 
     Public Sub New(charname As String, charguid As Integer)
         Name = charname

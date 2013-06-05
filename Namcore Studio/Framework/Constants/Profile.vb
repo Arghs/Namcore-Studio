@@ -49,6 +49,23 @@ Public Class Item
 
 
 End Class
+Public Class InventItem
+
+    Public entry As Integer
+    Public slot As Integer
+    Public bag As Integer
+    Public bagguid As Integer
+    Public enchantstring As String
+    Public count As Integer
+    Public container As Integer
+    Public guid As Integer
+
+    Public Sub New()
+
+    End Sub
+
+
+End Class
 
 Public Class Glyph
 
@@ -69,7 +86,7 @@ Public Class Achievement
     Public Id As Integer
     Public GainDate As String
     Public OwnerSet As Integer
-   
+
     Public Sub New()
 
     End Sub
@@ -89,4 +106,50 @@ Public Class Action
     End Sub
 
 
+End Class
+Public Class Quest
+    Public id As Integer
+    Public status As Integer
+    Public explored As Integer
+    Public timer As Integer
+    Public slot As Integer
+    Public rewarded As Integer
+    Public Sub New()
+
+    End Sub
+End Class
+
+Public Class Reputation
+    Public faction As Integer
+    Public flags As Integer
+    Public standing As Integer
+   
+    Public Sub New()
+
+    End Sub
+End Class
+Public Class Skill
+    Public id As Integer
+    Public value As Integer
+    Public max As Integer
+
+    Public Sub New()
+
+    End Sub
+End Class
+Public Class Spell
+    Public id As Integer
+    Public active As Integer
+    Public disabled As Integer
+
+    Public Sub New()
+
+    End Sub
+End Class
+Public Class Talent
+    Public spell As Integer
+    Public spec As Integer
+    Public Sub New()
+
+    End Sub
 End Class

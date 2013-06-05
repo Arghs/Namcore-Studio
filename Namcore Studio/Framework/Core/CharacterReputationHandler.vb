@@ -47,7 +47,7 @@ Public Class CharacterReputationHandler
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character reputation @loadAtArcemu", "CharacterReputationHandler_loadAtArcemu", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_reputation_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
@@ -59,14 +59,15 @@ Public Class CharacterReputationHandler
                     Dim finalcounter As Integer = tryint(excounter / 4)
                     Dim partscounter As Integer = 0
                     Do
+                        Dim rep As New Reputation
                         Dim parts() As String = readedcode.Split(","c)
-                        Dim faction As String = parts(partscounter).ToString
+                        rep.faction = TryInt(parts(partscounter).ToString)
                         partscounter += 1
-                        Dim flags As String = parts(partscounter).ToString
+                        rep.flags = TryInt(parts(partscounter).ToString)
                         partscounter += 1
-                        Dim standing As String = parts(partscounter).ToString
+                        rep.standing = TryInt(parts(partscounter).ToString)
                         partscounter += 2
-                        templist.Add("<faction>" & faction & "</faction><standing>" & standing & "</standing><flags>" & flags & "</flags>")
+                        player.PlayerReputation.Add(rep)
                         loopcounter += 1
                     Loop Until loopcounter = finalcounter
                     count += 1
@@ -78,22 +79,23 @@ Public Class CharacterReputationHandler
             LogAppend("Something went wrong while loading character reputation! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterReputationHandler_loadAtArcemu", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_reputation", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character reputation @loadAtTrinity", "CharacterReputationHandler_loadAtTrinity", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.rep_faction_col(0) & ", " & sourceStructure.rep_standing_col(0) & ", " & sourceStructure.rep_flags_col(0) &
                                                   " FROM " & sourceStructure.character_reputation_tbl(0) & " WHERE " & sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
-                    Dim faction As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim standing As String = (tempdt.Rows(count).Item(1)).ToString
-                    Dim flags As String = (tempdt.Rows(count).Item(2)).ToString
-                    templist.Add("<faction>" & faction & "</faction><standing>" & standing & "</standing><flags>" & flags & "</flags>")
+                    Dim rep As New Reputation
+                    rep.faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                    rep.standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                    rep.flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    player.PlayerReputation.Add(rep)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -103,7 +105,7 @@ Public Class CharacterReputationHandler
             LogAppend("Something went wrong while loading character reputation! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterReputationHandler_loadAtTrinity", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_reputation", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
@@ -112,16 +114,17 @@ Public Class CharacterReputationHandler
         LogAppend("Loading character reputation @loadAtMangos", "CharacterReputationHandler_loadAtMangos", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.rep_faction_col(0) & ", " & sourceStructure.rep_standing_col(0) & ", " & sourceStructure.rep_flags_col(0) &
                                                   " FROM " & sourceStructure.character_reputation_tbl(0) & " WHERE " & sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
-                    Dim faction As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim standing As String = (tempdt.Rows(count).Item(1)).ToString
-                    Dim flags As String = (tempdt.Rows(count).Item(2)).ToString
-                    templist.Add("<faction>" & faction & "</faction><standing>" & standing & "</standing><flags>" & flags & "</flags>")
+                    Dim rep As New Reputation
+                    rep.faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                    rep.standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                    rep.flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    player.PlayerReputation.Add(rep)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -131,6 +134,6 @@ Public Class CharacterReputationHandler
             LogAppend("Something went wrong while loading character reputation! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterReputationHandler_loadAtMangos", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_reputation", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
 End Class

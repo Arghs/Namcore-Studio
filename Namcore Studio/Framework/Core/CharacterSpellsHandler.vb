@@ -47,7 +47,7 @@ Public Class CharacterSpellsHandler
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character spells @loadAtArcemu", "CharacterSpellsHandler_loadAtArcemu", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_spells_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
@@ -58,10 +58,13 @@ Public Class CharacterSpellsHandler
                     Dim partscounter As Integer = 0
                     Do
                         Dim parts() As String = readedcode.Split(","c)
-                        Dim spell As String = parts(partscounter).ToString
+                        Dim spl As New Spell
+                        spl.id = TryInt(parts(partscounter).ToString)
+                        spl.active = 1
+                        spl.disabled = 0
                         partscounter += 1
-                        LogAppend("Adding spellId: " & spell, "CharacterSpellsHandler_LoadAtArcemu", True)
-                        templist.Add("<spell>" & spell & "</spell><active>1</active><disabled>0</disabled>")
+                        LogAppend("Adding spellId: " & spl.id.ToString(), "CharacterSpellsHandler_LoadAtArcemu", True)
+                        player.Spells.Add(spl)
                     Loop Until partscounter = excounter - 1
                     count += 1
                 Loop Until count = lastcount
@@ -72,23 +75,24 @@ Public Class CharacterSpellsHandler
             LogAppend("Something went wrong while loading character spells! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterSpellsHandler_loadAtArcemu", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_spells", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character spells @loadAtTrinity", "CharacterSpellsHandler_loadAtTrinity", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.spell_spell_col(0) & ", " & sourceStructure.spell_active_col(0) & ", " & sourceStructure.spell_disabled_col(0) &
                                                   " FROM " & sourceStructure.character_spells_tbl(0) & " WHERE " & sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim spell As String = readedcode
-                    Dim active As String = (tempdt.Rows(count).Item(1)).ToString
-                    Dim disabled As String = (tempdt.Rows(count).Item(2)).ToString
-                    templist.Add("<spell>" & spell & "</spell><active>" & active & "</active><disabled>" & disabled & "</disabled>")
+                    Dim spl As New Spell
+                    spl.id = TryInt(readedcode)
+                    spl.active = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                    spl.disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    player.Spells.Add(spl)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -98,7 +102,7 @@ Public Class CharacterSpellsHandler
             LogAppend("Something went wrong while loading character spells! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterSpellsHandler_loadAtTrinity", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_spells", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
@@ -107,17 +111,18 @@ Public Class CharacterSpellsHandler
         LogAppend("Loading character spells @loadAtMangos", "CharacterSpellsHandler_loadAtMangos", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.spell_spell_col(0) & ", " & sourceStructure.spell_active_col(0) & ", " & sourceStructure.spell_disabled_col(0) &
                                                   " FROM " & sourceStructure.character_spells_tbl(0) & " WHERE " & sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim spell As String = readedcode
-                    Dim active As String = (tempdt.Rows(count).Item(1)).ToString
-                    Dim disabled As String = (tempdt.Rows(count).Item(2)).ToString
-                    templist.Add("<spell>" & spell & "</spell><active>" & active & "</active><disabled>" & disabled & "</disabled>")
+                    Dim spl As New Spell
+                    spl.id = TryInt(readedcode)
+                    spl.active = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                    spl.disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    player.Spells.Add(spl)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -127,6 +132,6 @@ Public Class CharacterSpellsHandler
             LogAppend("Something went wrong while loading character spells! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterSpellsHandler_loadAtMangos", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_spells", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
 End Class

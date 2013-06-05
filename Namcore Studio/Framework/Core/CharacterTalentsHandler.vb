@@ -50,7 +50,7 @@ Public Class CharacterTalentsHandler
         SDatatable.Dispose()
         SDatatable = gettable()
         LogAppend("Loading character talents @loadAtArcemu", "CharacterTalentsHandler_loadAtArcemu", False)
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Dim talentstring As String =
         runSQLCommand_characters_string("SELECT " & sourceStructure.char_talent1_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
         If talentstring.Contains(",") Then
@@ -62,7 +62,10 @@ Public Class CharacterTalentsHandler
                 startcounter += 1
                 Dim rurrentrank As String = (tryint(parts(startcounter)) + 1).ToString()
                 startcounter += 1
-                templist.Add("<spell>" & checkfield(ctalentid, rurrentrank) & "</spell><spec>0</spec>")
+                Dim tal As New Talent
+                tal.spell = TryInt(checkfield(ctalentid, rurrentrank))
+                tal.spec = 0
+                player.Talents.Add(tal)
             Loop Until startcounter = excounter
         End If
         Dim talentstring2 As String =
@@ -76,23 +79,29 @@ Public Class CharacterTalentsHandler
                 startcounter += 1
                 Dim rurrentrank As String = (tryint(parts(startcounter)) + 1).ToString()
                 startcounter += 1
-                templist.Add("<spell>" & checkfield(ctalentid, rurrentrank) & "</spell><spec>1</spec>")
+                Dim tal As New Talent
+                tal.spell = TryInt(checkfield(ctalentid, rurrentrank))
+                tal.spec = 1
+                player.Talents.Add(tal)
             Loop Until startcounter = excounter
         End If
-        SetTemporaryCharacterInformation("@character_talents", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character talents @loadAtTrinity", "CharacterTalentsHandler_loadAtTrinity", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_spell_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) & " WHERE " &
                                                   sourceStructure.talent_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.talent_spec_col(0) & "='0'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim spell As String = (tempdt.Rows(count).Item(0)).ToString
-                    templist.Add("<spell>" & spell & "</spell><spec>0</spec>")
+                    Dim tal As New Talent
+                    tal.spell = TryInt(spell)
+                    tal.spec = 0
+                    player.Talents.Add(tal)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -110,7 +119,10 @@ Public Class CharacterTalentsHandler
             If Not lastcount = 0 Then
                 Do
                     Dim spell As String = (tempdt2.Rows(count).Item(0)).ToString
-                    templist.Add("<spell>" & spell & "</spell><spec>1</spec>")
+                    Dim tal As New Talent
+                    tal.spell = TryInt(spell)
+                    tal.spec = 1
+                    player.Talents.Add(tal)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -120,7 +132,7 @@ Public Class CharacterTalentsHandler
             LogAppend("Something went wrong while loading character talents (spec 1)! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterTalentsHandler_loadAtTrinity", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_talents", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
@@ -132,7 +144,7 @@ Public Class CharacterTalentsHandler
         LogAppend("Loading character talents @loadAtMangos", "CharacterTalentsHandler_loadAtMangos", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_talent_col(0) & ", " & sourceStructure.talent_rank_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) &
                                                   " WHERE " & sourceStructure.talent_spec_col(0) & "='" & charguid.ToString() & "' AND " & sourceStructure.talent_spec_col(0) & "='0'")
-        Dim templist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
             Dim count As Integer = 0
@@ -140,7 +152,10 @@ Public Class CharacterTalentsHandler
                 Do
                     Dim idtalent As String = (tempdt.Rows(count).Item(0)).ToString
                     Dim currentrank As String = (tempdt.Rows(count).Item(1)).ToString
-                    templist.Add("<spell>" & checkfield(idtalent, currentrank) & "</spell><spec>0</spec>")
+                    Dim tal As New Talent
+                    tal.spell = TryInt(checkfield(idtalent, currentrank))
+                    tal.spec = 0
+                    player.Talents.Add(tal)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -159,7 +174,10 @@ Public Class CharacterTalentsHandler
                 Do
                     Dim idtalent As String = (tempdt2.Rows(count).Item(0)).ToString
                     Dim currentrank As String = (tempdt2.Rows(count).Item(1)).ToString
-                    templist.Add("<spell>" & checkfield(idtalent, currentrank) & "</spell><spec>1</spec>")
+                    Dim tal As New Talent
+                    tal.spell = TryInt(checkfield(idtalent, currentrank))
+                    tal.spec = 1
+                    player.Talents.Add(tal)
                     count += 1
                 Loop Until count = lastcount
             Else
@@ -169,7 +187,7 @@ Public Class CharacterTalentsHandler
             LogAppend("Something went wrong while loading character talents (spec 1)! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterTalentsHandler_loadAtMangos", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_talents", ConvertListToString(templist), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
 
     Private Shared Function gettable() As DataTable
@@ -186,7 +204,7 @@ Public Class CharacterTalentsHandler
                         dt.Columns.Add(value.Trim())
                     Next
                 Else
-                    Dim dr As DataRow = dt.NewRow()
+                    '  Dim dr As DataRow = dt.NewRow() // never used??
                     dt.Rows.Add(strArray)
                 End If
             Next i

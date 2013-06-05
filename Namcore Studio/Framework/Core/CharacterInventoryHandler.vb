@@ -50,6 +50,7 @@ Public Class CharacterInventoryHandler
         Dim templistzero As New List(Of String)
         Dim templist As New List(Of String)
         Dim tmpext As Integer
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Dim slotlist As String = ""
         Try
             Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
@@ -79,6 +80,7 @@ Public Class CharacterInventoryHandler
                                     Dim entryid As String
                                     Dim enchantments As String
                                     Dim itemcount As String = "1"
+
                                     bag = bagguid
                                     item = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) &
                                                                            "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString & "' AND " & sourceStructure.itmins_container_col(0) &
@@ -89,15 +91,17 @@ Public Class CharacterInventoryHandler
                                                                                    sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                     itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                                                 sourceStructure.itmins_guid_col(0) & "='" & item & "'")
-                                    templistzero.Add(
-                                        "<slot>" & tmpext.ToString & "</slot>" &
-                                        "<bag>" & bag & "</bag>" &
-                                        "<bagguid>" & bagguid & "</bagguid>" &
-                                        "<item>" & entryid & "</item>" &
-                                        "<enchant>" & enchantments & "</enchant>" &
-                                        "<count>" & itemcount & "</count>" &
-                                        "<container>-1</container>" &
-                                        "<oldguid>" & item & "</oldguid>")
+                                    Dim newItm As New InventItem
+                                    newItm.slot = TryInt(tmpext.ToString)
+                                    newItm.bag = TryInt(bag)
+                                    newItm.bagguid = TryInt(bagguid)
+                                    newItm.entry = TryInt(entryid)
+                                    newItm.enchantstring = enchantments
+                                    newItm.count = TryInt(itemcount)
+                                    newItm.container = -1
+                                    newItm.guid = TryInt(item)
+                                    player.InventoryZeroItems.Add(newItm)
+                                    SetCharacterSet(tar_setId, player)
                                 End If
                             Else
                                 Dim bag As String = "0"
@@ -115,15 +119,17 @@ Public Class CharacterInventoryHandler
                                                                                sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                 itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
                                                                             "='" & item & "'")
-                                templist.Add(
-                                         "<slot>" & tmpext.ToString & "</slot>" &
-                                         "<bag>" & bag & "</bag>" &
-                                         "<bagguid>" & bagguid & "</bagguid>" &
-                                         "<item>" & entryid & "</item>" &
-                                         "<enchant>" & enchantments & "</enchant>" &
-                                         "<count>" & itemcount & "</count>" &
-                                         "<container>-1</container>" &
-                                         "<oldguid>" & item & "</oldguid>")
+                                Dim newItm As New InventItem
+                                newItm.slot = TryInt(tmpext.ToString)
+                                newItm.bag = TryInt(bag)
+                                newItm.bagguid = TryInt(bagguid)
+                                newItm.entry = TryInt(entryid)
+                                newItm.enchantstring = enchantments
+                                newItm.count = TryInt(itemcount)
+                                newItm.container = -1
+                                newItm.guid = TryInt(item)
+                                player.InventoryItems.Add(newItm)
+                                SetCharacterSet(tar_setId, player)
                             End If
                         Else
                             Dim containerslot As String = ReturnResultWithRow("SELECT " & sourceStructure.itmins_container_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
@@ -152,14 +158,17 @@ Public Class CharacterInventoryHandler
                                                                                    sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                     itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
                                                                                 "='" & item & "'")
-                                    templistzero.Add(
-                                        "<slot>" & tmpext.ToString & "</slot>" &
-                                        "<bag>" & bag & "</bag>" &
-                                        "<bagguid>" & bagguid & "</bagguid>" &
-                                        "<item>" & entryid & "</item>" &
-                                        "<enchant>" & enchantments & "</enchant>" &
-                                        "<count>" & itemcount & "</count>" &
-                                        "<container>-1</container>")
+                                    Dim newItm As New InventItem
+                                    newItm.slot = TryInt(tmpext.ToString)
+                                    newItm.bag = TryInt(bag)
+                                    newItm.bagguid = TryInt(bagguid)
+                                    newItm.entry = TryInt(entryid)
+                                    newItm.enchantstring = enchantments
+                                    newItm.count = TryInt(itemcount)
+                                    newItm.container = -1
+                                    newItm.guid = TryInt(item)
+                                    player.InventoryZeroItems.Add(newItm)
+                                    SetCharacterSet(tar_setId, player)
                                 End If
                             Else
                                 Dim bag As String = "0"
@@ -177,15 +186,17 @@ Public Class CharacterInventoryHandler
                                                                                sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                 itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
                                                                             "='" & item & "'")
-                                templist.Add(
-                                       "<slot>" & tmpext.ToString & "</slot>" &
-                                       "<bag>" & bag & "</bag>" &
-                                       "<bagguid>" & bagguid & "</bagguid>" &
-                                       "<item>" & entryid & "</item>" &
-                                       "<enchant>" & enchantments & "</enchant>" &
-                                       "<count>" & itemcount & "</count>" &
-                                       "<container>-1</container>" &
-                                       "<oldguid>" & item & "</oldguid>")
+                                Dim newItm As New InventItem
+                                newItm.slot = TryInt(tmpext.ToString)
+                                newItm.bag = TryInt(bag)
+                                newItm.bagguid = TryInt(bagguid)
+                                newItm.entry = TryInt(entryid)
+                                newItm.enchantstring = enchantments
+                                newItm.count = TryInt(itemcount)
+                                newItm.container = -1
+                                newItm.guid = TryInt(item)
+                                player.InventoryItems.Add(newItm)
+                                SetCharacterSet(tar_setId, player)
                             End If
                             Dim containerslot2 As String = ReturnResultWithRow("SELECT " & sourceStructure.itmins_container_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                                                sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString &
@@ -213,14 +224,17 @@ Public Class CharacterInventoryHandler
                                                                                    sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                     itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                                                 sourceStructure.itmins_guid_col(0) & "='" & item & "'")
-                                    templistzero.Add(
-                                      "<slot>" & tmpext.ToString & "</slot>" &
-                                      "<bag>" & bag & "</bag>" &
-                                      "<bagguid>" & bagguid & "</bagguid>" &
-                                      "<item>" & entryid & "</item>" &
-                                      "<enchant>" & enchantments & "</enchant>" &
-                                      "<count>" & itemcount & "</count>" &
-                                      "<container>-1</container>")
+                                    Dim newItm As New InventItem
+                                    newItm.slot = TryInt(tmpext.ToString)
+                                    newItm.bag = TryInt(bag)
+                                    newItm.bagguid = TryInt(bagguid)
+                                    newItm.entry = TryInt(entryid)
+                                    newItm.enchantstring = enchantments
+                                    newItm.count = TryInt(itemcount)
+                                    newItm.container = -1
+                                    newItm.guid = TryInt(item)
+                                    player.InventoryZeroItems.Add(newItm)
+                                    SetCharacterSet(tar_setId, player)
                                 End If
                             Else
                                 Dim bag As String = "0"
@@ -238,15 +252,17 @@ Public Class CharacterInventoryHandler
                                                                                sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                 itemcount = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_count_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
                                                                             "='" & item & "'")
-                                templist.Add(
-                                     "<slot>" & tmpext.ToString & "</slot>" &
-                                     "<bag>" & bag & "</bag>" &
-                                     "<bagguid>" & bagguid & "</bagguid>" &
-                                     "<item>" & entryid & "</item>" &
-                                     "<enchant>" & enchantments & "</enchant>" &
-                                     "<count>" & itemcount & "</count>" &
-                                     "<container>" & containerslot2 & "</container>" &
-                                     "<oldguid>" & item & "</oldguid>")
+                                Dim newItm As New InventItem
+                                newItm.slot = TryInt(tmpext.ToString)
+                                newItm.bag = TryInt(bag)
+                                newItm.bagguid = TryInt(bagguid)
+                                newItm.entry = TryInt(entryid)
+                                newItm.enchantstring = enchantments
+                                newItm.count = TryInt(itemcount)
+                                newItm.container = TryInt(containerslot2)
+                                newItm.guid = TryInt(item)
+                                player.InventoryItems.Add(newItm)
+                                SetCharacterSet(tar_setId, player)
                             End If
                         End If
                         count += 1
@@ -259,8 +275,7 @@ Public Class CharacterInventoryHandler
             LogAppend("Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterInventoryHandler_loadAtArcemu", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_inventory", ConvertListToString(templist), tar_setId)
-        SetTemporaryCharacterInformation("@character_inventoryzero", ConvertListToString(templistzero), tar_setId)
+      
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Inventory @loadAtTrinity", "CharacterInventoryHandler_loadAtTrinity", False)
@@ -268,6 +283,7 @@ Public Class CharacterInventoryHandler
         Dim templist As New List(Of String)
         Dim templistzero As New List(Of String)
         Dim tmpext As Integer
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = TryInt(Val(dt.Rows.Count.ToString))
             Dim count As Integer = 0
@@ -290,14 +306,15 @@ Public Class CharacterInventoryHandler
                             enchantments = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
                             itemcount = runSQLCommand_characters_string("Select `" & sourceStructure.itmins_count_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                             slot = runSQLCommand_characters_string("Select `" & sourceStructure.invent_slot_col(0) & "` FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE `" & sourceStructure.invent_item_col(0) & "`='" & item & "'")
-                            templistzero.Add(
-                                "<slot>" & slot & "</slot>" &
-                                "<bag>" & bag & "</bag>" &
-                                "<bagguid>" & bagguid & "</bagguid>" &
-                                "<item>" & entryid & "</item>" &
-                                "<enchant>" & enchantments & "</enchant>" &
-                                "<count>" & itemcount & "</count>" &
-                                "<oldguid>" & item & "</oldguid>")
+                            Dim newItm As New InventItem
+                            newItm.slot = TryInt(slot)
+                            newItm.bag = TryInt(bag)
+                            newItm.bagguid = TryInt(bagguid)
+                            newItm.entry = TryInt(entryid)
+                            newItm.enchantstring = enchantments
+                            newItm.count = TryInt(itemcount)
+                            newItm.guid = TryInt(item)
+                            player.InventoryZeroItems.Add(newItm)
                         End If
                     Else
                         Dim bag As String = "0"
@@ -312,13 +329,15 @@ Public Class CharacterInventoryHandler
                         enchantments = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
                         itemcount = runSQLCommand_characters_string("Select `" & sourceStructure.itmins_count_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                         slot = runSQLCommand_characters_string("Select `" & sourceStructure.invent_slot_col(0) & "` FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE `" & sourceStructure.invent_item_col(0) & "`='" & item & "'")
-                        templist.Add(
-                            "<slot>" & slot & "</slot>" &
-                            "<bag>" & bag & "</bag>" &
-                            "<bagguid>" & bagguid & "</bagguid>" &
-                            "<item>" & entryid & "</item>" &
-                            "<enchant>" & enchantments & "</enchant>" &
-                            "<count>" & itemcount & "</count>")
+                        Dim newItm As New InventItem
+                        newItm.slot = TryInt(slot)
+                        newItm.bag = TryInt(bag)
+                        newItm.bagguid = TryInt(bagguid)
+                        newItm.entry = TryInt(entryid)
+                        newItm.enchantstring = enchantments
+                        newItm.count = TryInt(itemcount)
+                        newItm.guid = TryInt(item)
+                        player.InventoryItems.Add(newItm)
                     End If
                     count += 1
                 Loop Until count = lastcount
@@ -329,8 +348,7 @@ Public Class CharacterInventoryHandler
             LogAppend("Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterInventoryHandler_loadAtTrinity", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@" & sourceStructure.character_inventory_tbl(0) & "", ConvertListToString(templist), tar_setId)
-        SetTemporaryCharacterInformation("@" & sourceStructure.character_inventory_tbl(0) & "zero", ConvertListToString(templistzero), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
@@ -341,6 +359,7 @@ Public Class CharacterInventoryHandler
         Dim templist As New List(Of String)
         Dim templistzero As New List(Of String)
         Dim tmpext As Integer
+        Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
             Dim count As Integer = 0
@@ -363,14 +382,15 @@ Public Class CharacterInventoryHandler
                             enchantments = runSQLCommand_characters_string("SELECT `" & sourceStructure.itmins_data_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
                             itemcount = splititemdata(enchantments, 14)
                             slot = runSQLCommand_characters_string("Select `" & sourceStructure.invent_slot_col(0) & "` FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE `" & sourceStructure.invent_item_col(0) & "`='" & item & "'")
-                            templistzero.Add(
-                                "<slot>" & slot & "</slot>" &
-                                "<bag>" & bag & "</bag>" &
-                                "<bagguid>" & bagguid & "</bagguid>" &
-                                "<item>" & entryid & "</item>" &
-                                "<enchant>" & enchantments & "</enchant>" &
-                                "<count>" & itemcount & "</count>" &
-                                "<oldguid>" & item & "</oldguid>")
+                            Dim newItm As New InventItem
+                            newItm.slot = TryInt(slot)
+                            newItm.bag = TryInt(bag)
+                            newItm.bagguid = TryInt(bagguid)
+                            newItm.entry = TryInt(entryid)
+                            newItm.enchantstring = enchantments
+                            newItm.count = TryInt(itemcount)
+                            newItm.guid = TryInt(item)
+                            player.InventoryZeroItems.Add(newItm)
                         End If
                     Else
                         Dim bag As String = "0"
@@ -385,13 +405,15 @@ Public Class CharacterInventoryHandler
                         enchantments = runSQLCommand_characters_string("SELECT `" & sourceStructure.itmins_data_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
                         itemcount = splititemdata(enchantments, 14)
                         slot = runSQLCommand_characters_string("Select `" & sourceStructure.invent_slot_col(0) & "` FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE `" & sourceStructure.invent_item_col(0) & "`='" & item & "'")
-                        templist.Add(
-                            "<slot>" & slot & "</slot>" &
-                            "<bag>" & bag & "</bag>" &
-                            "<bagguid>" & bagguid & "</bagguid>" &
-                            "<item>" & entryid & "</item>" &
-                            "<enchant>" & enchantments & "</enchant>" &
-                            "<count>" & itemcount & "</count>")
+                        Dim newItm As New InventItem
+                        newItm.slot = TryInt(slot)
+                        newItm.bag = TryInt(bag)
+                        newItm.bagguid = TryInt(bagguid)
+                        newItm.entry = TryInt(entryid)
+                        newItm.enchantstring = enchantments
+                        newItm.count = TryInt(itemcount)
+                        newItm.guid = TryInt(item)
+                        player.InventoryItems.Add(newItm)
                     End If
                     count += 1
                 Loop Until count = lastcount
@@ -402,8 +424,7 @@ Public Class CharacterInventoryHandler
             LogAppend("Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterInventoryHandler_loadAtMangos", True, True)
             Exit Sub
         End Try
-        SetTemporaryCharacterInformation("@character_inventory", ConvertListToString(templist), tar_setId)
-        SetTemporaryCharacterInformation("@character_inventoryzero", ConvertListToString(templistzero), tar_setId)
+        SetCharacterSet(tar_setId, player)
     End Sub
     Private Shared Function splititemdata(ByVal datastring As String, ByVal position As Integer) As String
         Try
