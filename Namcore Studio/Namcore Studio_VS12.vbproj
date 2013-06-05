@@ -145,7 +145,7 @@
     <Compile Include="Framework\Constants\Character.vb" />
     <Compile Include="Framework\Constants\DBStructure.vb" />
     <Compile Include="Framework\Constants\GlobalVariables.vb" />
-    <Compile Include="Framework\Constants\Item.vb" />
+    <Compile Include="Framework\Constants\Profile.vb" />
     <Compile Include="Framework\Core\Account_CharacterInformationProcessing.vb" />
     <Compile Include="Framework\Core\CharacterAchievementHandler.vb" />
     <Compile Include="Framework\Core\CharacterActionsHandler.vb" />
@@ -280,7 +280,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

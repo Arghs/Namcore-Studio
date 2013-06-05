@@ -82,6 +82,20 @@ Public Class Basics
             Return Nothing
         End If
     End Function
+    Public Shared Sub SetCharacterGlyph(ByRef player As Character, ByVal glph As Glyph)
+        If player.PlayerGlyphsIndex.Contains("[slot:" & glph.slotname & "|@") Then
+            player.PlayerGlyphs(TryInt(splitString(player.PlayerGlyphsIndex, "[slot:" & glph.slotname & "|@", "]"))) = glph
+        Else
+
+        End If
+    End Sub
+    Public Shared Function GetCharacterGlyph(ByVal player As Character, ByVal slot As String) As Glyph
+        If player.PlayerGlyphsIndex.Contains("[slot:" & slot & "|@") Then
+            Return player.PlayerGlyphs(TryInt(splitString(player.PlayerGlyphsIndex, "[slot:" & slot & "|@", "]")))
+        Else
+            Return Nothing
+        End If
+    End Function
     Public Shared Sub SetTCI_Item(ByVal itm As Item, ByVal targetSetId As Integer)
         Dim itemContext As String = "[itm:" & itm.slotname & "][itm:" & itm.slot.ToString & "]" &
             "{slot}" & itm.slotname & "{/slot}" &

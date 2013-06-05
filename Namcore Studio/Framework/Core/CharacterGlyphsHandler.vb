@@ -57,29 +57,57 @@ Public Class CharacterGlyphsHandler
        'Spec 0
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(0)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim prevglyphid As Integer = TryInt(Val(parts(0)))
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "majorglyph1"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 2
+                SetCharacterGlyph(GetCharacterSetBySetId(tar_setId), tmpGlyph)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading majorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(3)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph2", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "majorglyph2"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 2
+                SetCharacterGlyph(GetCharacterSetBySetId(tar_setId), tmpGlyph)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading majorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(5)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_majorglyph3", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "majorglyph3"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 2
+                SetCharacterGlyph(GetCharacterSetBySetId(tar_setId), tmpGlyph)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading majorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
             Dim prevglyphid As Integer = tryint(Val(parts(1)))
-            If prevglyphid > 1 Then SetTemporaryCharacterInformation("@character_minorglyph1", GetGlyphIdByItemId(prevglyphid), tar_setId)
+            Dim tmpGlyph As New Glyph
+            If prevglyphid > 1 Then
+                tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
+                tmpGlyph.slotname = "minorglyph1"
+                tmpGlyph.spec = 0
+                tmpGlyph.type = 1
+                SetCharacterGlyph(GetCharacterSetBySetId(tar_setId), tmpGlyph)
+            End If
         Catch ex As Exception
             LogAppend("Error while loading minorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
