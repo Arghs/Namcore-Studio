@@ -189,6 +189,7 @@ Public Class CharacterBasicsHandler
         temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_arcemuGmLevel_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.ArcEmuGmLevel = temp_result
         LogAppend("Loaded account arcemuGmLevel info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtArcemu", False)
+        'todo Expansion!
         Dim templevel As Integer
         Select Case temp_result
             Case "AZ"
@@ -367,7 +368,7 @@ Public Class CharacterBasicsHandler
         temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_joindate_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.joindate = TryInt(temp_result)
         LogAppend("Loaded account joindate info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
-
+        'todo Expansion!
         'Account Access Table
         temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.accAcc_gmLevel_col(0) & " FROM " & sourceStructure.accountAccess_tbl(0) & " WHERE " & sourceStructure.accAcc_accid_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.GmLevel = TryInt(temp_result)
@@ -546,7 +547,7 @@ Public Class CharacterBasicsHandler
         temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_s_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.S = temp_result
         LogAppend("Loaded account s info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", False)
-
+        'todo Expansion!
         'Account Access Table
         temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.accAcc_gmLevel_col(0) & " FROM " & sourceStructure.accountAccess_tbl(0) & " WHERE " & sourceStructure.accAcc_accid_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.gmlevel = TryInt(temp_result)
@@ -731,7 +732,7 @@ Public Class CharacterBasicsHandler
         temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.accAcc_realmId_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.realmId = TryInt(temp_result)
         LogAppend("Loaded account realmId info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
-
+        'todo Expansion!
         CharacterSets.Add(tmpCharacter)
         CharacterSetsIndex = CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (CharacterSets.Count - 1).ToString() & "]"
     End Sub

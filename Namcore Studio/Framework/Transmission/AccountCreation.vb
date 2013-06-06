@@ -61,12 +61,13 @@ Public Class AccountCreation
                         "`, `" & sourceStructure.acc_email_col(0) & "`, `" & sourceStructure.acc_joindate_col(0) & "`, `" & sourceStructure.acc_expansion_col(0) & "`) " &
                                                "VALUES (@accid, @accname, @pass, @email, @joindate, @expansion)"
                     Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
+                    Dim player As Character = GetCharacterSetBySetId(setId)
                     tempcommand.Parameters.AddWithValue("@accid", newid)
                     tempcommand.Parameters.AddWithValue("@accname", accname)
                     tempcommand.Parameters.AddWithValue("@pass", passhas)
                     tempcommand.Parameters.AddWithValue("@email", email)
-                    tempcommand.Parameters.AddWithValue("@joindate", GetTemporaryCharacterInformation("@account_joindate", setId))
-                    tempcommand.Parameters.AddWithValue("@expansion", GetTemporaryCharacterInformation("@account_expansion", setId))
+                    tempcommand.Parameters.AddWithValue("@joindate", player.JoinDate.ToString)
+                    tempcommand.Parameters.AddWithValue("@expansion", player.Expansion.ToString)
                     Try
                         tempcommand.ExecuteNonQuery()
                     Catch ex As Exception
@@ -98,12 +99,13 @@ Public Class AccountCreation
                         "`, " & sourceStructure.acc_realmID_col(0) & ") " &
                                                "VALUES (@accid, @accname, @pass, @email, @joindate, @expansion, @realmid)"
                     Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
+                    Dim player As Character = GetCharacterSetBySetId(setId)
                     tempcommand.Parameters.AddWithValue("@accid", newid)
                     tempcommand.Parameters.AddWithValue("@accname", accname)
                     tempcommand.Parameters.AddWithValue("@pass", passhas)
                     tempcommand.Parameters.AddWithValue("@email", email)
-                    tempcommand.Parameters.AddWithValue("@joindate", GetTemporaryCharacterInformation("@account_joindate", setId))
-                    tempcommand.Parameters.AddWithValue("@expansion", GetTemporaryCharacterInformation("@account_expansion", setId))
+                    tempcommand.Parameters.AddWithValue("@joindate", player.JoinDate.ToString)
+                    tempcommand.Parameters.AddWithValue("@expansion", player.Expansion.ToString)
                     tempcommand.Parameters.AddWithValue("@realmid", realmid)
                     Try
                         tempcommand.ExecuteNonQuery()

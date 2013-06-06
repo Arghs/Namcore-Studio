@@ -71,6 +71,8 @@ Public Class Character
     Public AtLogin As Integer
     Public KnownCurrencies As Integer
     Public ActionBars As Integer
+    Public ArcEmuAction1 As String
+    Public ArcEmuAction2 As String
 
     'Account
     Public AccountId As Integer
@@ -82,6 +84,7 @@ Public Class Character
     Public ArcEmuGmLevel As String
     Public SessionKey As String
     Public JoinDate As Integer
+    Public Expansion As Integer
     Public V As String
     Public S As String
 

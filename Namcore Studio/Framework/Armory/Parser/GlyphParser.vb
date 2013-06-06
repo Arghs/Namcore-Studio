@@ -61,7 +61,7 @@ Public Class GlyphParser
                                 newGlyph.image = GetIconByItemId(newGlyph.id)
                                 newGlyph.type = loopCounter + 1
                                 newGlyph.spec = i
-                                SetCharacterGlyph(player, newGlyph)
+                                AddCharacterGlyph(player, newGlyph)
                                 counter += 1
                             Loop Until counter = exCounter
                         End If

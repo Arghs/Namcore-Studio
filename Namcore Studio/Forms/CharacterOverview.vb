@@ -43,10 +43,11 @@ Public Class CharacterOverview
         tmpSetId = setId
         controlLST = New List(Of Control)
         controlLST = FindAllChildren()
-        charname_lbl.Text = GetTemporaryCharacterInformation("@character_name", setId)
-        level_lbl.Text = GetTemporaryCharacterInformation("@character_level", setId)
-        class_lbl.Text = GetClassNameById(TryInt(GetTemporaryCharacterInformation("@character_class", setId)))
-        race_lbl.Text = GetRaceNameById(GetTemporaryCharacterInformation("@character_race", setId))
+        Dim player As Character = GetCharacterSetBySetId(setId)
+        charname_lbl.Text = player.Name
+        level_lbl.Text = player.Level.ToString
+        class_lbl.Text = GetClassNameById(player.Cclass)
+        race_lbl.Text = GetRaceNameById(player.Race)
         For Each item_control As Control In controlLST
             Select Case True
                 Case TypeOf item_control Is Label
@@ -106,8 +107,9 @@ Public Class CharacterOverview
 
     End Sub
     Private Function loadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
-        Dim itm As Item = GetTCI_Item(slot.ToString, targetSet)
+        Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet), slot.ToString, True)
         pubItm = itm
+        If itm Is Nothing Then Return Nothing
         Select Case infotype
             Case 0 : Return itm.name
             Case 1 : Return itm.enchantment_name

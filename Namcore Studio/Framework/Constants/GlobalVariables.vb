@@ -27,7 +27,9 @@ Imports System.Threading
 Public Class GlobalVariables
     Public Shared CharacterSets As List(Of Character)
     Public Shared CharacterSetsIndex As String
-    Public Shared temporaryCharacterInformation As List(Of String)
+    Public Shared ModCharacterSets As List(Of Character)
+    Public Shared ModCharacterSetsIndex As String
+    'Public Shared temporaryCharacterInformation As List(Of String)
     Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
     Public Shared targetCore As String '"arcemu", "trinity", "mangos"
     Public Shared expansion As Integer '1=classic, 2=tbc,...
@@ -52,7 +54,7 @@ Public Class GlobalVariables
     Public Shared chartable As DataTable
     Public Shared modifiedAccTable As DataTable
     Public Shared modifiedCharTable As DataTable
-    Public Shared modifiedCharInfo As List(Of String)
+    'Public Shared modifiedCharInfo As List(Of String)
     Public Shared armoryMode As Boolean
     Public Shared con_operator As Integer
     Public Shared trans_charlist As ArrayList

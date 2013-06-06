@@ -79,7 +79,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -91,7 +91,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -103,7 +103,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -115,7 +115,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -127,7 +127,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -139,7 +139,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -151,7 +151,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -163,7 +163,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -175,7 +175,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -187,7 +187,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -199,7 +199,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -211,7 +211,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -223,7 +223,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -235,7 +235,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -247,7 +247,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -259,7 +259,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -271,7 +271,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -283,7 +283,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -295,7 +295,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -340,7 +340,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 1
@@ -351,7 +351,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -363,7 +363,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -375,7 +375,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -387,7 +387,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -399,7 +399,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -411,7 +411,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -423,7 +423,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -435,7 +435,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -447,7 +447,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -459,7 +459,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -471,7 +471,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -483,7 +483,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -495,7 +495,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -507,7 +507,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -519,7 +519,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -531,7 +531,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -543,7 +543,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -555,7 +555,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                         End If
@@ -601,7 +601,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -613,7 +613,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -625,7 +625,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -637,7 +637,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -649,7 +649,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -661,7 +661,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -673,7 +673,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -685,7 +685,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -697,7 +697,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -709,7 +709,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -721,7 +721,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -733,7 +733,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -745,7 +745,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -757,7 +757,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -769,7 +769,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -781,7 +781,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -793,7 +793,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -805,7 +805,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
@@ -817,7 +817,7 @@ Public Class CharacterArmorHandler
                             itm.slot = itemslot
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
-                            SetCharacterArmorItem(player, itm)
+                            AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
                             GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If

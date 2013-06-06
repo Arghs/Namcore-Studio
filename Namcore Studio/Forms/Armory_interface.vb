@@ -147,6 +147,7 @@ Public Class Armory_interface
     End Sub
 
     Private Sub load_bt_Click(sender As System.Object, e As System.EventArgs) Handles load_bt.Click
+        CharacterSets = New List(Of Character)
         trdrunnuing = True
         My.Settings.language = "de" 'todo for testing only
         Dim urllst As New List(Of String)
@@ -195,9 +196,8 @@ Public Class Armory_interface
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        temporaryCharacterInformation = New List(Of String)
-        temporaryCharacterInformation.Add("")
-        temporaryCharacterInformation.Add(RichTextBox1.Text)
+        CharacterSets = New List(Of Character)
+        'temporaryCharacterInformation.Add(RichTextBox1.Text)
         Dim prepLive As New Interface_Operator
         Interface_Operator.prepareLive_armory()
     End Sub

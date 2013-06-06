@@ -24,7 +24,7 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Basics
 Public Class Interface_Operator
     Public Shared Sub prepareLive_armory()
-        Dim x As String = temporaryCharacterInformation.Item(1)
+        ' Dim x As String = temporaryCharacterInformation.Item(1)
         armoryMode = True
         Live_View.Close()
         Dim liveview As New Live_View

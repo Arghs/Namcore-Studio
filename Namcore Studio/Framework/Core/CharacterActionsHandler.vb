@@ -46,13 +46,13 @@ Public Class CharacterActionsHandler
     End Sub
     Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Actions @loadAtArcemu", "CharacterActionsHandler_loadAtArcemu", False)
-        SetTemporaryCharacterInformation("@character_arcemuAction1", runSQLCommand_characters_string("SELECT " & sourceStructure.char_actions1_col(0) & " FROM " & sourceStructure.character_tbl(0) &
-                                                                                                     " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'"), tar_setId)
-        SetTemporaryCharacterInformation("@character_arcemuAction2", runSQLCommand_characters_string("SELECT " & sourceStructure.char_actions2_col(0) & " FROM " & sourceStructure.character_tbl(0) &
-                                                                                                     " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'"), tar_setId)
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
+        tmpCharacter.ArcEmuAction1 = runSQLCommand_characters_string("SELECT " & sourceStructure.char_actions1_col(0) & " FROM " & sourceStructure.character_tbl(0) &
+                                                                                                     " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
+        tmpCharacter.ArcEmuAction2 = runSQLCommand_characters_string("SELECT " & sourceStructure.char_actions2_col(0) & " FROM " & sourceStructure.character_tbl(0) &
+                                                                                                    " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
         Try
-            Dim readedcode As String = GetTemporaryCharacterInformation("@character_arcemuAction1", tar_setId)
+            Dim readedcode As String = tmpCharacter.ArcEmuAction1
             If Not readedcode.Length > 2 Then LogAppend("Warning! Actions1 seems to be invalid!", "CharacterActionsHandler_loadAtArcemu", False, True)
             Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
             Dim loopcounter As Integer = 0
@@ -69,7 +69,7 @@ Public Class CharacterActionsHandler
                 tmpCharacter.Actions.Add(act)
                 loopcounter += 1
             Loop Until loopcounter = finalcounter
-            Dim readedcode2 As String = GetTemporaryCharacterInformation("@character_arcemuAction2", tar_setId)
+            Dim readedcode2 As String = tmpCharacter.ArcEmuAction2
             If Not readedcode2.Length > 2 Then LogAppend("Warning! Actions2 seems to be invalid!", "CharacterActionsHandler_loadAtArcemu", False, True)
             Dim excounter2 As Integer = UBound(readedcode2.Split(CChar(",")))
             Dim loopcounter2 As Integer = 0

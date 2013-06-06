@@ -89,10 +89,11 @@ Public Class Live_View
         connect_bt.Visible = False
         filter_acc.Visible = False
         filter_char.Visible = False
-        Dim genGuid As Integer = 0
+        Dim genGuid As Integer = 1
         checkchangestatus = False
         sourceCore = "armory" 'for testing only       
-        modifiedCharInfo = temporaryCharacterInformation
+        ModCharacterSets = CharacterSets
+        ModCharacterSetsIndex = CharacterSetsIndex
         characterview.Items.Clear()
         accountview.Items.Clear()
         Dim str(4) As String
@@ -106,21 +107,22 @@ Public Class Live_View
         accountview.Items.Add(itm)
         accountview.EnsureVisible(accountview.Items.Count - 1)
         accountview.Update()
-        For Each infoSet As String In temporaryCharacterInformation
-            If infoSet = "" Then genGuid += 1 : Continue For
+        For Each player As Character In CharacterSets
+            ' If infoSet = "" Then genGuid += 1 : Continue For // Needs alternative check
             Dim CLstr(6) As String
             Dim CLitm As ListViewItem
             CLstr(0) = genGuid.ToString
             CLstr(1) = "Armory"
-            CLstr(2) = GetTemporaryCharacterInformation("@character_name", genGuid)
-            CLstr(3) = GetRaceNameById(TryInt(GetTemporaryCharacterInformation("@character_race", genGuid)))
-            CLstr(4) = GetClassNameById(TryInt(GetTemporaryCharacterInformation("@character_class", genGuid)))
-            CLstr(5) = GetGenderNameById(TryInt(GetTemporaryCharacterInformation("@character_gender", genGuid)))
-            CLstr(6) = GetTemporaryCharacterInformation("@character_level", genGuid)
+            CLstr(2) = player.Name
+            CLstr(3) = GetRaceNameById(player.Race)
+            CLstr(4) = GetClassNameById(player.Cclass)
+            CLstr(5) = GetGenderNameById(player.Gender)
+            CLstr(6) = player.Level.ToString
             CLitm = New ListViewItem(CLstr)
             CLitm.Tag = genGuid
             characterview.Items.Add(CLitm)
             characterview.EnsureVisible(characterview.Items.Count - 1)
+            'If Not player.SetIndex = genGuid Then Throw New Exception("Player SetId does not match generated SetIndex!")
             genGuid += 1
         Next
         characterview.Sort()

@@ -63,7 +63,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "majorglyph1"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -78,7 +78,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "majorglyph2"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -93,7 +93,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "majorglyph3"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -108,7 +108,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "minorglyph1"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -123,7 +123,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "minorglyph2"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -138,7 +138,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "minorglyph3"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -154,7 +154,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secmajorglyph1"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -169,7 +169,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secmajorglyph2"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -184,7 +184,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secmajorglyph3"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -199,7 +199,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secminorglyph1"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -214,7 +214,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secminorglyph2"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -229,7 +229,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secminorglyph3"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
         Catch ex As Exception
@@ -268,7 +268,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "majorglyph1"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             prevglyphid = TryInt(Val((tempdt.Rows(0).Item(1)).ToString))
@@ -278,7 +278,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "minorglyph1"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             prevglyphid = TryInt(Val((tempdt.Rows(0).Item(2)).ToString))
@@ -288,7 +288,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "minorglyph2"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             prevglyphid = TryInt(Val((tempdt.Rows(0).Item(3)).ToString))
@@ -298,7 +298,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "majorglyph2"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             prevglyphid = TryInt(Val((tempdt.Rows(0).Item(4)).ToString))
@@ -308,7 +308,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "minorglyph3"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             prevglyphid = TryInt(Val((tempdt.Rows(0).Item(5)).ToString))
@@ -318,7 +318,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "majorglyph3"
                 tmpGlyph.spec = 0
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             If expansion = 4 Then
@@ -329,7 +329,7 @@ Public Class CharacterGlyphsHandler
                     tmpGlyph.slotname = "primeglyph1"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 3
-                    SetCharacterGlyph(player, tmpGlyph)
+                    AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tar_setId, player)
                 End If
                 prevglyphid = TryInt(Val((tempdt.Rows(0).Item(7)).ToString))
@@ -339,7 +339,7 @@ Public Class CharacterGlyphsHandler
                     tmpGlyph.slotname = "primeglyph2"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 3
-                    SetCharacterGlyph(player, tmpGlyph)
+                    AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tar_setId, player)
                 End If
                 prevglyphid = TryInt(Val((tempdt.Rows(0).Item(8)).ToString))
@@ -349,7 +349,7 @@ Public Class CharacterGlyphsHandler
                     tmpGlyph.slotname = "primeglyph3"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 3
-                    SetCharacterGlyph(player, tmpGlyph)
+                    AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tar_setId, player)
                 End If
             End If
@@ -365,7 +365,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secmajorglyph1"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(1)).ToString))
@@ -375,7 +375,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secminorglyph1"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(2)).ToString))
@@ -385,7 +385,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secminorglyph2"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(3)).ToString))
@@ -395,7 +395,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secmajorglyph2"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(4)).ToString))
@@ -405,7 +405,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secminorglyph3"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 1
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(5)).ToString))
@@ -415,7 +415,7 @@ Public Class CharacterGlyphsHandler
                 tmpGlyph.slotname = "secmajorglyph3"
                 tmpGlyph.spec = 1
                 tmpGlyph.type = 2
-                SetCharacterGlyph(player, tmpGlyph)
+                AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
             If expansion = 4 Then
@@ -426,7 +426,7 @@ Public Class CharacterGlyphsHandler
                     tmpGlyph.slotname = "secprimeglyph1"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 3
-                    SetCharacterGlyph(player, tmpGlyph)
+                    AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tar_setId, player)
                 End If
                 prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(7)).ToString))
@@ -436,7 +436,7 @@ Public Class CharacterGlyphsHandler
                     tmpGlyph.slotname = "secprimeglyph2"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 3
-                    SetCharacterGlyph(player, tmpGlyph)
+                    AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tar_setId, player)
                 End If
                 prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(8)).ToString))
@@ -446,7 +446,7 @@ Public Class CharacterGlyphsHandler
                     tmpGlyph.slotname = "secprimeglyph3"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 3
-                    SetCharacterGlyph(player, tmpGlyph)
+                    AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tar_setId, player)
                 End If
             End If
@@ -482,7 +482,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "majorglyph1"
                                     tmpGlyph.spec = 0
                                     tmpGlyph.type = 2
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 1
                                     Dim tmpGlyph As New Glyph
@@ -490,7 +490,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "minorglyph2"
                                     tmpGlyph.spec = 0
                                     tmpGlyph.type = 1
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 2
                                     Dim tmpGlyph As New Glyph
@@ -498,7 +498,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "minorglyph3"
                                     tmpGlyph.spec = 0
                                     tmpGlyph.type = 1
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 3
                                     Dim tmpGlyph As New Glyph
@@ -506,7 +506,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "majorglyph2"
                                     tmpGlyph.spec = 0
                                     tmpGlyph.type = 2
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 4
                                     Dim tmpGlyph As New Glyph
@@ -514,7 +514,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "minorglyph1"
                                     tmpGlyph.spec = 0
                                     tmpGlyph.type = 1
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 5
                                     Dim tmpGlyph As New Glyph
@@ -522,7 +522,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "majorglyph3"
                                     tmpGlyph.spec = 0
                                     tmpGlyph.type = 2
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 6
                                     Dim tmpGlyph As New Glyph
@@ -530,7 +530,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "primeglyph1"
                                     tmpGlyph.spec = 0
                                     tmpGlyph.type = 3
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 7
                                     Dim tmpGlyph As New Glyph
@@ -538,7 +538,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "primeglyph2"
                                     tmpGlyph.spec = 0
                                     tmpGlyph.type = 3
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 8
                                     Dim tmpGlyph As New Glyph
@@ -546,7 +546,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "primeglyph3"
                                     tmpGlyph.spec = 0
                                     tmpGlyph.type = 3
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case Else : End Select
                         Case 1
@@ -557,7 +557,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "secmajorglyph1"
                                     tmpGlyph.spec = 1
                                     tmpGlyph.type = 2
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 1
                                     Dim tmpGlyph As New Glyph
@@ -565,7 +565,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "secminorglyph2"
                                     tmpGlyph.spec = 1
                                     tmpGlyph.type = 1
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 2
                                     Dim tmpGlyph As New Glyph
@@ -573,7 +573,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "secminorglyph3"
                                     tmpGlyph.spec = 1
                                     tmpGlyph.type = 1
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 3
                                     Dim tmpGlyph As New Glyph
@@ -581,7 +581,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "secmajorglyph2"
                                     tmpGlyph.spec = 1
                                     tmpGlyph.type = 2
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 4
                                     Dim tmpGlyph As New Glyph
@@ -589,7 +589,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "secminorglyph1"
                                     tmpGlyph.spec = 1
                                     tmpGlyph.type = 1
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 5
                                     Dim tmpGlyph As New Glyph
@@ -597,7 +597,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "secmajorglyph3"
                                     tmpGlyph.spec = 1
                                     tmpGlyph.type = 2
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 6
                                     Dim tmpGlyph As New Glyph
@@ -605,7 +605,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "secprimeglyph1"
                                     tmpGlyph.spec = 1
                                     tmpGlyph.type = 3
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 7
                                     Dim tmpGlyph As New Glyph
@@ -613,7 +613,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "secprimeglyph2"
                                     tmpGlyph.spec = 1
                                     tmpGlyph.type = 3
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case 8
                                     Dim tmpGlyph As New Glyph
@@ -621,7 +621,7 @@ Public Class CharacterGlyphsHandler
                                     tmpGlyph.slotname = "secprimeglyph3"
                                     tmpGlyph.spec = 1
                                     tmpGlyph.type = 3
-                                    SetCharacterGlyph(player, tmpGlyph)
+                                    AddCharacterGlyph(player, tmpGlyph)
                                     SetCharacterSet(tar_setId, player)
                                 Case Else : End Select
                         Case Else : End Select

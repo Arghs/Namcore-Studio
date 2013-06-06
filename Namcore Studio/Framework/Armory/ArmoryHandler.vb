@@ -85,7 +85,8 @@ Public Class ArmoryHandler
             End Try
             LogAppend("Loading character's finished quests", "ArmoryHandler_LoadArmoryCharacters", True)
             Player.FinishedQuests = splitString(Client.DownloadString(APILink & "?fields=quests") & ",", """quests"":[", "]}")
-            SetCharacterSet(setId, Player)
+            Player.SetIndex = setId
+            AddCharacterSet(setId, Player)
             loadReputation(setId, APILink)
             loadAchievements(setId, APILink)
             loadGlyphs(setId, APILink)

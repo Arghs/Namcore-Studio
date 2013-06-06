@@ -58,8 +58,9 @@ Public Class Glyphs_interface
         Next
     End Sub
     Private Function loadInfo(ByVal targetSet As Integer, ByVal slot As String, ByVal infotype As Integer)
-        Dim glyphitm As Glyph = GetTCI_Glyph(slot, targetSet)
+        Dim glyphitm As Glyph = GetCharacterGlyph(GetCharacterSetBySetId(targetSet), slot)
         pubGlyph = glyphitm
+        If glyphitm Is Nothing Then Return Nothing
         Select Case infotype
             Case 0 : Return glyphitm.name
             Case 1

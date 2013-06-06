@@ -26,31 +26,31 @@ Imports Namcore_Studio.GlobalVariables
 Imports System.Net
 Imports Namcore_Studio.Conversions
 Public Class Basics
-    Public Shared Sub SetTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
-        If temporaryCharacterInformation Is Nothing Then temporaryCharacterInformation = New List(Of String)
-        With temporaryCharacterInformation
-            Select Case .Count
-                Case 0 : .Add("") : .Add("")
-                Case Is <= targetSetId : .Add("")
-            End Select
-            If Not .Item(targetSetId).Contains("[[#INFORMATIONSET" & targetSetId.ToString & "]]") Then
-                .Item(targetSetId) = .Item(targetSetId) & "[[#INFORMATIONSET" & targetSetId.ToString() & "]]" & vbNewLine & "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]"
-            End If
-            .Item(targetSetId) = .Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "[/" & field & "]" & vbNewLine &
-                                                                                  "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
-        End With
-    End Sub
-    Public Shared Sub AppendTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
-        With temporaryCharacterInformation
-            Dim CharacterContext As String = splitString(.Item(targetSetId), "[[#INFORMATIONSET" & targetSetId.ToString() & "]]", "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
-            If Not CharacterContext.Contains("[" & field & "]") Then
-                .Item(targetSetId) = .Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "#VAL#[/" & field & "]" & vbNewLine &
-                                                                              "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
-            End If
-            Dim newCharContext As String = CharacterContext.Replace("#VAL#[/" & field & "]", value & "#VAL#[/" & field & "]")
-            .Item(targetSetId) = .Item(targetSetId).Replace(CharacterContext, newCharContext)
-        End With
-    End Sub
+    'Public Shared Sub SetTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
+    '    If temporaryCharacterInformation Is Nothing Then temporaryCharacterInformation = New List(Of String)
+    '    With temporaryCharacterInformation
+    '        Select Case .Count
+    '            Case 0 : .Add("") : .Add("")
+    '            Case Is <= targetSetId : .Add("")
+    '        End Select
+    '        If Not .Item(targetSetId).Contains("[[#INFORMATIONSET" & targetSetId.ToString & "]]") Then
+    '            .Item(targetSetId) = .Item(targetSetId) & "[[#INFORMATIONSET" & targetSetId.ToString() & "]]" & vbNewLine & "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]"
+    '        End If
+    '        .Item(targetSetId) = .Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "[/" & field & "]" & vbNewLine &
+    '                                                                              "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+    '    End With
+    'End Sub
+    'Public Shared Sub AppendTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
+    '    With temporaryCharacterInformation
+    '        Dim CharacterContext As String = splitString(.Item(targetSetId), "[[#INFORMATIONSET" & targetSetId.ToString() & "]]", "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+    '        If Not CharacterContext.Contains("[" & field & "]") Then
+    '            .Item(targetSetId) = .Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "#VAL#[/" & field & "]" & vbNewLine &
+    '                                                                          "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+    '        End If
+    '        Dim newCharContext As String = CharacterContext.Replace("#VAL#[/" & field & "]", value & "#VAL#[/" & field & "]")
+    '        .Item(targetSetId) = .Item(targetSetId).Replace(CharacterContext, newCharContext)
+    '    End With
+    'End Sub
     Public Shared Function GetCharacterSetBySetId(ByVal setId As Integer) As Character
         If CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
             'found
@@ -60,6 +60,10 @@ Public Class Basics
             Return Nothing
         End If
     End Function
+    Public Shared Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character)
+        CharacterSets.Add(player)
+        CharacterSetsIndex = CharacterSetsIndex & "[setId:" & setId.ToString & "|@" & (CharacterSets.Count - 1).ToString & "]"
+    End Sub
     Public Shared Sub SetCharacterSet(ByVal setId As Integer, ByVal TCharacter As Character)
         If CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
             'found
@@ -68,20 +72,37 @@ Public Class Basics
             'not found
         End If
     End Sub
+    Public Shared Sub AddCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
+        If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
+        player.ArmorItems.Add(itm)
+        player.ArmorItemsIndex = player.ArmorItemsIndex & "[slot:" & itm.slotname & "|@" & (player.ArmorItems.Count - 1).ToString & "]"
+        player.ArmorItemsIndex = player.ArmorItemsIndex & "[slotnum:" & itm.slot.ToString & "|@" & (player.ArmorItems.Count - 1).ToString & "]"
+    End Sub
     Public Shared Sub SetCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
-        If player.ArmorItemsIndex.Contains("[slot:" & itm.slotname & "|@") Then
+        If player.ArmorItemsIndex.Contains("[slot:" & itm.slotname & "|@") Or player.ArmorItemsIndex.Contains("[slotnum:" & itm.slot.ToString & "|@") Then
             player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slot:" & itm.slotname & "|@", "]"))) = itm
+            player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & itm.slot.ToString & "|@", "]"))) = itm
         Else
 
         End If
     End Sub
-    Public Shared Function GetCharacterArmorItem(ByVal player As Character, ByVal slot As String) As Item
-        If player.ArmorItemsIndex.Contains("[slot:" & slot & "|@") Then
-            Return player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slot:" & slot & "|@", "]")))
+    Public Shared Function GetCharacterArmorItem(ByVal player As Character, ByVal slot As String, Optional isint As Boolean = False) As Item
+        If player.ArmorItemsIndex.Contains("[slot:" & slot & "|@") Or player.ArmorItemsIndex.Contains("[slotnum:" & slot & "|@") Then
+            If isint = True Then
+                Return player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & slot & "|@", "]")))
+            Else
+                Return player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slot:" & slot & "|@", "]")))
+            End If
+
         Else
             Return Nothing
         End If
     End Function
+    Public Shared Sub AddCharacterGlyph(ByRef player As Character, ByVal gly As Glyph)
+        If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
+        player.PlayerGlyphs.Add(gly)
+        player.PlayerGlyphsIndex = player.PlayerGlyphsIndex & "[slot:" & gly.slotname & "|@" & (player.PlayerGlyphs.Count - 1).ToString & "]"
+    End Sub
     Public Shared Sub SetCharacterGlyph(ByRef player As Character, ByVal glph As Glyph)
         If player.PlayerGlyphsIndex.Contains("[slot:" & glph.slotname & "|@") Then
             player.PlayerGlyphs(TryInt(splitString(player.PlayerGlyphsIndex, "[slot:" & glph.slotname & "|@", "]"))) = glph
@@ -96,115 +117,115 @@ Public Class Basics
             Return Nothing
         End If
     End Function
-    Public Shared Sub SetTCI_Item(ByVal itm As Item, ByVal targetSetId As Integer)
-        Dim itemContext As String = "[itm:" & itm.slotname & "][itm:" & itm.slot.ToString & "]" &
-            "{slot}" & itm.slotname & "{/slot}" &
-            "{id}" & NotNull(itm.id) & "{/id}" &
-            "{name}" & NotNull(itm.name) & "{/name}" &
-            "{rarity}" & NotNull(itm.rarity) & "{/rarity}" &
-            "{socket1ID}" & NotNull(itm.socket1_id) & "{/socket1ID}" &
-            "{socket2ID}" & NotNull(itm.socket2_id) & "{/socket2ID}" &
-            "{socket3ID}" & NotNull(itm.socket3_id) & "{/socket3ID}" &
-            "{socket1NAME}" & NotNull(itm.socket1_name) & "{/socket1NAME}" &
-            "{socket2NAME}" & NotNull(itm.socket2_name) & "{/socket2NAME}" &
-            "{socket3NAME}" & NotNull(itm.socket3_name) & "{/socket3NAME}" &
-            "{socket1COLOR}" & ConvertImageToString(itm.socket1_pic) & "{/socket1COLOR}" &
-            "{socket2COLOR}" & ConvertImageToString(itm.socket2_pic) & "{/socket2COLOR}" &
-            "{socket3COLOR}" & ConvertImageToString(itm.socket3_pic) & "{/socket3COLOR}" &
-            "{enchantmentID}" & NotNull(itm.enchantment_id) & "{/enchantmentID}" &
-            "{enchantmentNAME}" & NotNull(itm.enchantment_name) & "{/enchantmentNAME}" &
-            "{enchantmentTYPE}" & NotNull(itm.enchantment_type) & "{/enchantmentTYPE}" &
-            "{image}" & ConvertImageToString(itm.image) & "{/image}" &
-            "[/itm:" & itm.slotname & "]"
-        temporaryCharacterInformation.Item(targetSetId) = temporaryCharacterInformation.Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", itemContext & vbNewLine &
-                                                                      "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+    'Public Shared Sub SetTCI_Item(ByVal itm As Item, ByVal targetSetId As Integer)
+    '    Dim itemContext As String = "[itm:" & itm.slotname & "][itm:" & itm.slot.ToString & "]" &
+    '        "{slot}" & itm.slotname & "{/slot}" &
+    '        "{id}" & NotNull(itm.id) & "{/id}" &
+    '        "{name}" & NotNull(itm.name) & "{/name}" &
+    '        "{rarity}" & NotNull(itm.rarity) & "{/rarity}" &
+    '        "{socket1ID}" & NotNull(itm.socket1_id) & "{/socket1ID}" &
+    '        "{socket2ID}" & NotNull(itm.socket2_id) & "{/socket2ID}" &
+    '        "{socket3ID}" & NotNull(itm.socket3_id) & "{/socket3ID}" &
+    '        "{socket1NAME}" & NotNull(itm.socket1_name) & "{/socket1NAME}" &
+    '        "{socket2NAME}" & NotNull(itm.socket2_name) & "{/socket2NAME}" &
+    '        "{socket3NAME}" & NotNull(itm.socket3_name) & "{/socket3NAME}" &
+    '        "{socket1COLOR}" & ConvertImageToString(itm.socket1_pic) & "{/socket1COLOR}" &
+    '        "{socket2COLOR}" & ConvertImageToString(itm.socket2_pic) & "{/socket2COLOR}" &
+    '        "{socket3COLOR}" & ConvertImageToString(itm.socket3_pic) & "{/socket3COLOR}" &
+    '        "{enchantmentID}" & NotNull(itm.enchantment_id) & "{/enchantmentID}" &
+    '        "{enchantmentNAME}" & NotNull(itm.enchantment_name) & "{/enchantmentNAME}" &
+    '        "{enchantmentTYPE}" & NotNull(itm.enchantment_type) & "{/enchantmentTYPE}" &
+    '        "{image}" & ConvertImageToString(itm.image) & "{/image}" &
+    '        "[/itm:" & itm.slotname & "]"
+    '    temporaryCharacterInformation.Item(targetSetId) = temporaryCharacterInformation.Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", itemContext & vbNewLine &
+    '                                                                  "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
 
-    End Sub
-    Public Shared Sub SetTCI_Glyph(ByVal glyph As Glyph, ByVal targetSetId As Integer)
-        Dim GlyphContext As String = "[glyph:" & glyph.slotname & "]" &
-            "{slot}" & glyph.slotname & "{/slot}" &
-            "{id}" & NotNull(glyph.id) & "{/id}" &
-            "{name}" & NotNull(glyph.name) & "{/name}" &
-            "{type}" & NotNull(glyph.type) & "{/type}" &
-            "{spec}" & NotNull(glyph.spec) & "{/spec}" &
-            "{image}" & ConvertImageToString(glyph.image) & "{/image}" &
-            "[/glyph:" & glyph.slotname & "]"
-        temporaryCharacterInformation.Item(targetSetId) = temporaryCharacterInformation.Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", GlyphContext & vbNewLine &
-                                                                      "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
-    End Sub
-    Public Shared Function GetTCI_Item(ByVal slot As String, ByVal targetSetId As Integer) As Item
-        If tempItemInfo Is Nothing Then tempItemInfo = New List(Of Item)
-        If tempItemInfoIndex Is Nothing Then tempItemInfoIndex = New List(Of String())
-        For Each itminfoindex As String() In tempItemInfoIndex
-            If itminfoindex(0) = targetSetId.ToString() And itminfoindex(1) = slot Then
-                Return tempItemInfo(itminfoindex(2))
-            End If
-        Next
-        Dim itemContext As String = GetTemporaryCharacterInformation(("itm:" & slot), targetSetId)
-        Dim itm As New Item
-        If itemContext Is Nothing Then Return itm
-        itm.slotname = splitString(itemContext, "{slot}", "{/slot}")
-        itm.id = TryInt(splitString(itemContext, "{id}", "{/id}"))
-        itm.name = splitString(itemContext, "{name}", "{/name}")
-        itm.rarity = TryInt(splitString(itemContext, "{rarity}", "{/rarity}"))
-        itm.socket1_id = TryInt(splitString(itemContext, "{socket1ID}", "{/socket1ID}"))
-        itm.socket2_id = TryInt(splitString(itemContext, "{socket2ID}", "{/socket2ID}"))
-        itm.socket3_id = TryInt(splitString(itemContext, "{socket3ID}", "{/socket3ID}"))
-        itm.socket1_name = splitString(itemContext, "{socket1NAME}", "{/socket1NAME}")
-        itm.socket2_name = splitString(itemContext, "{socket2NAME}", "{/socket2NAME}")
-        itm.socket3_name = splitString(itemContext, "{socket3NAME}", "{/socket3NAME}")
-        itm.socket1_pic = ConvertStringToImage(splitString(itemContext, "{socket1COLOR}", "{/socket1COLOR}"))
-        itm.socket2_pic = ConvertStringToImage(splitString(itemContext, "{socket2COLOR}", "{/socket2COLOR}"))
-        itm.socket3_pic = ConvertStringToImage(splitString(itemContext, "{socket3COLOR}", "{/socket3COLOR}"))
-        itm.enchantment_id = TryInt(splitString(itemContext, "{enchantmentID}", "{/enchantmentID}"))
-        itm.enchantment_name = splitString(itemContext, "{enchantmentNAME}", "{/enchantmentNAME}")
-        itm.enchantment_type = TryInt(splitString(itemContext, "{enchantmentTYPE}", "{/enchantmentTYPE}"))
-        itm.image = ConvertStringToImage(splitString(itemContext, "{image}", "{/image}"))
+    'End Sub
+    'Public Shared Sub SetTCI_Glyph(ByVal glyph As Glyph, ByVal targetSetId As Integer)
+    '    Dim GlyphContext As String = "[glyph:" & glyph.slotname & "]" &
+    '        "{slot}" & glyph.slotname & "{/slot}" &
+    '        "{id}" & NotNull(glyph.id) & "{/id}" &
+    '        "{name}" & NotNull(glyph.name) & "{/name}" &
+    '        "{type}" & NotNull(glyph.type) & "{/type}" &
+    '        "{spec}" & NotNull(glyph.spec) & "{/spec}" &
+    '        "{image}" & ConvertImageToString(glyph.image) & "{/image}" &
+    '        "[/glyph:" & glyph.slotname & "]"
+    '    temporaryCharacterInformation.Item(targetSetId) = temporaryCharacterInformation.Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", GlyphContext & vbNewLine &
+    '                                                                  "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
+    'End Sub
+    'Public Shared Function GetTCI_Item(ByVal slot As String, ByVal targetSetId As Integer) As Item
+    '    If tempItemInfo Is Nothing Then tempItemInfo = New List(Of Item)
+    '    If tempItemInfoIndex Is Nothing Then tempItemInfoIndex = New List(Of String())
+    '    For Each itminfoindex As String() In tempItemInfoIndex
+    '        If itminfoindex(0) = targetSetId.ToString() And itminfoindex(1) = slot Then
+    '            Return tempItemInfo(itminfoindex(2))
+    '        End If
+    '    Next
+    '    Dim itemContext As String = GetTemporaryCharacterInformation(("itm:" & slot), targetSetId)
+    '    Dim itm As New Item
+    '    If itemContext Is Nothing Then Return itm
+    '    itm.slotname = splitString(itemContext, "{slot}", "{/slot}")
+    '    itm.id = TryInt(splitString(itemContext, "{id}", "{/id}"))
+    '    itm.name = splitString(itemContext, "{name}", "{/name}")
+    '    itm.rarity = TryInt(splitString(itemContext, "{rarity}", "{/rarity}"))
+    '    itm.socket1_id = TryInt(splitString(itemContext, "{socket1ID}", "{/socket1ID}"))
+    '    itm.socket2_id = TryInt(splitString(itemContext, "{socket2ID}", "{/socket2ID}"))
+    '    itm.socket3_id = TryInt(splitString(itemContext, "{socket3ID}", "{/socket3ID}"))
+    '    itm.socket1_name = splitString(itemContext, "{socket1NAME}", "{/socket1NAME}")
+    '    itm.socket2_name = splitString(itemContext, "{socket2NAME}", "{/socket2NAME}")
+    '    itm.socket3_name = splitString(itemContext, "{socket3NAME}", "{/socket3NAME}")
+    '    itm.socket1_pic = ConvertStringToImage(splitString(itemContext, "{socket1COLOR}", "{/socket1COLOR}"))
+    '    itm.socket2_pic = ConvertStringToImage(splitString(itemContext, "{socket2COLOR}", "{/socket2COLOR}"))
+    '    itm.socket3_pic = ConvertStringToImage(splitString(itemContext, "{socket3COLOR}", "{/socket3COLOR}"))
+    '    itm.enchantment_id = TryInt(splitString(itemContext, "{enchantmentID}", "{/enchantmentID}"))
+    '    itm.enchantment_name = splitString(itemContext, "{enchantmentNAME}", "{/enchantmentNAME}")
+    '    itm.enchantment_type = TryInt(splitString(itemContext, "{enchantmentTYPE}", "{/enchantmentTYPE}"))
+    '    itm.image = ConvertStringToImage(splitString(itemContext, "{image}", "{/image}"))
 
 
-        tempItemInfo.Add(itm)
-        Dim tmpString(2) As String
-        tmpString(0) = targetSetId.ToString()
-        tmpString(1) = slot
-        tmpString(2) = (tempItemInfo.Count - 1).ToString
-        tempItemInfoIndex.Add(tmpString)
-        Return itm
-    End Function
-    Public Shared Function GetTCI_Glyph(ByVal slot As String, ByVal targetSetId As Integer) As Glyph
-        If tempGlyphInfo Is Nothing Then tempGlyphInfo = New List(Of Glyph)
-        If tempGlyphInfoIndex Is Nothing Then tempGlyphInfoIndex = New List(Of String())
-        For Each infoindex As String() In tempGlyphInfoIndex
-            If infoindex(0) = targetSetId.ToString() And infoindex(1) = slot Then
-                Return tempGlyphInfo(infoindex(2))
-            End If
-        Next
-        Dim glyphContext As String = GetTemporaryCharacterInformation(("glyph:" & slot), targetSetId)
-        Dim gly As New Glyph
-        If glyphContext Is Nothing Then Return gly
-        gly.slotname = splitString(glyphContext, "{slot}", "{/slot}")
-        gly.id = TryInt(splitString(glyphContext, "{id}", "{/id}"))
-        gly.name = splitString(glyphContext, "{name}", "{/name}")
-        gly.type = TryInt(splitString(glyphContext, "{type}", "{/type}"))
-        gly.spec = TryInt(splitString(glyphContext, "{spec}", "{/spec}"))
-        gly.image = ConvertStringToImage(splitString(glyphContext, "{image}", "{/image}"))
-        tempGlyphInfo.Add(gly)
-        Dim tmpString(2) As String
-        tmpString(0) = targetSetId.ToString()
-        tmpString(1) = slot
-        tmpString(2) = (tempGlyphInfo.Count - 1).ToString
-        tempGlyphInfoIndex.Add(tmpString)
-        Return gly
-        
-    End Function
-    Public Shared Function GetTemporaryCharacterInformation(ByVal field As String, ByVal targetSetId As Integer) As String
-        Dim CharContext As String = temporaryCharacterInformation.Item(targetSetId)
-        If CharContext.Contains("[" & field & "]") Then
-            Dim returnstring As String = splitString(CharContext, "[" & field & "]", "[/" & field & "]")
-            Return returnstring
-        Else
-            Return Nothing
-        End If
-    End Function
+    '    tempItemInfo.Add(itm)
+    '    Dim tmpString(2) As String
+    '    tmpString(0) = targetSetId.ToString()
+    '    tmpString(1) = slot
+    '    tmpString(2) = (tempItemInfo.Count - 1).ToString
+    '    tempItemInfoIndex.Add(tmpString)
+    '    Return itm
+    'End Function
+    'Public Shared Function GetTCI_Glyph(ByVal slot As String, ByVal targetSetId As Integer) As Glyph
+    '    If tempGlyphInfo Is Nothing Then tempGlyphInfo = New List(Of Glyph)
+    '    If tempGlyphInfoIndex Is Nothing Then tempGlyphInfoIndex = New List(Of String())
+    '    For Each infoindex As String() In tempGlyphInfoIndex
+    '        If infoindex(0) = targetSetId.ToString() And infoindex(1) = slot Then
+    '            Return tempGlyphInfo(infoindex(2))
+    '        End If
+    '    Next
+    '    Dim glyphContext As String = GetTemporaryCharacterInformation(("glyph:" & slot), targetSetId)
+    '    Dim gly As New Glyph
+    '    If glyphContext Is Nothing Then Return gly
+    '    gly.slotname = splitString(glyphContext, "{slot}", "{/slot}")
+    '    gly.id = TryInt(splitString(glyphContext, "{id}", "{/id}"))
+    '    gly.name = splitString(glyphContext, "{name}", "{/name}")
+    '    gly.type = TryInt(splitString(glyphContext, "{type}", "{/type}"))
+    '    gly.spec = TryInt(splitString(glyphContext, "{spec}", "{/spec}"))
+    '    gly.image = ConvertStringToImage(splitString(glyphContext, "{image}", "{/image}"))
+    '    tempGlyphInfo.Add(gly)
+    '    Dim tmpString(2) As String
+    '    tmpString(0) = targetSetId.ToString()
+    '    tmpString(1) = slot
+    '    tmpString(2) = (tempGlyphInfo.Count - 1).ToString
+    '    tempGlyphInfoIndex.Add(tmpString)
+    '    Return gly
+
+    'End Function
+    'Public Shared Function GetTemporaryCharacterInformation(ByVal field As String, ByVal targetSetId As Integer) As String
+    '    Dim CharContext As String = temporaryCharacterInformation.Item(targetSetId)
+    '    If CharContext.Contains("[" & field & "]") Then
+    '        Dim returnstring As String = splitString(CharContext, "[" & field & "]", "[/" & field & "]")
+    '        Return returnstring
+    '    Else
+    '        Return Nothing
+    '    End If
+    'End Function
    
     Public Shared Sub AbortProcess()
 
