@@ -49,34 +49,34 @@ Public Class QuestCreation
         Dim lastslot As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.qst_slot_col(0) & " FROM " & sourceStructure.character_queststatus_tbl(0) & " WHERE " &
                                                                          sourceStructure.qst_guid_col(0) & "='" & characterguid.ToString() & "' AND " & sourceStructure.qst_slot_col(0) &
                                                                          "=(SELECT MAX(" & sourceStructure.qst_slot_col(0) & ") FROM " & sourceStructure.character_tbl(0) & ")", True)) + 1
-        Dim character_queststatus_list As List(Of String) = ConvertStringToList(GetTemporaryCharacterInformation("@character_queststatus", targetSetId))
-        If Not character_queststatus_list.Count = 0 Then
-            For Each queststring As String In character_queststatus_list
-                Dim explored As String = splitList(queststring, "explored")
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
+        If Not player.Quests.Count = 0 Then
+            For Each qst As Quest In player.Quests
+                Dim explored As String = qst.explored.ToString
                 If explored = Nothing Then explored = ""
                 Dim tmpcommand As String = "INSERT INTO " & sourceStructure.character_queststatus_tbl(0) & " ( " & sourceStructure.qst_guid_col(0) & ", " & sourceStructure.qst_quest_col(0) & ", " &
                     sourceStructure.qst_slot_col(0) & ", `" & sourceStructure.qst_completed_col(0) & "`, `" & sourceStructure.qst_explored_col(0) & "` ) VALUES ( '" & characterguid.ToString() & "', '" &
-                    splitList(queststring, "quest") & "', '" & lastslot.ToString & "', '" & splitList(queststring, "status") & "'," & " '" & explored & "')"
+                    qst.id.ToString & "', '" & lastslot.ToString & "', '" & qst.status.ToString & "'," & " '" & explored & "')"
                 runSQLCommand_characters_string(tmpcommand, True)
                 lastslot += 1
             Next
         Else : LogAppend("No quests in questlog", "QuestCreation_createAtArcemu", False) : End If
-        Dim finishedQuestsString As String = GetTemporaryCharacterInformation("@character_finishedQuests", targetSetId)
+        Dim finishedQuestsString As String = player.FinishedQuests
         If Not finishedQuestsString = "" Then runSQLCommand_characters_string("UPDATE characters SET finished_quests='" & finishedQuestsString & "' WHERE guid='" & characterguid.ToString() & "'", True)
     End Sub
     Private Shared Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Trinity", "QuestCreation_createAtTrinity", False)
-        Dim character_queststatus_list As List(Of String) = ConvertStringToList(GetTemporaryCharacterInformation("@character_queststatus", targetSetId))
-        If Not character_queststatus_list.Count = 0 Then
-            For Each queststring As String In character_queststatus_list
-                Dim queststatus As String = splitList(queststring, "status")
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
+        If Not player.Quests.Count = 0 Then
+            For Each qst As Quest In player.Quests
+                Dim queststatus As String = qst.status.ToString
                 If queststatus = "0" Then queststatus = "1"
                 runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_queststatus_tbl(0) & " ( " & sourceStructure.qst_guid_col(0) & ", " & sourceStructure.qst_quest_col(0) & ", `" &
-                                                sourceStructure.qst_status_col(0) & "`, `" & sourceStructure.qst_explored_col(0) & "` ) VALUES ( '" & characterguid.ToString() & "', '" & splitList(queststring, "quest") &
-                                                "', '" & queststatus & "', '" & splitList(queststring, "explored") & "')", True)
+                                                sourceStructure.qst_status_col(0) & "`, `" & sourceStructure.qst_explored_col(0) & "` ) VALUES ( '" & characterguid.ToString() & "', '" & qst.id.ToString &
+                                                "', '" & queststatus & "', '" & qst.explored.ToString & "')", True)
             Next
         Else : LogAppend("No quests in questlog", "QuestCreation_createAtTrinity", False) : End If
-        Dim finishedQuestsString As String = GetTemporaryCharacterInformation("@character_finishedQuests", targetSetId)
+        Dim finishedQuestsString As String = player.FinishedQuests
         If Not finishedQuestsString = "" Then
             Try
                 Dim parts() As String = finishedQuestsString.Split(","c)
@@ -93,17 +93,17 @@ Public Class QuestCreation
     End Sub
     Private Shared Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Mangos", "QuestCreation_createAtMangos", False)
-          Dim character_queststatus_list As List(Of String) = ConvertStringToList(GetTemporaryCharacterInformation("@character_queststatus", targetSetId))
-        If Not character_queststatus_list.Count = 0 Then
-            For Each queststring As String In character_queststatus_list
-                Dim queststatus As String = splitList(queststring, "status")
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
+        If Not player.Quests.Count = 0 Then
+            For Each qst As Quest In player.Quests
+                Dim queststatus As String = qst.status.ToString
                 If queststatus = "0" Then queststatus = "1"
                 runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_queststatus_tbl(0) & " ( " & sourceStructure.qst_guid_col(0) & ", " & sourceStructure.qst_quest_col(0) & ", `" &
-                                                sourceStructure.qst_status_col(0) & "`, `" & sourceStructure.qst_explored_col(0) & "` ) VALUES ( '" & characterguid.ToString() & "', '" & splitList(queststring, "quest") &
-                                                "', '" & queststatus & "', '" & splitList(queststring, "explored") & "')", True)
+                                                sourceStructure.qst_status_col(0) & "`, `" & sourceStructure.qst_explored_col(0) & "` ) VALUES ( '" & characterguid.ToString() & "', '" & qst.id.ToString &
+                                                "', '" & queststatus & "', '" & qst.explored.ToString & "')", True)
             Next
         Else : LogAppend("No quests in questlog", "QuestCreation_createAtMangos", False) : End If
-        Dim finishedQuestsString As String = GetTemporaryCharacterInformation("@character_finishedQuests", targetSetId)
+        Dim finishedQuestsString As String = player.FinishedQuests
         If Not finishedQuestsString = "" Then
             Try
                 Dim parts() As String = finishedQuestsString.Split(","c)

@@ -71,14 +71,15 @@ Public Class CharacterCreationLite
                                     ", " & sourceStructure.char_taximask_col(0) & ", " & sourceStructure.char_arcemuPlayedTime_col(0) & " ) " &
                                     "VALUES ( @accid, @guid, @name, @race, @class, @gender, @level, '0', '0', '1000', @pBytes, '-14305.7', '514.08', '10', '4.30671', '0', '0 0 0 0 0 0 0 0 0 0 0 0 ', '98 98 5 ' )"
         Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
         tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
         tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
         tempcommand.Parameters.AddWithValue("@name", charactername)
-        tempcommand.Parameters.AddWithValue("@class", GetTemporaryCharacterInformation("@character_class", targetSetId))
-        tempcommand.Parameters.AddWithValue("@race", GetTemporaryCharacterInformation("@character_race", targetSetId))
-        tempcommand.Parameters.AddWithValue("@gender", GetTemporaryCharacterInformation("@character_gender", targetSetId))
-        tempcommand.Parameters.AddWithValue("@level", GetTemporaryCharacterInformation("@character_level", targetSetId))
-        tempcommand.Parameters.AddWithValue("@pBytes", GetTemporaryCharacterInformation("@character_playerBytes", targetSetId))
+        tempcommand.Parameters.AddWithValue("@class", player.Cclass.ToString())
+        tempcommand.Parameters.AddWithValue("@race", player.Race.ToString())
+        tempcommand.Parameters.AddWithValue("@gender", player.Gender.ToString())
+        tempcommand.Parameters.AddWithValue("@level", player.Level.ToString())
+        tempcommand.Parameters.AddWithValue("@pBytes", player.PlayerBytes.ToString())
         Try
             tempcommand.ExecuteNonQuery()
             If NameChange = True Then
@@ -97,8 +98,8 @@ Public Class CharacterCreationLite
                 "', '" & newitemguid.ToString() & "', '6948', '1', '-1', '23' )", True)
             'Adding special skills & spells
             AddSpells("6603,")
-            Dim cRace As Integer = TryInt(GetTemporaryCharacterInformation("@character_race", targetSetId))
-            Dim cClass As Integer = TryInt(GetTemporaryCharacterInformation("@character_class", targetSetId))
+            Dim cRace As Integer = player.Race
+            Dim cClass As Integer = player.Cclass
             If cRace = 1 Then
                 If cClass = 1 Then
                     AddSkills("26,1,1,43,1,5,54,1,5,55,1,5,95,1,5,162,1,5,413,1,1,414,1,1,415,1,1,433,1,1,754,1,1,")
@@ -324,14 +325,15 @@ Public Class CharacterCreationLite
             sourceStructure.char_cinematic_col(0) & ", `" & sourceStructure.char_health_col(0) & "` ) VALUES " &
          "( @guid, @accid, @name, @race, @class, @gender, @level, '0', '0', @pBytes, '-14306', '515', '10', '0', '5', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1', '1000' )"
         Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
         tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
         tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
         tempcommand.Parameters.AddWithValue("@name", charactername)
-        tempcommand.Parameters.AddWithValue("@class", GetTemporaryCharacterInformation("@character_class", targetSetId))
-        tempcommand.Parameters.AddWithValue("@race", GetTemporaryCharacterInformation("@character_race", targetSetId))
-        tempcommand.Parameters.AddWithValue("@gender", GetTemporaryCharacterInformation("@character_gender", targetSetId))
-        tempcommand.Parameters.AddWithValue("@level", GetTemporaryCharacterInformation("@character_level", targetSetId))
-        tempcommand.Parameters.AddWithValue("@pBytes", GetTemporaryCharacterInformation("@character_playerBytes", targetSetId))
+        tempcommand.Parameters.AddWithValue("@class", player.Cclass.ToString())
+        tempcommand.Parameters.AddWithValue("@race", player.race.tostring())
+        tempcommand.Parameters.AddWithValue("@gender", player.gender.tostring())
+        tempcommand.Parameters.AddWithValue("@level", player.level.tostring())
+        tempcommand.Parameters.AddWithValue("@pBytes", player.playerBytes.tostring())
         Try
             tempcommand.ExecuteNonQuery()
             If NameChange = True Then
@@ -368,14 +370,15 @@ Public Class CharacterCreationLite
             ", " & sourceStructure.char_posZ_col(0) & ", " & sourceStructure.char_map_col(0) & ", " & sourceStructure.char_orientation_col(0) & ", " & sourceStructure.char_taximask_col(0) & ", `health` ) VALUES " &
           "( @guid, @accid, @name, @race, @class, @gender, @level, '0', '0', @pBytes, '-14305.7', '514.08', '10', '0', '4.30671', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 ','1000' )"
         Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
         tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
         tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
         tempcommand.Parameters.AddWithValue("@name", charactername)
-        tempcommand.Parameters.AddWithValue("@pBytes", GetTemporaryCharacterInformation("@character_playerBytes", targetSetId))
-        tempcommand.Parameters.AddWithValue("@class", GetTemporaryCharacterInformation("@character_class", targetSetId))
-        tempcommand.Parameters.AddWithValue("@race", GetTemporaryCharacterInformation("@character_race", targetSetId))
-        tempcommand.Parameters.AddWithValue("@gender", GetTemporaryCharacterInformation("@character_gender", targetSetId))
-        tempcommand.Parameters.AddWithValue("@level", GetTemporaryCharacterInformation("@character_level", targetSetId))
+        tempcommand.Parameters.AddWithValue("@pBytes", player.playerBytes.tostring())
+        tempcommand.Parameters.AddWithValue("@class", player.Cclass.ToString())
+        tempcommand.Parameters.AddWithValue("@race", player.race.tostring())
+        tempcommand.Parameters.AddWithValue("@gender", player.gender.tostring())
+        tempcommand.Parameters.AddWithValue("@level", player.level.tostring())
         Try
             tempcommand.ExecuteNonQuery()
             If NameChange = True Then

@@ -131,12 +131,12 @@ Public Class TalentCreation
         Dim talentlist2 As String = Nothing
         Dim finaltalentstring As String = Nothing
         Dim finaltalentstring2 As String = Nothing
-        Dim fullTalentList As List(Of String) = ConvertStringToList(GetTemporaryCharacterInformation("@character_talent_list", targetSetId))
-        For Each talentstring As String In fullTalentList
-            Dim spellid As String = splitList(talentstring, "spell")
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
+        For Each tal As Talent In player.Talents
+            Dim spellid As String = tal.spell.ToString
             If spellid.Contains("clear") Then
                 TalentId = spellid.Replace("clear", "")
-                Dim spec As String = splitList(talentstring, "spec")
+                Dim spec As String = tal.spec.ToString
                 If spec = "0" Then
                     finaltalentstring = finaltalentstring & TalentId & ",0,"
                 Else
@@ -144,7 +144,7 @@ Public Class TalentCreation
                 End If
             Else
                 TalentId = checkfield(spellid)
-                Dim spec As String = splitList(talentstring, "spec")
+                Dim spec As String = tal.spec.ToString
                 If spec = "0" Then
                     If talentlist.Contains(TalentId) Then
                         If talentlist.Contains(TalentId & "rank5") Then
@@ -241,11 +241,11 @@ Public Class TalentCreation
     End Sub
     Private Shared Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Trinity", "TalentCreation_createAtTrinity", False)
-        Dim fullTalentList As List(Of String) = ConvertStringToList(GetTemporaryCharacterInformation("@character_talent_list", targetSetId))
-        For Each talentstring As String In fullTalentList
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
+        For Each tal As Talent In player.Talents
             runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_talent_tbl(0) & " ( " & sourceStructure.talent_guid_col(0) & ", " & sourceStructure.talent_spell_col(0) & ", " &
-                                            sourceStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '" & splitList(talentstring, "spell") & "', '" &
-                                            splitList(talentstring, "spec") & "')", True)
+                                            sourceStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '" & tal.spell.ToString & "', '" &
+                                            tal.spec.ToString & "')", True)
         Next
     End Sub
     Private Shared Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
@@ -259,10 +259,10 @@ Public Class TalentCreation
         Dim talentlist2 As String = Nothing
         Dim finaltalentstring As String = Nothing
         Dim finaltalentstring2 As String = Nothing
-        Dim fullTalentList As List(Of String) = ConvertStringToList(GetTemporaryCharacterInformation("@character_talent_list", targetSetId))
-        For Each talentstring As String In fullTalentList
-          talentid = checkfield(splitlist(talentstring, "spell"))
-            Dim spec As String = splitList(talentstring, "spec")
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
+        For Each tal As Talent In player.Talents
+            TalentId = tal.spell.ToString
+            Dim spec As String = tal.spec.ToString
             If spec = "0" Then
                 If talentlist.Contains(TalentId) Then
                     If talentlist.Contains(TalentId & "rank5") Then

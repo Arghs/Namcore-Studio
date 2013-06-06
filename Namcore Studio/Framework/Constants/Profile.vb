@@ -123,7 +123,7 @@ Public Class Reputation
     Public faction As Integer
     Public flags As Integer
     Public standing As Integer
-   
+
     Public Sub New()
 
     End Sub

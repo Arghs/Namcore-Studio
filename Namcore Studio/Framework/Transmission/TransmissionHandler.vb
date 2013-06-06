@@ -47,7 +47,8 @@ Public Class TransmissionHandler
                 Case "1" : renamePending = True
                 Case Else : renamePending = False
             End Select
-            Dim charname As String = GetTemporaryCharacterInformation("@character_name", setId)
+            Dim player As Character = GetCharacterSetBySetId(setId)
+            Dim charname As String = player.Name
             If lite Then
                 CreateNewLiteCharacter(charname, accountId, setId, renamePending)
             Else

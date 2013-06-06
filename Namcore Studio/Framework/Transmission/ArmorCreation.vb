@@ -52,7 +52,8 @@ Public Class ArmorCreation
         LogAppend("Creating armor at arcemu", "ArmorCreation_createAtArcemu", False)
         LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtArcemu", False)
         'Adding weapon specific spells and skills
-        Dim cClass As Integer = TryInt(GetTemporaryCharacterInformation("@character_class", targetSetId))
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
+        Dim cClass As Integer = player.Cclass
         If cClass = 1 Or cClass = 2 Or cClass = 6 Then
             AddSpells("750,")
             AddSkills("293,")
@@ -75,7 +76,8 @@ Public Class ArmorCreation
         Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
                                                                             "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " & sourceStructure.item_instance_tbl(0) & ")"))
         For Each newItemType As String In itemtypelist
-            itemid = TryInt(GetTemporaryCharacterInformation("@character_" & newItemType & "Id", targetSetId))
+            Dim itm As Item = GetCharacterArmorItem(player, newItemType)
+            itemid = itm.id
             If itemid = 0 Then Continue For
             newItemGuid += 1
             finalItemString = finalItemString.Replace(newItemType, itemid.ToString())
@@ -105,7 +107,8 @@ Public Class ArmorCreation
         LogAppend("Creating armor at trinity", "ArmorCreation_createAtTrinity", False)
         LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtTrinity", False)
         'Adding weapon specific spells and skills
-        Dim cClass As Integer = TryInt(GetTemporaryCharacterInformation("@character_class", targetSetId))
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
+        Dim cClass As Integer = player.Cclass
         If cClass = 1 Or cClass = 2 Or cClass = 6 Then
             AddSpells("750,")
             AddSkills("293,")
@@ -128,7 +131,8 @@ Public Class ArmorCreation
         Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                                             sourceStructure.itmins_guid_col(0) & "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " & sourceStructure.item_instance_tbl(0) & ")"))
         For Each newItemType As String In itemtypelist
-            itemid = TryInt(GetTemporaryCharacterInformation("@character_" & newItemType & "Id", targetSetId))
+            Dim itm As Item = GetCharacterArmorItem(player, newItemType)
+            itemid = itm.id
             If itemid = 0 Then Continue For
             newItemGuid += 1
             finalItemString = finalItemString.Replace(newItemType, itemid.ToString())
@@ -157,7 +161,8 @@ Public Class ArmorCreation
         LogAppend("Creating armor at mangos", "ArmorCreation_createAtMangos", False)
         LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtMangos", False)
         'Adding weapon specific spells and skills
-        Dim cClass As Integer = TryInt(GetTemporaryCharacterInformation("@character_class", targetSetId))
+        Dim player As Character = GetCharacterSetBySetId(targetSetId)
+        Dim cClass As Integer = player.Cclass
         If cClass = 1 Or cClass = 2 Or cClass = 6 Then
             AddSpells("750,")
             AddSkills("293,")
@@ -180,7 +185,8 @@ Public Class ArmorCreation
         Dim newItemGuid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                                             sourceStructure.itmins_guid_col(0) & "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " & sourceStructure.item_instance_tbl(0) & ")"))
         For Each newItemType As String In itemtypelist
-            itemid = TryInt(GetTemporaryCharacterInformation("@character_" & newItemType & "Id", targetSetId))
+            Dim itm As Item = GetCharacterArmorItem(player, newItemType)
+            itemid = itm.id
             If itemid = 0 Then Continue For
             newItemGuid += 1
             finalItemString = finalItemString.Replace(newItemType, itemid.ToString())
