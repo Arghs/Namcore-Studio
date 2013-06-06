@@ -31,7 +31,7 @@ Imports System.Net
 Public Class AchievementParser
     Public Shared Sub loadAchievements(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
-        Dim avLst As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(setId)
         Try
             LogAppend("Loading character achievement information", "AchievementParser_loadAchievements", True)
             Dim avContext As String = client.DownloadString(apiLink & "?fields=achievements")
@@ -52,9 +52,12 @@ Public Class AchievementParser
                     End If
                     loopcounter += 1
                     LogAppend("Adding achievement " & avId & " with timestamp " & timeStamp, "AchievementParser_loadAchievements", False)
-                    avLst.Add("<av>" & avId & "</av><date>" & timeStamp & "</date>")
+                    Dim av As New Achievement
+                    av.Id = TryInt(avId)
+                    av.GainDate = TryInt(timeStamp)
+                    player.Achievements.Add(av)
                 Loop Until loopcounter = excounter
-                SetTemporaryCharacterInformation("@character_achievements", ConvertListToString(avLst), setId)
+                SetCharacterSet(setId, player)
             End If
         Catch ex As Exception
             LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "AchievementParser_loadAchievements", False)

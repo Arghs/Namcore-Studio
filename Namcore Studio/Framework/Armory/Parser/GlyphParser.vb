@@ -30,6 +30,7 @@ Imports System.Net
 Public Class GlyphParser
     Public Shared Sub loadGlyphs(ByVal setID As Integer, ByVal apiLink As String)
         Dim client As New WebClient
+        Dim player As Character = GetCharacterSetBySetId(setID)
         Try
             LogAppend("Loading character glyph information", "GlyphParser_loadGlyphs", True)
             Dim glyphContext As String = client.DownloadString(apiLink & "?fields=talents")
@@ -60,7 +61,7 @@ Public Class GlyphParser
                                 newGlyph.image = GetIconByItemId(newGlyph.id)
                                 newGlyph.type = loopCounter + 1
                                 newGlyph.spec = i
-                                SetTCI_Glyph(newGlyph, setID)
+                                SetCharacterGlyph(player, newGlyph)
                                 counter += 1
                             Loop Until counter = exCounter
                         End If
@@ -72,6 +73,6 @@ Public Class GlyphParser
         Catch ex As Exception
             LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "GlyphParser_loadGlyphs", False, True)
         End Try
-
+        SetCharacterSet(setID, player)
     End Sub
 End Class

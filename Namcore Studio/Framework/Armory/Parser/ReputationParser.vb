@@ -32,6 +32,7 @@ Public Class ReputationParser
     Public Shared Sub loadReputation(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
         Dim char_replist As New List(Of String)
+        Dim player As Character = GetCharacterSetBySetId(setId)
         Try
             LogAppend("Loading character reputation information", "ReputationParser_loadReputation", True)
             Dim reputationContext As String = client.DownloadString(apiLink & "?fields=reputation")
@@ -42,6 +43,7 @@ Public Class ReputationParser
                 Dim parts() As String = reputationContext.Split("$"c)
                 Dim loopcounter As Integer = 0
                 Do
+                    Dim rep As New Reputation
                     Dim factionId As String = splitString(parts(loopcounter), """id"":", ",")
                     Dim standing As Integer = TryInt(splitString(parts(loopcounter), """value"":", ","))
                     Dim orgstanding As Integer = TryInt(splitString(parts(loopcounter), """standing"":", ","))
@@ -51,9 +53,12 @@ Public Class ReputationParser
                     If orgstanding > 5 Then standing += 12000
                     If orgstanding > 6 Then standing += 21000
                     LogAppend("Adding reputation (factionID/standing):(" & factionId & "/" & standing.ToString & ")", "ReputationParser_loadReputation", False)
-                    char_replist.Add("<faction>" & factionId & "</faction><standing>" & standing.ToString & "</standing><flags>1</flags>")
+                    rep.faction = TryInt(factionId)
+                    rep.standing = TryInt(standing)
+                    rep.flags = 1
+                    player.PlayerReputation.Add(rep)
                 Loop Until loopcounter = exCount
-                SetTemporaryCharacterInformation("@character_reputation", ConvertListToString(char_replist), setId)
+                SetCharacterSet(setId, player)
             End If
         Catch ex As Exception
             LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###", "ReputationParser_loadReputation", False, True)

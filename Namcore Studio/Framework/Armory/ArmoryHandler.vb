@@ -57,13 +57,13 @@ Public Class ArmoryHandler
             setId += 1
             LogAppend("Loading character " & CharacterName & " //ident is " & setId.ToString(), "ArmoryHandler_LoadArmoryCharacters", True)
             LogAppend("Loading basic character information", "ArmoryHandler_LoadArmoryCharacters", True)
-            SetTemporaryCharacterInformation("@account_id", "0", setId)
-            SetTemporaryCharacterInformation("@account_name", "Armory", setId)
-            SetTemporaryCharacterInformation("@character_name", CharacterName, setId)
-            SetTemporaryCharacterInformation("@character_level", splitString(CharacterContext, "<span class=""level""><strong>", "</strong></span>"), setId)
-            SetTemporaryCharacterInformation("@character_gender", splitString(Client.DownloadString(APILink), """gender"":", ","""), setId)
-            SetTemporaryCharacterInformation("@character_race", GetRaceIdByName(splitString(CharacterContext, "/game/race/", """ class=")), setId)
-            SetTemporaryCharacterInformation("@character_class", GetClassIdByName(splitString(CharacterContext, "/game/class/", """ class=")), setId)
+            Dim Player As New Character(CharacterName, 0)
+            Player.AccountId = 0
+            Player.AccountName = "Armory"
+            Player.Level = TryInt(splitString(CharacterContext, "<span class=""level""><strong>", "</strong></span>"))
+            Player.Gender = TryInt(splitString(Client.DownloadString(APILink), """gender"":", ","""))
+            Player.Race = TryInt(GetRaceIdByName(splitString(CharacterContext, "/game/race/", """ class=")))
+            Player.Cclass = TryInt(GetClassIdByName(splitString(CharacterContext, "/game/class/", """ class=")))
             '// Character appearance
             Try
                 LogAppend("Loading character appearance information", "ArmoryHandler_LoadArmoryCharacters", True)
@@ -79,12 +79,13 @@ Public Class ArmoryHandler
                 If app_hairColor.ToString.Length = 1 Then app_hairColor = 0 & app_hairColor
                 If app_featureVar.Length = 1 Then app_featureVar = "0" & app_featureVar 'todo //not used
                 Dim byteStr As String = ((app_hairColor) & (app_hairStyle) & (app_face) & (app_skin)).ToString
-                SetTemporaryCharacterInformation("@playerBytes", (CLng("&H" & byteStr).ToString), setId)
+                Player.PlayerBytes = TryInt((CLng("&H" & byteStr).ToString))
             Catch ex As Exception
                 LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "ArmoryHandler_LoadArmoryCharacters", False, True)
             End Try
             LogAppend("Loading character's finished quests", "ArmoryHandler_LoadArmoryCharacters", True)
-            SetTemporaryCharacterInformation("@character_finishedQuests", splitString(Client.DownloadString(APILink & "?fields=quests") & ",", """quests"":[", "]}"), setId)
+            Player.FinishedQuests = splitString(Client.DownloadString(APILink & "?fields=quests") & ",", """quests"":[", "]}")
+            SetCharacterSet(setId, Player)
             loadReputation(setId, APILink)
             loadAchievements(setId, APILink)
             loadGlyphs(setId, APILink)
