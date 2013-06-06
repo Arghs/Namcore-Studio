@@ -56,13 +56,13 @@ Public Class CharacterEnchantmentsHandler
             Dim itm As New Item
             itm = GetCharacterArmorItem(player, slotname(loopcounter))
             itm.enchantment_name = ArcSplitEnchantString(itm.enchstring, player, itm)
-            If Not loopcounter = 17 Or 18 Then
+            If Not loopcounter = 17 Or Not loopcounter = 18 Then
                 itm.socket1_name = ArcSplitGemString(itm.enchstring, tar_setId, 29)
                 itm.socket2_name = ArcSplitGemString(itm.enchstring, tar_setId, 32)
                 itm.socket3_name = ArcSplitGemString(itm.enchstring, tar_setId, 35)
             End If
             If loopcounter = 13 Then
-                Dim resultString As String = ArcSplitGemString(itm.enchstring, tar_setId, 38) = ""
+                Dim resultString As String = ArcSplitGemString(itm.enchstring, tar_setId, 38)
                 If Not resultString = "" Then player.BeltBuckle = TryInt(resultString)
             End If
             loopcounter += 1
@@ -114,7 +114,7 @@ Public Class CharacterEnchantmentsHandler
 
     Private Shared Function ArcSplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer) As String
         LogAppend("ArcSplitGemString call (input=" & input & " // position=" & position.ToString() & ")", "CharacterEnchantmentsHandler_ArcSplitGemString", False)
-        Dim obvalue As String
+        Dim obvalue As Integer
         Try
             Dim parts() As String = input.Split(";"c)
             Dim xvalue As String = ""
@@ -133,7 +133,7 @@ Public Class CharacterEnchantmentsHandler
             End If
             If parts(0).Contains(xvalue) Then
                 Dim parts2() As String = parts(0).Split(","c)
-                obvalue = tryint(parts2(0))
+                obvalue = TryInt(parts2(0))
                 If xvalue = "0,6" Then Return parts2(0)
                 Return GetEffectNameByEffectId(obvalue)
             ElseIf parts(1).Contains(xvalue) Then
@@ -179,7 +179,7 @@ Public Class CharacterEnchantmentsHandler
             Dim itm As New Item
             itm = GetCharacterArmorItem(player, slotname(loopcounter))
             itm.enchantment_name = TrinitySplitEnchantString(itm.enchstring, itm, tar_setId)
-            If Not loopcounter = 17 Or 18 Then
+            If Not loopcounter = 17 Or Not loopcounter = 18 Then
                 itm.socket1_name = TrinitySplitGemString(itm.enchstring, tar_setId, 6, itm, 1)
                 itm.socket2_name = TrinitySplitGemString(itm.enchstring, tar_setId, 9, itm, 2)
                 itm.socket3_name = TrinitySplitGemString(itm.enchstring, tar_setId, 12, itm, 3)
@@ -244,7 +244,7 @@ Public Class CharacterEnchantmentsHandler
             Dim itm As New Item
             itm = GetCharacterArmorItem(player, slotname(loopcounter))
             itm.enchantment_name = MangosSplitEnchantString(itm.enchstring, itm, tar_setId)
-            If Not loopcounter = 17 Or 18 Then
+            If Not loopcounter = 17 Or Not loopcounter = 18 Then
                 itm.socket1_name = MangosSplitGemString(itm.enchstring, tar_setId, 29, itm, 1)
                 itm.socket2_name = MangosSplitGemString(itm.enchstring, tar_setId, 32, itm, 2)
                 itm.socket3_name = MangosSplitGemString(itm.enchstring, tar_setId, 35, itm, 3)

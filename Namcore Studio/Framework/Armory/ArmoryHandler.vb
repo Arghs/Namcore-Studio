@@ -31,8 +31,10 @@ Imports Namcore_Studio.GlyphParser
 Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.Interface_Operator
 Imports Namcore_Studio.GlobalVariables
-Public Class ArmoryHandler
+Imports System.Threading
 
+Public Class ArmoryHandler
+   
     Public Shared Sub LoadArmoryCharacters(ByVal LinkList As List(Of String))
         LogAppend("Loading characters from Armory (" & LinkList.Count.ToString() & " character/s)", "ArmoryHandler_LoadArmoryCharacters", True)
         Dim setId As Integer = 0
@@ -94,6 +96,9 @@ Public Class ArmoryHandler
             LogAppend("Character loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
         Next
         LogAppend("All characters loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
+
+    End Sub
+    Private Sub test(ByVal ArmoryLink As String)
 
     End Sub
 End Class

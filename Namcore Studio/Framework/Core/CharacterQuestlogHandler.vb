@@ -51,7 +51,7 @@ Public Class CharacterQuestlogHandler
                                                   " WHERE " & sourceStructure.qst_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = TryInt(tempdt.Rows.Count.ToString)
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -85,7 +85,7 @@ Public Class CharacterQuestlogHandler
                                                   "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -106,7 +106,7 @@ Public Class CharacterQuestlogHandler
         Dim tempdt2 As DataTable = ReturnDataTable("SELECT " & sourceStructure.qstre_quest_col(0) & " FROM " & sourceStructure.character_queststatus_rewarded_tbl(0) & " WHERE " &
                                                    sourceStructure.qstre_guid_col(0) & "='" & charguid.ToString() & "'")
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt2.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt2.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -127,7 +127,7 @@ Public Class CharacterQuestlogHandler
                                                   " WHERE " & sourceStructure.qst_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = TryInt(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -160,7 +160,7 @@ Public Class CharacterQuestlogHandler
                                                   " WHERE " & sourceStructure.qst_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do

@@ -65,7 +65,7 @@ Public Class Conversions
         End Try
     End Function
     Public Shared Function TryInt(ByVal _string As String) As Integer
-        Dim parseResult As Integer = Integer.TryParse(_string, Nothing)
+        Dim parseResult As Integer = CInt(Integer.TryParse(_string, Nothing))
         If parseResult = 0 Then
             Return 0
         Else

@@ -52,7 +52,7 @@ Public Class TransmissionHandler
             If lite Then
                 CreateNewLiteCharacter(charname, accountId, setId, renamePending)
             Else
-                CreateNewAdvancedCharacter(charname, accountId, setId, renamePending)
+                CreateNewAdvancedCharacter(charname, accountId.ToString, setId, renamePending)
             End If
             AddCharacterArmor(setId)
             SetCharacterGlyphs(setId)

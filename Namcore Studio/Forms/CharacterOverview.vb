@@ -24,6 +24,7 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.Conversions
 Imports Namcore_Studio.SpellItem_Information
+Imports System.Threading
 Imports System.Resources
 Imports System.Net
 
@@ -33,13 +34,20 @@ Public Class CharacterOverview
     Dim tempValue As String
     Dim tempSender As Object
     Dim tmpSetId As Integer
+    Private Shared doneControls As List(Of Control)
+    Dim Evaluator As Thread
     Private Sub CharacterOverview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
-
+    Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
 
 
     Public Sub prepare_interface(ByVal setId As Integer)
+        doneControls = New List(Of Control)
+        Evaluator = New Thread(Sub() Me.goprep(setId, False))
+        Evaluator.Start()
+    End Sub
+    Private Sub goprep(ByVal setId As Integer, ByVal nxt As Boolean)
         tmpSetId = setId
         controlLST = New List(Of Control)
         controlLST = FindAllChildren()
@@ -48,62 +56,75 @@ Public Class CharacterOverview
         level_lbl.Text = player.Level.ToString
         class_lbl.Text = GetClassNameById(player.Cclass)
         race_lbl.Text = GetRaceNameById(player.Race)
-        For Each item_control As Control In controlLST
-            Select Case True
-                Case TypeOf item_control Is Label
-                    If item_control.Name.ToLower.Contains("_name") Then
-                        Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_name"))
-                        Dim txt As String = loadInfo(setId, slot, 0)
-                        If Not txt Is Nothing Then
-                            If txt.Length >= 25 Then
-                                Dim ccremove As Integer = txt.Length - 23
-                                txt = txt.Remove(23, ccremove) & "..."
+        If nxt = True Then controlLST.Reverse()
+        Try
+            For Each item_control As Control In controlLST
+                Dim tmpdone As List(Of Control) = doneControls
+                If tmpdone.Contains(item_control) Then
+                    Continue For
+                Else
+                    doneControls.Add(item_control)
+                End If
+                Select Case True
+                    Case TypeOf item_control Is Label
+                        If item_control.Name.ToLower.Contains("_name") Then
+                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_name"))
+                            Dim txt As String = loadInfo(setId, slot, 0)
+                            If Not txt Is Nothing Then
+                                If txt.Length >= 25 Then
+                                    Dim ccremove As Integer = txt.Length - 23
+                                    txt = txt.Remove(23, ccremove) & "..."
+                                End If
                             End If
-                        End If
-                        DirectCast(item_control, Label).Text = txt
-                        DirectCast(item_control, Label).Tag = pubItm
-                        DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.IBeam
-                    ElseIf item_control.Name.ToLower.EndsWith("enchant") Then
-                        Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_enchant"))
-                        Dim txt As String = loadInfo(setId, slot, 1)
-                        If Not txt Is Nothing Then
-                            If txt.Length >= 25 Then
-                                Dim ccremove As Integer = txt.Length - 23
-                                txt = txt.Remove(23, ccremove) & "..."
-                            End If
-                        End If
-                        If txt Is Nothing Then
-                            txt = "+"
-                            DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.Hand
-                        ElseIf txt = "" Then
-                            txt = "+"
-                            DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.Hand
-                        Else
+                            DirectCast(item_control, Label).Text = txt
+                            DirectCast(item_control, Label).Tag = pubItm
                             DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.IBeam
+                        ElseIf item_control.Name.ToLower.EndsWith("enchant") Then
+                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_enchant"))
+                            Dim txt As String = loadInfo(setId, slot, 1)
+                            If Not txt Is Nothing Then
+                                If txt.Length >= 25 Then
+                                    Dim ccremove As Integer = txt.Length - 23
+                                    txt = txt.Remove(23, ccremove) & "..."
+                                End If
+                            End If
+                            If txt Is Nothing Then
+                                txt = "+"
+                                DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.Hand
+                            ElseIf txt = "" Then
+                                txt = "+"
+                                DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.Hand
+                            Else
+                                DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.IBeam
+                            End If
+                            DirectCast(item_control, Label).Text = txt
+                            DirectCast(item_control, Label).Tag = pubItm
                         End If
-                        DirectCast(item_control, Label).Text = txt
-                        DirectCast(item_control, Label).Tag = pubItm
-                    End If
-                Case TypeOf item_control Is PictureBox
-                    If item_control.Name.ToLower.Contains("_pic") And Not item_control.Name.ToLower.Contains("gem") Then
-                        Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_pic"))
-                        DirectCast(item_control, PictureBox).Image = loadInfo(setId, slot, 2)
-                        DirectCast(item_control, PictureBox).Tag = pubItm
-                    ElseIf item_control.Name.ToLower.Contains("gem") Then
-                        Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_gem"))
-                        Dim gem As Integer = TryInt(splitString(item_control.Name, "gem", "_pic"))
-                        DirectCast(item_control, PictureBox).Image = loadInfo(setId, slot, 2 + gem)
-                        DirectCast(item_control, PictureBox).Tag = pubItm
-                    End If
-                Case TypeOf item_control Is Panel
-                    If item_control.Name.ToLower.EndsWith("color") Then
-                        Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_color"))
-                        DirectCast(item_control, Panel).BackColor = loadInfo(setId, slot, 6)
-                        DirectCast(item_control, Panel).Tag = pubItm
-                    End If
+                    Case TypeOf item_control Is PictureBox
+                        If item_control.Name.ToLower.Contains("_pic") And Not item_control.Name.ToLower.Contains("gem") Then
+                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_pic"))
+                            DirectCast(item_control, PictureBox).Image = loadInfo(setId, slot, 2)
+                            DirectCast(item_control, PictureBox).Tag = pubItm
+                        ElseIf item_control.Name.ToLower.Contains("gem") Then
+                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_gem"))
+                            Dim gem As Integer = TryInt(splitString(item_control.Name, "gem", "_pic"))
+                            DirectCast(item_control, PictureBox).Image = loadInfo(setId, slot, 2 + gem)
+                            DirectCast(item_control, PictureBox).Tag = pubItm
+                        End If
+                    Case TypeOf item_control Is Panel
+                        If item_control.Name.ToLower.EndsWith("color") Then
+                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_color"))
+                            DirectCast(item_control, Panel).BackColor = loadInfo(setId, slot, 6)
+                            DirectCast(item_control, Panel).Tag = pubItm
+                        End If
 
-            End Select
-        Next
+                End Select
+            Next
+            Evaluator.Abort()
+        Catch ex As Exception
+
+        End Try
+        
 
     End Sub
     Private Function loadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
@@ -510,5 +531,9 @@ Public Class CharacterOverview
         glyphInterface.prepareGlyphsInterface(tmpSetId)
         glyphInterface.Show()
         Userwait.Close()
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        Dim x As String = eventlog_full
     End Sub
 End Class

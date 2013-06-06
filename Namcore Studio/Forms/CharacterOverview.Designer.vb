@@ -253,6 +253,7 @@ Partial Class CharacterOverview
         Me.PictureBox17 = New System.Windows.Forms.PictureBox()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.picbagslot = New System.Windows.Forms.PictureBox()
+        Me.Button9 = New System.Windows.Forms.Button()
         Me.InventoryPanel.SuspendLayout()
         CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2780,11 +2781,21 @@ Partial Class CharacterOverview
         Me.picbagslot.TabIndex = 0
         Me.picbagslot.TabStop = False
         '
+        'Button9
+        '
+        Me.Button9.Location = New System.Drawing.Point(1433, 357)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(75, 23)
+        Me.Button9.TabIndex = 184
+        Me.Button9.Text = "Button9"
+        Me.Button9.UseVisualStyleBackColor = True
+        '
         'CharacterOverview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1559, 706)
+        Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Panel38)
         Me.Controls.Add(Me.Panel33)
         Me.Controls.Add(Me.Panel34)
@@ -3223,4 +3234,5 @@ Partial Class CharacterOverview
     Friend WithEvents PictureBox17 As System.Windows.Forms.PictureBox
     Friend WithEvents Panel16 As System.Windows.Forms.Panel
     Friend WithEvents picbagslot As System.Windows.Forms.PictureBox
+    Friend WithEvents Button9 As System.Windows.Forms.Button
 End Class

@@ -38,7 +38,7 @@ Public Class CommandHandler
         Dim dt As New DataTable
         Try
             da.Fill(dt)
-            Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = dt.Rows.Count
             If Not lastcount = 0 Then
                 LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string", False)
                 Dim readed As String = (dt.Rows(0).Item(0)).ToString
@@ -70,7 +70,7 @@ Public Class CommandHandler
         Dim dt As New DataTable
         Try
             da.Fill(dt)
-            Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = dt.Rows.Count
             If Not lastcount = 0 Then
                 LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_realm_string", False)
                 Dim readed As String = (dt.Rows(0).Item(0)).ToString
@@ -98,7 +98,7 @@ Public Class CommandHandler
         Dim dt As New DataTable
         Try
             da.Fill(dt)
-            Dim lastcount As Integer = TryInt(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = dt.Rows.Count
             If Not lastcount = 0 Then
                 LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string", False)
                 Dim readed As String = (dt.Rows(0).Item(0)).ToString
@@ -126,7 +126,7 @@ Public Class CommandHandler
         Dim dt As New DataTable
         Try
             da.Fill(dt)
-            Dim lastcount As Integer = TryInt(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = dt.Rows.Count
             If Not lastcount = 0 Then
                 LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_realm_string", False)
                 Dim readed As String = (dt.Rows(0).Item(0)).ToString
@@ -190,7 +190,7 @@ Public Class CommandHandler
         Dim dt As New DataTable
         Try
             da.Fill(dt)
-            Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = dt.Rows.Count
             Return lastcount
         Catch ex As Exception
             LogAppend("Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_ReturnCountResult", True, True)
@@ -209,7 +209,7 @@ Public Class CommandHandler
         Dim dt As New DataTable
         Try
             da.Fill(dt)
-            Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = dt.Rows.Count
             If Not lastcount = 0 Then
                 Dim readed As String = (dt.Rows(row).Item(0)).ToString
                 If readed = "DBnull" Then
@@ -237,7 +237,7 @@ Public Class CommandHandler
         Dim dt As New DataTable
         Try
             da.Fill(dt)
-            Return TryInt(Val(dt.Rows.Count.ToString))
+            Return dt.Rows.Count
         Catch ex As Exception
             LogAppend("Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_ReturnResultCount", True, True)
             Return 0

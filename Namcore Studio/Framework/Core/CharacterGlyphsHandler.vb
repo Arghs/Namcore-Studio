@@ -56,7 +56,7 @@ Public Class CharacterGlyphsHandler
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = TryInt(Val(parts(0)))
+            Dim prevglyphid As Integer = TryInt(parts(0))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -71,7 +71,7 @@ Public Class CharacterGlyphsHandler
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = TryInt(Val(parts(3)))
+            Dim prevglyphid As Integer = TryInt(parts(3))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -86,7 +86,7 @@ Public Class CharacterGlyphsHandler
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = TryInt(Val(parts(5)))
+            Dim prevglyphid As Integer = TryInt(parts(5))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -101,7 +101,7 @@ Public Class CharacterGlyphsHandler
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = TryInt(Val(parts(1)))
+            Dim prevglyphid As Integer = TryInt(parts(1))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -116,7 +116,7 @@ Public Class CharacterGlyphsHandler
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(2)))
+            Dim prevglyphid As Integer = TryInt(parts(2))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -131,7 +131,7 @@ Public Class CharacterGlyphsHandler
         End Try
         Try
             Dim parts() As String = glyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(4)))
+            Dim prevglyphid As Integer = TryInt(parts(4))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -147,7 +147,7 @@ Public Class CharacterGlyphsHandler
         'Spec 1
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(0)))
+            Dim prevglyphid As Integer = TryInt(parts(0))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -162,7 +162,7 @@ Public Class CharacterGlyphsHandler
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(3)))
+            Dim prevglyphid As Integer = TryInt(parts(3))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -177,7 +177,7 @@ Public Class CharacterGlyphsHandler
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(5)))
+            Dim prevglyphid As Integer = TryInt(parts(5))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -192,7 +192,7 @@ Public Class CharacterGlyphsHandler
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(1)))
+            Dim prevglyphid As Integer = TryInt(parts(1))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -207,7 +207,7 @@ Public Class CharacterGlyphsHandler
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(2)))
+            Dim prevglyphid As Integer = TryInt(parts(2))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -222,7 +222,7 @@ Public Class CharacterGlyphsHandler
         End Try
         Try
             Dim parts() As String = secglyphstring.Split(","c)
-            Dim prevglyphid As Integer = tryint(Val(parts(4)))
+            Dim prevglyphid As Integer = TryInt(parts(4))
             Dim tmpGlyph As New Glyph
             If prevglyphid > 1 Then
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -259,9 +259,9 @@ Public Class CharacterGlyphsHandler
         End If
         Dim prevglyphid As Integer
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
-        Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+        Dim lastcount As Integer = tempdt.Rows.Count
         If Not lastcount = 0 Then
-            prevglyphid = tryint(Val((tempdt.Rows(0).Item(0)).ToString))
+            prevglyphid = TryInt((tempdt.Rows(0).Item(0)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -271,7 +271,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            prevglyphid = TryInt(Val((tempdt.Rows(0).Item(1)).ToString))
+            prevglyphid = TryInt((tempdt.Rows(0).Item(1)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -281,7 +281,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            prevglyphid = TryInt(Val((tempdt.Rows(0).Item(2)).ToString))
+            prevglyphid = TryInt((tempdt.Rows(0).Item(2)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -291,7 +291,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            prevglyphid = TryInt(Val((tempdt.Rows(0).Item(3)).ToString))
+            prevglyphid = TryInt((tempdt.Rows(0).Item(3)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -301,7 +301,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            prevglyphid = TryInt(Val((tempdt.Rows(0).Item(4)).ToString))
+            prevglyphid = TryInt((tempdt.Rows(0).Item(4)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -311,7 +311,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            prevglyphid = TryInt(Val((tempdt.Rows(0).Item(5)).ToString))
+            prevglyphid = TryInt((tempdt.Rows(0).Item(5)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -322,7 +322,7 @@ Public Class CharacterGlyphsHandler
                 SetCharacterSet(tar_setId, player)
             End If
             If expansion = 4 Then
-                prevglyphid = TryInt(Val((tempdt.Rows(0).Item(6)).ToString))
+                prevglyphid = TryInt((tempdt.Rows(0).Item(6)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
                     tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -332,7 +332,7 @@ Public Class CharacterGlyphsHandler
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tar_setId, player)
                 End If
-                prevglyphid = TryInt(Val((tempdt.Rows(0).Item(7)).ToString))
+                prevglyphid = TryInt((tempdt.Rows(0).Item(7)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
                     tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -342,7 +342,7 @@ Public Class CharacterGlyphsHandler
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tar_setId, player)
                 End If
-                prevglyphid = TryInt(Val((tempdt.Rows(0).Item(8)).ToString))
+                prevglyphid = TryInt((tempdt.Rows(0).Item(8)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
                     tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -356,9 +356,9 @@ Public Class CharacterGlyphsHandler
         Else
             LogAppend("No Glyphs found (spec 0)!", "CharacterGlyphsHandler_loadAtTrinity", True)
         End If
-        lastcount = TryInt(Val(tempdtsec.Rows.Count.ToString))
+        lastcount = tempdtsec.Rows.Count
         If Not lastcount = 0 Then
-            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(0)).ToString))
+            prevglyphid = TryInt((tempdtsec.Rows(0).Item(0)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -368,7 +368,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(1)).ToString))
+            prevglyphid = TryInt((tempdtsec.Rows(0).Item(1)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -378,7 +378,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(2)).ToString))
+            prevglyphid = TryInt((tempdtsec.Rows(0).Item(2)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -388,7 +388,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(3)).ToString))
+            prevglyphid = TryInt((tempdtsec.Rows(0).Item(3)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -398,7 +398,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(4)).ToString))
+            prevglyphid = TryInt((tempdtsec.Rows(0).Item(4)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -408,7 +408,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(5)).ToString))
+            prevglyphid = TryInt((tempdtsec.Rows(0).Item(5)).ToString)
             If prevglyphid > 1 Then
                 Dim tmpGlyph As New Glyph
                 tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -419,7 +419,7 @@ Public Class CharacterGlyphsHandler
                 SetCharacterSet(tar_setId, player)
             End If
             If expansion = 4 Then
-                prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(6)).ToString))
+                prevglyphid = TryInt((tempdtsec.Rows(0).Item(6)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
                     tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -429,7 +429,7 @@ Public Class CharacterGlyphsHandler
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tar_setId, player)
                 End If
-                prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(7)).ToString))
+                prevglyphid = TryInt((tempdtsec.Rows(0).Item(7)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
                     tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -439,7 +439,7 @@ Public Class CharacterGlyphsHandler
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tar_setId, player)
                 End If
-                prevglyphid = TryInt(Val((tempdtsec.Rows(0).Item(8)).ToString))
+                prevglyphid = TryInt((tempdtsec.Rows(0).Item(8)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
                     tmpGlyph.id = GetGlyphIdByItemId(prevglyphid)
@@ -469,10 +469,10 @@ Public Class CharacterGlyphsHandler
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Do
             Try
-                prevglyphid = tryint(Val((tempdt.Rows(proccounter).Item(0)).ToString))
+                prevglyphid = TryInt((tempdt.Rows(proccounter).Item(0)).ToString)
                 If prevglyphid > 1 Then
-                    slot = tryint(Val((tempdt.Rows(proccounter).Item(1)).ToString))
-                    spec = tryint(Val((tempdt.Rows(proccounter).Item(2)).ToString))
+                    slot = TryInt((tempdt.Rows(proccounter).Item(1)).ToString)
+                    spec = TryInt((tempdt.Rows(proccounter).Item(2)).ToString)
                     Select Case spec
                         Case 0
                             Select Case slot

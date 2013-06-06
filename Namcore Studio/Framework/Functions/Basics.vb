@@ -25,7 +25,9 @@ Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.GlobalVariables
 Imports System.Net
 Imports Namcore_Studio.Conversions
+
 Public Class Basics
+    Shared tmpset As Integer
     'Public Shared Sub SetTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
     '    If temporaryCharacterInformation Is Nothing Then temporaryCharacterInformation = New List(Of String)
     '    With temporaryCharacterInformation
@@ -52,9 +54,14 @@ Public Class Basics
     '    End With
     'End Sub
     Public Shared Function GetCharacterSetBySetId(ByVal setId As Integer) As Character
+        If tmpset = setId Then
+            Return TempCharacter
+        End If
         If CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
             'found
-            Return CharacterSets(TryInt(splitString(CharacterSetsIndex, "[setId:" & setId.ToString() & "|@", "]")))
+            tmpset = setId
+            TempCharacter = CharacterSets(TryInt(splitString(CharacterSetsIndex, "[setId:" & setId.ToString() & "|@", "]")))
+            Return TempCharacter
         Else
             'not found
             Return Nothing
@@ -226,7 +233,7 @@ Public Class Basics
     '        Return Nothing
     '    End If
     'End Function
-   
+
     Public Shared Sub AbortProcess()
 
     End Sub

@@ -53,14 +53,14 @@ Public Class CharacterInventoryHandler
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Dim slotlist As String = ""
         Try
-            Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = TryInt(dt.Rows.Count.ToString)
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
                     If Not slotlist.Contains("#" & readedcode & "#") Then
                         slotlist = slotlist & "#" & readedcode & "#"
-                        tmpext = tryint(Val(readedcode))
+                        tmpext = TryInt(readedcode)
                         Dim numresults As Integer = ReturnCountResults("SELECT " & sourceStructure.itmins_container_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                                        sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString & "'")
                         If numresults = 1 Then
@@ -285,12 +285,12 @@ Public Class CharacterInventoryHandler
         Dim tmpext As Integer
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = TryInt(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = dt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
-                    tmpext = TryInt(Val(readedcode))
+                    tmpext = TryInt(readedcode)
                     Dim bagguid As String = runSQLCommand_characters_string("SELECT " & sourceStructure.invent_bag_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.invent_item_col(0) & "='" & tmpext.ToString & "'")
                     If TryInt(bagguid) = 0 Then
                         If tmpext > 18 Then
@@ -361,12 +361,12 @@ Public Class CharacterInventoryHandler
         Dim tmpext As Integer
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(dt.Rows.Count.ToString))
+            Dim lastcount As Integer = TryInt(dt.Rows.Count.ToString)
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
-                    tmpext = tryint(Val(readedcode))
+                    tmpext = TryInt(readedcode)
                     Dim bagguid As String = runSQLCommand_characters_string("SELECT " & sourceStructure.invent_bag_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.invent_item_col(0) & "='" & tmpext.ToString & "'")
                     If tryint(bagguid) = 0 Then
                         If tmpext > 18 Then

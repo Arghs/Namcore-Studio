@@ -99,7 +99,7 @@ Public Class CharacterActionsHandler
                                                   "='" & charguid.ToString() & "'")
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -131,7 +131,7 @@ Public Class CharacterActionsHandler
                                                   "='" & charguid.ToString() & "'")
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do

@@ -30,7 +30,7 @@ Public Class Filter_accounts
             If idcombo1.SelectedIndex = -1 Then GoTo SkipStatement0
             Dim insertstring As String = " " & idcombo1.SelectedItem.ToString() & " '" & idtxtbox1.Text & "'"
             Dim insertstring2 As String = ""
-            If Not idcombo2.SelectedItem = Nothing Then
+            If Not idcombo2.SelectedItem Is Nothing Then
                 insertstring2 = " AND " & sourceStructure.acc_id_col(0) & " " & idcombo2.SelectedItem.ToString & " '" & idtxtbox2.Text & "'"
             End If
             Dim foundRows() As DataRow

@@ -57,7 +57,7 @@ Public Class Glyphs_interface
             End Select
         Next
     End Sub
-    Private Function loadInfo(ByVal targetSet As Integer, ByVal slot As String, ByVal infotype As Integer)
+    Private Function loadInfo(ByVal targetSet As Integer, ByVal slot As String, ByVal infotype As Integer) As Object
         Dim glyphitm As Glyph = GetCharacterGlyph(GetCharacterSetBySetId(targetSet), slot)
         pubGlyph = glyphitm
         If glyphitm Is Nothing Then Return Nothing

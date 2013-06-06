@@ -54,7 +54,7 @@ Public Class AchievementParser
                     LogAppend("Adding achievement " & avId & " with timestamp " & timeStamp, "AchievementParser_loadAchievements", False)
                     Dim av As New Achievement
                     av.Id = TryInt(avId)
-                    av.GainDate = TryInt(timeStamp)
+                    av.GainDate = timeStamp
                     player.Achievements.Add(av)
                 Loop Until loopcounter = excounter
                 SetCharacterSet(setId, player)

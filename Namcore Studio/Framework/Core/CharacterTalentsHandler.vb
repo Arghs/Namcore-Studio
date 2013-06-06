@@ -93,7 +93,7 @@ Public Class CharacterTalentsHandler
                                                   sourceStructure.talent_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.talent_spec_col(0) & "='0'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -114,7 +114,7 @@ Public Class CharacterTalentsHandler
         Dim tempdt2 As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_spell_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) & " WHERE " & sourceStructure.talent_guid_col(0) &
                                                    "='" & charguid.ToString & "' AND " & sourceStructure.talent_spec_col(0) & "='1'")
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt2.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt2.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -146,7 +146,7 @@ Public Class CharacterTalentsHandler
                                                   " WHERE " & sourceStructure.talent_spec_col(0) & "='" & charguid.ToString() & "' AND " & sourceStructure.talent_spec_col(0) & "='0'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -168,7 +168,7 @@ Public Class CharacterTalentsHandler
         Dim tempdt2 As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_talent_col(0) & ", " & sourceStructure.talent_rank_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) &
                                                    " WHERE " & sourceStructure.talent_guid_col(0) & "='" & charguid.ToString() & "' AND " & sourceStructure.talent_spec_col(0) & "='1'")
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt2.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt2.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -216,7 +216,7 @@ Public Class CharacterTalentsHandler
     End Function
     Private Shared Function checkfield(ByVal lID As String, ByVal rank As String) As String
         LogAppend("Loading SpellId of Talent " & lID & " with rank " & rank, "CharacterTalentsHandler_checkfield", False)
-        Dim _byRNK As String = executex("TalentId", lID, tryint(Val(rank)))
+        Dim _byRNK As String = executex("TalentId", lID, TryInt(rank))
         If rank = "0" Then
             LogAppend("Talent Rank is 0 -> Returning " & lID & "clear", "CharacterTalentsHandler_checkfield", False)
             Return lID & "clear"

@@ -25,6 +25,7 @@ Imports MySql.Data.MySqlClient
 Imports System.Threading
 
 Public Class GlobalVariables
+    Public Shared TempCharacter As Character
     Public Shared CharacterSets As List(Of Character)
     Public Shared CharacterSetsIndex As String
     Public Shared ModCharacterSets As List(Of Character)

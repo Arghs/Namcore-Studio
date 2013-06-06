@@ -49,7 +49,7 @@ Public Class CharacterSkillsHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_skills_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -87,7 +87,7 @@ Public Class CharacterSkillsHandler
                                                   " FROM " & sourceStructure.character_skills_tbl(0) & " WHERE " & sourceStructure.skill_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -116,7 +116,7 @@ Public Class CharacterSkillsHandler
                                                   " FROM " & sourceStructure.character_skills_tbl(0) & " WHERE " & sourceStructure.skill_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do

@@ -49,7 +49,7 @@ Public Class CharacterSpellsHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_spells_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -83,7 +83,7 @@ Public Class CharacterSpellsHandler
                                                   " FROM " & sourceStructure.character_spells_tbl(0) & " WHERE " & sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -113,7 +113,7 @@ Public Class CharacterSpellsHandler
                                                   " FROM " & sourceStructure.character_spells_tbl(0) & " WHERE " & sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do

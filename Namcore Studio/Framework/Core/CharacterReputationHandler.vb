@@ -49,14 +49,14 @@ Public Class CharacterReputationHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_reputation_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
                     Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                     Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
                     Dim loopcounter As Integer = 0
-                    Dim finalcounter As Integer = tryint(excounter / 4)
+                    Dim finalcounter As Integer = CInt(excounter / 4)
                     Dim partscounter As Integer = 0
                     Do
                         Dim rep As New Reputation
@@ -87,7 +87,7 @@ Public Class CharacterReputationHandler
                                                   " FROM " & sourceStructure.character_reputation_tbl(0) & " WHERE " & sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do
@@ -116,7 +116,7 @@ Public Class CharacterReputationHandler
                                                   " FROM " & sourceStructure.character_reputation_tbl(0) & " WHERE " & sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Try
-            Dim lastcount As Integer = tryint(Val(tempdt.Rows.Count.ToString))
+            Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
             If Not lastcount = 0 Then
                 Do

@@ -54,7 +54,12 @@ Public Class EventLogging
         If progress = 0 Then progress = lastprogress
         lastprogress = progress
         If procStatus.ArmoryWorker.IsBusy Then
-            procStatus.ArmoryWorker.ReportProgress(progress)
+            Try
+                procStatus.ArmoryWorker.ReportProgress(progress)
+            Catch ex As Exception
+
+            End Try
+
         Else
             procStatus.appendProc()
         End If

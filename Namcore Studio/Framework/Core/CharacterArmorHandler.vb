@@ -55,7 +55,7 @@ Public Class CharacterArmorHandler
         Dim slotname As String
         Dim itementry As Integer
         Dim itemslot As Integer
-        Dim entrycount As Integer = TryInt(Val(tempdt.Rows.Count))
+        Dim entrycount As Integer = tempdt.Rows.Count
         Dim loopcounter As Integer = 0
         If entrycount = 0 Then
             LogAppend("No items found for character " & charguid.ToString & " -> Skipping", "CharacterArmorHandler_loadAtArcemu", True, False)
@@ -63,9 +63,9 @@ Public Class CharacterArmorHandler
         End If
         Do
             Try
-                itemguid = TryInt(Val((tempdt.Rows(loopcounter).Item(0)).ToString))
-                itementry = TryInt(Val((tempdt.Rows(loopcounter).Item(1)).ToString))
-                itemslot = TryInt(Val((tempdt.Rows(loopcounter).Item(2)).ToString))
+                itemguid = TryInt((tempdt.Rows(loopcounter).Item(0)).ToString)
+                itementry = TryInt((tempdt.Rows(loopcounter).Item(1)).ToString)
+                itemslot = TryInt((tempdt.Rows(loopcounter).Item(2)).ToString)
                 If itemslot > 18 Then
                     loopcounter += 1
                     Continue Do
@@ -320,7 +320,7 @@ Public Class CharacterArmorHandler
         Dim slotname As String
         Dim itementry As Integer
         Dim itemslot As Integer
-        Dim entrycount As Integer = TryInt(Val(tempdt.Rows.Count))
+        Dim entrycount As Integer = tempdt.Rows.Count
         Dim loopcounter As Integer = 0
         If entrycount = 0 Then
             LogAppend("No items found for character " & charguid.ToString & " -> Skipping", "CharacterArmorHandler_loadAtTrinity", True, False)
@@ -328,9 +328,9 @@ Public Class CharacterArmorHandler
         End If
         Do
             Try
-                itemguid = TryInt(Val((tempdt.Rows(loopcounter).Item(0)).ToString))
-                itemslot = TryInt(Val((tempdt.Rows(loopcounter).Item(1)).ToString))
-                itementry = TryInt(Val((tempdt.Rows(loopcounter).Item(2)).ToString))
+                itemguid = TryInt((tempdt.Rows(loopcounter).Item(0)).ToString)
+                itemslot = TryInt((tempdt.Rows(loopcounter).Item(1)).ToString)
+                itementry = TryInt((tempdt.Rows(loopcounter).Item(2)).ToString)
                 Select Case itemslot
                     Case 0
                         slotname = "head"
@@ -581,7 +581,7 @@ Public Class CharacterArmorHandler
         Dim slotname As String
         Dim itementry As Integer
         Dim itemslot As Integer
-        Dim entrycount As Integer = TryInt(Val(tempdt.Rows.Count))
+        Dim entrycount As Integer = tempdt.Rows.Count
         Dim loopcounter As Integer = 0
         If entrycount = 0 Then
             LogAppend("No items found for character " & charguid.ToString & " -> Skipping", "CharacterArmorHandler_loadAtMangos", True, False)
@@ -589,9 +589,9 @@ Public Class CharacterArmorHandler
         End If
         Do
             Try
-                itemguid = TryInt(Val((tempdt.Rows(loopcounter).Item(0)).ToString))
-                itemslot = TryInt(Val((tempdt.Rows(loopcounter).Item(1)).ToString))
-                itementry = TryInt(Val((tempdt.Rows(loopcounter).Item(2)).ToString))
+                itemguid = TryInt((tempdt.Rows(loopcounter).Item(0)).ToString)
+                itemslot = TryInt((tempdt.Rows(loopcounter).Item(1)).ToString)
+                itementry = TryInt((tempdt.Rows(loopcounter).Item(2)).ToString)
                 Select Case itemslot
                     Case 0
                         slotname = "head"
