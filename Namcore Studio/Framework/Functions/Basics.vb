@@ -23,6 +23,7 @@
 
 Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.GlobalVariables
+Imports Namcore_Studio.GlobalCharVars
 Imports System.Net
 Imports Namcore_Studio.Conversions
 
@@ -57,10 +58,10 @@ Public Class Basics
         If tmpset = setId Then
             Return TempCharacter
         End If
-        If CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
+        If globChars.CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
             'found
             tmpset = setId
-            TempCharacter = CharacterSets(TryInt(splitString(CharacterSetsIndex, "[setId:" & setId.ToString() & "|@", "]")))
+            TempCharacter = globChars.CharacterSets(TryInt(splitString(globChars.CharacterSetsIndex, "[setId:" & setId.ToString() & "|@", "]")))
             Return TempCharacter
         Else
             'not found
@@ -68,13 +69,13 @@ Public Class Basics
         End If
     End Function
     Public Shared Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character)
-        CharacterSets.Add(player)
-        CharacterSetsIndex = CharacterSetsIndex & "[setId:" & setId.ToString & "|@" & (CharacterSets.Count - 1).ToString & "]"
+        globChars.CharacterSets.Add(player)
+        globChars.CharacterSetsIndex = globChars.CharacterSetsIndex & "[setId:" & setId.ToString & "|@" & (globChars.CharacterSets.Count - 1).ToString & "]"
     End Sub
     Public Shared Sub SetCharacterSet(ByVal setId As Integer, ByVal TCharacter As Character)
-        If CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
+        If globChars.CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
             'found
-            CharacterSets(TryInt(splitString(CharacterSetsIndex, "[setId:" & setId.ToString() & "|@", "]"))) = TCharacter
+            globChars.CharacterSets(TryInt(splitString(globChars.CharacterSetsIndex, "[setId:" & setId.ToString() & "|@", "]"))) = TCharacter
         Else
             'not found
         End If
@@ -118,6 +119,7 @@ Public Class Basics
         End If
     End Sub
     Public Shared Function GetCharacterGlyph(ByVal player As Character, ByVal slot As String) As Glyph
+        If player.PlayerGlyphsIndex Is Nothing Then Return Nothing
         If player.PlayerGlyphsIndex.Contains("[slot:" & slot & "|@") Then
             Return player.PlayerGlyphs(TryInt(splitString(player.PlayerGlyphsIndex, "[slot:" & slot & "|@", "]")))
         Else

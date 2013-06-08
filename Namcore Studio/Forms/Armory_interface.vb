@@ -23,9 +23,13 @@
 
 Imports System.Resources
 Imports System.Net
+Imports System.IO
+Imports System.Runtime.Serialization.Formatters.Binary
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.ArmoryHandler
 Imports Namcore_Studio.GlobalVariables
+Imports Namcore_Studio.GlobalCharVars
+Imports Namcore_Studio.Serializer
 Imports System.Threading
 Imports Namcore_Studio.Interface_Operator
 Imports System.Text
@@ -147,7 +151,7 @@ Public Class Armory_interface
     End Sub
 
     Private Sub load_bt_Click(sender As System.Object, e As System.EventArgs) Handles load_bt.Click
-        CharacterSets = New List(Of Character)
+        globChars.CharacterSets = New List(Of Character)
         trdrunnuing = True
         My.Settings.language = "de" 'todo for testing only
         Dim urllst As New List(Of String)
@@ -187,6 +191,7 @@ Public Class Armory_interface
 
 
     Private Sub Armory_interface_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        globChars = New GlobalCharVars()
         Process_status.Close()
         procStatus = New Process_status
         procStatus.Show()
@@ -196,7 +201,30 @@ Public Class Armory_interface
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        CharacterSets = New List(Of Character)
+        'Dim locOFD As New OpenFileDialog()
+        'Dim locPath As String
+        'Dim dstr As String
+        'With locOFD
+        '    .Filter = "Template (*.txt)|*.txt"
+        '    .Title = "Select template"
+
+        '    .DefaultExt = ".txt"
+
+        '    .Multiselect = False
+        '    .CheckFileExists = True
+        '    .CheckPathExists = True
+
+        '    If (.ShowDialog() = DialogResult.OK) Then
+
+        '        locPath = .FileName()
+        '        If Not locPath = "" Then
+        '            dstr = My.Computer.FileSystem.ReadAllText(locPath)
+        '        End If
+
+        '    End If
+        'End With
+        Dim dstr As String = ""
+        globChars = DeSerialize(dstr, New GlobalCharVars)
         'temporaryCharacterInformation.Add(RichTextBox1.Text)
         Dim prepLive As New Interface_Operator
         Interface_Operator.prepareLive_armory()

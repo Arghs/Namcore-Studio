@@ -20,7 +20,7 @@
 '*      /Filename:      Account
 '*      /Description:   Account Object - account information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+<Serializable()> _
 Public Class Account
     Public id As Integer
     Public name As String

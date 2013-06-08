@@ -29,6 +29,7 @@ Imports Namcore_Studio.Account_CharacterInformationProcessing
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
+Imports Namcore_Studio.GlobalCharVars
 Imports System.Resources
 
 Public Class Live_View
@@ -92,8 +93,8 @@ Public Class Live_View
         Dim genGuid As Integer = 1
         checkchangestatus = False
         sourceCore = "armory" 'for testing only       
-        ModCharacterSets = CharacterSets
-        ModCharacterSetsIndex = CharacterSetsIndex
+        ModCharacterSets = globChars.CharacterSets
+        ModCharacterSetsIndex = globChars.CharacterSetsIndex
         characterview.Items.Clear()
         accountview.Items.Clear()
         Dim str(4) As String
@@ -107,7 +108,7 @@ Public Class Live_View
         accountview.Items.Add(itm)
         accountview.EnsureVisible(accountview.Items.Count - 1)
         accountview.Update()
-        For Each player As Character In CharacterSets
+        For Each player As Character In globChars.CharacterSets
             ' If infoSet = "" Then genGuid += 1 : Continue For // Needs alternative check
             Dim CLstr(6) As String
             Dim CLitm As ListViewItem

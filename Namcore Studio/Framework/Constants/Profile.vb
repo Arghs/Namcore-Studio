@@ -21,7 +21,7 @@
 '*      /Description:   Item/Glyph Object - item/glyph information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
+<Serializable()> _
 Public Class Item
 
     Public id As Integer
@@ -49,6 +49,7 @@ Public Class Item
 
 
 End Class
+<Serializable()> _
 Public Class InventItem
 
     Public entry As Integer
@@ -66,7 +67,7 @@ Public Class InventItem
 
 
 End Class
-
+<Serializable()> _
 Public Class Glyph
 
     Public id As Integer
@@ -81,6 +82,7 @@ Public Class Glyph
 
 
 End Class
+<Serializable()> _
 Public Class Achievement
 
     Public Id As Integer
@@ -93,6 +95,7 @@ Public Class Achievement
 
 
 End Class
+<Serializable()> _
 Public Class Action
 
     Public Button As Integer
@@ -107,6 +110,7 @@ Public Class Action
 
 
 End Class
+<Serializable()> _
 Public Class Quest
     Public id As Integer
     Public status As Integer
@@ -118,7 +122,7 @@ Public Class Quest
 
     End Sub
 End Class
-
+<Serializable()> _
 Public Class Reputation
     Public faction As Integer
     Public flags As Integer
@@ -128,6 +132,7 @@ Public Class Reputation
 
     End Sub
 End Class
+<Serializable()> _
 Public Class Skill
     Public id As Integer
     Public value As Integer
@@ -137,6 +142,7 @@ Public Class Skill
 
     End Sub
 End Class
+<Serializable()> _
 Public Class Spell
     Public id As Integer
     Public active As Integer
@@ -146,6 +152,7 @@ Public Class Spell
 
     End Sub
 End Class
+<Serializable()> _
 Public Class Talent
     Public spell As Integer
     Public spec As Integer

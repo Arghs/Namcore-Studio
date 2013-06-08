@@ -20,6 +20,7 @@
 '*      /Filename:      CharacterOverview
 '*      /Description:   Displays character information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Drawing.Imaging
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.Conversions
@@ -34,8 +35,10 @@ Public Class CharacterOverview
     Dim tempValue As String
     Dim tempSender As Object
     Dim tmpSetId As Integer
+    Dim tmpImage As Image
     Private Shared doneControls As List(Of Control)
     Dim Evaluator As Thread
+    Shared loadComplete As Boolean = False
     Private Sub CharacterOverview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -43,9 +46,12 @@ Public Class CharacterOverview
 
 
     Public Sub prepare_interface(ByVal setId As Integer)
+        Dim player As Character = GetCharacterSetBySetId(setId)
+        If player.PlayerGlyphsIndex Is Nothing Then Glyphs_bt.Enabled = False
         doneControls = New List(Of Control)
-        Evaluator = New Thread(Sub() Me.goprep(setId, False))
-        Evaluator.Start()
+        'Evaluator = New Thread(Sub() Me.goprep(setId, False))
+        'Evaluator.Start()
+        goprep(setId, False)
     End Sub
     Private Sub goprep(ByVal setId As Integer, ByVal nxt As Boolean)
         tmpSetId = setId
@@ -104,6 +110,7 @@ Public Class CharacterOverview
                         If item_control.Name.ToLower.Contains("_pic") And Not item_control.Name.ToLower.Contains("gem") Then
                             Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_pic"))
                             DirectCast(item_control, PictureBox).Image = loadInfo(setId, slot, 2)
+                            If DirectCast(item_control, PictureBox).Image Is Nothing Then DirectCast(item_control, PictureBox).Image = My.Resources.empty
                             DirectCast(item_control, PictureBox).Tag = pubItm
                         ElseIf item_control.Name.ToLower.Contains("gem") Then
                             Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_gem"))
@@ -112,19 +119,20 @@ Public Class CharacterOverview
                             DirectCast(item_control, PictureBox).Tag = pubItm
                         End If
                     Case TypeOf item_control Is Panel
-                        If item_control.Name.ToLower.EndsWith("color") Then
-                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_color"))
-                            DirectCast(item_control, Panel).BackColor = loadInfo(setId, slot, 6)
-                            DirectCast(item_control, Panel).Tag = pubItm
-                        End If
+                            If item_control.Name.ToLower.EndsWith("color") Then
+                                Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_color"))
+                                DirectCast(item_control, Panel).BackColor = loadInfo(setId, slot, 6)
+                                DirectCast(item_control, Panel).Tag = pubItm
+                            End If
 
                 End Select
             Next
+            loadComplete = True
             Evaluator.Abort()
         Catch ex As Exception
 
         End Try
-        
+
 
     End Sub
     Private Function loadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
@@ -523,7 +531,7 @@ Public Class CharacterOverview
 
     End Sub
 
-    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Glyphs_bt.Click
         Glyphs_interface.Close()
         Dim glyphInterface As New Glyphs_interface
         Userwait.Show()
@@ -534,6 +542,69 @@ Public Class CharacterOverview
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        Dim x As String = eventlog_full
+        MsgBox(cnt.ToString())
+    End Sub
+
+    Private Sub exit_bt_Click(sender As System.Object, e As System.EventArgs) Handles exit_bt.Click
+        Glyphs_interface.Close()
+        Me.Close()
+    End Sub
+
+    Private Sub ItemClick(sender As System.Object, e As System.EventArgs) Handles slot_9_pic.Click, slot_8_pic.Click, slot_7_pic.Click, slot_6_pic.Click, slot_5_pic.Click, slot_4_pic.Click, slot_3_pic.Click, slot_2_pic.Click, slot_18_pic.Click, slot_17_pic.Click, slot_16_pic.Click, slot_15_pic.Click, slot_14_pic.Click, slot_13_pic.Click, slot_12_pic.Click, slot_11_pic.Click, slot_10_pic.Click, slot_1_pic.Click, slot_0_pic.Click
+        Try
+            Dim itemId As Integer = sender.tag.id
+            Process.Start("http://wowhead.com/item=" & itemId.ToString())
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+    Dim cnt As Integer
+    Private Sub slot_0_pic_MouseEnter(sender As System.Object, e As System.EventArgs) Handles slot_9_pic.MouseEnter, slot_8_pic.MouseEnter, slot_7_pic.MouseEnter, slot_6_pic.MouseEnter, slot_5_pic.MouseEnter, slot_4_pic.MouseEnter, slot_3_pic.MouseEnter, slot_2_pic.MouseEnter, slot_18_pic.MouseEnter, slot_17_pic.MouseEnter, slot_16_pic.MouseEnter, slot_15_pic.MouseEnter, slot_14_pic.MouseEnter, slot_13_pic.MouseEnter, slot_12_pic.MouseEnter, slot_11_pic.MouseEnter, slot_10_pic.MouseEnter, slot_1_pic.MouseEnter, slot_0_pic.MouseEnter
+
+        If Not loadComplete = False Then
+            If Not sender.image Is Nothing Then
+                cnt += 1
+                tmpImage = sender.image
+                Application.DoEvents()
+                Dim picbx As PictureBox = sender
+                Dim g As Graphics
+                Dim img As Image
+                Dim r As Rectangle
+                img = picbx.Image
+                sender.Image = New Bitmap(picbx.Width, picbx.Height, PixelFormat.Format32bppArgb)
+                g = Graphics.FromImage(picbx.Image)
+                r = New Rectangle(0, 0, picbx.Width, picbx.Height)
+                g.DrawImage(img, r)
+                setBrightness(0.2, g, img, r, picbx)
+            End If
+        End If
+    End Sub
+
+    Private Sub slot_0_pic_MouseLeave(sender As System.Object, e As System.EventArgs) Handles slot_9_pic.MouseLeave, slot_8_pic.MouseLeave, slot_7_pic.MouseLeave, slot_6_pic.MouseLeave, slot_5_pic.MouseLeave, slot_4_pic.MouseLeave, slot_3_pic.MouseLeave, slot_2_pic.MouseLeave, slot_18_pic.MouseLeave, slot_17_pic.MouseLeave, slot_16_pic.MouseLeave, slot_15_pic.MouseLeave, slot_14_pic.MouseLeave, slot_13_pic.MouseLeave, slot_12_pic.MouseLeave, slot_11_pic.MouseLeave, slot_10_pic.MouseLeave, slot_1_pic.MouseLeave, slot_0_pic.MouseLeave
+        If Not tmpImage Is Nothing And Not sender.image Is Nothing Then
+            Dim picbox As PictureBox = sender
+            picbox.Image = tmpImage
+            picbox.Refresh()
+            Application.DoEvents()
+        End If
+
+    End Sub
+    Private Sub setBrightness(ByVal Brightness As Single, ByVal g As Graphics, ByVal img As Image, ByVal r As Rectangle, ByRef picbox As PictureBox)
+        ' Brightness should be -1 (black) to 0 (neutral) to 1 (white)
+        Dim colorMatrixVal As Single()() = { _
+           New Single() {1, 0, 0, 0, 0}, _
+           New Single() {0, 1, 0, 0, 0}, _
+           New Single() {0, 0, 1, 0, 0}, _
+           New Single() {0, 0, 0, 1, 0}, _
+           New Single() {Brightness, Brightness, Brightness, 0, 1}}
+
+        Dim colorMatrix As New ColorMatrix(colorMatrixVal)
+        Dim ia As New ImageAttributes
+
+        ia.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap)
+
+        g.DrawImage(img, r, 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, ia)
+        picbox.Refresh()
     End Sub
 End Class

@@ -164,11 +164,11 @@ Partial Class CharacterOverview
         Me.race_lbl = New System.Windows.Forms.Label()
         Me.class_lbl = New System.Windows.Forms.Label()
         Me.load_bt = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Glyphs_bt = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
+        Me.exit_bt = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.changepanel = New System.Windows.Forms.Panel()
@@ -597,6 +597,7 @@ Partial Class CharacterOverview
         '
         'slot_17_pic
         '
+        Me.slot_17_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_17_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_17_pic.Name = "slot_17_pic"
         Me.slot_17_pic.Size = New System.Drawing.Size(56, 56)
@@ -664,6 +665,7 @@ Partial Class CharacterOverview
         '
         'slot_15_pic
         '
+        Me.slot_15_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_15_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_15_pic.Name = "slot_15_pic"
         Me.slot_15_pic.Size = New System.Drawing.Size(56, 56)
@@ -730,6 +732,7 @@ Partial Class CharacterOverview
         '
         'slot_16_pic
         '
+        Me.slot_16_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_16_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_16_pic.Name = "slot_16_pic"
         Me.slot_16_pic.Size = New System.Drawing.Size(56, 56)
@@ -796,6 +799,7 @@ Partial Class CharacterOverview
         '
         'slot_13_pic
         '
+        Me.slot_13_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_13_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_13_pic.Name = "slot_13_pic"
         Me.slot_13_pic.Size = New System.Drawing.Size(56, 56)
@@ -864,6 +868,7 @@ Partial Class CharacterOverview
         '
         'slot_12_pic
         '
+        Me.slot_12_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_12_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_12_pic.Name = "slot_12_pic"
         Me.slot_12_pic.Size = New System.Drawing.Size(56, 56)
@@ -932,6 +937,7 @@ Partial Class CharacterOverview
         '
         'slot_11_pic
         '
+        Me.slot_11_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_11_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_11_pic.Name = "slot_11_pic"
         Me.slot_11_pic.Size = New System.Drawing.Size(56, 56)
@@ -1000,6 +1006,7 @@ Partial Class CharacterOverview
         '
         'slot_10_pic
         '
+        Me.slot_10_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_10_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_10_pic.Name = "slot_10_pic"
         Me.slot_10_pic.Size = New System.Drawing.Size(56, 56)
@@ -1068,6 +1075,7 @@ Partial Class CharacterOverview
         '
         'slot_7_pic
         '
+        Me.slot_7_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_7_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_7_pic.Name = "slot_7_pic"
         Me.slot_7_pic.Size = New System.Drawing.Size(56, 56)
@@ -1136,6 +1144,7 @@ Partial Class CharacterOverview
         '
         'slot_6_pic
         '
+        Me.slot_6_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_6_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_6_pic.Name = "slot_6_pic"
         Me.slot_6_pic.Size = New System.Drawing.Size(56, 56)
@@ -1204,6 +1213,7 @@ Partial Class CharacterOverview
         '
         'slot_5_pic
         '
+        Me.slot_5_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_5_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_5_pic.Name = "slot_5_pic"
         Me.slot_5_pic.Size = New System.Drawing.Size(56, 56)
@@ -1272,6 +1282,7 @@ Partial Class CharacterOverview
         '
         'slot_9_pic
         '
+        Me.slot_9_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_9_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_9_pic.Name = "slot_9_pic"
         Me.slot_9_pic.Size = New System.Drawing.Size(56, 56)
@@ -1339,6 +1350,7 @@ Partial Class CharacterOverview
         '
         'slot_8_pic
         '
+        Me.slot_8_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_8_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_8_pic.Name = "slot_8_pic"
         Me.slot_8_pic.Size = New System.Drawing.Size(56, 56)
@@ -1405,6 +1417,7 @@ Partial Class CharacterOverview
         '
         'slot_18_pic
         '
+        Me.slot_18_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_18_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_18_pic.Name = "slot_18_pic"
         Me.slot_18_pic.Size = New System.Drawing.Size(56, 56)
@@ -1471,6 +1484,7 @@ Partial Class CharacterOverview
         '
         'slot_3_pic
         '
+        Me.slot_3_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_3_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_3_pic.Name = "slot_3_pic"
         Me.slot_3_pic.Size = New System.Drawing.Size(56, 56)
@@ -1537,6 +1551,7 @@ Partial Class CharacterOverview
         '
         'slot_4_pic
         '
+        Me.slot_4_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_4_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_4_pic.Name = "slot_4_pic"
         Me.slot_4_pic.Size = New System.Drawing.Size(56, 56)
@@ -1603,6 +1618,7 @@ Partial Class CharacterOverview
         '
         'slot_14_pic
         '
+        Me.slot_14_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_14_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_14_pic.Name = "slot_14_pic"
         Me.slot_14_pic.Size = New System.Drawing.Size(56, 56)
@@ -1669,6 +1685,7 @@ Partial Class CharacterOverview
         '
         'slot_2_pic
         '
+        Me.slot_2_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_2_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_2_pic.Name = "slot_2_pic"
         Me.slot_2_pic.Size = New System.Drawing.Size(56, 56)
@@ -1735,6 +1752,7 @@ Partial Class CharacterOverview
         '
         'slot_1_pic
         '
+        Me.slot_1_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_1_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_1_pic.Name = "slot_1_pic"
         Me.slot_1_pic.Size = New System.Drawing.Size(56, 56)
@@ -1801,6 +1819,7 @@ Partial Class CharacterOverview
         '
         'slot_0_pic
         '
+        Me.slot_0_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.slot_0_pic.Location = New System.Drawing.Point(3, 3)
         Me.slot_0_pic.Name = "slot_0_pic"
         Me.slot_0_pic.Size = New System.Drawing.Size(56, 56)
@@ -1906,18 +1925,18 @@ Partial Class CharacterOverview
         Me.load_bt.Text = "Achievements"
         Me.load_bt.UseVisualStyleBackColor = False
         '
-        'Button1
+        'Glyphs_bt
         '
-        Me.Button1.BackColor = System.Drawing.Color.DimGray
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button1.Location = New System.Drawing.Point(558, 455)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(155, 34)
-        Me.Button1.TabIndex = 165
-        Me.Button1.Text = "Glyphs"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.Glyphs_bt.BackColor = System.Drawing.Color.DimGray
+        Me.Glyphs_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Glyphs_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Glyphs_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Glyphs_bt.Location = New System.Drawing.Point(558, 455)
+        Me.Glyphs_bt.Name = "Glyphs_bt"
+        Me.Glyphs_bt.Size = New System.Drawing.Size(155, 34)
+        Me.Glyphs_bt.TabIndex = 165
+        Me.Glyphs_bt.Text = "Glyphs"
+        Me.Glyphs_bt.UseVisualStyleBackColor = False
         '
         'Button2
         '
@@ -1961,19 +1980,18 @@ Partial Class CharacterOverview
         Me.Button5.Text = "Professions"
         Me.Button5.UseVisualStyleBackColor = False
         '
-        'Button6
+        'exit_bt
         '
-        Me.Button6.BackColor = System.Drawing.Color.DimGray
-        Me.Button6.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button6.Enabled = False
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button6.Location = New System.Drawing.Point(334, 654)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(155, 34)
-        Me.Button6.TabIndex = 170
-        Me.Button6.Text = "Exit"
-        Me.Button6.UseVisualStyleBackColor = False
+        Me.exit_bt.BackColor = System.Drawing.Color.DimGray
+        Me.exit_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.exit_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.exit_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.exit_bt.Location = New System.Drawing.Point(334, 654)
+        Me.exit_bt.Name = "exit_bt"
+        Me.exit_bt.Size = New System.Drawing.Size(155, 34)
+        Me.exit_bt.TabIndex = 170
+        Me.exit_bt.Text = "Exit"
+        Me.exit_bt.UseVisualStyleBackColor = False
         '
         'Button7
         '
@@ -2809,11 +2827,11 @@ Partial Class CharacterOverview
         Me.Controls.Add(Me.changepanel)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.Button6)
+        Me.Controls.Add(Me.exit_bt)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Glyphs_bt)
         Me.Controls.Add(Me.load_bt)
         Me.Controls.Add(Me.class_lbl)
         Me.Controls.Add(Me.race_lbl)
@@ -3145,11 +3163,11 @@ Partial Class CharacterOverview
     Friend WithEvents race_lbl As System.Windows.Forms.Label
     Friend WithEvents class_lbl As System.Windows.Forms.Label
     Friend WithEvents load_bt As System.Windows.Forms.Button
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Glyphs_bt As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents Button6 As System.Windows.Forms.Button
+    Friend WithEvents exit_bt As System.Windows.Forms.Button
     Friend WithEvents Button7 As System.Windows.Forms.Button
     Friend WithEvents Button8 As System.Windows.Forms.Button
     Friend WithEvents changepanel As System.Windows.Forms.Panel

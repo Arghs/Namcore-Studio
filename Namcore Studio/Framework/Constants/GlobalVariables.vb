@@ -26,8 +26,7 @@ Imports System.Threading
 
 Public Class GlobalVariables
     Public Shared TempCharacter As Character
-    Public Shared CharacterSets As List(Of Character)
-    Public Shared CharacterSetsIndex As String
+    Public Shared globChars As GlobalCharVars
     Public Shared ModCharacterSets As List(Of Character)
     Public Shared ModCharacterSetsIndex As String
     'Public Shared temporaryCharacterInformation As List(Of String)
@@ -73,4 +72,9 @@ Public Class GlobalVariables
     Public Shared createAccountsIndex As List(Of Integer)
     Public Shared charactersToCreate As List(Of String)
 
+End Class
+<Serializable()> _
+Public Class GlobalCharVars
+    Public CharacterSets As List(Of Character)
+    Public CharacterSetsIndex As String
 End Class

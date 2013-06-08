@@ -265,9 +265,9 @@ Partial Class Armory_interface
         '
         'RichTextBox1
         '
-        Me.RichTextBox1.Location = New System.Drawing.Point(66, 312)
+        Me.RichTextBox1.Location = New System.Drawing.Point(22, 297)
         Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(100, 96)
+        Me.RichTextBox1.Size = New System.Drawing.Size(135, 90)
         Me.RichTextBox1.TabIndex = 167
         Me.RichTextBox1.Text = ""
         '
@@ -284,7 +284,7 @@ Partial Class Armory_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(718, 352)
+        Me.ClientSize = New System.Drawing.Size(715, 358)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.GroupBox1)

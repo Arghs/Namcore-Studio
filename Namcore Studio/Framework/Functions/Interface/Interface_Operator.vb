@@ -20,11 +20,20 @@
 '*      /Filename:      Interface_Operator
 '*      /Description:   Includes operations for rendering user interfaces
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.IO
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Basics
+Imports Namcore_Studio.Serializer
 Public Class Interface_Operator
     Public Shared Sub prepareLive_armory()
         ' Dim x As String = temporaryCharacterInformation.Item(1)
+
+        Dim ms As MemoryStream = Serialize(globChars)
+        Dim fs As New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt", FileMode.OpenOrCreate)
+        fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
+        fs.Close()
+        ms.Close()
+        '   Dim x As String =
         armoryMode = True
         Live_View.Close()
         Dim liveview As New Live_View

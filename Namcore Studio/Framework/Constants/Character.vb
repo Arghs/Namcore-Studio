@@ -20,7 +20,7 @@
 '*      /Filename:      Character
 '*      /Description:   Character Object - character information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+<Serializable()> _
 Public Class Character
     Public SourceCore As String
     Public SetIndex As Integer

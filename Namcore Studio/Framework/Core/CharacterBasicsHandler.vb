@@ -26,6 +26,7 @@ Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.Conversions
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.GlobalVariables
+Imports Namcore_Studio.GlobalCharVars
 Imports Namcore_Studio.CommandHandler
 Public Class CharacterBasicsHandler
     Private Shared temp_result As String
@@ -204,8 +205,8 @@ Public Class CharacterBasicsHandler
         tmpCharacter.GmLevel = templevel
         tmpCharacter.RealmId = 0 'TODO multi realm support
 
-        CharacterSets.Add(tmpCharacter)
-        CharacterSetsIndex = CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (CharacterSets.Count - 1).ToString() & "]"
+        globChars.CharacterSets.Add(tmpCharacter)
+        globChars.CharacterSetsIndex = globChars.CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (globChars.CharacterSets.Count - 1).ToString() & "]"
     End Sub
     Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
@@ -377,8 +378,8 @@ Public Class CharacterBasicsHandler
         tmpCharacter.RealmId = TryInt(temp_result)
         LogAppend("Loaded accountAccess realmId info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
 
-        CharacterSets.Add(tmpCharacter)
-        CharacterSetsIndex = CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (CharacterSets.Count - 1).ToString() & "]"
+        globChars.CharacterSets.Add(tmpCharacter)
+        globChars.CharacterSetsIndex = globChars.CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (globChars.CharacterSets.Count - 1).ToString() & "]"
     End Sub
     Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_name_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
@@ -524,7 +525,7 @@ Public Class CharacterBasicsHandler
         tmpCharacter.HomeBind = "<map>" & tmpCharacter.BindMapId.ToString() & "</map><zone>" & tmpCharacter.BindZoneId.ToString() & "</zone><position_x>" & tmpCharacter.BindPositionX.ToString() & "</position_x><position_y>" &
                                               tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" & tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
-        
+
         'Account Table
         temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_name_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.AccountName = temp_result
@@ -556,8 +557,8 @@ Public Class CharacterBasicsHandler
         tmpCharacter.realmId = TryInt(temp_result)
         LogAppend("Loaded accountAccess realmId info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
 
-        CharacterSets.Add(tmpCharacter)
-        CharacterSetsIndex = CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (CharacterSets.Count - 1).ToString() & "]"
+        globChars.CharacterSets.Add(tmpCharacter)
+        globChars.CharacterSetsIndex = globChars.CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (globChars.CharacterSets.Count - 1).ToString() & "]"
     End Sub
     Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_name_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
@@ -733,7 +734,7 @@ Public Class CharacterBasicsHandler
         tmpCharacter.realmId = TryInt(temp_result)
         LogAppend("Loaded account realmId info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
         'todo Expansion!
-        CharacterSets.Add(tmpCharacter)
-        CharacterSetsIndex = CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (CharacterSets.Count - 1).ToString() & "]"
+        globChars.CharacterSets.Add(tmpCharacter)
+        globChars.CharacterSetsIndex = globChars.CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (globChars.CharacterSets.Count - 1).ToString() & "]"
     End Sub
 End Class

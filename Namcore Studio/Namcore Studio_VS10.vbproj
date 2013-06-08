@@ -172,6 +172,7 @@
     <Compile Include="Framework\Functions\SpellItem_Information.vb" />
     <Compile Include="Framework\Logging\ErrorLogging.vb" />
     <Compile Include="Framework\Logging\EventLogging.vb" />
+    <Compile Include="Framework\Template System\Serializer.vb" />
     <Compile Include="Framework\Transmission\AccountCreation.vb" />
     <Compile Include="Framework\Transmission\ArmorCreation.vb" />
     <Compile Include="Framework\Transmission\CharacterCreationAdvanced.vb" />
@@ -274,13 +275,11 @@
     <None Include="Resources\glyphproperties_434.txt" />
     <None Include="Resources\empty.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Framework\Template_System\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.DeltaBaseDate" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
