@@ -416,7 +416,7 @@ Partial Class Live_View
         '
         Me.charactercontext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem1, Me.EditToolStripMenuItem1, Me.PrepareTransferToolStripMenuItem})
         Me.charactercontext.Name = "charactercontext"
-        Me.charactercontext.Size = New System.Drawing.Size(158, 92)
+        Me.charactercontext.Size = New System.Drawing.Size(158, 70)
         '
         'RemoveToolStripMenuItem1
         '

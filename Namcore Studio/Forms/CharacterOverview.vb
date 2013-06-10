@@ -39,6 +39,8 @@ Public Class CharacterOverview
     Private Shared doneControls As List(Of Control)
     Dim Evaluator As Thread
     Shared loadComplete As Boolean = False
+    Dim tmpSenderPic As Object
+    Dim currentSet As Integer
     Private Sub CharacterOverview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -46,6 +48,7 @@ Public Class CharacterOverview
 
 
     Public Sub prepare_interface(ByVal setId As Integer)
+        currentSet = setId
         Dim player As Character = GetCharacterSetBySetId(setId)
         If player.PlayerGlyphsIndex Is Nothing Then Glyphs_bt.Enabled = False
         doneControls = New List(Of Control)
@@ -191,6 +194,8 @@ Public Class CharacterOverview
         newPoint.Y = 4000
         classpanel.Location = newPoint
         racepanel.Location = newPoint
+        addpanel.Location = newPoint
+        addpanel.Location = newPoint
         PictureBox2.Visible = True
         If Not tempSender Is Nothing Then
             tempSender.visible = True
@@ -558,6 +563,32 @@ Public Class CharacterOverview
 
         End Try
 
+        If Not tempSender Is Nothing Then
+            tempSender.visible = True
+        End If
+        changepanel.Location = New System.Drawing.Point(4000, 4000)
+        racepanel.Location = New System.Drawing.Point(4000, 4000)
+        classpanel.Location = New System.Drawing.Point(4000, 4000)
+        addpanel.Location = New System.Drawing.Point(4000, 4000)
+
+     
+            For Each ctrl As Control In controlLST
+                If TypeOf ctrl Is Label Then
+                If ctrl.Name.StartsWith(sender.name.replace("_pic", "")) And ctrl.Name.EndsWith("_name") Then
+                    If ctrl.Text = "" Then
+                        tempSender = ctrl
+                        tmpSenderPic = sender
+                        ctrl.Visible = False
+                        Dim pnt As New System.Drawing.Point
+                        pnt.X = ctrl.Location.X + InventoryPanel.Location.X
+                        pnt.Y = ctrl.Location.Y + InventoryPanel.Location.Y
+                        addpanel.Location = pnt
+                    End If
+                End If
+            End If
+        Next
+
+
     End Sub
     Dim cnt As Integer
     Private Sub slot_0_pic_MouseEnter(sender As System.Object, e As System.EventArgs) Handles slot_9_pic.MouseEnter, slot_8_pic.MouseEnter, slot_7_pic.MouseEnter, slot_6_pic.MouseEnter, slot_5_pic.MouseEnter, slot_4_pic.MouseEnter, slot_3_pic.MouseEnter, slot_2_pic.MouseEnter, slot_18_pic.MouseEnter, slot_17_pic.MouseEnter, slot_16_pic.MouseEnter, slot_15_pic.MouseEnter, slot_14_pic.MouseEnter, slot_13_pic.MouseEnter, slot_12_pic.MouseEnter, slot_11_pic.MouseEnter, slot_10_pic.MouseEnter, slot_1_pic.MouseEnter, slot_0_pic.MouseEnter
@@ -606,5 +637,53 @@ Public Class CharacterOverview
 
         g.DrawImage(img, r, 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, ia)
         picbox.Refresh()
+    End Sub
+
+    Private Sub CharacterOverview_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        changepanel.Location = New System.Drawing.Point(4000, 4000)
+        addpanel.Location = New System.Drawing.Point(4000, 4000)
+        racepanel.Location = New System.Drawing.Point(4000, 4000)
+        classpanel.Location = New System.Drawing.Point(4000, 4000)
+        If Not tempSender Is Nothing Then
+            tempSender.visible = True
+        End If
+        TextBox1.Text = ""
+        TextBox2.Text = ""
+    End Sub
+
+    Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
+        Dim senderPic As PictureBox = tmpSenderPic
+        If Not TextBox2.Text = "" Then
+            Dim meSlot As String = tempSender.name
+            meSlot = meSlot.Replace("slot_", "") : meSlot = meSlot.Replace("_name", "")
+            If Not GetSlotByItemId(TryInt(TextBox2.Text)) = TryInt(meSlot) Then
+                Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                MsgBox(RM.GetString("itemclassinvalid"), MsgBoxStyle.Critical, RM.GetString("Error"))
+                Exit Sub
+            Else
+                Dim itm As New Item
+                itm.id = TryInt(TextBox2.Text)
+                itm.name = getNameOfItem(itm.id)
+                itm.image = GetIconByItemId(itm.id)
+                itm.rarity = GetRarityByItemId(itm.id)
+                itm.slot = TryInt(meSlot)
+                itm.slotname = GetSlotNameBySlotId(itm.slot)
+                If itm.slot = 15 Or itm.slot = 16 Then LoadWeaponType(itm.id, currentSet)
+                senderPic.Tag = itm
+                DirectCast(senderPic, PictureBox).Image = itm.image
+                senderPic.Refresh()
+                DirectCast(tempSender, Label).Text = itm.name
+                DirectCast(tempSender, Label).Tag = itm
+                changepanel.Location = New System.Drawing.Point(4000, 4000)
+                addpanel.Location = New System.Drawing.Point(4000, 4000)
+                racepanel.Location = New System.Drawing.Point(4000, 4000)
+                classpanel.Location = New System.Drawing.Point(4000, 4000)
+                If Not tempSender Is Nothing Then
+                    tempSender.visible = True
+                End If
+                TextBox1.Text = ""
+                TextBox2.Text = ""
+            End If
+        End If
     End Sub
 End Class

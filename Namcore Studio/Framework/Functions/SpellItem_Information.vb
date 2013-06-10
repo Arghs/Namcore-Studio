@@ -83,6 +83,51 @@ Public Class SpellItem_Information
             Return Nothing
         End Try
     End Function
+    Public Shared Function GetSlotNameBySlotId(ByVal slotid As Integer) As Integer
+        If slotid = 0 Then Return Nothing
+        Select Case slotid
+            Case 0
+                Return "head"
+            Case 1
+                Return "neck"
+            Case 2
+                Return "shoulder"
+            Case 3
+                Return "shirt"
+            Case 4
+                Return "chest"
+            Case 5
+                Return "waist"
+            Case 6
+                Return "legs"
+            Case 7
+                Return "feet"
+            Case 8
+                Return "wrists"
+            Case 9
+                Return "hands"
+            Case 10
+                Return "finger1"
+            Case 11
+                Return "finger2"
+            Case 12
+                Return "trinket1"
+            Case 13
+                Return "trinket2"
+            Case 14
+                Return "back"
+            Case 15
+                Return "main"
+            Case 16
+                Return "off"
+            Case 17
+                Return Nothing
+                'slot 17 has been removed as of patch 5.0
+            Case 18
+                Return "tabard"
+            Case Else : Return Nothing
+        End Select
+    End Function
     Public Shared Sub LoadWeaponType(ByVal itemid As Integer, ByVal tar_set As Integer)
         If Not itemid = 0 Then
             LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType", False)

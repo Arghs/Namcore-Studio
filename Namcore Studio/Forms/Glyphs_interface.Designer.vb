@@ -64,6 +64,13 @@ Partial Class Glyphs_interface
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.sec_prim_1_name = New System.Windows.Forms.Label()
+        Me.changepanel = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.addpanel = New System.Windows.Forms.Panel()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         CType(Me.prim_1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.prim_2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.prim_3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,10 +89,16 @@ Partial Class Glyphs_interface
         CType(Me.sec_prim_3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.sec_prim_2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.sec_prim_1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.changepanel.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.addpanel.SuspendLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'prim_1_pic
         '
+        Me.prim_1_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.prim_1_pic.Location = New System.Drawing.Point(16, 73)
         Me.prim_1_pic.Name = "prim_1_pic"
         Me.prim_1_pic.Size = New System.Drawing.Size(56, 56)
@@ -96,6 +109,7 @@ Partial Class Glyphs_interface
         'prim_1_name
         '
         Me.prim_1_name.AutoSize = True
+        Me.prim_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.prim_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.prim_1_name.Location = New System.Drawing.Point(78, 73)
         Me.prim_1_name.Name = "prim_1_name"
@@ -135,6 +149,7 @@ Partial Class Glyphs_interface
         '
         'prim_2_pic
         '
+        Me.prim_2_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.prim_2_pic.Location = New System.Drawing.Point(16, 135)
         Me.prim_2_pic.Name = "prim_2_pic"
         Me.prim_2_pic.Size = New System.Drawing.Size(56, 56)
@@ -145,6 +160,7 @@ Partial Class Glyphs_interface
         'prim_2_name
         '
         Me.prim_2_name.AutoSize = True
+        Me.prim_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.prim_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.prim_2_name.Location = New System.Drawing.Point(78, 135)
         Me.prim_2_name.Name = "prim_2_name"
@@ -154,6 +170,7 @@ Partial Class Glyphs_interface
         '
         'prim_3_pic
         '
+        Me.prim_3_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.prim_3_pic.Location = New System.Drawing.Point(16, 197)
         Me.prim_3_pic.Name = "prim_3_pic"
         Me.prim_3_pic.Size = New System.Drawing.Size(56, 56)
@@ -164,6 +181,7 @@ Partial Class Glyphs_interface
         'prim_3_name
         '
         Me.prim_3_name.AutoSize = True
+        Me.prim_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.prim_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.prim_3_name.Location = New System.Drawing.Point(78, 197)
         Me.prim_3_name.Name = "prim_3_name"
@@ -173,6 +191,7 @@ Partial Class Glyphs_interface
         '
         'major_1_pic
         '
+        Me.major_1_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.major_1_pic.Location = New System.Drawing.Point(300, 73)
         Me.major_1_pic.Name = "major_1_pic"
         Me.major_1_pic.Size = New System.Drawing.Size(56, 56)
@@ -183,6 +202,7 @@ Partial Class Glyphs_interface
         'major_1_name
         '
         Me.major_1_name.AutoSize = True
+        Me.major_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.major_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.major_1_name.Location = New System.Drawing.Point(362, 73)
         Me.major_1_name.Name = "major_1_name"
@@ -192,6 +212,7 @@ Partial Class Glyphs_interface
         '
         'major_2_pic
         '
+        Me.major_2_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.major_2_pic.Location = New System.Drawing.Point(300, 135)
         Me.major_2_pic.Name = "major_2_pic"
         Me.major_2_pic.Size = New System.Drawing.Size(56, 56)
@@ -202,6 +223,7 @@ Partial Class Glyphs_interface
         'major_2_name
         '
         Me.major_2_name.AutoSize = True
+        Me.major_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.major_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.major_2_name.Location = New System.Drawing.Point(362, 135)
         Me.major_2_name.Name = "major_2_name"
@@ -211,6 +233,7 @@ Partial Class Glyphs_interface
         '
         'major_3_pic
         '
+        Me.major_3_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.major_3_pic.Location = New System.Drawing.Point(300, 197)
         Me.major_3_pic.Name = "major_3_pic"
         Me.major_3_pic.Size = New System.Drawing.Size(56, 56)
@@ -221,6 +244,7 @@ Partial Class Glyphs_interface
         'major_3_name
         '
         Me.major_3_name.AutoSize = True
+        Me.major_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.major_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.major_3_name.Location = New System.Drawing.Point(362, 197)
         Me.major_3_name.Name = "major_3_name"
@@ -230,6 +254,7 @@ Partial Class Glyphs_interface
         '
         'minor_3_pic
         '
+        Me.minor_3_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.minor_3_pic.Location = New System.Drawing.Point(568, 197)
         Me.minor_3_pic.Name = "minor_3_pic"
         Me.minor_3_pic.Size = New System.Drawing.Size(56, 56)
@@ -240,6 +265,7 @@ Partial Class Glyphs_interface
         'minor_3_name
         '
         Me.minor_3_name.AutoSize = True
+        Me.minor_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.minor_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.minor_3_name.Location = New System.Drawing.Point(630, 197)
         Me.minor_3_name.Name = "minor_3_name"
@@ -249,6 +275,7 @@ Partial Class Glyphs_interface
         '
         'minor_2_pic
         '
+        Me.minor_2_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.minor_2_pic.Location = New System.Drawing.Point(568, 135)
         Me.minor_2_pic.Name = "minor_2_pic"
         Me.minor_2_pic.Size = New System.Drawing.Size(56, 56)
@@ -259,6 +286,7 @@ Partial Class Glyphs_interface
         'minor_2_name
         '
         Me.minor_2_name.AutoSize = True
+        Me.minor_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.minor_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.minor_2_name.Location = New System.Drawing.Point(630, 135)
         Me.minor_2_name.Name = "minor_2_name"
@@ -268,6 +296,7 @@ Partial Class Glyphs_interface
         '
         'minor_1_pic
         '
+        Me.minor_1_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.minor_1_pic.Location = New System.Drawing.Point(568, 73)
         Me.minor_1_pic.Name = "minor_1_pic"
         Me.minor_1_pic.Size = New System.Drawing.Size(56, 56)
@@ -278,6 +307,7 @@ Partial Class Glyphs_interface
         'minor_1_name
         '
         Me.minor_1_name.AutoSize = True
+        Me.minor_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.minor_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.minor_1_name.Location = New System.Drawing.Point(630, 73)
         Me.minor_1_name.Name = "minor_1_name"
@@ -287,6 +317,7 @@ Partial Class Glyphs_interface
         '
         'sec_minor_3_pic
         '
+        Me.sec_minor_3_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sec_minor_3_pic.Location = New System.Drawing.Point(564, 469)
         Me.sec_minor_3_pic.Name = "sec_minor_3_pic"
         Me.sec_minor_3_pic.Size = New System.Drawing.Size(56, 56)
@@ -297,6 +328,7 @@ Partial Class Glyphs_interface
         'sec_minor_3_name
         '
         Me.sec_minor_3_name.AutoSize = True
+        Me.sec_minor_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.sec_minor_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sec_minor_3_name.Location = New System.Drawing.Point(626, 469)
         Me.sec_minor_3_name.Name = "sec_minor_3_name"
@@ -306,6 +338,7 @@ Partial Class Glyphs_interface
         '
         'sec_minor_2_pic
         '
+        Me.sec_minor_2_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sec_minor_2_pic.Location = New System.Drawing.Point(564, 407)
         Me.sec_minor_2_pic.Name = "sec_minor_2_pic"
         Me.sec_minor_2_pic.Size = New System.Drawing.Size(56, 56)
@@ -316,6 +349,7 @@ Partial Class Glyphs_interface
         'sec_minor_2_name
         '
         Me.sec_minor_2_name.AutoSize = True
+        Me.sec_minor_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.sec_minor_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sec_minor_2_name.Location = New System.Drawing.Point(626, 407)
         Me.sec_minor_2_name.Name = "sec_minor_2_name"
@@ -325,6 +359,7 @@ Partial Class Glyphs_interface
         '
         'sec_minor_1_pic
         '
+        Me.sec_minor_1_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sec_minor_1_pic.Location = New System.Drawing.Point(564, 345)
         Me.sec_minor_1_pic.Name = "sec_minor_1_pic"
         Me.sec_minor_1_pic.Size = New System.Drawing.Size(56, 56)
@@ -335,6 +370,7 @@ Partial Class Glyphs_interface
         'sec_minor_1_name
         '
         Me.sec_minor_1_name.AutoSize = True
+        Me.sec_minor_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.sec_minor_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sec_minor_1_name.Location = New System.Drawing.Point(626, 345)
         Me.sec_minor_1_name.Name = "sec_minor_1_name"
@@ -344,6 +380,7 @@ Partial Class Glyphs_interface
         '
         'sec_major_3_pic
         '
+        Me.sec_major_3_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sec_major_3_pic.Location = New System.Drawing.Point(296, 469)
         Me.sec_major_3_pic.Name = "sec_major_3_pic"
         Me.sec_major_3_pic.Size = New System.Drawing.Size(56, 56)
@@ -354,6 +391,7 @@ Partial Class Glyphs_interface
         'sec_major_3_name
         '
         Me.sec_major_3_name.AutoSize = True
+        Me.sec_major_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.sec_major_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sec_major_3_name.Location = New System.Drawing.Point(358, 469)
         Me.sec_major_3_name.Name = "sec_major_3_name"
@@ -363,6 +401,7 @@ Partial Class Glyphs_interface
         '
         'sec_major_2_pic
         '
+        Me.sec_major_2_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sec_major_2_pic.Location = New System.Drawing.Point(296, 407)
         Me.sec_major_2_pic.Name = "sec_major_2_pic"
         Me.sec_major_2_pic.Size = New System.Drawing.Size(56, 56)
@@ -373,6 +412,7 @@ Partial Class Glyphs_interface
         'sec_major_2_name
         '
         Me.sec_major_2_name.AutoSize = True
+        Me.sec_major_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.sec_major_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sec_major_2_name.Location = New System.Drawing.Point(358, 407)
         Me.sec_major_2_name.Name = "sec_major_2_name"
@@ -382,6 +422,7 @@ Partial Class Glyphs_interface
         '
         'sec_major_1_pic
         '
+        Me.sec_major_1_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sec_major_1_pic.Location = New System.Drawing.Point(296, 345)
         Me.sec_major_1_pic.Name = "sec_major_1_pic"
         Me.sec_major_1_pic.Size = New System.Drawing.Size(56, 56)
@@ -392,6 +433,7 @@ Partial Class Glyphs_interface
         'sec_major_1_name
         '
         Me.sec_major_1_name.AutoSize = True
+        Me.sec_major_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.sec_major_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sec_major_1_name.Location = New System.Drawing.Point(358, 345)
         Me.sec_major_1_name.Name = "sec_major_1_name"
@@ -401,6 +443,7 @@ Partial Class Glyphs_interface
         '
         'sec_prim_3_pic
         '
+        Me.sec_prim_3_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sec_prim_3_pic.Location = New System.Drawing.Point(12, 469)
         Me.sec_prim_3_pic.Name = "sec_prim_3_pic"
         Me.sec_prim_3_pic.Size = New System.Drawing.Size(56, 56)
@@ -411,6 +454,7 @@ Partial Class Glyphs_interface
         'sec_prim_3_name
         '
         Me.sec_prim_3_name.AutoSize = True
+        Me.sec_prim_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.sec_prim_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sec_prim_3_name.Location = New System.Drawing.Point(74, 469)
         Me.sec_prim_3_name.Name = "sec_prim_3_name"
@@ -420,6 +464,7 @@ Partial Class Glyphs_interface
         '
         'sec_prim_2_pic
         '
+        Me.sec_prim_2_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sec_prim_2_pic.Location = New System.Drawing.Point(12, 407)
         Me.sec_prim_2_pic.Name = "sec_prim_2_pic"
         Me.sec_prim_2_pic.Size = New System.Drawing.Size(56, 56)
@@ -430,6 +475,7 @@ Partial Class Glyphs_interface
         'sec_prim_2_name
         '
         Me.sec_prim_2_name.AutoSize = True
+        Me.sec_prim_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.sec_prim_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sec_prim_2_name.Location = New System.Drawing.Point(74, 407)
         Me.sec_prim_2_name.Name = "sec_prim_2_name"
@@ -439,6 +485,7 @@ Partial Class Glyphs_interface
         '
         'sec_prim_1_pic
         '
+        Me.sec_prim_1_pic.Cursor = System.Windows.Forms.Cursors.Hand
         Me.sec_prim_1_pic.Location = New System.Drawing.Point(12, 345)
         Me.sec_prim_1_pic.Name = "sec_prim_1_pic"
         Me.sec_prim_1_pic.Size = New System.Drawing.Size(56, 56)
@@ -479,6 +526,7 @@ Partial Class Glyphs_interface
         'sec_prim_1_name
         '
         Me.sec_prim_1_name.AutoSize = True
+        Me.sec_prim_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.sec_prim_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.sec_prim_1_name.Location = New System.Drawing.Point(74, 345)
         Me.sec_prim_1_name.Name = "sec_prim_1_name"
@@ -486,11 +534,78 @@ Partial Class Glyphs_interface
         Me.sec_prim_1_name.TabIndex = 30
         Me.sec_prim_1_name.Text = "Itemname"
         '
+        'changepanel
+        '
+        Me.changepanel.Controls.Add(Me.PictureBox2)
+        Me.changepanel.Controls.Add(Me.PictureBox1)
+        Me.changepanel.Controls.Add(Me.TextBox1)
+        Me.changepanel.Location = New System.Drawing.Point(674, 274)
+        Me.changepanel.Name = "changepanel"
+        Me.changepanel.Size = New System.Drawing.Size(133, 24)
+        Me.changepanel.TabIndex = 174
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PictureBox2.Image = Global.Namcore_Studio.My.Resources.Resources.trash__delete__16x16
+        Me.PictureBox2.Location = New System.Drawing.Point(113, 4)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(16, 16)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 175
+        Me.PictureBox2.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PictureBox1.Image = Global.Namcore_Studio.My.Resources.Resources.Refresh_icon
+        Me.PictureBox1.Location = New System.Drawing.Point(93, 4)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(16, 16)
+        Me.PictureBox1.TabIndex = 174
+        Me.PictureBox1.TabStop = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(3, 2)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(86, 20)
+        Me.TextBox1.TabIndex = 0
+        '
+        'addpanel
+        '
+        Me.addpanel.Controls.Add(Me.PictureBox4)
+        Me.addpanel.Controls.Add(Me.TextBox2)
+        Me.addpanel.Location = New System.Drawing.Point(674, 304)
+        Me.addpanel.Name = "addpanel"
+        Me.addpanel.Size = New System.Drawing.Size(118, 24)
+        Me.addpanel.TabIndex = 175
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PictureBox4.Image = Global.Namcore_Studio.My.Resources.Resources.plusico
+        Me.PictureBox4.Location = New System.Drawing.Point(94, 4)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(16, 16)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox4.TabIndex = 174
+        Me.PictureBox4.TabStop = False
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(3, 2)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(86, 20)
+        Me.TextBox2.TabIndex = 0
+        '
         'Glyphs_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(833, 536)
+        Me.Controls.Add(Me.addpanel)
+        Me.Controls.Add(Me.changepanel)
         Me.Controls.Add(Me.sec_minor_3_pic)
         Me.Controls.Add(Me.sec_minor_3_name)
         Me.Controls.Add(Me.sec_minor_2_pic)
@@ -533,6 +648,7 @@ Partial Class Glyphs_interface
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.prim_1_name)
+        Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.Name = "Glyphs_interface"
         Me.Text = "Glyphs_interface"
         CType(Me.prim_1_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -553,6 +669,13 @@ Partial Class Glyphs_interface
         CType(Me.sec_prim_3_pic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.sec_prim_2_pic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.sec_prim_1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.changepanel.ResumeLayout(False)
+        Me.changepanel.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.addpanel.ResumeLayout(False)
+        Me.addpanel.PerformLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -599,4 +722,11 @@ Partial Class Glyphs_interface
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents sec_prim_1_name As System.Windows.Forms.Label
+    Friend WithEvents changepanel As System.Windows.Forms.Panel
+    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents addpanel As System.Windows.Forms.Panel
+    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
 End Class

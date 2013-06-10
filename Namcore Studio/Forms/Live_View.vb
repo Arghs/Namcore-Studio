@@ -771,4 +771,24 @@ Public Class Live_View
     Private Sub RemoveToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem1.Click
 
     End Sub
+
+    Private Sub characterview_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles characterview.MouseDoubleClick
+        If Not characterview.SelectedItems.Count = 0 Then
+            Dim charview As New CharacterOverview
+            Dim setId As Integer = characterview.SelectedItems(0).Tag
+            If armoryMode = True Then
+                Userwait.Show()
+                charview.prepare_interface(setId)
+                Userwait.Close()
+                charview.Show()
+            Else
+                'todo load info
+
+                Userwait.Show()
+                charview.prepare_interface(setId)
+                Userwait.Close()
+                charview.Show()
+            End If
+        End If
+    End Sub
 End Class

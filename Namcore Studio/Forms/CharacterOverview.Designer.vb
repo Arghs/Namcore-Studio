@@ -254,6 +254,9 @@ Partial Class CharacterOverview
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.picbagslot = New System.Windows.Forms.PictureBox()
         Me.Button9 = New System.Windows.Forms.Button()
+        Me.addpanel = New System.Windows.Forms.Panel()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.InventoryPanel.SuspendLayout()
         CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -425,6 +428,8 @@ Partial Class CharacterOverview
         CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel16.SuspendLayout()
         CType(Me.picbagslot, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.addpanel.SuspendLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'InventoryPanel
@@ -2808,11 +2813,39 @@ Partial Class CharacterOverview
         Me.Button9.Text = "Button9"
         Me.Button9.UseVisualStyleBackColor = True
         '
+        'addpanel
+        '
+        Me.addpanel.Controls.Add(Me.PictureBox4)
+        Me.addpanel.Controls.Add(Me.TextBox2)
+        Me.addpanel.Location = New System.Drawing.Point(1378, 313)
+        Me.addpanel.Name = "addpanel"
+        Me.addpanel.Size = New System.Drawing.Size(118, 24)
+        Me.addpanel.TabIndex = 185
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PictureBox4.Image = Global.Namcore_Studio.My.Resources.Resources.plusico
+        Me.PictureBox4.Location = New System.Drawing.Point(94, 4)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(16, 16)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox4.TabIndex = 174
+        Me.PictureBox4.TabStop = False
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(3, 2)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(86, 20)
+        Me.TextBox2.TabIndex = 0
+        '
         'CharacterOverview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1559, 706)
+        Me.Controls.Add(Me.addpanel)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Panel38)
         Me.Controls.Add(Me.Panel33)
@@ -3017,6 +3050,9 @@ Partial Class CharacterOverview
         CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel16.ResumeLayout(False)
         CType(Me.picbagslot, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.addpanel.ResumeLayout(False)
+        Me.addpanel.PerformLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3253,4 +3289,7 @@ Partial Class CharacterOverview
     Friend WithEvents Panel16 As System.Windows.Forms.Panel
     Friend WithEvents picbagslot As System.Windows.Forms.PictureBox
     Friend WithEvents Button9 As System.Windows.Forms.Button
+    Friend WithEvents addpanel As System.Windows.Forms.Panel
+    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
 End Class

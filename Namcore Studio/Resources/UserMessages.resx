@@ -174,6 +174,9 @@
     <value>Female</value>
     <comment>character gender</comment>
   </data>
+  <data name="glyphnotfound" xml:space="preserve">
+    <value>This is not a valid glyph!</value>
+  </data>
   <data name="gnome" xml:space="preserve">
     <value>Gnome</value>
     <comment>character race</comment>

@@ -6,184 +6,7 @@ NamcoreStudio
 </name>
 </assembly>
 <members>
-<member name="M:Namcore_Studio.ReplaceItemExtension.ReplaceItem(Namcore_Studio.Item@,System.Int32)">
-	<summary>
- Replaces an Item
- </summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.ResourceManager">
-	<summary>
-  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.Culture">
-	<summary>
-  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
-  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.areyousure">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Are you sure? ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.attention">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Attention ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.bloodelf">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.charnamenotset">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die You did not set any character name. ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.charnotfound">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Character not found! ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.connecttosource">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Connect to source server ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.connecttotarget">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Connect to target server ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deathknight">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Death Knight ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deleteacc">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected accounts? ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deletechar">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected characters? ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deleteitem">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected item? ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.draenei">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Draenei ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.druid">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Druid ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.dwarf">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Dwarf ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.errorbox">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.female">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.gnome">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Gnome ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.goblin">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Goblin ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.human">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Human ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.hunter">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Hunter ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.invalidurl">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Entered URL is not valid! ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.itemclassinvalid">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die The class of the entered item does not match the source item class! ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.mage">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Mage ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.male">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Male ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.nightelf">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Night Elf ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.noaccentered">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die You did not enter any accounts! ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.orc">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Orc ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.paladin">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Paladin ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.priest">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Priest ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.realmnamenotset">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die You did not set any realm name. ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.regionnotset">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die You did not select any Battle.net region. ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.rogue">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Rogue ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.shaman">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Shaman ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.tauren">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Tauren ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.troll">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Troll ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.undead">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Undead ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.urlnotset">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die You did not enter a correct url. ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.warlock">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Warlock ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.warrior">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Warrior ähnelt.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.UserMessages.worgen">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Worgen ähnelt.
-</summary>
-</member><member name="T:Namcore_Studio.My.Resources.UserMessages">
-	<summary>
-  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
-</summary>
-</member><member name="P:Namcore_Studio.My.Resources.Resources.ResourceManager">
+<member name="P:Namcore_Studio.My.Resources.Resources.ResourceManager">
 	<summary>
   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
 </summary>
@@ -309,6 +132,10 @@ flags,long,long,long,
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.plusico">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.Resources.Refresh_icon">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
@@ -344,6 +171,183 @@ flags,long,long,long,
 	<summary>
   Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.ResourceManager">
+	<summary>
+  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.Culture">
+	<summary>
+  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.areyousure">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Are you sure? ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.attention">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Attention ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.bloodelf">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.charnamenotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not set any character name. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.charnotfound">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Character not found! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.connecttosource">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Connect to source server ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.connecttotarget">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Connect to target server ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deathknight">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Death Knight ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deleteacc">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected accounts? ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deletechar">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected characters? ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.deleteitem">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected item? ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.draenei">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Draenei ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.druid">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Druid ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.dwarf">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Dwarf ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.errorbox">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.female">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.glyphnotfound">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die This is not a valid glyph! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.gnome">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Gnome ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.goblin">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Goblin ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.human">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Human ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.hunter">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Hunter ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.invalidurl">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Entered URL is not valid! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.itemclassinvalid">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die The class of the entered item does not match the source item class! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.mage">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Mage ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.male">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Male ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.nightelf">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Night Elf ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.noaccentered">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not enter any accounts! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.orc">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Orc ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.paladin">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Paladin ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.priest">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Priest ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.realmnamenotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not set any realm name. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.regionnotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not select any Battle.net region. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.rogue">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Rogue ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.shaman">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Shaman ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.tauren">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Tauren ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.troll">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Troll ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.undead">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Undead ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.urlnotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not enter a correct url. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.warlock">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Warlock ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.warrior">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Warrior ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.worgen">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Worgen ähnelt.
+</summary>
+</member><member name="T:Namcore_Studio.My.Resources.UserMessages">
+	<summary>
+  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+</summary>
 </member><member name="M:Namcore_Studio.WinformControlExtensions.FindAllChildren(System.Windows.Forms.Form@)">
 	<summary>
  Recursively find all child controls for a form
@@ -363,6 +367,10 @@ flags,long,long,long,
 	<returns><c><seealso cref="T:System.Collections.Generic.List`1">List(Of Control)
  </seealso></c> that contains a reference to all child controls.</returns>
 	<remarks></remarks>
+</member><member name="M:Namcore_Studio.ReplaceItemExtension.ReplaceItem(Namcore_Studio.Item@,System.Int32)">
+	<summary>
+ Replaces an Item
+ </summary>
 </member>
 </members>
 </doc>
