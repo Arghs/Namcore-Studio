@@ -46,3 +46,29 @@ C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore S
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.CharacterOverview.resources
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Glyphs_interface.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Glyphs_interface.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.exe.config
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio.exe
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.exe
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\mysql.data.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbprojResolveAssemblyReference.cache
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Armory_interface.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.CharacterOverview.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.DB_connect.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Filter_accounts.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Filter_characters.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Glyphs_interface.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Prep_chartrans.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Process_status.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Userwait.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Live_View.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Resources.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.UserMessages.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbproj.GenerateResource.Cache
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libnc.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libnc.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libnc.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Achievements_interface.resources

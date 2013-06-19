@@ -27,21 +27,25 @@ Imports Namcore_Studio.Basics
 Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.Conversions
 Imports System.Net
+
 Public Class SpellItem_Information
+    Shared tempAvTable As DataTable
+    Shared tempAvCatTable As DataTable
+
     Public Shared Function GetGlyphIdByItemId(ByVal itemid As Integer) As Integer
         LogAppend("Loading GlyphId by ItemId " & itemid.ToString, "SpellItem_Information_GetGlyphIdByItemId", False)
         Dim xpacressource As String
         Try
             Select Case expansion
                 Case 3
-                    xpacressource = My.Resources.GlyphProperties_335
+                    xpacressource = libnc.My.Resources.glyphproperties_335
                 Case 4
-                    xpacressource = My.Resources.GlyphProperties_434
+                    xpacressource = libnc.My.Resources.glyphproperties_434
                 Case Else
-                    xpacressource = My.Resources.GlyphProperties_335
+                    xpacressource = libnc.My.Resources.glyphproperties_335
             End Select
             Dim client As New WebClient
-            Return tryint(splitString(client.DownloadString("http://www.wowhead.com/spell=" & splitString(xpacressource, "<entry>" & itemid.ToString & "</entry><spell>", "</spell>")), ",""id"":", ",""level"""))
+            Return TryInt(splitString(client.DownloadString("http://www.wowhead.com/spell=" & splitString(xpacressource, "<entry>" & itemid.ToString & "</entry><spell>", "</spell>")), ",""id"":", ",""level"""))
         Catch ex As Exception
             LogAppend("Error while loading GlyphId! -> Returning 0 -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetGlyphIdByItemId", False, True)
             Return 0
@@ -206,9 +210,9 @@ Public Class SpellItem_Information
                 effectname_dt = New DataTable()
                 Dim stext As String
                 If My.Settings.language = "de" Then
-                    stext = My.Resources.enchant_name_de
+                    stext = libnc.My.Resources.enchant_name_de
                 Else
-                    stext = My.Resources.enchant_name_en
+                    stext = libnc.My.Resources.enchant_name_en
                 End If
                 Dim a() As String
                 Dim strArray As String()
@@ -308,5 +312,114 @@ Public Class SpellItem_Information
             LogAppend("Error while browsing datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_Execute", False, True)
             Return "-"
         End Try
+    End Function
+
+    Public Shared Function GetAvNameById(ByVal avid As Integer) As String
+        LogAppend("Loading av name of id: " & avid.ToString, "SpellItem_Information_GetAvNameById", False)
+        If tempAvTable Is Nothing Then
+            Try
+                tempAvTable = New DataTable()
+                Dim stext As String
+                If My.Settings.language = "de" Then
+                    stext = libnc.My.Resources.av_de
+                Else
+                    stext = libnc.My.Resources.av_de 'todo
+                End If
+                Dim a() As String
+                Dim strArray As String()
+                a = Split(stext, vbNewLine)
+                For i = 0 To UBound(a)
+                    strArray = a(i).Split(CChar(";"))
+                    If i = 0 Then
+                        For Each value As String In strArray
+                            tempAvTable.Columns.Add(value.Trim())
+                        Next
+                    Else
+                        tempAvTable.Rows.Add(strArray)
+                    End If
+                Next i
+            Catch ex As Exception
+                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetAvNameById", False, True)
+                Return "Error"
+            End Try
+        End If
+        Dim nameresult As String = Execute("avid", avid.ToString(), tempAvTable)
+        If nameresult = "-" Then
+            LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvNameById", False, True)
+            Return "Error loading av name"
+        Else
+            Return nameresult
+        End If
+
+    End Function
+    Public Shared Function GetAvCategoryById(ByVal avid As Integer, Optional subcat As Boolean = False) As String
+        LogAppend("Loading av category of id: " & avid.ToString, "SpellItem_Information_GetAvCategoryById", False)
+        If tempAvCatTable Is Nothing Then
+            Try
+                tempAvCatTable = New DataTable()
+                Dim stext As String
+                If My.Settings.language = "de" Then
+                    stext = libnc.My.Resources.avcat_de
+                Else
+                    stext = libnc.My.Resources.avcat_de 'todo
+                End If
+                Dim a() As String
+                Dim strArray As String()
+                a = Split(stext, vbNewLine)
+                For i = 0 To UBound(a)
+                    strArray = a(i).Split(CChar(";"))
+                    If i = 0 Then
+                        For Each value As String In strArray
+                            tempAvCatTable.Columns.Add(value.Trim())
+                        Next
+                    Else
+                        tempAvCatTable.Rows.Add(strArray)
+                    End If
+                Next i
+            Catch ex As Exception
+                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetAvCategoryById", False, True)
+                Return "Error"
+            End Try
+        End If
+        Dim catid As String = Execute("avid", avid.ToString(), tempAvTable, 3)
+        If catid = "-" Then
+            LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvCategoryById", False, True)
+            Return "Error"
+        Else
+            Dim subcatname As String = Execute("catid", catid, tempAvCatTable, 2)
+            If subcatname = "-" Then
+                LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvCategoryById", False, True)
+                Return "Error"
+            Else
+                If subcat Then
+                    Return subcatname
+                End If
+                If catid = "-1" Then Return subcatname
+                Dim maincatid As String = Execute("catid", catid, tempAvCatTable, 1)
+                If maincatid = "-" Then
+                    LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvCategoryById", False, True)
+                    Return "Error"
+                Else
+                    Dim maincatname As String = Execute("catid", maincatid, tempAvCatTable, 2)
+                    If maincatname = "-" Then
+                        LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvCategoryById", False, True)
+                        Return "Error"
+                    Else
+                        Return maincatname
+                    End If
+                End If
+            End If
+        End If
+
+    End Function
+    Public Shared Function GetAvDescriptionById(ByVal avid As Integer) As String
+        LogAppend("Loading av description of id: " & avid.ToString, "SpellItem_Information_GetAvDescriptionById", False)
+        Dim desc As String = Execute("avid", avid.ToString(), tempAvTable, 2)
+        If desc = "-" Then
+            LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvDescriptionById", False, True)
+            Return "Error"
+        Else
+            Return desc
+        End If
     End Function
 End Class

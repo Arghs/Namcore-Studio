@@ -163,7 +163,7 @@ Partial Class CharacterOverview
         Me.level_lbl = New System.Windows.Forms.Label()
         Me.race_lbl = New System.Windows.Forms.Label()
         Me.class_lbl = New System.Windows.Forms.Label()
-        Me.load_bt = New System.Windows.Forms.Button()
+        Me.av_bt = New System.Windows.Forms.Button()
         Me.Glyphs_bt = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -1916,19 +1916,18 @@ Partial Class CharacterOverview
         Me.class_lbl.TabIndex = 7
         Me.class_lbl.Text = "Hunter"
         '
-        'load_bt
+        'av_bt
         '
-        Me.load_bt.BackColor = System.Drawing.Color.DimGray
-        Me.load_bt.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.load_bt.Enabled = False
-        Me.load_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.load_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.load_bt.Location = New System.Drawing.Point(558, 494)
-        Me.load_bt.Name = "load_bt"
-        Me.load_bt.Size = New System.Drawing.Size(155, 34)
-        Me.load_bt.TabIndex = 164
-        Me.load_bt.Text = "Achievements"
-        Me.load_bt.UseVisualStyleBackColor = False
+        Me.av_bt.BackColor = System.Drawing.Color.DimGray
+        Me.av_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.av_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.av_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.av_bt.Location = New System.Drawing.Point(558, 494)
+        Me.av_bt.Name = "av_bt"
+        Me.av_bt.Size = New System.Drawing.Size(155, 34)
+        Me.av_bt.TabIndex = 164
+        Me.av_bt.Text = "Achievements"
+        Me.av_bt.UseVisualStyleBackColor = False
         '
         'Glyphs_bt
         '
@@ -2295,7 +2294,7 @@ Partial Class CharacterOverview
         Me.bagpanel.Controls.Add(Me.Panel14)
         Me.bagpanel.Controls.Add(Me.Panel15)
         Me.bagpanel.Controls.Add(Me.Panel16)
-        Me.bagpanel.Location = New System.Drawing.Point(772, 334)
+        Me.bagpanel.Location = New System.Drawing.Point(771, 334)
         Me.bagpanel.Name = "bagpanel"
         Me.bagpanel.Size = New System.Drawing.Size(331, 192)
         Me.bagpanel.TabIndex = 178
@@ -2865,7 +2864,7 @@ Partial Class CharacterOverview
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Glyphs_bt)
-        Me.Controls.Add(Me.load_bt)
+        Me.Controls.Add(Me.av_bt)
         Me.Controls.Add(Me.class_lbl)
         Me.Controls.Add(Me.race_lbl)
         Me.Controls.Add(Me.level_lbl)
@@ -3198,7 +3197,7 @@ Partial Class CharacterOverview
     Friend WithEvents level_lbl As System.Windows.Forms.Label
     Friend WithEvents race_lbl As System.Windows.Forms.Label
     Friend WithEvents class_lbl As System.Windows.Forms.Label
-    Friend WithEvents load_bt As System.Windows.Forms.Button
+    Friend WithEvents av_bt As System.Windows.Forms.Button
     Friend WithEvents Glyphs_bt As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button4 As System.Windows.Forms.Button

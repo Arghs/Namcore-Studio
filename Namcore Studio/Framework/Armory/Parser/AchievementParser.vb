@@ -32,12 +32,13 @@ Public Class AchievementParser
     Public Shared Sub loadAchievements(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
         Dim player As Character = GetCharacterSetBySetId(setId)
+        player.Achievements = New List(Of Achievement)
         Try
             LogAppend("Loading character achievement information", "AchievementParser_loadAchievements", True)
             Dim avContext As String = client.DownloadString(apiLink & "?fields=achievements")
             Dim avStr As String = splitString(avContext, "{""achievementsCompleted"":[", "],""") & ","
             Dim timeStr As String = splitString(avContext, """achievementsCompletedTimestamp"":[", "],""")
-            If Not avStr.Length > 5 Then
+            If avStr.Length > 5 Then
                 Dim loopcounter As Integer = 0
                 Dim excounter As Integer = UBound(Split(avStr, ","))
                 Dim partsAV() As String = avStr.Split(","c)
@@ -54,7 +55,8 @@ Public Class AchievementParser
                     LogAppend("Adding achievement " & avId & " with timestamp " & timeStamp, "AchievementParser_loadAchievements", False)
                     Dim av As New Achievement
                     av.Id = TryInt(avId)
-                    av.GainDate = timeStamp
+                    av.GainDate = TryInt(timeStamp)
+                    av.OwnerSet = setId
                     player.Achievements.Add(av)
                 Loop Until loopcounter = excounter
                 SetCharacterSet(setId, player)

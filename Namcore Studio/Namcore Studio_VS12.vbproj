@@ -75,6 +75,13 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Forms\Achievements_interface.Designer.vb">
+      <DependentUpon>Achievements_interface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Achievements_interface.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Armory_interface.Designer.vb">
       <DependentUpon>Armory_interface.vb</DependentUpon>
     </Compile>
@@ -163,6 +170,7 @@
     <Compile Include="Framework\Database\CommandHandler.vb" />
     <Compile Include="Framework\Database\ConnectionHandler.vb" />
     <Compile Include="Framework\Database\dbStruc_check.vb" />
+    <Compile Include="Framework\Extension\date2timestamp.vb" />
     <Compile Include="Framework\Functions\Basics.vb" />
     <Compile Include="Framework\Functions\Conversions.vb" />
     <Compile Include="Framework\Functions\Interface\Interface_Operator.vb" />
@@ -206,6 +214,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\Achievements_interface.resx">
+      <DependentUpon>Achievements_interface.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Armory_interface.resx">
       <DependentUpon>Armory_interface.vb</DependentUpon>
     </EmbeddedResource>
@@ -259,9 +270,6 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Resources\enchant_name_de.csv" />
-    <None Include="Resources\enchant_name_en.csv" />
-    <None Include="Resources\talent.csv" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="References\mysql.data.dll" />
@@ -271,16 +279,18 @@
     <Content Include="Resources\trash_%28delete%29_16x16.gif" />
     <None Include="Resources\namcore_bg2.jpg" />
     <None Include="Resources\namcore_bg1.jpg" />
-    <None Include="Resources\glyphproperties.txt" />
-    <None Include="Resources\glyphproperties_335.txt" />
-    <None Include="Resources\glyphproperties_434.txt" />
     <None Include="Resources\empty.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\libnc\libnc.vbproj">
+      <Project>{8db60c89-9fff-48ec-b3ff-d563371b6f73}</Project>
+      <Name>libnc</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

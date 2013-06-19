@@ -1,0 +1,8 @@
+F:\Projekte\Visual Studio\Namcore-Studio\libnc\bin\Debug\libnc.dll
+F:\Projekte\Visual Studio\Namcore-Studio\libnc\bin\Debug\libnc.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\libnc\bin\Debug\libnc.xml
+F:\Projekte\Visual Studio\Namcore-Studio\libnc\obj\Debug\libnc.Resources.resources
+F:\Projekte\Visual Studio\Namcore-Studio\libnc\obj\Debug\libnc.vbproj.GenerateResource.Cache
+F:\Projekte\Visual Studio\Namcore-Studio\libnc\obj\Debug\libnc.dll
+F:\Projekte\Visual Studio\Namcore-Studio\libnc\obj\Debug\libnc.xml
+F:\Projekte\Visual Studio\Namcore-Studio\libnc\obj\Debug\libnc.pdb

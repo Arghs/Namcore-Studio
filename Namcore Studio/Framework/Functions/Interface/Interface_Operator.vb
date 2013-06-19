@@ -29,6 +29,9 @@ Public Class Interface_Operator
         ' Dim x As String = temporaryCharacterInformation.Item(1)
 
         Dim ms As MemoryStream = Serialize(globChars)
+        If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt") Then
+            My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt")
+        End If
         Dim fs As New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt", FileMode.OpenOrCreate)
         fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
         fs.Close()

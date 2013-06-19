@@ -1,0 +1,127 @@
+catid;catmainid;catname
+1;-1;Statistiken
+21;1;Spieler gegen Spieler
+81;-1;Heldentaten
+92;-1;Allgemein
+95;-1;Spieler gegen Spieler
+96;-1;Quests
+97;-1;Erkundung
+122;1;Tode
+123;122;Arenen
+124;122;Schlachtfelder
+125;122;Dungeons
+126;122;Welt
+127;122;Wiederbelebung
+128;1;Siege
+130;1;Charakter
+131;1;Körpersprache
+132;1;Fertigkeiten
+133;1;Quests
+134;1;Reise
+135;128;Kreaturen
+136;128;Ehrenhafte Siege
+137;128;Todesstöße
+140;130;Vermögen
+141;1;Kampf
+145;130;Verbrauchsgüter
+147;130;Ruf
+152;21;Gewertete Arenen
+153;21;Schlachtfelder
+154;21;Welt
+155;-1;Weltereignisse
+156;155;Winterhauch
+158;155;Schlotternächte
+159;155;Nobelgarten
+160;155;Mondfest
+161;155;Sonnenwende
+162;155;Braufest
+163;155;Kinderwoche
+165;95;Arena
+168;-1;Dungeons & Schlachtzüge
+169;-1;Berufe
+170;169;Kochkunst
+171;169;Angeln
+172;169;Erste Hilfe
+173;132;Berufe
+178;132;Sekundäre Fertigkeiten
+187;155;Liebe liegt in der Luft
+191;130;Ausrüstung
+201;-1;Ruf
+14777;97;Östliche Königreiche
+14778;97;Kalimdor
+14779;97;Scherbenwelt
+14780;97;Nordend
+14801;95;Alteractal
+14802;95;Arathibecken
+14803;95;Auge des Sturms
+14804;95;Kriegshymnenschlucht
+14805;168;The Burning Crusade
+14806;168;Wrath of the Lich King - Dungeons
+14807;1;Dungeons & Schlachtzüge
+14808;168;Classic
+14821;14807;Classic
+14822;14807;The Burning Crusade
+14823;14807;Wrath of the Lich King
+14861;96;Östliche Königreiche
+14862;96;Scherbenwelt
+14863;96;Nordend
+14864;201;Classic
+14865;201;The Burning Crusade
+14866;201;Wrath of the Lich King
+14881;95;Strand der Uralten
+14901;95;Tausendwinter
+14922;168;Wrath of the Lich King - Schlachtzüge
+14941;155;Argentumturnier
+14981;155;Die Pilgerfreuden
+15003;95;Insel der Eroberung
+15067;168;Cataclysm - Dungeons
+15068;168;Cataclysm - Schlachtzüge
+15069;97;Cataclysm
+15070;96;Cataclysm
+15071;169;Archäologie
+15072;201;Cataclysm
+15073;95;Schlacht um Gilneas
+15074;95;Zwillingsgipfel
+15075;95;Tol Barad
+15076;-1;Gilde
+15077;15076;Quests
+15078;15076;Spieler gegen Spieler
+15079;15076;Dungeons & Schlachtzüge
+15080;15076;Berufe
+15081;96;Kalimdor
+15082;15079;Classic
+15083;15079;Cataclysm - Dungeons
+15084;15079;The Burning Crusade
+15085;15079;Wrath of the Lich King - Dungeons
+15086;15079;Wrath of the Lich King - Schlachtzüge
+15087;15079;Cataclysm - Schlachtzüge
+15088;15076;Allgemein
+15089;15076;Ruf
+15090;15078;Schlachtfelder
+15091;15078;Arena
+15092;95;Gewertete Schlachtfelder
+15093;15076;Heldentaten der Gilde
+15096;14807;Cataclysm
+15101;155;Dunkelmond-Jahrmarkt
+15106;168;Pandaria - Dungeons
+15107;168;Pandaria - Schlachtzüge
+15110;96;Pandaria
+15113;97;Pandaria
+15114;201;Pandaria
+15115;168;Dungeon-Herausforderungen
+15117;-1;Haustierkämpfe
+15118;15117;Sammeln
+15119;15117;Kampf
+15120;15117;Stufe
+15151;15079;Dungeon-Herausforderungen
+15153;15079;Pandaria - Dungeons
+15154;15079;Pandaria - Schlachtzüge
+15162;95;Silberbruchmine
+15163;95;Tempel von Katmogu
+15164;14807;Mists of Pandaria
+15165;-1;Szenarien
+15171;14807;Dungeon-Herausforderungen
+15176;1;Ehemalige Erfolge
+15202;155;Kampfgilde
+15218;95;Tiefenwindschlucht
+15219;1;Haustierkämpfe

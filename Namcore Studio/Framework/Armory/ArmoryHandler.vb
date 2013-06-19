@@ -90,8 +90,8 @@ Public Class ArmoryHandler
             Player.SetIndex = setId
             AddCharacterSet(setId, Player)
             loadReputation(setId, APILink)
-            loadAchievements(setId, APILink)
             loadGlyphs(setId, APILink)
+            loadAchievements(setId, APILink)
             loadItems(CharacterContext, setId)
             LogAppend("Character loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
         Next

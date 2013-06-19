@@ -52,7 +52,7 @@ Public Class TalentCreation
     Private Shared Function LoadTalentTable() As DataTable
         Try
             Dim dt As New DataTable()
-            Dim stext As String = My.Resources.Talent
+            Dim stext As String = libnc.My.Resources.talent
             Dim a() As String
             Dim strArray As String()
             a = Split(stext, vbNewLine)

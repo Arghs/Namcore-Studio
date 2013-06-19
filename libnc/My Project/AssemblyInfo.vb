@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Die Werte der Assemblyattribute überprüfen
 
-<Assembly: AssemblyTitle("Namcore Studio")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyTitle("libnc")> 
+<Assembly: AssemblyDescription("Namcore Studio library")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Namcore Studio")> 
-<Assembly: AssemblyCopyright("Copyright © 2013 megasus")> 
+<Assembly: AssemblyProduct("libnc")> 
+<Assembly: AssemblyCopyright("Copyright ©  2013")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(True)> 
 
 'Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-<Assembly: Guid("abdcf441-3448-404f-b465-988469a7b1a3")> 
+<Assembly: Guid("9d6d8007-5796-4e5b-9a82-a1eeec122e85")> 
 
 ' Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 '
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.0.6.45149")> 
-<Assembly: AssemblyFileVersion("0.0.6.45149")> 
+<Assembly: AssemblyVersion("0.0.1.24925")> 
+<Assembly: AssemblyFileVersion("0.0.1.24925")> 

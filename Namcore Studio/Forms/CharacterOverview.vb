@@ -686,4 +686,14 @@ Public Class CharacterOverview
             End If
         End If
     End Sub
+
+    Private Sub load_bt_Click(sender As Object, e As EventArgs) Handles av_bt.Click
+        Achievements_interface.Close()
+        Dim avinterface As New Achievements_interface
+        Userwait.Show()
+        Application.DoEvents()
+        avinterface.prepareInterface(tmpSetId)
+        avinterface.Show()
+        Userwait.Close()
+    End Sub
 End Class

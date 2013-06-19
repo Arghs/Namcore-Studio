@@ -86,7 +86,7 @@ End Class
 Public Class Achievement
 
     Public Id As Integer
-    Public GainDate As String
+    Public GainDate As Integer
     Public OwnerSet As Integer
 
     Public Sub New()
