@@ -71,7 +71,8 @@ Public Class GlobalVariables
     Public Shared accountInfo As List(Of Account)
     Public Shared createAccountsIndex As List(Of Integer)
     Public Shared charactersToCreate As List(Of String)
-
+    Public Shared tempAchievementInfo As List(Of ListViewItem)
+    Public Shared tempAchievementInfoIndex As String
 End Class
 <Serializable()> _
 Public Class GlobalCharVars

@@ -72,3 +72,7 @@ F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libnc.dll
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libnc.pdb
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libnc.xml
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Achievements_interface.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Achievements_interface.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\libnc.dll
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\libnc.pdb
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\libnc.xml

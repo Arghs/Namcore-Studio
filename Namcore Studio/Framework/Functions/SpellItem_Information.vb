@@ -400,6 +400,7 @@ Public Class SpellItem_Information
                     LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvCategoryById", False, True)
                     Return "Error"
                 Else
+                    If maincatid = "-1" Then Return subcatname
                     Dim maincatname As String = Execute("catid", maincatid, tempAvCatTable, 2)
                     If maincatname = "-" Then
                         LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvCategoryById", False, True)

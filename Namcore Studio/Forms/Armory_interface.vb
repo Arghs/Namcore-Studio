@@ -198,6 +198,10 @@ Public Class Armory_interface
         procStatus.ArmoryWorker = New System.ComponentModel.BackgroundWorker
         procStatus.ArmoryWorker.WorkerReportsProgress = True
         procStatus.ArmoryWorker.WorkerSupportsCancellation = True
+
+        If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt") Then
+            My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt")
+        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

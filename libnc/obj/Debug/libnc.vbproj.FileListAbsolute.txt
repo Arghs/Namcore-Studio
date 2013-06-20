@@ -6,3 +6,11 @@ F:\Projekte\Visual Studio\Namcore-Studio\libnc\obj\Debug\libnc.vbproj.GenerateRe
 F:\Projekte\Visual Studio\Namcore-Studio\libnc\obj\Debug\libnc.dll
 F:\Projekte\Visual Studio\Namcore-Studio\libnc\obj\Debug\libnc.xml
 F:\Projekte\Visual Studio\Namcore-Studio\libnc\obj\Debug\libnc.pdb
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\libnc\bin\Debug\libnc.dll
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\libnc\bin\Debug\libnc.pdb
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\libnc\bin\Debug\libnc.xml
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\libnc\obj\Debug\libnc.Resources.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\libnc\obj\Debug\libnc.vbproj.GenerateResource.Cache
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\libnc\obj\Debug\libnc.dll
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\libnc\obj\Debug\libnc.xml
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\libnc\obj\Debug\libnc.pdb

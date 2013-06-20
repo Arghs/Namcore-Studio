@@ -24,11 +24,17 @@
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Process_status
 Imports System.Threading
+Imports System.IO
 
 Public Class EventLogging
     Public Delegate Sub IncomingEventDelegate(ByVal _event As String)
     Shared lastprogress As Integer
+    Shared isbusy As Boolean = False
     Public Shared Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
+        While isbusy
+
+        End While
+        isbusy = True
         userOut = True
         If iserror = False Then
             If userOut = True Then
@@ -47,12 +53,16 @@ Public Class EventLogging
                 eventlog_full = eventlog_full & vbNewLine & "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event
             End If
         End If
+        isbusy = False
     End Sub
     Private Shared Sub appendStatus(ByVal _status As String, Optional progress As Integer = 0)
         proccessTXT = proccessTXT & _status & vbNewLine
         If lastprogress = Nothing Then lastprogress = 0
         If progress = 0 Then progress = lastprogress
         lastprogress = progress
+        Dim fs As New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt", FileMode.OpenOrCreate, System.Text.Encoding.Default)
+        fs.WriteLine(_status)
+        fs.Close()
         If procStatus.ArmoryWorker.IsBusy Then
             Try
                 procStatus.ArmoryWorker.ReportProgress(progress)
@@ -65,7 +75,7 @@ Public Class EventLogging
         End If
 
     End Sub
-    
+
     Public Shared Sub LogClear()
         eventlog = ""
     End Sub
