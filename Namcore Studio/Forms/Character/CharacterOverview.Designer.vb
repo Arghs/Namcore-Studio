@@ -1946,7 +1946,6 @@ Partial Class CharacterOverview
         '
         Me.Button2.BackColor = System.Drawing.Color.DimGray
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.Enabled = False
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Button2.Location = New System.Drawing.Point(558, 534)

@@ -4,6 +4,7 @@ Imports Namcore_Studio.Conversions
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.EventLogging
 Imports System.Threading
+
 Public Class Achievements_interface
     Dim currentpage As Integer
     Dim tarsetid As Integer
@@ -13,7 +14,7 @@ Public Class Achievements_interface
     Dim trd1 As New Thread(AddressOf loadpart1)
     Dim trd2 As New Thread(AddressOf loadpart2)
     Private Sub Achievements_interface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+       
     End Sub
     Public Sub prepareInterface(ByVal setId As Integer)
         If tempAchievementInfo Is Nothing Then tempAchievementInfo = New List(Of ListViewItem)
@@ -28,7 +29,7 @@ Public Class Achievements_interface
         Else
             trd1.Start()
         End If
-    
+
 
     End Sub
     Private Sub loadpart1()

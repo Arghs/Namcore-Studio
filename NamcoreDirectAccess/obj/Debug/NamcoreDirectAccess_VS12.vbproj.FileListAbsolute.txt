@@ -14,3 +14,11 @@ C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\NamcoreDi
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\NamcoreDirectAccess\bin\Debug\NamcoreDirectAccess.xml
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess.Resources.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess_VS12.vbproj.GenerateResource.Cache
+F:\Projekte\Visual Studio\Namcore-Studio\NamcoreDirectAccess\bin\Debug\NamcoreDirectAccess.exe
+F:\Projekte\Visual Studio\Namcore-Studio\NamcoreDirectAccess\bin\Debug\NamcoreDirectAccess.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\NamcoreDirectAccess\bin\Debug\NamcoreDirectAccess.xml
+F:\Projekte\Visual Studio\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess.Resources.resources
+F:\Projekte\Visual Studio\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess_VS12.vbproj.GenerateResource.Cache
+F:\Projekte\Visual Studio\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess.exe
+F:\Projekte\Visual Studio\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess.xml
+F:\Projekte\Visual Studio\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess.pdb

@@ -696,4 +696,14 @@ Public Class CharacterOverview
         avinterface.Show()
         Userwait.Close()
     End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Reputation_interface.Close()
+        Dim repinterface As New Reputation_interface
+        Userwait.Show()
+        Application.DoEvents()
+        repinterface.prepareRepInterface(tmpSetId)
+        repinterface.Show()
+        Userwait.Close()
+    End Sub
 End Class

@@ -53,6 +53,14 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="libnc, Version=0.0.1.24925, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\libnc.dll</HintPath>
+    </Reference>
+    <Reference Include="libncadvanced, Version=0.0.1.14912, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\libncadvanced.dll</HintPath>
+    </Reference>
     <Reference Include="mysql.data, Version=5.2.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\mysql.data.dll</HintPath>
@@ -76,10 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="Forms\Achievements_interface.Designer.vb">
+    <Compile Include="Forms\Character\Achievements_interface.Designer.vb">
       <DependentUpon>Achievements_interface.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Achievements_interface.vb">
+    <Compile Include="Forms\Character\Achievements_interface.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Armory_interface.Designer.vb">
@@ -88,10 +96,10 @@
     <Compile Include="Forms\Armory_interface.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CharacterOverview.designer.vb">
+    <Compile Include="Forms\Character\CharacterOverview.designer.vb">
       <DependentUpon>CharacterOverview.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CharacterOverview.vb">
+    <Compile Include="Forms\Character\CharacterOverview.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\DB_connect.Designer.vb">
@@ -112,10 +120,10 @@
     <Compile Include="Forms\Filter_characters.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Glyphs_interface.Designer.vb">
+    <Compile Include="Forms\Character\Glyphs_interface.Designer.vb">
       <DependentUpon>Glyphs_interface.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Glyphs_interface.vb">
+    <Compile Include="Forms\Character\Glyphs_interface.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Prep_chartrans.Designer.vb">
@@ -128,6 +136,12 @@
       <DependentUpon>Process_status.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\Process_status.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Character\Reputation_interface.Designer.vb">
+      <DependentUpon>Reputation_interface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Character\Reputation_interface.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Userwait.vb">
@@ -152,7 +166,7 @@
     <Compile Include="Framework\Constants\Character.vb" />
     <Compile Include="Framework\Constants\DBStructure.vb" />
     <Compile Include="Framework\Constants\GlobalVariables.vb" />
-    <Compile Include="Framework\Constants\Profile.vb" />
+    <Compile Include="Framework\Core\Profile.vb" />
     <Compile Include="Framework\Core\Account_CharacterInformationProcessing.vb" />
     <Compile Include="Framework\Core\CharacterAchievementHandler.vb" />
     <Compile Include="Framework\Core\CharacterActionsHandler.vb" />
@@ -214,14 +228,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\Achievements_interface.resx">
+    <EmbeddedResource Include="Forms\Character\Achievements_interface.resx">
       <DependentUpon>Achievements_interface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Armory_interface.resx">
       <DependentUpon>Armory_interface.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CharacterOverview.resx">
+    <EmbeddedResource Include="Forms\Character\CharacterOverview.resx">
       <DependentUpon>CharacterOverview.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Character\Reputation_interface.resx">
+      <DependentUpon>Reputation_interface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DB_connect.resx">
       <DependentUpon>DB_connect.vb</DependentUpon>
@@ -232,7 +249,7 @@
     <EmbeddedResource Include="Forms\Filter_characters.resx">
       <DependentUpon>Filter_characters.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Glyphs_interface.resx">
+    <EmbeddedResource Include="Forms\Character\Glyphs_interface.resx">
       <DependentUpon>Glyphs_interface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Prep_chartrans.resx">
@@ -273,24 +290,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="References\mysql.data.dll" />
+    <None Include="Resources\INV_Misc_QuestionMark.jpg" />
     <Content Include="Resources\namcore_bg.jpg" />
     <None Include="Resources\plusico.png" />
     <Content Include="Resources\Refresh-icon.png" />
+    <None Include="Resources\repbg.jpg" />
     <Content Include="Resources\trash_%28delete%29_16x16.gif" />
     <None Include="Resources\namcore_bg2.jpg" />
     <None Include="Resources\namcore_bg1.jpg" />
     <None Include="Resources\empty.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\libnc\libnc.vbproj">
-      <Project>{8db60c89-9fff-48ec-b3ff-d563371b6f73}</Project>
-      <Name>libnc</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

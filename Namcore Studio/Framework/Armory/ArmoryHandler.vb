@@ -98,7 +98,5 @@ Public Class ArmoryHandler
         LogAppend("All characters loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
 
     End Sub
-    Private Sub test(ByVal ArmoryLink As String)
-
-    End Sub
+    
 End Class

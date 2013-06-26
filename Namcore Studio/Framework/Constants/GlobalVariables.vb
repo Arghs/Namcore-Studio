@@ -73,6 +73,7 @@ Public Class GlobalVariables
     Public Shared charactersToCreate As List(Of String)
     Public Shared tempAchievementInfo As List(Of ListViewItem)
     Public Shared tempAchievementInfoIndex As String
+    Public Shared offlineExtension As Boolean
 End Class
 <Serializable()> _
 Public Class GlobalCharVars

@@ -24,6 +24,7 @@
 Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.Conversions
 Imports Namcore_Studio.SpellItem_Information
+Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Basics
 Public Class ItemParser
     Public Shared Sub loadItems(ByVal source As String, ByVal setId As Integer)
@@ -143,7 +144,7 @@ Public Class ItemParser
         charItem.slot = slot
         If charItem.id = Nothing Then Return Nothing '//Item ID not found
         charItem.name = splitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
-        charItem.image = LoadImageFromUrl(splitString(relevantItemContext, "<img src=""", """ alt"))
+        If offlineExtension = True Then charItem.image = GetIconByItemId(charItem.id) Else  : charItem.image = LoadImageFromUrl(splitString(relevantItemContext, "<img src=""", """ alt"))
         charItem.rarity = TryInt(splitString(relevantItemContext, "item-quality-", """ style="))
         Dim socketContext As String
         If relevantItemContext.Contains("<span class=""sockets"">") Then
@@ -153,20 +154,23 @@ Public Class ItemParser
             Dim oneSocketContext As String = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
             If Not oneSocketContext.Length <= 49 Then
                 charItem.socket1_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
-                charItem.socket1_pic = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt="""))
+                If offlineExtension = True Then charItem.socket1_pic = GetIconByItemId(charItem.socket1_id) Else  : charItem.socket1_pic = LoadImageFromUrl(splitString(oneSocketContext,
+                        "<img src=""", """ alt="""))
                 charItem.socket1_name = GetGemEffectName(charItem.socket1_id)
             End If
             If socketCount > 1 Then
                 socketContext = Replace(socketContext, "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing, , 1)
                 oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                 charItem.socket2_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
-                charItem.socket2_pic = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt="""))
+                If offlineExtension = True Then charItem.socket2_pic = GetIconByItemId(charItem.socket2_id) Else  : charItem.socket2_pic = LoadImageFromUrl(splitString(oneSocketContext,
+                        "<img src=""", """ alt="""))
                 charItem.socket2_name = GetGemEffectName(charItem.socket2_id)
                 If socketCount > 2 Then
                     socketContext = Replace(socketContext, "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing, , 1)
                     oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                     charItem.socket3_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
-                    charItem.socket3_pic = LoadImageFromUrl(splitString(oneSocketContext, "<img src=""", """ alt="""))
+                    If offlineExtension = True Then charItem.socket3_pic = GetIconByItemId(charItem.socket3_id) Else  : charItem.socket3_pic = LoadImageFromUrl(splitString(oneSocketContext,
+                            "<img src=""", """ alt="""))
                     charItem.socket3_name = GetGemEffectName(charItem.socket3_id)
                 End If
             End If

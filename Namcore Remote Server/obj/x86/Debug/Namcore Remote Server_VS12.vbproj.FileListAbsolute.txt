@@ -18,3 +18,12 @@ C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore R
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.exe
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.xml
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Remote Server\bin\Debug\Namcore Remote Server.exe
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Remote Server\bin\Debug\Namcore Remote Server.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Remote Server\bin\Debug\Namcore Remote Server.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Remote Server\bin\Debug\mysql.data.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore_Remote_Server.Resources.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server_VS12.vbproj.GenerateResource.Cache
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.exe
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Remote Server\obj\x86\Debug\Namcore Remote Server.pdb

@@ -31,6 +31,7 @@ Imports System.Net
 Public Class SpellItem_Information
     Shared tempAvTable As DataTable
     Shared tempAvCatTable As DataTable
+    Shared tempDisplayInfoTable As DataTable
 
     Public Shared Function GetGlyphIdByItemId(ByVal itemid As Integer) As Integer
         LogAppend("Loading GlyphId by ItemId " & itemid.ToString, "SpellItem_Information_GetGlyphIdByItemId", False)
@@ -53,15 +54,70 @@ Public Class SpellItem_Information
     End Function
     Public Shared Function GetIconByItemId(ByVal itemid As Integer) As Image
         If itemid = 0 Then Return Nothing
-        Dim client As New WebClient
-        Try
-            LogAppend("Loading icon by ItemId " & itemid.ToString, "SpellItem_Information_GetIconByItemId", False)
-            Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
-            Return LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & (splitString(itemContext, "<icon displayId=""" & splitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>")).ToLower() & ".jpg")
-        Catch ex As Exception
-            LogAppend("Error while loading icon! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetIconByItemId", False, True)
-            Return Nothing
-        End Try
+        LogAppend("Loading icon by ItemId " & itemid.ToString, "SpellItem_Information_GetIconByItemId", False)
+        If offlineExtension = True Then
+
+            If tempDisplayInfoTable Is Nothing Then
+                Try
+                    tempDisplayInfoTable = New DataTable()
+                    Dim stext As String
+                    If My.Settings.language = "de" Then
+                        stext = libnc.My.Resources.ItemDisplayInfo
+                    Else
+                        stext = libnc.My.Resources.ItemDisplayInfo 'todo
+                    End If
+                    Dim a() As String
+                    Dim strArray As String()
+                    a = Split(stext, vbNewLine)
+                    For i = 0 To UBound(a)
+                        strArray = a(i).Split(CChar(";"))
+                        If i = 0 Then
+                            For Each value As String In strArray
+                                tempDisplayInfoTable.Columns.Add(value.Trim())
+                            Next
+                        Else
+                            tempDisplayInfoTable.Rows.Add(strArray)
+                        End If
+                    Next i
+                Catch ex As Exception
+                    LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetIconByItemId", False, True)
+                    Return My.Resources.INV_Misc_QuestionMark
+                End Try
+            End If
+            Dim nameresult As String = Execute("itemid", itemid.ToString(), tempDisplayInfoTable)
+            If nameresult = "-" Then
+                LogAppend("Entry not found -> Searching online", "SpellItem_Information_GetIconByItemId", False, True)
+                Dim client As New WebClient
+                Try
+                    Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
+                    Try
+                        Return libncadvanced.My.Resources.ResourceManager.GetObject(splitString(itemContext, "<icon displayId=""" & splitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>"))
+                    Catch ex As Exception
+                        LogAppend("Icon not found -> Returning error image", "SpellItem_Information_GetIconByItemId", False, True)
+                        Return My.Resources.INV_Misc_QuestionMark
+                    End Try
+                Catch
+                    LogAppend("Icon not found -> Returning error image", "SpellItem_Information_GetIconByItemId", False, True)
+                    Return My.Resources.INV_Misc_QuestionMark
+                End Try
+            Else
+                Try
+                    Return libncadvanced.My.Resources.ResourceManager.GetObject(nameresult)
+                Catch ex As Exception
+                    LogAppend("Icon not found -> Searching online", "SpellItem_Information_GetIconByItemId", False, True)
+                    GoTo LookOnline
+                End Try
+            End If
+LookOnline: Else
+            Dim client As New WebClient
+            Try
+                Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
+                Return LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & (splitString(itemContext, "<icon displayId=""" & splitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>")).ToLower() & ".jpg")
+            Catch ex As Exception
+                LogAppend("Error while loading icon! -> Returning error image -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetIconByItemId", False, True)
+                Return My.Resources.INV_Misc_QuestionMark
+            End Try
+        End If
     End Function
     Public Shared Function GetRarityByItemId(ByVal itemid As Integer) As Integer
         If itemid = 0 Then Return Nothing

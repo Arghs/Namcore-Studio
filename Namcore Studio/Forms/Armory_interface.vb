@@ -25,6 +25,7 @@ Imports System.Resources
 Imports System.Net
 Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
+Imports System.Linq
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.ArmoryHandler
 Imports Namcore_Studio.GlobalVariables
@@ -154,10 +155,7 @@ Public Class Armory_interface
         globChars.CharacterSets = New List(Of Character)
         trdrunnuing = True
         My.Settings.language = "de" 'todo for testing only
-        Dim urllst As New List(Of String)
-        For Each lstitm As ListViewItem In char_lst.Items
-            urllst.Add(lstitm.SubItems(3).Text)
-        Next
+        Dim urllst As List(Of String) = (From lstitm As ListViewItem In char_lst.Items Select lstitm.SubItems(3).Text).ToList()
         Dim d As New Data2Thread() With {.charLST = urllst}
         procStatus.UpdateGui()
         procStatus.ArmoryWorker.RunWorkerAsync(d)
@@ -191,6 +189,7 @@ Public Class Armory_interface
 
 
     Private Sub Armory_interface_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        offlineExtension = False
         globChars = New GlobalCharVars()
         Process_status.Close()
         procStatus = New Process_status
@@ -202,6 +201,8 @@ Public Class Armory_interface
         If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt") Then
             My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt")
         End If
+
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -234,7 +235,7 @@ Public Class Armory_interface
         Interface_Operator.prepareLive_armory()
     End Sub
 
-   
-   
-  
+
+
+
 End Class

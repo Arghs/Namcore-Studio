@@ -68,7 +68,6 @@ F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_St
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Resources.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.UserMessages.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbproj.GenerateResource.Cache
-F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libnc.dll
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libnc.pdb
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libnc.xml
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Achievements_interface.resources
@@ -76,3 +75,6 @@ C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore S
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\libnc.dll
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\libnc.pdb
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\libnc.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libncadvanced.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libncadvanced.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Reputation_interface.resources

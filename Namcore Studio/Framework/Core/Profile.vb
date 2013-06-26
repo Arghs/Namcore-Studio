@@ -127,7 +127,10 @@ Public Class Reputation
     Public faction As Integer
     Public flags As Integer
     Public standing As Integer
-
+    Public name As String
+    Public value As Integer
+    Public max As Integer
+    Public status As Integer '0=stranger; 1=acquaintance; 2=unfriendly; 3=neutral; 4=friendly; 5=honored; 6=revered; 7=exalted
     Public Sub New()
 
     End Sub
