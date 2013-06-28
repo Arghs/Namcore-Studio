@@ -23,6 +23,7 @@ Partial Class Reputation_interface
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.referencePanel = New System.Windows.Forms.Panel()
+        Me.reference_standing_combo = New System.Windows.Forms.ComboBox()
         Me.reference_txtbox = New System.Windows.Forms.TextBox()
         Me.reference_counter_lbl = New System.Windows.Forms.Label()
         Me.reference_trackbar = New System.Windows.Forms.TrackBar()
@@ -37,6 +38,7 @@ Partial Class Reputation_interface
         '
         'referencePanel
         '
+        Me.referencePanel.Controls.Add(Me.reference_standing_combo)
         Me.referencePanel.Controls.Add(Me.reference_txtbox)
         Me.referencePanel.Controls.Add(Me.reference_counter_lbl)
         Me.referencePanel.Controls.Add(Me.reference_trackbar)
@@ -44,12 +46,20 @@ Partial Class Reputation_interface
         Me.referencePanel.Controls.Add(Me.reference_name_lbl)
         Me.referencePanel.Location = New System.Drawing.Point(1069, 429)
         Me.referencePanel.Name = "referencePanel"
-        Me.referencePanel.Size = New System.Drawing.Size(702, 106)
+        Me.referencePanel.Size = New System.Drawing.Size(737, 106)
         Me.referencePanel.TabIndex = 0
+        '
+        'reference_standing_combo
+        '
+        Me.reference_standing_combo.FormattingEnabled = True
+        Me.reference_standing_combo.Location = New System.Drawing.Point(616, 17)
+        Me.reference_standing_combo.Name = "reference_standing_combo"
+        Me.reference_standing_combo.Size = New System.Drawing.Size(102, 21)
+        Me.reference_standing_combo.TabIndex = 7
         '
         'reference_txtbox
         '
-        Me.reference_txtbox.Location = New System.Drawing.Point(616, 65)
+        Me.reference_txtbox.Location = New System.Drawing.Point(616, 54)
         Me.reference_txtbox.Name = "reference_txtbox"
         Me.reference_txtbox.Size = New System.Drawing.Size(77, 20)
         Me.reference_txtbox.TabIndex = 6
@@ -58,11 +68,11 @@ Partial Class Reputation_interface
         '
         Me.reference_counter_lbl.AutoSize = True
         Me.reference_counter_lbl.BackColor = System.Drawing.Color.Black
-        Me.reference_counter_lbl.Font = New System.Drawing.Font("Cooper Black", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.reference_counter_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.reference_counter_lbl.ForeColor = System.Drawing.Color.White
         Me.reference_counter_lbl.Location = New System.Drawing.Point(359, 22)
         Me.reference_counter_lbl.Name = "reference_counter_lbl"
-        Me.reference_counter_lbl.Size = New System.Drawing.Size(61, 15)
+        Me.reference_counter_lbl.Size = New System.Drawing.Size(54, 16)
         Me.reference_counter_lbl.TabIndex = 2
         Me.reference_counter_lbl.Text = "50/1000"
         '
@@ -114,7 +124,7 @@ Partial Class Reputation_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(825, 642)
+        Me.ClientSize = New System.Drawing.Size(1841, 642)
         Me.Controls.Add(Me.RepLayoutPanel)
         Me.Controls.Add(Me.referencePanel)
         Me.Name = "Reputation_interface"
@@ -134,4 +144,5 @@ Partial Class Reputation_interface
     Friend WithEvents reference_sliderbg_panel As System.Windows.Forms.Panel
     Friend WithEvents reference_txtbox As System.Windows.Forms.TextBox
     Friend WithEvents RepLayoutPanel As System.Windows.Forms.FlowLayoutPanel
+    Friend WithEvents reference_standing_combo As System.Windows.Forms.ComboBox
 End Class

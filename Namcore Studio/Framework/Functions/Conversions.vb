@@ -176,5 +176,10 @@ Public Class Conversions
         End If
         Return img
     End Function
-
+    Public Shared Function updateReputationStanding(ByRef rep As Reputation) As Reputation
+        'todo
+    End Function
+    Public Shared Function updateReputationValueMax(ByRef rep As Reputation) As Reputation
+        'todo
+    End Function
 End Class

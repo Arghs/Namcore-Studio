@@ -1,5 +1,8 @@
 ﻿Imports System.Drawing
 Imports Namcore_Studio.Basics
+Imports Namcore_Studio.Conversions
+Imports System.Resources
+
 Public Class Reputation_interface
     Dim panelMaxLength As Integer = 454
     Dim panelMinLength As Integer = 5
@@ -9,6 +12,16 @@ Public Class Reputation_interface
         charSetId = setId
         Dim Player As Character = GetCharacterSetBySetId(setId)
         Dim colorTicker As Integer = 0
+        If My.Settings.language = "de" Then
+            'todo
+        Else
+            Dim cnt As Integer = 0
+            Do
+                Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                reference_standing_combo.Items.Add(RM.GetString("standing_" & cnt.ToString))
+                cnt += 1
+            Loop Until cnt = 8
+        End If
         For Each pRepu As Reputation In Player.PlayerReputation
             Dim repPanel As New Panel
             repPanel.Name = "rep" & pRepu.faction.ToString() & "_pnl"
@@ -72,6 +85,28 @@ Public Class Reputation_interface
             valueLbl.Location = reference_counter_lbl.Location
             valueLbl.BringToFront()
             RepLayoutPanel.Controls.Add(repPanel)
+            Dim standingCombo As New ComboBox
+            standingCombo.Name = "rep" & pRepu.faction.ToString() & "_standing_combo"
+            standingCombo.Location = reference_standing_combo.Location
+            For Each itm As Item In reference_standing_combo.Items
+                standingCombo.Items.Add(itm)
+            Next
+            standingCombo.SelectedIndex = pRepu.status
+            Select Case pRepu.status
+                Case 0 : progressPanel.BackColor = Color.DarkRed
+                Case 1 : progressPanel.BackColor = Color.Red
+                Case 2 : progressPanel.BackColor = Color.Red
+                Case 3 : progressPanel.BackColor = Color.Yellow
+                Case 4 : progressPanel.BackColor = Color.Green
+                Case 5 : progressPanel.BackColor = Color.Green
+                Case 6 : progressPanel.BackColor = Color.Green
+                Case 7 : progressPanel.BackColor = Color.LightGreen
+            End Select
+            standingCombo.Tag = pRepu
+            Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+            standingCombo.Text = RM.GetString("standing_" & pRepu.status.ToString)
+            repPanel.Controls.Add(standingCombo)
+            AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
         Next
     End Sub
     Private Sub slider_slide(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -94,6 +129,8 @@ Public Class Reputation_interface
                             For Each subsubCtrl As Control In subCtrl.Controls
                                 If subsubCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_progress_pnl") Then
                                     setPanelPercentage(subsubCtrl, slider.Value / slider.Maximum)
+                                    pCtrl.Tag.value = slider.Value
+                                    pCtrl.Tag = updateReputationStanding(pCtrl.Tag)
                                 End If
                             Next
                         End If
@@ -118,6 +155,8 @@ Public Class Reputation_interface
                             For Each subsubCtrl As Control In subCtrl.Controls
                                 If subsubCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_progress_pnl") Then
                                     setPanelPercentage(subsubCtrl, 0)
+                                    pCtrl.Tag.value = slider.Value
+                                    pCtrl.Tag = updateReputationStanding(pCtrl.Tag)
                                 End If
                             Next
                         End If
@@ -131,8 +170,44 @@ Public Class Reputation_interface
         Dim lengthrange As Integer = panelMaxLength - panelMinLength
         RepPanel.Size = New Point(percentage * lengthrange + panelMinLength, RepPanel.Size.Height)
     End Sub
+    Private Sub StandingChanged(sender As Object, e As EventArgs)
+        Dim combo As ComboBox = sender
+        Dim max As Integer
+        Dim col As Color
+        Select Case combo.SelectedIndex
+            Case 0 : col = Color.DarkRed : max = 8400
+            Case 1 : col = Color.Red : max = 3000
+            Case 2 : col = Color.Red : max = 3000
+            Case 3 : col = Color.Yellow : max = 3000
+            Case 4 : col = Color.Green : max = 6000
+            Case 5 : col = Color.Green : max = 12000
+            Case 6 : col = Color.Green : max = 21000
+            Case 7 : col = Color.LightGreen : max = 999
+        End Select
 
-  
+        For Each pCtrl As Control In RepLayoutPanel.Controls
+            If pCtrl.Name.Contains("rep" & combo.Tag.faction.ToString() & "_pnl") Then
+                pCtrl.Tag.value = 0
+                pCtrl.Tag.max = max
+                pCtrl.Tag.status = combo.SelectedIndex
+                pCtrl.Tag = updateReputationStanding(pCtrl.Tag)
+                DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Value = 0
+                DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Maximum = max
+                DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_value_lbl", pCtrl), Label).Text = "0/" & max.ToString
+                DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_value_txtbox", pCtrl), TextBox).Text = "0"
+                Dim xctrl As Control = findControl("rep" & combo.Tag.faction.ToString() & "_sliderBg_pnl", pCtrl)
+                Dim progresspanel As Control = findControl("rep" & combo.Tag.faction.ToString() & "_progress_pnl", xctrl)
+                DirectCast(progresspanel, Panel).BackColor = col
+                setPanelPercentage(progresspanel, 0)
+            End If
+        Next
+
+
+    End Sub
+    Private Function findControl(ByVal controlname As String, ByVal repuControl As Control) As Control
+        Dim namectrl() As Control = repuControl.Controls.Find(controlname, True)
+        Return namectrl(0)
+    End Function
     Private Sub reference_trackbar_Scroll(sender As Object, e As EventArgs) Handles reference_trackbar.Scroll
 
     End Sub
@@ -140,4 +215,6 @@ Public Class Reputation_interface
     Private Sub Reputation_interface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+
 End Class

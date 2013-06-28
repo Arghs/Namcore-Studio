@@ -240,6 +240,30 @@
     <value>Shaman</value>
     <comment>character class</comment>
   </data>
+  <data name="standing_0" xml:space="preserve">
+    <value>Stranger</value>
+  </data>
+  <data name="standing_1" xml:space="preserve">
+    <value>Acquaintance</value>
+  </data>
+  <data name="standing_2" xml:space="preserve">
+    <value>Unfriendly</value>
+  </data>
+  <data name="standing_3" xml:space="preserve">
+    <value>Neutral</value>
+  </data>
+  <data name="standing_4" xml:space="preserve">
+    <value>Friendly</value>
+  </data>
+  <data name="standing_5" xml:space="preserve">
+    <value>Honored</value>
+  </data>
+  <data name="standing_6" xml:space="preserve">
+    <value>Revered</value>
+  </data>
+  <data name="standing_7" xml:space="preserve">
+    <value>Exalted</value>
+  </data>
   <data name="tauren" xml:space="preserve">
     <value>Tauren</value>
     <comment>character race</comment>
