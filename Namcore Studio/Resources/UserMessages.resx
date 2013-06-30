@@ -170,6 +170,12 @@
   <data name="errorbox" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="factionadded" xml:space="preserve">
+    <value>Faction successfully added!</value>
+  </data>
+  <data name="factionalreadypresent" xml:space="preserve">
+    <value>The player already has reputation at this faction!</value>
+  </data>
   <data name="female" xml:space="preserve">
     <value>Female</value>
     <comment>character gender</comment>
@@ -193,6 +199,9 @@
     <value>Hunter</value>
     <comment>character class</comment>
   </data>
+  <data name="invalidrepid" xml:space="preserve">
+    <value>Invalid faction id!</value>
+  </data>
   <data name="invalidurl" xml:space="preserve">
     <value>Entered URL is not valid!</value>
   </data>
@@ -206,6 +215,9 @@
   <data name="male" xml:space="preserve">
     <value>Male</value>
     <comment>character gender</comment>
+  </data>
+  <data name="Monk" xml:space="preserve">
+    <value>Monk</value>
   </data>
   <data name="nightelf" xml:space="preserve">
     <value>Night Elf</value>
@@ -221,6 +233,9 @@
   <data name="paladin" xml:space="preserve">
     <value>Paladin</value>
     <comment>character class</comment>
+  </data>
+  <data name="pandaren" xml:space="preserve">
+    <value>Pandaren</value>
   </data>
   <data name="priest" xml:space="preserve">
     <value>Priest</value>

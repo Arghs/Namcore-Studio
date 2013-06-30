@@ -31,9 +31,13 @@ Partial Class Reputation_interface
         Me.reference_percentage_panel = New System.Windows.Forms.Panel()
         Me.reference_name_lbl = New System.Windows.Forms.Label()
         Me.RepLayoutPanel = New System.Windows.Forms.FlowLayoutPanel()
+        Me.addpanel = New System.Windows.Forms.Panel()
+        Me.add_pic = New System.Windows.Forms.PictureBox()
         Me.referencePanel.SuspendLayout()
         CType(Me.reference_trackbar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.reference_sliderbg_panel.SuspendLayout()
+        Me.addpanel.SuspendLayout()
+        CType(Me.add_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'referencePanel
@@ -44,9 +48,9 @@ Partial Class Reputation_interface
         Me.referencePanel.Controls.Add(Me.reference_trackbar)
         Me.referencePanel.Controls.Add(Me.reference_sliderbg_panel)
         Me.referencePanel.Controls.Add(Me.reference_name_lbl)
-        Me.referencePanel.Location = New System.Drawing.Point(1069, 429)
+        Me.referencePanel.Location = New System.Drawing.Point(964, 364)
         Me.referencePanel.Name = "referencePanel"
-        Me.referencePanel.Size = New System.Drawing.Size(737, 106)
+        Me.referencePanel.Size = New System.Drawing.Size(772, 106)
         Me.referencePanel.TabIndex = 0
         '
         'reference_standing_combo
@@ -117,14 +121,35 @@ Partial Class Reputation_interface
         Me.RepLayoutPanel.AutoScroll = True
         Me.RepLayoutPanel.Location = New System.Drawing.Point(12, 12)
         Me.RepLayoutPanel.Name = "RepLayoutPanel"
-        Me.RepLayoutPanel.Size = New System.Drawing.Size(806, 618)
+        Me.RepLayoutPanel.Size = New System.Drawing.Size(818, 618)
         Me.RepLayoutPanel.TabIndex = 1
+        '
+        'addpanel
+        '
+        Me.addpanel.Controls.Add(Me.add_pic)
+        Me.addpanel.Location = New System.Drawing.Point(964, 227)
+        Me.addpanel.Name = "addpanel"
+        Me.addpanel.Size = New System.Drawing.Size(772, 106)
+        Me.addpanel.TabIndex = 2
+        '
+        'add_pic
+        '
+        Me.add_pic.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.add_pic.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.add_pic.Image = Global.Namcore_Studio.My.Resources.Resources.addrep
+        Me.add_pic.Location = New System.Drawing.Point(0, 0)
+        Me.add_pic.Name = "add_pic"
+        Me.add_pic.Size = New System.Drawing.Size(772, 106)
+        Me.add_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.add_pic.TabIndex = 0
+        Me.add_pic.TabStop = False
         '
         'Reputation_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1841, 642)
+        Me.ClientSize = New System.Drawing.Size(840, 642)
+        Me.Controls.Add(Me.addpanel)
         Me.Controls.Add(Me.RepLayoutPanel)
         Me.Controls.Add(Me.referencePanel)
         Me.Name = "Reputation_interface"
@@ -133,6 +158,8 @@ Partial Class Reputation_interface
         Me.referencePanel.PerformLayout()
         CType(Me.reference_trackbar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.reference_sliderbg_panel.ResumeLayout(False)
+        Me.addpanel.ResumeLayout(False)
+        CType(Me.add_pic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -145,4 +172,6 @@ Partial Class Reputation_interface
     Friend WithEvents reference_txtbox As System.Windows.Forms.TextBox
     Friend WithEvents RepLayoutPanel As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents reference_standing_combo As System.Windows.Forms.ComboBox
+    Friend WithEvents addpanel As System.Windows.Forms.Panel
+    Friend WithEvents add_pic As System.Windows.Forms.PictureBox
 End Class

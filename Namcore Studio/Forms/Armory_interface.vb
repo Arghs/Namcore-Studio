@@ -189,6 +189,7 @@ Public Class Armory_interface
 
 
     Private Sub Armory_interface_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        'todo
         offlineExtension = False
         globChars = New GlobalCharVars()
         Process_status.Close()

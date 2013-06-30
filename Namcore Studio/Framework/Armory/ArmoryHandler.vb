@@ -64,7 +64,7 @@ Public Class ArmoryHandler
             Player.AccountName = "Armory"
             Player.Level = TryInt(splitString(CharacterContext, "<span class=""level""><strong>", "</strong></span>"))
             Player.Gender = TryInt(splitString(Client.DownloadString(APILink), """gender"":", ","""))
-            Player.Race = TryInt(GetRaceIdByName(splitString(CharacterContext, "/game/race/", """ class=")))
+            Player.Race = TryInt(splitString(Client.DownloadString(APILink), """race"":", ","""))
             Player.Cclass = TryInt(GetClassIdByName(splitString(CharacterContext, "/game/class/", """ class=")))
             '// Character appearance
             Try

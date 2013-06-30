@@ -15,6 +15,10 @@ NamcoreStudio
   Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.addrep">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.Resources.empty">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
@@ -120,6 +124,14 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.factionadded">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Faction successfully added! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.factionalreadypresent">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die The player already has reputation at this faction! ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.female">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
@@ -144,6 +156,10 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Hunter ähnelt.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.invalidrepid">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Invalid faction id! ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.invalidurl">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Entered URL is not valid! ähnelt.
@@ -160,6 +176,10 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Male ähnelt.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.Monk">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Monk ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.nightelf">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Night Elf ähnelt.
@@ -175,6 +195,10 @@ NamcoreStudio
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.paladin">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Paladin ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.pandaren">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Pandaren ähnelt.
 </summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.priest">
 	<summary>
@@ -195,6 +219,38 @@ NamcoreStudio
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.shaman">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Shaman ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.standing_0">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Stranger ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.standing_1">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Acquaintance ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.standing_2">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Unfriendly ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.standing_3">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Neutral ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.standing_4">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Friendly ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.standing_5">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Honored ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.standing_6">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Revered ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.standing_7">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Exalted ähnelt.
 </summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.tauren">
 	<summary>

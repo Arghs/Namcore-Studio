@@ -87,6 +87,8 @@ Public Class Conversions
             Case 10 : Return RM.GetString("bloodelf")
             Case 11 : Return RM.GetString("draenei")
             Case 22 : Return RM.GetString("worgen")
+            Case 25 : Return RM.GetString("pandaren")
+            Case 26 : Return RM.GetString("pandaren")
             Case Else : LogAppend("Invalid RaceId: " & raceid.ToString() & " // Returning nothing!", "Conversions_GetRaceNameById") : Return Nothing
         End Select
     End Function
@@ -102,6 +104,7 @@ Public Class Conversions
             Case 7 : Return RM.GetString("shaman")
             Case 8 : Return RM.GetString("mage")
             Case 9 : Return RM.GetString("warlock")
+            Case 10 : Return RM.GetString("monk")
             Case 11 : Return RM.GetString("druid")
             Case Else : LogAppend("Invalid ClassId: " & classid.ToString() & " // Returning nothing!", "Conversions_GetClassNameById") : Return Nothing
         End Select
@@ -120,6 +123,7 @@ Public Class Conversions
             Case "blood-elf" : Return 10
             Case "draenei" : Return 11
             Case "worgen" : Return 22
+            Case "pandaren" : Return 25
             Case Else : LogAppend("Invalid Race name: " & racename & " // Returning nothing!", "Conversions_GetRaceIdByName") : Return Nothing
         End Select
     End Function
@@ -134,6 +138,7 @@ Public Class Conversions
             Case "shaman" : Return 7
             Case "mage" : Return 8
             Case "warlock" : Return 9
+            Case "monk" : Return 10
             Case "druid" : Return 11
             Case Else : LogAppend("Invalid Class name: " & classname & " // Returning nothing!", "Conversions_GetClassIdByName") : Return Nothing
         End Select
@@ -177,9 +182,11 @@ Public Class Conversions
         Return img
     End Function
     Public Shared Function updateReputationStanding(ByRef rep As Reputation) As Reputation
+        Return rep
         'todo
     End Function
     Public Shared Function updateReputationValueMax(ByRef rep As Reputation) As Reputation
+        Return rep
         'todo
     End Function
 End Class

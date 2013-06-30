@@ -53,13 +53,11 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="libnc, Version=0.0.1.24925, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\libnc.dll</HintPath>
+    <Reference Include="libnc">
+      <HintPath>References\libnc.dll</HintPath>
     </Reference>
-    <Reference Include="libncadvanced, Version=0.0.1.14912, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\libncadvanced.dll</HintPath>
+    <Reference Include="libncadvanced">
+      <HintPath>References\libncadvanced.dll</HintPath>
     </Reference>
     <Reference Include="mysql.data, Version=5.2.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -291,6 +289,7 @@
   <ItemGroup>
     <Content Include="References\mysql.data.dll" />
     <None Include="Resources\INV_Misc_QuestionMark.jpg" />
+    <None Include="Resources\addrep.jpg" />
     <Content Include="Resources\namcore_bg.jpg" />
     <None Include="Resources\plusico.png" />
     <Content Include="Resources\Refresh-icon.png" />
@@ -303,7 +302,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
