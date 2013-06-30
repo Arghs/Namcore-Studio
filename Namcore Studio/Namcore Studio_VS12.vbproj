@@ -100,6 +100,12 @@
     <Compile Include="Forms\Character\CharacterOverview.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Character\Quests_interface.Designer.vb">
+      <DependentUpon>Quests_interface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Character\Quests_interface.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\DB_connect.Designer.vb">
       <DependentUpon>DB_connect.vb</DependentUpon>
     </Compile>
@@ -235,6 +241,9 @@
     <EmbeddedResource Include="Forms\Character\CharacterOverview.resx">
       <DependentUpon>CharacterOverview.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Character\Quests_interface.resx">
+      <DependentUpon>Quests_interface.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Character\Reputation_interface.resx">
       <DependentUpon>Reputation_interface.vb</DependentUpon>
     </EmbeddedResource>
@@ -302,7 +311,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

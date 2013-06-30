@@ -706,4 +706,14 @@ Public Class CharacterOverview
         repinterface.Show()
         Userwait.Close()
     End Sub
+
+    Private Sub Quests_bt_Click(sender As Object, e As EventArgs) Handles Quests_bt.Click
+        Quests_interface.Close()
+        Dim qstInterface As New Quests_interface
+        Userwait.Show()
+        Application.DoEvents()
+        qstInterface.prepareInterface(tmpSetId)
+        qstInterface.Show()
+        Userwait.Close()
+    End Sub
 End Class

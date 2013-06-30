@@ -76,3 +76,4 @@ C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore S
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Reputation_interface.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libnc.dll
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\libncadvanced.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Quests_interface.resources

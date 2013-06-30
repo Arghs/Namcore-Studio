@@ -257,6 +257,7 @@ Partial Class CharacterOverview
         Me.addpanel = New System.Windows.Forms.Panel()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Quests_bt = New System.Windows.Forms.Button()
         Me.InventoryPanel.SuspendLayout()
         CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2838,11 +2839,25 @@ Partial Class CharacterOverview
         Me.TextBox2.Size = New System.Drawing.Size(86, 20)
         Me.TextBox2.TabIndex = 0
         '
+        'Quests_bt
+        '
+        Me.Quests_bt.BackColor = System.Drawing.Color.DimGray
+        Me.Quests_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Quests_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Quests_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Quests_bt.Location = New System.Drawing.Point(558, 378)
+        Me.Quests_bt.Name = "Quests_bt"
+        Me.Quests_bt.Size = New System.Drawing.Size(155, 34)
+        Me.Quests_bt.TabIndex = 186
+        Me.Quests_bt.Text = "Quests"
+        Me.Quests_bt.UseVisualStyleBackColor = False
+        '
         'CharacterOverview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1559, 706)
+        Me.Controls.Add(Me.Quests_bt)
         Me.Controls.Add(Me.addpanel)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Panel38)
@@ -3290,4 +3305,5 @@ Partial Class CharacterOverview
     Friend WithEvents addpanel As System.Windows.Forms.Panel
     Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents Quests_bt As System.Windows.Forms.Button
 End Class

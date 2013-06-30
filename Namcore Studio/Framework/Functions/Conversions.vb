@@ -26,7 +26,8 @@ Imports System.IO
 Imports System.Drawing.Imaging
 Imports Namcore_Studio.EventLogging
 Imports System.Resources
-
+Imports System.Net
+Imports Namcore_Studio.Basics
 Public Class Conversions
 
     Public Shared Function ConvertListToString(ByVal _list As List(Of String)) As String
@@ -188,5 +189,16 @@ Public Class Conversions
     Public Shared Function updateReputationValueMax(ByRef rep As Reputation) As Reputation
         Return rep
         'todo
+    End Function
+    Public Shared Function getNameOfQuest(ByVal questid As Integer) As String
+        LogAppend("Loading quest name of id " & questid.ToString(), "Conversions_getNameOfQuest")
+        Try
+            Dim client As New WebClient
+            Dim qstcontext As String = client.DownloadString("http://www.wowhead.com/quest=" & questid.ToString)
+            Return splitString(qstcontext, "<title>", " - Quest - World")
+        Catch ex As Exception
+            LogAppend("Failed to load name of quest // Returning error", "Conversions_getNameOfQuest")
+            Return "error"
+        End Try
     End Function
 End Class
