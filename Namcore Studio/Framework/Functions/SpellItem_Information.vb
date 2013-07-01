@@ -32,7 +32,7 @@ Public Class SpellItem_Information
     Shared tempAvTable As DataTable
     Shared tempAvCatTable As DataTable
     Shared tempDisplayInfoTable As DataTable
-
+    Shared tempQuestNameTable As DataTable
     Public Shared Function GetGlyphIdByItemId(ByVal itemid As Integer) As Integer
         LogAppend("Loading GlyphId by ItemId " & itemid.ToString, "SpellItem_Information_GetGlyphIdByItemId", False)
         Dim xpacressource As String
@@ -475,6 +475,43 @@ LookOnline: Else
         If desc = "-" Then
             LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvDescriptionById", False, True)
             Return "Error"
+        Else
+            Return desc
+        End If
+    End Function
+    Public Function GetQuestNameById(ByVal questid As Integer) As String
+        LogAppend("Loading quest name of id: " & questid.ToString, "SpellItem_Information_GetQuestNameById", False)
+        If tempQuestNameTable Is Nothing Then
+            Try
+                tempQuestNameTable = New DataTable()
+                Dim stext As String
+                If My.Settings.language = "de" Then
+                    stext = My.Resources.questname
+                Else
+                    stext = My.Resources.questname 'todo
+                End If
+                Dim a() As String
+                Dim strArray As String()
+                a = Split(stext, vbNewLine)
+                For i = 0 To UBound(a)
+                    strArray = a(i).Split(CChar(";"))
+                    If i = 0 Then
+                        For Each value As String In strArray
+                            tempQuestNameTable.Columns.Add(value.Trim())
+                        Next
+                    Else
+                        tempQuestNameTable.Rows.Add(strArray)
+                    End If
+                Next i
+            Catch ex As Exception
+                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetQuestNameById", False, True)
+                Return "error"
+            End Try
+        End If
+        Dim desc As String = Execute("Id", questid.ToString(), tempQuestNameTable)
+        If desc = "-" Then
+            LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetQuestNameById", False, True)
+            Return "error"
         Else
             Return desc
         End If

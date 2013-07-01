@@ -206,37 +206,16 @@ Public Class Armory_interface
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'Dim locOFD As New OpenFileDialog()
-        'Dim locPath As String
-        'Dim dstr As String
-        'With locOFD
-        '    .Filter = "Template (*.txt)|*.txt"
-        '    .Title = "Select template"
+ 
 
-        '    .DefaultExt = ".txt"
 
-        '    .Multiselect = False
-        '    .CheckFileExists = True
-        '    .CheckPathExists = True
 
-        '    If (.ShowDialog() = DialogResult.OK) Then
 
-        '        locPath = .FileName()
-        '        If Not locPath = "" Then
-        '            dstr = My.Computer.FileSystem.ReadAllText(locPath)
-        '        End If
-
-        '    End If
-        'End With
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim dstr As String = ""
         globChars = DeSerialize(dstr, New GlobalCharVars)
         'temporaryCharacterInformation.Add(RichTextBox1.Text)
         Dim prepLive As New Interface_Operator
         Interface_Operator.prepareLive_armory()
     End Sub
-
-
-
-
 End Class

@@ -32,9 +32,11 @@ Partial Class Quests_interface
         'qst_lst
         '
         Me.qst_lst.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.qstid, Me.qstname, Me.finished, Me.rewarded})
-        Me.qst_lst.Location = New System.Drawing.Point(12, 12)
+        Me.qst_lst.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.qst_lst.FullRowSelect = True
+        Me.qst_lst.Location = New System.Drawing.Point(0, 0)
         Me.qst_lst.Name = "qst_lst"
-        Me.qst_lst.Size = New System.Drawing.Size(467, 422)
+        Me.qst_lst.Size = New System.Drawing.Size(494, 446)
         Me.qst_lst.TabIndex = 0
         Me.qst_lst.UseCompatibleStateImageBehavior = False
         Me.qst_lst.View = System.Windows.Forms.View.Details

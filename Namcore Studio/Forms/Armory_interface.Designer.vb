@@ -44,12 +44,9 @@ Partial Class Armory_interface
         Me.back_bt = New System.Windows.Forms.Button()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.removeItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -265,39 +262,25 @@ Partial Class Armory_interface
         Me.removeItem.Size = New System.Drawing.Size(117, 22)
         Me.removeItem.Text = "Remove"
         '
-        'RichTextBox1
+        'Button2
         '
-        Me.RichTextBox1.Location = New System.Drawing.Point(22, 297)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(135, 90)
-        Me.RichTextBox1.TabIndex = 167
-        Me.RichTextBox1.Text = ""
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(172, 312)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 168
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Location = New System.Drawing.Point(470, 295)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(100, 50)
-        Me.PictureBox1.TabIndex = 169
-        Me.PictureBox1.TabStop = False
+        Me.Button2.BackColor = System.Drawing.Color.DimGray
+        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.Button2.Location = New System.Drawing.Point(12, 318)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(126, 27)
+        Me.Button2.TabIndex = 169
+        Me.Button2.Text = "Load latest set"
+        Me.Button2.UseVisualStyleBackColor = False
         '
         'Armory_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(715, 358)
-        Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.RichTextBox1)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.char_lst)
         Me.Controls.Add(Me.Label1)
@@ -308,7 +291,6 @@ Partial Class Armory_interface
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ContextMenuStrip1.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -334,7 +316,5 @@ Partial Class Armory_interface
     Friend WithEvents back_bt As System.Windows.Forms.Button
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents removeItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents Button2 As System.Windows.Forms.Button
 End Class

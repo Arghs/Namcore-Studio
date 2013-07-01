@@ -302,6 +302,7 @@
     <Content Include="Resources\namcore_bg.jpg" />
     <None Include="Resources\plusico.png" />
     <Content Include="Resources\Refresh-icon.png" />
+    <None Include="Resources\questname.csv" />
     <None Include="Resources\repbg.jpg" />
     <Content Include="Resources\trash_%28delete%29_16x16.gif" />
     <None Include="Resources\namcore_bg2.jpg" />
@@ -311,7 +312,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

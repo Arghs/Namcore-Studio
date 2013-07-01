@@ -31,6 +31,7 @@ Public Class EventLogging
     Shared lastprogress As Integer
     Shared isbusy As Boolean = False
     Public Shared Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
+        Dim x As UInt32 = 546
         While isbusy
 
         End While

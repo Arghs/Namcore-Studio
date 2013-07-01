@@ -14,8 +14,9 @@ Public Class Process_status
 
     Private Sub Process_status_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Control.CheckForIllegalCrossThreadCalls = False
-    End Sub
 
+    End Sub
+   
 
     Public Sub ArmoryWorker_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs) _
         Handles ArmoryWorker.DoWork
@@ -44,7 +45,7 @@ Public Class Process_status
             process_tb.SelectionStart = process_tb.Text.Length
             process_tb.ScrollToCaret()
         Catch ex As Exception
-
+            Throw New Exception(ex.ToString)
         End Try
 
     End Sub
