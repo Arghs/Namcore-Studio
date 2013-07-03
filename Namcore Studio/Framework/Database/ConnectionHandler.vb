@@ -43,6 +43,7 @@ Public Class ConnectionHandler
         targetconnection.ConnectionString = serverstring
         Try
             targetconnection.Open()
+            Dim state As ConnectionState = targetconnection.State
             LogAppend("MySQL connection is now open!", "ConnectionHandler_OpenNewMySQLConnection", True)
         Catch ex As MySqlException
             targetconnection.Close()

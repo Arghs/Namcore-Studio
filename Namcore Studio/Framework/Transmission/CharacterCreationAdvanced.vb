@@ -50,20 +50,20 @@ Public Class CharacterCreationAdvanced
 
     Private Shared Sub createAtArcemu(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at arcemu", "CharacterCreationAdvanced_createAtArcemu", False)
-        Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.char_guid_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) &
-                                                                            "=(SELECT MAX(" & sourceStructure.char_guid_col(0) & ") FROM " & sourceStructure.character_tbl(0) & ")", True)) + 1
-        ' Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT " & sourceStructure.acc_id_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_name_col(0) & "='" & accname & "'", True))
-        Dim sqlstring As String = "INSERT INTO " & sourceStructure.character_tbl(0) & " ( `" & sourceStructure.char_guid_col(0) & "`, `" & sourceStructure.char_accountId_col(0) & "`, `" & sourceStructure.char_name_col(0) &
-            "`, `" & sourceStructure.char_race_col(0) & "`, `" & sourceStructure.char_class_col(0) & "`, `" & sourceStructure.char_gender_col(0) & "`, `" & sourceStructure.char_level_col(0) & "`, `" &
-            sourceStructure.char_xp_col(0) & "`, `" & sourceStructure.char_gold_col(0) & "`, `" & sourceStructure.char_playerBytes_col(0) & "`, `" & sourceStructure.char_playerBytes2_col(0) & "`, `" &
-            sourceStructure.char_playerFlags_col(0) & "`, `" & sourceStructure.char_posX_col(0) & "`, " & "" & sourceStructure.char_posY_col(0) & ", " & sourceStructure.char_posZ_col(0) & ", " &
-            sourceStructure.char_map_col(0) & ", " & sourceStructure.char_orientation_col(0) & ", " & sourceStructure.char_taximask_col(0) & ", " & sourceStructure.char_arcemuPlayedTime_col(0) & ", " &
-            sourceStructure.char_stableSlots_col(0) & ", " & sourceStructure.char_zone_col(0) & ", " & sourceStructure.char_watchedFaction_col(0) & ", current_hp, " &
-                                    "" & sourceStructure.char_speccount_col(0) & ", " & sourceStructure.char_activeSpec_col(0) & ", " & sourceStructure.char_exploredZones_col(0) & ", " &
-                                    sourceStructure.char_knownTitles_col(0) & " ) VALUES " &
+        Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.char_guid_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_guid_col(0) &
+                                                                            "=(SELECT MAX(" & targetStructure.char_guid_col(0) & ") FROM " & targetStructure.character_tbl(0) & ")", True)) + 1
+        ' Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT " & targetStructure.acc_id_col(0) & " FROM " & targetStructure.account_tbl(0) & " WHERE " & targetStructure.acc_name_col(0) & "='" & accname & "'", True))
+        Dim sqlstring As String = "INSERT INTO " & targetStructure.character_tbl(0) & " ( `" & targetStructure.char_guid_col(0) & "`, `" & targetStructure.char_accountId_col(0) & "`, `" & targetStructure.char_name_col(0) &
+            "`, `" & targetStructure.char_race_col(0) & "`, `" & targetStructure.char_class_col(0) & "`, `" & targetStructure.char_gender_col(0) & "`, `" & targetStructure.char_level_col(0) & "`, `" &
+            targetStructure.char_xp_col(0) & "`, `" & targetStructure.char_gold_col(0) & "`, `" & targetStructure.char_playerBytes_col(0) & "`, `" & targetStructure.char_playerBytes2_col(0) & "`, `" &
+            targetStructure.char_playerFlags_col(0) & "`, `" & targetStructure.char_posX_col(0) & "`, " & "" & targetStructure.char_posY_col(0) & ", " & targetStructure.char_posZ_col(0) & ", " &
+            targetStructure.char_map_col(0) & ", " & targetStructure.char_orientation_col(0) & ", " & targetStructure.char_taximask_col(0) & ", " & targetStructure.char_arcemuPlayedTime_col(0) & ", " &
+            targetStructure.char_stableSlots_col(0) & ", " & targetStructure.char_zone_col(0) & ", " & targetStructure.char_watchedFaction_col(0) & ", current_hp, " &
+                                    "" & targetStructure.char_speccount_col(0) & ", " & targetStructure.char_activeSpec_col(0) & ", " & targetStructure.char_exploredZones_col(0) & ", " &
+                                    targetStructure.char_knownTitles_col(0) & " ) VALUES " &
                                     "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, gold, @pBytes, pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '0 0 0 ', @stable, @zone, " &
                                     "@title, @wFaction, '1000', @speccpunt, @activespec, @exploredZones, @knownTitles )"
-        Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
+        Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection)
         Dim player As Character = GetCharacterSetBySetId(targetSetId)
         tempcommand.Parameters.AddWithValue("@accid", accid.ToString)
         tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
@@ -93,60 +93,61 @@ Public Class CharacterCreationAdvanced
         Try
             tempcommand.ExecuteNonQuery()
             If NameChange = True Then
-                runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET forced_rename_pending='1' WHERE " & sourceStructure.char_guid_col(0) & "='" & newcharguid.ToString & "'", True)
+                runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET forced_rename_pending='1' WHERE " & targetStructure.char_guid_col(0) & "='" & newcharguid.ToString & "'", True)
             Else
                 If CharacterExist(charactername) = True Then
-                    runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET forced_rename_pending='1' WHERE " & sourceStructure.char_guid_col(0) & "='" & newcharguid.ToString & "'", True)
+                    runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET forced_rename_pending='1' WHERE " & targetStructure.char_guid_col(0) & "='" & newcharguid.ToString & "'", True)
                 End If
             End If
             'Creating hearthstone
             LogAppend("Creating character hearthstone", "CharacterCreationAdvanced_createAtArcemu", False)
-            Dim newitemguid As Integer = (TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.char_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) &
-                                                                                 "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " & sourceStructure.item_instance_tbl(0) & ")", True)) + 5)
-            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.item_instance_tbl(0) & " ( " & sourceStructure.itmins_ownerGuid_col(0) & ", " & sourceStructure.itmins_guid_col(0) &
-                                            ", " & sourceStructure.itmins_itemEntry_col(0) & ", flags, " & sourceStructure.itmins_container_col(0) & ", " & sourceStructure.itmins_slot_col(0) &
+            Dim newitemguid As Integer = (TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.char_guid_col(0) & " FROM " & targetStructure.item_instance_tbl(0) & " WHERE " & targetStructure.itmins_guid_col(0) &
+                                                                                 "=(SELECT MAX(" & targetStructure.itmins_guid_col(0) & ") FROM " & targetStructure.item_instance_tbl(0) & ")", True)) + 5)
+            runSQLCommand_characters_string("INSERT INTO " & targetStructure.item_instance_tbl(0) & " ( " & targetStructure.itmins_ownerGuid_col(0) & ", " & targetStructure.itmins_guid_col(0) &
+                                            ", " & targetStructure.itmins_itemEntry_col(0) & ", flags, " & targetStructure.itmins_container_col(0) & ", " & targetStructure.itmins_slot_col(0) &
                                             " ) VALUES ( '" & newcharguid.ToString() &
                 "', '" & newitemguid.ToString() & "', '6948', '1', '-1', '23' )", True)
             AddSpells("6603,")
             Dim tempinfo As String = player.CustomFaction.ToString
-            If Not tempinfo = "" Then runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_customFaction_col(0) & "='" & tempinfo &
-                "' WHERE " & sourceStructure.char_guid_col(0) & "='" & newcharguid.ToString & "'")
+            If Not tempinfo = "" Then runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_customFaction_col(0) & "='" & tempinfo &
+                "' WHERE " & targetStructure.char_guid_col(0) & "='" & newcharguid.ToString & "'")
             'Setting tutorials
             runSQLCommand_characters_string("INSERT INTO `tutorials` ( playerId ) VALUES ( " & accid.ToString() & " )", True)
             'Set home
             LogAppend("Setting character homebind", "CharacterCreationAdvanced_createAtArcemu", False)
             Dim tmpstring As String = player.HomeBind
-            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_bindposX_col(0) & "='" & splitList(tmpstring, "position_x") &
-                                            "' WHERE " & sourceStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
-            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_bindposY_col(0) & "='" & splitList(tmpstring, "position_y") &
-                                            "' WHERE " & sourceStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
-            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_bindposZ_col(0) & "='" & splitList(tmpstring, "position_z") &
-                                            "' WHERE " & sourceStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
-            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_bindmapid_col(0) & "='" & splitList(tmpstring, "map") &
-                                            "' WHERE " & sourceStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
-            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_bindzoneid_col(0) & "='" & splitList(tmpstring, "zone") &
-                                            "' WHERE " & sourceStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
+            runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_bindposX_col(0) & "='" & splitList(tmpstring, "position_x") &
+                                            "' WHERE " & targetStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
+            runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_bindposY_col(0) & "='" & splitList(tmpstring, "position_y") &
+                                            "' WHERE " & targetStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
+            runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_bindposZ_col(0) & "='" & splitList(tmpstring, "position_z") &
+                                            "' WHERE " & targetStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
+            runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_bindmapid_col(0) & "='" & splitList(tmpstring, "map") &
+                                            "' WHERE " & targetStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
+            runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_bindzoneid_col(0) & "='" & splitList(tmpstring, "zone") &
+                                            "' WHERE " & targetStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
         Catch ex As Exception
             LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationAdvanced_createAtArcemu", False, True)
         End Try
+        characterGUID = newcharguid
     End Sub
     Private Shared Sub createAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at Trinity", "CharacterCreationAdvanced_createAtTrinity", False)
-        Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.char_guid_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) &
-                                                                            "=(SELECT MAX(" & sourceStructure.char_guid_col(0) & ") FROM " & sourceStructure.character_tbl(0) & ")", True)) + 1
-        '   Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & sourceStructure.acc_id_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_name_col(0) & "='" & accname & "'", True))
-        Dim sqlstring As String = "INSERT INTO " & sourceStructure.character_tbl(0) & " ( `" & sourceStructure.char_guid_col(0) & "`, `" & sourceStructure.char_accountId_col(0) & "`, `" & sourceStructure.char_name_col(0) &
-            "`, `" & sourceStructure.char_race_col(0) & "`, `" & sourceStructure.char_class_col(0) & "`, `" & sourceStructure.char_gender_col(0) & "`, `" & sourceStructure.char_level_col(0) & "`, `" &
-            sourceStructure.char_xp_col(0) & "`, `" & sourceStructure.char_gold_col(0) & "`, `" & sourceStructure.char_playerBytes_col(0) & "`, `" & sourceStructure.char_playerBytes2_col(0) & "`, " &
-            "`" & sourceStructure.char_playerFlags_col(0) & "`, `" & sourceStructure.char_posX_col(0) & "`, " & sourceStructure.char_posY_col(0) & ", " & sourceStructure.char_posZ_col(0) & ", " &
-            sourceStructure.char_map_col(0) & ", " & sourceStructure.char_orientation_col(0) & ", " & sourceStructure.char_taximask_col(0) & ", " & sourceStructure.char_cinematic_col(0) & ", " &
-            sourceStructure.char_totaltime_col(0) & ", " & sourceStructure.char_leveltime_col(0) & ", " & sourceStructure.char_extraFlags_col(0) & ", " & sourceStructure.char_stableSlots_col(0) & ", " &
-            sourceStructure.char_atlogin_col(0) & ", " & sourceStructure.char_zone_col(0) & ", " & sourceStructure.char_chosenTitle_col(0) & ", " &
-            "" & sourceStructure.char_knownCurrencies_col(0) & ", " & sourceStructure.char_watchedFaction_col(0) & ", `" & sourceStructure.char_health_col(0) & "`, " & sourceStructure.char_speccount_col(0) & ", " &
-            sourceStructure.char_activeSpec_col(0) & ", " & sourceStructure.char_exploredZones_col(0) & ", " & sourceStructure.char_knownTitles_col(0) & ", " & sourceStructure.char_actionBars_col(0) & " ) VALUES " &
+        Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.char_guid_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_guid_col(0) &
+                                                                            "=(SELECT MAX(" & targetStructure.char_guid_col(0) & ") FROM " & targetStructure.character_tbl(0) & ")", True)) + 1
+        '   Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & targetStructure.acc_id_col(0) & "` FROM " & targetStructure.account_tbl(0) & " WHERE " & targetStructure.acc_name_col(0) & "='" & accname & "'", True))
+        Dim sqlstring As String = "INSERT INTO " & targetStructure.character_tbl(0) & " ( `" & targetStructure.char_guid_col(0) & "`, `" & targetStructure.char_accountId_col(0) & "`, `" & targetStructure.char_name_col(0) &
+            "`, `" & targetStructure.char_race_col(0) & "`, `" & targetStructure.char_class_col(0) & "`, `" & targetStructure.char_gender_col(0) & "`, `" & targetStructure.char_level_col(0) & "`, `" &
+            targetStructure.char_xp_col(0) & "`, `" & targetStructure.char_gold_col(0) & "`, `" & targetStructure.char_playerBytes_col(0) & "`, `" & targetStructure.char_playerBytes2_col(0) & "`, " &
+            "`" & targetStructure.char_playerFlags_col(0) & "`, `" & targetStructure.char_posX_col(0) & "`, " & targetStructure.char_posY_col(0) & ", " & targetStructure.char_posZ_col(0) & ", " &
+            targetStructure.char_map_col(0) & ", " & targetStructure.char_orientation_col(0) & ", " & targetStructure.char_taximask_col(0) & ", " & targetStructure.char_cinematic_col(0) & ", " &
+            targetStructure.char_totaltime_col(0) & ", " & targetStructure.char_leveltime_col(0) & ", " & targetStructure.char_extraFlags_col(0) & ", " & targetStructure.char_stableSlots_col(0) & ", " &
+            targetStructure.char_atlogin_col(0) & ", " & targetStructure.char_zone_col(0) & ", " & targetStructure.char_chosenTitle_col(0) & ", " &
+            "" & targetStructure.char_knownCurrencies_col(0) & ", " & targetStructure.char_watchedFaction_col(0) & ", `" & targetStructure.char_health_col(0) & "`, " & targetStructure.char_speccount_col(0) & ", " &
+            targetStructure.char_activeSpec_col(0) & ", " & targetStructure.char_exploredZones_col(0) & ", " & targetStructure.char_knownTitles_col(0) & ", " & targetStructure.char_actionBars_col(0) & " ) VALUES " &
             "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, leveltime, @extraflags, " &
             "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
-        Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
+        Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection)
         Dim player As Character = GetCharacterSetBySetId(targetSetId)
         tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
         tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
@@ -181,53 +182,54 @@ Public Class CharacterCreationAdvanced
         Try
             tempcommand.ExecuteNonQuery()
             If NameChange = True Then
-                runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_atlogin_col(0) & "='1' WHERE " & sourceStructure.char_guid_col(0) & "='" &
+                runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_atlogin_col(0) & "='1' WHERE " & targetStructure.char_guid_col(0) & "='" &
                                                 newcharguid.ToString & "'", True)
             Else
                 If CharacterExist(charactername) = True Then
-                    runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_atlogin_col(0) & "='1' WHERE " & sourceStructure.char_guid_col(0) & "='" &
+                    runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_atlogin_col(0) & "='1' WHERE " & targetStructure.char_guid_col(0) & "='" &
                                                     newcharguid.ToString & "'", True)
                 End If
             End If
             'Creating hearthstone
             LogAppend("Creating character hearthstone", "CharacterCreationAdvanced_createAtArcemu", False)
-            Dim newitemguid As Integer = (TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                                                                 sourceStructure.itmins_guid_col(0) & "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " &
-                                                                                 sourceStructure.item_instance_tbl(0) & ")", True)) + 1)
-            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.item_instance_tbl(0) & " ( " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_itemEntry_col(0) & ", " &
-                                            sourceStructure.itmins_ownerGuid_col(0) & ", " & sourceStructure.itmins_count_col(0) & ", charges, " & sourceStructure.itmins_enchantments_col(0) & ", " &
-                                            sourceStructure.itmins_durability_col(0) & " ) VALUES ( '" & newitemguid.ToString & "', '6948', '" & accid.ToString() & "', '1', '0 0 0 0 0 ', '" & newitemguid.ToString() &
+            Dim newitemguid As Integer = (TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.itmins_guid_col(0) & " FROM " & targetStructure.item_instance_tbl(0) & " WHERE " &
+                                                                                 targetStructure.itmins_guid_col(0) & "=(SELECT MAX(" & targetStructure.itmins_guid_col(0) & ") FROM " &
+                                                                                 targetStructure.item_instance_tbl(0) & ")", True)) + 1)
+            runSQLCommand_characters_string("INSERT INTO " & targetStructure.item_instance_tbl(0) & " ( " & targetStructure.itmins_guid_col(0) & ", " & targetStructure.itmins_itemEntry_col(0) & ", " &
+                                            targetStructure.itmins_ownerGuid_col(0) & ", " & targetStructure.itmins_count_col(0) & ", charges, " & targetStructure.itmins_enchantments_col(0) & ", " &
+                                            targetStructure.itmins_durability_col(0) & " ) VALUES ( '" & newitemguid.ToString & "', '6948', '" & accid.ToString() & "', '1', '0 0 0 0 0 ', '" & newitemguid.ToString() &
                " 1191182336 3 6948 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )", True)
-            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_inventory_tbl(0) & " ( " & sourceStructure.invent_guid_col(0) & ", " & sourceStructure.invent_bag_col(0) & ", `" &
-                                            sourceStructure.invent_slot_col(0) & "`, `" & sourceStructure.invent_item_col(0) & "` ) VALUES ( '" & newcharguid.ToString() & "', '0', '23', '" & newitemguid.ToString() & "')", True)
+            runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_inventory_tbl(0) & " ( " & targetStructure.invent_guid_col(0) & ", " & targetStructure.invent_bag_col(0) & ", `" &
+                                            targetStructure.invent_slot_col(0) & "`, `" & targetStructure.invent_item_col(0) & "` ) VALUES ( '" & newcharguid.ToString() & "', '0', '23', '" & newitemguid.ToString() & "')", True)
             'Set home
             LogAppend("Setting character homebind", "CharacterCreationAdvanced_createAtTrinity", False)
             Dim tmpstring As String = player.HomeBind
-            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_homebind_tbl(0) & " ( " & sourceStructure.homebind_guid_col(0) & ", " & sourceStructure.homebind_map_col(0) & ", " &
-                                            sourceStructure.homebind_zone_col(0) & ", " & sourceStructure.char_posX_col(0) & ", " & sourceStructure.char_posY_col(0) & ", " & sourceStructure.char_posZ_col(0) &
+            runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_homebind_tbl(0) & " ( " & targetStructure.homebind_guid_col(0) & ", " & targetStructure.homebind_map_col(0) & ", " &
+                                            targetStructure.homebind_zone_col(0) & ", " & targetStructure.char_posX_col(0) & ", " & targetStructure.char_posY_col(0) & ", " & targetStructure.char_posZ_col(0) &
                                             " ) VALUES ( '" & newcharguid.ToString() & "', '" & splitList(tmpstring, "map") & "', '" & splitList(tmpstring, "zone") & "', '" & splitList(tmpstring, "position_x") &
                                             "', '" & splitList(tmpstring, "position_y") & "', '" & splitList(tmpstring, "position_z") & "' )")
         Catch ex As Exception
             LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationAdvanced_createAtTrinity", False, True)
         End Try
+        characterGUID = newcharguid
     End Sub
     Private Shared Sub createAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at Mangos", "CharacterCreationAdvanced_createAtMangos", False)
-        Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.char_guid_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) &
-                                                                            "=(SELECT MAX(" & sourceStructure.char_guid_col(0) & ") FROM " & sourceStructure.character_tbl(0) & ")", True)) + 1
-        ' Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & sourceStructure.acc_id_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_name_col(0) & "='" & accname & "'", True))
-        Dim sqlstring As String = "INSERT INTO " & sourceStructure.character_tbl(0) & " ( `" & sourceStructure.char_guid_col(0) & "`, `" & sourceStructure.char_accountId_col(0) & "`, `" & sourceStructure.char_name_col(0) &
-            "`, `" & sourceStructure.char_race_col(0) & "`, `" & sourceStructure.char_class_col(0) & "`, `" & sourceStructure.char_gender_col(0) & "`, `" & sourceStructure.char_level_col(0) & "`, `" &
-            sourceStructure.char_xp_col(0) & "`, `" & sourceStructure.char_gold_col(0) & "`, `" & sourceStructure.char_playerBytes_col(0) & "`, `" & sourceStructure.char_playerBytes2_col(0) & "`, " &
-            "`" & sourceStructure.char_playerFlags_col(0) & "`, `" & sourceStructure.char_posX_col(0) & "`, " & sourceStructure.char_posY_col(0) & ", " & sourceStructure.char_posZ_col(0) & ", " &
-            sourceStructure.char_map_col(0) & ", " & sourceStructure.char_orientation_col(0) & ", " & sourceStructure.char_taximask_col(0) & ", " & sourceStructure.char_cinematic_col(0) & ", " &
-            sourceStructure.char_totaltime_col(0) & ", " & sourceStructure.char_leveltime_col(0) & ", " & sourceStructure.char_extraFlags_col(0) & ", " & sourceStructure.char_stableSlots_col(0) & ", " &
-            sourceStructure.char_atlogin_col(0) & ", " & sourceStructure.char_zone_col(0) & ", " & sourceStructure.char_chosenTitle_col(0) & ", " &
-            "" & sourceStructure.char_knownCurrencies_col(0) & ", " & sourceStructure.char_watchedFaction_col(0) & ", `" & sourceStructure.char_health_col(0) & "`, " & sourceStructure.char_speccount_col(0) & ", " &
-            sourceStructure.char_activeSpec_col(0) & ", " & sourceStructure.char_exploredZones_col(0) & ", " & sourceStructure.char_knownTitles_col(0) & ", " & sourceStructure.char_actionBars_col(0) & " ) VALUES " &
+        Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.char_guid_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_guid_col(0) &
+                                                                            "=(SELECT MAX(" & targetStructure.char_guid_col(0) & ") FROM " & targetStructure.character_tbl(0) & ")", True)) + 1
+        ' Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & targetStructure.acc_id_col(0) & "` FROM " & targetStructure.account_tbl(0) & " WHERE " & targetStructure.acc_name_col(0) & "='" & accname & "'", True))
+        Dim sqlstring As String = "INSERT INTO " & targetStructure.character_tbl(0) & " ( `" & targetStructure.char_guid_col(0) & "`, `" & targetStructure.char_accountId_col(0) & "`, `" & targetStructure.char_name_col(0) &
+            "`, `" & targetStructure.char_race_col(0) & "`, `" & targetStructure.char_class_col(0) & "`, `" & targetStructure.char_gender_col(0) & "`, `" & targetStructure.char_level_col(0) & "`, `" &
+            targetStructure.char_xp_col(0) & "`, `" & targetStructure.char_gold_col(0) & "`, `" & targetStructure.char_playerBytes_col(0) & "`, `" & targetStructure.char_playerBytes2_col(0) & "`, " &
+            "`" & targetStructure.char_playerFlags_col(0) & "`, `" & targetStructure.char_posX_col(0) & "`, " & targetStructure.char_posY_col(0) & ", " & targetStructure.char_posZ_col(0) & ", " &
+            targetStructure.char_map_col(0) & ", " & targetStructure.char_orientation_col(0) & ", " & targetStructure.char_taximask_col(0) & ", " & targetStructure.char_cinematic_col(0) & ", " &
+            targetStructure.char_totaltime_col(0) & ", " & targetStructure.char_leveltime_col(0) & ", " & targetStructure.char_extraFlags_col(0) & ", " & targetStructure.char_stableSlots_col(0) & ", " &
+            targetStructure.char_atlogin_col(0) & ", " & targetStructure.char_zone_col(0) & ", " & targetStructure.char_chosenTitle_col(0) & ", " &
+            "" & targetStructure.char_knownCurrencies_col(0) & ", " & targetStructure.char_watchedFaction_col(0) & ", `" & targetStructure.char_health_col(0) & "`, " & targetStructure.char_speccount_col(0) & ", " &
+            targetStructure.char_activeSpec_col(0) & ", " & targetStructure.char_exploredZones_col(0) & ", " & targetStructure.char_knownTitles_col(0) & ", " & targetStructure.char_actionBars_col(0) & " ) VALUES " &
             "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, leveltime, @extraflags, " &
             "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
-        Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
+        Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection)
         Dim player As Character = GetCharacterSetBySetId(targetSetId)
         tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
         tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
@@ -263,42 +265,43 @@ Public Class CharacterCreationAdvanced
         Try
             tempcommand.ExecuteNonQuery()
             If NameChange = True Then
-                runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_atlogin_col(0) & "='1' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_atlogin_col(0) & "='1' WHERE " & targetStructure.char_guid_col(0) &
                                                 "='" & newcharguid.ToString & "'", True)
             Else
                 If CharacterExist(charactername) = True Then
-                    runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_atlogin_col(0) & "='1' WHERE " & sourceStructure.char_guid_col(0) & "='" &
+                    runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_atlogin_col(0) & "='1' WHERE " & targetStructure.char_guid_col(0) & "='" &
                                                     newcharguid.ToString & "'", True)
                 End If
             End If
             'Creating hearthstone
             LogAppend("Creating character hearthstone", "CharacterCreationAdvanced_createAtArcemu", False)
-            Dim newitemguid As Integer = (TryInt(runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_guid_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                                                                 sourceStructure.itmins_guid_col(0) & "=(SELECT MAX(" & sourceStructure.itmins_guid_col(0) & ") FROM " &
-                                                                                 sourceStructure.item_instance_tbl(0) & "))", True)) + 1)
+            Dim newitemguid As Integer = (TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.itmins_guid_col(0) & " FROM " & targetStructure.item_instance_tbl(0) & " WHERE " &
+                                                                                 targetStructure.itmins_guid_col(0) & "=(SELECT MAX(" & targetStructure.itmins_guid_col(0) & ") FROM " &
+                                                                                 targetStructure.item_instance_tbl(0) & "))", True)) + 1)
             If expansion >= 3 Then
-                runSQLCommand_characters_string("INSERT INTO " & sourceStructure.item_instance_tbl(0) & " ( " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_ownerGuid_col(0) & ", " &
-                                                sourceStructure.itmins_data_col(0) & " ) VALUES ( '" & newitemguid.ToString() & "', '" & newcharguid.ToString() & "', '" & newitemguid.ToString() &
+                runSQLCommand_characters_string("INSERT INTO " & targetStructure.item_instance_tbl(0) & " ( " & targetStructure.itmins_guid_col(0) & ", " & targetStructure.itmins_ownerGuid_col(0) & ", " &
+                                                targetStructure.itmins_data_col(0) & " ) VALUES ( '" & newitemguid.ToString() & "', '" & newcharguid.ToString() & "', '" & newitemguid.ToString() &
                                                 " 1191182336 3 6948 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ' )", True)
             Else
                 'MaNGOS < 3.3 Core: watch data length
                 runSQLCommand_characters_string(
-                    "INSERT INTO " & sourceStructure.item_instance_tbl(0) & " ( " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_ownerGuid_col(0) & ", " & sourceStructure.itmins_data_col(0) &
+                    "INSERT INTO " & targetStructure.item_instance_tbl(0) & " ( " & targetStructure.itmins_guid_col(0) & ", " & targetStructure.itmins_ownerGuid_col(0) & ", " & targetStructure.itmins_data_col(0) &
                     " ) VALUES ( '" & newitemguid.ToString() & "', '" & accid.ToString() & "', '" & newitemguid.ToString() &
                     " 1191182336 3 6948 1065353216 0 8 0 8 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ' )", True)
             End If
-            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_inventory_tbl(0) & " ( " & sourceStructure.invent_guid_col(0) & ", " & sourceStructure.invent_bag_col(0) & ", " &
-                                            sourceStructure.invent_slot_col(0) & ", " & sourceStructure.invent_item_col(0) & ", " & sourceStructure.invent_item_template_col(0) &
+            runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_inventory_tbl(0) & " ( " & targetStructure.invent_guid_col(0) & ", " & targetStructure.invent_bag_col(0) & ", " &
+                                            targetStructure.invent_slot_col(0) & ", " & targetStructure.invent_item_col(0) & ", " & targetStructure.invent_item_template_col(0) &
                                             " ) VALUES ( '" & accid.ToString() & "', '0', '23', '" & newitemguid.ToString() & "', '6948')")
             'Set home
             LogAppend("Setting character homebind", "CharacterCreationAdvanced_createAtMangos", False)
             Dim tmpstring As String = player.HomeBind
-            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_homebind_tbl(0) & " ( " & sourceStructure.homebind_guid_col(0) & ", " & sourceStructure.homebind_map_col(0) & ", " &
-                                            sourceStructure.homebind_zone_col(0) & ", " & sourceStructure.homebind_posx_col(0) & ", " & sourceStructure.char_posY_col(0) & ", " & sourceStructure.char_posZ_col(0) &
+            runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_homebind_tbl(0) & " ( " & targetStructure.homebind_guid_col(0) & ", " & targetStructure.homebind_map_col(0) & ", " &
+                                            targetStructure.homebind_zone_col(0) & ", " & targetStructure.homebind_posx_col(0) & ", " & targetStructure.char_posY_col(0) & ", " & targetStructure.char_posZ_col(0) &
                                             " ) VALUES ( '" & newcharguid.ToString() & "', '" & splitList(tmpstring, "map") & "', '" & splitList(tmpstring, "zone") &
             "', '" & splitList(tmpstring, "position_x") & "', '" & splitList(tmpstring, "position_y") & "', '" & splitList(tmpstring, "position_z") & "' )")
         Catch ex As Exception
             LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationAdvanced_createAtMangos", False, True)
         End Try
+        characterGUID = newcharguid
     End Sub
 End Class

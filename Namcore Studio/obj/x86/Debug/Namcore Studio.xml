@@ -39,30 +39,6 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
-</member><member name="P:Namcore_Studio.My.Resources.Resources.questname">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die Id;Title
-1;Kanrethad's Quest
-2;Sharptalon's Claw
-5;Jitters' Growling Gut
-6;Bounty on Garrick Padfoot
-7;[DEPRECATED] Kobold Camp Cleanup
-8;A Rogue's Deal
-9;The Killing Fields
-10;The Scrimshank Redemption
-11;Riverpaw Gnoll Bounty
-12;The People's Militia
-13;The People's Militia
-14;The People's Militia
-15;[DEPRECATED] Investigate Echo Ridge
-16;Give Gerard a Drink
-17;Uldaman Reagent Run
-18;Brotherhood of Thieves
-19;Tharil'zun
-20;Blackrock Menace
-21;[DEPRECATED] Skirmish at Echo Ridge
-22;Goret [Rest der Zeichenfolge wurde abgeschnitten]"; ähnelt.
-</summary>
 </member><member name="P:Namcore_Studio.My.Resources.Resources.Refresh_icon">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
@@ -308,10 +284,6 @@ NamcoreStudio
 	<summary>
   Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
 </summary>
-</member><member name="M:Namcore_Studio.date2timestamp.toDate(System.Int32@)">
-	<summary>
- timestamp converter
- </summary>
 </member><member name="M:Namcore_Studio.WinformControlExtensions.FindAllChildren(System.Windows.Forms.Form@)">
 	<summary>
  Recursively find all child controls for a form
@@ -334,6 +306,10 @@ NamcoreStudio
 </member><member name="M:Namcore_Studio.ReplaceItemExtension.ReplaceItem(Namcore_Studio.Item@,System.Int32)">
 	<summary>
  Replaces an Item
+ </summary>
+</member><member name="M:Namcore_Studio.date2timestamp.toDate(System.Int32@)">
+	<summary>
+ timestamp converter
  </summary>
 </member>
 </members>

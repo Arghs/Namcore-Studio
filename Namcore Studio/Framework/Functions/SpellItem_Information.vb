@@ -479,16 +479,16 @@ LookOnline: Else
             Return desc
         End If
     End Function
-    Public Function GetQuestNameById(ByVal questid As Integer) As String
+    Public Shared Function GetQuestNameById(ByVal questid As Integer) As String
         LogAppend("Loading quest name of id: " & questid.ToString, "SpellItem_Information_GetQuestNameById", False)
         If tempQuestNameTable Is Nothing Then
             Try
                 tempQuestNameTable = New DataTable()
                 Dim stext As String
                 If My.Settings.language = "de" Then
-                    stext = My.Resources.questname
+                    stext = libnc.My.Resources.questname
                 Else
-                    stext = My.Resources.questname 'todo
+                    stext = libnc.My.Resources.questname 'todo
                 End If
                 Dim a() As String
                 Dim strArray As String()

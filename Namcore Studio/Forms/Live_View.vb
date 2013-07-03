@@ -30,12 +30,16 @@ Imports Namcore_Studio.Basics
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
 Imports Namcore_Studio.GlobalCharVars
+Imports Namcore_Studio.Process_status
 Imports System.Resources
 
 Public Class Live_View
     Private cmpFileListViewComparer As ListViewComparer
     Dim checkchangestatus As Boolean = False
     Dim target_accchar_table As DataTable
+    Public Structure Data2Thread
+        Public lite As Boolean
+    End Structure
     Private Sub connect_bt_Click(sender As System.Object, e As System.EventArgs) Handles connect_bt.Click
         con_operator = 1
         DB_connect.Show()
@@ -43,8 +47,8 @@ Public Class Live_View
     Public Sub loadaccountsandchars()
         checkchangestatus = False
         sourceCore = "trinity" 'for testing only
-        acctable = returnAccountTable(GlobalConnection_Realm)
-        chartable = returnCharacterTable(GlobalConnection)
+        acctable = returnAccountTable(GlobalConnection_Realm, sourceStructure)
+        chartable = returnCharacterTable(GlobalConnection, sourceStructure)
         modifiedAccTable = acctable.Copy
         modifiedCharTable = chartable.Copy
         characterview.Items.Clear()
@@ -133,8 +137,8 @@ Public Class Live_View
         chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
     End Sub
     Public Sub loadtargetaccountsandchars()
-        targetCore = "trinity" 'for testing only
-        target_accchar_table = returnTargetAccCharTable(TargetConnection_Realm)
+        targetCore = "trinity" 'todo for testing only
+        target_accchar_table = returnTargetAccCharTable(TargetConnection_Realm, targetStructure)
         target_accounts_tree.Nodes.Clear()
         For Each rowitem As DataRow In target_accchar_table.Rows
             Dim foundNode() As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)
@@ -458,11 +462,13 @@ Public Class Live_View
                 CheckedCharactersToolStripMenuItem.Enabled = False
                 CheckedCharactersToolStripMenuItem1.Enabled = False
             End If
-            If characterview.SelectedItems.Count > 0 And characterview.CheckedItems.Count > 0 Then
-                CheckedCharactersToolStripMenuItem.Enabled = True
-                CheckedCharactersToolStripMenuItem1.Enabled = True
+            If characterview.SelectedItems.Count > 0 Then
                 SelectedCharacterToolStripMenuItem.Enabled = True
                 SelectedCharacterToolStripMenuItem1.Enabled = True
+            End If
+            If characterview.CheckedItems.Count > 0 Then
+                CheckedCharactersToolStripMenuItem.Enabled = True
+                CheckedCharactersToolStripMenuItem1.Enabled = True
             End If
             If Not TargetConnection.State = ConnectionState.Open Then
                 CheckedCharactersToolStripMenuItem1.Enabled = False
@@ -659,6 +665,30 @@ Public Class Live_View
  
 
     Private Sub Transfer_bt_Click(sender As System.Object, e As System.EventArgs) Handles Transfer_bt.Click
+        Process_status.Close()
+        Try
+            For Each CurrentForm As Form In Application.OpenForms
+                If CurrentForm.Name = "Process_status" Then
+                    Dim stat As Process_status = DirectCast(CurrentForm, Process_status)
+                    stat.Close()
+                End If
+            Next
+        Catch ex As Exception
+
+        End Try
+
+        procStatus = New Process_status
+        procStatus.Show()
+        procStatus.TransferWorker = New System.ComponentModel.BackgroundWorker
+        procStatus.TransferWorker.WorkerReportsProgress = True
+        procStatus.TransferWorker.WorkerSupportsCancellation = True
+        If armoryMode Then
+            Dim d As New Data2Thread() With {.lite = True}
+            procStatus.UpdateGuiTrans()
+            procStatus.TransferWorker.RunWorkerAsync(d)
+        Else
+
+        End If
 
     End Sub
 
@@ -791,4 +821,11 @@ Public Class Live_View
             End If
         End If
     End Sub
+
+    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
+
+    End Sub
+
+  
+ 
 End Class

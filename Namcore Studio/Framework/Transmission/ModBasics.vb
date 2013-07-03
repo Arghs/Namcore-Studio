@@ -30,15 +30,15 @@ Public Class ModBasics
         LogAppend("Setting character gender to : " & gender.ToString() & " // charguid is : " & charguid.ToString(), "ModBasics_SetCharacterGender", True)
         Select Case targetCore
             Case "arcemu"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_gender_col(0) & "='" & gender.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_gender_col(0) & "='" & gender.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                 "='" & charguid.ToString() & "'", True)
             Case "trinity"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_gender_col(0) & "='" & gender.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_gender_col(0) & "='" & gender.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                 "='" & charguid.ToString() & "'", True)
             Case "trinitytbc"
-             
+
             Case "mangos"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_gender_col(0) & "='" & gender.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_gender_col(0) & "='" & gender.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                 "='" & charguid.ToString() & "'", True)
             Case Else
 
@@ -49,15 +49,15 @@ Public Class ModBasics
         LogAppend("Setting character race to : " & race.ToString() & " // charguid is : " & charguid.ToString(), "ModBasics_SetCharacterRace", True)
         Select Case targetCore
             Case "arcemu"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_race_col(0) & "='" & race.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_race_col(0) & "='" & race.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                  "='" & charguid.ToString() & "'", True)
             Case "trinity"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_race_col(0) & "='" & race.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_race_col(0) & "='" & race.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                    "='" & charguid.ToString() & "'", True)
             Case "trinitytbc"
 
             Case "mangos"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_race_col(0) & "='" & race.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_race_col(0) & "='" & race.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                  "='" & charguid.ToString() & "'", True)
             Case Else
 
@@ -68,15 +68,15 @@ Public Class ModBasics
         LogAppend("Setting character level to : " & level.ToString() & " // charguid is : " & charguid.ToString(), "ModBasics_SetCharacterLevel", True)
         Select Case targetCore
             Case "arcemu"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_level_col(0) & "='" & level.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_level_col(0) & "='" & level.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                     "='" & charguid.ToString() & "'", True)
             Case "trinity"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_level_col(0) & "='" & level.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_level_col(0) & "='" & level.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                       "='" & charguid.ToString() & "'", True)
             Case "trinitytbc"
 
             Case "mangos"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_level_col(0) & "='" & level.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_level_col(0) & "='" & level.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                     "='" & charguid.ToString() & "'", True)
             Case Else
 
@@ -87,15 +87,15 @@ Public Class ModBasics
         LogAppend("Setting character gender to : " & Cclass.ToString() & " // charguid is : " & charguid.ToString(), "ModBasics_SetCharacterClass", True)
         Select Case targetCore
             Case "arcemu"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_class_col(0) & "='" & Cclass.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_class_col(0) & "='" & Cclass.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                      "='" & charguid.ToString() & "'", True)
             Case "trinity"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_class_col(0) & "='" & Cclass.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_class_col(0) & "='" & Cclass.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                   "='" & charguid.ToString() & "'", True)
             Case "trinitytbc"
 
             Case "mangos"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_class_col(0) & "='" & Cclass.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_class_col(0) & "='" & Cclass.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                     "='" & charguid.ToString() & "'", True)
             Case Else
 
@@ -106,15 +106,15 @@ Public Class ModBasics
         LogAppend("Setting character gold to : " & gold.ToString() & " // charguid is : " & charguid.ToString(), "ModBasics_SetCharacterGold", True)
         Select Case targetCore
             Case "arcemu"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_gold_col(0) & "='" & gold.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_gold_col(0) & "='" & gold.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                    "='" & charguid.ToString() & "'", True)
             Case "trinity"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_gold_col(0) & "='" & gold.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_gold_col(0) & "='" & gold.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                     "='" & charguid.ToString() & "'", True)
             Case "trinitytbc"
 
             Case "mangos"
-                runSQLCommand_characters_string("UPDATE `" & sourceStructure.character_tbl(0) & "` SET " & sourceStructure.char_gold_col(0) & "='" & gold.ToString() & "' WHERE " & sourceStructure.char_guid_col(0) &
+                runSQLCommand_characters_string("UPDATE `" & targetStructure.character_tbl(0) & "` SET " & targetStructure.char_gold_col(0) & "='" & gold.ToString() & "' WHERE " & targetStructure.char_guid_col(0) &
                                                      "='" & charguid.ToString() & "'", True)
             Case Else
 

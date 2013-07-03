@@ -33,6 +33,9 @@ Imports Namcore_Studio.TalentCreation
 
 Public Class TransmissionHandler
     Public Shared Sub handleMigrationRequests(ByVal lite As Boolean)
+        If TargetConnection.State = ConnectionState.Closed Then TargetConnection.Open()
+        If TargetConnection_Realm.State = ConnectionState.Closed Then TargetConnection_Realm.Open()
+        forceTargetConnectionUsage = True
         '// Creating new Accounts
         For Each index As Integer In createAccountsIndex
             'CreateNewAccount(accountInfo.Item(index).name
@@ -57,8 +60,8 @@ Public Class TransmissionHandler
             AddCharacterArmor(setId)
             SetCharacterGlyphs(setId)
             SetCharacterQuests(setId)
-            SetCharacterTalents(setId)
+            If Not lite Then SetCharacterTalents(setId)
         Next
-
+        forceTargetConnectionUsage = False
     End Sub
 End Class

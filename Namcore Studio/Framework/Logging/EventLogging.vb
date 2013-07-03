@@ -64,16 +64,37 @@ Public Class EventLogging
         Dim fs As New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt", FileMode.OpenOrCreate, System.Text.Encoding.Default)
         fs.WriteLine(_status)
         fs.Close()
-        If procStatus.ArmoryWorker.IsBusy Then
-            Try
-                procStatus.ArmoryWorker.ReportProgress(progress)
-            Catch ex As Exception
+        Try
+            If Not procStatus.ArmoryWorker Is Nothing Then
+                If procStatus.ArmoryWorker.IsBusy Then
+                    Try
+                        procStatus.ArmoryWorker.ReportProgress(progress)
+                    Catch ex As Exception
 
-            End Try
+                    End Try
 
-        Else
-            procStatus.appendProc()
-        End If
+                Else
+                    procStatus.appendProc()
+                End If
+            ElseIf Not procStatus.TransferWorker Is Nothing Then
+                If procStatus.TransferWorker.IsBusy Then
+                    Try
+                        procStatus.TransferWorker.ReportProgress(progress)
+                    Catch ex As Exception
+
+                    End Try
+
+                Else
+                    procStatus.appendProc()
+                End If
+            Else
+                procStatus.appendProc()
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
 
     End Sub
 

@@ -31,12 +31,12 @@ Public Class AccountCreation
         LogAppend("Creating new account " & accname, "AccountCreation_CreateNewAccount", True)
         Select Case targetCore
             Case "arcemu"
-                If ReturnResultCount("SELECT `" & sourceStructure.acc_name_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " WHERE `" & sourceStructure.acc_name_col(0) & "`='" & accname & "'") = 0 Then
+                If ReturnResultCount("SELECT `" & targetStructure.acc_name_col(0) & "` FROM " & targetStructure.account_tbl(0) & " WHERE `" & targetStructure.acc_name_col(0) & "`='" & accname & "'") = 0 Then
                     LogAppend("Account " & accname & " does not exist -> Creating it", "AccountCreation_CreateNewAccount", False)
                     'TODO multi realm support
-                    Dim newid As Integer = runSQLCommand_realm_string("SELECT MAX(" & sourceStructure.acc_id_col(0) & ") + 1 FROM " & sourceStructure.account_tbl(0) & "", True)
-                    Dim sqlstring As String = "INSERT INTO " & sourceStructure.account_tbl(0) & " (" & sourceStructure.acc_id_col(0) & ", `" & sourceStructure.acc_name_col(0) & "`, `" & sourceStructure.acc_arcemuPass_col(0) &
-                        "`, `" & sourceStructure.acc_arcemuGmLevel_col(0) & "`, `" & sourceStructure.acc_email_col(0) & "`, `" & sourceStructure.acc_arcemuFlags_col(0) & "`) " &
+                    Dim newid As Integer = runSQLCommand_realm_string("SELECT MAX(" & targetStructure.acc_id_col(0) & ") + 1 FROM " & targetStructure.account_tbl(0) & "", True)
+                    Dim sqlstring As String = "INSERT INTO " & targetStructure.account_tbl(0) & " (" & targetStructure.acc_id_col(0) & ", `" & targetStructure.acc_name_col(0) & "`, `" & targetStructure.acc_arcemuPass_col(0) &
+                        "`, `" & targetStructure.acc_arcemuGmLevel_col(0) & "`, `" & targetStructure.acc_email_col(0) & "`, `" & targetStructure.acc_arcemuFlags_col(0) & "`) " &
                                                "VALUES (@accid, @accname, @pass, @gm, @email, @flags)"
                     Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
                     tempcommand.Parameters.AddWithValue("@accid", newid)
@@ -54,11 +54,11 @@ Public Class AccountCreation
                     LogAppend("Account " & accname & " does exist -> Leaving it untouched!", "AccountCreation_CreateNewAccount", False)
                 End If
             Case "trinity"
-                If ReturnResultCount("SELECT `" & sourceStructure.acc_name_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " WHERE `" & sourceStructure.acc_name_col(0) & "`='" & accname & "'") = 0 Then
+                If ReturnResultCount("SELECT `" & targetStructure.acc_name_col(0) & "` FROM " & targetStructure.account_tbl(0) & " WHERE `" & targetStructure.acc_name_col(0) & "`='" & accname & "'") = 0 Then
                     LogAppend("Account " & accname & " does not exist -> Creating it", "AccountCreation_CreateNewAccount", False)
-                    Dim newid As Integer = runSQLCommand_realm_string("SELECT MAX(" & sourceStructure.acc_id_col(0) & ") + 1 FROM " & sourceStructure.account_tbl(0) & "", True)
-                    Dim sqlstring As String = "INSERT INTO " & sourceStructure.character_tbl(0) & " (" & sourceStructure.acc_id_col(0) & ", `" & sourceStructure.acc_name_col(0) & "`, `" & sourceStructure.acc_passHash_col(0) &
-                        "`, `" & sourceStructure.acc_email_col(0) & "`, `" & sourceStructure.acc_joindate_col(0) & "`, `" & sourceStructure.acc_expansion_col(0) & "`) " &
+                    Dim newid As Integer = runSQLCommand_realm_string("SELECT MAX(" & targetStructure.acc_id_col(0) & ") + 1 FROM " & targetStructure.account_tbl(0) & "", True)
+                    Dim sqlstring As String = "INSERT INTO " & targetStructure.character_tbl(0) & " (" & targetStructure.acc_id_col(0) & ", `" & targetStructure.acc_name_col(0) & "`, `" & targetStructure.acc_passHash_col(0) &
+                        "`, `" & targetStructure.acc_email_col(0) & "`, `" & targetStructure.acc_joindate_col(0) & "`, `" & targetStructure.acc_expansion_col(0) & "`) " &
                                                "VALUES (@accid, @accname, @pass, @email, @joindate, @expansion)"
                     Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
                     Dim player As Character = GetCharacterSetBySetId(setId)
@@ -86,17 +86,17 @@ Public Class AccountCreation
             Case "trinitytbc"
                 'TODO
             Case "mangos"
-                If ReturnResultCount("SELECT `" & sourceStructure.acc_name_col(0) & "` FROM " & sourceStructure.account_tbl(0) & " WHERE `" & sourceStructure.acc_name_col(0) & "`='" & accname & "'") = 0 Then
+                If ReturnResultCount("SELECT `" & targetStructure.acc_name_col(0) & "` FROM " & targetStructure.account_tbl(0) & " WHERE `" & targetStructure.acc_name_col(0) & "`='" & accname & "'") = 0 Then
                     LogAppend("Account " & accname & " does not exist -> Creating it", "AccountCreation_CreateNewAccount", False)
                     If realmid = 0 Then
                         realmid = -1
                     ElseIf realmid = Nothing Then
                         realmid = -1
                     Else : End If
-                    Dim newid As Integer = runSQLCommand_realm_string("SELECT MAX(" & sourceStructure.acc_id_col(0) & ") + 1 FROM " & sourceStructure.account_tbl(0) & "", True)
-                    Dim sqlstring As String = "INSERT INTO " & sourceStructure.account_tbl(0) & " (" & sourceStructure.acc_id_col(0) & ", `" & sourceStructure.acc_name_col(0) & "`, `" &
-                        sourceStructure.acc_passHash_col(0) & "`, `" & sourceStructure.acc_email_col(0) & "`, `" & sourceStructure.acc_joindate_col(0) & "`, `" & sourceStructure.acc_expansion_col(0) &
-                        "`, " & sourceStructure.acc_realmID_col(0) & ") " &
+                    Dim newid As Integer = runSQLCommand_realm_string("SELECT MAX(" & targetStructure.acc_id_col(0) & ") + 1 FROM " & targetStructure.account_tbl(0) & "", True)
+                    Dim sqlstring As String = "INSERT INTO " & targetStructure.account_tbl(0) & " (" & targetStructure.acc_id_col(0) & ", `" & targetStructure.acc_name_col(0) & "`, `" &
+                        targetStructure.acc_passHash_col(0) & "`, `" & targetStructure.acc_email_col(0) & "`, `" & targetStructure.acc_joindate_col(0) & "`, `" & targetStructure.acc_expansion_col(0) &
+                        "`, " & targetStructure.acc_realmID_col(0) & ") " &
                                                "VALUES (@accid, @accname, @pass, @email, @joindate, @expansion, @realmid)"
                     Dim tempcommand As New MySqlCommand(sqlstring, TargetConnection_Realm)
                     Dim player As Character = GetCharacterSetBySetId(setId)

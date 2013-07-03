@@ -15,43 +15,43 @@ Public Class Quests_interface
         Dim qst() As String = p.FinishedQuests.Split(","c)
         Dim cnt As Integer = 0
         Dim par1 As Integer = qst.Length / 2
-        Dim trd As New Thread(AddressOf dopart1)
-        Dim trd2 As New Thread(AddressOf dopart2)
-        trd.IsBackground = True
-        trd2.IsBackground = True
-        arr1 = {0, par1, qst}
-        arr2 = {par1 + 1, qst.Length, qst}
-        trd.Start()
-        'trd2.Start()
-        While trd.IsAlive
-            'wait
-        End While
-        While trd2.IsAlive
-            'wait
-        End While
-        For Each itm As ListViewItem In addlst
-            qst_lst.Items.Add(itm)
-        Next
-        For Each itm As ListViewItem In addlst2
-            qst_lst.Items.Add(itm)
-        Next
-        'While cnt < qst.Length
-        '    Dim str(3) As String
-        '    str(0) = qst(cnt)
-        '    Dim qstname As String = GetQuestNameById(TryInt(str(0)))
-        '    If qstname = "error" Then
-        '        str(1) = "not loaded" 'getNameOfQuest(str(0))
-        '    Else
-        '        str(1) = qstname
-        '    End If
-
-        '    str(2) = "1"
-        '    str(3) = "1"
-        '    Dim itm As New ListViewItem(str)
-        '    itm.Tag = TryInt(str(0))
-        '    qst_lst.Items.Add(itm)
-        '    cnt += 1
+        'Dim trd As New Thread(AddressOf dopart1)
+        'Dim trd2 As New Thread(AddressOf dopart2)
+        'trd.IsBackground = True
+        'trd2.IsBackground = True
+        'arr1 = {0, par1, qst}
+        'arr2 = {par1 + 1, qst.Length, qst}
+        'trd.Start()
+        ''trd2.Start()
+        'While trd.IsAlive
+        '    'wait
         'End While
+        'While trd2.IsAlive
+        '    'wait
+        'End While
+        'For Each itm As ListViewItem In addlst
+        '    qst_lst.Items.Add(itm)
+        'Next
+        'For Each itm As ListViewItem In addlst2
+        '    qst_lst.Items.Add(itm)
+        'Next
+        While cnt < qst.Length
+            Dim str(3) As String
+            str(0) = qst(cnt)
+            Dim qstname As String = GetQuestNameById(TryInt(str(0)))
+            If qstname = "error" Then
+                str(1) = "not loaded" 'getNameOfQuest(str(0))
+            Else
+                str(1) = qstname
+            End If
+
+            str(2) = "1"
+            str(3) = "1"
+            Dim itm As New ListViewItem(str)
+            itm.Tag = TryInt(str(0))
+            qst_lst.Items.Add(itm)
+            cnt += 1
+        End While
     End Sub
     Private Sub dopart1()
         Dim startend As Array = arr1

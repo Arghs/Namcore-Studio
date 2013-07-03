@@ -207,6 +207,7 @@ Public Class dbStruc_check
         Else
             sourceStructure = dbstruc
         End If
+        sqlconn.Open()
     End Sub
     Private Sub check_accounts(ByVal struc As DBStructure)
         Dim tmpReport As String = DBReport

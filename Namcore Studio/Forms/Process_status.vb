@@ -3,10 +3,12 @@ Imports System.ComponentModel
 Imports Namcore_Studio.ArmoryHandler
 Imports Namcore_Studio.Interface_Operator
 Imports Namcore_Studio.Basics
+Imports Namcore_Studio.TransmissionHandler
 Imports Namcore_Studio.Armory_interface
 
 Public Class Process_status
     Public WithEvents ArmoryWorker As BackgroundWorker
+    Public WithEvents TransferWorker As BackgroundWorker
     Public Shared proccessTXT As String
     Private Sub close_bt_Click(sender As System.Object, e As System.EventArgs) Handles close_bt.Click
         Me.Close()
@@ -39,6 +41,30 @@ Public Class Process_status
         End If
         Interface_Operator.prepareLive_armory()
     End Sub
+
+    Public Sub TransferWorker_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs) _
+    Handles TransferWorker.DoWork
+        Dim d As Live_View.Data2Thread = CType(e.Argument, Live_View.Data2Thread)
+        Dim lite As Boolean = d.lite
+        handleMigrationRequests(lite)
+        MsgBox("hi")
+    End Sub
+    Public Sub UpdateGuiTrans()
+        cancel_bt.Visible = TransferWorker.IsBusy
+        progressbar.Visible = TransferWorker.IsBusy
+        If TransferWorker.IsBusy Then progressbar.Value = 0
+    End Sub
+    Public Sub TransferWorker_RunWorkerCompleted( _
+        ByVal sender As Object, ByVal e As RunWorkerCompletedEventArgs) _
+        Handles TransferWorker.RunWorkerCompleted
+        UpdateGuiTrans()
+        If e.Cancelled Then
+            process_tb.Text = "Canceled"
+            Return
+        End If
+        MsgBox("Transfer completed!")
+        Live_View.Show()
+    End Sub
     Public Sub appendProc()
         Try
             process_tb.Text = proccessTXT
@@ -52,6 +78,15 @@ Public Class Process_status
     Public Sub ArmoryWorker_ProgressChanged( _
          ByVal sender As Object, ByVal e As ProgressChangedEventArgs) _
          Handles ArmoryWorker.ProgressChanged
+        progressbar.Value = e.ProgressPercentage
+        process_tb.Text = proccessTXT
+        process_tb.SelectionStart = process_tb.Text.Length
+        process_tb.ScrollToCaret()
+    End Sub
+
+    Public Sub TransferWorker_ProgressChanged( _
+        ByVal sender As Object, ByVal e As ProgressChangedEventArgs) _
+        Handles TransferWorker.ProgressChanged
         progressbar.Value = e.ProgressPercentage
         process_tb.Text = proccessTXT
         process_tb.SelectionStart = process_tb.Text.Length

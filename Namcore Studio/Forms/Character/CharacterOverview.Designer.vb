@@ -2856,7 +2856,7 @@ Partial Class CharacterOverview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1559, 706)
+        Me.ClientSize = New System.Drawing.Size(1111, 706)
         Me.Controls.Add(Me.Quests_bt)
         Me.Controls.Add(Me.addpanel)
         Me.Controls.Add(Me.Button9)

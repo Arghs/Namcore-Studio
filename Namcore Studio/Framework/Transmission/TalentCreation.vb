@@ -233,9 +233,9 @@ Public Class TalentCreation
                     End If
                 End If
             End If
-            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_talent1_col(0) & "='" & finaltalentstring & "' WHERE " & sourceStructure.char_guid_col(0) &
+            runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_talent1_col(0) & "='" & finaltalentstring & "' WHERE " & targetStructure.char_guid_col(0) &
                                             "='" & characterguid.ToString() & "'", True)
-            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_tbl(0) & " SET " & sourceStructure.char_talent2_col(0) & "='" & finaltalentstring2 & "' WHERE " & sourceStructure.char_guid_col(0) &
+            runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_talent2_col(0) & "='" & finaltalentstring2 & "' WHERE " & targetStructure.char_guid_col(0) &
                                             "='" & characterguid.ToString() & "'", True)
         Next
     End Sub
@@ -243,8 +243,8 @@ Public Class TalentCreation
         LogAppend("Creating at Trinity", "TalentCreation_createAtTrinity", False)
         Dim player As Character = GetCharacterSetBySetId(targetSetId)
         For Each tal As Talent In player.Talents
-            runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_talent_tbl(0) & " ( " & sourceStructure.talent_guid_col(0) & ", " & sourceStructure.talent_spell_col(0) & ", " &
-                                            sourceStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '" & tal.spell.ToString & "', '" &
+            runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_talent_tbl(0) & " ( " & targetStructure.talent_guid_col(0) & ", " & targetStructure.talent_spell_col(0) & ", " &
+                                            targetStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '" & tal.spell.ToString & "', '" &
                                             tal.spec.ToString & "')", True)
         Next
     End Sub
@@ -269,39 +269,39 @@ Public Class TalentCreation
                     ElseIf talentlist.Contains(TalentId & "rank4") Then
                         If CInt(Val(TalentRank)) <= 4 Then
                         Else
-                            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_talent_tbl(0) & " SET " & sourceStructure.talent_rank_col(0) & "='" & TalentRank & "' WHERE " &
-                                                            sourceStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & sourceStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
-                                                            sourceStructure.talent_spec_col(0) & "='0'", True)
+                            runSQLCommand_characters_string("UPDATE " & targetStructure.character_talent_tbl(0) & " SET " & targetStructure.talent_rank_col(0) & "='" & TalentRank & "' WHERE " &
+                                                            targetStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & targetStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
+                                                            targetStructure.talent_spec_col(0) & "='0'", True)
                             talentlist = talentlist & " " & TalentId & "rank" & TalentRank
                         End If
                     ElseIf talentlist.Contains(TalentId & "rank3") Then
                         If CInt(Val(TalentRank)) <= 3 Then
                         Else
-                            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_talent_tbl(0) & " SET " & sourceStructure.talent_rank_col(0) & "='" & TalentRank & "' WHERE " &
-                                                            sourceStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & sourceStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
-                                                            sourceStructure.talent_spec_col(0) & "='0'", True)
+                            runSQLCommand_characters_string("UPDATE " & targetStructure.character_talent_tbl(0) & " SET " & targetStructure.talent_rank_col(0) & "='" & TalentRank & "' WHERE " &
+                                                            targetStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & targetStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
+                                                            targetStructure.talent_spec_col(0) & "='0'", True)
                             talentlist = talentlist & " " & TalentId & "rank" & TalentRank
                         End If
                     ElseIf talentlist.Contains(TalentId & "rank2") Then
                         If CInt(Val(TalentRank)) <= 2 Then
                         Else
-                            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_talent_tbl(0) & " SET " & sourceStructure.talent_rank_col(0) & "='" & TalentRank & "' WHERE " &
-                                                            sourceStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & sourceStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
-                                                            sourceStructure.talent_spec_col(0) & "='0'", True)
+                            runSQLCommand_characters_string("UPDATE " & targetStructure.character_talent_tbl(0) & " SET " & targetStructure.talent_rank_col(0) & "='" & TalentRank & "' WHERE " &
+                                                            targetStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & targetStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
+                                                            targetStructure.talent_spec_col(0) & "='0'", True)
                             talentlist = talentlist & " " & TalentId & "rank" & TalentRank
                         End If
                     ElseIf talentlist.Contains(TalentId & "rank1") Then
                         If CInt(Val(TalentRank)) <= 1 Then
                         Else
-                            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_talent_tbl(0) & " SET " & sourceStructure.talent_rank_col(0) & "='" & TalentRank & "' WHERE " &
-                                                            sourceStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & sourceStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
-                                                            sourceStructure.talent_spec_col(0) & "='0'", True)
+                            runSQLCommand_characters_string("UPDATE " & targetStructure.character_talent_tbl(0) & " SET " & targetStructure.talent_rank_col(0) & "='" & TalentRank & "' WHERE " &
+                                                            targetStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & targetStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
+                                                            targetStructure.talent_spec_col(0) & "='0'", True)
                             talentlist = talentlist & " " & TalentId & "rank" & TalentRank
                         End If
                     Else : End If
                 Else
-                    runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_talent_tbl(0) & " ( " & sourceStructure.talent_guid_col(0) & ", " & sourceStructure.talent_talent_col(0) & ", " &
-                                                    sourceStructure.talent_rank_col(0) & ", " & sourceStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString & "', '" & TalentId & "', '" &
+                    runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_talent_tbl(0) & " ( " & targetStructure.talent_guid_col(0) & ", " & targetStructure.talent_talent_col(0) & ", " &
+                                                    targetStructure.talent_rank_col(0) & ", " & targetStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString & "', '" & TalentId & "', '" &
                                                     TalentRank & "', '0' )", True)
                     talentlist = talentlist & " " & TalentId & "rank" & TalentRank
                 End If
@@ -311,39 +311,39 @@ Public Class TalentCreation
                     ElseIf talentlist2.Contains(TalentId & "rank4") Then
                         If CInt(Val(TalentRank2)) <= 4 Then
                         Else
-                            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_talent_tbl(0) & " SET " & sourceStructure.talent_rank_col(0) & "='" & TalentRank2 & "' WHERE " &
-                                                            sourceStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & sourceStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
-                                                            sourceStructure.talent_spec_col(0) & "='1'", True)
+                            runSQLCommand_characters_string("UPDATE " & targetStructure.character_talent_tbl(0) & " SET " & targetStructure.talent_rank_col(0) & "='" & TalentRank2 & "' WHERE " &
+                                                            targetStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & targetStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
+                                                            targetStructure.talent_spec_col(0) & "='1'", True)
                             talentlist2 = talentlist2 & " " & TalentId & "rank" & TalentRank2
                         End If
                     ElseIf talentlist2.Contains(TalentId & "rank3") Then
                         If CInt(Val(TalentRank2)) <= 3 Then
                         Else
-                            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_talent_tbl(0) & " SET " & sourceStructure.talent_rank_col(0) & "='" & TalentRank2 & "' WHERE " &
-                                                            sourceStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & sourceStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
-                                                            sourceStructure.talent_spec_col(0) & "='1'", True)
+                            runSQLCommand_characters_string("UPDATE " & targetStructure.character_talent_tbl(0) & " SET " & targetStructure.talent_rank_col(0) & "='" & TalentRank2 & "' WHERE " &
+                                                            targetStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & targetStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
+                                                            targetStructure.talent_spec_col(0) & "='1'", True)
                             talentlist2 = talentlist2 & " " & TalentId & "rank" & TalentRank2
                         End If
                     ElseIf talentlist2.Contains(TalentId & "rank2") Then
                         If CInt(Val(TalentRank2)) <= 2 Then
                         Else
-                            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_talent_tbl(0) & " SET " & sourceStructure.talent_rank_col(0) & "='" & TalentRank2 & "' WHERE " &
-                                                            sourceStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & sourceStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
-                                                            sourceStructure.talent_spec_col(0) & "='1'", True)
+                            runSQLCommand_characters_string("UPDATE " & targetStructure.character_talent_tbl(0) & " SET " & targetStructure.talent_rank_col(0) & "='" & TalentRank2 & "' WHERE " &
+                                                            targetStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & targetStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
+                                                            targetStructure.talent_spec_col(0) & "='1'", True)
                             talentlist2 = talentlist2 & " " & TalentId & "rank" & TalentRank2
                         End If
                     ElseIf talentlist2.Contains(TalentId & "rank1") Then
                         If CInt(Val(TalentRank2)) <= 1 Then
                         Else
-                            runSQLCommand_characters_string("UPDATE " & sourceStructure.character_talent_tbl(0) & " SET " & sourceStructure.talent_rank_col(0) & "='" & TalentRank2 & "' WHERE " &
-                                                            sourceStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & sourceStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
-                                                            sourceStructure.talent_spec_col(0) & "='1'", True)
+                            runSQLCommand_characters_string("UPDATE " & targetStructure.character_talent_tbl(0) & " SET " & targetStructure.talent_rank_col(0) & "='" & TalentRank2 & "' WHERE " &
+                                                            targetStructure.talent_guid_col(0) & "='" & characterguid.ToString & "' AND " & targetStructure.talent_talent_col(0) & "='" & TalentId & "' AND " &
+                                                            targetStructure.talent_spec_col(0) & "='1'", True)
                             talentlist2 = talentlist2 & " " & TalentId & "rank" & TalentRank2
                         End If
                     Else : End If
                 Else
-                    runSQLCommand_characters_string("INSERT INTO " & sourceStructure.character_talent_tbl(0) & " ( " & sourceStructure.talent_guid_col(0) & ", " & sourceStructure.talent_talent_col(0) & ", " &
-                                                    sourceStructure.talent_rank_col(0) & ", " & sourceStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString & "', '" & TalentId & "', '" & TalentRank2 & "', '1' )", True)
+                    runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_talent_tbl(0) & " ( " & targetStructure.talent_guid_col(0) & ", " & targetStructure.talent_talent_col(0) & ", " &
+                                                    targetStructure.talent_rank_col(0) & ", " & targetStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString & "', '" & TalentId & "', '" & TalentRank2 & "', '1' )", True)
                     talentlist2 = talentlist2 & " " & TalentId & "rank" & TalentRank2
                 End If
             End If

@@ -74,6 +74,7 @@ Public Class GlobalVariables
     Public Shared tempAchievementInfo As List(Of ListViewItem)
     Public Shared tempAchievementInfoIndex As String
     Public Shared offlineExtension As Boolean
+    Public Shared forceTargetConnectionUsage As Boolean
 End Class
 <Serializable()> _
 Public Class GlobalCharVars
