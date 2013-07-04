@@ -442,6 +442,14 @@ Public Class Live_View
 
     End Sub
 
+    Private Sub characterview_DragDrop(sender As Object, e As DragEventArgs) Handles characterview.DragDrop
+
+    End Sub
+
+    Private Sub characterview_ItemDrag(sender As Object, e As ItemDragEventArgs) Handles characterview.ItemDrag
+        characterview.DoDragDrop(characterview.SelectedItems, DragDropEffects.Move)
+    End Sub
+
     Private Sub characterview_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles characterview.MouseDown
 
     End Sub
@@ -486,6 +494,61 @@ Public Class Live_View
 
     End Sub
 
+    Private Sub target_accounts_tree_DragDrop(sender As Object, e As DragEventArgs) Handles target_accounts_tree.DragDrop
+        If e.Data.GetDataPresent(GetType(ListView.SelectedListViewItemCollection).ToString(), False) Then
+            Dim loc As Point = (CType(sender, TreeView)).PointToClient(New Point(e.X, e.Y))
+            Dim destNode As TreeNode = (CType(sender, TreeView)).GetNodeAt(loc)
+            Dim tnNew As TreeNode
+
+            Dim lstViewColl As ListView.SelectedListViewItemCollection = CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)), ListView.SelectedListViewItemCollection)
+            For Each lvItem As ListViewItem In lstViewColl
+                tnNew = New TreeNode(lvItem.Text)
+                tnNew.Tag = lvItem.Tag
+                If Not destNode Is Nothing Then
+                    destNode.Nodes.Insert(destNode.Index + 1, tnNew)
+                    destNode.Expand()
+                    Dim tempAccList As New ArrayList
+                    Dim tmpAccount(2) As String
+                    tmpAccount(1) = destNode.Text
+                    tempAccList.Add(tmpAccount)
+                    Dim newchar As New Character(lvItem.SubItems(2).Text, TryInt(lvItem.SubItems(0).Text))
+                    Dim nodes As New List(Of String)
+                    For Each parentNode As TreeNode In target_accounts_tree.Nodes
+                        nodes.AddRange(GetChildren(parentNode))
+                    Next
+                    With tnNew
+                        .Text = newchar.Name
+                        If Not nodes.Contains("'" & newchar.name & "'") Then
+                            .BackColor = Color.Green
+                        Else
+                            .BackColor = Color.Yellow
+                        End If
+                    End With
+                    charactersToCreate.Add("{AccountId}" & destNode.Name & "{/AccountId}{setId}" & lvItem.Tag.ToString & "{/setId}")
+
+                    ' Remove this line if you want to only copy items
+                    ' from ListView and not move them
+                    lvItem.Remove()
+
+                End If
+
+            Next lvItem
+        End If
+    End Sub
+
+    Private Sub target_accounts_tree_DragEnter(sender As Object, e As DragEventArgs) Handles target_accounts_tree.DragEnter
+        If e.Data.GetDataPresent(GetType(ListView.SelectedListViewItemCollection)) Then
+            e.Effect = DragDropEffects.Move
+        End If
+    End Sub
+    Private Sub characterview_GiveFeedback(ByVal sender As Object, ByVal e As GiveFeedbackEventArgs) Handles characterview.GiveFeedback
+        e.UseDefaultCursors = False
+        If (e.Effect And DragDropEffects.Move) = DragDropEffects.Move Then
+            Cursor.Current = Cursors.Cross
+        Else
+            Cursor.Current = Cursors.Default
+        End If
+    End Sub
     Private Sub target_accounts_tree_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles target_accounts_tree.MouseDown
 
     End Sub

@@ -365,6 +365,7 @@ Partial Class Live_View
         '
         'target_accounts_tree
         '
+        Me.target_accounts_tree.AllowDrop = True
         Me.target_accounts_tree.Location = New System.Drawing.Point(33, 130)
         Me.target_accounts_tree.Name = "target_accounts_tree"
         Me.target_accounts_tree.Size = New System.Drawing.Size(269, 372)
