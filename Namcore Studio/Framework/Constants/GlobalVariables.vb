@@ -25,6 +25,7 @@ Imports MySql.Data.MySqlClient
 Imports System.Threading
 
 Public Class GlobalVariables
+    Public Shared lastregion As String
     Public Shared TempCharacter As Character
     Public Shared globChars As GlobalCharVars
     Public Shared ModCharacterSets As List(Of Character)

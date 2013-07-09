@@ -131,6 +131,12 @@
     <Compile Include="Forms\Character\Glyphs_interface.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Main.Designer.vb">
+      <DependentUpon>Main.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Prep_chartrans.Designer.vb">
       <DependentUpon>Prep_chartrans.vb</DependentUpon>
     </Compile>
@@ -260,6 +266,9 @@
     <EmbeddedResource Include="Forms\Character\Glyphs_interface.resx">
       <DependentUpon>Glyphs_interface.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Main.resx">
+      <DependentUpon>Main.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Prep_chartrans.resx">
       <DependentUpon>Prep_chartrans.vb</DependentUpon>
     </EmbeddedResource>
@@ -300,6 +309,14 @@
     <Content Include="References\mysql.data.dll" />
     <None Include="Resources\INV_Misc_QuestionMark.jpg" />
     <None Include="Resources\addrep.jpg" />
+    <None Include="Resources\bgNav.jpg" />
+    <None Include="Resources\bgNav1.jpg" />
+    <None Include="Resources\bgNav2.jpg" />
+    <None Include="Resources\bgNav3.jpg" />
+    <None Include="Resources\bgNav4.jpg" />
+    <None Include="Resources\highlight.png" />
+    <None Include="Resources\highlight1.png" />
+    <None Include="Resources\bgNav5.jpg" />
     <Content Include="Resources\namcore_bg.jpg" />
     <None Include="Resources\plusico.png" />
     <Content Include="Resources\Refresh-icon.png" />
@@ -312,7 +329,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

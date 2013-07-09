@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Namcore_Studio.Armory_interface
+            Me.MainForm = Global.Namcore_Studio.Main
         End Sub
     End Class
 End Namespace

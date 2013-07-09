@@ -104,6 +104,10 @@ Public Class Armory_interface
     End Sub
 
     Private Sub back_bt_Click(sender As System.Object, e As System.EventArgs) Handles back_bt.Click
+        If lastregion = "main" Then
+            Me.Close()
+            Main.Show()
+        End If
         'todo
     End Sub
 

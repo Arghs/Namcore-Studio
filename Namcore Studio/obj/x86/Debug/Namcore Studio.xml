@@ -19,7 +19,15 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.bgNav">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.Resources.empty">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.highlight">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
@@ -284,10 +292,6 @@ NamcoreStudio
 	<summary>
   Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
 </summary>
-</member><member name="M:Namcore_Studio.date2timestamp.toDate(System.Int32@)">
-	<summary>
- timestamp converter
- </summary>
 </member><member name="M:Namcore_Studio.WinformControlExtensions.FindAllChildren(System.Windows.Forms.Form@)">
 	<summary>
  Recursively find all child controls for a form
@@ -310,6 +314,10 @@ NamcoreStudio
 </member><member name="M:Namcore_Studio.ReplaceItemExtension.ReplaceItem(Namcore_Studio.Item@,System.Int32)">
 	<summary>
  Replaces an Item
+ </summary>
+</member><member name="M:Namcore_Studio.date2timestamp.toDate(System.Int32@)">
+	<summary>
+ timestamp converter
  </summary>
 </member>
 </members>
