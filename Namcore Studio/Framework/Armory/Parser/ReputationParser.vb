@@ -31,13 +31,14 @@ Imports System.Net
 Public Class ReputationParser
     Public Shared Sub loadReputation(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
+        '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setId)
         player.PlayerReputation = New List(Of Reputation)
         Try
             LogAppend("Loading character reputation information", "ReputationParser_loadReputation", True)
             Dim reputationContext As String = client.DownloadString(apiLink & "?fields=reputation")
             reputationContext = splitString(reputationContext, """reputation"":[", "]")
-            If reputationContext.Length > 5 Then
+            If reputationContext.Length > 5 Then '// Not confirmed if properly working TODO
                 Dim exCount As Integer = UBound(Split(reputationContext, ",{"))
                 reputationContext = reputationContext.Replace(",{", "§")
                 Dim parts() As String = reputationContext.Split("§"c)
@@ -67,6 +68,7 @@ Public Class ReputationParser
                         LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###", "ReputationParser_loadReputation", False, True)
                     End Try
                 Loop Until loopcounter = exCount
+                '// Saving changes to character
                 SetCharacterSet(setId, player)
             End If
         Catch ex As Exception

@@ -30,13 +30,15 @@ Public Class ItemParser
     Public Shared Sub loadItems(ByVal source As String, ByVal setId As Integer)
         Dim slotname As String
         Dim itemslot As Integer = 0
+        '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setId)
         LogAppend("Loading character items", "ItemParser_loadItems", True)
         Do
             Try
-                If itemslot > 18 Then
+                If itemslot > 18 Then '// item slot 19+ not existent
                     Exit Do
                 End If
+                '// Loading item + info for each slot and add them to character
                 Select Case itemslot
                     Case 0
                         slotname = "head"
@@ -112,8 +114,7 @@ Public Class ItemParser
                             AddCharacterArmorItem(player, charItem)
                             LoadWeaponType(charItem.id, setId)
                         End If
-                    Case 17
-                        'slot 17 has been removed as of patch 5.0
+                    Case 17 '// Slot 17 has been removed as of patch 5.0
                     Case 18
                         slotname = "tabard"
                         Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
@@ -138,17 +139,17 @@ Public Class ItemParser
         Dim relevantItemContext As String = splitString(sourceCode, "<div data-id=""" & slot.ToString & """ data-type", endString)
         If Not relevantItemContext.Contains("/item/") Then Return Nothing '//Not item
         Dim charItem As New Item
-        '//Loading main Item Info
+        '// Loading main Item Info
         charItem.id = TryInt(splitString(relevantItemContext, "/item/", """ class=""item"""))
         charItem.slotname = slotname
         charItem.slot = slot
-        If charItem.id = Nothing Then Return Nothing '//Item ID not found
+        If charItem.id = Nothing Then Return Nothing '// Item ID not found
         charItem.name = splitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
         If offlineExtension = True Then charItem.image = GetIconByItemId(charItem.id) Else  : charItem.image = LoadImageFromUrl(splitString(relevantItemContext, "<img src=""", """ alt"))
         charItem.rarity = TryInt(splitString(relevantItemContext, "item-quality-", """ style="))
         Dim socketContext As String
         If relevantItemContext.Contains("<span class=""sockets"">") Then
-            '//sockets active
+            '// Gems active
             socketContext = splitString(relevantItemContext & "</div>", "<span class=""sockets"">", "</div>")
             Dim socketCount As Integer = UBound(Split(socketContext, "socket-"))
             Dim oneSocketContext As String = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
@@ -176,7 +177,7 @@ Public Class ItemParser
             End If
         End If
         If relevantItemContext.Contains("<span class=""enchant-") Then
-            '//enchantment active
+            '// Enchantment active
             Dim enchantContext As String = splitString(relevantItemContext, " class=""enchant color", "</span>")
             If enchantContext.Contains("data-spell=") Then
                 '//enchantment type: spell

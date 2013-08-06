@@ -30,18 +30,20 @@ Imports System.Net
 Public Class GlyphParser
     Public Shared Sub loadGlyphs(ByVal setID As Integer, ByVal apiLink As String)
         Dim client As New WebClient
+        '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setID)
         Try
             LogAppend("Loading character glyph information", "GlyphParser_loadGlyphs", True)
+            '// Using API to load glyph info
             Dim glyphContext As String = client.DownloadString(apiLink & "?fields=talents")
             Dim slotAddition As String
             Dim mainContext As String
-            If Not glyphContext.Contains("""glyphs"":") Then Exit Sub
+            If Not glyphContext.Contains("""glyphs"":") Then Exit Sub '// Skip if no glyphs
             For i = 1 To 2
                 Select Case i
-                    Case 1 : mainContext = splitString(glyphContext, """glyphs"":", ",""spec"":") : slotAddition = ""
-                    Case 2 : mainContext = splitString(glyphContext, ",""spec"":", "}]}") : slotAddition = "sec"
-                    Case Else : mainContext = splitString(glyphContext, ",""spec"":", "}]}") : slotAddition = "sec"
+                    Case 1 : mainContext = splitString(glyphContext, """glyphs"":", ",""spec"":") : slotAddition = "" '// Spec 0
+                    Case 2 : mainContext = splitString(glyphContext, ",""spec"":", "}]}") : slotAddition = "sec" '// Spec 1
+                    Case Else : mainContext = splitString(glyphContext, ",""spec"":", "}]}") : slotAddition = "sec" '// Spec 1
                 End Select
                 Dim gType As String = "minor"
                 Dim loopCounter As Integer = 0
@@ -73,6 +75,7 @@ Public Class GlyphParser
         Catch ex As Exception
             LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "GlyphParser_loadGlyphs", False, True)
         End Try
+        '// Saving changes to character
         SetCharacterSet(setID, player)
     End Sub
 End Class

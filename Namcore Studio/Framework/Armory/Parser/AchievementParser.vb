@@ -31,14 +31,17 @@ Imports System.Net
 Public Class AchievementParser
     Public Shared Sub loadAchievements(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
+        '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setId)
         player.Achievements = New List(Of Achievement)
         Try
             LogAppend("Loading character achievement information", "AchievementParser_loadAchievements", True)
+            '// Using API to load achievement info
             Dim avContext As String = client.DownloadString(apiLink & "?fields=achievements")
+            '// Splitting to create completed-achievements and timestamp string
             Dim avStr As String = splitString(avContext, "{""achievementsCompleted"":[", "],""") & ","
             Dim timeStr As String = splitString(avContext, """achievementsCompletedTimestamp"":[", "],""")
-            If avStr.Length > 5 Then
+            If avStr.Length > 5 Then '// Should check if av count is > 0 // TODO Confirm
                 Dim loopcounter As Integer = 0
                 Dim excounter As Integer = UBound(Split(avStr, ","))
                 Dim partsAV() As String = avStr.Split(","c)
@@ -59,6 +62,7 @@ Public Class AchievementParser
                     av.OwnerSet = setId
                     player.Achievements.Add(av)
                 Loop Until loopcounter = excounter
+                '// Saving changes to character
                 SetCharacterSet(setId, player)
             End If
         Catch ex As Exception
