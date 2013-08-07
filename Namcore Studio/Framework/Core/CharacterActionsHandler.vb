@@ -28,7 +28,7 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
 Public Class CharacterActionsHandler
-    Public Shared Sub GetCharacterActions(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+    Public Sub GetCharacterActions(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character actions for characterGuid: " & characterGuid & " and setId: " & setId, "CharacterActionssHandler_GetCharacterActions", True)
         Select Case sourceCore
             Case "arcemu"
@@ -44,7 +44,7 @@ Public Class CharacterActionsHandler
         End Select
 
     End Sub
-    Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Actions @loadAtArcemu", "CharacterActionsHandler_loadAtArcemu", False)
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         tmpCharacter.ArcEmuAction1 = runSQLCommand_characters_string("SELECT " & sourceStructure.char_actions1_col(0) & " FROM " & sourceStructure.character_tbl(0) &
@@ -92,7 +92,7 @@ Public Class CharacterActionsHandler
         End Try
         SetCharacterSet(tar_setId, tmpCharacter)
     End Sub
-    Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Actions @loadAtTrinity", "CharacterActionsHandler_loadAtTrinity", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.action_button_col(0) & ", `" & sourceStructure.action_spec_col(0) & "`, " & sourceStructure.action_action_col(0) &
                                                   ", `" & sourceStructure.action_type_col(0) & "` FROM " & sourceStructure.character_action_tbl(0) & " WHERE " & sourceStructure.action_guid_col(0) &
@@ -121,10 +121,10 @@ Public Class CharacterActionsHandler
         End Try
         SetCharacterSet(tar_setId, tmpCharacter)
     End Sub
-    Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
     End Sub
-    Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Actions @loadAtMangos", "CharacterActionsHandler_loadAtMangos", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.action_button_col(0) & ", `" & sourceStructure.action_spec_col(0) & "`, " & sourceStructure.action_action_col(0) &
                                                   ", `" & sourceStructure.action_type_col(0) & "` FROM " & sourceStructure.character_action_tbl(0) & " WHERE " & sourceStructure.action_guid_col(0) &

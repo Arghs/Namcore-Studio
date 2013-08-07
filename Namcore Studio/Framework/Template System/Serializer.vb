@@ -26,7 +26,7 @@ Imports System.IO
 Imports System.IO.Compression
 Imports System.Text.Encoding
 Public Class Serializer
-    Public Shared Function Serialize(Of T)(ByVal compression As Boolean, ByVal instance As T) As MemoryStream
+    Public Function Serialize(Of T)(ByVal compression As Boolean, ByVal instance As T) As MemoryStream
 
         Try
             Dim fs As Stream = New MemoryStream()
@@ -35,15 +35,15 @@ Public Class Serializer
 
             bf.Serialize(fs, instance)
             fs.Close()
-            
+
             Return fs
         Catch ex As Exception
             MessageBox.Show(ex.Message, Application.ProductName, _
               MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
-    
-    Public Shared Function Serialize(Of T)(ByVal instance As T) As MemoryStream
+
+    Public Function Serialize(Of T)(ByVal instance As T) As MemoryStream
         Return Serialize(False, instance)
     End Function
 
@@ -77,17 +77,17 @@ Public Class Serializer
         End Try
     End Function
 
-    Public Shared Function DeSerialize(Of T)(ByVal serialString As String, _
+    Public Function DeSerialize(Of T)(ByVal serialString As String, _
       ByVal defaultInstance As T) As T
 
         Return DeSerialize(Of T)(False, serialString, defaultInstance)
     End Function
 
-    Public Shared Function DeSerialize(Of T As New)(ByVal serialString As String) As T
+    Public Function DeSerialize(Of T As New)(ByVal serialString As String) As T
         Return DeSerialize(Of T)(serialString, New T)
     End Function
 
-    Public Shared Function DeSerialize(Of T As New)( _
+    Public Function DeSerialize(Of T As New)( _
       ByVal compression As Boolean, ByVal serialString As String) As T
 
         Return DeSerialize(Of T)(compression, serialString, New T)

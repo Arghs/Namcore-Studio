@@ -25,8 +25,8 @@ Imports MySql.Data.MySqlClient
 Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Conversions
-Public Class CommandHandler
-    Public Shared Function runSQLCommand_characters_string(ByVal command As String, Optional useTargetConnection As Boolean = False) As String
+Public Module CommandHandler
+    Public Function runSQLCommand_characters_string(ByVal command As String, Optional useTargetConnection As Boolean = False) As String
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_characters_string", False)
         Dim conn As MySqlConnection
         If forceTargetConnectionUsage Then useTargetConnection = True
@@ -59,7 +59,7 @@ Public Class CommandHandler
             Return ""
         End Try
     End Function
-    Public Shared Function runSQLCommand_realm_string(ByVal command As String, Optional useTargetConnection As Boolean = False) As String
+    Public Function runSQLCommand_realm_string(ByVal command As String, Optional useTargetConnection As Boolean = False) As String
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_realm_string", False)
         Dim conn As MySqlConnection
         If forceTargetConnectionUsage Then useTargetConnection = True
@@ -92,7 +92,7 @@ Public Class CommandHandler
             Return ""
         End Try
     End Function
-    Public Shared Function runSQLCommand_characters_string_setconn(ByVal command As String, ByVal TargetConnection As MySqlConnection) As String
+    Public Function runSQLCommand_characters_string_setconn(ByVal command As String, ByVal TargetConnection As MySqlConnection) As String
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_characters_string", False)
         Dim conn As MySqlConnection
         conn = TargetConnection
@@ -120,7 +120,7 @@ Public Class CommandHandler
             Return ""
         End Try
     End Function
-    Public Shared Function runSQLCommand_realm_string_setconn(ByVal command As String, ByVal TargetConnection As MySqlConnection) As String
+    Public Function runSQLCommand_realm_string_setconn(ByVal command As String, ByVal TargetConnection As MySqlConnection) As String
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_realm_string", False)
         Dim conn As MySqlConnection
         conn = TargetConnection_Realm
@@ -148,7 +148,7 @@ Public Class CommandHandler
             Return ""
         End Try
     End Function
-    Public Shared Function ReturnDataTable(ByVal command As String, Optional useTargetConnection As Boolean = False) As DataTable
+    Public Function ReturnDataTable(ByVal command As String, Optional useTargetConnection As Boolean = False) As DataTable
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTable", False)
         Dim conn As MySqlConnection
         If forceTargetConnectionUsage Then useTargetConnection = True
@@ -167,7 +167,7 @@ Public Class CommandHandler
             Return dt
         End Try
     End Function
-    Public Shared Function ReturnDataTable_setconn(ByVal command As String, ByVal TargetConnection As MySqlConnection) As DataTable
+    Public Function ReturnDataTable_setconn(ByVal command As String, ByVal TargetConnection As MySqlConnection) As DataTable
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTable", False)
         Dim conn As MySqlConnection
         conn = TargetConnection
@@ -181,7 +181,7 @@ Public Class CommandHandler
             Return dt
         End Try
     End Function
-    Public Shared Function ReturnCountResults(ByVal command As String, Optional useTargetConnection As Boolean = False) As Integer
+    Public Function ReturnCountResults(ByVal command As String, Optional useTargetConnection As Boolean = False) As Integer
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnCountResult", False)
         Dim conn As MySqlConnection
         If forceTargetConnectionUsage Then useTargetConnection = True
@@ -201,7 +201,7 @@ Public Class CommandHandler
             Return 0
         End Try
     End Function
-    Public Shared Function ReturnResultWithRow(ByVal command As String, ByVal spalte As String, ByVal row As Integer, Optional useTargetConnection As Boolean = False) As String
+    Public Function ReturnResultWithRow(ByVal command As String, ByVal spalte As String, ByVal row As Integer, Optional useTargetConnection As Boolean = False) As String
         LogAppend("Executing new MySQL command. Column is: " & spalte & " / Row is: " & row.ToString & " / Command is: " & command, "CommandHandler_ReturnResultWithRow", False)
         Dim conn As MySqlConnection
         If forceTargetConnectionUsage Then useTargetConnection = True
@@ -230,7 +230,7 @@ Public Class CommandHandler
             Return ""
         End Try
     End Function
-    Public Shared Function ReturnResultCount(ByVal command As String, Optional useTargetConnection As Boolean = False) As Integer
+    Public Function ReturnResultCount(ByVal command As String, Optional useTargetConnection As Boolean = False) As Integer
         LogAppend("Executing new MySQL command.", "CommandHandler_ReturnResultCount", False)
         Dim conn As MySqlConnection
         If forceTargetConnectionUsage Then useTargetConnection = True
@@ -249,4 +249,4 @@ Public Class CommandHandler
             Return 0
         End Try
     End Function
-   End Class
+End Module

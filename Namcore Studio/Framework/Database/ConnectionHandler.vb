@@ -24,8 +24,8 @@
 Imports MySql.Data.MySqlClient
 Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.Basics
-Public Class ConnectionHandler
-    Public Shared Sub OpenNewMySQLConnection(ByVal targetconnection As MySqlConnection, serverstring As String)
+Public Module ConnectionHandler
+    Public Sub OpenNewMySQLConnection(ByVal targetconnection As MySqlConnection, serverstring As String)
         LogAppend("Opening new MySQL connection (target: " & targetconnection.ToString() & " with connectionstring: " & serverstring, "ConnectionHandler_OpenNewMySQLConnection", True)
         If targetconnection.State = ConnectionState.Open Then
             LogAppend("MySQL connection already open! -> Closing it now", "ConnectionHandler_OpenNewMySQLConnection", True)
@@ -53,7 +53,7 @@ Public Class ConnectionHandler
             Exit Sub
         End Try
     End Sub
-    Public Shared Function TestConnection(ByVal connectionstring As String) As Boolean
+    Public Function TestConnection(ByVal connectionstring As String) As Boolean
         Dim SQLConnection As New MySqlConnection
         Try
             SQLConnection.Close()
@@ -83,4 +83,4 @@ Public Class ConnectionHandler
             Return False
         End Try
     End Function
-End Class
+End Module

@@ -89,10 +89,14 @@ Public Class ArmoryHandler
             Player.FinishedQuests = splitString(Client.DownloadString(APILink & "?fields=quests") & ",", """quests"":[", "]}")
             Player.SetIndex = setId
             AddCharacterSet(setId, Player)
-            loadReputation(setId, APILink)
-            loadGlyphs(setId, APILink)
-            loadAchievements(setId, APILink)
-            loadItems(CharacterContext, setId)
+            Dim m_reputationParser As ReputationParser = New ReputationParser
+            m_reputationParser.loadReputation(setId, APILink)
+            Dim m_glyphParser As GlyphParser = New GlyphParser
+            m_glyphParser.loadGlyphs(setId, APILink)
+            Dim m_achievementParser As AchievementParser = New AchievementParser
+            m_achievementParser.loadAchievements(setId, APILink)
+            Dim m_itemParser As ItemParser = New ItemParser
+            m_itemParser.loadItems(CharacterContext, setId)
             LogAppend("Character loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
         Next
         LogAppend("All characters loaded!", "ArmoryHandler_LoadArmoryCharacters", True)

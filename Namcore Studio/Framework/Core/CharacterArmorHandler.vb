@@ -31,7 +31,7 @@ Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.SpellItem_Information
 Public Class CharacterArmorHandler
-    Public Shared Sub GetCharacterArmor(ByVal charguid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+    Public Sub GetCharacterArmor(ByVal charguid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character Armor for charguid: " & charguid & " and setId: " & setId, "CharacterArmorHandler_GetCharacterArmor", True)
         Select Case sourceCore
             Case "arcemu"
@@ -43,13 +43,15 @@ Public Class CharacterArmorHandler
             Case "mangos"
                 loadAtMangos(charguid, setId, accountId)
             Case Else : End Select
-        HandleEnchantments(setId)
+        Dim m_enchHandler As CharacterEnchantmentsHandler = New CharacterEnchantmentsHandler
+        m_enchHandler.HandleEnchantments(setId)
     End Sub
-    Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Armor @loadAtArcemu", "CharacterArmorHandler_loadAtArcemu", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.itmins_guid_col(0) & ", " & sourceStructure.itmins_itemEntry_col(0) & ", " & sourceStructure.itmins_slot_col(0) &
                                                   " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString &
                                                   "' AND " & sourceStructure.itmins_container_col(0) & "='-1'")
+        Dim m_itmStatsHandler As CharacterItemStatsHandler = New CharacterItemStatsHandler
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Dim itemguid As Integer
         Dim slotname As String
@@ -81,7 +83,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 1
                         slotname = "neck"
@@ -93,7 +95,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 2
                         slotname = "shoulder"
@@ -105,7 +107,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 3
                         slotname = "shirt"
@@ -117,7 +119,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 4
                         slotname = "chest"
@@ -129,7 +131,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 5
                         slotname = "waist"
@@ -141,7 +143,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 6
                         slotname = "legs"
@@ -153,7 +155,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 7
                         slotname = "feet"
@@ -165,7 +167,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 8
                         slotname = "wrists"
@@ -177,7 +179,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 9
                         slotname = "hands"
@@ -189,7 +191,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 10
                         slotname = "finger1"
@@ -201,7 +203,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 11
                         slotname = "finger2"
@@ -213,7 +215,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 12
                         slotname = "trinket1"
@@ -225,7 +227,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 13
                         slotname = "trinket2"
@@ -237,7 +239,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 14
                         slotname = "back"
@@ -249,7 +251,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 15
                         slotname = "main"
@@ -261,7 +263,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 16
                         slotname = "off"
@@ -273,7 +275,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 17
                         slotname = "distance"
@@ -285,7 +287,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 18
                         slotname = "tabard"
@@ -297,7 +299,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case Else : End Select
 
@@ -309,13 +311,14 @@ Public Class CharacterArmorHandler
             loopcounter += 1
         Loop Until loopcounter = entrycount
     End Sub
-    Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Armor @loadAtTrinity", "CharacterArmorHandler_loadAtTrinity", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.invent_item_col(0) & ", " & sourceStructure.invent_slot_col(0) & ", " & sourceStructure.itmins_itemEntry_col(0) &
                                                   " FROM `" & sourceStructure.character_inventory_tbl(0) & "` JOIN `" & sourceStructure.item_instance_tbl(0) & "` ON `" & sourceStructure.character_inventory_tbl(0) &
                                                   "`." & sourceStructure.invent_item_col(0) & " = " & "`" & sourceStructure.item_instance_tbl(0) & "`." & sourceStructure.itmins_guid_col(0) &
                                                   " WHERE `" & sourceStructure.character_inventory_tbl(0) & "`." & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "' AND " & sourceStructure.invent_bag_col(0) &
                                                   "='0' AND " & sourceStructure.invent_slot_col(0) & " < '19'")
+        Dim m_itmStatsHandler As CharacterItemStatsHandler = New CharacterItemStatsHandler
         Dim itemguid As Integer
         Dim slotname As String
         Dim itementry As Integer
@@ -341,7 +344,7 @@ Public Class CharacterArmorHandler
                             itm.id = itementry
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 1
                         slotname = "neck"
@@ -353,7 +356,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 2
                         slotname = "shoulder"
@@ -365,7 +368,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 3
                         slotname = "shirt"
@@ -377,7 +380,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 4
                         slotname = "chest"
@@ -389,7 +392,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 5
                         slotname = "waist"
@@ -401,7 +404,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 6
                         slotname = "legs"
@@ -413,7 +416,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 7
                         slotname = "feet"
@@ -425,7 +428,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 8
                         slotname = "wrists"
@@ -437,7 +440,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 9
                         slotname = "hands"
@@ -449,7 +452,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 10
                         slotname = "finger1"
@@ -461,7 +464,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 11
                         slotname = "finger2"
@@ -473,7 +476,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 12
                         slotname = "trinket1"
@@ -485,7 +488,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 13
                         slotname = "trinket2"
@@ -497,7 +500,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 14
                         slotname = "back"
@@ -509,7 +512,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 15
                         slotname = "main"
@@ -521,7 +524,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 16
                         slotname = "off"
@@ -533,7 +536,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 17
                         slotname = "distance"
@@ -545,7 +548,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 18
                         slotname = "tabard"
@@ -557,7 +560,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                         End If
                     Case Else : End Select
 
@@ -569,14 +572,15 @@ Public Class CharacterArmorHandler
             loopcounter += 1
         Loop Until loopcounter = entrycount
     End Sub
-    Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
     End Sub
-    Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Armor @loadAtMangos", "CharacterArmorHandler_loadAtMangos", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.invent_item_col(0) & ", " & sourceStructure.invent_slot_col(0) & ", " & sourceStructure.invent_item_template_col(0) &
                                                   " FROM `" & sourceStructure.character_inventory_tbl(0) & "` WHERE " & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() &
                                                   "' AND " & sourceStructure.invent_bag_col(0) & "='0' AND " & sourceStructure.invent_slot_col(0) & " < '19'")
+        Dim m_itmStatsHandler As CharacterItemStatsHandler = New CharacterItemStatsHandler
         Dim itemguid As Integer
         Dim slotname As String
         Dim itementry As Integer
@@ -603,7 +607,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 1
                         slotname = "neck"
@@ -615,7 +619,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 2
                         slotname = "shoulder"
@@ -627,7 +631,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 3
                         slotname = "shirt"
@@ -639,7 +643,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 4
                         slotname = "chest"
@@ -651,7 +655,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 5
                         slotname = "waist"
@@ -663,7 +667,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 6
                         slotname = "legs"
@@ -675,7 +679,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 7
                         slotname = "feet"
@@ -687,7 +691,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 8
                         slotname = "wrists"
@@ -699,7 +703,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 9
                         slotname = "hands"
@@ -711,7 +715,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 10
                         slotname = "finger1"
@@ -723,7 +727,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 11
                         slotname = "finger2"
@@ -735,7 +739,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 12
                         slotname = "trinket1"
@@ -747,7 +751,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 13
                         slotname = "trinket2"
@@ -759,7 +763,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 14
                         slotname = "back"
@@ -771,7 +775,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 15
                         slotname = "main"
@@ -783,7 +787,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 16
                         slotname = "off"
@@ -795,7 +799,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 17
                         slotname = "distance"
@@ -807,7 +811,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case 18
                         slotname = "tabard"
@@ -819,7 +823,7 @@ Public Class CharacterArmorHandler
                             Dim player As Character = GetCharacterSetBySetId(tar_setId)
                             AddCharacterArmorItem(player, itm)
                             SetCharacterSet(tar_setId, player)
-                            GetItemStats(itemguid, itm, player, tar_setId)
+                            m_itmStatsHandler.GetItemStats(itemguid, itm, player, tar_setId)
                             LoadWeaponType(itementry, tar_setId) : End If
                     Case Else : End Select
             Catch ex As Exception

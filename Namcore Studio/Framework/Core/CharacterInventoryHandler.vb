@@ -28,7 +28,7 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
 Public Class CharacterInventoryHandler
-    Public Shared Sub GetCharacterInventory(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+    Public Sub GetCharacterInventory(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character Inventory for characterGuid: " & characterGuid & " and setId: " & setId, "CharacterInventoryHandler_GetCharacterInventory", True)
         Select Case sourceCore
             Case "arcemu"
@@ -44,7 +44,7 @@ Public Class CharacterInventoryHandler
         End Select
 
     End Sub
-    Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Inventory @loadAtArcemu", "CharacterInventoryHandler_loadAtArcemu", False)
         Dim dt As DataTable = ReturnDataTable("SELECT " & sourceStructure.itmins_slot_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templistzero As New List(Of String)
@@ -275,9 +275,9 @@ Public Class CharacterInventoryHandler
             LogAppend("Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterInventoryHandler_loadAtArcemu", True, True)
             Exit Sub
         End Try
-      
+
     End Sub
-    Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Inventory @loadAtTrinity", "CharacterInventoryHandler_loadAtTrinity", False)
         Dim dt As DataTable = ReturnDataTable("SELECT " & sourceStructure.invent_item_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
@@ -350,10 +350,10 @@ Public Class CharacterInventoryHandler
         End Try
         SetCharacterSet(tar_setId, player)
     End Sub
-    Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
     End Sub
-    Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Inventory @loadAtMangos", "CharacterInventoryHandler_loadAtMangos", False)
         Dim dt As DataTable = ReturnDataTable("SELECT " & sourceStructure.invent_item_col(0) & " FROM " & sourceStructure.character_inventory_tbl(0) & " WHERE " & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "'")
         Dim templist As New List(Of String)
@@ -426,7 +426,7 @@ Public Class CharacterInventoryHandler
         End Try
         SetCharacterSet(tar_setId, player)
     End Sub
-    Private Shared Function splititemdata(ByVal datastring As String, ByVal position As Integer) As String
+    Private Function splititemdata(ByVal datastring As String, ByVal position As Integer) As String
         Try
             Dim parts() As String = datastring.Split(" "c)
             Return parts(position)

@@ -26,11 +26,11 @@ Imports Namcore_Studio.Process_status
 Imports System.Threading
 Imports System.IO
 
-Public Class EventLogging
+Public Module EventLogging
     Public Delegate Sub IncomingEventDelegate(ByVal _event As String)
-    Shared lastprogress As Integer
-    Shared isbusy As Boolean = False
-    Public Shared Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
+    Public lastprogress As Integer
+    Public isbusy As Boolean = False
+    Public Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
         Dim x As UInt32 = 546
         While isbusy
 
@@ -56,7 +56,7 @@ Public Class EventLogging
         End If
         isbusy = False
     End Sub
-    Private Shared Sub appendStatus(ByVal _status As String, Optional progress As Integer = 0)
+    Private Sub appendStatus(ByVal _status As String, Optional progress As Integer = 0)
         proccessTXT = proccessTXT & _status & vbNewLine
         If lastprogress = Nothing Then lastprogress = 0
         If progress = 0 Then progress = lastprogress
@@ -98,7 +98,7 @@ Public Class EventLogging
 
     End Sub
 
-    Public Shared Sub LogClear()
+    Public Sub LogClear()
         eventlog = ""
     End Sub
-End Class
+End Module

@@ -62,14 +62,16 @@ Public Class Process_status
             process_tb.Text = "Canceled"
             Return
         End If
-        Interface_Operator.prepareLive_armory()
+        Dim prepLive As New Interface_Operator
+        prepLive.prepareLive_armory()
     End Sub
 
     Public Sub TransferWorker_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs) _
     Handles TransferWorker.DoWork
         Dim d As Live_View.Data2Thread = CType(e.Argument, Live_View.Data2Thread)
         Dim lite As Boolean = d.lite
-        handleMigrationRequests(lite)
+        Dim m_transmissionHndler As New TransmissionHandler
+        m_transmissionHndler.handleMigrationRequests(lite)
         MsgBox("hi")
     End Sub
     Public Sub UpdateGuiTrans()

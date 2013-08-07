@@ -83,8 +83,8 @@ Public Class Quests_interface
         While cnt < startend(1)
             Dim str(3) As String
             str(0) = qst(cnt)
-            Dim spellitminfo As New SpellItem_Information
-            Dim qstname As String = spellitminfo.GetQuestNameById(TryInt(str(0)))
+
+            Dim qstname As String = GetQuestNameById(TryInt(str(0)))
             If qstname = "error" Then
                 str(1) = "not loaded" 'getNameOfQuest(str(0))
             Else
@@ -107,8 +107,8 @@ Public Class Quests_interface
         While cnt < startend(1)
             Dim str(3) As String
             str(0) = qst(cnt)
-            Dim spellitminfo As New SpellItem_Information
-            Dim qstname As String = spellitminfo.GetQuestNameById(TryInt(str(0)))
+
+            Dim qstname As String = GetQuestNameById(TryInt(str(0)))
             If qstname = "error" Then
                 str(1) = "not loaded" 'getNameOfQuest(str(0))
             Else

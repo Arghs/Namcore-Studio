@@ -32,7 +32,7 @@ Imports Namcore_Studio.SkillCreation
 Imports Namcore_Studio.CharacterCreationLite
 Imports MySql.Data.MySqlClient
 Public Class CharacterCreationAdvanced
-    Public Shared Sub CreateNewAdvancedCharacter(ByVal charname As String, ByVal accountId As String, ByVal setId As Integer, Optional forceNameChange As Boolean = False)
+    Public Sub CreateNewAdvancedCharacter(ByVal charname As String, ByVal accountId As String, ByVal setId As Integer, Optional forceNameChange As Boolean = False)
         LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString, "CharacterCreationAdvanced_CreateNewAdvancedCharacter", True)
         Select Case targetCore
             Case "arcemu"
@@ -48,7 +48,7 @@ Public Class CharacterCreationAdvanced
         End Select
     End Sub
 
-    Private Shared Sub createAtArcemu(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
+    Private Sub createAtArcemu(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at arcemu", "CharacterCreationAdvanced_createAtArcemu", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.char_guid_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_guid_col(0) &
                                                                             "=(SELECT MAX(" & targetStructure.char_guid_col(0) & ") FROM " & targetStructure.character_tbl(0) & ")", True)) + 1
@@ -90,12 +90,13 @@ Public Class CharacterCreationAdvanced
         tempcommand.Parameters.AddWithValue("@exploredZones", player.ExploredZones)
         tempcommand.Parameters.AddWithValue("@knownTitles", player.KnownTitles)
         'PlayerBytes column might not be correct! check player_bytes, bytes, bytes2
+        Dim m_charCreationLite As New CharacterCreationLite
         Try
             tempcommand.ExecuteNonQuery()
             If NameChange = True Then
                 runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET forced_rename_pending='1' WHERE " & targetStructure.char_guid_col(0) & "='" & newcharguid.ToString & "'", True)
             Else
-                If CharacterExist(charactername) = True Then
+                If m_charCreationLite.CharacterExist(charactername) = True Then
                     runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET forced_rename_pending='1' WHERE " & targetStructure.char_guid_col(0) & "='" & newcharguid.ToString & "'", True)
                 End If
             End If
@@ -131,7 +132,7 @@ Public Class CharacterCreationAdvanced
         End Try
         characterGUID = newcharguid
     End Sub
-    Private Shared Sub createAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
+    Private Sub createAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at Trinity", "CharacterCreationAdvanced_createAtTrinity", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.char_guid_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_guid_col(0) &
                                                                             "=(SELECT MAX(" & targetStructure.char_guid_col(0) & ") FROM " & targetStructure.character_tbl(0) & ")", True)) + 1
@@ -179,13 +180,14 @@ Public Class CharacterCreationAdvanced
         tempcommand.Parameters.AddWithValue("@activespec", player.ActiveSpec.ToString)
         tempcommand.Parameters.AddWithValue("@exploredZones", player.ExploredZones)
         tempcommand.Parameters.AddWithValue("@knownTitles", player.KnownTitles.ToString)
+        Dim m_charCreationLite As New CharacterCreationLite
         Try
             tempcommand.ExecuteNonQuery()
             If NameChange = True Then
                 runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_atlogin_col(0) & "='1' WHERE " & targetStructure.char_guid_col(0) & "='" &
                                                 newcharguid.ToString & "'", True)
             Else
-                If CharacterExist(charactername) = True Then
+                If m_charCreationLite.CharacterExist(charactername) = True Then
                     runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_atlogin_col(0) & "='1' WHERE " & targetStructure.char_guid_col(0) & "='" &
                                                     newcharguid.ToString & "'", True)
                 End If
@@ -213,7 +215,7 @@ Public Class CharacterCreationAdvanced
         End Try
         characterGUID = newcharguid
     End Sub
-    Private Shared Sub createAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
+    Private Sub createAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at Mangos", "CharacterCreationAdvanced_createAtMangos", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.char_guid_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_guid_col(0) &
                                                                             "=(SELECT MAX(" & targetStructure.char_guid_col(0) & ") FROM " & targetStructure.character_tbl(0) & ")", True)) + 1
@@ -262,13 +264,14 @@ Public Class CharacterCreationAdvanced
         tempcommand.Parameters.AddWithValue("@activespec", player.activespec.tostring())
         tempcommand.Parameters.AddWithValue("@exploredZones", player.ExploredZones)
         tempcommand.Parameters.AddWithValue("@knownTitles", player.KnownTitles)
+        Dim m_charCreationLite As New CharacterCreationLite
         Try
             tempcommand.ExecuteNonQuery()
             If NameChange = True Then
                 runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_atlogin_col(0) & "='1' WHERE " & targetStructure.char_guid_col(0) &
                                                 "='" & newcharguid.ToString & "'", True)
             Else
-                If CharacterExist(charactername) = True Then
+                If m_charCreationLite.CharacterExist(charactername) = True Then
                     runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_atlogin_col(0) & "='1' WHERE " & targetStructure.char_guid_col(0) & "='" &
                                                     newcharguid.ToString & "'", True)
                 End If

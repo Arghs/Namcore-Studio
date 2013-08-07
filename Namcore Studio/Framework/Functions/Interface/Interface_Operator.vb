@@ -25,10 +25,10 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.Serializer
 Public Class Interface_Operator
-    Public Shared Sub prepareLive_armory()
+    Public Sub prepareLive_armory()
         ' Dim x As String = temporaryCharacterInformation.Item(1)
-
-        Dim ms As MemoryStream = Serialize(globChars)
+        Dim m_serializer As Serializer = New Serializer
+        Dim ms As MemoryStream = m_serializer.Serialize(globChars)
         If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt") Then
             My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt")
         End If
@@ -44,7 +44,7 @@ Public Class Interface_Operator
         liveview.loadInformationSets_Armory()
 
     End Sub
-    Public Shared Sub loadNamesAndPics()
+    Public Sub loadNamesAndPics()
 
     End Sub
 End Class

@@ -29,7 +29,7 @@ Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
 Imports Namcore_Studio.SpellItem_Information
 Public Class CharacterEnchantmentsHandler
-    Public Shared Sub HandleEnchantments(ByVal setId As Integer)
+    Public Sub HandleEnchantments(ByVal setId As Integer)
         LogAppend("Handling item enchantments for setId: " & setId, "CharacterEnchantmentsHandler_GetItemStats", True)
         Select Case sourceCore
             Case "arcemu"
@@ -45,7 +45,7 @@ Public Class CharacterEnchantmentsHandler
         End Select
 
     End Sub
-    Private Shared Sub loadAtArcemu(ByVal tar_setId As Integer)
+    Private Sub loadAtArcemu(ByVal tar_setId As Integer)
         LogAppend("Handling item enchantments @loadAtArcemu", "CharacterEnchantmentsHandler_loadAtArcemu", False)
         Dim slotname(19) As String
         slotname = {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance", "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
@@ -71,7 +71,7 @@ Public Class CharacterEnchantmentsHandler
         Loop Until loopcounter = 18
 
     End Sub
-    Private Shared Function ArcSplitEnchantString(ByVal input As String, ByVal player As Character, ByRef itm As Item) As String
+    Private Function ArcSplitEnchantString(ByVal input As String, ByVal player As Character, ByRef itm As Item) As String
         LogAppend("ArcSplitEnchantString call (input=" & input & " // character name=" & player.Name & " // itemslot= " & itm.slotname & ")", "CharacterEnchantmentsHandler_ArcSplitEnchantString", False)
         Try
             If input.Contains(";") Then
@@ -112,7 +112,7 @@ Public Class CharacterEnchantmentsHandler
         End Try
     End Function
 
-    Private Shared Function ArcSplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer) As String
+    Private Function ArcSplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer) As String
         LogAppend("ArcSplitGemString call (input=" & input & " // position=" & position.ToString() & ")", "CharacterEnchantmentsHandler_ArcSplitGemString", False)
         Dim obvalue As Integer
         Try
@@ -169,7 +169,7 @@ Public Class CharacterEnchantmentsHandler
             Return ""
         End Try
     End Function
-    Private Shared Sub loadAtTrinity(ByVal tar_setId As Integer)
+    Private Sub loadAtTrinity(ByVal tar_setId As Integer)
         LogAppend("Handling item enchantments @loadAtTrinity", "CharacterEnchantmentsHandler_loadAtTrinity", False)
         Dim slotname(19) As String
         slotname = {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance", "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
@@ -192,7 +192,7 @@ Public Class CharacterEnchantmentsHandler
             SetCharacterSet(tar_setId, player)
         Loop Until loopcounter = 18
     End Sub
-    Private Shared Function TrinitySplitEnchantString(ByVal input As String, ByRef itm As Item, ByVal targetSetId As Integer) As String
+    Private Function TrinitySplitEnchantString(ByVal input As String, ByRef itm As Item, ByVal targetSetId As Integer) As String
         LogAppend("TrinitySplitEnchantString call (input=" & input & " // itemslot=" & itm.slotname & ")", "CharacterEnchantmentsHandler_TrinitySplitEnchantString", False)
         Try
             If input.Contains(" ") Then
@@ -212,7 +212,7 @@ Public Class CharacterEnchantmentsHandler
         End Try
     End Function
 
-    Private Shared Function TrinitySplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer, ByRef itm As Item, ByVal gemnum As Integer) As String
+    Private Function TrinitySplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer, ByRef itm As Item, ByVal gemnum As Integer) As String
         LogAppend("TrinitySplitGemString call (input=" & input & " // itemslot=" & itm.slotname & ")", "CharacterEnchantmentsHandler_TrinitySplitGemString", False)
         Try
             Dim parts() As String = input.Split(" "c)
@@ -231,10 +231,10 @@ Public Class CharacterEnchantmentsHandler
             Return ""
         End Try
     End Function
-    Private Shared Sub loadAtTrinityTBC(ByVal tar_setId As Integer)
+    Private Sub loadAtTrinityTBC(ByVal tar_setId As Integer)
 
     End Sub
-    Private Shared Sub loadAtMangos(ByVal tar_setId As Integer)
+    Private Sub loadAtMangos(ByVal tar_setId As Integer)
         LogAppend("Handling item enchantments @loadAtMangos", "CharacterEnchantmentsHandler_loadAtMangos", False)
         Dim slotname(19) As String
         slotname = {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance", "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
@@ -257,7 +257,7 @@ Public Class CharacterEnchantmentsHandler
             SetCharacterSet(tar_setId, player)
         Loop Until loopcounter = 18
     End Sub
-    Private Shared Function MangosSplitEnchantString(ByVal input As String, ByRef itm As Item, ByVal targetSetId As Integer) As String
+    Private Function MangosSplitEnchantString(ByVal input As String, ByRef itm As Item, ByVal targetSetId As Integer) As String
         LogAppend("MangosSplitEnchantString call (input=" & input & " // itemslot=" & itm.slotname & ")", "CharacterEnchantmentsHandler_MangosSplitEnchantString", False)
         Try
             If input.Contains(" ") Then
@@ -277,7 +277,7 @@ Public Class CharacterEnchantmentsHandler
         End Try
     End Function
 
-    Private Shared Function MangosSplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer, ByRef itm As Item, ByVal gemnum As Integer) As String
+    Private Function MangosSplitGemString(ByVal input As String, ByVal targetSetId As Integer, ByVal position As Integer, ByRef itm As Item, ByVal gemnum As Integer) As String
         LogAppend("MangosSplitGemString call (input=" & input & " // slotname=" & itm.slotname & ")", "CharacterEnchantmentsHandler_MangosSplitGemString", False)
         Try
             Dim parts() As String = input.Split(" "c)

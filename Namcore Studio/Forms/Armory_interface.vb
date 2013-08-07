@@ -217,9 +217,10 @@ Public Class Armory_interface
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim dstr As String = ""
-        globChars = DeSerialize(dstr, New GlobalCharVars)
+        Dim m_serializer As Serializer = New Serializer
+        globChars = m_serializer.DeSerialize(dstr, New GlobalCharVars)
         'temporaryCharacterInformation.Add(RichTextBox1.Text)
         Dim prepLive As New Interface_Operator
-        Interface_Operator.prepareLive_armory()
+        prepLive.prepareLive_armory()
     End Sub
 End Class

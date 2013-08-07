@@ -27,7 +27,7 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Basics
 Imports MySql.Data.MySqlClient
 Public Class AccountCreation
-    Public Shared Sub CreateNewAccount(ByVal accname As String, ByVal passhas As String, ByVal realmid As Integer, ByVal setId As Integer, Optional gmlevel As String = "A", Optional email As String = "", Optional flags As String = "0")
+    Public Sub CreateNewAccount(ByVal accname As String, ByVal passhas As String, ByVal realmid As Integer, ByVal setId As Integer, Optional gmlevel As String = "A", Optional email As String = "", Optional flags As String = "0")
         LogAppend("Creating new account " & accname, "AccountCreation_CreateNewAccount", True)
         Select Case targetCore
             Case "arcemu"

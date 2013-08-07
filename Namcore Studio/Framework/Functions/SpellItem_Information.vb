@@ -28,12 +28,12 @@ Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.Conversions
 Imports System.Net
 
-Public Class SpellItem_Information
-    Shared tempAvTable As DataTable
-    Shared tempAvCatTable As DataTable
-    Shared tempDisplayInfoTable As DataTable
-    Shared tempQuestNameTable As DataTable
-    Public Shared Function GetGlyphIdByItemId(ByVal itemid As Integer) As Integer
+Public Module SpellItem_Information
+    Public tempAvTable As DataTable
+    Public tempAvCatTable As DataTable
+    Public tempDisplayInfoTable As DataTable
+    Public tempQuestNameTable As DataTable
+    Public Function GetGlyphIdByItemId(ByVal itemid As Integer) As Integer
         LogAppend("Loading GlyphId by ItemId " & itemid.ToString, "SpellItem_Information_GetGlyphIdByItemId", False)
         Dim xpacressource As String
         Try
@@ -52,7 +52,7 @@ Public Class SpellItem_Information
             Return 0
         End Try
     End Function
-    Public Shared Function GetIconByItemId(ByVal itemid As Integer) As Image
+    Public Function GetIconByItemId(ByVal itemid As Integer) As Image
         If itemid = 0 Then Return Nothing
         LogAppend("Loading icon by ItemId " & itemid.ToString, "SpellItem_Information_GetIconByItemId", False)
         If offlineExtension = True Then
@@ -119,7 +119,7 @@ LookOnline: Else
             End Try
         End If
     End Function
-    Public Shared Function GetRarityByItemId(ByVal itemid As Integer) As Integer
+    Public Function GetRarityByItemId(ByVal itemid As Integer) As Integer
         If itemid = 0 Then Return Nothing
         Dim client As New WebClient
         Try
@@ -131,7 +131,7 @@ LookOnline: Else
             Return Nothing
         End Try
     End Function
-    Public Shared Function GetSlotByItemId(ByVal itemid As Integer) As Integer
+    Public Function GetSlotByItemId(ByVal itemid As Integer) As Integer
         If itemid = 0 Then Return Nothing
         Dim client As New WebClient
         Try
@@ -143,7 +143,7 @@ LookOnline: Else
             Return Nothing
         End Try
     End Function
-    Public Shared Function GetSlotNameBySlotId(ByVal slotid As Integer) As Integer
+    Public Function GetSlotNameBySlotId(ByVal slotid As Integer) As Integer
         If slotid = 0 Then Return Nothing
         Select Case slotid
             Case 0
@@ -188,7 +188,7 @@ LookOnline: Else
             Case Else : Return Nothing
         End Select
     End Function
-    Public Shared Sub LoadWeaponType(ByVal itemid As Integer, ByVal tar_set As Integer)
+    Public Sub LoadWeaponType(ByVal itemid As Integer, ByVal tar_set As Integer)
         If Not itemid = 0 Then
             LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType", False)
             Try
@@ -258,7 +258,7 @@ LookOnline: Else
             End Try
         Else : End If
     End Sub
-    Public Shared Function GetEffectNameByEffectId(ByVal effectid As Integer) As String
+    Public Function GetEffectNameByEffectId(ByVal effectid As Integer) As String
         LogAppend("Loading effectname by effectId: " & effectid.ToString, "SpellItem_Information_GetEffectNameByEffectId", False)
         If effectname_dt.Rows.Count = 0 Then
             Try
@@ -298,7 +298,7 @@ LookOnline: Else
         End If
     End Function
 
-    Public Shared Function getNameOfItem(ByVal itemid As String) As String
+    Public Function getNameOfItem(ByVal itemid As String) As String
         LogAppend("Loading name of item: " & itemid.ToString, "SpellItem_Information_getNameOfItem", False)
         If Not itemid = Nothing Then
             If itemid.Length > 1 Then
@@ -320,7 +320,7 @@ LookOnline: Else
         LogAppend("ItemId is nothing -> Returning error", "SpellItem_Information_getNameOfItem", False, True)
         Return "Error loading item name"
     End Function
-    Public Shared Function GetGemEffectName(ByVal socketid As Integer) As String
+    Public Function GetGemEffectName(ByVal socketid As Integer) As String
         LogAppend("Loading effect name of gem: " & socketid.ToString, "SpellItem_Information_GetGemEffectName", False)
         Try
             Dim client As New WebClient
@@ -349,7 +349,7 @@ LookOnline: Else
         End Try
 
     End Function
-    Private Shared Function Execute(ByVal field As String, ByVal isvalue As String, ByVal tempdatatable As DataTable, Optional secfield As Integer = 1) As String
+    Private Function Execute(ByVal field As String, ByVal isvalue As String, ByVal tempdatatable As DataTable, Optional secfield As Integer = 1) As String
         LogAppend("Browsing datatale (field = " & field & " // value = " & isvalue & ")", "SpellItem_Information_Execute", False)
         Try
             Dim foundRows() As DataRow
@@ -370,7 +370,7 @@ LookOnline: Else
         End Try
     End Function
 
-    Public Shared Function GetAvNameById(ByVal avid As Integer) As String
+    Public Function GetAvNameById(ByVal avid As Integer) As String
         LogAppend("Loading av name of id: " & avid.ToString, "SpellItem_Information_GetAvNameById", False)
         If tempAvTable Is Nothing Then
             Try
@@ -408,7 +408,7 @@ LookOnline: Else
         End If
 
     End Function
-    Public Shared Function GetAvCategoryById(ByVal avid As Integer, Optional subcat As Boolean = False) As String
+    Public Function GetAvCategoryById(ByVal avid As Integer, Optional subcat As Boolean = False) As String
         LogAppend("Loading av category of id: " & avid.ToString, "SpellItem_Information_GetAvCategoryById", False)
         If tempAvCatTable Is Nothing Then
             Try
@@ -469,7 +469,7 @@ LookOnline: Else
         End If
 
     End Function
-    Public Shared Function GetAvDescriptionById(ByVal avid As Integer) As String
+    Public Function GetAvDescriptionById(ByVal avid As Integer) As String
         LogAppend("Loading av description of id: " & avid.ToString, "SpellItem_Information_GetAvDescriptionById", False)
         Dim desc As String = Execute("avid", avid.ToString(), tempAvTable, 2)
         If desc = "-" Then
@@ -479,7 +479,7 @@ LookOnline: Else
             Return desc
         End If
     End Function
-    Public Shared Function GetQuestNameById(ByVal questid As Integer) As String
+    Public Function GetQuestNameById(ByVal questid As Integer) As String
         LogAppend("Loading quest name of id: " & questid.ToString, "SpellItem_Information_GetQuestNameById", False)
         If tempQuestNameTable Is Nothing Then
             Try
@@ -516,4 +516,4 @@ LookOnline: Else
             Return desc
         End If
     End Function
-End Class
+End Module

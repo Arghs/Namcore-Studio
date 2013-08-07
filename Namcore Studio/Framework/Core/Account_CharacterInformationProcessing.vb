@@ -25,7 +25,7 @@ Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.GlobalVariables
 Public Class Account_CharacterInformationProcessing
 
-    Public Shared Function returnAccountTable(ByVal sqlconnection As MySqlConnection, ByVal Struc As DBStructure) As DataTable
+    Public Function returnAccountTable(ByVal sqlconnection As MySqlConnection, ByVal Struc As DBStructure) As DataTable
         Select Case sourceCore
             Case "arcemu"
                 Return ReturnDataTable_setconn("SELECT `" & Struc.acc_id_col(0) & "`, `" & Struc.acc_name_col(0) & "`, `" & Struc.acc_gmlevel_col(0) &
@@ -47,7 +47,7 @@ Public Class Account_CharacterInformationProcessing
 
     End Function
 
-    Public Shared Function returnCharacterTable(ByVal sqlconnection As MySqlConnection, ByVal Struc As DBStructure) As DataTable
+    Public Function returnCharacterTable(ByVal sqlconnection As MySqlConnection, ByVal Struc As DBStructure) As DataTable
         Select Case sourceCore
             Case "arcemu"
                 Return ReturnDataTable_setconn("SELECT " & Struc.char_guid_col(0) & ", " & Struc.char_accountId_col(0) & ", " & Struc.char_name_col(0) &
@@ -67,7 +67,7 @@ Public Class Account_CharacterInformationProcessing
 
         End Select
     End Function
-    Public Shared Function returnTargetAccCharTable(ByVal sqlconnection As MySqlConnection, ByVal Struc As DBStructure) As DataTable
+    Public Function returnTargetAccCharTable(ByVal sqlconnection As MySqlConnection, ByVal Struc As DBStructure) As DataTable
         Select Case targetCore
             Case "arcemu"
                 Return ReturnDataTable_setconn("SELECT u1.`" & Struc.acc_id_col(0) & "`, u1.`" & Struc.acc_name_col(0) & "`, u2.`" & Struc.char_guid_col(0) &

@@ -30,7 +30,7 @@ Imports Namcore_Studio.Conversions
 Imports Namcore_Studio.SpellItem_Information
 Public Class CharacterGlyphsHandler
 
-    Public Shared Sub GetCharacterGlyphs(ByVal charguid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+    Public Sub GetCharacterGlyphs(ByVal charguid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character Glyphs for charguid: " & charguid & " and setId: " & setId, "CharacterGlyphsHandler_GetCharacterGlyphs", True)
         Select Case sourceCore
             Case "arcemu"
@@ -46,7 +46,7 @@ Public Class CharacterGlyphsHandler
         End Select
 
     End Sub
-    Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Glyphs @loadAtArcemu", "CharacterGlyphsHandler_loadAtArcemu", False)
         Dim glyphstring As String = runSQLCommand_characters_string("SELECT " & sourceStructure.char_glyphs1_col(0) & " from " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) &
                                                                     "='" & charguid.ToString & "'")
@@ -236,7 +236,7 @@ Public Class CharacterGlyphsHandler
             LogAppend("Error while loading secminorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterGlyphsHandler_loadAtArcemu", False, True)
         End Try
     End Sub
-    Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Glyphs @loadAtTrinity", "CharacterGlyphsHandler_loadAtTrinity", False)
         Dim tempdt As New DataTable
         Dim tempdtsec As New DataTable
@@ -454,10 +454,10 @@ Public Class CharacterGlyphsHandler
             LogAppend("No Glyphs found (spec 1)!", "CharacterGlyphsHandler_loadAtTrinity", True)
         End If
     End Sub
-    Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
     End Sub
-    Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Glyphs @loadAtMangos", "CharacterGlyphsHandler_loadAtMangos", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.glyphs_glyph_col(0) & ", " & sourceStructure.glyphs_slot_col(0) & ", " & sourceStructure.glyphs_spec_col(0) &
                                                   " FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & "='" & charguid.ToString & "'")

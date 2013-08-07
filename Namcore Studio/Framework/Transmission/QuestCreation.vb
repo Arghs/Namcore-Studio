@@ -28,7 +28,7 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.Conversions
 Public Class QuestCreation
-    Public Shared Sub SetCharacterQuests(ByVal setId As Integer, Optional charguid As Integer = 0)
+    Public Sub SetCharacterQuests(ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Setting quests for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "QuestCreation_SetCharacterQuests", True)
         Select Case targetCore
@@ -44,7 +44,7 @@ Public Class QuestCreation
 
         End Select
     End Sub
-    Private Shared Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at arcemu", "QuestCreation_createAtArcemu", False)
         Dim lastslot As Integer = TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.qst_slot_col(0) & " FROM " & targetStructure.character_queststatus_tbl(0) & " WHERE " &
                                                                          targetStructure.qst_guid_col(0) & "='" & characterguid.ToString() & "' AND " & targetStructure.qst_slot_col(0) &
@@ -66,7 +66,7 @@ Public Class QuestCreation
         Dim finishedQuestsString As String = player.FinishedQuests
         If Not finishedQuestsString = "" Then runSQLCommand_characters_string("UPDATE characters SET finished_quests='" & finishedQuestsString & "' WHERE guid='" & characterguid.ToString() & "'", True)
     End Sub
-    Private Shared Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Trinity", "QuestCreation_createAtTrinity", False)
         Dim player As Character = GetCharacterSetBySetId(targetSetId)
         If Not player.Quests Is Nothing Then
@@ -95,7 +95,7 @@ Public Class QuestCreation
             Catch : End Try
         End If
     End Sub
-    Private Shared Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Mangos", "QuestCreation_createAtMangos", False)
         Dim player As Character = GetCharacterSetBySetId(targetSetId)
         If Not player.Quests Is Nothing Then

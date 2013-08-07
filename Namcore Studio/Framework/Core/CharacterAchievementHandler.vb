@@ -28,7 +28,7 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
 Public Class CharacterAchievementHandler
-    Public Shared Sub GetCharacterAchievement(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+    Public Sub GetCharacterAchievement(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character Achievement for characterGuid: " & characterGuid & " and setId: " & setId, "CharacterAchievementsHandler_GetCharacterAchievement", True)
         Select Case sourceCore
             Case "arcemu"
@@ -44,7 +44,7 @@ Public Class CharacterAchievementHandler
         End Select
 
     End Sub
-    Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Achievement @loadAtArcemu", "CharacterAchievementHandler_loadAtArcemu", False)
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) &
@@ -70,7 +70,7 @@ Public Class CharacterAchievementHandler
         End Try
         SetCharacterSet(tar_setId, tmpCharacter)
     End Sub
-    Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Achievement @loadAtTrinity", "CharacterAchievementHandler_loadAtTrinity", False)
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) &
@@ -96,10 +96,10 @@ Public Class CharacterAchievementHandler
         End Try
         SetCharacterSet(tar_setId, tmpCharacter)
     End Sub
-    Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
     End Sub
-    Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Achievement @loadAtMangos", "CharacterAchievementHandler_loadAtMangos", False)
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) &

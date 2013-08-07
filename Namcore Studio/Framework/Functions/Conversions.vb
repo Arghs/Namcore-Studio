@@ -28,9 +28,9 @@ Imports Namcore_Studio.EventLogging
 Imports System.Resources
 Imports System.Net
 Imports Namcore_Studio.Basics
-Public Class Conversions
+Public Module Conversions
 
-    Public Shared Function ConvertListToString(ByVal _list As List(Of String)) As String
+    Public Function ConvertListToString(ByVal _list As List(Of String)) As String
         LogAppend("Converting a list to a string", "Conversions_ConvertListToString", False)
         Try
             Dim builder As StringBuilder = New StringBuilder()
@@ -43,7 +43,7 @@ Public Class Conversions
             Return ""
         End Try
     End Function
-    Public Shared Function ConvertStringToList(ByVal _string As String) As List(Of String)
+    Public Function ConvertStringToList(ByVal _string As String) As List(Of String)
         LogAppend("Converting a string to a list", "Conversions_ConvertStringToList", False)
         Try
             Dim stringlist As String() = _string.Split("|"c)
@@ -65,7 +65,7 @@ Public Class Conversions
             Return emptylist
         End Try
     End Function
-    Public Shared Function TryInt(ByVal _string As String) As Integer
+    Public Function TryInt(ByVal _string As String) As Integer
         Dim parseResult As Integer = CInt(Integer.TryParse(_string, Nothing))
         If parseResult = 0 Then
             Return 0
@@ -73,9 +73,9 @@ Public Class Conversions
             Return CInt(_string)
         End If
     End Function
-    Public Shared Function GetRaceNameById(ByVal raceid As Integer) As String
+    Public Function GetRaceNameById(ByVal raceid As Integer) As String
         Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-        Select raceid
+        Select Case raceid
             Case 1 : Return RM.GetString("human")
             Case 2 : Return RM.GetString("orc")
             Case 3 : Return RM.GetString("dwarf")
@@ -93,7 +93,7 @@ Public Class Conversions
             Case Else : LogAppend("Invalid RaceId: " & raceid.ToString() & " // Returning nothing!", "Conversions_GetRaceNameById") : Return Nothing
         End Select
     End Function
-    Public Shared Function GetClassNameById(ByVal classid As Integer) As String
+    Public Function GetClassNameById(ByVal classid As Integer) As String
         Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Select Case classid
             Case 1 : Return RM.GetString("warrior")
@@ -110,7 +110,7 @@ Public Class Conversions
             Case Else : LogAppend("Invalid ClassId: " & classid.ToString() & " // Returning nothing!", "Conversions_GetClassNameById") : Return Nothing
         End Select
     End Function
-    Public Shared Function GetRaceIdByName(ByVal racename As String) As Integer
+    Public Function GetRaceIdByName(ByVal racename As String) As Integer
         Select Case racename
             Case "human" : Return 1
             Case "orc" : Return 2
@@ -128,7 +128,7 @@ Public Class Conversions
             Case Else : LogAppend("Invalid Race name: " & racename & " // Returning nothing!", "Conversions_GetRaceIdByName") : Return Nothing
         End Select
     End Function
-    Public Shared Function GetClassIdByName(ByVal classname As String) As Integer
+    Public Function GetClassIdByName(ByVal classname As String) As Integer
         Select Case classname
             Case "warrior" : Return 1
             Case "paladin" : Return 2
@@ -144,7 +144,7 @@ Public Class Conversions
             Case Else : LogAppend("Invalid Class name: " & classname & " // Returning nothing!", "Conversions_GetClassIdByName") : Return Nothing
         End Select
     End Function
-    Public Shared Function GetGenderNameById(ByVal genderid As Integer) As String
+    Public Function GetGenderNameById(ByVal genderid As Integer) As String
         Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Select Case genderid
             Case 0 : Return RM.GetString("male")
@@ -152,7 +152,7 @@ Public Class Conversions
             Case Else : LogAppend("Invalid GenderId: " & genderid.ToString() & " // Returning nothing!", "Conversions_GetGenderNameById") : Return Nothing
         End Select
     End Function
-    Public Shared Function ConvertImageToString(ByVal _img As Image) As String
+    Public Function ConvertImageToString(ByVal _img As Image) As String
         If _img Is Nothing Then Return ""
         Dim Result As String = String.Empty
         Try
@@ -167,7 +167,7 @@ Public Class Conversions
         End Try
         Return Result
     End Function
-    Public Shared Function ConvertStringToImage(ByVal Base64String As String) As Image
+    Public Function ConvertStringToImage(ByVal Base64String As String) As Image
         If Base64String = "" Then Return Nothing
         Dim img As Image = Nothing
         If Base64String Is Nothing Then
@@ -182,15 +182,15 @@ Public Class Conversions
         End If
         Return img
     End Function
-    Public Shared Function updateReputationStanding(ByRef rep As Reputation) As Reputation
+    Public Function updateReputationStanding(ByRef rep As Reputation) As Reputation
         Return rep
         'todo
     End Function
-    Public Shared Function updateReputationValueMax(ByRef rep As Reputation) As Reputation
+    Public Function updateReputationValueMax(ByRef rep As Reputation) As Reputation
         Return rep
         'todo
     End Function
-    Public Shared Function getNameOfQuest(ByVal questid As Integer) As String
+    Public Function getNameOfQuest(ByVal questid As Integer) As String
         LogAppend("Loading quest name of id " & questid.ToString(), "Conversions_getNameOfQuest")
         Try
             Dim client As New WebClient
@@ -201,4 +201,4 @@ Public Class Conversions
             Return "error"
         End Try
     End Function
-End Class
+End Module

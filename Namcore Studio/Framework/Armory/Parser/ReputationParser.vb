@@ -29,7 +29,7 @@ Imports Namcore_Studio.Basics
 Imports System.Net
 
 Public Class ReputationParser
-    Public Shared Sub loadReputation(ByVal setId As Integer, ByVal apiLink As String)
+    Public Sub loadReputation(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
         '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setId)

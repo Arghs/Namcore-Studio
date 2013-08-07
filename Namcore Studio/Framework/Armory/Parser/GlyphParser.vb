@@ -28,7 +28,7 @@ Imports Namcore_Studio.Basics
 Imports System.Net
 
 Public Class GlyphParser
-    Public Shared Sub loadGlyphs(ByVal setID As Integer, ByVal apiLink As String)
+    Public Sub loadGlyphs(ByVal setID As Integer, ByVal apiLink As String)
         Dim client As New WebClient
         '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setID)

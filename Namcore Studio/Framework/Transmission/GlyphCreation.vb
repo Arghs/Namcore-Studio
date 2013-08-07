@@ -28,7 +28,7 @@ Imports Namcore_Studio.Basics
 Imports Namcore_Studio.Conversions
 Imports Namcore_Studio.SpellItem_Information
 Public Class GlyphCreation
-    Public Shared Sub SetCharacterGlyphs(ByVal setId As Integer, Optional charguid As Integer = 0)
+    Public Sub SetCharacterGlyphs(ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Creating Glyphs for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "GlyphCreation_SetCharacterGlyphs", True)
         Select Case targetCore
@@ -44,7 +44,7 @@ Public Class GlyphCreation
 
         End Select
     End Sub
-    Private Shared Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at arcemu", "GlyphCreation_createAtArcemu", False)
         runSQLCommand_characters_string("DELETE " & targetStructure.char_glyphs1_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_guid_col(0) & " = '" & characterguid.ToString() & "'", True)
         runSQLCommand_characters_string("DELETE " & targetStructure.char_glyphs2_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_guid_col(0) & " = '" & characterguid.ToString() & "'", True)
@@ -66,7 +66,7 @@ Public Class GlyphCreation
         runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_glyphs1_col(0) & "='" & glyphstring1 & "' WHERE " & targetStructure.char_guid_col(0) & "='" & characterguid.ToString() & "'", True)
         runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_glyphs2_col(0) & "='" & glyphstring2 & "' WHERE " & targetStructure.char_guid_col(0) & "='" & characterguid.ToString() & "'", True)
     End Sub
-    Private Shared Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Trinity", "GlyphCreation_createAtTrinity", False)
         runSQLCommand_characters_string("DELETE FROM " & targetStructure.character_glyphs_tbl(0) & " WHERE " & targetStructure.glyphs_guid_col(0) & " = '" & characterguid.ToString() & "' AND " & targetStructure.glyphs_spec_col(0) & "='0'", True)
         runSQLCommand_characters_string("DELETE FROM " & targetStructure.character_glyphs_tbl(0) & " WHERE " & targetStructure.glyphs_guid_col(0) & " = '" & characterguid.ToString() & "' AND " & targetStructure.glyphs_spec_col(0) & "='1'", True)
@@ -119,7 +119,7 @@ Public Class GlyphCreation
                                                 "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph3").id)).tostring & "' )", True)
         End If
     End Sub
-    Private Shared Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Mangos", "GlyphCreation_createAtMangos", False)
         Dim player As Character = GetCharacterSetBySetId(targetSetId)
         runSQLCommand_characters_string("DELETE FROM " & targetStructure.character_glyphs_tbl(0) & " WHERE " & targetStructure.glyphs_guid_col(0) & " = '" & characterguid.ToString() & "'", True)

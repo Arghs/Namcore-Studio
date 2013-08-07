@@ -28,8 +28,8 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
 Public Class CharacterTalentsHandler
-    Private Shared SDatatable As New DataTable
-    Public Shared Sub GetCharacterTalents(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+    Private SDatatable As New DataTable
+    Public Sub GetCharacterTalents(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character talents for characterGuid: " & characterGuid & " and setId: " & setId, "CharacterTalentsHandler_GetCharacterTalents", True)
         Select Case sourceCore
             Case "arcemu"
@@ -45,7 +45,7 @@ Public Class CharacterTalentsHandler
         End Select
 
     End Sub
-    Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         SDatatable.Clear()
         SDatatable.Dispose()
         SDatatable = gettable()
@@ -87,7 +87,7 @@ Public Class CharacterTalentsHandler
         End If
         SetCharacterSet(tar_setId, player)
     End Sub
-    Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character talents @loadAtTrinity", "CharacterTalentsHandler_loadAtTrinity", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_spell_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) & " WHERE " &
                                                   sourceStructure.talent_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.talent_spec_col(0) & "='0'")
@@ -134,10 +134,10 @@ Public Class CharacterTalentsHandler
         End Try
         SetCharacterSet(tar_setId, player)
     End Sub
-    Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
     End Sub
-    Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         SDatatable.Clear()
         SDatatable.Dispose()
         SDatatable = gettable()
@@ -190,7 +190,7 @@ Public Class CharacterTalentsHandler
         SetCharacterSet(tar_setId, player)
     End Sub
 
-    Private Shared Function gettable() As DataTable
+    Private Function gettable() As DataTable
         Try
             Dim dt As New DataTable()
             Dim stext As String = libnc.My.Resources.talent
@@ -214,7 +214,7 @@ Public Class CharacterTalentsHandler
             Return New DataTable
         End Try
     End Function
-    Private Shared Function checkfield(ByVal lID As String, ByVal rank As String) As String
+    Private Function checkfield(ByVal lID As String, ByVal rank As String) As String
         LogAppend("Loading SpellId of Talent " & lID & " with rank " & rank, "CharacterTalentsHandler_checkfield", False)
         Dim _byRNK As String = executex("TalentId", lID, TryInt(rank))
         If rank = "0" Then
@@ -229,18 +229,18 @@ Public Class CharacterTalentsHandler
         End If
     End Function
 
-    Private Shared Function executex(ByVal field As String, ByVal sID As String, ByVal rank As Integer) As String
+    Private Function executex(ByVal field As String, ByVal sID As String, ByVal rank As Integer) As String
         Try
             Dim foundRows() As DataRow
             foundRows = sdatatable.Select(field & " = '" & sID & "'")
             If foundRows.Length = 0 Then
                 Return "-"
-                Else
+            Else
                 Dim i As Integer
                 Dim tmpreturn As String = "-"
                 For i = 0 To foundRows.GetUpperBound(0)
                     tmpreturn = (foundRows(i)(rank)).ToString
-                    Next i
+                Next i
                 Return tmpreturn
             End If
         Catch ex As Exception

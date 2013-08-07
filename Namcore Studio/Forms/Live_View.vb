@@ -47,8 +47,9 @@ Public Class Live_View
     Public Sub loadaccountsandchars()
         checkchangestatus = False
         sourceCore = "trinity" 'for testing only
-        acctable = returnAccountTable(GlobalConnection_Realm, sourceStructure)
-        chartable = returnCharacterTable(GlobalConnection, sourceStructure)
+        Dim m_acInfoProc As Account_CharacterInformationProcessing = New Account_CharacterInformationProcessing
+        acctable = m_acInfoProc.returnAccountTable(GlobalConnection_Realm, sourceStructure)
+        chartable = m_acInfoProc.returnCharacterTable(GlobalConnection, sourceStructure)
         modifiedAccTable = acctable.Copy
         modifiedCharTable = chartable.Copy
         characterview.Items.Clear()
@@ -138,7 +139,8 @@ Public Class Live_View
     End Sub
     Public Sub loadtargetaccountsandchars()
         targetCore = "trinity" 'todo for testing only
-        target_accchar_table = returnTargetAccCharTable(TargetConnection_Realm, targetStructure)
+        Dim m_acInfoProc As Account_CharacterInformationProcessing = New Account_CharacterInformationProcessing
+        target_accchar_table = m_acInfoProc.returnTargetAccCharTable(TargetConnection_Realm, targetStructure)
         target_accounts_tree.Nodes.Clear()
         For Each rowitem As DataRow In target_accchar_table.Rows
             Dim foundNode() As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)

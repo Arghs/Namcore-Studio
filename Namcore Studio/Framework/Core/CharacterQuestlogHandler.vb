@@ -27,8 +27,8 @@ Imports Namcore_Studio.Basics
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.CommandHandler
 Imports Namcore_Studio.Conversions
-Public Class CharacterQuestlogHandler
-    Public Shared Sub GetCharacterQuestlog(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+    Public Class CharacterQuestlogHandler
+    Public Sub GetCharacterQuestlog(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character questlog for characterGuid: " & characterGuid & " and setId: " & setId, "CharacterQuestlogHandler_GetCharacterQuestlog", True)
         Select Case sourceCore
             Case "arcemu"
@@ -44,7 +44,7 @@ Public Class CharacterQuestlogHandler
         End Select
 
     End Sub
-    Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character questlog @loadAtArcemu", "CharacterQuestlogHandler_loadAtArcemu", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.qst_quest_col(0) & ", " & sourceStructure.qst_completed_col(0) & ", " & sourceStructure.qst_explored_col(0) &
                                                   ", " & sourceStructure.qst_timer_col(0) & ", " & sourceStructure.qst_slot_col(0) & " FROM " & sourceStructure.character_queststatus_tbl(0) &
@@ -78,7 +78,7 @@ Public Class CharacterQuestlogHandler
         End Try
         SetCharacterSet(tar_setId, player)
     End Sub
-    Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character questlog @loadAtTrinity", "CharacterQuestlogHandler_loadAtTrinity", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.qst_quest_col(0) & ", " & sourceStructure.qst_status_col(0) & ", " & sourceStructure.qst_explored_col(0) &
                                                   ", " & sourceStructure.qst_timer_col(0) & " FROM " & sourceStructure.character_queststatus_tbl(0) & " WHERE " & sourceStructure.qst_guid_col(0) &
@@ -120,7 +120,7 @@ Public Class CharacterQuestlogHandler
         End Try
         SetCharacterSet(tar_setId, player)
     End Sub
-    Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character questlog @loadAtTrinityTBC", "CharacterQuestlogHandler_loadAtTrinityTBC", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.qst_quest_col(0) & ", " & sourceStructure.qst_status_col(0) & ", " & sourceStructure.qst_explored_col(0) &
                                                   ", " & sourceStructure.qst_timer_col(0) & ", " & sourceStructure.qst_rewarded_col(0) & " FROM " & sourceStructure.character_queststatus_tbl(0) &
@@ -153,7 +153,7 @@ Public Class CharacterQuestlogHandler
         End Try
         SetCharacterSet(tar_setId, player)
     End Sub
-    Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character questlog @loadAtMangos", "CharacterQuestlogHandler_loadAtMangos", False)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.qst_quest_col(0) & ", " & sourceStructure.qst_status_col(0) & ", " & sourceStructure.qst_explored_col(0) &
                                                   ", " & sourceStructure.qst_timer_col(0) & ", " & sourceStructure.qst_rewarded_col(0) & " FROM " & sourceStructure.character_queststatus_tbl(0) &
@@ -187,4 +187,5 @@ Public Class CharacterQuestlogHandler
         End Try
         SetCharacterSet(tar_setId, player)
     End Sub
-End Class
+       
+    End Class

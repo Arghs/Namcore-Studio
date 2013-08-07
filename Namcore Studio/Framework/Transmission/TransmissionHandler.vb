@@ -32,7 +32,7 @@ Imports Namcore_Studio.QuestCreation
 Imports Namcore_Studio.TalentCreation
 
 Public Class TransmissionHandler
-    Public Shared Sub handleMigrationRequests(ByVal lite As Boolean)
+    Public Sub handleMigrationRequests(ByVal lite As Boolean)
         If TargetConnection.State = ConnectionState.Closed Then TargetConnection.Open()
         If TargetConnection_Realm.State = ConnectionState.Closed Then TargetConnection_Realm.Open()
         forceTargetConnectionUsage = True
@@ -52,15 +52,21 @@ Public Class TransmissionHandler
             End Select
             Dim player As Character = GetCharacterSetBySetId(setId)
             Dim charname As String = player.Name
+            Dim m_charCreationLite As New CharacterCreationLite
+            Dim m_charCreationAdvanced As New CharacterCreationAdvanced
             If lite Then
-                CreateNewLiteCharacter(charname, accountId, setId, renamePending)
+                m_charCreationLite.CreateNewLiteCharacter(charname, accountId, setId, renamePending)
             Else
-                CreateNewAdvancedCharacter(charname, accountId.ToString, setId, renamePending)
+                m_charCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, setId, renamePending)
             End If
-            AddCharacterArmor(setId)
-            SetCharacterGlyphs(setId)
-            SetCharacterQuests(setId)
-            If Not lite Then SetCharacterTalents(setId)
+            Dim m_charArmorCreation As New ArmorCreation
+            Dim m_charGlyphCreation As New GlyphCreation
+            Dim m_charQuestCreation As New QuestCreation
+            Dim m_charTalentCreation As New TalentCreation
+            m_charArmorCreation.AddCharacterArmor(setId)
+            m_charGlyphCreation.SetCharacterGlyphs(setId)
+            m_charQuestCreation.SetCharacterQuests(setId)
+            If Not lite Then m_charTalentCreation.SetCharacterTalents(setId)
         Next
         forceTargetConnectionUsage = False
     End Sub

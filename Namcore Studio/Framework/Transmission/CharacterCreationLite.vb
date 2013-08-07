@@ -31,7 +31,7 @@ Imports Namcore_Studio.SpellCreation
 Imports Namcore_Studio.SkillCreation
 Imports MySql.Data.MySqlClient
 Public Class CharacterCreationLite
-    Public Shared Sub CreateNewLiteCharacter(ByVal charname As String, ByVal accountId As Integer, ByVal setId As Integer, Optional forceNameChange As Boolean = False)
+    Public Sub CreateNewLiteCharacter(ByVal charname As String, ByVal accountId As Integer, ByVal setId As Integer, Optional forceNameChange As Boolean = False)
         LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString, "CharacterCreationLite_CreateNewLiteCharacter", True)
         Select Case targetCore
             Case "arcemu"
@@ -46,7 +46,7 @@ Public Class CharacterCreationLite
 
         End Select
     End Sub
-    Public Shared Function CharacterExist(ByVal charname As String) As Boolean
+    Public Function CharacterExist(ByVal charname As String) As Boolean
         Select Case targetCore
             Case "arcemu"
                 If TryInt(ReturnResultCount("SELECT * FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 0 Then Return False Else Return True
@@ -59,7 +59,7 @@ Public Class CharacterCreationLite
             Case Else : End Select
     End Function
 
-    Private Shared Sub createAtArcemu(ByVal charactername As String, ByVal accId As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
+    Private Sub createAtArcemu(ByVal charactername As String, ByVal accId As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at arcemu", "CharacterCreationLite_createAtArcemu", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.char_guid_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " &
                                                                             targetStructure.char_guid_col(0) & "=(SELECT MAX(" & targetStructure.char_guid_col(0) & ") FROM " & targetStructure.character_tbl(0) & ")", True)) + 1
@@ -314,7 +314,7 @@ Public Class CharacterCreationLite
         End Try
         characterGUID = newcharguid
     End Sub
-    Private Shared Sub createAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
+    Private Sub createAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at Trinity", "CharacterCreationLite_createAtTrinity", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.char_guid_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_guid_col(0) &
                                                                                "=(SELECT MAX(" & targetStructure.char_guid_col(0) & ") FROM " & targetStructure.character_tbl(0) & ")", True)) + 1
@@ -362,7 +362,7 @@ Public Class CharacterCreationLite
         End Try
         characterGUID = newcharguid
     End Sub
-    Private Shared Sub createAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
+    Private Sub createAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at Mangos", "CharacterCreationLite_createAtMangos", False)
         Dim newcharguid As Integer = TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.char_guid_col(0) & " FROM " & targetStructure.character_tbl(0) & " WHERE " & targetStructure.char_guid_col(0) &
                                                                                "=(SELECT MAX(" & targetStructure.char_guid_col(0) & ") FROM " & targetStructure.character_tbl(0) & ")", True)) + 1

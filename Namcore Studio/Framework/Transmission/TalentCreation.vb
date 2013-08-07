@@ -28,12 +28,12 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.Conversions
 Public Class TalentCreation
-    Private Shared SDatatable As New DataTable
-    Private Shared TalentRank As String
-    Private Shared TalentRank2 As String
-    Private Shared TalentId As String
+    Private SDatatable As New DataTable
+    Private TalentRank As String
+    Private TalentRank2 As String
+    Private TalentId As String
 
-    Public Shared Sub SetCharacterTalents(ByVal setId As Integer, Optional charguid As Integer = 0)
+    Public Sub SetCharacterTalents(ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Setting Talents for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "TalentCreation_SetCharacterTalents", True)
         Select Case targetCore
@@ -49,7 +49,7 @@ Public Class TalentCreation
 
         End Select
     End Sub
-    Private Shared Function LoadTalentTable() As DataTable
+    Private Function LoadTalentTable() As DataTable
         Try
             Dim dt As New DataTable()
             Dim stext As String = libnc.My.Resources.talent
@@ -73,7 +73,7 @@ Public Class TalentCreation
             Return New DataTable
         End Try
     End Function
-    Private Shared Function checkfield(ByVal lID As String) As String
+    Private Function checkfield(ByVal lID As String) As String
         If Not executex("Rang1", lID) = "-" Then
             TalentRank = "0"
             TalentRank2 = "0"
@@ -101,7 +101,7 @@ Public Class TalentCreation
         End If
     End Function
 
-    Private Shared Function executex(ByVal field As String, ByVal sID As String) As String
+    Private Function executex(ByVal field As String, ByVal sID As String) As String
         Try
             Dim foundRows() As DataRow
             foundRows = SDatatable.Select(field & " = '" & sID & "'")
@@ -120,7 +120,7 @@ Public Class TalentCreation
             Return "-"
         End Try
     End Function
-    Private Shared Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at arcemu", "TalentCreation_createAtArcemu", False)
         TalentRank = Nothing
         TalentRank2 = Nothing
@@ -239,7 +239,7 @@ Public Class TalentCreation
                                             "='" & characterguid.ToString() & "'", True)
         Next
     End Sub
-    Private Shared Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Trinity", "TalentCreation_createAtTrinity", False)
         Dim player As Character = GetCharacterSetBySetId(targetSetId)
         For Each tal As Talent In player.Talents
@@ -248,7 +248,7 @@ Public Class TalentCreation
                                             tal.spec.ToString & "')", True)
         Next
     End Sub
-    Private Shared Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating at Mangos", "TalentCreation_createAtMangos", False)
         TalentRank = Nothing
         TalentRank2 = Nothing

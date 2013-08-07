@@ -29,8 +29,8 @@ Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.GlobalCharVars
 Imports Namcore_Studio.CommandHandler
 Public Class CharacterBasicsHandler
-    Private Shared temp_result As String
-    Public Shared Sub GetBasicCharacterInformation(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+    Private temp_result As String
+    Public Sub GetBasicCharacterInformation(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading basic character information for characterGuid: " & characterGuid & " and setId: " & setId, "CharacterBasicsHandler_GetBasicCharacterInformation", True)
         Select Case sourceCore
             Case "arcemu"
@@ -44,7 +44,7 @@ Public Class CharacterBasicsHandler
             Case Else : End Select
 
     End Sub
-    Private Shared Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
         'Character Table
         temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_name_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
@@ -208,7 +208,7 @@ Public Class CharacterBasicsHandler
         globChars.CharacterSets.Add(tmpCharacter)
         globChars.CharacterSetsIndex = globChars.CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (globChars.CharacterSets.Count - 1).ToString() & "]"
     End Sub
-    Private Shared Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
 
         'Character Table
         temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_name_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
@@ -381,7 +381,7 @@ Public Class CharacterBasicsHandler
         globChars.CharacterSets.Add(tmpCharacter)
         globChars.CharacterSetsIndex = globChars.CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (globChars.CharacterSets.Count - 1).ToString() & "]"
     End Sub
-    Private Shared Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_name_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
         Dim tmpCharacter As New Character(temp_result, charguid)
         tmpCharacter.SourceCore = "trinitytbc"
@@ -560,7 +560,7 @@ Public Class CharacterBasicsHandler
         globChars.CharacterSets.Add(tmpCharacter)
         globChars.CharacterSetsIndex = globChars.CharacterSetsIndex & "[setId:" & tar_setId.ToString & "|@" & (globChars.CharacterSets.Count - 1).ToString() & "]"
     End Sub
-    Private Shared Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+    Private Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_name_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
         Dim tmpCharacter As New Character(temp_result, charguid)
         tmpCharacter.SourceCore = "mangos"

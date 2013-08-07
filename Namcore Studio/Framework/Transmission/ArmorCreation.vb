@@ -32,7 +32,7 @@ Imports Namcore_Studio.SkillCreation
 Imports Namcore_Studio.SpellCreation
 Imports System.Text.RegularExpressions
 Public Class ArmorCreation
-    Public Shared Sub AddCharacterArmor(ByVal setId As Integer, Optional charguid As Integer = 0)
+    Public Sub AddCharacterArmor(ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID
         LogAppend("Adding armor to character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "ArmorCreation_AddCharacterArmor", True)
         Select Case targetCore
@@ -48,7 +48,7 @@ Public Class ArmorCreation
 
         End Select
     End Sub
-    Private Shared Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating armor at arcemu", "ArmorCreation_createAtArcemu", False)
         LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtArcemu", False)
         'Adding weapon specific spells and skills
@@ -104,7 +104,7 @@ Public Class ArmorCreation
             Next
         End If
     End Sub
-    Private Shared Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating armor at trinity", "ArmorCreation_createAtTrinity", False)
         LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtTrinity", False)
         'Adding weapon specific spells and skills
@@ -159,7 +159,7 @@ Public Class ArmorCreation
         End If
         runSQLCommand_characters_string("UPDATE " & targetStructure.character_tbl(0) & " SET " & targetStructure.char_equipmentCache_col(0) & "='" & finalItemString & "' WHERE (" & targetStructure.char_guid_col(0) & "='" & characterguid.ToString() & "')")
     End Sub
-    Private Shared Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+    Private Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
         LogAppend("Creating armor at mangos", "ArmorCreation_createAtMangos", False)
         LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtMangos", False)
         'Adding weapon specific spells and skills
