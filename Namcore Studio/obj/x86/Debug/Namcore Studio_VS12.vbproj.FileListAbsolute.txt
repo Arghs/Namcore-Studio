@@ -54,7 +54,6 @@ F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.pdb
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio.xml
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\mysql.data.dll
-F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbprojResolveAssemblyReference.cache
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Armory_interface.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.CharacterOverview.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.DB_connect.resources
