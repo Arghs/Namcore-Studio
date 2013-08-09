@@ -54,8 +54,8 @@ Public Class Main
         LogAppend("/OS VERSION: " & My.Computer.Info.OSVersion, "Main_Main_Load", False)
         LogAppend("/OS LANGUAGE: " & My.Computer.Info.InstalledUICulture.ThreeLetterWindowsLanguageName, "Main_Main_Load", False)
         LogAppend("/SYSTEM VERSION: " & System.Environment.Version.ToString(), "Main_Main_Load", False)
-        LogAppend("/TOTAL PHYSICAL MEMORY: " & (My.Computer.Info.TotalPhysicalMemory / 100000000).ToString() & " GB", "Main_Main_Load", False)
-        LogAppend("/TOTAL VIRTUAL MEMORY: " & (My.Computer.Info.TotalVirtualMemory / 100000000).ToString() & " GB", "Main_Main_Load", False)
+        LogAppend("/PROCESSOR COUNT: " & (System.Environment.ProcessorCount).ToString(), "Main_Main_Load", False)
+        LogAppend("/AVAILABLE PHYSICAL MEMORY: " & (My.Computer.Info.AvailablePhysicalMemory / 1000000000).ToString() & " GB", "Main_Main_Load", False)
         LogAppend("/SCREEN SIZE: " & Screen.PrimaryScreen.Bounds.Width.ToString & "x" & Screen.PrimaryScreen.Bounds.Height.ToString(), "Main_Main_Load", False)
         LogAppend("/APP STARTUP PATH: " & Application.StartupPath, "Main_Main_Load", False)
     End Sub
