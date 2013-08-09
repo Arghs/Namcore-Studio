@@ -22,6 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports Namcore_Studio.GlobalVariables
+Imports Namcore_Studio.EventLogging
 Public Class Main
 
     Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter, highlighter3.MouseEnter, highlighter4.MouseEnter, highlighter5.MouseEnter
@@ -47,6 +48,16 @@ Public Class Main
         If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt") Then
             My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt")
         End If
+        LogAppend("NamCore Studio " & My.Application.Info.Version.ToString() & " loaded", "Main_Main_Load", False)
+        LogAppend("System information:", "Main_Main_Load", False)
+        LogAppend("/OS NAME: " & My.Computer.Info.OSFullName, "Main_Main_Load", False)
+        LogAppend("/OS VERSION: " & My.Computer.Info.OSVersion, "Main_Main_Load", False)
+        LogAppend("/OS LANGUAGE: " & My.Computer.Info.InstalledUICulture.ThreeLetterWindowsLanguageName, "Main_Main_Load", False)
+        LogAppend("/SYSTEM VERSION: " & System.Environment.Version.ToString(), "Main_Main_Load", False)
+        LogAppend("/TOTAL PHYSICAL MEMORY: " & (My.Computer.Info.TotalPhysicalMemory / 100000000).ToString() & " GB", "Main_Main_Load", False)
+        LogAppend("/TOTAL VIRTUAL MEMORY: " & (My.Computer.Info.TotalVirtualMemory / 100000000).ToString() & " GB", "Main_Main_Load", False)
+        LogAppend("/SCREEN SIZE: " & Screen.PrimaryScreen.Bounds.Width.ToString & "x" & Screen.PrimaryScreen.Bounds.Height.ToString(), "Main_Main_Load", False)
+        LogAppend("/APP STARTUP PATH: " & Application.StartupPath, "Main_Main_Load", False)
     End Sub
 
     Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click

@@ -51,8 +51,8 @@ Public Class Process_status
     End Sub
     Public Sub UpdateGui()
         cancel_bt.Visible = ArmoryWorker.IsBusy
-        progressbar.Visible = ArmoryWorker.IsBusy
-        If ArmoryWorker.IsBusy Then progressbar.Value = 0
+
+
     End Sub
     Public Sub ArmoryWorker_RunWorkerCompleted( _
         ByVal sender As Object, ByVal e As RunWorkerCompletedEventArgs) _
@@ -76,8 +76,8 @@ Public Class Process_status
     End Sub
     Public Sub UpdateGuiTrans()
         cancel_bt.Visible = TransferWorker.IsBusy
-        progressbar.Visible = TransferWorker.IsBusy
-        If TransferWorker.IsBusy Then progressbar.Value = 0
+
+
     End Sub
     Public Sub TransferWorker_RunWorkerCompleted( _
         ByVal sender As Object, ByVal e As RunWorkerCompletedEventArgs) _
@@ -93,8 +93,8 @@ Public Class Process_status
     Public Sub appendProc()
         Try
             process_tb.Text = proccessTXT
-            process_tb.SelectionStart = process_tb.Text.Length
-            process_tb.ScrollToCaret()
+            'process_tb.SelectionStart = process_tb.Text.Length
+            'process_tb.ScrollToCaret()
         Catch ex As Exception
             Throw New Exception(ex.ToString)
         End Try
@@ -103,21 +103,43 @@ Public Class Process_status
     Public Sub ArmoryWorker_ProgressChanged( _
          ByVal sender As Object, ByVal e As ProgressChangedEventArgs) _
          Handles ArmoryWorker.ProgressChanged
-        progressbar.Value = e.ProgressPercentage
+
         process_tb.Text = proccessTXT
-        process_tb.SelectionStart = process_tb.Text.Length
-        process_tb.ScrollToCaret()
+        'process_tb.SelectionStart = process_tb.Text.Length
+        'process_tb.ScrollToCaret()
     End Sub
 
     Public Sub TransferWorker_ProgressChanged( _
         ByVal sender As Object, ByVal e As ProgressChangedEventArgs) _
         Handles TransferWorker.ProgressChanged
-        progressbar.Value = e.ProgressPercentage
+
         process_tb.Text = proccessTXT
-        process_tb.SelectionStart = process_tb.Text.Length
-        process_tb.ScrollToCaret()
+        'process_tb.SelectionStart = process_tb.Text.Length
+        'process_tb.ScrollToCaret()
     End Sub
-    Private Sub cancel_bt_Click(sender As Object, e As EventArgs) Handles cancel_bt.Click
+    Private ptMouseDownLocation As Point
+    Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            ptMouseDownLocation = e.Location
+        End If
+    End Sub
+
+    Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            Me.Location = e.Location - ptMouseDownLocation + Location
+        End If
+    End Sub
+    Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter
+        sender.backgroundimage = My.Resources.highlight
+    End Sub
+    Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave, highlighter2.MouseLeave
+        sender.backgroundimage = Nothing
+    End Sub
+    Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
+
+    End Sub
+
+    Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
 
     End Sub
 End Class

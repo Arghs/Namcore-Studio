@@ -319,6 +319,7 @@ Partial Class Armory_interface
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.load_bt)
         Me.Controls.Add(Me.back_bt)
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Armory_interface"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

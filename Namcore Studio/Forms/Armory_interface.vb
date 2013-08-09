@@ -156,6 +156,7 @@ Public Class Armory_interface
     End Sub
 
     Private Sub load_bt_Click(sender As System.Object, e As System.EventArgs) Handles load_bt.Click
+        lastregion = "armoryparser"
         globChars.CharacterSets = New List(Of Character)
         trdrunnuing = True
         My.Settings.language = "de" 'todo for testing only

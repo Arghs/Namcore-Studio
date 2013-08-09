@@ -40,24 +40,24 @@ Public Module EventLogging
         If iserror = False Then
             If userOut = True Then
                 appendStatus("[" & Now.TimeOfDay.ToString & "]" & _event)
-                eventlog = eventlog & vbNewLine & "[" & Now.TimeOfDay.ToString & "]" & _event
-                eventlog_full = eventlog_full & vbNewLine & "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event
+                eventlog = "[" & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog
+                eventlog_full = "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog_full
             Else
-                eventlog_full = eventlog_full & vbNewLine & "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event
+                eventlog_full = "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog_full
             End If
         Else
             If userOut = True Then
                 appendStatus("[" & Now.TimeOfDay.ToString & "]" & _event)
-                eventlog = eventlog & vbNewLine & "[" & Now.TimeOfDay.ToString & "]" & _event
-                eventlog_full = eventlog_full & vbNewLine & "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event
+                eventlog = "[" & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog
+                eventlog_full = "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog_full
             Else
-                eventlog_full = eventlog_full & vbNewLine & "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event
+                eventlog_full = "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog_full
             End If
         End If
         isbusy = False
     End Sub
     Private Sub appendStatus(ByVal _status As String, Optional progress As Integer = 0)
-        proccessTXT = proccessTXT & _status & vbNewLine
+        proccessTXT = _status & vbNewLine & proccessTXT
         If lastprogress = Nothing Then lastprogress = 0
         If progress = 0 Then progress = lastprogress
         lastprogress = progress

@@ -667,6 +667,7 @@ Public Class Live_View
                 End If
             Next
         Next
+        Transfer_bt.Enabled = True
     End Sub
     Public Sub transChars_specificacc(ByVal accounts As ArrayList)
         For Each character() As String In trans_charlist
@@ -695,6 +696,7 @@ Public Class Live_View
                    next
             Next
         Next
+        Transfer_bt.Enabled = True
     End Sub
     Public Sub transChars_allacc()
         For Each character() As String In trans_charlist
@@ -718,6 +720,7 @@ Public Class Live_View
 
             Next
         Next
+        Transfer_bt.Enabled = True
     End Sub
     Function GetChildren(parentNode As TreeNode) As List(Of String)
         Dim nodes As List(Of String) = New List(Of String)
@@ -893,4 +896,40 @@ Public Class Live_View
 
   
  
+    Private Sub back_bt_Click(sender As Object, e As EventArgs) Handles back_bt.Click
+        If lastregion = "main" Then
+            Me.Close()
+            Main.Show()
+        ElseIf lastregion = "armoryparser" Then
+            Me.Close()
+            Armory_interface.Show()
+        End If
+        'todo
+    End Sub
+    Private ptMouseDownLocation As Point
+    Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            ptMouseDownLocation = e.Location
+        End If
+    End Sub
+
+    Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            Me.Location = e.Location - ptMouseDownLocation + Location
+        End If
+    End Sub
+    Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter
+        sender.backgroundimage = My.Resources.highlight
+    End Sub
+
+    Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave, highlighter2.MouseLeave
+        sender.backgroundimage = Nothing
+    End Sub
+    Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
+        WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
+        back_bt.PerformClick()
+    End Sub
 End Class

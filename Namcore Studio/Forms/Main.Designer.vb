@@ -115,6 +115,7 @@ Partial Class Main
         Me.Controls.Add(Me.highlighter3)
         Me.Controls.Add(Me.highlighter2)
         Me.Controls.Add(Me.highlighter1)
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
         Me.Name = "Main"

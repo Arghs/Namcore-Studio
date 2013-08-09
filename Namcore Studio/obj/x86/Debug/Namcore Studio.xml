@@ -47,6 +47,10 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.norm_stretch_bg">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.Resources.plusico">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.

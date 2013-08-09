@@ -60,6 +60,7 @@ Partial Class Live_View
         Me.target_accounts_tree = New System.Windows.Forms.TreeView()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.charactercontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -75,6 +76,9 @@ Partial Class Live_View
         Me.targetcharcontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Transfer_bt = New System.Windows.Forms.Button()
+        Me.back_bt = New System.Windows.Forms.Button()
+        Me.highlighter1 = New System.Windows.Forms.PictureBox()
+        Me.highlighter2 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         Me.accountcontext.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -82,6 +86,8 @@ Partial Class Live_View
         Me.charactercontext.SuspendLayout()
         Me.targetacccontext.SuspendLayout()
         Me.targetcharcontext.SuspendLayout()
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'connect_bt
@@ -90,7 +96,7 @@ Partial Class Live_View
         Me.connect_bt.Cursor = System.Windows.Forms.Cursors.Hand
         Me.connect_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.connect_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.connect_bt.Location = New System.Drawing.Point(405, 17)
+        Me.connect_bt.Location = New System.Drawing.Point(804, 4)
         Me.connect_bt.Name = "connect_bt"
         Me.connect_bt.Size = New System.Drawing.Size(147, 42)
         Me.connect_bt.TabIndex = 208
@@ -100,6 +106,7 @@ Partial Class Live_View
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.chartotal)
+        Me.Panel1.Controls.Add(Me.connect_bt)
         Me.Panel1.Controls.Add(Me.acctotal)
         Me.Panel1.Controls.Add(Me.uncheckall_char)
         Me.Panel1.Controls.Add(Me.checkall_char)
@@ -110,9 +117,9 @@ Partial Class Live_View
         Me.Panel1.Controls.Add(Me.filter_acc)
         Me.Panel1.Controls.Add(Me.characterview)
         Me.Panel1.Controls.Add(Me.accountview)
-        Me.Panel1.Location = New System.Drawing.Point(20, 65)
+        Me.Panel1.Location = New System.Drawing.Point(6, 13)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(974, 497)
+        Me.Panel1.Size = New System.Drawing.Size(962, 469)
         Me.Panel1.TabIndex = 1
         '
         'chartotal
@@ -120,9 +127,9 @@ Partial Class Live_View
         Me.chartotal.AutoSize = True
         Me.chartotal.BackColor = System.Drawing.Color.Transparent
         Me.chartotal.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chartotal.ForeColor = System.Drawing.Color.SteelBlue
+        Me.chartotal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.chartotal.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.chartotal.Location = New System.Drawing.Point(527, 444)
+        Me.chartotal.Location = New System.Drawing.Point(527, 429)
         Me.chartotal.Name = "chartotal"
         Me.chartotal.Size = New System.Drawing.Size(17, 17)
         Me.chartotal.TabIndex = 29
@@ -133,9 +140,9 @@ Partial Class Live_View
         Me.acctotal.AutoSize = True
         Me.acctotal.BackColor = System.Drawing.Color.Transparent
         Me.acctotal.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.acctotal.ForeColor = System.Drawing.Color.SteelBlue
+        Me.acctotal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.acctotal.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.acctotal.Location = New System.Drawing.Point(108, 444)
+        Me.acctotal.Location = New System.Drawing.Point(108, 429)
         Me.acctotal.Name = "acctotal"
         Me.acctotal.Size = New System.Drawing.Size(17, 17)
         Me.acctotal.TabIndex = 28
@@ -145,7 +152,7 @@ Partial Class Live_View
         '
         Me.uncheckall_char.AutoSize = True
         Me.uncheckall_char.LinkColor = System.Drawing.Color.Red
-        Me.uncheckall_char.Location = New System.Drawing.Point(451, 466)
+        Me.uncheckall_char.Location = New System.Drawing.Point(451, 451)
         Me.uncheckall_char.Name = "uncheckall_char"
         Me.uncheckall_char.Size = New System.Drawing.Size(64, 13)
         Me.uncheckall_char.TabIndex = 10
@@ -156,7 +163,7 @@ Partial Class Live_View
         '
         Me.checkall_char.AutoSize = True
         Me.checkall_char.LinkColor = System.Drawing.Color.Red
-        Me.checkall_char.Location = New System.Drawing.Point(451, 448)
+        Me.checkall_char.Location = New System.Drawing.Point(451, 433)
         Me.checkall_char.Name = "checkall_char"
         Me.checkall_char.Size = New System.Drawing.Size(51, 13)
         Me.checkall_char.TabIndex = 9
@@ -167,7 +174,7 @@ Partial Class Live_View
         '
         Me.uncheckall_acc.AutoSize = True
         Me.uncheckall_acc.LinkColor = System.Drawing.Color.Red
-        Me.uncheckall_acc.Location = New System.Drawing.Point(27, 466)
+        Me.uncheckall_acc.Location = New System.Drawing.Point(27, 451)
         Me.uncheckall_acc.Name = "uncheckall_acc"
         Me.uncheckall_acc.Size = New System.Drawing.Size(64, 13)
         Me.uncheckall_acc.TabIndex = 8
@@ -178,7 +185,7 @@ Partial Class Live_View
         '
         Me.checkall_acc.AutoSize = True
         Me.checkall_acc.LinkColor = System.Drawing.Color.Red
-        Me.checkall_acc.Location = New System.Drawing.Point(27, 448)
+        Me.checkall_acc.Location = New System.Drawing.Point(27, 433)
         Me.checkall_acc.Name = "checkall_acc"
         Me.checkall_acc.Size = New System.Drawing.Size(51, 13)
         Me.checkall_acc.TabIndex = 7
@@ -189,18 +196,18 @@ Partial Class Live_View
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Franklin Gothic Medium", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.ForeColor = System.Drawing.Color.SteelBlue
-        Me.Label10.Location = New System.Drawing.Point(9, 10)
+        Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.Label10.Location = New System.Drawing.Point(9, 3)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(380, 24)
+        Me.Label10.Size = New System.Drawing.Size(372, 24)
         Me.Label10.TabIndex = 6
-        Me.Label10.Text = "List of all found accounts and characters"
+        Me.Label10.Text = "Source - Found accounts and characters"
         '
         'filter_char
         '
         Me.filter_char.AutoSize = True
         Me.filter_char.LinkColor = System.Drawing.Color.Red
-        Me.filter_char.Location = New System.Drawing.Point(552, 48)
+        Me.filter_char.Location = New System.Drawing.Point(471, 33)
         Me.filter_char.Name = "filter_char"
         Me.filter_char.Size = New System.Drawing.Size(82, 13)
         Me.filter_char.TabIndex = 5
@@ -211,7 +218,7 @@ Partial Class Live_View
         '
         Me.filter_acc.AutoSize = True
         Me.filter_acc.LinkColor = System.Drawing.Color.Red
-        Me.filter_acc.Location = New System.Drawing.Point(15, 48)
+        Me.filter_acc.Location = New System.Drawing.Point(10, 33)
         Me.filter_acc.Name = "filter_acc"
         Me.filter_acc.Size = New System.Drawing.Size(76, 13)
         Me.filter_acc.TabIndex = 4
@@ -220,10 +227,11 @@ Partial Class Live_View
         '
         'characterview
         '
+        Me.characterview.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.characterview.CheckBoxes = True
         Me.characterview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.charguid, Me.caccid, Me.charname, Me.charrace, Me.charclass, Me.chargender, Me.charlevel})
         Me.characterview.FullRowSelect = True
-        Me.characterview.Location = New System.Drawing.Point(474, 65)
+        Me.characterview.Location = New System.Drawing.Point(474, 50)
         Me.characterview.MultiSelect = False
         Me.characterview.Name = "characterview"
         Me.characterview.Size = New System.Drawing.Size(477, 372)
@@ -264,10 +272,11 @@ Partial Class Live_View
         '
         'accountview
         '
+        Me.accountview.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.accountview.CheckBoxes = True
         Me.accountview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.accid, Me.accname, Me.gmlevel, Me.lastlogin, Me.email})
         Me.accountview.FullRowSelect = True
-        Me.accountview.Location = New System.Drawing.Point(13, 65)
+        Me.accountview.Location = New System.Drawing.Point(13, 50)
         Me.accountview.MultiSelect = False
         Me.accountview.Name = "accountview"
         Me.accountview.Size = New System.Drawing.Size(448, 372)
@@ -356,7 +365,7 @@ Partial Class Live_View
         Me.connect_bt_target.Cursor = System.Windows.Forms.Cursors.Hand
         Me.connect_bt_target.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.connect_bt_target.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.connect_bt_target.Location = New System.Drawing.Point(113, 17)
+        Me.connect_bt_target.Location = New System.Drawing.Point(11, 16)
         Me.connect_bt_target.Name = "connect_bt_target"
         Me.connect_bt_target.Size = New System.Drawing.Size(147, 42)
         Me.connect_bt_target.TabIndex = 209
@@ -366,38 +375,52 @@ Partial Class Live_View
         'target_accounts_tree
         '
         Me.target_accounts_tree.AllowDrop = True
-        Me.target_accounts_tree.Location = New System.Drawing.Point(33, 130)
+        Me.target_accounts_tree.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.target_accounts_tree.Location = New System.Drawing.Point(11, 63)
         Me.target_accounts_tree.Name = "target_accounts_tree"
-        Me.target_accounts_tree.Size = New System.Drawing.Size(269, 372)
+        Me.target_accounts_tree.Size = New System.Drawing.Size(363, 372)
         Me.target_accounts_tree.TabIndex = 210
         '
         'GroupBox1
         '
+        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox1.Controls.Add(Me.Panel1)
-        Me.GroupBox1.Controls.Add(Me.connect_bt)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(8, 58)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1006, 589)
+        Me.GroupBox1.Size = New System.Drawing.Size(980, 482)
         Me.GroupBox1.TabIndex = 211
         Me.GroupBox1.TabStop = False
         '
         'GroupBox2
         '
+        Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.target_accounts_tree)
         Me.GroupBox2.Controls.Add(Me.connect_bt_target)
-        Me.GroupBox2.Location = New System.Drawing.Point(1035, 12)
+        Me.GroupBox2.Controls.Add(Me.target_accounts_tree)
+        Me.GroupBox2.Location = New System.Drawing.Point(995, 58)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(388, 589)
+        Me.GroupBox2.Size = New System.Drawing.Size(388, 482)
         Me.GroupBox2.TabIndex = 212
         Me.GroupBox2.TabStop = False
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Franklin Gothic Medium", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.Label3.Location = New System.Drawing.Point(160, 13)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(233, 48)
+        Me.Label3.TabIndex = 213
+        Me.Label3.Text = "Target - Found accounts " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "and characters"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Yellow
-        Me.Label2.Location = New System.Drawing.Point(39, 558)
+        Me.Label2.Location = New System.Drawing.Point(8, 462)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(262, 13)
         Me.Label2.TabIndex = 212
@@ -407,7 +430,7 @@ Partial Class Live_View
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Green
-        Me.Label1.Location = New System.Drawing.Point(39, 531)
+        Me.Label1.Location = New System.Drawing.Point(8, 442)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(124, 13)
         Me.Label1.TabIndex = 211
@@ -491,25 +514,69 @@ Partial Class Live_View
         '
         Me.Transfer_bt.BackColor = System.Drawing.Color.DimGray
         Me.Transfer_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Transfer_bt.Enabled = False
         Me.Transfer_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Transfer_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Transfer_bt.Location = New System.Drawing.Point(660, 622)
+        Me.Transfer_bt.Location = New System.Drawing.Point(558, 546)
         Me.Transfer_bt.Name = "Transfer_bt"
-        Me.Transfer_bt.Size = New System.Drawing.Size(147, 42)
+        Me.Transfer_bt.Size = New System.Drawing.Size(251, 42)
         Me.Transfer_bt.TabIndex = 214
         Me.Transfer_bt.Text = "Start Transfer"
         Me.Transfer_bt.UseVisualStyleBackColor = False
+        '
+        'back_bt
+        '
+        Me.back_bt.BackColor = System.Drawing.Color.DimGray
+        Me.back_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.back_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.back_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.back_bt.Location = New System.Drawing.Point(1236, 546)
+        Me.back_bt.Name = "back_bt"
+        Me.back_bt.Size = New System.Drawing.Size(147, 42)
+        Me.back_bt.TabIndex = 215
+        Me.back_bt.Text = "Back"
+        Me.back_bt.UseVisualStyleBackColor = False
+        '
+        'highlighter1
+        '
+        Me.highlighter1.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter1.Location = New System.Drawing.Point(1310, 14)
+        Me.highlighter1.Name = "highlighter1"
+        Me.highlighter1.Size = New System.Drawing.Size(29, 30)
+        Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter1.TabIndex = 217
+        Me.highlighter1.TabStop = False
+        '
+        'highlighter2
+        '
+        Me.highlighter2.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter2.Location = New System.Drawing.Point(1350, 14)
+        Me.highlighter2.Name = "highlighter2"
+        Me.highlighter2.Size = New System.Drawing.Size(29, 30)
+        Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter2.TabIndex = 218
+        Me.highlighter2.TabStop = False
         '
         'Live_View
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.Blue
-        Me.ClientSize = New System.Drawing.Size(1525, 702)
-        Me.Controls.Add(Me.Transfer_bt)
+        Me.BackColor = System.Drawing.SystemColors.Control
+        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.norm_stretch_bg
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ClientSize = New System.Drawing.Size(1396, 598)
+        Me.Controls.Add(Me.highlighter2)
+        Me.Controls.Add(Me.highlighter1)
+        Me.Controls.Add(Me.back_bt)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.Transfer_bt)
+        Me.DoubleBuffered = True
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Live_View"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Live_View"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
@@ -520,6 +587,8 @@ Partial Class Live_View
         Me.charactercontext.ResumeLayout(False)
         Me.targetacccontext.ResumeLayout(False)
         Me.targetcharcontext.ResumeLayout(False)
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -575,4 +644,8 @@ Partial Class Live_View
     Friend WithEvents Transfer_bt As System.Windows.Forms.Button
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents back_bt As System.Windows.Forms.Button
+    Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
+    Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
 End Class
