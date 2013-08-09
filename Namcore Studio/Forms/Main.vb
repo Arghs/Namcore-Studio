@@ -35,7 +35,18 @@ Public Class Main
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2013"
+        version_lbl.Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2013"
         lastregion = "main"
+        Process_status.Close()
+        procStatus = New Process_status
+        procStatus.Show()
+        procStatus.ArmoryWorker = New System.ComponentModel.BackgroundWorker
+        procStatus.ArmoryWorker.WorkerReportsProgress = True
+        procStatus.ArmoryWorker.WorkerSupportsCancellation = True
+
+        If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt") Then
+            My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt")
+        End If
     End Sub
 
     Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click

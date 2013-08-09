@@ -45,12 +45,17 @@ Partial Class Armory_interface
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.removeItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.highlighter1 = New System.Windows.Forms.PictureBox()
+        Me.highlighter2 = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox1.Controls.Add(Me.addURL_bt)
         Me.GroupBox1.Controls.Add(Me.url_tb)
         Me.GroupBox1.Controls.Add(Me.Label5)
@@ -62,8 +67,8 @@ Partial Class Armory_interface
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox1.ForeColor = System.Drawing.Color.RoyalBlue
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 193)
+        Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.GroupBox1.Location = New System.Drawing.Point(14, 229)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(696, 98)
         Me.GroupBox1.TabIndex = 166
@@ -95,7 +100,7 @@ Partial Class Armory_interface
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label5.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.Label5.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Label5.Location = New System.Drawing.Point(7, 67)
         Me.Label5.Name = "Label5"
@@ -145,7 +150,7 @@ Partial Class Armory_interface
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label4.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.Label4.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Label4.Location = New System.Drawing.Point(389, 28)
         Me.Label4.Name = "Label4"
@@ -157,7 +162,7 @@ Partial Class Armory_interface
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label3.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.Label3.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Label3.Location = New System.Drawing.Point(171, 28)
         Me.Label3.Name = "Label3"
@@ -169,7 +174,7 @@ Partial Class Armory_interface
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label2.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.Label2.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.Label2.Location = New System.Drawing.Point(7, 28)
         Me.Label2.Name = "Label2"
@@ -179,11 +184,12 @@ Partial Class Armory_interface
         '
         'char_lst
         '
-        Me.char_lst.BackColor = System.Drawing.SystemColors.Control
+        Me.char_lst.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.char_lst.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.char_lst.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.lstvregion, Me.Realm, Me.Charactername, Me.hyperlink})
         Me.char_lst.FullRowSelect = True
         Me.char_lst.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
-        Me.char_lst.Location = New System.Drawing.Point(12, 33)
+        Me.char_lst.Location = New System.Drawing.Point(14, 69)
         Me.char_lst.MultiSelect = False
         Me.char_lst.Name = "char_lst"
         Me.char_lst.Size = New System.Drawing.Size(696, 154)
@@ -214,10 +220,11 @@ Partial Class Armory_interface
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label1.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.Label1.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Label1.Location = New System.Drawing.Point(9, 11)
+        Me.Label1.Location = New System.Drawing.Point(11, 47)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(148, 15)
         Me.Label1.TabIndex = 164
@@ -230,7 +237,7 @@ Partial Class Armory_interface
         Me.load_bt.Enabled = False
         Me.load_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.load_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.load_bt.Location = New System.Drawing.Point(251, 297)
+        Me.load_bt.Location = New System.Drawing.Point(253, 333)
         Me.load_bt.Name = "load_bt"
         Me.load_bt.Size = New System.Drawing.Size(213, 48)
         Me.load_bt.TabIndex = 163
@@ -243,7 +250,7 @@ Partial Class Armory_interface
         Me.back_bt.Cursor = System.Windows.Forms.Cursors.Hand
         Me.back_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.back_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.back_bt.Location = New System.Drawing.Point(576, 318)
+        Me.back_bt.Location = New System.Drawing.Point(578, 354)
         Me.back_bt.Name = "back_bt"
         Me.back_bt.Size = New System.Drawing.Size(126, 27)
         Me.back_bt.TabIndex = 160
@@ -268,29 +275,59 @@ Partial Class Armory_interface
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button2.Location = New System.Drawing.Point(12, 318)
+        Me.Button2.Location = New System.Drawing.Point(14, 354)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(126, 27)
         Me.Button2.TabIndex = 169
         Me.Button2.Text = "Load latest set"
         Me.Button2.UseVisualStyleBackColor = False
         '
+        'highlighter1
+        '
+        Me.highlighter1.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter1.Location = New System.Drawing.Point(652, 9)
+        Me.highlighter1.Name = "highlighter1"
+        Me.highlighter1.Size = New System.Drawing.Size(24, 20)
+        Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter1.TabIndex = 170
+        Me.highlighter1.TabStop = False
+        '
+        'highlighter2
+        '
+        Me.highlighter2.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter2.Location = New System.Drawing.Point(686, 9)
+        Me.highlighter2.Name = "highlighter2"
+        Me.highlighter2.Size = New System.Drawing.Size(24, 20)
+        Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter2.TabIndex = 171
+        Me.highlighter2.TabStop = False
+        '
         'Armory_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(715, 358)
+        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.norm_bg
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ClientSize = New System.Drawing.Size(724, 391)
+        Me.Controls.Add(Me.highlighter2)
+        Me.Controls.Add(Me.highlighter1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.char_lst)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.load_bt)
         Me.Controls.Add(Me.back_bt)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Armory_interface"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Load armory characters"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -317,4 +354,6 @@ Partial Class Armory_interface
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents removeItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
+    Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
 End Class

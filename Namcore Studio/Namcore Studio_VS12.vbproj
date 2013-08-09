@@ -313,6 +313,7 @@
     <None Include="Resources\bgNav5.jpg" />
     <Content Include="Resources\namcore_bg.jpg" />
     <None Include="Resources\plusico.png" />
+    <None Include="Resources\norm_bg.jpg" />
     <Content Include="Resources\Refresh-icon.png" />
     <None Include="Resources\repbg.jpg" />
     <Content Include="Resources\trash_%28delete%29_16x16.gif" />

@@ -196,21 +196,29 @@ Public Class Armory_interface
         'todo
         offlineExtension = False
         globChars = New GlobalCharVars()
-        Process_status.Close()
-        procStatus = New Process_status
-        procStatus.Show()
-        procStatus.ArmoryWorker = New System.ComponentModel.BackgroundWorker
-        procStatus.ArmoryWorker.WorkerReportsProgress = True
-        procStatus.ArmoryWorker.WorkerSupportsCancellation = True
 
-        If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt") Then
-            My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt")
-        End If
 
 
     End Sub
+    Private ptMouseDownLocation As Point
+    Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            ptMouseDownLocation = e.Location
+        End If
+    End Sub
 
- 
+    Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            Me.Location = e.Location - ptMouseDownLocation + Location
+        End If
+    End Sub
+    Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter
+        sender.backgroundimage = My.Resources.highlight
+    End Sub
+
+    Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave, highlighter2.MouseLeave
+        sender.backgroundimage = Nothing
+    End Sub
 
 
 
@@ -222,5 +230,13 @@ Public Class Armory_interface
         'temporaryCharacterInformation.Add(RichTextBox1.Text)
         Dim prepLive As New Interface_Operator
         prepLive.prepareLive_armory()
+    End Sub
+
+    Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
+        WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
+        back_bt.PerformClick()
     End Sub
 End Class

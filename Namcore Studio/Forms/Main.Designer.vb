@@ -27,6 +27,7 @@ Partial Class Main
         Me.highlighter3 = New System.Windows.Forms.PictureBox()
         Me.highlighter4 = New System.Windows.Forms.PictureBox()
         Me.highlighter5 = New System.Windows.Forms.PictureBox()
+        Me.version_lbl = New System.Windows.Forms.Label()
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.highlighter3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +90,18 @@ Partial Class Main
         Me.highlighter5.TabIndex = 4
         Me.highlighter5.TabStop = False
         '
+        'version_lbl
+        '
+        Me.version_lbl.AutoSize = True
+        Me.version_lbl.BackColor = System.Drawing.Color.Transparent
+        Me.version_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.version_lbl.ForeColor = System.Drawing.SystemColors.HighlightText
+        Me.version_lbl.Location = New System.Drawing.Point(556, 372)
+        Me.version_lbl.Name = "version_lbl"
+        Me.version_lbl.Size = New System.Drawing.Size(492, 18)
+        Me.version_lbl.TabIndex = 5
+        Me.version_lbl.Text = "NamCore Studio - Development - 0.0.8.45283 - © megasus 2013"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -96,6 +109,7 @@ Partial Class Main
         Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bgNav5
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1057, 397)
+        Me.Controls.Add(Me.version_lbl)
         Me.Controls.Add(Me.highlighter5)
         Me.Controls.Add(Me.highlighter4)
         Me.Controls.Add(Me.highlighter3)
@@ -112,6 +126,7 @@ Partial Class Main
         CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
@@ -119,4 +134,5 @@ Partial Class Main
     Friend WithEvents highlighter3 As System.Windows.Forms.PictureBox
     Friend WithEvents highlighter4 As System.Windows.Forms.PictureBox
     Friend WithEvents highlighter5 As System.Windows.Forms.PictureBox
+    Friend WithEvents version_lbl As System.Windows.Forms.Label
 End Class
