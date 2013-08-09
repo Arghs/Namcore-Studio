@@ -309,12 +309,6 @@
     <Content Include="References\mysql.data.dll" />
     <None Include="Resources\INV_Misc_QuestionMark.jpg" />
     <None Include="Resources\addrep.jpg" />
-    <None Include="Resources\bgNav.jpg" />
-    <None Include="Resources\bgNav1.jpg" />
-    <None Include="Resources\bgNav2.jpg" />
-    <None Include="Resources\bgNav3.jpg" />
-    <None Include="Resources\bgNav4.jpg" />
-    <None Include="Resources\highlight.png" />
     <None Include="Resources\highlight1.png" />
     <None Include="Resources\bgNav5.jpg" />
     <Content Include="Resources\namcore_bg.jpg" />
@@ -329,7 +323,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

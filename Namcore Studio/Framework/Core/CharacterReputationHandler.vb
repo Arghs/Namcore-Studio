@@ -21,7 +21,7 @@
 '*      /Description:   Contains functions for extracting information about the gained 
 '*                      reputation of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports Namcore_Studio.test1
+
 Imports Namcore_Studio.EventLogging
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.GlobalVariables

@@ -25,18 +25,22 @@ Partial Class Main
         Me.highlighter1 = New System.Windows.Forms.PictureBox()
         Me.highlighter2 = New System.Windows.Forms.PictureBox()
         Me.highlighter3 = New System.Windows.Forms.PictureBox()
+        Me.highlighter4 = New System.Windows.Forms.PictureBox()
+        Me.highlighter5 = New System.Windows.Forms.PictureBox()
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.highlighter3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'highlighter1
         '
         Me.highlighter1.BackColor = System.Drawing.Color.Transparent
         Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.highlighter1.Location = New System.Drawing.Point(56, 71)
+        Me.highlighter1.Location = New System.Drawing.Point(58, 71)
         Me.highlighter1.Name = "highlighter1"
-        Me.highlighter1.Size = New System.Drawing.Size(947, 76)
+        Me.highlighter1.Size = New System.Drawing.Size(941, 76)
         Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.highlighter1.TabIndex = 0
         Me.highlighter1.TabStop = False
@@ -45,9 +49,9 @@ Partial Class Main
         '
         Me.highlighter2.BackColor = System.Drawing.Color.Transparent
         Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.highlighter2.Location = New System.Drawing.Point(56, 171)
+        Me.highlighter2.Location = New System.Drawing.Point(58, 170)
         Me.highlighter2.Name = "highlighter2"
-        Me.highlighter2.Size = New System.Drawing.Size(947, 76)
+        Me.highlighter2.Size = New System.Drawing.Size(941, 76)
         Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.highlighter2.TabIndex = 1
         Me.highlighter2.TabStop = False
@@ -56,24 +60,48 @@ Partial Class Main
         '
         Me.highlighter3.BackColor = System.Drawing.Color.Transparent
         Me.highlighter3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.highlighter3.Location = New System.Drawing.Point(56, 272)
+        Me.highlighter3.Location = New System.Drawing.Point(58, 269)
         Me.highlighter3.Name = "highlighter3"
-        Me.highlighter3.Size = New System.Drawing.Size(947, 76)
+        Me.highlighter3.Size = New System.Drawing.Size(941, 76)
         Me.highlighter3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.highlighter3.TabIndex = 2
         Me.highlighter3.TabStop = False
+        '
+        'highlighter4
+        '
+        Me.highlighter4.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter4.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter4.Location = New System.Drawing.Point(1023, 9)
+        Me.highlighter4.Name = "highlighter4"
+        Me.highlighter4.Size = New System.Drawing.Size(22, 20)
+        Me.highlighter4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter4.TabIndex = 3
+        Me.highlighter4.TabStop = False
+        '
+        'highlighter5
+        '
+        Me.highlighter5.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter5.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter5.Location = New System.Drawing.Point(992, 9)
+        Me.highlighter5.Name = "highlighter5"
+        Me.highlighter5.Size = New System.Drawing.Size(22, 20)
+        Me.highlighter5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter5.TabIndex = 4
+        Me.highlighter5.TabStop = False
         '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bgNav
+        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bgNav3
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1057, 397)
+        Me.Controls.Add(Me.highlighter5)
+        Me.Controls.Add(Me.highlighter4)
         Me.Controls.Add(Me.highlighter3)
         Me.Controls.Add(Me.highlighter2)
         Me.Controls.Add(Me.highlighter1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
         Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -81,10 +109,14 @@ Partial Class Main
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.highlighter3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
     Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
     Friend WithEvents highlighter3 As System.Windows.Forms.PictureBox
+    Friend WithEvents highlighter4 As System.Windows.Forms.PictureBox
+    Friend WithEvents highlighter5 As System.Windows.Forms.PictureBox
 End Class
