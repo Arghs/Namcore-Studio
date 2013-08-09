@@ -73,39 +73,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property bgNav() As System.Drawing.Bitmap
+        Friend ReadOnly Property bgNav5() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("bgNav", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property bgNav1() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("bgNav1", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property bgNav2() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("bgNav2", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property bgNav3() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("bgNav3", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("bgNav5", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
