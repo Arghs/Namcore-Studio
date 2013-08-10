@@ -23,6 +23,18 @@
 Public Class Userwait
 
     Private Sub Userwait_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        Application.DoEvents()
+    End Sub
+    Private ptMouseDownLocation As Point
+    Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            ptMouseDownLocation = e.Location
+        End If
+    End Sub
 
+    Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            Me.Location = e.Location - ptMouseDownLocation + Location
+        End If
     End Sub
 End Class

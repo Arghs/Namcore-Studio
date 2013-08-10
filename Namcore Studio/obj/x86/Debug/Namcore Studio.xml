@@ -31,6 +31,10 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.glyphs_bg">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.Resources.highlight">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
@@ -72,6 +76,10 @@ NamcoreStudio
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Namcore_Studio.My.Resources.Resources.trash__delete__16x16">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.wait">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>

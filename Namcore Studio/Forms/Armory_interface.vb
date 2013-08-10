@@ -164,6 +164,7 @@ Public Class Armory_interface
         Dim d As New Data2Thread() With {.charLST = urllst}
         procStatus.UpdateGui()
         procStatus.ArmoryWorker.RunWorkerAsync(d)
+        Me.Close()
     End Sub
 
     Private Sub char_lst_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles char_lst.MouseDown
