@@ -15,7 +15,7 @@ NamcoreStudio
   Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
 </summary>
-</member><member name="P:Namcore_Studio.My.Resources.Resources.addrep">
+</member><member name="P:Namcore_Studio.My.Resources.Resources.addrep1">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
@@ -24,6 +24,10 @@ NamcoreStudio
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Namcore_Studio.My.Resources.Resources.bgNav5">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.Resources.bgNavContainer">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
@@ -71,7 +75,7 @@ NamcoreStudio
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
-</member><member name="P:Namcore_Studio.My.Resources.Resources.repbg">
+</member><member name="P:Namcore_Studio.My.Resources.Resources.repbg1">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>

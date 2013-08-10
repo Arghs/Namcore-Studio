@@ -56,7 +56,7 @@ Public Class Reputation_interface
             Loop Until cnt = 8
         End If
         Try
-            Player.PlayerReputation.Sort(Function(x, y) x.name.CompareTo(y.name))
+            Player.PlayerReputation.Sort(Function(x, y) System.String.Compare(x.name, y.name, System.StringComparison.Ordinal))
         Catch ex As Exception
 
         End Try
@@ -68,10 +68,10 @@ Public Class Reputation_interface
             repPanel.Tag = pRepu
             If colorTicker = 0 Then
                 colorTicker = 1
-                repPanel.BackColor = Color.SandyBrown
+                repPanel.BackColor = Color.FromArgb(110, 149, 190)
             Else
                 colorTicker = 0
-                repPanel.BackColor = Color.SaddleBrown
+                repPanel.BackColor = Color.FromArgb(126, 144, 156) 'Color.SaddleBrown
             End If
             Dim repNameLable As New Label
             repNameLable.Name = "rep" & pRepu.faction.ToString() & "_name_lbl"
@@ -82,7 +82,7 @@ Public Class Reputation_interface
             Dim sliderBgPanel As New Panel
             sliderBgPanel.Name = "rep" & pRepu.faction.ToString() & "_sliderBg_pnl"
             sliderBgPanel.Size = reference_sliderbg_panel.Size
-            sliderBgPanel.BackgroundImage = My.Resources.repbg
+            sliderBgPanel.BackgroundImage = My.Resources.repbg1
             sliderBgPanel.BackgroundImageLayout = ImageLayout.Stretch
             sliderBgPanel.Tag = pRepu
             Dim progressPanel As New Panel
@@ -334,7 +334,7 @@ Public Class Reputation_interface
                     repPanel.Name = "rep" & pRepu.faction.ToString() & "_pnl"
                     repPanel.Size = referencePanel.Size
                     repPanel.Tag = pRepu
-                    repPanel.BackColor = Color.RosyBrown
+                    repPanel.BackColor = Color.Silver
                     Dim repNameLable As New Label
                     repNameLable.Name = "rep" & pRepu.faction.ToString() & "_name_lbl"
                     repNameLable.Text = pRepu.name
@@ -344,7 +344,7 @@ Public Class Reputation_interface
                     Dim sliderBgPanel As New Panel
                     sliderBgPanel.Name = "rep" & pRepu.faction.ToString() & "_sliderBg_pnl"
                     sliderBgPanel.Size = reference_sliderbg_panel.Size
-                    sliderBgPanel.BackgroundImage = My.Resources.repbg
+                    sliderBgPanel.BackgroundImage = My.Resources.repbg1
                     sliderBgPanel.BackgroundImageLayout = ImageLayout.Stretch
                     sliderBgPanel.Tag = pRepu
                     Dim progressPanel As New Panel
@@ -428,5 +428,33 @@ Public Class Reputation_interface
             MsgBox(RM.GetString("invalidrepid"), MsgBoxStyle.Critical, "Error")
         End If
         Userwait.Close()
+    End Sub
+
+    Private ptMouseDownLocation As Point
+    Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            ptMouseDownLocation = e.Location
+        End If
+    End Sub
+
+    Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            Me.Location = e.Location - ptMouseDownLocation + Location
+        End If
+    End Sub
+    Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter
+        sender.backgroundimage = My.Resources.highlight
+    End Sub
+
+    Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave, highlighter2.MouseLeave
+        sender.backgroundimage = Nothing
+    End Sub
+
+    Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
+        Me.Close()
+    End Sub
+
+    Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
+        WindowState = FormWindowState.Minimized
     End Sub
 End Class

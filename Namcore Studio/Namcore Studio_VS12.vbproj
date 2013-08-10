@@ -313,6 +313,8 @@
     <None Include="Resources\wait.jpg" />
     <None Include="Resources\armor_bg.png" />
     <None Include="Resources\glyphs_bg.png" />
+    <None Include="Resources\bgNavContainer.jpg" />
+    <None Include="Resources\addrep1.jpg" />
     <Content Include="Resources\nclogo.ico" />
     <Content Include="References\mysql.data.dll" />
     <None Include="Resources\INV_Misc_QuestionMark.jpg" />
@@ -326,6 +328,7 @@
     <None Include="Resources\norm_bg_slim.jpg" />
     <Content Include="Resources\Refresh-icon.png" />
     <None Include="Resources\repbg.jpg" />
+    <None Include="Resources\repbg1.jpg" />
     <Content Include="Resources\trash_%28delete%29_16x16.gif" />
     <None Include="Resources\namcore_bg2.jpg" />
     <None Include="Resources\namcore_bg1.jpg" />
