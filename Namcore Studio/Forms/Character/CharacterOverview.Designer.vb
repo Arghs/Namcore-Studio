@@ -22,6 +22,7 @@ Partial Class CharacterOverview
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CharacterOverview))
         Me.InventoryPanel = New System.Windows.Forms.Panel()
         Me.slot_17_enchant = New System.Windows.Forms.Label()
         Me.slot_17_gem3_pic = New System.Windows.Forms.PictureBox()
@@ -258,6 +259,11 @@ Partial Class CharacterOverview
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Quests_bt = New System.Windows.Forms.Button()
+        Me.highlighter2 = New System.Windows.Forms.PictureBox()
+        Me.highlighter1 = New System.Windows.Forms.PictureBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.InventoryPanel.SuspendLayout()
         CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -431,10 +437,17 @@ Partial Class CharacterOverview
         CType(Me.picbagslot, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.addpanel.SuspendLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'InventoryPanel
         '
+        Me.InventoryPanel.BackColor = System.Drawing.Color.Transparent
+        Me.InventoryPanel.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.armor_bg
+        Me.InventoryPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.InventoryPanel.Controls.Add(Me.slot_17_enchant)
         Me.InventoryPanel.Controls.Add(Me.slot_17_gem3_pic)
         Me.InventoryPanel.Controls.Add(Me.slot_17_gem2_pic)
@@ -549,7 +562,7 @@ Partial Class CharacterOverview
         Me.InventoryPanel.Controls.Add(Me.slot_0_gem1_pic)
         Me.InventoryPanel.Controls.Add(Me.slot_0_color)
         Me.InventoryPanel.Controls.Add(Me.slot_0_name)
-        Me.InventoryPanel.Location = New System.Drawing.Point(12, 46)
+        Me.InventoryPanel.Location = New System.Drawing.Point(10, 81)
         Me.InventoryPanel.Name = "InventoryPanel"
         Me.InventoryPanel.Size = New System.Drawing.Size(536, 602)
         Me.InventoryPanel.TabIndex = 0
@@ -759,7 +772,7 @@ Partial Class CharacterOverview
         '
         Me.slot_13_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_13_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_13_enchant.Location = New System.Drawing.Point(265, 483)
+        Me.slot_13_enchant.Location = New System.Drawing.Point(279, 481)
         Me.slot_13_enchant.Name = "slot_13_enchant"
         Me.slot_13_enchant.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_13_enchant.Size = New System.Drawing.Size(179, 13)
@@ -769,7 +782,7 @@ Partial Class CharacterOverview
         '
         'slot_13_gem1_pic
         '
-        Me.slot_13_gem1_pic.Location = New System.Drawing.Point(426, 501)
+        Me.slot_13_gem1_pic.Location = New System.Drawing.Point(440, 499)
         Me.slot_13_gem1_pic.Name = "slot_13_gem1_pic"
         Me.slot_13_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_13_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -778,7 +791,7 @@ Partial Class CharacterOverview
         '
         'slot_13_gem2_pic
         '
-        Me.slot_13_gem2_pic.Location = New System.Drawing.Point(402, 501)
+        Me.slot_13_gem2_pic.Location = New System.Drawing.Point(416, 499)
         Me.slot_13_gem2_pic.Name = "slot_13_gem2_pic"
         Me.slot_13_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_13_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -787,7 +800,7 @@ Partial Class CharacterOverview
         '
         'slot_13_gem3_pic
         '
-        Me.slot_13_gem3_pic.Location = New System.Drawing.Point(378, 501)
+        Me.slot_13_gem3_pic.Location = New System.Drawing.Point(392, 499)
         Me.slot_13_gem3_pic.Name = "slot_13_gem3_pic"
         Me.slot_13_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_13_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -798,7 +811,7 @@ Partial Class CharacterOverview
         '
         Me.slot_13_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_13_color.Controls.Add(Me.slot_13_pic)
-        Me.slot_13_color.Location = New System.Drawing.Point(455, 462)
+        Me.slot_13_color.Location = New System.Drawing.Point(469, 460)
         Me.slot_13_color.Name = "slot_13_color"
         Me.slot_13_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_13_color.TabIndex = 92
@@ -816,7 +829,7 @@ Partial Class CharacterOverview
         'slot_13_name
         '
         Me.slot_13_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_13_name.Location = New System.Drawing.Point(265, 465)
+        Me.slot_13_name.Location = New System.Drawing.Point(279, 463)
         Me.slot_13_name.Name = "slot_13_name"
         Me.slot_13_name.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_13_name.Size = New System.Drawing.Size(184, 15)
@@ -828,7 +841,7 @@ Partial Class CharacterOverview
         '
         Me.slot_12_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_12_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_12_enchant.Location = New System.Drawing.Point(265, 418)
+        Me.slot_12_enchant.Location = New System.Drawing.Point(279, 416)
         Me.slot_12_enchant.Name = "slot_12_enchant"
         Me.slot_12_enchant.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_12_enchant.Size = New System.Drawing.Size(179, 13)
@@ -838,7 +851,7 @@ Partial Class CharacterOverview
         '
         'slot_12_gem1_pic
         '
-        Me.slot_12_gem1_pic.Location = New System.Drawing.Point(426, 436)
+        Me.slot_12_gem1_pic.Location = New System.Drawing.Point(440, 434)
         Me.slot_12_gem1_pic.Name = "slot_12_gem1_pic"
         Me.slot_12_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_12_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -847,7 +860,7 @@ Partial Class CharacterOverview
         '
         'slot_12_gem2_pic
         '
-        Me.slot_12_gem2_pic.Location = New System.Drawing.Point(402, 436)
+        Me.slot_12_gem2_pic.Location = New System.Drawing.Point(416, 434)
         Me.slot_12_gem2_pic.Name = "slot_12_gem2_pic"
         Me.slot_12_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_12_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -856,7 +869,7 @@ Partial Class CharacterOverview
         '
         'slot_12_gem3_pic
         '
-        Me.slot_12_gem3_pic.Location = New System.Drawing.Point(378, 436)
+        Me.slot_12_gem3_pic.Location = New System.Drawing.Point(392, 434)
         Me.slot_12_gem3_pic.Name = "slot_12_gem3_pic"
         Me.slot_12_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_12_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -867,7 +880,7 @@ Partial Class CharacterOverview
         '
         Me.slot_12_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_12_color.Controls.Add(Me.slot_12_pic)
-        Me.slot_12_color.Location = New System.Drawing.Point(455, 397)
+        Me.slot_12_color.Location = New System.Drawing.Point(469, 395)
         Me.slot_12_color.Name = "slot_12_color"
         Me.slot_12_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_12_color.TabIndex = 86
@@ -885,7 +898,7 @@ Partial Class CharacterOverview
         'slot_12_name
         '
         Me.slot_12_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_12_name.Location = New System.Drawing.Point(265, 400)
+        Me.slot_12_name.Location = New System.Drawing.Point(279, 398)
         Me.slot_12_name.Name = "slot_12_name"
         Me.slot_12_name.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_12_name.Size = New System.Drawing.Size(184, 15)
@@ -897,7 +910,7 @@ Partial Class CharacterOverview
         '
         Me.slot_11_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_11_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_11_enchant.Location = New System.Drawing.Point(265, 353)
+        Me.slot_11_enchant.Location = New System.Drawing.Point(279, 351)
         Me.slot_11_enchant.Name = "slot_11_enchant"
         Me.slot_11_enchant.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_11_enchant.Size = New System.Drawing.Size(179, 13)
@@ -907,7 +920,7 @@ Partial Class CharacterOverview
         '
         'slot_11_gem1_pic
         '
-        Me.slot_11_gem1_pic.Location = New System.Drawing.Point(426, 371)
+        Me.slot_11_gem1_pic.Location = New System.Drawing.Point(440, 369)
         Me.slot_11_gem1_pic.Name = "slot_11_gem1_pic"
         Me.slot_11_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_11_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -916,7 +929,7 @@ Partial Class CharacterOverview
         '
         'slot_11_gem2_pic
         '
-        Me.slot_11_gem2_pic.Location = New System.Drawing.Point(402, 371)
+        Me.slot_11_gem2_pic.Location = New System.Drawing.Point(416, 369)
         Me.slot_11_gem2_pic.Name = "slot_11_gem2_pic"
         Me.slot_11_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_11_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -925,7 +938,7 @@ Partial Class CharacterOverview
         '
         'slot_11_gem3_pic
         '
-        Me.slot_11_gem3_pic.Location = New System.Drawing.Point(378, 371)
+        Me.slot_11_gem3_pic.Location = New System.Drawing.Point(392, 369)
         Me.slot_11_gem3_pic.Name = "slot_11_gem3_pic"
         Me.slot_11_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_11_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -936,7 +949,7 @@ Partial Class CharacterOverview
         '
         Me.slot_11_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_11_color.Controls.Add(Me.slot_11_pic)
-        Me.slot_11_color.Location = New System.Drawing.Point(455, 332)
+        Me.slot_11_color.Location = New System.Drawing.Point(469, 330)
         Me.slot_11_color.Name = "slot_11_color"
         Me.slot_11_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_11_color.TabIndex = 80
@@ -954,7 +967,7 @@ Partial Class CharacterOverview
         'slot_11_name
         '
         Me.slot_11_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_11_name.Location = New System.Drawing.Point(265, 335)
+        Me.slot_11_name.Location = New System.Drawing.Point(279, 333)
         Me.slot_11_name.Name = "slot_11_name"
         Me.slot_11_name.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_11_name.Size = New System.Drawing.Size(184, 15)
@@ -966,7 +979,7 @@ Partial Class CharacterOverview
         '
         Me.slot_10_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_10_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_10_enchant.Location = New System.Drawing.Point(265, 288)
+        Me.slot_10_enchant.Location = New System.Drawing.Point(279, 286)
         Me.slot_10_enchant.Name = "slot_10_enchant"
         Me.slot_10_enchant.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_10_enchant.Size = New System.Drawing.Size(179, 13)
@@ -976,7 +989,7 @@ Partial Class CharacterOverview
         '
         'slot_10_gem1_pic
         '
-        Me.slot_10_gem1_pic.Location = New System.Drawing.Point(426, 306)
+        Me.slot_10_gem1_pic.Location = New System.Drawing.Point(440, 304)
         Me.slot_10_gem1_pic.Name = "slot_10_gem1_pic"
         Me.slot_10_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_10_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -985,7 +998,7 @@ Partial Class CharacterOverview
         '
         'slot_10_gem2_pic
         '
-        Me.slot_10_gem2_pic.Location = New System.Drawing.Point(402, 306)
+        Me.slot_10_gem2_pic.Location = New System.Drawing.Point(416, 304)
         Me.slot_10_gem2_pic.Name = "slot_10_gem2_pic"
         Me.slot_10_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_10_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -994,7 +1007,7 @@ Partial Class CharacterOverview
         '
         'slot_10_gem3_pic
         '
-        Me.slot_10_gem3_pic.Location = New System.Drawing.Point(378, 306)
+        Me.slot_10_gem3_pic.Location = New System.Drawing.Point(392, 304)
         Me.slot_10_gem3_pic.Name = "slot_10_gem3_pic"
         Me.slot_10_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_10_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1005,7 +1018,7 @@ Partial Class CharacterOverview
         '
         Me.slot_10_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_10_color.Controls.Add(Me.slot_10_pic)
-        Me.slot_10_color.Location = New System.Drawing.Point(455, 267)
+        Me.slot_10_color.Location = New System.Drawing.Point(469, 265)
         Me.slot_10_color.Name = "slot_10_color"
         Me.slot_10_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_10_color.TabIndex = 74
@@ -1023,7 +1036,7 @@ Partial Class CharacterOverview
         'slot_10_name
         '
         Me.slot_10_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_10_name.Location = New System.Drawing.Point(265, 270)
+        Me.slot_10_name.Location = New System.Drawing.Point(279, 268)
         Me.slot_10_name.Name = "slot_10_name"
         Me.slot_10_name.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_10_name.Size = New System.Drawing.Size(184, 15)
@@ -1035,7 +1048,7 @@ Partial Class CharacterOverview
         '
         Me.slot_7_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_7_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_7_enchant.Location = New System.Drawing.Point(265, 223)
+        Me.slot_7_enchant.Location = New System.Drawing.Point(279, 221)
         Me.slot_7_enchant.Name = "slot_7_enchant"
         Me.slot_7_enchant.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_7_enchant.Size = New System.Drawing.Size(179, 13)
@@ -1045,7 +1058,7 @@ Partial Class CharacterOverview
         '
         'slot_7_gem1_pic
         '
-        Me.slot_7_gem1_pic.Location = New System.Drawing.Point(426, 241)
+        Me.slot_7_gem1_pic.Location = New System.Drawing.Point(440, 239)
         Me.slot_7_gem1_pic.Name = "slot_7_gem1_pic"
         Me.slot_7_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_7_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1054,7 +1067,7 @@ Partial Class CharacterOverview
         '
         'slot_7_gem2_pic
         '
-        Me.slot_7_gem2_pic.Location = New System.Drawing.Point(402, 241)
+        Me.slot_7_gem2_pic.Location = New System.Drawing.Point(416, 239)
         Me.slot_7_gem2_pic.Name = "slot_7_gem2_pic"
         Me.slot_7_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_7_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1063,7 +1076,7 @@ Partial Class CharacterOverview
         '
         'slot_7_gem3_pic
         '
-        Me.slot_7_gem3_pic.Location = New System.Drawing.Point(378, 241)
+        Me.slot_7_gem3_pic.Location = New System.Drawing.Point(392, 239)
         Me.slot_7_gem3_pic.Name = "slot_7_gem3_pic"
         Me.slot_7_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_7_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1074,7 +1087,7 @@ Partial Class CharacterOverview
         '
         Me.slot_7_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_7_color.Controls.Add(Me.slot_7_pic)
-        Me.slot_7_color.Location = New System.Drawing.Point(455, 202)
+        Me.slot_7_color.Location = New System.Drawing.Point(469, 200)
         Me.slot_7_color.Name = "slot_7_color"
         Me.slot_7_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_7_color.TabIndex = 68
@@ -1092,7 +1105,7 @@ Partial Class CharacterOverview
         'slot_7_name
         '
         Me.slot_7_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_7_name.Location = New System.Drawing.Point(265, 205)
+        Me.slot_7_name.Location = New System.Drawing.Point(279, 203)
         Me.slot_7_name.Name = "slot_7_name"
         Me.slot_7_name.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_7_name.Size = New System.Drawing.Size(184, 15)
@@ -1104,7 +1117,7 @@ Partial Class CharacterOverview
         '
         Me.slot_6_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_6_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_6_enchant.Location = New System.Drawing.Point(265, 158)
+        Me.slot_6_enchant.Location = New System.Drawing.Point(279, 156)
         Me.slot_6_enchant.Name = "slot_6_enchant"
         Me.slot_6_enchant.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_6_enchant.Size = New System.Drawing.Size(179, 13)
@@ -1114,7 +1127,7 @@ Partial Class CharacterOverview
         '
         'slot_6_gem1_pic
         '
-        Me.slot_6_gem1_pic.Location = New System.Drawing.Point(426, 176)
+        Me.slot_6_gem1_pic.Location = New System.Drawing.Point(440, 174)
         Me.slot_6_gem1_pic.Name = "slot_6_gem1_pic"
         Me.slot_6_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_6_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1123,7 +1136,7 @@ Partial Class CharacterOverview
         '
         'slot_6_gem2_pic
         '
-        Me.slot_6_gem2_pic.Location = New System.Drawing.Point(402, 176)
+        Me.slot_6_gem2_pic.Location = New System.Drawing.Point(416, 174)
         Me.slot_6_gem2_pic.Name = "slot_6_gem2_pic"
         Me.slot_6_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_6_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1132,7 +1145,7 @@ Partial Class CharacterOverview
         '
         'slot_6_gem3_pic
         '
-        Me.slot_6_gem3_pic.Location = New System.Drawing.Point(378, 176)
+        Me.slot_6_gem3_pic.Location = New System.Drawing.Point(392, 174)
         Me.slot_6_gem3_pic.Name = "slot_6_gem3_pic"
         Me.slot_6_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_6_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1143,7 +1156,7 @@ Partial Class CharacterOverview
         '
         Me.slot_6_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_6_color.Controls.Add(Me.slot_6_pic)
-        Me.slot_6_color.Location = New System.Drawing.Point(455, 137)
+        Me.slot_6_color.Location = New System.Drawing.Point(469, 135)
         Me.slot_6_color.Name = "slot_6_color"
         Me.slot_6_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_6_color.TabIndex = 62
@@ -1161,7 +1174,7 @@ Partial Class CharacterOverview
         'slot_6_name
         '
         Me.slot_6_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_6_name.Location = New System.Drawing.Point(265, 140)
+        Me.slot_6_name.Location = New System.Drawing.Point(279, 138)
         Me.slot_6_name.Name = "slot_6_name"
         Me.slot_6_name.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_6_name.Size = New System.Drawing.Size(184, 15)
@@ -1173,7 +1186,7 @@ Partial Class CharacterOverview
         '
         Me.slot_5_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_5_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_5_enchant.Location = New System.Drawing.Point(265, 93)
+        Me.slot_5_enchant.Location = New System.Drawing.Point(279, 91)
         Me.slot_5_enchant.Name = "slot_5_enchant"
         Me.slot_5_enchant.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_5_enchant.Size = New System.Drawing.Size(179, 13)
@@ -1183,7 +1196,7 @@ Partial Class CharacterOverview
         '
         'slot_5_gem1_pic
         '
-        Me.slot_5_gem1_pic.Location = New System.Drawing.Point(426, 111)
+        Me.slot_5_gem1_pic.Location = New System.Drawing.Point(440, 109)
         Me.slot_5_gem1_pic.Name = "slot_5_gem1_pic"
         Me.slot_5_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_5_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1192,7 +1205,7 @@ Partial Class CharacterOverview
         '
         'slot_5_gem2_pic
         '
-        Me.slot_5_gem2_pic.Location = New System.Drawing.Point(402, 111)
+        Me.slot_5_gem2_pic.Location = New System.Drawing.Point(416, 109)
         Me.slot_5_gem2_pic.Name = "slot_5_gem2_pic"
         Me.slot_5_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_5_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1201,7 +1214,7 @@ Partial Class CharacterOverview
         '
         'slot_5_gem3_pic
         '
-        Me.slot_5_gem3_pic.Location = New System.Drawing.Point(378, 111)
+        Me.slot_5_gem3_pic.Location = New System.Drawing.Point(392, 109)
         Me.slot_5_gem3_pic.Name = "slot_5_gem3_pic"
         Me.slot_5_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_5_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1212,7 +1225,7 @@ Partial Class CharacterOverview
         '
         Me.slot_5_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_5_color.Controls.Add(Me.slot_5_pic)
-        Me.slot_5_color.Location = New System.Drawing.Point(455, 72)
+        Me.slot_5_color.Location = New System.Drawing.Point(469, 70)
         Me.slot_5_color.Name = "slot_5_color"
         Me.slot_5_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_5_color.TabIndex = 56
@@ -1230,7 +1243,7 @@ Partial Class CharacterOverview
         'slot_5_name
         '
         Me.slot_5_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_5_name.Location = New System.Drawing.Point(265, 75)
+        Me.slot_5_name.Location = New System.Drawing.Point(279, 73)
         Me.slot_5_name.Name = "slot_5_name"
         Me.slot_5_name.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_5_name.Size = New System.Drawing.Size(184, 15)
@@ -1242,7 +1255,7 @@ Partial Class CharacterOverview
         '
         Me.slot_9_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_9_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_9_enchant.Location = New System.Drawing.Point(265, 28)
+        Me.slot_9_enchant.Location = New System.Drawing.Point(279, 26)
         Me.slot_9_enchant.Name = "slot_9_enchant"
         Me.slot_9_enchant.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_9_enchant.Size = New System.Drawing.Size(179, 13)
@@ -1252,7 +1265,7 @@ Partial Class CharacterOverview
         '
         'slot_9_gem1_pic
         '
-        Me.slot_9_gem1_pic.Location = New System.Drawing.Point(426, 46)
+        Me.slot_9_gem1_pic.Location = New System.Drawing.Point(440, 44)
         Me.slot_9_gem1_pic.Name = "slot_9_gem1_pic"
         Me.slot_9_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_9_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1261,7 +1274,7 @@ Partial Class CharacterOverview
         '
         'slot_9_gem2_pic
         '
-        Me.slot_9_gem2_pic.Location = New System.Drawing.Point(402, 46)
+        Me.slot_9_gem2_pic.Location = New System.Drawing.Point(416, 44)
         Me.slot_9_gem2_pic.Name = "slot_9_gem2_pic"
         Me.slot_9_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_9_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1270,7 +1283,7 @@ Partial Class CharacterOverview
         '
         'slot_9_gem3_pic
         '
-        Me.slot_9_gem3_pic.Location = New System.Drawing.Point(378, 46)
+        Me.slot_9_gem3_pic.Location = New System.Drawing.Point(392, 44)
         Me.slot_9_gem3_pic.Name = "slot_9_gem3_pic"
         Me.slot_9_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_9_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1281,7 +1294,7 @@ Partial Class CharacterOverview
         '
         Me.slot_9_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_9_color.Controls.Add(Me.slot_9_pic)
-        Me.slot_9_color.Location = New System.Drawing.Point(455, 7)
+        Me.slot_9_color.Location = New System.Drawing.Point(469, 5)
         Me.slot_9_color.Name = "slot_9_color"
         Me.slot_9_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_9_color.TabIndex = 50
@@ -1299,7 +1312,7 @@ Partial Class CharacterOverview
         'slot_9_name
         '
         Me.slot_9_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_9_name.Location = New System.Drawing.Point(265, 10)
+        Me.slot_9_name.Location = New System.Drawing.Point(279, 8)
         Me.slot_9_name.Name = "slot_9_name"
         Me.slot_9_name.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.slot_9_name.Size = New System.Drawing.Size(184, 15)
@@ -1312,7 +1325,7 @@ Partial Class CharacterOverview
         Me.slot_8_enchant.AutoSize = True
         Me.slot_8_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_8_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_8_enchant.Location = New System.Drawing.Point(74, 483)
+        Me.slot_8_enchant.Location = New System.Drawing.Point(74, 481)
         Me.slot_8_enchant.Name = "slot_8_enchant"
         Me.slot_8_enchant.Size = New System.Drawing.Size(66, 13)
         Me.slot_8_enchant.TabIndex = 48
@@ -1320,7 +1333,7 @@ Partial Class CharacterOverview
         '
         'slot_8_gem3_pic
         '
-        Me.slot_8_gem3_pic.Location = New System.Drawing.Point(122, 501)
+        Me.slot_8_gem3_pic.Location = New System.Drawing.Point(122, 499)
         Me.slot_8_gem3_pic.Name = "slot_8_gem3_pic"
         Me.slot_8_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_8_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1329,7 +1342,7 @@ Partial Class CharacterOverview
         '
         'slot_8_gem2_pic
         '
-        Me.slot_8_gem2_pic.Location = New System.Drawing.Point(98, 501)
+        Me.slot_8_gem2_pic.Location = New System.Drawing.Point(98, 499)
         Me.slot_8_gem2_pic.Name = "slot_8_gem2_pic"
         Me.slot_8_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_8_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1338,7 +1351,7 @@ Partial Class CharacterOverview
         '
         'slot_8_gem1_pic
         '
-        Me.slot_8_gem1_pic.Location = New System.Drawing.Point(74, 501)
+        Me.slot_8_gem1_pic.Location = New System.Drawing.Point(74, 499)
         Me.slot_8_gem1_pic.Name = "slot_8_gem1_pic"
         Me.slot_8_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_8_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1349,7 +1362,7 @@ Partial Class CharacterOverview
         '
         Me.slot_8_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_8_color.Controls.Add(Me.slot_8_pic)
-        Me.slot_8_color.Location = New System.Drawing.Point(6, 462)
+        Me.slot_8_color.Location = New System.Drawing.Point(6, 460)
         Me.slot_8_color.Name = "slot_8_color"
         Me.slot_8_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_8_color.TabIndex = 44
@@ -1368,7 +1381,7 @@ Partial Class CharacterOverview
         '
         Me.slot_8_name.AutoSize = True
         Me.slot_8_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_8_name.Location = New System.Drawing.Point(74, 465)
+        Me.slot_8_name.Location = New System.Drawing.Point(74, 463)
         Me.slot_8_name.Name = "slot_8_name"
         Me.slot_8_name.Size = New System.Drawing.Size(71, 15)
         Me.slot_8_name.TabIndex = 43
@@ -1379,7 +1392,7 @@ Partial Class CharacterOverview
         Me.slot_18_enchant.AutoSize = True
         Me.slot_18_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_18_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_18_enchant.Location = New System.Drawing.Point(74, 418)
+        Me.slot_18_enchant.Location = New System.Drawing.Point(74, 416)
         Me.slot_18_enchant.Name = "slot_18_enchant"
         Me.slot_18_enchant.Size = New System.Drawing.Size(66, 13)
         Me.slot_18_enchant.TabIndex = 42
@@ -1387,7 +1400,7 @@ Partial Class CharacterOverview
         '
         'slot_18_gem3_pic
         '
-        Me.slot_18_gem3_pic.Location = New System.Drawing.Point(122, 436)
+        Me.slot_18_gem3_pic.Location = New System.Drawing.Point(122, 434)
         Me.slot_18_gem3_pic.Name = "slot_18_gem3_pic"
         Me.slot_18_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_18_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1396,7 +1409,7 @@ Partial Class CharacterOverview
         '
         'slot_18_gem2_pic
         '
-        Me.slot_18_gem2_pic.Location = New System.Drawing.Point(98, 436)
+        Me.slot_18_gem2_pic.Location = New System.Drawing.Point(98, 434)
         Me.slot_18_gem2_pic.Name = "slot_18_gem2_pic"
         Me.slot_18_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_18_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1405,7 +1418,7 @@ Partial Class CharacterOverview
         '
         'slot_18_gem1_pic
         '
-        Me.slot_18_gem1_pic.Location = New System.Drawing.Point(74, 436)
+        Me.slot_18_gem1_pic.Location = New System.Drawing.Point(74, 434)
         Me.slot_18_gem1_pic.Name = "slot_18_gem1_pic"
         Me.slot_18_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_18_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1416,7 +1429,7 @@ Partial Class CharacterOverview
         '
         Me.slot_18_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_18_color.Controls.Add(Me.slot_18_pic)
-        Me.slot_18_color.Location = New System.Drawing.Point(6, 397)
+        Me.slot_18_color.Location = New System.Drawing.Point(6, 395)
         Me.slot_18_color.Name = "slot_18_color"
         Me.slot_18_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_18_color.TabIndex = 38
@@ -1435,7 +1448,7 @@ Partial Class CharacterOverview
         '
         Me.slot_18_name.AutoSize = True
         Me.slot_18_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_18_name.Location = New System.Drawing.Point(74, 400)
+        Me.slot_18_name.Location = New System.Drawing.Point(74, 398)
         Me.slot_18_name.Name = "slot_18_name"
         Me.slot_18_name.Size = New System.Drawing.Size(71, 15)
         Me.slot_18_name.TabIndex = 37
@@ -1446,7 +1459,7 @@ Partial Class CharacterOverview
         Me.slot_3_enchant.AutoSize = True
         Me.slot_3_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_3_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_3_enchant.Location = New System.Drawing.Point(74, 353)
+        Me.slot_3_enchant.Location = New System.Drawing.Point(74, 351)
         Me.slot_3_enchant.Name = "slot_3_enchant"
         Me.slot_3_enchant.Size = New System.Drawing.Size(66, 13)
         Me.slot_3_enchant.TabIndex = 36
@@ -1454,7 +1467,7 @@ Partial Class CharacterOverview
         '
         'slot_3_gem3_pic
         '
-        Me.slot_3_gem3_pic.Location = New System.Drawing.Point(122, 371)
+        Me.slot_3_gem3_pic.Location = New System.Drawing.Point(122, 369)
         Me.slot_3_gem3_pic.Name = "slot_3_gem3_pic"
         Me.slot_3_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_3_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1463,7 +1476,7 @@ Partial Class CharacterOverview
         '
         'slot_3_gem2_pic
         '
-        Me.slot_3_gem2_pic.Location = New System.Drawing.Point(98, 371)
+        Me.slot_3_gem2_pic.Location = New System.Drawing.Point(98, 369)
         Me.slot_3_gem2_pic.Name = "slot_3_gem2_pic"
         Me.slot_3_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_3_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1472,7 +1485,7 @@ Partial Class CharacterOverview
         '
         'slot_3_gem1_pic
         '
-        Me.slot_3_gem1_pic.Location = New System.Drawing.Point(74, 371)
+        Me.slot_3_gem1_pic.Location = New System.Drawing.Point(74, 369)
         Me.slot_3_gem1_pic.Name = "slot_3_gem1_pic"
         Me.slot_3_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_3_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1483,7 +1496,7 @@ Partial Class CharacterOverview
         '
         Me.slot_3_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_3_color.Controls.Add(Me.slot_3_pic)
-        Me.slot_3_color.Location = New System.Drawing.Point(6, 332)
+        Me.slot_3_color.Location = New System.Drawing.Point(6, 330)
         Me.slot_3_color.Name = "slot_3_color"
         Me.slot_3_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_3_color.TabIndex = 32
@@ -1502,7 +1515,7 @@ Partial Class CharacterOverview
         '
         Me.slot_3_name.AutoSize = True
         Me.slot_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_3_name.Location = New System.Drawing.Point(74, 335)
+        Me.slot_3_name.Location = New System.Drawing.Point(74, 333)
         Me.slot_3_name.Name = "slot_3_name"
         Me.slot_3_name.Size = New System.Drawing.Size(71, 15)
         Me.slot_3_name.TabIndex = 31
@@ -1513,7 +1526,7 @@ Partial Class CharacterOverview
         Me.slot_4_enchant.AutoSize = True
         Me.slot_4_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_4_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_4_enchant.Location = New System.Drawing.Point(74, 288)
+        Me.slot_4_enchant.Location = New System.Drawing.Point(74, 286)
         Me.slot_4_enchant.Name = "slot_4_enchant"
         Me.slot_4_enchant.Size = New System.Drawing.Size(66, 13)
         Me.slot_4_enchant.TabIndex = 30
@@ -1521,7 +1534,7 @@ Partial Class CharacterOverview
         '
         'slot_4_gem3_pic
         '
-        Me.slot_4_gem3_pic.Location = New System.Drawing.Point(122, 306)
+        Me.slot_4_gem3_pic.Location = New System.Drawing.Point(122, 304)
         Me.slot_4_gem3_pic.Name = "slot_4_gem3_pic"
         Me.slot_4_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_4_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1530,7 +1543,7 @@ Partial Class CharacterOverview
         '
         'slot_4_gem2_pic
         '
-        Me.slot_4_gem2_pic.Location = New System.Drawing.Point(98, 306)
+        Me.slot_4_gem2_pic.Location = New System.Drawing.Point(98, 304)
         Me.slot_4_gem2_pic.Name = "slot_4_gem2_pic"
         Me.slot_4_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_4_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1539,7 +1552,7 @@ Partial Class CharacterOverview
         '
         'slot_4_gem1_pic
         '
-        Me.slot_4_gem1_pic.Location = New System.Drawing.Point(74, 306)
+        Me.slot_4_gem1_pic.Location = New System.Drawing.Point(74, 304)
         Me.slot_4_gem1_pic.Name = "slot_4_gem1_pic"
         Me.slot_4_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_4_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1550,7 +1563,7 @@ Partial Class CharacterOverview
         '
         Me.slot_4_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_4_color.Controls.Add(Me.slot_4_pic)
-        Me.slot_4_color.Location = New System.Drawing.Point(6, 267)
+        Me.slot_4_color.Location = New System.Drawing.Point(6, 265)
         Me.slot_4_color.Name = "slot_4_color"
         Me.slot_4_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_4_color.TabIndex = 26
@@ -1569,7 +1582,7 @@ Partial Class CharacterOverview
         '
         Me.slot_4_name.AutoSize = True
         Me.slot_4_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_4_name.Location = New System.Drawing.Point(74, 270)
+        Me.slot_4_name.Location = New System.Drawing.Point(74, 268)
         Me.slot_4_name.Name = "slot_4_name"
         Me.slot_4_name.Size = New System.Drawing.Size(71, 15)
         Me.slot_4_name.TabIndex = 25
@@ -1580,7 +1593,7 @@ Partial Class CharacterOverview
         Me.slot_14_enchant.AutoSize = True
         Me.slot_14_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_14_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_14_enchant.Location = New System.Drawing.Point(74, 223)
+        Me.slot_14_enchant.Location = New System.Drawing.Point(74, 221)
         Me.slot_14_enchant.Name = "slot_14_enchant"
         Me.slot_14_enchant.Size = New System.Drawing.Size(66, 13)
         Me.slot_14_enchant.TabIndex = 24
@@ -1588,7 +1601,7 @@ Partial Class CharacterOverview
         '
         'slot_14_gem3_pic
         '
-        Me.slot_14_gem3_pic.Location = New System.Drawing.Point(122, 241)
+        Me.slot_14_gem3_pic.Location = New System.Drawing.Point(122, 239)
         Me.slot_14_gem3_pic.Name = "slot_14_gem3_pic"
         Me.slot_14_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_14_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1597,7 +1610,7 @@ Partial Class CharacterOverview
         '
         'slot_14_gem2_pic
         '
-        Me.slot_14_gem2_pic.Location = New System.Drawing.Point(98, 241)
+        Me.slot_14_gem2_pic.Location = New System.Drawing.Point(98, 239)
         Me.slot_14_gem2_pic.Name = "slot_14_gem2_pic"
         Me.slot_14_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_14_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1606,7 +1619,7 @@ Partial Class CharacterOverview
         '
         'slot_14_gem1_pic
         '
-        Me.slot_14_gem1_pic.Location = New System.Drawing.Point(74, 241)
+        Me.slot_14_gem1_pic.Location = New System.Drawing.Point(74, 239)
         Me.slot_14_gem1_pic.Name = "slot_14_gem1_pic"
         Me.slot_14_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_14_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1617,7 +1630,7 @@ Partial Class CharacterOverview
         '
         Me.slot_14_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_14_color.Controls.Add(Me.slot_14_pic)
-        Me.slot_14_color.Location = New System.Drawing.Point(6, 202)
+        Me.slot_14_color.Location = New System.Drawing.Point(6, 200)
         Me.slot_14_color.Name = "slot_14_color"
         Me.slot_14_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_14_color.TabIndex = 20
@@ -1636,7 +1649,7 @@ Partial Class CharacterOverview
         '
         Me.slot_14_name.AutoSize = True
         Me.slot_14_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_14_name.Location = New System.Drawing.Point(74, 205)
+        Me.slot_14_name.Location = New System.Drawing.Point(74, 203)
         Me.slot_14_name.Name = "slot_14_name"
         Me.slot_14_name.Size = New System.Drawing.Size(71, 15)
         Me.slot_14_name.TabIndex = 19
@@ -1647,7 +1660,7 @@ Partial Class CharacterOverview
         Me.slot_2_enchant.AutoSize = True
         Me.slot_2_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_2_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_2_enchant.Location = New System.Drawing.Point(74, 158)
+        Me.slot_2_enchant.Location = New System.Drawing.Point(74, 156)
         Me.slot_2_enchant.Name = "slot_2_enchant"
         Me.slot_2_enchant.Size = New System.Drawing.Size(66, 13)
         Me.slot_2_enchant.TabIndex = 18
@@ -1655,7 +1668,7 @@ Partial Class CharacterOverview
         '
         'slot_2_gem3_pic
         '
-        Me.slot_2_gem3_pic.Location = New System.Drawing.Point(122, 176)
+        Me.slot_2_gem3_pic.Location = New System.Drawing.Point(122, 174)
         Me.slot_2_gem3_pic.Name = "slot_2_gem3_pic"
         Me.slot_2_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_2_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1664,7 +1677,7 @@ Partial Class CharacterOverview
         '
         'slot_2_gem2_pic
         '
-        Me.slot_2_gem2_pic.Location = New System.Drawing.Point(98, 176)
+        Me.slot_2_gem2_pic.Location = New System.Drawing.Point(98, 174)
         Me.slot_2_gem2_pic.Name = "slot_2_gem2_pic"
         Me.slot_2_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_2_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1673,7 +1686,7 @@ Partial Class CharacterOverview
         '
         'slot_2_gem1_pic
         '
-        Me.slot_2_gem1_pic.Location = New System.Drawing.Point(74, 176)
+        Me.slot_2_gem1_pic.Location = New System.Drawing.Point(74, 174)
         Me.slot_2_gem1_pic.Name = "slot_2_gem1_pic"
         Me.slot_2_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_2_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1684,7 +1697,7 @@ Partial Class CharacterOverview
         '
         Me.slot_2_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_2_color.Controls.Add(Me.slot_2_pic)
-        Me.slot_2_color.Location = New System.Drawing.Point(6, 137)
+        Me.slot_2_color.Location = New System.Drawing.Point(6, 135)
         Me.slot_2_color.Name = "slot_2_color"
         Me.slot_2_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_2_color.TabIndex = 14
@@ -1703,7 +1716,7 @@ Partial Class CharacterOverview
         '
         Me.slot_2_name.AutoSize = True
         Me.slot_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_2_name.Location = New System.Drawing.Point(74, 140)
+        Me.slot_2_name.Location = New System.Drawing.Point(74, 138)
         Me.slot_2_name.Name = "slot_2_name"
         Me.slot_2_name.Size = New System.Drawing.Size(71, 15)
         Me.slot_2_name.TabIndex = 13
@@ -1714,7 +1727,7 @@ Partial Class CharacterOverview
         Me.slot_1_enchant.AutoSize = True
         Me.slot_1_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_1_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_1_enchant.Location = New System.Drawing.Point(74, 93)
+        Me.slot_1_enchant.Location = New System.Drawing.Point(74, 91)
         Me.slot_1_enchant.Name = "slot_1_enchant"
         Me.slot_1_enchant.Size = New System.Drawing.Size(66, 13)
         Me.slot_1_enchant.TabIndex = 12
@@ -1722,7 +1735,7 @@ Partial Class CharacterOverview
         '
         'slot_1_gem3_pic
         '
-        Me.slot_1_gem3_pic.Location = New System.Drawing.Point(122, 111)
+        Me.slot_1_gem3_pic.Location = New System.Drawing.Point(122, 109)
         Me.slot_1_gem3_pic.Name = "slot_1_gem3_pic"
         Me.slot_1_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_1_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1731,7 +1744,7 @@ Partial Class CharacterOverview
         '
         'slot_1_gem2_pic
         '
-        Me.slot_1_gem2_pic.Location = New System.Drawing.Point(98, 111)
+        Me.slot_1_gem2_pic.Location = New System.Drawing.Point(98, 109)
         Me.slot_1_gem2_pic.Name = "slot_1_gem2_pic"
         Me.slot_1_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_1_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1740,7 +1753,7 @@ Partial Class CharacterOverview
         '
         'slot_1_gem1_pic
         '
-        Me.slot_1_gem1_pic.Location = New System.Drawing.Point(74, 111)
+        Me.slot_1_gem1_pic.Location = New System.Drawing.Point(74, 109)
         Me.slot_1_gem1_pic.Name = "slot_1_gem1_pic"
         Me.slot_1_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_1_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1751,7 +1764,7 @@ Partial Class CharacterOverview
         '
         Me.slot_1_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_1_color.Controls.Add(Me.slot_1_pic)
-        Me.slot_1_color.Location = New System.Drawing.Point(6, 72)
+        Me.slot_1_color.Location = New System.Drawing.Point(6, 70)
         Me.slot_1_color.Name = "slot_1_color"
         Me.slot_1_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_1_color.TabIndex = 8
@@ -1770,7 +1783,7 @@ Partial Class CharacterOverview
         '
         Me.slot_1_name.AutoSize = True
         Me.slot_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_1_name.Location = New System.Drawing.Point(74, 75)
+        Me.slot_1_name.Location = New System.Drawing.Point(74, 73)
         Me.slot_1_name.Name = "slot_1_name"
         Me.slot_1_name.Size = New System.Drawing.Size(71, 15)
         Me.slot_1_name.TabIndex = 7
@@ -1781,7 +1794,7 @@ Partial Class CharacterOverview
         Me.slot_0_enchant.AutoSize = True
         Me.slot_0_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_0_enchant.ForeColor = System.Drawing.Color.Lime
-        Me.slot_0_enchant.Location = New System.Drawing.Point(74, 28)
+        Me.slot_0_enchant.Location = New System.Drawing.Point(74, 26)
         Me.slot_0_enchant.Name = "slot_0_enchant"
         Me.slot_0_enchant.Size = New System.Drawing.Size(66, 13)
         Me.slot_0_enchant.TabIndex = 6
@@ -1789,7 +1802,7 @@ Partial Class CharacterOverview
         '
         'slot_0_gem3_pic
         '
-        Me.slot_0_gem3_pic.Location = New System.Drawing.Point(122, 46)
+        Me.slot_0_gem3_pic.Location = New System.Drawing.Point(122, 44)
         Me.slot_0_gem3_pic.Name = "slot_0_gem3_pic"
         Me.slot_0_gem3_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_0_gem3_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1798,7 +1811,7 @@ Partial Class CharacterOverview
         '
         'slot_0_gem2_pic
         '
-        Me.slot_0_gem2_pic.Location = New System.Drawing.Point(98, 46)
+        Me.slot_0_gem2_pic.Location = New System.Drawing.Point(98, 44)
         Me.slot_0_gem2_pic.Name = "slot_0_gem2_pic"
         Me.slot_0_gem2_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_0_gem2_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1807,7 +1820,7 @@ Partial Class CharacterOverview
         '
         'slot_0_gem1_pic
         '
-        Me.slot_0_gem1_pic.Location = New System.Drawing.Point(74, 46)
+        Me.slot_0_gem1_pic.Location = New System.Drawing.Point(74, 44)
         Me.slot_0_gem1_pic.Name = "slot_0_gem1_pic"
         Me.slot_0_gem1_pic.Size = New System.Drawing.Size(20, 20)
         Me.slot_0_gem1_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -1818,7 +1831,7 @@ Partial Class CharacterOverview
         '
         Me.slot_0_color.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.slot_0_color.Controls.Add(Me.slot_0_pic)
-        Me.slot_0_color.Location = New System.Drawing.Point(6, 7)
+        Me.slot_0_color.Location = New System.Drawing.Point(6, 5)
         Me.slot_0_color.Name = "slot_0_color"
         Me.slot_0_color.Size = New System.Drawing.Size(62, 62)
         Me.slot_0_color.TabIndex = 2
@@ -1837,7 +1850,7 @@ Partial Class CharacterOverview
         '
         Me.slot_0_name.AutoSize = True
         Me.slot_0_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.slot_0_name.Location = New System.Drawing.Point(74, 10)
+        Me.slot_0_name.Location = New System.Drawing.Point(74, 8)
         Me.slot_0_name.Name = "slot_0_name"
         Me.slot_0_name.Size = New System.Drawing.Size(71, 15)
         Me.slot_0_name.TabIndex = 1
@@ -1846,9 +1859,11 @@ Partial Class CharacterOverview
         'charname_lbl
         '
         Me.charname_lbl.AutoSize = True
+        Me.charname_lbl.BackColor = System.Drawing.Color.Transparent
         Me.charname_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.charname_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.charname_lbl.Location = New System.Drawing.Point(14, 16)
+        Me.charname_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.charname_lbl.Location = New System.Drawing.Point(10, 55)
         Me.charname_lbl.Name = "charname_lbl"
         Me.charname_lbl.Size = New System.Drawing.Size(132, 20)
         Me.charname_lbl.TabIndex = 1
@@ -1857,8 +1872,10 @@ Partial Class CharacterOverview
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(555, 46)
+        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.Label2.Location = New System.Drawing.Point(6, 24)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(50, 16)
         Me.Label2.TabIndex = 2
@@ -1867,8 +1884,10 @@ Partial Class CharacterOverview
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(555, 72)
+        Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.Label3.Location = New System.Drawing.Point(6, 50)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(49, 16)
         Me.Label3.TabIndex = 3
@@ -1877,8 +1896,10 @@ Partial Class CharacterOverview
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(555, 98)
+        Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.Label4.Location = New System.Drawing.Point(6, 76)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(51, 16)
         Me.Label4.TabIndex = 4
@@ -1887,9 +1908,11 @@ Partial Class CharacterOverview
         'level_lbl
         '
         Me.level_lbl.AutoSize = True
+        Me.level_lbl.BackColor = System.Drawing.Color.Transparent
         Me.level_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.level_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.level_lbl.Location = New System.Drawing.Point(609, 46)
+        Me.level_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.level_lbl.Location = New System.Drawing.Point(60, 24)
         Me.level_lbl.Name = "level_lbl"
         Me.level_lbl.Size = New System.Drawing.Size(23, 15)
         Me.level_lbl.TabIndex = 5
@@ -1898,9 +1921,11 @@ Partial Class CharacterOverview
         'race_lbl
         '
         Me.race_lbl.AutoSize = True
+        Me.race_lbl.BackColor = System.Drawing.Color.Transparent
         Me.race_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.race_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.race_lbl.Location = New System.Drawing.Point(609, 72)
+        Me.race_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.race_lbl.Location = New System.Drawing.Point(60, 50)
         Me.race_lbl.Name = "race_lbl"
         Me.race_lbl.Size = New System.Drawing.Size(60, 15)
         Me.race_lbl.TabIndex = 6
@@ -1909,9 +1934,11 @@ Partial Class CharacterOverview
         'class_lbl
         '
         Me.class_lbl.AutoSize = True
+        Me.class_lbl.BackColor = System.Drawing.Color.Transparent
         Me.class_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.class_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.class_lbl.Location = New System.Drawing.Point(609, 98)
+        Me.class_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.class_lbl.Location = New System.Drawing.Point(60, 76)
         Me.class_lbl.Name = "class_lbl"
         Me.class_lbl.Size = New System.Drawing.Size(50, 15)
         Me.class_lbl.TabIndex = 7
@@ -1922,8 +1949,9 @@ Partial Class CharacterOverview
         Me.av_bt.BackColor = System.Drawing.Color.DimGray
         Me.av_bt.Cursor = System.Windows.Forms.Cursors.Hand
         Me.av_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.av_bt.ForeColor = System.Drawing.Color.Black
         Me.av_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.av_bt.Location = New System.Drawing.Point(558, 494)
+        Me.av_bt.Location = New System.Drawing.Point(570, 529)
         Me.av_bt.Name = "av_bt"
         Me.av_bt.Size = New System.Drawing.Size(155, 34)
         Me.av_bt.TabIndex = 164
@@ -1935,8 +1963,9 @@ Partial Class CharacterOverview
         Me.Glyphs_bt.BackColor = System.Drawing.Color.DimGray
         Me.Glyphs_bt.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Glyphs_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Glyphs_bt.ForeColor = System.Drawing.Color.Black
         Me.Glyphs_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Glyphs_bt.Location = New System.Drawing.Point(558, 455)
+        Me.Glyphs_bt.Location = New System.Drawing.Point(731, 606)
         Me.Glyphs_bt.Name = "Glyphs_bt"
         Me.Glyphs_bt.Size = New System.Drawing.Size(155, 34)
         Me.Glyphs_bt.TabIndex = 165
@@ -1948,8 +1977,9 @@ Partial Class CharacterOverview
         Me.Button2.BackColor = System.Drawing.Color.DimGray
         Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.ForeColor = System.Drawing.Color.Black
         Me.Button2.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button2.Location = New System.Drawing.Point(558, 534)
+        Me.Button2.Location = New System.Drawing.Point(570, 569)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(155, 34)
         Me.Button2.TabIndex = 166
@@ -1962,8 +1992,9 @@ Partial Class CharacterOverview
         Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button4.Enabled = False
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.ForeColor = System.Drawing.Color.Black
         Me.Button4.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button4.Location = New System.Drawing.Point(558, 574)
+        Me.Button4.Location = New System.Drawing.Point(570, 609)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(155, 34)
         Me.Button4.TabIndex = 168
@@ -1976,8 +2007,9 @@ Partial Class CharacterOverview
         Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button5.Enabled = False
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.ForeColor = System.Drawing.Color.Black
         Me.Button5.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button5.Location = New System.Drawing.Point(558, 614)
+        Me.Button5.Location = New System.Drawing.Point(570, 649)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(155, 34)
         Me.Button5.TabIndex = 169
@@ -1989,8 +2021,9 @@ Partial Class CharacterOverview
         Me.exit_bt.BackColor = System.Drawing.Color.DimGray
         Me.exit_bt.Cursor = System.Windows.Forms.Cursors.Hand
         Me.exit_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.exit_bt.ForeColor = System.Drawing.Color.Black
         Me.exit_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.exit_bt.Location = New System.Drawing.Point(334, 654)
+        Me.exit_bt.Location = New System.Drawing.Point(332, 689)
         Me.exit_bt.Name = "exit_bt"
         Me.exit_bt.Size = New System.Drawing.Size(155, 34)
         Me.exit_bt.TabIndex = 170
@@ -2003,8 +2036,9 @@ Partial Class CharacterOverview
         Me.Button7.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button7.Enabled = False
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button7.ForeColor = System.Drawing.Color.Black
         Me.Button7.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button7.Location = New System.Drawing.Point(173, 654)
+        Me.Button7.Location = New System.Drawing.Point(171, 689)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(155, 34)
         Me.Button7.TabIndex = 171
@@ -2017,8 +2051,9 @@ Partial Class CharacterOverview
         Me.Button8.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button8.Enabled = False
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button8.ForeColor = System.Drawing.Color.Black
         Me.Button8.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button8.Location = New System.Drawing.Point(12, 654)
+        Me.Button8.Location = New System.Drawing.Point(10, 689)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(155, 34)
         Me.Button8.TabIndex = 172
@@ -2165,8 +2200,9 @@ Partial Class CharacterOverview
         Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Button3.Enabled = False
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.ForeColor = System.Drawing.Color.Black
         Me.Button3.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button3.Location = New System.Drawing.Point(558, 417)
+        Me.Button3.Location = New System.Drawing.Point(731, 568)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(155, 34)
         Me.Button3.TabIndex = 177
@@ -2177,7 +2213,7 @@ Partial Class CharacterOverview
         '
         Me.Panel36.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.Panel36.Controls.Add(Me.PictureBox38)
-        Me.Panel36.Location = New System.Drawing.Point(615, 193)
+        Me.Panel36.Location = New System.Drawing.Point(66, 56)
         Me.Panel36.Name = "Panel36"
         Me.Panel36.Size = New System.Drawing.Size(56, 56)
         Me.Panel36.TabIndex = 180
@@ -2195,7 +2231,7 @@ Partial Class CharacterOverview
         '
         Me.Panel37.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.Panel37.Controls.Add(Me.PictureBox39)
-        Me.Panel37.Location = New System.Drawing.Point(558, 193)
+        Me.Panel37.Location = New System.Drawing.Point(9, 56)
         Me.Panel37.Name = "Panel37"
         Me.Panel37.Size = New System.Drawing.Size(56, 56)
         Me.Panel37.TabIndex = 179
@@ -2213,7 +2249,7 @@ Partial Class CharacterOverview
         '
         Me.Panel33.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.Panel33.Controls.Add(Me.PictureBox35)
-        Me.Panel33.Location = New System.Drawing.Point(729, 193)
+        Me.Panel33.Location = New System.Drawing.Point(180, 56)
         Me.Panel33.Name = "Panel33"
         Me.Panel33.Size = New System.Drawing.Size(56, 56)
         Me.Panel33.TabIndex = 182
@@ -2231,7 +2267,7 @@ Partial Class CharacterOverview
         '
         Me.Panel34.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.Panel34.Controls.Add(Me.PictureBox36)
-        Me.Panel34.Location = New System.Drawing.Point(672, 193)
+        Me.Panel34.Location = New System.Drawing.Point(123, 56)
         Me.Panel34.Name = "Panel34"
         Me.Panel34.Size = New System.Drawing.Size(56, 56)
         Me.Panel34.TabIndex = 181
@@ -2249,7 +2285,7 @@ Partial Class CharacterOverview
         '
         Me.Panel38.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.Panel38.Controls.Add(Me.PictureBox40)
-        Me.Panel38.Location = New System.Drawing.Point(786, 193)
+        Me.Panel38.Location = New System.Drawing.Point(237, 56)
         Me.Panel38.Name = "Panel38"
         Me.Panel38.Size = New System.Drawing.Size(56, 56)
         Me.Panel38.TabIndex = 183
@@ -2294,7 +2330,7 @@ Partial Class CharacterOverview
         Me.bagpanel.Controls.Add(Me.Panel14)
         Me.bagpanel.Controls.Add(Me.Panel15)
         Me.bagpanel.Controls.Add(Me.Panel16)
-        Me.bagpanel.Location = New System.Drawing.Point(771, 334)
+        Me.bagpanel.Location = New System.Drawing.Point(9, 127)
         Me.bagpanel.Name = "bagpanel"
         Me.bagpanel.Size = New System.Drawing.Size(331, 192)
         Me.bagpanel.TabIndex = 178
@@ -2844,28 +2880,100 @@ Partial Class CharacterOverview
         Me.Quests_bt.BackColor = System.Drawing.Color.DimGray
         Me.Quests_bt.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Quests_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Quests_bt.ForeColor = System.Drawing.Color.Black
         Me.Quests_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Quests_bt.Location = New System.Drawing.Point(558, 378)
+        Me.Quests_bt.Location = New System.Drawing.Point(731, 529)
         Me.Quests_bt.Name = "Quests_bt"
         Me.Quests_bt.Size = New System.Drawing.Size(155, 34)
         Me.Quests_bt.TabIndex = 186
         Me.Quests_bt.Text = "Quests"
         Me.Quests_bt.UseVisualStyleBackColor = False
         '
+        'highlighter2
+        '
+        Me.highlighter2.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter2.Location = New System.Drawing.Point(876, 11)
+        Me.highlighter2.Name = "highlighter2"
+        Me.highlighter2.Size = New System.Drawing.Size(22, 26)
+        Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter2.TabIndex = 220
+        Me.highlighter2.TabStop = False
+        '
+        'highlighter1
+        '
+        Me.highlighter1.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter1.Location = New System.Drawing.Point(847, 11)
+        Me.highlighter1.Name = "highlighter1"
+        Me.highlighter1.Size = New System.Drawing.Size(22, 26)
+        Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter1.TabIndex = 219
+        Me.highlighter1.TabStop = False
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.level_lbl)
+        Me.GroupBox1.Controls.Add(Me.race_lbl)
+        Me.GroupBox1.Controls.Add(Me.class_lbl)
+        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.GroupBox1.Location = New System.Drawing.Point(556, 77)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(155, 100)
+        Me.GroupBox1.TabIndex = 222
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "General"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.Label5)
+        Me.GroupBox2.Controls.Add(Me.Panel37)
+        Me.GroupBox2.Controls.Add(Me.Panel36)
+        Me.GroupBox2.Controls.Add(Me.Panel34)
+        Me.GroupBox2.Controls.Add(Me.Panel33)
+        Me.GroupBox2.Controls.Add(Me.Panel38)
+        Me.GroupBox2.Controls.Add(Me.bagpanel)
+        Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.GroupBox2.Location = New System.Drawing.Point(556, 188)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(338, 322)
+        Me.GroupBox2.TabIndex = 223
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Inventory"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.Label5.Location = New System.Drawing.Point(6, 24)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(48, 16)
+        Me.Label5.TabIndex = 2
+        Me.Label5.Text = "Bags:"
+        '
         'CharacterOverview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1111, 706)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ClientSize = New System.Drawing.Size(910, 735)
+        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.highlighter2)
+        Me.Controls.Add(Me.highlighter1)
         Me.Controls.Add(Me.Quests_bt)
         Me.Controls.Add(Me.addpanel)
         Me.Controls.Add(Me.Button9)
-        Me.Controls.Add(Me.Panel38)
-        Me.Controls.Add(Me.Panel33)
-        Me.Controls.Add(Me.Panel34)
-        Me.Controls.Add(Me.Panel36)
-        Me.Controls.Add(Me.Panel37)
-        Me.Controls.Add(Me.bagpanel)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.selectenchpanel)
         Me.Controls.Add(Me.classpanel)
@@ -2879,15 +2987,13 @@ Partial Class CharacterOverview
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Glyphs_bt)
         Me.Controls.Add(Me.av_bt)
-        Me.Controls.Add(Me.class_lbl)
-        Me.Controls.Add(Me.race_lbl)
-        Me.Controls.Add(Me.level_lbl)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.charname_lbl)
         Me.Controls.Add(Me.InventoryPanel)
+        Me.DoubleBuffered = True
+        Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "CharacterOverview"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CharacterOverview"
         Me.InventoryPanel.ResumeLayout(False)
         Me.InventoryPanel.PerformLayout()
@@ -3066,6 +3172,12 @@ Partial Class CharacterOverview
         Me.addpanel.ResumeLayout(False)
         Me.addpanel.PerformLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3306,4 +3418,9 @@ Partial Class CharacterOverview
     Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Quests_bt As System.Windows.Forms.Button
+    Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
+    Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
 End Class

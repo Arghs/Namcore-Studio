@@ -63,6 +63,7 @@
     <Reference Include="libncadvanced">
       <HintPath>References\libncadvanced.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="mysql.data, Version=5.2.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\mysql.data.dll</HintPath>
@@ -309,6 +310,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\armor_bg.png" />
     <Content Include="Resources\nclogo.ico" />
     <Content Include="References\mysql.data.dll" />
     <None Include="Resources\INV_Misc_QuestionMark.jpg" />
@@ -317,8 +319,9 @@
     <None Include="Resources\bgNav5.jpg" />
     <Content Include="Resources\namcore_bg.jpg" />
     <None Include="Resources\plusico.png" />
-    <None Include="Resources\norm_bg.jpg" />
     <None Include="Resources\norm_stretch_bg.jpg" />
+    <None Include="Resources\norm_bg.jpg" />
+    <None Include="Resources\norm_bg_slim.jpg" />
     <Content Include="Resources\Refresh-icon.png" />
     <None Include="Resources\repbg.jpg" />
     <Content Include="Resources\trash_%28delete%29_16x16.gif" />

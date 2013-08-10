@@ -308,7 +308,7 @@ Partial Class Armory_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.norm_bg
+        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.norm_bg_slim
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(724, 391)
         Me.Controls.Add(Me.highlighter2)
