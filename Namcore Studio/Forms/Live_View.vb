@@ -37,6 +37,8 @@ Public Class Live_View
     Private cmpFileListViewComparer As ListViewComparer
     Dim checkchangestatus As Boolean = False
     Dim target_accchar_table As DataTable
+    Dim stretching As Boolean = False
+    Dim moving As Boolean = False
     Public Structure Data2Thread
         Public lite As Boolean
     End Structure
@@ -908,15 +910,46 @@ Public Class Live_View
     End Sub
     Private ptMouseDownLocation As Point
     Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            ptMouseDownLocation = e.Location
+        If Cursor = Cursors.SizeWE Then
+            If e.Button = Windows.Forms.MouseButtons.Left Then
+                ptMouseDownLocation = e.Location
+            End If
+        Else
+            If e.Button = Windows.Forms.MouseButtons.Left Then
+                ptMouseDownLocation = e.Location
+            End If
         End If
+
     End Sub
 
+
+
     Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            Me.Location = e.Location - ptMouseDownLocation + Location
+        If Not stretching And Not moving Then
+            If e.X > Width - 10 And e.X < Width + 10 Then
+                If Cursor = Cursors.Default Then
+                    Cursor = Cursors.SizeWE
+                End If
+            Else
+                If Cursor = Cursors.SizeWE Then
+                    Cursor = Cursors.Default
+                End If
+            End If
         End If
+        If Cursor = Cursors.SizeWE Then
+            If e.Button = Windows.Forms.MouseButtons.Left Then
+                stretching = True
+                Size = New System.Drawing.Size(e.Location.X, Size.Height)
+                Application.DoEvents()
+                mainpanel.Size = New System.Drawing.Size(Size.Width - 27, mainpanel.Size.Height)
+            End If
+        Else
+            If e.Button = Windows.Forms.MouseButtons.Left Then
+                moving = True
+                Me.Location = e.Location - ptMouseDownLocation + Location
+            End If
+        End If
+
     End Sub
     Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter
         sender.backgroundimage = My.Resources.highlight
@@ -931,5 +964,10 @@ Public Class Live_View
 
     Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
         back_bt.PerformClick()
+    End Sub
+
+    Private Sub Live_View_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+        stretching = False
+        moving = False
     End Sub
 End Class
