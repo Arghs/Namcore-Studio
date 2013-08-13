@@ -942,6 +942,12 @@ Public Class Live_View
                 Size = New System.Drawing.Size(e.Location.X, Size.Height)
                 Application.DoEvents()
                 mainpanel.Size = New System.Drawing.Size(Size.Width - 27, mainpanel.Size.Height)
+                Dim tmpwidth As Integer = (Size.Width / 1920) * 8
+                header.Location = New System.Drawing.Point(tmpwidth, header.Location.Y)
+                header.Size = New System.Drawing.Size(Size.Width - (2 * tmpwidth), header.Size.Height)
+                closepanel.Location = New System.Drawing.Point(header.Size.Width - 68, closepanel.Location.Y)
+                Application.DoEvents()
+
             End If
         Else
             If e.Button = Windows.Forms.MouseButtons.Left Then
@@ -969,5 +975,28 @@ Public Class Live_View
     Private Sub Live_View_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
         stretching = False
         moving = False
+    End Sub
+
+    Private Sub header_MouseDown(sender As Object, e As MouseEventArgs) Handles header.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            ptMouseDownLocation = e.Location
+        End If
+    End Sub
+
+   
+    Private Sub header_MouseMove(sender As Object, e As MouseEventArgs) Handles header.MouseMove
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            moving = True
+            Me.Location = e.Location - ptMouseDownLocation + Location
+        End If
+    End Sub
+
+    Private Sub header_MouseUp(sender As Object, e As MouseEventArgs) Handles header.MouseUp
+        moving = False
+    End Sub
+
+ 
+    Private Sub header_Paint(sender As Object, e As PaintEventArgs) Handles header.Paint
+
     End Sub
 End Class

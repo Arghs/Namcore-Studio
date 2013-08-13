@@ -45,10 +45,14 @@ Partial Class Armory_interface
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.removeItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.header = New System.Windows.Forms.Panel()
+        Me.closepanel = New System.Windows.Forms.Panel()
         Me.highlighter1 = New System.Windows.Forms.PictureBox()
         Me.highlighter2 = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
+        Me.header.SuspendLayout()
+        Me.closepanel.SuspendLayout()
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -250,7 +254,7 @@ Partial Class Armory_interface
         Me.back_bt.Cursor = System.Windows.Forms.Cursors.Hand
         Me.back_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.back_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.back_bt.Location = New System.Drawing.Point(578, 354)
+        Me.back_bt.Location = New System.Drawing.Point(584, 354)
         Me.back_bt.Name = "back_bt"
         Me.back_bt.Size = New System.Drawing.Size(126, 27)
         Me.back_bt.TabIndex = 160
@@ -282,37 +286,57 @@ Partial Class Armory_interface
         Me.Button2.Text = "Load latest set"
         Me.Button2.UseVisualStyleBackColor = False
         '
+        'header
+        '
+        Me.header.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.namcore_header
+        Me.header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.header.Controls.Add(Me.closepanel)
+        Me.header.Location = New System.Drawing.Point(3, 2)
+        Me.header.Name = "header"
+        Me.header.Size = New System.Drawing.Size(712, 30)
+        Me.header.TabIndex = 221
+        '
+        'closepanel
+        '
+        Me.closepanel.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.minclose
+        Me.closepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.closepanel.Controls.Add(Me.highlighter1)
+        Me.closepanel.Controls.Add(Me.highlighter2)
+        Me.closepanel.Location = New System.Drawing.Point(655, 0)
+        Me.closepanel.Name = "closepanel"
+        Me.closepanel.Size = New System.Drawing.Size(56, 28)
+        Me.closepanel.TabIndex = 0
+        '
         'highlighter1
         '
         Me.highlighter1.BackColor = System.Drawing.Color.Transparent
         Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.highlighter1.Location = New System.Drawing.Point(652, 9)
+        Me.highlighter1.Location = New System.Drawing.Point(5, 5)
         Me.highlighter1.Name = "highlighter1"
-        Me.highlighter1.Size = New System.Drawing.Size(24, 20)
+        Me.highlighter1.Size = New System.Drawing.Size(20, 20)
         Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.highlighter1.TabIndex = 170
+        Me.highlighter1.TabIndex = 217
         Me.highlighter1.TabStop = False
         '
         'highlighter2
         '
         Me.highlighter2.BackColor = System.Drawing.Color.Transparent
         Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.highlighter2.Location = New System.Drawing.Point(686, 9)
+        Me.highlighter2.Location = New System.Drawing.Point(33, 5)
         Me.highlighter2.Name = "highlighter2"
-        Me.highlighter2.Size = New System.Drawing.Size(24, 20)
+        Me.highlighter2.Size = New System.Drawing.Size(20, 20)
         Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.highlighter2.TabIndex = 171
+        Me.highlighter2.TabIndex = 218
         Me.highlighter2.TabStop = False
         '
         'Armory_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.norm_bg_slim
+        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(724, 391)
-        Me.Controls.Add(Me.highlighter2)
-        Me.Controls.Add(Me.highlighter1)
+        Me.ClientSize = New System.Drawing.Size(718, 391)
+        Me.Controls.Add(Me.header)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.char_lst)
@@ -327,6 +351,8 @@ Partial Class Armory_interface
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.header.ResumeLayout(False)
+        Me.closepanel.ResumeLayout(False)
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -355,6 +381,8 @@ Partial Class Armory_interface
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents removeItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents header As System.Windows.Forms.Panel
+    Friend WithEvents closepanel As System.Windows.Forms.Panel
     Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
     Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
 End Class

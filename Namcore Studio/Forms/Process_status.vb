@@ -140,6 +140,19 @@ Public Class Process_status
     End Sub
 
     Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
-
+        WindowState = FormWindowState.Minimized
     End Sub
+    Private Sub header_MouseDown(sender As Object, e As MouseEventArgs) Handles header.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            ptMouseDownLocation = e.Location
+        End If
+    End Sub
+
+
+    Private Sub header_MouseMove(sender As Object, e As MouseEventArgs) Handles header.MouseMove
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            Me.Location = e.Location - ptMouseDownLocation + Location
+        End If
+    End Sub
+  
 End Class

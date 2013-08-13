@@ -22,7 +22,6 @@ Partial Class Reputation_interface
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Reputation_interface))
         Me.referencePanel = New System.Windows.Forms.Panel()
         Me.reference_standing_combo = New System.Windows.Forms.ComboBox()
         Me.reference_txtbox = New System.Windows.Forms.TextBox()
@@ -34,15 +33,18 @@ Partial Class Reputation_interface
         Me.RepLayoutPanel = New System.Windows.Forms.FlowLayoutPanel()
         Me.addpanel = New System.Windows.Forms.Panel()
         Me.add_pic = New System.Windows.Forms.PictureBox()
-        Me.highlighter2 = New System.Windows.Forms.PictureBox()
+        Me.header = New System.Windows.Forms.Panel()
+        Me.closepanel = New System.Windows.Forms.Panel()
         Me.highlighter1 = New System.Windows.Forms.PictureBox()
+        Me.highlighter2 = New System.Windows.Forms.PictureBox()
         Me.referencePanel.SuspendLayout()
         CType(Me.reference_trackbar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.reference_sliderbg_panel.SuspendLayout()
         Me.addpanel.SuspendLayout()
         CType(Me.add_pic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.closepanel.SuspendLayout()
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'referencePanel
@@ -151,37 +153,57 @@ Partial Class Reputation_interface
         Me.add_pic.TabIndex = 0
         Me.add_pic.TabStop = False
         '
-        'highlighter2
+        'header
         '
-        Me.highlighter2.BackColor = System.Drawing.Color.Transparent
-        Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.highlighter2.Location = New System.Drawing.Point(830, 9)
-        Me.highlighter2.Name = "highlighter2"
-        Me.highlighter2.Size = New System.Drawing.Size(20, 21)
-        Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.highlighter2.TabIndex = 222
-        Me.highlighter2.TabStop = False
+        Me.header.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.namcore_header
+        Me.header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.header.Location = New System.Drawing.Point(4, 4)
+        Me.header.Name = "header"
+        Me.header.Size = New System.Drawing.Size(854, 30)
+        Me.header.TabIndex = 223
+        '
+        'closepanel
+        '
+        Me.closepanel.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.minclose
+        Me.closepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.closepanel.Controls.Add(Me.highlighter1)
+        Me.closepanel.Controls.Add(Me.highlighter2)
+        Me.closepanel.Location = New System.Drawing.Point(800, 4)
+        Me.closepanel.Name = "closepanel"
+        Me.closepanel.Size = New System.Drawing.Size(56, 28)
+        Me.closepanel.TabIndex = 0
         '
         'highlighter1
         '
         Me.highlighter1.BackColor = System.Drawing.Color.Transparent
         Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.highlighter1.Location = New System.Drawing.Point(803, 9)
+        Me.highlighter1.Location = New System.Drawing.Point(5, 5)
         Me.highlighter1.Name = "highlighter1"
-        Me.highlighter1.Size = New System.Drawing.Size(20, 21)
+        Me.highlighter1.Size = New System.Drawing.Size(20, 20)
         Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.highlighter1.TabIndex = 221
+        Me.highlighter1.TabIndex = 217
         Me.highlighter1.TabStop = False
+        '
+        'highlighter2
+        '
+        Me.highlighter2.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter2.Location = New System.Drawing.Point(33, 5)
+        Me.highlighter2.Name = "highlighter2"
+        Me.highlighter2.Size = New System.Drawing.Size(20, 20)
+        Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter2.TabIndex = 218
+        Me.highlighter2.TabStop = False
         '
         'Reputation_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(862, 599)
-        Me.Controls.Add(Me.highlighter2)
-        Me.Controls.Add(Me.highlighter1)
+        Me.Controls.Add(Me.closepanel)
+        Me.Controls.Add(Me.header)
         Me.Controls.Add(Me.addpanel)
         Me.Controls.Add(Me.RepLayoutPanel)
         Me.Controls.Add(Me.referencePanel)
@@ -196,8 +218,9 @@ Partial Class Reputation_interface
         Me.reference_sliderbg_panel.ResumeLayout(False)
         Me.addpanel.ResumeLayout(False)
         CType(Me.add_pic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.closepanel.ResumeLayout(False)
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -212,6 +235,8 @@ Partial Class Reputation_interface
     Friend WithEvents reference_standing_combo As System.Windows.Forms.ComboBox
     Friend WithEvents addpanel As System.Windows.Forms.Panel
     Friend WithEvents add_pic As System.Windows.Forms.PictureBox
-    Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
+    Friend WithEvents header As System.Windows.Forms.Panel
+    Friend WithEvents closepanel As System.Windows.Forms.Panel
     Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
+    Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
 End Class

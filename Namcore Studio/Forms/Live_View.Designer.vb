@@ -80,6 +80,8 @@ Partial Class Live_View
         Me.highlighter1 = New System.Windows.Forms.PictureBox()
         Me.highlighter2 = New System.Windows.Forms.PictureBox()
         Me.mainpanel = New System.Windows.Forms.Panel()
+        Me.header = New System.Windows.Forms.Panel()
+        Me.closepanel = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.accountcontext.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -90,6 +92,8 @@ Partial Class Live_View
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.mainpanel.SuspendLayout()
+        Me.header.SuspendLayout()
+        Me.closepanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'connect_bt
@@ -387,7 +391,7 @@ Partial Class Live_View
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
         Me.GroupBox1.Controls.Add(Me.Panel1)
-        Me.GroupBox1.Location = New System.Drawing.Point(3, -6)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, -5)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(980, 482)
         Me.GroupBox1.TabIndex = 211
@@ -401,7 +405,7 @@ Partial Class Live_View
         Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.connect_bt_target)
         Me.GroupBox2.Controls.Add(Me.target_accounts_tree)
-        Me.GroupBox2.Location = New System.Drawing.Point(990, -6)
+        Me.GroupBox2.Location = New System.Drawing.Point(990, -5)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(388, 482)
         Me.GroupBox2.TabIndex = 212
@@ -519,7 +523,7 @@ Partial Class Live_View
         Me.Transfer_bt.Enabled = False
         Me.Transfer_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Transfer_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Transfer_bt.Location = New System.Drawing.Point(360, 560)
+        Me.Transfer_bt.Location = New System.Drawing.Point(360, 545)
         Me.Transfer_bt.Name = "Transfer_bt"
         Me.Transfer_bt.Size = New System.Drawing.Size(251, 42)
         Me.Transfer_bt.TabIndex = 214
@@ -532,7 +536,7 @@ Partial Class Live_View
         Me.back_bt.Cursor = System.Windows.Forms.Cursors.Hand
         Me.back_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.back_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.back_bt.Location = New System.Drawing.Point(838, 560)
+        Me.back_bt.Location = New System.Drawing.Point(838, 545)
         Me.back_bt.Name = "back_bt"
         Me.back_bt.Size = New System.Drawing.Size(147, 42)
         Me.back_bt.TabIndex = 215
@@ -543,9 +547,9 @@ Partial Class Live_View
         '
         Me.highlighter1.BackColor = System.Drawing.Color.Transparent
         Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.highlighter1.Location = New System.Drawing.Point(1310, 14)
+        Me.highlighter1.Location = New System.Drawing.Point(5, 5)
         Me.highlighter1.Name = "highlighter1"
-        Me.highlighter1.Size = New System.Drawing.Size(29, 30)
+        Me.highlighter1.Size = New System.Drawing.Size(20, 20)
         Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.highlighter1.TabIndex = 217
         Me.highlighter1.TabStop = False
@@ -554,9 +558,9 @@ Partial Class Live_View
         '
         Me.highlighter2.BackColor = System.Drawing.Color.Transparent
         Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.highlighter2.Location = New System.Drawing.Point(1350, 14)
+        Me.highlighter2.Location = New System.Drawing.Point(33, 5)
         Me.highlighter2.Name = "highlighter2"
-        Me.highlighter2.Size = New System.Drawing.Size(29, 30)
+        Me.highlighter2.Size = New System.Drawing.Size(20, 20)
         Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.highlighter2.TabIndex = 218
         Me.highlighter2.TabStop = False
@@ -567,27 +571,49 @@ Partial Class Live_View
         Me.mainpanel.BackColor = System.Drawing.Color.Transparent
         Me.mainpanel.Controls.Add(Me.GroupBox1)
         Me.mainpanel.Controls.Add(Me.GroupBox2)
-        Me.mainpanel.Location = New System.Drawing.Point(5, 59)
+        Me.mainpanel.Location = New System.Drawing.Point(5, 37)
         Me.mainpanel.Name = "mainpanel"
         Me.mainpanel.Size = New System.Drawing.Size(980, 495)
         Me.mainpanel.TabIndex = 219
+        '
+        'header
+        '
+        Me.header.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.namcore_header
+        Me.header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.header.Controls.Add(Me.closepanel)
+        Me.header.Location = New System.Drawing.Point(4, 4)
+        Me.header.Name = "header"
+        Me.header.Size = New System.Drawing.Size(993, 30)
+        Me.header.TabIndex = 220
+        '
+        'closepanel
+        '
+        Me.closepanel.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.minclose
+        Me.closepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.closepanel.Controls.Add(Me.highlighter1)
+        Me.closepanel.Controls.Add(Me.highlighter2)
+        Me.closepanel.Location = New System.Drawing.Point(936, 0)
+        Me.closepanel.Name = "closepanel"
+        Me.closepanel.Size = New System.Drawing.Size(56, 28)
+        Me.closepanel.TabIndex = 0
         '
         'Live_View
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.norm_stretch_bg
+        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1001, 609)
+        Me.ClientSize = New System.Drawing.Size(1001, 600)
+        Me.Controls.Add(Me.header)
         Me.Controls.Add(Me.mainpanel)
-        Me.Controls.Add(Me.highlighter2)
-        Me.Controls.Add(Me.highlighter1)
         Me.Controls.Add(Me.back_bt)
         Me.Controls.Add(Me.Transfer_bt)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.KeyPreview = True
+        Me.MaximumSize = New System.Drawing.Size(1920, 600)
+        Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "Live_View"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Live_View"
@@ -603,6 +629,8 @@ Partial Class Live_View
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.mainpanel.ResumeLayout(False)
+        Me.header.ResumeLayout(False)
+        Me.closepanel.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -663,4 +691,6 @@ Partial Class Live_View
     Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
     Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
     Friend WithEvents mainpanel As System.Windows.Forms.Panel
+    Friend WithEvents header As System.Windows.Forms.Panel
+    Friend WithEvents closepanel As System.Windows.Forms.Panel
 End Class
