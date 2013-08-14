@@ -29,31 +29,6 @@ Imports Namcore_Studio.Conversions
 
 Public Module Basics
     Public tmpset As Integer
-    'Public Shared Sub SetTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
-    '    If temporaryCharacterInformation Is Nothing Then temporaryCharacterInformation = New List(Of String)
-    '    With temporaryCharacterInformation
-    '        Select Case .Count
-    '            Case 0 : .Add("") : .Add("")
-    '            Case Is <= targetSetId : .Add("")
-    '        End Select
-    '        If Not .Item(targetSetId).Contains("[[#INFORMATIONSET" & targetSetId.ToString & "]]") Then
-    '            .Item(targetSetId) = .Item(targetSetId) & "[[#INFORMATIONSET" & targetSetId.ToString() & "]]" & vbNewLine & "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]"
-    '        End If
-    '        .Item(targetSetId) = .Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "[/" & field & "]" & vbNewLine &
-    '                                                                              "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
-    '    End With
-    'End Sub
-    'Public Shared Sub AppendTemporaryCharacterInformation(ByVal field As String, ByVal value As String, ByVal targetSetId As Integer)
-    '    With temporaryCharacterInformation
-    '        Dim CharacterContext As String = splitString(.Item(targetSetId), "[[#INFORMATIONSET" & targetSetId.ToString() & "]]", "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
-    '        If Not CharacterContext.Contains("[" & field & "]") Then
-    '            .Item(targetSetId) = .Item(targetSetId).Replace("[[END#INFORMATIONSET" & targetSetId.ToString() & "]]", "[" & field & "]" & value & "#VAL#[/" & field & "]" & vbNewLine &
-    '                                                                          "[[END#INFORMATIONSET" & targetSetId.ToString() & "]]")
-    '        End If
-    '        Dim newCharContext As String = CharacterContext.Replace("#VAL#[/" & field & "]", value & "#VAL#[/" & field & "]")
-    '        .Item(targetSetId) = .Item(targetSetId).Replace(CharacterContext, newCharContext)
-    '    End With
-    'End Sub
     Public Function GetCharacterSetBySetId(ByVal setId As Integer) As Character
         If tmpset = setId Then
             Return TempCharacter
