@@ -470,4 +470,8 @@ Public Class Reputation_interface
             Me.Location = e.Location - ptMouseDownLocation + Location
         End If
     End Sub
+
+    Private Sub header_Paint(sender As Object, e As PaintEventArgs) Handles header.Paint
+
+    End Sub
 End Class

@@ -469,6 +469,90 @@ LookOnline: Else
         End If
 
     End Function
+    Public Function GetMainAvCatIdByAvId(ByVal avId As Integer) As Integer
+        LogAppend("Loading av category of id: " & avId.ToString, "SpellItem_Information_GetMainAvCatIdByAvId", False)
+        If tempAvTable Is Nothing Then
+            Try
+                tempAvTable = New DataTable()
+                Dim stext As String
+                If My.Settings.language = "de" Then
+                    stext = libnc.My.Resources.av_de
+                Else
+                    stext = libnc.My.Resources.av_de 'todo
+                End If
+                Dim a() As String
+                Dim strArray As String()
+                a = Split(stext, vbNewLine)
+                For i = 0 To UBound(a)
+                    strArray = a(i).Split(CChar(";"))
+                    If i = 0 Then
+                        For Each value As String In strArray
+                            tempAvTable.Columns.Add(value.Trim())
+                        Next
+                    Else
+                        tempAvTable.Rows.Add(strArray)
+                    End If
+                Next i
+            Catch ex As Exception
+                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetMainAvCatIdByAvId", False, True)
+                Return 0
+            End Try
+        End If
+        If tempAvCatTable Is Nothing Then
+            Try
+                tempAvCatTable = New DataTable()
+                Dim stext As String
+                If My.Settings.language = "de" Then
+                    stext = libnc.My.Resources.avcat_de
+                Else
+                    stext = libnc.My.Resources.avcat_de 'todo
+                End If
+                Dim a() As String
+                Dim strArray As String()
+                a = Split(stext, vbNewLine)
+                For i = 0 To UBound(a)
+                    strArray = a(i).Split(CChar(";"))
+                    If i = 0 Then
+                        For Each value As String In strArray
+                            tempAvCatTable.Columns.Add(value.Trim())
+                        Next
+                    Else
+                        tempAvCatTable.Rows.Add(strArray)
+                    End If
+                Next i
+            Catch ex As Exception
+                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetMainAvCatIdByAvId", False, True)
+                Return 0
+            End Try
+        End If
+        Dim catid As String = Execute("avid", avId.ToString(), tempAvTable, 3)
+        If catid = "-" Then
+            LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetMainAvCatIdByAvId", False, True)
+            Return 0
+        Else
+            Dim subcatname As String = Execute("catid", catid, tempAvCatTable, 2)
+            If subcatname = "-" Then
+                LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetMainAvCatIdByAvId", False, True)
+                Return 0
+            Else
+                If catid = "-1" Then Return TryInt(catid)
+                Dim maincatid As String = Execute("catid", catid, tempAvCatTable, 1)
+                If maincatid = "-" Then
+                    LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetMainAvCatIdByAvId", False, True)
+                    Return 0
+                Else
+                    If maincatid = "-1" Then Return TryInt(catid)
+                    Dim maincatname As String = Execute("catid", maincatid, tempAvCatTable, 2)
+                    If maincatname = "-" Then
+                        LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetMainAvCatIdByAvId", False, True)
+                        Return 0
+                    Else
+                        Return TryInt(maincatid)
+                    End If
+                End If
+            End If
+        End If
+    End Function
     Public Function GetAvDescriptionById(ByVal avid As Integer) As String
         LogAppend("Loading av description of id: " & avid.ToString, "SpellItem_Information_GetAvDescriptionById", False)
         Dim desc As String = Execute("avid", avid.ToString(), tempAvTable, 2)
@@ -516,4 +600,18 @@ LookOnline: Else
             Return desc
         End If
     End Function
+    Public Function GetAvIconById(ByVal avId As Integer) As Image
+        LogAppend("Loading achievement icon of id: " & avId.ToString, "SpellItem_Information_GetAvIconById", False)
+        Try
+            Dim client As New WebClient
+            Dim source As String = client.DownloadString("http://wowhead.com/achievement=" & avId.ToString())
+            Dim picname As String = splitString(source, ",icon:'", "'};") & ".jpg"
+            Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(picname)
+            Return pic
+        Catch ex As Exception
+            LogAppend("Error while loading achievement icon of id: " & avId.ToString & " // ErrorMsg is: " & ex.ToString(), "SpellItem_Information_GetAvIconById", False, True)
+            Return My.Resources.INV_Misc_QuestionMark
+        End Try
+    End Function
+
 End Module
