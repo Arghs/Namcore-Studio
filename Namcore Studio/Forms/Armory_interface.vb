@@ -195,6 +195,11 @@ Public Class Armory_interface
 
 
     Private Sub Armory_interface_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        Dim controlLST As List(Of Control)
+        controlLST = FindAllChildren()
+        For Each item_control As Control In controlLST
+            item_control.SetDoubleBuffered()
+        Next
         'todo
         offlineExtension = False
         globChars = New GlobalCharVars()
@@ -258,4 +263,7 @@ Public Class Armory_interface
    
    
     
+    Private Sub header_Paint(sender As Object, e As PaintEventArgs) Handles header.Paint
+
+    End Sub
 End Class

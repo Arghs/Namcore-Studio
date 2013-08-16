@@ -40,7 +40,11 @@ Public Class Glyphs_interface
 
 
     Private Sub Glyphs_interface_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-
+        Dim controlLST As List(Of Control)
+        controlLST = FindAllChildren()
+        For Each item_control As Control In controlLST
+            item_control.SetDoubleBuffered()
+        Next
     End Sub
     Public Sub prepareGlyphsInterface(ByVal setId As Integer)
         controlLST = New List(Of Control)

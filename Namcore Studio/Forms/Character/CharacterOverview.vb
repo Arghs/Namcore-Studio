@@ -48,6 +48,7 @@ Public Class CharacterOverview
 
 
     Public Sub prepare_interface(ByVal setId As Integer)
+        InventoryPanel.SetDoubleBuffered()
         currentSet = setId
         Dim player As Character = GetCharacterSetBySetId(setId)
         If player.PlayerGlyphsIndex Is Nothing Then Glyphs_bt.Enabled = False
@@ -68,6 +69,7 @@ Public Class CharacterOverview
         If nxt = True Then controlLST.Reverse()
         Try
             For Each item_control As Control In controlLST
+                item_control.SetDoubleBuffered()
                 Dim tmpdone As List(Of Control) = doneControls
                 If tmpdone.Contains(item_control) Then
                     Continue For
@@ -122,14 +124,15 @@ Public Class CharacterOverview
                             DirectCast(item_control, PictureBox).Tag = pubItm
                         End If
                     Case TypeOf item_control Is Panel
-                            If item_control.Name.ToLower.EndsWith("color") Then
-                                Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_color"))
-                                DirectCast(item_control, Panel).BackColor = loadInfo(setId, slot, 6)
-                                DirectCast(item_control, Panel).Tag = pubItm
-                            End If
+                        If item_control.Name.ToLower.EndsWith("color") Then
+                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_color"))
+                            DirectCast(item_control, Panel).BackColor = loadInfo(setId, slot, 6)
+                            DirectCast(item_control, Panel).Tag = pubItm
+                        End If
 
                 End Select
             Next
+            Application.DoEvents()
             loadComplete = True
             Evaluator.Abort()
         Catch ex As Exception

@@ -37,7 +37,11 @@ Public Class Achievements_interface
     Dim trd1 As New Thread(AddressOf loadpart1)
     Dim trd2 As New Thread(AddressOf loadpart2)
     Private Sub Achievements_interface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Dim controlLST As List(Of Control)
+        controlLST = FindAllChildren()
+        For Each item_control As Control In controlLST
+            item_control.SetDoubleBuffered()
+        Next
     End Sub
     Public Sub prepareInterface(ByVal setId As Integer)
         'If tempAchievementInfo Is Nothing Then tempAchievementInfo = New List(Of ListViewItem)

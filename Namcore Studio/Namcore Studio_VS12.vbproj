@@ -200,6 +200,7 @@
     <Compile Include="Framework\Database\ConnectionHandler.vb" />
     <Compile Include="Framework\Database\dbStruc_check.vb" />
     <Compile Include="Framework\Extension\date2timestamp.vb" />
+    <Compile Include="Framework\Extension\DoubleBufferedControls.vb" />
     <Compile Include="Framework\Functions\Basics.vb" />
     <Compile Include="Framework\Functions\Conversions.vb" />
     <Compile Include="Framework\Functions\Interface\Interface_Operator.vb" />
@@ -340,7 +341,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

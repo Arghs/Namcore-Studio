@@ -35,6 +35,11 @@ Public Class Reputation_interface
     Dim globplayer As Character
 
     Public Sub prepareRepInterface(ByVal setId As Integer)
+        Dim controlLST As List(Of Control)
+        controlLST = FindAllChildren()
+        For Each item_control As Control In controlLST
+            item_control.SetDoubleBuffered()
+        Next
         Dim Player As Character = GetCharacterSetBySetId(setId)
         globplayer = Player
         Dim colorTicker As Integer = 0
@@ -472,6 +477,10 @@ Public Class Reputation_interface
     End Sub
 
     Private Sub header_Paint(sender As Object, e As PaintEventArgs) Handles header.Paint
+
+    End Sub
+
+    Private Sub RepLayoutPanel_Paint(sender As Object, e As PaintEventArgs) Handles RepLayoutPanel.Paint
 
     End Sub
 End Class

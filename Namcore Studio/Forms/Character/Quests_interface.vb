@@ -124,6 +124,10 @@ Public Class Quests_interface
         End While
     End Sub
     Private Sub Quests_interface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Dim controlLST As List(Of Control)
+        controlLST = FindAllChildren()
+        For Each item_control As Control In controlLST
+            item_control.SetDoubleBuffered()
+        Next
     End Sub
 End Class

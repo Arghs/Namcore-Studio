@@ -252,6 +252,11 @@ Public Class Live_View
         chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
     End Sub
     Private Sub Live_View_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        Dim controlLST As List(Of Control)
+        controlLST = FindAllChildren()
+        For Each item_control As Control In controlLST
+            item_control.SetDoubleBuffered()
+        Next
         createAccountsIndex = New List(Of Integer)
         accountInfo = New List(Of Account)
         charactersToCreate = New List(Of String)
