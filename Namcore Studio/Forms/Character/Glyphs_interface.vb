@@ -370,4 +370,8 @@ Public Class Glyphs_interface
     Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
         WindowState = FormWindowState.Minimized
     End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
 End Class

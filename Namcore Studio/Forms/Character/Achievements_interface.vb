@@ -94,7 +94,7 @@ Public Class Achievements_interface
             End If
             If cnt = 50 Then
                 lastindex = 50
-                nxt100_bt.Enabled = True
+
                 Exit For
             End If
         Next
@@ -117,7 +117,7 @@ Public Class Achievements_interface
         Dim index As Integer = 50
         Do
             If index >= player.Achievements.Count Then
-                nxt100_bt.Enabled = False
+
                 Exit Do
             End If
             Dim av As Achievement = player.Achievements(index)
@@ -152,7 +152,7 @@ Public Class Achievements_interface
 
             End If
             If cnt = 50 Then
-                nxt100_bt.Enabled = True
+
                 Exit Do
             End If
             index += 1
@@ -170,14 +170,14 @@ Public Class Achievements_interface
         resultcnt_lbl.Text = "Displaying " & lastindex.ToString & " out of " & player.Achievements.Count.ToString() & " results!"
         trd2.Abort()
     End Sub
-    Private Sub nxt100_bt_Click(sender As Object, e As EventArgs) Handles nxt100_bt.Click
+    Private Sub nxt100_bt_Click(sender As Object, e As EventArgs)
         Dim player As Character = GetCharacterSetBySetId(tarsetid)
         Dim cnt As Integer = 0
         Dim index As Integer = lastindex
-        prev100_bt.Enabled = True
+
         Do
             If index >= player.Achievements.Count Then
-                nxt100_bt.Enabled = False
+
                 Exit Do
             End If
             Dim av As Achievement = player.Achievements(index)
@@ -194,7 +194,7 @@ Public Class Achievements_interface
             avcompleted_lst.Items.Add(itm)
             If cnt = 100 Then
                 lastindex = index
-                nxt100_bt.Enabled = True
+
                 Exit Do
             End If
             index += 1
@@ -230,6 +230,8 @@ Public Class Achievements_interface
                 avPanel.Controls.Add(avNameLable)
                 avNameLable.Location = reference_name_lbl.Location
                 avNameLable.Font = reference_name_lbl.Font
+                avNameLable.BringToFront()
+                avNameLable.AutoSize = True
                 Dim avDescrLable As New Label
                 Dim descr As String = GetAvDescriptionById(charAv.Id)
                 avDescrLable.Name = "av" & charAv.Id.ToString() & "_descr_lbl"
@@ -284,7 +286,7 @@ Public Class Achievements_interface
                 AddHandler deletePic.Click, AddressOf deleteAv_click
                 AVLayoutPanel.Controls.Add(avPanel)
                 Application.DoEvents()
-                If counter > 6 Then Exit For
+                ' If counter > 6 Then Exit For
             End If
         Next
     End Sub
