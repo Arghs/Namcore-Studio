@@ -22,6 +22,7 @@ Partial Class DB_connect
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DB_connect))
         Me.connect_panel = New System.Windows.Forms.Panel()
         Me.login1_panel = New System.Windows.Forms.Panel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -459,6 +460,7 @@ Partial Class DB_connect
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(541, 511)
         Me.Controls.Add(Me.connect_panel)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "DB_connect"
         Me.Text = "DB_connect"
         Me.connect_panel.ResumeLayout(False)

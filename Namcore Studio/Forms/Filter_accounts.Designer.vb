@@ -22,6 +22,7 @@ Partial Class Filter_accounts
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Filter_accounts))
         Me.ApplyFilter = New System.Windows.Forms.Button()
         Me.idcombo1 = New System.Windows.Forms.ComboBox()
         Me.idtxtbox1 = New System.Windows.Forms.TextBox()
@@ -277,6 +278,7 @@ Partial Class Filter_accounts
         Me.Controls.Add(Me.idcombo1)
         Me.Controls.Add(Me.ApplyFilter)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Filter_accounts"
         Me.Text = "Filter_accounts"
         Me.TopMost = True

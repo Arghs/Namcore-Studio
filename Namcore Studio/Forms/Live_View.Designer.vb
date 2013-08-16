@@ -23,6 +23,7 @@ Partial Class Live_View
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Live_View))
         Me.connect_bt = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.chartotal = New System.Windows.Forms.Label()
@@ -611,6 +612,7 @@ Partial Class Live_View
         Me.Controls.Add(Me.Transfer_bt)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MaximumSize = New System.Drawing.Size(1920, 600)
         Me.MinimumSize = New System.Drawing.Size(800, 600)

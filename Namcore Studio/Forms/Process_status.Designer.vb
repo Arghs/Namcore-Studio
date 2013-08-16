@@ -22,6 +22,7 @@ Partial Class Process_status
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Process_status))
         Me.process_tb = New System.Windows.Forms.RichTextBox()
         Me.close_bt = New System.Windows.Forms.Button()
         Me.cancel_bt = New System.Windows.Forms.Button()
@@ -130,6 +131,7 @@ Partial Class Process_status
         Me.Controls.Add(Me.process_tb)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Process_status"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Process_status"

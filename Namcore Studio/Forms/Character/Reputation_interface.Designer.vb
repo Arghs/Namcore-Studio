@@ -22,6 +22,7 @@ Partial Class Reputation_interface
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Reputation_interface))
         Me.referencePanel = New System.Windows.Forms.Panel()
         Me.reference_standing_combo = New System.Windows.Forms.ComboBox()
         Me.reference_txtbox = New System.Windows.Forms.TextBox()
@@ -209,6 +210,7 @@ Partial Class Reputation_interface
         Me.Controls.Add(Me.referencePanel)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Reputation_interface"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Reputation_interface"

@@ -22,6 +22,7 @@ Partial Class Prep_chartrans
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Prep_chartrans))
         Me.accnames_txtbox = New System.Windows.Forms.TextBox()
         Me.ApplyTrans = New System.Windows.Forms.Button()
         Me.specific_radio = New System.Windows.Forms.RadioButton()
@@ -103,6 +104,7 @@ Partial Class Prep_chartrans
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.all_radio)
         Me.Controls.Add(Me.ApplyTrans)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Prep_chartrans"
         Me.Text = "Prepare character transfer"
         Me.GroupBox2.ResumeLayout(False)

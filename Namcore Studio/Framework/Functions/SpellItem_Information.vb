@@ -605,7 +605,7 @@ LookOnline: Else
         Try
             Dim client As New WebClient
             Dim source As String = client.DownloadString("http://wowhead.com/achievement=" & avId.ToString())
-            Dim picname As String = splitString(source, ",icon:'", "'};") & ".jpg"
+            Dim picname As String = splitString(source, ",icon:'", "'};").ToLower()
             Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(picname)
             Return pic
         Catch ex As Exception

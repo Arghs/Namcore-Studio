@@ -22,6 +22,7 @@ Partial Class CharacterOverview
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CharacterOverview))
         Me.InventoryPanel = New System.Windows.Forms.Panel()
         Me.slot_17_enchant = New System.Windows.Forms.Label()
         Me.slot_17_gem3_pic = New System.Windows.Forms.PictureBox()
@@ -265,186 +266,186 @@ Partial Class CharacterOverview
         Me.closepanel = New System.Windows.Forms.Panel()
         Me.highlighter1 = New System.Windows.Forms.PictureBox()
         Me.highlighter2 = New System.Windows.Forms.PictureBox()
-        Me.InventoryPanel.SuspendLayout
-        CType(Me.slot_17_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_17_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_17_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_17_color.SuspendLayout
-        CType(Me.slot_17_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_15_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_15_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_15_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_15_color.SuspendLayout
-        CType(Me.slot_15_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_16_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_16_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_16_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_16_color.SuspendLayout
-        CType(Me.slot_16_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_13_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_13_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_13_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_13_color.SuspendLayout
-        CType(Me.slot_13_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_12_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_12_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_12_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_12_color.SuspendLayout
-        CType(Me.slot_12_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_11_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_11_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_11_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_11_color.SuspendLayout
-        CType(Me.slot_11_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_10_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_10_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_10_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_10_color.SuspendLayout
-        CType(Me.slot_10_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_7_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_7_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_7_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_7_color.SuspendLayout
-        CType(Me.slot_7_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_6_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_6_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_6_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_6_color.SuspendLayout
-        CType(Me.slot_6_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_5_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_5_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_5_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_5_color.SuspendLayout
-        CType(Me.slot_5_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_9_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_9_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_9_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_9_color.SuspendLayout
-        CType(Me.slot_9_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_8_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_8_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_8_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_8_color.SuspendLayout
-        CType(Me.slot_8_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_18_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_18_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_18_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_18_color.SuspendLayout
-        CType(Me.slot_18_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_3_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_3_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_3_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_3_color.SuspendLayout
-        CType(Me.slot_3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_4_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_4_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_4_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_4_color.SuspendLayout
-        CType(Me.slot_4_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_14_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_14_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_14_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_14_color.SuspendLayout
-        CType(Me.slot_14_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_2_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_2_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_2_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_2_color.SuspendLayout
-        CType(Me.slot_2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_1_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_1_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_1_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_1_color.SuspendLayout
-        CType(Me.slot_1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_0_gem3_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_0_gem2_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.slot_0_gem1_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.slot_0_color.SuspendLayout
-        CType(Me.slot_0_pic,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.changepanel.SuspendLayout
-        CType(Me.PictureBox2,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.racepanel.SuspendLayout
-        CType(Me.racerefresh,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.classpanel.SuspendLayout
-        CType(Me.classrefresh,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.selectenchpanel.SuspendLayout
-        Me.Panel36.SuspendLayout
-        CType(Me.PictureBox38,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel37.SuspendLayout
-        CType(Me.PictureBox39,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel33.SuspendLayout
-        CType(Me.PictureBox35,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel34.SuspendLayout
-        CType(Me.PictureBox36,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel38.SuspendLayout
-        CType(Me.PictureBox40,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.bagpanel.SuspendLayout
-        Me.Panel26.SuspendLayout
-        CType(Me.PictureBox28,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel27.SuspendLayout
-        CType(Me.PictureBox29,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel28.SuspendLayout
-        CType(Me.PictureBox30,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel29.SuspendLayout
-        CType(Me.PictureBox31,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel30.SuspendLayout
-        CType(Me.PictureBox32,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel31.SuspendLayout
-        CType(Me.PictureBox33,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel32.SuspendLayout
-        CType(Me.PictureBox34,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel39.SuspendLayout
-        CType(Me.PictureBox41,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel40.SuspendLayout
-        CType(Me.PictureBox42,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel41.SuspendLayout
-        CType(Me.PictureBox43,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel42.SuspendLayout
-        CType(Me.PictureBox44,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel43.SuspendLayout
-        CType(Me.PictureBox45,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel44.SuspendLayout
-        CType(Me.PictureBox46,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel45.SuspendLayout
-        CType(Me.PictureBox47,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel18.SuspendLayout
-        CType(Me.PictureBox20,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel19.SuspendLayout
-        CType(Me.PictureBox21,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel20.SuspendLayout
-        CType(Me.PictureBox22,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel21.SuspendLayout
-        CType(Me.PictureBox23,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel22.SuspendLayout
-        CType(Me.PictureBox24,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel23.SuspendLayout
-        CType(Me.PictureBox25,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel24.SuspendLayout
-        CType(Me.PictureBox26,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel10.SuspendLayout
-        CType(Me.PictureBox12,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel11.SuspendLayout
-        CType(Me.PictureBox13,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel12.SuspendLayout
-        CType(Me.PictureBox14,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel13.SuspendLayout
-        CType(Me.PictureBox15,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel14.SuspendLayout
-        CType(Me.PictureBox16,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel15.SuspendLayout
-        CType(Me.PictureBox17,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.Panel16.SuspendLayout
-        CType(Me.picbagslot,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.addpanel.SuspendLayout
-        CType(Me.PictureBox4,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.GroupBox1.SuspendLayout
-        Me.GroupBox2.SuspendLayout
-        Me.header.SuspendLayout
-        Me.closepanel.SuspendLayout
-        CType(Me.highlighter1,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.highlighter2,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SuspendLayout
+        Me.InventoryPanel.SuspendLayout()
+        CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_17_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_17_color.SuspendLayout()
+        CType(Me.slot_17_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_15_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_15_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_15_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_15_color.SuspendLayout()
+        CType(Me.slot_15_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_16_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_16_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_16_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_16_color.SuspendLayout()
+        CType(Me.slot_16_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_13_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_13_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_13_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_13_color.SuspendLayout()
+        CType(Me.slot_13_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_12_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_12_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_12_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_12_color.SuspendLayout()
+        CType(Me.slot_12_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_11_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_11_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_11_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_11_color.SuspendLayout()
+        CType(Me.slot_11_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_10_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_10_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_10_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_10_color.SuspendLayout()
+        CType(Me.slot_10_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_7_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_7_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_7_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_7_color.SuspendLayout()
+        CType(Me.slot_7_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_6_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_6_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_6_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_6_color.SuspendLayout()
+        CType(Me.slot_6_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_5_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_5_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_5_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_5_color.SuspendLayout()
+        CType(Me.slot_5_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_9_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_9_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_9_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_9_color.SuspendLayout()
+        CType(Me.slot_9_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_8_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_8_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_8_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_8_color.SuspendLayout()
+        CType(Me.slot_8_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_18_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_18_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_18_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_18_color.SuspendLayout()
+        CType(Me.slot_18_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_3_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_3_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_3_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_3_color.SuspendLayout()
+        CType(Me.slot_3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_4_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_4_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_4_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_4_color.SuspendLayout()
+        CType(Me.slot_4_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_14_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_14_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_14_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_14_color.SuspendLayout()
+        CType(Me.slot_14_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_2_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_2_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_2_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_2_color.SuspendLayout()
+        CType(Me.slot_2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_1_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_1_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_1_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_1_color.SuspendLayout()
+        CType(Me.slot_1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_0_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_0_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.slot_0_gem1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.slot_0_color.SuspendLayout()
+        CType(Me.slot_0_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.changepanel.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.racepanel.SuspendLayout()
+        CType(Me.racerefresh, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.classpanel.SuspendLayout()
+        CType(Me.classrefresh, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.selectenchpanel.SuspendLayout()
+        Me.Panel36.SuspendLayout()
+        CType(Me.PictureBox38, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel37.SuspendLayout()
+        CType(Me.PictureBox39, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel33.SuspendLayout()
+        CType(Me.PictureBox35, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel34.SuspendLayout()
+        CType(Me.PictureBox36, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel38.SuspendLayout()
+        CType(Me.PictureBox40, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.bagpanel.SuspendLayout()
+        Me.Panel26.SuspendLayout()
+        CType(Me.PictureBox28, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel27.SuspendLayout()
+        CType(Me.PictureBox29, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel28.SuspendLayout()
+        CType(Me.PictureBox30, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel29.SuspendLayout()
+        CType(Me.PictureBox31, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel30.SuspendLayout()
+        CType(Me.PictureBox32, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel31.SuspendLayout()
+        CType(Me.PictureBox33, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel32.SuspendLayout()
+        CType(Me.PictureBox34, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel39.SuspendLayout()
+        CType(Me.PictureBox41, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel40.SuspendLayout()
+        CType(Me.PictureBox42, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel41.SuspendLayout()
+        CType(Me.PictureBox43, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel42.SuspendLayout()
+        CType(Me.PictureBox44, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel43.SuspendLayout()
+        CType(Me.PictureBox45, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel44.SuspendLayout()
+        CType(Me.PictureBox46, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel45.SuspendLayout()
+        CType(Me.PictureBox47, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel18.SuspendLayout()
+        CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel19.SuspendLayout()
+        CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel20.SuspendLayout()
+        CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel21.SuspendLayout()
+        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel22.SuspendLayout()
+        CType(Me.PictureBox24, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel23.SuspendLayout()
+        CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel24.SuspendLayout()
+        CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel10.SuspendLayout()
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel11.SuspendLayout()
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel12.SuspendLayout()
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel13.SuspendLayout()
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel14.SuspendLayout()
+        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel15.SuspendLayout()
+        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel16.SuspendLayout()
+        CType(Me.picbagslot, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.addpanel.SuspendLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.header.SuspendLayout()
+        Me.closepanel.SuspendLayout()
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
         '
         'InventoryPanel
         '
@@ -3012,9 +3013,10 @@ Partial Class CharacterOverview
         Me.Controls.Add(Me.av_bt)
         Me.Controls.Add(Me.charname_lbl)
         Me.Controls.Add(Me.InventoryPanel)
-        Me.DoubleBuffered = true
-        Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126,Byte),Integer), CType(CType(144,Byte),Integer), CType(CType(156,Byte),Integer))
+        Me.DoubleBuffered = True
+        Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "CharacterOverview"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CharacterOverview"

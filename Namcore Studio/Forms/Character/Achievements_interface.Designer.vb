@@ -22,6 +22,7 @@ Partial Class Achievements_interface
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Achievements_interface))
         Me.avcompleted_lst = New System.Windows.Forms.ListView()
         Me.avid = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.avname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -387,6 +388,7 @@ Partial Class Achievements_interface
         Me.Controls.Add(Me.AVLayoutPanel)
         Me.Controls.Add(Me.resultcnt_lbl)
         Me.Controls.Add(Me.avcompleted_lst)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Achievements_interface"
         Me.Text = "Achievements_interface"
         Me.addpanel.ResumeLayout(False)

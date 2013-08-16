@@ -23,6 +23,7 @@ Partial Class Armory_interface
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Armory_interface))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.addURL_bt = New System.Windows.Forms.Button()
         Me.url_tb = New System.Windows.Forms.TextBox()
@@ -345,6 +346,7 @@ Partial Class Armory_interface
         Me.Controls.Add(Me.back_bt)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Armory_interface"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Load armory characters"

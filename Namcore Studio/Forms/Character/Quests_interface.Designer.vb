@@ -22,6 +22,7 @@ Partial Class Quests_interface
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Quests_interface))
         Me.qst_lst = New System.Windows.Forms.ListView()
         Me.qstid = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.qstname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -66,6 +67,7 @@ Partial Class Quests_interface
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(494, 446)
         Me.Controls.Add(Me.qst_lst)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Quests_interface"
         Me.Text = "Quests_interface"
         Me.ResumeLayout(False)

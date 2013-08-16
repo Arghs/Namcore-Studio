@@ -22,6 +22,7 @@ Partial Class Filter_characters
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Filter_characters))
         Me.ApplyFilter = New System.Windows.Forms.Button()
         Me.classcheck = New System.Windows.Forms.CheckBox()
         Me.racecheck = New System.Windows.Forms.CheckBox()
@@ -234,6 +235,7 @@ Partial Class Filter_characters
         Me.Controls.Add(Me.guidcombo1)
         Me.Controls.Add(Me.ApplyFilter)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Filter_characters"
         Me.Text = "Filter_characters"
         Me.ResumeLayout(False)

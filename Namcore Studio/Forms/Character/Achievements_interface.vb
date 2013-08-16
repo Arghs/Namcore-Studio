@@ -290,7 +290,7 @@ Public Class Achievements_interface
                 AddHandler deletePic.Click, AddressOf deleteAv_click
                 AVLayoutPanel.Controls.Add(avPanel)
                 Application.DoEvents()
-                ' If counter > 6 Then Exit For
+                If counter > 6 Then Exit For
             End If
         Next
     End Sub
