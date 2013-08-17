@@ -66,7 +66,9 @@ Public Class Achievements_interface
     End Sub
     Private WithEvents m_handler As New FlowLayoutPanelHandler
     Public Sub catbt_click(sender As Object, e As EventArgs) Handles cat_id_97_bt.Click, cat_id_96_bt.Click, cat_id_95_bt.Click, cat_id_92_bt.Click, cat_id_81_bt.Click, cat_id_201_bt.Click, cat_id_169_bt.Click, cat_id_168_bt.Click, cat_id_155_bt.Click, cat_id_15219_bt.Click, cat_id_15165_bt.Click
+        correctIds = New List(Of Integer)()
         doneAvIds = New List(Of Integer)()
+        correctIds = GetAvIdListByMainCat(TryInt(splitString(sender.name, "cat_id_", "_bt")))
         m_handler.doOperate_av(sender, 1)
         m_handler.doOperate_av(sender, 2)
 
@@ -76,6 +78,7 @@ Public Class Achievements_interface
 
     End Sub
     Shared doneAvIds As List(Of Integer)
+    Shared correctIds As List(Of Integer)
 
     Public Function continueOperation(ByVal sender As Object, ByVal operation_count As Integer) As String
         Dim catid As Integer = TryInt(splitString(sender.name, "cat_id_", "_bt"))
@@ -89,7 +92,7 @@ Public Class Achievements_interface
             Else
                 doneAvIds.Add(charAv.Id)
             End If
-            If GetMainAvCatIdByAvId(charAv.Id) = catid Then
+            If correctIds.Contains(charAv.Id) Then
 
                 counter += 1
                 Dim avPanel As New Panel
