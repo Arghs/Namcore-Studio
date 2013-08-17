@@ -22,20 +22,17 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Net
 Imports System.Text
-Imports Namcore_Studio.Basics
-Imports Namcore_Studio.Conversions
-Imports Namcore_Studio.ItemParser
-Imports Namcore_Studio.ReputationParser
-Imports Namcore_Studio.AchievementParser
-Imports Namcore_Studio.GlyphParser
-Imports Namcore_Studio.EventLogging
-Imports Namcore_Studio.Interface_Operator
-Imports Namcore_Studio.GlobalVariables
-Imports System.Threading
 
 Public Class ArmoryHandler
-   
-    Public Shared Sub LoadArmoryCharacters(ByVal LinkList As List(Of String))
+    Private context As Threading.SynchronizationContext = Threading.SynchronizationContext.Current
+    Public Event Completed As EventHandler(Of CompletedEventArgs)
+    Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
+        RaiseEvent Completed(Me, e)
+    End Sub
+    Public Sub LoadArmoryCharacters(ByVal urllst As List(Of String))
+        ThreadExtensions.QueueUserWorkItem(New Func(Of List(Of String), String)(AddressOf DoLoad), urllst)
+    End Sub
+    Public Function DoLoad(ByVal LinkList As List(Of String)) As String
         LogAppend("Loading characters from Armory (" & LinkList.Count.ToString() & " character/s)", "ArmoryHandler_LoadArmoryCharacters", True)
         Dim setId As Integer = 0
         Dim CharacterContext As String
@@ -100,7 +97,8 @@ Public Class ArmoryHandler
             LogAppend("Character loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
         Next
         LogAppend("All characters loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
+        ThreadExtensions.ScSend(context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted), New CompletedEventArgs())
+    End Function
 
-    End Sub
-    
 End Class
+

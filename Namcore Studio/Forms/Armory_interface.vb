@@ -27,7 +27,6 @@ Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.Linq
 Imports Namcore_Studio.Basics
-Imports Namcore_Studio.ArmoryHandler
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.GlobalCharVars
 Imports Namcore_Studio.Serializer
@@ -154,19 +153,22 @@ Public Class Armory_interface
             End If
         End If
     End Sub
-
+    Private WithEvents m_handler As New ArmoryHandler
     Private Sub load_bt_Click(sender As System.Object, e As System.EventArgs) Handles load_bt.Click
         lastregion = "armoryparser"
         globChars.CharacterSets = New List(Of Character)
         trdrunnuing = True
         My.Settings.language = "de" 'todo for testing only
         Dim urllst As List(Of String) = (From lstitm As ListViewItem In char_lst.Items Select lstitm.SubItems(3).Text).ToList()
-        Dim d As New Data2Thread() With {.charLST = urllst}
-        procStatus.UpdateGui()
-        procStatus.ArmoryWorker.RunWorkerAsync(d)
+        'Dim d As New Data2Thread() With {.charLST = urllst}
+        'procStatus.UpdateGui()
+        'procStatus.ArmoryWorker.RunWorkerAsync(d)
+        m_handler.LoadArmoryCharacters(urllst)
         Me.Close()
     End Sub
-
+    Private Sub m_handler_CountCompleted(ByVal sender As Object, ByVal e As CompletedEventArgs) Handles m_handler.Completed
+        prepareLive_armory()
+    End Sub
     Private Sub char_lst_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles char_lst.MouseDown
         If e.Button = MouseButtons.Right Then
             Dim oItem As ListViewItem = char_lst.GetItemAt(e.X, e.Y)
@@ -235,8 +237,8 @@ Public Class Armory_interface
         Dim m_serializer As Serializer = New Serializer
         globChars = m_serializer.DeSerialize(dstr, New GlobalCharVars)
         'temporaryCharacterInformation.Add(RichTextBox1.Text)
-        Dim prepLive As New Interface_Operator
-        prepLive.prepareLive_armory()
+        'Dim prepLive As New Interface_Operator
+        prepareLive_armory()
     End Sub
 
     Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click

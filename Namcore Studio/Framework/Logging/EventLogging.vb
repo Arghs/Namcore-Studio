@@ -74,7 +74,7 @@ Public Module EventLogging
                     End Try
 
                 Else
-                    procStatus.appendProc()
+                    procStatus.appendProc(_status)
                 End If
             ElseIf Not procStatus.TransferWorker Is Nothing Then
                 If procStatus.TransferWorker.IsBusy Then
@@ -85,10 +85,10 @@ Public Module EventLogging
                     End Try
 
                 Else
-                    procStatus.appendProc()
+                    procStatus.appendProc(_status)
                 End If
             Else
-                procStatus.appendProc()
+                procStatus.appendProc(_status)
             End If
 
         Catch ex As Exception

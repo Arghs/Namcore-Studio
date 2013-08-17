@@ -33,12 +33,13 @@ Public Class Process_status
     Public WithEvents ArmoryWorker As BackgroundWorker
     Public WithEvents TransferWorker As BackgroundWorker
     Public Shared proccessTXT As String
+    Private Delegate Sub UpdateTextHandler(ByVal Text As String)
     Private Sub close_bt_Click(sender As System.Object, e As System.EventArgs) Handles close_bt.Click
         Me.Close()
     End Sub
 
     Private Sub Process_status_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Control.CheckForIllegalCrossThreadCalls = False
+
 
     End Sub
    
@@ -47,7 +48,7 @@ Public Class Process_status
         Handles ArmoryWorker.DoWork
         Dim d As Data2Thread = CType(e.Argument, Data2Thread)
         Dim charLst As List(Of String) = d.charLST
-        LoadArmoryCharacters(charLst)
+        '  LoadArmoryCharacters(charLst)
     End Sub
     Public Sub UpdateGui()
         cancel_bt.Visible = ArmoryWorker.IsBusy
@@ -62,8 +63,8 @@ Public Class Process_status
             process_tb.Text = "Canceled"
             Return
         End If
-        Dim prepLive As New Interface_Operator
-        prepLive.prepareLive_armory()
+        'Dim prepLive As New Interface_Operator
+        'prepLive.prepareLive_armory()
     End Sub
 
     Public Sub TransferWorker_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs) _
@@ -90,14 +91,14 @@ Public Class Process_status
         MsgBox("Transfer completed!")
         Live_View.Show()
     End Sub
-    Public Sub appendProc()
-        Try
+    Private Delegate Sub AppendTextBoxDelegate(ByVal txt As String)
+    Public Sub appendProc(ByVal status As String)
+        If process_tb.InvokeRequired Then
+            process_tb.Invoke(New AppendTextBoxDelegate(AddressOf appendProc), New Object() {proccessTXT})
+        Else
             process_tb.Text = proccessTXT
-            'process_tb.SelectionStart = process_tb.Text.Length
-            'process_tb.ScrollToCaret()
-        Catch ex As Exception
-            Throw New Exception(ex.ToString)
-        End Try
+        End If
+      
 
     End Sub
     Public Sub ArmoryWorker_ProgressChanged( _

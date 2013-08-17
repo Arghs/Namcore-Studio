@@ -24,7 +24,7 @@ Imports System.IO
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.Basics
 Imports Namcore_Studio.Serializer
-Public Class Interface_Operator
+Public Module Interface_Operator
     Public Sub prepareLive_armory()
         ' Dim x As String = temporaryCharacterInformation.Item(1)
         Dim m_serializer As Serializer = New Serializer
@@ -44,7 +44,5 @@ Public Class Interface_Operator
         liveview.loadInformationSets_Armory()
 
     End Sub
-    Public Sub loadNamesAndPics()
-
-    End Sub
-End Class
+   
+End Module

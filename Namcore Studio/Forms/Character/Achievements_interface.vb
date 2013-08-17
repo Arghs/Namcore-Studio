@@ -34,8 +34,7 @@ Public Class Achievements_interface
     Dim lastindex As Integer
     Dim itmlst1 As New List(Of ListViewItem)
     Dim itmlst2 As New List(Of ListViewItem)
-    Dim trd1 As New Thread(AddressOf loadpart1)
-    Dim trd2 As New Thread(AddressOf loadpart2)
+  
     Private Sub Achievements_interface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim controlLST As List(Of Control)
         controlLST = FindAllChildren()
@@ -59,160 +58,39 @@ Public Class Achievements_interface
 
 
     End Sub
-    Private Sub loadpart1()
-        Dim part1InfoIndex As String = tempAchievementInfoIndex
-        Dim part1Info As List(Of ListViewItem) = tempAchievementInfo
-        Dim player As Character = GetCharacterSetBySetId(tarsetid)
-        Dim cnt As Integer = 0
-        For Each av As Achievement In player.Achievements
-            cnt += 1
-
-            If Not part1InfoIndex.Contains("avid:" & av.Id.ToString & "|@") Then
-                Try
-                    Dim str(5) As String
-                    str(0) = av.Id.ToString()
-                    str(1) = GetAvNameById(av.Id)
-                    str(2) = GetAvCategoryById(av.Id)
-                    str(3) = GetAvCategoryById(av.Id, True)
-                    str(4) = av.GainDate.toDate.ToString()
-                    str(5) = GetAvDescriptionById(av.Id)
-                    Dim itm As New ListViewItem(str)
-                    itm.Tag = av
-                    part1Info.Add(itm)
-                    part1InfoIndex = part1InfoIndex & "[avid:" & av.Id.ToString & "|@" & (part1Info.Count - 1).ToString & "]"
-                    itmlst1.Add(itm)
-                Catch ex As Exception
-                    LogAppend("loadprt1 ERROR: " & ex.ToString, "loadpart1", True)
-                End Try
-
-            Else
-
-                Try
-                    Dim itm As New ListViewItem
-                    itm = part1Info.Item(TryInt(splitString(part1InfoIndex, "[avid:" & av.Id.ToString & "|@", "]")))
-                    itmlst1.Add(itm)
-                Catch ex As Exception
-                    MsgBox(ex.ToString)
-                End Try
-
-            End If
-            If cnt = 50 Then
-                lastindex = 50
-
-                Exit For
-            End If
-        Next
-        For Each itm As ListViewItem In itmlst1
-            avcompleted_lst.Items.Add(itm)
-        Next
-        tempAchievementInfo = part1Info
-        tempAchievementInfoIndex = part1InfoIndex
-        currentpage = 1
-        resultcnt_lbl.Text = "Displaying " & cnt.ToString & " out of " & player.Achievements.Count.ToString() & " results!"
-        Application.DoEvents()
-        trd1.Abort()
+ 
+    Private context As Threading.SynchronizationContext = Threading.SynchronizationContext.Current
+    Public Event AVCompleted As EventHandler(Of CompletedEventArgs)
+    Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
+        RaiseEvent AVCompleted(Me, e)
     End Sub
-    Private Sub loadpart2()
-        Thread.Sleep(1000)
-        Dim part2InfoIndex As String = tempAchievementInfoIndex
-        Dim part2Info As List(Of ListViewItem) = tempAchievementInfo
-        Dim player As Character = GetCharacterSetBySetId(tarsetid)
-        Dim cnt As Integer = 0
-        Dim index As Integer = 50
-        Do
-            If index >= player.Achievements.Count Then
-
-                Exit Do
-            End If
-            Dim av As Achievement = player.Achievements(index)
-            cnt += 1
-            If Not part2InfoIndex.Contains("avid:" & av.Id.ToString & "|@") Then
-                Try
-                    Dim str(5) As String
-                    str(0) = av.Id.ToString()
-                    str(1) = GetAvNameById(av.Id)
-                    str(2) = GetAvCategoryById(av.Id)
-                    str(3) = GetAvCategoryById(av.Id, True)
-                    str(4) = av.GainDate.toDate.ToString()
-                    str(5) = GetAvDescriptionById(av.Id)
-                    Dim itm As New ListViewItem(str)
-                    itm.Tag = av
-                    part2Info.Add(itm)
-                    part2InfoIndex = part2InfoIndex & "[avid:" & av.Id.ToString & "|@" & (part2Info.Count - 1).ToString & "]"
-                    itmlst2.Add(itm)
-                Catch ex As Exception
-                    LogAppend("loadprt2 ERROR: " & ex.ToString, "loadpart1", True)
-                End Try
-
-            Else
-                Try
-
-                    Dim itm As New ListViewItem
-                    itm = part2Info.Item(TryInt(splitString(part2InfoIndex, "[avid:" & av.Id.ToString & "|@", "]")))
-                    itmlst2.Add(itm)
-                Catch ex As Exception
-                    MsgBox(ex.ToString)
-                End Try
-
-            End If
-            If cnt = 50 Then
-
-                Exit Do
-            End If
-            index += 1
-
-        Loop
-        While trd1.IsAlive
-
-        End While
-        For Each itm As ListViewItem In itmlst2
-            avcompleted_lst.Items.Add(itm)
-        Next
-        lastindex = index
-        tempAchievementInfo.AddRange(part2Info)
-        tempAchievementInfoIndex = tempAchievementInfoIndex & part2InfoIndex
-        resultcnt_lbl.Text = "Displaying " & lastindex.ToString & " out of " & player.Achievements.Count.ToString() & " results!"
-        trd2.Abort()
-    End Sub
-    Private Sub nxt100_bt_Click(sender As Object, e As EventArgs)
-        Dim player As Character = GetCharacterSetBySetId(tarsetid)
-        Dim cnt As Integer = 0
-        Dim index As Integer = lastindex
-
-        Do
-            If index >= player.Achievements.Count Then
-
-                Exit Do
-            End If
-            Dim av As Achievement = player.Achievements(index)
-            cnt += 1
-            Dim str(5) As String
-            str(0) = av.Id.ToString()
-            str(1) = GetAvNameById(av.Id)
-            str(2) = GetAvCategoryById(av.Id)
-            str(3) = GetAvCategoryById(av.Id, True)
-            str(4) = av.GainDate.toDate.ToString()
-            str(5) = GetAvDescriptionById(av.Id)
-            Dim itm As New ListViewItem(str)
-            itm.Tag = av
-            avcompleted_lst.Items.Add(itm)
-            If cnt = 100 Then
-                lastindex = index
-
-                Exit Do
-            End If
-            index += 1
-        Loop
-        currentpage += 1
-        resultcnt_lbl.Text = "Displaying " & lastindex.ToString & " out of " & player.Achievements.Count.ToString() & " results!"
-    End Sub
+    Private WithEvents m_handler As New FlowLayoutPanelHandler
     Public Sub catbt_click(sender As Object, e As EventArgs) Handles cat_id_97_bt.Click, cat_id_96_bt.Click, cat_id_95_bt.Click, cat_id_92_bt.Click, cat_id_81_bt.Click, cat_id_201_bt.Click, cat_id_169_bt.Click, cat_id_168_bt.Click, cat_id_155_bt.Click, cat_id_15219_bt.Click, cat_id_15165_bt.Click
+        doneAvIds = New List(Of Integer)()
+        m_handler.doOperate_av(sender, 1)
+        m_handler.doOperate_av(sender, 2)
+
+    End Sub
+   
+    Private Sub deleteAv_click(sender As Object, e As EventArgs)
+
+    End Sub
+    Shared doneAvIds As List(Of Integer)
+
+    Public Function continueOperation(ByVal sender As Object, ByVal operation_count As Integer) As String
         Dim catid As Integer = TryInt(splitString(sender.name, "cat_id_", "_bt"))
         Dim player As Character = GetCharacterSetBySetId(tarsetid)
         Dim colorTicker As Integer = 0
         Dim counter As Integer = 0
+
         For Each charAv As Achievement In player.Achievements
+            If doneAvIds.Contains(charAv.Id) Then
+                Continue For
+            Else
+                doneAvIds.Add(charAv.Id)
+            End If
             If GetMainAvCatIdByAvId(charAv.Id) = catid Then
+
                 counter += 1
                 Dim avPanel As New Panel
                 avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
@@ -288,14 +166,15 @@ Public Class Achievements_interface
                 deletePic.Size = reference_delete_pic.Size
                 deletePic.Cursor = Cursors.Hand
                 AddHandler deletePic.Click, AddressOf deleteAv_click
-                AVLayoutPanel.Controls.Add(avPanel)
+                AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding), avPanel)
                 Application.DoEvents()
-                If counter > 6 Then Exit For
+                'If counter > 6 Then Exit For
             End If
         Next
-    End Sub
-
-    Public Sub deleteAv_click(sender As Object, e As EventArgs)
-
+        ThreadExtensions.ScSend(context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted), New CompletedEventArgs())
+    End Function
+    Delegate Sub AddControlDelegate(panel2add As Panel)
+    Private Sub DelegateControlAdding(addPanel As Panel)
+        AVLayoutPanel.Controls.Add(addPanel)
     End Sub
 End Class

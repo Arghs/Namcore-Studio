@@ -144,10 +144,10 @@ Partial Class Process_status
 
     End Sub
     Friend WithEvents close_bt As System.Windows.Forms.Button
-    Friend WithEvents process_tb As System.Windows.Forms.RichTextBox
     Friend WithEvents cancel_bt As System.Windows.Forms.Button
     Friend WithEvents header As System.Windows.Forms.Panel
     Friend WithEvents closepanel As System.Windows.Forms.Panel
     Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
     Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
+    Public WithEvents process_tb As System.Windows.Forms.RichTextBox
 End Class

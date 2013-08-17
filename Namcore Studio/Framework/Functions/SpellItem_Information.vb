@@ -470,7 +470,7 @@ LookOnline: Else
 
     End Function
     Public Function GetMainAvCatIdByAvId(ByVal avId As Integer) As Integer
-        LogAppend("Loading av category of id: " & avId.ToString, "SpellItem_Information_GetMainAvCatIdByAvId", False)
+        LogAppend("Loading av main category of id: " & avId.ToString, "SpellItem_Information_GetMainAvCatIdByAvId", False)
         If tempAvTable Is Nothing Then
             Try
                 tempAvTable = New DataTable()
