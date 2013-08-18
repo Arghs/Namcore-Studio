@@ -112,6 +112,14 @@ NamcoreStudio
   Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
 </summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.achievementadded">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Achievement successfully added! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.achievementalreadypresent">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die The player already has this achievement. ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.areyousure">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Are you sure? ähnelt.
@@ -203,6 +211,10 @@ NamcoreStudio
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.hunter">
 	<summary>
   Sucht eine lokalisierte Zeichenfolge, die Hunter ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio.My.Resources.UserMessages.invalidavid">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Invalid achievement id! ähnelt.
 </summary>
 </member><member name="P:Namcore_Studio.My.Resources.UserMessages.invalidrepid">
 	<summary>

@@ -306,4 +306,13 @@
     <value>Worgen</value>
     <comment>character race</comment>
   </data>
+  <data name="achievementadded" xml:space="preserve">
+    <value>Achievement successfully added!</value>
+  </data>
+  <data name="achievementalreadypresent" xml:space="preserve">
+    <value>The player already has this achievement.</value>
+  </data>
+  <data name="invalidavid" xml:space="preserve">
+    <value>Invalid achievement id!</value>
+  </data>
 </root>

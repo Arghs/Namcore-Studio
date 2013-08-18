@@ -608,7 +608,17 @@ LookOnline: Else
             Dim source As String = client.DownloadString("http://wowhead.com/achievement=" & avId.ToString())
             Dim picname As String = splitString(source, ",icon:'", "'};").ToLower()
             Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(picname)
-            Return pic
+            If pic Is Nothing Then
+                Dim onlinePic As Image = LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & picname & ".jpg")
+                If onlinePic Is Nothing Then
+                    Return My.Resources.INV_Misc_QuestionMark
+                Else
+                    Return onlinePic
+                End If
+            Else
+                Return pic
+            End If
+
         Catch ex As Exception
             LogAppend("Error while loading achievement icon of id: " & avId.ToString & " // ErrorMsg is: " & ex.ToString(), "SpellItem_Information_GetAvIconById", False, True)
             Return My.Resources.INV_Misc_QuestionMark
@@ -659,9 +669,9 @@ LookOnline: Else
             Return tempIdList
         End If
     End Function
-    Private Function GetALL(ByVal maincatid As Integer) As DataRow()
+    Private Function GetAll(ByVal maincatid As Integer) As DataRow()
         'logAppend("Browsing datatale (field = " & field & " // value = " & isvalue & ")", "SpellItem_Information_Execute", False)
-        
+
         Try
             Dim foundRows() As DataRow
             foundRows = tempAvMainCatTable.Select("maincatid = '" & maincatid.ToString() & "'")

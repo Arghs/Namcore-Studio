@@ -23,14 +23,6 @@ Partial Class Achievements_interface
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Achievements_interface))
-        Me.avcompleted_lst = New System.Windows.Forms.ListView()
-        Me.avid = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.avname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.avcat = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.avcatsub = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.avgained = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.avdescription = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.resultcnt_lbl = New System.Windows.Forms.Label()
         Me.AVLayoutPanel = New System.Windows.Forms.FlowLayoutPanel()
         Me.cat_id_92_bt = New System.Windows.Forms.Button()
         Me.cat_id_96_bt = New System.Windows.Forms.Button()
@@ -52,69 +44,29 @@ Partial Class Achievements_interface
         Me.reference_subcat_lbl = New System.Windows.Forms.Label()
         Me.reference_icon_pic = New System.Windows.Forms.PictureBox()
         Me.reference_name_lbl = New System.Windows.Forms.Label()
+        Me.header = New System.Windows.Forms.Panel()
+        Me.closepanel = New System.Windows.Forms.Panel()
+        Me.highlighter1 = New System.Windows.Forms.PictureBox()
+        Me.highlighter2 = New System.Windows.Forms.PictureBox()
+        Me.add_bt = New System.Windows.Forms.Button()
         Me.addpanel.SuspendLayout()
         CType(Me.add_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.referencePanel.SuspendLayout()
         CType(Me.reference_delete_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.reference_icon_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.header.SuspendLayout()
+        Me.closepanel.SuspendLayout()
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'avcompleted_lst
-        '
-        Me.avcompleted_lst.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.avid, Me.avname, Me.avcat, Me.avcatsub, Me.avgained, Me.avdescription})
-        Me.avcompleted_lst.FullRowSelect = True
-        Me.avcompleted_lst.Location = New System.Drawing.Point(1091, 40)
-        Me.avcompleted_lst.Name = "avcompleted_lst"
-        Me.avcompleted_lst.Size = New System.Drawing.Size(834, 248)
-        Me.avcompleted_lst.TabIndex = 0
-        Me.avcompleted_lst.UseCompatibleStateImageBehavior = False
-        Me.avcompleted_lst.View = System.Windows.Forms.View.Details
-        '
-        'avid
-        '
-        Me.avid.Text = "ID"
-        Me.avid.Width = 54
-        '
-        'avname
-        '
-        Me.avname.Text = "Name"
-        Me.avname.Width = 166
-        '
-        'avcat
-        '
-        Me.avcat.Text = "Category"
-        Me.avcat.Width = 94
-        '
-        'avcatsub
-        '
-        Me.avcatsub.Text = "Subcategory"
-        Me.avcatsub.Width = 133
-        '
-        'avgained
-        '
-        Me.avgained.Text = "Gain Date"
-        Me.avgained.Width = 92
-        '
-        'avdescription
-        '
-        Me.avdescription.Text = "Description"
-        Me.avdescription.Width = 234
-        '
-        'resultcnt_lbl
-        '
-        Me.resultcnt_lbl.AutoSize = True
-        Me.resultcnt_lbl.Location = New System.Drawing.Point(12, 9)
-        Me.resultcnt_lbl.Name = "resultcnt_lbl"
-        Me.resultcnt_lbl.Size = New System.Drawing.Size(39, 13)
-        Me.resultcnt_lbl.TabIndex = 2
-        Me.resultcnt_lbl.Text = "Label1"
         '
         'AVLayoutPanel
         '
         Me.AVLayoutPanel.AutoScroll = True
-        Me.AVLayoutPanel.Location = New System.Drawing.Point(158, 41)
+        Me.AVLayoutPanel.BackColor = System.Drawing.Color.Transparent
+        Me.AVLayoutPanel.Location = New System.Drawing.Point(161, 72)
         Me.AVLayoutPanel.Name = "AVLayoutPanel"
-        Me.AVLayoutPanel.Size = New System.Drawing.Size(853, 434)
+        Me.AVLayoutPanel.Size = New System.Drawing.Size(850, 434)
         Me.AVLayoutPanel.TabIndex = 5
         '
         'cat_id_92_bt
@@ -124,7 +76,7 @@ Partial Class Achievements_interface
         Me.cat_id_92_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_92_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_92_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_92_bt.Location = New System.Drawing.Point(9, 41)
+        Me.cat_id_92_bt.Location = New System.Drawing.Point(12, 72)
         Me.cat_id_92_bt.Name = "cat_id_92_bt"
         Me.cat_id_92_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_92_bt.TabIndex = 165
@@ -138,7 +90,7 @@ Partial Class Achievements_interface
         Me.cat_id_96_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_96_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_96_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_96_bt.Location = New System.Drawing.Point(9, 81)
+        Me.cat_id_96_bt.Location = New System.Drawing.Point(12, 112)
         Me.cat_id_96_bt.Name = "cat_id_96_bt"
         Me.cat_id_96_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_96_bt.TabIndex = 166
@@ -152,7 +104,7 @@ Partial Class Achievements_interface
         Me.cat_id_97_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_97_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_97_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_97_bt.Location = New System.Drawing.Point(9, 121)
+        Me.cat_id_97_bt.Location = New System.Drawing.Point(12, 152)
         Me.cat_id_97_bt.Name = "cat_id_97_bt"
         Me.cat_id_97_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_97_bt.TabIndex = 167
@@ -166,7 +118,7 @@ Partial Class Achievements_interface
         Me.cat_id_95_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_95_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_95_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_95_bt.Location = New System.Drawing.Point(9, 161)
+        Me.cat_id_95_bt.Location = New System.Drawing.Point(12, 192)
         Me.cat_id_95_bt.Name = "cat_id_95_bt"
         Me.cat_id_95_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_95_bt.TabIndex = 168
@@ -180,7 +132,7 @@ Partial Class Achievements_interface
         Me.cat_id_168_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_168_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_168_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_168_bt.Location = New System.Drawing.Point(9, 201)
+        Me.cat_id_168_bt.Location = New System.Drawing.Point(12, 232)
         Me.cat_id_168_bt.Name = "cat_id_168_bt"
         Me.cat_id_168_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_168_bt.TabIndex = 169
@@ -194,7 +146,7 @@ Partial Class Achievements_interface
         Me.cat_id_169_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_169_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_169_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_169_bt.Location = New System.Drawing.Point(9, 241)
+        Me.cat_id_169_bt.Location = New System.Drawing.Point(12, 272)
         Me.cat_id_169_bt.Name = "cat_id_169_bt"
         Me.cat_id_169_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_169_bt.TabIndex = 170
@@ -208,7 +160,7 @@ Partial Class Achievements_interface
         Me.cat_id_201_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_201_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_201_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_201_bt.Location = New System.Drawing.Point(9, 281)
+        Me.cat_id_201_bt.Location = New System.Drawing.Point(12, 312)
         Me.cat_id_201_bt.Name = "cat_id_201_bt"
         Me.cat_id_201_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_201_bt.TabIndex = 171
@@ -222,7 +174,7 @@ Partial Class Achievements_interface
         Me.cat_id_15165_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_15165_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_15165_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_15165_bt.Location = New System.Drawing.Point(9, 321)
+        Me.cat_id_15165_bt.Location = New System.Drawing.Point(12, 352)
         Me.cat_id_15165_bt.Name = "cat_id_15165_bt"
         Me.cat_id_15165_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_15165_bt.TabIndex = 172
@@ -236,7 +188,7 @@ Partial Class Achievements_interface
         Me.cat_id_155_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_155_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_155_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_155_bt.Location = New System.Drawing.Point(9, 361)
+        Me.cat_id_155_bt.Location = New System.Drawing.Point(12, 392)
         Me.cat_id_155_bt.Name = "cat_id_155_bt"
         Me.cat_id_155_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_155_bt.TabIndex = 173
@@ -250,7 +202,7 @@ Partial Class Achievements_interface
         Me.cat_id_15219_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_15219_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_15219_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_15219_bt.Location = New System.Drawing.Point(9, 401)
+        Me.cat_id_15219_bt.Location = New System.Drawing.Point(12, 432)
         Me.cat_id_15219_bt.Name = "cat_id_15219_bt"
         Me.cat_id_15219_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_15219_bt.TabIndex = 174
@@ -264,7 +216,7 @@ Partial Class Achievements_interface
         Me.cat_id_81_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cat_id_81_bt.ForeColor = System.Drawing.Color.Black
         Me.cat_id_81_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.cat_id_81_bt.Location = New System.Drawing.Point(9, 441)
+        Me.cat_id_81_bt.Location = New System.Drawing.Point(12, 472)
         Me.cat_id_81_bt.Name = "cat_id_81_bt"
         Me.cat_id_81_bt.Size = New System.Drawing.Size(143, 34)
         Me.cat_id_81_bt.TabIndex = 175
@@ -367,11 +319,72 @@ Partial Class Achievements_interface
         Me.reference_name_lbl.TabIndex = 1
         Me.reference_name_lbl.Text = "Label1"
         '
+        'header
+        '
+        Me.header.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.namcore_header
+        Me.header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.header.Controls.Add(Me.closepanel)
+        Me.header.Location = New System.Drawing.Point(6, 4)
+        Me.header.Name = "header"
+        Me.header.Size = New System.Drawing.Size(1012, 30)
+        Me.header.TabIndex = 224
+        '
+        'closepanel
+        '
+        Me.closepanel.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.minclose
+        Me.closepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.closepanel.Controls.Add(Me.highlighter1)
+        Me.closepanel.Controls.Add(Me.highlighter2)
+        Me.closepanel.Location = New System.Drawing.Point(953, -1)
+        Me.closepanel.Name = "closepanel"
+        Me.closepanel.Size = New System.Drawing.Size(56, 28)
+        Me.closepanel.TabIndex = 1
+        '
+        'highlighter1
+        '
+        Me.highlighter1.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter1.Location = New System.Drawing.Point(5, 5)
+        Me.highlighter1.Name = "highlighter1"
+        Me.highlighter1.Size = New System.Drawing.Size(20, 20)
+        Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter1.TabIndex = 217
+        Me.highlighter1.TabStop = False
+        '
+        'highlighter2
+        '
+        Me.highlighter2.BackColor = System.Drawing.Color.Transparent
+        Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.highlighter2.Location = New System.Drawing.Point(33, 5)
+        Me.highlighter2.Name = "highlighter2"
+        Me.highlighter2.Size = New System.Drawing.Size(20, 20)
+        Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.highlighter2.TabIndex = 218
+        Me.highlighter2.TabStop = False
+        '
+        'add_bt
+        '
+        Me.add_bt.BackColor = System.Drawing.Color.DimGray
+        Me.add_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.add_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.add_bt.ForeColor = System.Drawing.Color.Black
+        Me.add_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.add_bt.Location = New System.Drawing.Point(893, 37)
+        Me.add_bt.Name = "add_bt"
+        Me.add_bt.Size = New System.Drawing.Size(118, 29)
+        Me.add_bt.TabIndex = 225
+        Me.add_bt.Text = "Add new"
+        Me.add_bt.UseVisualStyleBackColor = False
+        '
         'Achievements_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1023, 516)
+        Me.Controls.Add(Me.add_bt)
+        Me.Controls.Add(Me.header)
         Me.Controls.Add(Me.referencePanel)
         Me.Controls.Add(Me.addpanel)
         Me.Controls.Add(Me.cat_id_81_bt)
@@ -386,8 +399,8 @@ Partial Class Achievements_interface
         Me.Controls.Add(Me.cat_id_96_bt)
         Me.Controls.Add(Me.cat_id_92_bt)
         Me.Controls.Add(Me.AVLayoutPanel)
-        Me.Controls.Add(Me.resultcnt_lbl)
-        Me.Controls.Add(Me.avcompleted_lst)
+        Me.DoubleBuffered = True
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Achievements_interface"
         Me.Text = "Achievements_interface"
@@ -397,18 +410,13 @@ Partial Class Achievements_interface
         Me.referencePanel.PerformLayout()
         CType(Me.reference_delete_pic, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.reference_icon_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.header.ResumeLayout(False)
+        Me.closepanel.ResumeLayout(False)
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents avcompleted_lst As System.Windows.Forms.ListView
-    Friend WithEvents avid As System.Windows.Forms.ColumnHeader
-    Friend WithEvents avname As System.Windows.Forms.ColumnHeader
-    Friend WithEvents avcat As System.Windows.Forms.ColumnHeader
-    Friend WithEvents avgained As System.Windows.Forms.ColumnHeader
-    Friend WithEvents avdescription As System.Windows.Forms.ColumnHeader
-    Friend WithEvents avcatsub As System.Windows.Forms.ColumnHeader
-    Friend WithEvents resultcnt_lbl As System.Windows.Forms.Label
     Friend WithEvents AVLayoutPanel As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents cat_id_92_bt As System.Windows.Forms.Button
     Friend WithEvents cat_id_96_bt As System.Windows.Forms.Button
@@ -422,7 +430,6 @@ Partial Class Achievements_interface
     Friend WithEvents cat_id_15219_bt As System.Windows.Forms.Button
     Friend WithEvents cat_id_81_bt As System.Windows.Forms.Button
     Friend WithEvents addpanel As System.Windows.Forms.Panel
-    Friend WithEvents add_pic As System.Windows.Forms.PictureBox
     Friend WithEvents referencePanel As System.Windows.Forms.Panel
     Friend WithEvents reference_name_lbl As System.Windows.Forms.Label
     Friend WithEvents reference_delete_pic As System.Windows.Forms.PictureBox
@@ -430,4 +437,10 @@ Partial Class Achievements_interface
     Friend WithEvents reference_description_lbl As System.Windows.Forms.Label
     Friend WithEvents reference_subcat_lbl As System.Windows.Forms.Label
     Friend WithEvents reference_icon_pic As System.Windows.Forms.PictureBox
+    Friend WithEvents header As System.Windows.Forms.Panel
+    Friend WithEvents closepanel As System.Windows.Forms.Panel
+    Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
+    Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
+    Friend WithEvents add_pic As System.Windows.Forms.PictureBox
+    Friend WithEvents add_bt As System.Windows.Forms.Button
 End Class
