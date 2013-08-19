@@ -244,6 +244,7 @@ Public Class CharacterOverview
                     End If
                 ElseIf senderLabel.Name.ToLower.EndsWith("_enchant") Then
                     Dim client As New WebClient
+                    client.CheckProxy()
                     Dim spellcontext As String
                     Dim foundspell As Boolean = False
                     Dim spellname As String

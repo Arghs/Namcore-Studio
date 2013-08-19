@@ -315,6 +315,7 @@ Public Class Reputation_interface
         Application.DoEvents()
         If Not retnvalue = 0 Then
             Dim client As New WebClient
+            client.CheckProxy()
             Try
                 If Not client.DownloadString("http://wowhead.com/faction=" & retnvalue.ToString()).Contains("<div id=""inputbox-error"">This faction doesn't exist.</div>") Then
                     For Each opRepu As Reputation In globplayer.PlayerReputation

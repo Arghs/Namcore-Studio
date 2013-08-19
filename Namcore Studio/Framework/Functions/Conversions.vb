@@ -194,6 +194,7 @@ Public Module Conversions
         LogAppend("Loading quest name of id " & questid.ToString(), "Conversions_getNameOfQuest")
         Try
             Dim client As New WebClient
+            client.CheckProxy()
             Dim qstcontext As String = client.DownloadString("http://www.wowhead.com/quest=" & questid.ToString)
             Return splitString(qstcontext, "<title>", " - Quest - World")
         Catch ex As Exception

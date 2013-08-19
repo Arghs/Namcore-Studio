@@ -30,6 +30,7 @@ Imports System.Net
 Public Class GlyphParser
     Public Sub loadGlyphs(ByVal setID As Integer, ByVal apiLink As String)
         Dim client As New WebClient
+        client.CheckProxy()
         '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setID)
         Try

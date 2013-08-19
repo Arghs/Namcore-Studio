@@ -29,6 +29,7 @@ Partial Class Main
         Me.highlighter4 = New System.Windows.Forms.PictureBox()
         Me.highlighter5 = New System.Windows.Forms.PictureBox()
         Me.version_lbl = New System.Windows.Forms.Label()
+        Me.settings_bt = New System.Windows.Forms.Button()
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.highlighter3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,6 +104,20 @@ Partial Class Main
         Me.version_lbl.TabIndex = 5
         Me.version_lbl.Text = "NamCore Studio - Development - 0.0.8.45283 - © megasus 2013"
         '
+        'settings_bt
+        '
+        Me.settings_bt.BackColor = System.Drawing.Color.DimGray
+        Me.settings_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.settings_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.settings_bt.ForeColor = System.Drawing.Color.Black
+        Me.settings_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.settings_bt.Location = New System.Drawing.Point(12, 365)
+        Me.settings_bt.Name = "settings_bt"
+        Me.settings_bt.Size = New System.Drawing.Size(117, 25)
+        Me.settings_bt.TabIndex = 166
+        Me.settings_bt.Text = "Settings"
+        Me.settings_bt.UseVisualStyleBackColor = False
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -110,6 +125,7 @@ Partial Class Main
         Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bgNav5
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1057, 397)
+        Me.Controls.Add(Me.settings_bt)
         Me.Controls.Add(Me.version_lbl)
         Me.Controls.Add(Me.highlighter5)
         Me.Controls.Add(Me.highlighter4)
@@ -138,4 +154,5 @@ Partial Class Main
     Friend WithEvents highlighter4 As System.Windows.Forms.PictureBox
     Friend WithEvents highlighter5 As System.Windows.Forms.PictureBox
     Friend WithEvents version_lbl As System.Windows.Forms.Label
+    Friend WithEvents settings_bt As System.Windows.Forms.Button
 End Class

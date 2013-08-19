@@ -160,6 +160,12 @@
     <Compile Include="Forms\Character\Reputation_interface.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Settings_interface.Designer.vb">
+      <DependentUpon>Settings_interface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings_interface.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Userwait.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,8 @@
     <Compile Include="Framework\Armory\Parser\GlyphParser.vb" />
     <Compile Include="Framework\Armory\Parser\ItemParser.vb" />
     <Compile Include="Framework\Armory\Parser\ReputationParser.vb" />
+    <Compile Include="Framework\Extension\WebClientProxyExtension.vb" />
+    <Compile Include="Framework\Functions\WebConnection.vb" />
     <Compile Include="Framework\Module\Account.vb" />
     <Compile Include="Framework\Module\Character.vb" />
     <Compile Include="Framework\Module\DBStructure.vb" />
@@ -284,6 +292,9 @@
     <EmbeddedResource Include="Forms\Process_status.resx">
       <DependentUpon>Process_status.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings_interface.resx">
+      <DependentUpon>Settings_interface.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Userwait.resx">
       <DependentUpon>Userwait.vb</DependentUpon>
     </EmbeddedResource>
@@ -345,7 +356,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

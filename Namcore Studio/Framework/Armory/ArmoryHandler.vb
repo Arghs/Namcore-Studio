@@ -39,6 +39,7 @@ Public Class ArmoryHandler
         Dim APILink As String
         Dim CharacterName As String
         Dim Client As New WebClient
+        Client.CheckProxy()
         For Each ArmoryLink As String In LinkList
             Try
                 LogAppend("URL is " & ArmoryLink, "ArmoryHandler_LoadArmoryCharacters", False)

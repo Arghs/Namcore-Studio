@@ -31,6 +31,7 @@ Imports System.Net
 Public Class AchievementParser
     Public Sub loadAchievements(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
+        client.CheckProxy()
         '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setId)
         player.Achievements = New List(Of Achievement)

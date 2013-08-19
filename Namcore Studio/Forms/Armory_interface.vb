@@ -66,6 +66,7 @@ Public Class Armory_interface
             End If
             'Add battle.net maintenance check!!
             Dim client As New WebClient
+            client.CheckProxy()
             Dim checkcode As String = Nothing
             Try
                 checkcode = client.DownloadString(templink)
@@ -120,6 +121,7 @@ Public Class Armory_interface
             If Not templink.StartsWith("http://") Then templink = "http://" & templink
             'Add battle.net maintenance check!!
             Dim client As New WebClient
+            client = client.CheckProxy()
             Dim checkcode As String = Nothing
             Try
                 checkcode = client.DownloadString(templink)
@@ -129,6 +131,9 @@ Public Class Armory_interface
                     Exit Sub
                 End If
             End Try
+            If checkcode Is Nothing Then
+                Exit Sub
+            End If
             If checkcode.Contains("error=503") Then
                 MsgBox(RM.GetString("charnotfound"), MsgBoxStyle.Critical, RM.GetString("attention"))
                 Exit Sub

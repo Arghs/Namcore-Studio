@@ -31,6 +31,7 @@ Imports System.Net
 Public Class ReputationParser
     Public Sub loadReputation(ByVal setId As Integer, ByVal apiLink As String)
         Dim client As New WebClient
+        client.CheckProxy()
         '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setId)
         player.PlayerReputation = New List(Of Reputation)

@@ -23,6 +23,8 @@
 
 Imports Namcore_Studio.GlobalVariables
 Imports Namcore_Studio.EventLogging
+Imports System.Net
+
 Public Class Main
 
     Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter, highlighter3.MouseEnter, highlighter4.MouseEnter, highlighter5.MouseEnter
@@ -49,7 +51,24 @@ Public Class Main
         procStatus.ArmoryWorker = New System.ComponentModel.BackgroundWorker
         procStatus.ArmoryWorker.WorkerReportsProgress = True
         procStatus.ArmoryWorker.WorkerSupportsCancellation = True
-
+        If My.Settings.proxy_enabled = True Then
+            If My.Settings.proxy_detect = True Then
+                Dim webnet As New WebConnection
+                Dim servername As String = webnet.GetProxyServerName()
+                Dim serverport As String = webnet.GetProxyServerPort()
+                If serverport Is Nothing Then
+                    My.Settings.proxy_enabled = False
+                Else
+                    If servername Is Nothing Then
+                        My.Settings.proxy_enabled = False
+                    Else
+                        My.Settings.proxy_host = servername
+                        My.Settings.proxy_port = TryInt(serverport)
+                        My.Settings.fullproxy = New WebProxy(servername & ":" & serverport)
+                    End If
+                End If
+            End If
+        End If
         If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt") Then
             My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt")
         End If
@@ -93,5 +112,9 @@ Public Class Main
 
     Private Sub highlighter4_Click(sender As Object, e As EventArgs) Handles highlighter4.Click
         Application.Exit()
+    End Sub
+
+    Private Sub settings_bt_Click(sender As Object, e As EventArgs) Handles settings_bt.Click
+        Settings_interface.Show()
     End Sub
 End Class

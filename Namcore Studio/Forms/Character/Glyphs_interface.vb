@@ -312,6 +312,7 @@ Public Class Glyphs_interface
         Dim senderPic As PictureBox = tmpSenderPic
         If Not TextBox2.Text = "" Then
             Dim client As New WebClient
+            client.CheckProxy()
             Dim qCode As String = client.DownloadString("http://wowhead.com/item=" & TextBox2.Text)
             If Not qCode.Contains("Glyph") Then
                 Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())

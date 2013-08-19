@@ -47,6 +47,7 @@ Public Module SpellItem_Information
                     xpacressource = libnc.My.Resources.glyphproperties_335
             End Select
             Dim client As New WebClient
+            client.CheckProxy()
             Return TryInt(splitString(client.DownloadString("http://www.wowhead.com/spell=" & splitString(xpacressource, "<entry>" & itemid.ToString & "</entry><spell>", "</spell>")), ",""id"":", ",""level"""))
         Catch ex As Exception
             LogAppend("Error while loading GlyphId! -> Returning 0 -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetGlyphIdByItemId", False, True)
@@ -89,6 +90,7 @@ Public Module SpellItem_Information
             If nameresult = "-" Then
                 LogAppend("Entry not found -> Searching online", "SpellItem_Information_GetIconByItemId", False, True)
                 Dim client As New WebClient
+                client.CheckProxy()
                 Try
                     Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
                     Try
@@ -111,6 +113,7 @@ Public Module SpellItem_Information
             End If
 LookOnline: Else
             Dim client As New WebClient
+            client.CheckProxy()
             Try
                 Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
                 Return LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & (splitString(itemContext, "<icon displayId=""" & splitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>")).ToLower() & ".jpg")
@@ -123,6 +126,7 @@ LookOnline: Else
     Public Function GetRarityByItemId(ByVal itemid As Integer) As Integer
         If itemid = 0 Then Return Nothing
         Dim client As New WebClient
+        client.CheckProxy()
         Try
             LogAppend("Loading rarity by ItemId " & itemid.ToString, "SpellItem_Information_GetRarityByItemId", False)
             Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
@@ -135,6 +139,7 @@ LookOnline: Else
     Public Function GetSlotByItemId(ByVal itemid As Integer) As Integer
         If itemid = 0 Then Return Nothing
         Dim client As New WebClient
+        client.CheckProxy()
         Try
             LogAppend("Loading inventorySlot by ItemId " & itemid.ToString, "SpellItem_Information_GetSlotByItemId", False)
             Dim itemContext As String = client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml")
@@ -194,6 +199,7 @@ LookOnline: Else
             LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType", False)
             Try
                 Dim client As New WebClient
+                client.CheckProxy()
                 Dim player As Character = GetCharacterSetBySetId(tar_set)
                 Dim excerpt As String = splitString(client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml"), "<subclass id=", "</subclass>")
                 Select Case True
@@ -304,6 +310,7 @@ LookOnline: Else
         If Not itemid = Nothing Then
             If itemid.Length > 1 Then
                 Dim client As New WebClient
+                client.CheckProxy()
                 Try
                     If My.Settings.language = "de" Then
                         Dim clString As String = client.DownloadString("http://de.wowhead.com/item=" & itemid.ToString() & "&xml")
@@ -325,6 +332,7 @@ LookOnline: Else
         LogAppend("Loading effect name of gem: " & socketid.ToString, "SpellItem_Information_GetGemEffectName", False)
         Try
             Dim client As New WebClient
+            client.CheckProxy()
             Dim effectname As String
             If My.Settings.language = "de" Then
                 effectname = client.DownloadString("http://de.wowhead.com/item=" & socketid.ToString & "&xml")
@@ -649,6 +657,7 @@ LookOnline: Else
         LogAppend("Loading achievement icon of id: " & avId.ToString, "SpellItem_Information_GetAvIconById", False)
         Try
             Dim client As New WebClient
+            client.CheckProxy()
             Dim source As String = client.DownloadString("http://wowhead.com/achievement=" & avId.ToString())
             Dim picname As String = splitString(source, ",icon:'", "'};").ToLower()
             Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(picname)
