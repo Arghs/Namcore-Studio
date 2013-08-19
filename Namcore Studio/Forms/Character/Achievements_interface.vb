@@ -76,7 +76,29 @@ Public Class Achievements_interface
     End Sub
    
     Private Sub deleteAv_click(sender As Object, e As EventArgs)
-
+        '// Delete achievement
+        Dim charAv As Achievement = sender.tag
+        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim msg As String = RM.GetString("aus_deleteav")
+        msg = msg.Replace("%avid%", charAv.Id.ToString)
+        Dim result = MsgBox(msg, vbYesNo, RM.GetString("areyousure"))
+        If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
+            Userwait.Show()
+            For Each subctrl In AVLayoutPanel.Controls
+                If subctrl.tag.id = charAv.Id Then
+                    AVLayoutPanel.Controls.Remove(subctrl)
+                    subctrl.Dispose()
+                    For Each av As Achievement In globplayer.Achievements
+                        If av.Id = charAv.Id Then
+                            globplayer.Achievements.Remove(av)
+                            Exit For
+                        End If
+                    Next
+                    Exit For
+                End If
+            Next
+        End If
+        Userwait.Close()
     End Sub
     Shared avColorLst As ArrayList
     Shared doneAvIds As List(Of Integer)
@@ -236,11 +258,10 @@ Public Class Achievements_interface
         End If
     End Sub
 
-    Private Sub AVLayoutPanel_Paint(sender As Object, e As PaintEventArgs) Handles AVLayoutPanel.Paint
-
-    End Sub
+  
 
     Private Sub add_bt_Click(sender As Object, e As EventArgs) Handles add_bt.Click
+        '// Add new achievement
         Dim retnvalue As Integer = TryInt(InputBox("Enter achievement id: ", "Add achievement", "0"))
         Userwait.Show()
         Application.DoEvents()
@@ -259,7 +280,7 @@ Public Class Achievements_interface
                     Dim charAv As New Achievement
                     charAv.Id = retnvalue
                     charAv.GainDate = toTimeStamp(Date.Today)
-                   If correctIds.Contains(charAv.Id) Then
+                    If correctIds.Contains(charAv.Id) Then
                         Dim avPanel As New Panel
                         avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
                         avPanel.Size = referencePanel.Size

@@ -315,4 +315,7 @@
   <data name="invalidavid" xml:space="preserve">
     <value>Invalid achievement id!</value>
   </data>
+  <data name="aus_deleteav" xml:space="preserve">
+    <value>Do you really want to delete the achievement %avid% from character?</value>
+  </data>
 </root>
