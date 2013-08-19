@@ -524,6 +524,555 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die All ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat0() As String
+            Get
+                Return ResourceManager.GetString("subcat0", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Eastern Kingdoms ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14777() As String
+            Get
+                Return ResourceManager.GetString("subcat14777", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Kalimdor ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14778() As String
+            Get
+                Return ResourceManager.GetString("subcat14778", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Outland ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14779() As String
+            Get
+                Return ResourceManager.GetString("subcat14779", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Northrend ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14780() As String
+            Get
+                Return ResourceManager.GetString("subcat14780", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Alterac Vlley ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14801() As String
+            Get
+                Return ResourceManager.GetString("subcat14801", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Arathi Basin ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14802() As String
+            Get
+                Return ResourceManager.GetString("subcat14802", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Eye of the Storm ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14803() As String
+            Get
+                Return ResourceManager.GetString("subcat14803", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Warsong Gulch ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14804() As String
+            Get
+                Return ResourceManager.GetString("subcat14804", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die The Burning Crusade ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14805() As String
+            Get
+                Return ResourceManager.GetString("subcat14805", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Lich King Dungeon ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14806() As String
+            Get
+                Return ResourceManager.GetString("subcat14806", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Classic ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14808() As String
+            Get
+                Return ResourceManager.GetString("subcat14808", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Eastern Kingdoms ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14861() As String
+            Get
+                Return ResourceManager.GetString("subcat14861", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Outland ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14862() As String
+            Get
+                Return ResourceManager.GetString("subcat14862", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Northrend ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14863() As String
+            Get
+                Return ResourceManager.GetString("subcat14863", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Classic ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14864() As String
+            Get
+                Return ResourceManager.GetString("subcat14864", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die The Burning Crusade ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14865() As String
+            Get
+                Return ResourceManager.GetString("subcat14865", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Wrath of the Lich King ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14866() As String
+            Get
+                Return ResourceManager.GetString("subcat14866", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Strand of the Ancients ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14881() As String
+            Get
+                Return ResourceManager.GetString("subcat14881", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Wintergasp ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14901() As String
+            Get
+                Return ResourceManager.GetString("subcat14901", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Lich King Raid ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14922() As String
+            Get
+                Return ResourceManager.GetString("subcat14922", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Argent Tournament ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14941() As String
+            Get
+                Return ResourceManager.GetString("subcat14941", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Pilgrim&apos;s Bounty ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat14981() As String
+            Get
+                Return ResourceManager.GetString("subcat14981", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Isle of Conquest ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15003() As String
+            Get
+                Return ResourceManager.GetString("subcat15003", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Cataclysm Dungeon ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15067() As String
+            Get
+                Return ResourceManager.GetString("subcat15067", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Cataclysm Raid ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15068() As String
+            Get
+                Return ResourceManager.GetString("subcat15068", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Cataclysm ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15069() As String
+            Get
+                Return ResourceManager.GetString("subcat15069", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Cataclysm ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15070() As String
+            Get
+                Return ResourceManager.GetString("subcat15070", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Archaeology ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15071() As String
+            Get
+                Return ResourceManager.GetString("subcat15071", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Cataclysm ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15072() As String
+            Get
+                Return ResourceManager.GetString("subcat15072", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Battle for Gilneas ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15073() As String
+            Get
+                Return ResourceManager.GetString("subcat15073", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Twin Peaks ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15074() As String
+            Get
+                Return ResourceManager.GetString("subcat15074", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Tol Barad ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15075() As String
+            Get
+                Return ResourceManager.GetString("subcat15075", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Kalimdor ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15081() As String
+            Get
+                Return ResourceManager.GetString("subcat15081", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Rated Battleground ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15092() As String
+            Get
+                Return ResourceManager.GetString("subcat15092", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Darkmoon Faire ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15101() As String
+            Get
+                Return ResourceManager.GetString("subcat15101", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Pandaria Dungeon ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15106() As String
+            Get
+                Return ResourceManager.GetString("subcat15106", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Pandaria Raid ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15107() As String
+            Get
+                Return ResourceManager.GetString("subcat15107", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Pandaria ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15110() As String
+            Get
+                Return ResourceManager.GetString("subcat15110", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Pandaria ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15113() As String
+            Get
+                Return ResourceManager.GetString("subcat15113", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Pandaria ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15114() As String
+            Get
+                Return ResourceManager.GetString("subcat15114", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Dungeon Challenge ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15115() As String
+            Get
+                Return ResourceManager.GetString("subcat15115", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Collect ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15118() As String
+            Get
+                Return ResourceManager.GetString("subcat15118", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Battle ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15119() As String
+            Get
+                Return ResourceManager.GetString("subcat15119", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Level ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15120() As String
+            Get
+                Return ResourceManager.GetString("subcat15120", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Silvershard Mines ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15162() As String
+            Get
+                Return ResourceManager.GetString("subcat15162", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Temple of Kotmogu ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15163() As String
+            Get
+                Return ResourceManager.GetString("subcat15163", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Brawler&apos;s Guild ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15202() As String
+            Get
+                Return ResourceManager.GetString("subcat15202", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Deepwind Gorge ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat15218() As String
+            Get
+                Return ResourceManager.GetString("subcat15218", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Winter Veil ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat156() As String
+            Get
+                Return ResourceManager.GetString("subcat156", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Hallow&apos;s End ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat158() As String
+            Get
+                Return ResourceManager.GetString("subcat158", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Noblegarden ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat159() As String
+            Get
+                Return ResourceManager.GetString("subcat159", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Lunar Festival ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat160() As String
+            Get
+                Return ResourceManager.GetString("subcat160", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Midsummer ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat161() As String
+            Get
+                Return ResourceManager.GetString("subcat161", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Brewfest ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat162() As String
+            Get
+                Return ResourceManager.GetString("subcat162", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Children&apos;s Week ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat163() As String
+            Get
+                Return ResourceManager.GetString("subcat163", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Arena ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat165() As String
+            Get
+                Return ResourceManager.GetString("subcat165", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Cooking ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat170() As String
+            Get
+                Return ResourceManager.GetString("subcat170", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Fishing ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat171() As String
+            Get
+                Return ResourceManager.GetString("subcat171", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die First Aid ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat172() As String
+            Get
+                Return ResourceManager.GetString("subcat172", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Love is in the Air ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property subcat187() As String
+            Get
+                Return ResourceManager.GetString("subcat187", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Tauren ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property tauren() As String

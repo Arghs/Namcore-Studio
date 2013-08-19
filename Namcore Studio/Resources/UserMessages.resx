@@ -318,4 +318,187 @@
   <data name="aus_deleteav" xml:space="preserve">
     <value>Do you really want to delete the achievement %avid% from character?</value>
   </data>
+  <data name="subcat0" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="subcat14777" xml:space="preserve">
+    <value>Eastern Kingdoms</value>
+  </data>
+  <data name="subcat14778" xml:space="preserve">
+    <value>Kalimdor</value>
+  </data>
+  <data name="subcat14779" xml:space="preserve">
+    <value>Outland</value>
+  </data>
+  <data name="subcat14780" xml:space="preserve">
+    <value>Northrend</value>
+  </data>
+  <data name="subcat14801" xml:space="preserve">
+    <value>Alterac Vlley</value>
+  </data>
+  <data name="subcat14802" xml:space="preserve">
+    <value>Arathi Basin</value>
+  </data>
+  <data name="subcat14803" xml:space="preserve">
+    <value>Eye of the Storm</value>
+  </data>
+  <data name="subcat14804" xml:space="preserve">
+    <value>Warsong Gulch</value>
+  </data>
+  <data name="subcat14805" xml:space="preserve">
+    <value>The Burning Crusade</value>
+  </data>
+  <data name="subcat14806" xml:space="preserve">
+    <value>Lich King Dungeon</value>
+  </data>
+  <data name="subcat14808" xml:space="preserve">
+    <value>Classic</value>
+  </data>
+  <data name="subcat14861" xml:space="preserve">
+    <value>Eastern Kingdoms</value>
+  </data>
+  <data name="subcat14862" xml:space="preserve">
+    <value>Outland</value>
+  </data>
+  <data name="subcat14863" xml:space="preserve">
+    <value>Northrend</value>
+  </data>
+  <data name="subcat14864" xml:space="preserve">
+    <value>Classic</value>
+  </data>
+  <data name="subcat14865" xml:space="preserve">
+    <value>The Burning Crusade</value>
+  </data>
+  <data name="subcat14866" xml:space="preserve">
+    <value>Wrath of the Lich King</value>
+  </data>
+  <data name="subcat14881" xml:space="preserve">
+    <value>Strand of the Ancients</value>
+  </data>
+  <data name="subcat14901" xml:space="preserve">
+    <value>Wintergasp</value>
+  </data>
+  <data name="subcat14922" xml:space="preserve">
+    <value>Lich King Raid</value>
+  </data>
+  <data name="subcat14941" xml:space="preserve">
+    <value>Argent Tournament</value>
+  </data>
+  <data name="subcat14981" xml:space="preserve">
+    <value>Pilgrim's Bounty</value>
+  </data>
+  <data name="subcat15003" xml:space="preserve">
+    <value>Isle of Conquest</value>
+  </data>
+  <data name="subcat15067" xml:space="preserve">
+    <value>Cataclysm Dungeon</value>
+  </data>
+  <data name="subcat15068" xml:space="preserve">
+    <value>Cataclysm Raid</value>
+  </data>
+  <data name="subcat15069" xml:space="preserve">
+    <value>Cataclysm</value>
+  </data>
+  <data name="subcat15070" xml:space="preserve">
+    <value>Cataclysm</value>
+  </data>
+  <data name="subcat15071" xml:space="preserve">
+    <value>Archaeology</value>
+  </data>
+  <data name="subcat15072" xml:space="preserve">
+    <value>Cataclysm</value>
+  </data>
+  <data name="subcat15073" xml:space="preserve">
+    <value>Battle for Gilneas</value>
+  </data>
+  <data name="subcat15074" xml:space="preserve">
+    <value>Twin Peaks</value>
+  </data>
+  <data name="subcat15075" xml:space="preserve">
+    <value>Tol Barad</value>
+  </data>
+  <data name="subcat15081" xml:space="preserve">
+    <value>Kalimdor</value>
+  </data>
+  <data name="subcat15092" xml:space="preserve">
+    <value>Rated Battleground</value>
+  </data>
+  <data name="subcat15101" xml:space="preserve">
+    <value>Darkmoon Faire</value>
+  </data>
+  <data name="subcat15106" xml:space="preserve">
+    <value>Pandaria Dungeon</value>
+  </data>
+  <data name="subcat15107" xml:space="preserve">
+    <value>Pandaria Raid</value>
+  </data>
+  <data name="subcat15110" xml:space="preserve">
+    <value>Pandaria</value>
+  </data>
+  <data name="subcat15113" xml:space="preserve">
+    <value>Pandaria</value>
+  </data>
+  <data name="subcat15114" xml:space="preserve">
+    <value>Pandaria</value>
+  </data>
+  <data name="subcat15115" xml:space="preserve">
+    <value>Dungeon Challenge</value>
+  </data>
+  <data name="subcat15118" xml:space="preserve">
+    <value>Collect</value>
+  </data>
+  <data name="subcat15119" xml:space="preserve">
+    <value>Battle</value>
+  </data>
+  <data name="subcat15120" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="subcat15162" xml:space="preserve">
+    <value>Silvershard Mines</value>
+  </data>
+  <data name="subcat15163" xml:space="preserve">
+    <value>Temple of Kotmogu</value>
+  </data>
+  <data name="subcat15202" xml:space="preserve">
+    <value>Brawler's Guild</value>
+  </data>
+  <data name="subcat15218" xml:space="preserve">
+    <value>Deepwind Gorge</value>
+  </data>
+  <data name="subcat156" xml:space="preserve">
+    <value>Winter Veil</value>
+  </data>
+  <data name="subcat158" xml:space="preserve">
+    <value>Hallow's End</value>
+  </data>
+  <data name="subcat159" xml:space="preserve">
+    <value>Noblegarden</value>
+  </data>
+  <data name="subcat160" xml:space="preserve">
+    <value>Lunar Festival</value>
+  </data>
+  <data name="subcat161" xml:space="preserve">
+    <value>Midsummer</value>
+  </data>
+  <data name="subcat162" xml:space="preserve">
+    <value>Brewfest</value>
+  </data>
+  <data name="subcat163" xml:space="preserve">
+    <value>Children's Week</value>
+  </data>
+  <data name="subcat165" xml:space="preserve">
+    <value>Arena</value>
+  </data>
+  <data name="subcat170" xml:space="preserve">
+    <value>Cooking</value>
+  </data>
+  <data name="subcat171" xml:space="preserve">
+    <value>Fishing</value>
+  </data>
+  <data name="subcat172" xml:space="preserve">
+    <value>First Aid</value>
+  </data>
+  <data name="subcat187" xml:space="preserve">
+    <value>Love is in the Air</value>
+  </data>
 </root>

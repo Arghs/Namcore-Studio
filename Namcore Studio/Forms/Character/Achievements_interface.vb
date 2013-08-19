@@ -38,6 +38,7 @@ Public Class Achievements_interface
     Dim itmlst2 As New List(Of ListViewItem)
     Dim globplayer As Character
     Dim current_cat As Integer = Nothing
+    Dim preCatControlLst As List(Of Control) = Nothing
     Private Sub Achievements_interface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim controlLST As List(Of Control)
         controlLST = FindAllChildren()
@@ -57,6 +58,45 @@ Public Class Achievements_interface
     Private WithEvents m_handler As New FlowLayoutPanelHandler
     Public Sub catbt_click(sender As Object, e As EventArgs) Handles cat_id_97_bt.Click, cat_id_96_bt.Click, cat_id_95_bt.Click, cat_id_92_bt.Click, cat_id_81_bt.Click, cat_id_201_bt.Click, cat_id_169_bt.Click, cat_id_168_bt.Click, cat_id_155_bt.Click, cat_id_15219_bt.Click, cat_id_15165_bt.Click
         current_cat = TryInt(splitString(sender.name, "cat_id_", "_bt"))
+        subcat_combo.Items.Clear()
+        Dim tmp_catids As Array
+        Select Case current_cat
+            Case 96
+                '//Quests
+                tmp_catids = {14861, 15081, 14862, 14863, 15070, 15110}
+            Case 97
+                '//Exploration
+                tmp_catids = {14777, 14778, 14779, 14780, 15069, 15113}
+            Case 95
+                '//PvP
+                tmp_catids = {14804, 14802, 14803, 14801, 15003, 14881, 15073, 15074, 15162, 15163, 15218, 14901, 15075, 15092, 165}
+            Case 168
+                '//Dungeons & Raids
+                tmp_catids = {14808, 14805, 14806, 14922, 15067, 15068, 15106, 15107, 15115}
+            Case 169
+                '//Professions
+                tmp_catids = {170, 171, 182, 15071}
+            Case 201
+                '//Reputation
+                tmp_catids = {14864, 14865, 14866, 15072, 15114}
+            Case 155
+                '//World Events
+                tmp_catids = {160, 187, 159, 163, 161, 162, 158, 14981, 156, 14941, 15101, 15202}
+            Case 15117
+                '//Pet Battles
+                tmp_catids = {15118, 15119, 15120}
+            Case Else
+                tmp_catids = {}
+        End Select
+        Dim cat_collection As New List(Of AvSubcategoy)
+        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        For i = 0 To tmp_catids.Length - 1
+            cat_collection.Add(New AvSubcategoy With {.text = RM.GetString("subcat" & tmp_catids(i).ToString), .id = tmp_catids(i)})
+        Next
+        subcat_combo.Items.Add(New AvSubcategoy With {.text = RM.GetString("subcat0"), .id = 0})
+        For Each cat As AvSubcategoy In cat_collection
+            subcat_combo.Items.Add(cat)
+        Next
         globplayer = GetCharacterSetBySetId(tarsetid)
         colorTicker = 0
         completed = False
@@ -113,8 +153,10 @@ Public Class Achievements_interface
                 Continue For
             Else
                 doneAvIds.Add(charAv.Id)
+                Application.DoEvents()
             End If
             If correctIds.Contains(charAv.Id) Then
+                charAv.SubCategory = GetAvCategoryIdByAvId(charAv.Id)
                 Dim avPanel As New Panel
                 avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
                 avPanel.Size = referencePanel.Size
@@ -188,6 +230,7 @@ Public Class Achievements_interface
         Next
         If operation_count = 1 Then
             completed = True
+            Application.DoEvents()
         Else
             While Not completed
 
@@ -281,6 +324,7 @@ Public Class Achievements_interface
                     charAv.Id = retnvalue
                     charAv.GainDate = toTimeStamp(Date.Today)
                     If correctIds.Contains(charAv.Id) Then
+                        charAv.SubCategory = GetAvCategoryIdByAvId(charAv.Id)
                         Dim avPanel As New Panel
                         avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
                         avPanel.Size = referencePanel.Size
@@ -369,4 +413,35 @@ Public Class Achievements_interface
         End If
         Userwait.Close()
     End Sub
+
+    Private Sub subcat_combo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles subcat_combo.SelectedIndexChanged
+        If preCatControlLst Is Nothing Then
+            preCatControlLst = New List(Of Control)
+        Else
+            AVLayoutPanel.Controls.Clear()
+            For Each avPanel In preCatControlLst
+                AVLayoutPanel.Controls.Add(avPanel)
+                avPanel.SetDoubleBuffered()
+                Application.DoEvents()
+            Next
+        End If
+        Dim catid As Integer = subcat_combo.SelectedItem.id.ToString
+        If Not catid = 0 Then
+            Dim removeCtrlLst As New List(Of Control)
+            For Each subctrl As Control In AVLayoutPanel.Controls
+                preCatControlLst.Add(subctrl)
+                Dim charAv As Achievement = subctrl.Tag
+                If Not charAv.SubCategory = catid Then
+                    Dim x As Control = subctrl
+                    removeCtrlLst.Add(x)
+                End If
+            Next
+            For Each ctrl As Control In removeCtrlLst
+                AVLayoutPanel.Controls.Remove(ctrl)
+            Next
+        End If
+
+    End Sub
+
+  
 End Class

@@ -49,6 +49,8 @@ Partial Class Achievements_interface
         Me.highlighter1 = New System.Windows.Forms.PictureBox()
         Me.highlighter2 = New System.Windows.Forms.PictureBox()
         Me.add_bt = New System.Windows.Forms.Button()
+        Me.browse_tb = New System.Windows.Forms.TextBox()
+        Me.subcat_combo = New System.Windows.Forms.ComboBox()
         Me.addpanel.SuspendLayout()
         CType(Me.add_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.referencePanel.SuspendLayout()
@@ -376,6 +378,22 @@ Partial Class Achievements_interface
         Me.add_bt.Text = "Add new"
         Me.add_bt.UseVisualStyleBackColor = False
         '
+        'browse_tb
+        '
+        Me.browse_tb.Location = New System.Drawing.Point(270, 46)
+        Me.browse_tb.Name = "browse_tb"
+        Me.browse_tb.Size = New System.Drawing.Size(125, 20)
+        Me.browse_tb.TabIndex = 226
+        '
+        'subcat_combo
+        '
+        Me.subcat_combo.FormattingEnabled = True
+        Me.subcat_combo.Location = New System.Drawing.Point(766, 45)
+        Me.subcat_combo.Name = "subcat_combo"
+        Me.subcat_combo.Size = New System.Drawing.Size(121, 21)
+        Me.subcat_combo.TabIndex = 227
+        Me.subcat_combo.Text = "Pick category"
+        '
         'Achievements_interface
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -383,6 +401,8 @@ Partial Class Achievements_interface
         Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1023, 516)
+        Me.Controls.Add(Me.subcat_combo)
+        Me.Controls.Add(Me.browse_tb)
         Me.Controls.Add(Me.add_bt)
         Me.Controls.Add(Me.header)
         Me.Controls.Add(Me.referencePanel)
@@ -415,6 +435,7 @@ Partial Class Achievements_interface
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents AVLayoutPanel As System.Windows.Forms.FlowLayoutPanel
@@ -443,4 +464,6 @@ Partial Class Achievements_interface
     Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
     Friend WithEvents add_pic As System.Windows.Forms.PictureBox
     Friend WithEvents add_bt As System.Windows.Forms.Button
+    Friend WithEvents browse_tb As System.Windows.Forms.TextBox
+    Friend WithEvents subcat_combo As System.Windows.Forms.ComboBox
 End Class

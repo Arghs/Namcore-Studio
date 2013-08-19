@@ -470,6 +470,50 @@ LookOnline: Else
         End If
 
     End Function
+    Public Function GetAvCategoryIdByAvId(ByVal avid As Integer) As Integer
+        LogAppend("Loading av category id of av id: " & avid.ToString, "SpellItem_Information_GetAvCategoryIdByAvId", False)
+        If tempAvCatTable Is Nothing Then
+            Try
+                tempAvCatTable = New DataTable()
+                Dim stext As String
+                If My.Settings.language = "de" Then
+                    stext = libnc.My.Resources.avcat_de
+                Else
+                    stext = libnc.My.Resources.avcat_de 'todo
+                End If
+                Dim a() As String
+                Dim strArray As String()
+                a = Split(stext, vbNewLine)
+                For i = 0 To UBound(a)
+                    strArray = a(i).Split(CChar(";"))
+                    If i = 0 Then
+                        For Each value As String In strArray
+                            tempAvCatTable.Columns.Add(value.Trim())
+                        Next
+                    Else
+                        tempAvCatTable.Rows.Add(strArray)
+                    End If
+                Next i
+            Catch ex As Exception
+                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetAvCategoryIdByAvId", False, True)
+                Return 0
+            End Try
+        End If
+        Dim catid As String = Execute("avid", avid.ToString(), tempAvTable, 3)
+        If catid = "-" Then
+            LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvCategoryIdByAvId", False, True)
+            Return 0
+        Else
+            Dim subcatname As String = Execute("catid", catid, tempAvCatTable, 2)
+            If subcatname = "-" Then
+                LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvCategoryIdByAvId", False, True)
+                Return 0
+            Else
+                Return TryInt(catid)
+            End If
+        End If
+
+    End Function
     Public Function GetMainAvCatIdByAvId(ByVal avId As Integer) As Integer
         LogAppend("Loading av main category of id: " & avId.ToString, "SpellItem_Information_GetMainAvCatIdByAvId", False)
         If tempAvTable Is Nothing Then

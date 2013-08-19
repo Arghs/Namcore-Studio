@@ -178,11 +178,12 @@
     <Compile Include="Framework\Armory\Parser\GlyphParser.vb" />
     <Compile Include="Framework\Armory\Parser\ItemParser.vb" />
     <Compile Include="Framework\Armory\Parser\ReputationParser.vb" />
-    <Compile Include="Framework\Constants\Account.vb" />
-    <Compile Include="Framework\Constants\Character.vb" />
-    <Compile Include="Framework\Constants\DBStructure.vb" />
-    <Compile Include="Framework\Constants\GlobalVariables.vb" />
-    <Compile Include="Framework\Constants\Profile.vb" />
+    <Compile Include="Framework\Module\Account.vb" />
+    <Compile Include="Framework\Module\Character.vb" />
+    <Compile Include="Framework\Module\DBStructure.vb" />
+    <Compile Include="Framework\Module\GlobalVariables.vb" />
+    <Compile Include="Framework\Module\Interface\AvSubcategoy.vb" />
+    <Compile Include="Framework\Module\Profile.vb" />
     <Compile Include="Framework\Core\Account_CharacterInformationProcessing.vb" />
     <Compile Include="Framework\Core\CharacterAchievementHandler.vb" />
     <Compile Include="Framework\Core\CharacterActionsHandler.vb" />
@@ -344,7 +345,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
