@@ -121,7 +121,7 @@ Public Class Armory_interface
             If Not templink.StartsWith("http://") Then templink = "http://" & templink
             'Add battle.net maintenance check!!
             Dim client As New WebClient
-            client = client.CheckProxy()
+            client.CheckProxy()
             Dim checkcode As String = Nothing
             Try
                 checkcode = client.DownloadString(templink)
@@ -165,9 +165,6 @@ Public Class Armory_interface
         trdrunnuing = True
         My.Settings.language = "de" 'todo for testing only
         Dim urllst As List(Of String) = (From lstitm As ListViewItem In char_lst.Items Select lstitm.SubItems(3).Text).ToList()
-        'Dim d As New Data2Thread() With {.charLST = urllst}
-        'procStatus.UpdateGui()
-        'procStatus.ArmoryWorker.RunWorkerAsync(d)
         m_handler.LoadArmoryCharacters(urllst)
         Me.Close()
     End Sub
