@@ -12,3 +12,17 @@ C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore S
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.dll
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.xml
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.pdb
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\bin\Debug\Namcore Studio Framework.dll
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\bin\Debug\Namcore Studio Framework.pdb
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\bin\Debug\Namcore Studio Framework.xml
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\bin\Debug\libnc.dll
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\bin\Debug\libncadvanced.dll
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\bin\Debug\mysql.data.dll
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework_VS12.vbprojResolveAssemblyReference.cache
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\Namcore_Studio_Framework.Resources.resources
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\Namcore_Studio_Framework.Process_status.resources
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\Namcore_Studio_Framework.UserMessages.resources
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework_VS12.vbproj.GenerateResource.Cache
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.dll
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.xml
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.pdb

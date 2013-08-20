@@ -32,6 +32,7 @@ Imports Namcore_Studio_Framework.GlobalCharVars
 Imports Namcore_Studio_Framework.Serializer
 Imports System.Threading
 Imports Namcore_Studio_Framework
+Imports Namcore_Studio_Framework.ResourceHandler
 Imports System.Text
 Imports Namcore_Studio_Framework.WebConnection
 Imports Namcore_Studio_Framework.WebClientProxyExtension
@@ -43,13 +44,13 @@ Public Class Armory_interface
     End Structure
     Private Sub addChar_bt_Click(sender As System.Object, e As System.EventArgs) Handles addChar_bt.Click
         Dim templink As String = "http://#replaceregion#.battle.net/wow/#replacelang#/character/#replacerealm#/#replacecharacter#/advanced"
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         If globalregion.SelectedItem Is Nothing Then
-            MsgBox(RM.GetString("regionnotset"), MsgBoxStyle.Critical, RM.GetString("attention"))
+            MsgBox(GetUserMessage("regionnotset"), MsgBoxStyle.Critical, GetUserMessage("attention"))
         ElseIf realmname.Text = "" Then
-            MsgBox(RM.GetString("realmnamenotset"), MsgBoxStyle.Critical, RM.GetString("attention"))
+            MsgBox(GetUserMessage("realmnamenotset"), MsgBoxStyle.Critical, GetUserMessage("attention"))
         ElseIf charname.Text = "" Then
-            MsgBox(RM.GetString("charnamenotset"), MsgBoxStyle.Critical, RM.GetString("attention"))
+            MsgBox(GetUserMessage("charnamenotset"), MsgBoxStyle.Critical, GetUserMessage("attention"))
         Else
             templink = templink.Replace("#replaceregion#", globalregion.SelectedItem.ToString)
             templink = templink.Replace("#replacerealm#", realmname.Text)
@@ -74,13 +75,13 @@ Public Class Armory_interface
                 checkcode = client.DownloadString(templink)
             Catch ex As Exception
                 If ex.ToString.Contains("404") Then
-                    MsgBox(RM.GetString("charnotfound"), MsgBoxStyle.Critical, RM.GetString("attention"))
+                    MsgBox(GetUserMessage("charnotfound"), MsgBoxStyle.Critical, GetUserMessage("attention"))
                     Exit Sub
                 End If
             End Try
 
             If checkcode.Contains("error=503") Then
-                MsgBox(RM.GetString("charnotfound"), MsgBoxStyle.Critical, RM.GetString("attention"))
+                MsgBox(GetUserMessage("charnotfound"), MsgBoxStyle.Critical, GetUserMessage("attention"))
                 Exit Sub
             End If
             Dim str(3) As String
@@ -115,9 +116,9 @@ Public Class Armory_interface
 
     Private Sub addURL_bt_Click(sender As System.Object, e As System.EventArgs) Handles addURL_bt.Click
         Dim templink As String = url_tb.Text
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         If Not templink.Contains(".battle.net/wow/") Then
-            MsgBox(RM.GetString("invalidurl"), MsgBoxStyle.Critical, RM.GetString("attention"))
+            MsgBox(GetUserMessage("invalidurl"), MsgBoxStyle.Critical, GetUserMessage("attention"))
         Else
             templink = templink.Replace("/simple", "/advanced")
             If Not templink.StartsWith("http://") Then templink = "http://" & templink
@@ -129,7 +130,7 @@ Public Class Armory_interface
                 checkcode = client.DownloadString(templink)
             Catch ex As Exception
                 If ex.ToString.Contains("404") Then
-                    MsgBox(RM.GetString("charnotfound"), MsgBoxStyle.Critical, RM.GetString("attention"))
+                    MsgBox(GetUserMessage("charnotfound"), MsgBoxStyle.Critical, GetUserMessage("attention"))
                     Exit Sub
                 End If
             End Try
@@ -137,7 +138,7 @@ Public Class Armory_interface
                 Exit Sub
             End If
             If checkcode.Contains("error=503") Then
-                MsgBox(RM.GetString("charnotfound"), MsgBoxStyle.Critical, RM.GetString("attention"))
+                MsgBox(GetUserMessage("charnotfound"), MsgBoxStyle.Critical, GetUserMessage("attention"))
                 Exit Sub
             End If
             Dim str(3) As String
@@ -237,21 +238,8 @@ Public Class Armory_interface
 
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        ' Visual Basic .NET
-        ' Gets a reference to the same assembly that 
-        ' contains the type that is creating the ResourceManager.
-        Dim myAssembly As System.Reflection.Assembly
-        myAssembly = Me.GetType.Assembly
+       
 
-        ' Gets a reference to a different assembly.
-        '  Dim myOtherAssembly As System.Reflection.Assembly
-        '    myOtherAssembly = System.Reflection.Assembly.Load("UserMessages")
-
-        ' Creates the ResourceManager.
-        Dim myManager As New System.Resources.ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-
-        Dim myString As System.String
-        myString = myManager.GetString("human")
         Dim dstr As String = ""
         Dim m_serializer As Serializer = New Serializer
         globChars = m_serializer.DeSerialize(dstr, New GlobalCharVars)

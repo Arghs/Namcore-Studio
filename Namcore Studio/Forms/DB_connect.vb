@@ -20,7 +20,7 @@
 '*      /Filename:      DB_connect
 '*      /Description:   Interface for opening a database connection
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+Imports Namcore_Studio_Framework.ResourceHandler
 Imports Namcore_Studio_Framework.ConnectionHandler
 Imports Namcore_Studio_Framework.GlobalVariables
 Imports MySql.Data.MySqlClient
@@ -103,10 +103,10 @@ Public Class DB_connect
     End Sub
 
     Private Sub DB_connect_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Select Case con_operator
-            Case 1 : connect_header_label.Text = RM.GetString("connecttosource")
-            Case 2 : connect_header_label.Text = RM.GetString("connecttotarget")
+            Case 1 : connect_header_label.Text = GetUserMessage("connecttosource")
+            Case 2 : connect_header_label.Text = GetUserMessage("connecttotarget")
         End Select
     End Sub
 End Class

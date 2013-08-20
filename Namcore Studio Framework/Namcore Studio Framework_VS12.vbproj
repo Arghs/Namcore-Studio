@@ -143,6 +143,7 @@
     <Compile Include="Process_status.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ResourceHandler.vb" />
     <Compile Include="Resources\UserMessages.Designer.vb" />
   </ItemGroup>
   <ItemGroup>

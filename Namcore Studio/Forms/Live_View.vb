@@ -30,6 +30,7 @@ Imports Namcore_Studio_Framework.Basics
 Imports Namcore_Studio_Framework.CommandHandler
 Imports Namcore_Studio_Framework.Conversions
 Imports Namcore_Studio_Framework.GlobalCharVars
+Imports Namcore_Studio_Framework.ResourceHandler
 Imports Namcore_Studio_Framework
 Imports System.Resources
 
@@ -364,8 +365,8 @@ Public Class Live_View
     End Sub
 
     Private Sub SelectedAccountsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedAccountsToolStripMenuItem.Click
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-        Dim result = MsgBox(RM.GetString("deleteacc") & " (" & accountview.SelectedItems(0).SubItems(1).Text & ")", vbYesNo, RM.GetString("areyousure"))
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(GetUserMessage("deleteacc") & " (" & accountview.SelectedItems(0).SubItems(1).Text & ")", vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = accountview.SelectedItems(0).SubItems(0).Text
             For I = 0 To accountview.SelectedItems.Count - 1
@@ -380,8 +381,8 @@ Public Class Live_View
     End Sub
 
     Private Sub CheckedAccountsToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles CheckedAccountsToolStripMenuItem1.Click
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-        Dim result = MsgBox(RM.GetString("deleteacc"), vbYesNo, RM.GetString("areyousure"))
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(GetUserMessage("deleteacc"), vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             For Each itm As ListViewItem In accountview.CheckedItems
                 accountview.Items.Remove(itm)
@@ -424,8 +425,8 @@ Public Class Live_View
     End Sub
 
     Private Sub SelectedCharacterToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedCharacterToolStripMenuItem.Click
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-        Dim result = MsgBox(RM.GetString("deletechar") & " (" & characterview.SelectedItems(0).SubItems(2).Text & ")", vbYesNo, RM.GetString("areyousure"))
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(GetUserMessage("deletechar") & " (" & characterview.SelectedItems(0).SubItems(2).Text & ")", vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim charId As String = characterview.SelectedItems(0).SubItems(0).Text
             For I = 0 To characterview.SelectedItems.Count - 1
@@ -439,8 +440,8 @@ Public Class Live_View
     End Sub
 
     Private Sub CheckedCharactersToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CheckedCharactersToolStripMenuItem.Click
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-        Dim result = MsgBox(RM.GetString("deletechar"), vbYesNo, RM.GetString("areyousure"))
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(GetUserMessage("deletechar"), vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             For Each itm As ListViewItem In characterview.CheckedItems
                 characterview.Items.Remove(itm)
@@ -568,8 +569,8 @@ Public Class Live_View
     End Sub
 
     Private Sub RemoveToolStripMenuItem2_Click(sender As System.Object, e As System.EventArgs) Handles RemoveToolStripMenuItem2.Click
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-        Dim result = MsgBox(RM.GetString("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, RM.GetString("areyousure"))
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(GetUserMessage("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = target_accounts_tree.SelectedNode.Name
             If Not target_accounts_tree.SelectedNode.BackColor = Color.Transparent Then
@@ -586,8 +587,8 @@ Public Class Live_View
     End Sub
 
     Private Sub ToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripMenuItem1.Click
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-        Dim result = MsgBox(RM.GetString("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, RM.GetString("areyousure"))
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim result = MsgBox(GetUserMessage("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = target_accounts_tree.SelectedNode.Name
             If Not target_accounts_tree.SelectedNode.BackColor = Color.Transparent Then

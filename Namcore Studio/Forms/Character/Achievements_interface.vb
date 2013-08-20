@@ -26,6 +26,7 @@ Imports Namcore_Studio_Framework.SpellItem_Information
 Imports Namcore_Studio_Framework.Conversions
 Imports Namcore_Studio_Framework.GlobalVariables
 Imports Namcore_Studio_Framework.EventLogging
+Imports Namcore_Studio_Framework.ResourceHandler
 Imports Namcore_Studio_Framework
 Imports System.Threading
 Imports System.Net
@@ -90,16 +91,16 @@ Public Class Achievements_interface
                 tmp_catids = {}
         End Select
         Dim cat_collection As New List(Of AvSubcategoy)
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-        Dim test As String = RM.GetString("subcat14808")
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+
         For i = 0 To tmp_catids.Length - 1
             Try
-                cat_collection.Add(New AvSubcategoy With {.text = RM.GetString("subcat" & tmp_catids(i).ToString), .id = tmp_catids(i)})
+                cat_collection.Add(New AvSubcategoy With {.text = GetUserMessage("subcat" & tmp_catids(i).ToString), .id = tmp_catids(i)})
             Catch ex As Exception
                 LogAppend("Exception while adding achievement subcategory item: " & ex.ToString, "Achievements_interface_catbt_click", False, True)
             End Try
         Next
-        subcat_combo.Items.Add(New AvSubcategoy With {.text = RM.GetString("subcat0"), .id = 0})
+        subcat_combo.Items.Add(New AvSubcategoy With {.text = GetUserMessage("subcat0"), .id = 0})
         For Each cat As AvSubcategoy In cat_collection
             subcat_combo.Items.Add(cat)
         Next
@@ -124,10 +125,10 @@ Public Class Achievements_interface
     Private Sub deleteAv_click(sender As Object, e As EventArgs)
         '// Delete achievement
         Dim charAv As Achievement = sender.tag
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-        Dim msg As String = RM.GetString("aus_deleteav")
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim msg As String = GetUserMessage("aus_deleteav")
         msg = msg.Replace("%avid%", charAv.Id.ToString)
-        Dim result = MsgBox(msg, vbYesNo, RM.GetString("areyousure"))
+        Dim result = MsgBox(msg, vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Userwait.Show()
             For Each subctrl In AVLayoutPanel.Controls
@@ -402,21 +403,21 @@ Public Class Achievements_interface
                         AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding), avPanel)
                         Application.DoEvents()
                     End If
-                    Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                    'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                     globplayer.Achievements.Add(charAv)
-                    MsgBox(RM.GetString("achievementadded"), , "Info")
+                    MsgBox(GetUserMessage("achievementadded"), , "Info")
                 Else
-                    Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                    MsgBox(RM.GetString("invalidavid"), MsgBoxStyle.Critical, "Error")
+                    'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                    MsgBox(GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
                 End If
             Catch ex As Exception
-                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                MsgBox(RM.GetString("invalidavid"), MsgBoxStyle.Critical, "Error")
+                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                MsgBox(GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
             End Try
 
         Else
-            Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-            MsgBox(RM.GetString("invalidavid"), MsgBoxStyle.Critical, "Error")
+            'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+            MsgBox(GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
         End If
         Userwait.Close()
     End Sub

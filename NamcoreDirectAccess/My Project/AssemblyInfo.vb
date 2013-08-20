@@ -1,4 +1,6 @@
-﻿Imports System
+﻿Imports System.Resources
+
+Imports System
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
@@ -15,7 +17,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCopyright("Copyright ©  2013 megasus")> 
 <Assembly: AssemblyTrademark("")> 
 
-<Assembly: ComVisible(False)>
+<Assembly: ComVisible(False)> 
 
 'Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
 <Assembly: Guid("385da9b5-cfc4-44dd-8701-855013c6321f")> 
@@ -33,3 +35,5 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyVersion("0.0.8.20")> 
 <Assembly: AssemblyFileVersion("0.0.8.20")> 
+
+<Assembly: NeutralResourcesLanguageAttribute("en-US")> 

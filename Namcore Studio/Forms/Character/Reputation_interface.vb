@@ -22,6 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports System.Drawing
+Imports Namcore_Studio_Framework.ResourceHandler
 Imports Namcore_Studio_Framework.Basics
 Imports Namcore_Studio_Framework.Conversions
 Imports Namcore_Studio_Framework
@@ -49,15 +50,15 @@ Public Class Reputation_interface
             'todo
             Dim cnt As Integer = 0
             Do
-                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                reference_standing_combo.Items.Add(RM.GetString("standing_" & cnt.ToString))
+                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                reference_standing_combo.Items.Add(GetUserMessage("standing_" & cnt.ToString))
                 cnt += 1
             Loop Until cnt = 8
         Else
             Dim cnt As Integer = 0
             Do
-                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                reference_standing_combo.Items.Add(RM.GetString("standing_" & cnt.ToString))
+                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                reference_standing_combo.Items.Add(GetUserMessage("standing_" & cnt.ToString))
                 cnt += 1
             Loop Until cnt = 8
         End If
@@ -151,8 +152,8 @@ Public Class Reputation_interface
                 Case 7 : progressPanel.BackColor = Color.LightGreen
             End Select
             standingCombo.Tag = pRepu
-            Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-            standingCombo.Text = RM.GetString("standing_" & pRepu.status.ToString)
+            'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+            standingCombo.Text = GetUserMessage("standing_" & pRepu.status.ToString)
             repPanel.Controls.Add(standingCombo)
             AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
         Next
@@ -415,24 +416,24 @@ Public Class Reputation_interface
                         Case 7 : progressPanel.BackColor = Color.LightGreen
                     End Select
                     standingCombo.Tag = pRepu
-                    Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                    standingCombo.Text = RM.GetString("standing_" & pRepu.status.ToString)
+                    'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                    standingCombo.Text = GetUserMessage("standing_" & pRepu.status.ToString)
                     repPanel.Controls.Add(standingCombo)
                     AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
                     globplayer.PlayerReputation.Add(pRepu)
-                    MsgBox(RM.GetString("factionadded"), , "Info")
+                    MsgBox(GetUserMessage("factionadded"), , "Info")
                 Else
-                    Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                    MsgBox(RM.GetString("invalidrepid"), MsgBoxStyle.Critical, "Error")
+                    'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                    MsgBox(GetUserMessage("invalidrepid"), MsgBoxStyle.Critical, "Error")
                 End If
             Catch ex As Exception
-                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                MsgBox(RM.GetString("invalidrepid"), MsgBoxStyle.Critical, "Error")
+                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                MsgBox(GetUserMessage("invalidrepid"), MsgBoxStyle.Critical, "Error")
             End Try
 
         Else
-            Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-            MsgBox(RM.GetString("invalidrepid"), MsgBoxStyle.Critical, "Error")
+            'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+            MsgBox(GetUserMessage("invalidrepid"), MsgBoxStyle.Critical, "Error")
         End If
         Userwait.Close()
     End Sub

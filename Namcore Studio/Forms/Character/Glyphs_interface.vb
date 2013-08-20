@@ -20,7 +20,7 @@
 '*      /Filename:      Glyphs_interface
 '*      /Description:   Provides an interface to display character's glyphs
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+Imports Namcore_Studio_Framework.ResourceHandler
 Imports Namcore_Studio_Framework.Conversions
 Imports Namcore_Studio_Framework.Basics
 Imports System.Drawing.Imaging
@@ -210,8 +210,8 @@ Public Class Glyphs_interface
         newPoint.X = 4000
         newPoint.Y = 4000
         If TypeOf tempSender Is Label Then
-            Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-            Dim result = MsgBox(RM.GetString("deleteitem"), vbYesNo, RM.GetString("areyousure"))
+            'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+            Dim result = MsgBox(GetUserMessage("deleteitem"), vbYesNo, GetUserMessage("areyousure"))
             If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
 
                 For Each ctrl As Control In controlLST
@@ -255,10 +255,10 @@ Public Class Glyphs_interface
         If Not TextBox1.Text = tempValue Then
             If TypeOf tempSender Is Label Then
                 Dim id As Integer = TryInt(TextBox1.Text)
-                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 If senderLabel.Name.ToLower.EndsWith("_name") Then
                     If Not GetSlotByItemId(tag.id) = GetSlotByItemId(id) Then
-                        MsgBox(RM.GetString("itemclassinvalid"), MsgBoxStyle.Critical, RM.GetString("Error"))
+                        MsgBox(GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical, GetUserMessage("Error"))
                     Else
                         Dim newGlyph As New Glyph
                         newGlyph.id = id
@@ -316,8 +316,8 @@ Public Class Glyphs_interface
             client.CheckProxy()
             Dim qCode As String = client.DownloadString("http://wowhead.com/item=" & TextBox2.Text)
             If Not qCode.Contains("Glyph") Then
-                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                MsgBox(RM.GetString("glyphnotfound"), MsgBoxStyle.Critical, RM.GetString("Error"))
+                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                MsgBox(GetUserMessage("glyphnotfound"), MsgBoxStyle.Critical, GetUserMessage("Error"))
                 Exit Sub
             Else
                 Dim gly As New Glyph

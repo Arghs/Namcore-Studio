@@ -6,7 +6,11 @@ NamcoreStudioFramework
 </name>
 </assembly>
 <members>
-<member name="P:Namcore_Studio_Framework.My.Resources.UserMessages.ResourceManager">
+<member name="M:Namcore_Studio_Framework.WebClientProxyExtension.CheckProxy(System.Net.WebClient@)">
+	<summary>
+ proxy information handler
+ </summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.UserMessages.ResourceManager">
 	<summary>
   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
 </summary>
@@ -504,25 +508,157 @@ NamcoreStudioFramework
   Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
 </summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.achievementadded">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Achievement successfully added! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.achievementalreadypresent">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die The player already has this achievement. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.areyousure">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Are you sure? ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.attention">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Attention ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.aus_deleteav">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the achievement %avid% from character? ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.bloodelf">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.charnamenotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not set any character name. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.charnotfound">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Character not found! ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.cleanbg">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.connecttosource">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Connect to source server ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.connecttotarget">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Connect to target server ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.deathknight">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Death Knight ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.deleteacc">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected accounts? ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.deletechar">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected characters? ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.deleteitem">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected item? ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.draenei">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Draenei ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.druid">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Druid ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.dwarf">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Dwarf ähnelt.
 </summary>
 </member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.empty">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.errorbox">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.factionadded">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Faction successfully added! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.factionalreadypresent">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die The player already has reputation at this faction! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.female">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.glyphnotfound">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die This is not a valid glyph! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.gnome">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Gnome ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.goblin">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Goblin ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.highlight">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.human">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Human ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.hunter">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Hunter ähnelt.
 </summary>
 </member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.INV_Misc_QuestionMark">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.invalidavid">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Invalid achievement id! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.invalidrepid">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Invalid faction id! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.invalidurl">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Entered URL is not valid! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.itemclassinvalid">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die The class of the entered item does not match the source item class! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.mage">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Mage ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.male">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Male ähnelt.
+</summary>
 </member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.minclose">
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.Monk">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Monk ähnelt.
 </summary>
 </member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.namcore_header">
 	<summary>
@@ -532,34 +668,354 @@ NamcoreStudioFramework
 	<summary>
   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
 </summary>
-</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.UserMessages">
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.nightelf">
 	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;root&gt;
-  &lt;!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers &amp; schema ...
-    &lt;resheader name="resmimetype"&gt;text/microsoft-resx&lt;/resheader&gt;
-    &lt;resheader name="version"&gt;2. [Rest der Zeichenfolge wurde abgeschnitten]"; ähnelt.
+  Sucht eine lokalisierte Zeichenfolge, die Night Elf ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.noaccentered">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not enter any accounts! ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.orc">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Orc ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.paladin">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Paladin ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.pandaren">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Pandaren ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.priest">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Priest ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.realmnamenotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not set any realm name. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.regionnotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not select any Battle.net region. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.rogue">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Rogue ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.shaman">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Shaman ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.standing_0">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Stranger ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.standing_1">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Acquaintance ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.standing_2">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Unfriendly ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.standing_3">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Neutral ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.standing_4">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Friendly ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.standing_5">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Honored ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.standing_6">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Revered ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.standing_7">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Exalted ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat0">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die All ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14777">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Eastern Kingdoms ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14778">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Kalimdor ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14779">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Outland ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14780">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Northrend ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14801">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Alterac Vlley ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14802">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Arathi Basin ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14803">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Eye of the Storm ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14804">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Warsong Gulch ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14805">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die The Burning Crusade ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14806">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Lich King Dungeon ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14808">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Classic ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14861">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Eastern Kingdoms ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14862">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Outland ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14863">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Northrend ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14864">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Classic ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14865">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die The Burning Crusade ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14866">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Wrath of the Lich King ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14881">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Strand of the Ancients ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14901">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Wintergasp ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14922">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Lich King Raid ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14941">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Argent Tournament ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat14981">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Pilgrim's Bounty ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15003">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Isle of Conquest ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15067">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Cataclysm Dungeon ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15068">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Cataclysm Raid ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15069">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Cataclysm ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15070">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Cataclysm ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15071">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Archaeology ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15072">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Cataclysm ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15073">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Battle for Gilneas ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15074">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Twin Peaks ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15075">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Tol Barad ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15081">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Kalimdor ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15092">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Rated Battleground ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15101">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Darkmoon Faire ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15106">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Pandaria Dungeon ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15107">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Pandaria Raid ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15110">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Pandaria ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15113">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Pandaria ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15114">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Pandaria ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15115">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Dungeon Challenge ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15118">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Collect ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15119">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Battle ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15120">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Level ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15162">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Silvershard Mines ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15163">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Temple of Kotmogu ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15202">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Brawler's Guild ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat15218">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Deepwind Gorge ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat156">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Winter Veil ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat158">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Hallow's End ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat159">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Noblegarden ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat160">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Lunar Festival ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat161">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Midsummer ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat162">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Brewfest ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat163">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Children's Week ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat165">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Arena ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat170">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Cooking ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat171">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Fishing ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat172">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die First Aid ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.subcat187">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Love is in the Air ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.tauren">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Tauren ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.troll">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Troll ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.undead">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Undead ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.urlnotset">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die You did not enter a correct url. ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.warlock">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Warlock ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.warrior">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Warrior ähnelt.
+</summary>
+</member><member name="P:Namcore_Studio_Framework.My.Resources.Resources.worgen">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die Worgen ähnelt.
 </summary>
 </member><member name="T:Namcore_Studio_Framework.My.Resources.Resources">
 	<summary>
   Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
 </summary>
-</member><member name="M:Namcore_Studio_Framework.WebClientProxyExtension.CheckProxy(System.Net.WebClient@)">
-	<summary>
- proxy information handler
- </summary>
 </member>
 </members>
 </doc>

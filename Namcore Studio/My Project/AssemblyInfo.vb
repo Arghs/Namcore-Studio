@@ -1,4 +1,6 @@
-﻿Imports System
+﻿Imports System.Resources
+
+Imports System
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
@@ -31,5 +33,7 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.0.8.45500")> 
-<Assembly: AssemblyFileVersion("0.0.8.45500")> 
+<Assembly: AssemblyVersion("0.0.8.45506")> 
+<Assembly: AssemblyFileVersion("0.0.8.45506")> 
+
+<Assembly: NeutralResourcesLanguageAttribute("en-US")> 

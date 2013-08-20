@@ -22,6 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing.Imaging
 Imports Namcore_Studio_Framework
+Imports Namcore_Studio_Framework.ResourceHandler
 Imports Namcore_Studio_Framework.GlobalVariables
 Imports Namcore_Studio_Framework.Basics
 Imports Namcore_Studio_Framework.Conversions
@@ -226,7 +227,7 @@ Public Class CharacterOverview
         If Not TextBox1.Text = tempValue Then
             If TypeOf tempSender Is Label Then
                 Dim id As Integer = TryInt(TextBox1.Text)
-                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 If senderLabel.Name.ToLower.EndsWith("charname_lbl") Then
                     If TextBox1.Text = "" Then
 
@@ -294,7 +295,7 @@ Public Class CharacterOverview
                     End If
                 Else
                     If Not GetSlotByItemId(tempSender.tag.id) = GetSlotByItemId(id) Then
-                        MsgBox(RM.GetString("itemclassinvalid"), MsgBoxStyle.Critical, RM.GetString("Error"))
+                        MsgBox(GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical, GetUserMessage("Error"))
                     Else
                         Dim newitm As Item = tempSender.tag
                         newitm.ReplaceItem(id)
@@ -371,8 +372,8 @@ Public Class CharacterOverview
 
         If TypeOf tempSender Is Label Then
             If Not tempSender.text.tolower.endswith("_enchant") Then
-                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                Dim result = MsgBox(RM.GetString("deleteitem"), vbYesNo, RM.GetString("areyousure"))
+                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                Dim result = MsgBox(GetUserMessage("deleteitem"), vbYesNo, GetUserMessage("areyousure"))
                 If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
 
                     For Each ctrl As Control In controlLST
@@ -663,8 +664,8 @@ Public Class CharacterOverview
             Dim meSlot As String = tempSender.name
             meSlot = meSlot.Replace("slot_", "") : meSlot = meSlot.Replace("_name", "")
             If Not GetSlotByItemId(TryInt(TextBox2.Text)) = TryInt(meSlot) Then
-                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                MsgBox(RM.GetString("itemclassinvalid"), MsgBoxStyle.Critical, RM.GetString("Error"))
+                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                MsgBox(GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical, GetUserMessage("Error"))
                 Exit Sub
             Else
                 Dim itm As New Item

@@ -21,7 +21,7 @@
 '*      /Description:   Character transfer interface
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Resources
-
+Imports Namcore_Studio_Framework.ResourceHandler
 Public Class Prep_chartrans
 
     Private Sub Prep_chartrans_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
@@ -30,15 +30,15 @@ Public Class Prep_chartrans
 
     Private Sub ApplyTrans_Click(sender As System.Object, e As System.EventArgs) Handles ApplyTrans.Click
         Dim tempAccList As New ArrayList
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         If specific_radio.Checked = True Then
-            If accnames_txtbox.Lines.Length = 0 Then MsgBox(RM.GetString("noaccentered"), MsgBoxStyle.Critical, RM.GetString("errorbox")) : Exit Sub
+            If accnames_txtbox.Lines.Length = 0 Then MsgBox(GetUserMessage("noaccentered"), MsgBoxStyle.Critical, GetUserMessage("errorbox")) : Exit Sub
             Dim sLines() As String = accnames_txtbox.Lines
             Dim removecount As Integer
             For i As Integer = 0 To sLines.Length - 1
                 If sLines(i) = "" Then
                     removecount += 1
-                    If removecount = sLines.Length Then MsgBox(RM.GetString("noaccentered"), MsgBoxStyle.Critical, RM.GetString("errorbox")) : Exit Sub
+                    If removecount = sLines.Length Then MsgBox(GetUserMessage("noaccentered"), MsgBoxStyle.Critical, GetUserMessage("errorbox")) : Exit Sub
                 Else
                     Dim tmpAccount(2) As String
                     tmpAccount(1) = sLines(i)
