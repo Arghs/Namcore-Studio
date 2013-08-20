@@ -36,11 +36,9 @@ C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore S
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Filter_accounts.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Filter_characters.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Prep_chartrans.resources
-C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Process_status.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Userwait.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Live_View.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Resources.resources
-C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.UserMessages.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbproj.GenerateResource.Cache
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.CharacterOverview.resources
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.CharacterOverview.resources
@@ -81,3 +79,7 @@ F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_St
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Main.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbprojResolveAssemblyReference.cache
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Settings_interface.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Settings_interface.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio Framework.dll
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio Framework.pdb
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio Framework.xml

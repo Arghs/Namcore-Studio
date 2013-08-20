@@ -21,9 +21,9 @@
 '*      /Description:   Provides an interface to display character's questlog
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio.Basics
-Imports Namcore_Studio.Conversions
-Imports Namcore_Studio.SpellItem_Information
+Imports Namcore_Studio_Framework.Basics
+Imports Namcore_Studio_Framework.Conversions
+Imports Namcore_Studio_Framework
 Imports System.Threading
 
 

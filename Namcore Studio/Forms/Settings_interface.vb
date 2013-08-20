@@ -21,6 +21,7 @@
 '*      /Description:   Proxy settings
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Net
+Imports Namcore_Studio_Framework
 
 Public Class Settings_interface
 
@@ -55,20 +56,20 @@ Public Class Settings_interface
 
 
     Private Sub Settings_interface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If My.Settings.proxy_enabled = False Then
+        If Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = False Then
             noproxy_radio.Checked = True
-        ElseIf My.Settings.proxy_detect = True Then
-                detectproxy_radio.Checked = True
+        ElseIf Namcore_Studio_Framework.My.MySettings.Default.proxy_detect = True Then
+            detectproxy_radio.Checked = True
         Else
             manualproxy_radio.Checked = True
-            url_tb.Text = My.Settings.proxy_host
-            port_ud.Value = My.Settings.proxy_port
-            If My.Settings.proxy_defaultCredentials = True Then
+            url_tb.Text = Namcore_Studio_Framework.My.MySettings.Default.proxy_host
+            port_ud.Value = Namcore_Studio_Framework.My.MySettings.Default.proxy_port
+            If Namcore_Studio_Framework.My.MySettings.Default.proxy_defaultCredentials = True Then
                 defcred_cb.Checked = True
             Else
                 defcred_cb.Checked = False
-                username_tb.Text = My.Settings.proxy_uname
-                password_tb.Text = My.Settings.proxy_pass
+                username_tb.Text = Namcore_Studio_Framework.My.MySettings.Default.proxy_uname
+                password_tb.Text = Namcore_Studio_Framework.My.MySettings.Default.proxy_pass
             End If
         End If
     End Sub
@@ -90,42 +91,42 @@ Public Class Settings_interface
     Private Sub cat_id_92_bt_Click(sender As Object, e As EventArgs) Handles apply_bt.Click
         Try
             If noproxy_radio.Checked = True Then
-                My.Settings.proxy_enabled = False
+                Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = False
             ElseIf detectproxy_radio.Checked = True Then
-                My.Settings.proxy_defaultCredentials = True
-                My.Settings.proxy_enabled = True
-                My.Settings.proxy_detect = True
+                Namcore_Studio_Framework.My.MySettings.Default.proxy_defaultCredentials = True
+                Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = True
+                Namcore_Studio_Framework.My.MySettings.Default.proxy_detect = True
                 Dim webnet As New WebConnection
                 Dim servername As String = webnet.GetProxyServerName()
                 Dim serverport As String = webnet.GetProxyServerPort()
                 If serverport Is Nothing Then
-                    My.Settings.proxy_enabled = False
+                    Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = False
                 Else
                     If servername Is Nothing Then
-                        My.Settings.proxy_enabled = False
+                        Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = False
                     Else
-                        My.Settings.proxy_host = servername
-                        My.Settings.proxy_port = TryInt(serverport)
-                        My.Settings.fullproxy = New WebProxy(servername & ":" & serverport)
+                        Namcore_Studio_Framework.My.MySettings.Default.proxy_host = servername
+                        Namcore_Studio_Framework.My.MySettings.Default.proxy_port = TryInt(serverport)
+                        Namcore_Studio_Framework.My.MySettings.Default.fullproxy = New WebProxy(servername & ":" & serverport)
                     End If
                 End If
             ElseIf manualproxy_radio.Checked = True Then
                 If url_tb.Text = "" Then
                     Exit Sub
                 End If
-                My.Settings.proxy_enabled = True
-                My.Settings.proxy_host = url_tb.Text
-                My.Settings.proxy_port = port_ud.Value
-                My.Settings.fullproxy = New WebProxy(url_tb.Text & ":" & port_ud.Value.ToString())
+                Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = True
+                Namcore_Studio_Framework.My.MySettings.Default.proxy_host = url_tb.Text
+                Namcore_Studio_Framework.My.MySettings.Default.proxy_port = port_ud.Value
+                Namcore_Studio_Framework.My.MySettings.Default.fullproxy = New WebProxy(url_tb.Text & ":" & port_ud.Value.ToString())
                 If defcred_cb.Checked = True Then
-                    My.Settings.proxy_defaultCredentials = True
+                    Namcore_Studio_Framework.My.MySettings.Default.proxy_defaultCredentials = True
                 Else
-                    My.Settings.proxy_defaultCredentials = False
-                    My.Settings.proxy_uname = username_tb.Text
-                    My.Settings.proxy_pass = password_tb.Text
+                    Namcore_Studio_Framework.My.MySettings.Default.proxy_defaultCredentials = False
+                    Namcore_Studio_Framework.My.MySettings.Default.proxy_uname = username_tb.Text
+                    Namcore_Studio_Framework.My.MySettings.Default.proxy_pass = password_tb.Text
                 End If
             End If
-            My.Settings.Save()
+            Namcore_Studio_Framework.My.MySettings.Default.Save()
         Catch ex As Exception
 
         End Try

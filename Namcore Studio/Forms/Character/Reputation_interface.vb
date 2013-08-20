@@ -22,8 +22,9 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports System.Drawing
-Imports Namcore_Studio.Basics
-Imports Namcore_Studio.Conversions
+Imports Namcore_Studio_Framework.Basics
+Imports Namcore_Studio_Framework.Conversions
+Imports Namcore_Studio_Framework
 Imports System.Resources
 Imports System.Net
 
@@ -44,18 +45,18 @@ Public Class Reputation_interface
         globplayer = Player
         Dim colorTicker As Integer = 0
         RepLayoutPanel.Controls.Add(addpanel)
-        If My.Settings.language = "de" Then
+        If Namcore_Studio_Framework.My.MySettings.Default.language = "de" Then
             'todo
             Dim cnt As Integer = 0
             Do
-                Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 reference_standing_combo.Items.Add(RM.GetString("standing_" & cnt.ToString))
                 cnt += 1
             Loop Until cnt = 8
         Else
             Dim cnt As Integer = 0
             Do
-                Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 reference_standing_combo.Items.Add(RM.GetString("standing_" & cnt.ToString))
                 cnt += 1
             Loop Until cnt = 8
@@ -150,7 +151,7 @@ Public Class Reputation_interface
                 Case 7 : progressPanel.BackColor = Color.LightGreen
             End Select
             standingCombo.Tag = pRepu
-            Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+            Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
             standingCombo.Text = RM.GetString("standing_" & pRepu.status.ToString)
             repPanel.Controls.Add(standingCombo)
             AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
@@ -302,7 +303,7 @@ Public Class Reputation_interface
 
     End Sub
 
-   
+
 
 
     Private Sub reference_txtbox_TextChanged(sender As Object, e As EventArgs) Handles reference_txtbox.TextChanged
@@ -320,7 +321,7 @@ Public Class Reputation_interface
                 If Not client.DownloadString("http://wowhead.com/faction=" & retnvalue.ToString()).Contains("<div id=""inputbox-error"">This faction doesn't exist.</div>") Then
                     For Each opRepu As Reputation In globplayer.PlayerReputation
                         If opRepu.faction = retnvalue Then
-                            Dim RM2 As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                            Dim RM2 As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                             MsgBox(RM2.GetString("factionalreadypresent"), MsgBoxStyle.Critical, "Error")
                             Userwait.Close()
                             Exit Sub
@@ -414,23 +415,23 @@ Public Class Reputation_interface
                         Case 7 : progressPanel.BackColor = Color.LightGreen
                     End Select
                     standingCombo.Tag = pRepu
-                    Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                    Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                     standingCombo.Text = RM.GetString("standing_" & pRepu.status.ToString)
                     repPanel.Controls.Add(standingCombo)
                     AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
                     globplayer.PlayerReputation.Add(pRepu)
                     MsgBox(RM.GetString("factionadded"), , "Info")
                 Else
-                    Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                    Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                     MsgBox(RM.GetString("invalidrepid"), MsgBoxStyle.Critical, "Error")
                 End If
             Catch ex As Exception
-                Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 MsgBox(RM.GetString("invalidrepid"), MsgBoxStyle.Critical, "Error")
             End Try
 
         Else
-            Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+            Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
             MsgBox(RM.GetString("invalidrepid"), MsgBoxStyle.Critical, "Error")
         End If
         Userwait.Close()

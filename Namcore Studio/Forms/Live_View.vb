@@ -23,14 +23,14 @@
 '*                      -Editing/Deleting/Transferring accounts and characters
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio.ConnectionHandler
-Imports Namcore_Studio.GlobalVariables
-Imports Namcore_Studio.Account_CharacterInformationProcessing
-Imports Namcore_Studio.Basics
-Imports Namcore_Studio.CommandHandler
-Imports Namcore_Studio.Conversions
-Imports Namcore_Studio.GlobalCharVars
-Imports Namcore_Studio.Process_status
+Imports Namcore_Studio_Framework.ConnectionHandler
+Imports Namcore_Studio_Framework.GlobalVariables
+Imports Namcore_Studio_Framework.Account_CharacterInformationProcessing
+Imports Namcore_Studio_Framework.Basics
+Imports Namcore_Studio_Framework.CommandHandler
+Imports Namcore_Studio_Framework.Conversions
+Imports Namcore_Studio_Framework.GlobalCharVars
+Imports Namcore_Studio_Framework
 Imports System.Resources
 
 Public Class Live_View
@@ -92,8 +92,13 @@ Public Class Live_View
         acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
         chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
     End Sub
-  
+
     Public Sub loadInformationSets_Armory()
+        Dim controlLST As List(Of Control)
+        controlLST = FindAllChildren()
+        For Each item_control As Control In controlLST
+            item_control.SetDoubleBuffered()
+        Next
         connect_bt.Visible = False
         filter_acc.Visible = False
         filter_char.Visible = False
@@ -359,7 +364,7 @@ Public Class Live_View
     End Sub
 
     Private Sub SelectedAccountsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedAccountsToolStripMenuItem.Click
-        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(RM.GetString("deleteacc") & " (" & accountview.SelectedItems(0).SubItems(1).Text & ")", vbYesNo, RM.GetString("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = accountview.SelectedItems(0).SubItems(0).Text
@@ -375,7 +380,7 @@ Public Class Live_View
     End Sub
 
     Private Sub CheckedAccountsToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles CheckedAccountsToolStripMenuItem1.Click
-        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(RM.GetString("deleteacc"), vbYesNo, RM.GetString("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             For Each itm As ListViewItem In accountview.CheckedItems
@@ -419,7 +424,7 @@ Public Class Live_View
     End Sub
 
     Private Sub SelectedCharacterToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedCharacterToolStripMenuItem.Click
-        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(RM.GetString("deletechar") & " (" & characterview.SelectedItems(0).SubItems(2).Text & ")", vbYesNo, RM.GetString("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim charId As String = characterview.SelectedItems(0).SubItems(0).Text
@@ -434,7 +439,7 @@ Public Class Live_View
     End Sub
 
     Private Sub CheckedCharactersToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CheckedCharactersToolStripMenuItem.Click
-        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(RM.GetString("deletechar"), vbYesNo, RM.GetString("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             For Each itm As ListViewItem In characterview.CheckedItems
@@ -563,7 +568,7 @@ Public Class Live_View
     End Sub
 
     Private Sub RemoveToolStripMenuItem2_Click(sender As System.Object, e As System.EventArgs) Handles RemoveToolStripMenuItem2.Click
-        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(RM.GetString("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, RM.GetString("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = target_accounts_tree.SelectedNode.Name
@@ -581,7 +586,7 @@ Public Class Live_View
     End Sub
 
     Private Sub ToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripMenuItem1.Click
-        Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(RM.GetString("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, RM.GetString("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = target_accounts_tree.SelectedNode.Name
@@ -740,7 +745,7 @@ Public Class Live_View
  
 
     Private Sub Transfer_bt_Click(sender As System.Object, e As System.EventArgs) Handles Transfer_bt.Click
-        Process_status.Close()
+
         Try
             For Each CurrentForm As Form In Application.OpenForms
                 If CurrentForm.Name = "Process_status" Then
@@ -754,13 +759,11 @@ Public Class Live_View
 
         procStatus = New Process_status
         procStatus.Show()
-        procStatus.TransferWorker = New System.ComponentModel.BackgroundWorker
-        procStatus.TransferWorker.WorkerReportsProgress = True
-        procStatus.TransferWorker.WorkerSupportsCancellation = True
+     
         If armoryMode Then
             Dim d As New Data2Thread() With {.lite = True}
-            procStatus.UpdateGuiTrans()
-            procStatus.TransferWorker.RunWorkerAsync(d)
+
+
         Else
 
         End If

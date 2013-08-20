@@ -21,10 +21,12 @@
 '*      /Description:   Displays character information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing.Imaging
-Imports Namcore_Studio.GlobalVariables
-Imports Namcore_Studio.Basics
-Imports Namcore_Studio.Conversions
-Imports Namcore_Studio.SpellItem_Information
+Imports Namcore_Studio_Framework
+Imports Namcore_Studio_Framework.GlobalVariables
+Imports Namcore_Studio_Framework.Basics
+Imports Namcore_Studio_Framework.Conversions
+Imports Namcore_Studio_Framework.SpellItem_Information
+Imports Namcore_Studio_Framework.WebClientProxyExtension
 Imports System.Threading
 Imports System.Resources
 Imports System.Net
@@ -224,7 +226,7 @@ Public Class CharacterOverview
         If Not TextBox1.Text = tempValue Then
             If TypeOf tempSender Is Label Then
                 Dim id As Integer = TryInt(TextBox1.Text)
-                Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 If senderLabel.Name.ToLower.EndsWith("charname_lbl") Then
                     If TextBox1.Text = "" Then
 
@@ -369,7 +371,7 @@ Public Class CharacterOverview
 
         If TypeOf tempSender Is Label Then
             If Not tempSender.text.tolower.endswith("_enchant") Then
-                Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 Dim result = MsgBox(RM.GetString("deleteitem"), vbYesNo, RM.GetString("areyousure"))
                 If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
 
@@ -575,9 +577,9 @@ Public Class CharacterOverview
         classpanel.Location = New System.Drawing.Point(4000, 4000)
         addpanel.Location = New System.Drawing.Point(4000, 4000)
 
-     
-            For Each ctrl As Control In controlLST
-                If TypeOf ctrl Is Label Then
+
+        For Each ctrl As Control In controlLST
+            If TypeOf ctrl Is Label Then
                 If ctrl.Name.StartsWith(sender.name.replace("_pic", "")) And ctrl.Name.EndsWith("_name") Then
                     If ctrl.Text = "" Then
                         tempSender = ctrl
@@ -661,7 +663,7 @@ Public Class CharacterOverview
             Dim meSlot As String = tempSender.name
             meSlot = meSlot.Replace("slot_", "") : meSlot = meSlot.Replace("_name", "")
             If Not GetSlotByItemId(TryInt(TextBox2.Text)) = TryInt(meSlot) Then
-                Dim RM As New ResourceManager("Namcore_Studio.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 MsgBox(RM.GetString("itemclassinvalid"), MsgBoxStyle.Critical, RM.GetString("Error"))
                 Exit Sub
             Else

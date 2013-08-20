@@ -21,8 +21,8 @@
 '*      /Description:   Main menu
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio.GlobalVariables
-Imports Namcore_Studio.EventLogging
+Imports Namcore_Studio_Framework.GlobalVariables
+Imports Namcore_Studio_Framework
 Imports System.Net
 
 Public Class Main
@@ -45,26 +45,23 @@ Public Class Main
         Me.Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2013"
         version_lbl.Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2013"
         lastregion = "main"
-        Process_status.Close()
         procStatus = New Process_status
         procStatus.Show()
-        procStatus.ArmoryWorker = New System.ComponentModel.BackgroundWorker
-        procStatus.ArmoryWorker.WorkerReportsProgress = True
-        procStatus.ArmoryWorker.WorkerSupportsCancellation = True
-        If My.Settings.proxy_enabled = True Then
-            If My.Settings.proxy_detect = True Then
+      
+        If Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = True Then
+            If Namcore_Studio_Framework.My.MySettings.Default.proxy_detect = True Then
                 Dim webnet As New WebConnection
                 Dim servername As String = webnet.GetProxyServerName()
                 Dim serverport As String = webnet.GetProxyServerPort()
                 If serverport Is Nothing Then
-                    My.Settings.proxy_enabled = False
+                    Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = False
                 Else
                     If servername Is Nothing Then
-                        My.Settings.proxy_enabled = False
+                        Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = False
                     Else
-                        My.Settings.proxy_host = servername
-                        My.Settings.proxy_port = TryInt(serverport)
-                        My.Settings.fullproxy = New WebProxy(servername & ":" & serverport)
+                        Namcore_Studio_Framework.My.MySettings.Default.proxy_host = servername
+                        Namcore_Studio_Framework.My.MySettings.Default.proxy_port = TryInt(serverport)
+                        Namcore_Studio_Framework.My.MySettings.Default.fullproxy = New WebProxy(servername & ":" & serverport)
                     End If
                 End If
             End If
