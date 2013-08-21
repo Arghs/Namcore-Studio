@@ -22,10 +22,7 @@
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.Conversions
-Imports Namcore_Studio_Framework.SpellItem_Information
-Imports Namcore_Studio_Framework.Basics
+
 Imports System.Net
 
 Public Class ProfessionParser
@@ -35,45 +32,47 @@ Public Class ProfessionParser
         '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setId)
         player.Professions = New List(Of Profession)
+        Dim pProf As New Profession
         Try
             LogAppend("Loading character profession information", "ProfessionParser_loadProfessions", True)
             '// Using API to load achievement info
             Dim pfContext As String = client.DownloadString(apiLink & "?fields=professions")
             '// Splitting to create completed-achievements and timestamp string
-            Dim pfStr As String = splitString(pfContext, """professions"": {", "},") & ","
-            Dim primaryPf As String = splitString(pfStr, """primary"": [", "],")
-            Dim secondaryPf As String = splitString(pfStr, """secondary"": [", "],")
+            Dim pfStr As String = splitString(pfContext, """professions"":{", "}}") & ","
+            Dim primaryPf As String = splitString(pfStr, """primary"":[", "}],")
+            Dim secondaryPf As String = splitString(pfStr, """secondary"":[", "}],")
             Dim usePfString As String = primaryPf
-            Do Until usePfString = secondaryPf
-                Dim excounter As Integer = UBound(Split(usePfString, "{"))
-                Dim partsPf As String = usePfString.Split("{"c)
-                usePfString = secondaryPf
-            Loop
-            Dim timeStr As String = splitString(pfContext, """achievementsCompletedTimestamp"":[", "],""")
-            If avStr.Length > 5 Then '// Should check if av count is > 0 // TODO Confirm
+            Do
+                pProf = New Profession()
+                Dim excounter As Integer = UBound(Split(usePfString, "}")) + 1
+                Dim partsPf() As String = usePfString.Split("}"c)
                 Dim loopcounter As Integer = 0
-                Dim excounter As Integer = UBound(Split(avStr, ","))
-                Dim partsAV() As String = avStr.Split(","c)
-                Dim partsTIME() As String = timeStr.Split(","c)
                 Do
-                    Dim avId As String = partsAV(loopcounter)
-                    Dim timeStamp = partsTIME(loopcounter)
-                    If timeStamp.Contains("000") Then
-                        Try
-                            timeStamp = timeStamp.Remove(timeStamp.Length - 3, 3)
-                        Catch : End Try
+                    If usePfString = primaryPf Then
+                        pProf.primary = True
+                    Else
+                        pProf.primary = False
                     End If
+                    pProf.iconname = splitString(partsPf(loopcounter), """icon"":""", """,")
+                    pProf.id = TryInt(splitString(partsPf(loopcounter), """id"":", ","))
+                    pProf.max = TryInt(splitString(partsPf(loopcounter), """max"":", ","))
+                    pProf.name = splitString(partsPf(loopcounter), """name"":""", """,")
+                    pProf.rank = TryInt(splitString(partsPf(loopcounter), """rank"":", ","))
+                    Dim recipes As String = splitString(partsPf(loopcounter), """recipes"":[", "]")
+                    If recipes.Length > 3 Then
+                        pProf.recipes = recipes.Split(",")
+                    End If
+                    player.Professions.Add(pProf)
                     loopcounter += 1
-                    LogAppend("Adding achievement " & avId & " with timestamp " & timeStamp, "ProfessionParser_loadProfessions", False)
-                    Dim av As New Achievement
-                    av.Id = TryInt(avId)
-                    av.GainDate = TryInt(timeStamp)
-                    av.OwnerSet = setId
-                    player.Achievements.Add(av)
                 Loop Until loopcounter = excounter
-                '// Saving changes to character
-                SetCharacterSet(setId, player)
-            End If
+                If usePfString = secondaryPf Then
+                    Exit Do
+                Else
+                    usePfString = secondaryPf
+                End If
+            Loop
+            '// Saving changes to character
+            SetCharacterSet(setId, player)
         Catch ex As Exception
             LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "ProfessionParser_loadProfessions", False)
         End Try

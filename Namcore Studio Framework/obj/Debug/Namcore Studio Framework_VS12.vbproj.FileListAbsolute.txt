@@ -27,3 +27,17 @@ C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Stud
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.xml
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.pdb
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio Framework\bin\Debug\Newtonsoft.Json.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\Namcore Studio Framework.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\Namcore Studio Framework.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\Namcore Studio Framework.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\libnc.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\libncadvanced.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\mysql.data.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework_VS12.vbprojResolveAssemblyReference.cache
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore_Studio_Framework.Resources.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore_Studio_Framework.Process_status.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore_Studio_Framework.UserMessages.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework_VS12.vbproj.GenerateResource.Cache
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\Namcore Studio Framework.pdb

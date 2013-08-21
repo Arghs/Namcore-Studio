@@ -171,7 +171,7 @@ Public Class Profession
     Public iconname As String
     Public rank As Integer
     Public primary As Boolean
-    Public recipes() As Integer
+    Public recipes() As String
 
     Public Sub New()
 

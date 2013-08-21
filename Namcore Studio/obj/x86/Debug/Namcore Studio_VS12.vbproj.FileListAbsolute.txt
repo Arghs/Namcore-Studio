@@ -57,11 +57,9 @@ F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_St
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Filter_characters.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Glyphs_interface.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Prep_chartrans.resources
-F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Process_status.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Userwait.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Live_View.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Resources.resources
-F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.UserMessages.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbproj.GenerateResource.Cache
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Achievements_interface.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Achievements_interface.resources
@@ -92,3 +90,6 @@ C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Stud
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Main.resources
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Settings_interface.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Newtonsoft.Json.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio Framework.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio Framework.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio Framework.xml

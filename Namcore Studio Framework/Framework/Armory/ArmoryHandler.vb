@@ -94,6 +94,8 @@ Public Class ArmoryHandler
             m_glyphParser.loadGlyphs(setId, APILink)
             Dim m_achievementParser As AchievementParser = New AchievementParser
             m_achievementParser.loadAchievements(setId, APILink)
+            Dim m_professionParser As ProfessionParser = New ProfessionParser
+            m_professionParser.loadProfessions(setId, APILink)
             Dim m_itemParser As ItemParser = New ItemParser
             m_itemParser.loadItems(CharacterContext, setId)
             LogAppend("Character loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
