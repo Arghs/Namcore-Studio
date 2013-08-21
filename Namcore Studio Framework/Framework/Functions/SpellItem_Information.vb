@@ -28,13 +28,11 @@ Imports Namcore_Studio_Framework.EventLogging
 Imports Namcore_Studio_Framework.Conversions
 Imports System.Net
 Imports System.Drawing
+Imports System.Windows.Forms
+Imports System.Threading
 
 Public Module SpellItem_Information
-    Public tempAvTable As DataTable
-    Public tempAvCatTable As DataTable
-    Public tempDisplayInfoTable As DataTable
-    Public tempQuestNameTable As DataTable
-    Public tempAvMainCatTable As DataTable
+
     Public Function GetGlyphIdByItemId(ByVal itemid As Integer) As Integer
         LogAppend("Loading GlyphId by ItemId " & itemid.ToString, "SpellItem_Information_GetGlyphIdByItemId", False)
         Dim xpacressource As String
@@ -381,9 +379,11 @@ LookOnline: Else
     End Function
 
     Public Function GetAvNameById(ByVal avid As Integer) As String
+
         LogAppend("Loading av name of id: " & avid.ToString, "SpellItem_Information_GetAvNameById", False)
         If tempAvTable Is Nothing Then
             Try
+                LogAppend("Filling tempAvTable", "SpellItem_Information_GetAvNameById", False)
                 tempAvTable = New DataTable()
                 Dim stext As String
                 If My.Settings.language = "de" Then
@@ -481,6 +481,33 @@ LookOnline: Else
     End Function
     Public Function GetAvCategoryIdByAvId(ByVal avid As Integer) As Integer
         LogAppend("Loading av category id of av id: " & avid.ToString, "SpellItem_Information_GetAvCategoryIdByAvId", False)
+        If tempAvTable Is Nothing Then
+            Try
+                tempAvTable = New DataTable()
+                Dim stext As String
+                If My.Settings.language = "de" Then
+                    stext = libnc.My.Resources.av_de
+                Else
+                    stext = libnc.My.Resources.av_de 'todo
+                End If
+                Dim a() As String
+                Dim strArray As String()
+                a = Split(stext, vbNewLine)
+                For i = 0 To UBound(a)
+                    strArray = a(i).Split(CChar(";"))
+                    If i = 0 Then
+                        For Each value As String In strArray
+                            tempAvTable.Columns.Add(value.Trim())
+                        Next
+                    Else
+                        tempAvTable.Rows.Add(strArray)
+                    End If
+                Next i
+            Catch ex As Exception
+                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetAvCategoryIdByAvId", False, True)
+                Return 0
+            End Try
+        End If
         If tempAvCatTable Is Nothing Then
             Try
                 tempAvCatTable = New DataTable()
@@ -617,10 +644,12 @@ LookOnline: Else
             Return desc
         End If
     End Function
+
     Public Function GetQuestNameById(ByVal questid As Integer) As String
         LogAppend("Loading quest name of id: " & questid.ToString, "SpellItem_Information_GetQuestNameById", False)
         If tempQuestNameTable Is Nothing Then
             Try
+                LogAppend("Filling tempAvTable", "SpellItem_Information_GetAvNameById", False)
                 tempQuestNameTable = New DataTable()
                 Dim stext As String
                 If My.Settings.language = "de" Then
@@ -641,11 +670,13 @@ LookOnline: Else
                         tempQuestNameTable.Rows.Add(strArray)
                     End If
                 Next i
+                Application.DoEvents()
             Catch ex As Exception
                 LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetQuestNameById", False, True)
                 Return "error"
             End Try
         End If
+
         Dim desc As String = Execute("Id", questid.ToString(), tempQuestNameTable)
         If desc = "-" Then
             LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetQuestNameById", False, True)
@@ -707,7 +738,7 @@ LookOnline: Else
                 Return Nothing
             End Try
         End If
-        Dim desc() As DataRow = GetALL(maincatid)
+        Dim desc() As DataRow = GetAll(maincatid)
         If desc Is Nothing Then
             LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvIdListByMainCat", False, True)
             Return Nothing

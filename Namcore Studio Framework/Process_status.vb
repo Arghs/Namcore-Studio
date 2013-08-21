@@ -51,7 +51,7 @@ Public Class Process_status
         Else
             process_tb.Text = proccessTXT
         End If
-
+        Application.DoEvents()
 
     End Sub
   

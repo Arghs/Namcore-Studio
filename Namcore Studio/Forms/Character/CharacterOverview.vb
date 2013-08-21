@@ -719,8 +719,8 @@ Public Class CharacterOverview
         Dim qstInterface As New Quests_interface
         Userwait.Show()
         Application.DoEvents()
-        qstInterface.prepareInterface(tmpSetId)
         qstInterface.Show()
+        qstInterface.prepareInterface(tmpSetId)
         Userwait.Close()
     End Sub
     Private ptMouseDownLocation As Point

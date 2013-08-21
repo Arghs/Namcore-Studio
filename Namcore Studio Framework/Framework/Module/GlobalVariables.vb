@@ -78,6 +78,11 @@ Public Class GlobalVariables
     Public Shared offlineExtension As Boolean
     Public Shared forceTargetConnectionUsage As Boolean
     Public Shared proccessTXT As String
+    Public Shared tempAvTable As DataTable
+    Public Shared tempAvCatTable As DataTable
+    Public Shared tempDisplayInfoTable As DataTable
+    Public Shared tempQuestNameTable As DataTable
+    Public Shared tempAvMainCatTable As DataTable
 End Class
 <Serializable()> _
 Public Class GlobalCharVars

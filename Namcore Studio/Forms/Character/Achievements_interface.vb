@@ -154,6 +154,9 @@ Public Class Achievements_interface
     Shared completed As Boolean
     Public Function continueOperation(ByVal sender As Object, ByVal operation_count As Integer) As String
         ' Dim catid As Integer = TryInt(splitString(sender.name, "cat_id_", "_bt"))
+        If operation_count = 2 Then
+            Thread.Sleep(2000)
+        End If
         Dim player As Character = GetCharacterSetBySetId(tarsetid)
         For Each charAv As Achievement In player.Achievements
             If doneAvIds.Contains(charAv.Id) Then
@@ -452,4 +455,7 @@ Public Class Achievements_interface
     End Sub
 
   
+    Private Sub header_Paint(sender As Object, e As PaintEventArgs) Handles header.Paint
+
+    End Sub
 End Class
