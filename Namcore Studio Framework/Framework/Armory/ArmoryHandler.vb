@@ -22,6 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Net
 Imports System.Text
+Imports System.IO
 
 Public Class ArmoryHandler
     Private context As Threading.SynchronizationContext = Threading.SynchronizationContext.Current
@@ -96,8 +97,10 @@ Public Class ArmoryHandler
             Dim m_itemParser As ItemParser = New ItemParser
             m_itemParser.loadItems(CharacterContext, setId)
             LogAppend("Character loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
+          
         Next
         LogAppend("All characters loaded!", "ArmoryHandler_LoadArmoryCharacters", True)
+
         ThreadExtensions.ScSend(context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted), New CompletedEventArgs())
     End Function
 

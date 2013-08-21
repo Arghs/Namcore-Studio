@@ -108,6 +108,7 @@ Public Class Character
     Public Skills As List(Of Skill)
     Public Spells As List(Of Spell)
     Public Talents As List(Of Talent)
+    Public Professions As List(Of Profession)
 
     Public Sub New(charname As String, charguid As Integer)
         Name = charname

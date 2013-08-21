@@ -77,6 +77,7 @@
     <Compile Include="Framework\Armory\Parser\AchievementParser.vb" />
     <Compile Include="Framework\Armory\Parser\GlyphParser.vb" />
     <Compile Include="Framework\Armory\Parser\ItemParser.vb" />
+    <Compile Include="Framework\Armory\Parser\ProfessionParser.vb" />
     <Compile Include="Framework\Armory\Parser\ReputationParser.vb" />
     <Compile Include="Framework\Core\Account_CharacterInformationProcessing.vb" />
     <Compile Include="Framework\Core\CharacterAchievementHandler.vb" />

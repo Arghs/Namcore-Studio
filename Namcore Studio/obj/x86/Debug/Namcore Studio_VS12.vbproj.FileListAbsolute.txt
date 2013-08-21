@@ -91,3 +91,4 @@ C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Stud
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Reputation_interface.resources
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Main.resources
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Settings_interface.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Newtonsoft.Json.dll

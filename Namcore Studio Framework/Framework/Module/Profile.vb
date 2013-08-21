@@ -163,3 +163,17 @@ Public Class Talent
 
     End Sub
 End Class
+<Serializable()> _
+Public Class Profession
+    Public id As Integer
+    Public name As String
+    Public max As Integer
+    Public iconname As String
+    Public rank As Integer
+    Public primary As Boolean
+    Public recipes() As Integer
+
+    Public Sub New()
+
+    End Sub
+End Class
