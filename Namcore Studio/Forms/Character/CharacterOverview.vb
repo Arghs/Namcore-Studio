@@ -21,13 +21,13 @@
 '*      /Description:   Displays character information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing.Imaging
-Imports Namcore_Studio_Framework
-Imports Namcore_Studio_Framework.ResourceHandler
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.Conversions
-Imports Namcore_Studio_Framework.SpellItem_Information
-Imports Namcore_Studio_Framework.WebClientProxyExtension
+Imports NCFramework
+Imports NCFramework.ResourceHandler
+Imports NCFramework.GlobalVariables
+Imports NCFramework.Basics
+Imports NCFramework.Conversions
+Imports NCFramework.SpellItem_Information
+Imports NCFramework.WebClientProxyExtension
 Imports System.Threading
 Imports System.Resources
 Imports System.Net
@@ -227,7 +227,7 @@ Public Class CharacterOverview
         If Not TextBox1.Text = tempValue Then
             If TypeOf tempSender Is Label Then
                 Dim id As Integer = TryInt(TextBox1.Text)
-                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 If senderLabel.Name.ToLower.EndsWith("charname_lbl") Then
                     If TextBox1.Text = "" Then
 
@@ -372,7 +372,7 @@ Public Class CharacterOverview
 
         If TypeOf tempSender Is Label Then
             If Not tempSender.text.tolower.endswith("_enchant") Then
-                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 Dim result = MsgBox(GetUserMessage("deleteitem"), vbYesNo, GetUserMessage("areyousure"))
                 If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
 
@@ -664,7 +664,7 @@ Public Class CharacterOverview
             Dim meSlot As String = tempSender.name
             meSlot = meSlot.Replace("slot_", "") : meSlot = meSlot.Replace("_name", "")
             If Not GetSlotByItemId(TryInt(TextBox2.Text)) = TryInt(meSlot) Then
-                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 MsgBox(GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical, GetUserMessage("Error"))
                 Exit Sub
             Else
@@ -751,7 +751,7 @@ Public Class CharacterOverview
         WindowState = FormWindowState.Minimized
     End Sub
 
-   
+
     Private Sub header_MouseDown(sender As Object, e As MouseEventArgs) Handles header.MouseDown
         If e.Button = Windows.Forms.MouseButtons.Left Then
             ptMouseDownLocation = e.Location

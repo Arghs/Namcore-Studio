@@ -21,9 +21,9 @@
 '*      /Description:   Includes functions for modifying basic character information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.GlobalVariables
+Imports NCFramework.EventLogging
+Imports NCFramework.CommandHandler
+Imports NCFramework.GlobalVariables
 Public Class ModBasics
     Public Sub SetCharacterGender(ByVal gender As Integer, ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID

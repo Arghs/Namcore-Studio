@@ -21,8 +21,8 @@
 '*      /Description:   Extension to update an existing item by new id
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.SpellItem_Information
-Imports Namcore_Studio_Framework
+Imports NCFramework.SpellItem_Information
+Imports NCFramework
 Module ReplaceItemExtension
     ''' <summary>
     ''' Replaces an Item

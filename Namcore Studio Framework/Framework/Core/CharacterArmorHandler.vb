@@ -22,14 +22,14 @@
 '*                      armor of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.CharacterEnchantmentsHandler
-Imports Namcore_Studio_Framework.CharacterItemStatsHandler
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.Conversions
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.SpellItem_Information
+Imports NCFramework.Basics
+Imports NCFramework.CharacterEnchantmentsHandler
+Imports NCFramework.CharacterItemStatsHandler
+Imports NCFramework.CommandHandler
+Imports NCFramework.Conversions
+Imports NCFramework.EventLogging
+Imports NCFramework.GlobalVariables
+Imports NCFramework.SpellItem_Information
 Public Class CharacterArmorHandler
     Public Sub GetCharacterArmor(ByVal charguid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character Armor for charguid: " & charguid & " and setId: " & setId, "CharacterArmorHandler_GetCharacterArmor", True)

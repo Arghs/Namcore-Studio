@@ -23,15 +23,15 @@
 '*                      -Editing/Deleting/Transferring accounts and characters
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.ConnectionHandler
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.Account_CharacterInformationProcessing
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.Conversions
-Imports Namcore_Studio_Framework.GlobalCharVars
-Imports Namcore_Studio_Framework.ResourceHandler
-Imports Namcore_Studio_Framework
+Imports NCFramework.ConnectionHandler
+Imports NCFramework.GlobalVariables
+Imports NCFramework.Account_CharacterInformationProcessing
+Imports NCFramework.Basics
+Imports NCFramework.CommandHandler
+Imports NCFramework.Conversions
+Imports NCFramework.GlobalCharVars
+Imports NCFramework.ResourceHandler
+Imports NCFramework
 Imports System.Resources
 
 Public Class Live_View
@@ -365,7 +365,7 @@ Public Class Live_View
     End Sub
 
     Private Sub SelectedAccountsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedAccountsToolStripMenuItem.Click
-        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(GetUserMessage("deleteacc") & " (" & accountview.SelectedItems(0).SubItems(1).Text & ")", vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = accountview.SelectedItems(0).SubItems(0).Text
@@ -381,7 +381,7 @@ Public Class Live_View
     End Sub
 
     Private Sub CheckedAccountsToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles CheckedAccountsToolStripMenuItem1.Click
-        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(GetUserMessage("deleteacc"), vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             For Each itm As ListViewItem In accountview.CheckedItems
@@ -425,7 +425,7 @@ Public Class Live_View
     End Sub
 
     Private Sub SelectedCharacterToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SelectedCharacterToolStripMenuItem.Click
-        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(GetUserMessage("deletechar") & " (" & characterview.SelectedItems(0).SubItems(2).Text & ")", vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim charId As String = characterview.SelectedItems(0).SubItems(0).Text
@@ -440,7 +440,7 @@ Public Class Live_View
     End Sub
 
     Private Sub CheckedCharactersToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CheckedCharactersToolStripMenuItem.Click
-        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(GetUserMessage("deletechar"), vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             For Each itm As ListViewItem In characterview.CheckedItems
@@ -569,7 +569,7 @@ Public Class Live_View
     End Sub
 
     Private Sub RemoveToolStripMenuItem2_Click(sender As System.Object, e As System.EventArgs) Handles RemoveToolStripMenuItem2.Click
-        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(GetUserMessage("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = target_accounts_tree.SelectedNode.Name
@@ -587,7 +587,7 @@ Public Class Live_View
     End Sub
 
     Private Sub ToolStripMenuItem1_Click(sender As System.Object, e As System.EventArgs) Handles ToolStripMenuItem1.Click
-        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim result = MsgBox(GetUserMessage("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text & ")", vbYesNo, GetUserMessage("areyousure"))
         If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
             Dim accountId As String = target_accounts_tree.SelectedNode.Name
@@ -706,7 +706,7 @@ Public Class Live_View
                         charactersToCreate.Add("{AccountId}" & accountnode.Name & "{/AccountId}{setId}" & character(2) & "{/setId}")
 
                     End If
-                   next
+                Next
             Next
         Next
         Transfer_bt.Enabled = True
@@ -743,7 +743,7 @@ Public Class Live_View
         Return nodes
     End Function
 
- 
+
 
     Private Sub Transfer_bt_Click(sender As System.Object, e As System.EventArgs) Handles Transfer_bt.Click
 
@@ -760,7 +760,7 @@ Public Class Live_View
 
         procStatus = New Process_status
         procStatus.Show()
-     
+
         If armoryMode Then
             Dim d As New Data2Thread() With {.lite = True}
 
@@ -812,7 +812,7 @@ Public Class Live_View
         Next
     End Sub
 
-   
+
     Private Sub accountview_MouseUp(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles accountview.MouseUp
         If e.Button = MouseButtons.Right Then
             If accountview.SelectedItems.Count = 0 And accountview.CheckedItems.Count = 0 Then Exit Sub
@@ -857,7 +857,7 @@ Public Class Live_View
         End If
     End Sub
 
-   
+
     Private Sub EditToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem1.Click
         Dim charview As New CharacterOverview
         Dim setId As Integer = characterview.SelectedItems(0).Tag
@@ -905,8 +905,8 @@ Public Class Live_View
 
     End Sub
 
-  
- 
+
+
     Private Sub back_bt_Click(sender As Object, e As EventArgs) Handles back_bt.Click
         If lastregion = "main" Then
             Me.Close()
@@ -992,7 +992,7 @@ Public Class Live_View
         End If
     End Sub
 
-   
+
     Private Sub header_MouseMove(sender As Object, e As MouseEventArgs) Handles header.MouseMove
         If e.Button = Windows.Forms.MouseButtons.Left Then
             moving = True
@@ -1004,7 +1004,7 @@ Public Class Live_View
         moving = False
     End Sub
 
- 
+
     Private Sub header_Paint(sender As Object, e As PaintEventArgs) Handles header.Paint
 
     End Sub

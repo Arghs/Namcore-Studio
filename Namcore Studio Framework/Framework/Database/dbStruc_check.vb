@@ -22,8 +22,8 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports MySql.Data.MySqlClient
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.GlobalVariables
+Imports NCFramework.EventLogging
+Imports NCFramework.GlobalVariables
 Public Class dbStruc_check
     Dim tmp_conn As New MySqlConnection
     Dim tmp_connRealm As New MySqlConnection

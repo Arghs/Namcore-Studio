@@ -22,8 +22,8 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports MySql.Data.MySqlClient
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.Basics
+Imports NCFramework.EventLogging
+Imports NCFramework.Basics
 Public Module ConnectionHandler
     Public Sub OpenNewMySQLConnection(ByVal targetconnection As MySqlConnection, serverstring As String)
         LogAppend("Opening new MySQL connection (target: " & targetconnection.ToString() & " with connectionstring: " & serverstring, "ConnectionHandler_OpenNewMySQLConnection", True)

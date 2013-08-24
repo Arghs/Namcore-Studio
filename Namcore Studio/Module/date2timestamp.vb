@@ -21,7 +21,7 @@
 '*      /Description:   Extension to convert a date to timestamp and vv
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.SpellItem_Information
+Imports NCFramework.SpellItem_Information
 Module date2timestamp
     ''' <summary>
     ''' timestamp converter

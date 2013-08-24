@@ -21,9 +21,9 @@
 '*      /Description:   Includes operations for rendering user interfaces
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework
+Imports NCFramework.GlobalVariables
+Imports NCFramework.Basics
+Imports NCFramework
 Public Module Interface_Operator
     Public Sub prepareLive_armory()
         ' Dim x As String = temporaryCharacterInformation.Item(1)

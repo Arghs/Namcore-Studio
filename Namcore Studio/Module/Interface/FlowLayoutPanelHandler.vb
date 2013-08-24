@@ -1,4 +1,4 @@
-﻿Imports Namcore_Studio_Framework
+﻿Imports NCFramework
 Imports System.Threading
 
 Public Class FlowLayoutPanelHandler

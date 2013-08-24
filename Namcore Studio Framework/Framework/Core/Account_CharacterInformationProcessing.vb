@@ -21,8 +21,8 @@
 '*      /Description:   Prepares basic account and character information for Live_View
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports MySql.Data.MySqlClient
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.GlobalVariables
+Imports NCFramework.CommandHandler
+Imports NCFramework.GlobalVariables
 Public Class Account_CharacterInformationProcessing
 
     Public Function returnAccountTable(ByVal sqlconnection As MySqlConnection, ByVal Struc As DBStructure) As DataTable

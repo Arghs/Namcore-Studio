@@ -20,16 +20,16 @@
 '*      /Filename:      TransmissionHandler
 '*      /Description:   Handles account/character migration requests
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++s++++++++++++++++++++++++++
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.AccountCreation
-Imports Namcore_Studio_Framework.CharacterCreationAdvanced
-Imports Namcore_Studio_Framework.CharacterCreationLite
-Imports Namcore_Studio_Framework.Conversions
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.ArmorCreation
-Imports Namcore_Studio_Framework.GlyphCreation
-Imports Namcore_Studio_Framework.QuestCreation
-Imports Namcore_Studio_Framework.TalentCreation
+Imports NCFramework.GlobalVariables
+Imports NCFramework.AccountCreation
+Imports NCFramework.CharacterCreationAdvanced
+Imports NCFramework.CharacterCreationLite
+Imports NCFramework.Conversions
+Imports NCFramework.Basics
+Imports NCFramework.ArmorCreation
+Imports NCFramework.GlyphCreation
+Imports NCFramework.QuestCreation
+Imports NCFramework.TalentCreation
 
 Public Class TransmissionHandler
     Public Sub handleMigrationRequests(ByVal lite As Boolean)

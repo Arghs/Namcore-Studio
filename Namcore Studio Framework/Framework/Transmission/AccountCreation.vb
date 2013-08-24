@@ -21,10 +21,10 @@
 '*      /Description:   Includes functions for creating new accounts
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.Basics
+Imports NCFramework.EventLogging
+Imports NCFramework.CommandHandler
+Imports NCFramework.GlobalVariables
+Imports NCFramework.Basics
 Imports MySql.Data.MySqlClient
 Public Class AccountCreation
     Public Sub CreateNewAccount(ByVal accname As String, ByVal passhas As String, ByVal realmid As Integer, ByVal setId As Integer, Optional gmlevel As String = "A", Optional email As String = "", Optional flags As String = "0")

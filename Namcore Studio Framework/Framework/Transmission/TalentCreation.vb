@@ -22,11 +22,11 @@
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.Conversions
+Imports NCFramework.EventLogging
+Imports NCFramework.CommandHandler
+Imports NCFramework.GlobalVariables
+Imports NCFramework.Basics
+Imports NCFramework.Conversions
 Public Class TalentCreation
     Private SDatatable As New DataTable
     Private TalentRank As String

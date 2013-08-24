@@ -20,7 +20,7 @@
 '*      /Filename:      Filter_accounts
 '*      /Description:   Contains functions for filtering the account list
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports Namcore_Studio_Framework
+Imports NCFramework
 Public Class Filter_accounts
 
     Private Sub ApplyFilter_Click(sender As System.Object, e As System.EventArgs) Handles ApplyFilter.Click

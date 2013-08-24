@@ -22,11 +22,11 @@
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.Conversions
+Imports NCFramework.EventLogging
+Imports NCFramework.CommandHandler
+Imports NCFramework.GlobalVariables
+Imports NCFramework.Basics
+Imports NCFramework.Conversions
 Public Class QuestCreation
     Public Sub SetCharacterQuests(ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID

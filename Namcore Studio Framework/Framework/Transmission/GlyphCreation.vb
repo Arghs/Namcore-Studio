@@ -21,12 +21,12 @@
 '*      /Description:   Includes functions for creating the glyphs of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.Conversions
-Imports Namcore_Studio_Framework.SpellItem_Information
+Imports NCFramework.EventLogging
+Imports NCFramework.CommandHandler
+Imports NCFramework.GlobalVariables
+Imports NCFramework.Basics
+Imports NCFramework.Conversions
+Imports NCFramework.SpellItem_Information
 Public Class GlyphCreation
     Public Sub SetCharacterGlyphs(ByVal setId As Integer, Optional charguid As Integer = 0)
         If charguid = 0 Then charguid = characterGUID

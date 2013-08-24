@@ -21,7 +21,7 @@
 '*      /Description:   Handles logging of events and exceptions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.GlobalVariables
+Imports NCFramework.GlobalVariables
 Imports System.Threading
 Imports System.IO
 

@@ -20,7 +20,7 @@
 '*      /Filename:      Filter_characters
 '*      /Description:   Contains functions for filtering the character list
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports Namcore_Studio_Framework
+Imports NCFramework
 Public Class Filter_characters
 
     Private Sub ApplyFilter_Click(sender As System.Object, e As System.EventArgs) Handles ApplyFilter.Click

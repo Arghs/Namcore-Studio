@@ -22,9 +22,9 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports MySql.Data.MySqlClient
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.Conversions
+Imports NCFramework.EventLogging
+Imports NCFramework.GlobalVariables
+Imports NCFramework.Conversions
 Public Module CommandHandler
     Public Function runSQLCommand_characters_string(ByVal command As String, Optional useTargetConnection As Boolean = False) As String
         LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_characters_string", False)

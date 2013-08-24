@@ -23,11 +23,11 @@
 
 Imports System.Text
 Imports System.IO
-Imports Namcore_Studio_Framework.EventLogging
+Imports NCFramework.EventLogging
 Imports System.Resources
 Imports System.Net
 Imports System.drawing
-Imports Namcore_Studio_Framework.Basics
+Imports NCFramework.Basics
 
 
 Public Module Conversions
@@ -76,7 +76,7 @@ Public Module Conversions
         End If
     End Function
     Public Function GetRaceNameById(ByVal raceid As Integer) As String
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim RM As New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Select Case raceid
             Case 1 : Return RM.GetString("human")
             Case 2 : Return RM.GetString("orc")
@@ -96,7 +96,7 @@ Public Module Conversions
         End Select
     End Function
     Public Function GetClassNameById(ByVal classid As Integer) As String
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim RM As New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Select Case classid
             Case 1 : Return RM.GetString("warrior")
             Case 2 : Return RM.GetString("paladin")
@@ -147,7 +147,7 @@ Public Module Conversions
         End Select
     End Function
     Public Function GetGenderNameById(ByVal genderid As Integer) As String
-        Dim RM As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        Dim RM As New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Select Case genderid
             Case 0 : Return RM.GetString("male")
             Case 1 : Return RM.GetString("female")

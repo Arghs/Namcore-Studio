@@ -22,11 +22,11 @@
 '*                      configurations of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.Conversions
+Imports NCFramework.EventLogging
+Imports NCFramework.Basics
+Imports NCFramework.GlobalVariables
+Imports NCFramework.CommandHandler
+Imports NCFramework.Conversions
 Public Class CharacterActionsHandler
     Public Sub GetCharacterActions(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character actions for characterGuid: " & characterGuid & " and setId: " & setId, "CharacterActionssHandler_GetCharacterActions", True)

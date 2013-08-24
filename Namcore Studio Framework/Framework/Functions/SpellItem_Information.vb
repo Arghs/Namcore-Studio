@@ -22,10 +22,10 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.Conversions
+Imports NCFramework.GlobalVariables
+Imports NCFramework.Basics
+Imports NCFramework.EventLogging
+Imports NCFramework.Conversions
 Imports System.Net
 Imports System.Drawing
 Imports System.Windows.Forms

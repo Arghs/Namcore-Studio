@@ -22,12 +22,12 @@
 '*                      primary and secondary glyphs of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.Conversions
-Imports Namcore_Studio_Framework.SpellItem_Information
+Imports NCFramework.EventLogging
+Imports NCFramework.Basics
+Imports NCFramework.GlobalVariables
+Imports NCFramework.CommandHandler
+Imports NCFramework.Conversions
+Imports NCFramework.SpellItem_Information
 Public Class CharacterGlyphsHandler
 
     Public Sub GetCharacterGlyphs(ByVal charguid As Integer, ByVal setId As Integer, ByVal accountId As Integer)

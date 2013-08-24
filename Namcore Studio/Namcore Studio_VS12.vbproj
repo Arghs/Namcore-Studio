@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\Data\</OutputPath>
     <DocumentationFile>Namcore Studio.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
     <WarningsAsErrors>
@@ -61,6 +61,10 @@
     <Reference Include="mysql.data, Version=5.2.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\mysql.data.dll</HintPath>
+    </Reference>
+    <Reference Include="NCFramework, Version=0.0.8.45587, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Data\NCFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -281,10 +285,7 @@
     <None Include="Resources\addrep.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Namcore Studio Framework\Namcore Studio Framework_VS12.vbproj">
-      <Project>{294df12f-75f1-4264-a631-7399cbc0515a}</Project>
-      <Name>Namcore Studio Framework_VS12</Name>
-    </ProjectReference>
+    <Folder Include="bin\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>

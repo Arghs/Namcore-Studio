@@ -22,14 +22,14 @@
 '*                      parsed from the wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.Conversions
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.SpellCreation
-Imports Namcore_Studio_Framework.SkillCreation
-Imports Namcore_Studio_Framework.CharacterCreationLite
+Imports NCFramework.EventLogging
+Imports NCFramework.Basics
+Imports NCFramework.GlobalVariables
+Imports NCFramework.Conversions
+Imports NCFramework.CommandHandler
+Imports NCFramework.SpellCreation
+Imports NCFramework.SkillCreation
+Imports NCFramework.CharacterCreationLite
 Imports MySql.Data.MySqlClient
 Public Class CharacterCreationAdvanced
     Public Sub CreateNewAdvancedCharacter(ByVal charname As String, ByVal accountId As String, ByVal setId As Integer, Optional forceNameChange As Boolean = False)

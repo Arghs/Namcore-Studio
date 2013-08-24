@@ -77,7 +77,7 @@ Partial Class Process_status
         '
         'header
         '
-        Me.header.BackgroundImage = Global.Namcore_Studio_Framework.My.Resources.Resources.namcore_header
+        Me.header.BackgroundImage = Global.NCFramework.My.Resources.Resources.namcore_header
         Me.header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.header.Controls.Add(Me.closepanel)
         Me.header.Location = New System.Drawing.Point(3, 3)
@@ -87,7 +87,7 @@ Partial Class Process_status
         '
         'closepanel
         '
-        Me.closepanel.BackgroundImage = Global.Namcore_Studio_Framework.My.Resources.Resources.minclose
+        Me.closepanel.BackgroundImage = Global.NCFramework.My.Resources.Resources.minclose
         Me.closepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.closepanel.Controls.Add(Me.highlighter1)
         Me.closepanel.Controls.Add(Me.highlighter2)
@@ -122,7 +122,7 @@ Partial Class Process_status
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = Global.Namcore_Studio_Framework.My.Resources.Resources.cleanbg
+        Me.BackgroundImage = Global.NCFramework.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(622, 343)
         Me.Controls.Add(Me.header)

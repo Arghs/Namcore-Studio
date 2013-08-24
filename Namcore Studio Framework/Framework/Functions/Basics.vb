@@ -21,11 +21,11 @@
 '*      /Description:   Includes basic and frequently used functions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.GlobalCharVars
+Imports NCFramework.EventLogging
+Imports NCFramework.GlobalVariables
+Imports NCFramework.GlobalCharVars
 Imports System.Net
-Imports Namcore_Studio_Framework.Conversions
+Imports NCFramework.Conversions
 Imports System.Drawing
 Public Module Basics
     Public tmpset As Integer

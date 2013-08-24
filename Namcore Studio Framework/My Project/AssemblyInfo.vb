@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 
 ' Die Werte der Assemblyattribute überprüfen
 
-<Assembly: AssemblyTitle("Namcore Studio Framework")> 
+<Assembly: AssemblyTitle("NCFramework")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Namcore Studio Framework")> 
@@ -33,7 +33,7 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.0.8.45576")> 
-<Assembly: AssemblyFileVersion("0.0.8.45576")> 
+<Assembly: AssemblyVersion("0.0.8.45592")> 
+<Assembly: AssemblyFileVersion("0.0.8.45592")> 
 
 <Assembly: NeutralResourcesLanguageAttribute("en-US")> 

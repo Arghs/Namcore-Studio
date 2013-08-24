@@ -26,16 +26,16 @@ Imports System.Net
 Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.Linq
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.GlobalCharVars
-Imports Namcore_Studio_Framework.Serializer
+Imports NCFramework.Basics
+Imports NCFramework.GlobalVariables
+Imports NCFramework.GlobalCharVars
+Imports NCFramework.Serializer
 Imports System.Threading
-Imports Namcore_Studio_Framework
-Imports Namcore_Studio_Framework.ResourceHandler
+Imports NCFramework
+Imports NCFramework.ResourceHandler
 Imports System.Text
-Imports Namcore_Studio_Framework.WebConnection
-Imports Namcore_Studio_Framework.WebClientProxyExtension
+Imports NCFramework.WebConnection
+Imports NCFramework.WebClientProxyExtension
 
 
 Public Class Armory_interface
@@ -44,7 +44,7 @@ Public Class Armory_interface
     End Structure
     Private Sub addChar_bt_Click(sender As System.Object, e As System.EventArgs) Handles addChar_bt.Click
         Dim templink As String = "http://#replaceregion#.battle.net/wow/#replacelang#/character/#replacerealm#/#replacecharacter#/advanced"
-        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         If globalregion.SelectedItem Is Nothing Then
             MsgBox(GetUserMessage("regionnotset"), MsgBoxStyle.Critical, GetUserMessage("attention"))
         ElseIf realmname.Text = "" Then
@@ -55,7 +55,7 @@ Public Class Armory_interface
             templink = templink.Replace("#replaceregion#", globalregion.SelectedItem.ToString)
             templink = templink.Replace("#replacerealm#", realmname.Text)
             templink = templink.Replace("#replacecharacter#", charname.Text)
-            If Namcore_Studio_Framework.My.MySettings.Default.language = "de" And globalregion.SelectedItem.ToString = "EU" Then
+            If NCFramework.My.MySettings.Default.language = "de" And globalregion.SelectedItem.ToString = "EU" Then
                 templink = templink.Replace("#replacelang#", "de")
             Else
                 If globalregion.SelectedItem.ToString = "KR" Then
@@ -116,7 +116,7 @@ Public Class Armory_interface
 
     Private Sub addURL_bt_Click(sender As System.Object, e As System.EventArgs) Handles addURL_bt.Click
         Dim templink As String = url_tb.Text
-        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         If Not templink.Contains(".battle.net/wow/") Then
             MsgBox(GetUserMessage("invalidurl"), MsgBoxStyle.Critical, GetUserMessage("attention"))
         Else
@@ -166,7 +166,7 @@ Public Class Armory_interface
         lastregion = "armoryparser"
         globChars.CharacterSets = New List(Of Character)
         trdrunnuing = True
-        Namcore_Studio_Framework.My.MySettings.Default.language = "de" 'todo for testing only
+        NCFramework.My.MySettings.Default.language = "de" 'todo for testing only
         Dim urllst As List(Of String) = (From lstitm As ListViewItem In char_lst.Items Select lstitm.SubItems(3).Text).ToList()
         m_handler.LoadArmoryCharacters(urllst)
         Me.Close()
@@ -238,7 +238,7 @@ Public Class Armory_interface
 
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-       
+
 
         Dim dstr As String = ""
         Dim m_serializer As Serializer = New Serializer
@@ -269,9 +269,9 @@ Public Class Armory_interface
         End If
     End Sub
 
-   
-   
-    
+
+
+
     Private Sub header_Paint(sender As Object, e As PaintEventArgs) Handles header.Paint
 
     End Sub

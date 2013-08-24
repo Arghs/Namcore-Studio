@@ -22,11 +22,11 @@
 '*                      reputation of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.Conversions
+Imports NCFramework.EventLogging
+Imports NCFramework.Basics
+Imports NCFramework.GlobalVariables
+Imports NCFramework.CommandHandler
+Imports NCFramework.Conversions
 Public Class CharacterReputationHandler
     Public Sub GetCharacterReputation(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character reputation for characterGuid: " & characterGuid & " and setId: " & setId, "CharacterReputationHandler_GetCharacterReputation", True)

@@ -22,12 +22,12 @@
 '*                      table for a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.Conversions
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.GlobalCharVars
-Imports Namcore_Studio_Framework.CommandHandler
+Imports NCFramework.EventLogging
+Imports NCFramework.Conversions
+Imports NCFramework.Basics
+Imports NCFramework.GlobalVariables
+Imports NCFramework.GlobalCharVars
+Imports NCFramework.CommandHandler
 Public Class CharacterBasicsHandler
     Private temp_result As String
     Public Sub GetBasicCharacterInformation(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)

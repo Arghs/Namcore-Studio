@@ -142,7 +142,7 @@ NamcoreStudio
 	<returns><c><seealso cref="T:System.Collections.Generic.List`1">List(Of Control)
  </seealso></c> that contains a reference to all child controls.</returns>
 	<remarks></remarks>
-</member><member name="M:Namcore_Studio.ReplaceItemExtension.ReplaceItem(Namcore_Studio_Framework.Item@,System.Int32)">
+</member><member name="M:Namcore_Studio.ReplaceItemExtension.ReplaceItem(NCFramework.Item@,System.Int32)">
 	<summary>
  Replaces an Item
  </summary>

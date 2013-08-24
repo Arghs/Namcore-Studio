@@ -21,12 +21,13 @@
 '*      /Description:   Main menu
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework
+Imports System.IO
+Imports NCFramework
+Imports NCFramework.GlobalVariables
 Imports System.Net
 
 Public Class Main
-
+    Private aioversion As Integer = 1
     Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter, highlighter3.MouseEnter, highlighter4.MouseEnter, highlighter5.MouseEnter
         sender.backgroundimage = My.Resources.highlight
     End Sub
@@ -37,6 +38,19 @@ Public Class Main
 
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\version.xml") Then
+            Dim enc As New System.Text.UnicodeEncoding
+            Dim XMLobj As Xml.XmlTextWriter = New Xml.XmlTextWriter("version.xml", enc)
+            With XMLobj
+                .Formatting = Xml.Formatting.Indented
+                .Indentation = 3
+                .WriteStartDocument()
+                .WriteStartElement("Common")
+                .WriteAttributeString("aioversion", aioversion.ToString())
+                .WriteEndElement()
+                .Close()
+            End With
+        End If
         Dim controlLST As List(Of Control)
         controlLST = FindAllChildren()
         For Each item_control As Control In controlLST
@@ -47,21 +61,20 @@ Public Class Main
         lastregion = "main"
         procStatus = New Process_status
         procStatus.Show()
-      
-        If Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = True Then
-            If Namcore_Studio_Framework.My.MySettings.Default.proxy_detect = True Then
+        If NCFramework.My.MySettings.Default.proxy_enabled = True Then
+            If NCFramework.My.MySettings.Default.proxy_detect = True Then
                 Dim webnet As New WebConnection
                 Dim servername As String = webnet.GetProxyServerName()
                 Dim serverport As String = webnet.GetProxyServerPort()
                 If serverport Is Nothing Then
-                    Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = False
+                    NCFramework.My.MySettings.Default.proxy_enabled = False
                 Else
                     If servername Is Nothing Then
-                        Namcore_Studio_Framework.My.MySettings.Default.proxy_enabled = False
+                        NCFramework.My.MySettings.Default.proxy_enabled = False
                     Else
-                        Namcore_Studio_Framework.My.MySettings.Default.proxy_host = servername
-                        Namcore_Studio_Framework.My.MySettings.Default.proxy_port = TryInt(serverport)
-                        Namcore_Studio_Framework.My.MySettings.Default.fullproxy = New WebProxy(servername & ":" & serverport)
+                        NCFramework.My.MySettings.Default.proxy_host = servername
+                        NCFramework.My.MySettings.Default.proxy_port = TryInt(serverport)
+                        NCFramework.My.MySettings.Default.fullproxy = New WebProxy(servername & ":" & serverport)
                     End If
                 End If
             End If

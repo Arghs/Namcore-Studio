@@ -21,11 +21,11 @@
 '*      /Description:   Provides an interface to display operation status
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.GlobalVariables
+Imports NCFramework.GlobalVariables
 Imports System.ComponentModel
-Imports Namcore_Studio_Framework.ArmoryHandler
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.TransmissionHandler
+Imports NCFramework.ArmoryHandler
+Imports NCFramework.Basics
+Imports NCFramework.TransmissionHandler
 Imports System.Windows.Forms
 Imports System.Drawing
 

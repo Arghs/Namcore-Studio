@@ -90,6 +90,15 @@ C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Stud
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Main.resources
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.Settings_interface.resources
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\Newtonsoft.Json.dll
-F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio Framework.dll
-F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio Framework.pdb
-F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Namcore Studio Framework.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\NCFramework.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\NCFramework.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\NCFramework.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\Namcore Studio.exe.config
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\Namcore Studio.exe
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\Namcore Studio.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\Namcore Studio.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\mysql.data.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\libnc.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\libncadvanced.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\NCFramework.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\NCFramework.xml

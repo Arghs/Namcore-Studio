@@ -21,13 +21,13 @@
 '*      /Description:   Provides an interface to display character achievement information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.SpellItem_Information
-Imports Namcore_Studio_Framework.Conversions
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.ResourceHandler
-Imports Namcore_Studio_Framework
+Imports NCFramework.Basics
+Imports NCFramework.SpellItem_Information
+Imports NCFramework.Conversions
+Imports NCFramework.GlobalVariables
+Imports NCFramework.EventLogging
+Imports NCFramework.ResourceHandler
+Imports NCFramework
 Imports System.Threading
 Imports System.Net
 Imports System.Resources
@@ -51,7 +51,7 @@ Public Class Achievements_interface
     Public Sub prepareInterface(ByVal setId As Integer)
         tarsetid = setId
     End Sub
- 
+
     Private context As Threading.SynchronizationContext = Threading.SynchronizationContext.Current
     Public Event AVCompleted As EventHandler(Of CompletedEventArgs)
     Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
@@ -91,7 +91,7 @@ Public Class Achievements_interface
                 tmp_catids = {}
         End Select
         Dim cat_collection As New List(Of AvSubcategoy)
-        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
 
         For i = 0 To tmp_catids.Length - 1
             Try
@@ -125,7 +125,7 @@ Public Class Achievements_interface
     Private Sub deleteAv_click(sender As Object, e As EventArgs)
         '// Delete achievement
         Dim charAv As Achievement = sender.tag
-        'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+        'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Dim msg As String = GetUserMessage("aus_deleteav")
         msg = msg.Replace("%avid%", charAv.Id.ToString)
         Dim result = MsgBox(msg, vbYesNo, GetUserMessage("areyousure"))
@@ -325,7 +325,7 @@ Public Class Achievements_interface
                 If Not client.DownloadString("http://wowhead.com/achievement=" & retnvalue.ToString()).Contains("<div id=""inputbox-error"">This achievement doesn't exist.</div>") Then
                     For Each opAv As Achievement In globplayer.Achievements
                         If opAv.Id = retnvalue Then
-                            Dim RM2 As New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                            Dim RM2 As New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                             MsgBox(RM2.GetString("achievementalreadypresent"), MsgBoxStyle.Critical, "Error")
                             Userwait.Close()
                             Exit Sub
@@ -406,20 +406,20 @@ Public Class Achievements_interface
                         AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding), avPanel)
                         Application.DoEvents()
                     End If
-                    'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                    'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                     globplayer.Achievements.Add(charAv)
                     MsgBox(GetUserMessage("achievementadded"), , "Info")
                 Else
-                    'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                    'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                     MsgBox(GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
                 End If
             Catch ex As Exception
-                'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+                'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                 MsgBox(GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
             End Try
 
         Else
-            'Dim RM as New ResourceManager("Namcore_Studio_Framework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
+            'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
             MsgBox(GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
         End If
         Userwait.Close()
@@ -454,8 +454,12 @@ Public Class Achievements_interface
 
     End Sub
 
-  
+
     Private Sub header_Paint(sender As Object, e As PaintEventArgs) Handles header.Paint
+
+    End Sub
+
+    Private Sub AVLayoutPanel_Paint(sender As Object, e As PaintEventArgs) Handles AVLayoutPanel.Paint
 
     End Sub
 End Class

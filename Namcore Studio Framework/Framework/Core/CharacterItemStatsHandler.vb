@@ -22,11 +22,11 @@
 '*                      of all items in the inventory of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports Namcore_Studio_Framework.EventLogging
-Imports Namcore_Studio_Framework.Basics
-Imports Namcore_Studio_Framework.GlobalVariables
-Imports Namcore_Studio_Framework.CommandHandler
-Imports Namcore_Studio_Framework.Conversions
+Imports NCFramework.EventLogging
+Imports NCFramework.Basics
+Imports NCFramework.GlobalVariables
+Imports NCFramework.CommandHandler
+Imports NCFramework.Conversions
 Public Class CharacterItemStatsHandler
     Public Sub GetItemStats(ByVal CItemguid As Integer, ByRef Itm As Item, ByRef player As Character, ByVal setId As Integer)
         LogAppend("Loading character ItemStats for item: " & CItemguid.ToString() & " and setId: " & setId, "CharacterItemStatssHandler_GetItemStats", True)

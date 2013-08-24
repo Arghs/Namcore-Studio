@@ -1,0 +1,19 @@
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\NCFramework.dll.config
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\NCFramework.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\NCFramework.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\NCFramework.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\libnc.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\libncadvanced.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\mysql.data.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework_VS12.vbprojResolveAssemblyReference.cache
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.Resources.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.Process_status.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.UserMessages.resources
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework_VS12.vbproj.GenerateResource.Cache
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\NCFramework.dll.config
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\NCFramework.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\NCFramework.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\NCFramework.xml
