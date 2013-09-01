@@ -33,9 +33,9 @@ Public Module WebClientProxyExtension
             If My.Settings.proxy_enabled = True Then
                 Client.Proxy = My.Settings.fullproxy
                 If My.Settings.proxy_defaultCredentials = False Then
-                    Client.Credentials = New NetworkCredential(My.Settings.proxy_uname, My.Settings.proxy_pass)
+                    Client.Proxy.Credentials = New NetworkCredential(My.Settings.proxy_uname, My.Settings.proxy_pass)
                 Else
-                    Client.Credentials = CredentialCache.DefaultCredentials
+                    Client.Proxy.Credentials = CredentialCache.DefaultCredentials
                 End If
             End If
             Return Client

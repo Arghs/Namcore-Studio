@@ -122,9 +122,9 @@ Public Class Updater
                 If proxyenabled = True Then
                     client.Proxy = fullProxy
                     If defaultCredentials = False Then
-                        client.Credentials = New NetworkCredential(uname, pass)
+                        client.Proxy.Credentials = New NetworkCredential(uname, pass)
                     Else
-                        client.Credentials = CredentialCache.DefaultCredentials
+                        client.Proxy.Credentials = CredentialCache.DefaultCredentials
                     End If
                 End If
             Catch ex As Exception
