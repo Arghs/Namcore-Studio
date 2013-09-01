@@ -79,7 +79,7 @@ Public Class Armory_interface
                     Exit Sub
                 End If
             End Try
-
+            If checkcode Is Nothing Then Exit Sub
             If checkcode.Contains("error=503") Then
                 MsgBox(GetUserMessage("charnotfound"), MsgBoxStyle.Critical, GetUserMessage("attention"))
                 Exit Sub
