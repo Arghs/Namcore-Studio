@@ -541,7 +541,7 @@ Partial Class Live_View
         Me.back_bt.Name = "back_bt"
         Me.back_bt.Size = New System.Drawing.Size(147, 42)
         Me.back_bt.TabIndex = 215
-        Me.back_bt.Text = "Back"
+        Me.back_bt.Text = "Back to main menu"
         Me.back_bt.UseVisualStyleBackColor = False
         '
         'highlighter1

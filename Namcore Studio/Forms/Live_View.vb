@@ -908,13 +908,9 @@ Public Class Live_View
 
 
     Private Sub back_bt_Click(sender As Object, e As EventArgs) Handles back_bt.Click
-        If lastregion = "main" Then
-            Me.Close()
-            Main.Show()
-        ElseIf lastregion = "armoryparser" Then
-            Me.Close()
-            Armory_interface.Show()
-        End If
+        lastregion = "liveview"
+        Me.Close()
+        Main.Show()
         'todo
     End Sub
     Private ptMouseDownLocation As Point
