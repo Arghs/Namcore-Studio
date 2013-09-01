@@ -21,17 +21,10 @@
 '*      /Description:   Displays character information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing.Imaging
+Imports System.Threading
+Imports System.Net
 Imports NCFramework
 Imports NCFramework.ResourceHandler
-Imports NCFramework.GlobalVariables
-Imports NCFramework.Basics
-Imports NCFramework.Conversions
-Imports NCFramework.SpellItem_Information
-Imports NCFramework.WebClientProxyExtension
-Imports System.Threading
-Imports System.Resources
-Imports System.Net
-
 Public Class CharacterOverview
     Dim controlLST As List(Of Control)
     Dim pubItm As Item
@@ -200,7 +193,6 @@ Public Class CharacterOverview
         newPoint.Y = 4000
         classpanel.Location = newPoint
         racepanel.Location = newPoint
-        addpanel.Location = newPoint
         addpanel.Location = newPoint
         PictureBox2.Visible = True
         If Not tempSender Is Nothing Then
@@ -424,7 +416,7 @@ Public Class CharacterOverview
     End Sub
 
     Private Sub race_lbl_Click(sender As System.Object, e As System.EventArgs) Handles race_lbl.Click
-        racepanel.Location = sender.location
+        racepanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
         Dim newpoint As New Point
         newPoint.X = 4000
         newPoint.Y = 4000
@@ -441,7 +433,7 @@ Public Class CharacterOverview
     End Sub
 
     Private Sub class_lbl_Click(sender As System.Object, e As System.EventArgs) Handles class_lbl.Click
-        classpanel.Location = sender.location
+        classpanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
         Dim newpoint As New Point
         newpoint.X = 4000
         newpoint.Y = 4000
@@ -475,7 +467,7 @@ Public Class CharacterOverview
     End Sub
 
     Private Sub level_lbl_Click(sender As System.Object, e As System.EventArgs) Handles level_lbl.Click
-        changepanel.Location = sender.location
+        changepanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
         Dim newpoint As New Point
         newpoint.X = 4000
         newpoint.Y = 4000
@@ -553,7 +545,7 @@ Public Class CharacterOverview
         Userwait.Close()
     End Sub
 
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+    Private Sub Button9_Click(sender As Object, e As EventArgs)
         MsgBox(cnt.ToString())
     End Sub
 
@@ -763,5 +755,15 @@ Public Class CharacterOverview
         If e.Button = Windows.Forms.MouseButtons.Left Then
             Me.Location = e.Location - ptMouseDownLocation + Location
         End If
+    End Sub
+
+    Private Sub InventoryPanel_MouseDown(sender As Object, e As MouseEventArgs) Handles InventoryPanel.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            CharacterOverview_MouseDown(sender, e)
+        End If
+    End Sub
+
+    Private Sub InventoryPanel_Paint(sender As Object, e As PaintEventArgs) Handles InventoryPanel.Paint
+
     End Sub
 End Class

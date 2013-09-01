@@ -187,8 +187,8 @@ Public Class Glyphs_interface
     Private Sub sec_prim_3_name_Click(sender As Object, e As EventArgs) Handles sec_prim_3_name.Click, sec_prim_2_name.Click, sec_prim_1_name.Click, sec_minor_3_name.Click, sec_minor_2_name.Click, sec_minor_1_name.Click, sec_major_3_name.Click, sec_major_2_name.Click, sec_major_1_name.Click, prim_3_name.Click, prim_2_name.Click, prim_1_name.Click, minor_3_name.Click, minor_2_name.Click, minor_1_name.Click, major_3_name.Click, major_2_name.Click, major_1_name.Click
         If sender.text = "" Or Not sender.name.contains("_name") Then Exit Sub
         Dim newPoint As New System.Drawing.Point
-        newPoint.X = sender.location.X
-        newPoint.Y = sender.location.Y
+        newPoint.X = sender.location.X + 8
+        newPoint.Y = sender.location.Y + 38
         changepanel.Location = newPoint
         addpanel.Location = New System.Drawing.Point(4000, 4000)
         newPoint.X = 4000

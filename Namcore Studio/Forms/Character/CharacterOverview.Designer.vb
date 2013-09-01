@@ -254,7 +254,6 @@ Partial Class CharacterOverview
         Me.PictureBox17 = New System.Windows.Forms.PictureBox()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.picbagslot = New System.Windows.Forms.PictureBox()
-        Me.Button9 = New System.Windows.Forms.Button()
         Me.addpanel = New System.Windows.Forms.Panel()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
@@ -2066,6 +2065,7 @@ Partial Class CharacterOverview
         '
         'changepanel
         '
+        Me.changepanel.BackColor = System.Drawing.Color.Transparent
         Me.changepanel.Controls.Add(Me.PictureBox2)
         Me.changepanel.Controls.Add(Me.PictureBox1)
         Me.changepanel.Controls.Add(Me.TextBox1)
@@ -2104,6 +2104,7 @@ Partial Class CharacterOverview
         '
         'racepanel
         '
+        Me.racepanel.BackColor = System.Drawing.Color.Transparent
         Me.racepanel.Controls.Add(Me.racecombo)
         Me.racepanel.Controls.Add(Me.racerefresh)
         Me.racepanel.Location = New System.Drawing.Point(1365, 267)
@@ -2132,6 +2133,7 @@ Partial Class CharacterOverview
         '
         'classpanel
         '
+        Me.classpanel.BackColor = System.Drawing.Color.Transparent
         Me.classpanel.Controls.Add(Me.classcombo)
         Me.classpanel.Controls.Add(Me.classrefresh)
         Me.classpanel.Location = New System.Drawing.Point(1365, 230)
@@ -2843,17 +2845,9 @@ Partial Class CharacterOverview
         Me.picbagslot.TabIndex = 0
         Me.picbagslot.TabStop = False
         '
-        'Button9
-        '
-        Me.Button9.Location = New System.Drawing.Point(1433, 357)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(75, 23)
-        Me.Button9.TabIndex = 184
-        Me.Button9.Text = "Button9"
-        Me.Button9.UseVisualStyleBackColor = True
-        '
         'addpanel
         '
+        Me.addpanel.BackColor = System.Drawing.Color.Transparent
         Me.addpanel.Controls.Add(Me.PictureBox4)
         Me.addpanel.Controls.Add(Me.TextBox2)
         Me.addpanel.Location = New System.Drawing.Point(1378, 313)
@@ -2992,17 +2986,16 @@ Partial Class CharacterOverview
         Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(910, 714)
-        Me.Controls.Add(Me.header)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Quests_bt)
         Me.Controls.Add(Me.addpanel)
-        Me.Controls.Add(Me.Button9)
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.selectenchpanel)
         Me.Controls.Add(Me.classpanel)
         Me.Controls.Add(Me.racepanel)
         Me.Controls.Add(Me.changepanel)
+        Me.Controls.Add(Me.header)
+        Me.Controls.Add(Me.GroupBox2)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.Quests_bt)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.exit_bt)
@@ -3440,7 +3433,6 @@ End Sub
     Friend WithEvents PictureBox17 As System.Windows.Forms.PictureBox
     Friend WithEvents Panel16 As System.Windows.Forms.Panel
     Friend WithEvents picbagslot As System.Windows.Forms.PictureBox
-    Friend WithEvents Button9 As System.Windows.Forms.Button
     Friend WithEvents addpanel As System.Windows.Forms.Panel
     Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox

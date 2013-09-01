@@ -567,6 +567,7 @@ Partial Class Glyphs_interface
         '
         'changepanel
         '
+        Me.changepanel.BackColor = System.Drawing.Color.Transparent
         Me.changepanel.Controls.Add(Me.PictureBox2)
         Me.changepanel.Controls.Add(Me.PictureBox1)
         Me.changepanel.Controls.Add(Me.TextBox1)
@@ -605,6 +606,7 @@ Partial Class Glyphs_interface
         '
         'addpanel
         '
+        Me.addpanel.BackColor = System.Drawing.Color.Transparent
         Me.addpanel.Controls.Add(Me.PictureBox4)
         Me.addpanel.Controls.Add(Me.TextBox2)
         Me.addpanel.Location = New System.Drawing.Point(1095, 394)
@@ -710,11 +712,11 @@ Partial Class Glyphs_interface
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(875, 563)
+        Me.Controls.Add(Me.addpanel)
+        Me.Controls.Add(Me.changepanel)
         Me.Controls.Add(Me.highlighter2)
         Me.Controls.Add(Me.highlighter1)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.addpanel)
-        Me.Controls.Add(Me.changepanel)
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
