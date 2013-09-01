@@ -24,6 +24,11 @@ Partial Class Settings_interface
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Settings_interface))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.password_tb = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.username_tb = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.defcred_cb = New System.Windows.Forms.CheckBox()
         Me.port_ud = New System.Windows.Forms.NumericUpDown()
         Me.manualproxy_radio = New System.Windows.Forms.RadioButton()
         Me.detectproxy_radio = New System.Windows.Forms.RadioButton()
@@ -33,11 +38,6 @@ Partial Class Settings_interface
         Me.Label1 = New System.Windows.Forms.Label()
         Me.apply_bt = New System.Windows.Forms.Button()
         Me.close_bt = New System.Windows.Forms.Button()
-        Me.defcred_cb = New System.Windows.Forms.CheckBox()
-        Me.username_tb = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.password_tb = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.port_ud, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -64,10 +64,66 @@ Partial Class Settings_interface
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Proxy settings"
         '
+        'password_tb
+        '
+        Me.password_tb.Enabled = False
+        Me.password_tb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.password_tb.Location = New System.Drawing.Point(111, 183)
+        Me.password_tb.Name = "password_tb"
+        Me.password_tb.Size = New System.Drawing.Size(185, 21)
+        Me.password_tb.TabIndex = 15
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Enabled = False
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(41, 186)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(64, 15)
+        Me.Label4.TabIndex = 14
+        Me.Label4.Text = "Password:"
+        '
+        'username_tb
+        '
+        Me.username_tb.Enabled = False
+        Me.username_tb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.username_tb.Location = New System.Drawing.Point(111, 158)
+        Me.username_tb.Name = "username_tb"
+        Me.username_tb.Size = New System.Drawing.Size(185, 21)
+        Me.username_tb.TabIndex = 13
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Enabled = False
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(41, 161)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(68, 15)
+        Me.Label3.TabIndex = 12
+        Me.Label3.Text = "Username:"
+        '
+        'defcred_cb
+        '
+        Me.defcred_cb.AutoSize = True
+        Me.defcred_cb.Checked = True
+        Me.defcred_cb.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.defcred_cb.Enabled = False
+        Me.defcred_cb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.defcred_cb.Location = New System.Drawing.Point(33, 137)
+        Me.defcred_cb.Name = "defcred_cb"
+        Me.defcred_cb.Size = New System.Drawing.Size(151, 19)
+        Me.defcred_cb.TabIndex = 11
+        Me.defcred_cb.Text = "Use default credentials"
+        Me.defcred_cb.UseVisualStyleBackColor = True
+        '
         'port_ud
         '
         Me.port_ud.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.port_ud.Location = New System.Drawing.Point(340, 111)
+        Me.port_ud.Maximum = New Decimal(New Integer() {65535, 0, 0, 0})
+        Me.port_ud.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         Me.port_ud.Name = "port_ud"
         Me.port_ud.Size = New System.Drawing.Size(74, 21)
         Me.port_ud.TabIndex = 10
@@ -164,60 +220,6 @@ Partial Class Settings_interface
         Me.close_bt.TabIndex = 167
         Me.close_bt.Text = "Exit"
         Me.close_bt.UseVisualStyleBackColor = False
-        '
-        'defcred_cb
-        '
-        Me.defcred_cb.AutoSize = True
-        Me.defcred_cb.Checked = True
-        Me.defcred_cb.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.defcred_cb.Enabled = False
-        Me.defcred_cb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.defcred_cb.Location = New System.Drawing.Point(33, 137)
-        Me.defcred_cb.Name = "defcred_cb"
-        Me.defcred_cb.Size = New System.Drawing.Size(151, 19)
-        Me.defcred_cb.TabIndex = 11
-        Me.defcred_cb.Text = "Use default credentials"
-        Me.defcred_cb.UseVisualStyleBackColor = True
-        '
-        'username_tb
-        '
-        Me.username_tb.Enabled = False
-        Me.username_tb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.username_tb.Location = New System.Drawing.Point(111, 158)
-        Me.username_tb.Name = "username_tb"
-        Me.username_tb.Size = New System.Drawing.Size(185, 21)
-        Me.username_tb.TabIndex = 13
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Enabled = False
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(41, 161)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(68, 15)
-        Me.Label3.TabIndex = 12
-        Me.Label3.Text = "Username:"
-        '
-        'password_tb
-        '
-        Me.password_tb.Enabled = False
-        Me.password_tb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.password_tb.Location = New System.Drawing.Point(111, 183)
-        Me.password_tb.Name = "password_tb"
-        Me.password_tb.Size = New System.Drawing.Size(185, 21)
-        Me.password_tb.TabIndex = 15
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Enabled = False
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(41, 186)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(64, 15)
-        Me.Label4.TabIndex = 14
-        Me.Label4.Text = "Password:"
         '
         'Settings_interface
         '

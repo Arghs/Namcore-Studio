@@ -158,4 +158,6 @@ Public Class Settings_interface
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles close_bt.Click
         Me.Close()
     End Sub
+
+   
 End Class
