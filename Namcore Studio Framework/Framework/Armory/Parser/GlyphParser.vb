@@ -39,8 +39,12 @@ Public Class GlyphParser
             Dim glyphContext As String = client.DownloadString(apiLink & "?fields=talents")
             Dim slotAddition As String
             Dim mainContext As String
-            If Not glyphContext.Contains("""glyphs"":") Then Exit Sub '// Skip if no glyphs
+            If Not glyphContext.Contains("""glyphs"":") Then
+                LogAppend("No glyphs found!?", "GlyphParser_loadGlyphs", False)
+                Exit Sub '// Skip if no glyphs
+            End If
             For i = 1 To 2
+                LogAppend("Now parsing spec: " & i.ToString(), "GlyphParser_loadGlyphs", False)
                 Select Case i
                     Case 1 : mainContext = splitString(glyphContext, """glyphs"":", ",""spec"":") : slotAddition = "" '// Spec 0
                     Case 2 : mainContext = splitString(glyphContext, ",""spec"":", "}]}") : slotAddition = "sec" '// Spec 1
@@ -68,6 +72,8 @@ Public Class GlyphParser
                                 counter += 1
                             Loop Until counter = exCounter
                         End If
+                    Else
+                        LogAppend("mainContext does not contain: " & gType & " / No glyphs in this category!", "GlyphParser_loadGlyphs", False)
                     End If
                     gType = "major"
                     loopCounter += 1

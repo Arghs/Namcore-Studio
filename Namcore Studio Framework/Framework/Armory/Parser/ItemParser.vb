@@ -21,11 +21,8 @@
 '*      /Description:   Contains functions for loading character items from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports NCFramework.EventLogging
-Imports NCFramework.Conversions
-Imports NCFramework.SpellItem_Information
+
 Imports NCFramework.GlobalVariables
-Imports NCFramework.Basics
 Public Class ItemParser
     Public Sub loadItems(ByVal source As String, ByVal setId As Integer)
         Dim slotname As String
@@ -39,6 +36,7 @@ Public Class ItemParser
                     Exit Do
                 End If
                 '// Loading item + info for each slot and add them to character
+                LogAppend("Now loading info for slot " & itemslot.ToString(), "ItemParser_loadItems", False)
                 Select Case itemslot
                     Case 0
                         slotname = "head"
@@ -137,27 +135,38 @@ Public Class ItemParser
             endString = "<div data-id"
         End If
         Dim relevantItemContext As String = splitString(sourceCode, "<div data-id=""" & slot.ToString & """ data-type", endString)
+        If relevantItemContext Is Nothing Then
+            LogAppend("RelevantItemContext is nothing - prevent NullReferenceException - Item not found", "ItemParser_loadItems", False, True)
+            Return New Item
+        End If
         If Not relevantItemContext.Contains("/item/") Then Return Nothing '//Not item
         Dim charItem As New Item
         '// Loading main Item Info
         charItem.id = TryInt(splitString(relevantItemContext, "/item/", """ class=""item"""))
         charItem.slotname = slotname
         charItem.slot = slot
-        If charItem.id = Nothing Then Return Nothing '// Item ID not found
+        If charItem.id = Nothing Then
+            LogAppend("Item Id is 0 - Failed to load", "ItemParser_loadItems", False, True)
+            Return New Item
+        End If '// Item ID not found
         charItem.name = splitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
         If offlineExtension = True Then charItem.image = GetIconByItemId(charItem.id) Else  : charItem.image = LoadImageFromUrl(splitString(relevantItemContext, "<img src=""", """ alt"))
         charItem.rarity = TryInt(splitString(relevantItemContext, "item-quality-", """ style="))
         Dim socketContext As String
         If relevantItemContext.Contains("<span class=""sockets"">") Then
+            LogAppend("Item gems active!", "ItemParser_loadItems", False)
             '// Gems active
             socketContext = splitString(relevantItemContext & "</div>", "<span class=""sockets"">", "</div>")
             Dim socketCount As Integer = UBound(Split(socketContext, "socket-"))
+            LogAppend("socketCount: " & socketCount.ToString(), "ItemParser_loadItems", False)
             Dim oneSocketContext As String = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
             If Not oneSocketContext.Length <= 49 Then
                 charItem.socket1_id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
                 If offlineExtension = True Then charItem.socket1_pic = GetIconByItemId(charItem.socket1_id) Else  : charItem.socket1_pic = LoadImageFromUrl(splitString(oneSocketContext,
                         "<img src=""", """ alt="""))
                 charItem.socket1_name = GetGemEffectName(charItem.socket1_id)
+            Else
+                LogAppend("oneSocketContext length is less then 49/ is: " & oneSocketContext.Length, "ItemParser_loadItems", False, True)
             End If
             If socketCount > 1 Then
                 socketContext = Replace(socketContext, "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">", Nothing, , 1)
@@ -175,22 +184,30 @@ Public Class ItemParser
                     charItem.socket3_name = GetGemEffectName(charItem.socket3_id)
                 End If
             End If
+        Else
+            LogAppend("No gems found!?", "ItemParser_loadItems", False)
         End If
         If relevantItemContext.Contains("<span class=""enchant-") Then
+            LogAppend("Enchantment active!", "ItemParser_loadItems", False)
             '// Enchantment active
             Dim enchantContext As String = splitString(relevantItemContext, " class=""enchant color", "</span>")
             If enchantContext.Contains("data-spell=") Then
+                LogAppend("Enchantment type: spell!", "ItemParser_loadItems", False)
                 '//enchantment type: spell
                 charItem.enchantment_id = TryInt(splitString(enchantContext, """ data-spell=""", """>"))
                 charItem.enchantment_name = splitString(enchantContext, """ data-spell=""" & charItem.enchantment_id.ToString & """>", "</span>")
                 charItem.enchantment_type = 1
             Else
+                LogAppend("Enchantment type: item!", "ItemParser_loadItems", False)
                 '//enchantment type: item
                 charItem.enchantment_id = TryInt(splitString(enchantContext, "/item/", """>"))
                 charItem.enchantment_name = splitString(enchantContext, "/item/" & charItem.enchantment_id.ToString & """>", "</a>")
                 charItem.enchantment_type = 2
             End If
+        Else
+            LogAppend("Enchantment not found!?", "ItemParser_loadItems", False)
         End If
+        LogAppend("Returning item!", "ItemParser_loadItems", False)
         Return charItem
     End Function
 End Class

@@ -43,6 +43,7 @@ Public Class Armory_interface
         Public charLST As List(Of String)
     End Structure
     Private Sub addChar_bt_Click(sender As System.Object, e As System.EventArgs) Handles addChar_bt.Click
+        LogAppend("Adding character", "Armory_interface_addChar_bt_Click", False)
         Dim templink As String = "http://#replaceregion#.battle.net/wow/#replacelang#/character/#replacerealm#/#replacecharacter#/advanced"
         'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         If globalregion.SelectedItem Is Nothing Then
@@ -75,12 +76,17 @@ Public Class Armory_interface
                 checkcode = client.DownloadString(templink)
             Catch ex As Exception
                 If ex.ToString.Contains("404") Then
+                    LogAppend("Character not found - error 404!", "Armory_interface_addChar_bt_Click", False, True)
                     MsgBox(GetUserMessage("charnotfound"), MsgBoxStyle.Critical, GetUserMessage("attention"))
                     Exit Sub
                 End If
             End Try
-            If checkcode Is Nothing Then Exit Sub
+            If checkcode Is Nothing Then
+                LogAppend("Checkcode is nothing - prevent NullReferenceException", "Armory_interface_addChar_bt_Click", False, True)
+                Exit Sub
+            End If
             If checkcode.Contains("error=503") Then
+                LogAppend("Character not found - error 503", "Armory_interface_addChar_bt_Click", False, True)
                 MsgBox(GetUserMessage("charnotfound"), MsgBoxStyle.Critical, GetUserMessage("attention"))
                 Exit Sub
             End If
@@ -107,6 +113,7 @@ Public Class Armory_interface
     End Sub
 
     Private Sub back_bt_Click(sender As System.Object, e As System.EventArgs) Handles back_bt.Click
+        LogAppend("Trigger back button click", "Armory_interface_back_bt_Click", False)
         If lastregion = "main" Or lastregion = "liveview" Then
             Me.Close()
             Main.Show()
@@ -115,9 +122,11 @@ Public Class Armory_interface
     End Sub
 
     Private Sub addURL_bt_Click(sender As System.Object, e As System.EventArgs) Handles addURL_bt.Click
+        LogAppend("Adding character via URL", "Armory_interface_addURL_bt_Click", False)
         Dim templink As String = url_tb.Text
         'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         If Not templink.Contains(".battle.net/wow/") Then
+            LogAppend("Invalid URL Exception", "Armory_interface_addURL_bt_Click", False, True)
             MsgBox(GetUserMessage("invalidurl"), MsgBoxStyle.Critical, GetUserMessage("attention"))
         Else
             templink = templink.Replace("/simple", "/advanced")
@@ -130,14 +139,17 @@ Public Class Armory_interface
                 checkcode = client.DownloadString(templink)
             Catch ex As Exception
                 If ex.ToString.Contains("404") Then
+                    LogAppend("Character not found - error 404", "Armory_interface_addURL_bt_Click", False, True)
                     MsgBox(GetUserMessage("charnotfound"), MsgBoxStyle.Critical, GetUserMessage("attention"))
                     Exit Sub
                 End If
             End Try
             If checkcode Is Nothing Then
+                LogAppend("Checkcode is nothing - prevent NullReferenceException", "Armory_interface_addURL_bt_Click", False, True)
                 Exit Sub
             End If
             If checkcode.Contains("error=503") Then
+                LogAppend("Character not found - error 503", "Armory_interface_addURL_bt_Click", False, True)
                 MsgBox(GetUserMessage("charnotfound"), MsgBoxStyle.Critical, GetUserMessage("attention"))
                 Exit Sub
             End If
@@ -163,11 +175,13 @@ Public Class Armory_interface
     End Sub
     Private WithEvents m_handler As New ArmoryHandler
     Private Sub load_bt_Click(sender As System.Object, e As System.EventArgs) Handles load_bt.Click
+        LogAppend("Trigger load button click", "Armory_interface_load_bt_Click", False)
         lastregion = "armoryparser"
         globChars.CharacterSets = New List(Of Character)
         trdrunnuing = True
         NCFramework.My.MySettings.Default.language = "de" 'todo for testing only
         Dim urllst As List(Of String) = (From lstitm As ListViewItem In char_lst.Items Select lstitm.SubItems(3).Text).ToList()
+        LogAppend("Urlcount: " & urllst.Count.ToString(), "Armory_interface_load_bt_Click", False)
         m_handler.LoadArmoryCharacters(urllst)
         Me.Close()
     End Sub
@@ -202,6 +216,7 @@ Public Class Armory_interface
 
 
     Private Sub Armory_interface_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        LogAppend("Armory_interface loading event", "Armory_interface_Load", False)
         Dim controlLST As List(Of Control)
         controlLST = FindAllChildren()
         For Each item_control As Control In controlLST

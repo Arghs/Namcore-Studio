@@ -32,12 +32,17 @@ Public Class ProfessionParser
         '// Retrieving character
         Dim player As Character = GetCharacterSetBySetId(setId)
         player.Professions = New List(Of Profession)
-        Dim pProf As New Profession
+        Dim pProf As Profession
         Try
             LogAppend("Loading character profession information", "ProfessionParser_loadProfessions", True)
-            '// Using API to load achievement info
+            '// Using API to load profession info
             Dim pfContext As String = client.DownloadString(apiLink & "?fields=professions")
-            '// Splitting to create completed-achievements and timestamp string
+            If pfContext Is Nothing Then
+                LogAppend("pfContext is nothing - Failed to load Professions API", "ProfessionParser_loadProfessions", False, True)
+                Exit Sub
+            Else
+                LogAppend("pfContext loaded - length: " & pfContext.Length.ToString(), "ProfessionParser_loadProfessions", False)
+            End If
             Dim pfStr As String = splitString(pfContext, """professions"":{", "}}") & ","
             Dim primaryPf As String = splitString(pfStr, """primary"":[", "}],")
             Dim secondaryPf As String = splitString(pfStr, """secondary"":[", "}],")

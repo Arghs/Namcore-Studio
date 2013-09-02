@@ -95,11 +95,13 @@ Public Class Main
     End Sub
 
     Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
+        LogAppend("Trigger Live View click", "Main_highlighter1_Click", False)
         Me.Hide()
         Live_View.Show()
     End Sub
 
     Private Sub highlighter3_Click(sender As Object, e As EventArgs) Handles highlighter3.Click
+        LogAppend("Trigger Armory Parser click", "Main_highlighter3_Click", False)
         Me.Hide()
         Armory_interface.Show()
     End Sub
@@ -126,5 +128,9 @@ Public Class Main
 
     Private Sub settings_bt_Click(sender As Object, e As EventArgs) Handles settings_bt.Click
         Settings_interface.Show()
+    End Sub
+
+    Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
+        LogAppend("Trigger Template Explorer click", "Main_highlighter2_Click", False)
     End Sub
 End Class

@@ -53,7 +53,10 @@ Public Class AchievementParser
                     If timeStamp.Contains("000") Then
                         Try
                             timeStamp = timeStamp.Remove(timeStamp.Length - 3, 3)
-                        Catch : End Try
+                        Catch tmpex As Exception
+                            LogAppend("Exception during timestamp splitting! - timeStamp/loopcounter/excounter: " & timeStamp & "/" & loopcounter.ToString & "/" &
+                                      excounter.ToString() & " # Exception is: " & tmpex.ToString(), "AchievementParser_loadAchievements", False, True)
+                        End Try
                     End If
                     loopcounter += 1
                     LogAppend("Adding achievement " & avId & " with timestamp " & timeStamp, "AchievementParser_loadAchievements", False)
@@ -67,7 +70,7 @@ Public Class AchievementParser
                 SetCharacterSet(setId, player)
             End If
         Catch ex As Exception
-            LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "AchievementParser_loadAchievements", False)
+            LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "AchievementParser_loadAchievements", False, True)
         End Try
     End Sub
 End Class

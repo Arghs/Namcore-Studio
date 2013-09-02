@@ -23,11 +23,9 @@
 
 Imports System.Text
 Imports System.IO
-Imports NCFramework.EventLogging
 Imports System.Resources
 Imports System.Net
 Imports System.drawing
-Imports NCFramework.Basics
 
 
 Public Module Conversions
@@ -68,14 +66,22 @@ Public Module Conversions
         End Try
     End Function
     Public Function TryInt(ByVal _string As String) As Integer
-        Dim parseResult As Integer = CInt(Integer.TryParse(_string, Nothing))
-        If parseResult = 0 Then
+        LogAppend("Converting string to integer: " & _string, "Conversions_TryInt", False)
+        Try
+            Dim parseResult As Integer = CInt(Integer.TryParse(_string, Nothing))
+            If parseResult = 0 Then
+                Return 0
+            Else
+                Return CInt(_string)
+            End If
+        Catch ex As Exception
+            LogAppend("Exception during TryInt() : " & ex.ToString(), "Conversions_TryInt", False, True)
             Return 0
-        Else
-            Return CInt(_string)
-        End If
+        End Try
+
     End Function
     Public Function GetRaceNameById(ByVal raceid As Integer) As String
+        LogAppend("Loading race name by id: " & raceid.ToString(), "Conversions_GetRaceNameById", False)
         Dim RM As New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Select Case raceid
             Case 1 : Return RM.GetString("human")
@@ -96,6 +102,7 @@ Public Module Conversions
         End Select
     End Function
     Public Function GetClassNameById(ByVal classid As Integer) As String
+        LogAppend("Loading class name by id: " & classid.ToString(), "Conversions_GetClassNameById", False)
         Dim RM As New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Select Case classid
             Case 1 : Return RM.GetString("warrior")
@@ -113,6 +120,7 @@ Public Module Conversions
         End Select
     End Function
     Public Function GetRaceIdByName(ByVal racename As String) As Integer
+        LogAppend("Loading race id by name: " & racename.ToString(), "Conversions_GetRaceIdByName", False)
         Select Case racename
             Case "human" : Return 1
             Case "orc" : Return 2
@@ -131,6 +139,7 @@ Public Module Conversions
         End Select
     End Function
     Public Function GetClassIdByName(ByVal classname As String) As Integer
+        LogAppend("Loading class id by name: " & classname.ToString(), "Conversions_GetClassIdByName", False)
         Select Case classname
             Case "warrior" : Return 1
             Case "paladin" : Return 2
@@ -147,6 +156,7 @@ Public Module Conversions
         End Select
     End Function
     Public Function GetGenderNameById(ByVal genderid As Integer) As String
+        LogAppend("Loading gender name by id: " & genderid.ToString(), "Conversions_GetGenderNameById", False)
         Dim RM As New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
         Select Case genderid
             Case 0 : Return RM.GetString("male")
@@ -155,6 +165,7 @@ Public Module Conversions
         End Select
     End Function
     Public Function ConvertImageToString(ByVal _img As Image) As String
+        LogAppend("Converting image to string", "Conversions_ConvertImageToString", False)
         If _img Is Nothing Then Return ""
         Dim Result As String = String.Empty
         Try
@@ -165,21 +176,22 @@ Public Module Conversions
                 Result = Convert.ToBase64String(Bytes)
             End Using
         Catch ex As Exception
-
+            LogAppend("Exception during converting process: " & ex.ToString(), "Conversions_ConvertImageToString", False, True)
         End Try
         Return Result
     End Function
     Public Function ConvertStringToImage(ByVal Base64String As String) As Image
+        LogAppend("Converting string to image", "Conversions_ConvertStringToImage", False)
         If Base64String = "" Then Return Nothing
         Dim img As Image = Nothing
         If Base64String Is Nothing Then
-
+            LogAppend("Base64String is nothing!", "Conversions_ConvertStringToImage", False, True)
         Else
             Try
                 Dim Bytes() As Byte = Convert.FromBase64String(Base64String)
                 img = Image.FromStream(New MemoryStream(Bytes))
             Catch ex As Exception
-
+                LogAppend("Exception during converting process: " & ex.ToString(), "Conversions_ConvertStringToImage", False, True)
             End Try
         End If
         Return img

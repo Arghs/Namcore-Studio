@@ -38,7 +38,7 @@ Public Module EventLogging
         userOut = True
         If iserror = False Then
             If userOut = True Then
-                appendStatus("[" & Now.TimeOfDay.ToString & "]" & _event)
+                appendStatus(_event, location, iserror)
                 eventlog = "[" & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog
                 eventlog_full = "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog_full
             Else
@@ -46,7 +46,7 @@ Public Module EventLogging
             End If
         Else
             If userOut = True Then
-                appendStatus("[" & Now.TimeOfDay.ToString & "]" & _event)
+                appendStatus(_event, location, iserror)
                 eventlog = "[" & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog
                 eventlog_full = "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog_full
             Else
@@ -55,16 +55,15 @@ Public Module EventLogging
         End If
         isbusy = False
     End Sub
-    Private Sub appendStatus(ByVal _status As String, Optional progress As Integer = 0)
-        proccessTXT = _status & vbNewLine & proccessTXT
-        If lastprogress = Nothing Then lastprogress = 0
-        If progress = 0 Then progress = lastprogress
-        lastprogress = progress
+    Private Sub appendStatus(ByVal _status As String, ByVal loc As String, Optional Iserror As Boolean = False)
+        proccessTXT = "[" & Now.TimeOfDay.ToString & "]" & _status & vbNewLine & proccessTXT
+        Dim append As String = ""
+        If Iserror Then append = "[ERROR]"
         Dim fs As New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt", FileMode.OpenOrCreate, System.Text.Encoding.Default)
-        fs.WriteLine(_status)
+        fs.WriteLine("[" & Now.TimeOfDay.ToString & "]" & append & "[" & loc & "]" & _status)
         fs.Close()
         Try
-            procStatus.appendProc(_status)
+            procStatus.appendProc("[" & Now.TimeOfDay.ToString & "]" & _status)
         Catch ex As Exception
 
         End Try

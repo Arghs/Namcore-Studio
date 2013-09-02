@@ -38,6 +38,12 @@ Public Class ReputationParser
         Try
             LogAppend("Loading character reputation information", "ReputationParser_loadReputation", True)
             Dim reputationContext As String = client.DownloadString(apiLink & "?fields=reputation")
+            If reputationContext Is Nothing Then
+                LogAppend("Failed to load Reputation API", "ReputationParser_loadReputation", False, True)
+                Exit Sub
+            Else
+                LogAppend("reputationContext loaded - length is: " & reputationContext.Length.ToString(), "ReputationParser_loadReputation", False)
+            End If
             reputationContext = splitString(reputationContext, """reputation"":[", "]")
             If reputationContext.Length > 5 Then '// Not confirmed if properly working TODO
                 Dim exCount As Integer = UBound(Split(reputationContext, ",{"))
@@ -48,6 +54,7 @@ Public Class ReputationParser
                     Dim rep As New Reputation
                     Try
                         Dim factionId As String = splitString(parts(loopcounter), """id"":", ",")
+                        LogAppend("Now adding fation with id: " & factionId, "ReputationParser_loadReputation", False)
                         Dim standing As Integer = TryInt(splitString(parts(loopcounter), """value"":", ","))
                         Dim orgstanding As Integer = TryInt(splitString(parts(loopcounter), """standing"":", ","))
                         rep.status = orgstanding

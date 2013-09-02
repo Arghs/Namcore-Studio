@@ -23,13 +23,9 @@
 
 
 Imports NCFramework.GlobalVariables
-Imports NCFramework.Basics
-Imports NCFramework.EventLogging
-Imports NCFramework.Conversions
 Imports System.Net
 Imports System.Drawing
 Imports System.Windows.Forms
-Imports System.Threading
 
 Public Module SpellItem_Information
 

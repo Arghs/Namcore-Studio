@@ -21,11 +21,9 @@
 '*      /Description:   Includes basic and frequently used functions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports NCFramework.EventLogging
+
 Imports NCFramework.GlobalVariables
-Imports NCFramework.GlobalCharVars
 Imports System.Net
-Imports NCFramework.Conversions
 Imports System.Drawing
 Public Module Basics
     Public tmpset As Integer
@@ -140,6 +138,7 @@ Public Module Basics
         End Try
     End Function
     Public Function LoadImageFromUrl(ByRef url As String) As Image
+        LogAppend("Loading image from url: " & url, "Basics_LoadImageFromUrl", False)
         Try
             Dim request As HttpWebRequest = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
             Dim response As HttpWebResponse = DirectCast(request.GetResponse, HttpWebResponse)
@@ -147,6 +146,7 @@ Public Module Basics
             response.Close()
             Return img
         Catch ex As Exception
+            LogAppend("Error while loading image: " & ex.ToString(), "Basics_LoadImageFromUrl", False, True)
             Return Nothing
         End Try
 
