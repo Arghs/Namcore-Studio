@@ -37,7 +37,12 @@ Public Class ThreadExtensions
     End Sub
 
     Private Shared Sub ProperDelegate(ByVal state As Object)
-        Dim sd As ThreadExtensions = DirectCast(state, ThreadExtensions)
-        sd.DelegateToInvoke.DynamicInvoke(sd.args)
+        Try
+            Dim sd As ThreadExtensions = DirectCast(state, ThreadExtensions)
+            sd.DelegateToInvoke.DynamicInvoke(sd.args)
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 End Class

@@ -684,19 +684,51 @@ LookOnline: Else
     Public Function GetAvIconById(ByVal avId As Integer) As Image
         LogAppend("Loading achievement icon of id: " & avId.ToString, "SpellItem_Information_GetAvIconById", False)
         Try
-            Dim client As New WebClient
-            client.CheckProxy()
-            Dim source As String = client.DownloadString("http://wowhead.com/achievement=" & avId.ToString())
-            Dim picname As String = splitString(source, ",icon:'", "'};").ToLower()
-            Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(picname)
+            If tempAvIconTable Is Nothing Then
+                Try
+                    LogAppend("Filling tempAvIconTable", "SpellItem_Information_GetAvIconById", False)
+                    tempAvIconTable = New DataTable()
+                    Dim stext As String = libnc.My.Resources.avicon
+                    Dim a() As String
+                    Dim strArray As String()
+                    a = Split(stext, vbNewLine)
+                    For i = 0 To UBound(a)
+                        strArray = a(i).Split(CChar(";"))
+                        If i = 0 Then
+                            For Each value As String In strArray
+                                tempAvIconTable.Columns.Add(value.Trim())
+                            Next
+                        Else
+                            tempAvIconTable.Rows.Add(strArray)
+                        End If
+                    Next i
+                    Application.DoEvents()
+                Catch ex As Exception
+                    LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetAvIconById", False, True)
+                End Try
+            End If
+            Dim picname As String = ""
+            If Not tempAvIconTable Is Nothing Then
+                Dim desc As String = Execute("id", avId.ToString(), tempAvIconTable, 2)
+                If desc = "-" Then
+                    LogAppend("Entry not found", "SpellItem_Information_GetAvIconById", False, True)
+                    picname = ""
+                Else
+                    picname = desc
+                End If
+            End If
+            If picname = "" Then Return My.Resources.INV_Misc_QuestionMark
+            Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(picname.ToLower())
             If pic Is Nothing Then
-                Dim onlinePic As Image = LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & picname & ".jpg")
+                LogAppend("Loading icon from web!", "SpellItem_Information_GetAvIconById", False)
+                Dim onlinePic As Image = LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & picname.ToLower() & ".jpg")
                 If onlinePic Is Nothing Then
                     Return My.Resources.INV_Misc_QuestionMark
                 Else
                     Return onlinePic
                 End If
             Else
+                LogAppend("Loaded icon from library", "SpellItem_Information_GetAvIconById", False)
                 Return pic
             End If
 

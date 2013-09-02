@@ -83,6 +83,7 @@ Public Class GlobalVariables
     Public Shared tempDisplayInfoTable As DataTable
     Public Shared tempQuestNameTable As DataTable
     Public Shared tempAvMainCatTable As DataTable
+    Public Shared tempAvIconTable As DataTable
 End Class
 <Serializable()> _
 Public Class GlobalCharVars
