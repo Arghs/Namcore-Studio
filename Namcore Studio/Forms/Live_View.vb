@@ -928,7 +928,9 @@ Public Class Live_View
     End Sub
 
 
-
+    Private Sub Panel1_MouseEnter(sender As Object, e As EventArgs) Handles Panel1.MouseEnter
+        Cursor = Cursors.Default
+    End Sub
     Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         If Not stretching And Not moving Then
             If e.X > Width - 10 And e.X < Width + 10 Then
@@ -1004,4 +1006,8 @@ Public Class Live_View
     Private Sub header_Paint(sender As Object, e As PaintEventArgs) Handles header.Paint
 
     End Sub
+
+   
+
+   
 End Class

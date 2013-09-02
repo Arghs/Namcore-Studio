@@ -1,5 +1,4 @@
 ﻿Imports NCFramework
-Imports System.Threading
 
 Public Class FlowLayoutPanelHandler
     Public Function doOperate_av(ByVal sender As Object, ByVal cnt As Integer) As String

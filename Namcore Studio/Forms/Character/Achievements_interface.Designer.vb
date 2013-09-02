@@ -22,6 +22,7 @@ Partial Class Achievements_interface
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Achievements_interface))
         Me.AVLayoutPanel = New System.Windows.Forms.FlowLayoutPanel()
         Me.cat_id_92_bt = New System.Windows.Forms.Button()
@@ -51,6 +52,9 @@ Partial Class Achievements_interface
         Me.add_bt = New System.Windows.Forms.Button()
         Me.browse_tb = New System.Windows.Forms.TextBox()
         Me.subcat_combo = New System.Windows.Forms.ComboBox()
+        Me.callbacktimer = New System.Windows.Forms.Timer(Me.components)
+        Me.waitpanel = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.addpanel.SuspendLayout()
         CType(Me.add_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.referencePanel.SuspendLayout()
@@ -60,6 +64,7 @@ Partial Class Achievements_interface
         Me.closepanel.SuspendLayout()
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.waitpanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'AVLayoutPanel
@@ -380,19 +385,41 @@ Partial Class Achievements_interface
         '
         'browse_tb
         '
-        Me.browse_tb.Location = New System.Drawing.Point(270, 46)
+        Me.browse_tb.Location = New System.Drawing.Point(161, 46)
         Me.browse_tb.Name = "browse_tb"
-        Me.browse_tb.Size = New System.Drawing.Size(125, 20)
+        Me.browse_tb.Size = New System.Drawing.Size(280, 20)
         Me.browse_tb.TabIndex = 226
         '
         'subcat_combo
         '
         Me.subcat_combo.FormattingEnabled = True
-        Me.subcat_combo.Location = New System.Drawing.Point(766, 45)
+        Me.subcat_combo.Location = New System.Drawing.Point(766, 42)
         Me.subcat_combo.Name = "subcat_combo"
         Me.subcat_combo.Size = New System.Drawing.Size(121, 21)
         Me.subcat_combo.TabIndex = 227
         Me.subcat_combo.Text = "Pick category"
+        '
+        'callbacktimer
+        '
+        '
+        'waitpanel
+        '
+        Me.waitpanel.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.waitpanel.Controls.Add(Me.Label1)
+        Me.waitpanel.Location = New System.Drawing.Point(1122, 210)
+        Me.waitpanel.Name = "waitpanel"
+        Me.waitpanel.Size = New System.Drawing.Size(413, 118)
+        Me.waitpanel.TabIndex = 228
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(31, 48)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(339, 24)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Pick category to load achievements"
         '
         'Achievements_interface
         '
@@ -401,6 +428,7 @@ Partial Class Achievements_interface
         Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1023, 516)
+        Me.Controls.Add(Me.waitpanel)
         Me.Controls.Add(Me.subcat_combo)
         Me.Controls.Add(Me.browse_tb)
         Me.Controls.Add(Me.add_bt)
@@ -423,6 +451,7 @@ Partial Class Achievements_interface
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Achievements_interface"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Achievements_interface"
         Me.addpanel.ResumeLayout(False)
         CType(Me.add_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -434,6 +463,8 @@ Partial Class Achievements_interface
         Me.closepanel.ResumeLayout(False)
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.waitpanel.ResumeLayout(False)
+        Me.waitpanel.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -466,4 +497,7 @@ Partial Class Achievements_interface
     Friend WithEvents add_bt As System.Windows.Forms.Button
     Friend WithEvents browse_tb As System.Windows.Forms.TextBox
     Friend WithEvents subcat_combo As System.Windows.Forms.ComboBox
+    Friend WithEvents callbacktimer As System.Windows.Forms.Timer
+    Friend WithEvents waitpanel As System.Windows.Forms.Panel
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

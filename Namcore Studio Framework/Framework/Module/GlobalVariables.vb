@@ -77,6 +77,8 @@ Public Class GlobalVariables
     Public Shared tempAchievementInfoIndex As String
     Public Shared offlineExtension As Boolean
     Public Shared forceTargetConnectionUsage As Boolean
+    Public Shared trdRunning As Integer = 0
+    Public Shared abortMe As Boolean = False
     Public Shared proccessTXT As String
     Public Shared tempAvTable As DataTable
     Public Shared tempAvCatTable As DataTable
