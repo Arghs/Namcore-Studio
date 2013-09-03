@@ -773,6 +773,7 @@ Partial Class CharacterOverview
         '
         'slot_13_enchant
         '
+        Me.slot_13_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_13_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_13_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_13_enchant.Location = New System.Drawing.Point(279, 481)
@@ -794,6 +795,7 @@ Partial Class CharacterOverview
         '
         'slot_13_gem2_pic
         '
+        Me.slot_13_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_13_gem2_pic.Location = New System.Drawing.Point(416, 499)
         Me.slot_13_gem2_pic.Name = "slot_13_gem2_pic"
         Me.slot_13_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -803,6 +805,7 @@ Partial Class CharacterOverview
         '
         'slot_13_gem3_pic
         '
+        Me.slot_13_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_13_gem3_pic.Location = New System.Drawing.Point(392, 499)
         Me.slot_13_gem3_pic.Name = "slot_13_gem3_pic"
         Me.slot_13_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -831,6 +834,7 @@ Partial Class CharacterOverview
         '
         'slot_13_name
         '
+        Me.slot_13_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_13_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_13_name.Location = New System.Drawing.Point(279, 463)
         Me.slot_13_name.Name = "slot_13_name"
@@ -842,6 +846,7 @@ Partial Class CharacterOverview
         '
         'slot_12_enchant
         '
+        Me.slot_12_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_12_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_12_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_12_enchant.Location = New System.Drawing.Point(279, 416)
@@ -863,6 +868,7 @@ Partial Class CharacterOverview
         '
         'slot_12_gem2_pic
         '
+        Me.slot_12_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_12_gem2_pic.Location = New System.Drawing.Point(416, 434)
         Me.slot_12_gem2_pic.Name = "slot_12_gem2_pic"
         Me.slot_12_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -872,6 +878,7 @@ Partial Class CharacterOverview
         '
         'slot_12_gem3_pic
         '
+        Me.slot_12_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_12_gem3_pic.Location = New System.Drawing.Point(392, 434)
         Me.slot_12_gem3_pic.Name = "slot_12_gem3_pic"
         Me.slot_12_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -900,6 +907,7 @@ Partial Class CharacterOverview
         '
         'slot_12_name
         '
+        Me.slot_12_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_12_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_12_name.Location = New System.Drawing.Point(279, 398)
         Me.slot_12_name.Name = "slot_12_name"
@@ -911,6 +919,7 @@ Partial Class CharacterOverview
         '
         'slot_11_enchant
         '
+        Me.slot_11_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_11_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_11_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_11_enchant.Location = New System.Drawing.Point(279, 351)
@@ -932,6 +941,7 @@ Partial Class CharacterOverview
         '
         'slot_11_gem2_pic
         '
+        Me.slot_11_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_11_gem2_pic.Location = New System.Drawing.Point(416, 369)
         Me.slot_11_gem2_pic.Name = "slot_11_gem2_pic"
         Me.slot_11_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -941,6 +951,7 @@ Partial Class CharacterOverview
         '
         'slot_11_gem3_pic
         '
+        Me.slot_11_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_11_gem3_pic.Location = New System.Drawing.Point(392, 369)
         Me.slot_11_gem3_pic.Name = "slot_11_gem3_pic"
         Me.slot_11_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -969,6 +980,7 @@ Partial Class CharacterOverview
         '
         'slot_11_name
         '
+        Me.slot_11_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_11_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_11_name.Location = New System.Drawing.Point(279, 333)
         Me.slot_11_name.Name = "slot_11_name"
@@ -980,6 +992,7 @@ Partial Class CharacterOverview
         '
         'slot_10_enchant
         '
+        Me.slot_10_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_10_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_10_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_10_enchant.Location = New System.Drawing.Point(279, 286)
@@ -1001,6 +1014,7 @@ Partial Class CharacterOverview
         '
         'slot_10_gem2_pic
         '
+        Me.slot_10_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_10_gem2_pic.Location = New System.Drawing.Point(416, 304)
         Me.slot_10_gem2_pic.Name = "slot_10_gem2_pic"
         Me.slot_10_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1010,6 +1024,7 @@ Partial Class CharacterOverview
         '
         'slot_10_gem3_pic
         '
+        Me.slot_10_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_10_gem3_pic.Location = New System.Drawing.Point(392, 304)
         Me.slot_10_gem3_pic.Name = "slot_10_gem3_pic"
         Me.slot_10_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1038,6 +1053,7 @@ Partial Class CharacterOverview
         '
         'slot_10_name
         '
+        Me.slot_10_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_10_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_10_name.Location = New System.Drawing.Point(279, 268)
         Me.slot_10_name.Name = "slot_10_name"
@@ -1049,6 +1065,7 @@ Partial Class CharacterOverview
         '
         'slot_7_enchant
         '
+        Me.slot_7_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_7_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_7_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_7_enchant.Location = New System.Drawing.Point(279, 221)
@@ -1070,6 +1087,7 @@ Partial Class CharacterOverview
         '
         'slot_7_gem2_pic
         '
+        Me.slot_7_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_7_gem2_pic.Location = New System.Drawing.Point(416, 239)
         Me.slot_7_gem2_pic.Name = "slot_7_gem2_pic"
         Me.slot_7_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1079,6 +1097,7 @@ Partial Class CharacterOverview
         '
         'slot_7_gem3_pic
         '
+        Me.slot_7_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_7_gem3_pic.Location = New System.Drawing.Point(392, 239)
         Me.slot_7_gem3_pic.Name = "slot_7_gem3_pic"
         Me.slot_7_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1107,6 +1126,7 @@ Partial Class CharacterOverview
         '
         'slot_7_name
         '
+        Me.slot_7_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_7_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_7_name.Location = New System.Drawing.Point(279, 203)
         Me.slot_7_name.Name = "slot_7_name"
@@ -1118,6 +1138,7 @@ Partial Class CharacterOverview
         '
         'slot_6_enchant
         '
+        Me.slot_6_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_6_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_6_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_6_enchant.Location = New System.Drawing.Point(279, 156)
@@ -1139,6 +1160,7 @@ Partial Class CharacterOverview
         '
         'slot_6_gem2_pic
         '
+        Me.slot_6_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_6_gem2_pic.Location = New System.Drawing.Point(416, 174)
         Me.slot_6_gem2_pic.Name = "slot_6_gem2_pic"
         Me.slot_6_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1148,6 +1170,7 @@ Partial Class CharacterOverview
         '
         'slot_6_gem3_pic
         '
+        Me.slot_6_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_6_gem3_pic.Location = New System.Drawing.Point(392, 174)
         Me.slot_6_gem3_pic.Name = "slot_6_gem3_pic"
         Me.slot_6_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1176,6 +1199,7 @@ Partial Class CharacterOverview
         '
         'slot_6_name
         '
+        Me.slot_6_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_6_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_6_name.Location = New System.Drawing.Point(279, 138)
         Me.slot_6_name.Name = "slot_6_name"
@@ -1187,6 +1211,7 @@ Partial Class CharacterOverview
         '
         'slot_5_enchant
         '
+        Me.slot_5_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_5_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_5_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_5_enchant.Location = New System.Drawing.Point(279, 91)
@@ -1208,6 +1233,7 @@ Partial Class CharacterOverview
         '
         'slot_5_gem2_pic
         '
+        Me.slot_5_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_5_gem2_pic.Location = New System.Drawing.Point(416, 109)
         Me.slot_5_gem2_pic.Name = "slot_5_gem2_pic"
         Me.slot_5_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1217,6 +1243,7 @@ Partial Class CharacterOverview
         '
         'slot_5_gem3_pic
         '
+        Me.slot_5_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_5_gem3_pic.Location = New System.Drawing.Point(392, 109)
         Me.slot_5_gem3_pic.Name = "slot_5_gem3_pic"
         Me.slot_5_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1245,6 +1272,7 @@ Partial Class CharacterOverview
         '
         'slot_5_name
         '
+        Me.slot_5_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_5_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_5_name.Location = New System.Drawing.Point(279, 73)
         Me.slot_5_name.Name = "slot_5_name"
@@ -1256,6 +1284,7 @@ Partial Class CharacterOverview
         '
         'slot_9_enchant
         '
+        Me.slot_9_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_9_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_9_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_9_enchant.Location = New System.Drawing.Point(279, 26)
@@ -1277,6 +1306,7 @@ Partial Class CharacterOverview
         '
         'slot_9_gem2_pic
         '
+        Me.slot_9_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_9_gem2_pic.Location = New System.Drawing.Point(416, 44)
         Me.slot_9_gem2_pic.Name = "slot_9_gem2_pic"
         Me.slot_9_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1286,6 +1316,7 @@ Partial Class CharacterOverview
         '
         'slot_9_gem3_pic
         '
+        Me.slot_9_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_9_gem3_pic.Location = New System.Drawing.Point(392, 44)
         Me.slot_9_gem3_pic.Name = "slot_9_gem3_pic"
         Me.slot_9_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1314,6 +1345,7 @@ Partial Class CharacterOverview
         '
         'slot_9_name
         '
+        Me.slot_9_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_9_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_9_name.Location = New System.Drawing.Point(279, 8)
         Me.slot_9_name.Name = "slot_9_name"
@@ -1326,6 +1358,7 @@ Partial Class CharacterOverview
         'slot_8_enchant
         '
         Me.slot_8_enchant.AutoSize = True
+        Me.slot_8_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_8_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_8_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_8_enchant.Location = New System.Drawing.Point(74, 481)
@@ -1336,6 +1369,7 @@ Partial Class CharacterOverview
         '
         'slot_8_gem3_pic
         '
+        Me.slot_8_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_8_gem3_pic.Location = New System.Drawing.Point(122, 499)
         Me.slot_8_gem3_pic.Name = "slot_8_gem3_pic"
         Me.slot_8_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1345,6 +1379,7 @@ Partial Class CharacterOverview
         '
         'slot_8_gem2_pic
         '
+        Me.slot_8_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_8_gem2_pic.Location = New System.Drawing.Point(98, 499)
         Me.slot_8_gem2_pic.Name = "slot_8_gem2_pic"
         Me.slot_8_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1354,6 +1389,7 @@ Partial Class CharacterOverview
         '
         'slot_8_gem1_pic
         '
+        Me.slot_8_gem1_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_8_gem1_pic.Location = New System.Drawing.Point(74, 499)
         Me.slot_8_gem1_pic.Name = "slot_8_gem1_pic"
         Me.slot_8_gem1_pic.Size = New System.Drawing.Size(20, 20)
@@ -1383,6 +1419,7 @@ Partial Class CharacterOverview
         'slot_8_name
         '
         Me.slot_8_name.AutoSize = True
+        Me.slot_8_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_8_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_8_name.Location = New System.Drawing.Point(74, 463)
         Me.slot_8_name.Name = "slot_8_name"
@@ -1393,6 +1430,7 @@ Partial Class CharacterOverview
         'slot_18_enchant
         '
         Me.slot_18_enchant.AutoSize = True
+        Me.slot_18_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_18_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_18_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_18_enchant.Location = New System.Drawing.Point(74, 416)
@@ -1403,6 +1441,7 @@ Partial Class CharacterOverview
         '
         'slot_18_gem3_pic
         '
+        Me.slot_18_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_18_gem3_pic.Location = New System.Drawing.Point(122, 434)
         Me.slot_18_gem3_pic.Name = "slot_18_gem3_pic"
         Me.slot_18_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1412,6 +1451,7 @@ Partial Class CharacterOverview
         '
         'slot_18_gem2_pic
         '
+        Me.slot_18_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_18_gem2_pic.Location = New System.Drawing.Point(98, 434)
         Me.slot_18_gem2_pic.Name = "slot_18_gem2_pic"
         Me.slot_18_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1421,6 +1461,7 @@ Partial Class CharacterOverview
         '
         'slot_18_gem1_pic
         '
+        Me.slot_18_gem1_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_18_gem1_pic.Location = New System.Drawing.Point(74, 434)
         Me.slot_18_gem1_pic.Name = "slot_18_gem1_pic"
         Me.slot_18_gem1_pic.Size = New System.Drawing.Size(20, 20)
@@ -1450,6 +1491,7 @@ Partial Class CharacterOverview
         'slot_18_name
         '
         Me.slot_18_name.AutoSize = True
+        Me.slot_18_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_18_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_18_name.Location = New System.Drawing.Point(74, 398)
         Me.slot_18_name.Name = "slot_18_name"
@@ -1460,6 +1502,7 @@ Partial Class CharacterOverview
         'slot_3_enchant
         '
         Me.slot_3_enchant.AutoSize = True
+        Me.slot_3_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_3_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_3_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_3_enchant.Location = New System.Drawing.Point(74, 351)
@@ -1470,6 +1513,7 @@ Partial Class CharacterOverview
         '
         'slot_3_gem3_pic
         '
+        Me.slot_3_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_3_gem3_pic.Location = New System.Drawing.Point(122, 369)
         Me.slot_3_gem3_pic.Name = "slot_3_gem3_pic"
         Me.slot_3_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1479,6 +1523,7 @@ Partial Class CharacterOverview
         '
         'slot_3_gem2_pic
         '
+        Me.slot_3_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_3_gem2_pic.Location = New System.Drawing.Point(98, 369)
         Me.slot_3_gem2_pic.Name = "slot_3_gem2_pic"
         Me.slot_3_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1488,6 +1533,7 @@ Partial Class CharacterOverview
         '
         'slot_3_gem1_pic
         '
+        Me.slot_3_gem1_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_3_gem1_pic.Location = New System.Drawing.Point(74, 369)
         Me.slot_3_gem1_pic.Name = "slot_3_gem1_pic"
         Me.slot_3_gem1_pic.Size = New System.Drawing.Size(20, 20)
@@ -1517,6 +1563,7 @@ Partial Class CharacterOverview
         'slot_3_name
         '
         Me.slot_3_name.AutoSize = True
+        Me.slot_3_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_3_name.Location = New System.Drawing.Point(74, 333)
         Me.slot_3_name.Name = "slot_3_name"
@@ -1527,6 +1574,7 @@ Partial Class CharacterOverview
         'slot_4_enchant
         '
         Me.slot_4_enchant.AutoSize = True
+        Me.slot_4_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_4_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_4_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_4_enchant.Location = New System.Drawing.Point(74, 286)
@@ -1537,6 +1585,7 @@ Partial Class CharacterOverview
         '
         'slot_4_gem3_pic
         '
+        Me.slot_4_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_4_gem3_pic.Location = New System.Drawing.Point(122, 304)
         Me.slot_4_gem3_pic.Name = "slot_4_gem3_pic"
         Me.slot_4_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1546,6 +1595,7 @@ Partial Class CharacterOverview
         '
         'slot_4_gem2_pic
         '
+        Me.slot_4_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_4_gem2_pic.Location = New System.Drawing.Point(98, 304)
         Me.slot_4_gem2_pic.Name = "slot_4_gem2_pic"
         Me.slot_4_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1555,6 +1605,7 @@ Partial Class CharacterOverview
         '
         'slot_4_gem1_pic
         '
+        Me.slot_4_gem1_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_4_gem1_pic.Location = New System.Drawing.Point(74, 304)
         Me.slot_4_gem1_pic.Name = "slot_4_gem1_pic"
         Me.slot_4_gem1_pic.Size = New System.Drawing.Size(20, 20)
@@ -1584,6 +1635,7 @@ Partial Class CharacterOverview
         'slot_4_name
         '
         Me.slot_4_name.AutoSize = True
+        Me.slot_4_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_4_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_4_name.Location = New System.Drawing.Point(74, 268)
         Me.slot_4_name.Name = "slot_4_name"
@@ -1594,6 +1646,7 @@ Partial Class CharacterOverview
         'slot_14_enchant
         '
         Me.slot_14_enchant.AutoSize = True
+        Me.slot_14_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_14_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_14_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_14_enchant.Location = New System.Drawing.Point(74, 221)
@@ -1604,6 +1657,7 @@ Partial Class CharacterOverview
         '
         'slot_14_gem3_pic
         '
+        Me.slot_14_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_14_gem3_pic.Location = New System.Drawing.Point(122, 239)
         Me.slot_14_gem3_pic.Name = "slot_14_gem3_pic"
         Me.slot_14_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1613,6 +1667,7 @@ Partial Class CharacterOverview
         '
         'slot_14_gem2_pic
         '
+        Me.slot_14_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_14_gem2_pic.Location = New System.Drawing.Point(98, 239)
         Me.slot_14_gem2_pic.Name = "slot_14_gem2_pic"
         Me.slot_14_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1622,6 +1677,7 @@ Partial Class CharacterOverview
         '
         'slot_14_gem1_pic
         '
+        Me.slot_14_gem1_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_14_gem1_pic.Location = New System.Drawing.Point(74, 239)
         Me.slot_14_gem1_pic.Name = "slot_14_gem1_pic"
         Me.slot_14_gem1_pic.Size = New System.Drawing.Size(20, 20)
@@ -1651,6 +1707,7 @@ Partial Class CharacterOverview
         'slot_14_name
         '
         Me.slot_14_name.AutoSize = True
+        Me.slot_14_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_14_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_14_name.Location = New System.Drawing.Point(74, 203)
         Me.slot_14_name.Name = "slot_14_name"
@@ -1661,6 +1718,7 @@ Partial Class CharacterOverview
         'slot_2_enchant
         '
         Me.slot_2_enchant.AutoSize = True
+        Me.slot_2_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_2_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_2_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_2_enchant.Location = New System.Drawing.Point(74, 156)
@@ -1671,6 +1729,7 @@ Partial Class CharacterOverview
         '
         'slot_2_gem3_pic
         '
+        Me.slot_2_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_2_gem3_pic.Location = New System.Drawing.Point(122, 174)
         Me.slot_2_gem3_pic.Name = "slot_2_gem3_pic"
         Me.slot_2_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1680,6 +1739,7 @@ Partial Class CharacterOverview
         '
         'slot_2_gem2_pic
         '
+        Me.slot_2_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_2_gem2_pic.Location = New System.Drawing.Point(98, 174)
         Me.slot_2_gem2_pic.Name = "slot_2_gem2_pic"
         Me.slot_2_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1689,6 +1749,7 @@ Partial Class CharacterOverview
         '
         'slot_2_gem1_pic
         '
+        Me.slot_2_gem1_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_2_gem1_pic.Location = New System.Drawing.Point(74, 174)
         Me.slot_2_gem1_pic.Name = "slot_2_gem1_pic"
         Me.slot_2_gem1_pic.Size = New System.Drawing.Size(20, 20)
@@ -1718,6 +1779,7 @@ Partial Class CharacterOverview
         'slot_2_name
         '
         Me.slot_2_name.AutoSize = True
+        Me.slot_2_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_2_name.Location = New System.Drawing.Point(74, 138)
         Me.slot_2_name.Name = "slot_2_name"
@@ -1728,6 +1790,7 @@ Partial Class CharacterOverview
         'slot_1_enchant
         '
         Me.slot_1_enchant.AutoSize = True
+        Me.slot_1_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_1_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_1_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_1_enchant.Location = New System.Drawing.Point(74, 91)
@@ -1738,6 +1801,7 @@ Partial Class CharacterOverview
         '
         'slot_1_gem3_pic
         '
+        Me.slot_1_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_1_gem3_pic.Location = New System.Drawing.Point(122, 109)
         Me.slot_1_gem3_pic.Name = "slot_1_gem3_pic"
         Me.slot_1_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1747,6 +1811,7 @@ Partial Class CharacterOverview
         '
         'slot_1_gem2_pic
         '
+        Me.slot_1_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_1_gem2_pic.Location = New System.Drawing.Point(98, 109)
         Me.slot_1_gem2_pic.Name = "slot_1_gem2_pic"
         Me.slot_1_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1756,6 +1821,7 @@ Partial Class CharacterOverview
         '
         'slot_1_gem1_pic
         '
+        Me.slot_1_gem1_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_1_gem1_pic.Location = New System.Drawing.Point(74, 109)
         Me.slot_1_gem1_pic.Name = "slot_1_gem1_pic"
         Me.slot_1_gem1_pic.Size = New System.Drawing.Size(20, 20)
@@ -1785,6 +1851,7 @@ Partial Class CharacterOverview
         'slot_1_name
         '
         Me.slot_1_name.AutoSize = True
+        Me.slot_1_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_1_name.Location = New System.Drawing.Point(74, 73)
         Me.slot_1_name.Name = "slot_1_name"
@@ -1795,6 +1862,7 @@ Partial Class CharacterOverview
         'slot_0_enchant
         '
         Me.slot_0_enchant.AutoSize = True
+        Me.slot_0_enchant.BackColor = System.Drawing.Color.Transparent
         Me.slot_0_enchant.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_0_enchant.ForeColor = System.Drawing.Color.Lime
         Me.slot_0_enchant.Location = New System.Drawing.Point(74, 26)
@@ -1805,6 +1873,7 @@ Partial Class CharacterOverview
         '
         'slot_0_gem3_pic
         '
+        Me.slot_0_gem3_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_0_gem3_pic.Location = New System.Drawing.Point(122, 44)
         Me.slot_0_gem3_pic.Name = "slot_0_gem3_pic"
         Me.slot_0_gem3_pic.Size = New System.Drawing.Size(20, 20)
@@ -1814,6 +1883,7 @@ Partial Class CharacterOverview
         '
         'slot_0_gem2_pic
         '
+        Me.slot_0_gem2_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_0_gem2_pic.Location = New System.Drawing.Point(98, 44)
         Me.slot_0_gem2_pic.Name = "slot_0_gem2_pic"
         Me.slot_0_gem2_pic.Size = New System.Drawing.Size(20, 20)
@@ -1823,6 +1893,7 @@ Partial Class CharacterOverview
         '
         'slot_0_gem1_pic
         '
+        Me.slot_0_gem1_pic.BackColor = System.Drawing.Color.Transparent
         Me.slot_0_gem1_pic.Location = New System.Drawing.Point(74, 44)
         Me.slot_0_gem1_pic.Name = "slot_0_gem1_pic"
         Me.slot_0_gem1_pic.Size = New System.Drawing.Size(20, 20)
@@ -1852,6 +1923,7 @@ Partial Class CharacterOverview
         'slot_0_name
         '
         Me.slot_0_name.AutoSize = True
+        Me.slot_0_name.BackColor = System.Drawing.Color.Transparent
         Me.slot_0_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.slot_0_name.Location = New System.Drawing.Point(74, 8)
         Me.slot_0_name.Name = "slot_0_name"
@@ -3013,192 +3085,192 @@ Partial Class CharacterOverview
         Me.Name = "CharacterOverview"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CharacterOverview"
-        Me.InventoryPanel.ResumeLayout(false)
-        Me.InventoryPanel.PerformLayout
-        CType(Me.slot_17_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_17_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_17_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_17_color.ResumeLayout(false)
-        CType(Me.slot_17_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_15_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_15_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_15_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_15_color.ResumeLayout(false)
-        CType(Me.slot_15_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_16_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_16_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_16_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_16_color.ResumeLayout(false)
-        CType(Me.slot_16_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_13_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_13_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_13_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_13_color.ResumeLayout(false)
-        CType(Me.slot_13_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_12_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_12_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_12_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_12_color.ResumeLayout(false)
-        CType(Me.slot_12_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_11_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_11_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_11_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_11_color.ResumeLayout(false)
-        CType(Me.slot_11_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_10_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_10_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_10_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_10_color.ResumeLayout(false)
-        CType(Me.slot_10_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_7_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_7_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_7_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_7_color.ResumeLayout(false)
-        CType(Me.slot_7_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_6_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_6_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_6_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_6_color.ResumeLayout(false)
-        CType(Me.slot_6_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_5_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_5_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_5_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_5_color.ResumeLayout(false)
-        CType(Me.slot_5_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_9_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_9_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_9_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_9_color.ResumeLayout(false)
-        CType(Me.slot_9_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_8_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_8_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_8_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_8_color.ResumeLayout(false)
-        CType(Me.slot_8_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_18_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_18_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_18_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_18_color.ResumeLayout(false)
-        CType(Me.slot_18_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_3_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_3_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_3_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_3_color.ResumeLayout(false)
-        CType(Me.slot_3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_4_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_4_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_4_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_4_color.ResumeLayout(false)
-        CType(Me.slot_4_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_14_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_14_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_14_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_14_color.ResumeLayout(false)
-        CType(Me.slot_14_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_2_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_2_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_2_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_2_color.ResumeLayout(false)
-        CType(Me.slot_2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_1_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_1_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_1_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_1_color.ResumeLayout(false)
-        CType(Me.slot_1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_0_gem3_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_0_gem2_pic,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.slot_0_gem1_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.slot_0_color.ResumeLayout(false)
-        CType(Me.slot_0_pic,System.ComponentModel.ISupportInitialize).EndInit
-        Me.changepanel.ResumeLayout(false)
-        Me.changepanel.PerformLayout
-        CType(Me.PictureBox2,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.racepanel.ResumeLayout(false)
-        CType(Me.racerefresh,System.ComponentModel.ISupportInitialize).EndInit
-        Me.classpanel.ResumeLayout(false)
-        CType(Me.classrefresh,System.ComponentModel.ISupportInitialize).EndInit
-        Me.selectenchpanel.ResumeLayout(false)
-        Me.selectenchpanel.PerformLayout
-        Me.Panel36.ResumeLayout(false)
-        CType(Me.PictureBox38,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel37.ResumeLayout(false)
-        CType(Me.PictureBox39,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel33.ResumeLayout(false)
-        CType(Me.PictureBox35,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel34.ResumeLayout(false)
-        CType(Me.PictureBox36,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel38.ResumeLayout(false)
-        CType(Me.PictureBox40,System.ComponentModel.ISupportInitialize).EndInit
-        Me.bagpanel.ResumeLayout(false)
-        Me.Panel26.ResumeLayout(false)
-        CType(Me.PictureBox28,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel27.ResumeLayout(false)
-        CType(Me.PictureBox29,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel28.ResumeLayout(false)
-        CType(Me.PictureBox30,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel29.ResumeLayout(false)
-        CType(Me.PictureBox31,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel30.ResumeLayout(false)
-        CType(Me.PictureBox32,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel31.ResumeLayout(false)
-        CType(Me.PictureBox33,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel32.ResumeLayout(false)
-        CType(Me.PictureBox34,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel39.ResumeLayout(false)
-        CType(Me.PictureBox41,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel40.ResumeLayout(false)
-        CType(Me.PictureBox42,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel41.ResumeLayout(false)
-        CType(Me.PictureBox43,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel42.ResumeLayout(false)
-        CType(Me.PictureBox44,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel43.ResumeLayout(false)
-        CType(Me.PictureBox45,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel44.ResumeLayout(false)
-        CType(Me.PictureBox46,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel45.ResumeLayout(false)
-        CType(Me.PictureBox47,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel18.ResumeLayout(false)
-        CType(Me.PictureBox20,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel19.ResumeLayout(false)
-        CType(Me.PictureBox21,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel20.ResumeLayout(false)
-        CType(Me.PictureBox22,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel21.ResumeLayout(false)
-        CType(Me.PictureBox23,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel22.ResumeLayout(false)
-        CType(Me.PictureBox24,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel23.ResumeLayout(false)
-        CType(Me.PictureBox25,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel24.ResumeLayout(false)
-        CType(Me.PictureBox26,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel10.ResumeLayout(false)
-        CType(Me.PictureBox12,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel11.ResumeLayout(false)
-        CType(Me.PictureBox13,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel12.ResumeLayout(false)
-        CType(Me.PictureBox14,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel13.ResumeLayout(false)
-        CType(Me.PictureBox15,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel14.ResumeLayout(false)
-        CType(Me.PictureBox16,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel15.ResumeLayout(false)
-        CType(Me.PictureBox17,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel16.ResumeLayout(false)
-        CType(Me.picbagslot,System.ComponentModel.ISupportInitialize).EndInit
-        Me.addpanel.ResumeLayout(false)
-        Me.addpanel.PerformLayout
-        CType(Me.PictureBox4,System.ComponentModel.ISupportInitialize).EndInit
-        Me.GroupBox1.ResumeLayout(false)
-        Me.GroupBox1.PerformLayout
-        Me.GroupBox2.ResumeLayout(false)
-        Me.GroupBox2.PerformLayout
-        Me.header.ResumeLayout(false)
-        Me.closepanel.ResumeLayout(false)
-        CType(Me.highlighter1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.highlighter2,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
+        Me.InventoryPanel.ResumeLayout(False)
+        Me.InventoryPanel.PerformLayout()
+        CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_17_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_17_color.ResumeLayout(False)
+        CType(Me.slot_17_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_15_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_15_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_15_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_15_color.ResumeLayout(False)
+        CType(Me.slot_15_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_16_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_16_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_16_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_16_color.ResumeLayout(False)
+        CType(Me.slot_16_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_13_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_13_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_13_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_13_color.ResumeLayout(False)
+        CType(Me.slot_13_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_12_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_12_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_12_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_12_color.ResumeLayout(False)
+        CType(Me.slot_12_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_11_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_11_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_11_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_11_color.ResumeLayout(False)
+        CType(Me.slot_11_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_10_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_10_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_10_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_10_color.ResumeLayout(False)
+        CType(Me.slot_10_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_7_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_7_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_7_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_7_color.ResumeLayout(False)
+        CType(Me.slot_7_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_6_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_6_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_6_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_6_color.ResumeLayout(False)
+        CType(Me.slot_6_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_5_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_5_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_5_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_5_color.ResumeLayout(False)
+        CType(Me.slot_5_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_9_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_9_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_9_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_9_color.ResumeLayout(False)
+        CType(Me.slot_9_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_8_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_8_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_8_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_8_color.ResumeLayout(False)
+        CType(Me.slot_8_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_18_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_18_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_18_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_18_color.ResumeLayout(False)
+        CType(Me.slot_18_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_3_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_3_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_3_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_3_color.ResumeLayout(False)
+        CType(Me.slot_3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_4_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_4_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_4_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_4_color.ResumeLayout(False)
+        CType(Me.slot_4_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_14_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_14_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_14_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_14_color.ResumeLayout(False)
+        CType(Me.slot_14_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_2_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_2_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_2_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_2_color.ResumeLayout(False)
+        CType(Me.slot_2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_1_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_1_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_1_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_1_color.ResumeLayout(False)
+        CType(Me.slot_1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_0_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_0_gem2_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.slot_0_gem1_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.slot_0_color.ResumeLayout(False)
+        CType(Me.slot_0_pic, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.changepanel.ResumeLayout(False)
+        Me.changepanel.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.racepanel.ResumeLayout(False)
+        CType(Me.racerefresh, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.classpanel.ResumeLayout(False)
+        CType(Me.classrefresh, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.selectenchpanel.ResumeLayout(False)
+        Me.selectenchpanel.PerformLayout()
+        Me.Panel36.ResumeLayout(False)
+        CType(Me.PictureBox38, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel37.ResumeLayout(False)
+        CType(Me.PictureBox39, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel33.ResumeLayout(False)
+        CType(Me.PictureBox35, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel34.ResumeLayout(False)
+        CType(Me.PictureBox36, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel38.ResumeLayout(False)
+        CType(Me.PictureBox40, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.bagpanel.ResumeLayout(False)
+        Me.Panel26.ResumeLayout(False)
+        CType(Me.PictureBox28, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel27.ResumeLayout(False)
+        CType(Me.PictureBox29, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel28.ResumeLayout(False)
+        CType(Me.PictureBox30, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel29.ResumeLayout(False)
+        CType(Me.PictureBox31, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel30.ResumeLayout(False)
+        CType(Me.PictureBox32, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel31.ResumeLayout(False)
+        CType(Me.PictureBox33, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel32.ResumeLayout(False)
+        CType(Me.PictureBox34, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel39.ResumeLayout(False)
+        CType(Me.PictureBox41, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel40.ResumeLayout(False)
+        CType(Me.PictureBox42, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel41.ResumeLayout(False)
+        CType(Me.PictureBox43, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel42.ResumeLayout(False)
+        CType(Me.PictureBox44, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel43.ResumeLayout(False)
+        CType(Me.PictureBox45, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel44.ResumeLayout(False)
+        CType(Me.PictureBox46, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel45.ResumeLayout(False)
+        CType(Me.PictureBox47, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel18.ResumeLayout(False)
+        CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel19.ResumeLayout(False)
+        CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel20.ResumeLayout(False)
+        CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel21.ResumeLayout(False)
+        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel22.ResumeLayout(False)
+        CType(Me.PictureBox24, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel23.ResumeLayout(False)
+        CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel24.ResumeLayout(False)
+        CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel10.ResumeLayout(False)
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel11.ResumeLayout(False)
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel12.ResumeLayout(False)
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel13.ResumeLayout(False)
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel14.ResumeLayout(False)
+        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel15.ResumeLayout(False)
+        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel16.ResumeLayout(False)
+        CType(Me.picbagslot, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.addpanel.ResumeLayout(False)
+        Me.addpanel.PerformLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        Me.header.ResumeLayout(False)
+        Me.closepanel.ResumeLayout(False)
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
         Me.PerformLayout
 
 End Sub

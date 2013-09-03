@@ -38,7 +38,6 @@ Public Class CharacterOverview
     Dim tmpSenderPic As Object
     Dim currentSet As Integer
     Private Sub CharacterOverview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
     End Sub
     Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
 
