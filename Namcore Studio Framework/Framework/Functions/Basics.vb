@@ -59,6 +59,13 @@ Public Module Basics
         player.ArmorItemsIndex = player.ArmorItemsIndex & "[slot:" & itm.slotname & "|@" & (player.ArmorItems.Count - 1).ToString & "]"
         player.ArmorItemsIndex = player.ArmorItemsIndex & "[slotnum:" & itm.slot.ToString & "|@" & (player.ArmorItems.Count - 1).ToString & "]"
     End Sub
+    Public Sub RemoveCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
+        If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
+        Dim ItmIndex As Integer = TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & itm.slot.ToString() & "|@", "]"))
+        player.ArmorItems.Item(ItmIndex) = Nothing
+        player.ArmorItemsIndex = player.ArmorItemsIndex.Replace("[slot:" & itm.slotname & "|@" & ItmIndex.ToString & "]", "")
+        player.ArmorItemsIndex = player.ArmorItemsIndex.Replace("[slotnum:" & itm.slot.ToString() & "|@" & ItmIndex.ToString & "]", "")
+    End Sub
     Public Sub SetCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
         If player.ArmorItemsIndex.Contains("[slot:" & itm.slotname & "|@") Or player.ArmorItemsIndex.Contains("[slotnum:" & itm.slot.ToString & "|@") Then
             player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slot:" & itm.slotname & "|@", "]"))) = itm

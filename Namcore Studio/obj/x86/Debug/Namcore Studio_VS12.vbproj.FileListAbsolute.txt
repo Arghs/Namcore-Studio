@@ -98,3 +98,7 @@ F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\Namcore S
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\Namcore Studio.xml
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\mysql.data.dll
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\NCFramework.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\libnc.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\libncadvanced.dll
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\NCFramework.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore Studio_VS12.vbprojResolveAssemblyReference.cache

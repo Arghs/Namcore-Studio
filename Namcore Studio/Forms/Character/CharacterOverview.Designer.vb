@@ -170,8 +170,8 @@ Partial Class CharacterOverview
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.exit_bt = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
+        Me.savechanges_bt = New System.Windows.Forms.Button()
+        Me.reset_bt = New System.Windows.Forms.Button()
         Me.changepanel = New System.Windows.Forms.Panel()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -265,6 +265,7 @@ Partial Class CharacterOverview
         Me.closepanel = New System.Windows.Forms.Panel()
         Me.highlighter1 = New System.Windows.Forms.PictureBox()
         Me.highlighter2 = New System.Windows.Forms.PictureBox()
+        Me.savechangestmp_bt = New System.Windows.Forms.Button()
         Me.InventoryPanel.SuspendLayout()
         CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2098,42 +2099,42 @@ Partial Class CharacterOverview
         Me.exit_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.exit_bt.ForeColor = System.Drawing.Color.Black
         Me.exit_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.exit_bt.Location = New System.Drawing.Point(334, 670)
+        Me.exit_bt.Location = New System.Drawing.Point(734, 670)
         Me.exit_bt.Name = "exit_bt"
         Me.exit_bt.Size = New System.Drawing.Size(155, 34)
         Me.exit_bt.TabIndex = 170
         Me.exit_bt.Text = "Exit"
         Me.exit_bt.UseVisualStyleBackColor = False
         '
-        'Button7
+        'savechanges_bt
         '
-        Me.Button7.BackColor = System.Drawing.Color.DimGray
-        Me.Button7.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button7.Enabled = False
-        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.ForeColor = System.Drawing.Color.Black
-        Me.Button7.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button7.Location = New System.Drawing.Point(173, 670)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(155, 34)
-        Me.Button7.TabIndex = 171
-        Me.Button7.Text = "Save changes"
-        Me.Button7.UseVisualStyleBackColor = False
+        Me.savechanges_bt.BackColor = System.Drawing.Color.DimGray
+        Me.savechanges_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.savechanges_bt.Enabled = False
+        Me.savechanges_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.savechanges_bt.ForeColor = System.Drawing.Color.Black
+        Me.savechanges_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.savechanges_bt.Location = New System.Drawing.Point(173, 670)
+        Me.savechanges_bt.Name = "savechanges_bt"
+        Me.savechanges_bt.Size = New System.Drawing.Size(155, 34)
+        Me.savechanges_bt.TabIndex = 171
+        Me.savechanges_bt.Text = "Save changes"
+        Me.savechanges_bt.UseVisualStyleBackColor = False
         '
-        'Button8
+        'reset_bt
         '
-        Me.Button8.BackColor = System.Drawing.Color.DimGray
-        Me.Button8.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button8.Enabled = False
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.ForeColor = System.Drawing.Color.Black
-        Me.Button8.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Button8.Location = New System.Drawing.Point(12, 670)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(155, 34)
-        Me.Button8.TabIndex = 172
-        Me.Button8.Text = "Reset"
-        Me.Button8.UseVisualStyleBackColor = False
+        Me.reset_bt.BackColor = System.Drawing.Color.DimGray
+        Me.reset_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.reset_bt.Enabled = False
+        Me.reset_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.reset_bt.ForeColor = System.Drawing.Color.Black
+        Me.reset_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.reset_bt.Location = New System.Drawing.Point(12, 670)
+        Me.reset_bt.Name = "reset_bt"
+        Me.reset_bt.Size = New System.Drawing.Size(155, 34)
+        Me.reset_bt.TabIndex = 172
+        Me.reset_bt.Text = "Reset"
+        Me.reset_bt.UseVisualStyleBackColor = False
         '
         'changepanel
         '
@@ -3051,6 +3052,20 @@ Partial Class CharacterOverview
         Me.highlighter2.TabIndex = 218
         Me.highlighter2.TabStop = False
         '
+        'savechangestmp_bt
+        '
+        Me.savechangestmp_bt.BackColor = System.Drawing.Color.DimGray
+        Me.savechangestmp_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.savechangestmp_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.savechangestmp_bt.ForeColor = System.Drawing.Color.Black
+        Me.savechangestmp_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.savechangestmp_bt.Location = New System.Drawing.Point(334, 670)
+        Me.savechangestmp_bt.Name = "savechangestmp_bt"
+        Me.savechangestmp_bt.Size = New System.Drawing.Size(155, 34)
+        Me.savechangestmp_bt.TabIndex = 224
+        Me.savechangestmp_bt.Text = "Save changes for transfer"
+        Me.savechangestmp_bt.UseVisualStyleBackColor = False
+        '
         'CharacterOverview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3058,6 +3073,7 @@ Partial Class CharacterOverview
         Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(910, 714)
+        Me.Controls.Add(Me.savechangestmp_bt)
         Me.Controls.Add(Me.addpanel)
         Me.Controls.Add(Me.selectenchpanel)
         Me.Controls.Add(Me.classpanel)
@@ -3068,8 +3084,8 @@ Partial Class CharacterOverview
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Quests_bt)
         Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button8)
-        Me.Controls.Add(Me.Button7)
+        Me.Controls.Add(Me.reset_bt)
+        Me.Controls.Add(Me.savechanges_bt)
         Me.Controls.Add(Me.exit_bt)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
@@ -3271,9 +3287,9 @@ Partial Class CharacterOverview
         CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents InventoryPanel As System.Windows.Forms.Panel
     Friend WithEvents slot_0_name As System.Windows.Forms.Label
     Friend WithEvents slot_0_pic As System.Windows.Forms.PictureBox
@@ -3421,8 +3437,8 @@ End Sub
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents exit_bt As System.Windows.Forms.Button
-    Friend WithEvents Button7 As System.Windows.Forms.Button
-    Friend WithEvents Button8 As System.Windows.Forms.Button
+    Friend WithEvents savechanges_bt As System.Windows.Forms.Button
+    Friend WithEvents reset_bt As System.Windows.Forms.Button
     Friend WithEvents changepanel As System.Windows.Forms.Panel
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
@@ -3516,4 +3532,5 @@ End Sub
     Friend WithEvents closepanel As System.Windows.Forms.Panel
     Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
     Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
+    Friend WithEvents savechangestmp_bt As System.Windows.Forms.Button
 End Class

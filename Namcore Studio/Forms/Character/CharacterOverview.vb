@@ -24,6 +24,7 @@ Imports System.Drawing.Imaging
 Imports System.Threading
 Imports System.Net
 Imports NCFramework
+Imports NCFramework.GlobalVariables
 Imports NCFramework.ResourceHandler
 Public Class CharacterOverview
     Dim controlLST As List(Of Control)
@@ -45,8 +46,9 @@ Public Class CharacterOverview
     Public Sub prepare_interface(ByVal setId As Integer)
         InventoryPanel.SetDoubleBuffered()
         currentSet = setId
-        Dim player As Character = GetCharacterSetBySetId(setId)
-        If player.PlayerGlyphsIndex Is Nothing Then Glyphs_bt.Enabled = False
+        currentViewedCharSetId = setId
+        currentViewedCharSet = GetCharacterSetBySetId(setId)
+        If currentViewedCharSet.PlayerGlyphsIndex Is Nothing Then Glyphs_bt.Enabled = False
         doneControls = New List(Of Control)
         'Evaluator = New Thread(Sub() Me.goprep(setId, False))
         'Evaluator.Start()
@@ -56,11 +58,10 @@ Public Class CharacterOverview
         tmpSetId = setId
         controlLST = New List(Of Control)
         controlLST = FindAllChildren()
-        Dim player As Character = GetCharacterSetBySetId(setId)
-        charname_lbl.Text = player.Name
-        level_lbl.Text = player.Level.ToString
-        class_lbl.Text = GetClassNameById(player.Cclass)
-        race_lbl.Text = GetRaceNameById(player.Race)
+        charname_lbl.Text = currentViewedCharSet.Name
+        level_lbl.Text = currentViewedCharSet.Level.ToString
+        class_lbl.Text = GetClassNameById(currentViewedCharSet.Cclass)
+        race_lbl.Text = GetRaceNameById(currentViewedCharSet.Race)
         If nxt = True Then controlLST.Reverse()
         Try
             For Each item_control As Control In controlLST
@@ -211,6 +212,7 @@ Public Class CharacterOverview
     End Sub
 
     Private Sub PictureBox1_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox1.Click
+        'Change value
         Dim newPoint As New System.Drawing.Point
         Dim senderLabel As Label = tempSender
         newPoint.X = 4000
@@ -223,6 +225,8 @@ Public Class CharacterOverview
                     If TextBox1.Text = "" Then
 
                     Else
+                        If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                        currentViewedCharSet.Name = TextBox1.Text
                         senderLabel.Text = TextBox1.Text
                     End If
                 ElseIf senderLabel.Name.ToLower.EndsWith("level_lbl") Then
@@ -233,6 +237,8 @@ Public Class CharacterOverview
                         If newlvl = 0 Then
 
                         Else
+                            If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                            currentViewedCharSet.Level = newlvl
                             senderLabel.Text = TextBox1.Text
                         End If
                     End If
@@ -276,11 +282,15 @@ Public Class CharacterOverview
                         senderLabel.Tag.enchantment_type = 1
                         senderLabel.Tag.enchantment_id = TextBox1.Text
                         senderLabel.Tag.enchantment_name = itemname
+                        If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                        SetCharacterArmorItem(currentEditedCharSet, senderLabel.Tag)
                     ElseIf foundspell = True Then
                         senderLabel.Text = spellname
                         senderLabel.Tag.enchantment_type = 0
                         senderLabel.Tag.enchantment_id = TextBox1.Text
                         senderLabel.Tag.enchantment_name = spellname
+                        If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                        SetCharacterArmorItem(currentEditedCharSet, senderLabel.Tag)
                     Else
 
                     End If
@@ -333,14 +343,15 @@ Public Class CharacterOverview
                             End If
 
                         Next
-
+                        If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                        SetCharacterArmorItem(currentEditedCharSet, senderLabel.Tag)
                     End If
                 End If
 
             End If
         End If
         changepanel.Location = newPoint
-        senderLabel.visible = True
+        senderLabel.Visible = True
     End Sub
     Private Function getraritycolor(ByVal rarity As Integer) As System.Drawing.Color
         Select Case rarity
@@ -356,6 +367,7 @@ Public Class CharacterOverview
     End Function
 
     Private Sub PictureBox2_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox2.Click
+        'Detele item
         Dim newPoint As New System.Drawing.Point
         Dim senderLabel As Label = tempSender
         newPoint.X = 4000
@@ -402,6 +414,8 @@ Public Class CharacterOverview
                         End If
 
                     Next
+                    If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                    RemoveCharacterArmorItem(currentEditedCharSet, senderLabel.Tag)
                     senderLabel.Text = Nothing
                     senderLabel.Tag = Nothing
                 End If
@@ -650,6 +664,7 @@ Public Class CharacterOverview
     End Sub
 
     Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
+        'Add item
         Dim senderPic As PictureBox = tmpSenderPic
         If Not TextBox2.Text = "" Then
             Dim meSlot As String = tempSender.name
@@ -672,6 +687,8 @@ Public Class CharacterOverview
                 senderPic.Refresh()
                 DirectCast(tempSender, Label).Text = itm.name
                 DirectCast(tempSender, Label).Tag = itm
+                If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                AddCharacterArmorItem(currentEditedCharSet, itm)
                 changepanel.Location = New System.Drawing.Point(4000, 4000)
                 addpanel.Location = New System.Drawing.Point(4000, 4000)
                 racepanel.Location = New System.Drawing.Point(4000, 4000)
@@ -763,6 +780,23 @@ Public Class CharacterOverview
     End Sub
 
     Private Sub InventoryPanel_Paint(sender As Object, e As PaintEventArgs) Handles InventoryPanel.Paint
+
+    End Sub
+
+    Private Sub savechangestmp_bt_Click(sender As Object, e As EventArgs) Handles savechangestmp_bt.Click
+        If currentEditedCharSet Is Nothing Then
+
+        Else
+            If editedCharsIndex Is Nothing Then editedCharsIndex = New List(Of Integer())()
+            For Each IndexEntry() As Integer In editedCharsIndex
+                If IndexEntry(0) = currentEditedCharSet.Guid Then
+                    editedCharSets.Item(IndexEntry(1)) = currentEditedCharSet
+                    Exit Sub
+                End If
+            Next
+            editedCharsIndex.Add({currentEditedCharSet.Guid, editedCharSets.Count})
+            editedCharSets.Add(currentEditedCharSet)
+        End If
 
     End Sub
 End Class

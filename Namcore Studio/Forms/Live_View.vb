@@ -859,6 +859,7 @@ Public Class Live_View
 
 
     Private Sub EditToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem1.Click
+        'Please remember that a character which is loaded from a database needs to be completely stored temporarily
         Dim charview As New CharacterOverview
         Dim setId As Integer = characterview.SelectedItems(0).Tag
         If armoryMode = True Then

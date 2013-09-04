@@ -23,6 +23,7 @@
 
 Imports NCFramework.Basics
 Imports NCFramework.Conversions
+Imports NCFramework.GlobalVariables
 Imports NCFramework
 Imports System.Threading
 
@@ -41,9 +42,7 @@ Public Class Quests_interface
     End Sub
     Private WithEvents m_handler As New FlowLayoutPanelHandler
     Public Sub prepareInterface(ByVal setId As Integer)
-        Dim p As Character = GetCharacterSetBySetId(setId)
-        globPlayer = p
-        Dim qst() As String = p.FinishedQuests.Split(","c)
+        Dim qst() As String = currentViewedCharSet.FinishedQuests.Split(","c)
         Dim cnt As Integer = 0
         Dim par1 As Integer = qst.Length / 2 - 1
         Dim par2 As Integer = qst.Length - par1 - 1
@@ -69,19 +68,18 @@ Public Class Quests_interface
             Dim str(3) As String
             str(0) = quests(cnt)
             Dim qstname As String = GetQuestNameById(TryInt(str(0)))
-            If qstname = "error" Then
-                str(1) = "not loaded" 'getNameOfQuest(str(0))
-            Else
-                str(1) = qstname
-            End If
-            str(2) = "1"
-            str(3) = "1"
-            Dim itm As New ListViewItem(str)
-            itm.Tag = TryInt(str(0))
-            qst_lst.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm)
-            cnt += 1
+                If qstname = "error" Then
+                    str(1) = "not loaded" 'getNameOfQuest(str(0))
+                Else
+                    str(1) = qstname
+                End If
+                str(2) = "1"
+                str(3) = "1"
+                Dim itm As New ListViewItem(str)
+                itm.Tag = TryInt(str(0))
+                qst_lst.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm)
+                cnt += 1
         End While
-
         ThreadExtensions.ScSend(context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted), New CompletedEventArgs())
     End Function
     Delegate Sub AddItemDelegate(itm As ListViewItem)

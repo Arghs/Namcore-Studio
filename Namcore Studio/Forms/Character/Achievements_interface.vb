@@ -38,7 +38,6 @@ Public Class Achievements_interface
     Dim lastindex As Integer
     Dim itmlst1 As New List(Of ListViewItem)
     Dim itmlst2 As New List(Of ListViewItem)
-    Dim globplayer As Character
     Dim current_cat As Integer = Nothing
     Dim preCatControlLst As List(Of Control) = Nothing
     Dim goon As Boolean = False
@@ -134,8 +133,6 @@ Public Class Achievements_interface
                 Catch ex As Exception
                     subcat_combo.Items.Clear()
                 End Try
-
-                globplayer = GetCharacterSetBySetId(tarsetid)
                 colorTicker = 0
                 completed = False
                 Do
@@ -176,9 +173,14 @@ Public Class Achievements_interface
                 If subctrl.tag.id = charAv.Id Then
                     AVLayoutPanel.Controls.Remove(subctrl)
                     subctrl.Dispose()
-                    For Each av As Achievement In globplayer.Achievements
+                    For Each av As Achievement In currentViewedCharSet.Achievements
                         If av.Id = charAv.Id Then
-                            globplayer.Achievements.Remove(av)
+                            If currentEditedCharSet Is Nothing Then
+                                currentEditedCharSet = currentViewedCharSet
+                                currentViewedCharSet.Achievements.Remove(av)
+                            Else
+                                currentViewedCharSet.Achievements.Remove(av)
+                            End If
                             Exit For
                         End If
                     Next
@@ -200,8 +202,8 @@ Public Class Achievements_interface
             If operation_count = 2 Then
                 Thread.Sleep(2000)
             End If
-            Dim player As Character = GetCharacterSetBySetId(tarsetid)
-            For Each charAv As Achievement In player.Achievements
+
+            For Each charAv As Achievement In currentViewedCharSet.Achievements
 
                 If doneAvIds.Contains(charAv.Id) Then
                     Continue For
@@ -215,13 +217,19 @@ Public Class Achievements_interface
                         trdRunning -= 1
                         Exit Function
                     End If
-                    charAv.SubCategory = GetAvCategoryIdByAvId(charAv.Id)
+                    If charAv.SubCategory = Nothing Then charAv.SubCategory = GetAvCategoryIdByAvId(charAv.Id)
                     Dim avPanel As New Panel
                     avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
                     avPanel.Size = referencePanel.Size
                     avPanel.Tag = charAv
                     Dim avNameLable As New Label
-                    Dim c_avName As String = GetAvNameById(charAv.Id)
+                    Dim c_avName As String
+                    If charAv.Name = Nothing Then
+                        c_avName = GetAvNameById(charAv.Id)
+                        charAv.Name = c_avName
+                    Else
+                        c_avName = charAv.Name
+                    End If
                     avNameLable.Name = "av" & charAv.Id.ToString() & "_name_lbl"
                     avNameLable.Text = c_avName & " - (" & charAv.Id.ToString & ")"
                     Application.DoEvents()
@@ -232,7 +240,13 @@ Public Class Achievements_interface
                     avNameLable.BringToFront()
                     avNameLable.AutoSize = True
                     Dim avDescrLable As New Label
-                    Dim descr As String = GetAvDescriptionById(charAv.Id)
+                    Dim descr As String
+                    If charAv.Description = Nothing Then
+                        descr = GetAvDescriptionById(charAv.Id)
+                        charAv.Description = descr
+                    Else
+                        descr = charAv.Description
+                    End If
                     avDescrLable.Name = "av" & charAv.Id.ToString() & "_descr_lbl"
                     avDescrLable.Text = descr
                     avDescrLable.Tag = charAv
@@ -242,7 +256,13 @@ Public Class Achievements_interface
                     avDescrLable.AutoSize = False
                     avDescrLable.Size = reference_description_lbl.Size
                     Dim avSubCatLable As New Label
-                    Dim subcat As String = GetAvCategoryById(charAv.Id, True)
+                    Dim subcat As String
+                    If charAv.SubCategoryName = Nothing Then
+                        subcat = GetAvCategoryById(charAv.Id, True)
+                        charAv.SubCategoryName = subcat
+                    Else
+                        subcat = charAv.SubCategoryName
+                    End If
                     avSubCatLable.Name = "av" & charAv.Id.ToString() & "_subcat_lbl"
                     avSubCatLable.Text = subcat
                     avSubCatLable.Tag = charAv
@@ -264,7 +284,13 @@ Public Class Achievements_interface
                     avGainDateLabel.RightToLeft = RightToLeft.Yes
                     avGainDateLabel.Size = reference_date_lbl.Size
                     Dim avIconPic As New PictureBox
-                    Dim avImage As Image = GetAvIconById(charAv.Id)
+                    Dim avImage As Image
+                    If charAv.Icon Is Nothing Then
+                        avImage = GetAvIconById(charAv.Id)
+                        charAv.Icon = avImage
+                    Else
+                        avImage = charAv.Icon
+                    End If
                     avIconPic.Name = "av" & charAv.Id.ToString() & "_icon_pic"
                     avIconPic.Image = avImage
                     avIconPic.Tag = charAv
@@ -309,6 +335,7 @@ Public Class Achievements_interface
                 Catch ex As Exception
 
                 End Try
+                SetCharacterSet(currentViewedCharSetId, currentViewedCharSet)
                 Try
                     If AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 2).BackColor = Color.FromArgb(110, 149, 190) Then
                         AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1).BackColor = Color.FromArgb(126, 144, 156)
@@ -321,8 +348,8 @@ Public Class Achievements_interface
                 trdRunning = 0
                 'ThreadExtensions.ScSend(context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted), New CompletedEventArgs())
             End If
-        Catch ex As Exception
-            trdRunning -= 1
+        Catch myex As Exception
+
         End Try
     End Function
     Delegate Sub AddControlDelegate(panel2add As Panel)
@@ -392,7 +419,7 @@ Public Class Achievements_interface
             client.CheckProxy()
             Try
                 If Not client.DownloadString("http://wowhead.com/achievement=" & retnvalue.ToString()).Contains("<div id=""inputbox-error"">This achievement doesn't exist.</div>") Then
-                    For Each opAv As Achievement In globplayer.Achievements
+                    For Each opAv As Achievement In currentViewedCharSet.Achievements
                         If opAv.Id = retnvalue Then
                             Dim RM2 As New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                             MsgBox(RM2.GetString("achievementalreadypresent"), MsgBoxStyle.Critical, "Error")
@@ -410,7 +437,13 @@ Public Class Achievements_interface
                         avPanel.Size = referencePanel.Size
                         avPanel.Tag = charAv
                         Dim avNameLable As New Label
-                        Dim c_avName As String = GetAvNameById(charAv.Id)
+                        Dim c_avName As String
+                        If charAv.Name = Nothing Then
+                            c_avName = GetAvNameById(charAv.Id)
+                            charAv.Name = c_avName
+                        Else
+                            c_avName = charAv.Name
+                        End If
                         avNameLable.Name = "av" & charAv.Id.ToString() & "_name_lbl"
                         avNameLable.Text = c_avName & " - (" & charAv.Id.ToString & ")"
                         Application.DoEvents()
@@ -421,7 +454,13 @@ Public Class Achievements_interface
                         avNameLable.BringToFront()
                         avNameLable.AutoSize = True
                         Dim avDescrLable As New Label
-                        Dim descr As String = GetAvDescriptionById(charAv.Id)
+                        Dim descr As String
+                        If charAv.Description = Nothing Then
+                            descr = GetAvDescriptionById(charAv.Id)
+                            charAv.Description = descr
+                        Else
+                            descr = charAv.Description
+                        End If
                         avDescrLable.Name = "av" & charAv.Id.ToString() & "_descr_lbl"
                         avDescrLable.Text = descr
                         avDescrLable.Tag = charAv
@@ -431,7 +470,13 @@ Public Class Achievements_interface
                         avDescrLable.AutoSize = False
                         avDescrLable.Size = reference_description_lbl.Size
                         Dim avSubCatLable As New Label
-                        Dim subcat As String = GetAvCategoryById(charAv.Id, True)
+                        Dim subcat As String
+                        If charAv.SubCategoryName = Nothing Then
+                            subcat = GetAvCategoryById(charAv.Id, True)
+                            charAv.SubCategoryName = subcat
+                        Else
+                            subcat = charAv.SubCategoryName
+                        End If
                         avSubCatLable.Name = "av" & charAv.Id.ToString() & "_subcat_lbl"
                         avSubCatLable.Text = subcat
                         avSubCatLable.Tag = charAv
@@ -453,7 +498,13 @@ Public Class Achievements_interface
                         avGainDateLabel.RightToLeft = RightToLeft.Yes
                         avGainDateLabel.Size = reference_date_lbl.Size
                         Dim avIconPic As New PictureBox
-                        Dim avImage As Image = GetAvIconById(charAv.Id)
+                        Dim avImage As Image
+                        If charAv.Icon Is Nothing Then
+                            avImage = GetAvIconById(charAv.Id)
+                            charAv.Icon = avImage
+                        Else
+                            avImage = charAv.Icon
+                        End If
                         avIconPic.Name = "av" & charAv.Id.ToString() & "_icon_pic"
                         avIconPic.Image = avImage
                         avIconPic.Tag = charAv
@@ -476,7 +527,12 @@ Public Class Achievements_interface
                         Application.DoEvents()
                     End If
                     'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                    globplayer.Achievements.Add(charAv)
+                    If currentEditedCharSet Is Nothing Then
+                        currentEditedCharSet = currentViewedCharSet
+                        currentEditedCharSet.Achievements.Add(charAv)
+                    Else
+                        currentEditedCharSet.Achievements.Add(charAv)
+                    End If
                     MsgBox(GetUserMessage("achievementadded"), , "Info")
                 Else
                     'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())

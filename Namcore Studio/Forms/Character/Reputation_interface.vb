@@ -25,6 +25,7 @@ Imports System.Drawing
 Imports NCFramework.ResourceHandler
 Imports NCFramework.Basics
 Imports NCFramework.Conversions
+Imports NCFramework.GlobalVariables
 Imports NCFramework
 Imports System.Resources
 Imports System.Net
@@ -34,7 +35,6 @@ Public Class Reputation_interface
     Dim panelMinLength As Integer = 5
     Dim lasttxtvalue As String
     Dim valueisok As Boolean = False
-    Dim globplayer As Character
 
     Public Sub prepareRepInterface(ByVal setId As Integer)
         Dim controlLST As List(Of Control)
@@ -42,8 +42,6 @@ Public Class Reputation_interface
         For Each item_control As Control In controlLST
             item_control.SetDoubleBuffered()
         Next
-        Dim Player As Character = GetCharacterSetBySetId(setId)
-        globplayer = Player
         Dim colorTicker As Integer = 0
         RepLayoutPanel.Controls.Add(addpanel)
         If NCFramework.My.MySettings.Default.language = "de" Then
@@ -63,12 +61,12 @@ Public Class Reputation_interface
             Loop Until cnt = 8
         End If
         Try
-            Player.PlayerReputation.Sort(Function(x, y) System.String.Compare(x.name, y.name, System.StringComparison.Ordinal))
+            currentViewedCharSet.PlayerReputation.Sort(Function(x, y) System.String.Compare(x.name, y.name, System.StringComparison.Ordinal))
         Catch ex As Exception
 
         End Try
 
-        For Each pRepu As Reputation In Player.PlayerReputation
+        For Each pRepu As Reputation In currentViewedCharSet.PlayerReputation
             Dim repPanel As New Panel
             repPanel.Name = "rep" & pRepu.faction.ToString() & "_pnl"
             repPanel.Size = referencePanel.Size
@@ -178,10 +176,11 @@ Public Class Reputation_interface
                             For Each subsubCtrl As Control In subCtrl.Controls
                                 If subsubCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_progress_pnl") Then
                                     setPanelPercentage(subsubCtrl, slider.Value / slider.Maximum)
-                                    Dim loc As Integer = globplayer.PlayerReputation.FindIndex(Function(rep) (pCtrl.Tag.Equals(rep)))
+                                    Dim loc As Integer = currentViewedCharSet.PlayerReputation.FindIndex(Function(rep) (pCtrl.Tag.Equals(rep)))
                                     pCtrl.Tag.value = slider.Value
                                     pCtrl.Tag = updateReputationStanding(pCtrl.Tag)
-                                    globplayer.PlayerReputation(loc) = pCtrl.Tag
+                                    If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                                    currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                                 End If
                             Next
                         End If
@@ -206,10 +205,11 @@ Public Class Reputation_interface
                             For Each subsubCtrl As Control In subCtrl.Controls
                                 If subsubCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_progress_pnl") Then
                                     setPanelPercentage(subsubCtrl, 0)
-                                    Dim loc As Integer = globplayer.PlayerReputation.FindIndex(Function(rep) (pCtrl.Tag.Equals(rep)))
+                                    Dim loc As Integer = currentViewedCharSet.PlayerReputation.FindIndex(Function(rep) (pCtrl.Tag.Equals(rep)))
                                     pCtrl.Tag.value = slider.Value
                                     pCtrl.Tag = updateReputationStanding(pCtrl.Tag)
-                                    globplayer.PlayerReputation(loc) = pCtrl.Tag
+                                    If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                                    currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                                 End If
                             Next
                         End If
@@ -240,12 +240,13 @@ Public Class Reputation_interface
 
         For Each pCtrl As Control In RepLayoutPanel.Controls
             If pCtrl.Name.Contains("rep" & combo.Tag.faction.ToString() & "_pnl") Then
-                Dim loc As Integer = globplayer.PlayerReputation.FindIndex(Function(rep) (pCtrl.Tag.Equals(rep)))
+                Dim loc As Integer = currentViewedCharSet.PlayerReputation.FindIndex(Function(rep) (pCtrl.Tag.Equals(rep)))
                 pCtrl.Tag.value = 0
                 pCtrl.Tag.max = max
                 pCtrl.Tag.status = combo.SelectedIndex
                 pCtrl.Tag = updateReputationStanding(pCtrl.Tag)
-                globplayer.PlayerReputation(loc) = pCtrl.Tag
+                If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                 DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Value = 0
                 DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Maximum = max
                 DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_value_lbl", pCtrl), Label).Text = "0/" & max.ToString
@@ -271,7 +272,7 @@ Public Class Reputation_interface
                 For Each pCtrl As Control In RepLayoutPanel.Controls
                     If pCtrl.Name.Contains("rep" & txtbox.Tag.faction.ToString() & "_pnl") Then
                         If int <= pCtrl.Tag.max And int >= 0 Then
-                            Dim loc As Integer = globplayer.PlayerReputation.FindIndex(Function(rep) (pCtrl.Tag.Equals(rep)))
+                            Dim loc As Integer = currentViewedCharSet.PlayerReputation.FindIndex(Function(rep) (pCtrl.Tag.Equals(rep)))
                             DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Value = int
                             DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_value_lbl", pCtrl), Label).Text = int.ToString() & "/" & pCtrl.Tag.max.ToString
                             Dim xctrl As Control = findControl("rep" & pCtrl.Tag.faction.ToString() & "_sliderBg_pnl", pCtrl)
@@ -279,7 +280,8 @@ Public Class Reputation_interface
                             setPanelPercentage(progresspanel, int / pCtrl.Tag.max)
                             pCtrl.Tag.value = int
                             valueisok = True
-                            globplayer.PlayerReputation(loc) = pCtrl.Tag
+                            If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                            currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                         End If
                     End If
                 Next
@@ -320,7 +322,7 @@ Public Class Reputation_interface
             client.CheckProxy()
             Try
                 If Not client.DownloadString("http://wowhead.com/faction=" & retnvalue.ToString()).Contains("<div id=""inputbox-error"">This faction doesn't exist.</div>") Then
-                    For Each opRepu As Reputation In globplayer.PlayerReputation
+                    For Each opRepu As Reputation In currentViewedCharSet.PlayerReputation
                         If opRepu.faction = retnvalue Then
                             Dim RM2 As New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
                             MsgBox(RM2.GetString("factionalreadypresent"), MsgBoxStyle.Critical, "Error")
@@ -420,7 +422,8 @@ Public Class Reputation_interface
                     standingCombo.Text = GetUserMessage("standing_" & pRepu.status.ToString)
                     repPanel.Controls.Add(standingCombo)
                     AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
-                    globplayer.PlayerReputation.Add(pRepu)
+                    If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                    currentEditedCharSet.PlayerReputation.Add(pRepu)
                     MsgBox(GetUserMessage("factionadded"), , "Info")
                 Else
                     'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())

@@ -22,10 +22,7 @@
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports NCFramework.EventLogging
-Imports NCFramework.Conversions
-Imports NCFramework.SpellItem_Information
-Imports NCFramework.Basics
+
 Imports System.Net
 
 Public Class AchievementParser

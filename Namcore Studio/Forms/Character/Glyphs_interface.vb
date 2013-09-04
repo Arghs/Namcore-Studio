@@ -21,10 +21,10 @@
 '*      /Description:   Provides an interface to display character's glyphs
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.ResourceHandler
+Imports NCFramework.GlobalVariables
 Imports NCFramework.Conversions
 Imports NCFramework.Basics
 Imports System.Drawing.Imaging
-Imports System.Resources
 Imports NCFramework.SpellItem_Information
 Imports NCFramework
 Imports System.Net
@@ -97,7 +97,7 @@ Public Class Glyphs_interface
         Next
     End Sub
     Private Function loadInfo(ByVal targetSet As Integer, ByVal slot As String, ByVal infotype As Integer) As Object
-        Dim glyphitm As Glyph = GetCharacterGlyph(GetCharacterSetBySetId(targetSet), slot)
+        Dim glyphitm As Glyph = GetCharacterGlyph(currentViewedCharSet, slot)
         pubGlyph = glyphitm
         If glyphitm Is Nothing Then Return Nothing
         Select Case infotype
@@ -133,7 +133,7 @@ Public Class Glyphs_interface
                         tempSender = ctrl
                         tmpSenderPic = sender
                         ctrl.Visible = False
-                        addpanel.Location = ctrl.Location
+                        addpanel.Location = New Point(ctrl.Location.X + 8, ctrl.Location.Y + 38)
                     End If
                 End If
             Next
@@ -204,6 +204,7 @@ Public Class Glyphs_interface
     End Sub
 
     Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        'delete glyph
         Dim newPoint As New System.Drawing.Point
         Dim senderLabel As Label = tempSender
         Dim tag As Glyph = senderLabel.Tag
@@ -238,6 +239,16 @@ Public Class Glyphs_interface
                         End If
                     End If
                 Next
+                If currentEditedCharSet Is Nothing Then
+                    currentEditedCharSet = currentViewedCharSet
+                    Dim glyphIndex As Integer = TryInt(splitString(currentViewedCharSet.PlayerGlyphsIndex, "[slot:" & tag.slotname & "|@", "]"))
+                    currentEditedCharSet.PlayerGlyphs.Item(glyphIndex) = Nothing
+                    currentEditedCharSet.PlayerGlyphsIndex = currentEditedCharSet.PlayerGlyphsIndex.Replace("[slot:" & tag.slotname & "|@" & glyphIndex.ToString() & "]", "")
+                Else
+                    Dim glyphIndex As Integer = TryInt(splitString(currentViewedCharSet.PlayerGlyphsIndex, "[slot:" & tag.slotname & "|@", "]"))
+                    currentEditedCharSet.PlayerGlyphs.Item(glyphIndex) = Nothing
+                    currentEditedCharSet.PlayerGlyphsIndex = currentEditedCharSet.PlayerGlyphsIndex.Replace("[slot:" & tag.slotname & "|@" & glyphIndex.ToString() & "]", "")
+                End If
                 senderLabel.Text = Nothing
                 senderLabel.Tag = Nothing
             End If
@@ -247,6 +258,7 @@ Public Class Glyphs_interface
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        'Change glyph
         Dim newPoint As New System.Drawing.Point
         Dim senderLabel As Label = tempSender
         Dim tag As Glyph = tempSender.tag
@@ -289,7 +301,8 @@ Public Class Glyphs_interface
                             End If
 
                         Next
-
+                        If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                        SetCharacterGlyph(currentEditedCharSet, newGlyph)
                     End If
                 End If
 
@@ -310,6 +323,7 @@ Public Class Glyphs_interface
     End Sub
 
     Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
+        'Add glyph
         Dim senderPic As PictureBox = tmpSenderPic
         If Not TextBox2.Text = "" Then
             Dim client As New WebClient
@@ -336,6 +350,8 @@ Public Class Glyphs_interface
                 If senderPic.Name.Contains("_3_") Then gly.slotname = gly.slotname & "3"
                 senderPic.Tag = gly
                 senderPic.Refresh()
+                If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                AddCharacterGlyph(currentEditedCharSet, gly)
                 DirectCast(senderPic, PictureBox).Image = gly.image
                 DirectCast(tempSender, Label).Text = gly.name
                 DirectCast(tempSender, Label).Tag = gly

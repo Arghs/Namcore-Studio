@@ -64,6 +64,11 @@ Public Class GlobalVariables
     Public Shared sourceStructure As DBStructure
     Public Shared targetStructure As DBStructure
     Public Shared trd As Thread
+    Public Shared currentViewedCharSetId As Integer
+    Public Shared currentViewedCharSet As Character
+    Public Shared currentEditedCharSet As Character
+    Public Shared editedCharsIndex As List(Of Integer())
+    Public Shared editedCharSets As List(Of Character)
     Public Shared trdrunnuing As Boolean
     Public Shared procStatus As Process_status
     Public Shared tempItemInfo As List(Of Item)

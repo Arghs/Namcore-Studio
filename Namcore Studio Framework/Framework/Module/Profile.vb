@@ -86,9 +86,13 @@ End Class
 Public Class Achievement
 
     Public Id As Integer
+    Public Name As String
+    Public Description As String
+    Public Icon As Image
     Public GainDate As Integer
     Public OwnerSet As Integer
     Public SubCategory As Integer '//only for interfaces
+    Public SubCategoryName As String
     Public Sub New()
 
     End Sub
@@ -113,6 +117,7 @@ End Class
 <Serializable()> _
 Public Class Quest
     Public id As Integer
+    Public name As String
     Public status As Integer
     Public explored As Integer
     Public timer As Integer
