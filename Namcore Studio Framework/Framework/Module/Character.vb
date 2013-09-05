@@ -109,6 +109,7 @@ Public Class Character
     Public Spells As List(Of Spell)
     Public Talents As List(Of Talent)
     Public Professions As List(Of Profession)
+    Public AllInfoLoaded As Boolean = False
 
     Public Sub New(charname As String, charguid As Integer)
         Name = charname

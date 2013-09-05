@@ -281,7 +281,7 @@ Public Class CharacterCreationAdvanced
             Dim newitemguid As Integer = (TryInt(runSQLCommand_characters_string("SELECT " & targetStructure.itmins_guid_col(0) & " FROM " & targetStructure.item_instance_tbl(0) & " WHERE " &
                                                                                  targetStructure.itmins_guid_col(0) & "=(SELECT MAX(" & targetStructure.itmins_guid_col(0) & ") FROM " &
                                                                                  targetStructure.item_instance_tbl(0) & "))", True)) + 1)
-            If expansion >= 3 Then
+            If targetExpansion >= 3 Then
                 runSQLCommand_characters_string("INSERT INTO " & targetStructure.item_instance_tbl(0) & " ( " & targetStructure.itmins_guid_col(0) & ", " & targetStructure.itmins_ownerGuid_col(0) & ", " &
                                                 targetStructure.itmins_data_col(0) & " ) VALUES ( '" & newitemguid.ToString() & "', '" & newcharguid.ToString() & "', '" & newitemguid.ToString() &
                                                 " 1191182336 3 6948 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ' )", True)

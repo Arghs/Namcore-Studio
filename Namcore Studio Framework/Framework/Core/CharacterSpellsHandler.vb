@@ -64,6 +64,7 @@ Public Class CharacterSpellsHandler
                         spl.disabled = 0
                         partscounter += 1
                         LogAppend("Adding spellId: " & spl.id.ToString(), "CharacterSpellsHandler_LoadAtArcemu", True)
+                        If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
                         player.Spells.Add(spl)
                     Loop Until partscounter = excounter - 1
                     count += 1
@@ -92,6 +93,7 @@ Public Class CharacterSpellsHandler
                     spl.id = TryInt(readedcode)
                     spl.active = TryInt((tempdt.Rows(count).Item(1)).ToString)
                     spl.disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
                     player.Spells.Add(spl)
                     count += 1
                 Loop Until count = lastcount
@@ -122,6 +124,7 @@ Public Class CharacterSpellsHandler
                     spl.id = TryInt(readedcode)
                     spl.active = TryInt((tempdt.Rows(count).Item(1)).ToString)
                     spl.disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
                     player.Spells.Add(spl)
                     count += 1
                 Loop Until count = lastcount

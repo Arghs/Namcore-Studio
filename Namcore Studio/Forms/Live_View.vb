@@ -57,11 +57,15 @@ Public Class Live_View
         modifiedCharTable = chartable.Copy
         characterview.Items.Clear()
         accountview.Items.Clear()
+        Dim player As New Character("Error", 0)
         For Each rowitem As DataRow In acctable.Rows
             Dim str(4) As String
             Dim itm As ListViewItem
+            player.AccountId = TryInt(rowitem.Item(0))
             str(0) = rowitem.Item(0)
+            player.AccountName = rowitem.Item(1)
             str(1) = rowitem.Item(1)
+            player.GmLevel = rowitem.Item(2)
             str(2) = rowitem.Item(2)
             str(3) = rowitem.Item(3)
             str(4) = rowitem.Item(4)
@@ -74,18 +78,25 @@ Public Class Live_View
         For Each rowitem As DataRow In chartable.Rows
             Dim str(6) As String
             Dim itm As ListViewItem
+            player.Guid = TryInt(rowitem.Item(0))
             str(0) = rowitem.Item(0)
             str(1) = rowitem.Item(1)
+            player.Name = rowitem.Item(2)
             str(2) = rowitem.Item(2)
+            player.Race = TryInt(rowitem.Item(3))
             str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
+            player.Cclass = TryInt(rowitem.Item(4))
             str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
+            player.Gender = TryInt(rowitem.Item(5))
             str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
+            player.Level = TryInt(rowitem.Item(6))
             str(6) = rowitem.Item(6)
             itm = New ListViewItem(str)
             genSet += 1
             itm.Tag = genSet
             characterview.Items.Add(itm)
             characterview.EnsureVisible(characterview.Items.Count - 1)
+            AddCharacterSet(genSet, player)
         Next
         characterview.Sort()
         characterview.Update()
@@ -396,7 +407,22 @@ Public Class Live_View
     End Sub
 
     Private Sub EditToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EditToolStripMenuItem.Click
-        'todo
+        'Please remember that an account which is loaded from a database needs to be completely stored temporarily
+        Dim accview As New AccountOverview
+        Dim setId As Integer = characterview.SelectedItems(0).Tag
+        If armoryMode = True Then
+            Userwait.Show()
+            accview.prepare_interface(setId)
+            Userwait.Close()
+            accview.Show()
+        Else
+            'todo load info
+
+            Userwait.Show()
+            accview.prepare_interface(setId)
+            Userwait.Close()
+            accview.Show()
+        End If
     End Sub
     Private Sub accountview_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles accountview.MouseDown
 
@@ -1011,4 +1037,7 @@ Public Class Live_View
    
 
    
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
 End Class

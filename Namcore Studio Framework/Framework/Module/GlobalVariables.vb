@@ -34,7 +34,8 @@ Public Class GlobalVariables
     'Public Shared temporaryCharacterInformation As List(Of String)
     Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
     Public Shared targetCore As String '"arcemu", "trinity", "mangos"
-    Public Shared expansion As Integer '1=classic, 2=tbc,...
+    Public Shared sourceExpansion As Integer '1=classic, 2=tbc,...
+    Public Shared targetExpansion As Integer '1=classic, 2=tbc,...
     Public Shared eventlog As String
     Public Shared eventlog_full As String
     Public Shared effectname_dt As DataTable
@@ -57,7 +58,8 @@ Public Class GlobalVariables
     Public Shared modifiedAccTable As DataTable
     Public Shared modifiedCharTable As DataTable
     'Public Shared modifiedCharInfo As List(Of String)
-    Public Shared armoryMode As Boolean
+    Public Shared armoryMode As Boolean = False
+    Public Shared templateMode As Boolean = False
     Public Shared con_operator As Integer
     Public Shared trans_charlist As ArrayList
     Public Shared trans_acclist As ArrayList

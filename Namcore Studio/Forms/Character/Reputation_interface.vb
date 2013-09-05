@@ -98,6 +98,7 @@ Public Class Reputation_interface
             sliderBgPanel.Controls.Add(progressPanel)
             progressPanel.Location = reference_percentage_panel.Location
             repPanel.Controls.Add(sliderBgPanel)
+            If pRepu.max = 0 Then pRepu.max = 1
             setPanelPercentage(progressPanel, pRepu.value / pRepu.max)
             sliderBgPanel.Location = reference_sliderbg_panel.Location
             Dim slider As New TrackBar

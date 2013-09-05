@@ -71,52 +71,52 @@ Public Class GlyphCreation
         runSQLCommand_characters_string("DELETE FROM " & targetStructure.character_glyphs_tbl(0) & " WHERE " & targetStructure.glyphs_guid_col(0) & " = '" & characterguid.ToString() & "' AND " & targetStructure.glyphs_spec_col(0) & "='0'", True)
         runSQLCommand_characters_string("DELETE FROM " & targetStructure.character_glyphs_tbl(0) & " WHERE " & targetStructure.glyphs_guid_col(0) & " = '" & characterguid.ToString() & "' AND " & targetStructure.glyphs_spec_col(0) & "='1'", True)
         Dim player As Character = GetCharacterSetBySetId(targetSetId)
-        If expansion = 4 Then
+        If targetExpansion = 4 Then
             runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                             targetStructure.glyphs_glyph1_col(0) & ", " & targetStructure.glyphs_glyph2_col(0) & ", " & targetStructure.glyphs_glyph3_col(0) & ", " & targetStructure.glyphs_glyph4_col(0) &
                                             ", " & targetStructure.glyphs_glyph5_col(0) & ", " & targetStructure.glyphs_glyph6_col(0) & ", " & targetStructure.glyphs_glyph7_col(0) & ", " & targetStructure.glyphs_glyph8_col(0) &
                                             ", " & targetStructure.glyphs_glyph9_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '" &
-                                                    (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph1").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph2").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph3").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph2").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph1").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph3").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph1").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph2").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph3").id)).tostring & "' )", True)
+                                                    (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph1").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph2").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph3").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph2").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph1").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph3").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph1").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph2").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph3").id)).ToString & "' )", True)
             runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                             targetStructure.glyphs_glyph1_col(0) & ", " & targetStructure.glyphs_glyph2_col(0) & ", " & targetStructure.glyphs_glyph3_col(0) & ", " & targetStructure.glyphs_glyph4_col(0) &
                                             ", " & targetStructure.glyphs_glyph5_col(0) & ", " & targetStructure.glyphs_glyph6_col(0) & ", " & targetStructure.glyphs_glyph7_col(0) & ", " & targetStructure.glyphs_glyph8_col(0) &
                                             ", " & targetStructure.glyphs_glyph9_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '" &
-                                                    (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph1").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph2").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph3").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph2").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph1").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph3").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph1").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph2").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph3").id)).tostring & "' )", True)
-        ElseIf expansion = 3 Then
+                                                    (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph1").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph2").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph3").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph2").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph1").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph3").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph1").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph2").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph3").id)).ToString & "' )", True)
+        ElseIf targetExpansion = 3 Then
             runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                             targetStructure.glyphs_glyph1_col(0) & ", " & targetStructure.glyphs_glyph2_col(0) & ", " & targetStructure.glyphs_glyph3_col(0) & ", " & targetStructure.glyphs_glyph4_col(0) &
                                             ", " & targetStructure.glyphs_glyph5_col(0) & ", " & targetStructure.glyphs_glyph6_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '" &
-                                                    (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph1").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph2").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph3").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph2").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph1").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph3").id)).tostring & "' )", True)
+                                                    (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph1").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph2").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph3").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph2").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "minorglyph1").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph3").id)).ToString & "' )", True)
             runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                             targetStructure.glyphs_glyph1_col(0) & ", " & targetStructure.glyphs_glyph2_col(0) & ", " & targetStructure.glyphs_glyph3_col(0) & ", " & targetStructure.glyphs_glyph4_col(0) &
                                             ", " & targetStructure.glyphs_glyph5_col(0) & ", " & targetStructure.glyphs_glyph6_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '" &
-                                                    (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph1").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph2").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph3").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph2").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph1").id)).tostring & "', " &
-                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph3").id)).tostring & "' )", True)
+                                                    (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph1").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph2").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph3").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph2").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secminorglyph1").id)).ToString & "', " &
+                                                "'" & (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph3").id)).ToString & "' )", True)
         End If
     End Sub
     Private Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
@@ -160,26 +160,26 @@ Public Class GlyphCreation
         runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                         targetStructure.glyphs_slot_col(0) & ", " & targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '5', '" &
                                         (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph3").id)).tostring() & "' )", True)
-        If expansion = 4 Then
+        If targetExpansion = 4 Then
             runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                         targetStructure.glyphs_slot_col(0) & ", " & targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '6', '" &
-                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph1").id)).tostring() & "' )", True)
+                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph1").id)).ToString() & "' )", True)
             runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                         targetStructure.glyphs_slot_col(0) & ", " & targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '7', '" &
-                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph2").id)).tostring() & "' )", True)
+                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph2").id)).ToString() & "' )", True)
             runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                         targetStructure.glyphs_slot_col(0) & ", " & targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '0', '8', '" &
-                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph3").id)).tostring() & "' )", True)
+                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "primeglyph3").id)).ToString() & "' )", True)
 
             runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                         targetStructure.glyphs_slot_col(0) & ", " & targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '6', '" &
-                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph1").id)).tostring() & "' )", True)
+                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph1").id)).ToString() & "' )", True)
             runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                         targetStructure.glyphs_slot_col(0) & ", " & targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '7', '" &
-                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph2").id)).tostring() & "' )", True)
+                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph2").id)).ToString() & "' )", True)
             runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_glyphs_tbl(0) & " ( " & targetStructure.glyphs_guid_col(0) & ", " & targetStructure.glyphs_spec_col(0) & ", " &
                                         targetStructure.glyphs_slot_col(0) & ", " & targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '1', '8', '" &
-                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph3").id)).tostring() & "' )", True)
+                                            (GetGlyphIdByItemId(GetCharacterGlyph(player, "secprimeglyph3").id)).ToString() & "' )", True)
         End If
     End Sub
 End Class

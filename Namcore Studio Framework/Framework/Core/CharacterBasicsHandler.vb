@@ -172,22 +172,22 @@ Public Class CharacterBasicsHandler
         tmpCharacter.HomeBind = "<map>" & tmpCharacter.BindMapId.ToString() & "</map><zone>" & tmpCharacter.BindZoneId.ToString() & "</zone><position_x>" & tmpCharacter.BindPositionX.ToString() & "</position_x><position_y>" &
                                          tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" & tmpCharacter.BindPositionZ.ToString() & "</position_z>"
         'Account Table
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_name_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_name_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.AccountName = temp_result
         LogAppend("Loaded account name info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtArcemu", True)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_arcemuPass_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_arcemuPass_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.ArcEmuPass = temp_result
         LogAppend("Loaded account arcemuPass info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtArcemu", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_passHash_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_passHash_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.PassHash = temp_result
         LogAppend("Loaded account passHash info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtArcemu", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_arcemuFlags_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_arcemuFlags_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.ArcEmuFlags = TryInt(temp_result)
         LogAppend("Loaded account arcemuFlags info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtArcemu", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_locale_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_locale_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.Locale = TryInt(temp_result)
         LogAppend("Loaded account locale info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtArcemu", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_arcemuGmLevel_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_arcemuGmLevel_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.ArcEmuGmLevel = temp_result
         LogAppend("Loaded account arcemuGmLevel info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtArcemu", False)
         'todo Expansion!
@@ -326,12 +326,12 @@ Public Class CharacterBasicsHandler
         temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_actionBars_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
         tmpCharacter.actionBars = TryInt(temp_result)
         LogAppend("Loaded character actionBars info for characterGuid: " & charguid.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
-        temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_finishedQuests_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-        tmpCharacter.FinishedQuests = temp_result
-        LogAppend("Loaded character finishedQuests info for characterGuid: " & charguid.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
-        temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_customFaction_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-        tmpCharacter.CustomFaction = TryInt(temp_result)
-        LogAppend("Loaded character customFaction info for characterGuid: " & charguid.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
+        'temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_finishedQuests_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
+        'tmpCharacter.FinishedQuests = temp_result
+        'LogAppend("Loaded character finishedQuests info for characterGuid: " & charguid.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
+        'temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.char_customFaction_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
+        'tmpCharacter.CustomFaction = TryInt(temp_result)
+        'LogAppend("Loaded character customFaction info for characterGuid: " & charguid.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
 
         'Character_homebind Table
         temp_result = runSQLCommand_characters_string("SELECT " & sourceStructure.homebind_map_col(0) & " FROM " & sourceStructure.character_homebind_tbl(0) & " WHERE " & sourceStructure.homebind_guid_col(0) & "='" & charguid.ToString & "'")
@@ -354,19 +354,19 @@ Public Class CharacterBasicsHandler
 
 
         'Account Table
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_name_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_name_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.AccountName = temp_result
         LogAppend("Loaded account name info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", True)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_passHash_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_passHash_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.PassHash = temp_result
         LogAppend("Loaded account passHash info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_sessionkey_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_sessionkey_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.sessionkey = temp_result
         LogAppend("Loaded account sessionkey info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_locale_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_locale_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.Locale = TryInt(temp_result)
         LogAppend("Loaded account locale info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_joindate_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_joindate_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.joindate = TryInt(temp_result)
         LogAppend("Loaded account joindate info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
         'todo Expansion!
@@ -527,25 +527,25 @@ Public Class CharacterBasicsHandler
 
 
         'Account Table
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_name_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_name_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.AccountName = temp_result
         LogAppend("Loaded account name info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinityTBC", True)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_passHash_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_passHash_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.PassHash = temp_result
         LogAppend("Loaded account passHash info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_sessionkey_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_sessionkey_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.SessionKey = temp_result
         LogAppend("Loaded account sessionkey info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_locale_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_locale_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.locale = TryInt(temp_result)
         LogAppend("Loaded account locale info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_joindate_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_joindate_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.joindate = TryInt(temp_result)
         LogAppend("Loaded account joindate info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_v_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_v_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.V = temp_result
         LogAppend("Loaded account v info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_s_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_s_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.S = temp_result
         LogAppend("Loaded account s info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", False)
         'todo Expansion!
@@ -706,31 +706,31 @@ Public Class CharacterBasicsHandler
 
 
         'Account Table
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_name_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_name_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.AccountName = temp_result
         LogAppend("Loaded account name info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", True)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_passHash_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_passHash_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.PassHash = temp_result
         LogAppend("Loaded account passHash info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_v_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_v_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.V = temp_result
         LogAppend("Loaded account v info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_s_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_s_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.S = temp_result
         LogAppend("Loaded account s info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_sessionkey_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_sessionkey_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.SessionKey = temp_result
         LogAppend("Loaded account sessionkey info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_locale_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_locale_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.locale = TryInt(temp_result)
         LogAppend("Loaded account locale info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_joindate_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.acc_joindate_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.joindate = TryInt(temp_result)
         LogAppend("Loaded account joindate info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.accAcc_gmLevel_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.accAcc_gmLevel_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.gmlevel = TryInt(temp_result)
         LogAppend("Loaded account gmlevel info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtMangos", False)
-        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.accAcc_realmId_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0)(0) & "='" & tar_accountId.ToString & "'")
+        temp_result = runSQLCommand_realm_string("SELECT " & sourceStructure.accAcc_realmId_col(0) & " FROM " & sourceStructure.account_tbl(0) & " WHERE " & sourceStructure.acc_id_col(0) & "='" & tar_accountId.ToString & "'")
         tmpCharacter.realmId = TryInt(temp_result)
         LogAppend("Loaded account realmId info for accountId: " & tar_accountId.ToString & " and setId: " & tar_setId & " // result is: " & temp_result, "CharacterBasicsHandler_LoadAtTrinity", False)
         'todo Expansion!

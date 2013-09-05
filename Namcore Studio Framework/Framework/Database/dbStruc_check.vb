@@ -35,7 +35,13 @@ Public Class dbStruc_check
     Dim tablescheme As String
     Dim xpac As Integer
     Public Sub startCheck(ByVal coreString As String, ByVal expansion As Integer, ByVal sqlconn As MySqlConnection, ByVal realmsqlconn As MySqlConnection, ByVal infosqlconn As MySqlConnection, ByVal characterDBNAME As String, ByVal authDBNAME As String, ByVal target As Boolean)
-        If target = True Then targetStructure = Nothing Else sourceStructure = Nothing
+        If target = True Then
+            targetStructure = Nothing
+            targetExpansion = expansion
+        Else
+            sourceStructure = Nothing
+            sourceExpansion = expansion
+        End If
         tmp_conn = sqlconn
         tmp_connRealm = realmsqlconn
         tmp_connInfo = infosqlconn
@@ -54,6 +60,7 @@ Public Class dbStruc_check
                 '_account
                 dbstruc.acc_id_col = {"id"}
                 dbstruc.acc_name_col = {"username"}
+                dbstruc.acc_sessionkey_col = {"sessionkey"}
                 dbstruc.acc_passHash_col = {"sha_pass_hash"}
                 dbstruc.acc_email_col = {"email"}
                 dbstruc.acc_joindate_col = {"joindate"}
@@ -97,6 +104,7 @@ Public Class dbStruc_check
                 dbstruc.char_posZ_col = {"position_z"}
                 dbstruc.char_map_col = {"map"}
                 dbstruc.char_instanceId_col = {"instance_id"}
+                dbstruc.char_instanceModeMask_col = {"instance_mode_mask"}
                 dbstruc.char_orientation_col = {"orientation"}
                 dbstruc.char_taximask_col = {"taximask"}
                 dbstruc.char_cinematic_col = {"cinematic"}

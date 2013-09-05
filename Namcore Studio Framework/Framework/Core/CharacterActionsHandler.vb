@@ -51,6 +51,7 @@ Public Class CharacterActionsHandler
                                                                                                      " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
         tmpCharacter.ArcEmuAction2 = runSQLCommand_characters_string("SELECT " & sourceStructure.char_actions2_col(0) & " FROM " & sourceStructure.character_tbl(0) &
                                                                                                     " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
+        If tmpCharacter.Actions Is Nothing Then tmpCharacter.Actions = New List(Of Action)()
         Try
             Dim readedcode As String = tmpCharacter.ArcEmuAction1
             If Not readedcode.Length > 2 Then LogAppend("Warning! Actions1 seems to be invalid!", "CharacterActionsHandler_loadAtArcemu", False, True)
@@ -98,6 +99,7 @@ Public Class CharacterActionsHandler
                                                   ", `" & sourceStructure.action_type_col(0) & "` FROM " & sourceStructure.character_action_tbl(0) & " WHERE " & sourceStructure.action_guid_col(0) &
                                                   "='" & charguid.ToString() & "'")
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
+        If tmpCharacter.Actions Is Nothing Then tmpCharacter.Actions = New List(Of Action)()
         Try
             Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
@@ -130,6 +132,7 @@ Public Class CharacterActionsHandler
                                                   ", `" & sourceStructure.action_type_col(0) & "` FROM " & sourceStructure.character_action_tbl(0) & " WHERE " & sourceStructure.action_guid_col(0) &
                                                   "='" & charguid.ToString() & "'")
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
+        If tmpCharacter.Actions Is Nothing Then tmpCharacter.Actions = New List(Of Action)()
         Try
             Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0

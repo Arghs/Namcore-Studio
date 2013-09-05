@@ -33,7 +33,7 @@ Public Module SpellItem_Information
         LogAppend("Loading GlyphId by ItemId " & itemid.ToString, "SpellItem_Information_GetGlyphIdByItemId", False)
         Dim xpacressource As String
         Try
-            Select Case expansion
+            Select Case sourceExpansion
                 Case 3
                     xpacressource = libnc.My.Resources.glyphproperties_335
                 Case 4
@@ -262,6 +262,7 @@ LookOnline: Else
     End Sub
     Public Function GetEffectNameByEffectId(ByVal effectid As Integer) As String
         LogAppend("Loading effectname by effectId: " & effectid.ToString, "SpellItem_Information_GetEffectNameByEffectId", False)
+        If effectname_dt Is Nothing Then effectname_dt = New DataTable()
         If effectname_dt.Rows.Count = 0 Then
             Try
                 effectname_dt.Clear()
@@ -300,7 +301,7 @@ LookOnline: Else
         End If
     End Function
 
-    Public Function getNameOfItem(ByVal itemid As String) As String
+    Public Function GetNameOfItem(ByVal itemid As String) As String
         LogAppend("Loading name of item: " & itemid.ToString, "SpellItem_Information_getNameOfItem", False)
         If Not itemid = Nothing Then
             If itemid.Length > 1 Then

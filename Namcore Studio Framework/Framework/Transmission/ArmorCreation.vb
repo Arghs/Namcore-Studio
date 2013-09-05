@@ -193,7 +193,7 @@ Public Class ArmorCreation
             If itemid = 0 Then Continue For
             newItemGuid += 1
             finalItemString = finalItemString.Replace(newItemType, itemid.ToString())
-            If expansion >= 3 Then
+            If targetExpansion >= 3 Then
                 runSQLCommand_characters_string("INSERT INTO " & targetStructure.item_instance_tbl(0) & " ( " & targetStructure.itmins_guid_col(0) & ", " & targetStructure.itmins_ownerGuid_col(0) &
                                                 ", " & targetStructure.itmins_data_col(0) & ") VALUES ( '" & newItemGuid.ToString() & "', '" & characterguid.ToString() &
                                                 "', '" & newItemGuid.ToString() & " 1191182336 3 " & itemid.ToString() &

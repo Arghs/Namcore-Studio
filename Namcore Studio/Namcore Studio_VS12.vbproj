@@ -81,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="Forms\AccountOverview.Designer.vb">
+      <DependentUpon>AccountOverview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AccountOverview.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Character\Achievements_interface.Designer.vb">
       <DependentUpon>Achievements_interface.vb</DependentUpon>
     </Compile>
@@ -190,6 +196,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\AccountOverview.resx">
+      <DependentUpon>AccountOverview.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Character\Achievements_interface.resx">
       <DependentUpon>Achievements_interface.vb</DependentUpon>
     </EmbeddedResource>
@@ -292,7 +301,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

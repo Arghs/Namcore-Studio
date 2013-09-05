@@ -25,7 +25,7 @@ Imports NCFramework.GlobalVariables
 Imports System.ComponentModel
 Imports NCFramework.ArmoryHandler
 Imports NCFramework.Basics
-Imports NCFramework.TransmissionHandler
+Imports NCFramework.CoreHandler
 Imports System.Windows.Forms
 Imports System.Drawing
 

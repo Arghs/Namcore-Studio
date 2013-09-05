@@ -55,6 +55,10 @@ Public Class CharacterEnchantmentsHandler
         Do
             Dim itm As New Item
             itm = GetCharacterArmorItem(player, slotname(loopcounter))
+            If itm Is Nothing Then
+                loopcounter += 1
+                Continue Do
+            End If
             itm.enchantment_name = ArcSplitEnchantString(itm.enchstring, player, itm)
             If Not loopcounter = 17 Or Not loopcounter = 18 Then
                 itm.socket1_name = ArcSplitGemString(itm.enchstring, tar_setId, 29)
@@ -176,8 +180,12 @@ Public Class CharacterEnchantmentsHandler
         Dim loopcounter As Integer = 0
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
         Do
-            Dim itm As New Item
+            Dim itm As Item
             itm = GetCharacterArmorItem(player, slotname(loopcounter))
+            If itm Is Nothing Then
+                loopcounter += 1
+                Continue Do
+            End If
             itm.enchantment_name = TrinitySplitEnchantString(itm.enchstring, itm, tar_setId)
             If Not loopcounter = 17 Or Not loopcounter = 18 Then
                 itm.socket1_name = TrinitySplitGemString(itm.enchstring, tar_setId, 6, itm, 1)
@@ -243,6 +251,10 @@ Public Class CharacterEnchantmentsHandler
         Do
             Dim itm As New Item
             itm = GetCharacterArmorItem(player, slotname(loopcounter))
+            If itm Is Nothing Then
+                loopcounter += 1
+                Continue Do
+            End If
             itm.enchantment_name = MangosSplitEnchantString(itm.enchstring, itm, tar_setId)
             If Not loopcounter = 17 Or Not loopcounter = 18 Then
                 itm.socket1_name = MangosSplitGemString(itm.enchstring, tar_setId, 29, itm, 1)

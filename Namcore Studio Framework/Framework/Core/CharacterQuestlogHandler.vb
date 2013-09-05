@@ -65,6 +65,7 @@ Imports NCFramework.Conversions
                         qst.explored = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         qst.timer = TryInt((tempdt.Rows(count).Item(3)).ToString)
                         qst.slot = TryInt((tempdt.Rows(count).Item(4)).ToString)
+                        If player.Quests Is Nothing Then player.Quests = New List(Of Quest)()
                         player.Quests.Add(qst)
                     Loop Until partscounter = excounter - 1
                     count += 1
@@ -94,6 +95,7 @@ Imports NCFramework.Conversions
                     qst.status = TryInt((tempdt.Rows(count).Item(1)).ToString)
                     qst.explored = TryInt((tempdt.Rows(count).Item(2)).ToString)
                     qst.timer = TryInt((tempdt.Rows(count).Item(3)).ToString)
+                    If player.Quests Is Nothing Then player.Quests = New List(Of Quest)()
                     player.Quests.Add(qst)
                     count += 1
                 Loop Until count = lastcount
@@ -141,6 +143,7 @@ Imports NCFramework.Conversions
                     If rewarded = "1" Then
                         player.FinishedQuests = qst.id & ","
                     Else
+                        If player.Quests Is Nothing Then player.Quests = New List(Of Quest)()
                         player.Quests.Add(qst)
                     End If
                     count += 1
@@ -174,6 +177,7 @@ Imports NCFramework.Conversions
                     If rewarded = "1" Then
                         player.FinishedQuests = qst.id & ","
                     Else
+                        If player.Quests Is Nothing Then player.Quests = New List(Of Quest)()
                         player.Quests.Add(qst)
                     End If
                     count += 1

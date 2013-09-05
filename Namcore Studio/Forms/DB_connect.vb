@@ -37,13 +37,17 @@ Public Class DB_connect
     Private Sub connect_bt_Click(sender As System.Object, e As System.EventArgs) Handles connect_bt.Click
         Select Case con_operator
             Case 1 'Source connection @live_view
+                globChars = New GlobalCharVars()
+                globChars.CharacterSets = New List(Of Character)
+                armoryMode = False
+                templateMode = False
                 con_operator = 0
                 cmpFileListViewComparer = New ListViewComparer(Live_View.accountview)
                 If defaultconn_radio.Checked = True Then
                     If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text) = True Then
                         If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text) = True Then
-                            GlobalConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text
-                            GlobalConnectionString_Realm = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text
+                            GlobalConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text & ";Convert Zero Datetime=True"
+                            GlobalConnectionString_Realm = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text & ";Convert Zero Datetime=True"
                             OpenNewMySQLConnection(GlobalConnection, GlobalConnectionString)
                             OpenNewMySQLConnection(GlobalConnection_Realm, GlobalConnectionString_Realm)
                             GlobalConnection_Info.ConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=information_schema"
@@ -71,8 +75,8 @@ Public Class DB_connect
                 If defaultconn_radio.Checked = True Then
                     If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text) = True Then
                         If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text) = True Then
-                            TargetConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text
-                            TargetConnectionString_Realm = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text
+                            TargetConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text & ";Convert Zero Datetime=True"
+                            TargetConnectionString_Realm = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text & ";Convert Zero Datetime=True"
                             OpenNewMySQLConnection(TargetConnection, TargetConnectionString)
                             OpenNewMySQLConnection(TargetConnection_Realm, TargetConnectionString_Realm)
                             TargetConnRealmDBname = realmdbname_txtbox.Text

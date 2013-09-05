@@ -265,7 +265,6 @@ Partial Class CharacterOverview
         Me.closepanel = New System.Windows.Forms.Panel()
         Me.highlighter1 = New System.Windows.Forms.PictureBox()
         Me.highlighter2 = New System.Windows.Forms.PictureBox()
-        Me.savechangestmp_bt = New System.Windows.Forms.Button()
         Me.InventoryPanel.SuspendLayout()
         CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3052,20 +3051,6 @@ Partial Class CharacterOverview
         Me.highlighter2.TabIndex = 218
         Me.highlighter2.TabStop = False
         '
-        'savechangestmp_bt
-        '
-        Me.savechangestmp_bt.BackColor = System.Drawing.Color.DimGray
-        Me.savechangestmp_bt.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.savechangestmp_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.savechangestmp_bt.ForeColor = System.Drawing.Color.Black
-        Me.savechangestmp_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.savechangestmp_bt.Location = New System.Drawing.Point(334, 670)
-        Me.savechangestmp_bt.Name = "savechangestmp_bt"
-        Me.savechangestmp_bt.Size = New System.Drawing.Size(155, 34)
-        Me.savechangestmp_bt.TabIndex = 224
-        Me.savechangestmp_bt.Text = "Save changes for transfer"
-        Me.savechangestmp_bt.UseVisualStyleBackColor = False
-        '
         'CharacterOverview
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3073,7 +3058,6 @@ Partial Class CharacterOverview
         Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(910, 714)
-        Me.Controls.Add(Me.savechangestmp_bt)
         Me.Controls.Add(Me.addpanel)
         Me.Controls.Add(Me.selectenchpanel)
         Me.Controls.Add(Me.classpanel)
@@ -3532,5 +3516,4 @@ Partial Class CharacterOverview
     Friend WithEvents closepanel As System.Windows.Forms.Panel
     Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
     Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
-    Friend WithEvents savechangestmp_bt As System.Windows.Forms.Button
 End Class

@@ -240,7 +240,7 @@ Public Class CharacterGlyphsHandler
         LogAppend("Loading character Glyphs @loadAtTrinity", "CharacterGlyphsHandler_loadAtTrinity", False)
         Dim tempdt As New DataTable
         Dim tempdtsec As New DataTable
-        If expansion = 3 Then
+        If sourceExpansion = 3 Then
             tempdt = ReturnDataTable("SELECT " & sourceStructure.glyphs_glyph1_col(0) & ", " & sourceStructure.glyphs_glyph2_col(0) & ", " & sourceStructure.glyphs_glyph3_col(0) &
                                      ", " & sourceStructure.glyphs_glyph4_col(0) & ", " & sourceStructure.glyphs_glyph5_col(0) & ", " & sourceStructure.glyphs_glyph6_col(0) &
                                      " FROM " & sourceStructure.character_glyphs_tbl(0) & " WHERE " & sourceStructure.glyphs_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.glyphs_spec_col(0) & "='0'")
@@ -321,7 +321,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            If expansion = 4 Then
+            If sourceExpansion = 4 Then
                 prevglyphid = TryInt((tempdt.Rows(0).Item(6)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
@@ -418,7 +418,7 @@ Public Class CharacterGlyphsHandler
                 AddCharacterGlyph(player, tmpGlyph)
                 SetCharacterSet(tar_setId, player)
             End If
-            If expansion = 4 Then
+            If sourceExpansion = 4 Then
                 prevglyphid = TryInt((tempdtsec.Rows(0).Item(6)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph

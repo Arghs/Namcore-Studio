@@ -47,6 +47,11 @@ Public Class CharacterOverview
         InventoryPanel.SetDoubleBuffered()
         currentSet = setId
         currentViewedCharSetId = setId
+        If armoryMode = False And templateMode = False Then
+            '//Load charset
+            Dim m_loadHandler As New CoreHandler
+            m_loadHandler.handleLoadingRequests(setId)
+        End If
         currentViewedCharSet = GetCharacterSetBySetId(setId)
         If currentViewedCharSet.PlayerGlyphsIndex Is Nothing Then Glyphs_bt.Enabled = False
         doneControls = New List(Of Control)
@@ -142,14 +147,19 @@ Public Class CharacterOverview
         pubItm = itm
         If itm Is Nothing Then Return Nothing
         Select Case infotype
-            Case 0 : Return itm.name
-            Case 1 : Return itm.enchantment_name
+            Case 0
+                If itm.name Is Nothing Then
+                    itm.name = getNameOfItem(itm.id)
+                End If
+                Return itm.name
+            Case 1
+                Return itm.enchantment_name
             Case 2
                 If itm.image Is Nothing Then
-                    Return My.Resources.empty
-                Else
-                    Return itm.image
+                    itm.image = GetIconByItemId(itm.id)
                 End If
+                Return itm.image
+
             Case 3
                 If itm.socket1_pic Is Nothing Then
                     Return Nothing
@@ -783,7 +793,9 @@ Public Class CharacterOverview
 
     End Sub
 
-    Private Sub savechangestmp_bt_Click(sender As Object, e As EventArgs) Handles savechangestmp_bt.Click
+    
+
+    Private Sub savechanges_bt_Click(sender As Object, e As EventArgs) Handles savechanges_bt.Click
         If currentEditedCharSet Is Nothing Then
 
         Else
@@ -797,6 +809,5 @@ Public Class CharacterOverview
             editedCharsIndex.Add({currentEditedCharSet.Guid, editedCharSets.Count})
             editedCharSets.Add(currentEditedCharSet)
         End If
-
     End Sub
 End Class

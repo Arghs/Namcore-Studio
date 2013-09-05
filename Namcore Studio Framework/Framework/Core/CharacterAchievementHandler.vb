@@ -49,6 +49,7 @@ Public Class CharacterAchievementHandler
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) &
                                                   "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
+        If tmpCharacter.Achievements Is Nothing Then tmpCharacter.Achievements = New List(Of Achievement)()
         Try
             Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
@@ -75,6 +76,7 @@ Public Class CharacterAchievementHandler
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) &
                                                   "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
+        If tmpCharacter.Achievements Is Nothing Then tmpCharacter.Achievements = New List(Of Achievement)()
         Try
             Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
@@ -104,6 +106,7 @@ Public Class CharacterAchievementHandler
         Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.av_achievement_col(0) & ", `" & sourceStructure.av_date_col(0) & "` FROM " & sourceStructure.character_achievement_tbl(0) &
                                                   "` WHERE " & sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
+        If tmpCharacter.Achievements Is Nothing Then tmpCharacter.Achievements = New List(Of Achievement)()
         Try
             Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0

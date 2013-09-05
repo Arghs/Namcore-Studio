@@ -67,6 +67,7 @@ Public Class CharacterSkillsHandler
                         partscounter += 1
                         skl.max = TryInt(parts(partscounter).ToString)
                         partscounter += 1
+                        If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
                         player.Skills.Add(skl)
                         loopcounter += 1
                     Loop Until loopcounter = finalcounter
@@ -95,6 +96,7 @@ Public Class CharacterSkillsHandler
                     skl.id = TryInt((tempdt.Rows(count).Item(0)).ToString)
                     skl.value = TryInt((tempdt.Rows(count).Item(1)).ToString)
                     skl.max = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
                     player.Skills.Add(skl)
                     count += 1
                 Loop Until count = lastcount
@@ -124,6 +126,7 @@ Public Class CharacterSkillsHandler
                     skl.id = TryInt((tempdt.Rows(count).Item(0)).ToString)
                     skl.value = TryInt((tempdt.Rows(count).Item(1)).ToString)
                     skl.max = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
                     player.Skills.Add(skl)
                     count += 1
                 Loop Until count = lastcount

@@ -100,6 +100,7 @@ Public Class CharacterInventoryHandler
                                     newItm.count = TryInt(itemcount)
                                     newItm.container = -1
                                     newItm.guid = TryInt(item)
+                                    If player.InventoryZeroItems Is Nothing Then player.InventoryZeroItems = New List(Of InventItem)()
                                     player.InventoryZeroItems.Add(newItm)
                                     SetCharacterSet(tar_setId, player)
                                 End If
@@ -128,6 +129,7 @@ Public Class CharacterInventoryHandler
                                 newItm.count = TryInt(itemcount)
                                 newItm.container = -1
                                 newItm.guid = TryInt(item)
+                                If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of InventItem)()
                                 player.InventoryItems.Add(newItm)
                                 SetCharacterSet(tar_setId, player)
                             End If
@@ -167,6 +169,7 @@ Public Class CharacterInventoryHandler
                                     newItm.count = TryInt(itemcount)
                                     newItm.container = -1
                                     newItm.guid = TryInt(item)
+                                    If player.InventoryZeroItems Is Nothing Then player.InventoryZeroItems = New List(Of InventItem)()
                                     player.InventoryZeroItems.Add(newItm)
                                     SetCharacterSet(tar_setId, player)
                                 End If
@@ -195,6 +198,7 @@ Public Class CharacterInventoryHandler
                                 newItm.count = TryInt(itemcount)
                                 newItm.container = -1
                                 newItm.guid = TryInt(item)
+                                If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of InventItem)()
                                 player.InventoryItems.Add(newItm)
                                 SetCharacterSet(tar_setId, player)
                             End If
@@ -233,6 +237,7 @@ Public Class CharacterInventoryHandler
                                     newItm.count = TryInt(itemcount)
                                     newItm.container = -1
                                     newItm.guid = TryInt(item)
+                                    If player.InventoryZeroItems Is Nothing Then player.InventoryZeroItems = New List(Of InventItem)()
                                     player.InventoryZeroItems.Add(newItm)
                                     SetCharacterSet(tar_setId, player)
                                 End If
@@ -261,6 +266,7 @@ Public Class CharacterInventoryHandler
                                 newItm.count = TryInt(itemcount)
                                 newItm.container = TryInt(containerslot2)
                                 newItm.guid = TryInt(item)
+                                If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of InventItem)()
                                 player.InventoryItems.Add(newItm)
                                 SetCharacterSet(tar_setId, player)
                             End If
@@ -314,6 +320,7 @@ Public Class CharacterInventoryHandler
                             newItm.enchantstring = enchantments
                             newItm.count = TryInt(itemcount)
                             newItm.guid = TryInt(item)
+                            If player.InventoryZeroItems Is Nothing Then player.InventoryZeroItems = New List(Of InventItem)()
                             player.InventoryZeroItems.Add(newItm)
                         End If
                     Else
@@ -337,6 +344,7 @@ Public Class CharacterInventoryHandler
                         newItm.enchantstring = enchantments
                         newItm.count = TryInt(itemcount)
                         newItm.guid = TryInt(item)
+                        If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of InventItem)()
                         player.InventoryItems.Add(newItm)
                     End If
                     count += 1
@@ -390,6 +398,7 @@ Public Class CharacterInventoryHandler
                             newItm.enchantstring = enchantments
                             newItm.count = TryInt(itemcount)
                             newItm.guid = TryInt(item)
+                            If player.InventoryZeroItems Is Nothing Then player.InventoryZeroItems = New List(Of InventItem)()
                             player.InventoryZeroItems.Add(newItm)
                         End If
                     Else
@@ -413,6 +422,7 @@ Public Class CharacterInventoryHandler
                         newItm.enchantstring = enchantments
                         newItm.count = TryInt(itemcount)
                         newItm.guid = TryInt(item)
+                        If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of InventItem)()
                         player.InventoryItems.Add(newItm)
                     End If
                     count += 1

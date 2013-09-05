@@ -71,6 +71,7 @@ Public Module CommandHandler
         Dim da As New MySqlDataAdapter(command, conn)
         Dim dt As New DataTable
         Try
+
             da.Fill(dt)
             Dim lastcount As Integer = dt.Rows.Count
             If Not lastcount = 0 Then
