@@ -147,7 +147,6 @@ Public Class Settings_interface
                 .Close()
 
             End With
-
             NCFramework.My.MySettings.Default.Save()
         Catch ex As Exception
 

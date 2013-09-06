@@ -12,3 +12,13 @@ F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\NCLauncher.exe
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\NCLauncher.exe
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\NCLauncher.pdb
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\NCLauncher.xml
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\NCLauncher.exe.config
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\NCLauncher.exe
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\NCLauncher.pdb
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio\bin\Debug\NCLauncher.xml
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\NCLauncher\obj\Debug\NCLauncher.Updater.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\NCLauncher\obj\Debug\NCLauncher.Resources.resources
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\NCLauncher\obj\Debug\NCLauncher_VS12.vbproj.GenerateResource.Cache
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\NCLauncher\obj\Debug\NCLauncher.exe
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\NCLauncher\obj\Debug\NCLauncher.xml
+C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\NCLauncher\obj\Debug\NCLauncher.pdb

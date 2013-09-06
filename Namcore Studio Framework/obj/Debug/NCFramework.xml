@@ -6,7 +6,72 @@ NCFramework
 </name>
 </assembly>
 <members>
-<member name="P:NCFramework.My.Resources.UserMessages.ResourceManager">
+<member name="P:NCFramework.My.Resources.Resources.ResourceManager">
+	<summary>
+  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+</summary>
+</member><member name="P:NCFramework.My.Resources.Resources.Culture">
+	<summary>
+  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+</summary>
+</member><member name="P:NCFramework.My.Resources.Resources.cleanbg">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:NCFramework.My.Resources.Resources.empty">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:NCFramework.My.Resources.Resources.highlight">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:NCFramework.My.Resources.Resources.INV_Misc_QuestionMark">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:NCFramework.My.Resources.Resources.minclose">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:NCFramework.My.Resources.Resources.namcore_header">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+</summary>
+</member><member name="P:NCFramework.My.Resources.Resources.nclogo">
+	<summary>
+  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
+</summary>
+</member><member name="P:NCFramework.My.Resources.Resources.UserMessages">
+	<summary>
+  Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;root&gt;
+  &lt;!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers &amp; schema ...
+    &lt;resheader name="resmimetype"&gt;text/microsoft-resx&lt;/resheader&gt;
+    &lt;resheader n [Rest der Zeichenfolge wurde abgeschnitten]"; ähnelt.
+</summary>
+</member><member name="T:NCFramework.My.Resources.Resources">
+	<summary>
+  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+</summary>
+</member><member name="M:NCFramework.WebClientProxyExtension.CheckProxy(System.Net.WebClient@)">
+	<summary>
+ proxy information handler
+ </summary>
+</member><member name="P:NCFramework.My.Resources.UserMessages.ResourceManager">
 	<summary>
   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
 </summary>
@@ -492,71 +557,6 @@ NCFramework
   Sucht eine lokalisierte Zeichenfolge, die Worgen ähnelt.
 </summary>
 </member><member name="T:NCFramework.My.Resources.UserMessages">
-	<summary>
-  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
-</summary>
-</member><member name="M:NCFramework.WebClientProxyExtension.CheckProxy(System.Net.WebClient@)">
-	<summary>
- proxy information handler
- </summary>
-</member><member name="P:NCFramework.My.Resources.Resources.ResourceManager">
-	<summary>
-  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
-</summary>
-</member><member name="P:NCFramework.My.Resources.Resources.Culture">
-	<summary>
-  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
-  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
-</summary>
-</member><member name="P:NCFramework.My.Resources.Resources.cleanbg">
-	<summary>
-  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-</summary>
-</member><member name="P:NCFramework.My.Resources.Resources.empty">
-	<summary>
-  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-</summary>
-</member><member name="P:NCFramework.My.Resources.Resources.highlight">
-	<summary>
-  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-</summary>
-</member><member name="P:NCFramework.My.Resources.Resources.INV_Misc_QuestionMark">
-	<summary>
-  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-</summary>
-</member><member name="P:NCFramework.My.Resources.Resources.minclose">
-	<summary>
-  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-</summary>
-</member><member name="P:NCFramework.My.Resources.Resources.namcore_header">
-	<summary>
-  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
-</summary>
-</member><member name="P:NCFramework.My.Resources.Resources.nclogo">
-	<summary>
-  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
-</summary>
-</member><member name="P:NCFramework.My.Resources.Resources.UserMessages">
-	<summary>
-  Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;root&gt;
-  &lt;!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers &amp; schema ...
-    &lt;resheader name="resmimetype"&gt;text/microsoft-resx&lt;/resheader&gt;
-    &lt;resheader n [Rest der Zeichenfolge wurde abgeschnitten]"; ähnelt.
-</summary>
-</member><member name="T:NCFramework.My.Resources.Resources">
 	<summary>
   Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
 </summary>

@@ -31,7 +31,7 @@ Namespace My
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
     Private Shared Sub AutoSaveSettings(ByVal sender As Global.System.Object, ByVal e As Global.System.EventArgs)
         If My.Application.SaveMySettingsOnExit Then
-                NCFramework.My.MySettings.Default.Save()
+            My.Settings.Save()
         End If
     End Sub
 #End If
@@ -52,6 +52,18 @@ Namespace My
 #End If
                 Return defaultInstance
             End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("lol")>  _
+        Public Property Setting() As String
+            Get
+                Return CType(Me("Setting"),String)
+            End Get
+            Set
+                Me("Setting") = value
+            End Set
         End Property
     End Class
 End Namespace
