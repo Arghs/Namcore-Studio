@@ -119,6 +119,20 @@ Public Class Updater
                         End If
                     End If
                 End If
+            Else
+                Dim servername As String = host
+                Dim serverport As String = port.ToString()
+                If serverport Is Nothing Then
+                    proxyenabled = False
+                Else
+                    If servername Is Nothing Then
+                        proxyenabled = False
+                    Else
+                        host = servername
+                        port = CInt(serverport)
+                        fullProxy = New WebProxy(servername & ":" & serverport)
+                    End If
+                End If
             End If
             Try
                 If proxyenabled = True Then

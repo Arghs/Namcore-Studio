@@ -13,15 +13,15 @@ Option Explicit On
 
 
 Namespace My
-
-    <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(), _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0"), _
-     Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
+    
+    <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0"),  _
+     Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Public NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
-
-        Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()), MySettings)
-
+        
+        Private Shared defaultInstance As MySettings = CType(Global.System.Configuration.ApplicationSettingsBase.Synchronized(New MySettings()),MySettings)
+        
 #Region "Funktion zum automatischen Speichern von My.Settings"
 #If _MyType = "WindowsForms" Then
     Private Shared addedHandler As Boolean
@@ -36,10 +36,10 @@ Namespace My
     End Sub
 #End If
 #End Region
-
+        
         Public Shared ReadOnly Property [Default]() As MySettings
             Get
-
+                
 #If _MyType = "WindowsForms" Then
                If Not addedHandler Then
                     SyncLock addedHandlerLockObject
@@ -53,99 +53,99 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("de")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("de")>  _
         Public Property language() As String
             Get
-                Return CType(Me("language"), String)
+                Return CType(Me("language"),String)
             End Get
-            Set(value As String)
+            Set
                 Me("language") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property proxy_host() As String
             Get
-                Return CType(Me("proxy_host"), String)
+                Return CType(Me("proxy_host"),String)
             End Get
-            Set(value As String)
+            Set
                 Me("proxy_host") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("80")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("80")>  _
         Public Property proxy_port() As Integer
             Get
-                Return CType(Me("proxy_port"), Integer)
+                Return CType(Me("proxy_port"),Integer)
             End Get
-            Set(value As Integer)
+            Set
                 Me("proxy_port") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property proxy_uname() As String
             Get
-                Return CType(Me("proxy_uname"), String)
+                Return CType(Me("proxy_uname"),String)
             End Get
-            Set(value As String)
+            Set
                 Me("proxy_uname") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property proxy_pass() As String
             Get
-                Return CType(Me("proxy_pass"), String)
+                Return CType(Me("proxy_pass"),String)
             End Get
-            Set(value As String)
+            Set
                 Me("proxy_pass") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
         Public Property proxy_defaultCredentials() As Boolean
             Get
-                Return CType(Me("proxy_defaultCredentials"), Boolean)
+                Return CType(Me("proxy_defaultCredentials"),Boolean)
             End Get
-            Set(value As Boolean)
+            Set
                 Me("proxy_defaultCredentials") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public Property proxy_enabled() As Boolean
             Get
-                Return CType(Me("proxy_enabled"), Boolean)
+                Return CType(Me("proxy_enabled"),Boolean)
             End Get
-            Set(value As Boolean)
+            Set
                 Me("proxy_enabled") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")> _
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
         Public Property proxy_detect() As Boolean
             Get
-                Return CType(Me("proxy_detect"), Boolean)
+                Return CType(Me("proxy_detect"),Boolean)
             End Get
-            Set(value As Boolean)
+            Set
                 Me("proxy_detect") = value
             End Set
         End Property
@@ -164,13 +164,13 @@ Namespace My
 End Namespace
 
 Namespace My
-
-    <Global.Microsoft.VisualBasic.HideModuleNameAttribute(), _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-     Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()> _
+    
+    <Global.Microsoft.VisualBasic.HideModuleNameAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Module MySettingsProperty
-
-        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")> _
+        
+        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
         Friend ReadOnly Property Settings() As Global.NCFramework.My.MySettings
             Get
                 Return Global.NCFramework.My.MySettings.Default

@@ -120,8 +120,10 @@ Public Class Settings_interface
                 NCFramework.My.MySettings.Default.proxy_port = port_ud.Value
                 NCFramework.My.MySettings.Default.fullproxy = New WebProxy(url_tb.Text & ":" & port_ud.Value.ToString())
                 If defcred_cb.Checked = True Then
+                    NCFramework.My.MySettings.Default.fullproxy.UseDefaultCredentials = True
                     NCFramework.My.MySettings.Default.proxy_defaultCredentials = True
                 Else
+                    NCFramework.My.MySettings.Default.fullproxy.UseDefaultCredentials = False
                     NCFramework.My.MySettings.Default.proxy_defaultCredentials = False
                     NCFramework.My.MySettings.Default.proxy_uname = username_tb.Text
                     NCFramework.My.MySettings.Default.proxy_pass = password_tb.Text

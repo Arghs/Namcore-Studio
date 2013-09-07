@@ -38,6 +38,7 @@ Public Class Main
 
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\version.xml") Then
             Dim enc As New System.Text.UnicodeEncoding
             Dim XMLobj As Xml.XmlTextWriter = New Xml.XmlTextWriter("version.xml", enc)
@@ -66,6 +67,20 @@ Public Class Main
                 Dim webnet As New WebConnection
                 Dim servername As String = webnet.GetProxyServerName()
                 Dim serverport As String = webnet.GetProxyServerPort()
+                If serverport Is Nothing Then
+                    NCFramework.My.MySettings.Default.proxy_enabled = False
+                Else
+                    If servername Is Nothing Then
+                        NCFramework.My.MySettings.Default.proxy_enabled = False
+                    Else
+                        NCFramework.My.MySettings.Default.proxy_host = servername
+                        NCFramework.My.MySettings.Default.proxy_port = TryInt(serverport)
+                        NCFramework.My.MySettings.Default.fullproxy = New WebProxy(servername & ":" & serverport)
+                    End If
+                End If
+            Else
+                Dim servername As String = NCFramework.My.MySettings.Default.proxy_host
+                Dim serverport As String = NCFramework.My.MySettings.Default.proxy_port.ToString()
                 If serverport Is Nothing Then
                     NCFramework.My.MySettings.Default.proxy_enabled = False
                 Else
