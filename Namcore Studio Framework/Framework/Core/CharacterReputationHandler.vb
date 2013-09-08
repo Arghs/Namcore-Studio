@@ -67,6 +67,7 @@ Public Class CharacterReputationHandler
                         partscounter += 1
                         rep.standing = TryInt(parts(partscounter).ToString)
                         partscounter += 2
+                        rep.UpdateValueMax()
                         If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
                         player.PlayerReputation.Add(rep)
                         loopcounter += 1
@@ -96,6 +97,7 @@ Public Class CharacterReputationHandler
                     rep.faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
                     rep.standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
                     rep.flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    rep.UpdateValueMax()
                     If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
                     player.PlayerReputation.Add(rep)
                     count += 1
@@ -126,6 +128,7 @@ Public Class CharacterReputationHandler
                     rep.faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
                     rep.standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
                     rep.flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                    rep.UpdateValueMax()
                     If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
                     player.PlayerReputation.Add(rep)
                     count += 1

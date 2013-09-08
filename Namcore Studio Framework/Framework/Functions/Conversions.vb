@@ -196,14 +196,7 @@ Public Module Conversions
         End If
         Return img
     End Function
-    Public Function updateReputationStanding(ByRef rep As Reputation) As Reputation
-        Return rep
-        'todo
-    End Function
-    Public Function updateReputationValueMax(ByRef rep As Reputation) As Reputation
-        Return rep
-        'todo
-    End Function
+   
     Public Function getNameOfQuest(ByVal questid As Integer) As String
         LogAppend("Loading quest name of id " & questid.ToString(), "Conversions_getNameOfQuest")
         Try

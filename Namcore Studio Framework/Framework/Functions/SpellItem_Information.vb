@@ -374,7 +374,45 @@ LookOnline: Else
             Return "-"
         End Try
     End Function
+    Public Function GetFactionNameById(ByVal facid As Integer) As String
+        LogAppend("Loading faction name of id: " & facid.ToString, "SpellItem_Information_GetFactionNameById", False)
+        If tempFactionTable Is Nothing Then
+            Try
+                LogAppend("Filling tempFactionTable", "SpellItem_Information_GetFactionNameById", False)
+                tempFactionTable = New DataTable()
+                Dim stext As String
+                If My.Settings.language = "de" Then
+                    stext = libnc.My.Resources.FactionDE
+                Else
+                    stext = libnc.My.Resources.FactionDE 'todo
+                End If
+                Dim a() As String
+                Dim strArray As String()
+                a = Split(stext, vbNewLine)
+                For i = 0 To UBound(a)
+                    strArray = a(i).Split(CChar(";"))
+                    If i = 0 Then
+                        For Each value As String In strArray
+                            tempFactionTable.Columns.Add(value.Trim())
+                        Next
+                    Else
+                        tempFactionTable.Rows.Add(strArray)
+                    End If
+                Next i
+            Catch ex As Exception
+                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetFactionNameById", False, True)
+                Return "Error"
+            End Try
+        End If
+        Dim nameresult As String = Execute("factionid", facid.ToString(), tempFactionTable, 23)
+        If nameresult = "-" Then
+            LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetFactionNameById", False, True)
+            Return "Error loading faction name"
+        Else
+            Return nameresult
+        End If
 
+    End Function
     Public Function GetAvNameById(ByVal avid As Integer) As String
 
         LogAppend("Loading av name of id: " & avid.ToString, "SpellItem_Information_GetAvNameById", False)

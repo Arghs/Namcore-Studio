@@ -43,9 +43,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="libnc, Version=0.0.1.24926, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="libnc, Version=0.0.1.24927, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\libnc.dll</HintPath>
+      <HintPath>..\Namcore Studio\References\libnc.dll</HintPath>
     </Reference>
     <Reference Include="libncadvanced">
       <HintPath>..\Namcore Studio\References\libncadvanced.dll</HintPath>
@@ -98,6 +98,7 @@
     <Compile Include="Framework\Database\CommandHandler.vb" />
     <Compile Include="Framework\Database\ConnectionHandler.vb" />
     <Compile Include="Framework\Database\dbStruc_check.vb" />
+    <Compile Include="Framework\Extension\RepStandingExtension.vb" />
     <Compile Include="Framework\Extension\trdExtension.vb" />
     <Compile Include="Framework\Extension\WebClientProxyExtension.vb" />
     <Compile Include="Framework\Functions\Basics.vb" />

@@ -80,7 +80,12 @@ Public Class Reputation_interface
             End If
             Dim repNameLable As New Label
             repNameLable.Name = "rep" & pRepu.faction.ToString() & "_name_lbl"
-            repNameLable.Text = pRepu.name
+            Dim factionName As String = pRepu.name
+            If factionName Is Nothing Then
+                factionName = GetFactionNameById(pRepu.faction)
+                pRepu.name = factionName
+            End If
+            repNameLable.Text = factionName
             repNameLable.Tag = pRepu
             repPanel.Controls.Add(repNameLable)
             repNameLable.Location = reference_name_lbl.Location
@@ -179,7 +184,7 @@ Public Class Reputation_interface
                                     setPanelPercentage(subsubCtrl, slider.Value / slider.Maximum)
                                     Dim loc As Integer = currentViewedCharSet.PlayerReputation.FindIndex(Function(rep) (pCtrl.Tag.Equals(rep)))
                                     pCtrl.Tag.value = slider.Value
-                                    pCtrl.Tag = updateReputationStanding(pCtrl.Tag)
+                                    pCtrl.Tag.UpdateStanding()
                                     If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
                                     currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                                 End If
@@ -208,7 +213,7 @@ Public Class Reputation_interface
                                     setPanelPercentage(subsubCtrl, 0)
                                     Dim loc As Integer = currentViewedCharSet.PlayerReputation.FindIndex(Function(rep) (pCtrl.Tag.Equals(rep)))
                                     pCtrl.Tag.value = slider.Value
-                                    pCtrl.Tag = updateReputationStanding(pCtrl.Tag)
+                                    pCtrl.Tag.UpdateStanding()
                                     If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
                                     currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                                 End If
@@ -245,7 +250,7 @@ Public Class Reputation_interface
                 pCtrl.Tag.value = 0
                 pCtrl.Tag.max = max
                 pCtrl.Tag.status = combo.SelectedIndex
-                pCtrl.Tag = updateReputationStanding(pCtrl.Tag)
+                pCtrl.Tag.UpdateStanding()
                 If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
                 currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                 DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Value = 0
@@ -335,7 +340,7 @@ Public Class Reputation_interface
                     With pRepu
                         .faction = retnvalue
                         .flags = 1
-                        .name = splitString(client.DownloadString("http://wowhead.com/faction=" & retnvalue.ToString()), "<title>", " - Faction - World")
+                        .name = GetFactionNameById(.faction)
                         .max = 3000
                         .standing = 0
                         .status = 3

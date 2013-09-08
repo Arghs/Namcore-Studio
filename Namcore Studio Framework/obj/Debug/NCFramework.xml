@@ -6,7 +6,15 @@ NCFramework
 </name>
 </assembly>
 <members>
-<member name="P:NCFramework.My.Resources.UserMessages.ResourceManager">
+<member name="M:NCFramework.RepStandingExtension.UpdateStanding(NCFramework.Reputation)">
+	<summary>
+ Updates reputation standing by value and status
+ </summary>
+</member><member name="M:NCFramework.RepStandingExtension.UpdateValueMax(NCFramework.Reputation)">
+	<summary>
+ Updates reputation value, status and max by standing
+ </summary>
+</member><member name="P:NCFramework.My.Resources.UserMessages.ResourceManager">
 	<summary>
   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
 </summary>
