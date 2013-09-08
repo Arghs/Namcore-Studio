@@ -57,8 +57,11 @@ Public Class Live_View
         modifiedCharTable = chartable.Copy
         characterview.Items.Clear()
         accountview.Items.Clear()
-        Dim player As New Character("Error", 0)
+        Dim genSet As Integer = 0
+
         For Each rowitem As DataRow In acctable.Rows
+            Dim player As New Character("Error", 0)
+            genSet += 1
             Dim str(4) As String
             Dim itm As ListViewItem
             player.AccountId = TryInt(rowitem.Item(0))
@@ -72,10 +75,11 @@ Public Class Live_View
             itm = New ListViewItem(str)
             accountview.Items.Add(itm)
             accountview.EnsureVisible(accountview.Items.Count - 1)
+            AddCharacterSet(genSet, player)
         Next
         accountview.Update()
-        Dim genSet As Integer = 0
         For Each rowitem As DataRow In chartable.Rows
+            Dim player As New Character("Error", 0)
             Dim str(6) As String
             Dim itm As ListViewItem
             player.Guid = TryInt(rowitem.Item(0))

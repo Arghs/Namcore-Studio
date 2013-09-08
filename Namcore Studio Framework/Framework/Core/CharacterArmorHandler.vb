@@ -22,14 +22,8 @@
 '*                      armor of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports NCFramework.Basics
-Imports NCFramework.CharacterEnchantmentsHandler
-Imports NCFramework.CharacterItemStatsHandler
-Imports NCFramework.CommandHandler
-Imports NCFramework.Conversions
-Imports NCFramework.EventLogging
+
 Imports NCFramework.GlobalVariables
-Imports NCFramework.SpellItem_Information
 Public Class CharacterArmorHandler
     Public Sub GetCharacterArmor(ByVal charguid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
         LogAppend("Loading character Armor for charguid: " & charguid & " and setId: " & setId, "CharacterArmorHandler_GetCharacterArmor", True)
@@ -52,7 +46,6 @@ Public Class CharacterArmorHandler
                                                   " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString &
                                                   "' AND " & sourceStructure.itmins_container_col(0) & "='-1'")
         Dim m_itmStatsHandler As CharacterItemStatsHandler = New CharacterItemStatsHandler
-        Dim tmpCharacter As Character = GetCharacterSetBySetId(tar_setId)
         Dim itemguid As Integer
         Dim slotname As String
         Dim itementry As Integer
@@ -313,11 +306,12 @@ Public Class CharacterArmorHandler
     End Sub
     Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
         LogAppend("Loading character Armor @loadAtTrinity", "CharacterArmorHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.invent_item_col(0) & ", " & sourceStructure.invent_slot_col(0) & ", " & sourceStructure.itmins_itemEntry_col(0) &
+        Dim cmd As String = "SELECT " & sourceStructure.invent_item_col(0) & ", " & sourceStructure.invent_slot_col(0) & ", " & sourceStructure.itmins_itemEntry_col(0) &
                                                   " FROM `" & sourceStructure.character_inventory_tbl(0) & "` JOIN `" & sourceStructure.item_instance_tbl(0) & "` ON `" & sourceStructure.character_inventory_tbl(0) &
                                                   "`." & sourceStructure.invent_item_col(0) & " = " & "`" & sourceStructure.item_instance_tbl(0) & "`." & sourceStructure.itmins_guid_col(0) &
                                                   " WHERE `" & sourceStructure.character_inventory_tbl(0) & "`." & sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "' AND " & sourceStructure.invent_bag_col(0) &
-                                                  "='0' AND " & sourceStructure.invent_slot_col(0) & " < '19'")
+                                                  "='0' AND " & sourceStructure.invent_slot_col(0) & " < '19'"
+        Dim tempdt As DataTable = ReturnDataTable(cmd)
         Dim m_itmStatsHandler As CharacterItemStatsHandler = New CharacterItemStatsHandler
         Dim itemguid As Integer
         Dim slotname As String
