@@ -97,7 +97,7 @@ Public Class Main
         If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt") Then
             My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt")
         End If
-        LogAppend("NamCore Studio " & My.Application.Info.Version.ToString() & " loaded", "Main_Main_Load", False)
+        LogAppend("NamCore Studio " & My.Application.Info.Version.ToString() & " loaded", "Main_Main_Load", True)
         LogAppend("System information:", "Main_Main_Load", False)
         LogAppend("/OS NAME: " & My.Computer.Info.OSFullName, "Main_Main_Load", False)
         LogAppend("/OS VERSION: " & My.Computer.Info.OSVersion, "Main_Main_Load", False)

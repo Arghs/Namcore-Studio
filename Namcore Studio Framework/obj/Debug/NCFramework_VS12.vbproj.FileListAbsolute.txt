@@ -29,3 +29,15 @@ C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore S
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.dll
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.xml
 C:\Users\iwmedien\Documents\Visual Studio 2012\Projects\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.pdb
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\bin\Debug\Data\NCFramework.dll.config
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\bin\Debug\Data\NCFramework.dll
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\bin\Debug\Data\NCFramework.pdb
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio\bin\Debug\Data\NCFramework.xml
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework_VS12.vbprojResolveAssemblyReference.cache
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework.Resources.resources
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework.Process_status.resources
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework.UserMessages.resources
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework_VS12.vbproj.GenerateResource.Cache
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework.dll
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework.xml
+C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework.pdb

@@ -58,7 +58,6 @@ Public Class Live_View
         characterview.Items.Clear()
         accountview.Items.Clear()
         Dim genSet As Integer = 0
-
         For Each rowitem As DataRow In acctable.Rows
             Dim player As New Character("Error", 0)
             genSet += 1
@@ -71,7 +70,12 @@ Public Class Live_View
             player.GmLevel = rowitem.Item(2)
             str(2) = rowitem.Item(2)
             str(3) = rowitem.Item(3)
-            str(4) = rowitem.Item(4)
+            If IsDBNull(rowitem.Item(4)) Then
+                str(4) = ""
+            Else
+                str(4) = rowitem.Item(4)
+            End If
+
             itm = New ListViewItem(str)
             accountview.Items.Add(itm)
             accountview.EnsureVisible(accountview.Items.Count - 1)

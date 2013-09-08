@@ -58,6 +58,7 @@ Public Class CharacterOverview
         'Evaluator = New Thread(Sub() Me.goprep(setId, False))
         'Evaluator.Start()
         goprep(setId, False)
+        LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
     End Sub
     Private Sub goprep(ByVal setId As Integer, ByVal nxt As Boolean)
         tmpSetId = setId

@@ -6,13 +6,9 @@ NCFramework
 </name>
 </assembly>
 <members>
-<member name="M:NCFramework.RepStandingExtension.UpdateStanding(NCFramework.Reputation)">
+<member name="M:NCFramework.WebClientProxyExtension.CheckProxy(System.Net.WebClient@)">
 	<summary>
- Updates reputation standing by value and status
- </summary>
-</member><member name="M:NCFramework.RepStandingExtension.UpdateValueMax(NCFramework.Reputation)">
-	<summary>
- Updates reputation value, status and max by standing
+ proxy information handler
  </summary>
 </member><member name="P:NCFramework.My.Resources.UserMessages.ResourceManager">
 	<summary>
@@ -503,9 +499,13 @@ NCFramework
 	<summary>
   Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
 </summary>
-</member><member name="M:NCFramework.WebClientProxyExtension.CheckProxy(System.Net.WebClient@)">
+</member><member name="M:NCFramework.RepStandingExtension.UpdateStanding(NCFramework.Reputation)">
 	<summary>
- proxy information handler
+ Updates reputation standing by value and status
+ </summary>
+</member><member name="M:NCFramework.RepStandingExtension.UpdateValueMax(NCFramework.Reputation)">
+	<summary>
+ Updates reputation value, status and max by standing
  </summary>
 </member><member name="P:NCFramework.My.Resources.Resources.ResourceManager">
 	<summary>

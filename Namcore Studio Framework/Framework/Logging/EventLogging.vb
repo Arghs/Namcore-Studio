@@ -29,49 +29,32 @@ Public Module EventLogging
     Public Delegate Sub IncomingEventDelegate(ByVal _event As String)
     Public lastprogress As Integer
     Public isbusy As Boolean = False
+    Private m_userOut As Boolean
     Public Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
-        Dim x As UInt32 = 546
+        m_userOut = userOut
         While isbusy
-
         End While
         isbusy = True
-        userOut = True
-        If iserror = False Then
-            If userOut = True Then
-                appendStatus(_event, location, iserror)
-                eventlog = "[" & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog
-                eventlog_full = "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog_full
-            Else
-                eventlog_full = "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog_full
-            End If
-        Else
-            If userOut = True Then
-                appendStatus(_event, location, iserror)
-                eventlog = "[" & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog
-                eventlog_full = "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog_full
-            Else
-                eventlog_full = "[" & Date.Today.ToString & " " & Now.TimeOfDay.ToString & "]" & _event & vbNewLine & eventlog_full
-            End If
-        End If
+        appendStatus(_event, location, iserror)
         isbusy = False
     End Sub
     Private Sub appendStatus(ByVal _status As String, ByVal loc As String, Optional Iserror As Boolean = False)
-        proccessTXT = "[" & Now.TimeOfDay.ToString & "]" & _status & vbNewLine & proccessTXT
+        Dim timenow As String = Now.TimeOfDay.ToString
         Dim append As String = ""
         If Iserror Then append = "[ERROR]"
-        Dim fs As New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt", FileMode.OpenOrCreate, System.Text.Encoding.Default)
-        fs.WriteLine("[" & Now.TimeOfDay.ToString & "]" & append & "[" & loc & "]" & _status)
-        fs.Close()
-        Try
-            procStatus.appendProc("[" & Now.TimeOfDay.ToString & "]" & _status)
-        Catch ex As Exception
+        eventlog = eventlog & vbNewLine & "[" & timenow & "]" & append & "[" & loc & "]" & _status
+        If m_userOut = True Then
+            proccessTXT = "[" & timenow & "]" & _status & vbNewLine & proccessTXT
+            Dim fs As New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt", FileMode.OpenOrCreate, System.Text.Encoding.Default)
+            fs.WriteLine(eventlog)
+            fs.Close()
+            eventlog = ""
+            Try
+                procStatus.appendProc("[" & Now.TimeOfDay.ToString & "]" & _status)
+            Catch ex As Exception
 
-        End Try
-
-
+            End Try
+        End If
     End Sub
-
-    Public Sub LogClear()
-        eventlog = ""
-    End Sub
+  
 End Module
