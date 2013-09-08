@@ -29,5 +29,32 @@
     <Setting Name="fullproxy" Type="System.Net.WebProxy" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="server_address" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="server_port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3306</Value>
+    </Setting>
+    <Setting Name="server_login" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="server_pass" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="server_authdb" Type="System.String" Scope="User">
+      <Value Profile="(Default)">auth</Value>
+    </Setting>
+    <Setting Name="server_chardb" Type="System.String" Scope="User">
+      <Value Profile="(Default)">characters</Value>
+    </Setting>
+    <Setting Name="server_defaultconn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="server_ncremoteaddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="server_nclogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

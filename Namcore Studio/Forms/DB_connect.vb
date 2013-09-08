@@ -44,13 +44,13 @@ Public Class DB_connect
                 con_operator = 0
                 cmpFileListViewComparer = New ListViewComparer(Live_View.accountview)
                 If defaultconn_radio.Checked = True Then
-                    If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text) = True Then
-                        If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text) = True Then
-                            GlobalConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text & ";Convert Zero Datetime=True"
-                            GlobalConnectionString_Realm = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text & ";Convert Zero Datetime=True"
+                    If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text) = True Then
+                        If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text) = True Then
+                            GlobalConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text & ";Convert Zero Datetime=True"
+                            GlobalConnectionString_Realm = "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text & ";Convert Zero Datetime=True"
                             OpenNewMySQLConnection(GlobalConnection, GlobalConnectionString)
                             OpenNewMySQLConnection(GlobalConnection_Realm, GlobalConnectionString_Realm)
-                            GlobalConnection_Info.ConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=information_schema"
+                            GlobalConnection_Info.ConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=information_schema"
                             struc_check.startCheck("trinity", 3, GlobalConnection, GlobalConnection_Realm, GlobalConnection_Info, chardbname_txtbox.Text, realmdbname_txtbox.Text, False) 'todo
                             For Each CurrentForm As Form In Application.OpenForms
                                 If CurrentForm.Name = "Live_View" Then
@@ -73,15 +73,15 @@ Public Class DB_connect
             Case 2 'Target connection @live_view
                 con_operator = 0
                 If defaultconn_radio.Checked = True Then
-                    If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text) = True Then
-                        If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text) = True Then
-                            TargetConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text & ";Convert Zero Datetime=True"
-                            TargetConnectionString_Realm = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text & ";Convert Zero Datetime=True"
+                    If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text) = True Then
+                        If TestConnection("server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text) = True Then
+                            TargetConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & chardbname_txtbox.Text & ";Convert Zero Datetime=True"
+                            TargetConnectionString_Realm = "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" & realmdbname_txtbox.Text & ";Convert Zero Datetime=True"
                             OpenNewMySQLConnection(TargetConnection, TargetConnectionString)
                             OpenNewMySQLConnection(TargetConnection_Realm, TargetConnectionString_Realm)
                             TargetConnRealmDBname = realmdbname_txtbox.Text
                             TargetConnCharactersDBname = chardbname_txtbox.Text
-                            TargetConnection_Info.ConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_txtbox.Text & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=information_schema"
+                            TargetConnection_Info.ConnectionString = "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" & userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=information_schema"
                             struc_check.startCheck("trinity", 3, TargetConnection, TargetConnection_Realm, TargetConnection_Info, chardbname_txtbox.Text, realmdbname_txtbox.Text, True) 'todo
                             For Each CurrentForm As Form In Application.OpenForms
                                 If CurrentForm.Name = "Live_View" Then
@@ -112,5 +112,41 @@ Public Class DB_connect
             Case 1 : connect_header_label.Text = GetUserMessage("connecttosource")
             Case 2 : connect_header_label.Text = GetUserMessage("connecttotarget")
         End Select
+        If NCFramework.My.MySettings.Default.server_defaultconn = True Then
+            defaultconn_radio.Checked = True
+            db_address_txtbox.Text = NCFramework.My.MySettings.Default.server_address
+            port_ud.Value = NCFramework.My.MySettings.Default.server_port
+            userid_txtbox.Text = NCFramework.My.MySettings.Default.server_login
+            password_txtbox.Text = NCFramework.My.MySettings.Default.server_pass
+            chardbname_txtbox.Text = NCFramework.My.MySettings.Default.server_chardb
+            realmdbname_txtbox.Text = NCFramework.My.MySettings.Default.server_authdb
+        Else
+            viaserver_radio.Checked = True
+            serveraddress_txtbox.Text = NCFramework.My.MySettings.Default.server_ncremoteaddress
+            rmuser_txtbox.Text = NCFramework.My.MySettings.Default.server_nclogin
+        End If
+    End Sub
+
+    Private Sub getlogin_bt_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub savelogin_bt_Click(sender As Object, e As EventArgs) Handles savelogin_bt.Click
+        If defaultconn_radio.Checked = True Then
+            NCFramework.My.MySettings.Default.server_defaultconn = True
+            NCFramework.My.MySettings.Default.server_address = db_address_txtbox.Text
+            NCFramework.My.MySettings.Default.server_port = port_ud.Value
+            NCFramework.My.MySettings.Default.server_login = userid_txtbox.Text
+            NCFramework.My.MySettings.Default.server_pass = password_txtbox.Text
+            NCFramework.My.MySettings.Default.server_chardb = chardbname_txtbox.Text
+            NCFramework.My.MySettings.Default.server_authdb = realmdbname_txtbox.Text
+            NCFramework.My.MySettings.Default.Save()
+        Else
+            NCFramework.My.MySettings.Default.server_defaultconn = False
+            NCFramework.My.MySettings.Default.server_ncremoteaddress = serveraddress_txtbox.Text
+            NCFramework.My.MySettings.Default.server_nclogin = rmuser_txtbox.Text
+            NCFramework.My.MySettings.Default.Save()
+        End If
+
     End Sub
 End Class

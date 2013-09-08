@@ -47,19 +47,19 @@ Partial Class DB_connect
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.port_txtbox = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.db_address_txtbox = New System.Windows.Forms.TextBox()
         Me.password_txtbox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.userid_txtbox = New System.Windows.Forms.TextBox()
-        Me.getlogin_bt = New System.Windows.Forms.Button()
         Me.savelogin_bt = New System.Windows.Forms.Button()
         Me.connect_header_label = New System.Windows.Forms.Label()
+        Me.port_ud = New System.Windows.Forms.NumericUpDown()
         Me.connect_panel.SuspendLayout()
         Me.login1_panel.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.port_ud, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'connect_panel
@@ -79,7 +79,6 @@ Partial Class DB_connect
         Me.login1_panel.Controls.Add(Me.defaultconn_radio)
         Me.login1_panel.Controls.Add(Me.connect_bt)
         Me.login1_panel.Controls.Add(Me.GroupBox1)
-        Me.login1_panel.Controls.Add(Me.getlogin_bt)
         Me.login1_panel.Controls.Add(Me.savelogin_bt)
         Me.login1_panel.Location = New System.Drawing.Point(9, 37)
         Me.login1_panel.Name = "login1_panel"
@@ -231,6 +230,7 @@ Partial Class DB_connect
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox1.Controls.Add(Me.port_ud)
         Me.GroupBox1.Controls.Add(Me.Label9)
         Me.GroupBox1.Controls.Add(Me.Label8)
         Me.GroupBox1.Controls.Add(Me.Label7)
@@ -240,7 +240,6 @@ Partial Class DB_connect
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Controls.Add(Me.port_txtbox)
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.db_address_txtbox)
         Me.GroupBox1.Controls.Add(Me.password_txtbox)
@@ -259,7 +258,7 @@ Partial Class DB_connect
         Me.Label9.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.SteelBlue
         Me.Label9.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Label9.Location = New System.Drawing.Point(257, 67)
+        Me.Label9.Location = New System.Drawing.Point(263, 66)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(86, 17)
         Me.Label9.TabIndex = 28
@@ -359,14 +358,6 @@ Partial Class DB_connect
         Me.Label5.TabIndex = 22
         Me.Label5.Text = "Password:"
         '
-        'port_txtbox
-        '
-        Me.port_txtbox.Location = New System.Drawing.Point(183, 64)
-        Me.port_txtbox.Name = "port_txtbox"
-        Me.port_txtbox.Size = New System.Drawing.Size(69, 20)
-        Me.port_txtbox.TabIndex = 17
-        Me.port_txtbox.Text = "3306"
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -417,19 +408,6 @@ Partial Class DB_connect
         Me.userid_txtbox.TabIndex = 18
         Me.userid_txtbox.Text = "mangos"
         '
-        'getlogin_bt
-        '
-        Me.getlogin_bt.BackColor = System.Drawing.Color.DimGray
-        Me.getlogin_bt.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.getlogin_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.getlogin_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.getlogin_bt.Location = New System.Drawing.Point(234, 393)
-        Me.getlogin_bt.Name = "getlogin_bt"
-        Me.getlogin_bt.Size = New System.Drawing.Size(121, 34)
-        Me.getlogin_bt.TabIndex = 209
-        Me.getlogin_bt.Text = "Standard login data"
-        Me.getlogin_bt.UseVisualStyleBackColor = False
-        '
         'savelogin_bt
         '
         Me.savelogin_bt.BackColor = System.Drawing.Color.DimGray
@@ -454,26 +432,38 @@ Partial Class DB_connect
         Me.connect_header_label.TabIndex = 0
         Me.connect_header_label.Text = "Connect to source server"
         '
+        'port_ud
+        '
+        Me.port_ud.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.port_ud.Location = New System.Drawing.Point(183, 64)
+        Me.port_ud.Maximum = New Decimal(New Integer() {65535, 0, 0, 0})
+        Me.port_ud.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.port_ud.Name = "port_ud"
+        Me.port_ud.Size = New System.Drawing.Size(74, 21)
+        Me.port_ud.TabIndex = 29
+        Me.port_ud.Value = New Decimal(New Integer() {80, 0, 0, 0})
+        '
         'DB_connect
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(541, 511)
         Me.Controls.Add(Me.connect_panel)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.Name = "DB_connect"
         Me.Text = "DB_connect"
-        Me.connect_panel.ResumeLayout(False)
-        Me.connect_panel.PerformLayout()
-        Me.login1_panel.ResumeLayout(False)
-        Me.login1_panel.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.ResumeLayout(False)
+        Me.connect_panel.ResumeLayout(false)
+        Me.connect_panel.PerformLayout
+        Me.login1_panel.ResumeLayout(false)
+        Me.login1_panel.PerformLayout
+        Me.GroupBox2.ResumeLayout(false)
+        Me.GroupBox2.PerformLayout
+        Me.GroupBox1.ResumeLayout(false)
+        Me.GroupBox1.PerformLayout
+        CType(Me.port_ud,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ResumeLayout(false)
 
-    End Sub
+End Sub
     Friend WithEvents connect_panel As System.Windows.Forms.Panel
     Friend WithEvents login1_panel As System.Windows.Forms.Panel
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
@@ -498,13 +488,12 @@ Partial Class DB_connect
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents port_txtbox As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents db_address_txtbox As System.Windows.Forms.TextBox
     Friend WithEvents password_txtbox As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents userid_txtbox As System.Windows.Forms.TextBox
-    Friend WithEvents getlogin_bt As System.Windows.Forms.Button
     Friend WithEvents savelogin_bt As System.Windows.Forms.Button
     Friend WithEvents connect_header_label As System.Windows.Forms.Label
+    Friend WithEvents port_ud As System.Windows.Forms.NumericUpDown
 End Class
