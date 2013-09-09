@@ -501,4 +501,22 @@
   <data name="subcat187" xml:space="preserve">
     <value>Love is in the Air</value>
   </data>
+  <data name="enterqstfinished" xml:space="preserve">
+    <value>Enter quest finished status (0/1):</value>
+  </data>
+  <data name="enterqstid" xml:space="preserve">
+    <value>Enter quest id:</value>
+  </data>
+  <data name="enterqstrewarded" xml:space="preserve">
+    <value>Enter quest rewarded status (0/1):</value>
+  </data>
+  <data name="invalidentry" xml:space="preserve">
+    <value>Invalid entry!</value>
+  </data>
+  <data name="qstadded" xml:space="preserve">
+    <value>Quest added!</value>
+  </data>
+  <data name="qstexist" xml:space="preserve">
+    <value>The character already has this quest!</value>
+  </data>
 </root>

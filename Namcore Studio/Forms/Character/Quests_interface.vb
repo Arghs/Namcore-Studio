@@ -26,7 +26,7 @@ Imports NCFramework.Conversions
 Imports NCFramework.GlobalVariables
 Imports NCFramework
 Imports System.Threading
-
+Imports NCFramework.ResourceHandler
 
 Public Class Quests_interface
     Shared addlst As New List(Of ListViewItem)
@@ -42,44 +42,37 @@ Public Class Quests_interface
     End Sub
     Private WithEvents m_handler As New FlowLayoutPanelHandler
     Public Sub prepareInterface(ByVal setId As Integer)
+        Dim real_qst_lst As New List(Of Quest)
         Dim qst() As String = currentViewedCharSet.FinishedQuests.Split(","c)
-        Dim cnt As Integer = 0
-        Dim par1 As Integer = qst.Length / 2 - 1
-        Dim par2 As Integer = qst.Length - par1 - 1
-        Dim par1qst(par1 - 1) As String
-        Dim par2qst(qst.Length - par1 - 1) As String
-        For i = 0 To par1 - 1
-            par1qst(i) = qst(i)
+        For i = 0 To qst.Length - 1
+            real_qst_lst.Add(New Quest With {.id = TryInt(qst(i)), .rewarded = 1, .explored = 1, .status = 1})
         Next
-        For i = 0 To par2
-            par2qst(i) = qst(par1 + i)
-        Next
-        completed = False
-        m_handler.doOperate_qst(1, qst)
-        'm_handler.doOperate_qst(1, par1qst)
-        'm_handler.doOperate_qst(2, par2qst)
-    End Sub
-    Public Function continueOperation(ByVal operation_count As Integer, ByVal quests() As String) As String
-        If operation_count = 2 Then
-            Thread.Sleep(2000)
+        If currentViewedCharSet.Quests IsNot Nothing Then
+            If currentViewedCharSet.Quests.Count > 0 Then
+                For Each player_qst As Quest In currentViewedCharSet.Quests
+                    real_qst_lst.Add(player_qst)
+                Next
+            End If
         End If
-        Dim cnt As Integer = 0
-        While cnt < quests.Length
+        m_handler.doOperate_qst(1, real_qst_lst)
+    End Sub
+    Public Function continueOperation(ByVal operation_count As Integer, ByVal questLst As List(Of Quest)) As String
+        For Each pQuest As Quest In questLst
             Dim str(3) As String
-            str(0) = quests(cnt)
-            Dim qstname As String = GetQuestNameById(TryInt(str(0)))
-                If qstname = "error" Then
-                    str(1) = "not loaded" 'getNameOfQuest(str(0))
-                Else
-                    str(1) = qstname
-                End If
-                str(2) = "1"
-                str(3) = "1"
-                Dim itm As New ListViewItem(str)
-                itm.Tag = TryInt(str(0))
-                qst_lst.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm)
-                cnt += 1
-        End While
+            str(0) = pQuest.id.ToString
+            Dim questname As String
+            If pQuest.name Is Nothing Then
+                questname = GetQuestNameById(pQuest.id)
+            Else
+                questname = pQuest.name
+            End If
+            str(1) = questname
+            str(2) = pQuest.status.ToString
+            str(3) = pQuest.rewarded.ToString
+            Dim itm As New ListViewItem(str)
+            itm.Tag = pQuest
+            qst_lst.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm)
+        Next
         ThreadExtensions.ScSend(context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted), New CompletedEventArgs())
     End Function
     Delegate Sub AddItemDelegate(itm As ListViewItem)
@@ -136,7 +129,169 @@ Public Class Quests_interface
 
     End Sub
 
+    Private Sub qst_lst_MouseUp(sender As Object, e As MouseEventArgs) Handles qst_lst.MouseUp
+        If e.Button = MouseButtons.Right Then
+            If qst_lst.SelectedItems.Count = 0 Then Exit Sub
+            qstContext.Show(qst_lst, e.X, e.Y)
+        End If
+    End Sub
+
     Private Sub qst_lst_SelectedIndexChanged(sender As Object, e As EventArgs) Handles qst_lst.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
+        qst_lst.BeginUpdate()
+        For Each qstitm As ListViewItem In qst_lst.SelectedItems
+            Dim qst As Quest = qstitm.Tag
+            If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+            If qst.rewarded = 1 Then
+                currentEditedCharSet.FinishedQuests = currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
+            Else
+                For Each pquest As Quest In currentEditedCharSet.Quests
+                    If pquest.id = qst.id Then
+                        currentEditedCharSet.Quests.Remove(pquest)
+                    End If
+                Next
+            End If
+            qst_lst.Items.Remove(qstitm)
+        Next
+        qst_lst.EndUpdate()
+    End Sub
+
+    Private Sub finished_0_Click(sender As Object, e As EventArgs) Handles finished_0.Click
+        qst_lst.BeginUpdate()
+        For Each qstitm As ListViewItem In qst_lst.SelectedItems
+            Dim qst As Quest = qstitm.Tag
+            If qst.status = 1 Then
+                If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                If qst.rewarded = 1 Then
+                    currentEditedCharSet.FinishedQuests = currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
+                    qst.status = 0
+                    qst.rewarded = 0
+                    currentEditedCharSet.Quests.Add(qst)
+                    qstitm.SubItems(2).Text = "0"
+                    qstitm.SubItems(3).Text = "0"
+                Else
+                    For Each pquest As Quest In currentEditedCharSet.Quests
+                        If pquest.id = qst.id Then
+                            pquest.status = 0
+                            qstitm.SubItems(2).Text = "0"
+                        End If
+                    Next
+                End If
+            End If
+        Next
+        qst_lst.EndUpdate()
+    End Sub
+
+    Private Sub finished_1_Click(sender As Object, e As EventArgs) Handles finished_1.Click
+        qst_lst.BeginUpdate()
+        For Each qstitm As ListViewItem In qst_lst.SelectedItems
+            Dim qst As Quest = qstitm.Tag
+            If qst.status = 0 Then
+                If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                    For Each pquest As Quest In currentEditedCharSet.Quests
+                        If pquest.id = qst.id Then
+                        pquest.status = 1
+                        qstitm.SubItems(2).Text = "1"
+                        End If
+                    Next
+            End If
+        Next
+        qst_lst.EndUpdate()
+    End Sub
+
+    Private Sub rewarded_0_Click(sender As Object, e As EventArgs) Handles rewarded_0.Click
+        qst_lst.BeginUpdate()
+        For Each qstitm As ListViewItem In qst_lst.SelectedItems
+            Dim qst As Quest = qstitm.Tag
+            If qst.rewarded = 1 Then
+                If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                currentEditedCharSet.FinishedQuests = currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
+                qstitm.SubItems(3).Text = "0"
+                qst.rewarded = 0
+                currentEditedCharSet.Quests.Add(qst)
+            End If
+        Next
+        qst_lst.EndUpdate()
+    End Sub
+
+    Private Sub rewarded_1_Click(sender As Object, e As EventArgs) Handles rewarded_1.Click
+        qst_lst.BeginUpdate()
+        For Each qstitm As ListViewItem In qst_lst.SelectedItems
+            Dim qst As Quest = qstitm.Tag
+            If qst.rewarded = 0 Then
+                If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+                currentEditedCharSet.FinishedQuests = currentEditedCharSet.FinishedQuests & qst.id.ToString & ","
+                qstitm.SubItems(2).Text = "1"
+                qstitm.SubItems(3).Text = "1"
+                For Each pqst As Quest In currentEditedCharSet.Quests
+                    If pqst.id = qst.id Then currentEditedCharSet.Quests.Remove(pqst)
+                Next
+            End If
+        Next
+        qst_lst.EndUpdate()
+    End Sub
+
+    Private Sub add_bt_Click(sender As Object, e As EventArgs) Handles add_bt.Click
+        'Add new quest
+        Dim retnvalue As Integer = TryInt(InputBox(GetUserMessage("enterqstid"), "Add quest", "0"))
+        If Not retnvalue = 0 Then
+            If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
+            If currentEditedCharSet.FinishedQuests.Contains("," & retnvalue.ToString & ",") Then
+                MsgBox(GetUserMessage("qstexist"), MsgBoxStyle.Critical, "Error")
+                Exit Sub
+            End If
+            For Each qst As Quest In currentEditedCharSet.Quests
+                If qst.id = retnvalue Then
+                    MsgBox(GetUserMessage("qstexist"), MsgBoxStyle.Critical, "Error")
+                    Exit Sub
+                End If
+            Next
+            Dim rewarded As Integer = TryInt(InputBox(GetUserMessage("enterrewarded"), "Add quest", "0"))
+            Dim newqst As New Quest
+            newqst.id = retnvalue
+            newqst.name = getNameOfQuest(newqst.id)
+            If rewarded = 1 Then
+                newqst.rewarded = 1
+                newqst.status = 1
+                currentEditedCharSet.FinishedQuests = currentEditedCharSet.FinishedQuests & "," & retnvalue.ToString
+                Dim str(3) As String
+                str(0) = retnvalue.ToString
+                str(1) = newqst.name
+                str(2) = "1"
+                str(3) = "1"
+                Dim itm As New ListViewItem
+                itm.Tag = newqst
+                qst_lst.Items.Add(itm)
+                MsgBox(GetUserMessage("qstadded"))
+            ElseIf rewarded = 0 Then
+                newqst.rewarded = 0
+                Dim finished As Integer = TryInt(InputBox(GetUserMessage("enterfinished"), "Add quest", "0"))
+                If finished = 0 Or finished = 1 Then
+                    newqst.status = finished
+                    currentEditedCharSet.Quests.Add(newqst)
+                    Dim str(3) As String
+                    str(0) = retnvalue.ToString
+                    str(1) = newqst.name
+                    str(2) = finished.ToString
+                    str(3) = "0"
+                    Dim itm As New ListViewItem
+                    itm.Tag = newqst
+                    qst_lst.Items.Add(itm)
+                    MsgBox(GetUserMessage("qstadded"))
+                Else
+                    MsgBox(GetUserMessage("invalidentry"), MsgBoxStyle.Critical, "Error")
+                    Exit Sub
+                End If
+
+            Else
+                MsgBox(GetUserMessage("invalidentry"), MsgBoxStyle.Critical, "Error")
+                Exit Sub
+            End If
+        End If
+
 
     End Sub
 End Class
