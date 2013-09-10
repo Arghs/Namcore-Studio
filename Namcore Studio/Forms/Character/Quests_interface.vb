@@ -35,8 +35,12 @@ Public Class Quests_interface
     Shared arr2 As Array
     Shared completed As Boolean = False
     Shared globPlayer As Character
+    Shared firstuse As Boolean = True
+    Shared loaded As Boolean = False
     Private context As Threading.SynchronizationContext = Threading.SynchronizationContext.Current
     Public Event QSTCompleted As EventHandler(Of CompletedEventArgs)
+    Shared lstitems As List(Of ListViewItem)
+
     Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
         RaiseEvent QSTCompleted(Me, e)
     End Sub
@@ -55,6 +59,7 @@ Public Class Quests_interface
             End If
         End If
         m_handler.doOperate_qst(1, real_qst_lst)
+        loaded = True
     End Sub
     Public Function continueOperation(ByVal operation_count As Integer, ByVal questLst As List(Of Quest)) As String
         For Each pQuest As Quest In questLst
@@ -80,6 +85,8 @@ Public Class Quests_interface
         qst_lst.Items.Add(additm)
     End Sub
     Private Sub Quests_interface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        loaded = False
+        firstuse = True
         Dim controlLST As List(Of Control)
         controlLST = FindAllChildren()
         For Each item_control As Control In controlLST
@@ -157,6 +164,7 @@ Public Class Quests_interface
             qst_lst.Items.Remove(qstitm)
         Next
         qst_lst.EndUpdate()
+        'lstitems = qst_lst.Items
     End Sub
 
     Private Sub finished_0_Click(sender As Object, e As EventArgs) Handles finished_0.Click
@@ -183,6 +191,7 @@ Public Class Quests_interface
             End If
         Next
         qst_lst.EndUpdate()
+        ' lstitems = qst_lst.Items
     End Sub
 
     Private Sub finished_1_Click(sender As Object, e As EventArgs) Handles finished_1.Click
@@ -200,6 +209,7 @@ Public Class Quests_interface
             End If
         Next
         qst_lst.EndUpdate()
+        '  lstitems = qst_lst.Items
     End Sub
 
     Private Sub rewarded_0_Click(sender As Object, e As EventArgs) Handles rewarded_0.Click
@@ -215,6 +225,7 @@ Public Class Quests_interface
             End If
         Next
         qst_lst.EndUpdate()
+        'lstitems = qst_lst.Items
     End Sub
 
     Private Sub rewarded_1_Click(sender As Object, e As EventArgs) Handles rewarded_1.Click
@@ -232,6 +243,7 @@ Public Class Quests_interface
             End If
         Next
         qst_lst.EndUpdate()
+        ' lstitems = qst_lst.Items
     End Sub
 
     Private Sub add_bt_Click(sender As Object, e As EventArgs) Handles add_bt.Click
@@ -291,7 +303,65 @@ Public Class Quests_interface
                 Exit Sub
             End If
         End If
+        '  lstitems = qst_lst.Items
 
+    End Sub
+
+    Private Sub search_tb_Enter(sender As Object, e As EventArgs) Handles search_tb.Enter
+        search_tb.Text = ""
+    End Sub
+
+    Private Sub search_tb_Leave(sender As Object, e As EventArgs) Handles search_tb.Leave
+        search_tb.Text = "Enter quest id"
+    End Sub
+
+    Private Sub search_tb_TextChanged(sender As Object, e As EventArgs) Handles search_tb.TextChanged
+        If loaded = False Then Exit Sub
+        If firstuse = True Then
+            If lstitems Is Nothing Then lstitems = New List(Of ListViewItem)
+            For Each itm As ListViewItem In qst_lst.Items
+                Dim itmnew As ListViewItem = itm.Clone()
+                lstitems.Add(itmnew)
+            Next
+            firstuse = False
+        End If
+        If search_tb.Text = "Enter quest id" Or search_tb.Text = "" Then
+            If lstitems Is Nothing Then Exit Sub
+            If lstitems.Count = 0 Then Exit Sub
+            qst_lst.Clear()
+            For Each itm As ListViewItem In lstitems
+                qst_lst.Items.Add(itm)
+            Next
+            qst_lst.Update()
+            Exit Sub
+        End If
+        Dim value As Integer = TryInt(search_tb.Text)
+        Dim resultcounter As Integer = 0
+        Dim itmstoshow As New List(Of ListViewItem)
+        If Not value = 0 Then
+            For Each itm As ListViewItem In lstitems
+                Dim qst As Quest = itm.Tag
+                If qst.id.ToString.Contains(value) Then
+                    qst_lst.Clear()
+                    resultcounter += 1
+                    itmstoshow.Add(itm)
+                End If
+            Next
+            For Each qstitm In itmstoshow
+                qst_lst.Items.Add(qstitm)
+            Next
+            resultstatus_lbl.Text = resultcounter.ToString & " results!"
+        Else
+            qst_lst.Clear()
+            For Each itm As ListViewItem In lstitems
+                qst_lst.Items.Add(itm)
+            Next
+            search_tb.Text = "Enter quest id"
+        End If
+        qst_lst.Update()
+    End Sub
+
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
     End Sub
 End Class

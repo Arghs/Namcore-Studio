@@ -734,7 +734,12 @@ Public Class CharacterOverview
     End Sub
 
     Private Sub Quests_bt_Click(sender As Object, e As EventArgs) Handles Quests_bt.Click
-        Quests_interface.Close()
+        Try
+            Quests_interface.Close()
+        Catch ex As Exception
+
+        End Try
+
         Dim qstInterface As New Quests_interface
         Userwait.Show()
         Application.DoEvents()

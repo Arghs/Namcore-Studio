@@ -43,23 +43,25 @@ Partial Class Quests_interface
         Me.rewarded_1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.add_bt = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.header.SuspendLayout
-        Me.closepanel.SuspendLayout
-        CType(Me.highlighter1,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.highlighter2,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.qstContext.SuspendLayout
-        Me.SuspendLayout
+        Me.search_tb = New System.Windows.Forms.TextBox()
+        Me.resultstatus_lbl = New System.Windows.Forms.Label()
+        Me.header.SuspendLayout()
+        Me.closepanel.SuspendLayout()
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.qstContext.SuspendLayout()
+        Me.SuspendLayout()
         '
         'qst_lst
         '
-        Me.qst_lst.BackColor = System.Drawing.Color.FromArgb(CType(CType(139,Byte),Integer), CType(CType(158,Byte),Integer), CType(CType(172,Byte),Integer))
+        Me.qst_lst.BackColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(172, Byte), Integer))
         Me.qst_lst.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.qstid, Me.qstname, Me.finished, Me.rewarded})
-        Me.qst_lst.FullRowSelect = true
+        Me.qst_lst.FullRowSelect = True
         Me.qst_lst.Location = New System.Drawing.Point(4, 81)
         Me.qst_lst.Name = "qst_lst"
         Me.qst_lst.Size = New System.Drawing.Size(694, 447)
         Me.qst_lst.TabIndex = 0
-        Me.qst_lst.UseCompatibleStateImageBehavior = false
+        Me.qst_lst.UseCompatibleStateImageBehavior = False
         Me.qst_lst.View = System.Windows.Forms.View.Details
         '
         'qstid
@@ -112,7 +114,7 @@ Partial Class Quests_interface
         Me.highlighter1.Size = New System.Drawing.Size(20, 20)
         Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.highlighter1.TabIndex = 217
-        Me.highlighter1.TabStop = false
+        Me.highlighter1.TabStop = False
         '
         'highlighter2
         '
@@ -123,7 +125,7 @@ Partial Class Quests_interface
         Me.highlighter2.Size = New System.Drawing.Size(20, 20)
         Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.highlighter2.TabIndex = 218
-        Me.highlighter2.TabStop = false
+        Me.highlighter2.TabStop = False
         '
         'qstContext
         '
@@ -147,13 +149,13 @@ Partial Class Quests_interface
         'finished_0
         '
         Me.finished_0.Name = "finished_0"
-        Me.finished_0.Size = New System.Drawing.Size(152, 22)
+        Me.finished_0.Size = New System.Drawing.Size(80, 22)
         Me.finished_0.Text = "0"
         '
         'finished_1
         '
         Me.finished_1.Name = "finished_1"
-        Me.finished_1.Size = New System.Drawing.Size(152, 22)
+        Me.finished_1.Size = New System.Drawing.Size(80, 22)
         Me.finished_1.Text = "1"
         '
         'ToggleRewardedToolStripMenuItem
@@ -166,13 +168,13 @@ Partial Class Quests_interface
         'rewarded_0
         '
         Me.rewarded_0.Name = "rewarded_0"
-        Me.rewarded_0.Size = New System.Drawing.Size(152, 22)
+        Me.rewarded_0.Size = New System.Drawing.Size(80, 22)
         Me.rewarded_0.Text = "0"
         '
         'rewarded_1
         '
         Me.rewarded_1.Name = "rewarded_1"
-        Me.rewarded_1.Size = New System.Drawing.Size(152, 22)
+        Me.rewarded_1.Size = New System.Drawing.Size(80, 22)
         Me.rewarded_1.Text = "1"
         '
         'add_bt
@@ -187,46 +189,69 @@ Partial Class Quests_interface
         Me.add_bt.Size = New System.Drawing.Size(155, 34)
         Me.add_bt.TabIndex = 227
         Me.add_bt.Text = "Add"
-        Me.add_bt.UseVisualStyleBackColor = false
+        Me.add_bt.UseVisualStyleBackColor = False
         '
         'Label1
         '
-        Me.Label1.AutoSize = true
+        Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139,Byte),Integer), CType(CType(158,Byte),Integer), CType(CType(172,Byte),Integer))
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(172, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(462, 59)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(234, 16)
         Me.Label1.TabIndex = 228
         Me.Label1.Text = "Right click to open context menu!"
         '
+        'search_tb
+        '
+        Me.search_tb.ForeColor = System.Drawing.SystemColors.WindowFrame
+        Me.search_tb.Location = New System.Drawing.Point(170, 55)
+        Me.search_tb.Name = "search_tb"
+        Me.search_tb.Size = New System.Drawing.Size(100, 20)
+        Me.search_tb.TabIndex = 229
+        Me.search_tb.Text = "Enter quest id"
+        '
+        'resultstatus_lbl
+        '
+        Me.resultstatus_lbl.AutoSize = True
+        Me.resultstatus_lbl.BackColor = System.Drawing.Color.Transparent
+        Me.resultstatus_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.resultstatus_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(172, Byte), Integer))
+        Me.resultstatus_lbl.Location = New System.Drawing.Point(276, 59)
+        Me.resultstatus_lbl.Name = "resultstatus_lbl"
+        Me.resultstatus_lbl.Size = New System.Drawing.Size(78, 16)
+        Me.resultstatus_lbl.TabIndex = 230
+        Me.resultstatus_lbl.Text = "No results"
+        '
         'Quests_interface
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(701, 533)
+        Me.Controls.Add(Me.resultstatus_lbl)
+        Me.Controls.Add(Me.search_tb)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.add_bt)
         Me.Controls.Add(Me.header)
         Me.Controls.Add(Me.qst_lst)
-        Me.DoubleBuffered = true
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Quests_interface"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Quests_interface"
-        Me.header.ResumeLayout(false)
-        Me.closepanel.ResumeLayout(false)
-        CType(Me.highlighter1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.highlighter2,System.ComponentModel.ISupportInitialize).EndInit
-        Me.qstContext.ResumeLayout(false)
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.header.ResumeLayout(False)
+        Me.closepanel.ResumeLayout(False)
+        CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.qstContext.ResumeLayout(False)
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents qst_lst As System.Windows.Forms.ListView
     Friend WithEvents qstid As System.Windows.Forms.ColumnHeader
     Friend WithEvents qstname As System.Windows.Forms.ColumnHeader
@@ -246,4 +271,6 @@ End Sub
     Friend WithEvents rewarded_1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents add_bt As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents search_tb As System.Windows.Forms.TextBox
+    Friend WithEvents resultstatus_lbl As System.Windows.Forms.Label
 End Class
