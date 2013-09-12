@@ -61,6 +61,9 @@ Public Class Quests_interface
         m_handler.doOperate_qst(1, real_qst_lst)
         loaded = True
     End Sub
+    Private Sub QUESTcompleted() Handles Me.QSTCompleted
+        resultstatus_lbl.Text = qst_lst.Items.Count.ToString & " results!"
+    End Sub
     Public Function continueOperation(ByVal operation_count As Integer, ByVal questLst As List(Of Quest)) As String
         For Each pQuest As Quest In questLst
             Dim str(3) As String
@@ -95,6 +98,7 @@ Public Class Quests_interface
     End Sub
     Private ptMouseDownLocation As Point
     Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        qst_lst.Focus()
         If e.Button = Windows.Forms.MouseButtons.Left Then
             ptMouseDownLocation = e.Location
         End If
@@ -143,9 +147,6 @@ Public Class Quests_interface
         End If
     End Sub
 
-    Private Sub qst_lst_SelectedIndexChanged(sender As Object, e As EventArgs) Handles qst_lst.SelectedIndexChanged
-
-    End Sub
 
     Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveToolStripMenuItem.Click
         qst_lst.BeginUpdate()
@@ -312,7 +313,10 @@ Public Class Quests_interface
     End Sub
 
     Private Sub search_tb_Leave(sender As Object, e As EventArgs) Handles search_tb.Leave
-        search_tb.Text = "Enter quest id"
+        If search_tb.Text = "" Then
+            search_tb.Text = "Enter quest id"
+        End If
+
     End Sub
 
     Private Sub search_tb_TextChanged(sender As Object, e As EventArgs) Handles search_tb.TextChanged
@@ -328,21 +332,22 @@ Public Class Quests_interface
         If search_tb.Text = "Enter quest id" Or search_tb.Text = "" Then
             If lstitems Is Nothing Then Exit Sub
             If lstitems.Count = 0 Then Exit Sub
-            qst_lst.Clear()
+            qst_lst.Items.Clear()
             For Each itm As ListViewItem In lstitems
                 qst_lst.Items.Add(itm)
             Next
             qst_lst.Update()
+            resultstatus_lbl.Text = qst_lst.Items.Count.ToString & " results!"
             Exit Sub
         End If
         Dim value As Integer = TryInt(search_tb.Text)
         Dim resultcounter As Integer = 0
         Dim itmstoshow As New List(Of ListViewItem)
         If Not value = 0 Then
+            qst_lst.Items.Clear()
             For Each itm As ListViewItem In lstitems
                 Dim qst As Quest = itm.Tag
                 If qst.id.ToString.Contains(value) Then
-                    qst_lst.Clear()
                     resultcounter += 1
                     itmstoshow.Add(itm)
                 End If
@@ -352,7 +357,7 @@ Public Class Quests_interface
             Next
             resultstatus_lbl.Text = resultcounter.ToString & " results!"
         Else
-            qst_lst.Clear()
+            qst_lst.Items.Clear()
             For Each itm As ListViewItem In lstitems
                 qst_lst.Items.Add(itm)
             Next
