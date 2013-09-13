@@ -5,7 +5,6 @@ F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\NCFr
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\libnc.dll
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\libncadvanced.dll
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\bin\Debug\mysql.data.dll
-F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework_VS12.vbprojResolveAssemblyReference.cache
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.Resources.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.Process_status.resources
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework.UserMessages.resources
@@ -41,3 +40,4 @@ C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Stud
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework.dll
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework.xml
 C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore Studio\Namcore Studio Framework\obj\Debug\NCFramework.pdb
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\obj\Debug\NCFramework_VS12.vbprojResolveAssemblyReference.cache

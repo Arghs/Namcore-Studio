@@ -46,6 +46,7 @@ Public Class Quests_interface
     End Sub
     Private WithEvents m_handler As New FlowLayoutPanelHandler
     Public Sub prepareInterface(ByVal setId As Integer)
+        Hide()
         Dim real_qst_lst As New List(Of Quest)
         Dim qst() As String = currentViewedCharSet.FinishedQuests.Split(","c)
         For i = 0 To qst.Length - 1
@@ -63,6 +64,17 @@ Public Class Quests_interface
     End Sub
     Private Sub QUESTcompleted() Handles Me.QSTCompleted
         resultstatus_lbl.Text = qst_lst.Items.Count.ToString & " results!"
+        If firstuse = True Then
+            If lstitems Is Nothing Then lstitems = New List(Of ListViewItem)
+            For Each itm As ListViewItem In qst_lst.Items
+                Dim itmnew As ListViewItem = itm.Clone()
+                lstitems.Add(itmnew)
+            Next
+            firstuse = False
+        End If
+        Userwait.Close()
+        Application.DoEvents()
+        Show()
     End Sub
     Public Function continueOperation(ByVal operation_count As Integer, ByVal questLst As List(Of Quest)) As String
         For Each pQuest As Quest In questLst
@@ -141,6 +153,7 @@ Public Class Quests_interface
     End Sub
 
     Private Sub qst_lst_MouseUp(sender As Object, e As MouseEventArgs) Handles qst_lst.MouseUp
+        Userwait.Close()
         If e.Button = MouseButtons.Right Then
             If qst_lst.SelectedItems.Count = 0 Then Exit Sub
             qstContext.Show(qst_lst, e.X, e.Y)
@@ -156,12 +169,19 @@ Public Class Quests_interface
             If qst.rewarded = 1 Then
                 currentEditedCharSet.FinishedQuests = currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
             Else
+                If currentEditedCharSet.Quests Is Nothing Then currentEditedCharSet.Quests = New List(Of Quest)()
                 For Each pquest As Quest In currentEditedCharSet.Quests
                     If pquest.id = qst.id Then
                         currentEditedCharSet.Quests.Remove(pquest)
                     End If
                 Next
             End If
+            For Each qitm As ListViewItem In lstitems
+                If qitm.Tag.id = qst.id Then
+                    lstitems.Remove(qitm)
+                    Exit For
+                End If
+            Next
             qst_lst.Items.Remove(qstitm)
         Next
         qst_lst.EndUpdate()
@@ -178,14 +198,30 @@ Public Class Quests_interface
                     currentEditedCharSet.FinishedQuests = currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
                     qst.status = 0
                     qst.rewarded = 0
+                    If currentEditedCharSet.Quests Is Nothing Then currentEditedCharSet.Quests = New List(Of Quest)()
                     currentEditedCharSet.Quests.Add(qst)
                     qstitm.SubItems(2).Text = "0"
                     qstitm.SubItems(3).Text = "0"
+                    For Each qitm As ListViewItem In lstitems
+                        Dim subqst As Quest = qitm.Tag
+                        If subqst.id = qst.id Then
+                            subqst.status = 0
+                            subqst.rewarded = 0
+                            qitm.Tag = subqst
+                        End If
+                    Next
                 Else
                     For Each pquest As Quest In currentEditedCharSet.Quests
                         If pquest.id = qst.id Then
                             pquest.status = 0
                             qstitm.SubItems(2).Text = "0"
+                            For Each qitm As ListViewItem In lstitems
+                                Dim subqst As Quest = qitm.Tag
+                                If subqst.id = qst.id Then
+                                    subqst.status = 0
+                                    qitm.Tag = subqst
+                                End If
+                            Next
                         End If
                     Next
                 End If
@@ -205,6 +241,13 @@ Public Class Quests_interface
                         If pquest.id = qst.id Then
                         pquest.status = 1
                         qstitm.SubItems(2).Text = "1"
+                        For Each qitm As ListViewItem In lstitems
+                            Dim subqst As Quest = qitm.Tag
+                            If subqst.id = qst.id Then
+                                subqst.status = 1
+                                qitm.Tag = subqst
+                            End If
+                        Next
                         End If
                     Next
             End If
@@ -222,7 +265,15 @@ Public Class Quests_interface
                 currentEditedCharSet.FinishedQuests = currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
                 qstitm.SubItems(3).Text = "0"
                 qst.rewarded = 0
+                If currentEditedCharSet.Quests Is Nothing Then currentEditedCharSet.Quests = New List(Of Quest)()
                 currentEditedCharSet.Quests.Add(qst)
+                For Each qitm As ListViewItem In lstitems
+                    Dim subqst As Quest = qitm.Tag
+                    If subqst.id = qst.id Then
+                        subqst.rewarded = 0
+                        qitm.Tag = subqst
+                    End If
+                Next
             End If
         Next
         qst_lst.EndUpdate()
@@ -238,8 +289,17 @@ Public Class Quests_interface
                 currentEditedCharSet.FinishedQuests = currentEditedCharSet.FinishedQuests & qst.id.ToString & ","
                 qstitm.SubItems(2).Text = "1"
                 qstitm.SubItems(3).Text = "1"
+                If currentEditedCharSet.Quests Is Nothing Then currentEditedCharSet.Quests = New List(Of Quest)()
                 For Each pqst As Quest In currentEditedCharSet.Quests
                     If pqst.id = qst.id Then currentEditedCharSet.Quests.Remove(pqst)
+                Next
+                For Each qitm As ListViewItem In lstitems
+                    Dim subqst As Quest = qitm.Tag
+                    If subqst.id = qst.id Then
+                        subqst.status = 1
+                        subqst.rewarded = 1
+                        qitm.Tag = subqst
+                    End If
                 Next
             End If
         Next
@@ -284,6 +344,7 @@ Public Class Quests_interface
                 Dim finished As Integer = TryInt(InputBox(GetUserMessage("enterfinished"), "Add quest", "0"))
                 If finished = 0 Or finished = 1 Then
                     newqst.status = finished
+                    If currentEditedCharSet.Quests Is Nothing Then currentEditedCharSet.Quests = New List(Of Quest)()
                     currentEditedCharSet.Quests.Add(newqst)
                     Dim str(3) As String
                     str(0) = retnvalue.ToString
@@ -293,6 +354,7 @@ Public Class Quests_interface
                     Dim itm As New ListViewItem
                     itm.Tag = newqst
                     qst_lst.Items.Add(itm)
+                    lstitems.Add(itm)
                     MsgBox(GetUserMessage("qstadded"))
                 Else
                     MsgBox(GetUserMessage("invalidentry"), MsgBoxStyle.Critical, "Error")
@@ -321,14 +383,6 @@ Public Class Quests_interface
 
     Private Sub search_tb_TextChanged(sender As Object, e As EventArgs) Handles search_tb.TextChanged
         If loaded = False Then Exit Sub
-        If firstuse = True Then
-            If lstitems Is Nothing Then lstitems = New List(Of ListViewItem)
-            For Each itm As ListViewItem In qst_lst.Items
-                Dim itmnew As ListViewItem = itm.Clone()
-                lstitems.Add(itmnew)
-            Next
-            firstuse = False
-        End If
         If search_tb.Text = "Enter quest id" Or search_tb.Text = "" Then
             If lstitems Is Nothing Then Exit Sub
             If lstitems.Count = 0 Then Exit Sub
@@ -367,6 +421,10 @@ Public Class Quests_interface
     End Sub
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+
+    End Sub
+
+    Private Sub qst_lst_SelectedIndexChanged(sender As Object, e As EventArgs) Handles qst_lst.SelectedIndexChanged
 
     End Sub
 End Class

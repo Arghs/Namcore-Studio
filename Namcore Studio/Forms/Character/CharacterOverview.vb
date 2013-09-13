@@ -745,7 +745,6 @@ Public Class CharacterOverview
         Application.DoEvents()
         qstInterface.Show()
         qstInterface.prepareInterface(tmpSetId)
-        Userwait.Close()
     End Sub
     Private ptMouseDownLocation As Point
     Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown

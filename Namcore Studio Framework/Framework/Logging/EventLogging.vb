@@ -56,5 +56,5 @@ Public Module EventLogging
             End Try
         End If
     End Sub
-  
+
 End Module
