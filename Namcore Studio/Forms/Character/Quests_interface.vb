@@ -44,7 +44,7 @@ Public Class Quests_interface
     Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
         RaiseEvent QSTCompleted(Me, e)
     End Sub
-    Private WithEvents m_handler As New FlowLayoutPanelHandler
+    Private WithEvents m_handler As New LayoutHandler
     Public Sub prepareInterface(ByVal setId As Integer)
         Hide()
         Dim real_qst_lst As New List(Of Quest)

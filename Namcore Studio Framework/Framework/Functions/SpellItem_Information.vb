@@ -837,4 +837,52 @@ LookOnline: Else
             Return Nothing
         End Try
     End Function
+    Public Function GetSpellNameById(ByVal spellId As Integer) As String
+        LogAppend("Loading av id list by main category id: " & spellId.ToString, "SpellItem_Information_GetAvIdListByMainCat", False)
+        If tempAvMainCatTable Is Nothing Then
+            Try
+                tempAvMainCatTable = New DataTable()
+                Dim stext As String
+                If My.Settings.language = "de" Then
+                    stext = libnc.My.Resources.avmaincat
+                Else
+                    stext = libnc.My.Resources.avmaincat 'todo
+                End If
+                Dim a() As String
+                Dim strArray As String()
+                a = Split(stext, vbNewLine)
+                For i = 0 To UBound(a)
+                    strArray = a(i).Split(CChar(";"))
+                    If i = 0 Then
+                        For Each value As String In strArray
+                            tempAvMainCatTable.Columns.Add(value.Trim())
+                        Next
+                    Else
+                        tempAvMainCatTable.Rows.Add(strArray)
+                    End If
+                Next i
+            Catch ex As Exception
+                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetAvIdListByMainCat", False, True)
+                Return Nothing
+            End Try
+        End If
+        Dim desc() As DataRow = GetAll(spellId)
+        If desc Is Nothing Then
+            LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvIdListByMainCat", False, True)
+            Return Nothing
+        Else
+            Dim tempIdList As New List(Of Integer)
+            Try
+                For i = 0 To desc.Length
+                    tempIdList.Add(TryInt(desc(i)(0)))
+                Next i
+            Catch ex As Exception
+
+            End Try
+            Return Nothing 'tempIdList
+        End If
+    End Function
+    Public Function GetSkillNameById(ByVal skillId As Integer) As String
+
+    End Function
 End Module

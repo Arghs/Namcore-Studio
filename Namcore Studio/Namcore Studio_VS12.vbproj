@@ -111,6 +111,12 @@
     <Compile Include="Forms\Character\Quests_interface.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Character\SpellSkill_interface.Designer.vb">
+      <DependentUpon>SpellSkill_interface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Character\SpellSkill_interface.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\DB_connect.Designer.vb">
       <DependentUpon>DB_connect.vb</DependentUpon>
     </Compile>
@@ -174,7 +180,7 @@
     </Compile>
     <Compile Include="Module\date2timestamp.vb" />
     <Compile Include="Module\Interface\DoubleBufferedControls.vb" />
-    <Compile Include="Module\Interface\FlowLayoutPanelHandler.vb" />
+    <Compile Include="Module\Interface\LayoutHandler.vb" />
     <Compile Include="Module\Interface\Interface_Operator.vb" />
     <Compile Include="Module\Interface\ListViewComparer.vb" />
     <Compile Include="Module\Interface\WinformControlExtensions.vb" />
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Character\Reputation_interface.resx">
       <DependentUpon>Reputation_interface.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Character\SpellSkill_interface.resx">
+      <DependentUpon>SpellSkill_interface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DB_connect.resx">
       <DependentUpon>DB_connect.vb</DependentUpon>
@@ -301,7 +310,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_DetectChanges="False" BuildVersion_IncrementBeforeBuild="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -64,7 +64,7 @@ Public Class Achievements_interface
     Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
         RaiseEvent AVCompleted(Me, e)
     End Sub
-    Private WithEvents m_handler As New FlowLayoutPanelHandler
+    Private WithEvents m_handler As New LayoutHandler
     Public Sub catbt_click(sender As Object, e As EventArgs) Handles cat_id_97_bt.Click, cat_id_96_bt.Click, cat_id_95_bt.Click, cat_id_92_bt.Click, cat_id_81_bt.Click, cat_id_201_bt.Click, cat_id_169_bt.Click, cat_id_168_bt.Click, cat_id_155_bt.Click, cat_id_15219_bt.Click, cat_id_15165_bt.Click
         Try
             waitpanel.Location = New Point(4000, 4000)

@@ -123,3 +123,4 @@ F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\libnc.dll
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\libncadvanced.dll
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\NCFramework.pdb
 F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\bin\Debug\Data\NCFramework.xml
+F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio\obj\x86\Debug\Namcore_Studio.SpellSkill_interface.resources

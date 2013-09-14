@@ -145,7 +145,7 @@ Public Class Skill
     Public id As Integer
     Public value As Integer
     Public max As Integer
-
+    Public name As String
     Public Sub New()
 
     End Sub
@@ -155,7 +155,7 @@ Public Class Spell
     Public id As Integer
     Public active As Integer
     Public disabled As Integer
-
+    Public name As String
     Public Sub New()
 
     End Sub
