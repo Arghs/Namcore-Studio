@@ -2065,7 +2065,6 @@ Partial Class CharacterOverview
         '
         Me.Button4.BackColor = System.Drawing.Color.DimGray
         Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button4.Enabled = False
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.ForeColor = System.Drawing.Color.Black
         Me.Button4.ImeMode = System.Windows.Forms.ImeMode.NoControl

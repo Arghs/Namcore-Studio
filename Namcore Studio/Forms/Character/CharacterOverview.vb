@@ -734,12 +734,7 @@ Public Class CharacterOverview
     End Sub
 
     Private Sub Quests_bt_Click(sender As Object, e As EventArgs) Handles Quests_bt.Click
-        Try
-            Quests_interface.Close()
-        Catch ex As Exception
-
-        End Try
-
+        Quests_interface.Close()
         Dim qstInterface As New Quests_interface
         Userwait.Show()
         Application.DoEvents()
@@ -814,5 +809,14 @@ Public Class CharacterOverview
             editedCharsIndex.Add({currentEditedCharSet.Guid, editedCharSets.Count})
             editedCharSets.Add(currentEditedCharSet)
         End If
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        SpellSkill_interface.Close()
+        Dim spellskillInterface As New SpellSkill_interface
+        Userwait.Show()
+        Application.DoEvents()
+        spellskillInterface.Show()
+        spellskillInterface.prepareInterface(tmpSetId)
     End Sub
 End Class

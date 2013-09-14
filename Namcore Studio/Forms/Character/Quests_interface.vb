@@ -77,6 +77,7 @@ Public Class Quests_interface
         Show()
     End Sub
     Public Function continueOperation(ByVal operation_count As Integer, ByVal questLst As List(Of Quest)) As String
+        LogAppend("Loading quests", "Quests_interface_continueOperation", True)
         For Each pQuest As Quest In questLst
             Dim str(3) As String
             str(0) = pQuest.id.ToString

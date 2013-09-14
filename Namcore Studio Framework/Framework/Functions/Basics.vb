@@ -27,6 +27,10 @@ Imports System.Net
 Imports System.Drawing
 Public Module Basics
     Public tmpset As Integer
+    Public Sub InitializeDBC()
+        LogAppend("Initializing DBC files", "Basics_InitializeDBC", True)
+        libnc.CliDB.Initialize()
+    End Sub
     Public Function GetCharacterSetBySetId(ByVal setId As Integer) As Character
         If tmpset = setId Then
             Return TempCharacter

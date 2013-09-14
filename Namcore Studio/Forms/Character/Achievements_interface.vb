@@ -197,6 +197,7 @@ Public Class Achievements_interface
     Shared colorTicker As Integer
     Shared completed As Boolean
     Public Function continueOperation(ByVal sender As Object, ByVal operation_count As Integer) As String
+        If operation_count = 1 Then LogAppend("Loading achievements", "Achievements_interface_continueOperation", True)
         trdRunning += 1
         Try
             If operation_count = 2 Then

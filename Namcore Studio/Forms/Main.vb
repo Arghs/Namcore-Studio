@@ -107,6 +107,7 @@ Public Class Main
         LogAppend("/AVAILABLE PHYSICAL MEMORY: " & (My.Computer.Info.AvailablePhysicalMemory / 1000000000).ToString() & " GB", "Main_Main_Load", False)
         LogAppend("/SCREEN SIZE: " & Screen.PrimaryScreen.Bounds.Width.ToString & "x" & Screen.PrimaryScreen.Bounds.Height.ToString(), "Main_Main_Load", False)
         LogAppend("/APP STARTUP PATH: " & Application.StartupPath, "Main_Main_Load", False)
+        InitializeDBC()
     End Sub
 
     Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click

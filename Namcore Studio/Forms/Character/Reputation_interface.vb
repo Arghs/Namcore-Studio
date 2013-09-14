@@ -37,6 +37,7 @@ Public Class Reputation_interface
     Dim valueisok As Boolean = False
 
     Public Sub prepareRepInterface(ByVal setId As Integer)
+        LogAppend("Loading reputation", "Reputation_interface_prepareRepInterface", True)
         Dim controlLST As List(Of Control)
         controlLST = FindAllChildren()
         For Each item_control As Control In controlLST

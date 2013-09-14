@@ -78,26 +78,31 @@ Public Class SpellSkill_interface
         Show()
     End Sub
     Public Function continueOperation(ByVal setId As Integer)
-        For Each PSpell As Spell In currentViewedCharSet.Spells
-            If Not PSpell.id = 0 Then
-                If PSpell.name Is Nothing Then
-                    PSpell.name = GetSpellNameById(PSpell.id)
+        LogAppend("Loading Spells/Skills", "SpellSkill_interface_continueOperation", True)
+        If Not currentViewedCharSet.Spells Is Nothing Then
+            For Each PSpell As Spell In currentViewedCharSet.Spells
+                If Not PSpell.id = 0 Then
+                    If PSpell.name Is Nothing Then
+                        PSpell.name = GetSpellNameById(PSpell.id)
+                    End If
+                    Dim itm As New ListViewItem({PSpell.id.ToString, PSpell.name})
+                    itm.Tag = PSpell
+                    spellList.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm, spellList)
                 End If
-                Dim itm As New ListViewItem({PSpell.id.ToString, PSpell.name})
-                itm.Tag = PSpell
-                spellList.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm, spellList)
-            End If
-        Next
-        For Each PSkill As Skill In currentViewedCharSet.Skills
-            If Not PSkill.id = 0 Then
-                If PSkill.name Is Nothing Then
-                    PSkill.name = GetSkillNameById(PSkill.id)
+            Next
+        End If
+        If Not currentViewedCharSet.Skills Is Nothing Then
+            For Each PSkill As Skill In currentViewedCharSet.Skills
+                If Not PSkill.id = 0 Then
+                    If PSkill.name Is Nothing Then
+                        PSkill.name = GetSkillNameById(PSkill.id)
+                    End If
+                    Dim itm As New ListViewItem({PSkill.id.ToString, PSkill.name, PSkill.value.ToString, PSkill.max.ToString})
+                    itm.Tag = PSkill
+                    skillList.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm, skillList)
                 End If
-                Dim itm As New ListViewItem({PSkill.id.ToString, PSkill.name, PSkill.value.ToString, PSkill.max.ToString})
-                itm.Tag = PSkill
-                skillList.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm, skillList)
-            End If
-        Next
+            Next
+        End If
         ThreadExtensions.ScSend(context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted), New CompletedEventArgs())
     End Function
     Delegate Sub AddItemDelegate(itm As ListViewItem, control As ListView)

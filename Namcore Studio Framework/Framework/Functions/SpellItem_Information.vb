@@ -309,8 +309,38 @@ LookOnline: Else
                 client.CheckProxy()
                 Try
                     If My.Settings.language = "de" Then
-                        Dim clString As String = client.DownloadString("http://de.wowhead.com/item=" & itemid.ToString() & "&xml")
-                        Return splitString(clString, "<name><![CDATA[", "]]></name>")
+                        If tempItemSparseDE Is Nothing Then
+                            Try
+                                LogAppend("Filling tempFactionTable", "SpellItem_Information_getNameOfItem", False)
+                                tempItemSparseDE = New DataTable()
+                                Dim stext As String = libnc.My.Resources.dbc_itemsparse_de
+                                Dim a() As String
+                                Dim strArray As String()
+                                a = Split(stext, vbNewLine)
+                                For i = 0 To UBound(a)
+                                    strArray = a(i).Split(CChar(";"))
+                                    If i = 0 Then
+                                        For Each value As String In strArray
+                                            tempItemSparseDE.Columns.Add(value.Trim())
+                                        Next
+                                    Else
+                                        tempItemSparseDE.Rows.Add(strArray)
+                                    End If
+                                Next i
+                            Catch ex As Exception
+                                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_getNameOfItem", False, True)
+                                Return "Error"
+                            End Try
+                        End If
+                        Dim nameresult As String = Execute("id", itemid.ToString(), tempItemSparseDE, 100)
+                        If nameresult = "-" Then
+                            LogAppend("Entry not found -> Returning error message", "SpellItem_Information_getNameOfItem", False, True)
+                            Dim clString As String = client.DownloadString("http://de.wowhead.com/item=" & itemid.ToString() & "&xml")
+                            Return splitString(clString, "<name><![CDATA[", "]]></name>")
+                        Else
+                            Return nameresult
+                        End If
+
                     Else
                         Dim clString As String = client.DownloadString("http://wowhead.com/item=" & itemid.ToString() & "&xml")
                         Return splitString(clString, "<name><![CDATA[", "]]></name>")
@@ -838,51 +868,13 @@ LookOnline: Else
         End Try
     End Function
     Public Function GetSpellNameById(ByVal spellId As Integer) As String
-        LogAppend("Loading av id list by main category id: " & spellId.ToString, "SpellItem_Information_GetAvIdListByMainCat", False)
-        If tempAvMainCatTable Is Nothing Then
-            Try
-                tempAvMainCatTable = New DataTable()
-                Dim stext As String
-                If My.Settings.language = "de" Then
-                    stext = libnc.My.Resources.avmaincat
-                Else
-                    stext = libnc.My.Resources.avmaincat 'todo
-                End If
-                Dim a() As String
-                Dim strArray As String()
-                a = Split(stext, vbNewLine)
-                For i = 0 To UBound(a)
-                    strArray = a(i).Split(CChar(";"))
-                    If i = 0 Then
-                        For Each value As String In strArray
-                            tempAvMainCatTable.Columns.Add(value.Trim())
-                        Next
-                    Else
-                        tempAvMainCatTable.Rows.Add(strArray)
-                    End If
-                Next i
-            Catch ex As Exception
-                LogAppend("Error filling datatable! -> Exception is: ###START###" & ex.ToString() & "###END###", "SpellItem_Information_GetAvIdListByMainCat", False, True)
-                Return Nothing
-            End Try
-        End If
-        Dim desc() As DataRow = GetAll(spellId)
-        If desc Is Nothing Then
-            LogAppend("Entry not found -> Returning error message", "SpellItem_Information_GetAvIdListByMainCat", False, True)
-            Return Nothing
-        Else
-            Dim tempIdList As New List(Of Integer)
-            Try
-                For i = 0 To desc.Length
-                    tempIdList.Add(TryInt(desc(i)(0)))
-                Next i
-            Catch ex As Exception
-
-            End Try
-            Return Nothing 'tempIdList
-        End If
+        LogAppend("Loading spell name by id: " & spellId.ToString, "SpellItem_Information_GetSpellNameById", False)
+        Dim infoHandler As New libnc.InformationHandler
+        Return infoHandler.GetSpellNameById(spellId, My.Settings.language)
     End Function
     Public Function GetSkillNameById(ByVal skillId As Integer) As String
-
+        LogAppend("Loading skill name by id: " & skillId.ToString, "SpellItem_Information_GetSkillNameById", False)
+        Dim infoHandler As New libnc.InformationHandler
+        Return infoHandler.GetSkillNameById(skillId, My.Settings.language)
     End Function
 End Module
