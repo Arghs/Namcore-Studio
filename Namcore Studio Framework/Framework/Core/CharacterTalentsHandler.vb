@@ -51,6 +51,7 @@ Public Class CharacterTalentsHandler
         SDatatable = gettable()
         LogAppend("Loading character talents @loadAtArcemu", "CharacterTalentsHandler_loadAtArcemu", False)
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
+        If player.Talents Is Nothing Then player.Talents = New List(Of Talent)()
         Dim talentstring As String =
         runSQLCommand_characters_string("SELECT " & sourceStructure.char_talent1_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
         If talentstring.Contains(",") Then
@@ -92,6 +93,7 @@ Public Class CharacterTalentsHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_spell_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) & " WHERE " &
                                                   sourceStructure.talent_guid_col(0) & "='" & charguid.ToString & "' AND " & sourceStructure.talent_spec_col(0) & "='0'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
+        If player.Talents Is Nothing Then player.Talents = New List(Of Talent)()
         Try
             Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
@@ -145,6 +147,7 @@ Public Class CharacterTalentsHandler
         Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.talent_talent_col(0) & ", " & sourceStructure.talent_rank_col(0) & " FROM " & sourceStructure.character_talent_tbl(0) &
                                                   " WHERE " & sourceStructure.talent_spec_col(0) & "='" & charguid.ToString() & "' AND " & sourceStructure.talent_spec_col(0) & "='0'")
         Dim player As Character = GetCharacterSetBySetId(tar_setId)
+        If player.Talents Is Nothing Then player.Talents = New List(Of Talent)()
         Try
             Dim lastcount As Integer = tempdt.Rows.Count
             Dim count As Integer = 0
