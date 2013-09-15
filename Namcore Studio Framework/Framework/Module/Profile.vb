@@ -42,6 +42,10 @@ Public Class Item
     Public enchantment_id As Integer
     Public enchantment_name As String
     Public enchstring As String
+    Public socket1_effectid As Integer
+    Public socket2_effectid As Integer
+    Public socket3_effectid As Integer
+    Public enchantment_effectid As Integer
     Public image As Image
     Public Sub New()
 

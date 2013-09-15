@@ -130,7 +130,6 @@ Public Class CharacterCreationAdvanced
         Catch ex As Exception
             LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationAdvanced_createAtArcemu", False, True)
         End Try
-        characterGUID = newcharguid
     End Sub
     Private Sub createAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at Trinity", "CharacterCreationAdvanced_createAtTrinity", False)
@@ -213,7 +212,6 @@ Public Class CharacterCreationAdvanced
         Catch ex As Exception
             LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationAdvanced_createAtTrinity", False, True)
         End Try
-        characterGUID = newcharguid
     End Sub
     Private Sub createAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer, ByVal NameChange As Boolean)
         LogAppend("Creating at Mangos", "CharacterCreationAdvanced_createAtMangos", False)
@@ -305,6 +303,5 @@ Public Class CharacterCreationAdvanced
         Catch ex As Exception
             LogAppend("Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(), "CharacterCreationAdvanced_createAtMangos", False, True)
         End Try
-        characterGUID = newcharguid
     End Sub
 End Class

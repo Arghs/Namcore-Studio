@@ -19,18 +19,8 @@
 '* //FileInfo//
 '*      /Filename:      TransmissionHandler
 '*      /Description:   Handles account/character migration requests
-'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++s++++++++++++++++++++++++++
+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.GlobalVariables
-Imports NCFramework.AccountCreation
-Imports NCFramework.CharacterCreationAdvanced
-Imports NCFramework.CharacterCreationLite
-Imports NCFramework.Conversions
-Imports NCFramework.Basics
-Imports NCFramework.ArmorCreation
-Imports NCFramework.GlyphCreation
-Imports NCFramework.QuestCreation
-Imports NCFramework.TalentCreation
-
 Public Class TransmissionHandler
     Public Sub handleMigrationRequests(ByVal lite As Boolean)
         If TargetConnection.State = ConnectionState.Closed Then TargetConnection.Open()

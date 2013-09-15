@@ -22,14 +22,10 @@
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports NCFramework.EventLogging
-Imports NCFramework.CommandHandler
 Imports NCFramework.GlobalVariables
-Imports NCFramework.Basics
-Imports NCFramework.Conversions
 Public Class QuestCreation
     Public Sub SetCharacterQuests(ByVal setId As Integer, Optional charguid As Integer = 0)
-        If charguid = 0 Then charguid = characterGUID
+        If charguid = 0 Then charguid = GetCharacterSetBySetId(setId).Guid
         LogAppend("Setting quests for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "QuestCreation_SetCharacterQuests", True)
         Select Case targetCore
             Case "arcemu"

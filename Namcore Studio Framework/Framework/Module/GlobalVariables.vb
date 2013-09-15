@@ -52,7 +52,6 @@ Public Class GlobalVariables
     Public Shared TargetConnectionString_Realm As String
     Public Shared TargetConnRealmDBname As String
     Public Shared TargetConnCharactersDBname As String
-    Public Shared characterGUID As Integer
     Public Shared acctable As DataTable
     Public Shared chartable As DataTable
     Public Shared modifiedAccTable As DataTable

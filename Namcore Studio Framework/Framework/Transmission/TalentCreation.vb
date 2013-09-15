@@ -22,11 +22,7 @@
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports NCFramework.EventLogging
-Imports NCFramework.CommandHandler
 Imports NCFramework.GlobalVariables
-Imports NCFramework.Basics
-Imports NCFramework.Conversions
 Public Class TalentCreation
     Private SDatatable As New DataTable
     Private TalentRank As String
@@ -34,7 +30,7 @@ Public Class TalentCreation
     Private TalentId As String
 
     Public Sub SetCharacterTalents(ByVal setId As Integer, Optional charguid As Integer = 0)
-        If charguid = 0 Then charguid = characterGUID
+        If charguid = 0 Then charguid = GetCharacterSetBySetId(setId).Guid
         LogAppend("Setting Talents for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "TalentCreation_SetCharacterTalents", True)
         Select Case targetCore
             Case "arcemu"

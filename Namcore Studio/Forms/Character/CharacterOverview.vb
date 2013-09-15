@@ -808,6 +808,9 @@ Public Class CharacterOverview
             Next
             editedCharsIndex.Add({currentEditedCharSet.Guid, editedCharSets.Count})
             editedCharSets.Add(currentEditedCharSet)
+            If armoryMode = False And templateMode = False Then
+
+            End If
         End If
     End Sub
 

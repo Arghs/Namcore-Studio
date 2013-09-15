@@ -21,15 +21,10 @@
 '*      /Description:   Includes functions for creating the glyphs of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Imports NCFramework.EventLogging
-Imports NCFramework.CommandHandler
 Imports NCFramework.GlobalVariables
-Imports NCFramework.Basics
-Imports NCFramework.Conversions
-Imports NCFramework.SpellItem_Information
 Public Class GlyphCreation
     Public Sub SetCharacterGlyphs(ByVal setId As Integer, Optional charguid As Integer = 0)
-        If charguid = 0 Then charguid = characterGUID
+        If charguid = 0 Then charguid = GetCharacterSetBySetId(setId).Guid
         LogAppend("Creating Glyphs for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "GlyphCreation_SetCharacterGlyphs", True)
         Select Case targetCore
             Case "arcemu"

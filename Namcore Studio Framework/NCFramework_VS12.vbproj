@@ -114,7 +114,10 @@
     <Compile Include="Framework\Transmission\ArmorCreation.vb" />
     <Compile Include="Framework\Transmission\CharacterCreationAdvanced.vb" />
     <Compile Include="Framework\Transmission\CharacterCreationLite.vb" />
+    <Compile Include="Framework\Transmission\EnchantmentsCreation.vb" />
     <Compile Include="Framework\Transmission\GlyphCreation.vb" />
+    <Compile Include="Framework\Transmission\Update\UpdateArmorHandler.vb" />
+    <Compile Include="Framework\Transmission\Update\UpdateCharacterHandler.vb" />
     <Compile Include="Framework\Transmission\ModBasics.vb" />
     <Compile Include="Framework\Transmission\QuestCreation.vb" />
     <Compile Include="Framework\Transmission\SkillCreation.vb" />
@@ -188,7 +191,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_DetectChanges="False" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_DetectChanges="False" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,17 +23,11 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Imports System.Linq
-Imports NCFramework.EventLogging
-Imports NCFramework.CommandHandler
 Imports NCFramework.GlobalVariables
-Imports NCFramework.Basics
-Imports NCFramework.Conversions
-Imports NCFramework.SkillCreation
-Imports NCFramework.SpellCreation
 Imports System.Text.RegularExpressions
 Public Class ArmorCreation
     Public Sub AddCharacterArmor(ByVal setId As Integer, Optional charguid As Integer = 0)
-        If charguid = 0 Then charguid = characterGUID
+        If charguid = 0 Then charguid = GetCharacterSetBySetId(setId).Guid
         LogAppend("Adding armor to character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "ArmorCreation_AddCharacterArmor", True)
         Select Case targetCore
             Case "arcemu"
@@ -96,6 +90,8 @@ Public Class ArmorCreation
                                                 ") VALUES ( '" & newItemGuid.ToString() & "', '" & characterguid & "', '" &
                                                itemid.ToString & "', '-1', '" & typeCounter.ToString() & "' )")
             End If
+            Dim m_enchCreator As New EnchantmentsCreation
+            m_enchCreator.SetItemEnchantments(targetSetId, itm, newItemGuid, targetCore, targetStructure)
             typeCounter += 1
         Next
         If Not Regex.IsMatch(finalItemString, "^[0-9 ]+$") Then
@@ -152,6 +148,8 @@ Public Class ArmorCreation
                 runSQLCommand_characters_string("INSERT INTO " & targetStructure.character_inventory_tbl(0) & " ( " & targetStructure.invent_guid_col(0) & ", " & targetStructure.invent_slot_col(0) & ", " &
                                                 targetStructure.invent_item_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '" & typeCounter.ToString() & "', '" & newItemGuid.ToString() & "' )")
             End If
+            Dim m_enchCreator As New EnchantmentsCreation
+            m_enchCreator.SetItemEnchantments(targetSetId, itm, newItemGuid, targetCore, targetStructure)
             typeCounter += 1
         Next
         If Not Regex.IsMatch(finalItemString, "^[0-9 ]+$") Then
@@ -216,6 +214,8 @@ Public Class ArmorCreation
                                                 ", " & targetStructure.invent_slot_col(0) & ", " & targetStructure.invent_item_col(0) & ", " & targetStructure.invent_item_template_col(0) & " ) VALUES " &
                                                  "( '" & characterguid.ToString() & "', '0', '" & typeCounter.ToString() & "', '" & newItemGuid.ToString() & "', '" & itemid.ToString & "' )")
             End If
+            Dim m_enchCreator As New EnchantmentsCreation
+            m_enchCreator.SetItemEnchantments(targetSetId, itm, newItemGuid, targetCore, targetStructure)
             typeCounter += 1
         Next
         If Not Regex.IsMatch(finalItemString, "^[0-9 ]+$") Then
