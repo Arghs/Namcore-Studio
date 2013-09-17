@@ -1,8 +1,0 @@
-C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\NamcoreDirectAccess\bin\Debug\NamcoreDirectAccess.exe
-C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\NamcoreDirectAccess\bin\Debug\NamcoreDirectAccess.pdb
-C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\NamcoreDirectAccess\bin\Debug\NamcoreDirectAccess.xml
-C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess.Resources.resources
-C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess_VS10.vbproj.GenerateResource.Cache
-C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess.exe
-C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess.xml
-C:\Users\Ruben\Documents\Visual Studio 2010\Projects\Namcore-Studio\NamcoreDirectAccess\obj\Debug\NamcoreDirectAccess.pdb
