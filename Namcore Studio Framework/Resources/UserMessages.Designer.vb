@@ -11,10 +11,9 @@
 Option Strict On
 Option Explicit On
 
-Imports System
 
-Namespace My.Resources
-    
+Namespace Resources
+
     'Diese Klasse wurde von der StronglyTypedResourceBuilder automatisch generiert
     '-Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     'Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
@@ -22,24 +21,24 @@ Namespace My.Resources
     '''<summary>
     '''  Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0"),  _
-     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0"), _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+     Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()> _
     Friend Class UserMessages
-        
+
         Private Shared resourceMan As Global.System.Resources.ResourceManager
-        
+
         Private Shared resourceCulture As Global.System.Globalization.CultureInfo
-        
-        <Global.System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")>  _
+
+        <Global.System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")> _
         Friend Sub New()
-            MyBase.New
+            MyBase.New()
         End Sub
-        
+
         '''<summary>
         '''  Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         '''</summary>
-        <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
         Friend Shared ReadOnly Property ResourceManager() As Global.System.Resources.ResourceManager
             Get
                 If Object.ReferenceEquals(resourceMan, Nothing) Then
@@ -49,21 +48,21 @@ Namespace My.Resources
                 Return resourceMan
             End Get
         End Property
-        
+
         '''<summary>
         '''  Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
         '''  Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         '''</summary>
-        <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
+        <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)> _
         Friend Shared Property Culture() As Global.System.Globalization.CultureInfo
             Get
                 Return resourceCulture
             End Get
-            Set
+            Set(value As Global.System.Globalization.CultureInfo)
                 resourceCulture = value
             End Set
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Achievement successfully added! ähnelt.
         '''</summary>
@@ -72,7 +71,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("achievementadded", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die The player already has this achievement. ähnelt.
         '''</summary>
@@ -81,7 +80,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("achievementalreadypresent", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Are you sure? ähnelt.
         '''</summary>
@@ -90,7 +89,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("areyousure", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Attention ähnelt.
         '''</summary>
@@ -99,7 +98,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("attention", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the achievement %avid% from character? ähnelt.
         '''</summary>
@@ -108,7 +107,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("aus_deleteav", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
         '''</summary>
@@ -117,7 +116,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("bloodelf", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die You did not set any character name. ähnelt.
         '''</summary>
@@ -126,7 +125,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("charnamenotset", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Character not found! ähnelt.
         '''</summary>
@@ -135,7 +134,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("charnotfound", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Connect to source server ähnelt.
         '''</summary>
@@ -144,7 +143,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("connecttosource", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Connect to target server ähnelt.
         '''</summary>
@@ -153,7 +152,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("connecttotarget", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Death Knight ähnelt.
         '''</summary>
@@ -162,7 +161,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("deathknight", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected accounts? ähnelt.
         '''</summary>
@@ -171,7 +170,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("deleteacc", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected characters? ähnelt.
         '''</summary>
@@ -180,7 +179,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("deletechar", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the selected item? ähnelt.
         '''</summary>
@@ -189,7 +188,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("deleteitem", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Draenei ähnelt.
         '''</summary>
@@ -198,7 +197,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("draenei", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Druid ähnelt.
         '''</summary>
@@ -207,7 +206,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("druid", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Dwarf ähnelt.
         '''</summary>
@@ -216,7 +215,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("dwarf", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
         '''</summary>
@@ -225,7 +224,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("errorbox", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Faction successfully added! ähnelt.
         '''</summary>
@@ -234,7 +233,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("factionadded", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die The player already has reputation at this faction! ähnelt.
         '''</summary>
@@ -243,7 +242,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("factionalreadypresent", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
         '''</summary>
@@ -252,7 +251,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("female", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die This is not a valid glyph! ähnelt.
         '''</summary>
@@ -261,7 +260,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("glyphnotfound", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Gnome ähnelt.
         '''</summary>
@@ -270,7 +269,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("gnome", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Goblin ähnelt.
         '''</summary>
@@ -279,7 +278,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("goblin", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Human ähnelt.
         '''</summary>
@@ -288,7 +287,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("human", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Hunter ähnelt.
         '''</summary>
@@ -297,7 +296,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("hunter", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Invalid achievement id! ähnelt.
         '''</summary>
@@ -306,7 +305,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("invalidavid", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Invalid faction id! ähnelt.
         '''</summary>
@@ -315,7 +314,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("invalidrepid", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Entered URL is not valid! ähnelt.
         '''</summary>
@@ -324,7 +323,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("invalidurl", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die The class of the entered item does not match the source item class! ähnelt.
         '''</summary>
@@ -333,7 +332,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("itemclassinvalid", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Mage ähnelt.
         '''</summary>
@@ -342,7 +341,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("mage", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Male ähnelt.
         '''</summary>
@@ -351,7 +350,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("male", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Monk ähnelt.
         '''</summary>
@@ -360,7 +359,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("Monk", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Night Elf ähnelt.
         '''</summary>
@@ -369,7 +368,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("nightelf", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die You did not enter any accounts! ähnelt.
         '''</summary>
@@ -378,7 +377,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("noaccentered", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Orc ähnelt.
         '''</summary>
@@ -387,7 +386,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("orc", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Paladin ähnelt.
         '''</summary>
@@ -396,7 +395,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("paladin", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Pandaren ähnelt.
         '''</summary>
@@ -405,7 +404,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("pandaren", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Priest ähnelt.
         '''</summary>
@@ -414,7 +413,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("priest", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die You did not set any realm name. ähnelt.
         '''</summary>
@@ -423,7 +422,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("realmnamenotset", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die You did not select any Battle.net region. ähnelt.
         '''</summary>
@@ -432,7 +431,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("regionnotset", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Rogue ähnelt.
         '''</summary>
@@ -441,7 +440,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("rogue", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Shaman ähnelt.
         '''</summary>
@@ -450,7 +449,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("shaman", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Stranger ähnelt.
         '''</summary>
@@ -459,7 +458,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("standing_0", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Acquaintance ähnelt.
         '''</summary>
@@ -468,7 +467,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("standing_1", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Unfriendly ähnelt.
         '''</summary>
@@ -477,7 +476,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("standing_2", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Neutral ähnelt.
         '''</summary>
@@ -486,7 +485,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("standing_3", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Friendly ähnelt.
         '''</summary>
@@ -495,7 +494,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("standing_4", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Honored ähnelt.
         '''</summary>
@@ -504,7 +503,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("standing_5", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Revered ähnelt.
         '''</summary>
@@ -513,7 +512,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("standing_6", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Exalted ähnelt.
         '''</summary>
@@ -522,7 +521,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("standing_7", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die All ähnelt.
         '''</summary>
@@ -531,7 +530,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat0", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Eastern Kingdoms ähnelt.
         '''</summary>
@@ -540,7 +539,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14777", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Kalimdor ähnelt.
         '''</summary>
@@ -549,7 +548,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14778", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Outland ähnelt.
         '''</summary>
@@ -558,7 +557,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14779", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Northrend ähnelt.
         '''</summary>
@@ -567,7 +566,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14780", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Alterac Vlley ähnelt.
         '''</summary>
@@ -576,7 +575,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14801", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Arathi Basin ähnelt.
         '''</summary>
@@ -585,7 +584,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14802", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Eye of the Storm ähnelt.
         '''</summary>
@@ -594,7 +593,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14803", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Warsong Gulch ähnelt.
         '''</summary>
@@ -603,7 +602,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14804", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die The Burning Crusade ähnelt.
         '''</summary>
@@ -612,7 +611,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14805", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Lich King Dungeon ähnelt.
         '''</summary>
@@ -621,7 +620,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14806", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Classic ähnelt.
         '''</summary>
@@ -630,7 +629,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14808", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Eastern Kingdoms ähnelt.
         '''</summary>
@@ -639,7 +638,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14861", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Outland ähnelt.
         '''</summary>
@@ -648,7 +647,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14862", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Northrend ähnelt.
         '''</summary>
@@ -657,7 +656,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14863", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Classic ähnelt.
         '''</summary>
@@ -666,7 +665,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14864", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die The Burning Crusade ähnelt.
         '''</summary>
@@ -675,7 +674,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14865", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Wrath of the Lich King ähnelt.
         '''</summary>
@@ -684,7 +683,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14866", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Strand of the Ancients ähnelt.
         '''</summary>
@@ -693,7 +692,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14881", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Wintergasp ähnelt.
         '''</summary>
@@ -702,7 +701,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14901", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Lich King Raid ähnelt.
         '''</summary>
@@ -711,7 +710,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14922", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Argent Tournament ähnelt.
         '''</summary>
@@ -720,7 +719,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14941", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Pilgrim&apos;s Bounty ähnelt.
         '''</summary>
@@ -729,7 +728,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat14981", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Isle of Conquest ähnelt.
         '''</summary>
@@ -738,7 +737,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15003", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Cataclysm Dungeon ähnelt.
         '''</summary>
@@ -747,7 +746,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15067", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Cataclysm Raid ähnelt.
         '''</summary>
@@ -756,7 +755,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15068", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Cataclysm ähnelt.
         '''</summary>
@@ -765,7 +764,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15069", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Cataclysm ähnelt.
         '''</summary>
@@ -774,7 +773,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15070", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Archaeology ähnelt.
         '''</summary>
@@ -783,7 +782,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15071", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Cataclysm ähnelt.
         '''</summary>
@@ -792,7 +791,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15072", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Battle for Gilneas ähnelt.
         '''</summary>
@@ -801,7 +800,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15073", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Twin Peaks ähnelt.
         '''</summary>
@@ -810,7 +809,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15074", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Tol Barad ähnelt.
         '''</summary>
@@ -819,7 +818,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15075", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Kalimdor ähnelt.
         '''</summary>
@@ -828,7 +827,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15081", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Rated Battleground ähnelt.
         '''</summary>
@@ -837,7 +836,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15092", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Darkmoon Faire ähnelt.
         '''</summary>
@@ -846,7 +845,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15101", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Pandaria Dungeon ähnelt.
         '''</summary>
@@ -855,7 +854,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15106", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Pandaria Raid ähnelt.
         '''</summary>
@@ -864,7 +863,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15107", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Pandaria ähnelt.
         '''</summary>
@@ -873,7 +872,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15110", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Pandaria ähnelt.
         '''</summary>
@@ -882,7 +881,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15113", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Pandaria ähnelt.
         '''</summary>
@@ -891,7 +890,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15114", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Dungeon Challenge ähnelt.
         '''</summary>
@@ -900,7 +899,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15115", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Collect ähnelt.
         '''</summary>
@@ -909,7 +908,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15118", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Battle ähnelt.
         '''</summary>
@@ -918,7 +917,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15119", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Level ähnelt.
         '''</summary>
@@ -927,7 +926,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15120", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Silvershard Mines ähnelt.
         '''</summary>
@@ -936,7 +935,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15162", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Temple of Kotmogu ähnelt.
         '''</summary>
@@ -945,7 +944,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15163", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Brawler&apos;s Guild ähnelt.
         '''</summary>
@@ -954,7 +953,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15202", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Deepwind Gorge ähnelt.
         '''</summary>
@@ -963,7 +962,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat15218", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Winter Veil ähnelt.
         '''</summary>
@@ -972,7 +971,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat156", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Hallow&apos;s End ähnelt.
         '''</summary>
@@ -981,7 +980,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat158", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Noblegarden ähnelt.
         '''</summary>
@@ -990,7 +989,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat159", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Lunar Festival ähnelt.
         '''</summary>
@@ -999,7 +998,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat160", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Midsummer ähnelt.
         '''</summary>
@@ -1008,7 +1007,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat161", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Brewfest ähnelt.
         '''</summary>
@@ -1017,7 +1016,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat162", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Children&apos;s Week ähnelt.
         '''</summary>
@@ -1026,7 +1025,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat163", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Arena ähnelt.
         '''</summary>
@@ -1035,7 +1034,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat165", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Cooking ähnelt.
         '''</summary>
@@ -1044,7 +1043,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat170", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Fishing ähnelt.
         '''</summary>
@@ -1053,7 +1052,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat171", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die First Aid ähnelt.
         '''</summary>
@@ -1062,7 +1061,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat172", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Love is in the Air ähnelt.
         '''</summary>
@@ -1071,7 +1070,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("subcat187", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Tauren ähnelt.
         '''</summary>
@@ -1080,7 +1079,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("tauren", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Troll ähnelt.
         '''</summary>
@@ -1089,7 +1088,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("troll", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Undead ähnelt.
         '''</summary>
@@ -1098,7 +1097,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("undead", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die You did not enter a correct url. ähnelt.
         '''</summary>
@@ -1107,7 +1106,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("urlnotset", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Warlock ähnelt.
         '''</summary>
@@ -1116,7 +1115,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("warlock", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Warrior ähnelt.
         '''</summary>
@@ -1125,7 +1124,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("warrior", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Worgen ähnelt.
         '''</summary>

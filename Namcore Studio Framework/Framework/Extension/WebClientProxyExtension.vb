@@ -20,31 +20,31 @@
 '*      /Filename:      WebClientProxyExtension
 '*      /Description:   Extension to add proxy information to webclient
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+Imports System.Runtime.CompilerServices
 Imports System.Net
 
-Public Module WebClientProxyExtension
-    ''' <summary>
-    ''' proxy information handler
-    ''' </summary>
-    <System.Runtime.CompilerServices.Extension()>
-    Public Function CheckProxy(ByRef Client As WebClient) As WebClient
-        Try
-            If My.Settings.proxy_enabled = True Then
-                Client.Proxy = My.Settings.fullproxy
-                If My.Settings.proxy_defaultCredentials = False Then
-                    Client.Proxy.Credentials = New NetworkCredential(My.Settings.proxy_uname, My.Settings.proxy_pass)
-                Else
-                    Client.Proxy.Credentials = CredentialCache.DefaultCredentials
+Namespace Framework.Extension
+
+    Public Module WebClientProxyExtension
+        ''' <summary>
+        '''     proxy information handler
+        ''' </summary>
+        <Extension()>
+        Public Function CheckProxy(ByRef client As WebClient) As WebClient
+            Try
+                If My.Settings.proxy_enabled = True Then
+                    Client.Proxy = My.Settings.fullproxy
+                    If My.Settings.proxy_defaultCredentials = False Then
+                        Client.Proxy.Credentials = New NetworkCredential(My.Settings.proxy_uname, My.Settings.proxy_pass)
+                    Else
+                        Client.Proxy.Credentials = CredentialCache.DefaultCredentials
+                    End If
                 End If
-            End If
-            Return Client
-        Catch ex As Exception
-            Return Client
-        End Try
+                Return Client
+            Catch ex As Exception
+                Return Client
+            End Try
+        End Function
+    End Module
 
-    End Function
-
-End Module
-
-
+End Namespace

@@ -1,6 +1,7 @@
 ﻿
+' ReSharper disable CheckNamespace
 Namespace My
-
+    ' ReSharper restore CheckNamespace
     ' Für MyApplication sind folgende Ereignisse verfügbar:
     ' 
     ' Startup: Wird beim Starten der Anwendung noch vor dem Erstellen des Startformulars ausgelöst.
@@ -9,9 +10,6 @@ Namespace My
     ' StartupNextInstance: Wird beim Starten einer Einzelinstanzanwendung ausgelöst, wenn diese bereits aktiv ist. 
     ' NetworkAvailabilityChanged: Wird beim Herstellen oder Trennen der Netzwerkverbindung ausgelöst.
     Partial Friend Class MyApplication
-
     End Class
-
-
 End Namespace
 

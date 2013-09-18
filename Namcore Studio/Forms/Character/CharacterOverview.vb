@@ -20,806 +20,816 @@
 '*      /Filename:      CharacterOverview
 '*      /Description:   Displays character information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Linq
 Imports System.Drawing.Imaging
-Imports System.Threading
+Imports Namcore_Studio.Modules
+Imports Namcore_Studio.Modules.Interface
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Core
+Imports NCFramework.Framework.Module
+Imports Namcore_Studio.Forms.Extension
 Imports System.Net
-Imports NCFramework
-Imports NCFramework.GlobalVariables
-Imports NCFramework.ResourceHandler
-Public Class CharacterOverview
-    Dim controlLST As List(Of Control)
-    Dim pubItm As Item
-    Dim tempValue As String
-    Dim tempSender As Object
-    Dim tmpSetId As Integer
-    Dim tmpImage As Image
-    Private Shared doneControls As List(Of Control)
-    Dim Evaluator As Thread
-    Shared loadComplete As Boolean = False
-    Dim tmpSenderPic As Object
-    Dim currentSet As Integer
-    Private Sub CharacterOverview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    End Sub
-    Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
 
+Namespace Forms.Character
+    Public Class CharacterOverview
+        Inherits EventTrigger
 
-    Public Sub prepare_interface(ByVal setId As Integer)
-        InventoryPanel.SetDoubleBuffered()
-        currentSet = setId
-        currentViewedCharSetId = setId
-        If armoryMode = False And templateMode = False Then
-            '//Load charset
-            Dim m_loadHandler As New CoreHandler
-            m_loadHandler.handleLoadingRequests(setId)
-        End If
-        currentViewedCharSet = GetCharacterSetBySetId(setId)
-        If currentViewedCharSet.PlayerGlyphsIndex Is Nothing Then Glyphs_bt.Enabled = False
-        doneControls = New List(Of Control)
-        'Evaluator = New Thread(Sub() Me.goprep(setId, False))
-        'Evaluator.Start()
-        goprep(setId, False)
-        LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
-    End Sub
-    Private Sub goprep(ByVal setId As Integer, ByVal nxt As Boolean)
-        tmpSetId = setId
-        controlLST = New List(Of Control)
-        controlLST = FindAllChildren()
-        charname_lbl.Text = currentViewedCharSet.Name
-        level_lbl.Text = currentViewedCharSet.Level.ToString
-        class_lbl.Text = GetClassNameById(currentViewedCharSet.Cclass)
-        race_lbl.Text = GetRaceNameById(currentViewedCharSet.Race)
-        If nxt = True Then controlLST.Reverse()
-        Try
-            For Each item_control As Control In controlLST
-                item_control.SetDoubleBuffered()
-                Dim tmpdone As List(Of Control) = doneControls
-                If tmpdone.Contains(item_control) Then
-                    Continue For
-                Else
-                    doneControls.Add(item_control)
-                End If
-                Select Case True
-                    Case TypeOf item_control Is Label
-                        If item_control.Name.ToLower.Contains("_name") Then
-                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_name"))
-                            Dim txt As String = loadInfo(setId, slot, 0)
-                            If Not txt Is Nothing Then
-                                If txt.Length >= 25 Then
-                                    Dim ccremove As Integer = txt.Length - 23
-                                    txt = txt.Remove(23, ccremove) & "..."
-                                End If
-                            End If
-                            DirectCast(item_control, Label).Text = txt
-                            DirectCast(item_control, Label).Tag = pubItm
-                            DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.IBeam
-                        ElseIf item_control.Name.ToLower.EndsWith("enchant") Then
-                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_enchant"))
-                            Dim txt As String = loadInfo(setId, slot, 1)
-                            If Not txt Is Nothing Then
-                                If txt.Length >= 25 Then
-                                    Dim ccremove As Integer = txt.Length - 23
-                                    txt = txt.Remove(23, ccremove) & "..."
-                                End If
-                            End If
-                            If txt Is Nothing Then
-                                txt = "+"
-                                DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.Hand
-                            ElseIf txt = "" Then
-                                txt = "+"
-                                DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.Hand
-                            Else
-                                DirectCast(item_control, Label).Cursor = Windows.Forms.Cursors.IBeam
-                            End If
-                            DirectCast(item_control, Label).Text = txt
-                            DirectCast(item_control, Label).Tag = pubItm
-                        End If
-                    Case TypeOf item_control Is PictureBox
-                        If item_control.Name.ToLower.Contains("_pic") And Not item_control.Name.ToLower.Contains("gem") Then
-                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_pic"))
-                            DirectCast(item_control, PictureBox).Image = loadInfo(setId, slot, 2)
-                            If DirectCast(item_control, PictureBox).Image Is Nothing Then DirectCast(item_control, PictureBox).Image = My.Resources.empty
-                            DirectCast(item_control, PictureBox).Tag = pubItm
-                        ElseIf item_control.Name.ToLower.Contains("gem") Then
-                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_gem"))
-                            Dim gem As Integer = TryInt(splitString(item_control.Name, "gem", "_pic"))
-                            DirectCast(item_control, PictureBox).Image = loadInfo(setId, slot, 2 + gem)
-                            DirectCast(item_control, PictureBox).Tag = pubItm
-                        End If
-                    Case TypeOf item_control Is Panel
-                        If item_control.Name.ToLower.EndsWith("color") Then
-                            Dim slot As Integer = TryInt(splitString(item_control.Name, "slot_", "_color"))
-                            DirectCast(item_control, Panel).BackColor = loadInfo(setId, slot, 6)
-                            DirectCast(item_control, Panel).Tag = pubItm
-                        End If
+        '// Declaration
+        Dim _controlLst As List(Of Control)
+        Dim _pubItm As Item
+        Dim _tempValue As String
+        Dim _tempSender As Object
+        Dim _tmpSetId As Integer
+        Dim _tmpImage As Image
+        Dim _tmpSenderPic As Object
+        Dim _currentSet As Integer
 
-                End Select
-            Next
-            Application.DoEvents()
-            loadComplete = True
-            Evaluator.Abort()
-        Catch ex As Exception
+        Shared _loadComplete As Boolean = False
+        Shared _doneControls As List(Of Control)
+        ' ReadOnly _evaluator As Thread
 
-        End Try
+        Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
+        '// Declaration
 
+        Public Sub prepare_interface(ByVal setId As Integer)
+            InventoryPanel.SetDoubleBuffered()
+            _currentSet = setId
+            GlobalVariables.currentViewedCharSetId = setId
+            If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
+                '//Load charset
+                Dim mLoadHandler As New CoreHandler
+                mLoadHandler.handleLoadingRequests(setId)
+            End If
+            GlobalVariables.currentViewedCharSet = GetCharacterSetBySetId(setId)
+            If GlobalVariables.currentViewedCharSet.PlayerGlyphsIndex Is Nothing Then Glyphs_bt.Enabled = False
+            _doneControls = New List(Of Control)
+            Goprep(setId, False)
+            LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
+        End Sub
 
-    End Sub
-    Private Function loadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
-        Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet), slot.ToString, True)
-        pubItm = itm
-        If itm Is Nothing Then Return Nothing
-        Select Case infotype
-            Case 0
-                If itm.name Is Nothing Then
-                    itm.name = getNameOfItem(itm.id)
-                End If
-                Return itm.name
-            Case 1
-                Return itm.enchantment_name
-            Case 2
-                If itm.image Is Nothing Then
-                    itm.image = GetIconByItemId(itm.id)
-                End If
-                Return itm.image
-
-            Case 3
-                If itm.socket1_pic Is Nothing Then
-                    Return Nothing
-                Else
-                    Return itm.socket1_pic
-                End If
-            Case 4
-                If itm.socket2_pic Is Nothing Then
-                    Return Nothing
-                Else
-                    Return itm.socket2_pic
-                End If
-            Case 5
-                If itm.socket3_pic Is Nothing Then
-                    Return Nothing
-                Else
-                    Return itm.socket3_pic
-                End If
-            Case 6
-                Select Case itm.rarity
-                    Case 0, 1 : Return System.Drawing.Color.Gray
-                    Case 0, 1 : Return System.Drawing.Color.White
-                    Case 2 : Return System.Drawing.Color.LightGreen
-                    Case 3 : Return System.Drawing.Color.DodgerBlue
-                    Case 4 : Return System.Drawing.Color.DarkViolet
-                    Case 5 : Return System.Drawing.Color.Orange
-                    Case 6 : Return System.Drawing.Color.Gold
-                    Case Else : Return System.Drawing.Color.LawnGreen
-                End Select
-            Case Else : Return Nothing
-        End Select
-    End Function
-
-    Private Sub label_Click(sender As System.Object, e As System.EventArgs) Handles slot_9_name.Click, slot_9_enchant.Click, slot_8_name.Click, slot_8_enchant.Click, slot_7_name.Click, slot_7_enchant.Click, slot_6_name.Click, slot_6_enchant.Click, slot_5_name.Click, slot_5_enchant.Click, slot_4_name.Click, slot_4_enchant.Click, slot_3_name.Click, slot_3_enchant.Click, slot_2_name.Click, slot_2_enchant.Click, slot_18_name.Click, slot_18_enchant.Click, slot_17_name.Click, slot_17_enchant.Click, slot_16_name.Click, slot_16_enchant.Click, slot_15_name.Click, slot_15_enchant.Click, slot_14_name.Click, slot_14_enchant.Click, slot_13_name.Click, slot_13_enchant.Click, slot_12_name.Click, slot_12_enchant.Click, slot_11_name.Click, slot_11_enchant.Click, slot_10_name.Click, slot_10_enchant.Click, slot_1_name.Click, slot_1_enchant.Click, slot_0_name.Click, slot_0_enchant.Click
-        If sender.text = "" Then Exit Sub
-        Dim newPoint As New System.Drawing.Point
-        newPoint.X = sender.location.X + InventoryPanel.Location.X
-        newPoint.Y = sender.location.Y + InventoryPanel.Location.Y
-        changepanel.Location = newPoint
-        newPoint.X = 4000
-        newPoint.Y = 4000
-        classpanel.Location = newPoint
-        racepanel.Location = newPoint
-        addpanel.Location = newPoint
-        PictureBox2.Visible = True
-        If Not tempSender Is Nothing Then
-            tempSender.visible = True
-        End If
-        tempSender = sender
-        sender.visible = False
-        If sender.name.contains("_name") Then
-            TextBox1.Text = sender.tag.id.ToString
-        ElseIf sender.name.contains("_lbl") Then
-            TextBox1.Text = sender.text
-        Else
-
-            TextBox1.Text = sender.tag.enchantment_id.ToString
-        End If
-        tempValue = TextBox1.Text
-    End Sub
-
-    Private Sub PictureBox1_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox1.Click
-        'Change value
-        Dim newPoint As New System.Drawing.Point
-        Dim senderLabel As Label = tempSender
-        newPoint.X = 4000
-        newPoint.Y = 4000
-        If Not TextBox1.Text = tempValue Then
-            If TypeOf tempSender Is Label Then
-                Dim id As Integer = TryInt(TextBox1.Text)
-                'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                If senderLabel.Name.ToLower.EndsWith("charname_lbl") Then
-                    If TextBox1.Text = "" Then
-
+        Private Sub Goprep(ByVal setId As Integer, ByVal nxt As Boolean)
+            _tmpSetId = setId
+            _controlLst = New List(Of Control)
+            _controlLst = FindAllChildren()
+            charname_lbl.Text = GlobalVariables.currentViewedCharSet.Name
+            level_lbl.Text = GlobalVariables.currentViewedCharSet.Level.ToString
+            class_lbl.Text = GetClassNameById(GlobalVariables.currentViewedCharSet.Cclass)
+            race_lbl.Text = GetRaceNameById(GlobalVariables.currentViewedCharSet.Race)
+            If nxt = True Then _controlLst.Reverse()
+            Try
+                For Each itemControl As Control In _controlLst
+                    itemControl.SetDoubleBuffered()
+                    Dim tmpdone As List(Of Control) = _doneControls
+                    If tmpdone.Contains(itemControl) Then
+                        Continue For
                     Else
-                        If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
-                        currentViewedCharSet.Name = TextBox1.Text
-                        senderLabel.Text = TextBox1.Text
+                        _doneControls.Add(itemControl)
                     End If
-                ElseIf senderLabel.Name.ToLower.EndsWith("level_lbl") Then
-                    If TextBox1.Text = "" Then
+                    Select Case True
+                        Case TypeOf itemControl Is Label
+                            If itemControl.Name.ToLower.Contains("_name") Then
+                                Dim slot As Integer = TryInt(splitString(itemControl.Name, "slot_", "_name"))
+                                Dim txt As String = LoadInfo(setId, slot, 0)
+                                If Not txt Is Nothing Then
+                                    If txt.Length >= 25 Then
+                                        Dim ccremove As Integer = txt.Length - 23
+                                        txt = txt.Remove(23, ccremove) & "..."
+                                    End If
+                                End If
+                                DirectCast(itemControl, Label).Text = txt
+                                DirectCast(itemControl, Label).Tag = _pubItm
+                                DirectCast(itemControl, Label).Cursor = Cursors.IBeam
+                            ElseIf itemControl.Name.ToLower.EndsWith("enchant") Then
+                                Dim slot As Integer = TryInt(splitString(itemControl.Name, "slot_", "_enchant"))
+                                Dim txt As String = LoadInfo(setId, slot, 1)
+                                If Not txt Is Nothing Then
+                                    If txt.Length >= 25 Then
+                                        Dim ccremove As Integer = txt.Length - 23
+                                        txt = txt.Remove(23, ccremove) & "..."
+                                    End If
+                                End If
+                                If txt Is Nothing Then
+                                    txt = "+"
+                                    DirectCast(itemControl, Label).Cursor = Cursors.Hand
+                                ElseIf txt = "" Then
+                                    txt = "+"
+                                    DirectCast(itemControl, Label).Cursor = Cursors.Hand
+                                Else
+                                    DirectCast(itemControl, Label).Cursor = Cursors.IBeam
+                                End If
+                                DirectCast(itemControl, Label).Text = txt
+                                DirectCast(itemControl, Label).Tag = _pubItm
+                            End If
+                        Case TypeOf itemControl Is PictureBox
+                            If _
+                                itemControl.Name.ToLower.Contains("_pic") And
+                                Not itemControl.Name.ToLower.Contains("gem") _
+                                Then
+                                Dim slot As Integer = TryInt(splitString(itemControl.Name, "slot_", "_pic"))
+                                DirectCast(itemControl, PictureBox).Image = LoadInfo(setId, slot, 2)
+                                If DirectCast(itemControl, PictureBox).Image Is Nothing Then _
+                                    DirectCast(itemControl, PictureBox).Image = My.Resources.empty
+                                DirectCast(itemControl, PictureBox).Tag = _pubItm
+                            ElseIf itemControl.Name.ToLower.Contains("gem") Then
+                                Dim slot As Integer = TryInt(splitString(itemControl.Name, "slot_", "_gem"))
+                                Dim gem As Integer = TryInt(splitString(itemControl.Name, "gem", "_pic"))
+                                DirectCast(itemControl, PictureBox).Image = LoadInfo(setId, slot, 2 + gem)
+                                DirectCast(itemControl, PictureBox).Tag = _pubItm
+                            End If
+                        Case TypeOf itemControl Is Panel
+                            If itemControl.Name.ToLower.EndsWith("color") Then
+                                Dim slot As Integer = TryInt(splitString(itemControl.Name, "slot_", "_color"))
+                                DirectCast(itemControl, Panel).BackColor = LoadInfo(setId, slot, 6)
+                                DirectCast(itemControl, Panel).Tag = _pubItm
+                            End If
 
+                    End Select
+                Next
+                Application.DoEvents()
+                _loadComplete = True
+            Catch ex As Exception
+
+            End Try
+        End Sub
+
+        Private Function LoadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
+            Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet), slot.ToString, True)
+            _pubItm = itm
+            If itm Is Nothing Then Return Nothing
+            Select Case infotype
+                Case 0
+                    If itm.name Is Nothing Then
+                        itm.name = GetNameOfItem(itm.id)
+                    End If
+                    Return itm.name
+                Case 1
+                    Return itm.EnchantmentName
+                Case 2
+                    If itm.image Is Nothing Then
+                        itm.image = GetIconByItemId(itm.id)
+                    End If
+                    Return itm.image
+
+                Case 3
+                    If itm.Socket1Pic Is Nothing Then
+                        Return Nothing
                     Else
-                        Dim newlvl As Integer = TryInt(TextBox1.Text)
-                        If newlvl = 0 Then
+                        Return itm.Socket1Pic
+                    End If
+                Case 4
+                    If itm.Socket2Pic Is Nothing Then
+                        Return Nothing
+                    Else
+                        Return itm.Socket2Pic
+                    End If
+                Case 5
+                    If itm.Socket3Pic Is Nothing Then
+                        Return Nothing
+                    Else
+                        Return itm.Socket3Pic
+                    End If
+                Case 6
+                    Select Case itm.rarity
+                        Case 0, 1 : Return Color.Gray
+                        Case 0, 1 : Return Color.White
+                        Case 2 : Return Color.LightGreen
+                        Case 3 : Return Color.DodgerBlue
+                        Case 4 : Return Color.DarkViolet
+                        Case 5 : Return Color.Orange
+                        Case 6 : Return Color.Gold
+                        Case Else : Return Color.LawnGreen
+                    End Select
+                Case Else : Return Nothing
+            End Select
+        End Function
+
+        Private Sub label_Click(sender As Object, e As EventArgs) _
+            Handles slot_9_name.Click, slot_9_enchant.Click, slot_8_name.Click, slot_8_enchant.Click, slot_7_name.Click,
+                    slot_7_enchant.Click, slot_6_name.Click, slot_6_enchant.Click, slot_5_name.Click,
+                    slot_5_enchant.Click,
+                    slot_4_name.Click, slot_4_enchant.Click, slot_3_name.Click, slot_3_enchant.Click, slot_2_name.Click,
+                    slot_2_enchant.Click, slot_18_name.Click, slot_18_enchant.Click, slot_17_name.Click,
+                    slot_17_enchant.Click, slot_16_name.Click, slot_16_enchant.Click, slot_15_name.Click,
+                    slot_15_enchant.Click, slot_14_name.Click, slot_14_enchant.Click, slot_13_name.Click,
+                    slot_13_enchant.Click, slot_12_name.Click, slot_12_enchant.Click, slot_11_name.Click,
+                    slot_11_enchant.Click, slot_10_name.Click, slot_10_enchant.Click, slot_1_name.Click,
+                    slot_1_enchant.Click, slot_0_name.Click, slot_0_enchant.Click
+            If sender.text = "" Then Exit Sub
+            Dim newPoint As New Point
+            newPoint.X = sender.location.X + InventoryPanel.Location.X
+            newPoint.Y = sender.location.Y + InventoryPanel.Location.Y
+            changepanel.Location = newPoint
+            newPoint.X = 4000
+            newPoint.Y = 4000
+            classpanel.Location = newPoint
+            racepanel.Location = newPoint
+            addpanel.Location = newPoint
+            PictureBox2.Visible = True
+            If Not _tempSender Is Nothing Then
+                _tempSender.visible = True
+            End If
+            _tempSender = sender
+            sender.visible = False
+            If sender.name.contains("_name") Then
+                TextBox1.Text = sender.tag.id.ToString
+            ElseIf sender.name.contains("_lbl") Then
+                TextBox1.Text = sender.text
+            Else
+                TextBox1.Text = sender.tag.enchantment_id.ToString
+            End If
+            _tempValue = TextBox1.Text
+        End Sub
+
+        Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+            'Change value
+            Dim newPoint As New Point
+            Dim senderLabel As Label = _tempSender
+            newPoint.X = 4000
+            newPoint.Y = 4000
+            If Not TextBox1.Text = _tempValue Then
+                If TypeOf _tempSender Is Label Then
+                    Dim id As Integer = TryInt(TextBox1.Text)
+
+                    If senderLabel.Name.ToLower.EndsWith("charname_lbl") Then
+                        If TextBox1.Text = "" Then
 
                         Else
-                            If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
-                            currentViewedCharSet.Level = newlvl
+                            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                            GlobalVariables.currentViewedCharSet.Name = TextBox1.Text
                             senderLabel.Text = TextBox1.Text
                         End If
-                    End If
-                ElseIf senderLabel.Name.ToLower.EndsWith("_enchant") Then
-                    Dim client As New WebClient
-                    client.CheckProxy()
-                    Dim spellcontext As String
-                    Dim foundspell As Boolean = False
-                    Dim spellname As String
-                    Dim itemcontext As String
-                    Dim founditem As Boolean = False
-                    Dim itemname As String
-                    Try
-                        spellcontext = client.DownloadString("http://www.wowhead.com/spell=" & TextBox1.Text)
-                    Catch ex As Exception
-                        spellcontext = ""
-                    End Try
-                    If Not spellcontext = "" And Not spellcontext.Contains("<div id=""inputbox-error"">This spell doesn't exist.</div>") And spellcontext.Contains(""">Enchant Item") Then
-                        foundspell = True
-                        spellname = splitString(spellcontext, "<meta property=""og&#x3A;title"" content=""", """ />")
-                        spellname = spellname.Replace("&#x20;", " ")
-                    End If
-                    Try
-                        itemcontext = client.DownloadString("http://www.wowhead.com/item=" & TextBox1.Text & "&xml")
-                    Catch ex As Exception
-                        itemcontext = ""
-                    End Try
-                    If Not itemcontext = "" And Not itemcontext.Contains("<div id=""inputbox-error"">This item doesn't exist or is not yet in the database.</div>") And itemcontext.Contains("subclass id=""6"">") Then
-                        founditem = True
-                        itemname = splitString(itemcontext, "<name><![CDATA[", "]]></name>")
-                        itemname = itemname.Replace("&#x20;", " ")
-                    End If
-                    If founditem = foundspell = True Then
-                        selectenchpanel.Location = changepanel.Location
-                        spellench.Text = "Spell: " & spellname
-                        spellench.Tag = spellname
-                        itmench.Text = "Item: " & itemname
-                        itmench.Tag = itemname
-                    ElseIf founditem = True Then
-                        senderLabel.Text = itemname
-                        senderLabel.Tag.enchantment_type = 1
-                        senderLabel.Tag.enchantment_id = TextBox1.Text
-                        senderLabel.Tag.enchantment_name = itemname
-                        If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
-                        SetCharacterArmorItem(currentEditedCharSet, senderLabel.Tag)
-                    ElseIf foundspell = True Then
-                        senderLabel.Text = spellname
-                        senderLabel.Tag.enchantment_type = 0
-                        senderLabel.Tag.enchantment_id = TextBox1.Text
-                        senderLabel.Tag.enchantment_name = spellname
-                        If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
-                        SetCharacterArmorItem(currentEditedCharSet, senderLabel.Tag)
-                    Else
+                    ElseIf senderLabel.Name.ToLower.EndsWith("level_lbl") Then
+                        If TextBox1.Text = "" Then
 
-                    End If
-                Else
-                    If Not GetSlotByItemId(tempSender.tag.id) = GetSlotByItemId(id) Then
-                        MsgBox(GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical, GetUserMessage("Error"))
-                    Else
-                        Dim newitm As Item = tempSender.tag
-                        newitm.ReplaceItem(id)
-                        senderLabel.Tag = newitm
-                        Dim txt As String = senderLabel.Tag.name
-                        If Not txt Is Nothing Then
-                            If txt.Length >= 25 Then
-                                Dim ccremove As Integer = txt.Length - 23
-                                txt = txt.Remove(23, ccremove) & "..."
+                        Else
+                            Dim newlvl As Integer = TryInt(TextBox1.Text)
+                            If newlvl = 0 Then
+
+                            Else
+                                If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                GlobalVariables.currentViewedCharSet.Level = newlvl
+                                senderLabel.Text = TextBox1.Text
                             End If
                         End If
-                        senderLabel.Text = txt
-                        For Each ctrl As Control In controlLST
+                    ElseIf senderLabel.Name.ToLower.EndsWith("_enchant") Then
+                        Dim client As New WebClient
+                        client.CheckProxy()
+                        Dim spellcontext As String
+                        Dim foundspell As Boolean = False
+                        Dim spellname As String
+                        Dim itemcontext As String
+                        Dim founditem As Boolean = False
+                        Dim itemname As String
+                        Try
+                            spellcontext = client.DownloadString("http://www.wowhead.com/spell=" & TextBox1.Text)
+                        Catch ex As Exception
+                            spellcontext = ""
+                        End Try
+                        If _
+                            Not spellcontext = "" And
+                            Not spellcontext.Contains("<div id=""inputbox-error"">This spell doesn't exist.</div>") And
+                            spellcontext.Contains(""">Enchant Item") Then
+                            foundspell = True
+                            spellname = splitString(spellcontext, "<meta property=""og&#x3A;title"" content=""", """ />")
+                            spellname = spellname.Replace("&#x20;", " ")
+                        End If
+                        Try
+                            itemcontext = client.DownloadString("http://www.wowhead.com/item=" & TextBox1.Text & "&xml")
+                        Catch ex As Exception
+                            itemcontext = ""
+                        End Try
+                        If _
+                            Not itemcontext = "" And
+                            Not _
+                            itemcontext.Contains(
+                                "<div id=""inputbox-error"">This item doesn't exist or is not yet in the database.</div>") And
+                            itemcontext.Contains("subclass id=""6"">") Then
+                            founditem = True
+                            itemname = splitString(itemcontext, "<name><![CDATA[", "]]></name>")
+                            itemname = itemname.Replace("&#x20;", " ")
+                        End If
+                        If founditem = foundspell = True Then
+                            selectenchpanel.Location = changepanel.Location
+                            spellench.Text = "Spell: " & spellname
+                            spellench.Tag = spellname
+                            itmench.Text = "Item: " & itemname
+                            itmench.Tag = itemname
+                        ElseIf founditem = True Then
+                            senderLabel.Text = itemname
+                            senderLabel.Tag.enchantment_type = 1
+                            senderLabel.Tag.enchantment_id = TextBox1.Text
+                            senderLabel.Tag.enchantment_name = itemname
+                            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                            SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
+                        ElseIf foundspell = True Then
+                            senderLabel.Text = spellname
+                            senderLabel.Tag.enchantment_type = 0
+                            senderLabel.Tag.enchantment_id = TextBox1.Text
+                            senderLabel.Tag.enchantment_name = spellname
+                            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                            SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
+                        Else
+
+                        End If
+                    Else
+                        If Not GetSlotByItemId(_tempSender.tag.id) = GetSlotByItemId(id) Then
+                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
+                                   ResourceHandler.GetUserMessage("Error"))
+                        Else
+                            Dim newitm As Item = _tempSender.tag
+                            newitm.ReplaceItem(id)
+                            senderLabel.Tag = newitm
+                            Dim txt As String = senderLabel.Tag.name
+                            If Not txt Is Nothing Then
+                                If txt.Length >= 25 Then
+                                    Dim ccremove As Integer = txt.Length - 23
+                                    txt = txt.Remove(23, ccremove) & "..."
+                                End If
+                            End If
+                            senderLabel.Text = txt
+                            For Each ctrl As Control In _controlLst
+                                If TypeOf ctrl Is PictureBox Then
+                                    If ctrl.Tag Is Nothing Then Continue For
+                                    If ctrl.Tag.id = senderLabel.Tag.id Then
+                                        DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
+                                        Select Case True
+                                            Case _
+                                                ctrl.Name.ToLower.EndsWith("_pic") And
+                                                Not ctrl.Name.ToLower.Contains("gem")
+                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.image
+                                            Case ctrl.Name.ToLower.Contains("gem1")
+                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket1_pic
+                                            Case ctrl.Name.ToLower.Contains("gem2")
+                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket2_pic
+                                            Case ctrl.Name.ToLower.Contains("gem3")
+                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket3_pic
+                                        End Select
+                                    End If
+                                ElseIf TypeOf ctrl Is Panel Then
+                                    If ctrl.Tag Is Nothing Then Continue For
+                                    If ctrl.Tag.id = senderLabel.Tag.id Then
+                                        If ctrl.Name.ToLower.EndsWith("color") Then
+                                            DirectCast(ctrl, Panel).BackColor = getraritycolor(senderLabel.Tag.rarity)
+                                            DirectCast(ctrl, Panel).Tag = senderLabel.Tag
+                                        End If
+                                    End If
+                                ElseIf TypeOf ctrl Is Label Then
+                                    If ctrl.Tag Is Nothing Then Continue For
+                                    If ctrl.Tag.id = senderLabel.Tag.id Then
+                                        If ctrl.Name.ToLower.EndsWith("_enchant") Then
+                                            DirectCast(ctrl, Label).Tag = senderLabel.Tag
+                                        End If
+                                    End If
+                                End If
+
+                            Next
+                            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                            SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
+                        End If
+                    End If
+
+                End If
+            End If
+            changepanel.Location = newPoint
+            senderLabel.Visible = True
+        End Sub
+
+        Private Function Getraritycolor(ByVal rarity As Integer) As Color
+            Select Case rarity
+                Case 0, 1 : Return Color.Gray
+                Case 0, 1 : Return Color.White
+                Case 2 : Return Color.LightGreen
+                Case 3 : Return Color.DodgerBlue
+                Case 4 : Return Color.DarkViolet
+                Case 5 : Return Color.Orange
+                Case 6 : Return Color.Gold
+                Case Else : Return Color.LawnGreen
+            End Select
+        End Function
+
+        Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+            'Detele item
+            Dim newPoint As New Point
+            Dim senderLabel As Label = _tempSender
+            newPoint.X = 4000
+            newPoint.Y = 4000
+
+            Dim tempSender = TryCast(_tempSender, Label)
+            If (tempSender IsNot Nothing) Then
+                If Not _tempSender.text.tolower.endswith("_enchant") Then
+
+                    Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
+                                        ResourceHandler.GetUserMessage("areyousure"))
+                    If result = MsgBoxResult.Yes Then
+
+                        For Each ctrl As Control In _controlLst
                             If TypeOf ctrl Is PictureBox Then
                                 If ctrl.Tag Is Nothing Then Continue For
                                 If ctrl.Tag.id = senderLabel.Tag.id Then
                                     DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
                                     Select Case True
-                                        Case ctrl.Name.ToLower.EndsWith("_pic") And Not ctrl.Name.ToLower.Contains("gem")
-                                            DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.image
+                                        Case _
+                                            ctrl.Name.ToLower.EndsWith("_pic") And Not ctrl.Name.ToLower.Contains("gem")
+                                            DirectCast(ctrl, PictureBox).Image = My.Resources.empty
                                         Case ctrl.Name.ToLower.Contains("gem1")
-                                            DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket1_pic
+                                            DirectCast(ctrl, PictureBox).Image = Nothing
                                         Case ctrl.Name.ToLower.Contains("gem2")
-                                            DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket2_pic
+                                            DirectCast(ctrl, PictureBox).Image = Nothing
                                         Case ctrl.Name.ToLower.Contains("gem3")
-                                            DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket3_pic
+                                            DirectCast(ctrl, PictureBox).Image = Nothing
                                     End Select
                                 End If
                             ElseIf TypeOf ctrl Is Panel Then
                                 If ctrl.Tag Is Nothing Then Continue For
                                 If ctrl.Tag.id = senderLabel.Tag.id Then
                                     If ctrl.Name.ToLower.EndsWith("color") Then
-                                        DirectCast(ctrl, Panel).BackColor = getraritycolor(senderLabel.Tag.rarity)
-                                        DirectCast(ctrl, Panel).Tag = senderLabel.Tag
+                                        DirectCast(ctrl, Panel).BackColor = SystemColors.ActiveBorder
+                                        DirectCast(ctrl, Panel).Tag = Nothing
                                     End If
                                 End If
                             ElseIf TypeOf ctrl Is Label Then
                                 If ctrl.Tag Is Nothing Then Continue For
                                 If ctrl.Tag.id = senderLabel.Tag.id Then
                                     If ctrl.Name.ToLower.EndsWith("_enchant") Then
-                                        DirectCast(ctrl, Label).Tag = senderLabel.Tag
+                                        DirectCast(ctrl, Label).Tag = Nothing
+                                        DirectCast(ctrl, Label).Text = ""
                                     End If
                                 End If
                             End If
 
                         Next
-                        If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
-                        SetCharacterArmorItem(currentEditedCharSet, senderLabel.Tag)
+                        If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                        RemoveCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
+                        senderLabel.Text = Nothing
+                        senderLabel.Tag = Nothing
                     End If
-                End If
-
-            End If
-        End If
-        changepanel.Location = newPoint
-        senderLabel.Visible = True
-    End Sub
-    Private Function getraritycolor(ByVal rarity As Integer) As System.Drawing.Color
-        Select Case rarity
-            Case 0, 1 : Return System.Drawing.Color.Gray
-            Case 0, 1 : Return System.Drawing.Color.White
-            Case 2 : Return System.Drawing.Color.LightGreen
-            Case 3 : Return System.Drawing.Color.DodgerBlue
-            Case 4 : Return System.Drawing.Color.DarkViolet
-            Case 5 : Return System.Drawing.Color.Orange
-            Case 6 : Return System.Drawing.Color.Gold
-            Case Else : Return System.Drawing.Color.LawnGreen
-        End Select
-    End Function
-
-    Private Sub PictureBox2_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox2.Click
-        'Detele item
-        Dim newPoint As New System.Drawing.Point
-        Dim senderLabel As Label = tempSender
-        newPoint.X = 4000
-        newPoint.Y = 4000
-
-        If TypeOf tempSender Is Label Then
-            If Not tempSender.text.tolower.endswith("_enchant") Then
-                'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                Dim result = MsgBox(GetUserMessage("deleteitem"), vbYesNo, GetUserMessage("areyousure"))
-                If result = Microsoft.VisualBasic.MsgBoxResult.Yes Then
-
-                    For Each ctrl As Control In controlLST
-                        If TypeOf ctrl Is PictureBox Then
-                            If ctrl.Tag Is Nothing Then Continue For
-                            If ctrl.Tag.id = senderLabel.Tag.id Then
-                                DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
-                                Select Case True
-                                    Case ctrl.Name.ToLower.EndsWith("_pic") And Not ctrl.Name.ToLower.Contains("gem")
-                                        DirectCast(ctrl, PictureBox).Image = My.Resources.empty
-                                    Case ctrl.Name.ToLower.Contains("gem1")
-                                        DirectCast(ctrl, PictureBox).Image = Nothing
-                                    Case ctrl.Name.ToLower.Contains("gem2")
-                                        DirectCast(ctrl, PictureBox).Image = Nothing
-                                    Case ctrl.Name.ToLower.Contains("gem3")
-                                        DirectCast(ctrl, PictureBox).Image = Nothing
-                                End Select
-                            End If
-                        ElseIf TypeOf ctrl Is Panel Then
-                            If ctrl.Tag Is Nothing Then Continue For
-                            If ctrl.Tag.id = senderLabel.Tag.id Then
-                                If ctrl.Name.ToLower.EndsWith("color") Then
-                                    DirectCast(ctrl, Panel).BackColor = SystemColors.ActiveBorder
-                                    DirectCast(ctrl, Panel).Tag = Nothing
-                                End If
-                            End If
-                        ElseIf TypeOf ctrl Is Label Then
-                            If ctrl.Tag Is Nothing Then Continue For
-                            If ctrl.Tag.id = senderLabel.Tag.id Then
-                                If ctrl.Name.ToLower.EndsWith("_enchant") Then
-                                    DirectCast(ctrl, Label).Tag = Nothing
-                                    DirectCast(ctrl, Label).Text = ""
-                                End If
-                            End If
-                        End If
-
-                    Next
-                    If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
-                    RemoveCharacterArmorItem(currentEditedCharSet, senderLabel.Tag)
-                    senderLabel.Text = Nothing
-                    senderLabel.Tag = Nothing
-                End If
-            Else
-                DirectCast(tempSender, Label).Tag = Nothing
-                DirectCast(tempSender, Label).Text = ""
-            End If
-        End If
-        changepanel.Location = newPoint
-        senderLabel.Visible = True
-    End Sub
-
-    Private Sub race_lbl_Click(sender As System.Object, e As System.EventArgs) Handles race_lbl.Click
-        racepanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
-        Dim newpoint As New Point
-        newPoint.X = 4000
-        newPoint.Y = 4000
-        classpanel.Location = newPoint
-        changepanel.Location = newpoint
-        PictureBox2.Visible = False
-        If Not tempSender Is Nothing Then
-            tempSender.visible = True
-        End If
-        tempSender = sender
-        sender.visible = False
-        racecombo.Text = sender.text
-        tempValue = racecombo.Text
-    End Sub
-
-    Private Sub class_lbl_Click(sender As System.Object, e As System.EventArgs) Handles class_lbl.Click
-        classpanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
-        Dim newpoint As New Point
-        newpoint.X = 4000
-        newpoint.Y = 4000
-        racepanel.Location = newpoint
-        changepanel.Location = newpoint
-        PictureBox2.Visible = False
-        If Not tempSender Is Nothing Then
-            tempSender.visible = True
-        End If
-        tempSender = sender
-        sender.visible = False
-        classcombo.Text = sender.text
-        tempValue = classcombo.Text
-    End Sub
-
-    Private Sub charname_lbl_Click(sender As System.Object, e As System.EventArgs) Handles charname_lbl.Click
-        changepanel.Location = sender.location
-        Dim newpoint As New Point
-        newpoint.X = 4000
-        newpoint.Y = 4000
-        classpanel.Location = newpoint
-        racepanel.Location = newpoint
-        PictureBox2.Visible = False
-        If Not tempSender Is Nothing Then
-            tempSender.visible = True
-        End If
-        tempSender = sender
-        sender.visible = False
-        TextBox1.Text = sender.text
-        tempValue = TextBox1.Text
-    End Sub
-
-    Private Sub level_lbl_Click(sender As System.Object, e As System.EventArgs) Handles level_lbl.Click
-        changepanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
-        Dim newpoint As New Point
-        newpoint.X = 4000
-        newpoint.Y = 4000
-        classpanel.Location = newpoint
-        racepanel.Location = newpoint
-        PictureBox2.Visible = False
-        If Not tempSender Is Nothing Then
-            tempSender.visible = True
-        End If
-        tempSender = sender
-        sender.visible = False
-        TextBox1.Text = sender.text
-        tempValue = TextBox1.Text
-    End Sub
-
-    Private Sub classrefresh_Click(sender As System.Object, e As System.EventArgs) Handles classrefresh.Click
-        Dim newPoint As New System.Drawing.Point
-        Dim senderLabel As Label = tempSender
-        newPoint.X = 4000
-        newPoint.Y = 4000
-        If Not classcombo.SelectedText = tempValue And Not classcombo.Text = tempValue Then
-            senderLabel.Text = classcombo.SelectedText
-        End If
-        classpanel.Location = newPoint
-        senderLabel.Visible = True
-    End Sub
-
-    Private Sub racerefresh_Click(sender As System.Object, e As System.EventArgs) Handles racerefresh.Click
-        Dim newPoint As New System.Drawing.Point
-        Dim senderLabel As Label = tempSender
-        newPoint.X = 4000
-        newPoint.Y = 4000
-        If Not racecombo.SelectedText = tempValue And Not racecombo.Text = tempValue Then
-            senderLabel.Text = racecombo.SelectedText
-        End If
-        racepanel.Location = newPoint
-        senderLabel.Visible = True
-    End Sub
-
-    Private Sub itmench_Click(sender As System.Object, e As System.EventArgs) Handles itmench.Click
-        Dim newPoint As New System.Drawing.Point
-        Dim senderLabel As Label = tempSender
-        newPoint.X = 4000
-        newPoint.Y = 4000
-        senderLabel.Text = itmench.Tag
-        senderLabel.Tag.enchantment_type = 1
-        senderLabel.Tag.enchantment_id = TextBox1.Text
-        senderLabel.Tag.enchantment_name = itmench.Tag
-        selectenchpanel.Location = newPoint
-    End Sub
-
-    Private Sub spellench_Click(sender As System.Object, e As System.EventArgs) Handles spellench.Click
-        Dim newPoint As New System.Drawing.Point
-        Dim senderLabel As Label = tempSender
-        newPoint.X = 4000
-        newPoint.Y = 4000
-        senderLabel.Text = spellench.Tag
-        senderLabel.Tag.enchantment_type = 0
-        senderLabel.Tag.enchantment_id = TextBox1.Text
-        senderLabel.Tag.enchantment_name = spellench.Tag
-        selectenchpanel.Location = newPoint
-    End Sub
-
-    Private Sub bagpanel_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs) Handles bagpanel.Paint
-
-    End Sub
-
-    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Glyphs_bt.Click
-        Glyphs_interface.Close()
-        Dim glyphInterface As New Glyphs_interface
-        Userwait.Show()
-        Application.DoEvents()
-        glyphInterface.prepareGlyphsInterface(tmpSetId)
-        glyphInterface.Show()
-        Userwait.Close()
-    End Sub
-
-    Private Sub Button9_Click(sender As Object, e As EventArgs)
-        MsgBox(cnt.ToString())
-    End Sub
-
-    Private Sub exit_bt_Click(sender As System.Object, e As System.EventArgs) Handles exit_bt.Click
-        Glyphs_interface.Close()
-        Me.Close()
-    End Sub
-
-    Private Sub ItemClick(sender As System.Object, e As System.EventArgs) Handles slot_9_pic.Click, slot_8_pic.Click, slot_7_pic.Click, slot_6_pic.Click, slot_5_pic.Click, slot_4_pic.Click, slot_3_pic.Click, slot_2_pic.Click, slot_18_pic.Click, slot_17_pic.Click, slot_16_pic.Click, slot_15_pic.Click, slot_14_pic.Click, slot_13_pic.Click, slot_12_pic.Click, slot_11_pic.Click, slot_10_pic.Click, slot_1_pic.Click, slot_0_pic.Click
-        Try
-            Dim itemId As Integer = sender.tag.id
-            Process.Start("http://wowhead.com/item=" & itemId.ToString())
-        Catch ex As Exception
-
-        End Try
-
-        If Not tempSender Is Nothing Then
-            tempSender.visible = True
-        End If
-        changepanel.Location = New System.Drawing.Point(4000, 4000)
-        racepanel.Location = New System.Drawing.Point(4000, 4000)
-        classpanel.Location = New System.Drawing.Point(4000, 4000)
-        addpanel.Location = New System.Drawing.Point(4000, 4000)
-
-
-        For Each ctrl As Control In controlLST
-            If TypeOf ctrl Is Label Then
-                If ctrl.Name.StartsWith(sender.name.replace("_pic", "")) And ctrl.Name.EndsWith("_name") Then
-                    If ctrl.Text = "" Then
-                        tempSender = ctrl
-                        tmpSenderPic = sender
-                        ctrl.Visible = False
-                        Dim pnt As New System.Drawing.Point
-                        pnt.X = ctrl.Location.X + InventoryPanel.Location.X
-                        pnt.Y = ctrl.Location.Y + InventoryPanel.Location.Y
-                        addpanel.Location = pnt
-                    End If
+                Else
+                    tempSender.Tag = Nothing
+                    tempSender.Text = ""
                 End If
             End If
-        Next
+            changepanel.Location = newPoint
+            senderLabel.Visible = True
+        End Sub
 
-
-    End Sub
-    Dim cnt As Integer
-    Private Sub slot_0_pic_MouseEnter(sender As System.Object, e As System.EventArgs) Handles slot_9_pic.MouseEnter, slot_8_pic.MouseEnter, slot_7_pic.MouseEnter, slot_6_pic.MouseEnter, slot_5_pic.MouseEnter, slot_4_pic.MouseEnter, slot_3_pic.MouseEnter, slot_2_pic.MouseEnter, slot_18_pic.MouseEnter, slot_17_pic.MouseEnter, slot_16_pic.MouseEnter, slot_15_pic.MouseEnter, slot_14_pic.MouseEnter, slot_13_pic.MouseEnter, slot_12_pic.MouseEnter, slot_11_pic.MouseEnter, slot_10_pic.MouseEnter, slot_1_pic.MouseEnter, slot_0_pic.MouseEnter
-
-        If Not loadComplete = False Then
-            If Not sender.image Is Nothing Then
-                cnt += 1
-                tmpImage = sender.image
-                Application.DoEvents()
-                Dim picbx As PictureBox = sender
-                Dim g As Graphics
-                Dim img As Image
-                Dim r As Rectangle
-                img = picbx.Image
-                sender.Image = New Bitmap(picbx.Width, picbx.Height, PixelFormat.Format32bppArgb)
-                g = Graphics.FromImage(picbx.Image)
-                r = New Rectangle(0, 0, picbx.Width, picbx.Height)
-                g.DrawImage(img, r)
-                setBrightness(0.2, g, img, r, picbx)
+        Private Sub race_lbl_Click(sender As Object, e As EventArgs) Handles race_lbl.Click
+            racepanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
+            Dim newpoint As New Point
+            newpoint.X = 4000
+            newpoint.Y = 4000
+            classpanel.Location = newpoint
+            changepanel.Location = newpoint
+            PictureBox2.Visible = False
+            If Not _tempSender Is Nothing Then
+                _tempSender.visible = True
             End If
-        End If
-    End Sub
+            _tempSender = sender
+            sender.visible = False
+            racecombo.Text = sender.text
+            _tempValue = racecombo.Text
+        End Sub
 
-    Private Sub slot_0_pic_MouseLeave(sender As System.Object, e As System.EventArgs) Handles slot_9_pic.MouseLeave, slot_8_pic.MouseLeave, slot_7_pic.MouseLeave, slot_6_pic.MouseLeave, slot_5_pic.MouseLeave, slot_4_pic.MouseLeave, slot_3_pic.MouseLeave, slot_2_pic.MouseLeave, slot_18_pic.MouseLeave, slot_17_pic.MouseLeave, slot_16_pic.MouseLeave, slot_15_pic.MouseLeave, slot_14_pic.MouseLeave, slot_13_pic.MouseLeave, slot_12_pic.MouseLeave, slot_11_pic.MouseLeave, slot_10_pic.MouseLeave, slot_1_pic.MouseLeave, slot_0_pic.MouseLeave
-        If Not tmpImage Is Nothing And Not sender.image Is Nothing Then
-            Dim picbox As PictureBox = sender
-            picbox.Image = tmpImage
-            picbox.Refresh()
+        Private Sub class_lbl_Click(sender As Object, e As EventArgs) Handles class_lbl.Click
+            classpanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
+            Dim newpoint As New Point
+            newpoint.X = 4000
+            newpoint.Y = 4000
+            racepanel.Location = newpoint
+            changepanel.Location = newpoint
+            PictureBox2.Visible = False
+            If Not _tempSender Is Nothing Then
+                _tempSender.visible = True
+            End If
+            _tempSender = sender
+            sender.visible = False
+            classcombo.Text = sender.text
+            _tempValue = classcombo.Text
+        End Sub
+
+        Private Sub charname_lbl_Click(sender As Object, e As EventArgs) Handles charname_lbl.Click
+            changepanel.Location = sender.location
+            Dim newpoint As New Point
+            newpoint.X = 4000
+            newpoint.Y = 4000
+            classpanel.Location = newpoint
+            racepanel.Location = newpoint
+            PictureBox2.Visible = False
+            If Not _tempSender Is Nothing Then
+                _tempSender.visible = True
+            End If
+            _tempSender = sender
+            sender.visible = False
+            TextBox1.Text = sender.text
+            _tempValue = TextBox1.Text
+        End Sub
+
+        Private Sub level_lbl_Click(sender As Object, e As EventArgs) Handles level_lbl.Click
+            changepanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
+            Dim newpoint As New Point
+            newpoint.X = 4000
+            newpoint.Y = 4000
+            classpanel.Location = newpoint
+            racepanel.Location = newpoint
+            PictureBox2.Visible = False
+            If Not _tempSender Is Nothing Then
+                _tempSender.visible = True
+            End If
+            _tempSender = sender
+            sender.visible = False
+            TextBox1.Text = sender.text
+            _tempValue = TextBox1.Text
+        End Sub
+
+        Private Sub classrefresh_Click(sender As Object, e As EventArgs) Handles classrefresh.Click
+            Dim newPoint As New Point
+            Dim senderLabel As Label = _tempSender
+            newPoint.X = 4000
+            newPoint.Y = 4000
+            If Not classcombo.SelectedText = _tempValue And Not classcombo.Text = _tempValue Then
+                senderLabel.Text = classcombo.SelectedText
+            End If
+            classpanel.Location = newPoint
+            senderLabel.Visible = True
+        End Sub
+
+        Private Sub racerefresh_Click(sender As Object, e As EventArgs) Handles racerefresh.Click
+            Dim newPoint As New Point
+            Dim senderLabel As Label = _tempSender
+            newPoint.X = 4000
+            newPoint.Y = 4000
+            If Not racecombo.SelectedText = _tempValue And Not racecombo.Text = _tempValue Then
+                senderLabel.Text = racecombo.SelectedText
+            End If
+            racepanel.Location = newPoint
+            senderLabel.Visible = True
+        End Sub
+
+        Private Sub itmench_Click(sender As Object, e As EventArgs) Handles itmench.Click
+            Dim newPoint As New Point
+            Dim senderLabel As Label = _tempSender
+            newPoint.X = 4000
+            newPoint.Y = 4000
+            senderLabel.Text = itmench.Tag
+            senderLabel.Tag.enchantment_type = 1
+            senderLabel.Tag.enchantment_id = TextBox1.Text
+            senderLabel.Tag.enchantment_name = itmench.Tag
+            selectenchpanel.Location = newPoint
+        End Sub
+
+        Private Sub spellench_Click(sender As Object, e As EventArgs) Handles spellench.Click
+            Dim newPoint As New Point
+            Dim senderLabel As Label = _tempSender
+            newPoint.X = 4000
+            newPoint.Y = 4000
+            senderLabel.Text = spellench.Tag
+            senderLabel.Tag.enchantment_type = 0
+            senderLabel.Tag.enchantment_id = TextBox1.Text
+            senderLabel.Tag.enchantment_name = spellench.Tag
+            selectenchpanel.Location = newPoint
+        End Sub
+
+        Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Glyphs_bt.Click
+            GlyphsInterface.Close()
+            Dim glyphInterface As New GlyphsInterface
+            Userwait.Show()
             Application.DoEvents()
-        End If
+            glyphInterface.prepareGlyphsInterface(_tmpSetId)
+            glyphInterface.Show()
+            Userwait.Close()
+        End Sub
 
-    End Sub
-    Private Sub setBrightness(ByVal Brightness As Single, ByVal g As Graphics, ByVal img As Image, ByVal r As Rectangle, ByRef picbox As PictureBox)
-        ' Brightness should be -1 (black) to 0 (neutral) to 1 (white)
-        Dim colorMatrixVal As Single()() = { _
-           New Single() {1, 0, 0, 0, 0}, _
-           New Single() {0, 1, 0, 0, 0}, _
-           New Single() {0, 0, 1, 0, 0}, _
-           New Single() {0, 0, 0, 1, 0}, _
-           New Single() {Brightness, Brightness, Brightness, 0, 1}}
+        Private Sub exit_bt_Click(sender As Object, e As EventArgs) Handles exit_bt.Click
+            GlyphsInterface.Close()
+            AchievementsInterface.Close()
+            QuestsInterface.Close()
+            ReputationInterface.Close()
+            SpellSkillInterface.Close()
+            Close()
+        End Sub
 
-        Dim colorMatrix As New ColorMatrix(colorMatrixVal)
-        Dim ia As New ImageAttributes
+        Private Sub ItemClick(sender As Object, e As EventArgs) _
+            Handles slot_9_pic.Click, slot_8_pic.Click, slot_7_pic.Click, slot_6_pic.Click, slot_5_pic.Click,
+                    slot_4_pic.Click, slot_3_pic.Click, slot_2_pic.Click, slot_18_pic.Click, slot_17_pic.Click,
+                    slot_16_pic.Click, slot_15_pic.Click, slot_14_pic.Click, slot_13_pic.Click, slot_12_pic.Click,
+                    slot_11_pic.Click, slot_10_pic.Click, slot_1_pic.Click, slot_0_pic.Click
+            Try
+                Dim itemId As Integer = sender.tag.id
+                Process.Start("http://wowhead.com/item=" & itemId.ToString())
+            Catch ex As Exception
 
-        ia.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap)
+            End Try
 
-        g.DrawImage(img, r, 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, ia)
-        picbox.Refresh()
-    End Sub
-
-    Private Sub CharacterOverview_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
-        changepanel.Location = New System.Drawing.Point(4000, 4000)
-        addpanel.Location = New System.Drawing.Point(4000, 4000)
-        racepanel.Location = New System.Drawing.Point(4000, 4000)
-        classpanel.Location = New System.Drawing.Point(4000, 4000)
-        If Not tempSender Is Nothing Then
-            tempSender.visible = True
-        End If
-        TextBox1.Text = ""
-        TextBox2.Text = ""
-    End Sub
-
-    Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
-        'Add item
-        Dim senderPic As PictureBox = tmpSenderPic
-        If Not TextBox2.Text = "" Then
-            Dim meSlot As String = tempSender.name
-            meSlot = meSlot.Replace("slot_", "") : meSlot = meSlot.Replace("_name", "")
-            If Not GetSlotByItemId(TryInt(TextBox2.Text)) = TryInt(meSlot) Then
-                'Dim RM as New ResourceManager("NCFramework.UserMessages", System.Reflection.Assembly.GetExecutingAssembly())
-                MsgBox(GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical, GetUserMessage("Error"))
-                Exit Sub
-            Else
-                Dim itm As New Item
-                itm.id = TryInt(TextBox2.Text)
-                itm.name = getNameOfItem(itm.id)
-                itm.image = GetIconByItemId(itm.id)
-                itm.rarity = GetRarityByItemId(itm.id)
-                itm.slot = TryInt(meSlot)
-                itm.slotname = GetSlotNameBySlotId(itm.slot)
-                If itm.slot = 15 Or itm.slot = 16 Then LoadWeaponType(itm.id, currentSet)
-                senderPic.Tag = itm
-                DirectCast(senderPic, PictureBox).Image = itm.image
-                senderPic.Refresh()
-                DirectCast(tempSender, Label).Text = itm.name
-                DirectCast(tempSender, Label).Tag = itm
-                If currentEditedCharSet Is Nothing Then currentEditedCharSet = currentViewedCharSet
-                AddCharacterArmorItem(currentEditedCharSet, itm)
-                changepanel.Location = New System.Drawing.Point(4000, 4000)
-                addpanel.Location = New System.Drawing.Point(4000, 4000)
-                racepanel.Location = New System.Drawing.Point(4000, 4000)
-                classpanel.Location = New System.Drawing.Point(4000, 4000)
-                If Not tempSender Is Nothing Then
-                    tempSender.visible = True
-                End If
-                TextBox1.Text = ""
-                TextBox2.Text = ""
+            If Not _tempSender Is Nothing Then
+                _tempSender.visible = True
             End If
-        End If
-    End Sub
+            changepanel.Location = New Point(4000, 4000)
+            racepanel.Location = New Point(4000, 4000)
+            classpanel.Location = New Point(4000, 4000)
+            addpanel.Location = New Point(4000, 4000)
 
-    Private Sub load_bt_Click(sender As Object, e As EventArgs) Handles av_bt.Click
-        Achievements_interface.Close()
-        Dim avinterface As New Achievements_interface
-        Userwait.Show()
-        Application.DoEvents()
-        avinterface.prepareInterface(tmpSetId)
-        avinterface.Show()
-        Userwait.Close()
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Reputation_interface.Close()
-        Dim repinterface As New Reputation_interface
-        Userwait.Show()
-        Application.DoEvents()
-        repinterface.prepareRepInterface(tmpSetId)
-        repinterface.Show()
-        Userwait.Close()
-    End Sub
-
-    Private Sub Quests_bt_Click(sender As Object, e As EventArgs) Handles Quests_bt.Click
-        Quests_interface.Close()
-        Dim qstInterface As New Quests_interface
-        Userwait.Show()
-        Application.DoEvents()
-        qstInterface.Show()
-        qstInterface.prepareInterface(tmpSetId)
-    End Sub
-    Private ptMouseDownLocation As Point
-    Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            ptMouseDownLocation = e.Location
-        End If
-    End Sub
-
-    Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            Me.Location = e.Location - ptMouseDownLocation + Location
-        End If
-    End Sub
-    Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter
-        sender.backgroundimage = My.Resources.highlight
-    End Sub
-
-    Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave, highlighter2.MouseLeave
-        sender.backgroundimage = Nothing
-    End Sub
-
-    Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
-        Me.Close()
-    End Sub
-
-    Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
-        WindowState = FormWindowState.Minimized
-    End Sub
-
-
-    Private Sub header_MouseDown(sender As Object, e As MouseEventArgs) Handles header.MouseDown
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            ptMouseDownLocation = e.Location
-        End If
-    End Sub
-
-
-    Private Sub header_MouseMove(sender As Object, e As MouseEventArgs) Handles header.MouseMove
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            Me.Location = e.Location - ptMouseDownLocation + Location
-        End If
-    End Sub
-
-    Private Sub InventoryPanel_MouseDown(sender As Object, e As MouseEventArgs) Handles InventoryPanel.MouseDown
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            CharacterOverview_MouseDown(sender, e)
-        End If
-    End Sub
-
-    Private Sub InventoryPanel_Paint(sender As Object, e As PaintEventArgs) Handles InventoryPanel.Paint
-
-    End Sub
-
-    
-
-    Private Sub savechanges_bt_Click(sender As Object, e As EventArgs) Handles savechanges_bt.Click
-        If currentEditedCharSet Is Nothing Then
-
-        Else
-            If editedCharsIndex Is Nothing Then editedCharsIndex = New List(Of Integer())()
-            For Each IndexEntry() As Integer In editedCharsIndex
-                If IndexEntry(0) = currentEditedCharSet.Guid Then
-                    editedCharSets.Item(IndexEntry(1)) = currentEditedCharSet
-                    Exit Sub
-                End If
+            For Each ctrl As Label In _
+                From ctrl1 In _controlLst.OfType (Of Label)()
+                    Where ctrl1.Name.StartsWith(sender.name.replace("_pic", "")) And ctrl1.Name.EndsWith("_name")
+                    Where ctrl1.Text = ""
+                _tempSender = ctrl
+                _tmpSenderPic = sender
+                ctrl.Visible = False
+                Dim pnt As New Point
+                pnt.X = ctrl.Location.X + InventoryPanel.Location.X
+                pnt.Y = ctrl.Location.Y + InventoryPanel.Location.Y
+                addpanel.Location = pnt
             Next
-            editedCharsIndex.Add({currentEditedCharSet.Guid, editedCharSets.Count})
-            editedCharSets.Add(currentEditedCharSet)
-            If armoryMode = False And templateMode = False Then
+        End Sub
 
+        Private Sub slot_0_pic_MouseEnter(sender As Object, e As EventArgs) _
+            Handles slot_9_pic.MouseEnter, slot_8_pic.MouseEnter, slot_7_pic.MouseEnter, slot_6_pic.MouseEnter,
+                    slot_5_pic.MouseEnter, slot_4_pic.MouseEnter, slot_3_pic.MouseEnter, slot_2_pic.MouseEnter,
+                    slot_18_pic.MouseEnter, slot_17_pic.MouseEnter, slot_16_pic.MouseEnter, slot_15_pic.MouseEnter,
+                    slot_14_pic.MouseEnter, slot_13_pic.MouseEnter, slot_12_pic.MouseEnter, slot_11_pic.MouseEnter,
+                    slot_10_pic.MouseEnter, slot_1_pic.MouseEnter, slot_0_pic.MouseEnter
+
+            If Not _loadComplete = False Then
+                If Not sender.image Is Nothing Then
+                    _tmpImage = sender.image
+                    Application.DoEvents()
+                    Dim picbx As PictureBox = sender
+                    Dim g As Graphics
+                    Dim img As Image
+                    Dim r As Rectangle
+                    img = picbx.Image
+                    sender.Image = New Bitmap(picbx.Width, picbx.Height, PixelFormat.Format32bppArgb)
+                    g = Graphics.FromImage(picbx.Image)
+                    r = New Rectangle(0, 0, picbx.Width, picbx.Height)
+                    g.DrawImage(img, r)
+                    setBrightness(0.2, g, img, r, picbx)
+                End If
             End If
-        End If
-    End Sub
+        End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        SpellSkill_interface.Close()
-        Dim spellskillInterface As New SpellSkill_interface
-        Userwait.Show()
-        Application.DoEvents()
-        spellskillInterface.Show()
-        spellskillInterface.prepareInterface(tmpSetId)
-    End Sub
-End Class
+        Private Sub slot_0_pic_MouseLeave(sender As Object, e As EventArgs) _
+            Handles slot_9_pic.MouseLeave, slot_8_pic.MouseLeave, slot_7_pic.MouseLeave, slot_6_pic.MouseLeave,
+                    slot_5_pic.MouseLeave, slot_4_pic.MouseLeave, slot_3_pic.MouseLeave, slot_2_pic.MouseLeave,
+                    slot_18_pic.MouseLeave, slot_17_pic.MouseLeave, slot_16_pic.MouseLeave, slot_15_pic.MouseLeave,
+                    slot_14_pic.MouseLeave, slot_13_pic.MouseLeave, slot_12_pic.MouseLeave, slot_11_pic.MouseLeave,
+                    slot_10_pic.MouseLeave, slot_1_pic.MouseLeave, slot_0_pic.MouseLeave
+            If Not _tmpImage Is Nothing And Not sender.image Is Nothing Then
+                Dim picbox As PictureBox = sender
+                picbox.Image = _tmpImage
+                picbox.Refresh()
+                Application.DoEvents()
+            End If
+        End Sub
+
+        Private Sub SetBrightness(ByVal brightness As Single, ByVal g As Graphics, ByVal img As Image,
+                                  ByVal r As Rectangle,
+                                  ByRef picbox As PictureBox)
+            ' Brightness should be -1 (black) to 0 (neutral) to 1 (white)
+            Dim colorMatrixVal As Single()() = { _
+                                                   New Single() {1, 0, 0, 0, 0},
+                                                   New Single() {0, 1, 0, 0, 0},
+                                                   New Single() {0, 0, 1, 0, 0},
+                                                   New Single() {0, 0, 0, 1, 0},
+                                                   New Single() {brightness, brightness, brightness, 0, 1}}
+
+            Dim colorMatrix As New ColorMatrix(colorMatrixVal)
+            Dim ia As New ImageAttributes
+
+            ia.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap)
+
+            g.DrawImage(img, r, 0, 0, img.Width, img.Height, GraphicsUnit.Pixel, ia)
+            picbox.Refresh()
+        End Sub
+
+        Private Sub CharacterOverview_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+            changepanel.Location = New Point(4000, 4000)
+            addpanel.Location = New Point(4000, 4000)
+            racepanel.Location = New Point(4000, 4000)
+            classpanel.Location = New Point(4000, 4000)
+            If Not _tempSender Is Nothing Then
+                _tempSender.visible = True
+            End If
+            TextBox1.Text = ""
+            TextBox2.Text = ""
+        End Sub
+
+        Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
+            'Add item
+            Dim senderPic As PictureBox = _tmpSenderPic
+            If Not TextBox2.Text = "" Then
+                Dim meSlot As String = _tempSender.name
+                meSlot = meSlot.Replace("slot_", "")
+                meSlot = meSlot.Replace("_name", "")
+                If Not GetSlotByItemId(TryInt(TextBox2.Text)) = TryInt(meSlot) Then
+
+                    MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
+                           ResourceHandler.GetUserMessage("Error"))
+                    Exit Sub
+                Else
+                    Dim itm As New Item
+                    itm.id = TryInt(TextBox2.Text)
+                    itm.name = GetNameOfItem(itm.id)
+                    itm.image = GetIconByItemId(itm.id)
+                    itm.rarity = GetRarityByItemId(itm.id)
+                    itm.slot = TryInt(meSlot)
+                    itm.slotname = GetSlotNameBySlotId(itm.slot)
+                    If itm.slot = 15 Or itm.slot = 16 Then LoadWeaponType(itm.id, _currentSet)
+                    senderPic.Tag = itm
+                    senderPic.Image = itm.image
+                    senderPic.Refresh()
+                    DirectCast(_tempSender, Label).Text = itm.name
+                    DirectCast(_tempSender, Label).Tag = itm
+                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                    AddCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
+                    changepanel.Location = New Point(4000, 4000)
+                    addpanel.Location = New Point(4000, 4000)
+                    racepanel.Location = New Point(4000, 4000)
+                    classpanel.Location = New Point(4000, 4000)
+                    If Not _tempSender Is Nothing Then
+                        _tempSender.visible = True
+                    End If
+                    TextBox1.Text = ""
+                    TextBox2.Text = ""
+                End If
+            End If
+        End Sub
+
+        Private Sub av_bt_Click(sender As Object, e As EventArgs) Handles av_bt.Click
+            AchievementsInterface.Close()
+            Dim avinterface As New AchievementsInterface
+            Application.DoEvents()
+            avinterface.Show()
+        End Sub
+
+        Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+            ReputationInterface.Close()
+            Dim repinterface As New ReputationInterface
+            Userwait.Show()
+            Application.DoEvents()
+            repinterface.prepareRepInterface(_tmpSetId)
+            repinterface.Show()
+            Userwait.Close()
+        End Sub
+
+        Private Sub Quests_bt_Click(sender As Object, e As EventArgs) Handles Quests_bt.Click
+            QuestsInterface.Close()
+            Dim qstInterface As New QuestsInterface
+            Userwait.Show()
+            Application.DoEvents()
+            qstInterface.Show()
+            qstInterface.prepareInterface(_tmpSetId)
+        End Sub
+
+        Private Sub highlighter2_Click(sender As Object, e As EventArgs)
+            Close()
+        End Sub
+
+        Private Sub InventoryPanel_MouseDown(sender As Object, e As MouseEventArgs) Handles InventoryPanel.MouseDown
+            If e.Button = MouseButtons.Left Then
+                CharacterOverview_MouseDown(sender, e)
+            End If
+        End Sub
+
+        Private Sub savechanges_bt_Click(sender As Object, e As EventArgs) Handles savechanges_bt.Click
+            If GlobalVariables.currentEditedCharSet Is Nothing Then
+
+            Else
+                If GlobalVariables.editedCharsIndex Is Nothing Then _
+                    GlobalVariables.editedCharsIndex = New List(Of Integer())()
+                For Each indexEntry () As Integer In GlobalVariables.editedCharsIndex
+                    If indexEntry(0) = GlobalVariables.currentEditedCharSet.Guid Then
+                        GlobalVariables.editedCharSets.Item(indexEntry(1)) = GlobalVariables.currentEditedCharSet
+                        Exit Sub
+                    End If
+                Next
+                GlobalVariables.editedCharsIndex.Add(
+                    {GlobalVariables.currentEditedCharSet.Guid, GlobalVariables.editedCharSets.Count})
+                GlobalVariables.editedCharSets.Add(GlobalVariables.currentEditedCharSet)
+                If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
+
+                End If
+            End If
+        End Sub
+
+        Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+            spellskillInterface.Close()
+            Dim mspellskillInterface As New SpellSkillInterface
+            Userwait.Show()
+            Application.DoEvents()
+            mspellskillInterface.Show()
+            mspellskillInterface.PrepareInterface(_tmpSetId)
+        End Sub
+
+        Private Sub CharacterOverview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+            AddHandler highlighter2.Click, AddressOf highlighter2_Click
+        End Sub
+    End Class
+End Namespace

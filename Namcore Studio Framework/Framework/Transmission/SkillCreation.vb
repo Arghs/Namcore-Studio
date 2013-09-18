@@ -21,12 +21,14 @@
 '*      /Description:   Includes functions for setting up the known skills of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Namespace Framework.Transmission
+    Public Module SkillCreation
+        Public Sub AddSkills(ByVal skillsstring As String)
+            'TODO
+        End Sub
 
-Public Module SkillCreation
-    Public Sub AddSkills(ByVal skillsstring As String)
-        'TODO
-    End Sub
-    Public Sub AddSpecialSkills(ByVal targetSetId As Integer, ByVal charguid As Integer)
-        'TODO
-    End Sub
-End Module
+        Public Sub AddSpecialSkills(ByVal targetSetId As Integer, ByVal charguid As Integer)
+            'TODO
+        End Sub
+    End Module
+End Namespace

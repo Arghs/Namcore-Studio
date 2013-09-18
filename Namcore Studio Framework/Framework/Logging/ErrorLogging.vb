@@ -20,7 +20,7 @@
 '*      /Filename:      ErrorLogging
 '*      /Description:   Handles the exception and error logging
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Public Class ErrorLogging
-
-End Class
+Namespace Framework.Logging
+    Public Class ErrorLogging
+    End Class
+End Namespace

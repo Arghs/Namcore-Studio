@@ -1,32 +1,64 @@
-﻿Imports System.Net
+﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'*
+'* This program is free software; you can redistribute it and/or modify it
+'* under the terms of the GNU General Public License as published by the
+'* Free Software Foundation; either version 2 of the License, or (at your
+'* option) any later version.
+'*
+'* This program is distributed in the hope that it will be useful, but WITHOUT
+'* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+'* FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+'* more details.
+'*
+'* You should have received a copy of the GNU General Public License along
+'* with this program. If not, see <http://www.gnu.org/licenses/>.
+'*
+'* Developed by Alcanmage/megasus
+'*
+'* //FileInfo//
+'*      /Filename:      Updater
+'*      /Description:   Updater
+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Net
+Imports System.Xml
 Imports System.IO
+Imports System.Text
+
 Public Class Updater
-    Private version_url As String = "http://wowgeslauncher.bplaced.com/filemanager/namcore/ncversion.html"
-    Private client As New WebClient
-    Private ptMouseDownLocation As Point
-    Private files2Download As List(Of MyFile)
-    Private totalSize As Integer = 0
+
+    '// Declaration
+    Private Const VersionUrl As String = "http://wowgeslauncher.bplaced.com/filemanager/namcore/ncversion.html"
+    Private ReadOnly _client As New WebClient
+    Private _ptMouseDownLocation As Point
+    Private _files2Download As List(Of MyFile)
+    Private _totalSize As Integer = 0
+    '// Declaration
+
     Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            ptMouseDownLocation = e.Location
+        If e.Button = MouseButtons.Left Then
+            _ptMouseDownLocation = e.Location
         End If
     End Sub
 
     Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            Me.Location = e.Location - ptMouseDownLocation + Location
+        If e.Button = MouseButtons.Left Then
+            Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
         End If
     End Sub
-    Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter
+
+    Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) _
+        Handles highlighter1.MouseEnter, highlighter2.MouseEnter
         sender.backgroundimage = My.Resources.highlight1
     End Sub
 
-    Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave, highlighter2.MouseLeave
+    Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) _
+        Handles highlighter1.MouseLeave, highlighter2.MouseLeave
         sender.backgroundimage = Nothing
     End Sub
 
     Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
-        Me.Close()
+        Close()
     End Sub
 
     Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
@@ -34,15 +66,14 @@ Public Class Updater
     End Sub
 
     Private Sub header_MouseDown(sender As Object, e As MouseEventArgs) Handles header.MouseDown
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            ptMouseDownLocation = e.Location
+        If e.Button = MouseButtons.Left Then
+            _ptMouseDownLocation = e.Location
         End If
     End Sub
 
-
     Private Sub header_MouseMove(sender As Object, e As MouseEventArgs) Handles header.MouseMove
-        If e.Button = Windows.Forms.MouseButtons.Left Then
-            Me.Location = e.Location - ptMouseDownLocation + Location
+        If e.Button = MouseButtons.Left Then
+            Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
         End If
     End Sub
 
@@ -56,11 +87,11 @@ Public Class Updater
         Dim pass As String = ""
         Dim fullProxy As New WebProxy
         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\settings.xml") Then
-            Dim XMLReader As Xml.XmlReader = New Xml.XmlTextReader(Application.StartupPath & "\Data\settings.xml")
-            With XMLReader
+            Dim xmlReader As XmlReader = New XmlTextReader(Application.StartupPath & "\Data\settings.xml")
+            With xmlReader
                 Do While .Read
                     Select Case .NodeType
-                        Case Xml.XmlNodeType.Element
+                        Case XmlNodeType.Element
                             If .AttributeCount > 0 Then
                                 While .MoveToNextAttribute
                                     Select Case .Name
@@ -97,8 +128,8 @@ Public Class Updater
                                     End Select
                                 End While
                             End If
-                        Case Xml.XmlNodeType.Text
-                        Case Xml.XmlNodeType.Comment
+                        Case XmlNodeType.Text
+                        Case XmlNodeType.Comment
                     End Select
                 Loop
                 .Close()  '
@@ -113,8 +144,6 @@ Public Class Updater
                         If servername Is Nothing Then
                             proxyenabled = False
                         Else
-                            host = servername
-                            port = CInt(serverport)
                             fullProxy = New WebProxy(servername & ":" & serverport)
                         End If
                     End If
@@ -128,19 +157,17 @@ Public Class Updater
                     If servername Is Nothing Then
                         proxyenabled = False
                     Else
-                        host = servername
-                        port = CInt(serverport)
                         fullProxy = New WebProxy(servername & ":" & serverport)
                     End If
                 End If
             End If
             Try
                 If proxyenabled = True Then
-                    client.Proxy = fullProxy
+                    _client.Proxy = fullProxy
                     If defaultCredentials = False Then
-                        client.Proxy.Credentials = New NetworkCredential(uname, pass)
+                        _client.Proxy.Credentials = New NetworkCredential(uname, pass)
                     Else
-                        client.Proxy.Credentials = CredentialCache.DefaultCredentials
+                        _client.Proxy.Credentials = CredentialCache.DefaultCredentials
                     End If
                 End If
             Catch ex As Exception
@@ -149,34 +176,35 @@ Public Class Updater
         End If
         Dim source As String = ""
         Try
-            source = client.DownloadString(version_url)
+            source = _client.DownloadString(VersionUrl)
         Catch ex As Exception
-            MsgBox("Webclient connection failed! NamCore Studio requires a constant internet connection. Please make sure you have access to the internet." &
-                   vbNewLine & "If your computer is behind a proxy server, please configure NamCore Studio by clicking 'Settings' on the upcoming interface", MsgBoxStyle.Exclamation, "Failed to connect")
+            MsgBox(
+                "Webclient connection failed! NamCore Studio requires a constant internet connection. Please make sure you have access to the internet." &
+                vbNewLine &
+                "If your computer is behind a proxy server, please configure NamCore Studio by clicking 'Settings' on the upcoming interface",
+                MsgBoxStyle.Exclamation, "Failed to connect")
         End Try
         If Not source = "" Then
-            Dim myaioversion As Integer = 0
-            Dim XMLReader As Xml.XmlReader = New Xml.XmlTextReader(Application.StartupPath & "\Data\settings.xml")
-            With XMLReader
+            Dim xmlReader As XmlReader = New XmlTextReader(Application.StartupPath & "\Data\settings.xml")
+            With xmlReader
                 Do While .Read
                     Select Case .NodeType
-                        Case Xml.XmlNodeType.Element
+                        Case XmlNodeType.Element
                             If .AttributeCount > 0 Then
                                 While .MoveToNextAttribute
                                     Select Case .Name
                                         Case "version"
-                                            myaioversion = CInt(.Value)
                                     End Select
                                 End While
                             End If
-                        Case Xml.XmlNodeType.Text
-                        Case Xml.XmlNodeType.Comment
+                        Case XmlNodeType.Text
+                        Case XmlNodeType.Comment
                     End Select
                 Loop
                 .Close()
             End With
             Dim aioversion As Integer = CInt(splitString(source, "<aioversion>", "</aioversion>"))
-            files2Download = New List(Of MyFile)()
+            _files2Download = New List(Of MyFile)()
             If aioversion = 10000 Then 'deactivated > myaioversion Then
                 'Updates available!
                 Dim fileCount As Integer = UBound(Split(source, "<file>"))
@@ -187,34 +215,37 @@ Public Class Updater
                     Dim fileContext As String = splitString(fileSource, "<file>", "</file>")
                     Try
                         Dim fname As String = splitString(fileContext, "<name>", "</name>")
-                        Dim version As Integer = CInt(splitString(fileContext, "<version>", "</version>").Replace(".", ""))
+                        Dim version As Integer = CInt(splitString(fileContext, "<version>", "</version>").Replace(".",
+                                                                                                                  ""))
                         Dim path As String = splitString(fileContext, "<path>", "</path>")
                         Dim url As String = splitString(fileContext, "<url>", "</url>")
-                        Dim size As String = splitString(fileContext, "<size>", "</size>")
+                        Dim mysize As String = splitString(fileContext, "<size>", "</size>")
                         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\" & path & fname) Then
-                            Dim gfi As GetFileInformation = New GetFileInformation(Application.StartupPath & "\" & path & fname)
-                            Dim f_version As Integer = CInt(gfi.GetFileVersion.ToString().Replace(".", ""))
-                            If version > f_version Then
-                                totalSize += size
-                                files2Download.Add(New MyFile With {.name = fname, .path = path, .url = url, .size = size})
+                            Dim gfi As GetFileInformation =
+                                    New GetFileInformation(Application.StartupPath & "\" & path & fname)
+                            Dim fVersion As Integer = CInt(gfi.GetFileVersion.ToString().Replace(".", ""))
+                            If version > fVersion Then
+                                _totalSize += mysize
+                                _files2Download.Add(New MyFile _
+                                                      With {.name = fname, .path = path, .url = url, .size = mysize})
                             End If
                         Else
-                            totalSize += size
-                            files2Download.Add(New MyFile With {.name = fname, .path = path, .url = url, .size = size})
+                            _totalSize += mysize
+                            _files2Download.Add(New MyFile With {.name = fname, .path = path, .url = url, .size = mysize})
                         End If
                     Finally
                         fileSource = fileSource.Replace("<file>" & fileContext & "</file>", "")
                     End Try
                 Loop Until fileCounter = fileCount
-                filestatus.Text = "Loading file 1/" & files2Download.Count.ToString()
-                globalprogress_lbl.Text = "0 KB / " & totalSize.ToString() & " KB"
-                subprogress_lbl.Text = "0 KB / " & files2Download.Item(0).size.ToString() & " KB"
-                currentfile.Text = files2Download.Item(0).name.ToString()
+                filestatus.Text = "Loading file 1/" & _files2Download.Count.ToString()
+                globalprogress_lbl.Text = "0 KB / " & _totalSize.ToString() & " KB"
+                subprogress_lbl.Text = "0 KB / " & _files2Download.Item(0).size.ToString() & " KB"
+                currentfile.Text = _files2Download.Item(0).name.ToString()
             Else
                 If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\Namcore Studio.exe") Then
                 Else
                     Process.Start(Application.StartupPath & "\Data\Namcore Studio.exe")
-                    Me.Close()
+                    Close()
                 End If
             End If
 
@@ -222,13 +253,12 @@ Public Class Updater
             If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\Namcore Studio.exe") Then
             Else
                 Process.Start(Application.StartupPath & "\Data\Namcore Studio.exe")
-                Me.Close()
+                Close()
             End If
         End If
-
-
     End Sub
-    Public Function splitString(ByVal source As String, ByVal start As String, ByVal ending As String) As String
+
+    Public Function SplitString(ByVal source As String, ByVal start As String, ByVal ending As String) As String
         If source Is Nothing Or start Is Nothing Or ending Is Nothing Then
 
             Return Nothing
@@ -236,66 +266,76 @@ Public Class Updater
 
         Try
             Dim quellcode As String = source
-            Dim _start As String = start
-            Dim _end As String = ending
+            Dim mystart As String = start
+            Dim myend As String = ending
             Dim quellcodeSplit As String
-            quellcodeSplit = Split(quellcode, _start, 5)(1)
-            Return Split(quellcodeSplit, _end, 6)(0)
+            quellcodeSplit = Split(quellcode, mystart, 5)(1)
+            Return Split(quellcodeSplit, myend, 6)(0)
         Catch ex As Exception
 
             Return Nothing
         End Try
     End Function
+
     Private Function GetProxyServerName() As String
 
-        Dim UseProxy As New Net.WebProxy()
+        ' ReSharper disable UnusedVariable
+        Dim useProxy As New WebProxy()
+        ' ReSharper restore UnusedVariable
         Try 'if no proxy is specified, an exception is 
             'thrown by the frameworks and must be caught
 
-            Return UseProxy.GetDefaultProxy.Address.Host
+            ' ReSharper disable VBWarnings::BC40008
+            Return useProxy.GetDefaultProxy.Address.Host
+            ' ReSharper restore VBWarnings::BC40008
 
         Catch 'catch the error when no proxy is specified in IE
 
             Return Nothing
 
         End Try
-
     End Function
 
 
     Private Function GetProxyServerPort() As String
 
-        Dim UseProxy As New Net.WebProxy()
+        ' ReSharper disable UnusedVariable
+        Dim useProxy As New WebProxy()
+        ' ReSharper restore UnusedVariable
 
         Try 'if no proxy is specified, an exception is 
             'thrown by the frameworks and must be caught
 
-            Return UseProxy.GetDefaultProxy.Address.Port
+            ' ReSharper disable VBWarnings::BC40008
+            Return useProxy.GetDefaultProxy.Address.Port
+            ' ReSharper restore VBWarnings::BC40008
 
         Catch 'catch the error when no proxy is specified in IE
 
             Return Nothing
 
         End Try
-
     End Function
 
     Private Sub start_bt_Click(sender As Object, e As EventArgs) Handles start_bt.Click
-        globalprogress_bar.Maximum = totalSize
-        Dim cnt As Integer = 1
-        For Each dFile As MyFile In files2Download
-            filestatus.Text = "Loading file " & cnt.ToString & "/" & files2Download.Count.ToString()
+        globalprogress_bar.Maximum = _totalSize
+        Const cnt As Integer = 1
+        For Each dFile As MyFile In _files2Download
+            filestatus.Text = "Loading file " & cnt.ToString & "/" & _files2Download.Count.ToString()
             currentfile.Text = dFile.name
             DownloadItem(dFile.url, dFile.name & ".temp", Application.StartupPath & "\" & dFile.path)
             delete(dFile.path & dFile.name)
-            My.Computer.FileSystem.RenameFile(Application.StartupPath & "\" & dFile.path & dFile.name & ".temp", dFile.name)
+            My.Computer.FileSystem.RenameFile(Application.StartupPath & "\" & dFile.path & dFile.name & ".temp",
+                                              dFile.name)
         Next
     End Sub
+
     Private Sub delete(ByVal path As String)
-        System.IO.File.Delete(Application.StartupPath & "\" & path)
+        File.Delete(Application.StartupPath & "\" & path)
     End Sub
-    Private Sub DownloadItem(ByVal sURL As String, _
-  ByVal strFile As String, ByVal strFolder As String)
+
+    Private Sub DownloadItem(ByVal sUrl As String,
+                             ByVal strFile As String, ByVal strFolder As String)
 
         Dim webreq As HttpWebRequest
         Dim webresp As HttpWebResponse
@@ -320,15 +360,16 @@ Public Class Updater
             bWriter = New BinaryWriter(stream)
 
             ' Datei blockweise downloaden und lokal speichern
-            Dim qSplit2 As String = splitString("A" & (webresp.ContentLength / 1000).ToString(), "A", ",")
+            Dim qSplit2 As String = SplitString("A" & (webresp.ContentLength / 1000).ToString(), "A", ",")
             Do
                 bytesRead = bReader.Read(buffer, 0, 1024)
                 bWriter.Write(buffer, 0, bytesRead)
                 subprogress_bar.Value += bytesRead
                 globalprogress_bar.Value += bytesRead
-                Dim qSplit As String = splitString("A" & (subprogress_bar.Value.ToString / 1000).ToString(), "A", ",")
+                Dim qSplit As String = SplitString("A" & (subprogress_bar.Value.ToString / 1000).ToString(), "A", ",")
                 subprogress_lbl.Text = qSplit & " KB" & " / " & qSplit2 & " KB"
-                globalprogress_lbl.Text = subprogress_bar.Value.ToString() & " KB" & " / " & subprogress_bar.Maximum.ToString() & " KB"
+                globalprogress_lbl.Text = subprogress_bar.Value.ToString() & " KB" & " / " &
+                                          subprogress_bar.Maximum.ToString() & " KB"
                 subprogress_lbl.Update()
                 subprogress_bar.Update()
                 globalprogress_lbl.Update()
@@ -341,22 +382,22 @@ Public Class Updater
             stream.Close()
 
         Catch ex As Exception
-          
+
         End Try
     End Sub
 End Class
-Public Class GetFileInformation
 
+Public Class GetFileInformation
     Implements IDisposable
 
-    Private fvi As System.Diagnostics.FileVersionInfo
+    Private ReadOnly fvi As FileVersionInfo
 
-    Public Sub New(ByVal Filename As String)
-        fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(Filename)
+    Public Sub New(ByVal filename As String)
+        fvi = FileVersionInfo.GetVersionInfo(Filename)
     End Sub
 
     Public Overrides Function ToString() As String
-        Dim sb As New System.Text.StringBuilder
+        Dim sb As New StringBuilder
 
         sb.Append("\n\tGetFilename:		" & Me.GetFilename)
         sb.Append("\n\tGetFileDescription:	" & Me.GetFileDescription)
@@ -403,18 +444,17 @@ Public Class GetFileInformation
         Return fvi.Comments
     End Function
 
-    Public Sub Dispose() Implements System.IDisposable.Dispose
+    Public Sub Dispose() Implements IDisposable.Dispose
         '
     End Sub
-
 End Class
 
 Public Class MyFile
-    Public name As String
-    Public url As String
-    Public path As String
-    Public size As Integer
-    Sub New()
+    Public Name As String
+    Public Url As String
+    Public Path As String
+    Public Size As Integer
 
+    Sub New()
     End Sub
 End Class

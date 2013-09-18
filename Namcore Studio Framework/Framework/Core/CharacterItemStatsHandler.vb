@@ -21,48 +21,63 @@
 '*      /Description:   Contains functions for extracting information about the enchantments 
 '*                      of all items in the inventory of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Module
 
-Imports NCFramework.EventLogging
-Imports NCFramework.Basics
-Imports NCFramework.GlobalVariables
-Imports NCFramework.CommandHandler
-Imports NCFramework.Conversions
-Public Class CharacterItemStatsHandler
-    Public Sub GetItemStats(ByVal CItemguid As Integer, ByRef Itm As Item, ByRef player As Character, ByVal setId As Integer)
-        LogAppend("Loading character ItemStats for item: " & CItemguid.ToString() & " and setId: " & setId, "CharacterItemStatssHandler_GetItemStats", True)
-        Select Case sourceCore
-            Case "arcemu"
-                loadAtArcemu(CItemguid, setId, Itm, player)
-            Case "trinity"
-                loadAtTrinity(CItemguid, setId, Itm, player)
-            Case "trinitytbc"
-                loadAtTrinityTBC(CItemguid, setId, Itm, player)
-            Case "mangos"
-                loadAtMangos(CItemguid, setId, Itm, player)
-            Case Else
+Namespace Framework.Core
+    Public Class CharacterItemStatsHandler
+        Public Sub GetItemStats(ByVal cItemguid As Integer, ByRef itm As Item, ByRef player As Character,
+                                ByVal setId As Integer)
+            LogAppend("Loading character ItemStats for item: " & CItemguid.ToString() & " and setId: " & setId,
+                      "CharacterItemStatssHandler_GetItemStats", True)
+            Select Case GlobalVariables.sourceCore
+                Case "arcemu"
+                    LoadAtArcemu(CItemguid, setId, Itm, player)
+                Case "trinity"
+                    LoadAtTrinity(CItemguid, setId, Itm, player)
+                Case "trinitytbc"
+                    'todo  LoadAtTrinityTBC(CItemguid, setId, Itm, player)
+                Case "mangos"
+                    LoadAtMangos(cItemguid, setId, itm, player)
+            End Select
+        End Sub
 
-        End Select
+        Private Sub LoadAtArcemu(ByVal item As Integer, ByVal tarSetId As Integer, ByRef itm As Item,
+                                 ByRef player As Character)
+            LogAppend("Loading ItemStats @LoadAtArcemu", "CharacterItemStatsHandler_LoadAtArcemu", False)
+            itm.enchstring =
+                runSQLCommand_characters_string(
+                    "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) & " FROM " &
+                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                    GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
+            SetCharacterArmorItem(player, itm)
+            SetCharacterSet(tarSetId, player)
+        End Sub
 
-    End Sub
-    Private Sub loadAtArcemu(ByVal item As Integer, ByVal tar_setId As Integer, ByRef itm As Item, ByRef player As Character)
-        LogAppend("Loading ItemStats @loadAtArcemu", "CharacterItemStatsHandler_loadAtArcemu", False)
-        itm.enchstring = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
-        SetCharacterArmorItem(player, itm)
-        SetCharacterSet(tar_setId, player)
-    End Sub
-    Private Sub loadAtTrinity(ByVal item As Integer, ByVal tar_setId As Integer, ByRef itm As Item, ByRef player As Character)
-        LogAppend("Loading ItemStats @loadAtTrinity", "CharacterItemStatsHandler_loadAtTrinity", False)
-        itm.enchstring = runSQLCommand_characters_string("SELECT " & sourceStructure.itmins_enchantments_col(0) & " FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
-        SetCharacterArmorItem(player, itm)
-        SetCharacterSet(tar_setId, player)
-    End Sub
-    Private Sub loadAtTrinityTBC(ByVal item As Integer, ByVal tar_setId As Integer, ByRef itm As Item, ByRef player As Character)
+        Private Sub LoadAtTrinity(ByVal item As Integer, ByVal tarSetId As Integer, ByRef itm As Item,
+                                  ByRef player As Character)
+            LogAppend("Loading ItemStats @LoadAtTrinity", "CharacterItemStatsHandler_LoadAtTrinity", False)
+            itm.enchstring =
+                runSQLCommand_characters_string(
+                    "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) & " FROM " &
+                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                    GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
+            SetCharacterArmorItem(player, itm)
+            SetCharacterSet(tarSetId, player)
+        End Sub
 
-    End Sub
-    Private Sub loadAtMangos(ByVal item As Integer, ByVal tar_setId As Integer, ByRef itm As Item, ByRef player As Character)
-        LogAppend("Loading character ItemStats @loadAtMangos", "CharacterItemStatsHandler_loadAtMangos", False)
-        itm.enchstring = runSQLCommand_characters_string("SELECT `" & sourceStructure.itmins_data_col(0) & "` FROM " & sourceStructure.item_instance_tbl(0) & " WHERE " & sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
-        SetCharacterArmorItem(player, itm)
-        SetCharacterSet(tar_setId, player)
-    End Sub
-End Class
+        Private Sub LoadAtMangos(ByVal item As Integer, ByVal tarSetId As Integer, ByRef itm As Item,
+                                 ByRef player As Character)
+            LogAppend("Loading character ItemStats @LoadAtMangos", "CharacterItemStatsHandler_LoadAtMangos", False)
+            itm.enchstring =
+                runSQLCommand_characters_string(
+                    "SELECT `" & GlobalVariables.sourceStructure.itmins_data_col(0) & "` FROM " &
+                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                    GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
+            SetCharacterArmorItem(player, itm)
+            SetCharacterSet(tarSetId, player)
+        End Sub
+    End Class
+End Namespace

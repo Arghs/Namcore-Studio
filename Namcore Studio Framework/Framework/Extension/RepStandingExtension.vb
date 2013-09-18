@@ -21,50 +21,54 @@
 '*      /Filename:      RepStandingExtension
 '*      /Description:   Extension to update reputation standing/value/max
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Runtime.CompilerServices
+Imports NCFramework.Framework.Module
 
-Imports System.Net
+Namespace Framework.Extension
 
-Public Module RepStandingExtension
-    ''' <summary>
-    ''' Updates reputation standing by value and status
-    ''' </summary>
-    <System.Runtime.CompilerServices.Extension()>
-    Public Function UpdateStanding(rep As Reputation) As Reputation
-        Try
-            Select Case rep.status
-                Case 0 : rep.standing = rep.value - 42000
-                Case 1 : rep.standing = rep.value - 6000
-                Case 2 : rep.standing = rep.value - 3000
-                Case 3 : rep.standing = rep.value
-                Case 4 : rep.standing = 3000 + rep.value
-                Case 5 : rep.standing = 9000 + rep.value
-                Case 6 : rep.standing = 21000 + rep.value
-                Case 7 : rep.standing = 42000 + rep.value
-            End Select
-            Return rep
-        Catch ex As Exception
-            Return rep
-        End Try
-    End Function
-    ''' <summary>
-    ''' Updates reputation value, status and max by standing
-    ''' </summary>
-    <System.Runtime.CompilerServices.Extension()>
-    Public Function UpdateValueMax(rep As Reputation) As Reputation
-        Try
-            If rep.standing >= -42000 Then rep.value = 42000 + rep.standing : rep.status = 0 : rep.max = 36000
-            If rep.standing >= -6000 Then rep.value = 6000 + rep.standing : rep.status = 1 : rep.max = 3000
-            If rep.standing >= -3000 Then rep.value = 3000 + rep.standing : rep.status = 2 : rep.max = 3000
-            If rep.standing >= 0 Then rep.value = rep.standing : rep.status = 3 : rep.max = 3000
-            If rep.standing >= 3000 Then rep.value = rep.standing - 3000 : rep.status = 4 : rep.max = 6000
-            If rep.standing >= 9000 Then rep.value = rep.standing - 9000 : rep.status = 5 : rep.max = 12000
-            If rep.standing >= 21000 Then rep.value = rep.standing - 21000 : rep.status = 6 : rep.max = 21000
-            If rep.standing >= 42000 Then rep.value = rep.standing - 42000 : rep.status = 7 : rep.max = 999
-            Return rep
-        Catch ex As Exception
-            Return rep
-        End Try
-    End Function
-End Module
+    Public Module RepStandingExtension
+        ''' <summary>
+        '''     Updates reputation standing by value and status
+        ''' </summary>
+        <Extension()>
+        Public Function UpdateStanding(rep As Reputation) As Reputation
+            Try
+                Select Case rep.status
+                    Case 0 : rep.standing = rep.value - 42000
+                    Case 1 : rep.standing = rep.value - 6000
+                    Case 2 : rep.standing = rep.value - 3000
+                    Case 3 : rep.standing = rep.value
+                    Case 4 : rep.standing = 3000 + rep.value
+                    Case 5 : rep.standing = 9000 + rep.value
+                    Case 6 : rep.standing = 21000 + rep.value
+                    Case 7 : rep.standing = 42000 + rep.value
+                End Select
+                Return rep
+            Catch ex As Exception
+                Return rep
+            End Try
+        End Function
 
 
+        ''' <summary>
+        '''     Updates reputation value, status and max by standing
+        ''' </summary>
+        <Extension()>
+        Public Function UpdateValueMax(rep As Reputation) As Reputation
+            Try
+                If rep.standing >= -42000 Then rep.value = 42000 + rep.standing : rep.status = 0 : rep.max = 36000
+                If rep.standing >= -6000 Then rep.value = 6000 + rep.standing : rep.status = 1 : rep.max = 3000
+                If rep.standing >= -3000 Then rep.value = 3000 + rep.standing : rep.status = 2 : rep.max = 3000
+                If rep.standing >= 0 Then rep.value = rep.standing : rep.status = 3 : rep.max = 3000
+                If rep.standing >= 3000 Then rep.value = rep.standing - 3000 : rep.status = 4 : rep.max = 6000
+                If rep.standing >= 9000 Then rep.value = rep.standing - 9000 : rep.status = 5 : rep.max = 12000
+                If rep.standing >= 21000 Then rep.value = rep.standing - 21000 : rep.status = 6 : rep.max = 21000
+                If rep.standing >= 42000 Then rep.value = rep.standing - 42000 : rep.status = 7 : rep.max = 999
+                Return rep
+            Catch ex As Exception
+                Return rep
+            End Try
+        End Function
+    End Module
+
+End Namespace

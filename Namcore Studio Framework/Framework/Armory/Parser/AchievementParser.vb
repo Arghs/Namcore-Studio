@@ -21,53 +21,63 @@
 '*      /Description:   Contains functions for loading character achievement information 
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
 Imports System.Net
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Module
 
-Public Class AchievementParser
-    Public Sub loadAchievements(ByVal setId As Integer, ByVal apiLink As String)
-        Dim client As New WebClient
-        client.CheckProxy()
-        '// Retrieving character
-        Dim player As Character = GetCharacterSetBySetId(setId)
-        player.Achievements = New List(Of Achievement)
-        Try
-            LogAppend("Loading character achievement information", "AchievementParser_loadAchievements", True)
-            '// Using API to load achievement info
-            Dim avContext As String = client.DownloadString(apiLink & "?fields=achievements")
-            '// Splitting to create completed-achievements and timestamp string
-            Dim avStr As String = splitString(avContext, "{""achievementsCompleted"":[", "],""") & ","
-            Dim timeStr As String = splitString(avContext, """achievementsCompletedTimestamp"":[", "],""")
-            If avStr.Length > 5 Then '// Should check if av count is > 0 // TODO Confirm
-                Dim loopcounter As Integer = 0
-                Dim excounter As Integer = UBound(Split(avStr, ","))
-                Dim partsAV() As String = avStr.Split(","c)
-                Dim partsTIME() As String = timeStr.Split(","c)
-                Do
-                    Dim avId As String = partsAV(loopcounter)
-                    Dim timeStamp = partsTIME(loopcounter)
-                    If timeStamp.Contains("000") Then
-                        Try
-                            timeStamp = timeStamp.Remove(timeStamp.Length - 3, 3)
-                        Catch tmpex As Exception
-                            LogAppend("Exception during timestamp splitting! - timeStamp/loopcounter/excounter: " & timeStamp & "/" & loopcounter.ToString & "/" &
-                                      excounter.ToString() & " # Exception is: " & tmpex.ToString(), "AchievementParser_loadAchievements", False, True)
-                        End Try
-                    End If
-                    loopcounter += 1
-                    LogAppend("Adding achievement " & avId & " with timestamp " & timeStamp, "AchievementParser_loadAchievements", False)
-                    Dim av As New Achievement
-                    av.Id = TryInt(avId)
-                    av.GainDate = TryInt(timeStamp)
-                    av.OwnerSet = setId
-                    player.Achievements.Add(av)
-                Loop Until loopcounter = excounter
-                '// Saving changes to character
-                SetCharacterSet(setId, player)
-            End If
-        Catch ex As Exception
-            LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "AchievementParser_loadAchievements", False, True)
-        End Try
-    End Sub
-End Class
+Namespace Framework.Armory.Parser
+
+    Public Class AchievementParser
+        Public Sub LoadAchievements(ByVal setId As Integer, ByVal apiLink As String)
+            Dim client As New WebClient
+            client.CheckProxy()
+            '// Retrieving character
+            Dim player As Character = GetCharacterSetBySetId(setId)
+            player.Achievements = New List(Of Achievement)
+            Try
+                LogAppend("Loading character achievement information", "AchievementParser_loadAchievements", True)
+                '// Using API to load achievement info
+                Dim avContext As String = client.DownloadString(apiLink & "?fields=achievements")
+                '// Splitting to create completed-achievements and timestamp string
+                Dim avStr As String = splitString(avContext, "{""achievementsCompleted"":[", "],""") & ","
+                Dim timeStr As String = splitString(avContext, """achievementsCompletedTimestamp"":[", "],""")
+                If avStr.Length > 5 Then '// Should check if av count is > 0 // TODO Confirm
+                    Dim loopcounter As Integer = 0
+                    Dim excounter As Integer = UBound(Split(avStr, ","))
+                    Dim partsAv() As String = avStr.Split(","c)
+                    Dim partsTime() As String = timeStr.Split(","c)
+                    Do
+                        Dim avId As String = partsAv(loopcounter)
+                        Dim timeStamp = partsTime(loopcounter)
+                        If timeStamp.Contains("000") Then
+                            Try
+                                timeStamp = timeStamp.Remove(timeStamp.Length - 3, 3)
+                            Catch tmpex As Exception
+                                LogAppend(
+                                    "Exception during timestamp splitting! - timeStamp/loopcounter/excounter: " & timeStamp &
+                                    "/" & loopcounter.ToString & "/" &
+                                    excounter.ToString() & " # Exception is: " & tmpex.ToString(),
+                                    "AchievementParser_loadAchievements", False, True)
+                            End Try
+                        End If
+                        loopcounter += 1
+                        LogAppend("Adding achievement " & avId & " with timestamp " & timeStamp,
+                                  "AchievementParser_loadAchievements", False)
+                        Dim av As New Achievement
+                        av.Id = TryInt(avId)
+                        av.GainDate = TryInt(timeStamp)
+                        av.OwnerSet = setId
+                        player.Achievements.Add(av)
+                    Loop Until loopcounter = excounter
+                    '// Saving changes to character
+                    SetCharacterSet(setId, player)
+                End If
+            Catch ex As Exception
+                LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "AchievementParser_loadAchievements", False,
+                          True)
+            End Try
+        End Sub
+    End Class
+End Namespace

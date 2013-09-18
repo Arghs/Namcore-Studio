@@ -21,12 +21,14 @@
 '*      /Description:   Includes functions for setting up the known spells of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Namespace Framework.Transmission
+    Public Module SpellCreation
+        Public Sub AddSpells(ByVal spellstring As String)
+            'TODO
+        End Sub
 
-Public Module SpellCreation
-    Public Sub AddSpells(ByVal spellstring As String)
-        'TODO
-    End Sub
-    Public Sub AddSpecialSpells(ByVal targetSetId As Integer, ByVal charguid As Integer)
-        'TODO
-    End Sub
-End Module
+        Public Sub AddSpecialSpells(ByVal targetSetId As Integer, ByVal charguid As Integer)
+            'TODO
+        End Sub
+    End Module
+End Namespace

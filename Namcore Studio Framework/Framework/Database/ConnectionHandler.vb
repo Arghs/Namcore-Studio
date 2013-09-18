@@ -20,67 +20,75 @@
 '*      /Filename:      ConnectionHandler
 '*      /Description:   Handles MySQL connections
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+Imports NCFramework.Framework.Logging
 Imports MySql.Data.MySqlClient
-Imports NCFramework.EventLogging
-Imports NCFramework.Basics
-Public Module ConnectionHandler
-    Public Sub OpenNewMySQLConnection(ByVal targetconnection As MySqlConnection, serverstring As String)
-        LogAppend("Opening new MySQL connection (target: " & targetconnection.ToString() & " with connectionstring: " & serverstring, "ConnectionHandler_OpenNewMySQLConnection", True)
-        If targetconnection.State = ConnectionState.Open Then
-            LogAppend("MySQL connection already open! -> Closing it now", "ConnectionHandler_OpenNewMySQLConnection", True)
+
+Namespace Framework.Database
+
+    Public Module ConnectionHandler
+        Public Sub OpenNewMySqlConnection(ByVal targetconnection As MySqlConnection, serverstring As String)
+            LogAppend(
+                "Opening new MySQL connection (target: " & targetconnection.ToString() & " with connectionstring: " &
+                serverstring, "ConnectionHandler_OpenNewMySQLConnection", True)
+            If targetconnection.State = ConnectionState.Open Then
+                LogAppend("MySQL connection already open! -> Closing it now", "ConnectionHandler_OpenNewMySQLConnection",
+                          True)
+                Try
+                    targetconnection.Close()
+                    targetconnection.Dispose()
+                    LogAppend("MySQL connection is now closed!", "ConnectionHandler_OpenNewMySQLConnection", False)
+                Catch ex As MySqlException
+                    LogAppend(
+                        "MySQL connection could not be closed! -> Aborting process -> Exception is: ###START###" &
+                        ex.ToString() & "###END###", "ConnectionHandler_OpenNewMySQLConnection", True, True)
+                    Exit Sub
+                End Try
+            End If
+            LogAppend("Setting MySQL connectionstring to: " & serverstring & vbNewLine & "and trying to open new connection",
+                      "ConnectionHandler_OpenNewMySQLConnection", False)
+            targetconnection.ConnectionString = serverstring
             Try
+                targetconnection.Open()
+                LogAppend("MySQL connection is now open!", "ConnectionHandler_OpenNewMySQLConnection", True)
+            Catch ex As MySqlException
                 targetconnection.Close()
                 targetconnection.Dispose()
-                LogAppend("MySQL connection is now closed!", "ConnectionHandler_OpenNewMySQLConnection", False)
-            Catch ex As MySqlException
-                LogAppend("MySQL connection could not be closed! -> Aborting process -> Exception is: ###START###" & ex.ToString() & "###END###", "ConnectionHandler_OpenNewMySQLConnection", True, True)
-                AbortProcess()
+                LogAppend(
+                    "MySQL connection could not be opened! -> Aborting process -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "ConnectionHandler_OpenNewMySQLConnection", True, True)
                 Exit Sub
             End Try
-        End If
-        LogAppend("Setting MySQL connectionstring to: " & serverstring & vbNewLine & "and trying to open new connection", "ConnectionHandler_OpenNewMySQLConnection", False)
-        targetconnection.ConnectionString = serverstring
-        Try
-            targetconnection.Open()
-            Dim state As ConnectionState = targetconnection.State
-            LogAppend("MySQL connection is now open!", "ConnectionHandler_OpenNewMySQLConnection", True)
-        Catch ex As MySqlException
-            targetconnection.Close()
-            targetconnection.Dispose()
-            LogAppend("MySQL connection could not be opened! -> Aborting process -> Exception is: ###START###" & ex.ToString() & "###END###", "ConnectionHandler_OpenNewMySQLConnection", True, True)
-            AbortProcess()
-            Exit Sub
-        End Try
-    End Sub
-    Public Function TestConnection(ByVal connectionstring As String) As Boolean
-        Dim SQLConnection As New MySqlConnection
-        Try
-            SQLConnection.Close()
-            SQLConnection.Dispose()
-        Catch ex As Exception
+        End Sub
 
-        End Try
-        SQLConnection.ConnectionString = connectionstring
-        Try
-
-            If SQLConnection.State = ConnectionState.Closed Then
-                SQLConnection.Open()
-                SQLConnection.Close()
-                SQLConnection.Dispose()
-                Return True
-            Else
-                SQLConnection.Close()
-                SQLConnection.Dispose()
-                Return False
-            End If
-        Catch ex As Exception
+        Public Function TestConnection(ByVal connectionstring As String) As Boolean
+            Dim sqlConnection As New MySqlConnection
             Try
-                SQLConnection.Close()
-                SQLConnection.Dispose()
-            Catch
+                sqlConnection.Close()
+                sqlConnection.Dispose()
+            Catch ex As Exception
+
             End Try
-            Return False
-        End Try
-    End Function
-End Module
+            sqlConnection.ConnectionString = connectionstring
+            Try
+
+                If sqlConnection.State = ConnectionState.Closed Then
+                    sqlConnection.Open()
+                    sqlConnection.Close()
+                    sqlConnection.Dispose()
+                    Return True
+                Else
+                    sqlConnection.Close()
+                    sqlConnection.Dispose()
+                    Return False
+                End If
+            Catch ex As Exception
+                Try
+                    sqlConnection.Close()
+                    sqlConnection.Dispose()
+                Catch
+                End Try
+                Return False
+            End Try
+        End Function
+    End Module
+End Namespace

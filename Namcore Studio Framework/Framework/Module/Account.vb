@@ -20,13 +20,16 @@
 '*      /Filename:      Account
 '*      /Description:   Account Object - account information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-<Serializable()> _
-Public Class Account
-    Public id As Integer
-    Public name As String
-    Public transcharlist As ArrayList
-    Public Sub New(accname As String, accountid As Integer)
-        name = accname
-        id = accountid
-    End Sub
-End Class
+Namespace Framework.Module
+    <Serializable()>
+    Public Class Account
+        Public Id As Integer
+        Public Name As String
+        Public Transcharlist As ArrayList
+
+        Public Sub New(accname As String, accountid As Integer)
+            name = accname
+            id = accountid
+        End Sub
+    End Class
+End Namespace

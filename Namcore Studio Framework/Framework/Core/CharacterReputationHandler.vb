@@ -21,125 +21,145 @@
 '*      /Description:   Contains functions for extracting information about the gained 
 '*                      reputation of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Module
 
-Imports NCFramework.EventLogging
-Imports NCFramework.Basics
-Imports NCFramework.GlobalVariables
-Imports NCFramework.CommandHandler
-Imports NCFramework.Conversions
-Public Class CharacterReputationHandler
-    Public Sub GetCharacterReputation(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
-        LogAppend("Loading character reputation for characterGuid: " & characterGuid & " and setId: " & setId, "CharacterReputationHandler_GetCharacterReputation", True)
-        Select Case sourceCore
-            Case "arcemu"
-                loadAtArcemu(characterGuid, setId, accountId)
-            Case "trinity"
-                loadAtTrinity(characterGuid, setId, accountId)
-            Case "trinitytbc"
-                loadAtTrinityTBC(characterGuid, setId, accountId)
-            Case "mangos"
-                loadAtMangos(characterGuid, setId, accountId)
-            Case Else
+Namespace Framework.Core
+    Public Class CharacterReputationHandler
+        Public Sub GetCharacterReputation(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+            LogAppend("Loading character reputation for characterGuid: " & characterGuid & " and setId: " & setId,
+                      "CharacterReputationHandler_GetCharacterReputation", True)
+            Select Case GlobalVariables.sourceCore
+                Case "arcemu"
+                    LoadAtArcemu(characterGuid, setId)
+                Case "trinity"
+                    LoadAtTrinity(characterGuid, setId)
+                Case "trinitytbc"
+                    'todo LoadAtTrinityTBC(characterGuid, setId, accountId)
+                Case "mangos"
+                    LoadAtMangos(characterGuid, setId)
+            End Select
+        End Sub
 
-        End Select
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
+            LogAppend("Loading character reputation @LoadAtArcemu", "CharacterReputationHandler_LoadAtArcemu", False)
+            Dim tempdt As DataTable =
+                    ReturnDataTable(
+                        "SELECT " & GlobalVariables.sourceStructure.char_reputation_col(0) & " FROM " &
+                        GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
+                        GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
+            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Try
+                Dim lastcount As Integer = tempdt.Rows.Count
+                Dim count As Integer = 0
+                If Not lastcount = 0 Then
+                    Do
+                        Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
+                        Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
+                        Dim loopcounter As Integer = 0
+                        Dim finalcounter As Integer = CInt(excounter / 4)
+                        Dim partscounter As Integer = 0
+                        Do
+                            Dim rep As New Reputation
+                            Dim parts() As String = readedcode.Split(","c)
+                            rep.faction = TryInt(parts(partscounter).ToString)
+                            partscounter += 1
+                            rep.flags = TryInt(parts(partscounter).ToString)
+                            partscounter += 1
+                            rep.standing = TryInt(parts(partscounter).ToString)
+                            partscounter += 2
+                            rep.UpdateValueMax()
+                            If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
+                            player.PlayerReputation.Add(rep)
+                            loopcounter += 1
+                        Loop Until loopcounter = finalcounter
+                        count += 1
+                    Loop Until count = lastcount
+                Else
+                    LogAppend("No reputation found!", "CharacterReputationHandler_LoadAtArcemu", True)
+                End If
+            Catch ex As Exception
+                LogAppend(
+                    "Something went wrong while loading character reputation! -> skipping -> Exception is: ###START###" &
+                    ex.ToString() & "###END###", "CharacterReputationHandler_LoadAtArcemu", True, True)
+                Exit Sub
+            End Try
+            SetCharacterSet(tarSetId, player)
+        End Sub
 
-    End Sub
-    Private Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
-        LogAppend("Loading character reputation @loadAtArcemu", "CharacterReputationHandler_loadAtArcemu", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_reputation_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim player As Character = GetCharacterSetBySetId(tar_setId)
-        Try
-            Dim lastcount As Integer = tempdt.Rows.Count
-            Dim count As Integer = 0
-            If Not lastcount = 0 Then
-                Do
-                    Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
-                    Dim loopcounter As Integer = 0
-                    Dim finalcounter As Integer = CInt(excounter / 4)
-                    Dim partscounter As Integer = 0
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer)
+            LogAppend("Loading character reputation @LoadAtTrinity", "CharacterReputationHandler_LoadAtTrinity", False)
+            Dim tempdt As DataTable =
+                    ReturnDataTable(
+                        "SELECT " & GlobalVariables.sourceStructure.rep_faction_col(0) & ", " &
+                        GlobalVariables.sourceStructure.rep_standing_col(0) & ", " &
+                        GlobalVariables.sourceStructure.rep_flags_col(0) &
+                        " FROM " & GlobalVariables.sourceStructure.character_reputation_tbl(0) & " WHERE " &
+                        GlobalVariables.sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
+            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Try
+                Dim lastcount As Integer = tempdt.Rows.Count
+                Dim count As Integer = 0
+                If Not lastcount = 0 Then
                     Do
                         Dim rep As New Reputation
-                        Dim parts() As String = readedcode.Split(","c)
-                        rep.faction = TryInt(parts(partscounter).ToString)
-                        partscounter += 1
-                        rep.flags = TryInt(parts(partscounter).ToString)
-                        partscounter += 1
-                        rep.standing = TryInt(parts(partscounter).ToString)
-                        partscounter += 2
+                        rep.faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                        rep.standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        rep.flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         rep.UpdateValueMax()
                         If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
                         player.PlayerReputation.Add(rep)
-                        loopcounter += 1
-                    Loop Until loopcounter = finalcounter
-                    count += 1
-                Loop Until count = lastcount
-            Else
-                LogAppend("No reputation found!", "CharacterReputationHandler_loadAtArcemu", True)
-            End If
-        Catch ex As Exception
-            LogAppend("Something went wrong while loading character reputation! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterReputationHandler_loadAtArcemu", True, True)
-            Exit Sub
-        End Try
-        SetCharacterSet(tar_setId, player)
-    End Sub
-    Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
-        LogAppend("Loading character reputation @loadAtTrinity", "CharacterReputationHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.rep_faction_col(0) & ", " & sourceStructure.rep_standing_col(0) & ", " & sourceStructure.rep_flags_col(0) &
-                                                  " FROM " & sourceStructure.character_reputation_tbl(0) & " WHERE " & sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim player As Character = GetCharacterSetBySetId(tar_setId)
-        Try
-            Dim lastcount As Integer = tempdt.Rows.Count
-            Dim count As Integer = 0
-            If Not lastcount = 0 Then
-                Do
-                    Dim rep As New Reputation
-                    rep.faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
-                    rep.standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                    rep.flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                    rep.UpdateValueMax()
-                    If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
-                    player.PlayerReputation.Add(rep)
-                    count += 1
-                Loop Until count = lastcount
-            Else
-                LogAppend("No reputation found!", "CharacterReputationHandler_loadAtTrinity", True)
-            End If
-        Catch ex As Exception
-            LogAppend("Something went wrong while loading character reputation! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterReputationHandler_loadAtTrinity", True, True)
-            Exit Sub
-        End Try
-        SetCharacterSet(tar_setId, player)
-    End Sub
-    Private Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+                        count += 1
+                    Loop Until count = lastcount
+                Else
+                    LogAppend("No reputation found!", "CharacterReputationHandler_LoadAtTrinity", True)
+                End If
+            Catch ex As Exception
+                LogAppend(
+                    "Something went wrong while loading character reputation! -> skipping -> Exception is: ###START###" &
+                    ex.ToString() & "###END###", "CharacterReputationHandler_LoadAtTrinity", True, True)
+                Exit Sub
+            End Try
+            SetCharacterSet(tarSetId, player)
+        End Sub
 
-    End Sub
-    Private Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
-        LogAppend("Loading character reputation @loadAtMangos", "CharacterReputationHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.rep_faction_col(0) & ", " & sourceStructure.rep_standing_col(0) & ", " & sourceStructure.rep_flags_col(0) &
-                                                  " FROM " & sourceStructure.character_reputation_tbl(0) & " WHERE " & sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim player As Character = GetCharacterSetBySetId(tar_setId)
-        Try
-            Dim lastcount As Integer = tempdt.Rows.Count
-            Dim count As Integer = 0
-            If Not lastcount = 0 Then
-                Do
-                    Dim rep As New Reputation
-                    rep.faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
-                    rep.standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                    rep.flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                    rep.UpdateValueMax()
-                    If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
-                    player.PlayerReputation.Add(rep)
-                    count += 1
-                Loop Until count = lastcount
-            Else
-                LogAppend("No reputation found!", "CharacterReputationHandler_loadAtMangos", True)
-            End If
-        Catch ex As Exception
-            LogAppend("Something went wrong while loading character reputation! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterReputationHandler_loadAtMangos", True, True)
-            Exit Sub
-        End Try
-        SetCharacterSet(tar_setId, player)
-    End Sub
-End Class
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer)
+            LogAppend("Loading character reputation @LoadAtMangos", "CharacterReputationHandler_LoadAtMangos", False)
+            Dim tempdt As DataTable =
+                    ReturnDataTable(
+                        "SELECT " & GlobalVariables.sourceStructure.rep_faction_col(0) & ", " &
+                        GlobalVariables.sourceStructure.rep_standing_col(0) & ", " &
+                        GlobalVariables.sourceStructure.rep_flags_col(0) &
+                        " FROM " & GlobalVariables.sourceStructure.character_reputation_tbl(0) & " WHERE " &
+                        GlobalVariables.sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
+            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Try
+                Dim lastcount As Integer = tempdt.Rows.Count
+                Dim count As Integer = 0
+                If Not lastcount = 0 Then
+                    Do
+                        Dim rep As New Reputation
+                        rep.faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                        rep.standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        rep.flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        rep.UpdateValueMax()
+                        If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
+                        player.PlayerReputation.Add(rep)
+                        count += 1
+                    Loop Until count = lastcount
+                Else
+                    LogAppend("No reputation found!", "CharacterReputationHandler_LoadAtMangos", True)
+                End If
+            Catch ex As Exception
+                LogAppend(
+                    "Something went wrong while loading character reputation! -> skipping -> Exception is: ###START###" &
+                    ex.ToString() & "###END###", "CharacterReputationHandler_LoadAtMangos", True, True)
+                Exit Sub
+            End Try
+            SetCharacterSet(tarSetId, player)
+        End Sub
+    End Class
+End Namespace

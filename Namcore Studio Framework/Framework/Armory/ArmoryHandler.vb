@@ -20,93 +20,117 @@
 '*      /Filename:      ArmoryHandler
 '*      /Description:   Contains functions for parsing character information from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Threading
 Imports System.Net
 Imports System.Text
-Imports System.IO
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Armory.Parser
 
-Public Class ArmoryHandler
-    Private context As Threading.SynchronizationContext = Threading.SynchronizationContext.Current
-    Public Event Completed As EventHandler(Of CompletedEventArgs)
-    Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
-        RaiseEvent Completed(Me, e)
-    End Sub
-    Public Sub LoadArmoryCharacters(ByVal urllst As List(Of String))
-        ThreadExtensions.QueueUserWorkItem(New Func(Of List(Of String), String)(AddressOf DoLoad), urllst)
-    End Sub
-    Public Function DoLoad(ByVal LinkList As List(Of String)) As String
-        LogAppend("Loading characters from Armory (" & LinkList.Count.ToString() & " character/s)", "ArmoryHandler_DoLoad", True)
-        Dim setId As Integer = 0
-        Dim CharacterContext As String
-        Dim APILink As String
-        Dim CharacterName As String
-        Dim Client As New WebClient
-        Client.CheckProxy()
-        For Each ArmoryLink As String In LinkList
-            Try
-                LogAppend("URL is " & ArmoryLink, "ArmoryHandler_DoLoad", False)
-                CharacterContext = Client.DownloadString(ArmoryLink)
-                Dim b() As Byte = Encoding.Default.GetBytes(CharacterContext)
-                CharacterContext = Encoding.UTF8.GetString(b)
-            Catch ex As Exception
-                LogAppend("Failed to load character context. Exception is: " & vbNewLine & ex.ToString(), "ArmoryHandler_DoLoad", True, True)
-                Continue For
-            End Try
-            Try
-                Dim realm As String = splitString(ArmoryLink, "/character/", "/")
-                CharacterContext = CharacterContext.Replace("&#39;", "")
-                CharacterName = splitString(ArmoryLink, "/" & realm & "/", "/")
-                APILink = "http://" & splitString(ArmoryLink, "http://", ".battle") & ".battle.net/api/wow/character/" & splitString(ArmoryLink, "/character/", "/") & "/" & CharacterName
-                setId += 1
-                LogAppend("Loading character " & CharacterName & " //ident is " & setId.ToString(), "ArmoryHandler_DoLoad", True)
-                LogAppend("Loading basic character information", "ArmoryHandler_DoLoad", True)
-                Dim Player As New Character(CharacterName, 0)
-                Player.AccountId = 0
-                Player.AccountName = "Armory"
-                Player.Level = TryInt(splitString(CharacterContext, "<span class=""level""><strong>", "</strong></span>"))
-                Player.Gender = TryInt(splitString(Client.DownloadString(APILink), """gender"":", ","""))
-                Player.Race = TryInt(splitString(Client.DownloadString(APILink), """race"":", ","""))
-                Player.Cclass = TryInt(GetClassIdByName(splitString(CharacterContext, "/game/class/", """ class=")))
-                '// Character appearance
+Namespace Framework.Armory
+
+    Public Class ArmoryHandler
+
+        '// Declaration
+        Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
+        Public Event Completed As EventHandler(Of CompletedEventArgs)
+        '// Declaration
+
+        Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
+            RaiseEvent Completed(Me, e)
+        End Sub
+
+        Public Sub LoadArmoryCharacters(ByVal urllst As List(Of String))
+            ThreadExtensions.QueueUserWorkItem(New Func(Of List(Of String), String)(AddressOf DoLoad), urllst)
+        End Sub
+
+        Public Function DoLoad(ByVal linkList As List(Of String)) As String
+            LogAppend("Loading characters from Armory (" & LinkList.Count.ToString() & " character/s)",
+                      "ArmoryHandler_DoLoad", True)
+            Dim setId As Integer = 0
+            Dim characterContext As String
+            Dim apiLink As String
+            Dim characterName As String
+            Dim client As New WebClient
+            client.CheckProxy()
+            For Each armoryLink As String In LinkList
                 Try
-                    LogAppend("Loading character appearance information", "ArmoryHandler_DoLoad", True)
-                    Dim appearanceContext As String = Client.DownloadString(APILink & "?fields=appearance")
-                    Dim app_face As String = Hex$(Long.Parse(splitString(appearanceContext, """faceVariation"":", ",")))
-                    Dim app_skin As String = Hex$(Long.Parse(splitString(appearanceContext, """skinColor"":", ",")))
-                    Dim app_hairStyle As String = Hex$(Long.Parse(splitString(appearanceContext, """hairVariation"":", ",")))
-                    Dim app_hairColor As String = Hex$(Long.Parse(splitString(appearanceContext, """hairColor"":", ",")))
-                    Dim app_featureVar As String = Hex$(Long.Parse(splitString(appearanceContext, """featureVariation"":", ",")))
-                    If app_face.ToString.Length = 1 Then app_face = 0 & app_face
-                    If app_skin.ToString.Length = 1 Then app_skin = 0 & app_skin
-                    If app_hairStyle.ToString.Length = 1 Then app_hairStyle = 0 & app_hairStyle
-                    If app_hairColor.ToString.Length = 1 Then app_hairColor = 0 & app_hairColor
-                    If app_featureVar.Length = 1 Then app_featureVar = "0" & app_featureVar 'todo //not used
-                    Dim byteStr As String = ((app_hairColor) & (app_hairStyle) & (app_face) & (app_skin)).ToString
-                    Player.PlayerBytes = TryInt((CLng("&H" & byteStr).ToString))
+                    LogAppend("URL is " & armoryLink, "ArmoryHandler_DoLoad", False)
+                    characterContext = client.DownloadString(armoryLink)
+                    Dim b() As Byte = Encoding.Default.GetBytes(characterContext)
+                    characterContext = Encoding.UTF8.GetString(b)
                 Catch ex As Exception
-                    LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "ArmoryHandler_DoLoad", False, True)
+                    LogAppend("Failed to load character context. Exception is: " & vbNewLine & ex.ToString(),
+                              "ArmoryHandler_DoLoad", True, True)
+                    Continue For
                 End Try
-                LogAppend("Loading character's finished quests", "ArmoryHandler_DoLoad", True)
-                Player.FinishedQuests = splitString(Client.DownloadString(APILink & "?fields=quests") & ",", """quests"":[", "]}")
-                Player.SetIndex = setId
-                AddCharacterSet(setId, Player)
-                Dim m_reputationParser As ReputationParser = New ReputationParser
-                m_reputationParser.loadReputation(setId, APILink)
-                Dim m_glyphParser As GlyphParser = New GlyphParser
-                m_glyphParser.loadGlyphs(setId, APILink)
-                Dim m_achievementParser As AchievementParser = New AchievementParser
-                m_achievementParser.loadAchievements(setId, APILink)
-                Dim m_professionParser As ProfessionParser = New ProfessionParser
-                m_professionParser.loadProfessions(setId, APILink)
-                Dim m_itemParser As ItemParser = New ItemParser
-                m_itemParser.loadItems(CharacterContext, setId)
-                LogAppend("Character loaded!", "ArmoryHandler_DoLoad", True)
-            Catch ex As Exception
-                LogAppend("Exception during character loading!: " & ex.ToString(), "ArmoryHandler_DoLoad", True, True)
-            End Try
-        Next
-        LogAppend("All characters loaded!", "ArmoryHandler_DoLoad", True)
-        ThreadExtensions.ScSend(context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted), New CompletedEventArgs())
-    End Function
-
-End Class
-
+                Try
+                    Dim realm As String = splitString(armoryLink, "/character/", "/")
+                    characterContext = characterContext.Replace("&#39;", "")
+                    characterName = splitString(armoryLink, "/" & realm & "/", "/")
+                    apiLink = "http://" & splitString(armoryLink, "http://", ".battle") & ".battle.net/api/wow/character/" &
+                              splitString(armoryLink, "/character/", "/") & "/" & characterName
+                    setId += 1
+                    LogAppend("Loading character " & characterName & " //ident is " & setId.ToString(),
+                              "ArmoryHandler_DoLoad", True)
+                    LogAppend("Loading basic character information", "ArmoryHandler_DoLoad", True)
+                    Dim player As New Character(characterName, 0)
+                    player.AccountId = 0
+                    player.AccountName = "Armory"
+                    player.Level = TryInt(splitString(characterContext, "<span class=""level""><strong>", "</strong></span>"))
+                    player.Gender = TryInt(splitString(client.DownloadString(apiLink), """gender"":", ","""))
+                    player.Race = TryInt(splitString(client.DownloadString(apiLink), """race"":", ","""))
+                    player.Cclass = TryInt(GetClassIdByName(splitString(characterContext, "/game/class/", """ class=")))
+                    '// Character appearance
+                    Try
+                        LogAppend("Loading character appearance information", "ArmoryHandler_DoLoad", True)
+                        Dim appearanceContext As String = client.DownloadString(apiLink & "?fields=appearance")
+                        Dim appFace As String = Hex$(Long.Parse(splitString(appearanceContext, """faceVariation"":", ",")))
+                        Dim appSkin As String = Hex$(Long.Parse(splitString(appearanceContext, """skinColor"":", ",")))
+                        Dim appHairStyle As String = Hex$(Long.Parse(splitString(appearanceContext, """hairVariation"":",
+                                                                                  ",")))
+                        Dim appHairColor As String = Hex$(Long.Parse(splitString(appearanceContext, """hairColor"":", ",")))
+                        Dim appFeatureVar As String = Hex$(Long.Parse(splitString(appearanceContext,
+                                                                                   """featureVariation"":", ",")))
+                        If appFace.ToString.Length = 1 Then appFace = 0 & appFace
+                        If appSkin.ToString.Length = 1 Then appSkin = 0 & appSkin
+                        If appHairStyle.ToString.Length = 1 Then appHairStyle = 0 & appHairStyle
+                        If appHairColor.ToString.Length = 1 Then appHairColor = 0 & appHairColor
+                        ' ReSharper disable RedundantAssignment
+                        If appFeatureVar.Length = 1 Then appFeatureVar = "0" & appFeatureVar 'todo //not used
+                        ' ReSharper restore RedundantAssignment
+                        Dim byteStr As String = ((appHairColor) & (appHairStyle) & (appFace) & (appSkin)).ToString
+                        player.PlayerBytes = TryInt((CLng("&H" & byteStr).ToString))
+                    Catch ex As Exception
+                        LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "ArmoryHandler_DoLoad", False, True)
+                    End Try
+                    LogAppend("Loading character's finished quests", "ArmoryHandler_DoLoad", True)
+                    player.FinishedQuests = splitString(client.DownloadString(apiLink & "?fields=quests") & ",",
+                                                        """quests"":[", "]}")
+                    player.SetIndex = setId
+                    AddCharacterSet(setId, player)
+                    Dim mReputationParser As ReputationParser = New ReputationParser
+                    mReputationParser.LoadReputation(setId, apiLink)
+                    Dim mGlyphParser As GlyphParser = New GlyphParser
+                    mGlyphParser.LoadGlyphs(setId, apiLink)
+                    Dim mAchievementParser As AchievementParser = New AchievementParser
+                    mAchievementParser.LoadAchievements(setId, apiLink)
+                    Dim mProfessionParser As ProfessionParser = New ProfessionParser
+                    mProfessionParser.LoadProfessions(setId, apiLink)
+                    Dim mItemParser As ItemParser = New ItemParser
+                    mItemParser.LoadItems(characterContext, setId)
+                    LogAppend("Character loaded!", "ArmoryHandler_DoLoad", True)
+                Catch ex As Exception
+                    LogAppend("Exception during character loading!: " & ex.ToString(), "ArmoryHandler_DoLoad", True, True)
+                End Try
+            Next
+            LogAppend("All characters loaded!", "ArmoryHandler_DoLoad", True)
+            ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
+                                    New CompletedEventArgs())
+            ' ReSharper disable VBWarnings::BC42105
+        End Function
+        ' ReSharper restore VBWarnings::BC42105
+    End Class
+End Namespace

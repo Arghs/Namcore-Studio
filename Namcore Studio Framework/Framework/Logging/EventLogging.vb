@@ -20,41 +20,52 @@
 '*      /Filename:      EventLogging
 '*      /Description:   Handles logging of events and exceptions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Imports NCFramework.GlobalVariables
-Imports System.Threading
 Imports System.IO
+Imports System.Text
+Imports NCFramework.Framework.Module
 
-Public Module EventLogging
-    Public Delegate Sub IncomingEventDelegate(ByVal _event As String)
-    Public lastprogress As Integer
-    Public isbusy As Boolean = False
-    Private m_userOut As Boolean
-    Public Sub LogAppend(ByVal _event As String, ByVal location As String, Optional userOut As Boolean = False, Optional iserror As Boolean = False)
-        m_userOut = userOut
-        While isbusy
-        End While
-        isbusy = True
-        appendStatus(_event, location, iserror)
-        isbusy = False
-    End Sub
-    Private Sub appendStatus(ByVal _status As String, ByVal loc As String, Optional Iserror As Boolean = False)
-        Dim timenow As String = Now.TimeOfDay.ToString
-        Dim append As String = ""
-        If Iserror Then append = "[ERROR]"
-        eventlog = eventlog & vbNewLine & "[" & timenow & "]" & append & "[" & loc & "]" & _status
-        If m_userOut = True Then
-            proccessTXT = "[" & timenow & "]" & _status & vbNewLine & proccessTXT
-            Dim fs As New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt", FileMode.OpenOrCreate, System.Text.Encoding.Default)
-            fs.WriteLine(eventlog)
-            fs.Close()
-            eventlog = ""
-            Try
-                procStatus.appendProc("[" & Now.TimeOfDay.ToString & "]" & _status)
-            Catch ex As Exception
+Namespace Framework.Logging
 
-            End Try
-        End If
-    End Sub
+    Public Module EventLogging
 
-End Module
+        '// Declaration
+        Public Delegate Sub IncomingEventDelegate(ByVal [event] As String)
+        Public Lastprogress As Integer
+        Public Isbusy As Boolean = False
+        Private _mUserOut As Boolean
+        '// Declaration
+
+        Public Sub LogAppend(ByVal myevent As String, ByVal location As String, Optional userOut As Boolean = False,
+                             Optional iserror As Boolean = False)
+            _mUserOut = userOut
+            While Isbusy
+            End While
+            Isbusy = True
+            appendStatus(myevent, location, iserror)
+            Isbusy = False
+        End Sub
+
+        Private Sub AppendStatus(ByVal status As String, ByVal loc As String, Optional iserror As Boolean = False)
+            Dim timenow As String = Now.TimeOfDay.ToString
+            Dim append As String = ""
+            If iserror Then append = "[ERROR]"
+            GlobalVariables.eventlog = GlobalVariables.eventlog & vbNewLine & "[" & timenow & "]" & append & "[" & loc & "]" &
+                                       status
+            If _mUserOut = True Then
+                GlobalVariables.proccessTXT = "[" & timenow & "]" & status & vbNewLine & GlobalVariables.proccessTXT
+                Dim _
+                    fs As _
+                        New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt",
+                                         FileMode.OpenOrCreate, Encoding.Default)
+                fs.WriteLine(GlobalVariables.eventlog)
+                fs.Close()
+                GlobalVariables.eventlog = ""
+                Try
+                    GlobalVariables.procStatus.AppendProc("[" & Now.TimeOfDay.ToString & "]" & status)
+                Catch ex As Exception
+
+                End Try
+            End If
+        End Sub
+    End Module
+End Namespace

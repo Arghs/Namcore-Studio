@@ -20,39 +20,49 @@
 '*      /Filename:      WebConnection
 '*      /Description:   Provides functions to get default proxy information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Net
 
-Public Class WebConnection
-    Public Function GetProxyServerName() As String
+Namespace Framework.Functions
 
-        Dim UseProxy As New Net.WebProxy()
-        Try 'if no proxy is specified, an exception is 
-            'thrown by the frameworks and must be caught
+    Public Class WebConnection
+        Public Function GetProxyServerName() As String
 
-            Return UseProxy.GetDefaultProxy.Address.Host
+            ' ReSharper disable UnusedVariable
+            Dim useProxy As New WebProxy()
+            ' ReSharper restore UnusedVariable
+            Try 'if no proxy is specified, an exception is 
+                'thrown by the frameworks and must be caught
 
-        Catch 'catch the error when no proxy is specified in IE
+                ' ReSharper disable VBWarnings::BC40008
+                Return useProxy.GetDefaultProxy.Address.Host
+                ' ReSharper restore VBWarnings::BC40008
 
-            Return Nothing
+            Catch 'catch the error when no proxy is specified in IE
 
-        End Try
+                Return Nothing
 
-    End Function
+            End Try
+        End Function
 
 
-    Public Function GetProxyServerPort() As String
+        Public Function GetProxyServerPort() As String
 
-        Dim UseProxy As New Net.WebProxy()
+            ' ReSharper disable UnusedVariable
+            Dim useProxy As New WebProxy()
+            ' ReSharper restore UnusedVariable
 
-        Try 'if no proxy is specified, an exception is 
-            'thrown by the frameworks and must be caught
+            Try 'if no proxy is specified, an exception is 
+                'thrown by the frameworks and must be caught
 
-            Return UseProxy.GetDefaultProxy.Address.Port
+                ' ReSharper disable VBWarnings::BC40008
+                Return useProxy.GetDefaultProxy.Address.Port
+                ' ReSharper restore VBWarnings::BC40008
 
-        Catch 'catch the error when no proxy is specified in IE
+            Catch 'catch the error when no proxy is specified in IE
 
-            Return Nothing
+                Return Nothing
 
-        End Try
-
-    End Function
-End Class
+            End Try
+        End Function
+    End Class
+End Namespace

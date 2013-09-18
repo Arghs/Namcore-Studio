@@ -20,39 +20,47 @@
 '*      /Filename:      CoreHandler
 '*      /Description:   Handles account/character loading requests
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++s++++++++++++++++++++++++++
-Imports NCFramework.GlobalVariables
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Module
 
-Public Class CoreHandler
-    Public Sub handleLoadingRequests(ByVal setId As Integer)
-        LogAppend("Loading character with setId " & setId.ToString() & " from database", "CoreHandler_handleLoadingRequests")
-        If GlobalConnection.State = ConnectionState.Closed Then GlobalConnection.Open()
-        If GlobalConnection_Realm.State = ConnectionState.Closed Then GlobalConnection_Realm.Open()
-        forceTargetConnectionUsage = False
-        Dim tmpPlayer As Character = GetCharacterSetBySetId(setId)
-        Dim m_basicsHandler As New CharacterBasicsHandler
-        m_basicsHandler.GetBasicCharacterInformation(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_avHandler As New CharacterAchievementHandler
-        m_avHandler.GetCharacterAchievement(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_actionsHandler As New CharacterActionsHandler
-        m_actionsHandler.GetCharacterActions(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_inventoryHandler As New CharacterInventoryHandler
-        m_inventoryHandler.GetCharacterInventory(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_armorHandler As New CharacterArmorHandler
-        m_armorHandler.GetCharacterArmor(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_glyphsHandler As New CharacterGlyphsHandler
-        m_glyphsHandler.GetCharacterGlyphs(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_questlogHandler As New CharacterQuestlogHandler
-        m_questlogHandler.GetCharacterQuestlog(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_reputationHandler As New CharacterReputationHandler
-        m_reputationHandler.GetCharacterReputation(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_skillsHandler As New CharacterSkillsHandler
-        m_skillsHandler.GetCharacterSkills(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_spellsHandler As New CharacterSpellsHandler
-        m_spellsHandler.GetCharacterSpells(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_talentHandler As New CharacterTalentsHandler
-        m_talentHandler.GetCharacterTalents(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
-        Dim m_enchantmentsHandler As New CharacterEnchantmentsHandler
-        m_enchantmentsHandler.HandleEnchantments(setId)
-        LogAppend("Loading finished!", "CoreHandler_handleLoadingRequests")
-    End Sub
-End Class
+Namespace Framework.Core
+
+    Public Class CoreHandler
+
+        Public Sub HandleLoadingRequests(ByVal setId As Integer)
+            LogAppend("Loading character with setId " & setId.ToString() & " from database",
+                      "CoreHandler_handleLoadingRequests")
+            If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then GlobalVariables.GlobalConnection.Open()
+            If GlobalVariables.GlobalConnection_Realm.State = ConnectionState.Closed Then _
+                GlobalVariables.GlobalConnection_Realm.Open()
+            GlobalVariables.forceTargetConnectionUsage = False
+            Dim tmpPlayer As Character = GetCharacterSetBySetId(setId)
+            Dim mBasicsHandler As New CharacterBasicsHandler
+            mBasicsHandler.GetBasicCharacterInformation(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mAvHandler As New CharacterAchievementHandler
+            mAvHandler.GetCharacterAchievement(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mActionsHandler As New CharacterActionsHandler
+            mActionsHandler.GetCharacterActions(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mInventoryHandler As New CharacterInventoryHandler
+            mInventoryHandler.GetCharacterInventory(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mArmorHandler As New CharacterArmorHandler
+            mArmorHandler.GetCharacterArmor(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mGlyphsHandler As New CharacterGlyphsHandler
+            mGlyphsHandler.GetCharacterGlyphs(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mQuestlogHandler As New CharacterQuestlogHandler
+            mQuestlogHandler.GetCharacterQuestlog(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mReputationHandler As New CharacterReputationHandler
+            mReputationHandler.GetCharacterReputation(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mSkillsHandler As New CharacterSkillsHandler
+            mSkillsHandler.GetCharacterSkills(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mSpellsHandler As New CharacterSpellsHandler
+            mSpellsHandler.GetCharacterSpells(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mTalentHandler As New CharacterTalentsHandler
+            mTalentHandler.GetCharacterTalents(tmpPlayer.Guid, setId, tmpPlayer.AccountId)
+            Dim mEnchantmentsHandler As New CharacterEnchantmentsHandler
+            mEnchantmentsHandler.HandleEnchantments(setId)
+            LogAppend("Loading finished!", "CoreHandler_handleLoadingRequests")
+        End Sub
+    End Class
+End Namespace

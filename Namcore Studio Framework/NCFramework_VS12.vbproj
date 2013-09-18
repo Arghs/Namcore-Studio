@@ -56,8 +56,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -76,7 +74,7 @@
     <Compile Include="Framework\Armory\Parser\ItemParser.vb" />
     <Compile Include="Framework\Armory\Parser\ProfessionParser.vb" />
     <Compile Include="Framework\Armory\Parser\ReputationParser.vb" />
-    <Compile Include="Framework\Core\Account_CharacterInformationProcessing.vb" />
+    <Compile Include="Framework\Core\AccountCharacterInformationProcessing.vb" />
     <Compile Include="Framework\Core\CharacterAchievementHandler.vb" />
     <Compile Include="Framework\Core\CharacterActionsHandler.vb" />
     <Compile Include="Framework\Core\CharacterArmorHandler.vb" />
@@ -99,13 +97,13 @@
     <Compile Include="Framework\Extension\WebClientProxyExtension.vb" />
     <Compile Include="Framework\Functions\Basics.vb" />
     <Compile Include="Framework\Functions\Conversions.vb" />
-    <Compile Include="Framework\Functions\SpellItem_Information.vb" />
+    <Compile Include="Framework\Functions\SpellItemInformation.vb" />
     <Compile Include="Framework\Functions\WebConnection.vb" />
     <Compile Include="Framework\Logging\ErrorLogging.vb" />
     <Compile Include="Framework\Logging\EventLogging.vb" />
     <Compile Include="Framework\Module\Account.vb" />
     <Compile Include="Framework\Module\Character.vb" />
-    <Compile Include="Framework\Module\DBStructure.vb" />
+    <Compile Include="Framework\Module\DbStructure.vb" />
     <Compile Include="Framework\Module\GlobalVariables.vb" />
     <Compile Include="Framework\Module\Interface\AvSubcategoy.vb" />
     <Compile Include="Framework\Module\Profile.vb" />
@@ -139,13 +137,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Process_status.Designer.vb">
+    <Compile Include="Framework\Forms\Process_status.Designer.vb">
       <DependentUpon>Process_status.vb</DependentUpon>
     </Compile>
-    <Compile Include="Process_status.vb">
+    <Compile Include="Framework\Forms\Process_status.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ResourceHandler.vb" />
+    <Compile Include="Framework\Functions\ResourceHandler.vb" />
     <Compile Include="Resources\UserMessages.Designer.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -155,7 +153,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Process_status.resx">
+    <EmbeddedResource Include="Framework\Forms\Process_status.resx">
       <DependentUpon>Process_status.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UserMessages.resx" />

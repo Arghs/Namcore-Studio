@@ -21,120 +21,139 @@
 '*      /Description:   Contains functions for extracting information about the known spells 
 '*                      of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Module
 
-Imports NCFramework.EventLogging
-Imports NCFramework.Basics
-Imports NCFramework.GlobalVariables
-Imports NCFramework.CommandHandler
-Imports NCFramework.Conversions
-Public Class CharacterSpellsHandler
-    Public Sub GetCharacterSpells(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
-        LogAppend("Loading character spells for characterGuid: " & characterGuid & " and setId: " & setId, "CharacterSpellsHandler_GetCharacterSpells", True)
-        Select Case sourceCore
-            Case "arcemu"
-                loadAtArcemu(characterGuid, setId, accountId)
-            Case "trinity"
-                loadAtTrinity(characterGuid, setId, accountId)
-            Case "trinitytbc"
-                loadAtTrinityTBC(characterGuid, setId, accountId)
-            Case "mangos"
-                loadAtMangos(characterGuid, setId, accountId)
-            Case Else
+Namespace Framework.Core
+    Public Class CharacterSpellsHandler
+        Public Sub GetCharacterSpells(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+            LogAppend("Loading character spells for characterGuid: " & characterGuid & " and setId: " & setId,
+                      "CharacterSpellsHandler_GetCharacterSpells", True)
+            Select Case GlobalVariables.sourceCore
+                Case "arcemu"
+                    LoadAtArcemu(characterGuid, setId)
+                Case "trinity"
+                    LoadAtTrinity(characterGuid, setId)
+                Case "trinitytbc"
+                    'todo LoadAtTrinityTBC(characterGuid, setId, accountId)
+                Case "mangos"
+                    LoadAtMangos(characterGuid, setId)
+            End Select
+        End Sub
 
-        End Select
-
-    End Sub
-    Private Sub loadAtArcemu(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
-        LogAppend("Loading character spells @loadAtArcemu", "CharacterSpellsHandler_loadAtArcemu", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.char_spells_col(0) & " FROM " & sourceStructure.character_tbl(0) & " WHERE " & sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim player As Character = GetCharacterSetBySetId(tar_setId)
-        Try
-            Dim lastcount As Integer = tempdt.Rows.Count
-            Dim count As Integer = 0
-            If Not lastcount = 0 Then
-                Do
-                    Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
-                    Dim partscounter As Integer = 0
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
+            LogAppend("Loading character spells @LoadAtArcemu", "CharacterSpellsHandler_LoadAtArcemu", False)
+            Dim tempdt As DataTable =
+                    ReturnDataTable(
+                        "SELECT " & GlobalVariables.sourceStructure.char_spells_col(0) & " FROM " &
+                        GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
+                        GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
+            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Try
+                Dim lastcount As Integer = tempdt.Rows.Count
+                Dim count As Integer = 0
+                If Not lastcount = 0 Then
                     Do
-                        Dim parts() As String = readedcode.Split(","c)
+                        Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
+                        Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
+                        Dim partscounter As Integer = 0
+                        Do
+                            Dim parts() As String = readedcode.Split(","c)
+                            Dim spl As New Spell
+                            spl.id = TryInt(parts(partscounter).ToString)
+                            spl.active = 1
+                            spl.disabled = 0
+                            partscounter += 1
+                            LogAppend("Adding spellId: " & spl.id.ToString(), "CharacterSpellsHandler_LoadAtArcemu", True)
+                            If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
+                            player.Spells.Add(spl)
+                        Loop Until partscounter = excounter - 1
+                        count += 1
+                    Loop Until count = lastcount
+                Else
+                    LogAppend("No spells found!", "CharacterSpellsHandler_LoadAtArcemu", True)
+                End If
+            Catch ex As Exception
+                LogAppend(
+                    "Something went wrong while loading character spells! -> skipping -> Exception is: ###START###" &
+                    ex.ToString() & "###END###", "CharacterSpellsHandler_LoadAtArcemu", True, True)
+                Exit Sub
+            End Try
+            SetCharacterSet(tarSetId, player)
+        End Sub
+
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer)
+            LogAppend("Loading character spells @LoadAtTrinity", "CharacterSpellsHandler_LoadAtTrinity", False)
+            Dim tempdt As DataTable =
+                    ReturnDataTable(
+                        "SELECT " & GlobalVariables.sourceStructure.spell_spell_col(0) & ", " &
+                        GlobalVariables.sourceStructure.spell_active_col(0) & ", " &
+                        GlobalVariables.sourceStructure.spell_disabled_col(0) &
+                        " FROM " & GlobalVariables.sourceStructure.character_spells_tbl(0) & " WHERE " &
+                        GlobalVariables.sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
+            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Try
+                Dim lastcount As Integer = tempdt.Rows.Count
+                Dim count As Integer = 0
+                If Not lastcount = 0 Then
+                    Do
+                        Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim spl As New Spell
-                        spl.id = TryInt(parts(partscounter).ToString)
-                        spl.active = 1
-                        spl.disabled = 0
-                        partscounter += 1
-                        LogAppend("Adding spellId: " & spl.id.ToString(), "CharacterSpellsHandler_LoadAtArcemu", True)
+                        spl.id = TryInt(readedcode)
+                        spl.active = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        spl.disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
                         player.Spells.Add(spl)
-                    Loop Until partscounter = excounter - 1
-                    count += 1
-                Loop Until count = lastcount
-            Else
-                LogAppend("No spells found!", "CharacterSpellsHandler_loadAtArcemu", True)
-            End If
-        Catch ex As Exception
-            LogAppend("Something went wrong while loading character spells! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterSpellsHandler_loadAtArcemu", True, True)
-            Exit Sub
-        End Try
-        SetCharacterSet(tar_setId, player)
-    End Sub
-    Private Sub loadAtTrinity(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
-        LogAppend("Loading character spells @loadAtTrinity", "CharacterSpellsHandler_loadAtTrinity", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.spell_spell_col(0) & ", " & sourceStructure.spell_active_col(0) & ", " & sourceStructure.spell_disabled_col(0) &
-                                                  " FROM " & sourceStructure.character_spells_tbl(0) & " WHERE " & sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim player As Character = GetCharacterSetBySetId(tar_setId)
-        Try
-            Dim lastcount As Integer = tempdt.Rows.Count
-            Dim count As Integer = 0
-            If Not lastcount = 0 Then
-                Do
-                    Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim spl As New Spell
-                    spl.id = TryInt(readedcode)
-                    spl.active = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                    spl.disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                    If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
-                    player.Spells.Add(spl)
-                    count += 1
-                Loop Until count = lastcount
-            Else
-                LogAppend("No spells found!", "CharacterSpellsHandler_loadAtTrinity", True)
-            End If
-        Catch ex As Exception
-            LogAppend("Something went wrong while loading character spells! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterSpellsHandler_loadAtTrinity", True, True)
-            Exit Sub
-        End Try
-        SetCharacterSet(tar_setId, player)
-    End Sub
-    Private Sub loadAtTrinityTBC(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
+                        count += 1
+                    Loop Until count = lastcount
+                Else
+                    LogAppend("No spells found!", "CharacterSpellsHandler_LoadAtTrinity", True)
+                End If
+            Catch ex As Exception
+                LogAppend(
+                    "Something went wrong while loading character spells! -> skipping -> Exception is: ###START###" &
+                    ex.ToString() & "###END###", "CharacterSpellsHandler_LoadAtTrinity", True, True)
+                Exit Sub
+            End Try
+            SetCharacterSet(tarSetId, player)
+        End Sub
 
-    End Sub
-    Private Sub loadAtMangos(ByVal charguid As Integer, ByVal tar_setId As Integer, ByVal tar_accountId As Integer)
-        LogAppend("Loading character spells @loadAtMangos", "CharacterSpellsHandler_loadAtMangos", False)
-        Dim tempdt As DataTable = ReturnDataTable("SELECT " & sourceStructure.spell_spell_col(0) & ", " & sourceStructure.spell_active_col(0) & ", " & sourceStructure.spell_disabled_col(0) &
-                                                  " FROM " & sourceStructure.character_spells_tbl(0) & " WHERE " & sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
-        Dim player As Character = GetCharacterSetBySetId(tar_setId)
-        Try
-            Dim lastcount As Integer = tempdt.Rows.Count
-            Dim count As Integer = 0
-            If Not lastcount = 0 Then
-                Do
-                    Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
-                    Dim spl As New Spell
-                    spl.id = TryInt(readedcode)
-                    spl.active = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                    spl.disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                    If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
-                    player.Spells.Add(spl)
-                    count += 1
-                Loop Until count = lastcount
-            Else
-                LogAppend("No spells found!", "CharacterSpellsHandler_loadAtMangos", True)
-            End If
-        Catch ex As Exception
-            LogAppend("Something went wrong while loading character spells! -> skipping -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterSpellsHandler_loadAtMangos", True, True)
-            Exit Sub
-        End Try
-        SetCharacterSet(tar_setId, player)
-    End Sub
-End Class
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer)
+            LogAppend("Loading character spells @LoadAtMangos", "CharacterSpellsHandler_LoadAtMangos", False)
+            Dim tempdt As DataTable =
+                    ReturnDataTable(
+                        "SELECT " & GlobalVariables.sourceStructure.spell_spell_col(0) & ", " &
+                        GlobalVariables.sourceStructure.spell_active_col(0) & ", " &
+                        GlobalVariables.sourceStructure.spell_disabled_col(0) &
+                        " FROM " & GlobalVariables.sourceStructure.character_spells_tbl(0) & " WHERE " &
+                        GlobalVariables.sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
+            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Try
+                Dim lastcount As Integer = tempdt.Rows.Count
+                Dim count As Integer = 0
+                If Not lastcount = 0 Then
+                    Do
+                        Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
+                        Dim spl As New Spell
+                        spl.id = TryInt(readedcode)
+                        spl.active = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        spl.disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
+                        player.Spells.Add(spl)
+                        count += 1
+                    Loop Until count = lastcount
+                Else
+                    LogAppend("No spells found!", "CharacterSpellsHandler_LoadAtMangos", True)
+                End If
+            Catch ex As Exception
+                LogAppend(
+                    "Something went wrong while loading character spells! -> skipping -> Exception is: ###START###" &
+                    ex.ToString() & "###END###", "CharacterSpellsHandler_LoadAtMangos", True, True)
+                Exit Sub
+            End Try
+            SetCharacterSet(tarSetId, player)
+        End Sub
+    End Class
+End Namespace

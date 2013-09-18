@@ -20,234 +20,279 @@
 '*      /Filename:      CommandHandler
 '*      /Description:   Handles and logs MySQL commands and exceptions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Logging
 Imports MySql.Data.MySqlClient
-Imports NCFramework.EventLogging
-Imports NCFramework.GlobalVariables
-Imports NCFramework.Conversions
-Public Module CommandHandler
-    Public Function runSQLCommand_characters_string(ByVal command As String, Optional useTargetConnection As Boolean = False) As String
-        LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_characters_string", False)
-        Dim conn As MySqlConnection
-        If forceTargetConnectionUsage Then useTargetConnection = True
-        If useTargetConnection = False Then
-            conn = GlobalConnection
-        Else
-            conn = TargetConnection
-        End If
-        Dim da As New MySqlDataAdapter(command, conn)
-        Dim dt As New DataTable
-        Try
-            da.Fill(dt)
-            Dim lastcount As Integer = dt.Rows.Count
-            If Not lastcount = 0 Then
-                LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string", False)
-                Dim readed As String = (dt.Rows(0).Item(0)).ToString
-                If readed = "DBnull" Then
-                    LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string", False)
-                    Return ""
-                Else
-                    LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_characters_string", False)
-                    Return readed
-                End If
-            Else
-                LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_characters_string", False)
-                Return ""
-            End If
-        Catch ex As MySqlException
-            LogAppend("MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
-            Return ""
-        End Try
-    End Function
-    Public Function runSQLCommand_realm_string(ByVal command As String, Optional useTargetConnection As Boolean = False) As String
-        LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_realm_string", False)
-        Dim conn As MySqlConnection
-        If forceTargetConnectionUsage Then useTargetConnection = True
-        If useTargetConnection = False Then
-            conn = GlobalConnection_Realm
-        Else
-            conn = TargetConnection_Realm
-        End If
-        Dim da As New MySqlDataAdapter(command, conn)
-        Dim dt As New DataTable
-        Try
 
-            da.Fill(dt)
-            Dim lastcount As Integer = dt.Rows.Count
-            If Not lastcount = 0 Then
-                LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_realm_string", False)
-                Dim readed As String = (dt.Rows(0).Item(0)).ToString
-                If readed = "DBnull" Then
-                    LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
-                    Return ""
-                Else
-                    LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_realm_string", False)
-                    Return readed
-                End If
+Namespace Framework.Database
+
+    Public Module CommandHandler
+        Public Function runSQLCommand_characters_string(ByVal command As String,
+                                                        Optional useTargetConnection As Boolean = False) As String
+            LogAppend("Executing new MySQL command. Command is: " & command,
+                      "CommandHandler_runSQLCommand_characters_string", False)
+            Dim conn As MySqlConnection
+            If GlobalVariables.forceTargetConnectionUsage Then useTargetConnection = True
+            If useTargetConnection = False Then
+                conn = GlobalVariables.GlobalConnection
             Else
-                LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
-                Return ""
+                conn = GlobalVariables.TargetConnection
             End If
-        Catch ex As MySqlException
-            LogAppend("MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
-            Return ""
-        End Try
-    End Function
-    Public Function runSQLCommand_characters_string_setconn(ByVal command As String, ByVal TargetConnection As MySqlConnection) As String
-        LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_characters_string", False)
-        Dim conn As MySqlConnection
-        conn = TargetConnection
-        Dim da As New MySqlDataAdapter(command, conn)
-        Dim dt As New DataTable
-        Try
-            da.Fill(dt)
-            Dim lastcount As Integer = dt.Rows.Count
-            If Not lastcount = 0 Then
-                LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string", False)
-                Dim readed As String = (dt.Rows(0).Item(0)).ToString
-                If readed = "DBnull" Then
-                    LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string", False)
-                    Return ""
+            Dim da As New MySqlDataAdapter(command, conn)
+            Dim dt As New DataTable
+            Try
+                da.Fill(dt)
+                Dim lastcount As Integer = dt.Rows.Count
+                If Not lastcount = 0 Then
+                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string", False)
+                    Dim readed As String = (dt.Rows(0).Item(0)).ToString
+                    If readed = "DBnull" Then
+                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string",
+                                  False)
+                        Return ""
+                    Else
+                        LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_characters_string", False)
+                        Return readed
+                    End If
                 Else
-                    LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_characters_string", False)
-                    Return readed
-                End If
-            Else
-                LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_characters_string", False)
-                Return ""
-            End If
-        Catch ex As MySqlException
-            LogAppend("MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
-            Return ""
-        End Try
-    End Function
-    Public Function runSQLCommand_realm_string_setconn(ByVal command As String, ByVal TargetConnection As MySqlConnection) As String
-        LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_realm_string", False)
-        Dim conn As MySqlConnection
-        conn = TargetConnection_Realm
-        Dim da As New MySqlDataAdapter(command, conn)
-        Dim dt As New DataTable
-        Try
-            da.Fill(dt)
-            Dim lastcount As Integer = dt.Rows.Count
-            If Not lastcount = 0 Then
-                LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_realm_string", False)
-                Dim readed As String = (dt.Rows(0).Item(0)).ToString
-                If readed = "DBnull" Then
-                    LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
+                    LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_characters_string", False)
                     Return ""
-                Else
-                    LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_realm_string", False)
-                    Return readed
                 End If
-            Else
-                LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
+            Catch ex As MySqlException
+                LogAppend(
+                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
                 Return ""
+            End Try
+        End Function
+
+        Public Function runSQLCommand_realm_string(ByVal command As String, Optional useTargetConnection As Boolean = False) _
+            As String
+            LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_realm_string",
+                      False)
+            Dim conn As MySqlConnection
+            If GlobalVariables.forceTargetConnectionUsage Then useTargetConnection = True
+            If useTargetConnection = False Then
+                conn = GlobalVariables.GlobalConnection_Realm
+            Else
+                conn = GlobalVariables.TargetConnection_Realm
             End If
-        Catch ex As MySqlException
-            LogAppend("MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
-            Return ""
-        End Try
-    End Function
-    Public Function ReturnDataTable(ByVal command As String, Optional useTargetConnection As Boolean = False) As DataTable
-        LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTable", False)
-        Dim conn As MySqlConnection
-        If forceTargetConnectionUsage Then useTargetConnection = True
-        If useTargetConnection = False Then
-            conn = GlobalConnection
-        Else
-            conn = TargetConnection
-        End If
-        Dim da As New MySqlDataAdapter(command, conn)
-        Dim dt As New DataTable
-        Try
-            da.Fill(dt)
-            Return dt
-        Catch ex As Exception
-            LogAppend("Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_ReturnDataTable", True, True)
-            Return dt
-        End Try
-    End Function
-    Public Function ReturnDataTable_setconn(ByVal command As String, ByVal TargetConnection As MySqlConnection) As DataTable
-        LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTable", False)
-        Dim conn As MySqlConnection
-        conn = TargetConnection
-        Dim da As New MySqlDataAdapter(command, conn)
-        Dim dt As New DataTable
-        Try
-            da.Fill(dt)
-            Return dt
-        Catch ex As Exception
-            LogAppend("Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_ReturnDataTable", True, True)
-            Return dt
-        End Try
-    End Function
-    Public Function ReturnCountResults(ByVal command As String, Optional useTargetConnection As Boolean = False) As Integer
-        LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnCountResult", False)
-        Dim conn As MySqlConnection
-        If forceTargetConnectionUsage Then useTargetConnection = True
-        If useTargetConnection = False Then
-            conn = GlobalConnection
-        Else
-            conn = TargetConnection
-        End If
-        Dim da As New MySqlDataAdapter(command, conn)
-        Dim dt As New DataTable
-        Try
-            da.Fill(dt)
-            Dim lastcount As Integer = dt.Rows.Count
-            Return lastcount
-        Catch ex As Exception
-            LogAppend("Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_ReturnCountResult", True, True)
-            Return 0
-        End Try
-    End Function
-    Public Function ReturnResultWithRow(ByVal command As String, ByVal spalte As String, ByVal row As Integer, Optional useTargetConnection As Boolean = False) As String
-        LogAppend("Executing new MySQL command. Column is: " & spalte & " / Row is: " & row.ToString & " / Command is: " & command, "CommandHandler_ReturnResultWithRow", False)
-        Dim conn As MySqlConnection
-        If forceTargetConnectionUsage Then useTargetConnection = True
-        If useTargetConnection = False Then
-            conn = GlobalConnection
-        Else
-            conn = TargetConnection
-        End If
-        Dim da As New MySqlDataAdapter(command, conn)
-        Dim dt As New DataTable
-        Try
-            da.Fill(dt)
-            Dim lastcount As Integer = dt.Rows.Count
-            If Not lastcount = 0 Then
-                Dim readed As String = (dt.Rows(row).Item(0)).ToString
-                If readed = "DBnull" Then
+            Dim da As New MySqlDataAdapter(command, conn)
+            Dim dt As New DataTable
+            Try
+
+                da.Fill(dt)
+                Dim lastcount As Integer = dt.Rows.Count
+                If Not lastcount = 0 Then
+                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_realm_string", False)
+                    Dim readed As String = (dt.Rows(0).Item(0)).ToString
+                    If readed = "DBnull" Then
+                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
+                        Return ""
+                    Else
+                        LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_realm_string", False)
+                        Return readed
+                    End If
+                Else
+                    LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
                     Return ""
-                Else
-                    Return readed
                 End If
-            Else
+            Catch ex As MySqlException
+                LogAppend(
+                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
                 Return ""
-            End If
-        Catch ex As Exception
-            LogAppend("Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_ReturnResultWithRow", True, True)
-            Return ""
-        End Try
-    End Function
-    Public Function ReturnResultCount(ByVal command As String, Optional useTargetConnection As Boolean = False) As Integer
-        LogAppend("Executing new MySQL command.", "CommandHandler_ReturnResultCount", False)
-        Dim conn As MySqlConnection
-        If forceTargetConnectionUsage Then useTargetConnection = True
-        If useTargetConnection = False Then
-            conn = GlobalConnection
-        Else
+            End Try
+        End Function
+
+        Public Function runSQLCommand_characters_string_setconn(ByVal command As String,
+                                                                ByVal targetConnection As MySqlConnection) As String
+            LogAppend("Executing new MySQL command. Command is: " & command,
+                      "CommandHandler_runSQLCommand_characters_string", False)
+            Dim conn As MySqlConnection
             conn = TargetConnection
-        End If
-        Dim da As New MySqlDataAdapter(command, conn)
-        Dim dt As New DataTable
-        Try
-            da.Fill(dt)
-            Return dt.Rows.Count
-        Catch ex As Exception
-            LogAppend("Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "CommandHandler_ReturnResultCount", True, True)
-            Return 0
-        End Try
-    End Function
-End Module
+            Dim da As New MySqlDataAdapter(command, conn)
+            Dim dt As New DataTable
+            Try
+                da.Fill(dt)
+                Dim lastcount As Integer = dt.Rows.Count
+                If Not lastcount = 0 Then
+                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string", False)
+                    Dim readed As String = (dt.Rows(0).Item(0)).ToString
+                    If readed = "DBnull" Then
+                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string",
+                                  False)
+                        Return ""
+                    Else
+                        LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_characters_string", False)
+                        Return readed
+                    End If
+                Else
+                    LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_characters_string", False)
+                    Return ""
+                End If
+            Catch ex As MySqlException
+                LogAppend(
+                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
+                Return ""
+            End Try
+        End Function
+
+        Public Function runSQLCommand_realm_string_setconn(ByVal command As String,
+                                                           ByVal targetConnection As MySqlConnection) As String
+            LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_realm_string",
+                      False)
+            Dim conn As MySqlConnection
+            conn = GlobalVariables.TargetConnection_Realm
+            Dim da As New MySqlDataAdapter(command, conn)
+            Dim dt As New DataTable
+            Try
+                da.Fill(dt)
+                Dim lastcount As Integer = dt.Rows.Count
+                If Not lastcount = 0 Then
+                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_realm_string", False)
+                    Dim readed As String = (dt.Rows(0).Item(0)).ToString
+                    If readed = "DBnull" Then
+                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
+                        Return ""
+                    Else
+                        LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_realm_string", False)
+                        Return readed
+                    End If
+                Else
+                    LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
+                    Return ""
+                End If
+            Catch ex As MySqlException
+                LogAppend(
+                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
+                Return ""
+            End Try
+        End Function
+
+        Public Function ReturnDataTable(ByVal command As String, Optional useTargetConnection As Boolean = False) _
+            As DataTable
+            LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTable", False)
+            Dim conn As MySqlConnection
+            If GlobalVariables.forceTargetConnectionUsage Then useTargetConnection = True
+            If useTargetConnection = False Then
+                conn = GlobalVariables.GlobalConnection
+            Else
+                conn = GlobalVariables.TargetConnection
+            End If
+            Dim da As New MySqlDataAdapter(command, conn)
+            Dim dt As New DataTable
+            Try
+                da.Fill(dt)
+                Return dt
+            Catch ex As Exception
+                LogAppend(
+                    "Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CommandHandler_ReturnDataTable", True, True)
+                Return dt
+            End Try
+        End Function
+
+        Public Function ReturnDataTable_setconn(ByVal command As String, ByVal targetConnection As MySqlConnection) _
+            As DataTable
+            LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTable", False)
+            Dim conn As MySqlConnection
+            conn = TargetConnection
+            Dim da As New MySqlDataAdapter(command, conn)
+            Dim dt As New DataTable
+            Try
+                da.Fill(dt)
+                Return dt
+            Catch ex As Exception
+                LogAppend(
+                    "Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CommandHandler_ReturnDataTable", True, True)
+                Return dt
+            End Try
+        End Function
+
+        Public Function ReturnCountResults(ByVal command As String, Optional useTargetConnection As Boolean = False) _
+            As Integer
+            LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnCountResult", False)
+            Dim conn As MySqlConnection
+            If GlobalVariables.forceTargetConnectionUsage Then useTargetConnection = True
+            If useTargetConnection = False Then
+                conn = GlobalVariables.GlobalConnection
+            Else
+                conn = GlobalVariables.TargetConnection
+            End If
+            Dim da As New MySqlDataAdapter(command, conn)
+            Dim dt As New DataTable
+            Try
+                da.Fill(dt)
+                Dim lastcount As Integer = dt.Rows.Count
+                Return lastcount
+            Catch ex As Exception
+                LogAppend(
+                    "Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CommandHandler_ReturnCountResult", True, True)
+                Return 0
+            End Try
+        End Function
+
+        Public Function ReturnResultWithRow(ByVal command As String, ByVal spalte As String, ByVal row As Integer,
+                                            Optional useTargetConnection As Boolean = False) As String
+            LogAppend(
+                "Executing new MySQL command. Column is: " & spalte & " / Row is: " & row.ToString & " / Command is: " &
+                command, "CommandHandler_ReturnResultWithRow", False)
+            Dim conn As MySqlConnection
+            If GlobalVariables.forceTargetConnectionUsage Then useTargetConnection = True
+            If useTargetConnection = False Then
+                conn = GlobalVariables.GlobalConnection
+            Else
+                conn = GlobalVariables.TargetConnection
+            End If
+            Dim da As New MySqlDataAdapter(command, conn)
+            Dim dt As New DataTable
+            Try
+                da.Fill(dt)
+                Dim lastcount As Integer = dt.Rows.Count
+                If Not lastcount = 0 Then
+                    Dim readed As String = (dt.Rows(row).Item(0)).ToString
+                    If readed = "DBnull" Then
+                        Return ""
+                    Else
+                        Return readed
+                    End If
+                Else
+                    Return ""
+                End If
+            Catch ex As Exception
+                LogAppend(
+                    "Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CommandHandler_ReturnResultWithRow", True, True)
+                Return ""
+            End Try
+        End Function
+
+        Public Function ReturnResultCount(ByVal command As String, Optional useTargetConnection As Boolean = False) _
+            As Integer
+            LogAppend("Executing new MySQL command.", "CommandHandler_ReturnResultCount", False)
+            Dim conn As MySqlConnection
+            If GlobalVariables.forceTargetConnectionUsage Then useTargetConnection = True
+            If useTargetConnection = False Then
+                conn = GlobalVariables.GlobalConnection
+            Else
+                conn = GlobalVariables.TargetConnection
+            End If
+            Dim da As New MySqlDataAdapter(command, conn)
+            Dim dt As New DataTable
+            Try
+                da.Fill(dt)
+                Return dt.Rows.Count
+            Catch ex As Exception
+                LogAppend(
+                    "Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CommandHandler_ReturnResultCount", True, True)
+                Return 0
+            End Try
+        End Function
+    End Module
+End Namespace

@@ -20,153 +20,188 @@
 '*      /Filename:      Basics
 '*      /Description:   Includes basic and frequently used functions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-Imports NCFramework.GlobalVariables
-Imports System.Net
 Imports System.Drawing
-Public Module Basics
-    Public tmpset As Integer
-    Public Sub InitializeDBC()
-        LogAppend("Initializing DBC files", "Basics_InitializeDBC", True)
-        libnc.CliDB.Initialize()
-    End Sub
-    Public Function GetCharacterSetBySetId(ByVal setId As Integer) As Character
-        If tmpset = setId Then
-            Return TempCharacter
-        End If
-        If globChars.CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
-            'found
-            tmpset = setId
-            TempCharacter = globChars.CharacterSets(TryInt(splitString(globChars.CharacterSetsIndex, "[setId:" & setId.ToString() & "|@", "]")))
-            Return TempCharacter
-        Else
-            'not found
-            Return Nothing
-        End If
-    End Function
-    Public Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character)
-        globChars.CharacterSets.Add(player)
-        globChars.CharacterSetsIndex = globChars.CharacterSetsIndex & "[setId:" & setId.ToString & "|@" & (globChars.CharacterSets.Count - 1).ToString & "]"
-    End Sub
-    Public Sub SetCharacterSet(ByVal setId As Integer, ByVal TCharacter As Character)
-        If globChars.CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
-            'found
-            globChars.CharacterSets(TryInt(splitString(globChars.CharacterSetsIndex, "[setId:" & setId.ToString() & "|@", "]"))) = TCharacter
-        Else
-            'not found
-        End If
-    End Sub
-    Public Sub AddCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
-        If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
-        player.ArmorItems.Add(itm)
-        player.ArmorItemsIndex = player.ArmorItemsIndex & "[slot:" & itm.slotname & "|@" & (player.ArmorItems.Count - 1).ToString & "]"
-        player.ArmorItemsIndex = player.ArmorItemsIndex & "[slotnum:" & itm.slot.ToString & "|@" & (player.ArmorItems.Count - 1).ToString & "]"
-    End Sub
-    Public Sub RemoveCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
-        If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
-        Dim ItmIndex As Integer = TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & itm.slot.ToString() & "|@", "]"))
-        player.ArmorItems.Item(ItmIndex) = Nothing
-        player.ArmorItemsIndex = player.ArmorItemsIndex.Replace("[slot:" & itm.slotname & "|@" & ItmIndex.ToString & "]", "")
-        player.ArmorItemsIndex = player.ArmorItemsIndex.Replace("[slotnum:" & itm.slot.ToString() & "|@" & ItmIndex.ToString & "]", "")
-    End Sub
-    Public Sub SetCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
-        If player.ArmorItemsIndex.Contains("[slot:" & itm.slotname & "|@") Or player.ArmorItemsIndex.Contains("[slotnum:" & itm.slot.ToString & "|@") Then
-            player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slot:" & itm.slotname & "|@", "]"))) = itm
-            player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & itm.slot.ToString & "|@", "]"))) = itm
-        Else
+Imports libnc
+Imports System.Net
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Module
 
-        End If
-    End Sub
-    Public Function GetCharacterArmorItem(ByVal player As Character, ByVal slot As String, Optional isint As Boolean = False) As Item
-        If player.ArmorItemsIndex.Contains("[slot:" & slot & "|@") Or player.ArmorItemsIndex.Contains("[slotnum:" & slot & "|@") Then
-            If isint = True Then
-                Return player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & slot & "|@", "]")))
-            Else
-                Return player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slot:" & slot & "|@", "]")))
+Namespace Framework.Functions
+
+    Public Module Basics
+
+        '// Declaration
+        Public Tmpset As Integer
+        '// Declaration
+
+        Public Sub InitializeDbc()
+            LogAppend("Initializing DBC files", "Basics_InitializeDBC", True)
+            CliDb.Initialize()
+        End Sub
+
+        Public Function GetCharacterSetBySetId(ByVal setId As Integer) As Character
+            If tmpset = setId Then
+                Return GlobalVariables.TempCharacter
             End If
+            If GlobalVariables.globChars.CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
+                'found
+                tmpset = setId
+                GlobalVariables.TempCharacter =
+                    GlobalVariables.globChars.CharacterSets(TryInt(splitString(GlobalVariables.globChars.CharacterSetsIndex,
+                                                                               "[setId:" & setId.ToString() & "|@", "]")))
+                Return GlobalVariables.TempCharacter
+            Else
+                'not found
+                Return Nothing
+            End If
+        End Function
 
-        Else
-            Return Nothing
-        End If
-    End Function
-    Public Sub AddCharacterGlyph(ByRef player As Character, ByVal gly As Glyph)
-        If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
-        player.PlayerGlyphs.Add(gly)
-        player.PlayerGlyphsIndex = player.PlayerGlyphsIndex & "[slot:" & gly.slotname & "|@" & (player.PlayerGlyphs.Count - 1).ToString & "]"
-    End Sub
-    Public Sub SetCharacterGlyph(ByRef player As Character, ByVal glph As Glyph)
-        If player.PlayerGlyphsIndex.Contains("[slot:" & glph.slotname & "|@") Then
-            player.PlayerGlyphs(TryInt(splitString(player.PlayerGlyphsIndex, "[slot:" & glph.slotname & "|@", "]"))) = glph
-        Else
+        Public Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character)
+            GlobalVariables.globChars.CharacterSets.Add(player)
+            GlobalVariables.globChars.CharacterSetsIndex = GlobalVariables.globChars.CharacterSetsIndex & "[setId:" &
+                                                           setId.ToString & "|@" &
+                                                           (GlobalVariables.globChars.CharacterSets.Count - 1).ToString &
+                                                           "]"
+        End Sub
 
-        End If
-    End Sub
-    Public Function GetCharacterGlyph(ByVal player As Character, ByVal slot As String) As Glyph
-        If player.PlayerGlyphsIndex Is Nothing Then Return Nothing
-        If player.PlayerGlyphsIndex.Contains("[slot:" & slot & "|@") Then
-            Return player.PlayerGlyphs(TryInt(splitString(player.PlayerGlyphsIndex, "[slot:" & slot & "|@", "]")))
-        Else
-            Return Nothing
-        End If
-    End Function
-   
+        Public Sub SetCharacterSet(ByVal setId As Integer, ByVal character As Character)
+            If GlobalVariables.globChars.CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
+                'found
+                GlobalVariables.globChars.CharacterSets(TryInt(splitString(GlobalVariables.globChars.CharacterSetsIndex,
+                                                                           "[setId:" & setId.ToString() & "|@", "]"))) =
+                    Character
+            Else
+                'not found
+            End If
+        End Sub
 
-    Public Sub AbortProcess()
+        Public Sub AddCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
+            If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
+            player.ArmorItems.Add(itm)
+            player.ArmorItemsIndex = player.ArmorItemsIndex & "[slot:" & itm.slotname & "|@" &
+                                     (player.ArmorItems.Count - 1).ToString & "]"
+            player.ArmorItemsIndex = player.ArmorItemsIndex & "[slotnum:" & itm.slot.ToString & "|@" &
+                                     (player.ArmorItems.Count - 1).ToString & "]"
+        End Sub
 
-    End Sub
-    Public Function splitString(ByVal source As String, ByVal start As String, ByVal ending As String) As String
-        If source Is Nothing Or start Is Nothing Or ending Is Nothing Then
-            LogAppend("Failed to split a string: source might be nothing", "Basics_splitString", False, True)
-            Return Nothing
-        End If
-        LogAppend("Splitting a string. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & start & "/-/" & ending, "Basics_splitString", False)
-        Try
-            Dim quellcode As String = source
-            Dim _start As String = start
-            Dim _end As String = ending
-            Dim quellcodeSplit As String
-            quellcodeSplit = Split(quellcode, _start, 5)(1)
-            Return Split(quellcodeSplit, _end, 6)(0)
-        Catch ex As Exception
-            LogAppend("Error while splitting string! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "Basics_splitString", False, True)
-            Return Nothing
-        End Try
-    End Function
-    Public Function splitList(ByVal source As String, ByVal category As String) As String
-        LogAppend("Splitting a list. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & category, "Basics_splitList", False)
-        Try
-            Dim quellcode As String = source
-            Dim _start As String = "<" & category & ">"
-            Dim _end As String = "</" & category & ">"
-            Dim quellcodeSplit As String
-            quellcodeSplit = Split(quellcode, _start, 5)(1)
-            quellcodeSplit = Split(quellcodeSplit, _end, 6)(0)
-            Return quellcodeSplit
-        Catch ex As Exception
-            LogAppend("Error while splitting list! -> Returning nothing -> Exception is: ###START###" & ex.ToString() & "###END###", "Basics_splitList", False, True)
-            Return Nothing
-        End Try
-    End Function
-    Public Function LoadImageFromUrl(ByRef url As String) As Image
-        LogAppend("Loading image from url: " & url, "Basics_LoadImageFromUrl", False)
-        Try
-            Dim request As HttpWebRequest = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
-            Dim response As HttpWebResponse = DirectCast(request.GetResponse, HttpWebResponse)
-            Dim img As Image = Image.FromStream(response.GetResponseStream())
-            response.Close()
-            Return img
-        Catch ex As Exception
-            LogAppend("Error while loading image: " & ex.ToString(), "Basics_LoadImageFromUrl", False, True)
-            Return Nothing
-        End Try
+        Public Sub RemoveCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
+            If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
+            Dim itmIndex As Integer = TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & itm.slot.ToString() & "|@",
+                                                         "]"))
+            player.ArmorItems.Item(itmIndex) = Nothing
+            player.ArmorItemsIndex = player.ArmorItemsIndex.Replace("[slot:" & itm.slotname & "|@" & itmIndex.ToString & "]",
+                                                                    "")
+            player.ArmorItemsIndex =
+                player.ArmorItemsIndex.Replace("[slotnum:" & itm.slot.ToString() & "|@" & itmIndex.ToString & "]", "")
+        End Sub
 
-    End Function
-    Private Function NotNull(ByVal obj As Object) As String
-        If obj Is Nothing Then
-            Return ""
-        Else
-            Return obj.ToString()
-        End If
-    End Function
-End Module
+        Public Sub SetCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
+            If _
+                player.ArmorItemsIndex.Contains("[slot:" & itm.slotname & "|@") Or
+                player.ArmorItemsIndex.Contains("[slotnum:" & itm.slot.ToString & "|@") Then
+                player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slot:" & itm.slotname & "|@", "]"))) = itm
+                player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & itm.slot.ToString & "|@", "]"))) _
+                    = itm
+            Else
+
+            End If
+        End Sub
+
+        Public Function GetCharacterArmorItem(ByVal player As Character, ByVal slot As String,
+                                              Optional isint As Boolean = False) As Item
+            If _
+                player.ArmorItemsIndex.Contains("[slot:" & slot & "|@") Or
+                player.ArmorItemsIndex.Contains("[slotnum:" & slot & "|@") Then
+                If isint = True Then
+                    Return player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & slot & "|@", "]")))
+                Else
+                    Return player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slot:" & slot & "|@", "]")))
+                End If
+
+            Else
+                Return Nothing
+            End If
+        End Function
+
+        Public Sub AddCharacterGlyph(ByRef player As Character, ByVal gly As Glyph)
+            If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
+            player.PlayerGlyphs.Add(gly)
+            player.PlayerGlyphsIndex = player.PlayerGlyphsIndex & "[slot:" & gly.slotname & "|@" &
+                                       (player.PlayerGlyphs.Count - 1).ToString & "]"
+        End Sub
+
+        Public Sub SetCharacterGlyph(ByRef player As Character, ByVal glph As Glyph)
+            If player.PlayerGlyphsIndex.Contains("[slot:" & glph.slotname & "|@") Then
+                player.PlayerGlyphs(TryInt(splitString(player.PlayerGlyphsIndex, "[slot:" & glph.slotname & "|@", "]"))) =
+                    glph
+            Else
+
+            End If
+        End Sub
+
+        Public Function GetCharacterGlyph(ByVal player As Character, ByVal slot As String) As Glyph
+            If player.PlayerGlyphsIndex Is Nothing Then Return Nothing
+            If player.PlayerGlyphsIndex.Contains("[slot:" & slot & "|@") Then
+                Return player.PlayerGlyphs(TryInt(splitString(player.PlayerGlyphsIndex, "[slot:" & slot & "|@", "]")))
+            Else
+                Return Nothing
+            End If
+        End Function
+
+        Public Function SplitString(ByVal source As String, ByVal start As String, ByVal ending As String) As String
+            If source Is Nothing Or start Is Nothing Or ending Is Nothing Then
+                LogAppend("Failed to split a string: source might be nothing", "Basics_splitString", False, True)
+                Return Nothing
+            End If
+            LogAppend(
+                "Splitting a string. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & start & "/-/" & ending,
+                "Basics_splitString", False)
+            Try
+                Dim quellcode As String = source
+                Dim mystart As String = start
+                Dim myend As String = ending
+                Dim quellcodeSplit As String
+                quellcodeSplit = Split(quellcode, mystart, 5)(1)
+                Return Split(quellcodeSplit, myend, 6)(0)
+            Catch ex As Exception
+                LogAppend(
+                    "Error while splitting string! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "Basics_splitString", False, True)
+                Return Nothing
+            End Try
+        End Function
+
+        Public Function SplitList(ByVal source As String, ByVal category As String) As String
+            LogAppend("Splitting a list. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & category,
+                      "Basics_splitList", False)
+            Try
+                Dim quellcode As String = source
+                Dim mystart As String = "<" & category & ">"
+                Dim myend As String = "</" & category & ">"
+                Dim quellcodeSplit As String
+                quellcodeSplit = Split(quellcode, mystart, 5)(1)
+                quellcodeSplit = Split(quellcodeSplit, myend, 6)(0)
+                Return quellcodeSplit
+            Catch ex As Exception
+                LogAppend(
+                    "Error while splitting list! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "Basics_splitList", False, True)
+                Return Nothing
+            End Try
+        End Function
+
+        Public Function LoadImageFromUrl(ByRef url As String) As Image
+            LogAppend("Loading image from url: " & url, "Basics_LoadImageFromUrl", False)
+            Try
+                Dim request As HttpWebRequest = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
+                Dim response As HttpWebResponse = DirectCast(request.GetResponse, HttpWebResponse)
+                Dim img As Image = Image.FromStream(response.GetResponseStream())
+                response.Close()
+                Return img
+            Catch ex As Exception
+                LogAppend("Error while loading image: " & ex.ToString(), "Basics_LoadImageFromUrl", False, True)
+                Return Nothing
+            End Try
+        End Function
+    End Module
+End Namespace

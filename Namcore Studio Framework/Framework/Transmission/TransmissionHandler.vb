@@ -20,44 +20,51 @@
 '*      /Filename:      TransmissionHandler
 '*      /Description:   Handles account/character migration requests
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.GlobalVariables
-Public Class TransmissionHandler
-    Public Sub handleMigrationRequests(ByVal lite As Boolean)
-        If TargetConnection.State = ConnectionState.Closed Then TargetConnection.Open()
-        If TargetConnection_Realm.State = ConnectionState.Closed Then TargetConnection_Realm.Open()
-        forceTargetConnectionUsage = True
-        '// Creating new Accounts
-        For Each index As Integer In createAccountsIndex
-            'CreateNewAccount(accountInfo.Item(index).name
-        Next
-        '// Creating Characters
-        For Each playerCharacter In charactersToCreate
-            Dim accountId As Integer = TryInt(splitString(playerCharacter, "{AccountId}", "{/AccountId}"))
-            Dim setId As Integer = TryInt(splitString(playerCharacter, "{setId}", "{/setId}"))
-            Dim renamePending As Boolean
-            Select Case splitString(playerCharacter, "{renamePending}", "{/renamePending}")
-                Case "0" : renamePending = False
-                Case "1" : renamePending = True
-                Case Else : renamePending = False
-            End Select
-            Dim player As Character = GetCharacterSetBySetId(setId)
-            Dim charname As String = player.Name
-            Dim m_charCreationLite As New CharacterCreationLite
-            Dim m_charCreationAdvanced As New CharacterCreationAdvanced
-            If lite Then
-                m_charCreationLite.CreateNewLiteCharacter(charname, accountId, setId, renamePending)
-            Else
-                m_charCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, setId, renamePending)
-            End If
-            Dim m_charArmorCreation As New ArmorCreation
-            Dim m_charGlyphCreation As New GlyphCreation
-            Dim m_charQuestCreation As New QuestCreation
-            Dim m_charTalentCreation As New TalentCreation
-            m_charArmorCreation.AddCharacterArmor(setId)
-            m_charGlyphCreation.SetCharacterGlyphs(setId)
-            m_charQuestCreation.SetCharacterQuests(setId)
-            If Not lite Then m_charTalentCreation.SetCharacterTalents(setId)
-        Next
-        forceTargetConnectionUsage = False
-    End Sub
-End Class
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Module
+
+Namespace Framework.Transmission
+    Public Class TransmissionHandler
+        Public Sub HandleMigrationRequests(ByVal lite As Boolean)
+            If GlobalVariables.TargetConnection.State = ConnectionState.Closed Then GlobalVariables.TargetConnection.Open()
+            If GlobalVariables.TargetConnection_Realm.State = ConnectionState.Closed Then _
+                GlobalVariables.TargetConnection_Realm.Open()
+            GlobalVariables.forceTargetConnectionUsage = True
+            '// Creating new Accounts
+            ' ReSharper disable RedundantAssignment
+            For Each index As Integer In GlobalVariables.createAccountsIndex
+                ' ReSharper restore RedundantAssignment
+                'CreateNewAccount(accountInfo.Item(index).name
+            Next
+            '// Creating Characters
+            For Each playerCharacter In GlobalVariables.charactersToCreate
+                Dim accountId As Integer = TryInt(SplitString(playerCharacter, "{AccountId}", "{/AccountId}"))
+                Dim setId As Integer = TryInt(SplitString(playerCharacter, "{setId}", "{/setId}"))
+                Dim renamePending As Boolean
+                Select Case SplitString(playerCharacter, "{renamePending}", "{/renamePending}")
+                    Case "0" : renamePending = False
+                    Case "1" : renamePending = True
+                    Case Else : renamePending = False
+                End Select
+                Dim player As Character = GetCharacterSetBySetId(setId)
+                Dim charname As String = player.Name
+                Dim mCharCreationLite As New CharacterCreationLite
+                Dim mCharCreationAdvanced As New CharacterCreationAdvanced
+                If lite Then
+                    mCharCreationLite.CreateNewLiteCharacter(charname, accountId, setId, renamePending)
+                Else
+                    mCharCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, setId, renamePending)
+                End If
+                Dim mCharArmorCreation As New ArmorCreation
+                Dim mCharGlyphCreation As New GlyphCreation
+                Dim mCharQuestCreation As New QuestCreation
+                Dim mCharTalentCreation As New TalentCreation
+                mCharArmorCreation.AddCharacterArmor(setId)
+                mCharGlyphCreation.SetCharacterGlyphs(setId)
+                mCharQuestCreation.SetCharacterQuests(setId)
+                If Not lite Then mCharTalentCreation.SetCharacterTalents(setId)
+            Next
+            GlobalVariables.forceTargetConnectionUsage = False
+        End Sub
+    End Class
+End Namespace

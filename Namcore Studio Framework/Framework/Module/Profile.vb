@@ -21,168 +21,164 @@
 '*      /Description:   Item/Glyph Object - item/glyph information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
-<Serializable()> _
-Public Class Item
 
-    Public id As Integer
-    Public name As String
-    Public rarity As Integer '0=poor;1=common;2=uncommon;3=rare;4=epic;5=legendary;6=artifact/heirloom
-    Public slotname As String
-    Public slot As Integer
-    Public socket1_id As Integer
-    Public socket2_id As Integer
-    Public socket3_id As Integer
-    Public socket1_pic As Image
-    Public socket2_pic As Image
-    Public socket3_pic As Image
-    Public socket1_name As String
-    Public socket2_name As String
-    Public socket3_name As String
-    Public enchantment_type As Integer '1=spell;2=item
-    Public enchantment_id As Integer
-    Public enchantment_name As String
-    Public enchstring As String
-    Public socket1_effectid As Integer
-    Public socket2_effectid As Integer
-    Public socket3_effectid As Integer
-    Public enchantment_effectid As Integer
-    Public image As Image
-    Public Sub New()
+Namespace Framework.Module
 
-    End Sub
+    <Serializable()>
+    Public Class Item
+        Public Id As Integer
+        Public Name As String
+        Public Rarity As Integer '0=poor;1=common;2=uncommon;3=rare;4=epic;5=legendary;6=artifact/heirloom
+        Public Slotname As String
+        Public Slot As Integer
+        Public Socket1Id As Integer
+        Public Socket2Id As Integer
+        Public Socket3Id As Integer
+        Public Socket1Pic As Image
+        Public Socket2Pic As Image
+        Public Socket3Pic As Image
+        Public Socket1Name As String
+        Public Socket2Name As String
+        Public Socket3Name As String
+        Public EnchantmentType As Integer '1=spell;2=item
+        Public EnchantmentId As Integer
+        Public EnchantmentName As String
+        Public Enchstring As String
+        Public Socket1Effectid As Integer
+        Public Socket2Effectid As Integer
+        Public Socket3Effectid As Integer
+        Public EnchantmentEffectid As Integer
+        Public Image As Image
 
+        Public Sub New()
+        End Sub
+    End Class
 
-End Class
-<Serializable()> _
-Public Class InventItem
+    <Serializable()>
+    Public Class InventItem
+        Public Entry As Integer
+        Public Slot As Integer
+        Public Bag As Integer
+        Public Bagguid As Integer
+        Public Enchantstring As String
+        Public Count As Integer
+        Public Container As Integer
+        Public Guid As Integer
 
-    Public entry As Integer
-    Public slot As Integer
-    Public bag As Integer
-    Public bagguid As Integer
-    Public enchantstring As String
-    Public count As Integer
-    Public container As Integer
-    Public guid As Integer
+        Public Sub New()
+        End Sub
+    End Class
 
-    Public Sub New()
+    <Serializable()>
+    Public Class Glyph
+        Public Id As Integer
+        Public Type As Integer '1=minor;2=major;3=prime
+        Public Spec As Integer '1;2
+        Public Name As String
+        Public Slotname As String 'e.g. majorglyph1
+        Public Image As Image
 
-    End Sub
+        Public Sub New()
+        End Sub
+    End Class
 
+    <Serializable()>
+    Public Class Achievement
+        Public Id As Integer
+        Public Name As String
+        Public Description As String
+        Public Icon As Image
+        Public GainDate As Integer
+        Public OwnerSet As Integer
+        Public SubCategory As Integer '//only for interfaces
+        Public SubCategoryName As String
 
-End Class
-<Serializable()> _
-Public Class Glyph
+        Public Sub New()
+        End Sub
+    End Class
 
-    Public id As Integer
-    Public type As Integer '1=minor;2=major;3=prime
-    Public spec As Integer '1;2
-    Public name As String
-    Public slotname As String 'e.g. majorglyph1
-    Public image As Image
-    Public Sub New()
+    <Serializable()>
+    Public Class Action
+        Public Button As Integer
+        Public Spec As Integer
+        Public ActionId As Integer
+        Public ActionType As Integer
+        Public OwnerSet As Integer
 
-    End Sub
+        Public Sub New()
+        End Sub
+    End Class
 
+    <Serializable()>
+    Public Class Quest
+        Public Id As Integer
+        Public Name As String
+        Public Status As Integer
+        Public Explored As Integer
+        Public Timer As Integer
+        Public Slot As Integer
+        Public Rewarded As Integer
 
-End Class
-<Serializable()> _
-Public Class Achievement
+        Public Sub New()
+        End Sub
+    End Class
 
-    Public Id As Integer
-    Public Name As String
-    Public Description As String
-    Public Icon As Image
-    Public GainDate As Integer
-    Public OwnerSet As Integer
-    Public SubCategory As Integer '//only for interfaces
-    Public SubCategoryName As String
-    Public Sub New()
+    <Serializable()>
+    Public Class Reputation
+        Public Faction As Integer
+        Public Flags As Integer
+        Public Standing As Integer
+        Public Name As String
+        Public Value As Integer
+        Public Max As Integer
+        Public Status As Integer _
+        '0=stranger; 1=acquaintance; 2=unfriendly; 3=neutral; 4=friendly; 5=honored; 6=revered; 7=exalted
+        Public Sub New()
+        End Sub
+    End Class
 
-    End Sub
+    <Serializable()>
+    Public Class Skill
+        Public Id As Integer
+        Public Value As Integer
+        Public Max As Integer
+        Public Name As String
 
+        Public Sub New()
+        End Sub
+    End Class
 
-End Class
-<Serializable()> _
-Public Class Action
+    <Serializable()>
+    Public Class Spell
+        Public Id As Integer
+        Public Active As Integer
+        Public Disabled As Integer
+        Public Name As String
 
-    Public Button As Integer
-    Public Spec As Integer
-    Public ActionId As Integer
-    Public ActionType As Integer
-    Public OwnerSet As Integer
+        Public Sub New()
+        End Sub
+    End Class
 
-    Public Sub New()
+    <Serializable()>
+    Public Class Talent
+        Public Spell As Integer
+        Public Spec As Integer
 
-    End Sub
+        Public Sub New()
+        End Sub
+    End Class
 
+    <Serializable()>
+    Public Class Profession
+        Public Id As Integer
+        Public Name As String
+        Public Max As Integer
+        Public Iconname As String
+        Public Rank As Integer
+        Public Primary As Boolean
+        Public Recipes() As String
 
-End Class
-<Serializable()> _
-Public Class Quest
-    Public id As Integer
-    Public name As String
-    Public status As Integer
-    Public explored As Integer
-    Public timer As Integer
-    Public slot As Integer
-    Public rewarded As Integer
-    Public Sub New()
-
-    End Sub
-End Class
-<Serializable()> _
-Public Class Reputation
-    Public faction As Integer
-    Public flags As Integer
-    Public standing As Integer
-    Public name As String
-    Public value As Integer
-    Public max As Integer
-    Public status As Integer '0=stranger; 1=acquaintance; 2=unfriendly; 3=neutral; 4=friendly; 5=honored; 6=revered; 7=exalted
-    Public Sub New()
-
-    End Sub
-End Class
-<Serializable()> _
-Public Class Skill
-    Public id As Integer
-    Public value As Integer
-    Public max As Integer
-    Public name As String
-    Public Sub New()
-
-    End Sub
-End Class
-<Serializable()> _
-Public Class Spell
-    Public id As Integer
-    Public active As Integer
-    Public disabled As Integer
-    Public name As String
-    Public Sub New()
-
-    End Sub
-End Class
-<Serializable()> _
-Public Class Talent
-    Public spell As Integer
-    Public spec As Integer
-    Public Sub New()
-
-    End Sub
-End Class
-<Serializable()> _
-Public Class Profession
-    Public id As Integer
-    Public name As String
-    Public max As Integer
-    Public iconname As String
-    Public rank As Integer
-    Public primary As Boolean
-    Public recipes() As String
-
-    Public Sub New()
-
-    End Sub
-End Class
+        Public Sub New()
+        End Sub
+    End Class
+End Namespace

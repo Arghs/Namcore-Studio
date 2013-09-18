@@ -59,14 +59,12 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="mysql.data, Version=5.2.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\mysql.data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -89,16 +87,16 @@
     <Compile Include="Forms\AccountOverview.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Character\Achievements_interface.Designer.vb">
-      <DependentUpon>Achievements_interface.vb</DependentUpon>
+    <Compile Include="Forms\Character\AchievementsInterface.Designer.vb">
+      <DependentUpon>AchievementsInterface.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Character\Achievements_interface.vb">
+    <Compile Include="Forms\Character\AchievementsInterface.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Armory_interface.Designer.vb">
-      <DependentUpon>Armory_interface.vb</DependentUpon>
+    <Compile Include="Forms\ArmoryInterface.Designer.vb">
+      <DependentUpon>ArmoryInterface.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Armory_interface.vb">
+    <Compile Include="Forms\ArmoryInterface.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Character\CharacterOverview.designer.vb">
@@ -107,40 +105,46 @@
     <Compile Include="Forms\Character\CharacterOverview.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Character\Quests_interface.Designer.vb">
-      <DependentUpon>Quests_interface.vb</DependentUpon>
+    <Compile Include="Forms\Character\QuestsInterface.Designer.vb">
+      <DependentUpon>QuestsInterface.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Character\Quests_interface.vb">
+    <Compile Include="Forms\Character\QuestsInterface.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Character\SpellSkill_interface.Designer.vb">
-      <DependentUpon>SpellSkill_interface.vb</DependentUpon>
+    <Compile Include="Forms\Character\SpellSkillInterface.Designer.vb">
+      <DependentUpon>SpellSkillInterface.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Character\SpellSkill_interface.vb">
+    <Compile Include="Forms\Character\SpellSkillInterface.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DB_connect.Designer.vb">
-      <DependentUpon>DB_connect.vb</DependentUpon>
+    <Compile Include="Forms\DbConnect.Designer.vb">
+      <DependentUpon>DbConnect.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DB_connect.vb">
+    <Compile Include="Forms\DbConnect.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Filter_accounts.Designer.vb">
-      <DependentUpon>Filter_accounts.vb</DependentUpon>
+    <Compile Include="Forms\Extension\EventTrigger.Designer.vb">
+      <DependentUpon>EventTrigger.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Filter_accounts.vb">
+    <Compile Include="Forms\Extension\EventTrigger.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Filter_characters.Designer.vb">
-      <DependentUpon>Filter_characters.vb</DependentUpon>
+    <Compile Include="Forms\Filteraccounts.Designer.vb">
+      <DependentUpon>Filteraccounts.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Filter_characters.vb">
+    <Compile Include="Forms\Filteraccounts.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Character\Glyphs_interface.Designer.vb">
-      <DependentUpon>Glyphs_interface.vb</DependentUpon>
+    <Compile Include="Forms\Filtercharacters.Designer.vb">
+      <DependentUpon>Filtercharacters.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Character\Glyphs_interface.vb">
+    <Compile Include="Forms\Filtercharacters.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Character\GlyphsInterface.Designer.vb">
+      <DependentUpon>GlyphsInterface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Character\GlyphsInterface.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Main.Designer.vb">
@@ -149,22 +153,22 @@
     <Compile Include="Forms\Main.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Prep_chartrans.Designer.vb">
-      <DependentUpon>Prep_chartrans.vb</DependentUpon>
+    <Compile Include="Forms\PrepChartrans.Designer.vb">
+      <DependentUpon>PrepChartrans.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Prep_chartrans.vb">
+    <Compile Include="Forms\PrepChartrans.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Character\Reputation_interface.Designer.vb">
-      <DependentUpon>Reputation_interface.vb</DependentUpon>
+    <Compile Include="Forms\Character\ReputationInterface.Designer.vb">
+      <DependentUpon>ReputationInterface.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Character\Reputation_interface.vb">
+    <Compile Include="Forms\Character\ReputationInterface.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings_interface.Designer.vb">
-      <DependentUpon>Settings_interface.vb</DependentUpon>
+    <Compile Include="Forms\SettingsInterface.Designer.vb">
+      <DependentUpon>SettingsInterface.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings_interface.vb">
+    <Compile Include="Forms\SettingsInterface.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Userwait.vb">
@@ -174,19 +178,19 @@
       <DependentUpon>Userwait.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Live_View.Designer.vb">
-      <DependentUpon>Live_View.vb</DependentUpon>
+    <Compile Include="Forms\LiveView.Designer.vb">
+      <DependentUpon>LiveView.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Live_View.vb">
+    <Compile Include="Forms\LiveView.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Module\date2timestamp.vb" />
-    <Compile Include="Module\Interface\DoubleBufferedControls.vb" />
-    <Compile Include="Module\Interface\LayoutHandler.vb" />
-    <Compile Include="Module\Interface\Interface_Operator.vb" />
-    <Compile Include="Module\Interface\ListViewComparer.vb" />
-    <Compile Include="Module\Interface\WinformControlExtensions.vb" />
-    <Compile Include="Module\ReplaceItemExtension.vb" />
+    <Compile Include="Modules\Date2Timestamp.vb" />
+    <Compile Include="Modules\Interface\DoubleBufferedControls.vb" />
+    <Compile Include="Modules\Interface\TrdQueueHandler.vb" />
+    <Compile Include="Modules\Interface\Interface_Operator.vb" />
+    <Compile Include="Modules\Interface\ListViewComparer.vb" />
+    <Compile Include="Modules\Interface\WinformControlExtensions.vb" />
+    <Compile Include="Modules\ReplaceItemExtension.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -207,50 +211,53 @@
     <EmbeddedResource Include="Forms\AccountOverview.resx">
       <DependentUpon>AccountOverview.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Character\Achievements_interface.resx">
-      <DependentUpon>Achievements_interface.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Character\AchievementsInterface.resx">
+      <DependentUpon>AchievementsInterface.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Armory_interface.resx">
-      <DependentUpon>Armory_interface.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\ArmoryInterface.resx">
+      <DependentUpon>ArmoryInterface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Character\CharacterOverview.resx">
       <DependentUpon>CharacterOverview.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Character\Quests_interface.resx">
-      <DependentUpon>Quests_interface.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Character\QuestsInterface.resx">
+      <DependentUpon>QuestsInterface.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Character\Reputation_interface.resx">
-      <DependentUpon>Reputation_interface.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Character\ReputationInterface.resx">
+      <DependentUpon>ReputationInterface.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Character\SpellSkill_interface.resx">
-      <DependentUpon>SpellSkill_interface.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Character\SpellSkillInterface.resx">
+      <DependentUpon>SpellSkillInterface.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DB_connect.resx">
-      <DependentUpon>DB_connect.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\DbConnect.resx">
+      <DependentUpon>DbConnect.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Filter_accounts.resx">
-      <DependentUpon>Filter_accounts.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Extension\EventTrigger.resx">
+      <DependentUpon>EventTrigger.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Filter_characters.resx">
-      <DependentUpon>Filter_characters.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Filteraccounts.resx">
+      <DependentUpon>Filteraccounts.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Character\Glyphs_interface.resx">
-      <DependentUpon>Glyphs_interface.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Filtercharacters.resx">
+      <DependentUpon>Filtercharacters.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Character\GlyphsInterface.resx">
+      <DependentUpon>GlyphsInterface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Prep_chartrans.resx">
-      <DependentUpon>Prep_chartrans.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\PrepChartrans.resx">
+      <DependentUpon>PrepChartrans.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings_interface.resx">
-      <DependentUpon>Settings_interface.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\SettingsInterface.resx">
+      <DependentUpon>SettingsInterface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Userwait.resx">
       <DependentUpon>Userwait.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Live_View.resx">
-      <DependentUpon>Live_View.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\LiveView.resx">
+      <DependentUpon>LiveView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
@@ -313,7 +320,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_DetectChanges="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
