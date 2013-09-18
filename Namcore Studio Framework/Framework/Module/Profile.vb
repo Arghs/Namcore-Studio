@@ -64,7 +64,14 @@ Namespace Framework.Module
         Public Count As Integer
         Public Container As Integer
         Public Guid As Integer
-
+        Public Socket1Id As Integer
+        Public Socket2Id As Integer
+        Public Socket3Id As Integer
+        Public Socket1Effectid As Integer
+        Public Socket2Effectid As Integer
+        Public Socket3Effectid As Integer
+        Public EnchantmentId As Integer
+        Public EnchantmentEffectid As Integer
         Public Sub New()
         End Sub
     End Class
