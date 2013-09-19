@@ -62,6 +62,8 @@ Namespace Framework.Transmission
                 mCharArmorCreation.AddCharacterArmor(setId)
                 mCharGlyphCreation.SetCharacterGlyphs(setId)
                 mCharQuestCreation.SetCharacterQuests(setId)
+                AddSpecialSkills(setId, player)
+                AddSpecialSpells(setId, player)
                 If Not lite Then mCharTalentCreation.SetCharacterTalents(setId)
             Next
             GlobalVariables.forceTargetConnectionUsage = False

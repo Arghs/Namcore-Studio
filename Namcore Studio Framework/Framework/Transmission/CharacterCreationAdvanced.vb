@@ -56,36 +56,35 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.char_guid_col(0) &
                     "=(SELECT MAX(" & GlobalVariables.targetStructure.char_guid_col(0) & ") FROM " &
                     GlobalVariables.targetStructure.character_tbl(0) & ")", True)) + 1
-            ' Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT " & targetStructure.acc_id_col(0) & " FROM " & targetStructure.account_tbl(0) & " WHERE " & targetStructure.acc_name_col(0) & "='" & accname & "'", True))
             Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.character_tbl(0) & " ( `" &
-                                      GlobalVariables.targetStructure.char_guid_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_name_col(0) &
-                                      "`, `" & GlobalVariables.targetStructure.char_race_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_class_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_gender_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_level_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_xp_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_gold_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_playerBytes_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_playerBytes2_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_playerFlags_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_posX_col(0) & "`, " & "" &
-                                      GlobalVariables.targetStructure.char_posY_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_posZ_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_map_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_orientation_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_taximask_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_arcemuPlayedTime_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_stableSlots_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_zone_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_watchedFaction_col(0) & ", current_hp, " &
-                                      "" & GlobalVariables.targetStructure.char_speccount_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_activeSpec_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_exploredZones_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_knownTitles_col(0) & " ) VALUES " &
-                                      "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, gold, @pBytes, pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '0 0 0 ', @stable, @zone, " &
-                                      "@title, @wFaction, '1000', @speccpunt, @activespec, @exploredZones, @knownTitles )"
+                                           GlobalVariables.targetStructure.char_guid_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_name_col(0) &
+                                           "`, `" & GlobalVariables.targetStructure.char_race_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_class_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_gender_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_level_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_xp_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_gold_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_playerBytes_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_playerBytes2_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_playerFlags_col(0) & "`, `" &
+                                           GlobalVariables.targetStructure.char_posX_col(0) & "`, " & "" &
+                                           GlobalVariables.targetStructure.char_posY_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_posZ_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_map_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_orientation_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_taximask_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_arcemuPlayedTime_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_stableSlots_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_zone_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_watchedFaction_col(0) & ", current_hp, " &
+                                           "" & GlobalVariables.targetStructure.char_speccount_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_activeSpec_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_exploredZones_col(0) & ", " &
+                                           GlobalVariables.targetStructure.char_knownTitles_col(0) & " ) VALUES " &
+                                           "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, gold, @pBytes, pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '0 0 0 ', @stable, @zone, " &
+                                           "@title, @wFaction, '1000', @speccpunt, @activespec, @exploredZones, @knownTitles )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
             Dim player As Character = GetCharacterSetBySetId(targetSetId)
             tempcommand.Parameters.AddWithValue("@accid", accid.ToString)
@@ -148,7 +147,7 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.itmins_slot_col(0) &
                     " ) VALUES ( '" & newcharguid.ToString() &
                     "', '" & newitemguid.ToString() & "', '6948', '1', '-1', '23' )", True)
-                AddSpells("6603,")
+                AddSpells("6603,", player)
                 Dim tempinfo As String = player.CustomFaction.ToString
                 If Not tempinfo = "" Then _
                     runSQLCommand_characters_string(
@@ -181,6 +180,10 @@ Namespace Framework.Transmission
                     "UPDATE " & GlobalVariables.targetStructure.character_tbl(0) & " SET " &
                     GlobalVariables.targetStructure.char_bindzoneid_col(0) & "='" & SplitList(tmpstring, "zone") &
                     "' WHERE " & GlobalVariables.targetStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
+
+                player.CreatedGuid = newcharguid
+                SetCharacterSet(targetSetId, player)
+
             Catch ex As Exception
                 LogAppend(
                     "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),
@@ -198,44 +201,43 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.char_guid_col(0) &
                     "=(SELECT MAX(" & GlobalVariables.targetStructure.char_guid_col(0) & ") FROM " &
                     GlobalVariables.targetStructure.character_tbl(0) & ")", True)) + 1
-            '   Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & targetStructure.acc_id_col(0) & "` FROM " & targetStructure.account_tbl(0) & " WHERE " & targetStructure.acc_name_col(0) & "='" & accname & "'", True))
             Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.character_tbl(0) & " ( `" &
-                                      GlobalVariables.targetStructure.char_guid_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_name_col(0) &
-                                      "`, `" & GlobalVariables.targetStructure.char_race_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_class_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_gender_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_level_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_xp_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_gold_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_playerBytes_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_playerBytes2_col(0) & "`, " &
-                                      "`" & GlobalVariables.targetStructure.char_playerFlags_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_posX_col(0) & "`, " &
-                                      GlobalVariables.targetStructure.char_posY_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_posZ_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_map_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_orientation_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_taximask_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_cinematic_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_totaltime_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_leveltime_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_extraFlags_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_stableSlots_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_atlogin_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_zone_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_chosenTitle_col(0) & ", " &
-                                      "" & GlobalVariables.targetStructure.char_knownCurrencies_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_watchedFaction_col(0) & ", `" &
-                                      GlobalVariables.targetStructure.char_health_col(0) & "`, " &
-                                      GlobalVariables.targetStructure.char_speccount_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_activeSpec_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_exploredZones_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_knownTitles_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_actionBars_col(0) & " ) VALUES " &
-                                      "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, leveltime, @extraflags, " &
-                                      "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
+                                  GlobalVariables.targetStructure.char_guid_col(0) & "`, `" &
+                                  GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
+                                  GlobalVariables.targetStructure.char_name_col(0) &
+                                  "`, `" & GlobalVariables.targetStructure.char_race_col(0) & "`, `" &
+                                  GlobalVariables.targetStructure.char_class_col(0) & "`, `" &
+                                  GlobalVariables.targetStructure.char_gender_col(0) & "`, `" &
+                                  GlobalVariables.targetStructure.char_level_col(0) & "`, `" &
+                                  GlobalVariables.targetStructure.char_xp_col(0) & "`, `" &
+                                  GlobalVariables.targetStructure.char_gold_col(0) & "`, `" &
+                                  GlobalVariables.targetStructure.char_playerBytes_col(0) & "`, `" &
+                                  GlobalVariables.targetStructure.char_playerBytes2_col(0) & "`, " &
+                                  "`" & GlobalVariables.targetStructure.char_playerFlags_col(0) & "`, `" &
+                                  GlobalVariables.targetStructure.char_posX_col(0) & "`, " &
+                                  GlobalVariables.targetStructure.char_posY_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_posZ_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_map_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_orientation_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_taximask_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_cinematic_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_totaltime_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_leveltime_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_extraFlags_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_stableSlots_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_atlogin_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_zone_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_chosenTitle_col(0) & ", " &
+                                  "" & GlobalVariables.targetStructure.char_knownCurrencies_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_watchedFaction_col(0) & ", `" &
+                                  GlobalVariables.targetStructure.char_health_col(0) & "`, " &
+                                  GlobalVariables.targetStructure.char_speccount_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_activeSpec_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_exploredZones_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_knownTitles_col(0) & ", " &
+                                  GlobalVariables.targetStructure.char_actionBars_col(0) & " ) VALUES " &
+                                  "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, leveltime, @extraflags, " &
+                                  "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
             Dim player As Character = GetCharacterSetBySetId(targetSetId)
             tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
@@ -328,6 +330,9 @@ Namespace Framework.Transmission
                     " ) VALUES ( '" & newcharguid.ToString() & "', '" & SplitList(tmpstring, "map") & "', '" &
                     SplitList(tmpstring, "zone") & "', '" & SplitList(tmpstring, "position_x") &
                     "', '" & SplitList(tmpstring, "position_y") & "', '" & SplitList(tmpstring, "position_z") & "' )")
+
+                player.CreatedGuid = newcharguid
+                SetCharacterSet(targetSetId, player)
             Catch ex As Exception
                 LogAppend(
                     "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),
@@ -345,7 +350,6 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.char_guid_col(0) &
                     "=(SELECT MAX(" & GlobalVariables.targetStructure.char_guid_col(0) & ") FROM " &
                     GlobalVariables.targetStructure.character_tbl(0) & ")", True)) + 1
-            ' Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & targetStructure.acc_id_col(0) & "` FROM " & targetStructure.account_tbl(0) & " WHERE " & targetStructure.acc_name_col(0) & "='" & accname & "'", True))
             Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.character_tbl(0) & " ( `" &
                                       GlobalVariables.targetStructure.char_guid_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
@@ -488,6 +492,9 @@ Namespace Framework.Transmission
                     SplitList(tmpstring, "zone") &
                     "', '" & SplitList(tmpstring, "position_x") & "', '" & SplitList(tmpstring, "position_y") & "', '" &
                     SplitList(tmpstring, "position_z") & "' )")
+
+                player.CreatedGuid = newcharguid
+                SetCharacterSet(targetSetId, player)
             Catch ex As Exception
                 LogAppend(
                     "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),

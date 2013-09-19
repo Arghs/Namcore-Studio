@@ -21,13 +21,44 @@
 '*      /Description:   Includes functions for setting up the known skills of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Database
+
 Namespace Framework.Transmission
     Public Module SkillCreation
-        Public Sub AddSkills(ByVal skillsstring As String)
+        Public Sub AddSkills(ByVal skillsstring As String, ByVal player As Character, Optional forceTargetCore As Boolean = False)
             'TODO
+            Dim useCore As String
+            Dim useStructure As DbStructure
+            If forceTargetCore Then
+                useCore = GlobalVariables.targetCore
+                useStructure = GlobalVariables.targetStructure
+            Else
+                useCore = GlobalVariables.sourceCore
+                useStructure = GlobalVariables.sourceStructure
+            End If
+            Dim mySkills() As String = skillsstring.Split(","c)
+            Dim skillCount As Integer = UBound(Split(skillsstring, ","))
+            For i = 0 To skillCount - 1
+                Dim mySkill As String = mySkills(i)
+                LogAppend("Adding Skill " & mySkill, "SkillCreation_AddSkills")
+                Select Case useCore
+                    Case "trinity"
+                        runSQLCommand_characters_string(
+                            "INSERT INTO `" & useStructure.character_skills_tbl(0) & "`( `" &
+                            useStructure.skill_guid_col(0) & "`, `" &
+                            useStructure.skill_skill_col(0) & "`, `" &
+                            useStructure.skill_value_col(0) & "`, `" &
+                            useStructure.skill_max_col(0) &
+                            "` ) VALUES ( '" &
+                            player.CreatedGuid.ToString & "', '" &
+                            mySkill & "', '1', '1' )", forceTargetCore)
+                End Select
+            Next
         End Sub
 
-        Public Sub AddSpecialSkills(ByVal targetSetId As Integer, ByVal charguid As Integer)
+        Public Sub AddSpecialSkills(ByVal targetSetId As Integer, ByVal player As Character)
             'TODO
         End Sub
     End Module

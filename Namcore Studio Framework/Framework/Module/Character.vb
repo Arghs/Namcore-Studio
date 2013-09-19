@@ -95,6 +95,7 @@ Namespace Framework.Module
 
         'Misc
 
+        Public CreatedGuid As Integer
         Public ArmorItems As List(Of Item)
         Public ArmorItemsIndex As String
         Public InventoryItems As List(Of InventItem)

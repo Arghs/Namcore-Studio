@@ -53,14 +53,14 @@ Namespace Framework.Transmission
             Dim player As Character = GetCharacterSetBySetId(targetSetId)
             Dim cClass As Integer = player.Cclass
             If cClass = 1 Or cClass = 2 Or cClass = 6 Then
-                AddSpells("750,")
-                AddSkills("293,")
+                AddSpells("750,", player)
+                AddSkills("293,", player)
             ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 6 Or cClass = 7 Then
-                AddSpells("8737,")
-                AddSkills("413,")
+                AddSpells("8737,", player)
+                AddSkills("413,", player)
             ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 4 Or cClass = 6 Or cClass = 7 Or cClass = 11 Then
-                AddSpells("9077,")
-                AddSkills("414,")
+                AddSpells("9077,", player)
+                AddSkills("414,", player)
             Else
             End If
             LogAppend("Adding items", "ArmorCreation_createAtArcemu", False)
@@ -153,14 +153,14 @@ Namespace Framework.Transmission
             Dim player As Character = GetCharacterSetBySetId(targetSetId)
             Dim cClass As Integer = player.Cclass
             If cClass = 1 Or cClass = 2 Or cClass = 6 Then
-                AddSpells("750,")
-                AddSkills("293,")
+                AddSpells("750,", player)
+                AddSkills("293,", player)
             ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 6 Or cClass = 7 Then
-                AddSpells("8737,")
-                AddSkills("413,")
+                AddSpells("8737,", player)
+                AddSkills("413,", player)
             ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 4 Or cClass = 6 Or cClass = 7 Or cClass = 11 Then
-                AddSpells("9077,")
-                AddSkills("414,")
+                AddSpells("9077,", player)
+                AddSkills("414,", player)
             Else
             End If
             LogAppend("Adding items", "ArmorCreation_createAtTrinity", False)
@@ -261,14 +261,14 @@ Namespace Framework.Transmission
             Dim player As Character = GetCharacterSetBySetId(targetSetId)
             Dim cClass As Integer = player.Cclass
             If cClass = 1 Or cClass = 2 Or cClass = 6 Then
-                AddSpells("750,")
-                AddSkills("293,")
+                AddSpells("750,", player)
+                AddSkills("293,", player)
             ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 6 Or cClass = 7 Then
-                AddSpells("8737,")
-                AddSkills("413,")
+                AddSpells("8737,", player)
+                AddSkills("413,", player)
             ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 4 Or cClass = 6 Or cClass = 7 Or cClass = 11 Then
-                AddSpells("9077,")
-                AddSkills("414,")
+                AddSpells("9077,", player)
+                AddSkills("414,", player)
             Else
             End If
             LogAppend("Adding items", "ArmorCreation_createAtMangos", False)
