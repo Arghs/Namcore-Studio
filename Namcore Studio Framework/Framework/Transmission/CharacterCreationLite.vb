@@ -91,7 +91,6 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.char_guid_col(0) & "=(SELECT MAX(" &
                     GlobalVariables.targetStructure.char_guid_col(0) & ") FROM " &
                     GlobalVariables.targetStructure.character_tbl(0) & ")", True)) + 1
-            '   Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT " & targetStructure.acc_id_col(0) & " FROM " & targetStructure.account_tbl(0) & " WHERE " & targetStructure.acc_name_col(0) & "='" & accname & "'", True))
             Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.character_tbl(0) & " ( `" &
                                       GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_guid_col(0) & "`, `" &
@@ -463,26 +462,25 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.char_guid_col(0) &
                     "=(SELECT MAX(" & GlobalVariables.targetStructure.char_guid_col(0) & ") FROM " &
                     GlobalVariables.targetStructure.character_tbl(0) & ")", True)) + 1
-            '   Dim accid As Integer = TryInt(runSQLCommand_realm_string("SELECT `" & targetStructure.acc_id_col(0) & "` FROM " & targetStructure.account_tbl(0) & " WHERE " & targetStructure.acc_name_col(0) & "='" & accname & "'", True))
             Dim sqlstring As String = "INSERT INTO characters ( `" & GlobalVariables.targetStructure.char_guid_col(0) &
-                                      "`, `" & GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_name_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_race_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_class_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_gender_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_level_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_xp_col(0) &
-                                      "`, `" & GlobalVariables.targetStructure.char_gold_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_playerBytes_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_posX_col(0) & "`, " &
-                                      GlobalVariables.targetStructure.char_posY_col(0) &
-                                      ", " & GlobalVariables.targetStructure.char_posZ_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_map_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_orientation_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_taximask_col(0) & ", " &
-                                      GlobalVariables.targetStructure.char_cinematic_col(0) & ", `" &
-                                      GlobalVariables.targetStructure.char_health_col(0) & "` ) VALUES " &
-                                      "( @guid, @accid, @name, @race, @class, @gender, @level, '0', '0', @pBytes, '-14306', '515', '10', '0', '5', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1', '1000' )"
+                                     "`, `" & GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
+                                     GlobalVariables.targetStructure.char_name_col(0) & "`, `" &
+                                     GlobalVariables.targetStructure.char_race_col(0) & "`, `" &
+                                     GlobalVariables.targetStructure.char_class_col(0) & "`, `" &
+                                     GlobalVariables.targetStructure.char_gender_col(0) & "`, `" &
+                                     GlobalVariables.targetStructure.char_level_col(0) & "`, `" &
+                                     GlobalVariables.targetStructure.char_xp_col(0) &
+                                     "`, `" & GlobalVariables.targetStructure.char_gold_col(0) & "`, `" &
+                                     GlobalVariables.targetStructure.char_playerBytes_col(0) & "`, `" &
+                                     GlobalVariables.targetStructure.char_posX_col(0) & "`, " &
+                                     GlobalVariables.targetStructure.char_posY_col(0) &
+                                     ", " & GlobalVariables.targetStructure.char_posZ_col(0) & ", " &
+                                     GlobalVariables.targetStructure.char_map_col(0) & ", " &
+                                     GlobalVariables.targetStructure.char_orientation_col(0) & ", " &
+                                     GlobalVariables.targetStructure.char_taximask_col(0) & ", " &
+                                     GlobalVariables.targetStructure.char_cinematic_col(0) & ", `" &
+                                     GlobalVariables.targetStructure.char_health_col(0) & "` ) VALUES " &
+                                     "( @guid, @accid, @name, @race, @class, @gender, @level, '0', '0', @pBytes, '-14306', '515', '10', '0', '5', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1', '1000' )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
             tempcommand.Prepare()
             Dim player As Character = GetCharacterSetBySetId(targetSetId)

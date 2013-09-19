@@ -83,7 +83,7 @@ Namespace Framework.Transmission
                                            GlobalVariables.targetStructure.char_activeSpec_col(0) & ", " &
                                            GlobalVariables.targetStructure.char_exploredZones_col(0) & ", " &
                                            GlobalVariables.targetStructure.char_knownTitles_col(0) & " ) VALUES " &
-                                           "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, gold, @pBytes, pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '0 0 0 ', @stable, @zone, " &
+                                           "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '0 0 0 ', @stable, @zone, " &
                                            "@title, @wFaction, '1000', @speccpunt, @activespec, @exploredZones, @knownTitles )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
             Dim player As Character = GetCharacterSetBySetId(targetSetId)
@@ -236,7 +236,7 @@ Namespace Framework.Transmission
                                   GlobalVariables.targetStructure.char_exploredZones_col(0) & ", " &
                                   GlobalVariables.targetStructure.char_knownTitles_col(0) & ", " &
                                   GlobalVariables.targetStructure.char_actionBars_col(0) & " ) VALUES " &
-                                  "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, leveltime, @extraflags, " &
+                                  "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, @leveltime, @extraflags, " &
                                   "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
             Dim player As Character = GetCharacterSetBySetId(targetSetId)
@@ -385,7 +385,7 @@ Namespace Framework.Transmission
                                       GlobalVariables.targetStructure.char_exploredZones_col(0) & ", " &
                                       GlobalVariables.targetStructure.char_knownTitles_col(0) & ", " &
                                       GlobalVariables.targetStructure.char_actionBars_col(0) & " ) VALUES " &
-                                      "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, leveltime, @extraflags, " &
+                                      "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, @leveltime, @extraflags, " &
                                       "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
             Dim player As Character = GetCharacterSetBySetId(targetSetId)
