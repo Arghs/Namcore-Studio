@@ -122,6 +122,10 @@ Namespace Framework.Transmission.Update
                 Dim mUpdateArmor As New UpdateArmorHandler
                 mUpdateArmor.UpdateArmor(comparePlayer, newPlayer, itm2Create, itm2Delete, itmsEnchChanged)
             End If
+            If Not newPlayer.PlayerGlyphsIndex = comparePlayer.PlayerGlyphsIndex Then
+                Dim mUpdateGlyphs As New UpdateGlyphsHandler
+                mUpdateGlyphs.UpdateGlyphs(comparePlayer, newPlayer)
+            End If
         End Sub
     End Class
 End Namespace

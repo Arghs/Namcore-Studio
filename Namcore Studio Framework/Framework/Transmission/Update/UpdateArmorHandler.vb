@@ -76,7 +76,7 @@ Namespace Framework.Transmission.Update
                         GlobalVariables.sourceStructure.itmins_count_col(0) & ", " &
                         GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
                         ", " & GlobalVariables.sourceStructure.itmins_durability_col(0) & " ) VALUES ( '" &
-                        newItemGuid.ToString() & "', '" & itm2Add.id & "', '" & player.Guid.ToString() &
+                        newItemGuid.ToString() & "', '" & itm2Add.Id & "', '" & player.Guid.ToString() &
                         "', '1', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
                     If _
                         ReturnResultCount(

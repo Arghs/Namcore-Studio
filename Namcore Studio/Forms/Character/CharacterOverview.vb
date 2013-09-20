@@ -63,7 +63,6 @@ Namespace Forms.Character
                 mLoadHandler.handleLoadingRequests(setId)
             End If
             GlobalVariables.currentViewedCharSet = GetCharacterSetBySetId(setId)
-            If GlobalVariables.currentViewedCharSet.PlayerGlyphsIndex Is Nothing Then Glyphs_bt.Enabled = False
             _doneControls = New List(Of Control)
             Goprep(setId, False)
             LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)

@@ -84,7 +84,7 @@ Namespace Forms.Character
                     repPanel.BackColor = Color.FromArgb(110, 149, 190)
                 Else
                     colorTicker = 0
-                    repPanel.BackColor = Color.FromArgb(126, 144, 156) 'Color.SaddleBrown
+                    repPanel.BackColor = Color.FromArgb(126, 144, 156)
                 End If
                 Dim repNameLable As New Label
                 repNameLable.Name = "rep" & pRepu.faction.ToString() & "_name_lbl"

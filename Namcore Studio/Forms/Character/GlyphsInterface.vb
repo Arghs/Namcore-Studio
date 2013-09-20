@@ -51,6 +51,9 @@ Namespace Forms.Character
         End Sub
 
         Public Sub PrepareGlyphsInterface(ByVal setId As Integer)
+            Dim player As NCFramework.Framework.Module.Character = GetCharacterSetBySetId(setId)
+            If player.PlayerGlyphsIndex Is Nothing Then player.PlayerGlyphsIndex = ""
+            If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
             _controlLst = New List(Of Control)
             _controlLst = FindAllChildren()
             For Each itemControl As Control In _controlLst
