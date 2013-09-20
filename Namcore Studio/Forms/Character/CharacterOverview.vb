@@ -279,10 +279,10 @@ Namespace Forms.Character
                         client.CheckProxy()
                         Dim spellcontext As String
                         Dim foundspell As Boolean = False
-                        Dim spellname As String
+                        Dim spellname As String = ""
                         Dim itemcontext As String
                         Dim founditem As Boolean = False
-                        Dim itemname As String
+                        Dim itemname As String = ""
                         Try
                             spellcontext = client.DownloadString("http://www.wowhead.com/spell=" & TextBox1.Text)
                         Catch ex As Exception

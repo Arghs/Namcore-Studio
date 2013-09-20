@@ -43,10 +43,6 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="libnc, Version=0.0.1.24928, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\libnc.dll</HintPath>
-    </Reference>
     <Reference Include="libncadvanced">
       <HintPath>..\Namcore Studio\References\libncadvanced.dll</HintPath>
     </Reference>
@@ -186,10 +182,16 @@
     <Content Include="Resources\namcore_header.jpg" />
     <None Include="Resources\nclogo.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Namcore-Libs\libnc\libnc.vbproj">
+      <Project>{8db60c89-9fff-48ec-b3ff-d563371b6f73}</Project>
+      <Name>libnc</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_DetectChanges="False" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_DetectChanges="False" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

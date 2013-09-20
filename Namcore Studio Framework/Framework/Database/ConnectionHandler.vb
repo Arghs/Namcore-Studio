@@ -24,7 +24,6 @@ Imports NCFramework.Framework.Logging
 Imports MySql.Data.MySqlClient
 
 Namespace Framework.Database
-
     Public Module ConnectionHandler
         Public Sub OpenNewMySqlConnection(ByVal targetconnection As MySqlConnection, serverstring As String)
             LogAppend(
@@ -44,8 +43,9 @@ Namespace Framework.Database
                     Exit Sub
                 End Try
             End If
-            LogAppend("Setting MySQL connectionstring to: " & serverstring & vbNewLine & "and trying to open new connection",
-                      "ConnectionHandler_OpenNewMySQLConnection", False)
+            LogAppend(
+                "Setting MySQL connectionstring to: " & serverstring & vbNewLine & "and trying to open new connection",
+                "ConnectionHandler_OpenNewMySQLConnection", False)
             targetconnection.ConnectionString = serverstring
             Try
                 targetconnection.Open()
@@ -54,7 +54,8 @@ Namespace Framework.Database
                 targetconnection.Close()
                 targetconnection.Dispose()
                 LogAppend(
-                    "MySQL connection could not be opened! -> Aborting process -> Exception is: ###START###" & ex.ToString() &
+                    "MySQL connection could not be opened! -> Aborting process -> Exception is: ###START###" &
+                    ex.ToString() &
                     "###END###", "ConnectionHandler_OpenNewMySQLConnection", True, True)
                 Exit Sub
             End Try

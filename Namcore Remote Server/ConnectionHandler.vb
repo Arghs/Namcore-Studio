@@ -20,13 +20,13 @@
 '*      /Filename:      ConnectionHandler
 '*      /Description:   Handles TCP/IP connection
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 Imports System.Net.Sockets
 Imports System.IO
 Imports System.Net
 Imports MySql.Data.MySqlClient
 Imports Namcore_Remote_Server.Logging
 Imports Namcore_Remote_Server.mysqlHandler
+
 Module ConnectionHandler
     Private server As TcpListener
     Private client As New TcpClient
@@ -84,7 +84,7 @@ Module ConnectionHandler
                 'Console.WriteLine(con.client_username & ": " & tmp)
                 Select Case True
                     Case tmp.StartsWith("/runcommand ")
-                        Dim tmpconn As MySqlConnection
+                        Dim tmpconn As New MySqlConnection
                         Select Case readfield(tmp, "conn")
                             Case "sqlconn1auth"
                                 tmpconn = sqlconn1auth
@@ -96,8 +96,8 @@ Module ConnectionHandler
                                 tmpconn = sqlconn2characters
                         End Select
                         SendtoClient(con, runsqlcommand(tmpconn, readfield(tmp, "command")), tmp)
-                   Case tmp.StartsWith("/opensql")
-                        Dim tmpconn As MySqlConnection
+                    Case tmp.StartsWith("/opensql")
+                        Dim tmpconn As New MySqlConnection
                         Select Case readfield(tmp, "conn")
                             Case "sqlconn1auth"
                                 tmpconn = sqlconn1auth
@@ -111,7 +111,7 @@ Module ConnectionHandler
                         openSQLconnection(tmpconn, readfield(tmp, "connectionstring"))
                         SendtoClient(con, "/next", tmp)
                     Case tmp.StartsWith("/closesql")
-                        Dim tmpconn As MySqlConnection
+                        Dim tmpconn As New MySqlConnection
                         Select Case readfield(tmp, "conn")
                             Case "sqlconn1auth"
                                 tmpconn = sqlconn1auth
@@ -151,7 +151,7 @@ Module ConnectionHandler
         conn.streamw.WriteLine(returnstring & "<respid>" & readfield(tmpst, "respid") & "</respid>")
         conn.streamw.Flush()
     End Sub
-    Private Function readfield(ByVal tmpstring As String, ByVal fieldname As String) As String
+    Private Function Readfield(ByVal tmpstring As String, ByVal fieldname As String) As String
         Try
             Return Split(Split(tmpstring, "<" & fieldname & ">", 5)(1), "</" & fieldname & ">", 6)(0)
         Catch
