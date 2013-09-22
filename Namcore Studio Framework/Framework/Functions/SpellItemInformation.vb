@@ -380,7 +380,7 @@ LookOnline:     Dim client As New WebClient
                                 End Try
                             End If
                             Dim nameresult As String = Execute("id", itemid.ToString(), GlobalVariables.tempItemSparseDE,
-                                                               100)
+                                                               1)
                             If nameresult = "-" Then
                                 LogAppend("Entry not found -> Returning error message",
                                           "SpellItem_Information_getNameOfItem", False, True)
