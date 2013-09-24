@@ -93,17 +93,19 @@ Namespace Framework.Transmission.Update
                         runSQLCommand_characters_string(
                             "INSERT INTO " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " ( " &
                             GlobalVariables.sourceStructure.invent_guid_col(0) & ", " &
+                            GlobalVariables.sourceStructure.invent_bag_col(0) & ", " &
                             GlobalVariables.sourceStructure.invent_slot_col(0) &
                             ", " & GlobalVariables.sourceStructure.invent_item_col(0) & " ) VALUES ( '" &
-                            player.Guid.ToString() & "', '" & itm2Add.slot.ToString() & "', '" & newItemGuid.ToString() &
+                            player.Guid.ToString() & "', '0', '" & itm2Add.Slot.ToString() & "', '" & newItemGuid.ToString() &
                             "' )")
                     Else
                         runSQLCommand_characters_string(
                             "INSERT INTO " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " ( " &
                             GlobalVariables.sourceStructure.invent_guid_col(0) & ", " &
+                            GlobalVariables.sourceStructure.invent_bag_col(0) & ", " &
                             GlobalVariables.sourceStructure.invent_slot_col(0) & ", " &
                             GlobalVariables.sourceStructure.invent_item_col(0) & " ) VALUES ( '" & player.Guid.ToString() &
-                            "', '" & itm2Add.slot.ToString() & "', '" & newItemGuid.ToString() & "' )")
+                            "', '0', '" & itm2Add.Slot.ToString() & "', '" & newItemGuid.ToString() & "' )")
                     End If
                     Dim mEnchCreator As New EnchantmentsCreation
                     mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
