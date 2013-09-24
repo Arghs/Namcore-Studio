@@ -76,7 +76,7 @@ Namespace Framework.Transmission.Update
                         GlobalVariables.sourceStructure.itmins_count_col(0) & ", " &
                         GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
                         ", " & GlobalVariables.sourceStructure.itmins_durability_col(0) & " ) VALUES ( '" &
-                        newItemGuid.ToString() & "', '" & itm2Add.Id & "', '" & player.Guid.ToString() &
+                        newItemGuid.ToString() & "', '" & itm2Add.Id.ToString() & "', '" & player.Guid.ToString() &
                         "', '1', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
                     If _
                         ReturnResultCount(
@@ -88,25 +88,17 @@ Namespace Framework.Transmission.Update
                         runSQLCommand_characters_string(
                             "DELETE FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
-                            "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Add.slot.ToString() &
+                            "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Add.Slot.ToString() &
                             "'")
-                        runSQLCommand_characters_string(
-                            "INSERT INTO " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " ( " &
-                            GlobalVariables.sourceStructure.invent_guid_col(0) & ", " &
-                            GlobalVariables.sourceStructure.invent_bag_col(0) & ", " &
-                            GlobalVariables.sourceStructure.invent_slot_col(0) &
-                            ", " & GlobalVariables.sourceStructure.invent_item_col(0) & " ) VALUES ( '" &
-                            player.Guid.ToString() & "', '0', '" & itm2Add.Slot.ToString() & "', '" & newItemGuid.ToString() &
-                            "' )")
-                    Else
-                        runSQLCommand_characters_string(
-                            "INSERT INTO " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " ( " &
-                            GlobalVariables.sourceStructure.invent_guid_col(0) & ", " &
-                            GlobalVariables.sourceStructure.invent_bag_col(0) & ", " &
-                            GlobalVariables.sourceStructure.invent_slot_col(0) & ", " &
-                            GlobalVariables.sourceStructure.invent_item_col(0) & " ) VALUES ( '" & player.Guid.ToString() &
-                            "', '0', '" & itm2Add.Slot.ToString() & "', '" & newItemGuid.ToString() & "' )")
                     End If
+                    runSQLCommand_characters_string(
+                        "INSERT INTO " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " ( " &
+                        GlobalVariables.sourceStructure.invent_guid_col(0) & ", " &
+                        GlobalVariables.sourceStructure.invent_bag_col(0) & ", " &
+                        GlobalVariables.sourceStructure.invent_slot_col(0) & ", " &
+                        GlobalVariables.sourceStructure.invent_item_col(0) & " ) VALUES ( '" & player.Guid.ToString() &
+                        "', '0', '" & itm2Add.Slot.ToString() & "', '" & newItemGuid.ToString() & "' )")
+
                     Dim mEnchCreator As New EnchantmentsCreation
                     mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
                                                       GlobalVariables.sourceStructure)
