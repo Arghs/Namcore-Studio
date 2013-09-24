@@ -132,6 +132,8 @@ Namespace Framework.Transmission.Update
                 Dim mUpdateInventory As New UpdateInventoryHandler
                 mUpdateInventory.UpdateInventory(newPlayer)
             End If
+            Dim mUpdateQuests As New UpdateQuestsHandler
+            mUpdateQuests.UpdateQuestlog(comparePlayer, newPlayer)
         End Sub
     End Class
 End Namespace

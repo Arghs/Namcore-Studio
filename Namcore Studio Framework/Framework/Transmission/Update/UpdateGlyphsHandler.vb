@@ -36,12 +36,12 @@ Namespace Framework.Transmission.Update
             '// Any new glyphs?
             For Each gly As Glyph In modPlayer.PlayerGlyphs
                 Dim result As Glyph = player.PlayerGlyphs.Find(Function(glyph) glyph.Id = gly.Id)
-                If result Is Nothing Then CreateGlyph(player, gly)
+                If result Is Nothing Then CreateGlyph(modPlayer, gly)
             Next
             '// Any deleted glyphs?
             For Each gly As Glyph In player.PlayerGlyphs
                 Dim result As Glyph = modPlayer.PlayerGlyphs.Find(Function(glyph) glyph.Id = gly.Id)
-                If result Is Nothing Then DeleteGlyph(player, gly)
+                If result Is Nothing Then DeleteGlyph(modPlayer, gly)
             Next
         End Sub
 
