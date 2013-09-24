@@ -20,7 +20,6 @@
 '*      /Filename:      UpdateQuestsHandler
 '*      /Description:   Handles character glyph update requests
 '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions
@@ -29,8 +28,8 @@ Namespace Framework.Transmission.Update
     Public Class UpdateQuestsHandler
 
         '// Declaration
-        Dim excounter As Integer
-        Dim quests() As String
+        Dim _excounter As Integer
+        Dim _quests() As String
         '// Declaration
 
         Public Sub UpdateQuestlog(ByVal player As Character, ByVal modPlayer As Character)
@@ -41,10 +40,10 @@ Namespace Framework.Transmission.Update
                 If result Is Nothing Then CreateQuest(modPlayer, qst)
             Next
             If Not modPlayer.FinishedQuests Is Nothing Then
-                excounter = UBound(Split(modPlayer.FinishedQuests, ","))
-                quests = modPlayer.FinishedQuests.Split(","c)
-                For i = 0 To excounter - 1
-                    Dim thisQuest As String = quests(i)
+                _excounter = UBound(Split(modPlayer.FinishedQuests, ","))
+                _quests = modPlayer.FinishedQuests.Split(","c)
+                For i = 0 To _excounter - 1
+                    Dim thisQuest As String = _quests(i)
                     If Not player.FinishedQuests.StartsWith(thisQuest & ",") AndAlso Not player.FinishedQuests.Contains("," & thisQuest & ",") Then
                         CreateQuest(modPlayer, New Quest With {.Id = TryInt(thisQuest), .Status = 1, .Rewarded = 1})
                     End If
@@ -56,10 +55,10 @@ Namespace Framework.Transmission.Update
                 If result Is Nothing Then DeleteQuest(modPlayer, qst)
             Next
             If Not player.FinishedQuests Is Nothing Then
-                excounter = UBound(Split(player.FinishedQuests, ","))
-                quests = player.FinishedQuests.Split(","c)
-                For i = 0 To excounter - 1
-                    Dim thisQuest As String = quests(i)
+                _excounter = UBound(Split(player.FinishedQuests, ","))
+                _quests = player.FinishedQuests.Split(","c)
+                For i = 0 To _excounter - 1
+                    Dim thisQuest As String = _quests(i)
                     If Not modPlayer.FinishedQuests.StartsWith(thisQuest & ",") AndAlso Not modPlayer.FinishedQuests.Contains("," & thisQuest & ",") Then
                         DeleteQuest(modPlayer, New Quest With {.Id = TryInt(thisQuest)})
                     End If
@@ -67,17 +66,17 @@ Namespace Framework.Transmission.Update
             End If
         End Sub
 
-        Private Sub CreateQuest(ByVal player As Character, ByVal qst2add As Quest)
+        Private Sub CreateQuest(ByVal player As Character, ByVal qst2Add As Quest)
             Select Case GlobalVariables.sourceCore
                 Case "trinity"
-                 
+
             End Select
         End Sub
 
-        Private Sub DeleteQuest(ByVal player As Character, ByVal quest2delete As Quest)
+        Private Sub DeleteQuest(ByVal player As Character, ByVal quest2Delete As Quest)
             Select Case GlobalVariables.sourceCore
                 Case "trinity"
-                   
+
             End Select
         End Sub
     End Class

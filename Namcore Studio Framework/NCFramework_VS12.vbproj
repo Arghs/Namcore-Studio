@@ -185,7 +185,7 @@
     <None Include="Resources\nclogo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Namcore-Libs\libnc\libnc.vbproj">
+    <ProjectReference Include="..\libnc\libnc.vbproj">
       <Project>{8db60c89-9fff-48ec-b3ff-d563371b6f73}</Project>
       <Name>libnc</Name>
     </ProjectReference>
@@ -193,7 +193,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_DetectChanges="False" />
+      <UserProperties BuildVersion_DetectChanges="False" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
