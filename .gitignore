@@ -10,6 +10,7 @@ Release/
 Namcore Studio.suo
 Thumbs.db
 Namcore Studio.sln.DotSettings.user
+*DotSettings
 *vshost
 *suo
 *log
