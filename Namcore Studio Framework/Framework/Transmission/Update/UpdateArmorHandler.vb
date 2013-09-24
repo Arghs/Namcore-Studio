@@ -23,7 +23,7 @@
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission.Update
     Public Class UpdateArmorHandler

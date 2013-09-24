@@ -20,12 +20,12 @@
 '*      /Filename:      AvSubcategoy
 '*      /Description:   AvSubcategoy Object
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Namespace Framework.Module.Interface
+Namespace Framework.Modules.Interface
     Public Class AvSubcategoy
         Public Text As String
         Public Id As Int32
         Public Overrides Function ToString() As String
-            Return text
+            Return Text
         End Function
     End Class
 End Namespace

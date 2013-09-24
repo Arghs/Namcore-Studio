@@ -23,7 +23,7 @@
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission.Update
 
@@ -125,6 +125,12 @@ Namespace Framework.Transmission.Update
             If Not newPlayer.PlayerGlyphsIndex = comparePlayer.PlayerGlyphsIndex Then
                 Dim mUpdateGlyphs As New UpdateGlyphsHandler
                 mUpdateGlyphs.UpdateGlyphs(comparePlayer, newPlayer)
+            End If
+            Dim result As InventItem = newPlayer.InventoryItems.Find(Function(inventitem) Not inventitem.UpdateRequest = 0)
+            Dim resultZero As InventItem = newPlayer.InventoryZeroItems.Find(Function(inventitem) Not inventitem.UpdateRequest = 0)
+            If Not result Is Nothing And Not resultZero Is Nothing Then
+                Dim mUpdateInventory As New UpdateInventoryHandler
+                mUpdateInventory.UpdateInventory(newPlayer)
             End If
         End Sub
     End Class

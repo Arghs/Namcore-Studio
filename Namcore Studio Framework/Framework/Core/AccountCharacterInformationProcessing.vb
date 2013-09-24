@@ -21,7 +21,7 @@
 '*      /Description:   Prepares basic account and character information for Live_View
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Database
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports MySql.Data.MySqlClient
 
 Namespace Framework.Core

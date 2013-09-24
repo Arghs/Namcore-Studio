@@ -23,9 +23,9 @@
 Imports Namcore_Studio.Modules
 Imports Namcore_Studio.Modules.Interface
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Module.Interface
+Imports NCFramework.Framework.Modules.Interface
 Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Extension
 Imports Namcore_Studio.Forms.Extension
 Imports System.Threading

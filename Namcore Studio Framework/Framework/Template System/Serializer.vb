@@ -46,20 +46,8 @@ Public Class Serializer
         Return Serialize(False, instance)
     End Function
 
-    Public Shared Function DeSerialize (Of T)(ByVal compression As Boolean,
+    Public Shared Function DeSerialize(Of T)(ByVal compression As Boolean,
                                               ByVal serialString As String, ByVal defaultInstance As T) As T
-
-        'Try
-        '    Dim b As Byte() = UTF8.GetBytes(serialString)
-        '    Dim s As New MemoryStream(b)
-        '    Dim fs As Stream = s
-        '    Dim bf As New BinaryFormatter
-        '    If compression Then fs = New GZipStream(fs, CompressionMode.Decompress)
-        '    DeSerialize = CType(bf.Deserialize(fs), T)
-        '    fs.Close()
-        'Catch ex As Exception
-        '    Return defaultInstance
-        'End Try
         Try
             If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt") Then
                 Return defaultInstance

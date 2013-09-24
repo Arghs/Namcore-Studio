@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.My
 Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Database
 Imports Namcore_Studio.Forms.Extension
 
@@ -38,7 +38,7 @@ Namespace Forms
             Select Case GlobalVariables.con_operator
                 Case 1 'Source connection @live_view
                     GlobalVariables.globChars = New GlobalCharVars()
-                    GlobalVariables.globChars.CharacterSets = New List(Of NCFramework.Framework.Module.Character)
+                    GlobalVariables.globChars.CharacterSets = New List(Of NCFramework.Framework.Modules.Character)
                     GlobalVariables.armoryMode = False
                     GlobalVariables.templateMode = False
                     GlobalVariables.con_operator = 0

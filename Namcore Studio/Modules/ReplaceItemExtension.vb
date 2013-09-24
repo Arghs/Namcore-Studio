@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Runtime.CompilerServices
 Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 
 Namespace Modules
     Module ReplaceItemExtension

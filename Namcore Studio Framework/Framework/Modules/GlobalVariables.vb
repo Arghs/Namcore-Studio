@@ -25,7 +25,7 @@ Imports NCFramework.Framework.Forms
 Imports MySql.Data.MySqlClient
 Imports System.Threading
 
-Namespace Framework.Module
+Namespace Framework.Modules
 
     Public Class GlobalVariables
         ' ReSharper disable InconsistentNaming

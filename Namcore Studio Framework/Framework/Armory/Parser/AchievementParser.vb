@@ -25,7 +25,7 @@ Imports System.Net
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 
 Namespace Framework.Armory.Parser
 

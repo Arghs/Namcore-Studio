@@ -21,7 +21,7 @@
 '*      /Description:   Handles account/character migration requests
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class TransmissionHandler

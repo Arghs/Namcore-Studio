@@ -20,7 +20,7 @@
 '*      /Filename:      Account
 '*      /Description:   Account Object - account information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Namespace Framework.Module
+Namespace Framework.Modules
     <Serializable()>
     Public Class Account
         Public Id As Integer
@@ -28,8 +28,8 @@ Namespace Framework.Module
         Public Transcharlist As ArrayList
 
         Public Sub New(accname As String, accountid As Integer)
-            name = accname
-            id = accountid
+            Name = accname
+            Id = accountid
         End Sub
     End Class
 End Namespace

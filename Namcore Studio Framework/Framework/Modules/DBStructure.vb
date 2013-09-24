@@ -20,7 +20,7 @@
 '*      /Filename:      DbStructure
 '*      /Description:   DbStructure object - Database structure information 
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Namespace Framework.Module
+Namespace Framework.Modules
     Public Class DbStructure
         Public CoreName As String
         'DB table names

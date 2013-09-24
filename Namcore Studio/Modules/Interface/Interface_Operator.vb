@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
 Imports Namcore_Studio.Forms
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports NCFramework
 
 Namespace Modules.Interface

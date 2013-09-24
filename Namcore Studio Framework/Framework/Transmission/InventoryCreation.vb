@@ -22,7 +22,7 @@
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Database
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 

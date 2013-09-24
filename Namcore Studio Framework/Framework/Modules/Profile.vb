@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
 
-Namespace Framework.Module
+Namespace Framework.Modules
 
     <Serializable()>
     Public Class Item
@@ -56,6 +56,7 @@ Namespace Framework.Module
 
     <Serializable()>
     Public Class InventItem
+        Public UpdateRequest As Integer = 0 '0=no; 1=create; 2=delete; 3=update
         Public Entry As Integer
         Public Slot As Integer
         Public Bag As Integer

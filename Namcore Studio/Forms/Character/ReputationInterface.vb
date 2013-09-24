@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports Namcore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions
 Imports NCFramework.My
 Imports NCFramework.Framework.Logging

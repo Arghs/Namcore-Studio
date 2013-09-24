@@ -30,7 +30,7 @@ Imports NCFramework.Framework.Forms
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Core
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Transmission
 
 Namespace Forms
@@ -68,7 +68,7 @@ Namespace Forms
             accountview.Items.Clear()
             Dim genSet As Integer = 0
             For Each rowitem As DataRow In GlobalVariables.acctable.Rows
-                Dim player As New NCFramework.Framework.Module.Character("Error", 0)
+                Dim player As New NCFramework.Framework.Modules.Character("Error", 0)
                 genSet += 1
                 Dim str(4) As String
                 Dim itm As ListViewItem
@@ -92,7 +92,7 @@ Namespace Forms
             Next
             accountview.Update()
             For Each rowitem As DataRow In GlobalVariables.chartable.Rows
-                Dim player As New NCFramework.Framework.Module.Character("Error", 0)
+                Dim player As New NCFramework.Framework.Modules.Character("Error", 0)
                 Dim str(6) As String
                 Dim itm As ListViewItem
                 player.Guid = TryInt(rowitem.Item(0))
@@ -149,7 +149,7 @@ Namespace Forms
             accountview.Items.Add(itm)
             accountview.EnsureVisible(accountview.Items.Count - 1)
             accountview.Update()
-            For Each player As NCFramework.Framework.Module.Character In GlobalVariables.globChars.CharacterSets
+            For Each player As NCFramework.Framework.Modules.Character In GlobalVariables.globChars.CharacterSets
                 ' If infoSet = "" Then genGuid += 1 : Continue For // Needs alternative check
                 Dim cLstr(6) As String
                 Dim cLitm As ListViewItem
@@ -601,7 +601,7 @@ Namespace Forms
                         tempAccList.Add(tmpAccount)
                         Dim _
                             newchar As _
-                                New NCFramework.Framework.Module.Character(lvItem.SubItems(2).Text,
+                                New NCFramework.Framework.Modules.Character(lvItem.SubItems(2).Text,
                                                                            TryInt(lvItem.SubItems(0).Text))
                         Dim nodes As New List(Of String)
                         For Each parentNode As TreeNode In target_accounts_tree.Nodes
@@ -760,7 +760,7 @@ Namespace Forms
                 For Each checkedChar As ListViewItem In characterview.CheckedItems
                     Dim _
                         newchar As _
-                            New NCFramework.Framework.Module.Character(checkedChar.SubItems(2).Text,
+                            New NCFramework.Framework.Modules.Character(checkedChar.SubItems(2).Text,
                                                                        TryInt(checkedChar.SubItems(0).Text))
                     If checkedChar.SubItems(1).Text = nAccount(0).ToString() Then
                         For Each targetaccount As TreeNode In target_accounts_tree.Nodes
@@ -802,7 +802,7 @@ Namespace Forms
                             Dim newcharnode As New TreeNode
                             Dim _
                                 newchar As _
-                                    New NCFramework.Framework.Module.Character(character(1), TryInt(character(0)))
+                                    New NCFramework.Framework.Modules.Character(character(1), TryInt(character(0)))
                             Dim nodes As New List(Of String)
                             For Each parentNode As TreeNode In target_accounts_tree.Nodes
                                 nodes.AddRange(GetChildren(parentNode))
@@ -831,7 +831,7 @@ Namespace Forms
             For Each character () As String In GlobalVariables.trans_charlist
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
                     Dim newcharnode As New TreeNode
-                    Dim newchar As New NCFramework.Framework.Module.Character(character(1), TryInt(character(0)))
+                    Dim newchar As New NCFramework.Framework.Modules.Character(character(1), TryInt(character(0)))
                     Dim nodes As New List(Of String)
                     For Each parentNode As TreeNode In target_accounts_tree.Nodes
                         nodes.AddRange(GetChildren(parentNode))

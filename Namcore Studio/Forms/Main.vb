@@ -27,7 +27,7 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.My
 Imports NCFramework.Framework.Forms
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports System.Net
 
 Namespace Forms

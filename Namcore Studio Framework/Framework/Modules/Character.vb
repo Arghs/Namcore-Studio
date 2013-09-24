@@ -20,7 +20,7 @@
 '*      /Filename:      Character
 '*      /Description:   Character Object - character information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Namespace Framework.Module
+Namespace Framework.Modules
     <Serializable()>
     Public Class Character
         Public SourceCore As String

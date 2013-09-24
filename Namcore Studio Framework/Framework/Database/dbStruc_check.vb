@@ -21,7 +21,7 @@
 '*      /Description:   Contains functions for checking database compatibility
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports MySql.Data.MySqlClient
 
 Namespace Framework.Database

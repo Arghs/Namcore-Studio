@@ -21,7 +21,7 @@
 '*      /Description:   Includes functions for setting up the known spells of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Database
 

@@ -22,7 +22,7 @@
 '*      /Description:   Extension to update reputation standing/value/max
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Runtime.CompilerServices
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 
 Namespace Framework.Extension
 

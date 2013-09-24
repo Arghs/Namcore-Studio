@@ -21,7 +21,7 @@
 '*      /Description:   Contains functions for filtering the character list
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 
 Namespace Forms
     Public Class FilterCharacters

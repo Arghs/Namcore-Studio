@@ -23,7 +23,7 @@
 Imports System.Linq
 Imports NCFramework.Framework.Extension
 Imports Namcore_Studio.Forms.Character
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 
 Namespace Modules.Interface
     Public Class TrdQueueHandler

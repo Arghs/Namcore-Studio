@@ -24,7 +24,7 @@ Imports System.Drawing.Imaging
 Imports Namcore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports Namcore_Studio.Forms.Extension
 Imports System.Net
 
@@ -51,7 +51,7 @@ Namespace Forms.Character
         End Sub
 
         Public Sub PrepareGlyphsInterface(ByVal setId As Integer)
-            Dim player As NCFramework.Framework.Module.Character = GetCharacterSetBySetId(setId)
+            Dim player As NCFramework.Framework.Modules.Character = GetCharacterSetBySetId(setId)
             If player.PlayerGlyphsIndex Is Nothing Then player.PlayerGlyphsIndex = ""
             If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
             _controlLst = New List(Of Control)

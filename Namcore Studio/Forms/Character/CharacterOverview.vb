@@ -28,7 +28,7 @@ Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Core
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports Namcore_Studio.Forms.Extension
 Imports System.Net
 

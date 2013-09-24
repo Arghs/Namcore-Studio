@@ -20,7 +20,7 @@
 '*      /Filename:      CommandHandler
 '*      /Description:   Handles and logs MySQL commands and exceptions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
 Imports MySql.Data.MySqlClient
 

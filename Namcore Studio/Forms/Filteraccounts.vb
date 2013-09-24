@@ -20,7 +20,7 @@
 '*      /Filename:      FilterAccounts
 '*      /Description:   Contains functions for filtering the account list
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Module
+Imports NCFramework.Framework.Modules
 
 Namespace Forms
     Public Class FilterAccounts
