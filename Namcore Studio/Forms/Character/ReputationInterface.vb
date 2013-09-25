@@ -198,7 +198,8 @@ Namespace Forms.Character
                                                 GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
                                                     Function(rep) (pCtrl.Tag.Equals(rep)))
                                         pCtrl.Tag.value = slider.Value
-                                        pCtrl.Tag.UpdateStanding()
+                                        Dim thisRep As Reputation = pCtrl.Tag
+                                        pCtrl.Tag = thisRep.UpdateStanding()
                                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                             GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
                                         GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
@@ -233,7 +234,8 @@ Namespace Forms.Character
                                                 GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
                                                     Function(rep) (pCtrl.Tag.Equals(rep)))
                                         pCtrl.Tag.value = slider.Value
-                                        pCtrl.Tag.UpdateStanding()
+                                        Dim thisRep As Reputation = pCtrl.Tag
+                                        pCtrl.Tag = thisRep.UpdateStanding()
                                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                             GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
                                         GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
@@ -282,7 +284,8 @@ Namespace Forms.Character
                     pCtrl.Tag.value = 0
                     pCtrl.Tag.max = max
                     pCtrl.Tag.status = combo.SelectedIndex
-                    pCtrl.Tag.UpdateStanding()
+                    Dim thisRep As Reputation = pCtrl.Tag
+                    pCtrl.Tag = thisRep.UpdateStanding()
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
                         GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
                     GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
