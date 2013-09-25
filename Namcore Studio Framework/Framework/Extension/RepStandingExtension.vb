@@ -48,8 +48,6 @@ Namespace Framework.Extension
                 Return rep
             End Try
         End Function
-
-
         ''' <summary>
         '''     Updates reputation value, status and max by standing
         ''' </summary>
@@ -70,5 +68,4 @@ Namespace Framework.Extension
             End Try
         End Function
     End Module
-
 End Namespace

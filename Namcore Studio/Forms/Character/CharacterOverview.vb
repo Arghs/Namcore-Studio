@@ -216,29 +216,33 @@ Namespace Forms.Character
                     slot_11_enchant.Click, slot_10_name.Click, slot_10_enchant.Click, slot_1_name.Click,
                     slot_1_enchant.Click, slot_0_name.Click, slot_0_enchant.Click
             If sender.text = "" Then Exit Sub
-            Dim newPoint As New Point
-            newPoint.X = sender.location.X + InventoryPanel.Location.X
-            newPoint.Y = sender.location.Y + InventoryPanel.Location.Y
-            changepanel.Location = newPoint
-            newPoint.X = 4000
-            newPoint.Y = 4000
-            classpanel.Location = newPoint
-            racepanel.Location = newPoint
-            addpanel.Location = newPoint
-            PictureBox2.Visible = True
-            If Not _tempSender Is Nothing Then
-                _tempSender.visible = True
-            End If
-            _tempSender = sender
-            sender.visible = False
-            If sender.name.contains("_name") Then
-                TextBox1.Text = sender.tag.id.ToString
-            ElseIf sender.name.contains("_lbl") Then
-                TextBox1.Text = sender.text
-            Else
-                TextBox1.Text = sender.tag.enchantment_id.ToString
-            End If
-            _tempValue = TextBox1.Text
+            Try
+                Dim newPoint As New Point
+                newPoint.X = sender.location.X + InventoryPanel.Location.X
+                newPoint.Y = sender.location.Y + InventoryPanel.Location.Y
+                changepanel.Location = newPoint
+                newPoint.X = 4000
+                newPoint.Y = 4000
+                classpanel.Location = newPoint
+                racepanel.Location = newPoint
+                addpanel.Location = newPoint
+                PictureBox2.Visible = True
+                If Not _tempSender Is Nothing Then
+                    _tempSender.visible = True
+                End If
+                _tempSender = sender
+                sender.visible = False
+                If sender.name.contains("_name") Then
+                    TextBox1.Text = sender.tag.id.ToString
+                ElseIf sender.name.contains("_lbl") Then
+                    TextBox1.Text = sender.text
+                Else
+                    TextBox1.Text = sender.tag.enchantment_id.ToString
+                End If
+                _tempValue = TextBox1.Text
+            Catch
+            End Try
+
         End Sub
 
         Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
