@@ -61,12 +61,6 @@ Public Class Serializer
             DeSerialize = CType(bf.Deserialize(fs), T)
             fs.Close()
             fs.Dispose()
-            If GlobalVariables.globChars.CharacterSets Is Nothing Then
-                LogAppend("Invalid templte format!", "Serializer_DeSerialize", True, True)
-                GlobalVariables.DeserializationSuccessfull = False
-            Else
-                GlobalVariables.DeserializationSuccessfull = True
-            End If
         Catch ex As Exception
             fs.Close()
             fs.Dispose()

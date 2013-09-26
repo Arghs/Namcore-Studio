@@ -26,12 +26,19 @@ Imports Namcore_Studio.Forms
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions.ResourceHandler
 Imports NCFramework.Framework.Forms
+Imports NCFramework.Framework.Logging
 Imports NCFramework
 Namespace Modules.Interface
     Public Module InterfaceOperator
         Public Sub prepareLive_armory()
             If GlobalVariables.LoadingTemplate = True Then
                 GlobalVariables.LoadingTemplate = False
+                If GlobalVariables.globChars.CharacterSets Is Nothing Then
+                    LogAppend("Invalid templte format!", "InterfaceOperator_prepareLive_armory", True, True)
+                    GlobalVariables.DeserializationSuccessfull = False
+                Else
+                    GlobalVariables.DeserializationSuccessfull = True
+                End If
                 If GlobalVariables.DeserializationSuccessfull = False Then
                     For Each procStat As ProcessStatus In _
                   (From currentForm As Form In Application.OpenForms Where currentForm.Name = "ProcessStatus").Cast _
