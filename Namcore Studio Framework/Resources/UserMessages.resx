@@ -522,4 +522,13 @@
   <data name="invalidData" xml:space="preserve">
     <value>The template file could not be loaded, because it is outdated.</value>
   </data>
+  <data name="enterGemId" xml:space="preserve">
+    <value>Enter gem id:</value>
+  </data>
+  <data name="gemAdding" xml:space="preserve">
+    <value>Add new gem</value>
+  </data>
+  <data name="invalidGemError" xml:space="preserve">
+    <value>Invalid gem id!</value>
+  </data>
 </root>

@@ -55,6 +55,9 @@ Namespace Forms.Character
 
         Public Sub prepare_interface(ByVal setId As Integer)
             LogAppend("prepare_interface call", "CharacterOverview_prepare_interface", False)
+            InfoToolTip.AutoPopDelay = 5000
+            InfoToolTip.InitialDelay = 1000
+            InfoToolTip.ReshowDelay = 500
             InventoryPanel.SetDoubleBuffered()
             _currentSet = setId
             GlobalVariables.currentViewedCharSetId = setId
@@ -95,6 +98,7 @@ Namespace Forms.Character
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_name"))
                                 Dim txt As String = LoadInfo(setId, slot, 0)
                                 If Not txt Is Nothing Then
+                                    InfoToolTip.SetToolTip(itemControl, txt)
                                     If txt.Length >= 25 Then
                                         Dim ccremove As Integer = txt.Length - 23
                                         txt = txt.Remove(23, ccremove) & "..."
@@ -107,28 +111,31 @@ Namespace Forms.Character
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_enchant"))
                                 Dim txt As String = LoadInfo(setId, slot, 1)
                                 If Not txt Is Nothing Then
+                                    InfoToolTip.SetToolTip(itemControl, txt)
                                     If txt.Length >= 25 Then
                                         Dim ccremove As Integer = txt.Length - 23
                                         txt = txt.Remove(23, ccremove) & "..."
                                     End If
                                 End If
-                                If txt Is Nothing Then
-                                    txt = "+"
-                                    DirectCast(itemControl, Label).Cursor = Cursors.Hand
-                                ElseIf txt = "" Then
-                                    txt = "+"
-                                    DirectCast(itemControl, Label).Cursor = Cursors.Hand
+                                If _pubItm IsNot Nothing Then
+                                    If txt Is Nothing Then
+                                        txt = "+"
+                                        DirectCast(itemControl, Label).Cursor = Cursors.Hand
+                                    ElseIf txt = "" Then
+                                        txt = "+"
+                                        DirectCast(itemControl, Label).Cursor = Cursors.Hand
+                                    Else
+                                        DirectCast(itemControl, Label).Cursor = Cursors.IBeam
+                                    End If
                                 Else
-                                    DirectCast(itemControl, Label).Cursor = Cursors.IBeam
+                                    txt = ""
                                 End If
                                 DirectCast(itemControl, Label).Text = txt
                                 DirectCast(itemControl, Label).Tag = _pubItm
-                            End If
+
+                                End If
                         Case TypeOf itemControl Is PictureBox
-                            If _
-                                itemControl.Name.ToLower.Contains("_pic") And
-                                Not itemControl.Name.ToLower.Contains("gem") _
-                                Then
+                            If itemControl.Name.ToLower.Contains("_pic") And Not itemControl.Name.ToLower.Contains("gem") Then
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_pic"))
                                 DirectCast(itemControl, PictureBox).Image = LoadInfo(setId, slot, 2)
                                 If DirectCast(itemControl, PictureBox).Image Is Nothing Then _
@@ -137,8 +144,26 @@ Namespace Forms.Character
                             ElseIf itemControl.Name.ToLower.Contains("gem") Then
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_gem"))
                                 Dim gem As Integer = TryInt(SplitString(itemControl.Name, "gem", "_pic"))
-                                DirectCast(itemControl, PictureBox).Image = LoadInfo(setId, slot, 2 + gem)
+                                Dim img As Image = LoadInfo(setId, slot, 2 + gem)
                                 DirectCast(itemControl, PictureBox).Tag = _pubItm
+                                If Not _pubItm Is Nothing Then
+                                    If img Is Nothing Then
+                                        DirectCast(itemControl, PictureBox).Image = My.Resources.add_
+                                        DirectCast(itemControl, Label).Cursor = Cursors.Hand
+                                    Else
+                                        DirectCast(itemControl, PictureBox).Image = img
+                                    End If
+                                    Select Case gem
+                                        Case 1
+                                            If Not _pubItm.Socket1Name Is Nothing Then InfoToolTip.SetToolTip(itemControl, _pubItm.Socket1Name)
+                                        Case 2
+                                            If Not _pubItm.Socket2Name Is Nothing Then InfoToolTip.SetToolTip(itemControl, _pubItm.Socket2Name)
+                                        Case 3
+                                            If Not _pubItm.Socket3Name Is Nothing Then InfoToolTip.SetToolTip(itemControl, _pubItm.Socket3Name)
+                                    End Select
+                                Else
+
+                                End If
                             End If
                         Case TypeOf itemControl Is Panel
                             If itemControl.Name.ToLower.EndsWith("color") Then
@@ -633,13 +658,14 @@ Namespace Forms.Character
                     slot_4_pic.Click, slot_3_pic.Click, slot_2_pic.Click, slot_18_pic.Click, slot_17_pic.Click,
                     slot_16_pic.Click, slot_15_pic.Click, slot_14_pic.Click, slot_13_pic.Click, slot_12_pic.Click,
                     slot_11_pic.Click, slot_10_pic.Click, slot_1_pic.Click, slot_0_pic.Click
-            Try
-                Dim itemId As Integer = sender.tag.id
-                Process.Start("http://wowhead.com/item=" & itemId.ToString())
-            Catch ex As Exception
+            If Not sender.tag Is Nothing Then
+                Try
+                    Dim itemId As Integer = sender.tag.id
+                    Process.Start("http://wowhead.com/item=" & itemId.ToString())
+                Catch ex As Exception
 
-            End Try
-
+                End Try
+            End If
             If Not _tempSender Is Nothing Then
                 _tempSender.visible = True
             End If
@@ -843,6 +869,53 @@ Namespace Forms.Character
 
         Private Sub CharacterOverview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             AddHandler highlighter2.Click, AddressOf highlighter2_Click
+        End Sub
+
+        Private Sub GemClick(sender As Object, e As EventArgs) Handles slot_9_gem3_pic.Click, slot_9_gem2_pic.Click, slot_9_gem1_pic.Click, slot_8_gem3_pic.Click, slot_8_gem2_pic.Click, slot_8_gem1_pic.Click, slot_7_gem3_pic.Click, slot_7_gem2_pic.Click, slot_7_gem1_pic.Click, slot_6_gem3_pic.Click, slot_6_gem2_pic.Click, slot_6_gem1_pic.Click, slot_5_gem3_pic.Click, slot_5_gem2_pic.Click, slot_5_gem1_pic.Click, slot_4_gem3_pic.Click, slot_4_gem2_pic.Click, slot_4_gem1_pic.Click, slot_3_gem3_pic.Click, slot_3_gem2_pic.Click, slot_3_gem1_pic.Click, slot_2_gem3_pic.Click, slot_2_gem2_pic.Click, slot_2_gem1_pic.Click, slot_18_gem3_pic.Click, slot_18_gem2_pic.Click, slot_18_gem1_pic.Click, slot_14_gem3_pic.Click, slot_14_gem2_pic.Click, slot_14_gem1_pic.Click, slot_13_gem3_pic.Click, slot_13_gem2_pic.Click, slot_13_gem1_pic.Click, slot_12_gem3_pic.Click, slot_12_gem2_pic.Click, slot_12_gem1_pic.Click, slot_11_gem3_pic.Click, slot_11_gem2_pic.Click, slot_11_gem1_pic.Click, slot_10_gem3_pic.Click, slot_10_gem2_pic.Click, slot_10_gem1_pic.Click, slot_1_gem3_pic.Click, slot_1_gem2_pic.Click, slot_1_gem1_pic.Click, slot_0_gem3_pic.Click, slot_0_gem2_pic.Click, slot_0_gem1_pic.Click
+            Dim myPic As PictureBox = sender
+            Dim itm As Item = sender.tag
+            Dim allowAdding As Boolean = False
+            If itm IsNot Nothing Then
+                Select Case True
+                    Case myPic.Name.Contains("gem1")
+                        If itm.Socket1Id = Nothing Then
+                            '// Empty socket: Allow adding
+                            allowAdding = True
+                        Else
+                            allowAdding = False
+                        End If
+                    Case myPic.Name.Contains("gem2")
+                        If itm.Socket2Id = Nothing Then
+                            '// Empty socket: Allow adding
+                            allowAdding = True
+                        Else
+                            allowAdding = False
+                        End If
+                    Case myPic.Name.Contains("gem3")
+                        If itm.Socket3Id = Nothing Then
+                            '// Empty socket: Allow adding
+                            allowAdding = True
+                        Else
+                            allowAdding = False
+                        End If
+                End Select
+            End If
+            If allowAdding = True Then
+                Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterGemId"), ResourceHandler.GetUserMessage("gemAdding"), "0"))
+                If Not retnvalue = 0 Then
+                    If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                    Dim client As New WebClient
+                    client.CheckProxy()
+                    Try
+                        'todo
+                        Dim src As String = client.DownloadString("http://")
+                    Catch ex As Exception
+
+                    End Try
+                   
+                End If
+            End If
+
         End Sub
     End Class
 End Namespace

@@ -25,6 +25,7 @@ Namespace Forms.Character
         'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
         <System.Diagnostics.DebuggerStepThrough()> _
         Private Sub InitializeComponent()
+            Me.components = New System.ComponentModel.Container()
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CharacterOverview))
             Me.InventoryPanel = New System.Windows.Forms.Panel()
             Me.slot_17_enchant = New System.Windows.Forms.Label()
@@ -264,6 +265,7 @@ Namespace Forms.Character
             Me.GroupBox1 = New System.Windows.Forms.GroupBox()
             Me.GroupBox2 = New System.Windows.Forms.GroupBox()
             Me.Label5 = New System.Windows.Forms.Label()
+            Me.InfoToolTip = New System.Windows.Forms.ToolTip(Me.components)
             Me.InventoryPanel.SuspendLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -3475,5 +3477,6 @@ Namespace Forms.Character
         Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
         Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
         Friend WithEvents Label5 As System.Windows.Forms.Label
+        Friend WithEvents InfoToolTip As System.Windows.Forms.ToolTip
     End Class
 End Namespace
