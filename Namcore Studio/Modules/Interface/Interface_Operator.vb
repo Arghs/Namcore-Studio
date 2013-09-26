@@ -21,25 +21,43 @@
 '*      /Description:   Includes operations for rendering user interfaces
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
+Imports System.Linq
 Imports Namcore_Studio.Forms
 Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Functions.ResourceHandler
+Imports NCFramework.Framework.Forms
 Imports NCFramework
-
 Namespace Modules.Interface
     Public Module InterfaceOperator
         Public Sub prepareLive_armory()
-            Dim mSerializer As Serializer = New Serializer
-            Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
-            If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt") Then
-                My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt")
+            If GlobalVariables.LoadingTemplate = True Then
+                GlobalVariables.LoadingTemplate = False
+                If GlobalVariables.DeserializationSuccessfull = False Then
+                    For Each procStat As ProcessStatus In _
+                  (From currentForm As Form In Application.OpenForms Where currentForm.Name = "ProcessStatus").Cast _
+                      (Of ProcessStatus)()
+                        procStat.TopMost = False
+                        MsgBox(GetUserMessage("invalidData"), MsgBoxStyle.Critical, "Error")
+                        Main.Show()
+                        procStat.TopMost = False
+                        Exit Sub
+                    Next
+                End If
+            Else
+                Dim mSerializer As Serializer = New Serializer
+                Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
+                If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt") Then
+                    My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt")
+                End If
+                Dim _
+                    fs As _
+                        New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt",
+                                         FileMode.OpenOrCreate)
+                fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
+                fs.Close()
+                ms.Close()
             End If
-            Dim _
-                fs As _
-                    New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt",
-                                     FileMode.OpenOrCreate)
-            fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
-            fs.Close()
-            ms.Close()
+            GlobalVariables.LoadingTemplate = False
             GlobalVariables.armoryMode = True
             LiveView.Close()
             Dim myliveview As New LiveView

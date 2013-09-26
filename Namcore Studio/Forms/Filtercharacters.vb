@@ -111,10 +111,10 @@ Namespace Forms
                 Next i
             End If
             SkipStatement4:
-            For Each liveview As LiveView In _
-                (From currentForm As Form In Application.OpenForms Where currentForm.Name = "Live_View").Cast _
+            For Each myliveview As LiveView In _
+                (From currentForm As Form In Application.OpenForms Where currentForm.Name = "LiveView").Cast _
                     (Of LiveView)()
-                liveview.setcharacterview(GlobalVariables.modifiedCharTable)
+                myliveview.Setcharacterview(GlobalVariables.modifiedCharTable)
             Next
             Hide()
         End Sub

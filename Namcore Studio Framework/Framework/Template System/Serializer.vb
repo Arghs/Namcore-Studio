@@ -24,19 +24,20 @@ Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.IO.Compression
 Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
 Public Class Serializer
     Public Function Serialize (Of T)(ByVal compression As Boolean, ByVal instance As T) As MemoryStream
-
+        Dim fs As Stream = New MemoryStream()
         Try
-            Dim fs As Stream = New MemoryStream()
             Dim bf As New BinaryFormatter
             If compression Then fs = New GZipStream(fs, CompressionMode.Compress)
-
             bf.Serialize(fs, instance)
             fs.Close()
-
+            fs.Dispose()
             Return fs
         Catch ex As Exception
+            fs.Close()
+            fs.Dispose()
             LogAppend("Error during serialization: " & ex.ToString, "Serializer_Serialize", True, True)
             Return New MemoryStream
         End Try
@@ -48,20 +49,28 @@ Public Class Serializer
 
     Public Shared Function DeSerialize(Of T)(ByVal compression As Boolean,
                                               ByVal serialString As String, ByVal defaultInstance As T) As T
+        GlobalVariables.DeserializationSuccessfull = False
+        If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt") Then
+            Return defaultInstance
+        End If
+        Dim fs As Stream = New FileStream(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt",
+                                          FileMode.OpenOrCreate)
         Try
-            If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt") Then
-                Return defaultInstance
-            End If
-            Dim fs As Stream = New FileStream(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt",
-                                              FileMode.OpenOrCreate)
             Dim bf As New BinaryFormatter
             If compression Then fs = New GZipStream(fs, CompressionMode.Decompress)
-
             DeSerialize = CType(bf.Deserialize(fs), T)
             fs.Close()
             fs.Dispose()
+            If GlobalVariables.globChars.CharacterSets Is Nothing Then
+                LogAppend("Invalid templte format!", "Serializer_DeSerialize", True, True)
+                GlobalVariables.DeserializationSuccessfull = False
+            Else
+                GlobalVariables.DeserializationSuccessfull = True
+            End If
         Catch ex As Exception
-            LogAppend("Error during serialization: " & ex.ToString, "Serializer_Serialize", True, True)
+            fs.Close()
+            fs.Dispose()
+            LogAppend("Error during deserialization: " & ex.ToString, "Serializer_DeSerialize", True, True)
             Return defaultInstance
         End Try
     End Function

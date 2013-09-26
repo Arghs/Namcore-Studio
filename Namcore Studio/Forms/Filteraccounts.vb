@@ -124,9 +124,9 @@ Namespace Forms
             End If
             SkipStatement4:
             For Each currentForm As Form In Application.OpenForms
-                If currentForm.Name = "Live_View" Then
-                    Dim liveview As LiveView = DirectCast(currentForm, LiveView)
-                    liveview.setaccountview(GlobalVariables.modifiedAccTable)
+                If currentForm.Name = "LiveView" Then
+                    Dim myliveview As LiveView = DirectCast(currentForm, LiveView)
+                    myliveview.Setaccountview(GlobalVariables.modifiedAccTable)
                 End If
             Next
             Hide()

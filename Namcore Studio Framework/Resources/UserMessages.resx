@@ -519,4 +519,7 @@
   <data name="qstexist" xml:space="preserve">
     <value>The character already has this quest!</value>
   </data>
+  <data name="invalidData" xml:space="preserve">
+    <value>The template file could not be loaded, because it is outdated.</value>
+  </data>
 </root>

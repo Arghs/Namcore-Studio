@@ -249,6 +249,7 @@ Namespace Forms
 
 
         Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+            GlobalVariables.LoadingTemplate = True
             Dim mSerializer As Serializer = New Serializer
             GlobalVariables.globChars = mSerializer.DeSerialize("", New GlobalCharVars)
             prepareLive_armory()
