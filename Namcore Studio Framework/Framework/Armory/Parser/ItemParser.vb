@@ -39,7 +39,7 @@ Namespace Framework.Armory.Parser
                         Exit Do
                     End If
                     '// Loading item + info for each slot and add them to character
-                    LogAppend("Now loading info for slot " & itemslot.ToString(), "ItemParser_loadItems", False)
+                    LogAppend("Now loading info for slot " & itemslot.ToString(), "ItemParser_loadItems", True)
                     Select Case itemslot
                         Case 0
                             slotname = "head"
@@ -132,7 +132,7 @@ Namespace Framework.Armory.Parser
         End Sub
 
         Private Function GetItemInfo(ByVal slot As Integer, ByVal slotname As String, ByVal sourceCode As String) As Item
-            LogAppend("Loading item information (slot: " & slot.ToString() & ")", "ItemParser_loadItems", False)
+            LogAppend("Loading item information (slot: " & slot.ToString() & ")", "ItemParser_loadItems", True)
             Dim endString As String
             If slot = 16 Then
                 endString = "<script type=""text/javascript"">"

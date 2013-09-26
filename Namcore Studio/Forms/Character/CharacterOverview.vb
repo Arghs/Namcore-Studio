@@ -54,13 +54,15 @@ Namespace Forms.Character
         '// Declaration
 
         Public Sub prepare_interface(ByVal setId As Integer)
+            LogAppend("prepare_interface call", "CharacterOverview_prepare_interface", False)
             InventoryPanel.SetDoubleBuffered()
             _currentSet = setId
             GlobalVariables.currentViewedCharSetId = setId
             If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
                 '//Load charset
+                LogAppend("Loading character from database", "CharacterOverview_prepare_interface", True)
                 Dim mLoadHandler As New CoreHandler
-                mLoadHandler.handleLoadingRequests(setId)
+                mLoadHandler.HandleLoadingRequests(setId)
             End If
             GlobalVariables.currentViewedCharSet = GetCharacterSetBySetId(setId)
             _doneControls = New List(Of Control)
@@ -78,6 +80,7 @@ Namespace Forms.Character
             race_lbl.Text = GetRaceNameById(GlobalVariables.currentViewedCharSet.Race)
             If nxt = True Then _controlLst.Reverse()
             Try
+                '// Set controls double buffered
                 For Each itemControl As Control In _controlLst
                     itemControl.SetDoubleBuffered()
                     Dim tmpdone As List(Of Control) = _doneControls
@@ -89,7 +92,7 @@ Namespace Forms.Character
                     Select Case True
                         Case TypeOf itemControl Is Label
                             If itemControl.Name.ToLower.Contains("_name") Then
-                                Dim slot As Integer = TryInt(splitString(itemControl.Name, "slot_", "_name"))
+                                Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_name"))
                                 Dim txt As String = LoadInfo(setId, slot, 0)
                                 If Not txt Is Nothing Then
                                     If txt.Length >= 25 Then
@@ -101,7 +104,7 @@ Namespace Forms.Character
                                 DirectCast(itemControl, Label).Tag = _pubItm
                                 DirectCast(itemControl, Label).Cursor = Cursors.IBeam
                             ElseIf itemControl.Name.ToLower.EndsWith("enchant") Then
-                                Dim slot As Integer = TryInt(splitString(itemControl.Name, "slot_", "_enchant"))
+                                Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_enchant"))
                                 Dim txt As String = LoadInfo(setId, slot, 1)
                                 If Not txt Is Nothing Then
                                     If txt.Length >= 25 Then
@@ -126,20 +129,20 @@ Namespace Forms.Character
                                 itemControl.Name.ToLower.Contains("_pic") And
                                 Not itemControl.Name.ToLower.Contains("gem") _
                                 Then
-                                Dim slot As Integer = TryInt(splitString(itemControl.Name, "slot_", "_pic"))
+                                Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_pic"))
                                 DirectCast(itemControl, PictureBox).Image = LoadInfo(setId, slot, 2)
                                 If DirectCast(itemControl, PictureBox).Image Is Nothing Then _
                                     DirectCast(itemControl, PictureBox).Image = My.Resources.empty
                                 DirectCast(itemControl, PictureBox).Tag = _pubItm
                             ElseIf itemControl.Name.ToLower.Contains("gem") Then
-                                Dim slot As Integer = TryInt(splitString(itemControl.Name, "slot_", "_gem"))
-                                Dim gem As Integer = TryInt(splitString(itemControl.Name, "gem", "_pic"))
+                                Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_gem"))
+                                Dim gem As Integer = TryInt(SplitString(itemControl.Name, "gem", "_pic"))
                                 DirectCast(itemControl, PictureBox).Image = LoadInfo(setId, slot, 2 + gem)
                                 DirectCast(itemControl, PictureBox).Tag = _pubItm
                             End If
                         Case TypeOf itemControl Is Panel
                             If itemControl.Name.ToLower.EndsWith("color") Then
-                                Dim slot As Integer = TryInt(splitString(itemControl.Name, "slot_", "_color"))
+                                Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_color"))
                                 DirectCast(itemControl, Panel).BackColor = LoadInfo(setId, slot, 6)
                                 DirectCast(itemControl, Panel).Tag = _pubItm
                             End If
@@ -149,27 +152,28 @@ Namespace Forms.Character
                 Application.DoEvents()
                 _loadComplete = True
             Catch ex As Exception
-
+                LogAppend("Exception occoured: " & ex.ToString, "CharacterOverview_Goprep", True)
             End Try
         End Sub
 
         Private Function LoadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
+            LogAppend("Loading info for slot " & slot.ToString, "CharacterOverview_LoadInfo", True)
             Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet), slot.ToString, True)
             _pubItm = itm
             If itm Is Nothing Then Return Nothing
             Select Case infotype
                 Case 0
-                    If itm.name Is Nothing Then
-                        itm.name = GetNameOfItem(itm.id)
+                    If itm.Name Is Nothing Then
+                        itm.Name = GetNameOfItem(itm.Id)
                     End If
-                    Return itm.name
+                    Return itm.Name
                 Case 1
                     Return itm.EnchantmentName
                 Case 2
-                    If itm.image Is Nothing Then
-                        itm.image = GetIconByItemId(itm.id)
+                    If itm.Image Is Nothing Then
+                        itm.Image = GetIconByItemId(itm.Id)
                     End If
-                    Return itm.image
+                    Return itm.Image
 
                 Case 3
                     If itm.Socket1Pic Is Nothing Then
@@ -190,7 +194,7 @@ Namespace Forms.Character
                         Return itm.Socket3Pic
                     End If
                 Case 6
-                    Select Case itm.rarity
+                    Select Case itm.Rarity
                         Case 0, 1 : Return Color.Gray
                         Case 0, 1 : Return Color.White
                         Case 2 : Return Color.LightGreen

@@ -68,7 +68,8 @@ Namespace Framework.Armory.Parser
                         pProf.id = TryInt(splitString(partsPf(loopcounter), """id"":", ","))
                         pProf.max = TryInt(splitString(partsPf(loopcounter), """max"":", ","))
                         pProf.name = splitString(partsPf(loopcounter), """name"":""", """,")
-                        pProf.rank = TryInt(splitString(partsPf(loopcounter), """rank"":", ","))
+                        pProf.Rank = TryInt(SplitString(partsPf(loopcounter), """rank"":", ","))
+                        LogAppend("Adding profession with id " & pProf.Id.ToString, "ProfessionParser_loadProfessions", True)
                         Dim recipes As String = splitString(partsPf(loopcounter), """recipes"":[", "]")
                         If recipes.Length > 3 Then
                             pProf.recipes = recipes.Split(",")
@@ -76,6 +77,7 @@ Namespace Framework.Armory.Parser
                         player.Professions.Add(pProf)
                         loopcounter += 1
                     Loop Until loopcounter = excounter
+                    LogAppend("Loaded " & loopcounter.ToString & " professions", "ProfessionParser_loadProfessions", True)
                     If usePfString = secondaryPf Then
                         Exit Do
                     Else

@@ -71,6 +71,7 @@ Namespace Framework.Armory.Parser
                         av.OwnerSet = setId
                         player.Achievements.Add(av)
                     Loop Until loopcounter = excounter
+                    LogAppend("Loaded " & loopcounter.ToString & " achievements!", "AchievementParser_loadAchievements", True)
                     '// Saving changes to character
                     SetCharacterSet(setId, player)
                 End If

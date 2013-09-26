@@ -32,6 +32,7 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Core
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Transmission
+Imports NCFramework.Framework.Logging
 
 Namespace Forms
     Public Class LiveView
@@ -123,6 +124,8 @@ Namespace Forms
         End Sub
 
         Public Sub loadInformationSets_Armory()
+            LogAppend("loadInformationSets_Armory call", "LiveView_loadInformationSets_Armory", False)
+            '// Setting all controls double buffered
             Dim controlLst As List(Of Control)
             controlLst = FindAllChildren()
             For Each itemControl As Control In controlLst
@@ -133,7 +136,7 @@ Namespace Forms
             filter_char.Visible = False
             Dim genGuid As Integer = 1
             _checkchangestatus = False
-            GlobalVariables.sourceCore = "armory" 'for testing only       
+            GlobalVariables.sourceCore = "armory"
             GlobalVariables.ModCharacterSets = GlobalVariables.globChars.CharacterSets
             GlobalVariables.ModCharacterSetsIndex = GlobalVariables.globChars.CharacterSetsIndex
             characterview.Items.Clear()
@@ -162,6 +165,7 @@ Namespace Forms
                 cLstr(6) = player.Level.ToString
                 cLitm = New ListViewItem(cLstr)
                 cLitm.Tag = genGuid
+                LogAppend("Adding character to characterview using generated Guid " & genGuid.ToString, "LiveView_loadInformationSets_Armory", False)
                 characterview.Items.Add(cLitm)
                 characterview.EnsureVisible(characterview.Items.Count - 1)
                 'If Not player.SetIndex = genGuid Then Throw New Exception("Player SetId does not match generated SetIndex!")
@@ -988,23 +992,7 @@ Namespace Forms
 
         Private Sub characterview_MouseDoubleClick(sender As Object, e As MouseEventArgs) _
             Handles characterview.MouseDoubleClick
-            If Not characterview.SelectedItems.Count = 0 Then
-                Dim charview As New CharacterOverview
-                Dim setId As Integer = characterview.SelectedItems(0).Tag
-                If GlobalVariables.armoryMode = True Then
-                    Userwait.Show()
-                    charview.prepare_interface(setId)
-                    Userwait.Close()
-                    charview.Show()
-                Else
-                    'todo load info
-
-                    Userwait.Show()
-                    charview.prepare_interface(setId)
-                    Userwait.Close()
-                    charview.Show()
-                End If
-            End If
+            EditToolStripMenuItem1_Click(sender, e)
         End Sub
 
         Private Sub back_bt_Click(sender As Object, e As EventArgs) Handles back_bt.Click

@@ -41,11 +41,11 @@ Namespace Framework.Armory.Parser
                 Dim slotAddition As String
                 Dim mainContext As String
                 If Not glyphContext.Contains("""glyphs"":") Then
-                    LogAppend("No glyphs found!?", "GlyphParser_loadGlyphs", False)
+                    LogAppend("No glyphs found!?", "GlyphParser_loadGlyphs", True)
                     Exit Sub '// Skip if no glyphs
                 End If
                 For i = 1 To 2
-                    LogAppend("Now parsing spec: " & i.ToString(), "GlyphParser_loadGlyphs", False)
+                    LogAppend("Now parsing spec: " & i.ToString(), "GlyphParser_loadGlyphs", True)
                     Select Case i
                         Case 1 : mainContext = splitString(glyphContext, """glyphs"":", ",""spec"":")
                             slotAddition = "" '// Spec 0
@@ -71,7 +71,8 @@ Namespace Framework.Armory.Parser
                                     newGlyph.slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
                                     newGlyph.image = GetIconByItemId(newGlyph.id)
                                     newGlyph.type = loopCounter + 1
-                                    newGlyph.spec = i
+                                    newGlyph.Spec = i
+                                    LogAppend("Loaded glyph " & newGlyph.Name, "GlyphParser_loadGlyphs", True)
                                     AddCharacterGlyph(player, newGlyph)
                                     counter += 1
                                 Loop Until counter = exCounter

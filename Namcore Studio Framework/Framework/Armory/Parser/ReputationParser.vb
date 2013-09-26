@@ -80,6 +80,7 @@ Namespace Framework.Armory.Parser
                                       "ReputationParser_loadReputation", False, True)
                         End Try
                     Loop Until loopcounter = exCount
+                    LogAppend("Loaded " & loopcounter.ToString & " factions", "ReputationParser_loadReputation", True)
                     '// Saving changes to character
                     SetCharacterSet(setId, player)
                 End If
