@@ -50,10 +50,12 @@ Namespace Forms.Character
         Shared _colorTicker As Integer
         Shared _completed As Boolean
 
+        Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
         Public Event AvCompleted As EventHandler(Of CompletedEventArgs)
         Private WithEvents _mHandler As New TrdQueueHandler
 
         Delegate Sub AddControlDelegate(panel2Add As Panel)
+        Delegate Sub UpdateControlDelegate(ctrl As Control)
         '// Declaration
 
         Private Sub Achievements_interface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -66,6 +68,7 @@ Namespace Forms.Character
                 itemControl.SetDoubleBuffered()
             Next
             waitpanel.Location = New Point(367, 219)
+            subcat_combo.Enabled = False
         End Sub
 
         Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
@@ -76,7 +79,10 @@ Namespace Forms.Character
             Handles cat_id_97_bt.Click, cat_id_96_bt.Click, cat_id_95_bt.Click, cat_id_92_bt.Click, cat_id_81_bt.Click,
                     cat_id_201_bt.Click, cat_id_169_bt.Click, cat_id_168_bt.Click, cat_id_155_bt.Click,
                     cat_id_15219_bt.Click, cat_id_15165_bt.Click
+            subcat_combo.Enabled = False
+            subcat_combo.Text = ""
             Try
+                _preCatControlLst = Nothing
                 waitpanel.Location = New Point(4000, 4000)
                 _state = "catbt"
                 _tmpSender = sender
@@ -93,7 +99,7 @@ Namespace Forms.Character
                     _goon = True
                 End If
                 If _goon = True Then
-                    _currentCat = TryInt(splitString(sender.name, "cat_id_", "_bt"))
+                    _currentCat = TryInt(SplitString(sender.name, "cat_id_", "_bt"))
                     subcat_combo.Items.Clear()
                     Application.DoEvents()
                     Dim tmpCatids As Integer()
@@ -135,17 +141,16 @@ Namespace Forms.Character
                             catCollection.Add(
                                 New AvSubcategoy _
                                                  With { _
-                                                 .text =
+                                                 .Text =
                                                  ResourceHandler.GetUserMessage("subcat" & tmpCatids(i).ToString),
-                                                 .id = tmpCatids(i)})
+                                                 .Id = tmpCatids(i)})
                         Catch ex As Exception
                             LogAppend("Exception while adding achievement subcategory item: " & ex.ToString,
                                       "Achievements_interface_catbt_click", False, True)
                         End Try
                     Next
                     subcat_combo.Items.Add(
-                        New AvSubcategoy _
-                                              With {.text = ResourceHandler.GetUserMessage("subcat0"), .id = 0})
+                        New AvSubcategoy With {.Text = ResourceHandler.GetUserMessage("subcat0"), .Id = 0})
                     Try
                         For Each cat As AvSubcategoy In catCollection
                             subcat_combo.Items.Add(cat)
@@ -164,7 +169,7 @@ Namespace Forms.Character
                     Loop Until AVLayoutPanel.Controls.Count = 0
                     _correctIds = New List(Of Integer)()
                     _doneAvIds = New List(Of Integer)()
-                    _correctIds = GetAvIdListByMainCat(TryInt(splitString(sender.name, "cat_id_", "_bt")))
+                    _correctIds = GetAvIdListByMainCat(TryInt(SplitString(sender.name, "cat_id_", "_bt")))
                     GlobalVariables.abortMe = False
                     _mHandler.doOperate_av(sender, 1)
                     _mHandler.doOperate_av(sender, 2)
@@ -291,7 +296,7 @@ Namespace Forms.Character
                         avSubCatLable.RightToLeft = RightToLeft.Yes
                         avSubCatLable.Size = reference_subcat_lbl.Size
                         Dim avGainDateLabel As New Label
-                        Dim gaindate As String = charAv.GainDate.toDate.ToString()
+                        Dim gaindate As String = charAv.GainDate.ToDate.ToString()
                         avGainDateLabel.Name = "av" & charAv.Id.ToString() & "_date_lbl"
                         avGainDateLabel.Text = gaindate
                         avGainDateLabel.Tag = charAv
@@ -338,21 +343,7 @@ Namespace Forms.Character
                     While Not _completed
 
                     End While
-                    Try
-                        For Each avPanel As Control In AVLayoutPanel.Controls
-                            If _colorTicker = 1 Then
-                                _colorTicker = 0
-                                Application.DoEvents()
-                                avPanel.BackColor = Color.FromArgb(110, 149, 190)
-                            Else
-                                _colorTicker = 1
-                                Application.DoEvents()
-                                avPanel.BackColor = Color.FromArgb(126, 144, 156) 'Color.SaddleBrown
-                            End If
-                        Next
-                    Catch ex As Exception
 
-                    End Try
                     SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentViewedCharSet)
                     Try
                         If _
@@ -364,21 +355,45 @@ Namespace Forms.Character
                             AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1).BackColor = Color.FromArgb(110, 149,
                                                                                                                 190)
                         End If
+                        AVLayoutPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControlUpdating), AVLayoutPanel)
                     Catch ex As Exception
-
+                        AVLayoutPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControlUpdating), AVLayoutPanel)
                     End Try
                     GlobalVariables.trdRunning = 0
                 End If
             Catch myex As Exception
-
+                GlobalVariables.trdRunning = 0
             End Try
+            ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
+                                    New CompletedEventArgs())
             ' ReSharper disable VBWarnings::BC42105
         End Function
         ' ReSharper restore VBWarnings::BC42105
+        Private Sub onCompleted() Handles Me.AvCompleted
+            Try
+                For Each avPanel As Control In AVLayoutPanel.Controls
+                    If _colorTicker = 1 Then
+                        _colorTicker = 0
+                        Application.DoEvents()
+                        avPanel.BackColor = Color.FromArgb(110, 149, 190)
+                    Else
+                        _colorTicker = 1
+                        Application.DoEvents()
+                        avPanel.BackColor = Color.FromArgb(126, 144, 156) 'Color.SaddleBrown
+                    End If
+                Next
+            Catch ex As Exception
 
+            End Try
+            subcat_combo.Enabled = True
+            Application.DoEvents()
+        End Sub
         Private Sub DelegateControlAdding(addNewPanel As Panel)
             addNewPanel.SetDoubleBuffered()
             AVLayoutPanel.Controls.Add(addNewPanel)
+        End Sub
+        Private Sub DelegateControlUpdating(ctrl As FlowLayoutPanel)
+            ctrl.Update()
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
@@ -538,6 +553,7 @@ Namespace Forms.Character
                 subcat_combo.SelectedIndex = 0
                 Exit Sub
             End If
+            subcat_combo.Enabled = False
             If _preCatControlLst Is Nothing Then
                 _preCatControlLst = New List(Of Control)
             Else
@@ -563,6 +579,7 @@ Namespace Forms.Character
                     AVLayoutPanel.Controls.Remove(ctrl)
                 Next
             End If
+            OnCompleted()
         End Sub
 
         Private Sub callbacktimer_Tick(sender As Object, e As EventArgs) Handles callbacktimer.Tick
