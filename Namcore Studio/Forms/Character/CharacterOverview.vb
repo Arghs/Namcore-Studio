@@ -220,6 +220,7 @@ Namespace Forms.Character
                     slot_11_enchant.Click, slot_10_name.Click, slot_10_enchant.Click, slot_1_name.Click,
                     slot_1_enchant.Click, slot_0_name.Click, slot_0_enchant.Click
             If sender.text = "" Then Exit Sub
+            TextBox1.Text = ""
             Try
                 Dim newPoint As New Point
                 newPoint.X = sender.location.X + InventoryPanel.Location.X
@@ -241,7 +242,8 @@ Namespace Forms.Character
                 ElseIf sender.name.contains("_lbl") Then
                     TextBox1.Text = sender.text
                 Else
-                    TextBox1.Text = sender.tag.enchantment_id.ToString
+                    Dim itm As Item = sender.tag
+                    TextBox1.Text = itm.EnchantmentId.ToString
                 End If
                 _tempValue = TextBox1.Text
             Catch
@@ -326,18 +328,22 @@ Namespace Forms.Character
                             itmench.Text = "Item: " & itemname
                             itmench.Tag = itemname
                         ElseIf founditem = True Then
+                            Dim itm As Item = senderLabel.Tag
                             senderLabel.Text = itemname
-                            senderLabel.Tag.enchantment_type = 1
-                            senderLabel.Tag.enchantment_id = TextBox1.Text
-                            senderLabel.Tag.enchantment_name = itemname
+                            itm.EnchantmentType = 1
+                            itm.EnchantmentId = TextBox1.Text
+                            itm.EnchantmentName = itemname
+                            senderLabel.Tag = itm
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                 GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         ElseIf foundspell = True Then
+                            Dim itm As Item = senderLabel.Tag
                             senderLabel.Text = spellname
-                            senderLabel.Tag.enchantment_type = 0
-                            senderLabel.Tag.enchantment_id = TextBox1.Text
-                            senderLabel.Tag.enchantment_name = spellname
+                            itm.EnchantmentType = 0
+                            itm.EnchantmentId = TextBox1.Text
+                            itm.EnchantmentName = spellname
+                            senderLabel.Tag = itm
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                 GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
