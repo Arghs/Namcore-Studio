@@ -25,63 +25,70 @@ Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.IO.Compression
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Public Class Serializer
-    Public Function Serialize (Of T)(ByVal compression As Boolean, ByVal instance As T) As MemoryStream
-        Dim fs As Stream = New MemoryStream()
-        Try
-            Dim bf As New BinaryFormatter
-            If compression Then fs = New GZipStream(fs, CompressionMode.Compress)
-            bf.Serialize(fs, instance)
-            fs.Close()
-            fs.Dispose()
-            Return fs
-        Catch ex As Exception
-            fs.Close()
-            fs.Dispose()
-            LogAppend("Error during serialization: " & ex.ToString, "Serializer_Serialize", True, True)
-            Return New MemoryStream
-        End Try
-    End Function
 
-    Public Function Serialize (Of T)(ByVal instance As T) As MemoryStream
-        Return Serialize(False, instance)
-    End Function
+Namespace Framework.TemplateSystem
+    Public Class Serializer
+        Public Function Serialize(Of T)(ByVal compression As Boolean, ByVal instance As T) As MemoryStream
+            Dim fs As Stream = New MemoryStream()
+            Try
+                Dim bf As New BinaryFormatter
+                If compression Then fs = New GZipStream(fs, CompressionMode.Compress)
+                bf.Serialize(fs, instance)
+                fs.Close()
+                fs.Dispose()
+                Return fs
+            Catch ex As Exception
+                fs.Close()
+                fs.Dispose()
+                LogAppend("Error during serialization: " & ex.ToString, "Serializer_Serialize", True, True)
+                Return New MemoryStream
+            End Try
+        End Function
 
-    Public Shared Function DeSerialize(Of T)(ByVal compression As Boolean,
-                                              ByVal serialString As String, ByVal defaultInstance As T) As T
-        GlobalVariables.DeserializationSuccessfull = False
-        If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt") Then
-            Return defaultInstance
-        End If
-        Dim fs As Stream = New FileStream(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt",
-                                          FileMode.OpenOrCreate)
-        Try
-            Dim bf As New BinaryFormatter
-            If compression Then fs = New GZipStream(fs, CompressionMode.Decompress)
-            DeSerialize = CType(bf.Deserialize(fs), T)
-            fs.Close()
-            fs.Dispose()
-        Catch ex As Exception
-            fs.Close()
-            fs.Dispose()
-            LogAppend("Error during deserialization: " & ex.ToString, "Serializer_DeSerialize", True, True)
-            Return defaultInstance
-        End Try
-    End Function
+        Public Function Serialize(Of T)(ByVal instance As T) As MemoryStream
+            Return Serialize(False, instance)
+        End Function
 
-    Public Function DeSerialize (Of T)(ByVal serialString As String,
-                                       ByVal defaultInstance As T) As T
+        Public Shared Function DeSerialize(Of T)(ByVal compression As Boolean,
+                                                  ByVal serialString As String, ByVal defaultInstance As T) As T
+            GlobalVariables.DeserializationSuccessfull = False
+            If serialString = "" Then
+                If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf") Then
+                    Return defaultInstance
+                End If
+                serialString = My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf"
+            End If
 
-        Return DeSerialize (Of T)(False, serialString, defaultInstance)
-    End Function
+            Dim fs As Stream = New FileStream(serialString,
+                                              FileMode.OpenOrCreate)
+            Try
+                Dim bf As New BinaryFormatter
+                If compression Then fs = New GZipStream(fs, CompressionMode.Decompress)
+                DeSerialize = CType(bf.Deserialize(fs), T)
+                fs.Close()
+                fs.Dispose()
+            Catch ex As Exception
+                fs.Close()
+                fs.Dispose()
+                LogAppend("Error during deserialization: " & ex.ToString, "Serializer_DeSerialize", True, True)
+                Return defaultInstance
+            End Try
+        End Function
 
-    Public Function DeSerialize (Of T As New)(ByVal serialString As String) As T
-        Return DeSerialize (Of T)(serialString, New T)
-    End Function
+        Public Function DeSerialize(Of T)(ByVal serialString As String,
+                                           ByVal defaultInstance As T) As T
 
-    Public Function DeSerialize (Of T As New)(
-                                              ByVal compression As Boolean, ByVal serialString As String) As T
+            Return DeSerialize(Of T)(False, serialString, defaultInstance)
+        End Function
 
-        Return DeSerialize (Of T)(compression, serialString, New T)
-    End Function
-End Class
+        Public Function DeSerialize(Of T As New)(ByVal serialString As String) As T
+            Return DeSerialize(Of T)(serialString, New T)
+        End Function
+
+        Public Function DeSerialize(Of T As New)(
+                                                  ByVal compression As Boolean, ByVal serialString As String) As T
+
+            Return DeSerialize(Of T)(compression, serialString, New T)
+        End Function
+    End Class
+End Namespace
