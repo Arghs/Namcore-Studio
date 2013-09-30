@@ -18,7 +18,7 @@
 '*
 '* //FileInfo//
 '*      /Filename:      InterfaceOperator
-'*      /Description:   Includes operations for rendering user interfaces
+'*      /Description:   Includes functions to prepare interfaces
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
 Imports System.Linq
@@ -27,7 +27,8 @@ Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions.ResourceHandler
 Imports NCFramework.Framework.Forms
 Imports NCFramework.Framework.Logging
-Imports NCFramework
+Imports NCFramework.Framework.TemplateSystem
+
 Namespace Modules.Interface
     Public Module InterfaceOperator
         Public Sub prepareLive_armory()
@@ -49,16 +50,29 @@ Namespace Modules.Interface
                         procStat.TopMost = False
                         Exit Sub
                     Next
+                Else
+                    Dim mSerializer As Serializer = New Serializer
+                    Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
+                    If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf") Then
+                        My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf")
+                    End If
+                    Dim _
+                        fs As _
+                            New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf",
+                                             FileMode.OpenOrCreate)
+                    fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
+                    fs.Close()
+                    ms.Close()
                 End If
             Else
                 Dim mSerializer As Serializer = New Serializer
                 Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
-                If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt") Then
-                    My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt")
+                If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf") Then
+                    My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf")
                 End If
                 Dim _
                     fs As _
-                        New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/tryit.txt",
+                        New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf",
                                          FileMode.OpenOrCreate)
                 fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
                 fs.Close()

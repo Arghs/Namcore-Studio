@@ -168,6 +168,8 @@ Namespace Forms
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
             LogAppend("Trigger Template Explorer click", "Main_highlighter2_Click", False)
+            Hide()
+            TemplateExplorer.Show()
         End Sub
     End Class
 End Namespace

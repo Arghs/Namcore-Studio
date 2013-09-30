@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
 Imports Namcore_Studio.Modules.Interface
-Imports NCFramework
+Imports NCFramework.Framework.TemplateSystem
 Imports NCFramework.Framework.Modules
 Imports NCFramework.My
 Imports NCFramework.Framework.Functions
@@ -192,7 +192,7 @@ Namespace Forms
         Private Sub load_bt_Click(sender As Object, e As EventArgs) Handles load_bt.Click
             LogAppend("Trigger load button click", "Armory_interface_load_bt_Click", False)
             GlobalVariables.lastregion = "armoryparser"
-            GlobalVariables.globChars.CharacterSets = New List(Of Framework.Modules.Character)
+            GlobalVariables.globChars.CharacterSets = New List(Of NCFramework.Framework.Modules.Character)
             GlobalVariables.trdrunnuing = True
             MySettings.Default.language = "de" 'todo for testing only
             Dim urllst As List(Of String) =
