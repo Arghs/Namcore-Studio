@@ -156,6 +156,8 @@ Public Class Updater
                 Else
                     If servername Is Nothing Then
                         proxyenabled = False
+                    ElseIf servername = "" Then
+                        proxyenabled = False
                     Else
                         fullProxy = New WebProxy(servername & ":" & serverport)
                     End If
