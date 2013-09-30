@@ -1,0 +1,129 @@
+CategoryId;MainCatId;NameDE;NameEN
+92;-1;Allgemein;General
+123;122;Arenen;Arenas
+130;1;Charakter;Character
+135;128;Kreaturen;Creatures
+140;130;Vermögen;Wealth
+152;21;Gewertete Arenen;Rated Arenas
+160;155;Mondfest;Lunar Festival
+170;169;Kochkunst;Cooking
+178;132;Sekundäre Fertigkeiten;Secondary Skills
+14777;97;Östliche Königreiche;Eastern Kingdoms
+14804;95;Kriegshymnenschlucht;Warsong Gulch
+14808;168;Classic;Classic
+14821;14807;Classic;Classic
+14861;96;Östliche Königreiche;Eastern Kingdoms
+14864;201;Classic;Classic
+15082;15079;Classic;Classic
+15088;15076;Allgemein;General
+15090;15078;Schlachtfelder;Battlegrounds
+15118;15117;Sammeln;Collect
+15222;15165;Feuerprobe;Proving Grounds
+96;-1;Quests;Quests
+124;122;Schlachtfelder;Battlegrounds
+136;128;Ehrenhafte Siege;Honorable Kills
+141;1;Kampf;Combat
+145;130;Verbrauchsgüter;Consumables
+153;21;Schlachtfelder;Battlegrounds
+171;169;Angeln;Fishing
+173;132;Berufe;Professions
+187;155;Liebe liegt in der Luft;Love is in the Air
+14778;97;Kalimdor;Kalimdor
+14802;95;Arathibecken;Arathi Basin
+14805;168;The Burning Crusade;The Burning Crusade
+14822;14807;The Burning Crusade;The Burning Crusade
+14865;201;The Burning Crusade;The Burning Crusade
+15077;15076;Quests;Quests
+15081;96;Kalimdor;Kalimdor
+15084;15079;The Burning Crusade;The Burning Crusade
+15091;15078;Arena;Arena
+15119;15117;Kampf;Battle
+97;-1;Erkundung;Exploration
+125;122;Dungeons;Dungeons
+128;1;Siege;Kills
+137;128;Todesstöße;Killing Blows
+147;130;Ruf;Reputation
+154;21;Welt;World
+159;155;Nobelgarten;Noblegarden
+172;169;Erste Hilfe;First Aid
+14779;97;Scherbenwelt;Outland
+14803;95;Auge des Sturms;Eye of the Storm
+14806;168;Wrath of the Lich King - Dungeons;Lich King Dungeon
+14823;14807;Wrath of the Lich King;Wrath of the Lich King
+14862;96;Scherbenwelt;Outland
+14866;201;Wrath of the Lich King;Wrath of the Lich King
+15078;15076;Spieler gegen Spieler;Player vs. Player
+15085;15079;Wrath of the Lich King - Dungeons;Lich King Dungeon
+15120;15117;Stufe;Level
+95;-1;Spieler gegen Spieler;Player vs. Player
+122;1;Tode;Deaths
+126;122;Welt;World
+163;155;Kinderwoche;Children's Week
+191;130;Ausrüstung;Gear
+14780;97;Nordend;Northrend
+14801;95;Alteractal;Alterac Valley
+14863;96;Nordend;Northrend
+14922;168;Wrath of the Lich King - Schlachtzüge;Lich King Raid
+15071;169;Archäologie;Archaeology
+15072;201;Cataclysm;Cataclysm
+15079;15076;Dungeons & Schlachtzüge;Dungeons & Raids
+15086;15079;Wrath of the Lich King - Schlachtzüge;Lich King Raid
+15096;14807;Cataclysm;Cataclysm
+127;122;Wiederbelebung;Resurrection
+133;1;Quests;Quests
+161;155;Sonnenwende;Midsummer
+168;-1;Dungeons & Schlachtzüge;Dungeons & Raids
+15003;95;Insel der Eroberung;Isle of Conquest
+15067;168;Cataclysm - Dungeons;Cataclysm Dungeon
+15069;97;Cataclysm;Cataclysm
+15070;96;Cataclysm;Cataclysm
+15080;15076;Berufe;Professions
+15083;15079;Cataclysm - Dungeons;Cataclysm Dungeon
+15114;201;Pandaria;Pandaria
+15164;14807;Mists of Pandaria;Mists of Pandaria
+162;155;Braufest;Brewfest
+169;-1;Berufe;Professions
+14807;1;Dungeons & Schlachtzüge;Dungeons & Raids
+14881;95;Strand der Uralten;Strand of the Ancients
+15068;168;Cataclysm - Schlachtzüge;Cataclysm Raid
+15087;15079;Cataclysm - Schlachtzüge;Cataclysm Raid
+15089;15076;Ruf;Reputation
+15110;96;Pandaria;Pandaria
+15113;97;Pandaria;Pandaria
+15171;14807;Dungeon-Herausforderungen;Dungeon Challenges
+132;1;Fertigkeiten;Skills
+158;155;Schlotternächte;Hallow's End
+201;-1;Ruf;Reputation
+15073;95;Schlacht um Gilneas;Battle for Gilneas
+15093;15076;Heldentaten der Gilde;Guild Feats of Strength
+15106;168;Pandaria - Dungeons;Pandaria Dungeon
+15153;15079;Pandaria - Dungeons;Pandaria Dungeon
+134;1;Reise;Travel
+14981;155;Die Pilgerfreuden;Pilgrim's Bounty
+15074;95;Zwillingsgipfel;Twin Peaks
+15107;168;Pandaria - Schlachtzüge;Pandaria Raid
+15154;15079;Pandaria - Schlachtzüge;Pandaria Raid
+15165;-1;Szenarien;Scenarios
+131;1;Körpersprache;Social
+155;-1;Weltereignisse;World Events
+156;155;Winterhauch;Winter Veil
+15115;168;Dungeon-Herausforderungen;Dungeon Challenges
+15151;15079;Dungeon-Herausforderungen;Dungeon Challenges
+15162;95;Silberbruchmine;Silvershard Mines
+21;1;Spieler gegen Spieler;Player vs. Player
+14941;155;Argentumturnier;Argent Tournament
+15117;-1;Haustierkämpfe;Pet Battles
+15163;95;Tempel von Katmogu;Temple of Kotmogu
+81;-1;Heldentaten;Feats of Strength
+15101;155;Dunkelmond-Jahrmarkt;Darkmoon Faire
+15176;1;Ehemalige Erfolge;Legacy
+15218;95;Tiefenwindschlucht;Deepwind Gorge
+14901;95;Tausendwinter;Wintergrasp
+15076;-1;Gilde;Guild
+15202;155;Kampfgilde;Brawler's Guild
+15219;1;Haustierkämpfe;Pet Battles
+1;-1;Statistiken;Statistics
+15075;95;Tol Barad;Tol Barad
+15227;1;Die Feuerprobe;Proving Grounds
+15092;95;Gewertete Schlachtfelder;Rated Battleground
+165;95;Arena;Arena

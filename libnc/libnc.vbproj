@@ -62,9 +62,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CliDB.vb" />
-    <Compile Include="Helper\BinaryReaderExtension.vb" />
-    <Compile Include="InformationHandler.vb" />
+    <Compile Include="Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -80,12 +78,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Reader\DBHeader.vb" />
-    <Compile Include="Reader\DBReader.vb" />
-    <Compile Include="Reader\DBReaderExtension.vb" />
-    <Compile Include="Structures\Skill.vb" />
-    <Compile Include="Structures\Spell.vb" />
-    <Compile Include="Structures\Unused.vb" />
+    <Compile Include="Provider\AchievementCategoryInfo.vb" />
+    <Compile Include="Provider\AchievementInfo.vb" />
+    <Compile Include="Provider\FactionInfo.vb" />
+    <Compile Include="Provider\GlyphPropertiesInfo.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -105,23 +101,22 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Resources\avcat_de.csv" />
-    <None Include="Resources\avicon.csv" />
-    <None Include="Resources\avmaincat.csv" />
-    <None Include="Resources\av_de.csv" />
-    <None Include="Resources\dbc_itemsparse_de.csv" />
-    <None Include="Resources\enchant_name_de.csv" />
-    <None Include="Resources\enchant_name_en.csv" />
-    <None Include="Resources\FactionDE.CSV" />
-    <None Include="Resources\ItemDisplayInfo.CSV" />
+    <None Include="Resources\Achievement.csv" />
+    <None Include="Resources\AchievementCategory.csv" />
+    <None Include="Resources\Faction.csv" />
+    <None Include="Resources\GlyphProperties0.csv" />
+    <None Include="Resources\GlyphProperties1.csv" />
+    <None Include="Resources\GlyphProperties2.csv" />
+    <None Include="Resources\Item.csv" />
+    <None Include="Resources\ItemDisplayInfo.csv" />
+    <None Include="Resources\ItemSparse.csv" />
     <None Include="Resources\questname.csv" />
-    <None Include="Resources\SkillLineDE.dbc" />
-    <None Include="Resources\SpellDE.dbc" />
+    <None Include="Resources\SkillLine.csv" />
+    <None Include="Resources\Spell.csv" />
+    <None Include="Resources\SpellEffect.csv" />
+    <None Include="Resources\SpellEnchant.csv" />
+    <None Include="Resources\SpellIcon.csv" />
     <None Include="Resources\talent.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\glyphproperties_335.txt" />
-    <Content Include="Resources\glyphproperties_434.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

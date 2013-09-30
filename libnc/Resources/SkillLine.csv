@@ -1,0 +1,172 @@
+SkillId;NameDE;NameEN
+43;Schwerter;Swords
+44;Äxte;Axes
+45;Bögen;Bows
+46;Schusswaffen;Guns
+54;Streitkolben;Maces
+55;Zweihandschwerter;Two-Handed Swords
+95;Verteidigung;Defense
+98;Sprache: Gemeinsprache;Language: Common
+101;Volksfähigkeit - Zwerge;Dwarven Racial
+109;Sprache: Orcisch;Language: Orcish
+111;Sprache: Zwergisch;Language: Dwarven
+113;Sprache: Darnassisch;Language: Darnassian
+115;Sprache: Taurahe;Language: Taurahe
+118;Beidhändigkeit;Dual Wield
+124;Volksfähigkeit - Tauren;Tauren Racial
+125;Volksfähigkeit - Orcs;Orc Racial
+126;Volksfähigkeit - Nachtelfen;Night Elf Racial
+129;Erste Hilfe;First Aid
+136;Stäbe;Staves
+137;Sprache: Thalassisch;Language: Thalassian
+138;Sprache: Drakonisch;Language: Draconic
+139;Sprache: Dämonisch;Language: Demon Tongue
+140;Sprache: Titanensprache;Language: Titan
+141;Sprache: Alte Sprache;Language: Old Tongue
+142;Überlebenskunst;Survival
+148;Pferdreiten;Horse Riding
+149;Wolfsreiten;Wolf Riding
+150;Tigerreiten;Tiger Riding
+152;Widderreiten;Ram Riding
+155;Schwimmen;Swimming
+160;Zweihandstreitkolben;Two-Handed Maces
+162;Unbewaffnet;Unarmed
+164;Schmiedekunst;Blacksmithing
+165;Lederverarbeitung;Leatherworking
+171;Alchemie;Alchemy
+172;Zweihandäxte;Two-Handed Axes
+173;Dolche;Daggers
+182;Kräuterkunde;Herbalism
+183;ALLGEMEIN (DND);GENERIC (DND)
+185;Kochkunst;Cooking
+186;Bergbau;Mining
+188;Begleiter - Wichtel;Pet - Imp
+189;Begleiter - Teufelsjäger;Pet - Felhunter
+197;Schneiderei;Tailoring
+202;Ingenieurskunst;Engineering
+203;Tier - Spinne;Pet - Spider
+204;Begleiter - Leerwandler;Pet - Voidwalker
+205;Begleiter - Sukkubus;Pet - Succubus
+206;Begleiter - Höllenbestie;Pet - Infernal
+207;Begleiter - Verdammniswache;Pet - Doomguard
+208;Tier - Wolf;Pet - Wolf
+209;Tier - Katze;Pet - Cat
+210;Tier - Bär;Pet - Bear
+211;Tier - Eber;Pet - Boar
+212;Tier - Krokilisk;Pet - Crocolisk
+213;Tier - Aasvogel;Pet - Carrion Bird
+214;Tier - Krebs;Pet - Crab
+215;Tier - Primat;Pet - Gorilla
+217;Tier - Raptor;Pet - Raptor
+218;Tier - Weitschreiter;Pet - Tallstrider
+220;Volksfähigkeit - Untote;Racial - Undead
+226;Armbrüste;Crossbows
+228;Zauberstäbe;Wands
+229;Stangenwaffen;Polearms
+236;Tier - Skorpid;Pet - Scorpid
+251;Tier - Schildkröte;Pet - Turtle
+270;Tier - Jäger allgemein;Pet - Generic Hunter
+293;Platte;Plate Mail
+313;Sprache: Gnomisch;Language: Gnomish
+315;Sprache: Troll;Language: Troll
+333;Verzauberkunst;Enchanting
+356;Angeln;Fishing
+393;Kürschnerei;Skinning
+413;Kette;Mail
+414;Leder;Leather
+415;Stoff;Cloth
+433;Schild;Shield
+473;Faustwaffen;Fist Weapons
+533;Raptorreiten;Raptor Riding
+553;Roboschreiterlenken;Mechanostrider Piloting
+554;Skelettrossreiten;Undead Horsemanship
+653;Tier - Fledermaus;Pet - Bat
+654;Tier - Hyäne;Pet - Hyena
+655;Tier - Raubvogel;Pet - Bird of Prey
+656;Tier - Windnatter;Pet - Wind Serpent
+673;Sprache: Gossensprache;Language: Forsaken
+713;Kodoreiten;Kodo Riding
+733;Volksfähigkeit - Trolle;Racial - Troll
+753;Volksfähigkeit - Gnome;Racial - Gnome
+754;Volksfähigkeit - Menschen;Racial - Human
+755;Juwelierskunst;Jewelcrafting
+756;Volksfähigkeit - Blutelfen;Blood Elf Racial
+758;Tier  - Ereignis, Ferngesteuert;Pet - Event - Remote Control
+759;Sprache: Draenei;Language: Draenei
+760;Volksfähigkeit - Draenei;Draenei Racial
+761;Begleiter - Teufelswache;Pet - Felguard
+762;Reiten;Riding
+763;Tier - Drachenfalke;Pet - Dragonhawk
+764;Tier - Netherrochen;Pet - Nether Ray
+765;Tier - Sporensegler;Pet - Sporebat
+766;Tier - Sphärenjäger;Pet - Warp Stalker
+767;Tier - Felshetzer;Pet - Ravager
+768;Tier - Schlange;Pet - Serpent
+769;Intern;Internal
+773;Inschriftenkunde;Inscription
+775;Tier - Motte;Pet - Moth
+777;Reittiere;Mounts
+778;Begleiter;Companions
+780;Tier - Exotische Schimäre;Pet - Exotic Chimaera
+781;Tier - Exotischer Teufelssaurier;Pet - Exotic Devlisaur
+782;Begleiter - Ghul;Pet - Ghoul
+783;Tier - Exotischer Silithid;Pet - Exotic Silithid
+784;Tier - Exotischer Wurm;Pet - Exotic Worm
+785;Tier - Wespe;Pet- Wasp
+786;Tier - Exotisches Rhinozeros;Pet - Exotic Rhino
+787;Tier - Exotischer Kernhund;Pet - Exotic Core Hound
+788;Tier - Exotische Geisterbestie;Pet - Exotic Spirit Beast
+789;Volksfähigkeit - Worgen;Racial - Worgen
+790;Volksfähigkeit - Goblins;Racial - Goblin
+791;Sprache: Gilnearisch;Language: Gilnean
+792;Sprache: Goblin;Language: Goblin
+794;Archäologie;Archaeology
+795;Jäger;Hunter
+796;Todesritter;Death Knight
+798;Druide;Druid
+800;Paladin;Paladin
+804;Priester;Priest
+805;Begleiter - Wasserelementar;Pet - Water Elemental
+808;Tier - Fuchs;Pet - Fox
+810;Alle - Glyphen;All - Glyphs
+811;Tier - Hund;Pet - Dog
+815;Affe;Monkey
+817;Schieferspinne;Shale Spider
+818;Käfer;Beetle
+821;Alle - Gildenboni;All - Guild Perks
+824;Hydra;Hydra
+829;Mönch;Monk
+840;Krieger;Warrior
+849;Hexenmeister;Warlock
+899;Pandaren-Volksfähigkeit;Pandaren Racial
+904;Magier;Mage
+905;Sprache: Pandaren (Neutral);Language: Pandaren Neutral
+906;Sprache: Pandaren (Allianz);Language: Pandaren Alliance
+907;Sprache: Pandaren (Horde);Language: Pandaren Horde
+921;Schurke;Rogue
+924;Schamane;Shaman
+927;Teufelswichtel;Fel Imp
+928;Leerenfürst;Voidlord
+929;Shivarra;Shivarra
+930;Beobachter;Observer
+931;Zornwächter;Wrathguard
+934;Alle - Spezialisierungen;All - Specializations
+960;Runenschmieden;Runeforging
+962;Begleiter - Urfeuerelementar;Pet - Primal Fire Elemental
+963;Begleiter - Urerdelementar;Pet - Primal Earth Elemental
+975;Weg des Grills;Way of the Grill
+976;Weg des Woks;Way of the Wok
+977;Weg des Topfes;Way of the Pot
+978;Weg des Dämpfens;Way of the Steamer
+979;Weg des Ofens;Way of the Oven
+980;Weg des Gebräus;Way of the Brew
+981;Kochlehrling;Apprentice Cooking
+982;Gesellenkochbuch;Journeyman Cookbook
+983;Stachelschwein;Porcupine
+984;Kranich;Crane
+985;Wasserschreiter;Water Strider
+986;Qilen;Quilen
+987;Ziege;Goat
+988;Basilisk;Basilisk
+999;KEINE SPIELER;NO PLAYERS
+1305;Terrorhorn;Direhorn

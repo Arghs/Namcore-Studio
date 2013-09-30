@@ -61,303 +61,257 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die avid;avname;avdesc;avcat;
-        '''6;Stufe 10;Erreicht Stufe 10.;92;
-        '''7;Stufe 20;Erreicht Stufe 20.;92;
-        '''8;Stufe 30;Erreicht Stufe 30.;92;
-        '''9;Stufe 40;Erreicht Stufe 40.;92;
-        '''10;Stufe 50;Erreicht Stufe 50.;92;
-        '''11;Stufe 60;Erreicht Stufe 60.;92;
-        '''12;Stufe 70;Erreicht Stufe 70.;92;
-        '''13;Stufe 80;Erreicht Stufe 80.;92;
-        '''15;Jede Menge Haustiere;Sammelt 15 einzigartige Haustiere.;15118;
-        '''16;Hat jemand ein Veilchen bestellt?;Erreicht eine unbewaffnete Fertigkeit von 400.;81;
-        '''31;Alltägliches;Schließt an fünf aufeinander  [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die AchievementId;NameDE;NameEN;DescriptionDE;DescriptionEN;CategoryId;SpellId
+        '''6;Stufe 10;Level 10;Erreicht Stufe 10.;Reach level 10.;3268
+        '''33;Rauf und runter in der Tundra;Nothing Boring About Borean;Schließt 130 Quests der Boreanischen Tundra ab.;Complete 130 quests in Borean Tundra.;3336
+        '''42;Erkundet die Östlichen Königreiche;Explore Eastern Kingdoms;Erkundet die Regionen der Östlichen Königreiche.;Explore the regions of Eastern Kingdoms.;3490
+        '''57;Tode im Alteractal;Deaths in Alterac Valley;Tode im Alteract [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property av_de() As String
+        Public ReadOnly Property Achievement() As String
             Get
-                Return ResourceManager.GetString("av_de", resourceCulture)
+                Return ResourceManager.GetString("Achievement", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die catid;catmainid;catname
-        '''1;-1;Statistiken
-        '''21;1;Spieler gegen Spieler
-        '''81;-1;Heldentaten
-        '''92;-1;Allgemein
-        '''95;-1;Spieler gegen Spieler
-        '''96;-1;Quests
-        '''97;-1;Erkundung
-        '''122;1;Tode
-        '''123;122;Arenen
-        '''124;122;Schlachtfelder
-        '''125;122;Dungeons
-        '''126;122;Welt
-        '''127;122;Wiederbelebung
-        '''128;1;Siege
-        '''130;1;Charakter
-        '''131;1;Körpersprache
-        '''132;1;Fertigkeiten
-        '''133;1;Quests
-        '''134;1;Reise
-        '''135;128;Kreaturen
-        '''136;128;Ehrenhafte Siege
-        '''137;128;Todesstöße
-        '''140;130;Vermögen
-        '''141;1;Kampf
-        '''145;130;Verbrauchsgüter
-        '''147;130;Ruf
-        '''152;2 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die CategoryId;MainCatId;NameDE;NameEN
+        '''92;-1;Allgemein;General
+        '''123;122;Arenen;Arenas
+        '''130;1;Charakter;Character
+        '''135;128;Kreaturen;Creatures
+        '''140;130;Vermögen;Wealth
+        '''152;21;Gewertete Arenen;Rated Arenas
+        '''160;155;Mondfest;Lunar Festival
+        '''170;169;Kochkunst;Cooking
+        '''178;132;Sekundäre Fertigkeiten;Secondary Skills
+        '''14777;97;Östliche Königreiche;Eastern Kingdoms
+        '''14804;95;Kriegshymnenschlucht;Warsong Gulch
+        '''14808;168;Classic;Classic
+        '''14821;14807;Classic;Classic
+        '''14861;96;Östliche Königreiche;Eastern Kingdoms
+        '''148 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property avcat_de() As String
+        Public ReadOnly Property AchievementCategory() As String
             Get
-                Return ResourceManager.GetString("avcat_de", resourceCulture)
+                Return ResourceManager.GetString("AchievementCategory", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die id;spellid;iconname
-        '''6;3268;Achievement_Level_10
-        '''7;3269;Achievement_Level_20
-        '''8;3270;Achievement_Level_30
-        '''9;3271;Achievement_Level_40
-        '''10;3272;Achievement_Level_50
-        '''11;3273;Achievement_Level_60
-        '''12;3274;Achievement_Level_70
-        '''13;3275;Achievement_Level_80
-        '''15;1522;INV_Box_PetCarrier_01
-        '''16;1997;Ability_Warrior_SecondWind
-        '''31;3481;Achievement_Quests_Completed_Daily_x5
-        '''32;3415;Achievement_Quests_Completed_07
-        '''33;3336;Achievement_Zone_BoreanTundra_07
-        '''34;3337;Achievement_Zone_HowlingFjord_07
-        '''35;3338;Achievem [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die FactionId;Index;NameDE;NameEN
+        '''1;-1;SPIELER, Mensch;PLAYER, Human
+        '''2;-1;SPIELER, Orc;PLAYER, Orc
+        '''3;-1;SPIELER, Zwerg;PLAYER, Dwarf
+        '''4;-1;SPIELER, Nachtelf;PLAYER, Night Elf
+        '''5;-1;SPIELER, Untoter;PLAYER, Undead
+        '''6;-1;SPIELER, Tauren;PLAYER, Tauren 
+        '''7;-1;Kreatur;Creature
+        '''8;-1;SPIELER, Gnom;PLAYER, Gnome
+        '''9;-1;SPIELER, Troll;PLAYER, Troll
+        '''14;-1;Monster;Monster
+        '''15;-1;Bruderschaft der Defias;Defias Brotherhood
+        '''16;-1;Gnoll - Flusspfoten;Gnoll - Riverpaw
+        '''17;-1;Gnoll - Rotkammgebirge;Gnoll - Redridge
+        '''18;-1 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property avicon() As String
+        Public ReadOnly Property Faction() As String
             Get
-                Return ResourceManager.GetString("avicon", resourceCulture)
+                Return ResourceManager.GetString("Faction", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die avid;maincatid
-        '''5445;0
-        '''5447;0
-        '''6133;0
-        '''7324;0
-        '''1042;1
-        '''1045;1
-        '''1047;1
-        '''1065;1
-        '''1066;1
-        '''1067;1
-        '''110;1
-        '''1102;1
-        '''1103;1
-        '''1104;1
-        '''1149;1
-        '''1197;1
-        '''1198;1
-        '''1199;1
-        '''1200;1
-        '''1201;1
-        '''1339;1
-        '''1462;1
-        '''1464;1
-        '''1465;1
-        '''1467;1
-        '''1485;1
-        '''1501;1
-        '''1756;1
-        '''1759;1
-        '''1760;1
-        '''1768;1
-        '''1770;1
-        '''1771;1
-        '''1772;1
-        '''189;1
-        '''193;1
-        '''197;1
-        '''198;1
-        '''2277;1
-        '''3018;1
-        '''318;1
-        '''349;1
-        '''350;1
-        '''353;1
-        '''4456;1
-        '''4556;1
-        '''4729;1
-        '''4730;1
-        '''527;1
-        '''528;1
-        '''60;1
-        '''7223;1
-        '''7224;1
-        '''7240;1
-        '''7241;1
-        '''7242;1
-        '''7243;1
-        '''7244;1
-        '''7245;1
-        '''7246;1
-        '''7247;1
-        '''759;1
-        '''8278;1
-        '''8286;1 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die GlyphId;SpellId;Icon
+        '''2;52084;3098
+        '''21;12320;0
+        '''22;12297;0
+        '''61;46831;0
+        '''81;52084;0
+        '''82;52085;0
+        '''101;0;0
+        '''121;46487;2681
+        '''141;54292;3115
+        '''161;54810;3114
+        '''162;54811;3113
+        '''163;54812;3312
+        '''164;54813;3124
+        '''165;54815;3129
+        '''166;54818;3112
+        '''167;54821;3128
+        '''168;54824;3123
+        '''169;54832;3121
+        '''170;54733;3127
+        '''171;54743;3098
+        '''172;54754;3125
+        '''173;54825;3119
+        '''174;54826;3120
+        '''175;54845;3117
+        '''176;54830;3122
+        '''177;54831;3118
+        '''178;54828;3116
+        '''179;54756;3126
+        '''180;54829;3110
+        '''181;54760;3115
+        '''182;54912;0
+        '''183;54922;3128
+        '''184;54925; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property avmaincat() As String
+        Public ReadOnly Property GlyphProperties0() As String
             Get
-                Return ResourceManager.GetString("avmaincat", resourceCulture)
+                Return ResourceManager.GetString("GlyphProperties0", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die id;description
-        '''17;Martinsfuror
-        '''25;Abgenutztes Kurzschwert
-        '''35;Gebogener Stab
-        '''36;Abgenutzter Streitkolben
-        '''37;Abgenutzte Axt
-        '''38;Rekrutenhemd
-        '''39;Rekrutenhose
-        '''40;Rekrutenstiefel
-        '''43;Knappenstiefel
-        '''44;Knappenhose
-        '''45;Knappenhemd
-        '''47;Straßenräuberschuhe
-        '''48;Straßenräuberhose
-        '''49;Straßenräuberhemd
-        '''51;Neophytenstiefel
-        '''52;Neophytenhose
-        '''53;Neophytenhemd
-        '''55;Lehrlingsstiefel
-        '''56;Lehrlingsrobe
-        '''57;Akolythenrobe
-        '''59;Akolythenschuhe
-        '''60;Mehrlagige Tunika
-        '''61;Zwergische Lederhose
-        '''79;Zwergische Stoffkniehose
-        '''8 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die GlyphId;SpellId;Icon
+        '''161;54810;3114
+        '''162;54811;3113
+        '''163;54812;3312
+        '''164;54813;3124
+        '''165;54815;3129
+        '''166;54818;3112
+        '''167;54821;3128
+        '''168;54824;3123
+        '''169;54832;3121
+        '''170;54733;3127
+        '''171;54743;3098
+        '''172;54754;3125
+        '''173;54825;3119
+        '''174;54826;3120
+        '''175;54845;3117
+        '''176;54830;3122
+        '''177;54831;3118
+        '''178;54828;3116
+        '''179;54756;3126
+        '''180;54829;3110
+        '''181;54760;3115
+        '''183;54922;3128
+        '''184;54925;3121
+        '''185;54923;3112
+        '''186;54924;3115
+        '''187;54926;3117
+        '''188;54927;3110
+        '''189;54928;3119
+        '''190;89401;3118
+        '''191;54930;3125
+        '''192;54931; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property dbc_itemsparse_de() As String
+        Public ReadOnly Property GlyphProperties1() As String
             Get
-                Return ResourceManager.GetString("dbc_itemsparse_de", resourceCulture)
+                Return ResourceManager.GetString("GlyphProperties1", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die effectid;effectname
-        '''1;Felsbeißer 3
-        '''2;Frostbrand
-        '''3;Flammenzunge 3
-        '''4;Flammenzunge 2
-        '''5;Flammenzunge
-        '''6;Felsbeißer 2
-        '''7;Tödliches Gift
-        '''8;Tödliches Gift II
-        '''9;Gift (15 Schaden)
-        '''10;Gift (20 Schaden)
-        '''11;Gift (25 Schaden)
-        '''12;Frostbrand 2
-        '''13;Geschärft (+3 Schaden)
-        '''14;Geschärft (+4 Schaden)
-        '''15;Verstärkt (+8 Rüstung)
-        '''16;Verstärkt (+16 Rüstung)
-        '''17;Verstärkt (+24 Rüstung)
-        '''18;Verstärkt (+32 Rüstung)
-        '''19;Beschwert (+2 Schaden)
-        '''20;Beschwert (+3 Schaden)
-        '''21;Beschwert (+4 Schaden)
-        '''22;Verkrüppelungsgift
-        '''23; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die GlyphId;SpellId;Icon
+        '''161;54810;3114
+        '''162;54811;3113
+        '''163;54812;3312
+        '''164;114338;3124
+        '''165;114234;3129
+        '''166;116186;3112
+        '''167;54821;3128
+        '''168;114300;3123
+        '''169;54832;3121
+        '''170;54733;3127
+        '''171;116218;3098
+        '''172;17076;3125
+        '''173;54825;3119
+        '''174;114228;3120
+        '''175;146655;3117
+        '''176;114333;3122
+        '''177;54831;3118
+        '''178;116216;3116
+        '''179;116203;3126
+        '''180;127540;3110
+        '''181;54760;3115
+        '''183;54922;3128
+        '''184;146955;3121
+        '''185;54923;3112
+        '''186;54924;3115
+        '''187;54926;3117
+        '''188;54927;3110
+        '''189;54928;3119
+        '''190;89401;3118
+        '''191;54930;3125 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property enchant_name_de() As String
+        Public ReadOnly Property GlyphProperties2() As String
             Get
-                Return ResourceManager.GetString("enchant_name_de", resourceCulture)
+                Return ResourceManager.GetString("GlyphProperties2", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die effectid;effectname
-        '''1;Rockbiter 3
-        '''2;Frostbrand
-        '''3;Flametongue 3
-        '''4;Flametongue 2
-        '''5;Flametongue
-        '''6;Rockbiter 2
-        '''7;Deadly Poison
-        '''8;Deadly Poison II
-        '''9;Poison (15 Dmg)
-        '''10;Poison (20 Dmg)
-        '''11;Poison (25 Dmg)
-        '''12;Frostbrand 2
-        '''13;Sharpened (+3 Damage)
-        '''14;Sharpened (+4 Damage)
-        '''15;Reinforced (+8 Armor)
-        '''16;Reinforced (+16 Armor)
-        '''17;Reinforced (+24 Armor)
-        '''18;Reinforced (+32 Armor)
-        '''19;Weighted (+2 Damage)
-        '''20;Weighted (+3 Damage)
-        '''21;Weighted (+4 Damage)
-        '''22;Crippling Poison
-        '''23;Mind-numbing Poison II
-        '''24; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die ItemId;Class;SubClass
+        '''17;4;4
+        '''25;2;7
+        '''35;2;10
+        '''36;2;4
+        '''37;2;0
+        '''38;4;0
+        '''39;4;1
+        '''40;4;1
+        '''41;4;0
+        '''42;4;0
+        '''43;4;1
+        '''44;4;1
+        '''45;4;0
+        '''46;4;0
+        '''47;4;1
+        '''48;4;1
+        '''49;4;0
+        '''50;4;0
+        '''51;4;1
+        '''52;4;1
+        '''53;4;0
+        '''54;4;0
+        '''55;4;1
+        '''56;4;1
+        '''57;4;1
+        '''58;4;0
+        '''59;4;1
+        '''60;4;2
+        '''61;4;2
+        '''77;4;1
+        '''79;4;1
+        '''80;4;1
+        '''85;4;2
+        '''86;4;0
+        '''87;4;0
+        '''88;4;1
+        '''89;4;0
+        '''90;4;0
+        '''91;4;1
+        '''92;4;0
+        '''93;4;0
+        '''94;4;0
+        '''95;4;0
+        '''97;4;1
+        '''98;4;0
+        '''99;4;0
+        '''100;4;1
+        '''101;4;0
+        '''102;4;0
+        '''103;4;0
+        '''104;4;1
+        '''105;4;0
+        '''113;4;1
+        '''114;4;0
+        '''115;4;0
+        '''117;0;5
+        '''118;0;1
+        '''119;4;0
+        '''120;4;1
+        '''121 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property enchant_name_en() As String
+        Public ReadOnly Property Item() As String
             Get
-                Return ResourceManager.GetString("enchant_name_en", resourceCulture)
+                Return ResourceManager.GetString("Item", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die factionid;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27
-        '''1;-1.#QNAN0;0;0;0;0;0;0;0;0;0;0.000000;0;0;0;0;;;0;1.000.000;1.000.000;5;5;SPIELER, Mensch;;0;0;
-        '''2;-1.#QNAN0;0;0;0;0;0;0;0;0;0;0.000000;0;0;0;0;;;0;1.000.000;1.000.000;5;5;SPIELER, Orc;;0;0;
-        '''3;-1.#QNAN0;0;0;0;0;0;0;0;0;0;0.000000;0;0;0;0;;;0;1.000.000;1.000.000;5;5;SPIELER, Zwerg;;0;0;
-        '''4;-1.#QNAN0;0;0;0;0;0;0;0;0;0;0.000000;0;0;0;0;;;0;1.000.000;1.000.000;5;5;SPIELER, Nachtelf;;0;0;
-        '''5;-1.#QNAN0;0;0;0;0;0;0;0;0;0;0.000000; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        '''</summary>
-        Public ReadOnly Property FactionDE() As String
-            Get
-                Return ResourceManager.GetString("FactionDE", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die &lt;entry&gt;2&lt;/entry&gt;&lt;spell&gt;52084&lt;/spell&gt;&lt;entry2&gt;2&lt;/entry2&gt;&lt;spell2&gt;52084&lt;/spell2&gt;
-        '''&lt;entry&gt;21&lt;/entry&gt;&lt;spell&gt;12320&lt;/spell&gt;&lt;entry2&gt;21&lt;/entry2&gt;&lt;spell2&gt;12320&lt;/spell2&gt;
-        '''&lt;entry&gt;22&lt;/entry&gt;&lt;spell&gt;12297&lt;/spell&gt;&lt;entry2&gt;22&lt;/entry2&gt;&lt;spell2&gt;12297&lt;/spell2&gt;
-        '''&lt;entry&gt;61&lt;/entry&gt;&lt;spell&gt;46831&lt;/spell&gt;&lt;entry2&gt;61&lt;/entry2&gt;&lt;spell2&gt;46831&lt;/spell2&gt;
-        '''&lt;entry&gt;81&lt;/entry&gt;&lt;spell&gt;52084&lt;/spell&gt;&lt;entry2&gt;81&lt;/entry2&gt;&lt;spell2&gt;52084&lt;/spell2&gt;
-        '''&lt;entry&gt;82&lt;/entry&gt;&lt;spell&gt;52085&lt;/spell&gt;&lt;entry2&gt;82&lt;/entry2&gt;&lt;spell2&gt;52085&lt;/spell2&gt;
-        '''&lt;entry&gt;101&lt;/entry&gt;&lt;spell&gt;0&lt;/spell&gt; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        '''</summary>
-        Public ReadOnly Property glyphproperties_335() As String
-            Get
-                Return ResourceManager.GetString("glyphproperties_335", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die &lt;entry&gt;161&lt;/entry&gt;&lt;spell&gt;54810&lt;/spell&gt;&lt;entry2&gt;161&lt;/entry2&gt;&lt;spell2&gt;54810&lt;/spell2&gt;
-        '''&lt;entry&gt;162&lt;/entry&gt;&lt;spell&gt;54811&lt;/spell&gt;&lt;entry2&gt;162&lt;/entry2&gt;&lt;spell2&gt;54811&lt;/spell2&gt;
-        '''&lt;entry&gt;163&lt;/entry&gt;&lt;spell&gt;54812&lt;/spell&gt;&lt;entry2&gt;163&lt;/entry2&gt;&lt;spell2&gt;54812&lt;/spell2&gt;
-        '''&lt;entry&gt;164&lt;/entry&gt;&lt;spell&gt;54813&lt;/spell&gt;&lt;entry2&gt;164&lt;/entry2&gt;&lt;spell2&gt;54813&lt;/spell2&gt;
-        '''&lt;entry&gt;165&lt;/entry&gt;&lt;spell&gt;54815&lt;/spell&gt;&lt;entry2&gt;165&lt;/entry2&gt;&lt;spell2&gt;54815&lt;/spell2&gt;
-        '''&lt;entry&gt;166&lt;/entry&gt;&lt;spell&gt;54818&lt;/spell&gt;&lt;entry2&gt;166&lt;/entry2&gt;&lt;spell2&gt;54818&lt;/spell2&gt;
-        '''&lt;entry&gt;167&lt;/entry&gt;&lt;s [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        '''</summary>
-        Public ReadOnly Property glyphproperties_434() As String
-            Get
-                Return ResourceManager.GetString("glyphproperties_434", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die itemid;iconname
+        '''  Sucht eine lokalisierte Zeichenfolge, die ItemId;Icon
         '''224;INV_Jewelry_Ring_03
         '''233;INV_Boots_01
         '''242;INV_Boots_01
@@ -384,11 +338,31 @@ Namespace My.Resources
         '''386;INV_Pants_02
         '''387;INV_Shirt_01
         '''392;INV_Pants_02
-        '''393;INV_Shirt_01        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''393;INV_Shirt_01
+        '''394 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property ItemDisplayInfo() As String
             Get
                 Return ResourceManager.GetString("ItemDisplayInfo", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die ItemId;Quality;InventoryType;MaxStack;SlotCount;SpellId;ItemNameDE;ItemNameEN;BagFamily
+        '''17;0;4;1;0;7;Martinsfuror;Martin Fury;0
+        '''25;1;21;1;0;0;Abgenutztes Kurzschwert;Worn Shortsword;0
+        '''35;1;17;1;0;0;Gebogener Stab;Bent Staff;0
+        '''36;1;21;1;0;0;Abgenutzter Streitkolben;Worn Mace;0
+        '''37;1;21;1;0;0;Abgenutzte Axt;Worn Axe;0
+        '''38;1;4;1;0;0;Rekrutenhemd;Recruit&apos;s Shirt;0
+        '''39;1;7;1;0;0;Rekrutenhose;Recruit&apos;s Pants;0
+        '''40;1;8;1;0;0;Rekrutenstiefel;Recruit&apos;s Boots;0
+        '''43;1;8;1;0;0;Knappenstiefel;Squire&apos;s Boots;0
+        '''44;1; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Public ReadOnly Property ItemSparse() As String
+            Get
+                Return ResourceManager.GetString("ItemSparse", resourceCulture)
             End Get
         End Property
         
@@ -422,22 +396,164 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Byte[].
+        '''  Sucht eine lokalisierte Zeichenfolge, die SkillId;NameDE;NameEN
+        '''43;Schwerter;Swords
+        '''44;Äxte;Axes
+        '''45;Bögen;Bows
+        '''46;Schusswaffen;Guns
+        '''54;Streitkolben;Maces
+        '''55;Zweihandschwerter;Two-Handed Swords
+        '''95;Verteidigung;Defense
+        '''98;Sprache: Gemeinsprache;Language: Common
+        '''101;Volksfähigkeit - Zwerge;Dwarven Racial
+        '''109;Sprache: Orcisch;Language: Orcish
+        '''111;Sprache: Zwergisch;Language: Dwarven
+        '''113;Sprache: Darnassisch;Language: Darnassian
+        '''115;Sprache: Taurahe;Language: Taurahe
+        '''118;Beidhändigkeit;Dual Wield
+        '''124;Volksfähigkeit - Tauren;Tauren Racial        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property SkillLineDE() As Byte()
+        Public ReadOnly Property SkillLine() As String
             Get
-                Dim obj As Object = ResourceManager.GetObject("SkillLineDE", resourceCulture)
-                Return CType(obj,Byte())
+                Return ResourceManager.GetString("SkillLine", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Ressource vom Typ System.Byte[].
+        '''  Sucht eine lokalisierte Zeichenfolge, die SpellId;SpellNameDE;SpellNameEN
+        '''1;Word of Recall (OLD);Word of Recall (OLD)
+        '''3;Word of Mass Recall (OLD);Word of Mass Recall (OLD)
+        '''4;Wort des Rückrufs Anderer;Word of Recall Other
+        '''5;Todesberührung;Death Touch
+        '''7;Selbstmord;Suicide
+        '''10;Blizzard;Blizzard
+        '''13;Schwimmtempo (TEST);Swim Speed (TEST)
+        '''14;Manasauger;Mana Drain
+        '''17;Machtwort: Schild;Power Word: Shield
+        '''18;Selbstheilung;Heal Self (TEST)
+        '''22;Super-Essen (TEST);Super Food (TEST)
+        '''24;Große Selbstheilung;Major Heal Self (TEST)
+        '''25;Betäuben;Stun
+        '''26;Se [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property SpellDE() As Byte()
+        Public ReadOnly Property Spell() As String
             Get
-                Dim obj As Object = ResourceManager.GetObject("SpellDE", resourceCulture)
-                Return CType(obj,Byte())
+                Return ResourceManager.GetString("Spell", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die ItemId;EffectId;SpellId
+        '''0;0;1
+        '''0;0;3
+        '''0;0;4
+        '''0;0;5
+        '''0;0;7
+        '''0;0;10
+        '''0;0;10
+        '''0;0;10
+        '''0;0;12
+        '''0;0;13
+        '''0;0;14
+        '''0;127;17
+        '''0;0;18
+        '''0;0;22
+        '''0;0;24
+        '''0;0;25
+        '''0;0;26
+        '''0;8;27
+        '''0;0;31
+        '''0;0;33
+        '''0;0;34
+        '''0;0;35
+        '''0;1;43
+        '''0;75;45
+        '''0;0;53
+        '''0;0;53
+        '''0;0;53
+        '''0;0;56
+        '''0;0;59
+        '''0;917504;65
+        '''0;0;66
+        '''0;0;66
+        '''0;18;71
+        '''0;0;75
+        '''0;127;77
+        '''0;1;77
+        '''0;0;78
+        '''0;0;78
+        '''0;90;81
+        '''0;0;89
+        '''0;0;89
+        '''0;0;89
+        '''0;1;91
+        '''0;0;96
+        '''0;0;96
+        '''0;0;99
+        '''0;1;99
+        '''0;0;100
+        '''0;0;100
+        '''0;0;100
+        '''0;0;100
+        '''0;0;101
+        '''0;0;101
+        '''0;0;101
+        '''0;90;107
+        '''0;90;108
+        '''0;0;110
+        '''0;1;111
+        '''0;0 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Public ReadOnly Property SpellEffect() As String
+            Get
+                Return ResourceManager.GetString("SpellEffect", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die EffectId;GemId;Points1;Points2;Points3;EffectNameDE;EffectNameEN
+        '''2;0;0;0;0;Frostbrand;Frostbrand
+        '''5;0;100;0;0;Flammenzunge;Flametongue
+        '''13;0;3;0;0;Geschärft (+$k1 Schaden);Sharpened (+$k1 Damage)
+        '''14;0;4;0;0;Geschärft (+$k1 Schaden);Sharpened (+$k1 Damage)
+        '''15;0;8;0;0;Verstärkt (+$k1 Rüstung);Reinforced (+$k1 Armor)
+        '''16;0;16;0;0;Verstärkt (+$k1 Rüstung);Reinforced (+$k1 Armor)
+        '''17;0;24;0;0;Verstärkt (+$k1 Rüstung);Reinforced (+$k1 Armor)
+        '''18;0;32;0;0;Verstärkt (+$k1 Rüstung);Reinforced (+$k1 Armor)
+        '''19;0;2 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Public ReadOnly Property SpellEnchant() As String
+            Get
+                Return ResourceManager.GetString("SpellEnchant", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die SpellId;Icon
+        '''1;Trade_Engineering
+        '''9;Spell_Shadow_BlackPlague
+        '''10;Spell_Nature_NaturesBlessing
+        '''11;Spell_Fire_Fire
+        '''12;Spell_Fire_Fireball
+        '''13;Spell_Nature_MagicImmunity
+        '''14;Spell_Frost_Frost
+        '''15;Spell_Frost_Stun
+        '''16;Spell_Fire_FireArmor
+        '''17;Spell_Frost_IceShock
+        '''18;Spell_Fire_FireBolt
+        '''19;Spell_Nature_LightningShield
+        '''20;Spell_Nature_StrangleVines
+        '''21;Spell_Nature_FarSight
+        '''22;Spell_Shadow_ShadeTrueSight
+        '''23;Ability_ShockWave
+        '''24;Spell_Nature_Reincarnation
+        '''25;Ability_ThunderBolt
+        '''26;Ability_MeleeDamage
+        '''2 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Public ReadOnly Property SpellIcon() As String
+            Get
+                Return ResourceManager.GetString("SpellIcon", resourceCulture)
             End Get
         End Property
         

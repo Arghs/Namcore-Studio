@@ -118,49 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="avcat_de" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\avcat_de.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="avicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\avicon.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="avmaincat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\avmaincat.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="av_de" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\av_de.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="dbc_itemsparse_de" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\dbc_itemsparse_de.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="enchant_name_de" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\enchant_name_de.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="enchant_name_en" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\enchant_name_en.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="FactionDE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\factionde.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="glyphproperties_335" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\glyphproperties_335.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="glyphproperties_434" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\glyphproperties_434.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="ItemDisplayInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\itemdisplayinfo.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="questname" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\questname.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="SkillLineDE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\skilllinede.dbc;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SpellDE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\spellde.dbc;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="talent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\talent.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Achievement" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Achievement.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="AchievementCategory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AchievementCategory.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Faction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Faction.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="GlyphProperties0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GlyphProperties0.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="GlyphProperties1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GlyphProperties1.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="GlyphProperties2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GlyphProperties2.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Item" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Item.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ItemDisplayInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ItemDisplayInfo.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ItemSparse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ItemSparse.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SkillLine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SkillLine.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Spell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Spell.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SpellEffect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpellEffect.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="SpellEnchant" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpellEnchant.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SpellIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpellIcon.csv;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>
