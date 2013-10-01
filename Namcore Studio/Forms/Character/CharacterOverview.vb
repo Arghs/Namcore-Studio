@@ -872,7 +872,7 @@ Namespace Forms.Character
             AddHandler highlighter2.Click, AddressOf highlighter2_Click
         End Sub
 
-        Private Sub GemClick(sender As Object, e As EventArgs) Handles slot_9_gem3_pic.Click, slot_9_gem2_pic.Click, slot_9_gem1_pic.Click, slot_8_gem3_pic.Click, slot_8_gem2_pic.Click, slot_8_gem1_pic.Click, slot_7_gem3_pic.Click, slot_7_gem2_pic.Click, slot_7_gem1_pic.Click, slot_6_gem3_pic.Click, slot_6_gem2_pic.Click, slot_6_gem1_pic.Click, slot_5_gem3_pic.Click, slot_5_gem2_pic.Click, slot_5_gem1_pic.Click, slot_4_gem3_pic.Click, slot_4_gem2_pic.Click, slot_4_gem1_pic.Click, slot_3_gem3_pic.Click, slot_3_gem2_pic.Click, slot_3_gem1_pic.Click, slot_2_gem3_pic.Click, slot_2_gem2_pic.Click, slot_2_gem1_pic.Click, slot_18_gem3_pic.Click, slot_18_gem2_pic.Click, slot_18_gem1_pic.Click, slot_14_gem3_pic.Click, slot_14_gem2_pic.Click, slot_14_gem1_pic.Click, slot_13_gem3_pic.Click, slot_13_gem2_pic.Click, slot_13_gem1_pic.Click, slot_12_gem3_pic.Click, slot_12_gem2_pic.Click, slot_12_gem1_pic.Click, slot_11_gem3_pic.Click, slot_11_gem2_pic.Click, slot_11_gem1_pic.Click, slot_10_gem3_pic.Click, slot_10_gem2_pic.Click, slot_10_gem1_pic.Click, slot_1_gem3_pic.Click, slot_1_gem2_pic.Click, slot_1_gem1_pic.Click, slot_0_gem3_pic.Click, slot_0_gem2_pic.Click, slot_0_gem1_pic.Click
+        Private Sub GemClick(sender As Object, e As EventArgs) Handles slot_9_gem3_pic.Click, slot_9_gem2_pic.Click, slot_9_gem1_pic.Click, slot_8_gem3_pic.Click, slot_8_gem2_pic.Click, slot_8_gem1_pic.Click, slot_7_gem3_pic.Click, slot_7_gem2_pic.Click, slot_7_gem1_pic.Click, slot_6_gem3_pic.Click, slot_6_gem2_pic.Click, slot_6_gem1_pic.Click, slot_5_gem3_pic.Click, slot_5_gem2_pic.Click, slot_5_gem1_pic.Click, slot_4_gem3_pic.Click, slot_4_gem2_pic.Click, slot_4_gem1_pic.Click, slot_3_gem3_pic.Click, slot_3_gem2_pic.Click, slot_3_gem1_pic.Click, slot_2_gem3_pic.Click, slot_2_gem2_pic.Click, slot_2_gem1_pic.Click, slot_18_gem3_pic.Click, slot_18_gem2_pic.Click, slot_18_gem1_pic.Click, slot_14_gem3_pic.Click, slot_14_gem2_pic.Click, slot_14_gem1_pic.Click, slot_13_gem3_pic.Click, slot_13_gem2_pic.Click, slot_13_gem1_pic.Click, slot_12_gem3_pic.Click, slot_12_gem2_pic.Click, slot_12_gem1_pic.Click, slot_11_gem3_pic.Click, slot_11_gem2_pic.Click, slot_11_gem1_pic.Click, slot_10_gem3_pic.Click, slot_10_gem2_pic.Click, slot_10_gem1_pic.Click, slot_1_gem3_pic.Click, slot_1_gem2_pic.Click, slot_1_gem1_pic.Click, slot_0_gem3_pic.Click, slot_0_gem2_pic.Click, slot_0_gem1_pic.Click, slot_17_gem3_pic.Click, slot_17_gem2_pic.Click, slot_17_gem1_pic.Click, slot_16_gem3_pic.Click, slot_16_gem2_pic.Click, slot_16_gem1_pic.Click, slot_15_gem3_pic.Click, slot_15_gem2_pic.Click, slot_15_gem1_pic.Click
             Dim myPic As PictureBox = sender
             Dim itm As Item = sender.tag
             Dim allowAdding As Boolean = False
@@ -907,16 +907,37 @@ Namespace Forms.Character
                     If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
                     Dim client As New WebClient
                     client.CheckProxy()
-                    Try
-                        'todo
-                        Dim src As String = client.DownloadString("http://")
-                    Catch ex As Exception
-
-                    End Try
-                   
+                    Dim effectId As Integer = GetEffectIdByGemId(retnvalue)
+                    If effectId = Nothing Or effectId = 0 Then
+                        MsgBox(ResourceHandler.GetUserMessage("invalidGemError"), MsgBoxStyle.Critical, "Error")
+                        Exit Sub
+                    Else
+                        Select Case True
+                            Case myPic.Name.Contains("gem1")
+                                itm.Socket1Effectid = effectId
+                                itm.Socket1Id = retnvalue
+                                itm.Socket1Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)
+                                itm.Socket1Pic = GetItemIconById(retnvalue)
+                            Case myPic.Name.Contains("gem2")
+                                itm.Socket2Effectid = effectId
+                                itm.Socket2Id = retnvalue
+                                itm.Socket2Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)
+                                itm.Socket2Pic = GetItemIconById(retnvalue)
+                            Case myPic.Name.Contains("gem3")
+                              itm.Socket2Effectid = effectId
+                                itm.Socket3Effectid = effectId
+                                itm.Socket3Id = retnvalue
+                                itm.Socket3Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)
+                                itm.Socket3Pic = GetItemIconById(retnvalue)
+                        End Select
+                        sender.tag = itm
+                        myPic.Image = itm.Image
+                        myPic.Refresh()
+                        SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
+                        MsgBox(ResourceHandler.GetUserMessage("gemAdded"), MsgBoxStyle.Information, ResourceHandler.GetUserMessage("gemAdding"))
+                    End If
                 End If
             End If
-
         End Sub
     End Class
 End Namespace

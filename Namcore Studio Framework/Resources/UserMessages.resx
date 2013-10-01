@@ -531,4 +531,7 @@
   <data name="invalidGemError" xml:space="preserve">
     <value>Invalid gem id!</value>
   </data>
+  <data name="gemAdded" xml:space="preserve">
+    <value>Gem successfully added.</value>
+  </data>
 </root>
