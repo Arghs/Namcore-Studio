@@ -25,7 +25,7 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Modules
-
+Imports libnc.Provider
 Namespace Framework.Armory.Parser
 
     Public Class GlyphParser
@@ -69,7 +69,7 @@ Namespace Framework.Armory.Parser
                                     newGlyph.id = TryInt(splitString(parts(counter), """item"":", ","""))
                                     newGlyph.name = splitString(parts(counter), """name"":", ",""")
                                     newGlyph.slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
-                                    newGlyph.image = GetIconByItemId(newGlyph.id)
+                                    newGlyph.Image = GetItemIconById(newGlyph.Id)
                                     newGlyph.type = loopCounter + 1
                                     newGlyph.Spec = i
                                     LogAppend("Loaded glyph " & newGlyph.Name, "GlyphParser_loadGlyphs", True)

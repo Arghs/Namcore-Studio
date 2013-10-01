@@ -27,6 +27,7 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.My
 Imports NCFramework.Framework.Logging
 Imports Namcore_Studio.Forms.Extension
+Imports libnc.Provider
 Imports System.Net
 Imports System.Resources
 Imports System.Reflection
@@ -90,7 +91,7 @@ Namespace Forms.Character
                 repNameLable.Name = "rep" & pRepu.faction.ToString() & "_name_lbl"
                 Dim factionName As String = pRepu.name
                 If factionName Is Nothing Then
-                    factionName = GetFactionNameById(pRepu.faction)
+                    factionName = GetFactionNameById(pRepu.Faction, NCFramework.My.MySettings.Default.language)
                     pRepu.name = factionName
                 End If
                 repNameLable.Text = factionName
@@ -390,7 +391,7 @@ Namespace Forms.Character
                         With pRepu
                             .faction = retnvalue
                             .flags = 1
-                            .name = GetFactionNameById(.faction)
+                            .Name = GetFactionNameById(.Faction, NCFramework.My.MySettings.Default.language)
                             .max = 3000
                             .standing = 0
                             .status = 3

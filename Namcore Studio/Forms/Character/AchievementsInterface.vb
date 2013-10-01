@@ -28,6 +28,7 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Extension
 Imports Namcore_Studio.Forms.Extension
+Imports libnc.Provider
 Imports System.Threading
 Imports System.Net
 Imports System.Resources
@@ -240,7 +241,7 @@ Namespace Forms.Character
                             GlobalVariables.trdRunning -= 1
                             Exit Function
                         End If
-                        If charAv.SubCategory = Nothing Then charAv.SubCategory = GetAvCategoryIdByAvId(charAv.Id)
+                        If charAv.SubCategory = Nothing Then charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
                         Dim avPanel As New Panel
                         avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
                         avPanel.Size = referencePanel.Size
@@ -248,7 +249,7 @@ Namespace Forms.Character
                         Dim avNameLable As New Label
                         Dim cAvName As String
                         If charAv.Name = Nothing Then
-                            cAvName = GetAvNameById(charAv.Id)
+                            cAvName = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
                             charAv.Name = cAvName
                         Else
                             cAvName = charAv.Name
@@ -265,7 +266,7 @@ Namespace Forms.Character
                         Dim avDescrLable As New Label
                         Dim descr As String
                         If charAv.Description = Nothing Then
-                            descr = GetAvDescriptionById(charAv.Id)
+                            descr = GetAvDescriptionById(charAv.Id, NCFramework.My.MySettings.Default.language)
                             charAv.Description = descr
                         Else
                             descr = charAv.Description
@@ -281,7 +282,7 @@ Namespace Forms.Character
                         Dim avSubCatLable As New Label
                         Dim subcat As String
                         If charAv.SubCategoryName = Nothing Then
-                            subcat = GetAvCategoryById(charAv.Id, True)
+                            subcat = GetAvSubCategoryById(charAv.Id)
                             charAv.SubCategoryName = subcat
                         Else
                             subcat = charAv.SubCategoryName
@@ -309,7 +310,7 @@ Namespace Forms.Character
                         Dim avIconPic As New PictureBox
                         Dim avImage As Image
                         If charAv.Icon Is Nothing Then
-                            avImage = GetAvIconById(charAv.Id)
+                            avImage = GetSpellIconById(GetAvSpellIdById((charAv.Id)))
                             charAv.Icon = avImage
                         Else
                             avImage = charAv.Icon
@@ -433,7 +434,7 @@ Namespace Forms.Character
                         charAv.Id = retnvalue
                         charAv.GainDate = toTimeStamp(Date.Today)
                         If _correctIds.Contains(charAv.Id) Then
-                            charAv.SubCategory = GetAvCategoryIdByAvId(charAv.Id)
+                            charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
                             Dim avPanel As New Panel
                             avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
                             avPanel.Size = referencePanel.Size
@@ -441,7 +442,7 @@ Namespace Forms.Character
                             Dim avNameLable As New Label
                             Dim cAvName As String
                             If charAv.Name = Nothing Then
-                                cAvName = GetAvNameById(charAv.Id)
+                                cAvName = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
                                 charAv.Name = cAvName
                             Else
                                 cAvName = charAv.Name
@@ -458,7 +459,7 @@ Namespace Forms.Character
                             Dim avDescrLable As New Label
                             Dim descr As String
                             If charAv.Description = Nothing Then
-                                descr = GetAvDescriptionById(charAv.Id)
+                                descr = GetAvDescriptionById(charAv.Id, NCFramework.My.MySettings.Default.language)
                                 charAv.Description = descr
                             Else
                                 descr = charAv.Description
@@ -474,7 +475,7 @@ Namespace Forms.Character
                             Dim avSubCatLable As New Label
                             Dim subcat As String
                             If charAv.SubCategoryName = Nothing Then
-                                subcat = GetAvCategoryById(charAv.Id, True)
+                                subcat = GetAvSubCategoryById(charAv.Id)
                                 charAv.SubCategoryName = subcat
                             Else
                                 subcat = charAv.SubCategoryName
@@ -502,7 +503,7 @@ Namespace Forms.Character
                             Dim avIconPic As New PictureBox
                             Dim avImage As Image
                             If charAv.Icon Is Nothing Then
-                                avImage = GetAvIconById(charAv.Id)
+                                avImage = GetSpellIconById(GetAvSpellIdById(charAv.Id))
                                 charAv.Icon = avImage
                             Else
                                 avImage = charAv.Icon

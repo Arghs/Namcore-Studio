@@ -24,7 +24,7 @@
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-
+Imports libnc.Provider
 Namespace Framework.Core
     Public Class CharacterEnchantmentsHandler
         Public Sub HandleEnchantments(ByVal setId As Integer)
@@ -83,27 +83,27 @@ Namespace Framework.Core
                     If parts(0).Contains("0,0") Then
                         Dim parts2() As String = parts(0).Split(","c)
                         itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameByEffectId(parts2(0))
+                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
                     ElseIf parts(1).Contains("0,0") Then
                         Dim parts2() As String = parts(1).Split(","c)
                         itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameByEffectId(parts2(0))
+                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
                     ElseIf parts(2).Contains("0,0") Then
                         Dim parts2() As String = parts(2).Split(","c)
                         itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameByEffectId(parts2(0))
+                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
                     ElseIf parts(3).Contains("0,0") Then
                         Dim parts2() As String = parts(3).Split(","c)
                         itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameByEffectId(parts2(0))
+                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
                     ElseIf parts(4).Contains("0,0") Then
                         Dim parts2() As String = parts(4).Split(","c)
                         itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameByEffectId(parts2(0))
+                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
                     ElseIf parts(5).Contains("0,0") Then
                         Dim parts2() As String = parts(5).Split(","c)
                         itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameByEffectId(parts2(0))
+                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
                     Else
                         Return ""
                     End If
@@ -143,32 +143,32 @@ Namespace Framework.Core
                     Dim parts2() As String = parts(0).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameByEffectId(obvalue)
+                    Return GetEffectNameById(obvalue, My.Settings.language)
                 ElseIf parts(1).Contains(xvalue) Then
                     Dim parts2() As String = parts(1).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameByEffectId(obvalue)
+                    Return GetEffectNameById(obvalue, My.Settings.language)
                 ElseIf parts(2).Contains(xvalue) Then
                     Dim parts2() As String = parts(2).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameByEffectId(obvalue)
+                    Return GetEffectNameById(obvalue, My.Settings.language)
                 ElseIf parts(3).Contains(xvalue) Then
                     Dim parts2() As String = parts(3).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameByEffectId(obvalue)
+                    Return GetEffectNameById(obvalue, My.Settings.language)
                 ElseIf parts(4).Contains(xvalue) Then
                     Dim parts2() As String = parts(4).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameByEffectId(obvalue)
+                    Return GetEffectNameById(obvalue, My.Settings.language)
                 ElseIf parts(5).Contains(xvalue) Then
                     Dim parts2() As String = parts(5).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameByEffectId(obvalue)
+                    Return GetEffectNameById(obvalue, My.Settings.language)
                 Else
                     Return ""
                 End If
@@ -219,7 +219,7 @@ Namespace Framework.Core
                     Dim parts() As String = input.Split(" "c)
                     If Not parts(0) = "0" Then
                         itm.EnchantmentId = TryInt(parts(0))
-                        Return GetEffectNameByEffectId(TryInt(parts(0)))
+                        Return GetEffectNameById(TryInt(parts(0)), My.Settings.language)
                     Else
                         Return ""
                     End If
@@ -247,7 +247,7 @@ Namespace Framework.Core
                         Case 2 : itm.Socket2Id = TryInt(parts(0))
                         Case 3 : itm.Socket3Id = TryInt(parts(0))
                     End Select
-                    Return GetEffectNameByEffectId(TryInt(parts(position)))
+                    Return GetEffectNameById(TryInt(parts(position)), My.Settings.language)
                 Else
                     Return ""
                 End If
@@ -297,7 +297,7 @@ Namespace Framework.Core
                     Dim parts() As String = input.Split(" "c)
                     If Not parts(22) = "0" Then
                         itm.EnchantmentId = CInt(parts(22))
-                        Return GetEffectNameByEffectId(CInt(parts(22)))
+                        Return GetEffectNameById(CInt(parts(22)), My.Settings.language)
                     Else
                         Return ""
                     End If
@@ -324,7 +324,7 @@ Namespace Framework.Core
                         Case 2 : itm.Socket2Id = CInt(parts(position - 1))
                         Case 3 : itm.Socket3Id = CInt(parts(position - 1))
                     End Select
-                    Return GetEffectNameByEffectId(CInt(parts(position - 1)))
+                    Return GetEffectNameById(CInt(parts(position - 1)), My.Settings.language)
                 Else
                     Return ""
                 End If

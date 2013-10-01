@@ -26,6 +26,7 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Extension
 Imports Namcore_Studio.Forms.Extension
+Imports libnc.Provider
 Imports System.Threading
 
 Namespace Forms.Character
@@ -85,7 +86,7 @@ Namespace Forms.Character
                 str(0) = pQuest.id.ToString
                 Dim questname As String
                 If pQuest.name Is Nothing Then
-                    questname = GetQuestNameById(pQuest.id)
+                    questname = GetQuestTitleById(pQuest.Id, NCFramework.My.MySettings.Default.language)
                 Else
                     questname = pQuest.name
                 End If

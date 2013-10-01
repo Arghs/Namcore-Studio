@@ -43,6 +43,10 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="libncadvanced, Version=0.0.1.20, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\libncadvanced.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -82,6 +86,12 @@
     <Compile Include="Provider\AchievementInfo.vb" />
     <Compile Include="Provider\FactionInfo.vb" />
     <Compile Include="Provider\GlyphPropertiesInfo.vb" />
+    <Compile Include="Provider\IconInfo.vb" />
+    <Compile Include="Provider\ItemInfo.vb" />
+    <Compile Include="Provider\ItemSparseInfo.vb" />
+    <Compile Include="Provider\QuestNameInfo.vb" />
+    <Compile Include="Provider\SkillLineInfo.vb" />
+    <Compile Include="Provider\SpellInfo.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -117,6 +127,9 @@
     <None Include="Resources\SpellEnchant.csv" />
     <None Include="Resources\SpellIcon.csv" />
     <None Include="Resources\talent.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\INV_Misc_QuestionMark.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

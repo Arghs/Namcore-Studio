@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports libnc.Main
 Namespace Provider
-    Public Class AchievementInfo
+    Public Module AchievementInfo
         Public Function GetAvNameById(ByVal avId As Integer, ByVal locale As String) As String
             Dim targetField As Integer = 1
             If locale = "en" Then
@@ -65,5 +65,5 @@ Namespace Provider
             End Try
             Return returnResult
         End Function
-    End Class
+    End Module
 End Namespace

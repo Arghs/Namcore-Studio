@@ -23,6 +23,7 @@
 Imports System.Runtime.CompilerServices
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
+Imports libnc.Provider
 
 Namespace Modules
     Module ReplaceItemExtension
@@ -34,9 +35,9 @@ Namespace Modules
             Dim itm As Item
             itm = SourceItem
             itm.Id = newitemid
-            itm.Name = GetNameOfItem(newitemid.ToString())
-            itm.Image = GetIconByItemId(newitemid)
-            itm.Rarity = GetRarityByItemId(newitemid)
+            itm.Name = GetItemNameByItemId(newitemid.ToString(), NCFramework.My.MySettings.Default.language)
+            itm.Image = GetItemIconById(newitemid)
+            itm.Rarity = GetItemQualityByItemId(newitemid)
             Return itm
         End Function
     End Module

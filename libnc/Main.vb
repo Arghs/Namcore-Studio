@@ -40,7 +40,7 @@ Public Class Main
     Public Shared TalentCsv As DataTable
     '// Declaration
 
-    Public Shared Sub Inizialize()
+    Public Shared Sub Initialize()
         FillDataTable(My.Resources.Achievement, AchievementCsv)
         FillDataTable(My.Resources.AchievementCategory, AchievementCategoryCsv)
         FillDataTable(My.Resources.Faction, FactionCsv)
@@ -92,6 +92,21 @@ Public Class Main
             End If
         Catch ex As Exception
             Return {"-"}
+        End Try
+    End Function
+    Public Shared Function SplitString(ByVal source As String, ByVal start As String, ByVal ending As String) As String
+        If source Is Nothing Or start Is Nothing Or ending Is Nothing Then
+            Return Nothing
+        End If
+        Try
+            Dim quellcode As String = source
+            Dim mystart As String = start
+            Dim myend As String = ending
+            Dim quellcodeSplit As String
+            quellcodeSplit = Split(quellcode, mystart, 5)(1)
+            Return Split(quellcodeSplit, myend, 6)(0)
+        Catch ex As Exception
+            Return Nothing
         End Try
     End Function
 End Class

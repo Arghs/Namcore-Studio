@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports libnc.Main
 Namespace Provider
-    Public Class GlyphPropertiesInfo
+    Public Module GlyphPropertiesInfo
         Public Function GetGlyphIdBySpellId(ByVal spellId As Integer, ByVal expansion As Integer) As Integer
             Dim useTable As DataTable
             Select Case expansion
@@ -77,5 +77,5 @@ Namespace Provider
             End Try
             Return returnResult
         End Function
-    End Class
+    End Module
 End Namespace

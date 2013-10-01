@@ -30,6 +30,7 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Core
 Imports NCFramework.Framework.Modules
 Imports Namcore_Studio.Forms.Extension
+Imports libnc.Provider
 Imports System.Net
 
 Namespace Forms.Character
@@ -149,7 +150,7 @@ Namespace Forms.Character
                                 If Not _pubItm Is Nothing Then
                                     If img Is Nothing Then
                                         DirectCast(itemControl, PictureBox).Image = My.Resources.add_
-                                        DirectCast(itemControl, Label).Cursor = Cursors.Hand
+                                        DirectCast(itemControl, PictureBox).Cursor = Cursors.Hand
                                     Else
                                         DirectCast(itemControl, PictureBox).Image = img
                                     End If
@@ -189,14 +190,14 @@ Namespace Forms.Character
             Select Case infotype
                 Case 0
                     If itm.Name Is Nothing Then
-                        itm.Name = GetNameOfItem(itm.Id)
+                        itm.Name = GetItemNameByItemId(itm.Id, NCFramework.My.MySettings.Default.language)
                     End If
                     Return itm.Name
                 Case 1
                     Return itm.EnchantmentName
                 Case 2
                     If itm.Image Is Nothing Then
-                        itm.Image = GetIconByItemId(itm.Id)
+                        itm.Image = GetItemIconById(itm.Id)
                     End If
                     Return itm.Image
 
@@ -376,7 +377,7 @@ Namespace Forms.Character
 
                         End If
                     Else
-                        If Not GetSlotByItemId(_tempSender.tag.id) = GetSlotByItemId(id) Then
+                        If Not GetItemInventorySlotByItemId(_tempSender.tag.id) = GetItemInventorySlotByItemId(id) Then
                             MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
                                    ResourceHandler.GetUserMessage("Error"))
                         Else
@@ -413,7 +414,7 @@ Namespace Forms.Character
                                     If ctrl.Tag Is Nothing Then Continue For
                                     If ctrl.Tag.id = senderLabel.Tag.id Then
                                         If ctrl.Name.ToLower.EndsWith("color") Then
-                                            DirectCast(ctrl, Panel).BackColor = getraritycolor(senderLabel.Tag.rarity)
+                                            DirectCast(ctrl, Panel).BackColor = Getraritycolor(senderLabel.Tag.rarity)
                                             DirectCast(ctrl, Panel).Tag = senderLabel.Tag
                                         End If
                                     End If
@@ -766,24 +767,24 @@ Namespace Forms.Character
                 Dim meSlot As String = _tempSender.name
                 meSlot = meSlot.Replace("slot_", "")
                 meSlot = meSlot.Replace("_name", "")
-                If Not GetSlotByItemId(TryInt(TextBox2.Text)) = TryInt(meSlot) Then
+                If Not GetItemInventorySlotByItemId(TryInt(TextBox2.Text)) = TryInt(meSlot) Then
 
                     MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
                            ResourceHandler.GetUserMessage("Error"))
                     Exit Sub
                 Else
                     Dim itm As New Item
-                    itm.id = TryInt(TextBox2.Text)
-                    itm.name = GetNameOfItem(itm.id)
-                    itm.image = GetIconByItemId(itm.id)
-                    itm.rarity = GetRarityByItemId(itm.id)
-                    itm.slot = TryInt(meSlot)
-                    itm.slotname = GetSlotNameBySlotId(itm.slot)
-                    If itm.slot = 15 Or itm.slot = 16 Then LoadWeaponType(itm.id, _currentSet)
+                    itm.Id = TryInt(TextBox2.Text)
+                    itm.Name = GetItemNameByItemId(itm.Id, NCFramework.My.MySettings.Default.language)
+                    itm.Image = GetItemIconById(itm.Id)
+                    itm.Rarity = GetItemQualityByItemId(itm.Id)
+                    itm.Slot = TryInt(meSlot)
+                    itm.Slotname = GetItemInventorySlotByItemId(itm.Slot)
+                    If itm.Slot = 15 Or itm.Slot = 16 Then LoadWeaponType(itm.Id, _currentSet)
                     senderPic.Tag = itm
-                    senderPic.Image = itm.image
+                    senderPic.Image = itm.Image
                     senderPic.Refresh()
-                    DirectCast(_tempSender, Label).Text = itm.name
+                    DirectCast(_tempSender, Label).Text = itm.Name
                     DirectCast(_tempSender, Label).Tag = itm
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
                         GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet

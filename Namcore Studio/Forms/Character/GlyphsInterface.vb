@@ -26,6 +26,7 @@ Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports Namcore_Studio.Forms.Extension
+Imports libnc.Provider
 Imports System.Net
 
 Namespace Forms.Character
@@ -309,19 +310,19 @@ Namespace Forms.Character
                     Dim id As Integer = TryInt(TextBox1.Text)
 
                     If senderLabel.Name.ToLower.EndsWith("_name") Then
-                        If Not GetSlotByItemId(tag.id) = GetSlotByItemId(id) Then
+                        If Not GetItemInventorySlotByItemId(Tag.id) = GetItemInventorySlotByItemId(id) Then
                             MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
                                    ResourceHandler.GetUserMessage("Error"))
                         Else
                             Dim newGlyph As New Glyph
-                            newGlyph.id = id
-                            newGlyph.name = GetNameOfItem(id.ToString)
-                            newGlyph.image = GetIconByItemId(id)
-                            newGlyph.spec = tag.spec
-                            newGlyph.slotname = tag.slotname
-                            newGlyph.type = tag.type
+                            newGlyph.Id = id
+                            newGlyph.Name = GetItemNameByItemId(id.ToString, NCFramework.My.MySettings.Default.language)
+                            newGlyph.Image = GetItemIconById(id)
+                            newGlyph.Spec = Tag.spec
+                            newGlyph.Slotname = Tag.slotname
+                            newGlyph.Type = Tag.type
                             senderLabel.Tag = newGlyph
-                            Dim txt As String = newGlyph.name
+                            Dim txt As String = newGlyph.Name
                             If Not txt Is Nothing Then
                                 If txt.Length >= 30 Then
                                     Dim ccremove As Integer = txt.Length - 28
@@ -380,8 +381,8 @@ Namespace Forms.Character
                 Else
                     Dim gly As New Glyph
                     gly.id = TryInt(TextBox2.Text)
-                    gly.name = GetNameOfItem(gly.id)
-                    gly.image = GetIconByItemId(gly.id)
+                    gly.Name = GetItemNameByItemId(gly.Id, NCFramework.My.MySettings.Default.language)
+                    gly.Image = GetItemIconById(gly.Id)
                     gly.slotname = ""
                     Dim slot As String = ""
                     If senderPic.Name.Contains("minor") Then gly.type = 1 : slot = "minor"

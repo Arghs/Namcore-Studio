@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports libnc.Main
 Namespace Provider
-    Public Class AchievementCategoryInfo
+    Public Module AchievementCategoryInfo
         Public Function GetAvMainCategoryIdBySubCatId(ByVal catId As Integer) As Integer
             Const targetField As Integer = 1
             Dim myResult As Integer = ExecuteCsvSearch(AchievementCategoryCsv, "CategoryId", catId.ToString(), targetField)(0)
@@ -45,5 +45,27 @@ Namespace Provider
             If myResult = "-" Then myResult = "Not found"
             Return myResult
         End Function
-    End Class
+        Public Function GetAvIdListByMainCat(ByVal mainCatid As Integer) As List(Of Integer)
+            Const targetField As Integer = 0
+            Dim subCategoryList As New List(Of Integer)
+            Dim myResult As String() = ExecuteCsvSearch(AchievementCategoryCsv, "MainCatId", mainCatid.ToString(), targetField)
+            If myResult(0) = "-" Then Return Nothing
+            For i = 0 To myResult.Length - 1
+                Try
+                    If Not myResult(i) Is Nothing Then subCategoryList.Add(CInt(myResult(i)))
+                Catch : End Try
+            Next i
+            Dim myNextResults As New List(Of Integer)
+            For i = 0 To subCategoryList.Count - 1
+                Dim myNextResult As String() = ExecuteCsvSearch(AchievementCsv, "CategoryId", subCategoryList(i), 0) '// TODO: CategoryId missing in csv
+                If myNextResult(0) = "-" Then Return Nothing
+                For z = 0 To myNextResult.Length
+                    Try
+                        myNextResults.Add(CInt(myNextResult(z)))
+                    Catch : End Try
+                Next z
+            Next i
+            Return myNextResults
+        End Function
+    End Module
 End Namespace

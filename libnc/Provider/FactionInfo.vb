@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports libnc.Main
 Namespace Provider
-    Public Class FactionInfo
+    Public Module FactionInfo
         Public Function ReputationGainable(ByVal factionId As Integer) As Boolean
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(FactionCsv, "FactionId", factionId.ToString(), targetField)(0)
@@ -38,5 +38,5 @@ Namespace Provider
             If myResult = "-" Then myResult = "Not found"
             Return myResult
         End Function
-    End Class
+    End Module
 End Namespace

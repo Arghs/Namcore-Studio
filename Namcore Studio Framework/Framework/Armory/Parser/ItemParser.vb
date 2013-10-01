@@ -23,7 +23,7 @@
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
-
+Imports libnc.Provider
 Namespace Framework.Armory.Parser
 
     Public Class ItemParser
@@ -157,7 +157,7 @@ Namespace Framework.Armory.Parser
                 Return New Item
             End If '// Item ID not found
             charItem.name = splitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
-            If GlobalVariables.offlineExtension = True Then charItem.image = GetIconByItemId(charItem.id) Else 
+            If GlobalVariables.offlineExtension = True Then charItem.Image = GetItemIconById(charItem.Id) Else 
             charItem.image = LoadImageFromUrl(splitString(relevantItemContext, "<img src=""", """ alt"))
             charItem.rarity = TryInt(splitString(relevantItemContext, "item-quality-", """ style="))
             Dim socketContext As String
@@ -172,10 +172,11 @@ Namespace Framework.Armory.Parser
                 If Not oneSocketContext.Length <= 49 Then
                     charItem.Socket1Id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
                     If GlobalVariables.offlineExtension = True Then _
-                        charItem.Socket1Pic = GetIconByItemId(charItem.Socket1Id) Else 
+                        charItem.Socket1Pic = GetItemIconById(charItem.Socket1Id) Else 
                     charItem.Socket1Pic = LoadImageFromUrl(SplitString(oneSocketContext,
                                                                         "<img src=""", """ alt="""))
-                    charItem.Socket1Name = GetGemEffectName(charItem.Socket1Id)
+                    charItem.Socket1Effectid = GetEffectIdByGemId(charItem.Socket1Id)
+                    charItem.Socket1Name = GetEffectNameById(charItem.Socket1Effectid, My.Settings.language)
                 Else
                     LogAppend("oneSocketContext length is less then 49/ is: " & oneSocketContext.Length,
                               "ItemParser_loadItems", False, True)
@@ -187,10 +188,11 @@ Namespace Framework.Armory.Parser
                     oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                     charItem.Socket2Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
                     If GlobalVariables.offlineExtension = True Then _
-                        charItem.Socket2Pic = GetIconByItemId(charItem.Socket2Id) Else 
+                        charItem.Socket2Pic = GetItemIconById(charItem.Socket2Id) Else 
                     charItem.Socket2Pic = LoadImageFromUrl(SplitString(oneSocketContext,
                                                                         "<img src=""", """ alt="""))
-                    charItem.Socket2Name = GetGemEffectName(charItem.Socket2Id)
+                    charItem.Socket2Effectid = GetEffectIdByGemId(charItem.Socket2Id)
+                    charItem.Socket2Name = GetEffectNameById(charItem.Socket2Effectid, My.Settings.language)
                     If socketCount > 2 Then
                         socketContext = Replace(socketContext,
                                                 "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">",
@@ -198,10 +200,11 @@ Namespace Framework.Armory.Parser
                         oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                         charItem.Socket3Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
                         If GlobalVariables.offlineExtension = True Then _
-                            charItem.Socket3Pic = GetIconByItemId(charItem.Socket3Id) Else 
+                            charItem.Socket3Pic = GetItemIconById(charItem.Socket3Id) Else 
                         charItem.Socket3Pic = LoadImageFromUrl(SplitString(oneSocketContext,
                                                                             "<img src=""", """ alt="""))
-                        charItem.Socket3Name = GetGemEffectName(charItem.Socket3Id)
+                        charItem.Socket3Effectid = GetEffectIdByGemId(charItem.Socket3Id)
+                        charItem.Socket3Name = GetEffectNameById(charItem.Socket3Effectid, My.Settings.language)
                     End If
                 End If
             Else
@@ -219,6 +222,7 @@ Namespace Framework.Armory.Parser
                                                             """ data-spell=""" & charItem.EnchantmentId.ToString & """>",
                                                             "</span>")
                     charItem.EnchantmentType = 1
+                    charItem.EnchantmentEffectid = GetEffectIdBySpellId(charItem.EnchantmentId)
                 Else
                     LogAppend("Enchantment type: item!", "ItemParser_loadItems", False)
                     '//enchantment type: item
@@ -226,6 +230,7 @@ Namespace Framework.Armory.Parser
                     charItem.EnchantmentName = SplitString(enchantContext,
                                                             "/item/" & charItem.EnchantmentId.ToString & """>", "</a>")
                     charItem.EnchantmentType = 2
+                    charItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(charItem.EnchantmentId))
                 End If
             Else
                 LogAppend("Enchantment not found!?", "ItemParser_loadItems", False)

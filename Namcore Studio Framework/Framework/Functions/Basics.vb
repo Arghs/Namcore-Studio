@@ -36,7 +36,7 @@ Namespace Framework.Functions
 
         Public Sub InitializeDbc()
             LogAppend("Initializing DBC files", "Basics_InitializeDBC", True)
-            CliDb.Initialize()
+            libnc.Main.Initialize()
         End Sub
 
         Public Function GetCharacterSetBySetId(ByVal setId As Integer) As Character
