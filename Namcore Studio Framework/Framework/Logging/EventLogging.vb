@@ -51,6 +51,7 @@ Namespace Framework.Logging
             If iserror Then append = "[ERROR]"
             GlobalVariables.eventlog = GlobalVariables.eventlog & vbNewLine & "[" & timenow & "]" & append & "[" & loc & "]" &
                                        status
+            If GlobalVariables.DebugMode = True Then _mUserOut = True
             If _mUserOut = True Then
                 GlobalVariables.proccessTXT = "[" & timenow & "]" & status & vbNewLine & GlobalVariables.proccessTXT
                 Dim _

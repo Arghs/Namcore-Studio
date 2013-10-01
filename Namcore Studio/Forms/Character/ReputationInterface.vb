@@ -170,6 +170,7 @@ Namespace Forms.Character
                 repPanel.Controls.Add(standingCombo)
                 AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
             Next
+            CloseProcessStatus()
         End Sub
 
         Private Sub slider_slide(ByVal sender As Object, ByVal e As EventArgs)

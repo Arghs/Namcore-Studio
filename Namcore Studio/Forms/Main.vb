@@ -50,7 +50,11 @@ Namespace Forms
         End Sub
 
         Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+            Userwait.Show()
+            Application.DoEvents()
+#If CONFIG = "Debug" Then
+            GlobalVariables.DebugMode = True
+#End If
             If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\version.xml") Then
                 Dim enc As New UnicodeEncoding
                 Dim xmLobj As XmlTextWriter = New XmlTextWriter("version.xml", enc)
@@ -72,9 +76,10 @@ Namespace Forms
             Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2013"
             version_lbl.Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() &
                                " - © megasus 2013"
+            If GlobalVariables.DebugMode Then
+                NewProcessStatus()
+            End If
             GlobalVariables.lastregion = "main"
-            GlobalVariables.procStatus = New ProcessStatus
-            GlobalVariables.procStatus.Show()
             If MySettings.Default.proxy_enabled = True Then
                 If MySettings.Default.proxy_detect = True Then
                     Dim webnet As New WebConnection
@@ -119,14 +124,15 @@ Namespace Forms
             LogAppend("/SYSTEM VERSION: " & Environment.Version.ToString(), "Main_Main_Load", False)
             LogAppend("/PROCESSOR COUNT: " & (Environment.ProcessorCount).ToString(), "Main_Main_Load", False)
             LogAppend(
-                "/AVAILABLE PHYSICAL MEMORY: " & (My.Computer.Info.AvailablePhysicalMemory/1000000000).ToString() &
+                "/AVAILABLE PHYSICAL MEMORY: " & (My.Computer.Info.AvailablePhysicalMemory / 1000000000).ToString() &
                 " GB",
                 "Main_Main_Load", False)
             LogAppend(
                 "/SCREEN SIZE: " & Screen.PrimaryScreen.Bounds.Width.ToString & "x" &
                 Screen.PrimaryScreen.Bounds.Height.ToString(), "Main_Main_Load", False)
             LogAppend("/APP STARTUP PATH: " & Application.StartupPath, "Main_Main_Load", False)
-            InitializeDBC()
+            InitializeDbc()
+            Userwait.Close()
         End Sub
 
         Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click

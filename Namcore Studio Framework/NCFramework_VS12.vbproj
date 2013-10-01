@@ -43,9 +43,6 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="libncadvanced">
-      <HintPath>..\Namcore Studio\References\libncadvanced.dll</HintPath>
-    </Reference>
     <Reference Include="mysql.data, Version=5.2.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\mysql.data.dll</HintPath>

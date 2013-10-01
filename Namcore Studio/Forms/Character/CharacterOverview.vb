@@ -32,6 +32,7 @@ Imports NCFramework.Framework.Modules
 Imports Namcore_Studio.Forms.Extension
 Imports libnc.Provider
 Imports System.Net
+Imports System.Threading
 
 Namespace Forms.Character
     Public Class CharacterOverview
@@ -49,9 +50,13 @@ Namespace Forms.Character
 
         Shared _loadComplete As Boolean = False
         Shared _doneControls As List(Of Control)
-        ' ReadOnly _evaluator As Thread
 
+        Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
+        Public Event PrepareCompleted As EventHandler(Of CompletedEventArgs)
         Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
+        Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
+            RaiseEvent PrepareCompleted(Me, e)
+        End Sub
         '// Declaration
 
         Public Sub prepare_interface(ByVal setId As Integer)
@@ -73,7 +78,9 @@ Namespace Forms.Character
             Goprep(setId, False)
             LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
         End Sub
-
+        Private Sub onCompleted() Handles Me.PrepareCompleted
+            CloseProcessStatus()
+        End Sub
         Private Sub Goprep(ByVal setId As Integer, ByVal nxt As Boolean)
             _tmpSetId = setId
             _controlLst = New List(Of Control)
@@ -134,7 +141,7 @@ Namespace Forms.Character
                                 DirectCast(itemControl, Label).Text = txt
                                 DirectCast(itemControl, Label).Tag = _pubItm
 
-                                End If
+                            End If
                         Case TypeOf itemControl Is PictureBox
                             If itemControl.Name.ToLower.Contains("_pic") And Not itemControl.Name.ToLower.Contains("gem") Then
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_pic"))
@@ -177,8 +184,13 @@ Namespace Forms.Character
                 Next
                 Application.DoEvents()
                 _loadComplete = True
+                ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf onCompleted),
+                             New CompletedEventArgs())
             Catch ex As Exception
                 LogAppend("Exception occoured: " & ex.ToString, "CharacterOverview_Goprep", True)
+                _loadComplete = True
+                ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf onCompleted),
+                             New CompletedEventArgs())
             End Try
         End Sub
 
@@ -329,7 +341,7 @@ Namespace Forms.Character
                             Not spellcontext.Contains("<div id=""inputbox-error"">This spell doesn't exist.</div>") And
                             spellcontext.Contains(""">Enchant Item") Then
                             foundspell = True
-                            spellname = splitString(spellcontext, "<meta property=""og&#x3A;title"" content=""", """ />")
+                            spellname = SplitString(spellcontext, "<meta property=""og&#x3A;title"" content=""", """ />")
                             spellname = spellname.Replace("&#x20;", " ")
                         End If
                         Try
@@ -344,7 +356,7 @@ Namespace Forms.Character
                                 "<div id=""inputbox-error"">This item doesn't exist or is not yet in the database.</div>") And
                             itemcontext.Contains("subclass id=""6"">") Then
                             founditem = True
-                            itemname = splitString(itemcontext, "<name><![CDATA[", "]]></name>")
+                            itemname = SplitString(itemcontext, "<name><![CDATA[", "]]></name>")
                             itemname = itemname.Replace("&#x20;", " ")
                         End If
                         If founditem = foundspell = True Then
@@ -357,7 +369,7 @@ Namespace Forms.Character
                             Dim itm As Item = senderLabel.Tag
                             senderLabel.Text = itemname
                             itm.EnchantmentType = 1
-                            itm.EnchantmentId = TextBox1.Text
+                            itm.EnchantmentId = TryInt(TextBox1.Text)
                             itm.EnchantmentName = itemname
                             senderLabel.Tag = itm
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
@@ -367,7 +379,7 @@ Namespace Forms.Character
                             Dim itm As Item = senderLabel.Tag
                             senderLabel.Text = spellname
                             itm.EnchantmentType = 0
-                            itm.EnchantmentId = TextBox1.Text
+                            itm.EnchantmentId = TryInt(TextBox1.Text)
                             itm.EnchantmentName = spellname
                             senderLabel.Tag = itm
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
@@ -640,7 +652,7 @@ Namespace Forms.Character
             Dim glyphInterface As New GlyphsInterface
             Userwait.Show()
             Application.DoEvents()
-            glyphInterface.prepareGlyphsInterface(_tmpSetId)
+            glyphInterface.PrepareGlyphsInterface(_tmpSetId)
             glyphInterface.Show()
             Userwait.Close()
         End Sub
@@ -676,7 +688,7 @@ Namespace Forms.Character
             addpanel.Location = New Point(4000, 4000)
 
             For Each ctrl As Label In _
-                From ctrl1 In _controlLst.OfType (Of Label)()
+                From ctrl1 In _controlLst.OfType(Of Label)()
                     Where ctrl1.Name.StartsWith(sender.name.replace("_pic", "")) And ctrl1.Name.EndsWith("_name")
                     Where ctrl1.Text = ""
                 _tempSender = ctrl
@@ -709,7 +721,7 @@ Namespace Forms.Character
                     g = Graphics.FromImage(picbx.Image)
                     r = New Rectangle(0, 0, picbx.Width, picbx.Height)
                     g.DrawImage(img, r)
-                    setBrightness(0.2, g, img, r, picbx)
+                    SetBrightness(0.2, g, img, r, picbx)
                 End If
             End If
         End Sub
@@ -810,22 +822,24 @@ Namespace Forms.Character
         End Sub
 
         Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+            NewProcessStatus()
             ReputationInterface.Close()
             Dim repinterface As New ReputationInterface
             Userwait.Show()
             Application.DoEvents()
-            repinterface.prepareRepInterface(_tmpSetId)
+            repinterface.PrepareRepInterface(_tmpSetId)
             repinterface.Show()
             Userwait.Close()
         End Sub
 
         Private Sub Quests_bt_Click(sender As Object, e As EventArgs) Handles Quests_bt.Click
+            NewProcessStatus()
             QuestsInterface.Close()
             Dim qstInterface As New QuestsInterface
             Userwait.Show()
             Application.DoEvents()
             qstInterface.Show()
-            qstInterface.prepareInterface(_tmpSetId)
+            qstInterface.PrepareInterface(_tmpSetId)
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
@@ -844,7 +858,7 @@ Namespace Forms.Character
             Else
                 If GlobalVariables.editedCharsIndex Is Nothing Then _
                     GlobalVariables.editedCharsIndex = New List(Of Integer())()
-                For Each indexEntry () As Integer In GlobalVariables.editedCharsIndex
+                For Each indexEntry() As Integer In GlobalVariables.editedCharsIndex
                     If indexEntry(0) = GlobalVariables.currentEditedCharSet.Guid Then
                         GlobalVariables.editedCharSets.Item(indexEntry(1)) = GlobalVariables.currentEditedCharSet
                         Exit Sub
@@ -860,7 +874,8 @@ Namespace Forms.Character
         End Sub
 
         Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-            spellskillInterface.Close()
+            NewProcessStatus()
+            SpellSkillInterface.Close()
             Dim mspellskillInterface As New SpellSkillInterface
             Userwait.Show()
             Application.DoEvents()
@@ -924,7 +939,7 @@ Namespace Forms.Character
                                 itm.Socket2Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)
                                 itm.Socket2Pic = GetItemIconById(retnvalue)
                             Case myPic.Name.Contains("gem3")
-                              itm.Socket2Effectid = effectId
+                                itm.Socket2Effectid = effectId
                                 itm.Socket3Effectid = effectId
                                 itm.Socket3Id = retnvalue
                                 itm.Socket3Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)

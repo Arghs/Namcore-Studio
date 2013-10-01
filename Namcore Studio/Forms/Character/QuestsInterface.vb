@@ -77,6 +77,7 @@ Namespace Forms.Character
             Userwait.Close()
             Application.DoEvents()
             Show()
+            CloseProcessStatus()
         End Sub
 
         Public Function ContinueOperation(ByVal operationCount As Integer, ByVal questLst As List(Of Quest)) As String

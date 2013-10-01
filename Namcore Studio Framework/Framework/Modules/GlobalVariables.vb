@@ -29,6 +29,7 @@ Namespace Framework.Modules
 
     Public Class GlobalVariables
         ' ReSharper disable InconsistentNaming
+        Public Shared DebugMode As Boolean = False
         Public Shared LoadingTemplate As Boolean = False
         Public Shared DeserializationSuccessfull As Boolean = False
         Public Shared lastregion As String

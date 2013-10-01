@@ -55,13 +55,14 @@ Namespace Forms
         End Sub
 
         Public Sub Loadaccountsandchars()
+            NewProcessStatus()
             _cmpFileListViewComparer = New ListViewComparer(accountview)
             _checkchangestatus = False
             GlobalVariables.sourceCore = "trinity" 'for testing only
             Dim mAcInfoProc As AccountCharacterInformationProcessing = New AccountCharacterInformationProcessing
-            GlobalVariables.acctable = mAcInfoProc.returnAccountTable(GlobalVariables.GlobalConnection_Realm,
+            GlobalVariables.acctable = mAcInfoProc.ReturnAccountTable(GlobalVariables.GlobalConnection_Realm,
                                                                       GlobalVariables.sourceStructure)
-            GlobalVariables.chartable = mAcInfoProc.returnCharacterTable(GlobalVariables.GlobalConnection,
+            GlobalVariables.chartable = mAcInfoProc.ReturnCharacterTable(GlobalVariables.GlobalConnection,
                                                                          GlobalVariables.sourceStructure)
             GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Copy
             GlobalVariables.modifiedCharTable = GlobalVariables.chartable.Copy
@@ -121,6 +122,7 @@ Namespace Forms
             _checkchangestatus = True
             acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
             chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
+            CloseProcessStatus()
         End Sub
 
         Public Sub loadInformationSets_Armory()
@@ -176,6 +178,7 @@ Namespace Forms
             _checkchangestatus = True
             acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
             chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
+            CloseProcessStatus()
         End Sub
 
         Public Sub Loadtargetaccountsandchars()
@@ -205,6 +208,7 @@ Namespace Forms
                 End If
             Next
             target_accounts_tree.Update()
+            CloseProcessStatus()
         End Sub
 
         Public Sub Setaccountview(ByVal accounttable As DataTable)
@@ -969,6 +973,7 @@ Namespace Forms
 
         Private Sub EditToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem1.Click
             'Please remember that a character which is loaded from a database needs to be completely stored temporarily
+            NewProcessStatus()
             Dim charview As CharacterOverview = New CharacterOverview
             Dim setId As Integer = characterview.SelectedItems(0).Tag
             If GlobalVariables.armoryMode = True Then

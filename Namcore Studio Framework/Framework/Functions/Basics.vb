@@ -25,6 +25,8 @@ Imports libnc
 Imports System.Net
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports System.Windows.Forms
+Imports NCFramework.Framework.Forms
 
 Namespace Framework.Functions
 
@@ -40,14 +42,14 @@ Namespace Framework.Functions
         End Sub
 
         Public Function GetCharacterSetBySetId(ByVal setId As Integer) As Character
-            If tmpset = setId Then
+            If Tmpset = setId Then
                 Return GlobalVariables.TempCharacter
             End If
             If GlobalVariables.globChars.CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
                 'found
-                tmpset = setId
+                Tmpset = setId
                 GlobalVariables.TempCharacter =
-                    GlobalVariables.globChars.CharacterSets(TryInt(splitString(GlobalVariables.globChars.CharacterSetsIndex,
+                    GlobalVariables.globChars.CharacterSets(TryInt(SplitString(GlobalVariables.globChars.CharacterSetsIndex,
                                                                                "[setId:" & setId.ToString() & "|@", "]")))
                 Return GlobalVariables.TempCharacter
             Else
@@ -67,9 +69,9 @@ Namespace Framework.Functions
         Public Sub SetCharacterSet(ByVal setId As Integer, ByVal character As Character)
             If GlobalVariables.globChars.CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
                 'found
-                GlobalVariables.globChars.CharacterSets(TryInt(splitString(GlobalVariables.globChars.CharacterSetsIndex,
+                GlobalVariables.globChars.CharacterSets(TryInt(SplitString(GlobalVariables.globChars.CharacterSetsIndex,
                                                                            "[setId:" & setId.ToString() & "|@", "]"))) =
-                    Character
+                    character
             Else
                 'not found
             End If
@@ -78,29 +80,29 @@ Namespace Framework.Functions
         Public Sub AddCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
             If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
             player.ArmorItems.Add(itm)
-            player.ArmorItemsIndex = player.ArmorItemsIndex & "[slot:" & itm.slotname & "|@" &
+            player.ArmorItemsIndex = player.ArmorItemsIndex & "[slot:" & itm.Slotname & "|@" &
                                      (player.ArmorItems.Count - 1).ToString & "]"
-            player.ArmorItemsIndex = player.ArmorItemsIndex & "[slotnum:" & itm.slot.ToString & "|@" &
+            player.ArmorItemsIndex = player.ArmorItemsIndex & "[slotnum:" & itm.Slot.ToString & "|@" &
                                      (player.ArmorItems.Count - 1).ToString & "]"
         End Sub
 
         Public Sub RemoveCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
             If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
-            Dim itmIndex As Integer = TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & itm.slot.ToString() & "|@",
+            Dim itmIndex As Integer = TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & itm.Slot.ToString() & "|@",
                                                          "]"))
             player.ArmorItems.Item(itmIndex) = Nothing
-            player.ArmorItemsIndex = player.ArmorItemsIndex.Replace("[slot:" & itm.slotname & "|@" & itmIndex.ToString & "]",
+            player.ArmorItemsIndex = player.ArmorItemsIndex.Replace("[slot:" & itm.Slotname & "|@" & itmIndex.ToString & "]",
                                                                     "")
             player.ArmorItemsIndex =
-                player.ArmorItemsIndex.Replace("[slotnum:" & itm.slot.ToString() & "|@" & itmIndex.ToString & "]", "")
+                player.ArmorItemsIndex.Replace("[slotnum:" & itm.Slot.ToString() & "|@" & itmIndex.ToString & "]", "")
         End Sub
 
         Public Sub SetCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
             If _
-                player.ArmorItemsIndex.Contains("[slot:" & itm.slotname & "|@") Or
-                player.ArmorItemsIndex.Contains("[slotnum:" & itm.slot.ToString & "|@") Then
-                player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slot:" & itm.slotname & "|@", "]"))) = itm
-                player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & itm.slot.ToString & "|@", "]"))) _
+                player.ArmorItemsIndex.Contains("[slot:" & itm.Slotname & "|@") Or
+                player.ArmorItemsIndex.Contains("[slotnum:" & itm.Slot.ToString & "|@") Then
+                player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slot:" & itm.Slotname & "|@", "]"))) = itm
+                player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & itm.Slot.ToString & "|@", "]"))) _
                     = itm
             Else
 
@@ -113,9 +115,9 @@ Namespace Framework.Functions
                 player.ArmorItemsIndex.Contains("[slot:" & slot & "|@") Or
                 player.ArmorItemsIndex.Contains("[slotnum:" & slot & "|@") Then
                 If isint = True Then
-                    Return player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slotnum:" & slot & "|@", "]")))
+                    Return player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & slot & "|@", "]")))
                 Else
-                    Return player.ArmorItems(TryInt(splitString(player.ArmorItemsIndex, "[slot:" & slot & "|@", "]")))
+                    Return player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slot:" & slot & "|@", "]")))
                 End If
 
             Else
@@ -126,13 +128,13 @@ Namespace Framework.Functions
         Public Sub AddCharacterGlyph(ByRef player As Character, ByVal gly As Glyph)
             If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
             player.PlayerGlyphs.Add(gly)
-            player.PlayerGlyphsIndex = player.PlayerGlyphsIndex & "[slot:" & gly.slotname & "|@" &
+            player.PlayerGlyphsIndex = player.PlayerGlyphsIndex & "[slot:" & gly.Slotname & "|@" &
                                        (player.PlayerGlyphs.Count - 1).ToString & "]"
         End Sub
 
         Public Sub SetCharacterGlyph(ByRef player As Character, ByVal glph As Glyph)
-            If player.PlayerGlyphsIndex.Contains("[slot:" & glph.slotname & "|@") Then
-                player.PlayerGlyphs(TryInt(splitString(player.PlayerGlyphsIndex, "[slot:" & glph.slotname & "|@", "]"))) =
+            If player.PlayerGlyphsIndex.Contains("[slot:" & glph.Slotname & "|@") Then
+                player.PlayerGlyphs(TryInt(SplitString(player.PlayerGlyphsIndex, "[slot:" & glph.Slotname & "|@", "]"))) =
                     glph
             Else
 
@@ -142,7 +144,7 @@ Namespace Framework.Functions
         Public Function GetCharacterGlyph(ByVal player As Character, ByVal slot As String) As Glyph
             If player.PlayerGlyphsIndex Is Nothing Then Return Nothing
             If player.PlayerGlyphsIndex.Contains("[slot:" & slot & "|@") Then
-                Return player.PlayerGlyphs(TryInt(splitString(player.PlayerGlyphsIndex, "[slot:" & slot & "|@", "]")))
+                Return player.PlayerGlyphs(TryInt(SplitString(player.PlayerGlyphsIndex, "[slot:" & slot & "|@", "]")))
             Else
                 Return Nothing
             End If
@@ -203,5 +205,36 @@ Namespace Framework.Functions
                 Return Nothing
             End Try
         End Function
+
+        Public Sub CloseProcessStatus()
+            If GlobalVariables.DebugMode = False Then
+                For Each myForm As Form In Application.OpenForms
+                    If myForm.Name = "ProcessStatus" Then
+                        Application.DoEvents()
+                        Try
+                            myForm.Close()
+                        Catch ex As Exception : End Try
+                    End If
+                Next
+            End If
+        End Sub
+
+        Public Sub NewProcessStatus()
+            For Each myForm As Form In Application.OpenForms
+                If myForm.Name = "ProcessStatus" Then
+                    If GlobalVariables.DebugMode = True Then
+                        Exit Sub
+                    Else
+                        Application.DoEvents()
+                        Try
+                            myForm.Close()
+                        Catch ex As Exception : End Try
+                    End If
+                End If
+            Next
+            GlobalVariables.procStatus = New ProcessStatus
+            GlobalVariables.procStatus.Show()
+            Application.DoEvents()
+        End Sub
     End Module
 End Namespace
