@@ -58,12 +58,21 @@ Namespace Framework.Core
                 End If
                 itm.EnchantmentName = ArcSplitEnchantString(itm.enchstring, player, itm)
                 If Not loopcounter = 17 Or Not loopcounter = 18 Then
-                    itm.Socket1Name = ArcSplitGemString(itm.enchstring, 29)
-                    itm.Socket2Name = ArcSplitGemString(itm.enchstring, 32)
-                    itm.Socket3Name = ArcSplitGemString(itm.enchstring, 35)
+                    itm.Socket1Effectid = ArcSplitGemString(itm.Enchstring, 29)
+                    itm.Socket1Id = GetGemIdByEffectId(itm.Socket1Effectid)
+                    itm.Socket1Name = GetEffectNameById(itm.Socket1Effectid, My.Settings.language)
+                    itm.Socket1Pic = GetItemIconById(itm.Socket1Id)
+                    itm.Socket2Effectid = ArcSplitGemString(itm.Enchstring, 32)
+                    itm.Socket2Id = GetGemIdByEffectId(itm.Socket2Effectid)
+                    itm.Socket2Name = GetEffectNameById(itm.Socket2Effectid, My.Settings.language)
+                    itm.Socket2Pic = GetItemIconById(itm.Socket2Id)
+                    itm.Socket3Effectid = ArcSplitGemString(itm.Enchstring, 35)
+                    itm.Socket3Id = GetGemIdByEffectId(itm.Socket3Effectid)
+                    itm.Socket3Name = GetEffectNameById(itm.Socket3Effectid, My.Settings.language)
+                    itm.Socket3Pic = GetItemIconById(itm.Socket3Id)
                 End If
                 If loopcounter = 13 Then
-                    Dim resultString As String = ArcSplitGemString(itm.enchstring, 38)
+                    Dim resultString As String = ArcSplitGemString(itm.Enchstring, 38)
                     If Not resultString = "" Then player.BeltBuckle = TryInt(resultString)
                 End If
                 loopcounter += 1
@@ -82,28 +91,70 @@ Namespace Framework.Core
                     Dim parts() As String = input.Split(";"c)
                     If parts(0).Contains("0,0") Then
                         Dim parts2() As String = parts(0).Split(","c)
-                        itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
+                        itm.EnchantmentEffectid = TryInt(parts2(0))
+                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
+                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
+                        itm.EnchantmentType = 1
+                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
+                            itm.EnchantmentId = tmpItemId
+                            itm.EnchantmentType = 2
+                        End If
+                        Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(1).Contains("0,0") Then
                         Dim parts2() As String = parts(1).Split(","c)
-                        itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
+                        itm.EnchantmentEffectid = TryInt(parts2(0))
+                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
+                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
+                        itm.EnchantmentType = 1
+                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
+                            itm.EnchantmentId = tmpItemId
+                            itm.EnchantmentType = 2
+                        End If
+                        Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(2).Contains("0,0") Then
                         Dim parts2() As String = parts(2).Split(","c)
-                        itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
+                        itm.EnchantmentEffectid = TryInt(parts2(0))
+                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
+                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
+                        itm.EnchantmentType = 1
+                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
+                            itm.EnchantmentId = tmpItemId
+                            itm.EnchantmentType = 2
+                        End If
+                        Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(3).Contains("0,0") Then
                         Dim parts2() As String = parts(3).Split(","c)
-                        itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
+                        itm.EnchantmentEffectid = TryInt(parts2(0))
+                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
+                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
+                        itm.EnchantmentType = 1
+                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
+                            itm.EnchantmentId = tmpItemId
+                            itm.EnchantmentType = 2
+                        End If
+                        Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(4).Contains("0,0") Then
                         Dim parts2() As String = parts(4).Split(","c)
-                        itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
+                        itm.EnchantmentEffectid = TryInt(parts2(0))
+                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
+                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
+                        itm.EnchantmentType = 1
+                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
+                            itm.EnchantmentId = tmpItemId
+                            itm.EnchantmentType = 2
+                        End If
+                        Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(5).Contains("0,0") Then
                         Dim parts2() As String = parts(5).Split(","c)
-                        itm.EnchantmentId = TryInt(parts2(0))
-                        Return GetEffectNameById(itm.EnchantmentId, My.Settings.language)
+                        itm.EnchantmentEffectid = TryInt(parts2(0))
+                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
+                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
+                        itm.EnchantmentType = 1
+                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
+                            itm.EnchantmentId = tmpItemId
+                            itm.EnchantmentType = 2
+                        End If
+                        Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     Else
                         Return ""
                     End If
@@ -119,7 +170,7 @@ Namespace Framework.Core
         End Function
 
         Private Function ArcSplitGemString(ByVal input As String, ByVal position As Integer) _
-            As String
+            As Integer
             LogAppend("ArcSplitGemString call (input=" & input & " // position=" & position.ToString() & ")",
                       "CharacterEnchantmentsHandler_ArcSplitGemString", False)
             Dim obvalue As Integer
@@ -143,32 +194,32 @@ Namespace Framework.Core
                     Dim parts2() As String = parts(0).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameById(obvalue, My.Settings.language)
+                    Return obvalue
                 ElseIf parts(1).Contains(xvalue) Then
                     Dim parts2() As String = parts(1).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameById(obvalue, My.Settings.language)
+                    Return obvalue
                 ElseIf parts(2).Contains(xvalue) Then
                     Dim parts2() As String = parts(2).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameById(obvalue, My.Settings.language)
+                    Return obvalue
                 ElseIf parts(3).Contains(xvalue) Then
                     Dim parts2() As String = parts(3).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameById(obvalue, My.Settings.language)
+                    Return obvalue
                 ElseIf parts(4).Contains(xvalue) Then
                     Dim parts2() As String = parts(4).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameById(obvalue, My.Settings.language)
+                    Return obvalue
                 ElseIf parts(5).Contains(xvalue) Then
                     Dim parts2() As String = parts(5).Split(","c)
                     obvalue = TryInt(parts2(0))
                     If xvalue = "0,6" Then Return parts2(0)
-                    Return GetEffectNameById(obvalue, My.Settings.language)
+                    Return obvalue
                 Else
                     Return ""
                 End If
@@ -218,8 +269,15 @@ Namespace Framework.Core
                 If input.Contains(" ") Then
                     Dim parts() As String = input.Split(" "c)
                     If Not parts(0) = "0" Then
-                        itm.EnchantmentId = TryInt(parts(0))
-                        Return GetEffectNameById(TryInt(parts(0)), My.Settings.language)
+                        itm.EnchantmentEffectid = TryInt(parts(0))
+                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
+                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
+                        itm.EnchantmentType = 1
+                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
+                            itm.EnchantmentId = tmpItemId
+                            itm.EnchantmentType = 2
+                        End If
+                        Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     Else
                         Return ""
                     End If
@@ -243,11 +301,23 @@ Namespace Framework.Core
                 Dim parts() As String = input.Split(" "c)
                 If Not parts(position) = "0" Then
                     Select Case gemnum
-                        Case 1 : itm.Socket1Id = TryInt(parts(0))
-                        Case 2 : itm.Socket2Id = TryInt(parts(0))
-                        Case 3 : itm.Socket3Id = TryInt(parts(0))
+                        Case 1
+                            itm.Socket1Effectid = TryInt(parts(0))
+                            itm.Socket1Id = GetGemIdByEffectId(itm.Socket1Effectid)
+                            itm.Socket1Pic = GetItemIconById(itm.Socket1Id)
+                            Return GetEffectNameById(itm.Socket1Effectid, My.Settings.language)
+                        Case 2
+                            itm.Socket2Effectid = TryInt(parts(0))
+                            itm.Socket2Id = GetGemIdByEffectId(itm.Socket2Effectid)
+                            itm.Socket2Pic = GetItemIconById(itm.Socket2Id)
+                            Return GetEffectNameById(itm.Socket2Effectid, My.Settings.language)
+                        Case 3
+                            itm.Socket3Effectid = TryInt(parts(0))
+                            itm.Socket3Id = GetGemIdByEffectId(itm.Socket3Effectid)
+                            itm.Socket3Pic = GetItemIconById(itm.Socket3Id)
+                            Return GetEffectNameById(itm.Socket3Effectid, My.Settings.language)
                     End Select
-                    Return GetEffectNameById(TryInt(parts(position)), My.Settings.language)
+                    Return "Not found"
                 Else
                     Return ""
                 End If
@@ -296,8 +366,15 @@ Namespace Framework.Core
                 If input.Contains(" ") Then
                     Dim parts() As String = input.Split(" "c)
                     If Not parts(22) = "0" Then
-                        itm.EnchantmentId = CInt(parts(22))
-                        Return GetEffectNameById(CInt(parts(22)), My.Settings.language)
+                        itm.EnchantmentEffectid = TryInt(parts(22))
+                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
+                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
+                        itm.EnchantmentType = 1
+                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
+                            itm.EnchantmentId = tmpItemId
+                            itm.EnchantmentType = 2
+                        End If
+                        Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     Else
                         Return ""
                     End If
@@ -320,18 +397,29 @@ Namespace Framework.Core
                 Dim parts() As String = input.Split(" "c)
                 If Not parts(position - 1) = "0" Then
                     Select Case gemnum
-                        Case 1 : itm.Socket1Id = CInt(parts(position - 1))
-                        Case 2 : itm.Socket2Id = CInt(parts(position - 1))
-                        Case 3 : itm.Socket3Id = CInt(parts(position - 1))
+                        Case 1
+                            itm.Socket1Effectid = TryInt(parts(position - 1))
+                            itm.Socket1Id = GetGemIdByEffectId(itm.Socket1Effectid)
+                            itm.Socket1Pic = GetItemIconById(itm.Socket1Id)
+                            Return GetEffectNameById(itm.Socket1Effectid, My.Settings.language)
+                        Case 2
+                            itm.Socket2Effectid = TryInt(parts(position - 1))
+                            itm.Socket2Id = GetGemIdByEffectId(itm.Socket2Effectid)
+                            itm.Socket2Pic = GetItemIconById(itm.Socket2Id)
+                            Return GetEffectNameById(itm.Socket2Effectid, My.Settings.language)
+                        Case 3
+                            itm.Socket3Effectid = TryInt(parts(position - 1))
+                            itm.Socket3Id = GetGemIdByEffectId(itm.Socket3Effectid)
+                            itm.Socket3Pic = GetItemIconById(itm.Socket3Id)
+                            Return GetEffectNameById(itm.Socket3Effectid, My.Settings.language)
                     End Select
-                    Return GetEffectNameById(CInt(parts(position - 1)), My.Settings.language)
+                    Return "Not found"
                 Else
                     Return ""
                 End If
             Catch ex As Exception
-                LogAppend(
-                    "Something went wrong while splitting gem string -> Exception is: ###START###" & ex.ToString() &
-                    "###END###", "CharacterEnchantmentsHandler_MangosSplitGemString", False, True)
+                LogAppend("Something went wrong while splitting gem string -> Exception is: ###START###" & ex.ToString() &
+                                   "###END###", "CharacterEnchantmentsHandler_MangosSplitGemString", False, True)
                 Return ""
             End Try
         End Function
