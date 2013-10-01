@@ -170,9 +170,9 @@ Namespace Forms
                 End If
                 Dim str(3) As String
                 Dim itm As ListViewItem
-                str(0) = splitString(templink, "http://", ".battle.net").ToUpper()
-                str(1) = splitString(templink, "/character/", "/").ToUpper()
-                str(2) = splitString(templink, str(1).ToLower & "/", "/advanced").ToUpper()
+                str(0) = SplitString(templink.ToLower, "http://".ToLower, ".battle.net".ToLower).ToUpper()
+                str(1) = SplitString(templink.ToLower, "/character/".ToLower, "/".ToLower).ToUpper()
+                str(2) = SplitString(templink.ToLower, str(1).ToLower & "/", "/advanced".ToLower).ToUpper()
                 str(3) = templink
                 itm = New ListViewItem(str)
                 char_lst.Items.Add(itm)
