@@ -305,7 +305,7 @@ Namespace Forms.Character
                                                            "0"))
                 Dim newqst As New Quest
                 newqst.id = retnvalue
-                newqst.name = getNameOfQuest(newqst.id)
+                newqst.Name = GetQuestTitleById(newqst.Id, NCFramework.My.MySettings.Default.language)
                 If qrewarded = 1 Then
                     newqst.rewarded = 1
                     newqst.status = 1

@@ -225,18 +225,5 @@ Namespace Framework.Functions
             End If
             Return img
         End Function
-
-        Public Function GetNameOfQuest(ByVal questid As Integer) As String
-            LogAppend("Loading quest name of id " & questid.ToString(), "Conversions_getNameOfQuest")
-            Try
-                Dim client As New WebClient
-                client.CheckProxy()
-                Dim qstcontext As String = client.DownloadString("http://www.wowhead.com/quest=" & questid.ToString)
-                Return SplitString(qstcontext, "<title>", " - Quest - World")
-            Catch ex As Exception
-                LogAppend("Failed to load name of quest // Returning error", "Conversions_getNameOfQuest")
-                Return "error"
-            End Try
-        End Function
     End Module
 End Namespace
