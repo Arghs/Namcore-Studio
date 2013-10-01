@@ -42,9 +42,33 @@ Namespace Provider
             End Try
             Return returnResult
         End Function
+        Public Function GetSpellIdByEffectId(ByVal effectId As Integer) As Integer
+            Const targetField As Integer = 2
+            Dim myResult As String = ExecuteCsvSearch(SpellEffectCsv, "EffectId", effectId.ToString(), targetField)(0)
+            Dim returnResult As Integer
+            If myResult = "-" Then returnResult = 0
+            Try
+                returnResult = CInt(myResult)
+            Catch
+                returnResult = 0
+            End Try
+            Return returnResult
+        End Function
         Public Function GetEffectIdByGemId(ByVal gemId As Integer) As Integer
             Const targetField As Integer = 0
             Dim myResult As String = ExecuteCsvSearch(SpellEnchantCsv, "GemId", gemId.ToString(), targetField)(0)
+            Dim returnResult As Integer
+            If myResult = "-" Then returnResult = 0
+            Try
+                returnResult = CInt(myResult)
+            Catch
+                returnResult = 0
+            End Try
+            Return returnResult
+        End Function
+        Public Function GetGemIdByEffectId(ByVal effectId As Integer) As Integer
+            Const targetField As Integer = 1
+            Dim myResult As String = ExecuteCsvSearch(SpellEnchantCsv, "EffectId", effectId.ToString(), targetField)(0)
             Dim returnResult As Integer
             If myResult = "-" Then returnResult = 0
             Try
@@ -61,7 +85,6 @@ Namespace Provider
             If myResult = "-" Then
                 myResult = "Not found"
             End If
-            Return myResult
             Dim points1 As Integer = 0
             Dim points2 As Integer = 0
             Dim points3 As Integer = 0

@@ -72,6 +72,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemSpellIdByItemId(ByVal itemId As Integer) As Integer
+            '// TODO: Not working/SpellId in csv not correct
             Const targetField As Integer = 5
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
