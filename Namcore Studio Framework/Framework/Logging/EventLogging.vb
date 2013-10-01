@@ -23,6 +23,7 @@
 Imports System.IO
 Imports System.Text
 Imports NCFramework.Framework.Modules
+Imports System.Windows.Forms
 
 Namespace Framework.Logging
 
@@ -41,7 +42,7 @@ Namespace Framework.Logging
             While Isbusy
             End While
             Isbusy = True
-            appendStatus(myevent, location, iserror)
+            AppendStatus(myevent, location, iserror)
             Isbusy = False
         End Sub
 
@@ -49,14 +50,15 @@ Namespace Framework.Logging
             Dim timenow As String = Now.TimeOfDay.ToString
             Dim append As String = ""
             If iserror Then append = "[ERROR]"
-            GlobalVariables.eventlog = GlobalVariables.eventlog & vbNewLine & "[" & timenow & "]" & append & "[" & loc & "]" &
+            GlobalVariables.eventlog = GlobalVariables.eventlog & "[" & timenow & "]" & append & "[" & loc & "]" &
                                        status
             If GlobalVariables.DebugMode = True Then _mUserOut = True
+            If status.Contains("string to integer") Or status.Contains("splitting a string") Then _mUserOut = False
             If _mUserOut = True Then
                 GlobalVariables.proccessTXT = "[" & timenow & "]" & status & vbNewLine & GlobalVariables.proccessTXT
                 Dim _
                     fs As _
-                        New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt",
+                        New StreamWriter(Application.StartupPath & "/EventLog.log",
                                          FileMode.OpenOrCreate, Encoding.Default)
                 fs.WriteLine(GlobalVariables.eventlog)
                 fs.Close()

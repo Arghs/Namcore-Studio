@@ -112,8 +112,8 @@ Namespace Forms
                     End If
                 End If
             End If
-            If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt") Then
-                My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Desktop & "/log.txt")
+            If My.Computer.FileSystem.FileExists(Application.StartupPath & "/EventLog.log") Then
+                My.Computer.FileSystem.DeleteFile(Application.StartupPath & "/EventLog.log")
             End If
             LogAppend("NamCore Studio " & My.Application.Info.Version.ToString() & " loaded", "Main_Main_Load", True)
             LogAppend("System information:", "Main_Main_Load", False)
