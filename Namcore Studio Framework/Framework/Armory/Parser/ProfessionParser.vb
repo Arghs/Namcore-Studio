@@ -64,18 +64,23 @@ Namespace Framework.Armory.Parser
                         Else
                             pProf.primary = False
                         End If
-                        pProf.iconname = splitString(partsPf(loopcounter), """icon"":""", """,")
-                        pProf.id = TryInt(splitString(partsPf(loopcounter), """id"":", ","))
-                        pProf.max = TryInt(splitString(partsPf(loopcounter), """max"":", ","))
-                        pProf.name = splitString(partsPf(loopcounter), """name"":""", """,")
-                        pProf.Rank = TryInt(SplitString(partsPf(loopcounter), """rank"":", ","))
-                        LogAppend("Adding profession with id " & pProf.Id.ToString, "ProfessionParser_loadProfessions", True)
-                        Dim recipes As String = splitString(partsPf(loopcounter), """recipes"":[", "]")
-                        If recipes.Length > 3 Then
-                            pProf.recipes = recipes.Split(",")
+                        Dim myPart As String = partsPf(loopcounter)
+                        If myPart.Length < 2 Then
+                            loopcounter += 1
+                        Else
+                            pProf.Id = TryInt(SplitString(myPart, """id"":", ","))
+                            pProf.Iconname = SplitString(myPart, """icon"":""", """,")
+                            pProf.Max = TryInt(SplitString(myPart, """max"":", ","))
+                            pProf.Name = SplitString(myPart, """name"":""", """,")
+                            pProf.Rank = TryInt(SplitString(myPart, """rank"":", ","))
+                            LogAppend("Adding profession with id " & pProf.Id.ToString, "ProfessionParser_loadProfessions", True)
+                            Dim recipes As String = SplitString(myPart, """recipes"":[", "]")
+                            If recipes.Length > 3 Then
+                                pProf.Recipes = recipes.Split(",")
+                            End If
+                            player.Professions.Add(pProf)
+                            loopcounter += 1
                         End If
-                        player.Professions.Add(pProf)
-                        loopcounter += 1
                     Loop Until loopcounter = excounter
                     LogAppend("Loaded " & loopcounter.ToString & " professions", "ProfessionParser_loadProfessions", True)
                     If usePfString = secondaryPf Then
