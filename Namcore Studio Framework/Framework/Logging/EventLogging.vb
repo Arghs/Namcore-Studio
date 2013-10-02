@@ -50,6 +50,9 @@ Namespace Framework.Logging
             Dim timenow As String = Now.TimeOfDay.ToString
             Dim append As String = ""
             If iserror Then append = "[ERROR]"
+            If Not GlobalVariables.eventlog = "" Then
+                GlobalVariables.eventlog = GlobalVariables.eventlog & vbNewLine
+            End If
             GlobalVariables.eventlog = GlobalVariables.eventlog & "[" & timenow & "]" & append & "[" & loc & "]" &
                                        status
             If GlobalVariables.DebugMode = True Then _mUserOut = True
