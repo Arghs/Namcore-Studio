@@ -30,7 +30,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Functions
 
-    Public Module SpellItemInformation
+    Public Module MiscInfo
         Public Sub LoadWeaponType(ByVal itemid As Integer, ByVal tarSet As Integer)
             If Not itemid = 0 Then
                 LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType", False)
