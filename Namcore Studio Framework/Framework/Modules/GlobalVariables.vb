@@ -24,6 +24,7 @@ Imports System.Windows.Forms
 Imports NCFramework.Framework.Forms
 Imports MySql.Data.MySqlClient
 Imports System.Threading
+Imports System.Net
 
 Namespace Framework.Modules
 
@@ -70,6 +71,7 @@ Namespace Framework.Modules
         Public Shared sourceStructure As DbStructure
         Public Shared targetStructure As DbStructure
         Public Shared trd As Thread
+        Public Shared GlobalWebClient As WebClient
         Public Shared currentViewedCharSetId As Integer
         Public Shared currentViewedCharSet As Character
         Public Shared currentEditedCharSet As Character

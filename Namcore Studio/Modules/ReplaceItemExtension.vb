@@ -36,7 +36,7 @@ Namespace Modules
             itm = SourceItem
             itm.Id = newitemid
             itm.Name = GetItemNameByItemId(newitemid.ToString(), NCFramework.My.MySettings.Default.language)
-            itm.Image = GetItemIconById(newitemid)
+            itm.Image = GetItemIconById(newitemid, GlobalVariables.GlobalWebClient)
             itm.Rarity = GetItemQualityByItemId(newitemid)
             Return itm
         End Function

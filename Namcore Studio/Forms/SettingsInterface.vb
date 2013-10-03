@@ -20,11 +20,13 @@
 '*      /Filename:      SettingsInterface
 '*      /Description:   Proxy settings
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Functions
 Imports NCFramework.My
 Imports System.Net
 Imports System.Text
 Imports System.Xml
+Imports NCFramework.Framework.Modules
 
 Namespace Forms
     Public Class SettingsInterface
@@ -88,7 +90,6 @@ Namespace Forms
         End Sub
 
         Private Sub cat_id_92_bt_Click(sender As Object, e As EventArgs) Handles apply_bt.Click
-
             Try
                 If noproxy_radio.Checked = True Then
                     MySettings.Default.proxy_enabled = False
@@ -149,6 +150,8 @@ Namespace Forms
 
                 End With
                 MySettings.Default.Save()
+                GlobalVariables.GlobalWebClient = New WebClient()
+                GlobalVariables.GlobalWebClient = GlobalVariables.GlobalWebClient.CheckProxy()
             Catch ex As Exception
 
             End Try

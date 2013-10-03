@@ -30,16 +30,81 @@ Namespace Provider
                 Case 4 : useTable = GlyphProperties1Csv
                 Case Else : useTable = GlyphProperties2Csv
             End Select
-            Const targetField As Integer = 1
+            Const targetField As Integer = 0
             Dim myResult As String = ExecuteCsvSearch(useTable, "SpellId", spellId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then returnResult = 0
+            If myResult = "-" Then myResult = 0
             Try
                 returnResult = CInt(myResult)
             Catch
                 returnResult = 0
             End Try
             Return returnResult
+        End Function
+        Public Function GetGlyphIdByItemId(ByVal itemId As Integer, ByVal expansion As Integer) As Integer
+            '// Work around - solution
+            '// Get name of item
+            Dim itemName As String = GetItemNameByItemId(itemId, "de")
+            itemName = itemName.Replace("'", "''")
+            '// Get spell id by item name
+            If itemName.Length > 1 Then
+                Try
+                    Dim foundRows() As DataRow
+                    foundRows = SpellCsv.Select("SpellNameDE" & " = '" & itemName & "'")
+                    If foundRows.Length = 0 Then
+                        Return 0
+                    Else
+                        If foundRows.Count = 1 Then
+                            Try
+                                '// Get glyph id by item id
+                                Return GetGlyphIdBySpellId(CInt(foundRows(0)(0).ToString()), expansion)
+                            Catch ex As Exception
+                                Return 0
+                            End Try
+                        End If
+                        For i = 0 To foundRows.Count() - 1
+                            '// Multiple results: If description value is greater than 1 > correct id
+                            If (foundRows(i)(3)).ToString.Length > 1 Then
+                                Try
+                                    Return GetGlyphIdBySpellId(CInt((foundRows(i)(0)).ToString), expansion)
+                                Catch ex As Exception
+                                    Return 0
+                                End Try
+                            End If
+                        Next i
+                        Return 0
+                    End If
+                Catch ex As Exception
+                    Return 0
+                End Try
+            Else
+                Return 0
+            End If
+        End Function
+        Public Function GetItemIdByGlyphId(ByVal glyphId As Integer, ByVal expansion As Integer) As Integer
+            '// Work around - solution
+            '// Get name of glyph spell
+            Dim spellName As String = GetSpellNameBySpellId(GetSpellIdByGlyphId(glyphId, expansion), "de")
+            '// Get item id by name
+            If spellName.Length > 1 Then
+                Try
+                    Dim foundRows() As DataRow
+                    foundRows = ItemSparseCsv.Select("ItemNameDE" & " = '" & spellName & "'")
+                    If foundRows.Length = 0 Then
+                        Return 0
+                    Else
+                        Try
+                            Return CInt(foundRows(0)(0).ToString())
+                        Catch ex As Exception
+                            Return 0
+                        End Try
+                    End If
+                Catch ex As Exception
+                    Return 0
+                End Try
+            Else
+                Return 0
+            End If
         End Function
         Public Function GetSpellIdByGlyphId(ByVal glyphId As Integer, ByVal expansion As Integer) As Integer
             Dim useTable As DataTable
@@ -48,10 +113,10 @@ Namespace Provider
                 Case 4 : useTable = GlyphProperties1Csv
                 Case Else : useTable = GlyphProperties2Csv
             End Select
-            Const targetField As Integer = 0
+            Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(useTable, "GlyphId", glyphId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then returnResult = 0
+            If myResult = "-" Then myResult = 0
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -69,7 +134,7 @@ Namespace Provider
             Const targetField As Integer = 2
             Dim myResult As String = ExecuteCsvSearch(useTable, "GlyphId", glyphId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then returnResult = 0
+            If myResult = "-" Then myResult = 0
             Try
                 returnResult = CInt(myResult)
             Catch

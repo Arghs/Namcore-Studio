@@ -209,7 +209,7 @@ Namespace Forms.Character
                     Return itm.EnchantmentName
                 Case 2
                     If itm.Image Is Nothing Then
-                        itm.Image = GetItemIconById(itm.Id)
+                        itm.Image = GetItemIconById(itm.Id, GlobalVariables.GlobalWebClient)
                     End If
                     Return itm.Image
 
@@ -788,7 +788,7 @@ Namespace Forms.Character
                     Dim itm As New Item
                     itm.Id = TryInt(TextBox2.Text)
                     itm.Name = GetItemNameByItemId(itm.Id, NCFramework.My.MySettings.Default.language)
-                    itm.Image = GetItemIconById(itm.Id)
+                    itm.Image = GetItemIconById(itm.Id, GlobalVariables.GlobalWebClient)
                     itm.Rarity = GetItemQualityByItemId(itm.Id)
                     itm.Slot = TryInt(meSlot)
                     itm.Slotname = GetItemInventorySlotByItemId(itm.Slot)
@@ -932,18 +932,18 @@ Namespace Forms.Character
                                 itm.Socket1Effectid = effectId
                                 itm.Socket1Id = retnvalue
                                 itm.Socket1Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)
-                                itm.Socket1Pic = GetItemIconById(retnvalue)
+                                itm.Socket1Pic = GetItemIconById(retnvalue, GlobalVariables.GlobalWebClient)
                             Case myPic.Name.Contains("gem2")
                                 itm.Socket2Effectid = effectId
                                 itm.Socket2Id = retnvalue
                                 itm.Socket2Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)
-                                itm.Socket2Pic = GetItemIconById(retnvalue)
+                                itm.Socket2Pic = GetItemIconById(retnvalue, GlobalVariables.GlobalWebClient)
                             Case myPic.Name.Contains("gem3")
                                 itm.Socket2Effectid = effectId
                                 itm.Socket3Effectid = effectId
                                 itm.Socket3Id = retnvalue
                                 itm.Socket3Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)
-                                itm.Socket3Pic = GetItemIconById(retnvalue)
+                                itm.Socket3Pic = GetItemIconById(retnvalue, GlobalVariables.GlobalWebClient)
                         End Select
                         sender.tag = itm
                         myPic.Image = itm.Image

@@ -66,10 +66,10 @@ Namespace Framework.Armory.Parser
                                 Do
                                     Dim newGlyph As New Glyph
                                     Dim parts() As String = glyphStr.Split("*"c)
-                                    newGlyph.id = TryInt(splitString(parts(counter), """item"":", ","""))
+                                    newGlyph.Id = TryInt(SplitString(parts(counter), """item"":", ","""))
                                     newGlyph.name = splitString(parts(counter), """name"":", ",""")
                                     newGlyph.slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
-                                    newGlyph.Image = GetItemIconById(newGlyph.Id)
+                                    newGlyph.Image = GetItemIconById(newGlyph.Id, GlobalVariables.GlobalWebClient, True)
                                     newGlyph.type = loopCounter + 1
                                     newGlyph.Spec = i
                                     LogAppend("Loaded glyph " & newGlyph.Name, "GlyphParser_loadGlyphs", True)

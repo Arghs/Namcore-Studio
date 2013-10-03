@@ -65,7 +65,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(0))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "majorglyph1"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 2
@@ -81,7 +81,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(3))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "majorglyph2"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 2
@@ -97,7 +97,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(5))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "majorglyph3"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 2
@@ -113,7 +113,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(1))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "minorglyph1"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 1
@@ -129,7 +129,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(2))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "minorglyph2"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 1
@@ -145,7 +145,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(4))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "minorglyph3"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 1
@@ -162,7 +162,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(0))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secmajorglyph1"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 2
@@ -178,7 +178,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(3))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secmajorglyph2"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 2
@@ -194,7 +194,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(5))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secmajorglyph3"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 2
@@ -210,7 +210,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(1))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secminorglyph1"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 1
@@ -226,7 +226,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(2))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secminorglyph2"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 1
@@ -242,7 +242,7 @@ Namespace Framework.Core
                 Dim prevglyphid As Integer = TryInt(parts(4))
                 Dim tmpGlyph As New Glyph
                 If prevglyphid > 1 Then
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secminorglyph3"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 1
@@ -319,7 +319,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdt.Rows(0).Item(0)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "majorglyph1"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 2
@@ -329,7 +329,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdt.Rows(0).Item(1)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "minorglyph1"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 1
@@ -339,7 +339,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdt.Rows(0).Item(2)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "minorglyph2"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 1
@@ -349,7 +349,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdt.Rows(0).Item(3)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "majorglyph2"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 2
@@ -359,7 +359,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdt.Rows(0).Item(4)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "minorglyph3"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 1
@@ -369,7 +369,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdt.Rows(0).Item(5)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "majorglyph3"
                     tmpGlyph.spec = 0
                     tmpGlyph.type = 2
@@ -380,7 +380,7 @@ Namespace Framework.Core
                     prevglyphid = TryInt((tempdt.Rows(0).Item(6)).ToString)
                     If prevglyphid > 1 Then
                         Dim tmpGlyph As New Glyph
-                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.slotname = "primeglyph1"
                         tmpGlyph.spec = 0
                         tmpGlyph.type = 3
@@ -390,7 +390,7 @@ Namespace Framework.Core
                     prevglyphid = TryInt((tempdt.Rows(0).Item(7)).ToString)
                     If prevglyphid > 1 Then
                         Dim tmpGlyph As New Glyph
-                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.slotname = "primeglyph2"
                         tmpGlyph.spec = 0
                         tmpGlyph.type = 3
@@ -400,7 +400,7 @@ Namespace Framework.Core
                     prevglyphid = TryInt((tempdt.Rows(0).Item(8)).ToString)
                     If prevglyphid > 1 Then
                         Dim tmpGlyph As New Glyph
-                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.slotname = "primeglyph3"
                         tmpGlyph.spec = 0
                         tmpGlyph.type = 3
@@ -416,7 +416,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdtsec.Rows(0).Item(0)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secmajorglyph1"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 2
@@ -426,7 +426,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdtsec.Rows(0).Item(1)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secminorglyph1"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 1
@@ -436,7 +436,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdtsec.Rows(0).Item(2)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secminorglyph2"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 1
@@ -446,7 +446,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdtsec.Rows(0).Item(3)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secmajorglyph2"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 2
@@ -456,7 +456,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdtsec.Rows(0).Item(4)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secminorglyph3"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 1
@@ -466,7 +466,7 @@ Namespace Framework.Core
                 prevglyphid = TryInt((tempdtsec.Rows(0).Item(5)).ToString)
                 If prevglyphid > 1 Then
                     Dim tmpGlyph As New Glyph
-                    tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                    tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.slotname = "secmajorglyph3"
                     tmpGlyph.spec = 1
                     tmpGlyph.type = 2
@@ -477,7 +477,7 @@ Namespace Framework.Core
                     prevglyphid = TryInt((tempdtsec.Rows(0).Item(6)).ToString)
                     If prevglyphid > 1 Then
                         Dim tmpGlyph As New Glyph
-                       tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.spec = 1
                         tmpGlyph.type = 3
                         AddCharacterGlyph(player, tmpGlyph)
@@ -486,7 +486,7 @@ Namespace Framework.Core
                     prevglyphid = TryInt((tempdtsec.Rows(0).Item(7)).ToString)
                     If prevglyphid > 1 Then
                         Dim tmpGlyph As New Glyph
-                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.slotname = "secprimeglyph2"
                         tmpGlyph.spec = 1
                         tmpGlyph.type = 3
@@ -496,7 +496,7 @@ Namespace Framework.Core
                     prevglyphid = TryInt((tempdtsec.Rows(0).Item(8)).ToString)
                     If prevglyphid > 1 Then
                         Dim tmpGlyph As New Glyph
-                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.slotname = "secprimeglyph3"
                         tmpGlyph.spec = 1
                         tmpGlyph.type = 3
@@ -535,7 +535,7 @@ Namespace Framework.Core
                                 Select Case slot
                                     Case 0
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "majorglyph1"
                                         tmpGlyph.spec = 0
                                         tmpGlyph.type = 2
@@ -543,7 +543,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 1
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "minorglyph2"
                                         tmpGlyph.spec = 0
                                         tmpGlyph.type = 1
@@ -551,7 +551,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 2
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "minorglyph3"
                                         tmpGlyph.spec = 0
                                         tmpGlyph.type = 1
@@ -559,7 +559,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 3
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "majorglyph2"
                                         tmpGlyph.spec = 0
                                         tmpGlyph.type = 2
@@ -567,7 +567,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 4
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "minorglyph1"
                                         tmpGlyph.spec = 0
                                         tmpGlyph.type = 1
@@ -575,7 +575,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 5
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "majorglyph3"
                                         tmpGlyph.spec = 0
                                         tmpGlyph.type = 2
@@ -583,7 +583,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 6
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "primeglyph1"
                                         tmpGlyph.spec = 0
                                         tmpGlyph.type = 3
@@ -591,7 +591,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 7
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "primeglyph2"
                                         tmpGlyph.spec = 0
                                         tmpGlyph.type = 3
@@ -599,7 +599,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 8
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "primeglyph3"
                                         tmpGlyph.spec = 0
                                         tmpGlyph.type = 3
@@ -610,7 +610,7 @@ Namespace Framework.Core
                                 Select Case slot
                                     Case 0
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "secmajorglyph1"
                                         tmpGlyph.spec = 1
                                         tmpGlyph.type = 2
@@ -618,7 +618,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 1
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "secminorglyph2"
                                         tmpGlyph.spec = 1
                                         tmpGlyph.type = 1
@@ -626,7 +626,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 2
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "secminorglyph3"
                                         tmpGlyph.spec = 1
                                         tmpGlyph.type = 1
@@ -634,7 +634,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 3
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "secmajorglyph2"
                                         tmpGlyph.spec = 1
                                         tmpGlyph.type = 2
@@ -642,7 +642,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 4
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "secminorglyph1"
                                         tmpGlyph.spec = 1
                                         tmpGlyph.type = 1
@@ -650,7 +650,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 5
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "secmajorglyph3"
                                         tmpGlyph.spec = 1
                                         tmpGlyph.type = 2
@@ -658,7 +658,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 6
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "secprimeglyph1"
                                         tmpGlyph.spec = 1
                                         tmpGlyph.type = 3
@@ -666,7 +666,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 7
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "secprimeglyph2"
                                         tmpGlyph.spec = 1
                                         tmpGlyph.type = 3
@@ -674,7 +674,7 @@ Namespace Framework.Core
                                         SetCharacterSet(tarSetId, player)
                                     Case 8
                                         Dim tmpGlyph As New Glyph
-                                        tmpGlyph.Id = GetGlyphIdBySpellId(prevglyphid, GlobalVariables.sourceExpansion)
+                                        tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "secprimeglyph3"
                                         tmpGlyph.spec = 1
                                         tmpGlyph.type = 3

@@ -196,6 +196,7 @@ Namespace Framework.Functions
             LogAppend("Loading image from url: " & url, "Basics_LoadImageFromUrl", False)
             Try
                 Dim request As HttpWebRequest = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
+                request.Proxy = GlobalVariables.GlobalWebClient.Proxy
                 Dim response As HttpWebResponse = DirectCast(request.GetResponse, HttpWebResponse)
                 Dim img As Image = Image.FromStream(response.GetResponseStream())
                 response.Close()

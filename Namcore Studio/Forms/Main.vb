@@ -22,6 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Text
 Imports System.Xml
+Imports NCFramework.Framework.Extension
 Imports Namcore_Studio.Modules.Interface
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
@@ -132,6 +133,8 @@ Namespace Forms
                 Screen.PrimaryScreen.Bounds.Height.ToString(), "Main_Main_Load", False)
             LogAppend("/APP STARTUP PATH: " & Application.StartupPath, "Main_Main_Load", False)
             InitializeDbc()
+            GlobalVariables.GlobalWebClient = New WebClient()
+            GlobalVariables.GlobalWebClient = GlobalVariables.GlobalWebClient.CheckProxy()
             Userwait.Close()
         End Sub
 

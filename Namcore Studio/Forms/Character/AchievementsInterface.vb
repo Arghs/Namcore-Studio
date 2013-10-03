@@ -310,7 +310,7 @@ Namespace Forms.Character
                         Dim avIconPic As New PictureBox
                         Dim avImage As Image
                         If charAv.Icon Is Nothing Then
-                            avImage = GetSpellIconById(GetAvSpellIdById((charAv.Id)))
+                            avImage = GetSpellIconById(GetAvSpellIdById((charAv.Id)), GlobalVariables.GlobalWebClient)
                             charAv.Icon = avImage
                         Else
                             avImage = charAv.Icon
@@ -370,7 +370,7 @@ Namespace Forms.Character
             ' ReSharper disable VBWarnings::BC42105
         End Function
         ' ReSharper restore VBWarnings::BC42105
-        Private Sub onCompleted() Handles Me.AvCompleted
+        Private Sub OnCompleted() Handles Me.AvCompleted
             Try
                 For Each avPanel As Control In AVLayoutPanel.Controls
                     If _colorTicker = 1 Then
@@ -503,7 +503,7 @@ Namespace Forms.Character
                             Dim avIconPic As New PictureBox
                             Dim avImage As Image
                             If charAv.Icon Is Nothing Then
-                                avImage = GetSpellIconById(GetAvSpellIdById(charAv.Id))
+                                avImage = GetSpellIconById(GetAvSpellIdById(charAv.Id), GlobalVariables.GlobalWebClient)
                                 charAv.Icon = avImage
                             Else
                                 avImage = charAv.Icon

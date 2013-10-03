@@ -23,7 +23,7 @@
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-
+Imports libnc.Provider
 Namespace Framework.Transmission.Update
     Public Class UpdateGlyphsHandler
         Public Sub UpdateGlyphs(ByVal player As Character, ByVal modPlayer As Character)
@@ -78,11 +78,11 @@ Namespace Framework.Transmission.Update
                             Case 3 : baseInt = 6
                         End Select
                         If glyph2Add.Slotname.Contains("1") Then
-                            parts(baseInt) = glyph2Add.Id
+                            parts(baseInt) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion)
                         ElseIf glyph2Add.Slotname.Contains("2") Then
-                            parts(baseInt + 1) = glyph2Add.Id
+                            parts(baseInt + 1) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion)
                         Else
-                            parts(baseInt + 2) = glyph2Add.Id
+                            parts(baseInt + 2) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion)
                         End If
                         glyphString = String.Join(",", parts)
                         runSQLCommand_characters_string(
