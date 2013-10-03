@@ -1,502 +1,502 @@
-FactionId;Index;NameDE;NameEN
-1;-1;SPIELER, Mensch;PLAYER, Human
-2;-1;SPIELER, Orc;PLAYER, Orc
-3;-1;SPIELER, Zwerg;PLAYER, Dwarf
-4;-1;SPIELER, Nachtelf;PLAYER, Night Elf
-5;-1;SPIELER, Untoter;PLAYER, Undead
-6;-1;SPIELER, Tauren;PLAYER, Tauren 
-7;-1;Kreatur;Creature
-8;-1;SPIELER, Gnom;PLAYER, Gnome
-9;-1;SPIELER, Troll;PLAYER, Troll
-14;-1;Monster;Monster
-15;-1;Bruderschaft der Defias;Defias Brotherhood
-16;-1;Gnoll - Flusspfoten;Gnoll - Riverpaw
-17;-1;Gnoll - Rotkammgebirge;Gnoll - Redridge
-18;-1;Gnoll - Schattenfelle;Gnoll - Shadowhide
-19;-1;Murloc;Murloc
-20;-1;Untoter, Geißel;Undead, Scourge
-21;1;Beutebucht;Booty Bay
-22;-1;Wildtier - Spinne;Beast - Spider
-23;-1;Wildtier - Eber;Beast - Boar
-24;-1;Worgen;Worgen
-25;-1;Kobold;Kobold
-26;-1;Troll, Blutskalpe;Troll, Bloodscalp
-27;-1;Troll, Schädelspalter;Troll, Skullsplitter
-28;-1;Beute;Prey
-29;-1;Wildtier - Wolf;Beast - Wolf
-30;-1;Verräter der Bruderschaft der Defias;Defias Brotherhood Traitor
-31;-1;Befreundet;Friendly
-32;-1;Trogg;Trogg
-33;-1;Troll, Frostmähnen;Troll, Frostmane
-34;-1;Orc, Schwarzfels;Orc, Blackrock
-35;-1;Bösewicht;Villian
-36;-1;Opfer;Victim
-37;-1;Wildtier - Bär;Beast - Bear
-38;-1;Oger;Ogre
-39;-1;Kurzens Söldner;Kurzen's Mercenaries
-40;-1;Eskortierter;Escortee
-41;-1;Venture Company;Venture Company
-42;-1;Wildtier - Raptor;Beast - Raptor
-43;-1;Basilisk;Basilisk
-44;-1;Drachenschwarm, Grün;Dragonflight, Green
-45;-1;Verirrte;Lost Ones
-46;29; Schmiedekunst - Rüstungsschmiedekunst; Blacksmithing - Armorsmithing
-47;20;Eisenschmiede;Ironforge
-48;-1;Dunkeleisenzwerge;Dark Iron Dwarves
-49;-1;Mensch, Nachtwache;Human, Night Watch
-50;-1;Drachenschwarm, Rot;Dragonflight, Red
-51;-1;Gnoll - Moosfelle;Gnoll - Mosshide
-52;-1;Orc, Teufelsdrachenmalklan;Orc, Fel Dragonmaw
-53;-1;Gnom - Lepra;Gnome - Leper
-54;18;Gnomeregan;Gnomeregan
-55;-1;Leopard;Leopard
-56;-1;Scharlachroter Kreuzzug;Scarlet Crusade
-57;-1;Gnoll - Moderfelle;Gnoll - Rothide
-58;-1;Wildtier - Gorilla;Beast - Gorilla
-59;4;Thoriumbruderschaft;Thorium Brotherhood
-60;-1;Naga;Naga
-61;-1;Dalaran;Dalaran
-62;-1;Unglückseliger Geist;Forlorn Spirit
-63;-1;Darkhowl;Darkhowl
-64;-1;Grell;Grell
-65;-1;Furbolg;Furbolg
-66;-1;Horde, Standard;Horde Generic
-67;12;Horde;Horde
-68;17;Unterstadt;Undercity
-69;21;Darnassus;Darnassus
-70;6;Syndikat;Syndicate
-71;-1;Hügellandmiliz;Hillsbrad Militia
-72;19;Sturmwind;Stormwind
-73;-1;Dämon;Demon
-74;-1;Elementar;Elemental
-75;-1;Geist;Spirit
-76;14;Orgrimmar;Orgrimmar
-77;-1;Schatz;Treasure
-78;-1;Gnoll - Morastschnauzen;Gnoll - Mudsnout
-79;-1;Hügelland, Bürgermeister von Süderstade;HIllsbrad, Southshore Mayor
-80;-1;Drachenschwarm, Schwarz;Dragonflight, Black
-81;16;Donnerfels;Thunder Bluff
-82;-1;Troll, Bleichborken;Troll, Witherbark
-83;23; Lederverarbeitung - Elementar; Leatherworking - Elemental
-84;-1;Stacheleber, Klingenmähnen;Quilboar, Razormane
-85;-1;Stacheleber, Borstennacken;Quilboar, Bristleback
-86;22; Lederverarbeitung - Drachen; Leatherworking - Dragonscale
-87;0;Blutsegelbukaniere;Bloodsail Buccaneers
-88;-1;Tiefschwarze Grotte;Blackfathom
-89;-1;Makrura;Makrura
-90;-1;Zentaur, Kolkar;Centaur, Kolkar
-91;-1;Zentaur, Galak;Centaur, Galak
-92;2;Gelkisklan;Gelkis Clan Centaur
-93;3;Magramklan;Magram Clan Centaur
-94;-1;Maraudine;Maraudine
-108;-1;Theramore;Theramore
-109;-1;Stacheleber, Klingenhauer;Quilboar, Razorfen
-110;-1;Stacheleber, Klingenmähnen 2;Quilboar, Razormane 2
-111;-1;Stacheleber, Totenkopf;Quilboar, Deathshead
-128;-1;Feind;Enemy
-148;-1;Umgebung;Ambient
-168;-1;Karawane von Nethergarde;Nethergarde Caravan
-169;10;Dampfdruckkartell;Steamwheedle Cartel
-189;-1;Allianz Allgemein;Alliance Generic
-209;-1;Nethergarde;Nethergarde
-229;-1;Die Höhlen des Wehklagens;Wailing Caverns
-249;-1;Sillithid;Silithid
-269;-1;Überlebende aus Silbermond;Silvermoon Remnant
-270;51;Stamm der Zandalari;Zandalar Tribe
-289;30; Schmiedekunst - Waffenschmiedekunst; Blacksmithing - Weaponsmithing
-309;-1;Skorpid;Scorpid
-310;-1;Wildtier - Fledermaus;Beast - Bat
-311;-1;Titanisch;Titan
-329;-1;Zuchtmeister Fitzel;Taskmaster Fizzule
-349;5;Rabenholdt;Ravenholdt
-369;7;Gadgetzan;Gadgetzan
-389;-1;Gnomeregan-Bug;Gnomeregan Bug
-409;-1;Harpyie;Harpy
-429;-1;Brennende Klinge;Burning Blade
-449;-1;Schattenseidewilderer;Shadowsilk Poacher
-450;-1;Sengende Spinne;Searing Spider
-469;11;Allianz;Alliance
-470;9;Ratschet;Ratchet
-471;8;Wildhammerklan;DEPRECATED Wildhammer Clan, DEPRECATED
-489;-1;Goblin, Dunkeleisen (Bargast);Goblin, Dark Iron Bar Patron
-509;53;Der Bund von Arathor;The League of Arathor
-510;52;Die Entweihten;The Defilers
-511;-1;Riese;Giant
-529;13;Argentumdämmerung;Argent Dawn
-530;15;Dunkelspeertrolle;Darkspear Trolls
-531;-1;Drachenschwarm, Bronze;Dragonflight, Bronze
-532;-1;Drachenschwarm, Blau;Dragonflight, Blue
-549;24; Lederverarbeitung - Stamm; Leatherworking - Tribal
-550;26; Ingenieurskunst - Goblin; Engineering - Goblin
-551;25; Ingenieurskunst - Gnom; Engineering - Gnome
-569;33; Schmiedekunst - Hammerschmiedekunst; Blacksmithing - Hammersmithing
-570;31; Schmiedekunst - Axtschmiedekunst; Blacksmithing - Axesmithing
-571;32; Schmiedekunst - Schwertschmiedekunst; Blacksmithing - Swordsmithing
-572;-1;Troll, Blutfratzen;Troll, Vilebranch
-573;-1;Südmeerfreibeuter;Southsea Freebooters
-574;34;Darrowehr;Caer Darrow
-575;-1;Furbolg, nicht verderbt;Furbolg, Uncorrupted
-576;35;Holzschlundfeste;Timbermaw Hold
-577;28;Ewige Warte;Everlook
-589;27;Wintersäblerausbilder;Wintersaber Trainers
-609;36;Zirkel des Cenarius;Cenarion Circle
-629;-1;Splitterspeertrolle;Shatterspear Trolls
-630;-1;Ravasaurusausbilder;Ravasaur Trainers
-649;-1;Majordomus Exekutus;Majordomo Executus
-669;-1;Wildtier - Aasvogel;Beast - Carrion Bird
-670;-1;Wildtier - Katze;Beast - Cat
-671;-1;Wildtier - Krebs;Beast - Crab
-672;-1;Wildtier - Krokilisk;Beast - Crocilisk
-673;-1;Wildtier - Hyäne;Beast - Hyena
-674;-1;Wildtier - Eule;Beast - Owl
-675;-1;Wildtier - Skorpid;Beast - Scorpid
-676;-1;Wildtier - Weitschreiter;Beast - Tallstrider
-677;-1;Wildtier - Schildkröte;Beast - Turtle
-678;-1;Wildtier - Windnatter;Beast - Wind Serpent
-679;-1;Trainingsattrappe;Training Dummy
-689;-1;Drachenschwarm, schwarz - Köder;Dragonflight, Black - Bait
-709;-1;Schlachtfeld, neutral;Battleground Neutral
-729;41;Frostwolfklan;Frostwolf Clan
-730;40;Sturmlanzengarde;Stormpike Guard
-749;42;Hydraxianer;Hydraxian Waterlords
-750;-1;Sulfuronfeuerlords;Sulfuron Firelords
-769;-1;Gizlocks Attrappe;Gizlock's Dummy
-770;-1;Gizlocks Glücksbringer;Gizlock's Charm
-771;-1;Gizlock;Gizlock
-789;-1;Moro'gai;Moro'gai
-790;-1;Geisterführer - Allianz;Spirit Guide - Alliance
-809;44;Shen'dralar;Shen'dralar
-829;-1;Oger (Hauptmann Krombruch);Ogre (Captain Kromcrush)
-849;-1;Geisterführer - Horde;Spirit Guide - Horde
-869;-1;Jaedenar;Jaedenar
-889;46;Kriegshymnenklan;Warsong Outriders
-890;45;Silberschwingen;Silverwing Sentinels
-891;47;Streitkräfte der Allianz;Alliance Forces
-892;48;Streitkräfte der Horde;Horde Forces
-893;-1;Bruchhauertrolle;Revantusk Trolls
-909;50;Dunkelmond-Jahrmarkt;Darkmoon Faire
-910;54;Brut Nozdormus;Brood of Nozdormu
-911;55;Silbermond;Silvermoon City
-912;-1;Macht von Kalimdor;Might of Kalimdor
-914;-1;SPIELER, Blutelf;PLAYER, Blood Elf
-915;-1;Armeen von C'Thun;Armies of C'Thun
-916;-1;Silithidenaggressoren;Silithid Attackers
-917;-1;Die Eisenschmiedebrigade;The Ironforge Brigade
-918;-1;Ferngesteuerte Gegner;RC Enemies
-919;-1;Ferngesteuerte Objekte;RC Objects
-920;-1;Rot;Red
-921;-1;Blau;Blue
-922;56;Tristessa;Tranquillien
-923;-1;Weltenwanderer;Farstriders
-924;-1;DEPRECATED;DEPRECATED
-925;-1;Sonnenwanderer;Sunstriders
-926;-1;Die Magistergilde;Magister's Guild
-927;-1;SPIELER, Draenei;PLAYER, Draenei
-928;-1;Geißelinvasoren;Scourge Invaders
-929;-1;Klan der Blutschläger;Bloodmaul Clan
-930;49;Die Exodar;Exodar
-931;-1;Test Faction (not a real faction);Test Faction (not a real faction)
-932;58;Die Aldor;The Aldor
-933;60;Das Konsortium;The Consortium
-934;62;Die Seher;The Scryers
-935;39;Die Sha'tar;The Sha'tar
-936;59;Shattrath;Shattrath City
-937;-1;Waldtrolle;Troll, Forest
-938;-1;Die Omenai;The Omenai
-939;-1;DEPRECATED;DEPRECATED
-940;-1;Die Söhne Lothars;The Sons of Lothar
-941;61;Die Mag'har;The Mag'har
-942;64;Expedition des Cenarius;Cenarion Expedition
-943;-1;Höllenorc;Fel Orc
-944;-1;Höllenorcgeist;Fel Orc Ghost
-945;-1;Geister der Söhne Lothars;Sons of Lothar Ghosts
-946;38;Ehrenfeste;Honor Hold
-947;37;Thrallmar;Thrallmar
-948;86;Test Faction 2;Test Faction 2
-949;85;Test Faction 1;Test Faction 1
-950;-1;ToWoW - Flag;ToWoW - Flag
-951;-1;ToWoW - Flag Trigger Alliance (DND);ToWoW - Flag Trigger Alliance (DND)
-952;87;Test Faction 3;Test Faction 3
-953;108;Test Faction 4;Test Faction 4
-954;-1;ToWoW - Flag Trigger Horde (DND);ToWoW - Flag Trigger Horde (DND)
-955;-1;Die Zerschlagenen;Broken
-956;-1;Astraleum;Ethereum
-957;-1;Erdelementare;Earth Elemental
-958;-1;Kampfroboter;Fighting Robots
-959;-1;Guter Darsteller;Actor Good
-960;-1;Böser Darsteller;Actor Evil
-961;-1;Furbolg der Tannenruhfeste;Stillpine Furbolg
-962;-1;Wahnsinniger Eulkin;Crazed Owlkin
-963;-1;Schach Allianz;Chess Alliance
-964;-1;Schach Horde;Chess Horde
-965;-1;Monster Spar;Monster Spar
-966;-1;Monster Spar Buddy;Monster Spar Buddy
-967;63;Das Violette Auge;The Violet Eye
-968;-1;Sonnenfalken;Sunhawks
-969;-1;Hand von Argus;Hand of Argus
-970;65;Sporeggar;Sporeggar
-971;-1;Fungusgigant;Fungal Giant
-972;-1;Sporensegler;Spore Bat
-973;-1;Monster, Raubtier;Monster, Predator
-974;-1;Monster, Beute;Monster, Prey
-975;-1;Anomalie der Leere;Void Anomaly
-976;-1;Verteidiger des Hyjal;Hyjal Defenders
-977;-1;Invasoren des Hyjal;Hyjal Invaders
-978;66;Kurenai;Kurenai
-979;-1;Der Irdene Ring, Alte Welt;Earthen Ring, Old World
-980;43;The Burning Crusade;The Burning Crusade
-981;-1;Arakkoa;Arakkoa
-982;-1;Banner der Zangarmarschen (Allianz);Zangarmarsh Banner (Alliance)
-983;-1;Banner der Zangarmarschen (Horde);Zangarmarsh Banner (Horde)
-984;-1;Banner der Zangarmarschen (Neutral);Zangarmarsh Banner (Neutral)
-985;-1;Höhlen der Zeit - Thrall;Caverns of Time - Thrall
-986;-1;Höhlen der Zeit - Durnholde;Caverns of Time - Durnholde
-987;-1;Höhlen der Zeit - Wachen von Süderstade;Caverns of Time - Southshore Guards
-988;-1;Agent des Schattenrats;Shadow Council Covert
-989;67;Hüter der Zeit;Keepers of Time
-990;57;Die Wächter der Sande;The Scale of the Sands
-991;-1;Verteidiger des Dunklen Portals, Allianz;Dark Portal Defender, Alliance
-992;-1;Verteidiger des Dunklen Portals, Horde;Dark Portal Defender, Horde
-993;-1;Angreifer des Dunklen Portals, Legion;Dark Portal Attacker, Legion
-994;-1;Hetzerauslöser;Inciter Trigger
-995;-1;Animationsauslöser 2;Inciter Trigger 2
-996;-1;Animationsauslöser 3;Inciter Trigger 3
-997;-1;Animationsauslöser 4;Inciter Trigger 4
-998;-1;Animationsauslöser 5;Inciter Trigger 5
-999;-1;Manakreatur;Mana Creature
-1000;-1;Khadgars Diener;Khadgar's Servant
-1001;-1;Klan der Speerspießer;Bladespire Clan
-1002;-1;Sparringspartner des Astraleums;Ethereum Sparbuddy
-1003;-1;Protektorat;Protectorate
-1004;-1;Arkanvernichter (DNR);Arcane Annihilator (DNR)
-1005;68;Befreundet, versteckt;Friendly, Hidden
-1006;-1;Kirin'Var - Dathric;Kirin'Var - Dathric
-1007;-1;Kirin'Var - Belmara;Kirin'Var - Belmara
-1008;-1;Kirin'Var - Luminrath;Kirin'Var - Luminrath
-1009;-1;Kirin'Var - Cohlien;Kirin'Var - Cohlien
-1010;-1;Illidans Diener;Servant of Illidan
-1011;69;Unteres Viertel;Lower City
-1012;70;Die Todeshörigen;Ashtongue Deathsworn
-1013;-1;Geister von Schattenmond 1;Spirits of Shadowmoon 1
-1014;-1;Geister von Schattenmond 2;Spirits of Shadowmoon 2
-1015;71;Netherschwingen;Netherwing
-1016;-1;Wyrmkult;Wyrmcult
-1017;-1;Treant;Treant
-1018;-1;Leotherasdämon I;Leotheras Demon I
-1019;-1;Leotherasdämon II;Leotheras Demon II
-1020;-1;Leotherasdämon III;Leotheras Demon III
-1021;-1;Leotherasdämon IV;Leotheras Demon IV
-1022;-1;Leotherasdämon V;Leotheras Demon V
-1023;-1;Azaloth;Azaloth
-1024;-1;Felsklaue;Rock Flayer
-1025;-1;Klauenjäger;Flayer Hunter
-1026;-1;Schattenmondschemen;Shadowmoon Shade
-1027;-1;Legionskommunikator;Legion Communicator
-1028;-1;Uralte des Rabenwalds;Ravenswood Ancients
-1029;-1;Schach - Freundlich zu allen Schach;Chess, Friendly to All Chess
-1030;-1;Tore des Schwarzen Tempels - Illidari;Black Temple Gates - Illidari
-1031;72;Himmelswache der Sha'tari;Sha'tari Skyguard
-1032;-1;Area 52;Area 52
-1033;-1;Maiev;Maiev
-1034;-1;Schattenhafter Arakkoa von Skettis;Skettis Shadowy Arakkoa
-1035;-1;Arakkoa von Skettis;Skettis Arakkoa
-1036;-1;Drachenmalgegner;Dragonmaw Enemy
-1037;88;Vorposten der Allianz;Alliance Vanguard
-1038;73;Ogri'la;Ogri'la
-1039;-1;Felshetzer;Ravager
-1040;-1;REUSE;REUSE
-1041;-1;Frenzy;Frenzy
-1042;-1;Feinde der Himmelswache;Skyguard Enemy
-1043;-1;Stinktier, violett;Skunk, Petunia
-1044;-1;Deserteur von Theramore;Theramore Deserter
-1045;-1;Vrykul;Vrykul
-1046;-1;Piraten des Nordmeeres;Northsea Pirates
-1047;-1;Tuskarr;Tuskarr
-1048;-1;UNUSED;UNUSED
-1049;-1;Troll, Amani;Troll, Amani
-1050;74;Expedition Valianz;Valiance Expedition
-1051;-1;UNUSED;UNUSED
-1052;75;Expedition der Horde;Horde Expedition
-1053;-1;Westwacht;Westguard
-1054;-1;Gefleckter Greif;Spotted Gryphon
-1055;-1;Gezähmter Seuchenhund;Tamed Plaguehound
-1056;-1;Vrykul (Uralter Geist 1);Vrykul (Ancient Spirit 1)
-1057;-1;Vrykul (Uralter Geist 2);Vrykul (Ancient Siprit 2)
-1058;-1;Vrykul (Uralter Geist 3);Vrykul (Ancient Siprit 3)
-1059;-1;CTF - Flagge - Allianz;CTF - Flag - Alliance
-1060;-1;Test;Test
-1061;-1;Vrykul;vrykul
-1062;-1;Gladiator der Vrykul;Vrykul Gladiator
-1063;-1;Kämpfer von Valgarde;Valgarde Combatant
-1064;76;Die Taunka;The Taunka
-1065;-1;Monster, Zone Force Reaction 1;Monster, Zone Force Reaction 1
-1066;-1;Monster, Zone Force Reaction 2;Monster, Zone Force Reaction 2
-1067;77;Die Hand der Rache;The Hand of Vengeance
-1068;78;Forscherliga;Explorers' League
-1069;-1;Widderrennen, Powerup;Ram Racing Powerup DND
-1070;-1;Widderrennen, Falle;Ram Racing Trap DND
-1071;-1;Craigs Eichhörnchen;Craig's Squirrels
-1072;-1;REUSE;REUSE
-1073;79;Die Kalu'ak;The Kalu'ak
-1074;-1;Festtag - Wasserfass;Holiday - Water Barrel
-1075;-1;Festtag - Allgemein;Holiday - Generic
-1076;-1;Eisenzwerge;Iron Dwarves
-1077;80;Offensive der Zerschmetterten Sonne;Shattered Sun Offensive
-1078;-1;Kampfhaustier;Fighting Vanity Pet
-1079;-1;Murloc, Winterflossen;Murloc, Winterfin
-1080;-1;Friendly, Force Reaction 1;Friendly, Force Reaction 1
-1081;-1;Object, Force Reaction;Object, Force Reaction
-1082;82;REUSE;REUSE
-1083;-1;REUSE;REUSE
-1084;-1;Vrykul, Meer;Vrykul, Sea
-1085;81;Kriegshymnenoffensive;Warsong Offensive
-1086;-1;Wilderer;Poacher
-1087;-1;Feiertagsmonster;Holiday Monster
-1088;-1;Furbolg, Rotfänge;Furbolg, Redfang
-1089;-1;Furbolg, Frostpfoten;Furbolg, Frostpaw
-1090;84;Kirin Tor;Kirin Tor
-1091;83;Der Wyrmruhpakt;The Wyrmrest Accord
-1092;-1;Azjol-Nerub;Azjol-Nerub
-1093;-1;REUSE;REUSE
-1094;90;Der Silberbund;The Silver Covenant
-1095;-1;Trapper der Grizzlyhügel;Grizzly Hills Trapper
-1096;-1;REUSE;REUSE
-1097;89;Wrath of the Lich King;Wrath of the Lich King
-1098;91;Ritter der Schwarzen Klinge;Knights of the Ebon Blade
-1099;-1;Geißel an der Pforte des Zorns;Wrathgate Scourge
-1100;-1;Allianz an der Pforte des Zorns;Wrathgate Alliance
-1101;-1;Horde an der Pforte des Zorns;Wrathgate Horde
-1102;-1;CTF - Flagge - Horde;CTF - Flag - Horde
-1103;-1;CTF - Flagge - Neutral;CTF - Flag - Neutral
-1104;92;Stamm der Wildherzen;Frenzyheart Tribe
-1105;93;Die Orakel;The Oracles
-1106;94;Argentumkreuzzug;Argent Crusade
-1107;-1;Troll, Drakkari;Troll, Drakkari
-1108;-1;HdZ Arthas;CoT Arthas
-1109;-1;HdZ Bürger von Stratholme;CoT Stratholme Citizen
-1110;-1;HdZ Geißel;CoT Scourge
-1111;-1;Freya;Freya
-1112;-1;Reittier - Taxi - Allianz;Mount - Taxi - Alliance
-1113;-1;Reittier - Taxi - Horde;Mount - Taxi - Horde
-1114;-1;Reittier - Taxi - Neutral;Mount - Taxi - Neutral
-1115;-1;Elementar, Wasser;Elemental, Water
-1116;-1;Elementar, Luft;Elemental, Air
-1117;95;Sholazarbecken;Sholazar Basin
-1118;96;Classic;Classic
-1119;97;Die Söhne Hodirs;The Sons of Hodir
-1120;-1;Eisenriesen;Iron Giants
-1121;-1;Frostvrykul;Frost Vrykul
-1122;-1;Die Irdenen;Earthen
-1123;-1;Monsterkundiger;Monster Referee
-1124;98;Die Sonnenhäscher;The Sunreavers
-1125;-1;Hildarthing;Hyldsmeet
-1126;99;Die Frosterben;The Frostborn
-1127;-1;Orgrimmar (Alex Test);Orgrimmar (Alex Test)
-1128;-1;Schattenhammer;Twilight's Hammer
-1129;-1;Furbolg, Dunkelküste;Furbolg, Blackwood
-1130;-1;Hirsch, Dunkelküste;Stag, Darkshore
-1131;-1;Bär, Dunkelküste;Bear, Darkshore
-1132;-1;Mondpirscher, Dunkelküste;Moonstalker, Darkshore
-1133;105;Bilgewasserkartell;Bilgewater Cartel
-1134;106;Gilneas;Gilneas
-1135;110;Der Irdene Ring;The Earthen Ring
-1136;100;Tristessakonversion;Tranquillien Conversion
-1137;101;Wintersäblerkonversion;Wintersaber Conversion
-1138;109;Kataklysmus - neuer neutraler Ruf;Cataclysm - New Neutral Reputation
-1142;-1;Überlebende der Magram;Magram Remnant
-1143;-1;Söhne von Gelkis;Sons of Gelkis
-1144;-1;REUSE;REUSE
-1145;-1;Hasst alles;Hates Everything
-1152;-1;SPIELER, Goblin;PLAYER, Goblin
-1153;-1;SPIELER, Worgen;PLAYER, Worgen
-1154;102;Umwandlung zum Silberbund;Silver Covenant Conversion
-1155;103;Umwandlung zu den Sonnenhäschern;Sunreavers Conversion
-1156;104;Das Äscherne Verdikt;The Ashen Verdict
-1157;-1;Die Pygmäen;Pygmy
-1158;113;Wächter des Hyjal;Guardians of Hyjal
-1159;-1;CTF - Flagge - Allianz 2;CTF - Flag - Alliance 2
-1160;-1;CTF - Flagge - Horde 2;CTF - Flag - Horde 2
-1161;-1;Grimmtotem;Grimtotem
-1162;111;Cataclysm;Cataclysm
-1163;112;Neue Testfraktion für Alex;New test rep for Alex
-1168;114;Gilde;Guild
-1169;115;Gilde;Guild
-1171;116;Therazane;Therazane
-1172;117;Drachenmalklan;Dragonmaw Clan
-1173;118;Ramkahen;Ramkahen
-1174;119;Wildhammerklan;Wildhammer Clan
-1177;122;Wächter von Baradin;Baradin's Wardens
-1178;123;Höllschreis Hand;Hellscream's Reach
-1179;-1;Schleim;Slime
-1181;-1;Befreundet, neu;Friendly, New
-1189;-1;K3;K3
-1204;127;Rächer des Hyjal;Avengers of Hyjal
-1216;131;Akademie des Shang Xi;Shang Xi's Academy
-1228;144;Wald-Ho-zen;Forest Hozen
-1233;-1;CoT Well of Eternity - Illidan;CoT Well of Eternity - Illidan
-1234;-1;CoT Well of Eternity - High Elves;CoT Well of Eternity - High Elves
-1235;-1;CoT Well of Eternity - Illidan (Stealth);CoT Well of Eternity - Illidan (Stealth)
-1237;-1;CoT Well of Eternity - Demons;CoT Well of Eternity - Demons
-1240;-1;CoT Well of Eternity - Demon Balls;CoT Well of Eternity - Demon Balls
-1241;-1;CoT Well of Eternity - Hunter Stalkers;CoT Well of Eternity - Hunter Stalkers
-1242;143;Jinyu der Perlflossen;Pearlfin Jinyu
-1243;-1;Ho-zen;Hozen
-1245;145;Mists of Pandaria;Mists of Pandaria
-1249;-1;PLAYER, Expansion 4 Neutral;PLAYER, Expansion 4 Neutral
-1252;-1;Sha;Sha
-1253;-1;Wächter des Osttempels;Guardians of the East Temple
-1265;-1;Shen'dralar;Shen'dralar
-1268;-1;Mogu;Mogu
-1269;167;Goldener Lotus;Golden Lotus
-1270;182;Shado-Pan;Shado-Pan
-1271;154;Orden der Wolkenschlange;Order of the Cloud Serpent
-1272;171;Die Ackerbauern;The Tillers
-1273;156;Jogu der Betrunkene;Jogu the Drunk
-1275;158;Ella;Ella
-1276;159;Der alte Hügelpranke;Old Hillpaw
-1277;160;Chi-Chi;Chee Chee
-1278;161;Sho;Sho
-1279;162;Haohan Lehmkrall;Haohan Mudclaw
-1280;163;Tina Lehmkrall;Tina Mudclaw
-1281;164;Gina Lehmkrall;Gina Mudclaw
-1282;165;Fischi Rohrroder;Fish Fellreed
-1283;166;Bauer Fung;Farmer Fung
-1286;-1;Wächter des Roten Kranichs;Guardians of the Red Crane
-1302;172;Die Angler;The Anglers
-1336;-1;Der Mantis-Schwarm;The Mantid Swarm
-1337;181;Die Klaxxi;The Klaxxi
-1338;-1;Gurthan-Mogu;Gurthan Mogu
-1339;-1;Harthak-Mogu;Harthak Mogu
-1340;-1;Korgesh-Mogu;Korgesh Mogu
-1341;183;Die Himmlischen Erhabenen;The August Celestials
-1345;184;Die Lehrensucher;The Lorewalkers
-1351;186;Die Braumeister;The Brewmasters
-1352;187;Die Huojin;Huojin Pandaren
-1353;188;Die Tushui;Tushui Pandaren
-1357;191;Nomi;Nomi
-1358;192;Nat Pagle;Nat Pagle
-1359;193;Der Schwarze Prinz;The Black Prince
-1364;-1;Friendly, Force Reaction 2;Friendly, Force Reaction 2
-1366;-1;Friendly, Force Reaction 3;Friendly, Force Reaction 3
-1367;-1;Friendly, Force Reaction 4;Friendly, Force Reaction 4
-1368;-1;Friendly, Force Reaction 5;Friendly, Force Reaction 5
-1369;-1;Friendly, Force Reaction 6;Friendly, Force Reaction 6
-1370;-1;Friendly, Force Reaction 7;Friendly, Force Reaction 7
-1371;-1;Pel'zin;Paw'don Village
-1372;-1;Honigtau;Honeydew Village
-1374;197;Shlae'gararena;Brawl'gar Arena
-1375;198;Herrschaftsoffensive;Dominance Offensive
-1376;199;Operation Schildwall;Operation: Shieldwall
-1387;207;Offensive der Kirin Tor;Kirin Tor Offensive
-1388;208;Sonnenhäscheransturm;Sunreaver Onslaught
-1416;221;Akamas Vertrauen;Akama's Trust
-1419;220;Bizmos Boxbar;Bizmo's Brawlpub
-1433;227;Monster, Neutralität erzwungen für Zwangsreaktion;Monster, Enforced Neutral For Force Reaction
-1435;228;Shado-Pan-Vorstoß;Shado-Pan Assault
-1440;229;Rebellion der Dunkelspeere;Darkspear Rebellion
-1443;-1;Kor'kron;Kor'kron
-1447;-1;Dunkelspeertrolle;Darkspear Trolls
-1457;-1;Klingen der Ewigkeit;Blades of Eternity
-1491;-1;Die Zeitenwanderer;The Timewalkers
-1492;241;Kaiser Shaohao;Emperor Shaohao
-1500;-1;Rotes Phantom;Red Phantom
+﻿FactionId£Index£NameDE£NameEN
+1£-1£SPIELER, Mensch£PLAYER, Human
+2£-1£SPIELER, Orc£PLAYER, Orc
+3£-1£SPIELER, Zwerg£PLAYER, Dwarf
+4£-1£SPIELER, Nachtelf£PLAYER, Night Elf
+5£-1£SPIELER, Untoter£PLAYER, Undead
+6£-1£SPIELER, Tauren£PLAYER, Tauren 
+7£-1£Kreatur£Creature
+8£-1£SPIELER, Gnom£PLAYER, Gnome
+9£-1£SPIELER, Troll£PLAYER, Troll
+14£-1£Monster£Monster
+15£-1£Bruderschaft der Defias£Defias Brotherhood
+16£-1£Gnoll - Flusspfoten£Gnoll - Riverpaw
+17£-1£Gnoll - Rotkammgebirge£Gnoll - Redridge
+18£-1£Gnoll - Schattenfelle£Gnoll - Shadowhide
+19£-1£Murloc£Murloc
+20£-1£Untoter, Geißel£Undead, Scourge
+21£1£Beutebucht£Booty Bay
+22£-1£Wildtier - Spinne£Beast - Spider
+23£-1£Wildtier - Eber£Beast - Boar
+24£-1£Worgen£Worgen
+25£-1£Kobold£Kobold
+26£-1£Troll, Blutskalpe£Troll, Bloodscalp
+27£-1£Troll, Schädelspalter£Troll, Skullsplitter
+28£-1£Beute£Prey
+29£-1£Wildtier - Wolf£Beast - Wolf
+30£-1£Verräter der Bruderschaft der Defias£Defias Brotherhood Traitor
+31£-1£Befreundet£Friendly
+32£-1£Trogg£Trogg
+33£-1£Troll, Frostmähnen£Troll, Frostmane
+34£-1£Orc, Schwarzfels£Orc, Blackrock
+35£-1£Bösewicht£Villian
+36£-1£Opfer£Victim
+37£-1£Wildtier - Bär£Beast - Bear
+38£-1£Oger£Ogre
+39£-1£Kurzens Söldner£Kurzen's Mercenaries
+40£-1£Eskortierter£Escortee
+41£-1£Venture Company£Venture Company
+42£-1£Wildtier - Raptor£Beast - Raptor
+43£-1£Basilisk£Basilisk
+44£-1£Drachenschwarm, Grün£Dragonflight, Green
+45£-1£Verirrte£Lost Ones
+46£29£ Schmiedekunst - Rüstungsschmiedekunst£ Blacksmithing - Armorsmithing
+47£20£Eisenschmiede£Ironforge
+48£-1£Dunkeleisenzwerge£Dark Iron Dwarves
+49£-1£Mensch, Nachtwache£Human, Night Watch
+50£-1£Drachenschwarm, Rot£Dragonflight, Red
+51£-1£Gnoll - Moosfelle£Gnoll - Mosshide
+52£-1£Orc, Teufelsdrachenmalklan£Orc, Fel Dragonmaw
+53£-1£Gnom - Lepra£Gnome - Leper
+54£18£Gnomeregan£Gnomeregan
+55£-1£Leopard£Leopard
+56£-1£Scharlachroter Kreuzzug£Scarlet Crusade
+57£-1£Gnoll - Moderfelle£Gnoll - Rothide
+58£-1£Wildtier - Gorilla£Beast - Gorilla
+59£4£Thoriumbruderschaft£Thorium Brotherhood
+60£-1£Naga£Naga
+61£-1£Dalaran£Dalaran
+62£-1£Unglückseliger Geist£Forlorn Spirit
+63£-1£Darkhowl£Darkhowl
+64£-1£Grell£Grell
+65£-1£Furbolg£Furbolg
+66£-1£Horde, Standard£Horde Generic
+67£12£Horde£Horde
+68£17£Unterstadt£Undercity
+69£21£Darnassus£Darnassus
+70£6£Syndikat£Syndicate
+71£-1£Hügellandmiliz£Hillsbrad Militia
+72£19£Sturmwind£Stormwind
+73£-1£Dämon£Demon
+74£-1£Elementar£Elemental
+75£-1£Geist£Spirit
+76£14£Orgrimmar£Orgrimmar
+77£-1£Schatz£Treasure
+78£-1£Gnoll - Morastschnauzen£Gnoll - Mudsnout
+79£-1£Hügelland, Bürgermeister von Süderstade£HIllsbrad, Southshore Mayor
+80£-1£Drachenschwarm, Schwarz£Dragonflight, Black
+81£16£Donnerfels£Thunder Bluff
+82£-1£Troll, Bleichborken£Troll, Witherbark
+83£23£ Lederverarbeitung - Elementar£ Leatherworking - Elemental
+84£-1£Stacheleber, Klingenmähnen£Quilboar, Razormane
+85£-1£Stacheleber, Borstennacken£Quilboar, Bristleback
+86£22£ Lederverarbeitung - Drachen£ Leatherworking - Dragonscale
+87£0£Blutsegelbukaniere£Bloodsail Buccaneers
+88£-1£Tiefschwarze Grotte£Blackfathom
+89£-1£Makrura£Makrura
+90£-1£Zentaur, Kolkar£Centaur, Kolkar
+91£-1£Zentaur, Galak£Centaur, Galak
+92£2£Gelkisklan£Gelkis Clan Centaur
+93£3£Magramklan£Magram Clan Centaur
+94£-1£Maraudine£Maraudine
+108£-1£Theramore£Theramore
+109£-1£Stacheleber, Klingenhauer£Quilboar, Razorfen
+110£-1£Stacheleber, Klingenmähnen 2£Quilboar, Razormane 2
+111£-1£Stacheleber, Totenkopf£Quilboar, Deathshead
+128£-1£Feind£Enemy
+148£-1£Umgebung£Ambient
+168£-1£Karawane von Nethergarde£Nethergarde Caravan
+169£10£Dampfdruckkartell£Steamwheedle Cartel
+189£-1£Allianz Allgemein£Alliance Generic
+209£-1£Nethergarde£Nethergarde
+229£-1£Die Höhlen des Wehklagens£Wailing Caverns
+249£-1£Sillithid£Silithid
+269£-1£Überlebende aus Silbermond£Silvermoon Remnant
+270£51£Stamm der Zandalari£Zandalar Tribe
+289£30£ Schmiedekunst - Waffenschmiedekunst£ Blacksmithing - Weaponsmithing
+309£-1£Skorpid£Scorpid
+310£-1£Wildtier - Fledermaus£Beast - Bat
+311£-1£Titanisch£Titan
+329£-1£Zuchtmeister Fitzel£Taskmaster Fizzule
+349£5£Rabenholdt£Ravenholdt
+369£7£Gadgetzan£Gadgetzan
+389£-1£Gnomeregan-Bug£Gnomeregan Bug
+409£-1£Harpyie£Harpy
+429£-1£Brennende Klinge£Burning Blade
+449£-1£Schattenseidewilderer£Shadowsilk Poacher
+450£-1£Sengende Spinne£Searing Spider
+469£11£Allianz£Alliance
+470£9£Ratschet£Ratchet
+471£8£Wildhammerklan£DEPRECATED Wildhammer Clan, DEPRECATED
+489£-1£Goblin, Dunkeleisen (Bargast)£Goblin, Dark Iron Bar Patron
+509£53£Der Bund von Arathor£The League of Arathor
+510£52£Die Entweihten£The Defilers
+511£-1£Riese£Giant
+529£13£Argentumdämmerung£Argent Dawn
+530£15£Dunkelspeertrolle£Darkspear Trolls
+531£-1£Drachenschwarm, Bronze£Dragonflight, Bronze
+532£-1£Drachenschwarm, Blau£Dragonflight, Blue
+549£24£ Lederverarbeitung - Stamm£ Leatherworking - Tribal
+550£26£ Ingenieurskunst - Goblin£ Engineering - Goblin
+551£25£ Ingenieurskunst - Gnom£ Engineering - Gnome
+569£33£ Schmiedekunst - Hammerschmiedekunst£ Blacksmithing - Hammersmithing
+570£31£ Schmiedekunst - Axtschmiedekunst£ Blacksmithing - Axesmithing
+571£32£ Schmiedekunst - Schwertschmiedekunst£ Blacksmithing - Swordsmithing
+572£-1£Troll, Blutfratzen£Troll, Vilebranch
+573£-1£Südmeerfreibeuter£Southsea Freebooters
+574£34£Darrowehr£Caer Darrow
+575£-1£Furbolg, nicht verderbt£Furbolg, Uncorrupted
+576£35£Holzschlundfeste£Timbermaw Hold
+577£28£Ewige Warte£Everlook
+589£27£Wintersäblerausbilder£Wintersaber Trainers
+609£36£Zirkel des Cenarius£Cenarion Circle
+629£-1£Splitterspeertrolle£Shatterspear Trolls
+630£-1£Ravasaurusausbilder£Ravasaur Trainers
+649£-1£Majordomus Exekutus£Majordomo Executus
+669£-1£Wildtier - Aasvogel£Beast - Carrion Bird
+670£-1£Wildtier - Katze£Beast - Cat
+671£-1£Wildtier - Krebs£Beast - Crab
+672£-1£Wildtier - Krokilisk£Beast - Crocilisk
+673£-1£Wildtier - Hyäne£Beast - Hyena
+674£-1£Wildtier - Eule£Beast - Owl
+675£-1£Wildtier - Skorpid£Beast - Scorpid
+676£-1£Wildtier - Weitschreiter£Beast - Tallstrider
+677£-1£Wildtier - Schildkröte£Beast - Turtle
+678£-1£Wildtier - Windnatter£Beast - Wind Serpent
+679£-1£Trainingsattrappe£Training Dummy
+689£-1£Drachenschwarm, schwarz - Köder£Dragonflight, Black - Bait
+709£-1£Schlachtfeld, neutral£Battleground Neutral
+729£41£Frostwolfklan£Frostwolf Clan
+730£40£Sturmlanzengarde£Stormpike Guard
+749£42£Hydraxianer£Hydraxian Waterlords
+750£-1£Sulfuronfeuerlords£Sulfuron Firelords
+769£-1£Gizlocks Attrappe£Gizlock's Dummy
+770£-1£Gizlocks Glücksbringer£Gizlock's Charm
+771£-1£Gizlock£Gizlock
+789£-1£Moro'gai£Moro'gai
+790£-1£Geisterführer - Allianz£Spirit Guide - Alliance
+809£44£Shen'dralar£Shen'dralar
+829£-1£Oger (Hauptmann Krombruch)£Ogre (Captain Kromcrush)
+849£-1£Geisterführer - Horde£Spirit Guide - Horde
+869£-1£Jaedenar£Jaedenar
+889£46£Kriegshymnenklan£Warsong Outriders
+890£45£Silberschwingen£Silverwing Sentinels
+891£47£Streitkräfte der Allianz£Alliance Forces
+892£48£Streitkräfte der Horde£Horde Forces
+893£-1£Bruchhauertrolle£Revantusk Trolls
+909£50£Dunkelmond-Jahrmarkt£Darkmoon Faire
+910£54£Brut Nozdormus£Brood of Nozdormu
+911£55£Silbermond£Silvermoon City
+912£-1£Macht von Kalimdor£Might of Kalimdor
+914£-1£SPIELER, Blutelf£PLAYER, Blood Elf
+915£-1£Armeen von C'Thun£Armies of C'Thun
+916£-1£Silithidenaggressoren£Silithid Attackers
+917£-1£Die Eisenschmiedebrigade£The Ironforge Brigade
+918£-1£Ferngesteuerte Gegner£RC Enemies
+919£-1£Ferngesteuerte Objekte£RC Objects
+920£-1£Rot£Red
+921£-1£Blau£Blue
+922£56£Tristessa£Tranquillien
+923£-1£Weltenwanderer£Farstriders
+924£-1£DEPRECATED£DEPRECATED
+925£-1£Sonnenwanderer£Sunstriders
+926£-1£Die Magistergilde£Magister's Guild
+927£-1£SPIELER, Draenei£PLAYER, Draenei
+928£-1£Geißelinvasoren£Scourge Invaders
+929£-1£Klan der Blutschläger£Bloodmaul Clan
+930£49£Die Exodar£Exodar
+931£-1£Test Faction (not a real faction)£Test Faction (not a real faction)
+932£58£Die Aldor£The Aldor
+933£60£Das Konsortium£The Consortium
+934£62£Die Seher£The Scryers
+935£39£Die Sha'tar£The Sha'tar
+936£59£Shattrath£Shattrath City
+937£-1£Waldtrolle£Troll, Forest
+938£-1£Die Omenai£The Omenai
+939£-1£DEPRECATED£DEPRECATED
+940£-1£Die Söhne Lothars£The Sons of Lothar
+941£61£Die Mag'har£The Mag'har
+942£64£Expedition des Cenarius£Cenarion Expedition
+943£-1£Höllenorc£Fel Orc
+944£-1£Höllenorcgeist£Fel Orc Ghost
+945£-1£Geister der Söhne Lothars£Sons of Lothar Ghosts
+946£38£Ehrenfeste£Honor Hold
+947£37£Thrallmar£Thrallmar
+948£86£Test Faction 2£Test Faction 2
+949£85£Test Faction 1£Test Faction 1
+950£-1£ToWoW - Flag£ToWoW - Flag
+951£-1£ToWoW - Flag Trigger Alliance (DND)£ToWoW - Flag Trigger Alliance (DND)
+952£87£Test Faction 3£Test Faction 3
+953£108£Test Faction 4£Test Faction 4
+954£-1£ToWoW - Flag Trigger Horde (DND)£ToWoW - Flag Trigger Horde (DND)
+955£-1£Die Zerschlagenen£Broken
+956£-1£Astraleum£Ethereum
+957£-1£Erdelementare£Earth Elemental
+958£-1£Kampfroboter£Fighting Robots
+959£-1£Guter Darsteller£Actor Good
+960£-1£Böser Darsteller£Actor Evil
+961£-1£Furbolg der Tannenruhfeste£Stillpine Furbolg
+962£-1£Wahnsinniger Eulkin£Crazed Owlkin
+963£-1£Schach Allianz£Chess Alliance
+964£-1£Schach Horde£Chess Horde
+965£-1£Monster Spar£Monster Spar
+966£-1£Monster Spar Buddy£Monster Spar Buddy
+967£63£Das Violette Auge£The Violet Eye
+968£-1£Sonnenfalken£Sunhawks
+969£-1£Hand von Argus£Hand of Argus
+970£65£Sporeggar£Sporeggar
+971£-1£Fungusgigant£Fungal Giant
+972£-1£Sporensegler£Spore Bat
+973£-1£Monster, Raubtier£Monster, Predator
+974£-1£Monster, Beute£Monster, Prey
+975£-1£Anomalie der Leere£Void Anomaly
+976£-1£Verteidiger des Hyjal£Hyjal Defenders
+977£-1£Invasoren des Hyjal£Hyjal Invaders
+978£66£Kurenai£Kurenai
+979£-1£Der Irdene Ring, Alte Welt£Earthen Ring, Old World
+980£43£The Burning Crusade£The Burning Crusade
+981£-1£Arakkoa£Arakkoa
+982£-1£Banner der Zangarmarschen (Allianz)£Zangarmarsh Banner (Alliance)
+983£-1£Banner der Zangarmarschen (Horde)£Zangarmarsh Banner (Horde)
+984£-1£Banner der Zangarmarschen (Neutral)£Zangarmarsh Banner (Neutral)
+985£-1£Höhlen der Zeit - Thrall£Caverns of Time - Thrall
+986£-1£Höhlen der Zeit - Durnholde£Caverns of Time - Durnholde
+987£-1£Höhlen der Zeit - Wachen von Süderstade£Caverns of Time - Southshore Guards
+988£-1£Agent des Schattenrats£Shadow Council Covert
+989£67£Hüter der Zeit£Keepers of Time
+990£57£Die Wächter der Sande£The Scale of the Sands
+991£-1£Verteidiger des Dunklen Portals, Allianz£Dark Portal Defender, Alliance
+992£-1£Verteidiger des Dunklen Portals, Horde£Dark Portal Defender, Horde
+993£-1£Angreifer des Dunklen Portals, Legion£Dark Portal Attacker, Legion
+994£-1£Hetzerauslöser£Inciter Trigger
+995£-1£Animationsauslöser 2£Inciter Trigger 2
+996£-1£Animationsauslöser 3£Inciter Trigger 3
+997£-1£Animationsauslöser 4£Inciter Trigger 4
+998£-1£Animationsauslöser 5£Inciter Trigger 5
+999£-1£Manakreatur£Mana Creature
+1000£-1£Khadgars Diener£Khadgar's Servant
+1001£-1£Klan der Speerspießer£Bladespire Clan
+1002£-1£Sparringspartner des Astraleums£Ethereum Sparbuddy
+1003£-1£Protektorat£Protectorate
+1004£-1£Arkanvernichter (DNR)£Arcane Annihilator (DNR)
+1005£68£Befreundet, versteckt£Friendly, Hidden
+1006£-1£Kirin'Var - Dathric£Kirin'Var - Dathric
+1007£-1£Kirin'Var - Belmara£Kirin'Var - Belmara
+1008£-1£Kirin'Var - Luminrath£Kirin'Var - Luminrath
+1009£-1£Kirin'Var - Cohlien£Kirin'Var - Cohlien
+1010£-1£Illidans Diener£Servant of Illidan
+1011£69£Unteres Viertel£Lower City
+1012£70£Die Todeshörigen£Ashtongue Deathsworn
+1013£-1£Geister von Schattenmond 1£Spirits of Shadowmoon 1
+1014£-1£Geister von Schattenmond 2£Spirits of Shadowmoon 2
+1015£71£Netherschwingen£Netherwing
+1016£-1£Wyrmkult£Wyrmcult
+1017£-1£Treant£Treant
+1018£-1£Leotherasdämon I£Leotheras Demon I
+1019£-1£Leotherasdämon II£Leotheras Demon II
+1020£-1£Leotherasdämon III£Leotheras Demon III
+1021£-1£Leotherasdämon IV£Leotheras Demon IV
+1022£-1£Leotherasdämon V£Leotheras Demon V
+1023£-1£Azaloth£Azaloth
+1024£-1£Felsklaue£Rock Flayer
+1025£-1£Klauenjäger£Flayer Hunter
+1026£-1£Schattenmondschemen£Shadowmoon Shade
+1027£-1£Legionskommunikator£Legion Communicator
+1028£-1£Uralte des Rabenwalds£Ravenswood Ancients
+1029£-1£Schach - Freundlich zu allen Schach£Chess, Friendly to All Chess
+1030£-1£Tore des Schwarzen Tempels - Illidari£Black Temple Gates - Illidari
+1031£72£Himmelswache der Sha'tari£Sha'tari Skyguard
+1032£-1£Area 52£Area 52
+1033£-1£Maiev£Maiev
+1034£-1£Schattenhafter Arakkoa von Skettis£Skettis Shadowy Arakkoa
+1035£-1£Arakkoa von Skettis£Skettis Arakkoa
+1036£-1£Drachenmalgegner£Dragonmaw Enemy
+1037£88£Vorposten der Allianz£Alliance Vanguard
+1038£73£Ogri'la£Ogri'la
+1039£-1£Felshetzer£Ravager
+1040£-1£REUSE£REUSE
+1041£-1£Frenzy£Frenzy
+1042£-1£Feinde der Himmelswache£Skyguard Enemy
+1043£-1£Stinktier, violett£Skunk, Petunia
+1044£-1£Deserteur von Theramore£Theramore Deserter
+1045£-1£Vrykul£Vrykul
+1046£-1£Piraten des Nordmeeres£Northsea Pirates
+1047£-1£Tuskarr£Tuskarr
+1048£-1£UNUSED£UNUSED
+1049£-1£Troll, Amani£Troll, Amani
+1050£74£Expedition Valianz£Valiance Expedition
+1051£-1£UNUSED£UNUSED
+1052£75£Expedition der Horde£Horde Expedition
+1053£-1£Westwacht£Westguard
+1054£-1£Gefleckter Greif£Spotted Gryphon
+1055£-1£Gezähmter Seuchenhund£Tamed Plaguehound
+1056£-1£Vrykul (Uralter Geist 1)£Vrykul (Ancient Spirit 1)
+1057£-1£Vrykul (Uralter Geist 2)£Vrykul (Ancient Siprit 2)
+1058£-1£Vrykul (Uralter Geist 3)£Vrykul (Ancient Siprit 3)
+1059£-1£CTF - Flagge - Allianz£CTF - Flag - Alliance
+1060£-1£Test£Test
+1061£-1£Vrykul£vrykul
+1062£-1£Gladiator der Vrykul£Vrykul Gladiator
+1063£-1£Kämpfer von Valgarde£Valgarde Combatant
+1064£76£Die Taunka£The Taunka
+1065£-1£Monster, Zone Force Reaction 1£Monster, Zone Force Reaction 1
+1066£-1£Monster, Zone Force Reaction 2£Monster, Zone Force Reaction 2
+1067£77£Die Hand der Rache£The Hand of Vengeance
+1068£78£Forscherliga£Explorers' League
+1069£-1£Widderrennen, Powerup£Ram Racing Powerup DND
+1070£-1£Widderrennen, Falle£Ram Racing Trap DND
+1071£-1£Craigs Eichhörnchen£Craig's Squirrels
+1072£-1£REUSE£REUSE
+1073£79£Die Kalu'ak£The Kalu'ak
+1074£-1£Festtag - Wasserfass£Holiday - Water Barrel
+1075£-1£Festtag - Allgemein£Holiday - Generic
+1076£-1£Eisenzwerge£Iron Dwarves
+1077£80£Offensive der Zerschmetterten Sonne£Shattered Sun Offensive
+1078£-1£Kampfhaustier£Fighting Vanity Pet
+1079£-1£Murloc, Winterflossen£Murloc, Winterfin
+1080£-1£Friendly, Force Reaction 1£Friendly, Force Reaction 1
+1081£-1£Object, Force Reaction£Object, Force Reaction
+1082£82£REUSE£REUSE
+1083£-1£REUSE£REUSE
+1084£-1£Vrykul, Meer£Vrykul, Sea
+1085£81£Kriegshymnenoffensive£Warsong Offensive
+1086£-1£Wilderer£Poacher
+1087£-1£Feiertagsmonster£Holiday Monster
+1088£-1£Furbolg, Rotfänge£Furbolg, Redfang
+1089£-1£Furbolg, Frostpfoten£Furbolg, Frostpaw
+1090£84£Kirin Tor£Kirin Tor
+1091£83£Der Wyrmruhpakt£The Wyrmrest Accord
+1092£-1£Azjol-Nerub£Azjol-Nerub
+1093£-1£REUSE£REUSE
+1094£90£Der Silberbund£The Silver Covenant
+1095£-1£Trapper der Grizzlyhügel£Grizzly Hills Trapper
+1096£-1£REUSE£REUSE
+1097£89£Wrath of the Lich King£Wrath of the Lich King
+1098£91£Ritter der Schwarzen Klinge£Knights of the Ebon Blade
+1099£-1£Geißel an der Pforte des Zorns£Wrathgate Scourge
+1100£-1£Allianz an der Pforte des Zorns£Wrathgate Alliance
+1101£-1£Horde an der Pforte des Zorns£Wrathgate Horde
+1102£-1£CTF - Flagge - Horde£CTF - Flag - Horde
+1103£-1£CTF - Flagge - Neutral£CTF - Flag - Neutral
+1104£92£Stamm der Wildherzen£Frenzyheart Tribe
+1105£93£Die Orakel£The Oracles
+1106£94£Argentumkreuzzug£Argent Crusade
+1107£-1£Troll, Drakkari£Troll, Drakkari
+1108£-1£HdZ Arthas£CoT Arthas
+1109£-1£HdZ Bürger von Stratholme£CoT Stratholme Citizen
+1110£-1£HdZ Geißel£CoT Scourge
+1111£-1£Freya£Freya
+1112£-1£Reittier - Taxi - Allianz£Mount - Taxi - Alliance
+1113£-1£Reittier - Taxi - Horde£Mount - Taxi - Horde
+1114£-1£Reittier - Taxi - Neutral£Mount - Taxi - Neutral
+1115£-1£Elementar, Wasser£Elemental, Water
+1116£-1£Elementar, Luft£Elemental, Air
+1117£95£Sholazarbecken£Sholazar Basin
+1118£96£Classic£Classic
+1119£97£Die Söhne Hodirs£The Sons of Hodir
+1120£-1£Eisenriesen£Iron Giants
+1121£-1£Frostvrykul£Frost Vrykul
+1122£-1£Die Irdenen£Earthen
+1123£-1£Monsterkundiger£Monster Referee
+1124£98£Die Sonnenhäscher£The Sunreavers
+1125£-1£Hildarthing£Hyldsmeet
+1126£99£Die Frosterben£The Frostborn
+1127£-1£Orgrimmar (Alex Test)£Orgrimmar (Alex Test)
+1128£-1£Schattenhammer£Twilight's Hammer
+1129£-1£Furbolg, Dunkelküste£Furbolg, Blackwood
+1130£-1£Hirsch, Dunkelküste£Stag, Darkshore
+1131£-1£Bär, Dunkelküste£Bear, Darkshore
+1132£-1£Mondpirscher, Dunkelküste£Moonstalker, Darkshore
+1133£105£Bilgewasserkartell£Bilgewater Cartel
+1134£106£Gilneas£Gilneas
+1135£110£Der Irdene Ring£The Earthen Ring
+1136£100£Tristessakonversion£Tranquillien Conversion
+1137£101£Wintersäblerkonversion£Wintersaber Conversion
+1138£109£Kataklysmus - neuer neutraler Ruf£Cataclysm - New Neutral Reputation
+1142£-1£Überlebende der Magram£Magram Remnant
+1143£-1£Söhne von Gelkis£Sons of Gelkis
+1144£-1£REUSE£REUSE
+1145£-1£Hasst alles£Hates Everything
+1152£-1£SPIELER, Goblin£PLAYER, Goblin
+1153£-1£SPIELER, Worgen£PLAYER, Worgen
+1154£102£Umwandlung zum Silberbund£Silver Covenant Conversion
+1155£103£Umwandlung zu den Sonnenhäschern£Sunreavers Conversion
+1156£104£Das Äscherne Verdikt£The Ashen Verdict
+1157£-1£Die Pygmäen£Pygmy
+1158£113£Wächter des Hyjal£Guardians of Hyjal
+1159£-1£CTF - Flagge - Allianz 2£CTF - Flag - Alliance 2
+1160£-1£CTF - Flagge - Horde 2£CTF - Flag - Horde 2
+1161£-1£Grimmtotem£Grimtotem
+1162£111£Cataclysm£Cataclysm
+1163£112£Neue Testfraktion für Alex£New test rep for Alex
+1168£114£Gilde£Guild
+1169£115£Gilde£Guild
+1171£116£Therazane£Therazane
+1172£117£Drachenmalklan£Dragonmaw Clan
+1173£118£Ramkahen£Ramkahen
+1174£119£Wildhammerklan£Wildhammer Clan
+1177£122£Wächter von Baradin£Baradin's Wardens
+1178£123£Höllschreis Hand£Hellscream's Reach
+1179£-1£Schleim£Slime
+1181£-1£Befreundet, neu£Friendly, New
+1189£-1£K3£K3
+1204£127£Rächer des Hyjal£Avengers of Hyjal
+1216£131£Akademie des Shang Xi£Shang Xi's Academy
+1228£144£Wald-Ho-zen£Forest Hozen
+1233£-1£CoT Well of Eternity - Illidan£CoT Well of Eternity - Illidan
+1234£-1£CoT Well of Eternity - High Elves£CoT Well of Eternity - High Elves
+1235£-1£CoT Well of Eternity - Illidan (Stealth)£CoT Well of Eternity - Illidan (Stealth)
+1237£-1£CoT Well of Eternity - Demons£CoT Well of Eternity - Demons
+1240£-1£CoT Well of Eternity - Demon Balls£CoT Well of Eternity - Demon Balls
+1241£-1£CoT Well of Eternity - Hunter Stalkers£CoT Well of Eternity - Hunter Stalkers
+1242£143£Jinyu der Perlflossen£Pearlfin Jinyu
+1243£-1£Ho-zen£Hozen
+1245£145£Mists of Pandaria£Mists of Pandaria
+1249£-1£PLAYER, Expansion 4 Neutral£PLAYER, Expansion 4 Neutral
+1252£-1£Sha£Sha
+1253£-1£Wächter des Osttempels£Guardians of the East Temple
+1265£-1£Shen'dralar£Shen'dralar
+1268£-1£Mogu£Mogu
+1269£167£Goldener Lotus£Golden Lotus
+1270£182£Shado-Pan£Shado-Pan
+1271£154£Orden der Wolkenschlange£Order of the Cloud Serpent
+1272£171£Die Ackerbauern£The Tillers
+1273£156£Jogu der Betrunkene£Jogu the Drunk
+1275£158£Ella£Ella
+1276£159£Der alte Hügelpranke£Old Hillpaw
+1277£160£Chi-Chi£Chee Chee
+1278£161£Sho£Sho
+1279£162£Haohan Lehmkrall£Haohan Mudclaw
+1280£163£Tina Lehmkrall£Tina Mudclaw
+1281£164£Gina Lehmkrall£Gina Mudclaw
+1282£165£Fischi Rohrroder£Fish Fellreed
+1283£166£Bauer Fung£Farmer Fung
+1286£-1£Wächter des Roten Kranichs£Guardians of the Red Crane
+1302£172£Die Angler£The Anglers
+1336£-1£Der Mantis-Schwarm£The Mantid Swarm
+1337£181£Die Klaxxi£The Klaxxi
+1338£-1£Gurthan-Mogu£Gurthan Mogu
+1339£-1£Harthak-Mogu£Harthak Mogu
+1340£-1£Korgesh-Mogu£Korgesh Mogu
+1341£183£Die Himmlischen Erhabenen£The August Celestials
+1345£184£Die Lehrensucher£The Lorewalkers
+1351£186£Die Braumeister£The Brewmasters
+1352£187£Die Huojin£Huojin Pandaren
+1353£188£Die Tushui£Tushui Pandaren
+1357£191£Nomi£Nomi
+1358£192£Nat Pagle£Nat Pagle
+1359£193£Der Schwarze Prinz£The Black Prince
+1364£-1£Friendly, Force Reaction 2£Friendly, Force Reaction 2
+1366£-1£Friendly, Force Reaction 3£Friendly, Force Reaction 3
+1367£-1£Friendly, Force Reaction 4£Friendly, Force Reaction 4
+1368£-1£Friendly, Force Reaction 5£Friendly, Force Reaction 5
+1369£-1£Friendly, Force Reaction 6£Friendly, Force Reaction 6
+1370£-1£Friendly, Force Reaction 7£Friendly, Force Reaction 7
+1371£-1£Pel'zin£Paw'don Village
+1372£-1£Honigtau£Honeydew Village
+1374£197£Shlae'gararena£Brawl'gar Arena
+1375£198£Herrschaftsoffensive£Dominance Offensive
+1376£199£Operation Schildwall£Operation: Shieldwall
+1387£207£Offensive der Kirin Tor£Kirin Tor Offensive
+1388£208£Sonnenhäscheransturm£Sunreaver Onslaught
+1416£221£Akamas Vertrauen£Akama's Trust
+1419£220£Bizmos Boxbar£Bizmo's Brawlpub
+1433£227£Monster, Neutralität erzwungen für Zwangsreaktion£Monster, Enforced Neutral For Force Reaction
+1435£228£Shado-Pan-Vorstoß£Shado-Pan Assault
+1440£229£Rebellion der Dunkelspeere£Darkspear Rebellion
+1443£-1£Kor'kron£Kor'kron
+1447£-1£Dunkelspeertrolle£Darkspear Trolls
+1457£-1£Klingen der Ewigkeit£Blades of Eternity
+1491£-1£Die Zeitenwanderer£The Timewalkers
+1492£241£Kaiser Shaohao£Emperor Shaohao
+1500£-1£Rotes Phantom£Red Phantom

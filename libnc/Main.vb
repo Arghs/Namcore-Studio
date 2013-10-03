@@ -65,7 +65,7 @@ Public Class Main
             Dim strArray As String()
             a = Split(csv, vbNewLine)
             For i = 0 To UBound(a)
-                strArray = a(i).Split(CChar(";"))
+                strArray = a(i).Split(CChar("£"))
                 If i = 0 Then
                     For Each value As String In strArray
                         targetTable.Columns.Add(value.Trim())
@@ -74,7 +74,9 @@ Public Class Main
                     targetTable.Rows.Add(strArray)
                 End If
             Next i
-        Catch : End Try
+        Catch ex As Exception
+            MsgBox(ex.ToString())
+        End Try
     End Sub
     Public Shared Function ExecuteCsvSearch(ByVal dt As DataTable, ByVal startfield As String, ByVal startvalue As String, ByVal targetfield As Integer) As String()
         Try
