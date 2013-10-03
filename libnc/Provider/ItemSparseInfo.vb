@@ -27,7 +27,7 @@ Namespace Provider
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then returnResult = 0
+            If myResult = "-" Then myResult = 0
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -39,7 +39,7 @@ Namespace Provider
             Const targetField As Integer = 2
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then returnResult = 0
+            If myResult = "-" Then myResult = 0
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -51,7 +51,7 @@ Namespace Provider
             Const targetField As Integer = 3
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then returnResult = 0
+            If myResult = "-" Then myResult = 0
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -63,7 +63,7 @@ Namespace Provider
             Const targetField As Integer = 4
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then returnResult = 0
+            If myResult = "-" Then myResult = 0
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -72,11 +72,10 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemSpellIdByItemId(ByVal itemId As Integer) As Integer
-            '// TODO: Not working/SpellId in csv not correct
             Const targetField As Integer = 5
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then returnResult = 0
+            If myResult = "-" Then myResult = 0
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -88,7 +87,7 @@ Namespace Provider
             Const targetField As Integer = 8
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then returnResult = 0
+            If myResult = "-" Then myResult = 0
             Try
                 returnResult = CInt(myResult)
             Catch
