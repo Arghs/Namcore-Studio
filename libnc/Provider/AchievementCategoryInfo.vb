@@ -27,7 +27,7 @@ Namespace Provider
             Const targetField As Integer = 1
             Dim myResult As Integer = ExecuteCsvSearch(AchievementCategoryCsv, "CategoryId", catId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then returnResult = 0
+            If myResult = "-" Then myResult = 0
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -49,15 +49,18 @@ Namespace Provider
             Const targetField As Integer = 0
             Dim subCategoryList As New List(Of Integer)
             Dim myResult As String() = ExecuteCsvSearch(AchievementCategoryCsv, "MainCatId", mainCatid.ToString(), targetField)
-            If myResult(0) = "-" Then Return Nothing
-            For i = 0 To myResult.Length - 1
-                Try
-                    If Not myResult(i) Is Nothing Then subCategoryList.Add(CInt(myResult(i)))
-                Catch : End Try
-            Next i
+            If myResult(0) = "-" Then
+                subCategoryList.Add(mainCatid)
+            Else
+                For i = 0 To myResult.Length - 1
+                    Try
+                        If Not myResult(i) Is Nothing Then subCategoryList.Add(CInt(myResult(i)))
+                    Catch : End Try
+                Next i
+            End If
             Dim myNextResults As New List(Of Integer)
             For i = 0 To subCategoryList.Count - 1
-                Dim myNextResult As String() = ExecuteCsvSearch(AchievementCsv, "CategoryId", subCategoryList(i), 0) '// TODO: CategoryId missing in csv
+                Dim myNextResult As String() = ExecuteCsvSearch(AchievementCsv, "CategoryId", subCategoryList(i), 0)
                 If myNextResult(0) = "-" Then Return Nothing
                 For z = 0 To myNextResult.Length
                     Try
