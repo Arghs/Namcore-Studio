@@ -282,7 +282,7 @@ Namespace Forms.Character
                         Dim avSubCatLable As New Label
                         Dim subcat As String
                         If charAv.SubCategoryName = Nothing Then
-                            subcat = GetAvSubCategoryById(charAv.Id)
+                            subcat = GetAvCatNameById(GetAvSubCategoryById(charAv.Id), NCFramework.My.MySettings.Default.language)
                             charAv.SubCategoryName = subcat
                         Else
                             subcat = charAv.SubCategoryName
