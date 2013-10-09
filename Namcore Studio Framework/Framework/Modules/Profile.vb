@@ -73,6 +73,10 @@ Namespace Framework.Modules
         Public Socket3Effectid As Integer
         Public EnchantmentId As Integer
         Public EnchantmentEffectid As Integer
+        Public BagItems As List(Of InventItem)
+        Public Image As Image
+        Public Name As String
+        Public SlotCount As Integer
         Public Sub New()
         End Sub
     End Class

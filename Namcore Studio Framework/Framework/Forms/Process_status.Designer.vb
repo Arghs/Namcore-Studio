@@ -119,7 +119,7 @@
             Me.highlighter2.TabIndex = 218
             Me.highlighter2.TabStop = False
             '
-            'Process_status
+            'ProcessStatus
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -136,7 +136,6 @@
             Me.Name = "ProcessStatus"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Process_status"
-            Me.TopMost = True
             Me.header.ResumeLayout(False)
             Me.closepanel.ResumeLayout(False)
             CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()

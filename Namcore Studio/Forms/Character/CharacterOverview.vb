@@ -90,6 +90,55 @@ Namespace Forms.Character
             class_lbl.Text = GetClassNameById(GlobalVariables.currentViewedCharSet.Cclass)
             race_lbl.Text = GetRaceNameById(GlobalVariables.currentViewedCharSet.Race)
             gender_lbl.Text = GetGenderNameById(GlobalVariables.currentViewedCharSet.Gender)
+            Dim zeroBagItems As New List(Of InventItem)
+            For Each potCharBag As InventItem In GlobalVariables.currentViewedCharSet.InventoryZeroItems
+                potCharBag.BagItems = New List(Of InventItem)()
+                Select Case potCharBag.Slot
+                    Case 19, 20, 21, 22
+                        For Each subctrl As Control In GroupBox2.Controls
+                            If subctrl.Name.Contains((potCharBag.Slot - 17).ToString()) Then
+                                If subctrl.Name.ToLower.Contains("panel") Then
+                                    Dim bagPanel As Panel = subctrl
+                                    bagPanel.BackColor = Getraritycolor(GetItemQualityByItemId(potCharBag.Entry))
+                                    For Each potBagItem As InventItem In GlobalVariables.currentViewedCharSet.InventoryItems
+                                        If potBagItem.Bagguid = potCharBag.Guid Then
+                                            If potBagItem.Name Is Nothing Then potBagItem.Name = GetItemNameByItemId(potBagItem.Entry, NCFramework.My.MySettings.Default.language)
+                                            If potBagItem.Image Is Nothing Then potBagItem.Image = GetItemIconById(potBagItem.Entry, GlobalVariables.GlobalWebClient)
+                                            potCharBag.BagItems.Add(potBagItem)
+                                        End If
+                                    Next
+                                    potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Entry)
+                                    bagPanel.Tag = potCharBag
+                                    For Each myPic As PictureBox In subctrl.Controls
+                                        myPic.BackgroundImage = GetItemIconById(potCharBag.Entry, GlobalVariables.GlobalWebClient)
+                                        myPic.Tag = potCharBag
+                                    Next
+                                End If
+                            End If
+                        Next
+                    Case 23 To 38
+                        If potCharBag.Name Is Nothing Then potCharBag.Name = GetItemNameByItemId(potCharBag.Entry, NCFramework.My.MySettings.Default.language)
+                        If potCharBag.Image Is Nothing Then potCharBag.Image = GetItemIconById(potCharBag.Entry, GlobalVariables.GlobalWebClient)
+                        zeroBagItems.Add(potCharBag)
+                End Select
+            Next
+            For Each subctrl As Control In GroupBox2.Controls
+                If subctrl.Name.Contains("1") Then
+                    If subctrl.Name.ToLower.Contains("panel") Then
+                        Dim bagPanel As Panel = subctrl
+                        Dim bag As New InventItem
+                        bag.BagItems = New List(Of InventItem)()
+                        For Each myItem In zeroBagItems
+                            bag.BagItems.Add(myItem)
+                        Next
+                        bag.SlotCount = 16
+                        bagPanel.Tag = bag
+                        For Each myPic As PictureBox In subctrl.Controls
+                            myPic.Tag = bag
+                        Next
+                    End If
+                End If
+            Next
             If nxt = True Then _controlLst.Reverse()
             Try
                 '// Set controls double buffered
@@ -185,12 +234,12 @@ Namespace Forms.Character
                 Next
                 Application.DoEvents()
                 _loadComplete = True
-                ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf onCompleted),
+                ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
                              New CompletedEventArgs())
             Catch ex As Exception
                 LogAppend("Exception occoured: " & ex.ToString, "CharacterOverview_Goprep", True)
                 _loadComplete = True
-                ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf onCompleted),
+                ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
                              New CompletedEventArgs())
             End Try
         End Sub
@@ -997,6 +1046,58 @@ Namespace Forms.Character
                     End If
                 End If
             End If
+        End Sub
+
+        Private Sub BagOpen(sender As Object, e As EventArgs) Handles bag5Pic.Click, bag4Pic.Click, bag3Pic.Click, bag2Pic.Click, bag1Pic.Click
+            InventoryLayout.Controls.Clear()
+            Dim nonUsableSlots As New List(Of Integer)
+            Dim bag As InventItem = sender.tag
+            For Each itm As InventItem In bag.BagItems
+                Dim newItmPanel As New Panel
+                newItmPanel.Size = referenceItmPanel.Size
+                newItmPanel.Margin = referenceItmPanel.Margin
+                Dim subItmPic As New PictureBox
+                subItmPic.Size = referenceItmPic.Size
+                newItmPanel.Controls.Add(subItmPic)
+                subItmPic.Location = referenceItmPic.Location
+                subItmPic.BackgroundImageLayout = ImageLayout.Stretch
+                subItmPic.BackgroundImage = itm.Image
+                newItmPanel.BackColor = Getraritycolor(GetItemQualityByItemId(itm.Entry))
+                newItmPanel.Tag = itm
+                subItmPic.Tag = itm
+                newItmPanel.SetDoubleBuffered()
+                InventoryLayout.Controls.Add(newItmPanel)
+                nonUsableSlots.Add(itm.Slot)
+                InfoToolTip.SetToolTip(newItmPanel, itm.Name)
+                InventoryLayout.Update()
+                Application.DoEvents()
+            Next
+            For z = 0 To 36
+                If z >= bag.SlotCount - 1 Then Exit For
+                If nonUsableSlots.Contains(z) Then Continue For
+                Dim itm As New InventItem
+                itm.Slot = z
+                Dim newItmPanel As New Panel
+                newItmPanel.Size = referenceItmPanel.Size
+                newItmPanel.Margin = referenceItmPanel.Margin
+                Dim subItmPic As New PictureBox
+                subItmPic.Size = referenceItmPic.Size
+                newItmPanel.Controls.Add(subItmPic)
+                subItmPic.Location = referenceItmPic.Location
+                subItmPic.BackgroundImageLayout = ImageLayout.Stretch
+                subItmPic.BackgroundImage = referenceItmPic.BackgroundImage
+                newItmPanel.BackColor = referenceItmPanel.BackColor
+                newItmPanel.Tag = itm
+                subItmPic.Tag = itm
+                newItmPanel.SetDoubleBuffered()
+                InventoryLayout.Controls.Add(newItmPanel)
+                nonUsableSlots.Add(itm.Slot)
+                InfoToolTip.SetToolTip(newItmPanel, itm.Name)
+                InventoryLayout.Update()
+                Application.DoEvents()
+                Exit For
+            Next z
+            GroupBox2.Size = New Size(GroupBox2.Size.Width, 122 + InventoryLayout.Size.Height)
         End Sub
     End Class
 End Namespace

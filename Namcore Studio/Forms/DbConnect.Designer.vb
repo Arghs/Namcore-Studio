@@ -446,19 +446,18 @@ Namespace Forms
             Me.connect_header_label.TabIndex = 0
             Me.connect_header_label.Text = "Connect to source server"
             '
-            'DB_connect
+            'DbConnect
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.ClientSize = New System.Drawing.Size(541, 536)
+            Me.ClientSize = New System.Drawing.Size(541, 507)
             Me.Controls.Add(Me.connect_panel)
-            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "DbConnect"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "DB_connect"
+            Me.Controls.SetChildIndex(Me.connect_panel, 0)
             Me.connect_panel.ResumeLayout(False)
             Me.connect_panel.PerformLayout()
             Me.login1_panel.ResumeLayout(False)

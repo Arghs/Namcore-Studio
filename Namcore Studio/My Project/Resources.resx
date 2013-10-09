@@ -199,4 +199,7 @@
   <data name="add_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add+.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="inv_misc_bag_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inv_misc_bag_08.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -296,6 +296,7 @@
     <None Include="Resources\empty.jpg" />
     <None Include="Resources\INV_Misc_QuestionMark.jpg" />
     <None Include="Resources\add+.png" />
+    <None Include="Resources\inv_misc_bag_08.jpg" />
     <Content Include="Resources\namcore_bg.jpg" />
     <Content Include="Resources\nclogo.ico" />
     <Content Include="Resources\Refresh-icon.png" />
@@ -336,7 +337,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_DetectChanges="True" />
+      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

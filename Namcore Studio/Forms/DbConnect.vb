@@ -24,6 +24,7 @@ Imports NCFramework.My
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Database
+Imports Namcore_Studio.Modules.Interface
 Imports Namcore_Studio.Forms.Extension
 
 Namespace Forms
@@ -86,7 +87,7 @@ Namespace Forms
                                                        GlobalVariables.GlobalConnection_Info, chardbname_txtbox.Text,
                                                        realmdbname_txtbox.Text, False) 'todo
                                 For Each currentForm As Form In Application.OpenForms
-                                    If currentForm.Name = "Live_View" Then
+                                    If currentForm.Name = "LiveView" Then
                                         Dim liveview As LiveView = DirectCast(currentForm, LiveView)
                                         liveview.accountview.Items.Clear()
                                         liveview.characterview.Items.Clear()
@@ -152,7 +153,7 @@ Namespace Forms
                                                        GlobalVariables.TargetConnection_Info, chardbname_txtbox.Text,
                                                        realmdbname_txtbox.Text, True) 'todo
                                 For Each currentForm As Form In Application.OpenForms
-                                    If currentForm.Name = "Live_View" Then
+                                    If currentForm.Name = "LiveView" Then
                                         Dim liveview As LiveView = DirectCast(currentForm, LiveView)
                                         liveview.target_accounts_tree.Nodes.Clear()
                                         liveview.Loadtargetaccountsandchars()
@@ -181,6 +182,11 @@ Namespace Forms
                 Case 1 : connect_header_label.Text = ResourceHandler.GetUserMessage("connecttosource")
                 Case 2 : connect_header_label.Text = ResourceHandler.GetUserMessage("connecttotarget")
             End Select
+            Dim controlLst As List(Of Control)
+            controlLst = FindAllChildren()
+            For Each itemControl As Control In controlLst
+                itemControl.SetDoubleBuffered()
+            Next
             If MySettings.Default.server_defaultconn = True Then
                 defaultconn_radio.Checked = True
                 db_address_txtbox.Text = MySettings.Default.server_address
