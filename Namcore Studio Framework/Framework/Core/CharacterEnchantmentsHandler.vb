@@ -302,17 +302,17 @@ Namespace Framework.Core
                 If Not parts(position) = "0" Then
                     Select Case gemnum
                         Case 1
-                            itm.Socket1Effectid = TryInt(parts(0))
+                            itm.Socket1Effectid = TryInt(parts(position))
                             itm.Socket1Id = GetGemIdByEffectId(itm.Socket1Effectid)
                             itm.Socket1Pic = GetItemIconById(itm.Socket1Id, GlobalVariables.GlobalWebClient)
                             Return GetEffectNameById(itm.Socket1Effectid, My.Settings.language)
                         Case 2
-                            itm.Socket2Effectid = TryInt(parts(0))
+                            itm.Socket2Effectid = TryInt(parts(position))
                             itm.Socket2Id = GetGemIdByEffectId(itm.Socket2Effectid)
                             itm.Socket2Pic = GetItemIconById(itm.Socket2Id, GlobalVariables.GlobalWebClient)
                             Return GetEffectNameById(itm.Socket2Effectid, My.Settings.language)
                         Case 3
-                            itm.Socket3Effectid = TryInt(parts(0))
+                            itm.Socket3Effectid = TryInt(parts(position))
                             itm.Socket3Id = GetGemIdByEffectId(itm.Socket3Effectid)
                             itm.Socket3Pic = GetItemIconById(itm.Socket3Id, GlobalVariables.GlobalWebClient)
                             Return GetEffectNameById(itm.Socket3Effectid, My.Settings.language)
