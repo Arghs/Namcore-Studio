@@ -120,8 +120,22 @@ Namespace Forms
             characterview.Sort()
             characterview.Update()
             _checkchangestatus = True
-            acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
-            chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
+            With accountview.Items
+                acctotal.Text = "(" & .Count.ToString() & " Accounts total)"
+                If .Count > 8 Then
+                    filter_acc.Visible = True
+                Else
+                    filter_acc.Visible = False
+                End If
+            End With
+            With characterview.Items
+                chartotal.Text = "(" & .Count.ToString() & " Characters total)"
+                If .Count > 8 Then
+                    filter_acc.Visible = True
+                Else
+                    filter_acc.Visible = False
+                End If
+            End With
             CloseProcessStatus()
         End Sub
 

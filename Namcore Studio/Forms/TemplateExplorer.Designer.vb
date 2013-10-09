@@ -32,7 +32,7 @@ Partial Class TemplateExplorer
         Me.openfile_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.openfile_bt.ForeColor = System.Drawing.Color.Black
         Me.openfile_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.openfile_bt.Location = New System.Drawing.Point(12, 12)
+        Me.openfile_bt.Location = New System.Drawing.Point(243, 247)
         Me.openfile_bt.Name = "openfile_bt"
         Me.openfile_bt.Size = New System.Drawing.Size(135, 41)
         Me.openfile_bt.TabIndex = 167

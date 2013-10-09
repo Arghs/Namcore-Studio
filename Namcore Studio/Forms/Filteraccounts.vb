@@ -21,14 +21,31 @@
 '*      /Description:   Contains functions for filtering the account list
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Modules
+Imports Namcore_Studio.Modules.Interface
 
 Namespace Forms
     Public Class FilterAccounts
+        '// Declaration
+        Private _ptMouseDownLocation As Point
+        '// Declaration      
+
+        Public Overridable Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+            If e.Button = MouseButtons.Left Then
+                _ptMouseDownLocation = e.Location
+            End If
+        End Sub
+
+        Public Overridable Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+            If e.Button = MouseButtons.Left Then
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+            End If
+        End Sub
         Private Sub ApplyFilter_Click(sender As Object, e As EventArgs) Handles ApplyFilter.Click
             GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Copy
             GlobalVariables.modifiedCharTable = GlobalVariables.chartable.Copy
             If idcheck.Checked = True Then
-                If idcombo1.SelectedIndex = - 1 Then GoTo SkipStatement0
+                If idcombo1.SelectedIndex = -1 Then GoTo SkipStatement0
                 Dim insertstring As String = " " & idcombo1.SelectedItem.ToString() & " '" & idtxtbox1.Text & "'"
                 Dim insertstring2 As String = ""
                 If Not idcombo2.SelectedItem Is Nothing Then
@@ -43,7 +60,7 @@ Namespace Forms
                     GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
                 Next i
             End If
-            SkipStatement0:
+SkipStatement0:
             If namecheck.Checked = True Then
                 Dim insertstring As String
                 Select Case namecombo1.SelectedIndex
@@ -61,9 +78,9 @@ Namespace Forms
                     GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
                 Next i
             End If
-            SkipStatement1:
+SkipStatement1:
             If gmcheck.Checked = True Then
-                If gmcombo1.SelectedIndex = - 1 Then GoTo SkipStatement2
+                If gmcombo1.SelectedIndex = -1 Then GoTo SkipStatement2
                 Dim insertstring As String = " " & gmcombo1.SelectedItem.ToString() & " '" & gmtxtbox1.Text & "'"
                 Dim insertstring2 As String = ""
                 Dim gmlevelCol As String
@@ -84,9 +101,9 @@ Namespace Forms
                     GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
                 Next i
             End If
-            SkipStatement2:
+SkipStatement2:
             If logincheck.Checked = True Then
-                If logincombo1.SelectedIndex = - 1 Then GoTo SkipStatement3
+                If logincombo1.SelectedIndex = -1 Then GoTo SkipStatement3
                 Dim insertstring As String = " " & logincombo1.SelectedItem.ToString() & " '" & datemin.Text & "'"
                 Dim insertstring2 As String = ""
                 GlobalVariables.sourceStructure.acc_lastlogin_col(0) = "last_login" 'todo
@@ -104,7 +121,7 @@ Namespace Forms
                     GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
                 Next i
             End If
-            SkipStatement3:
+SkipStatement3:
             If emailcheck.Checked = True Then
                 Dim insertstring As String
                 Select Case emailcombo1.SelectedIndex
@@ -122,7 +139,7 @@ Namespace Forms
                     GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
                 Next i
             End If
-            SkipStatement4:
+SkipStatement4:
             For Each currentForm As Form In Application.OpenForms
                 If currentForm.Name = "LiveView" Then
                     Dim myliveview As LiveView = DirectCast(currentForm, LiveView)
@@ -130,6 +147,12 @@ Namespace Forms
                 End If
             Next
             Hide()
+        End Sub
+
+        Private Sub FilterAccounts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+            For Each ctrl As Control In Me.Controls
+                ctrl.SetDoubleBuffered()
+            Next
         End Sub
     End Class
 End Namespace
