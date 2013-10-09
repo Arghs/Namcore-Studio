@@ -91,7 +91,7 @@ Namespace Forms.Character
                 repNameLable.Name = "rep" & pRepu.faction.ToString() & "_name_lbl"
                 Dim factionName As String = pRepu.name
                 If factionName Is Nothing Then
-                    factionName = GetFactionNameById(pRepu.Faction, NCFramework.My.MySettings.Default.language)
+                    factionName = GetFactionNameById(pRepu.Faction, MySettings.Default.language)
                     pRepu.name = factionName
                 End If
                 repNameLable.Text = factionName

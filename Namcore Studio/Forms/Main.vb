@@ -116,6 +116,7 @@ Namespace Forms
             If My.Computer.FileSystem.FileExists(Application.StartupPath & "/EventLog.log") Then
                 My.Computer.FileSystem.DeleteFile(Application.StartupPath & "/EventLog.log")
             End If
+            MySettings.Default.language = "en" 'todo for testing only
             LogAppend("NamCore Studio " & My.Application.Info.Version.ToString() & " loaded", "Main_Main_Load", True)
             LogAppend("System information:", "Main_Main_Load", False)
             LogAppend("/OS NAME: " & My.Computer.Info.OSFullName, "Main_Main_Load", False)

@@ -53,6 +53,7 @@ Namespace Forms.Character
 
         Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
         Public Event AvCompleted As EventHandler(Of CompletedEventArgs)
+        Public Event FilterCompleted As EventHandler(Of CompletedEventArgs)
         Private WithEvents _mHandler As New TrdQueueHandler
 
         Delegate Sub AddControlDelegate(panel2Add As Panel)
@@ -74,6 +75,10 @@ Namespace Forms.Character
 
         Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
             RaiseEvent AvCompleted(Me, e)
+        End Sub
+
+        Protected Overridable Sub OnFilterCompleted(ByVal e As CompletedEventArgs)
+            RaiseEvent FilterCompleted(Me, e)
         End Sub
 
         Public Sub catbt_click(sender As Object, e As EventArgs) _
@@ -189,7 +194,6 @@ Namespace Forms.Character
                 Exit Sub
             End If
             Dim charAv As Achievement = sender.tag
-
             Dim msg As String = ResourceHandler.GetUserMessage("aus_deleteav")
             msg = msg.Replace("%avid%", charAv.Id.ToString)
             Dim result = MsgBox(msg, vbYesNo, ResourceHandler.GetUserMessage("areyousure"))
@@ -241,100 +245,7 @@ Namespace Forms.Character
                             GlobalVariables.trdRunning -= 1
                             Exit Function
                         End If
-                        If charAv.SubCategory = Nothing Then charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
-                        Dim avPanel As New Panel
-                        avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
-                        avPanel.Size = referencePanel.Size
-                        avPanel.Tag = charAv
-                        Dim avNameLable As New Label
-                        Dim cAvName As String
-                        If charAv.Name = Nothing Then
-                            cAvName = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
-                            charAv.Name = cAvName
-                        Else
-                            cAvName = charAv.Name
-                        End If
-                        avNameLable.Name = "av" & charAv.Id.ToString() & "_name_lbl"
-                        avNameLable.Text = cAvName & " - (" & charAv.Id.ToString & ")"
-                        Application.DoEvents()
-                        avNameLable.Tag = charAv
-                        avPanel.Controls.Add(avNameLable)
-                        avNameLable.Location = reference_name_lbl.Location
-                        avNameLable.Font = reference_name_lbl.Font
-                        avNameLable.BringToFront()
-                        avNameLable.AutoSize = True
-                        Dim avDescrLable As New Label
-                        Dim descr As String
-                        If charAv.Description = Nothing Then
-                            descr = GetAvDescriptionById(charAv.Id, NCFramework.My.MySettings.Default.language)
-                            charAv.Description = descr
-                        Else
-                            descr = charAv.Description
-                        End If
-                        avDescrLable.Name = "av" & charAv.Id.ToString() & "_descr_lbl"
-                        avDescrLable.Text = descr
-                        avDescrLable.Tag = charAv
-                        avPanel.Controls.Add(avDescrLable)
-                        avDescrLable.Location = reference_description_lbl.Location
-                        avDescrLable.Font = reference_description_lbl.Font
-                        avDescrLable.AutoSize = False
-                        avDescrLable.Size = reference_description_lbl.Size
-                        Dim avSubCatLable As New Label
-                        Dim subcat As String
-                        If charAv.SubCategoryName = Nothing Then
-                            subcat = GetAvCatNameById(GetAvSubCategoryById(charAv.Id), NCFramework.My.MySettings.Default.language)
-                            charAv.SubCategoryName = subcat
-                        Else
-                            subcat = charAv.SubCategoryName
-                        End If
-                        avSubCatLable.Name = "av" & charAv.Id.ToString() & "_subcat_lbl"
-                        avSubCatLable.Text = subcat
-                        avSubCatLable.Tag = charAv
-                        avPanel.Controls.Add(avSubCatLable)
-                        avSubCatLable.Location = reference_subcat_lbl.Location
-                        avSubCatLable.Font = reference_subcat_lbl.Font
-                        avSubCatLable.AutoSize = False
-                        avSubCatLable.RightToLeft = RightToLeft.Yes
-                        avSubCatLable.Size = reference_subcat_lbl.Size
-                        Dim avGainDateLabel As New Label
-                        Dim gaindate As String = charAv.GainDate.ToDate.ToString()
-                        avGainDateLabel.Name = "av" & charAv.Id.ToString() & "_date_lbl"
-                        avGainDateLabel.Text = gaindate
-                        avGainDateLabel.Tag = charAv
-                        avPanel.Controls.Add(avGainDateLabel)
-                        avGainDateLabel.Location = reference_date_lbl.Location
-                        avGainDateLabel.Font = reference_date_lbl.Font
-                        avGainDateLabel.AutoSize = False
-                        avGainDateLabel.RightToLeft = RightToLeft.Yes
-                        avGainDateLabel.Size = reference_date_lbl.Size
-                        Dim avIconPic As New PictureBox
-                        Dim avImage As Image
-                        If charAv.Icon Is Nothing Then
-                            avImage = GetSpellIconById(GetAvSpellIdById((charAv.Id)), GlobalVariables.GlobalWebClient)
-                            charAv.Icon = avImage
-                        Else
-                            avImage = charAv.Icon
-                        End If
-                        avIconPic.Name = "av" & charAv.Id.ToString() & "_icon_pic"
-                        avIconPic.Image = avImage
-                        avIconPic.Tag = charAv
-                        avPanel.Controls.Add(avIconPic)
-                        avIconPic.Location = reference_icon_pic.Location
-                        avIconPic.SizeMode = PictureBoxSizeMode.StretchImage
-                        avIconPic.Size = reference_icon_pic.Size
-                        Application.DoEvents()
-                        Dim deletePic As New PictureBox
-                        deletePic.Name = "av" & charAv.Id.ToString() & "_delete_pic"
-                        deletePic.Image = reference_delete_pic.Image
-                        deletePic.Tag = charAv
-                        avPanel.Controls.Add(deletePic)
-                        deletePic.Location = reference_delete_pic.Location
-                        deletePic.SizeMode = PictureBoxSizeMode.StretchImage
-                        deletePic.Size = reference_delete_pic.Size
-                        deletePic.Cursor = Cursors.Hand
-                        AddHandler deletePic.Click, AddressOf deleteAv_click
-                        AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding), avPanel)
-                        Application.DoEvents()
+                       AddAvToLayout(charAv)
                     End If
                 Next
                 If operationCount = 1 Then
@@ -434,100 +345,7 @@ Namespace Forms.Character
                         charAv.Id = retnvalue
                         charAv.GainDate = toTimeStamp(Date.Today)
                         If _correctIds.Contains(charAv.Id) Then
-                            charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
-                            Dim avPanel As New Panel
-                            avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
-                            avPanel.Size = referencePanel.Size
-                            avPanel.Tag = charAv
-                            Dim avNameLable As New Label
-                            Dim cAvName As String
-                            If charAv.Name = Nothing Then
-                                cAvName = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
-                                charAv.Name = cAvName
-                            Else
-                                cAvName = charAv.Name
-                            End If
-                            avNameLable.Name = "av" & charAv.Id.ToString() & "_name_lbl"
-                            avNameLable.Text = cAvName & " - (" & charAv.Id.ToString & ")"
-                            Application.DoEvents()
-                            avNameLable.Tag = charAv
-                            avPanel.Controls.Add(avNameLable)
-                            avNameLable.Location = reference_name_lbl.Location
-                            avNameLable.Font = reference_name_lbl.Font
-                            avNameLable.BringToFront()
-                            avNameLable.AutoSize = True
-                            Dim avDescrLable As New Label
-                            Dim descr As String
-                            If charAv.Description = Nothing Then
-                                descr = GetAvDescriptionById(charAv.Id, NCFramework.My.MySettings.Default.language)
-                                charAv.Description = descr
-                            Else
-                                descr = charAv.Description
-                            End If
-                            avDescrLable.Name = "av" & charAv.Id.ToString() & "_descr_lbl"
-                            avDescrLable.Text = descr
-                            avDescrLable.Tag = charAv
-                            avPanel.Controls.Add(avDescrLable)
-                            avDescrLable.Location = reference_description_lbl.Location
-                            avDescrLable.Font = reference_description_lbl.Font
-                            avDescrLable.AutoSize = False
-                            avDescrLable.Size = reference_description_lbl.Size
-                            Dim avSubCatLable As New Label
-                            Dim subcat As String
-                            If charAv.SubCategoryName = Nothing Then
-                                subcat = GetAvSubCategoryById(charAv.Id)
-                                charAv.SubCategoryName = subcat
-                            Else
-                                subcat = charAv.SubCategoryName
-                            End If
-                            avSubCatLable.Name = "av" & charAv.Id.ToString() & "_subcat_lbl"
-                            avSubCatLable.Text = subcat
-                            avSubCatLable.Tag = charAv
-                            avPanel.Controls.Add(avSubCatLable)
-                            avSubCatLable.Location = reference_subcat_lbl.Location
-                            avSubCatLable.Font = reference_subcat_lbl.Font
-                            avSubCatLable.AutoSize = False
-                            avSubCatLable.RightToLeft = RightToLeft.Yes
-                            avSubCatLable.Size = reference_subcat_lbl.Size
-                            Dim avGainDateLabel As New Label
-                            Dim gaindate As String = charAv.GainDate.toDate.ToString()
-                            avGainDateLabel.Name = "av" & charAv.Id.ToString() & "_date_lbl"
-                            avGainDateLabel.Text = gaindate
-                            avGainDateLabel.Tag = charAv
-                            avPanel.Controls.Add(avGainDateLabel)
-                            avGainDateLabel.Location = reference_date_lbl.Location
-                            avGainDateLabel.Font = reference_date_lbl.Font
-                            avGainDateLabel.AutoSize = False
-                            avGainDateLabel.RightToLeft = RightToLeft.Yes
-                            avGainDateLabel.Size = reference_date_lbl.Size
-                            Dim avIconPic As New PictureBox
-                            Dim avImage As Image
-                            If charAv.Icon Is Nothing Then
-                                avImage = GetSpellIconById(GetAvSpellIdById(charAv.Id), GlobalVariables.GlobalWebClient)
-                                charAv.Icon = avImage
-                            Else
-                                avImage = charAv.Icon
-                            End If
-                            avIconPic.Name = "av" & charAv.Id.ToString() & "_icon_pic"
-                            avIconPic.Image = avImage
-                            avIconPic.Tag = charAv
-                            avPanel.Controls.Add(avIconPic)
-                            avIconPic.Location = reference_icon_pic.Location
-                            avIconPic.SizeMode = PictureBoxSizeMode.StretchImage
-                            avIconPic.Size = reference_icon_pic.Size
-                            Application.DoEvents()
-                            Dim deletePic As New PictureBox
-                            deletePic.Name = "av" & charAv.Id.ToString() & "_delete_pic"
-                            deletePic.Image = reference_delete_pic.Image
-                            deletePic.Tag = charAv
-                            avPanel.Controls.Add(deletePic)
-                            deletePic.Location = reference_delete_pic.Location
-                            deletePic.SizeMode = PictureBoxSizeMode.StretchImage
-                            deletePic.Size = reference_delete_pic.Size
-                            deletePic.Cursor = Cursors.Hand
-                            AddHandler deletePic.Click, AddressOf deleteAv_click
-                            AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding), avPanel)
-                            Application.DoEvents()
+                           AddAvToLayout(charAv)
                         End If
                         If GlobalVariables.currentEditedCharSet Is Nothing Then
                             GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
@@ -591,10 +409,193 @@ Namespace Forms.Character
                     Case "catbt"
                         catbt_click(_tmpSender, _mEvent)
                 End Select
-
             Else
                 callbacktimer.Start()
             End If
+        End Sub
+
+        Private Sub FilterResults(ByVal searchTxt As String)
+            LogAppend("Filtering achievements", "Achievements_interface_FilterResults", True)
+            GlobalVariables.trdRunning += 1
+            Dim foundAvList As New List(Of Achievement)
+            Dim searchId As Integer = TryInt(searchTxt)
+            Dim searchName As String = ""
+            If searchId = 0 Then
+                searchName = searchTxt
+            End If
+            For Each charAv As Achievement In GlobalVariables.currentViewedCharSet.Achievements
+                Try
+                    If searchName = "" Then
+                        '// Id
+                        If charAv.Id = searchId Then
+                            foundAvList.Add(charAv)
+                        End If
+                    Else
+                        '// Name
+                        If charAv.Name = Nothing Then
+                            charAv.Name = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
+                        End If
+                        If charAv.Name.ToLower.Contains(searchName.ToLower()) Then
+                            foundAvList.Add(charAv)
+                        End If
+                    End If
+                Catch ex As Exception
+                    LogAppend("Exception during achievement browsing: " & ex.ToString(), "Achievements_interface_FilterResults", False, True)
+                End Try
+            Next
+            For Each charAv As Achievement In foundAvList
+                AddAvToLayout(charAv)
+            Next
+            GlobalVariables.trdRunning -= 1
+            ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnFilterCompleted),
+                                New CompletedEventArgs())
+        End Sub
+        Private Sub AddAvToLayout(ByVal charAv As Achievement)
+            If charAv.SubCategory = Nothing Then charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
+            Dim avPanel As New Panel
+            avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
+            avPanel.Size = referencePanel.Size
+            avPanel.Tag = charAv
+            Dim avNameLable As New Label
+            Dim cAvName As String
+            If charAv.Name = Nothing Then
+                cAvName = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
+                charAv.Name = cAvName
+            Else
+                cAvName = charAv.Name
+            End If
+            avNameLable.Name = "av" & charAv.Id.ToString() & "_name_lbl"
+            avNameLable.Text = cAvName & " - (" & charAv.Id.ToString & ")"
+            Application.DoEvents()
+            avNameLable.Tag = charAv
+            avPanel.Controls.Add(avNameLable)
+            avNameLable.Location = reference_name_lbl.Location
+            avNameLable.Font = reference_name_lbl.Font
+            avNameLable.BringToFront()
+            avNameLable.AutoSize = True
+            Dim avDescrLable As New Label
+            Dim descr As String
+            If charAv.Description = Nothing Then
+                descr = GetAvDescriptionById(charAv.Id, NCFramework.My.MySettings.Default.language)
+                charAv.Description = descr
+            Else
+                descr = charAv.Description
+            End If
+            avDescrLable.Name = "av" & charAv.Id.ToString() & "_descr_lbl"
+            avDescrLable.Text = descr
+            avDescrLable.Tag = charAv
+            avPanel.Controls.Add(avDescrLable)
+            avDescrLable.Location = reference_description_lbl.Location
+            avDescrLable.Font = reference_description_lbl.Font
+            avDescrLable.AutoSize = False
+            avDescrLable.Size = reference_description_lbl.Size
+            Dim avSubCatLable As New Label
+            Dim subcat As String
+            If charAv.SubCategoryName = Nothing Then
+                subcat = GetAvCatNameById(GetAvSubCategoryById(charAv.Id), NCFramework.My.MySettings.Default.language)
+                charAv.SubCategoryName = subcat
+            Else
+                subcat = charAv.SubCategoryName
+            End If
+            avSubCatLable.Name = "av" & charAv.Id.ToString() & "_subcat_lbl"
+            avSubCatLable.Text = subcat
+            avSubCatLable.Tag = charAv
+            avPanel.Controls.Add(avSubCatLable)
+            avSubCatLable.Location = reference_subcat_lbl.Location
+            avSubCatLable.Font = reference_subcat_lbl.Font
+            avSubCatLable.AutoSize = False
+            avSubCatLable.RightToLeft = RightToLeft.Yes
+            avSubCatLable.Size = reference_subcat_lbl.Size
+            Dim avGainDateLabel As New Label
+            Dim gaindate As String = charAv.GainDate.ToDate.ToString()
+            avGainDateLabel.Name = "av" & charAv.Id.ToString() & "_date_lbl"
+            avGainDateLabel.Text = gaindate
+            avGainDateLabel.Tag = charAv
+            avPanel.Controls.Add(avGainDateLabel)
+            avGainDateLabel.Location = reference_date_lbl.Location
+            avGainDateLabel.Font = reference_date_lbl.Font
+            avGainDateLabel.AutoSize = False
+            avGainDateLabel.RightToLeft = RightToLeft.Yes
+            avGainDateLabel.Size = reference_date_lbl.Size
+            Dim avIconPic As New PictureBox
+            Dim avImage As Image
+            If charAv.Icon Is Nothing Then
+                avImage = GetSpellIconById(GetAvSpellIdById((charAv.Id)), GlobalVariables.GlobalWebClient)
+                charAv.Icon = avImage
+            Else
+                avImage = charAv.Icon
+            End If
+            avIconPic.Name = "av" & charAv.Id.ToString() & "_icon_pic"
+            avIconPic.Image = avImage
+            avIconPic.Tag = charAv
+            avPanel.Controls.Add(avIconPic)
+            avIconPic.Location = reference_icon_pic.Location
+            avIconPic.SizeMode = PictureBoxSizeMode.StretchImage
+            avIconPic.Size = reference_icon_pic.Size
+            Application.DoEvents()
+            Dim deletePic As New PictureBox
+            deletePic.Name = "av" & charAv.Id.ToString() & "_delete_pic"
+            deletePic.Image = reference_delete_pic.Image
+            deletePic.Tag = charAv
+            avPanel.Controls.Add(deletePic)
+            deletePic.Location = reference_delete_pic.Location
+            deletePic.SizeMode = PictureBoxSizeMode.StretchImage
+            deletePic.Size = reference_delete_pic.Size
+            deletePic.Cursor = Cursors.Hand
+            avPanel.SetDoubleBuffered()
+            AddHandler deletePic.Click, AddressOf deleteAv_click
+            AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding), avPanel)
+            Application.DoEvents()
+        End Sub
+        Private Sub OnFilterCompleted() Handles Me.FilterCompleted
+            Try
+                For Each avPanel As Control In AVLayoutPanel.Controls
+                    If _colorTicker = 1 Then
+                        _colorTicker = 0
+                        Application.DoEvents()
+                        avPanel.BackColor = Color.FromArgb(110, 149, 190)
+                    Else
+                        _colorTicker = 1
+                        Application.DoEvents()
+                        avPanel.BackColor = Color.FromArgb(126, 144, 156) 'Color.SaddleBrown
+                    End If
+                Next
+            Catch ex As Exception
+
+            End Try
+            search_bt.Enabled = True
+            browse_tb.Text = "Enter quest name or id"
+            browse_tb.ForeColor = SystemColors.WindowFrame
+            browse_tb.Enabled = True
+            subcat_combo.Enabled = True
+            Application.DoEvents()
+        End Sub
+
+        Private Sub browse_tb_Enter(sender As Object, e As EventArgs) Handles browse_tb.Enter
+            If browse_tb.Text = "Enter quest name or id" Then
+                browse_tb.ForeColor = SystemColors.WindowText
+                browse_tb.Text = ""
+            End If
+        End Sub
+
+        Private Sub browse_tb_Leave(sender As Object, e As EventArgs) Handles browse_tb.Leave
+            If browse_tb.Text = "" Then
+                browse_tb.ForeColor = SystemColors.WindowFrame
+                browse_tb.Text = "Enter quest name or id"
+            End If
+        End Sub
+     
+        Private Sub search_bt_Click(sender As Object, e As EventArgs) Handles search_bt.Click
+            waitpanel.Location = New Point(4000, 4000)
+            search_bt.Enabled = False
+            Dim browseTxt As String = browse_tb.Text
+            browse_tb.Text = "Browsing achievements..."
+            browse_tb.ForeColor = SystemColors.WindowFrame
+            browse_tb.Enabled = False
+            AVLayoutPanel.Controls.Clear()
+            Application.DoEvents()
+            Dim trd As New Thread(AddressOf FilterResults)
+            trd.Start(browseTxt)
         End Sub
     End Class
 End Namespace

@@ -194,7 +194,6 @@ Namespace Forms
             GlobalVariables.lastregion = "armoryparser"
             GlobalVariables.globChars.CharacterSets = New List(Of NCFramework.Framework.Modules.Character)
             GlobalVariables.trdrunnuing = True
-            MySettings.Default.language = "de" 'todo for testing only
             Dim urllst As List(Of String) =
                     (From lstitm As ListViewItem In char_lst.Items Select lstitm.SubItems(3).Text).ToList()
             LogAppend("Urlcount: " & urllst.Count.ToString(), "Armory_interface_load_bt_Click", False)
