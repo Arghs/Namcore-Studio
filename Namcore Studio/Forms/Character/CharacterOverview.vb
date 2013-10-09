@@ -89,6 +89,7 @@ Namespace Forms.Character
             level_lbl.Text = GlobalVariables.currentViewedCharSet.Level.ToString
             class_lbl.Text = GetClassNameById(GlobalVariables.currentViewedCharSet.Cclass)
             race_lbl.Text = GetRaceNameById(GlobalVariables.currentViewedCharSet.Race)
+            gender_lbl.Text = GetGenderNameById(GlobalVariables.currentViewedCharSet.Gender)
             If nxt = True Then _controlLst.Reverse()
             Try
                 '// Set controls double buffered
@@ -305,7 +306,6 @@ Namespace Forms.Character
                         Else
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                 GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
-                            GlobalVariables.currentViewedCharSet.Name = TextBox1.Text
                             senderLabel.Text = TextBox1.Text
                         End If
                     ElseIf senderLabel.Name.ToLower.EndsWith("level_lbl") Then
@@ -318,7 +318,6 @@ Namespace Forms.Character
                             Else
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                     GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
-                                GlobalVariables.currentViewedCharSet.Level = newlvl
                                 senderLabel.Text = TextBox1.Text
                             End If
                         End If
@@ -532,12 +531,13 @@ Namespace Forms.Character
         End Sub
 
         Private Sub race_lbl_Click(sender As Object, e As EventArgs) Handles race_lbl.Click
-            racepanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
+            racepanel.Location = New Point(sender.location.x + +GroupBox1.Location.X, sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
             newpoint.Y = 4000
             classpanel.Location = newpoint
             changepanel.Location = newpoint
+            genderpanel.Location = newpoint
             PictureBox2.Visible = False
             If Not _tempSender Is Nothing Then
                 _tempSender.visible = True
@@ -549,12 +549,13 @@ Namespace Forms.Character
         End Sub
 
         Private Sub class_lbl_Click(sender As Object, e As EventArgs) Handles class_lbl.Click
-            classpanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
+            classpanel.Location = New Point(sender.location.x + +GroupBox1.Location.X, sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
             newpoint.Y = 4000
             racepanel.Location = newpoint
             changepanel.Location = newpoint
+            genderpanel.Location = newpoint
             PictureBox2.Visible = False
             If Not _tempSender Is Nothing Then
                 _tempSender.visible = True
@@ -572,6 +573,7 @@ Namespace Forms.Character
             newpoint.Y = 4000
             classpanel.Location = newpoint
             racepanel.Location = newpoint
+            genderpanel.Location = newpoint
             PictureBox2.Visible = False
             If Not _tempSender Is Nothing Then
                 _tempSender.visible = True
@@ -583,12 +585,13 @@ Namespace Forms.Character
         End Sub
 
         Private Sub level_lbl_Click(sender As Object, e As EventArgs) Handles level_lbl.Click
-            changepanel.Location = New Point(sender.location.x + 558, sender.location.y + 58)
+            changepanel.Location = New Point(sender.location.x + +GroupBox1.Location.X, sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
             newpoint.Y = 4000
             classpanel.Location = newpoint
             racepanel.Location = newpoint
+            genderpanel.Location = newpoint
             PictureBox2.Visible = False
             If Not _tempSender Is Nothing Then
                 _tempSender.visible = True
@@ -597,6 +600,24 @@ Namespace Forms.Character
             sender.visible = False
             TextBox1.Text = sender.text
             _tempValue = TextBox1.Text
+        End Sub
+
+        Private Sub gender_lbl_Click(sender As Object, e As EventArgs) Handles gender_lbl.Click
+            genderpanel.Location = New Point(sender.location.x + +GroupBox1.Location.X, sender.location.y + GroupBox1.Location.Y)
+            Dim newpoint As New Point
+            newpoint.X = 4000
+            newpoint.Y = 4000
+            classpanel.Location = newpoint
+            racepanel.Location = newpoint
+            changepanel.Location = newpoint
+            PictureBox2.Visible = False
+            If Not _tempSender Is Nothing Then
+                _tempSender.visible = True
+            End If
+            _tempSender = sender
+            sender.visible = False
+            gendercombo.Text = sender.text
+            _tempValue = gendercombo.Text
         End Sub
 
         Private Sub classrefresh_Click(sender As Object, e As EventArgs) Handles classrefresh.Click
@@ -609,6 +630,8 @@ Namespace Forms.Character
             End If
             classpanel.Location = newPoint
             senderLabel.Visible = True
+            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+            GlobalVariables.currentEditedCharSet.Cclass = GetClassIdByName(senderLabel.Text)
         End Sub
 
         Private Sub racerefresh_Click(sender As Object, e As EventArgs) Handles racerefresh.Click
@@ -621,6 +644,26 @@ Namespace Forms.Character
             End If
             racepanel.Location = newPoint
             senderLabel.Visible = True
+            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+            GlobalVariables.currentEditedCharSet.Race = GetRaceIdByName(senderLabel.Text)
+        End Sub
+
+        Private Sub genderrefresh_Click(sender As Object, e As EventArgs) Handles genderrefresh.Click
+            Dim newPoint As New Point
+            Dim senderLabel As Label = _tempSender
+            newPoint.X = 4000
+            newPoint.Y = 4000
+            If Not gendercombo.SelectedText = _tempValue And Not gendercombo.Text = _tempValue Then
+                senderLabel.Text = gendercombo.SelectedText
+            End If
+            genderpanel.Location = newPoint
+            senderLabel.Visible = True
+            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+            If senderLabel.Text.StartsWith("M") Then
+                GlobalVariables.currentEditedCharSet.Gender = 0
+            Else
+                GlobalVariables.currentEditedCharSet.Gender = 1
+            End If
         End Sub
 
         Private Sub itmench_Click(sender As Object, e As EventArgs) Handles itmench.Click
@@ -686,7 +729,7 @@ Namespace Forms.Character
             racepanel.Location = New Point(4000, 4000)
             classpanel.Location = New Point(4000, 4000)
             addpanel.Location = New Point(4000, 4000)
-
+            genderpanel.Location = New Point(4000, 4000)
             For Each ctrl As Label In _
                 From ctrl1 In _controlLst.OfType(Of Label)()
                     Where ctrl1.Name.StartsWith(sender.name.replace("_pic", "")) And ctrl1.Name.EndsWith("_name")
@@ -765,6 +808,7 @@ Namespace Forms.Character
             addpanel.Location = New Point(4000, 4000)
             racepanel.Location = New Point(4000, 4000)
             classpanel.Location = New Point(4000, 4000)
+            genderpanel.Location = New Point(4000, 4000)
             If Not _tempSender Is Nothing Then
                 _tempSender.visible = True
             End If
@@ -821,7 +865,7 @@ Namespace Forms.Character
             avinterface.Show()
         End Sub
 
-        Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Private Sub Button2_Click(sender As Object, e As EventArgs) Handles rep_bt.Click
             NewProcessStatus()
             ReputationInterface.Close()
             Dim repinterface As New ReputationInterface
@@ -873,7 +917,7 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Private Sub Button4_Click(sender As Object, e As EventArgs) Handles spellsskills_bt.Click
             NewProcessStatus()
             SpellSkillInterface.Close()
             Dim mspellskillInterface As New SpellSkillInterface

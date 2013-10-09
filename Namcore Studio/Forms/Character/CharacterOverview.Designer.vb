@@ -25,247 +25,254 @@ Namespace Forms.Character
         'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
         <System.Diagnostics.DebuggerStepThrough()> _
         Private Sub InitializeComponent()
-            Me.components = New System.ComponentModel.Container()
-            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CharacterOverview))
-            Me.InventoryPanel = New System.Windows.Forms.Panel()
-            Me.slot_17_enchant = New System.Windows.Forms.Label()
-            Me.slot_17_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_17_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_17_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_17_color = New System.Windows.Forms.Panel()
-            Me.slot_17_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_17_name = New System.Windows.Forms.Label()
-            Me.slot_15_enchant = New System.Windows.Forms.Label()
-            Me.slot_15_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_15_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_15_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_15_color = New System.Windows.Forms.Panel()
-            Me.slot_15_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_15_name = New System.Windows.Forms.Label()
-            Me.slot_16_enchant = New System.Windows.Forms.Label()
-            Me.slot_16_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_16_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_16_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_16_color = New System.Windows.Forms.Panel()
-            Me.slot_16_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_16_name = New System.Windows.Forms.Label()
-            Me.slot_13_enchant = New System.Windows.Forms.Label()
-            Me.slot_13_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_13_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_13_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_13_color = New System.Windows.Forms.Panel()
-            Me.slot_13_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_13_name = New System.Windows.Forms.Label()
-            Me.slot_12_enchant = New System.Windows.Forms.Label()
-            Me.slot_12_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_12_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_12_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_12_color = New System.Windows.Forms.Panel()
-            Me.slot_12_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_12_name = New System.Windows.Forms.Label()
-            Me.slot_11_enchant = New System.Windows.Forms.Label()
-            Me.slot_11_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_11_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_11_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_11_color = New System.Windows.Forms.Panel()
-            Me.slot_11_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_11_name = New System.Windows.Forms.Label()
-            Me.slot_10_enchant = New System.Windows.Forms.Label()
-            Me.slot_10_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_10_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_10_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_10_color = New System.Windows.Forms.Panel()
-            Me.slot_10_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_10_name = New System.Windows.Forms.Label()
-            Me.slot_7_enchant = New System.Windows.Forms.Label()
-            Me.slot_7_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_7_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_7_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_7_color = New System.Windows.Forms.Panel()
-            Me.slot_7_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_7_name = New System.Windows.Forms.Label()
-            Me.slot_6_enchant = New System.Windows.Forms.Label()
-            Me.slot_6_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_6_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_6_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_6_color = New System.Windows.Forms.Panel()
-            Me.slot_6_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_6_name = New System.Windows.Forms.Label()
-            Me.slot_5_enchant = New System.Windows.Forms.Label()
-            Me.slot_5_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_5_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_5_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_5_color = New System.Windows.Forms.Panel()
-            Me.slot_5_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_5_name = New System.Windows.Forms.Label()
-            Me.slot_9_enchant = New System.Windows.Forms.Label()
-            Me.slot_9_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_9_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_9_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_9_color = New System.Windows.Forms.Panel()
-            Me.slot_9_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_9_name = New System.Windows.Forms.Label()
-            Me.slot_8_enchant = New System.Windows.Forms.Label()
-            Me.slot_8_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_8_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_8_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_8_color = New System.Windows.Forms.Panel()
-            Me.slot_8_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_8_name = New System.Windows.Forms.Label()
-            Me.slot_18_enchant = New System.Windows.Forms.Label()
-            Me.slot_18_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_18_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_18_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_18_color = New System.Windows.Forms.Panel()
-            Me.slot_18_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_18_name = New System.Windows.Forms.Label()
-            Me.slot_3_enchant = New System.Windows.Forms.Label()
-            Me.slot_3_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_3_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_3_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_3_color = New System.Windows.Forms.Panel()
-            Me.slot_3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_3_name = New System.Windows.Forms.Label()
-            Me.slot_4_enchant = New System.Windows.Forms.Label()
-            Me.slot_4_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_4_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_4_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_4_color = New System.Windows.Forms.Panel()
-            Me.slot_4_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_4_name = New System.Windows.Forms.Label()
-            Me.slot_14_enchant = New System.Windows.Forms.Label()
-            Me.slot_14_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_14_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_14_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_14_color = New System.Windows.Forms.Panel()
-            Me.slot_14_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_14_name = New System.Windows.Forms.Label()
-            Me.slot_2_enchant = New System.Windows.Forms.Label()
-            Me.slot_2_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_2_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_2_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_2_color = New System.Windows.Forms.Panel()
-            Me.slot_2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_2_name = New System.Windows.Forms.Label()
-            Me.slot_1_enchant = New System.Windows.Forms.Label()
-            Me.slot_1_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_1_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_1_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_1_color = New System.Windows.Forms.Panel()
-            Me.slot_1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_1_name = New System.Windows.Forms.Label()
-            Me.slot_0_enchant = New System.Windows.Forms.Label()
-            Me.slot_0_gem3_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_0_gem2_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_0_gem1_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_0_color = New System.Windows.Forms.Panel()
-            Me.slot_0_pic = New System.Windows.Forms.PictureBox()
-            Me.slot_0_name = New System.Windows.Forms.Label()
-            Me.charname_lbl = New System.Windows.Forms.Label()
-            Me.Label2 = New System.Windows.Forms.Label()
-            Me.Label3 = New System.Windows.Forms.Label()
-            Me.Label4 = New System.Windows.Forms.Label()
-            Me.level_lbl = New System.Windows.Forms.Label()
-            Me.race_lbl = New System.Windows.Forms.Label()
-            Me.class_lbl = New System.Windows.Forms.Label()
-            Me.av_bt = New System.Windows.Forms.Button()
-            Me.Glyphs_bt = New System.Windows.Forms.Button()
-            Me.Button2 = New System.Windows.Forms.Button()
-            Me.Button4 = New System.Windows.Forms.Button()
-            Me.Button5 = New System.Windows.Forms.Button()
-            Me.exit_bt = New System.Windows.Forms.Button()
-            Me.savechanges_bt = New System.Windows.Forms.Button()
-            Me.reset_bt = New System.Windows.Forms.Button()
-            Me.changepanel = New System.Windows.Forms.Panel()
-            Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-            Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-            Me.TextBox1 = New System.Windows.Forms.TextBox()
-            Me.racepanel = New System.Windows.Forms.Panel()
-            Me.racecombo = New System.Windows.Forms.ComboBox()
-            Me.racerefresh = New System.Windows.Forms.PictureBox()
-            Me.classpanel = New System.Windows.Forms.Panel()
-            Me.classcombo = New System.Windows.Forms.ComboBox()
-            Me.classrefresh = New System.Windows.Forms.PictureBox()
-            Me.selectenchpanel = New System.Windows.Forms.Panel()
-            Me.spellench = New System.Windows.Forms.Label()
-            Me.itmench = New System.Windows.Forms.Label()
-            Me.Label1 = New System.Windows.Forms.Label()
-            Me.Button3 = New System.Windows.Forms.Button()
-            Me.Panel36 = New System.Windows.Forms.Panel()
-            Me.PictureBox38 = New System.Windows.Forms.PictureBox()
-            Me.Panel37 = New System.Windows.Forms.Panel()
-            Me.PictureBox39 = New System.Windows.Forms.PictureBox()
-            Me.Panel33 = New System.Windows.Forms.Panel()
-            Me.PictureBox35 = New System.Windows.Forms.PictureBox()
-            Me.Panel34 = New System.Windows.Forms.Panel()
-            Me.PictureBox36 = New System.Windows.Forms.PictureBox()
-            Me.Panel38 = New System.Windows.Forms.Panel()
-            Me.PictureBox40 = New System.Windows.Forms.PictureBox()
-            Me.bagpanel = New System.Windows.Forms.Panel()
-            Me.Panel26 = New System.Windows.Forms.Panel()
-            Me.PictureBox28 = New System.Windows.Forms.PictureBox()
-            Me.Panel27 = New System.Windows.Forms.Panel()
-            Me.PictureBox29 = New System.Windows.Forms.PictureBox()
-            Me.Panel28 = New System.Windows.Forms.Panel()
-            Me.PictureBox30 = New System.Windows.Forms.PictureBox()
-            Me.Panel29 = New System.Windows.Forms.Panel()
-            Me.PictureBox31 = New System.Windows.Forms.PictureBox()
-            Me.Panel30 = New System.Windows.Forms.Panel()
-            Me.PictureBox32 = New System.Windows.Forms.PictureBox()
-            Me.Panel31 = New System.Windows.Forms.Panel()
-            Me.PictureBox33 = New System.Windows.Forms.PictureBox()
-            Me.Panel32 = New System.Windows.Forms.Panel()
-            Me.PictureBox34 = New System.Windows.Forms.PictureBox()
-            Me.Panel39 = New System.Windows.Forms.Panel()
-            Me.PictureBox41 = New System.Windows.Forms.PictureBox()
-            Me.Panel40 = New System.Windows.Forms.Panel()
-            Me.PictureBox42 = New System.Windows.Forms.PictureBox()
-            Me.Panel41 = New System.Windows.Forms.Panel()
-            Me.PictureBox43 = New System.Windows.Forms.PictureBox()
-            Me.Panel42 = New System.Windows.Forms.Panel()
-            Me.PictureBox44 = New System.Windows.Forms.PictureBox()
-            Me.Panel43 = New System.Windows.Forms.Panel()
-            Me.PictureBox45 = New System.Windows.Forms.PictureBox()
-            Me.Panel44 = New System.Windows.Forms.Panel()
-            Me.PictureBox46 = New System.Windows.Forms.PictureBox()
-            Me.Panel45 = New System.Windows.Forms.Panel()
-            Me.PictureBox47 = New System.Windows.Forms.PictureBox()
-            Me.Panel18 = New System.Windows.Forms.Panel()
-            Me.PictureBox20 = New System.Windows.Forms.PictureBox()
-            Me.Panel19 = New System.Windows.Forms.Panel()
-            Me.PictureBox21 = New System.Windows.Forms.PictureBox()
-            Me.Panel20 = New System.Windows.Forms.Panel()
-            Me.PictureBox22 = New System.Windows.Forms.PictureBox()
-            Me.Panel21 = New System.Windows.Forms.Panel()
-            Me.PictureBox23 = New System.Windows.Forms.PictureBox()
-            Me.Panel22 = New System.Windows.Forms.Panel()
-            Me.PictureBox24 = New System.Windows.Forms.PictureBox()
-            Me.Panel23 = New System.Windows.Forms.Panel()
-            Me.PictureBox25 = New System.Windows.Forms.PictureBox()
-            Me.Panel24 = New System.Windows.Forms.Panel()
-            Me.PictureBox26 = New System.Windows.Forms.PictureBox()
-            Me.Panel10 = New System.Windows.Forms.Panel()
-            Me.PictureBox12 = New System.Windows.Forms.PictureBox()
-            Me.Panel11 = New System.Windows.Forms.Panel()
-            Me.PictureBox13 = New System.Windows.Forms.PictureBox()
-            Me.Panel12 = New System.Windows.Forms.Panel()
-            Me.PictureBox14 = New System.Windows.Forms.PictureBox()
-            Me.Panel13 = New System.Windows.Forms.Panel()
-            Me.PictureBox15 = New System.Windows.Forms.PictureBox()
-            Me.Panel14 = New System.Windows.Forms.Panel()
-            Me.PictureBox16 = New System.Windows.Forms.PictureBox()
-            Me.Panel15 = New System.Windows.Forms.Panel()
-            Me.PictureBox17 = New System.Windows.Forms.PictureBox()
-            Me.Panel16 = New System.Windows.Forms.Panel()
-            Me.picbagslot = New System.Windows.Forms.PictureBox()
-            Me.addpanel = New System.Windows.Forms.Panel()
-            Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-            Me.TextBox2 = New System.Windows.Forms.TextBox()
-            Me.Quests_bt = New System.Windows.Forms.Button()
-            Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CharacterOverview))
+        Me.InventoryPanel = New System.Windows.Forms.Panel()
+        Me.slot_17_enchant = New System.Windows.Forms.Label()
+        Me.slot_17_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_17_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_17_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_17_color = New System.Windows.Forms.Panel()
+        Me.slot_17_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_17_name = New System.Windows.Forms.Label()
+        Me.slot_15_enchant = New System.Windows.Forms.Label()
+        Me.slot_15_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_15_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_15_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_15_color = New System.Windows.Forms.Panel()
+        Me.slot_15_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_15_name = New System.Windows.Forms.Label()
+        Me.slot_16_enchant = New System.Windows.Forms.Label()
+        Me.slot_16_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_16_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_16_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_16_color = New System.Windows.Forms.Panel()
+        Me.slot_16_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_16_name = New System.Windows.Forms.Label()
+        Me.slot_13_enchant = New System.Windows.Forms.Label()
+        Me.slot_13_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_13_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_13_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_13_color = New System.Windows.Forms.Panel()
+        Me.slot_13_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_13_name = New System.Windows.Forms.Label()
+        Me.slot_12_enchant = New System.Windows.Forms.Label()
+        Me.slot_12_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_12_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_12_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_12_color = New System.Windows.Forms.Panel()
+        Me.slot_12_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_12_name = New System.Windows.Forms.Label()
+        Me.slot_11_enchant = New System.Windows.Forms.Label()
+        Me.slot_11_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_11_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_11_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_11_color = New System.Windows.Forms.Panel()
+        Me.slot_11_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_11_name = New System.Windows.Forms.Label()
+        Me.slot_10_enchant = New System.Windows.Forms.Label()
+        Me.slot_10_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_10_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_10_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_10_color = New System.Windows.Forms.Panel()
+        Me.slot_10_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_10_name = New System.Windows.Forms.Label()
+        Me.slot_7_enchant = New System.Windows.Forms.Label()
+        Me.slot_7_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_7_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_7_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_7_color = New System.Windows.Forms.Panel()
+        Me.slot_7_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_7_name = New System.Windows.Forms.Label()
+        Me.slot_6_enchant = New System.Windows.Forms.Label()
+        Me.slot_6_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_6_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_6_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_6_color = New System.Windows.Forms.Panel()
+        Me.slot_6_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_6_name = New System.Windows.Forms.Label()
+        Me.slot_5_enchant = New System.Windows.Forms.Label()
+        Me.slot_5_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_5_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_5_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_5_color = New System.Windows.Forms.Panel()
+        Me.slot_5_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_5_name = New System.Windows.Forms.Label()
+        Me.slot_9_enchant = New System.Windows.Forms.Label()
+        Me.slot_9_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_9_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_9_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_9_color = New System.Windows.Forms.Panel()
+        Me.slot_9_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_9_name = New System.Windows.Forms.Label()
+        Me.slot_8_enchant = New System.Windows.Forms.Label()
+        Me.slot_8_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_8_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_8_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_8_color = New System.Windows.Forms.Panel()
+        Me.slot_8_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_8_name = New System.Windows.Forms.Label()
+        Me.slot_18_enchant = New System.Windows.Forms.Label()
+        Me.slot_18_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_18_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_18_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_18_color = New System.Windows.Forms.Panel()
+        Me.slot_18_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_18_name = New System.Windows.Forms.Label()
+        Me.slot_3_enchant = New System.Windows.Forms.Label()
+        Me.slot_3_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_3_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_3_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_3_color = New System.Windows.Forms.Panel()
+        Me.slot_3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_3_name = New System.Windows.Forms.Label()
+        Me.slot_4_enchant = New System.Windows.Forms.Label()
+        Me.slot_4_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_4_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_4_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_4_color = New System.Windows.Forms.Panel()
+        Me.slot_4_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_4_name = New System.Windows.Forms.Label()
+        Me.slot_14_enchant = New System.Windows.Forms.Label()
+        Me.slot_14_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_14_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_14_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_14_color = New System.Windows.Forms.Panel()
+        Me.slot_14_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_14_name = New System.Windows.Forms.Label()
+        Me.slot_2_enchant = New System.Windows.Forms.Label()
+        Me.slot_2_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_2_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_2_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_2_color = New System.Windows.Forms.Panel()
+        Me.slot_2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_2_name = New System.Windows.Forms.Label()
+        Me.slot_1_enchant = New System.Windows.Forms.Label()
+        Me.slot_1_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_1_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_1_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_1_color = New System.Windows.Forms.Panel()
+        Me.slot_1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_1_name = New System.Windows.Forms.Label()
+        Me.slot_0_enchant = New System.Windows.Forms.Label()
+        Me.slot_0_gem3_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_0_gem2_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_0_gem1_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_0_color = New System.Windows.Forms.Panel()
+        Me.slot_0_pic = New System.Windows.Forms.PictureBox()
+        Me.slot_0_name = New System.Windows.Forms.Label()
+        Me.charname_lbl = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.level_lbl = New System.Windows.Forms.Label()
+        Me.race_lbl = New System.Windows.Forms.Label()
+        Me.class_lbl = New System.Windows.Forms.Label()
+        Me.av_bt = New System.Windows.Forms.Button()
+        Me.Glyphs_bt = New System.Windows.Forms.Button()
+        Me.rep_bt = New System.Windows.Forms.Button()
+        Me.spellsskills_bt = New System.Windows.Forms.Button()
+        Me.professions_bt = New System.Windows.Forms.Button()
+        Me.exit_bt = New System.Windows.Forms.Button()
+        Me.savechanges_bt = New System.Windows.Forms.Button()
+        Me.reset_bt = New System.Windows.Forms.Button()
+        Me.changepanel = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.racepanel = New System.Windows.Forms.Panel()
+        Me.racecombo = New System.Windows.Forms.ComboBox()
+        Me.racerefresh = New System.Windows.Forms.PictureBox()
+        Me.classpanel = New System.Windows.Forms.Panel()
+        Me.classcombo = New System.Windows.Forms.ComboBox()
+        Me.classrefresh = New System.Windows.Forms.PictureBox()
+        Me.selectenchpanel = New System.Windows.Forms.Panel()
+        Me.spellench = New System.Windows.Forms.Label()
+        Me.itmench = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.bank_bt = New System.Windows.Forms.Button()
+        Me.Panel36 = New System.Windows.Forms.Panel()
+        Me.PictureBox38 = New System.Windows.Forms.PictureBox()
+        Me.Panel37 = New System.Windows.Forms.Panel()
+        Me.PictureBox39 = New System.Windows.Forms.PictureBox()
+        Me.Panel33 = New System.Windows.Forms.Panel()
+        Me.PictureBox35 = New System.Windows.Forms.PictureBox()
+        Me.Panel34 = New System.Windows.Forms.Panel()
+        Me.PictureBox36 = New System.Windows.Forms.PictureBox()
+        Me.Panel38 = New System.Windows.Forms.Panel()
+        Me.PictureBox40 = New System.Windows.Forms.PictureBox()
+        Me.bagpanel = New System.Windows.Forms.Panel()
+        Me.Panel26 = New System.Windows.Forms.Panel()
+        Me.PictureBox28 = New System.Windows.Forms.PictureBox()
+        Me.Panel27 = New System.Windows.Forms.Panel()
+        Me.PictureBox29 = New System.Windows.Forms.PictureBox()
+        Me.Panel28 = New System.Windows.Forms.Panel()
+        Me.PictureBox30 = New System.Windows.Forms.PictureBox()
+        Me.Panel29 = New System.Windows.Forms.Panel()
+        Me.PictureBox31 = New System.Windows.Forms.PictureBox()
+        Me.Panel30 = New System.Windows.Forms.Panel()
+        Me.PictureBox32 = New System.Windows.Forms.PictureBox()
+        Me.Panel31 = New System.Windows.Forms.Panel()
+        Me.PictureBox33 = New System.Windows.Forms.PictureBox()
+        Me.Panel32 = New System.Windows.Forms.Panel()
+        Me.PictureBox34 = New System.Windows.Forms.PictureBox()
+        Me.Panel39 = New System.Windows.Forms.Panel()
+        Me.PictureBox41 = New System.Windows.Forms.PictureBox()
+        Me.Panel40 = New System.Windows.Forms.Panel()
+        Me.PictureBox42 = New System.Windows.Forms.PictureBox()
+        Me.Panel41 = New System.Windows.Forms.Panel()
+        Me.PictureBox43 = New System.Windows.Forms.PictureBox()
+        Me.Panel42 = New System.Windows.Forms.Panel()
+        Me.PictureBox44 = New System.Windows.Forms.PictureBox()
+        Me.Panel43 = New System.Windows.Forms.Panel()
+        Me.PictureBox45 = New System.Windows.Forms.PictureBox()
+        Me.Panel44 = New System.Windows.Forms.Panel()
+        Me.PictureBox46 = New System.Windows.Forms.PictureBox()
+        Me.Panel45 = New System.Windows.Forms.Panel()
+        Me.PictureBox47 = New System.Windows.Forms.PictureBox()
+        Me.Panel18 = New System.Windows.Forms.Panel()
+        Me.PictureBox20 = New System.Windows.Forms.PictureBox()
+        Me.Panel19 = New System.Windows.Forms.Panel()
+        Me.PictureBox21 = New System.Windows.Forms.PictureBox()
+        Me.Panel20 = New System.Windows.Forms.Panel()
+        Me.PictureBox22 = New System.Windows.Forms.PictureBox()
+        Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.PictureBox23 = New System.Windows.Forms.PictureBox()
+        Me.Panel22 = New System.Windows.Forms.Panel()
+        Me.PictureBox24 = New System.Windows.Forms.PictureBox()
+        Me.Panel23 = New System.Windows.Forms.Panel()
+        Me.PictureBox25 = New System.Windows.Forms.PictureBox()
+        Me.Panel24 = New System.Windows.Forms.Panel()
+        Me.PictureBox26 = New System.Windows.Forms.PictureBox()
+        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
+        Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
+        Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.PictureBox14 = New System.Windows.Forms.PictureBox()
+        Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.PictureBox15 = New System.Windows.Forms.PictureBox()
+        Me.Panel14 = New System.Windows.Forms.Panel()
+        Me.PictureBox16 = New System.Windows.Forms.PictureBox()
+        Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.PictureBox17 = New System.Windows.Forms.PictureBox()
+        Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.picbagslot = New System.Windows.Forms.PictureBox()
+        Me.addpanel = New System.Windows.Forms.Panel()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Quests_bt = New System.Windows.Forms.Button()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+            Me.Label6 = New System.Windows.Forms.Label()
+            Me.gender_lbl = New System.Windows.Forms.Label()
             Me.GroupBox2 = New System.Windows.Forms.GroupBox()
             Me.Label5 = New System.Windows.Forms.Label()
             Me.InfoToolTip = New System.Windows.Forms.ToolTip(Me.components)
+            Me.genderpanel = New System.Windows.Forms.Panel()
+            Me.gendercombo = New System.Windows.Forms.ComboBox()
+            Me.genderrefresh = New System.Windows.Forms.PictureBox()
+            Me.referenceItmPanel = New System.Windows.Forms.Panel()
+            Me.referenceItmPic = New System.Windows.Forms.PictureBox()
             Me.InventoryPanel.SuspendLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -441,6 +448,10 @@ Namespace Forms.Character
             CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.GroupBox1.SuspendLayout()
             Me.GroupBox2.SuspendLayout()
+            Me.genderpanel.SuspendLayout()
+            CType(Me.genderrefresh, System.ComponentModel.ISupportInitialize).BeginInit()
+            Me.referenceItmPanel.SuspendLayout()
+            CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'InventoryPanel
@@ -1984,7 +1995,7 @@ Namespace Forms.Character
             Me.level_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.level_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.level_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.level_lbl.Location = New System.Drawing.Point(60, 24)
+            Me.level_lbl.Location = New System.Drawing.Point(66, 24)
             Me.level_lbl.Name = "level_lbl"
             Me.level_lbl.Size = New System.Drawing.Size(23, 15)
             Me.level_lbl.TabIndex = 5
@@ -1997,7 +2008,7 @@ Namespace Forms.Character
             Me.race_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.race_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.race_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.race_lbl.Location = New System.Drawing.Point(60, 50)
+            Me.race_lbl.Location = New System.Drawing.Point(66, 50)
             Me.race_lbl.Name = "race_lbl"
             Me.race_lbl.Size = New System.Drawing.Size(60, 15)
             Me.race_lbl.TabIndex = 6
@@ -2010,7 +2021,7 @@ Namespace Forms.Character
             Me.class_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.class_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.class_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.class_lbl.Location = New System.Drawing.Point(60, 76)
+            Me.class_lbl.Location = New System.Drawing.Point(66, 76)
             Me.class_lbl.Name = "class_lbl"
             Me.class_lbl.Size = New System.Drawing.Size(50, 15)
             Me.class_lbl.TabIndex = 7
@@ -2044,48 +2055,48 @@ Namespace Forms.Character
             Me.Glyphs_bt.Text = "Glyphs"
             Me.Glyphs_bt.UseVisualStyleBackColor = False
             '
-            'Button2
+            'rep_bt
             '
-            Me.Button2.BackColor = System.Drawing.Color.DimGray
-            Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.Button2.ForeColor = System.Drawing.Color.Black
-            Me.Button2.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Button2.Location = New System.Drawing.Point(572, 550)
-            Me.Button2.Name = "Button2"
-            Me.Button2.Size = New System.Drawing.Size(155, 34)
-            Me.Button2.TabIndex = 166
-            Me.Button2.Text = "Reputation"
-            Me.Button2.UseVisualStyleBackColor = False
+            Me.rep_bt.BackColor = System.Drawing.Color.DimGray
+            Me.rep_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.rep_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.rep_bt.ForeColor = System.Drawing.Color.Black
+            Me.rep_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.rep_bt.Location = New System.Drawing.Point(572, 550)
+            Me.rep_bt.Name = "rep_bt"
+            Me.rep_bt.Size = New System.Drawing.Size(155, 34)
+            Me.rep_bt.TabIndex = 166
+            Me.rep_bt.Text = "Reputation"
+            Me.rep_bt.UseVisualStyleBackColor = False
             '
-            'Button4
+            'spellsskills_bt
             '
-            Me.Button4.BackColor = System.Drawing.Color.DimGray
-            Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.Button4.ForeColor = System.Drawing.Color.Black
-            Me.Button4.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Button4.Location = New System.Drawing.Point(572, 590)
-            Me.Button4.Name = "Button4"
-            Me.Button4.Size = New System.Drawing.Size(155, 34)
-            Me.Button4.TabIndex = 168
-            Me.Button4.Text = "Spells/Skills"
-            Me.Button4.UseVisualStyleBackColor = False
+            Me.spellsskills_bt.BackColor = System.Drawing.Color.DimGray
+            Me.spellsskills_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.spellsskills_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.spellsskills_bt.ForeColor = System.Drawing.Color.Black
+            Me.spellsskills_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.spellsskills_bt.Location = New System.Drawing.Point(572, 590)
+            Me.spellsskills_bt.Name = "spellsskills_bt"
+            Me.spellsskills_bt.Size = New System.Drawing.Size(155, 34)
+            Me.spellsskills_bt.TabIndex = 168
+            Me.spellsskills_bt.Text = "Spells/Skills"
+            Me.spellsskills_bt.UseVisualStyleBackColor = False
             '
-            'Button5
+            'professions_bt
             '
-            Me.Button5.BackColor = System.Drawing.Color.DimGray
-            Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.Button5.Enabled = False
-            Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.Button5.ForeColor = System.Drawing.Color.Black
-            Me.Button5.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Button5.Location = New System.Drawing.Point(572, 630)
-            Me.Button5.Name = "Button5"
-            Me.Button5.Size = New System.Drawing.Size(155, 34)
-            Me.Button5.TabIndex = 169
-            Me.Button5.Text = "Professions"
-            Me.Button5.UseVisualStyleBackColor = False
+            Me.professions_bt.BackColor = System.Drawing.Color.DimGray
+            Me.professions_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.professions_bt.Enabled = False
+            Me.professions_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.professions_bt.ForeColor = System.Drawing.Color.Black
+            Me.professions_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.professions_bt.Location = New System.Drawing.Point(572, 630)
+            Me.professions_bt.Name = "professions_bt"
+            Me.professions_bt.Size = New System.Drawing.Size(155, 34)
+            Me.professions_bt.TabIndex = 169
+            Me.professions_bt.Text = "Professions"
+            Me.professions_bt.UseVisualStyleBackColor = False
             '
             'exit_bt
             '
@@ -2268,26 +2279,26 @@ Namespace Forms.Character
             Me.Label1.TabIndex = 0
             Me.Label1.Text = "Namcore has found two " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "matching enchantments:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Select one!)"
             '
-            'Button3
+            'bank_bt
             '
-            Me.Button3.BackColor = System.Drawing.Color.DimGray
-            Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.Button3.Enabled = False
-            Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.Button3.ForeColor = System.Drawing.Color.Black
-            Me.Button3.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Button3.Location = New System.Drawing.Point(733, 549)
-            Me.Button3.Name = "Button3"
-            Me.Button3.Size = New System.Drawing.Size(155, 34)
-            Me.Button3.TabIndex = 177
-            Me.Button3.Text = "Bank"
-            Me.Button3.UseVisualStyleBackColor = False
+            Me.bank_bt.BackColor = System.Drawing.Color.DimGray
+            Me.bank_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.bank_bt.Enabled = False
+            Me.bank_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.bank_bt.ForeColor = System.Drawing.Color.Black
+            Me.bank_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.bank_bt.Location = New System.Drawing.Point(733, 549)
+            Me.bank_bt.Name = "bank_bt"
+            Me.bank_bt.Size = New System.Drawing.Size(155, 34)
+            Me.bank_bt.TabIndex = 177
+            Me.bank_bt.Text = "Bank"
+            Me.bank_bt.UseVisualStyleBackColor = False
             '
             'Panel36
             '
             Me.Panel36.BackColor = System.Drawing.SystemColors.ActiveBorder
             Me.Panel36.Controls.Add(Me.PictureBox38)
-            Me.Panel36.Location = New System.Drawing.Point(66, 56)
+            Me.Panel36.Location = New System.Drawing.Point(66, 46)
             Me.Panel36.Name = "Panel36"
             Me.Panel36.Size = New System.Drawing.Size(56, 56)
             Me.Panel36.TabIndex = 180
@@ -2305,7 +2316,7 @@ Namespace Forms.Character
             '
             Me.Panel37.BackColor = System.Drawing.SystemColors.ActiveBorder
             Me.Panel37.Controls.Add(Me.PictureBox39)
-            Me.Panel37.Location = New System.Drawing.Point(9, 56)
+            Me.Panel37.Location = New System.Drawing.Point(9, 46)
             Me.Panel37.Name = "Panel37"
             Me.Panel37.Size = New System.Drawing.Size(56, 56)
             Me.Panel37.TabIndex = 179
@@ -2323,7 +2334,7 @@ Namespace Forms.Character
             '
             Me.Panel33.BackColor = System.Drawing.SystemColors.ActiveBorder
             Me.Panel33.Controls.Add(Me.PictureBox35)
-            Me.Panel33.Location = New System.Drawing.Point(180, 56)
+            Me.Panel33.Location = New System.Drawing.Point(180, 46)
             Me.Panel33.Name = "Panel33"
             Me.Panel33.Size = New System.Drawing.Size(56, 56)
             Me.Panel33.TabIndex = 182
@@ -2341,7 +2352,7 @@ Namespace Forms.Character
             '
             Me.Panel34.BackColor = System.Drawing.SystemColors.ActiveBorder
             Me.Panel34.Controls.Add(Me.PictureBox36)
-            Me.Panel34.Location = New System.Drawing.Point(123, 56)
+            Me.Panel34.Location = New System.Drawing.Point(123, 46)
             Me.Panel34.Name = "Panel34"
             Me.Panel34.Size = New System.Drawing.Size(56, 56)
             Me.Panel34.TabIndex = 181
@@ -2359,7 +2370,7 @@ Namespace Forms.Character
             '
             Me.Panel38.BackColor = System.Drawing.SystemColors.ActiveBorder
             Me.Panel38.Controls.Add(Me.PictureBox40)
-            Me.Panel38.Location = New System.Drawing.Point(237, 56)
+            Me.Panel38.Location = New System.Drawing.Point(237, 46)
             Me.Panel38.Name = "Panel38"
             Me.Panel38.Size = New System.Drawing.Size(56, 56)
             Me.Panel38.TabIndex = 183
@@ -2958,6 +2969,8 @@ Namespace Forms.Character
             'GroupBox1
             '
             Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+            Me.GroupBox1.Controls.Add(Me.Label6)
+            Me.GroupBox1.Controls.Add(Me.gender_lbl)
             Me.GroupBox1.Controls.Add(Me.Label2)
             Me.GroupBox1.Controls.Add(Me.Label3)
             Me.GroupBox1.Controls.Add(Me.Label4)
@@ -2966,12 +2979,37 @@ Namespace Forms.Character
             Me.GroupBox1.Controls.Add(Me.class_lbl)
             Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.GroupBox1.Location = New System.Drawing.Point(558, 58)
+            Me.GroupBox1.Location = New System.Drawing.Point(558, 36)
             Me.GroupBox1.Name = "GroupBox1"
-            Me.GroupBox1.Size = New System.Drawing.Size(155, 100)
+            Me.GroupBox1.Size = New System.Drawing.Size(155, 130)
             Me.GroupBox1.TabIndex = 222
             Me.GroupBox1.TabStop = False
             Me.GroupBox1.Text = "General"
+            '
+            'Label6
+            '
+            Me.Label6.AutoSize = True
+            Me.Label6.BackColor = System.Drawing.Color.Transparent
+            Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label6.Location = New System.Drawing.Point(6, 101)
+            Me.Label6.Name = "Label6"
+            Me.Label6.Size = New System.Drawing.Size(63, 16)
+            Me.Label6.TabIndex = 8
+            Me.Label6.Text = "Gender:"
+            '
+            'gender_lbl
+            '
+            Me.gender_lbl.AutoSize = True
+            Me.gender_lbl.BackColor = System.Drawing.Color.Transparent
+            Me.gender_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+            Me.gender_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.gender_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.gender_lbl.Location = New System.Drawing.Point(66, 101)
+            Me.gender_lbl.Name = "gender_lbl"
+            Me.gender_lbl.Size = New System.Drawing.Size(39, 15)
+            Me.gender_lbl.TabIndex = 9
+            Me.gender_lbl.Text = "Male"
             '
             'GroupBox2
             '
@@ -2998,11 +3036,58 @@ Namespace Forms.Character
             Me.Label5.BackColor = System.Drawing.Color.Transparent
             Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.Label5.Location = New System.Drawing.Point(6, 24)
+            Me.Label5.Location = New System.Drawing.Point(6, 23)
             Me.Label5.Name = "Label5"
             Me.Label5.Size = New System.Drawing.Size(48, 16)
             Me.Label5.TabIndex = 2
             Me.Label5.Text = "Bags:"
+            '
+            'genderpanel
+            '
+            Me.genderpanel.BackColor = System.Drawing.Color.Transparent
+            Me.genderpanel.Controls.Add(Me.gendercombo)
+            Me.genderpanel.Controls.Add(Me.genderrefresh)
+            Me.genderpanel.Location = New System.Drawing.Point(1365, 360)
+            Me.genderpanel.Name = "genderpanel"
+            Me.genderpanel.Size = New System.Drawing.Size(144, 25)
+            Me.genderpanel.TabIndex = 226
+            '
+            'gendercombo
+            '
+            Me.gendercombo.FormattingEnabled = True
+            Me.gendercombo.Items.AddRange(New Object() {"Male", "Female"})
+            Me.gendercombo.Location = New System.Drawing.Point(3, 2)
+            Me.gendercombo.Name = "gendercombo"
+            Me.gendercombo.Size = New System.Drawing.Size(115, 21)
+            Me.gendercombo.TabIndex = 175
+            '
+            'genderrefresh
+            '
+            Me.genderrefresh.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.genderrefresh.Image = Global.Namcore_Studio.My.Resources.Resources.Refresh_icon
+            Me.genderrefresh.Location = New System.Drawing.Point(122, 4)
+            Me.genderrefresh.Name = "genderrefresh"
+            Me.genderrefresh.Size = New System.Drawing.Size(16, 16)
+            Me.genderrefresh.TabIndex = 174
+            Me.genderrefresh.TabStop = False
+            '
+            'referenceItmPanel
+            '
+            Me.referenceItmPanel.BackColor = System.Drawing.SystemColors.ActiveBorder
+            Me.referenceItmPanel.Controls.Add(Me.referenceItmPic)
+            Me.referenceItmPanel.Location = New System.Drawing.Point(1419, 438)
+            Me.referenceItmPanel.Name = "referenceItmPanel"
+            Me.referenceItmPanel.Size = New System.Drawing.Size(45, 45)
+            Me.referenceItmPanel.TabIndex = 228
+            '
+            'referenceItmPic
+            '
+            Me.referenceItmPic.Location = New System.Drawing.Point(3, 3)
+            Me.referenceItmPic.Name = "referenceItmPic"
+            Me.referenceItmPic.Size = New System.Drawing.Size(39, 39)
+            Me.referenceItmPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.referenceItmPic.TabIndex = 0
+            Me.referenceItmPic.TabStop = False
             '
             'CharacterOverview
             '
@@ -3010,6 +3095,8 @@ Namespace Forms.Character
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
             Me.ClientSize = New System.Drawing.Size(910, 714)
+            Me.Controls.Add(Me.referenceItmPanel)
+            Me.Controls.Add(Me.genderpanel)
             Me.Controls.Add(Me.addpanel)
             Me.Controls.Add(Me.selectenchpanel)
             Me.Controls.Add(Me.classpanel)
@@ -3018,13 +3105,13 @@ Namespace Forms.Character
             Me.Controls.Add(Me.GroupBox2)
             Me.Controls.Add(Me.GroupBox1)
             Me.Controls.Add(Me.Quests_bt)
-            Me.Controls.Add(Me.Button3)
+            Me.Controls.Add(Me.bank_bt)
             Me.Controls.Add(Me.reset_bt)
             Me.Controls.Add(Me.savechanges_bt)
             Me.Controls.Add(Me.exit_bt)
-            Me.Controls.Add(Me.Button5)
-            Me.Controls.Add(Me.Button4)
-            Me.Controls.Add(Me.Button2)
+            Me.Controls.Add(Me.professions_bt)
+            Me.Controls.Add(Me.spellsskills_bt)
+            Me.Controls.Add(Me.rep_bt)
             Me.Controls.Add(Me.Glyphs_bt)
             Me.Controls.Add(Me.av_bt)
             Me.Controls.Add(Me.charname_lbl)
@@ -3039,13 +3126,13 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.charname_lbl, 0)
             Me.Controls.SetChildIndex(Me.av_bt, 0)
             Me.Controls.SetChildIndex(Me.Glyphs_bt, 0)
-            Me.Controls.SetChildIndex(Me.Button2, 0)
-            Me.Controls.SetChildIndex(Me.Button4, 0)
-            Me.Controls.SetChildIndex(Me.Button5, 0)
+            Me.Controls.SetChildIndex(Me.rep_bt, 0)
+            Me.Controls.SetChildIndex(Me.spellsskills_bt, 0)
+            Me.Controls.SetChildIndex(Me.professions_bt, 0)
             Me.Controls.SetChildIndex(Me.exit_bt, 0)
             Me.Controls.SetChildIndex(Me.savechanges_bt, 0)
             Me.Controls.SetChildIndex(Me.reset_bt, 0)
-            Me.Controls.SetChildIndex(Me.Button3, 0)
+            Me.Controls.SetChildIndex(Me.bank_bt, 0)
             Me.Controls.SetChildIndex(Me.Quests_bt, 0)
             Me.Controls.SetChildIndex(Me.GroupBox1, 0)
             Me.Controls.SetChildIndex(Me.GroupBox2, 0)
@@ -3054,6 +3141,8 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.classpanel, 0)
             Me.Controls.SetChildIndex(Me.selectenchpanel, 0)
             Me.Controls.SetChildIndex(Me.addpanel, 0)
+            Me.Controls.SetChildIndex(Me.genderpanel, 0)
+            Me.Controls.SetChildIndex(Me.referenceItmPanel, 0)
             Me.InventoryPanel.ResumeLayout(False)
             Me.InventoryPanel.PerformLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3235,10 +3324,14 @@ Namespace Forms.Character
             Me.GroupBox1.PerformLayout()
             Me.GroupBox2.ResumeLayout(False)
             Me.GroupBox2.PerformLayout()
+            Me.genderpanel.ResumeLayout(False)
+            CType(Me.genderrefresh, System.ComponentModel.ISupportInitialize).EndInit()
+            Me.referenceItmPanel.ResumeLayout(False)
+            CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
-            Me.PerformLayout()
+        Me.PerformLayout
 
-        End Sub
+End Sub
         Friend WithEvents InventoryPanel As System.Windows.Forms.Panel
         Friend WithEvents slot_0_name As System.Windows.Forms.Label
         Friend WithEvents slot_0_pic As System.Windows.Forms.PictureBox
@@ -3382,9 +3475,9 @@ Namespace Forms.Character
         Friend WithEvents class_lbl As System.Windows.Forms.Label
         Friend WithEvents av_bt As System.Windows.Forms.Button
         Friend WithEvents Glyphs_bt As System.Windows.Forms.Button
-        Friend WithEvents Button2 As System.Windows.Forms.Button
-        Friend WithEvents Button4 As System.Windows.Forms.Button
-        Friend WithEvents Button5 As System.Windows.Forms.Button
+        Friend WithEvents rep_bt As System.Windows.Forms.Button
+        Friend WithEvents spellsskills_bt As System.Windows.Forms.Button
+        Friend WithEvents professions_bt As System.Windows.Forms.Button
         Friend WithEvents exit_bt As System.Windows.Forms.Button
         Friend WithEvents savechanges_bt As System.Windows.Forms.Button
         Friend WithEvents reset_bt As System.Windows.Forms.Button
@@ -3402,7 +3495,7 @@ Namespace Forms.Character
         Friend WithEvents spellench As System.Windows.Forms.Label
         Friend WithEvents itmench As System.Windows.Forms.Label
         Friend WithEvents Label1 As System.Windows.Forms.Label
-        Friend WithEvents Button3 As System.Windows.Forms.Button
+        Friend WithEvents bank_bt As System.Windows.Forms.Button
         Friend WithEvents Panel36 As System.Windows.Forms.Panel
         Friend WithEvents PictureBox38 As System.Windows.Forms.PictureBox
         Friend WithEvents Panel37 As System.Windows.Forms.Panel
@@ -3478,5 +3571,12 @@ Namespace Forms.Character
         Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
         Friend WithEvents Label5 As System.Windows.Forms.Label
         Friend WithEvents InfoToolTip As System.Windows.Forms.ToolTip
+        Friend WithEvents Label6 As System.Windows.Forms.Label
+        Friend WithEvents gender_lbl As System.Windows.Forms.Label
+        Friend WithEvents genderpanel As System.Windows.Forms.Panel
+        Friend WithEvents gendercombo As System.Windows.Forms.ComboBox
+        Friend WithEvents genderrefresh As System.Windows.Forms.PictureBox
+        Friend WithEvents referenceItmPanel As System.Windows.Forms.Panel
+        Friend WithEvents referenceItmPic As System.Windows.Forms.PictureBox
     End Class
 End Namespace
