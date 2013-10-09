@@ -32,9 +32,11 @@ Namespace Forms
 
         '// Declaration
         ReadOnly _strucCheck As New DbStrucCheck
+        Dim _catchError As Boolean = False
         '// Declaration
 
         Private Sub connect_bt_Click(sender As Object, e As EventArgs) Handles connect_bt.Click
+            _catchError = False
             Select Case GlobalVariables.con_operator
                 Case 1 'Source connection @live_view
                     GlobalVariables.globChars = New GlobalCharVars()
@@ -66,9 +68,9 @@ Namespace Forms
                                                                                password_txtbox.Text & ";Database=" &
                                                                                realmdbname_txtbox.Text &
                                                                                ";Convert Zero Datetime=True"
-                                OpenNewMySQLConnection(GlobalVariables.GlobalConnection,
+                                OpenNewMySqlConnection(GlobalVariables.GlobalConnection,
                                                        GlobalVariables.GlobalConnectionString)
-                                OpenNewMySQLConnection(GlobalVariables.GlobalConnection_Realm,
+                                OpenNewMySqlConnection(GlobalVariables.GlobalConnection_Realm,
                                                        GlobalVariables.GlobalConnectionString_Realm)
                                 GlobalVariables.GlobalConnection_Info.ConnectionString = "server=" &
                                                                                          db_address_txtbox.Text &
@@ -79,7 +81,7 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.startCheck("trinity", 3, GlobalVariables.GlobalConnection,
+                                _strucCheck.StartCheck("trinity", 3, GlobalVariables.GlobalConnection,
                                                        GlobalVariables.GlobalConnection_Realm,
                                                        GlobalVariables.GlobalConnection_Info, chardbname_txtbox.Text,
                                                        realmdbname_txtbox.Text, False) 'todo
@@ -88,15 +90,18 @@ Namespace Forms
                                         Dim liveview As LiveView = DirectCast(currentForm, LiveView)
                                         liveview.accountview.Items.Clear()
                                         liveview.characterview.Items.Clear()
-                                        liveview.loadaccountsandchars()
+                                        liveview.Loadaccountsandchars()
                                     End If
                                 Next
                             Else
-
+                                MsgBox(ResourceHandler.GetUserMessage("FailedConnectCharacter"), MsgBoxStyle.Critical,
+                                  "Error")
+                                _catchError = True
                             End If
-
                         Else
-
+                            MsgBox(ResourceHandler.GetUserMessage("FailedConnectRealm"), MsgBoxStyle.Critical,
+                                     "Error")
+                            _catchError = True
                         End If
                     Else
 
@@ -127,9 +132,9 @@ Namespace Forms
                                                                                password_txtbox.Text & ";Database=" &
                                                                                realmdbname_txtbox.Text &
                                                                                ";Convert Zero Datetime=True"
-                                OpenNewMySQLConnection(GlobalVariables.TargetConnection,
+                                OpenNewMySqlConnection(GlobalVariables.TargetConnection,
                                                        GlobalVariables.TargetConnectionString)
-                                OpenNewMySQLConnection(GlobalVariables.TargetConnection_Realm,
+                                OpenNewMySqlConnection(GlobalVariables.TargetConnection_Realm,
                                                        GlobalVariables.TargetConnectionString_Realm)
                                 GlobalVariables.TargetConnRealmDBname = realmdbname_txtbox.Text
                                 GlobalVariables.TargetConnCharactersDBname = chardbname_txtbox.Text
@@ -142,7 +147,7 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.startCheck("trinity", 3, GlobalVariables.TargetConnection,
+                                _strucCheck.StartCheck("trinity", 3, GlobalVariables.TargetConnection,
                                                        GlobalVariables.TargetConnection_Realm,
                                                        GlobalVariables.TargetConnection_Info, chardbname_txtbox.Text,
                                                        realmdbname_txtbox.Text, True) 'todo
@@ -150,14 +155,24 @@ Namespace Forms
                                     If currentForm.Name = "Live_View" Then
                                         Dim liveview As LiveView = DirectCast(currentForm, LiveView)
                                         liveview.target_accounts_tree.Nodes.Clear()
-                                        liveview.loadtargetaccountsandchars()
+                                        liveview.Loadtargetaccountsandchars()
                                     End If
                                 Next
+                            Else
+                                MsgBox(ResourceHandler.GetUserMessage("FailedConnectCharacter"), MsgBoxStyle.Critical,
+                                  "Error")
+                                _catchError = True
                             End If
+                        Else
+                            MsgBox(ResourceHandler.GetUserMessage("FailedConnectRealm"), MsgBoxStyle.Critical,
+                                     "Error")
+                            _catchError = True
                         End If
                     End If
             End Select
-            Close()
+            If _catchError = False Then
+                Close()
+            End If
         End Sub
 
         Private Sub DB_connect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
