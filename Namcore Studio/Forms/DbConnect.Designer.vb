@@ -70,7 +70,7 @@ Namespace Forms
             Me.connect_panel.BackColor = System.Drawing.Color.Transparent
             Me.connect_panel.Controls.Add(Me.login1_panel)
             Me.connect_panel.Controls.Add(Me.connect_header_label)
-            Me.connect_panel.Location = New System.Drawing.Point(12, 32)
+            Me.connect_panel.Location = New System.Drawing.Point(12, 35)
             Me.connect_panel.Name = "connect_panel"
             Me.connect_panel.Size = New System.Drawing.Size(514, 490)
             Me.connect_panel.TabIndex = 1
@@ -453,6 +453,7 @@ Namespace Forms
             Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
             Me.ClientSize = New System.Drawing.Size(541, 507)
             Me.Controls.Add(Me.connect_panel)
+            Me.DoubleBuffered = True
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "DbConnect"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

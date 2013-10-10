@@ -60,6 +60,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemSlotCountByItemId(ByVal itemId As Integer) As Integer
+            If itemId = 23162 Then Return 36 '// "GM"-BAG (not in itemsparse)
             Const targetField As Integer = 4
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer

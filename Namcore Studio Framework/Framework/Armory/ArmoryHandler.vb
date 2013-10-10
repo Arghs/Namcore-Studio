@@ -107,8 +107,10 @@ Namespace Framework.Armory
                         LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "ArmoryHandler_DoLoad", False, True)
                     End Try
                     LogAppend("Loading character's finished quests", "ArmoryHandler_DoLoad", True)
-                    player.FinishedQuests = splitString(client.DownloadString(apiLink & "?fields=quests") & ",",
+                    player.FinishedQuests = SplitString(client.DownloadString(apiLink & "?fields=quests") & ",",
                                                         """quests"":[", "]}")
+                    player.InventoryZeroItems = New List(Of InventItem)()
+                    player.InventoryZeroItems.Add(New InventItem With {.Entry = 6948, .Count = 1, .Bag = 0, .Container = 0, .Slot = 23}) '// Adding hearthstone
                     player.SetIndex = setId
                     AddCharacterSet(setId, player)
                     Dim mReputationParser As ReputationParser = New ReputationParser

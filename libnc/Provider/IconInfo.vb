@@ -48,11 +48,24 @@ Namespace Provider
                 Return pic
             End If
         End Function
-        Public Function GetItemIconById(ByVal itemId As Integer, ByVal client As WebClient, Optional forceOnline As Boolean = False) As Image
+        Public Function GetItemIconById(ByVal itemId As Integer, ByVal client As WebClient, Optional forceOnline As Boolean = True) As Image
             Const targetField As Integer = 1
             Dim myResult As String = ""
             If forceOnline = False Then
                 myResult = ExecuteCsvSearch(ItemDisplayInfoCsv, "ItemId", itemId.ToString(), targetField)(0)
+                If myResult Is Nothing Then
+                    Try
+                        Dim itemContext As String =
+                                client.DownloadString("http://www.wowhead.com/item=" & itemId.ToString & "&xml")
+                        Try
+                            myResult = SplitString(itemContext, "<icon displayId=""" & SplitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>")
+                        Catch ex As Exception
+                            Return My.Resources.INV_Misc_QuestionMark
+                        End Try
+                    Catch
+                        Return My.Resources.INV_Misc_QuestionMark
+                    End Try
+                End If
                 If myResult = "-" Then
                     Try
                         Dim itemContext As String =
@@ -66,31 +79,48 @@ Namespace Provider
                         Return My.Resources.INV_Misc_QuestionMark
                     End Try
                 End If
-            End If
-            If myResult = "" Then
-                Try
-                    Dim itemContext As String =
-                            client.DownloadString("http://www.wowhead.com/item=" & itemId.ToString & "&xml")
+            Else
+                If myResult Is Nothing Then
                     Try
-                        myResult = SplitString(itemContext, "<icon displayId=""" & SplitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>")
-                    Catch ex As Exception
+                        Dim itemContext As String =
+                                client.DownloadString("http://www.wowhead.com/item=" & itemId.ToString & "&xml")
+                        Try
+                            myResult = SplitString(itemContext, "<icon displayId=""" & SplitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>")
+                        Catch ex As Exception
+                            Return My.Resources.INV_Misc_QuestionMark
+                        End Try
+                    Catch
                         Return My.Resources.INV_Misc_QuestionMark
                     End Try
-                Catch
-                    Return My.Resources.INV_Misc_QuestionMark
-                End Try
-            End If
-            Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(myResult.ToLower())
-            If pic Is Nothing Then
-                Dim onlinePic As Image =
-                        LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & myResult.ToLower() & ".jpg", client)
-                If onlinePic Is Nothing Then
-                    Return My.Resources.INV_Misc_QuestionMark
-                Else
-                    Return onlinePic
                 End If
-            Else
-                Return pic
+                If myResult = "" Then
+                    Try
+                        Dim itemContext As String =
+                                client.DownloadString("http://www.wowhead.com/item=" & itemId.ToString & "&xml")
+                        Try
+                            myResult = SplitString(itemContext, "<icon displayId=""" & SplitString(itemContext, "<icon displayId=""", """>") & """>", "</icon>")
+                        Catch ex As Exception
+                            Return My.Resources.INV_Misc_QuestionMark
+                        End Try
+                    Catch
+                        Return My.Resources.INV_Misc_QuestionMark
+                    End Try
+                End If
+            End If
+            If myResult IsNot Nothing Then
+                Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(myResult.ToLower())
+                If pic Is Nothing Then
+                    Dim onlinePic As Image =
+                            LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & myResult.ToLower() & ".jpg", client)
+                    If onlinePic Is Nothing Then
+                        Return My.Resources.INV_Misc_QuestionMark
+                    Else
+                        Return onlinePic
+                    End If
+                Else
+                    Return pic
+                End If
+            Else : Return My.Resources.INV_Misc_QuestionMark
             End If
         End Function
         Private Function LoadImageFromUrl(ByRef url As String, ByVal client As WebClient) As Image

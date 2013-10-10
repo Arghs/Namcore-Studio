@@ -1923,9 +1923,9 @@ Namespace Forms.Character
             Me.av_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.av_bt.ForeColor = System.Drawing.Color.Black
             Me.av_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.av_bt.Location = New System.Drawing.Point(572, 510)
+            Me.av_bt.Location = New System.Drawing.Point(681, 561)
             Me.av_bt.Name = "av_bt"
-            Me.av_bt.Size = New System.Drawing.Size(155, 34)
+            Me.av_bt.Size = New System.Drawing.Size(104, 34)
             Me.av_bt.TabIndex = 164
             Me.av_bt.Text = "Achievements"
             Me.av_bt.UseVisualStyleBackColor = False
@@ -1937,9 +1937,9 @@ Namespace Forms.Character
             Me.Glyphs_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.Glyphs_bt.ForeColor = System.Drawing.Color.Black
             Me.Glyphs_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Glyphs_bt.Location = New System.Drawing.Point(733, 587)
+            Me.Glyphs_bt.Location = New System.Drawing.Point(792, 599)
             Me.Glyphs_bt.Name = "Glyphs_bt"
-            Me.Glyphs_bt.Size = New System.Drawing.Size(155, 34)
+            Me.Glyphs_bt.Size = New System.Drawing.Size(104, 34)
             Me.Glyphs_bt.TabIndex = 165
             Me.Glyphs_bt.Text = "Glyphs"
             Me.Glyphs_bt.UseVisualStyleBackColor = False
@@ -1951,9 +1951,9 @@ Namespace Forms.Character
             Me.rep_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.rep_bt.ForeColor = System.Drawing.Color.Black
             Me.rep_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.rep_bt.Location = New System.Drawing.Point(572, 550)
+            Me.rep_bt.Location = New System.Drawing.Point(572, 561)
             Me.rep_bt.Name = "rep_bt"
-            Me.rep_bt.Size = New System.Drawing.Size(155, 34)
+            Me.rep_bt.Size = New System.Drawing.Size(104, 34)
             Me.rep_bt.TabIndex = 166
             Me.rep_bt.Text = "Reputation"
             Me.rep_bt.UseVisualStyleBackColor = False
@@ -1965,9 +1965,9 @@ Namespace Forms.Character
             Me.spellsskills_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.spellsskills_bt.ForeColor = System.Drawing.Color.Black
             Me.spellsskills_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.spellsskills_bt.Location = New System.Drawing.Point(572, 590)
+            Me.spellsskills_bt.Location = New System.Drawing.Point(572, 601)
             Me.spellsskills_bt.Name = "spellsskills_bt"
-            Me.spellsskills_bt.Size = New System.Drawing.Size(155, 34)
+            Me.spellsskills_bt.Size = New System.Drawing.Size(104, 34)
             Me.spellsskills_bt.TabIndex = 168
             Me.spellsskills_bt.Text = "Spells/Skills"
             Me.spellsskills_bt.UseVisualStyleBackColor = False
@@ -1980,9 +1980,9 @@ Namespace Forms.Character
             Me.professions_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.professions_bt.ForeColor = System.Drawing.Color.Black
             Me.professions_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.professions_bt.Location = New System.Drawing.Point(572, 630)
+            Me.professions_bt.Location = New System.Drawing.Point(572, 641)
             Me.professions_bt.Name = "professions_bt"
-            Me.professions_bt.Size = New System.Drawing.Size(155, 34)
+            Me.professions_bt.Size = New System.Drawing.Size(104, 34)
             Me.professions_bt.TabIndex = 169
             Me.professions_bt.Text = "Professions"
             Me.professions_bt.UseVisualStyleBackColor = False
@@ -1994,7 +1994,7 @@ Namespace Forms.Character
             Me.exit_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.exit_bt.ForeColor = System.Drawing.Color.Black
             Me.exit_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.exit_bt.Location = New System.Drawing.Point(734, 670)
+            Me.exit_bt.Location = New System.Drawing.Point(741, 678)
             Me.exit_bt.Name = "exit_bt"
             Me.exit_bt.Size = New System.Drawing.Size(155, 34)
             Me.exit_bt.TabIndex = 170
@@ -2009,7 +2009,7 @@ Namespace Forms.Character
             Me.savechanges_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.savechanges_bt.ForeColor = System.Drawing.Color.Black
             Me.savechanges_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.savechanges_bt.Location = New System.Drawing.Point(173, 670)
+            Me.savechanges_bt.Location = New System.Drawing.Point(173, 678)
             Me.savechanges_bt.Name = "savechanges_bt"
             Me.savechanges_bt.Size = New System.Drawing.Size(155, 34)
             Me.savechanges_bt.TabIndex = 171
@@ -2024,7 +2024,7 @@ Namespace Forms.Character
             Me.reset_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.reset_bt.ForeColor = System.Drawing.Color.Black
             Me.reset_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.reset_bt.Location = New System.Drawing.Point(12, 670)
+            Me.reset_bt.Location = New System.Drawing.Point(12, 678)
             Me.reset_bt.Name = "reset_bt"
             Me.reset_bt.Size = New System.Drawing.Size(155, 34)
             Me.reset_bt.TabIndex = 172
@@ -2176,9 +2176,9 @@ Namespace Forms.Character
             Me.bank_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.bank_bt.ForeColor = System.Drawing.Color.Black
             Me.bank_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.bank_bt.Location = New System.Drawing.Point(733, 549)
+            Me.bank_bt.Location = New System.Drawing.Point(792, 561)
             Me.bank_bt.Name = "bank_bt"
-            Me.bank_bt.Size = New System.Drawing.Size(155, 34)
+            Me.bank_bt.Size = New System.Drawing.Size(104, 34)
             Me.bank_bt.TabIndex = 177
             Me.bank_bt.Text = "Bank"
             Me.bank_bt.UseVisualStyleBackColor = False
@@ -2331,9 +2331,9 @@ Namespace Forms.Character
             Me.Quests_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.Quests_bt.ForeColor = System.Drawing.Color.Black
             Me.Quests_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Quests_bt.Location = New System.Drawing.Point(733, 510)
+            Me.Quests_bt.Location = New System.Drawing.Point(681, 599)
             Me.Quests_bt.Name = "Quests_bt"
-            Me.Quests_bt.Size = New System.Drawing.Size(155, 34)
+            Me.Quests_bt.Size = New System.Drawing.Size(104, 34)
             Me.Quests_bt.TabIndex = 186
             Me.Quests_bt.Text = "Quests"
             Me.Quests_bt.UseVisualStyleBackColor = False
@@ -2395,7 +2395,7 @@ Namespace Forms.Character
             Me.GroupBox2.Controls.Add(Me.bag5Panel)
             Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.GroupBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.GroupBox2.Location = New System.Drawing.Point(558, 174)
+            Me.GroupBox2.Location = New System.Drawing.Point(558, 166)
             Me.GroupBox2.Name = "GroupBox2"
             Me.GroupBox2.Size = New System.Drawing.Size(338, 122)
             Me.GroupBox2.TabIndex = 223
@@ -2479,7 +2479,7 @@ Namespace Forms.Character
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.ClientSize = New System.Drawing.Size(910, 714)
+            Me.ClientSize = New System.Drawing.Size(910, 723)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.genderpanel)
             Me.Controls.Add(Me.addpanel)
