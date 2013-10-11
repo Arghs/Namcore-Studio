@@ -203,7 +203,7 @@ Namespace Forms.Character
                                         Dim thisRep As Reputation = pCtrl.Tag
                                         pCtrl.Tag = thisRep.UpdateStanding()
                                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                                         GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                                     End If
                                 Next
@@ -239,7 +239,7 @@ Namespace Forms.Character
                                         Dim thisRep As Reputation = pCtrl.Tag
                                         pCtrl.Tag = thisRep.UpdateStanding()
                                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                                         GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                                     End If
                                 Next
@@ -289,7 +289,7 @@ Namespace Forms.Character
                     Dim thisRep As Reputation = pCtrl.Tag
                     pCtrl.Tag = thisRep.UpdateStanding()
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                     GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                     DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Value = 0
                     DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Maximum =
@@ -341,7 +341,7 @@ Namespace Forms.Character
                                 pCtrl.Tag.value = int
                                 _valueisok = True
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                                 GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                             End If
                         End If
@@ -482,7 +482,7 @@ Namespace Forms.Character
                         repPanel.Controls.Add(standingCombo)
                         AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                         GlobalVariables.currentEditedCharSet.PlayerReputation.Add(pRepu)
                         MsgBox(ResourceHandler.GetUserMessage("factionadded"), , "Info")
                     Else

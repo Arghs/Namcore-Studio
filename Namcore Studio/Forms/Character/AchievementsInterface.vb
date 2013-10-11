@@ -206,7 +206,7 @@ Namespace Forms.Character
                         For Each av As Achievement In GlobalVariables.currentViewedCharSet.Achievements
                             If av.Id = charAv.Id Then
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then
-                                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                                     GlobalVariables.currentViewedCharSet.Achievements.Remove(av)
                                 Else
                                     GlobalVariables.currentViewedCharSet.Achievements.Remove(av)
@@ -343,12 +343,12 @@ Namespace Forms.Character
                         Next
                         Dim charAv As New Achievement
                         charAv.Id = retnvalue
-                        charAv.GainDate = toTimeStamp(Date.Today)
+                        charAv.GainDate = Date.Today.ToTimeStamp()
                         If _correctIds.Contains(charAv.Id) Then
                            AddAvToLayout(charAv)
                         End If
                         If GlobalVariables.currentEditedCharSet Is Nothing Then
-                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                             GlobalVariables.currentEditedCharSet.Achievements.Add(charAv)
                         Else
                             GlobalVariables.currentEditedCharSet.Achievements.Add(charAv)

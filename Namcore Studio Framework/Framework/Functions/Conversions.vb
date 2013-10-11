@@ -25,8 +25,6 @@ Imports System.Text
 Imports System.Resources
 Imports System.Reflection
 Imports System.IO
-Imports System.Net
-Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Logging
 
 Namespace Framework.Functions

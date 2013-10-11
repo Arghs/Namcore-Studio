@@ -137,7 +137,7 @@ Namespace Forms.Character
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                 If qst.rewarded = 1 Then
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
                         GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
@@ -167,7 +167,7 @@ Namespace Forms.Character
                 Dim qst As Quest = qstitm.Tag
                 If qst.status = 1 Then
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                     If qst.rewarded = 1 Then
                         GlobalVariables.currentEditedCharSet.FinishedQuests =
                             GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
@@ -212,7 +212,7 @@ Namespace Forms.Character
                 Dim qst As Quest = qstitm.Tag
                 If qst.status = 0 Then
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                     For Each pquest As Quest In GlobalVariables.currentEditedCharSet.Quests
                         If pquest.id = qst.id Then
                             pquest.status = 1
@@ -237,7 +237,7 @@ Namespace Forms.Character
                 Dim qst As Quest = qstitm.Tag
                 If qst.rewarded = 1 Then
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
                         GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
                     qstitm.SubItems(3).Text = "0"
@@ -263,7 +263,7 @@ Namespace Forms.Character
                 Dim qst As Quest = qstitm.Tag
                 If qst.rewarded = 0 Then
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
                         GlobalVariables.currentEditedCharSet.FinishedQuests & qst.id.ToString & ","
                     qstitm.SubItems(2).Text = "1"
@@ -291,7 +291,7 @@ Namespace Forms.Character
             Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterqstid"), "Add quest", "0"))
             If Not retnvalue = 0 Then
                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                 If GlobalVariables.currentEditedCharSet.FinishedQuests.Contains("," & retnvalue.ToString & ",") Then
                     MsgBox(ResourceHandler.GetUserMessage("qstexist"), MsgBoxStyle.Critical, "Error")
                     Exit Sub

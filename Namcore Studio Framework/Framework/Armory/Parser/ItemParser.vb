@@ -24,9 +24,15 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports libnc.Provider
+Imports NCFramework.Framework.Extension.Special
+
 Namespace Framework.Armory.Parser
 
     Public Class ItemParser
+        '// Declaration
+        Private _lastStamp As Integer = 0
+        '// Declaration
+
         Public Sub LoadItems(ByVal source As String, ByVal setId As Integer)
             Dim slotname As String
             Dim itemslot As Integer = 0
@@ -106,14 +112,14 @@ Namespace Framework.Armory.Parser
                             Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
                             If Not charItem Is Nothing Then
                                 AddCharacterArmorItem(player, charItem)
-                                LoadWeaponType(charItem.id, setId)
+                                LoadWeaponType(charItem.Id, setId)
                             End If
                         Case 16
                             slotname = "off"
                             Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
                             If Not charItem Is Nothing Then
                                 AddCharacterArmorItem(player, charItem)
-                                LoadWeaponType(charItem.id, setId)
+                                LoadWeaponType(charItem.Id, setId)
                             End If
                         Case 17 '// Slot 17 has been removed as of patch 5.0
                         Case 18
@@ -139,7 +145,7 @@ Namespace Framework.Armory.Parser
             Else
                 endString = "<div data-id"
             End If
-            Dim relevantItemContext As String = splitString(sourceCode, "<div data-id=""" & slot.ToString & """ data-type",
+            Dim relevantItemContext As String = SplitString(sourceCode, "<div data-id=""" & slot.ToString & """ data-type",
                                                             endString)
             If relevantItemContext Is Nothing Then
                 LogAppend("RelevantItemContext is nothing - prevent NullReferenceException - Item not found",
@@ -149,28 +155,35 @@ Namespace Framework.Armory.Parser
             If Not relevantItemContext.Contains("/item/") Then Return Nothing '//Not item
             Dim charItem As New Item
             '// Loading main Item Info
-            charItem.id = TryInt(splitString(relevantItemContext, "/item/", """ class=""item"""))
-            charItem.slotname = slotname
-            charItem.slot = slot
-            If charItem.id = Nothing Then
+            charItem.Id = TryInt(SplitString(relevantItemContext, "/item/", """ class=""item"""))
+            Dim x As DateTime = Date.Now
+            If _lastStamp = 0 Then
+                _lastStamp = x.ToTimeStamp()
+            Else
+                _lastStamp += 1
+            End If
+            charItem.Guid = _lastStamp
+            charItem.Slotname = slotname
+            charItem.Slot = slot
+            If charItem.Id = Nothing Then
                 LogAppend("Item Id is 0 - Failed to load", "ItemParser_loadItems", False, True)
                 Return New Item
             End If '// Item ID not found
-            charItem.name = splitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
+            charItem.Name = SplitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
             If GlobalVariables.offlineExtension = True Then charItem.Image = GetItemIconById(charItem.Id, GlobalVariables.GlobalWebClient) Else 
-            charItem.image = LoadImageFromUrl(splitString(relevantItemContext, "<img src=""", """ alt"))
-            charItem.rarity = TryInt(splitString(relevantItemContext, "item-quality-", """ style="))
+            charItem.Image = LoadImageFromUrl(SplitString(relevantItemContext, "<img src=""", """ alt"))
+            charItem.Rarity = TryInt(SplitString(relevantItemContext, "item-quality-", """ style="))
             Dim socketContext As String
             If relevantItemContext.Contains("<span class=""sockets"">") Then
                 LogAppend("Item gems active!", "ItemParser_loadItems", False)
                 '// Gems active
-                socketContext = splitString(relevantItemContext & "</div>", "<span class=""sockets"">", "</div>")
+                socketContext = SplitString(relevantItemContext & "</div>", "<span class=""sockets"">", "</div>")
                 Dim socketCount As Integer = UBound(Split(socketContext, "socket-"))
                 LogAppend("socketCount: " & socketCount.ToString(), "ItemParser_loadItems", False)
-                Dim oneSocketContext As String = splitString(socketContext, "<span class=""icon-socket",
+                Dim oneSocketContext As String = SplitString(socketContext, "<span class=""icon-socket",
                                                              "<span class=""frame"">")
                 If Not oneSocketContext.Length <= 49 Then
-                    charItem.Socket1Id = TryInt(splitString(oneSocketContext, "/item/", """ class="))
+                    charItem.Socket1Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
                     If GlobalVariables.offlineExtension = True Then _
                         charItem.Socket1Pic = GetItemIconById(charItem.Socket1Id, GlobalVariables.GlobalWebClient) Else 
                     charItem.Socket1Pic = LoadImageFromUrl(SplitString(oneSocketContext,
@@ -185,7 +198,7 @@ Namespace Framework.Armory.Parser
                     socketContext = Replace(socketContext,
                                             "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">",
                                             Nothing, , 1)
-                    oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
+                    oneSocketContext = SplitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                     charItem.Socket2Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
                     If GlobalVariables.offlineExtension = True Then _
                         charItem.Socket2Pic = GetItemIconById(charItem.Socket2Id, GlobalVariables.GlobalWebClient) Else 
@@ -197,7 +210,7 @@ Namespace Framework.Armory.Parser
                         socketContext = Replace(socketContext,
                                                 "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">",
                                                 Nothing, , 1)
-                        oneSocketContext = splitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
+                        oneSocketContext = SplitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                         charItem.Socket3Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
                         If GlobalVariables.offlineExtension = True Then _
                             charItem.Socket3Pic = GetItemIconById(charItem.Socket3Id, GlobalVariables.GlobalWebClient) Else 
@@ -213,7 +226,7 @@ Namespace Framework.Armory.Parser
             If relevantItemContext.Contains("<span class=""enchant-") Then
                 LogAppend("Enchantment active!", "ItemParser_loadItems", False)
                 '// Enchantment active
-                Dim enchantContext As String = splitString(relevantItemContext, " class=""enchant color", "</span>")
+                Dim enchantContext As String = SplitString(relevantItemContext, " class=""enchant color", "</span>")
                 If enchantContext.Contains("data-spell=") Then
                     LogAppend("Enchantment type: spell!", "ItemParser_loadItems", False)
                     '//enchantment type: spell

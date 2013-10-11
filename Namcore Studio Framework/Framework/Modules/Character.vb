@@ -23,6 +23,7 @@
 Namespace Framework.Modules
     <Serializable()>
     Public Class Character
+        Public Loaded As Boolean = False
         Public SourceCore As String
         Public SetIndex As Integer
         Public Guid As Integer
@@ -117,5 +118,9 @@ Namespace Framework.Modules
             Name = charname
             Guid = charguid
         End Sub
+
+        Public Function ShallowCopy() As Character
+            Return DirectCast(MemberwiseClone(), Character)
+        End Function
     End Class
 End Namespace

@@ -274,7 +274,7 @@ Namespace Forms.Character
                         End If
                     Next
                     If GlobalVariables.currentEditedCharSet Is Nothing Then
-                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                         Dim glyphIndex As Integer =
                                 TryInt(splitString(GlobalVariables.currentViewedCharSet.PlayerGlyphsIndex,
                                                    "[slot:" & tag.slotname & "|@", "]"))
@@ -345,7 +345,7 @@ Namespace Forms.Character
 
                             Next
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                             SetCharacterGlyph(GlobalVariables.currentEditedCharSet, newGlyph)
                         End If
                     End If
@@ -396,7 +396,7 @@ Namespace Forms.Character
                     senderPic.Tag = gly
                     senderPic.Refresh()
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                     AddCharacterGlyph(GlobalVariables.currentEditedCharSet, gly)
                     senderPic.Image = gly.image
                     DirectCast(_tempSender, Label).Text = gly.name

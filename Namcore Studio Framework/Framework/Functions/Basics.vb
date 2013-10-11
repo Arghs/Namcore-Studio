@@ -21,7 +21,6 @@
 '*      /Description:   Includes basic and frequently used functions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
-Imports libnc
 Imports System.Net
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules

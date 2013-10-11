@@ -28,6 +28,7 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Armory.Parser
+Imports NCFramework.Framework.Extension.Special
 
 Namespace Framework.Armory
 
@@ -89,11 +90,9 @@ Namespace Framework.Armory
                         Dim appearanceContext As String = client.DownloadString(apiLink & "?fields=appearance")
                         Dim appFace As String = Hex$(Long.Parse(splitString(appearanceContext, """faceVariation"":", ",")))
                         Dim appSkin As String = Hex$(Long.Parse(splitString(appearanceContext, """skinColor"":", ",")))
-                        Dim appHairStyle As String = Hex$(Long.Parse(splitString(appearanceContext, """hairVariation"":",
-                                                                                  ",")))
+                        Dim appHairStyle As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairVariation"":", ",")))
                         Dim appHairColor As String = Hex$(Long.Parse(splitString(appearanceContext, """hairColor"":", ",")))
-                        Dim appFeatureVar As String = Hex$(Long.Parse(splitString(appearanceContext,
-                                                                                   """featureVariation"":", ",")))
+                        Dim appFeatureVar As String = Hex$(Long.Parse(SplitString(appearanceContext, """featureVariation"":", ",")))
                         If appFace.ToString.Length = 1 Then appFace = 0 & appFace
                         If appSkin.ToString.Length = 1 Then appSkin = 0 & appSkin
                         If appHairStyle.ToString.Length = 1 Then appHairStyle = 0 & appHairStyle
@@ -110,7 +109,7 @@ Namespace Framework.Armory
                     player.FinishedQuests = SplitString(client.DownloadString(apiLink & "?fields=quests") & ",",
                                                         """quests"":[", "]}")
                     player.InventoryZeroItems = New List(Of InventItem)()
-                    player.InventoryZeroItems.Add(New InventItem With {.Entry = 6948, .Count = 1, .Bag = 0, .Container = 0, .Slot = 23}) '// Adding hearthstone
+                    player.InventoryZeroItems.Add(New InventItem With {.Entry = 6948, .Count = 1, .Bag = 0, .Container = 0, .Slot = 23, .Guid = 0}) '// Adding hearthstone
                     player.SetIndex = setId
                     AddCharacterSet(setId, player)
                     Dim mReputationParser As ReputationParser = New ReputationParser

@@ -27,6 +27,7 @@ Namespace Framework.Modules
     <Serializable()>
     Public Class Item
         Public Id As Integer
+        Public Guid As Integer
         Public Name As String
         Public Rarity As Integer '0=poor;1=common;2=uncommon;3=rare;4=epic;5=legendary;6=artifact/heirloom
         Public Slotname As String

@@ -1835,7 +1835,7 @@ Namespace Forms.Character
             Me.charname_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.charname_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.charname_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.charname_lbl.Location = New System.Drawing.Point(12, 36)
+            Me.charname_lbl.Location = New System.Drawing.Point(12, 38)
             Me.charname_lbl.Name = "charname_lbl"
             Me.charname_lbl.Size = New System.Drawing.Size(132, 20)
             Me.charname_lbl.TabIndex = 1
@@ -2020,7 +2020,6 @@ Namespace Forms.Character
             '
             Me.reset_bt.BackColor = System.Drawing.Color.DimGray
             Me.reset_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.reset_bt.Enabled = False
             Me.reset_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.reset_bt.ForeColor = System.Drawing.Color.Black
             Me.reset_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
@@ -2194,6 +2193,7 @@ Namespace Forms.Character
             '
             'bag2Pic
             '
+            Me.bag2Pic.BackgroundImage = CType(resources.GetObject("bag2Pic.BackgroundImage"), System.Drawing.Image)
             Me.bag2Pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.bag2Pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.bag2Pic.Location = New System.Drawing.Point(3, 3)
@@ -2247,6 +2247,7 @@ Namespace Forms.Character
             '
             'bag4Pic
             '
+            Me.bag4Pic.BackgroundImage = CType(resources.GetObject("bag4Pic.BackgroundImage"), System.Drawing.Image)
             Me.bag4Pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.bag4Pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.bag4Pic.Location = New System.Drawing.Point(3, 3)
@@ -2267,6 +2268,7 @@ Namespace Forms.Character
             '
             'bag3Pic
             '
+            Me.bag3Pic.BackgroundImage = CType(resources.GetObject("bag3Pic.BackgroundImage"), System.Drawing.Image)
             Me.bag3Pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.bag3Pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.bag3Pic.Location = New System.Drawing.Point(3, 3)
@@ -2287,6 +2289,7 @@ Namespace Forms.Character
             '
             'bag5Pic
             '
+            Me.bag5Pic.BackgroundImage = CType(resources.GetObject("bag5Pic.BackgroundImage"), System.Drawing.Image)
             Me.bag5Pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.bag5Pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.bag5Pic.Location = New System.Drawing.Point(3, 3)
@@ -2466,6 +2469,7 @@ Namespace Forms.Character
             '
             'referenceItmPic
             '
+            Me.referenceItmPic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.empty
             Me.referenceItmPic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.referenceItmPic.Location = New System.Drawing.Point(3, 3)
             Me.referenceItmPic.Name = "referenceItmPic"

@@ -66,14 +66,20 @@ Namespace Forms.Character
             InfoToolTip.ReshowDelay = 500
             InventoryPanel.SetDoubleBuffered()
             _currentSet = setId
+            GlobalVariables.currentViewedCharSetId = Nothing
+            GlobalVariables.currentViewedCharSet = Nothing
             GlobalVariables.currentViewedCharSetId = setId
-            If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
-                '//Load charset
-                LogAppend("Loading character from database", "CharacterOverview_prepare_interface", True)
-                Dim mLoadHandler As New CoreHandler
-                mLoadHandler.HandleLoadingRequests(setId)
-            End If
             GlobalVariables.currentViewedCharSet = GetCharacterSetBySetId(setId)
+            If GlobalVariables.currentViewedCharSet Is Nothing Or GlobalVariables.currentViewedCharSet.Loaded = False Then
+                If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
+                    '//Load charset
+                    LogAppend("Loading character from database", "CharacterOverview_prepare_interface", True)
+                    Dim mLoadHandler As New CoreHandler
+                    mLoadHandler.HandleLoadingRequests(setId)
+                    GlobalVariables.currentViewedCharSet.Loaded = True
+                    SetCharacterSet(setId, GlobalVariables.currentViewedCharSet)
+                End If
+            End If
             _doneControls = New List(Of Control)
             Goprep(setId, False)
             LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
@@ -229,6 +235,7 @@ Namespace Forms.Character
                             If itemControl.Name.ToLower.EndsWith("color") Then
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_color"))
                                 DirectCast(itemControl, Panel).BackColor = LoadInfo(setId, slot, 6)
+                                If _pubItm Is Nothing Then DirectCast(itemControl, Panel).BackColor = SystemColors.ActiveBorder
                                 DirectCast(itemControl, Panel).Tag = _pubItm
                             End If
 
@@ -248,6 +255,7 @@ Namespace Forms.Character
 
         Private Function LoadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
             LogAppend("Loading info for slot " & slot.ToString, "CharacterOverview_LoadInfo", True)
+            _pubItm = New Item
             Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet), slot.ToString, True)
             _pubItm = itm
             If itm Is Nothing Then Return Nothing
@@ -350,13 +358,12 @@ Namespace Forms.Character
             If Not TextBox1.Text = _tempValue Then
                 If TypeOf _tempSender Is Label Then
                     Dim id As Integer = TryInt(TextBox1.Text)
-
                     If senderLabel.Name.ToLower.EndsWith("charname_lbl") Then
                         If TextBox1.Text = "" Then
 
                         Else
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                             senderLabel.Text = TextBox1.Text
                         End If
                     ElseIf senderLabel.Name.ToLower.EndsWith("level_lbl") Then
@@ -368,7 +375,7 @@ Namespace Forms.Character
 
                             Else
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                                 senderLabel.Text = TextBox1.Text
                             End If
                         End If
@@ -388,7 +395,7 @@ Namespace Forms.Character
                         End Try
                         If _
                             Not spellcontext = "" And
-                            Not spellcontext.Contains("<div id=""inputbox-error"">This spell doesn't exist.</div>") And
+                            Not spellcontext.Contains("<div Guid=""inputbox-error"">This spell doesn't exist.</div>") And
                             spellcontext.Contains(""">Enchant Item") Then
                             foundspell = True
                             spellname = SplitString(spellcontext, "<meta property=""og&#x3A;title"" content=""", """ />")
@@ -403,8 +410,8 @@ Namespace Forms.Character
                             Not itemcontext = "" And
                             Not _
                             itemcontext.Contains(
-                                "<div id=""inputbox-error"">This item doesn't exist or is not yet in the database.</div>") And
-                            itemcontext.Contains("subclass id=""6"">") Then
+                                "<div Guid=""inputbox-error"">This item doesn't exist or is not yet in the database.</div>") And
+                            itemcontext.Contains("subclass Guid=""6"">") Then
                             founditem = True
                             itemname = SplitString(itemcontext, "<name><![CDATA[", "]]></name>")
                             itemname = itemname.Replace("&#x20;", " ")
@@ -423,7 +430,7 @@ Namespace Forms.Character
                             itm.EnchantmentName = itemname
                             senderLabel.Tag = itm
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         ElseIf foundspell = True Then
                             Dim itm As Item = senderLabel.Tag
@@ -433,18 +440,18 @@ Namespace Forms.Character
                             itm.EnchantmentName = spellname
                             senderLabel.Tag = itm
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         Else
 
                         End If
                     Else
-                        If Not GetItemInventorySlotByItemId(_tempSender.tag.id) = GetItemInventorySlotByItemId(id) Then
-                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
+                        If Not GetItemInventorySlotByItemId(_tempSender.tag.Guid) = GetItemInventorySlotByItemId(Id) Then
+                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalGuid"), MsgBoxStyle.Critical,
                                    ResourceHandler.GetUserMessage("Error"))
                         Else
                             Dim newitm As Item = _tempSender.tag
-                            newitm.ReplaceItem(id)
+                            newitm.ReplaceItem(Id)
                             senderLabel.Tag = newitm
                             Dim txt As String = senderLabel.Tag.name
                             If Not txt Is Nothing Then
@@ -457,7 +464,7 @@ Namespace Forms.Character
                             For Each ctrl As Control In _controlLst
                                 If TypeOf ctrl Is PictureBox Then
                                     If ctrl.Tag Is Nothing Then Continue For
-                                    If ctrl.Tag.id = senderLabel.Tag.id Then
+                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
                                         DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
                                         Select Case True
                                             Case _
@@ -474,7 +481,7 @@ Namespace Forms.Character
                                     End If
                                 ElseIf TypeOf ctrl Is Panel Then
                                     If ctrl.Tag Is Nothing Then Continue For
-                                    If ctrl.Tag.id = senderLabel.Tag.id Then
+                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
                                         If ctrl.Name.ToLower.EndsWith("color") Then
                                             DirectCast(ctrl, Panel).BackColor = Getraritycolor(senderLabel.Tag.rarity)
                                             DirectCast(ctrl, Panel).Tag = senderLabel.Tag
@@ -482,7 +489,7 @@ Namespace Forms.Character
                                     End If
                                 ElseIf TypeOf ctrl Is Label Then
                                     If ctrl.Tag Is Nothing Then Continue For
-                                    If ctrl.Tag.id = senderLabel.Tag.id Then
+                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
                                         If ctrl.Name.ToLower.EndsWith("_enchant") Then
                                             DirectCast(ctrl, Label).Tag = senderLabel.Tag
                                         End If
@@ -491,7 +498,7 @@ Namespace Forms.Character
 
                             Next
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         End If
                     End If
@@ -521,7 +528,6 @@ Namespace Forms.Character
             Dim senderLabel As Label = _tempSender
             newPoint.X = 4000
             newPoint.Y = 4000
-
             Dim tempSender = TryCast(_tempSender, Label)
             If (tempSender IsNot Nothing) Then
                 If Not _tempSender.text.tolower.endswith("_enchant") Then
@@ -529,11 +535,10 @@ Namespace Forms.Character
                     Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
                                         ResourceHandler.GetUserMessage("areyousure"))
                     If result = MsgBoxResult.Yes Then
-
                         For Each ctrl As Control In _controlLst
                             If TypeOf ctrl Is PictureBox Then
                                 If ctrl.Tag Is Nothing Then Continue For
-                                If ctrl.Tag.id = senderLabel.Tag.id Then
+                                If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
                                     DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
                                     Select Case True
                                         Case _
@@ -549,25 +554,24 @@ Namespace Forms.Character
                                 End If
                             ElseIf TypeOf ctrl Is Panel Then
                                 If ctrl.Tag Is Nothing Then Continue For
-                                If ctrl.Tag.id = senderLabel.Tag.id Then
-                                    If ctrl.Name.ToLower.EndsWith("color") Then
+                                If ctrl.Name.ToLower.EndsWith("color") Then
+                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
                                         DirectCast(ctrl, Panel).BackColor = SystemColors.ActiveBorder
                                         DirectCast(ctrl, Panel).Tag = Nothing
                                     End If
                                 End If
                             ElseIf TypeOf ctrl Is Label Then
                                 If ctrl.Tag Is Nothing Then Continue For
-                                If ctrl.Tag.id = senderLabel.Tag.id Then
+                                If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
                                     If ctrl.Name.ToLower.EndsWith("_enchant") Then
                                         DirectCast(ctrl, Label).Tag = Nothing
                                         DirectCast(ctrl, Label).Text = ""
                                     End If
                                 End If
                             End If
-
                         Next
                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                         RemoveCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         senderLabel.Text = Nothing
                         senderLabel.Tag = Nothing
@@ -681,7 +685,7 @@ Namespace Forms.Character
             End If
             classpanel.Location = newPoint
             senderLabel.Visible = True
-            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
             GlobalVariables.currentEditedCharSet.Cclass = GetClassIdByName(senderLabel.Text)
         End Sub
 
@@ -695,7 +699,7 @@ Namespace Forms.Character
             End If
             racepanel.Location = newPoint
             senderLabel.Visible = True
-            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
             GlobalVariables.currentEditedCharSet.Race = GetRaceIdByName(senderLabel.Text)
         End Sub
 
@@ -709,7 +713,7 @@ Namespace Forms.Character
             End If
             genderpanel.Location = newPoint
             senderLabel.Visible = True
-            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
             If senderLabel.Text.StartsWith("M") Then
                 GlobalVariables.currentEditedCharSet.Gender = 0
             Else
@@ -767,7 +771,7 @@ Namespace Forms.Character
                     slot_11_pic.Click, slot_10_pic.Click, slot_1_pic.Click, slot_0_pic.Click
             If Not sender.tag Is Nothing Then
                 Try
-                    Dim itemId As Integer = sender.tag.id
+                    Dim itemId As Integer = sender.tag.Id
                     Process.Start("http://wowhead.com/item=" & itemId.ToString())
                 Catch ex As Exception
 
@@ -882,6 +886,8 @@ Namespace Forms.Character
                 Else
                     Dim itm As New Item
                     itm.Id = TryInt(TextBox2.Text)
+                    Dim x As DateTime = Date.Now
+                    itm.Guid = x.ToTimeStamp()
                     itm.Name = GetItemNameByItemId(itm.Id, NCFramework.My.MySettings.Default.language)
                     itm.Image = GetItemIconById(itm.Id, GlobalVariables.GlobalWebClient)
                     itm.Rarity = GetItemQualityByItemId(itm.Id)
@@ -894,7 +900,7 @@ Namespace Forms.Character
                     DirectCast(_tempSender, Label).Text = itm.Name
                     DirectCast(_tempSender, Label).Tag = itm
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                     AddCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
                     changepanel.Location = New Point(4000, 4000)
                     addpanel.Location = New Point(4000, 4000)
@@ -1014,7 +1020,7 @@ Namespace Forms.Character
             If allowAdding = True Then
                 Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterGemId"), ResourceHandler.GetUserMessage("gemAdding"), "0"))
                 If Not retnvalue = 0 Then
-                    If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet
+                    If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
                     Dim client As New WebClient
                     client.CheckProxy()
                     Dim effectId As Integer = GetEffectIdByGemId(retnvalue)
@@ -1098,6 +1104,22 @@ Namespace Forms.Character
                     Application.DoEvents()
                 End If
             Next
+        End Sub
+
+        Private Sub reset_bt_Click(sender As Object, e As EventArgs) Handles reset_bt.Click
+            GlyphsInterface.Close()
+            AchievementsInterface.Close()
+            QuestsInterface.Close()
+            ReputationInterface.Close()
+            SpellSkillInterface.Close()
+            Hide()
+            NewProcessStatus()
+            Userwait.Show()
+            Dim newOverview As New CharacterOverview
+            newOverview.prepare_interface(GlobalVariables.currentViewedCharSetId)
+            Userwait.Close()
+            newOverview.Show()
+            Close()
         End Sub
     End Class
 End Namespace

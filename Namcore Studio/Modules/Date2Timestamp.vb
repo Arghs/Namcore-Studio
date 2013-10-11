@@ -39,7 +39,7 @@ Namespace Modules
                 Return DateTime.Today
             End Try
         End Function
-
+        <Extension()>
         Public Function ToTimeStamp(ByRef dt As DateTime) As Integer
             Try
                 Dim startdate As DateTime = #1/1/1970#
