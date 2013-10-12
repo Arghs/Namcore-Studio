@@ -1067,8 +1067,9 @@ Namespace Forms.Character
         End Sub
 
         Private Sub BagOpen(sender As Object, e As EventArgs) Handles bag5Pic.Click, bag4Pic.Click, bag3Pic.Click, bag2Pic.Click, bag1Pic.Click
-            InventoryLayout.Controls.Clear()
             Dim bag As Item = sender.tag
+            If bag Is Nothing Then Exit Sub
+            InventoryLayout.Controls.Clear()
             For z = 0 To bag.SlotCount - 1
                 Dim itm As New Item
                 itm.Slot = z

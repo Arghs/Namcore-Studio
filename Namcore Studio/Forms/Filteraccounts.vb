@@ -63,10 +63,10 @@ Namespace Forms
 SkipStatement0:
             If namecheck.Checked = True Then
                 Dim insertstring As String
-                Select Case namecombo1.SelectedIndex
-                    Case 0 'todo
+                Select Case namecombo1.SelectedIndex - 1
+                    Case 1 'todo
                         insertstring = " like '%" & nametxtbox1.Text & "%'"
-                    Case 1
+                    Case 0
                         insertstring = " = '" & nametxtbox1.Text & "'"
                     Case Else : GoTo SkipStatement1
                 End Select
@@ -124,10 +124,10 @@ SkipStatement2:
 SkipStatement3:
             If emailcheck.Checked = True Then
                 Dim insertstring As String
-                Select Case emailcombo1.SelectedIndex
-                    Case 0 'todo
+                Select Case emailcombo1.SelectedIndex - 1
+                    Case 1 'todo
                         insertstring = " like '%" & emailtxtbox1.Text & "%'"
-                    Case 1
+                    Case 0
                         insertstring = " = '" & emailtxtbox1.Text & "'"
                     Case Else : GoTo SkipStatement4
                 End Select
@@ -150,9 +150,13 @@ SkipStatement4:
         End Sub
 
         Private Sub FilterAccounts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-            For Each ctrl As Control In Me.Controls
+            For Each ctrl As Control In Controls
                 ctrl.SetDoubleBuffered()
             Next
+        End Sub
+
+        Private Sub close_bt_Click(sender As Object, e As EventArgs) Handles close_bt.Click
+            Close()
         End Sub
     End Class
 End Namespace

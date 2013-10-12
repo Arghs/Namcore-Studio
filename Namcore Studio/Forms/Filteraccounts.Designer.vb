@@ -47,6 +47,7 @@
             Me.datemin = New System.Windows.Forms.DateTimePicker()
             Me.datemax = New System.Windows.Forms.DateTimePicker()
             Me.filter_label = New System.Windows.Forms.Label()
+            Me.close_bt = New System.Windows.Forms.Button()
             Me.SuspendLayout()
             '
             'ApplyFilter
@@ -274,13 +275,27 @@
             Me.filter_label.TabIndex = 242
             Me.filter_label.Text = "Filter accounts"
             '
+            'close_bt
+            '
+            Me.close_bt.BackColor = System.Drawing.Color.DimGray
+            Me.close_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.close_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.close_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.close_bt.Location = New System.Drawing.Point(197, 170)
+            Me.close_bt.Name = "close_bt"
+            Me.close_bt.Size = New System.Drawing.Size(180, 40)
+            Me.close_bt.TabIndex = 278
+            Me.close_bt.Text = "Close"
+            Me.close_bt.UseVisualStyleBackColor = False
+            '
             'FilterAccounts
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.ClientSize = New System.Drawing.Size(553, 221)
+            Me.ClientSize = New System.Drawing.Size(553, 216)
+            Me.Controls.Add(Me.close_bt)
             Me.Controls.Add(Me.filter_label)
             Me.Controls.Add(Me.datemax)
             Me.Controls.Add(Me.datemin)
@@ -337,5 +352,6 @@
         Friend WithEvents datemin As System.Windows.Forms.DateTimePicker
         Friend WithEvents datemax As System.Windows.Forms.DateTimePicker
         Friend WithEvents filter_label As System.Windows.Forms.Label
+        Friend WithEvents close_bt As System.Windows.Forms.Button
     End Class
 End Namespace

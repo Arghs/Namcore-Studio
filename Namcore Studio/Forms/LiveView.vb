@@ -64,8 +64,7 @@ Namespace Forms
                                                                       GlobalVariables.sourceStructure)
             GlobalVariables.chartable = mAcInfoProc.ReturnCharacterTable(GlobalVariables.GlobalConnection,
                                                                          GlobalVariables.sourceStructure)
-            GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Copy
-            GlobalVariables.modifiedCharTable = GlobalVariables.chartable.Copy
+            GlobalVariables.chartable.Columns.Add("setId")
             characterview.Items.Clear()
             accountview.Items.Clear()
             Dim genSet As Integer = 0
@@ -93,6 +92,7 @@ Namespace Forms
                 AddCharacterSet(genSet, player)
             Next
             accountview.Update()
+            Dim cnt As Integer = 0
             For Each rowitem As DataRow In GlobalVariables.chartable.Rows
                 Dim player As New NCFramework.Framework.Modules.Character("Error", 0)
                 Dim str(6) As String
@@ -112,11 +112,15 @@ Namespace Forms
                 str(6) = rowitem.Item(6)
                 itm = New ListViewItem(str)
                 genSet += 1
+                rowitem.Item(7) = genSet.ToString()
                 itm.Tag = genSet
                 characterview.Items.Add(itm)
                 characterview.EnsureVisible(characterview.Items.Count - 1)
                 AddCharacterSet(genSet, player)
+                cnt += 1
             Next
+            GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Copy
+            GlobalVariables.modifiedCharTable = GlobalVariables.chartable.Copy
             characterview.Sort()
             characterview.Update()
             _checkchangestatus = True
@@ -301,6 +305,7 @@ Namespace Forms
                         str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
                         str(6) = rowitem.Item(6)
                         itm = New ListViewItem(str)
+                        itm.Tag = TryInt(rowitem.Item(7))
                         characterview.Items.Add(itm)
                         characterview.EnsureVisible(characterview.Items.Count - 1)
                     End If
@@ -360,6 +365,7 @@ Namespace Forms
                                 str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
                                 str(6) = rowitem.Item(6)
                                 itm = New ListViewItem(str)
+                                itm.Tag = TryInt(rowitem.Item(7))
                                 characterview.Items.Add(itm)
                                 characterview.EnsureVisible(characterview.Items.Count - 1)
                             End If
@@ -385,6 +391,7 @@ Namespace Forms
                                 str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
                                 str(6) = rowitem.Item(6)
                                 itm = New ListViewItem(str)
+                                itm.Tag = TryInt(rowitem.Item(7))
                                 characterview.Items.Add(itm)
                                 characterview.EnsureVisible(characterview.Items.Count - 1)
                             End If
@@ -499,7 +506,7 @@ Namespace Forms
 
         Private Sub filter_char_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) _
             Handles filter_char.LinkClicked
-            FilterAccounts.Show()
+            FilterCharacters.Show()
         End Sub
 
         Private Sub connect_bt_target_Click(sender As Object, e As EventArgs) Handles connect_bt_target.Click

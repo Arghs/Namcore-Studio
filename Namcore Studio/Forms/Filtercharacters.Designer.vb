@@ -43,6 +43,7 @@
             Me.classcombo = New System.Windows.Forms.ComboBox()
             Me.filter_label = New System.Windows.Forms.Label()
             Me.ApplyFilter = New System.Windows.Forms.Button()
+            Me.close_bt = New System.Windows.Forms.Button()
             Me.SuspendLayout()
             '
             'classcheck
@@ -50,7 +51,7 @@
             Me.classcheck.AutoSize = True
             Me.classcheck.BackColor = System.Drawing.Color.Transparent
             Me.classcheck.ForeColor = System.Drawing.Color.SteelBlue
-            Me.classcheck.Location = New System.Drawing.Point(8, 120)
+            Me.classcheck.Location = New System.Drawing.Point(8, 121)
             Me.classcheck.Name = "classcheck"
             Me.classcheck.Size = New System.Drawing.Size(51, 17)
             Me.classcheck.TabIndex = 259
@@ -95,7 +96,7 @@
             '
             'nametxtbox1
             '
-            Me.nametxtbox1.Location = New System.Drawing.Point(159, 66)
+            Me.nametxtbox1.Location = New System.Drawing.Point(159, 64)
             Me.nametxtbox1.Name = "nametxtbox1"
             Me.nametxtbox1.Size = New System.Drawing.Size(155, 20)
             Me.nametxtbox1.TabIndex = 247
@@ -112,7 +113,7 @@
             '
             'guidtxtbox2
             '
-            Me.guidtxtbox2.Location = New System.Drawing.Point(389, 38)
+            Me.guidtxtbox2.Location = New System.Drawing.Point(389, 36)
             Me.guidtxtbox2.Name = "guidtxtbox2"
             Me.guidtxtbox2.Size = New System.Drawing.Size(155, 20)
             Me.guidtxtbox2.TabIndex = 245
@@ -121,7 +122,7 @@
             '
             Me.guidcombo2.FormattingEnabled = True
             Me.guidcombo2.Items.AddRange(New Object() {"", ">", "<"})
-            Me.guidcombo2.Location = New System.Drawing.Point(320, 38)
+            Me.guidcombo2.Location = New System.Drawing.Point(320, 36)
             Me.guidcombo2.Name = "guidcombo2"
             Me.guidcombo2.Size = New System.Drawing.Size(63, 21)
             Me.guidcombo2.TabIndex = 244
@@ -129,7 +130,7 @@
             '
             'guidtxtbox1
             '
-            Me.guidtxtbox1.Location = New System.Drawing.Point(159, 39)
+            Me.guidtxtbox1.Location = New System.Drawing.Point(159, 37)
             Me.guidtxtbox1.Name = "guidtxtbox1"
             Me.guidtxtbox1.Size = New System.Drawing.Size(155, 20)
             Me.guidtxtbox1.TabIndex = 243
@@ -158,7 +159,7 @@
             '
             'leveltxtbox2
             '
-            Me.leveltxtbox2.Location = New System.Drawing.Point(389, 149)
+            Me.leveltxtbox2.Location = New System.Drawing.Point(389, 148)
             Me.leveltxtbox2.Name = "leveltxtbox2"
             Me.leveltxtbox2.Size = New System.Drawing.Size(155, 20)
             Me.leveltxtbox2.TabIndex = 271
@@ -167,7 +168,7 @@
             '
             Me.levelcombo2.FormattingEnabled = True
             Me.levelcombo2.Items.AddRange(New Object() {"", ">", "<"})
-            Me.levelcombo2.Location = New System.Drawing.Point(320, 149)
+            Me.levelcombo2.Location = New System.Drawing.Point(320, 148)
             Me.levelcombo2.Name = "levelcombo2"
             Me.levelcombo2.Size = New System.Drawing.Size(63, 21)
             Me.levelcombo2.TabIndex = 270
@@ -175,7 +176,7 @@
             '
             'leveltxtbox1
             '
-            Me.leveltxtbox1.Location = New System.Drawing.Point(159, 150)
+            Me.leveltxtbox1.Location = New System.Drawing.Point(159, 148)
             Me.leveltxtbox1.Name = "leveltxtbox1"
             Me.leveltxtbox1.Size = New System.Drawing.Size(155, 20)
             Me.leveltxtbox1.TabIndex = 269
@@ -204,7 +205,7 @@
             '
             Me.classcombo.FormattingEnabled = True
             Me.classcombo.Items.AddRange(New Object() {"Warrior", "Paladin", "Hunter", "Rogue", "Priest", "Death Knight", "Shaman", "Mage", "Warlock", "Druid"})
-            Me.classcombo.Location = New System.Drawing.Point(90, 118)
+            Me.classcombo.Location = New System.Drawing.Point(90, 119)
             Me.classcombo.Name = "classcombo"
             Me.classcombo.Size = New System.Drawing.Size(128, 21)
             Me.classcombo.TabIndex = 274
@@ -235,6 +236,19 @@
             Me.ApplyFilter.Text = "Apply"
             Me.ApplyFilter.UseVisualStyleBackColor = False
             '
+            'close_bt
+            '
+            Me.close_bt.BackColor = System.Drawing.Color.DimGray
+            Me.close_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.close_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.close_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.close_bt.Location = New System.Drawing.Point(194, 176)
+            Me.close_bt.Name = "close_bt"
+            Me.close_bt.Size = New System.Drawing.Size(180, 40)
+            Me.close_bt.TabIndex = 277
+            Me.close_bt.Text = "Close"
+            Me.close_bt.UseVisualStyleBackColor = False
+            '
             'FilterCharacters
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -242,6 +256,7 @@
             Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.ClientSize = New System.Drawing.Size(566, 221)
+            Me.Controls.Add(Me.close_bt)
             Me.Controls.Add(Me.ApplyFilter)
             Me.Controls.Add(Me.filter_label)
             Me.Controls.Add(Me.classcombo)
@@ -289,5 +304,6 @@
         Friend WithEvents classcombo As System.Windows.Forms.ComboBox
         Friend WithEvents filter_label As System.Windows.Forms.Label
         Friend WithEvents ApplyFilter As System.Windows.Forms.Button
+        Friend WithEvents close_bt As System.Windows.Forms.Button
     End Class
 End Namespace

@@ -27,7 +27,6 @@ Imports Namcore_Studio.Modules.Interface
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.My
-Imports NCFramework.Framework.Forms
 Imports NCFramework.Framework.Modules
 Imports System.Net
 
@@ -56,6 +55,11 @@ Namespace Forms
 #If CONFIG = "Debug" Then
             GlobalVariables.DebugMode = True
 #End If
+            If GlobalVariables.DebugMode = True Then
+                MySettings.Default.server_authdb = "arc_auth"
+                MySettings.Default.server_chardb = "arc_characters"
+                MySettings.Default.Save()
+            End If
             If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\version.xml") Then
                 Dim enc As New UnicodeEncoding
                 Dim xmLobj As XmlTextWriter = New XmlTextWriter("version.xml", enc)
