@@ -13,7 +13,7 @@
 '*
 '* You should have received a copy of the GNU General Public License along
 '* with this program. If not, see <http://www.gnu.org/licenses/>.
-'*F:\Projekte\Visual Studio\Namcore-Studio\Namcore Studio Framework\Framework\Functions\SpellItemInformation.vb
+'*
 '* Developed by Alcanmage/megasus
 '*
 '* //FileInfo//
