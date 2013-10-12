@@ -28,7 +28,6 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Armory.Parser
-Imports NCFramework.Framework.Extension.Special
 
 Namespace Framework.Armory
 

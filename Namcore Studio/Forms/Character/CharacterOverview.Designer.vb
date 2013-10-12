@@ -2005,7 +2005,6 @@ Namespace Forms.Character
             '
             Me.savechanges_bt.BackColor = System.Drawing.Color.DimGray
             Me.savechanges_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.savechanges_bt.Enabled = False
             Me.savechanges_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.savechanges_bt.ForeColor = System.Drawing.Color.Black
             Me.savechanges_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl

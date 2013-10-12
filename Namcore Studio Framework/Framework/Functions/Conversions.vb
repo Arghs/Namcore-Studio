@@ -135,7 +135,7 @@ Namespace Framework.Functions
 
         Public Function GetRaceIdByName(ByVal racename As String) As Integer
             LogAppend("Loading race id by name: " & racename.ToString(), "Conversions_GetRaceIdByName", False)
-            Select Case racename
+            Select Case racename.ToLower()
                 Case "human" : Return 1
                 Case "orc" : Return 2
                 Case "dwarf" : Return 3

@@ -89,7 +89,7 @@ Namespace Framework.Functions
             If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
             Dim itmIndex As Integer = TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & itm.Slot.ToString() & "|@",
                                                          "]"))
-            player.ArmorItems.Item(itmIndex) = Nothing
+            player.ArmorItems.Item(itmIndex) = New Item With {.Id = 0, .Slot = itm.Slot, .Slotname = itm.Slotname}
             player.ArmorItemsIndex = player.ArmorItemsIndex.Replace("[slot:" & itm.Slotname & "|@" & itmIndex.ToString & "]",
                                                                     "")
             player.ArmorItemsIndex =
@@ -114,9 +114,19 @@ Namespace Framework.Functions
                 player.ArmorItemsIndex.Contains("[slot:" & slot & "|@") Or
                 player.ArmorItemsIndex.Contains("[slotnum:" & slot & "|@") Then
                 If isint = True Then
-                    Return player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & slot & "|@", "]")))
+                    Dim result As Item = player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & slot & "|@", "]")))
+                    If result.Id = 0 Then
+                        Return Nothing
+                    Else
+                        Return result
+                    End If
                 Else
-                    Return player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slot:" & slot & "|@", "]")))
+                    Dim result As Item = player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slot:" & slot & "|@", "]")))
+                    If result.Id = 0 Then
+                        Return Nothing
+                    Else
+                        Return result
+                    End If
                 End If
 
             Else

@@ -27,7 +27,6 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission.Update
 
-
     Public Class UpdateCharacterHandler
         Public Sub UpdateCharacter(ByVal comparePlayer As Character, ByVal newPlayer As Character)
             LogAppend("Updating character " & comparePlayer.Name, "UpdateCharacterHandler_UpdateCharacter", True)
@@ -35,67 +34,69 @@ Namespace Framework.Transmission.Update
             If GlobalVariables.GlobalConnection_Realm.State = ConnectionState.Closed Then _
                 GlobalVariables.GlobalConnection_Realm.Open()
             GlobalVariables.forceTargetConnectionUsage = False
-            If Not NewPlayer.AccountId = comparePlayer.AccountId Then
+            If Not newPlayer.AccountId = comparePlayer.AccountId Then
                 '// Account changed
                 Select Case GlobalVariables.sourceCore
                     Case "trinity"
                         runSQLCommand_characters_string(
                             "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                             GlobalVariables.sourceStructure.char_accountId_col(0) &
-                            "`='" & NewPlayer.AccountId.ToString() & "' WHERE `" &
-                            GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & NewPlayer.Guid.ToString() & "'")
+                            "`='" & newPlayer.AccountId.ToString() & "' WHERE `" &
+                            GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & newPlayer.Guid.ToString() & "'")
                     Case Else
                         runSQLCommand_characters_string(
                             "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                             GlobalVariables.sourceStructure.char_accountId_col(0) &
-                            "`='" & NewPlayer.AccountId.ToString() & "' WHERE `" &
-                            GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & NewPlayer.Guid.ToString() & "'")
+                            "`='" & newPlayer.AccountId.ToString() & "' WHERE `" &
+                            GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & newPlayer.Guid.ToString() & "'")
                 End Select
 
             End If
-            If Not NewPlayer.Name = comparePlayer.Name Then
+            If Not newPlayer.Name = comparePlayer.Name Then
                 '// Name changed
                 runSQLCommand_characters_string(
                     "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                     GlobalVariables.sourceStructure.char_name_col(0) &
-                    "`='" & NewPlayer.Name & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" &
-                    NewPlayer.Guid.ToString() & "'")
+                    "`='" & newPlayer.Name & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" &
+                    newPlayer.Guid.ToString() & "'")
             End If
-            If Not NewPlayer.Race = comparePlayer.Race Then
+            If Not newPlayer.Race = comparePlayer.Race Then
                 '// Race changed
                 runSQLCommand_characters_string(
                     "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                     GlobalVariables.sourceStructure.char_race_col(0) &
-                    "`='" & NewPlayer.Race.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
-                    "`='" & NewPlayer.Guid.ToString() & "'")
+                    "`='" & newPlayer.Race.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
+                    "`='" & newPlayer.Guid.ToString() & "'")
             End If
-            If Not NewPlayer.Cclass = comparePlayer.Cclass Then
+            If Not newPlayer.Cclass = comparePlayer.Cclass Then
                 '// Class changed
                 runSQLCommand_characters_string(
                     "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                     GlobalVariables.sourceStructure.char_class_col(0) &
-                    "`='" & NewPlayer.Cclass.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
-                    "`='" & NewPlayer.Guid.ToString() & "'")
+                    "`='" & newPlayer.Cclass.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
+                    "`='" & newPlayer.Guid.ToString() & "'")
             End If
-            If Not NewPlayer.Gender = comparePlayer.Gender Then
+            If Not newPlayer.Gender = comparePlayer.Gender Then
                 '// Gender changed
                 runSQLCommand_characters_string(
                     "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                     GlobalVariables.sourceStructure.char_gender_col(0) &
-                    "`='" & NewPlayer.Gender.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
-                    "`='" & NewPlayer.Guid.ToString() & "'")
+                    "`='" & newPlayer.Gender.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
+                    "`='" & newPlayer.Guid.ToString() & "'")
             End If
-            If Not NewPlayer.Level = comparePlayer.Level Then
+            If Not newPlayer.Level = comparePlayer.Level Then
                 '// Level changed
                 runSQLCommand_characters_string(
                     "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                     GlobalVariables.sourceStructure.char_level_col(0) &
-                    "`='" & NewPlayer.Level.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
-                    "`='" & NewPlayer.Guid.ToString() & "'")
+                    "`='" & newPlayer.Level.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
+                    "`='" & newPlayer.Guid.ToString() & "'")
             End If
             Dim itm2Create As New List(Of Item)
             Dim itmsEnchChanged As New List(Of Item)
-            For Each armorItm As Item In NewPlayer.ArmorItems
+            For Each armorItm As Item In newPlayer.ArmorItems
+                If armorItm Is Nothing Then Continue For
+                If armorItm.Id = 0 Then Continue For
                 Dim entry As Item = comparePlayer.ArmorItems.Find(Function(item) item.Id = armorItm.Id)
                 If entry Is Nothing Then
                     '// Item needs to be created
@@ -111,12 +112,11 @@ Namespace Framework.Transmission.Update
                             itmsEnchChanged.Add(entry)
                         End If
                     End If
-
                 End If
             Next
             Dim itm2Delete As List(Of Item) =
                     (From armorItm In comparePlayer.ArmorItems
-                    Where GetCharacterArmorItem(NewPlayer, armorItm.Slot, True) Is Nothing).ToList()
+                    Where GetCharacterArmorItem(newPlayer, armorItm.Slot, True) Is Nothing).ToList()
             If itm2Delete Is Nothing Then itm2Delete = New List(Of Item)()
             If itm2Create.Count > 0 Or itmsEnchChanged.Count > 0 Or itm2Delete.Count > 0 Then
                 Dim mUpdateArmor As New UpdateArmorHandler
@@ -126,14 +126,15 @@ Namespace Framework.Transmission.Update
                 Dim mUpdateGlyphs As New UpdateGlyphsHandler
                 mUpdateGlyphs.UpdateGlyphs(comparePlayer, newPlayer)
             End If
-            Dim result As Item = newPlayer.InventoryItems.Find(Function(Item) Not Item.UpdateRequest = 0)
-            Dim resultZero As Item = newPlayer.InventoryZeroItems.Find(Function(Item) Not Item.UpdateRequest = 0)
+            Dim result As Item = newPlayer.InventoryItems.Find(Function(item) Not item.UpdateRequest = 0)
+            Dim resultZero As Item = newPlayer.InventoryZeroItems.Find(Function(item) Not item.UpdateRequest = 0)
             If Not result Is Nothing And Not resultZero Is Nothing Then
                 Dim mUpdateInventory As New UpdateInventoryHandler
                 mUpdateInventory.UpdateInventory(newPlayer)
             End If
             Dim mUpdateQuests As New UpdateQuestsHandler
             mUpdateQuests.UpdateQuestlog(comparePlayer, newPlayer)
+            LogAppend("Update completed", "UpdateCharacterHandler_UpdateCharacter", True)
         End Sub
     End Class
 End Namespace

@@ -33,6 +33,7 @@ Imports Namcore_Studio.Forms.Extension
 Imports libnc.Provider
 Imports System.Net
 Imports System.Threading
+Imports NCFramework.Framework.Transmission.Update
 
 Namespace Forms.Character
     Public Class CharacterOverview
@@ -364,6 +365,7 @@ Namespace Forms.Character
                         Else
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                 GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                            GlobalVariables.currentEditedCharSet.Name = TextBox1.Text
                             senderLabel.Text = TextBox1.Text
                         End If
                     ElseIf senderLabel.Name.ToLower.EndsWith("level_lbl") Then
@@ -376,6 +378,7 @@ Namespace Forms.Character
                             Else
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                     GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                                GlobalVariables.currentEditedCharSet.Level = newlvl
                                 senderLabel.Text = TextBox1.Text
                             End If
                         End If
@@ -957,6 +960,9 @@ Namespace Forms.Character
             If GlobalVariables.currentEditedCharSet Is Nothing Then
 
             Else
+                If GlobalVariables.editedCharSets Is Nothing Then
+                    GlobalVariables.editedCharSets = New List(Of NCFramework.Framework.Modules.Character)()
+                End If
                 If GlobalVariables.editedCharsIndex Is Nothing Then _
                     GlobalVariables.editedCharsIndex = New List(Of Integer())()
                 For Each indexEntry() As Integer In GlobalVariables.editedCharsIndex
@@ -969,7 +975,11 @@ Namespace Forms.Character
                     {GlobalVariables.currentEditedCharSet.Guid, GlobalVariables.editedCharSets.Count})
                 GlobalVariables.editedCharSets.Add(GlobalVariables.currentEditedCharSet)
                 If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
-
+                    NewProcessStatus()
+                    Userwait.Show()
+                    Dim updateHandler As New UpdateCharacterHandler
+                    updateHandler.UpdateCharacter(GlobalVariables.currentViewedCharSet, GlobalVariables.currentEditedCharSet)
+                    Userwait.Close()
                 End If
             End If
         End Sub

@@ -84,7 +84,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -97,7 +97,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -110,7 +110,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -123,7 +123,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -136,7 +136,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -149,7 +149,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -162,7 +162,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -175,7 +175,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -188,7 +188,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -201,7 +201,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -214,7 +214,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -227,7 +227,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -240,7 +240,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -253,7 +253,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -266,7 +266,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -279,7 +279,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -292,7 +292,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -305,7 +305,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -318,7 +318,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -377,7 +377,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
@@ -389,7 +389,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -402,7 +402,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -415,7 +415,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -428,7 +428,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -441,7 +441,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -454,7 +454,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -467,7 +467,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -480,7 +480,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -493,7 +493,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -506,7 +506,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -519,7 +519,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -532,7 +532,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -545,7 +545,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -558,7 +558,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -571,7 +571,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -584,7 +584,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -597,7 +597,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -610,7 +610,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -663,7 +663,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -676,7 +676,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -689,7 +689,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -702,7 +702,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -715,7 +715,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -728,7 +728,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -741,7 +741,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -754,7 +754,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -767,7 +767,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -780,7 +780,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -793,7 +793,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -806,7 +806,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -819,7 +819,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -832,7 +832,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -845,7 +845,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -858,7 +858,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -871,7 +871,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -884,7 +884,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
@@ -897,7 +897,7 @@ Namespace Framework.Core
                                 Dim itm As New Item
                                 itm.slotname = slotname
                                 itm.slot = itemslot
-                                itm.id = itementry
+                                itm.id = itementry : itm.Guid = itemguid
                                 Dim player As Character = GetCharacterSetBySetId(tarSetId)
                                 AddCharacterArmorItem(player, itm)
                                 SetCharacterSet(tarSetId, player)
