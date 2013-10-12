@@ -99,8 +99,8 @@ Namespace Framework.Modules
         Public CreatedGuid As Integer
         Public ArmorItems As List(Of Item)
         Public ArmorItemsIndex As String
-        Public InventoryItems As List(Of InventItem)
-        Public InventoryZeroItems As List(Of InventItem)
+        Public InventoryItems As List(Of Item)
+        Public InventoryZeroItems As List(Of Item)
         Public Quests As List(Of Quest)
         Public PlayerGlyphs As List(Of Glyph)
         Public PlayerGlyphsIndex As String

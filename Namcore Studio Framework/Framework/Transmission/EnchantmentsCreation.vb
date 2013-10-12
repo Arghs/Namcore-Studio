@@ -34,18 +34,6 @@ Namespace Framework.Transmission
             SetGem3(itm, itmGuid, core, dbstruc)
             SetEnch(itm, itmGuid, core, dbstruc)
         End Sub
-        Public Sub SetItemEnchantments(ByVal setId As Integer, ByVal inventItm As InventItem, ByVal itmGuid As Integer,
-                                    ByVal core As String, ByVal dbstruc As DbStructure)
-            Dim itm As New Item With {.Id = inventItm.Entry,
-                                      .Socket1Effectid = inventItm.Socket1Effectid,
-                                      .Socket2Effectid = inventItm.Socket2Effectid,
-                                      .Socket3Effectid = inventItm.Socket3Effectid,
-                                      .EnchantmentEffectid = inventItm.EnchantmentEffectid}
-            SetGem1(itm, itmGuid, core, dbstruc)
-            SetGem2(itm, itmGuid, core, dbstruc)
-            SetGem3(itm, itmGuid, core, dbstruc)
-            SetEnch(itm, itmGuid, core, dbstruc)
-        End Sub
 
         Private Sub SetGem1(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As String,
                             ByVal myStructure As DbStructure)

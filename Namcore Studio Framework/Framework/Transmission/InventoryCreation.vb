@@ -51,7 +51,7 @@ Namespace Framework.Transmission
             Dim bagexist As List(Of String) = New List(Of String)
             Dim bagstring As String = ""
             bagexist.Clear()
-            For Each inventoryItem As InventItem In player.InventoryZeroItems
+            For Each inventoryItem As Item In player.InventoryZeroItems
                 '// Just for bags
                 Select Case inventoryItem.Slot
                     Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
@@ -76,7 +76,7 @@ Namespace Framework.Transmission
                             " ) VALUES ( '" &
                             newguid & "', '" &
                             characterguid.ToString() & "', '" &
-                            inventoryItem.Entry.ToString() & "', '" &
+                            inventoryItem.Id.ToString() & "', '" &
                             inventoryItem.Count.ToString() & "', '" &
                             inventoryItem.Container.ToString() & "', '" &
                             inventoryItem.Slot.ToString() & "' )")
@@ -84,7 +84,7 @@ Namespace Framework.Transmission
                         bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";slot:" & newguid & ";"
                 End Select
             Next
-            For Each inventoryItem As InventItem In player.InventoryItems
+            For Each inventoryItem As Item In player.InventoryItems
                 Dim newguid As String =
                         ((TryInt(
                             runSQLCommand_characters_string(
@@ -112,7 +112,7 @@ Namespace Framework.Transmission
                           " ) VALUES ( '" &
                           newguid & "', '" &
                           characterguid.ToString() & "', '" &
-                          inventoryItem.Entry.ToString() & "', '" &
+                          inventoryItem.Id.ToString() & "', '" &
                           inventoryItem.Count.ToString() & "', '" &
                           inventoryItem.Container.ToString() & "', '" &
                           inventoryItem.Slot.ToString() & "' )")
@@ -120,7 +120,7 @@ Namespace Framework.Transmission
                 Dim mEnchCreation As New EnchantmentsCreation
                 mEnchCreation.SetItemEnchantments(targetSetId,
                                                   New Item _
-                                                     With {.Id = inventoryItem.Entry,
+                                                     With {.Id = inventoryItem.Id,
                                                      .Socket1Effectid = inventoryItem.Socket1Effectid,
                                                      .Socket2Effectid = inventoryItem.Socket2Effectid,
                                                      .Socket3Effectid = inventoryItem.Socket3Effectid,
@@ -136,7 +136,7 @@ Namespace Framework.Transmission
             Dim bagexist As List(Of String) = New List(Of String)
             Dim bagstring As String = ""
             bagexist.Clear()
-            For Each inventoryItem As InventItem In player.InventoryZeroItems
+            For Each inventoryItem As Item In player.InventoryZeroItems
                 '// Just for bags
                 Select Case inventoryItem.Slot
                     Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
@@ -158,7 +158,7 @@ Namespace Framework.Transmission
                             GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
                             GlobalVariables.targetStructure.itmins_durability_col(0) &
                             " ) VALUES ( '" &
-                            newguid & "', '" & inventoryItem.Entry & "', '" & characterguid.ToString() &
+                            newguid & "', '" & inventoryItem.Id & "', '" & characterguid.ToString() &
                             "', '" & inventoryItem.Count.ToString() & "', '1000' )")
 
                         runSQLCommand_characters_string(
@@ -172,7 +172,7 @@ Namespace Framework.Transmission
                         bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";newguid:" & newguid & ";"
                 End Select
             Next
-            For Each inventoryItem As InventItem In player.InventoryItems
+            For Each inventoryItem As Item In player.InventoryItems
                 Dim newguid As String =
                         ((TryInt(
                             runSQLCommand_characters_string(
@@ -202,7 +202,7 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
                     GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
                     GlobalVariables.targetStructure.itmins_durability_col(0) & " ) VALUES ( '" &
-                    newguid & "', '" & inventoryItem.Entry.ToString() & "', '" & characterguid.ToString() &
+                    newguid & "', '" & inventoryItem.Id.ToString() & "', '" & characterguid.ToString() &
                     "', '" & inventoryItem.Count.ToString() & "', '1000' )")
                 runSQLCommand_characters_string(
                     "INSERT INTO " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " ( " &
@@ -215,7 +215,7 @@ Namespace Framework.Transmission
                 Dim mEnchCreation As New EnchantmentsCreation
                 mEnchCreation.SetItemEnchantments(targetSetId,
                                                   New Item _
-                                                     With {.Id = inventoryItem.Entry,
+                                                     With {.Id = inventoryItem.Id,
                                                      .Socket1Effectid = inventoryItem.Socket1Effectid,
                                                      .Socket2Effectid = inventoryItem.Socket2Effectid,
                                                      .Socket3Effectid = inventoryItem.Socket3Effectid,
@@ -235,7 +235,7 @@ Namespace Framework.Transmission
             If GlobalVariables.targetExpansion < 3 Then enchString = "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
 
             bagexist.Clear()
-            For Each inventoryItem As InventItem In player.InventoryZeroItems
+            For Each inventoryItem As Item In player.InventoryZeroItems
                 '// Just for bags
                 Select Case inventoryItem.Slot
                     Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
@@ -251,7 +251,7 @@ Namespace Framework.Transmission
 
                         Dim parts() As String = bagEnchString.Split(" "c)
                         parts(0) = newguid
-                        parts(3) = inventoryItem.Entry.ToString()
+                        parts(3) = inventoryItem.Id.ToString()
                         parts(14) = "1"
                         Dim myEnchString As String = String.Join(" ", parts)
 
@@ -276,11 +276,11 @@ Namespace Framework.Transmission
                             inventoryItem.Bag.ToString() & "', '" &
                             inventoryItem.Slot.ToString() & "', '" &
                             newguid & "', '" &
-                            inventoryItem.Entry.ToString() & "')")
+                            inventoryItem.Id.ToString() & "')")
                         bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";newguid:" & newguid & ";"
                 End Select
             Next
-            For Each inventoryItem As InventItem In player.InventoryItems
+            For Each inventoryItem As Item In player.InventoryItems
                 Dim newguid As String =
                         ((TryInt(
                             runSQLCommand_characters_string(
@@ -305,7 +305,7 @@ Namespace Framework.Transmission
                 End Select
                 Dim parts() As String = enchString.Split(" "c)
                 parts(0) = newguid
-                parts(3) = inventoryItem.Entry.ToString()
+                parts(3) = inventoryItem.Id.ToString()
                 parts(14) = "1"
                 Dim myEnchString As String = String.Join(" ", parts)
 
@@ -328,11 +328,11 @@ Namespace Framework.Transmission
                     newbagguid & "', '" &
                     inventoryItem.Slot.ToString() & "', '" &
                     newguid & "', '" &
-                    inventoryItem.Entry.ToString() & "')")
+                    inventoryItem.Id.ToString() & "')")
                     Dim mEnchCreation As New EnchantmentsCreation
                     mEnchCreation.SetItemEnchantments(targetSetId,
                                                       New Item _
-                                                         With {.Id = inventoryItem.Entry,
+                                                         With {.Id = inventoryItem.Id,
                                                          .Socket1Effectid = inventoryItem.Socket1Effectid,
                                                          .Socket2Effectid = inventoryItem.Socket2Effectid,
                                                          .Socket3Effectid = inventoryItem.Socket3Effectid,

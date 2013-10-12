@@ -50,34 +50,18 @@ Namespace Framework.Modules
         Public Socket3Effectid As Integer
         Public EnchantmentEffectid As Integer
         Public Image As Image
-
-        Public Sub New()
-        End Sub
-    End Class
-
-    <Serializable()>
-    Public Class InventItem
         Public UpdateRequest As Integer = 0 '0=no; 1=create; 2=delete; 3=update
-        Public Entry As Integer
-        Public Slot As Integer
         Public Bag As Integer
         Public Bagguid As Integer
         Public Enchantstring As String
         Public Count As Integer
         Public Container As Integer
-        Public Guid As Integer
-        Public Socket1Id As Integer
-        Public Socket2Id As Integer
-        Public Socket3Id As Integer
-        Public Socket1Effectid As Integer
-        Public Socket2Effectid As Integer
-        Public Socket3Effectid As Integer
-        Public EnchantmentId As Integer
-        Public EnchantmentEffectid As Integer
-        Public BagItems As List(Of InventItem)
-        Public Image As Image
-        Public Name As String
+        Public BagItems As List(Of Item)
         Public SlotCount As Integer
+        Public Charges As String
+        Public Duration As Integer
+        Public Durability As Integer
+
         Public Sub New()
         End Sub
     End Class

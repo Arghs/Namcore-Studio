@@ -30,7 +30,7 @@ Namespace Framework.Transmission.Update
         Public Sub UpdateInventory(ByVal modPlayer As Character)
             LogAppend("Updating character inventory", "UpdateInventoryHandler_UpdateInventory", True)
             '// Any new items?
-            For Each itm As InventItem In modPlayer.InventoryItems
+            For Each itm As Item In modPlayer.InventoryItems
                 Select Case itm.UpdateRequest
                     Case 0
                         '// No changes
@@ -45,7 +45,7 @@ Namespace Framework.Transmission.Update
                         UpdateItem(modPlayer, itm, False)
                 End Select
             Next
-            For Each itm As InventItem In modPlayer.InventoryZeroItems
+            For Each itm As Item In modPlayer.InventoryZeroItems
                 Select Case itm.Slot
                     Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
                         '// Inventory item is a bag and could be modified
@@ -66,7 +66,7 @@ Namespace Framework.Transmission.Update
             Next
         End Sub
 
-        Private Sub CreateItem(ByVal player As Character, ByVal itm2Add As InventItem, ByVal zero As Boolean)
+        Private Sub CreateItem(ByVal player As Character, ByVal itm2Add As Item, ByVal zero As Boolean)
             Select Case GlobalVariables.sourceCore
                 Case "trinity"
                     Dim newItemGuid As Integer = TryInt(
@@ -84,7 +84,7 @@ Namespace Framework.Transmission.Update
                         GlobalVariables.sourceStructure.itmins_count_col(0) & ", " &
                         GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
                         ", " & GlobalVariables.sourceStructure.itmins_durability_col(0) & " ) VALUES ( '" &
-                        newItemGuid.ToString() & "', '" & itm2Add.Entry.ToString & "', '" & player.Guid.ToString() &
+                        newItemGuid.ToString() & "', '" & itm2Add.Id.ToString & "', '" & player.Guid.ToString() &
                         "', '1', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
                     If _
                         ReturnResultCount(
@@ -125,7 +125,7 @@ Namespace Framework.Transmission.Update
             End Select
         End Sub
 
-        Private Sub DeleteItem(ByVal player As Character, ByVal itm2Delete As InventItem, ByVal zero As Boolean)
+        Private Sub DeleteItem(ByVal player As Character, ByVal itm2Delete As Item, ByVal zero As Boolean)
             Select Case GlobalVariables.sourceCore
                 Case "trinity"
                     Select Case zero
@@ -150,7 +150,7 @@ Namespace Framework.Transmission.Update
             End Select
         End Sub
 
-        Private Sub UpdateItem(ByVal player As Character, ByVal itm2Delete As InventItem, ByVal zero As Boolean)
+        Private Sub UpdateItem(ByVal player As Character, ByVal itm2Delete As Item, ByVal zero As Boolean)
             Select Case GlobalVariables.sourceCore
                 Case "trinity"
                     Select Case zero

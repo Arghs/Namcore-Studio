@@ -126,8 +126,8 @@ Namespace Framework.Transmission.Update
                 Dim mUpdateGlyphs As New UpdateGlyphsHandler
                 mUpdateGlyphs.UpdateGlyphs(comparePlayer, newPlayer)
             End If
-            Dim result As InventItem = newPlayer.InventoryItems.Find(Function(inventitem) Not inventitem.UpdateRequest = 0)
-            Dim resultZero As InventItem = newPlayer.InventoryZeroItems.Find(Function(inventitem) Not inventitem.UpdateRequest = 0)
+            Dim result As Item = newPlayer.InventoryItems.Find(Function(Item) Not Item.UpdateRequest = 0)
+            Dim resultZero As Item = newPlayer.InventoryZeroItems.Find(Function(Item) Not Item.UpdateRequest = 0)
             If Not result Is Nothing And Not resultZero Is Nothing Then
                 Dim mUpdateInventory As New UpdateInventoryHandler
                 mUpdateInventory.UpdateInventory(newPlayer)

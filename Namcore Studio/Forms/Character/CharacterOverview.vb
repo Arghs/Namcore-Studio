@@ -96,36 +96,36 @@ Namespace Forms.Character
             class_lbl.Text = GetClassNameById(GlobalVariables.currentViewedCharSet.Cclass)
             race_lbl.Text = GetRaceNameById(GlobalVariables.currentViewedCharSet.Race)
             gender_lbl.Text = GetGenderNameById(GlobalVariables.currentViewedCharSet.Gender)
-            Dim zeroBagItems As New List(Of InventItem)
+            Dim zeroBagItems As New List(Of Item)
             If Not GlobalVariables.currentViewedCharSet.InventoryZeroItems Is Nothing Then
-                For Each potCharBag As InventItem In GlobalVariables.currentViewedCharSet.InventoryZeroItems
-                    potCharBag.BagItems = New List(Of InventItem)()
+                For Each potCharBag As Item In GlobalVariables.currentViewedCharSet.InventoryZeroItems
+                    potCharBag.BagItems = New List(Of Item)()
                     Select Case potCharBag.Slot
                         Case 19, 20, 21, 22
                             For Each subctrl As Control In GroupBox2.Controls
                                 If subctrl.Name.Contains((potCharBag.Slot - 17).ToString()) Then
                                     If subctrl.Name.ToLower.Contains("panel") Then
                                         Dim bagPanel As Panel = subctrl
-                                        bagPanel.BackColor = Getraritycolor(GetItemQualityByItemId(potCharBag.Entry))
-                                        For Each potBagItem As InventItem In GlobalVariables.currentViewedCharSet.InventoryItems
+                                        bagPanel.BackColor = Getraritycolor(GetItemQualityByItemId(potCharBag.Id))
+                                        For Each potBagItem As Item In GlobalVariables.currentViewedCharSet.InventoryItems
                                             If potBagItem.Bagguid = potCharBag.Guid Then
-                                                If potBagItem.Name Is Nothing Then potBagItem.Name = GetItemNameByItemId(potBagItem.Entry, NCFramework.My.MySettings.Default.language)
-                                                If potBagItem.Image Is Nothing Then potBagItem.Image = GetItemIconById(potBagItem.Entry, GlobalVariables.GlobalWebClient)
+                                                If potBagItem.Name Is Nothing Then potBagItem.Name = GetItemNameByItemId(potBagItem.Id, NCFramework.My.MySettings.Default.language)
+                                                If potBagItem.Image Is Nothing Then potBagItem.Image = GetItemIconById(potBagItem.Id, GlobalVariables.GlobalWebClient)
                                                 potCharBag.BagItems.Add(potBagItem)
                                             End If
                                         Next
-                                        potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Entry)
+                                        potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Id)
                                         bagPanel.Tag = potCharBag
                                         For Each myPic As PictureBox In subctrl.Controls
-                                            myPic.BackgroundImage = GetItemIconById(potCharBag.Entry, GlobalVariables.GlobalWebClient)
+                                            myPic.BackgroundImage = GetItemIconById(potCharBag.Id, GlobalVariables.GlobalWebClient)
                                             myPic.Tag = potCharBag
                                         Next
                                     End If
                                 End If
                             Next
                         Case 23 To 38
-                            If potCharBag.Name Is Nothing Then potCharBag.Name = GetItemNameByItemId(potCharBag.Entry, NCFramework.My.MySettings.Default.language)
-                            If potCharBag.Image Is Nothing Then potCharBag.Image = GetItemIconById(potCharBag.Entry, GlobalVariables.GlobalWebClient)
+                            If potCharBag.Name Is Nothing Then potCharBag.Name = GetItemNameByItemId(potCharBag.Id, NCFramework.My.MySettings.Default.language)
+                            If potCharBag.Image Is Nothing Then potCharBag.Image = GetItemIconById(potCharBag.Id, GlobalVariables.GlobalWebClient)
                             zeroBagItems.Add(potCharBag)
                     End Select
                 Next
@@ -133,8 +133,8 @@ Namespace Forms.Character
                     If subctrl.Name.Contains("1") Then
                         If subctrl.Name.ToLower.Contains("panel") Then
                             Dim bagPanel As Panel = subctrl
-                            Dim bag As New InventItem
-                            bag.BagItems = New List(Of InventItem)()
+                            Dim bag As New Item
+                            bag.BagItems = New List(Of Item)()
                             For Each myItem In zeroBagItems
                                 bag.BagItems.Add(myItem)
                             Next
@@ -1058,9 +1058,9 @@ Namespace Forms.Character
 
         Private Sub BagOpen(sender As Object, e As EventArgs) Handles bag5Pic.Click, bag4Pic.Click, bag3Pic.Click, bag2Pic.Click, bag1Pic.Click
             InventoryLayout.Controls.Clear()
-            Dim bag As InventItem = sender.tag
+            Dim bag As Item = sender.tag
             For z = 0 To bag.SlotCount - 1
-                Dim itm As New InventItem
+                Dim itm As New Item
                 itm.Slot = z
                 Dim newItmPanel As New Panel
                 newItmPanel.Size = referenceItmPanel.Size
@@ -1082,17 +1082,17 @@ Namespace Forms.Character
                 InventoryLayout.Update()
                 Application.DoEvents()
             Next z
-            For Each itm As InventItem In bag.BagItems
+            For Each itm As Item In bag.BagItems
                 Dim reduceVal As UInteger = 0
                 If sender.name = "bag1Pic" Then reduceVal = 23
                 SetInventorySlot(itm, itm.Slot - reduceVal)
             Next
             GroupBox2.Size = New Size(GroupBox2.Size.Width, 122 + InventoryLayout.Size.Height - 13)
         End Sub
-        Private Sub SetInventorySlot(ByVal itm As InventItem, ByVal slot As Integer)
+        Private Sub SetInventorySlot(ByVal itm As Item, ByVal slot As Integer)
             For Each itmctrl As Panel In InventoryLayout.Controls
                 If itmctrl.Name.Contains("_" & slot.ToString() & "_") Then
-                    itmctrl.BackColor = Getraritycolor(GetItemQualityByItemId(itm.Entry))
+                    itmctrl.BackColor = Getraritycolor(GetItemQualityByItemId(itm.Id))
                     itmctrl.Tag = itm
                     InfoToolTip.SetToolTip(itmctrl, itm.Name)
                     For Each itmPicBox As PictureBox In itmctrl.Controls
