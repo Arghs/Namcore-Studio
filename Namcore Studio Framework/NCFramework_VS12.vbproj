@@ -103,7 +103,6 @@
     <Compile Include="Framework\Modules\Character.vb" />
     <Compile Include="Framework\Modules\DbStructure.vb" />
     <Compile Include="Framework\Modules\GlobalVariables.vb" />
-    <Compile Include="Framework\Modules\Interface\AvSubcategoy.vb" />
     <Compile Include="Framework\Modules\Profile.vb" />
     <Compile Include="Framework\Template System\Serializer.vb" />
     <Compile Include="Framework\Transmission\AccountCreation.vb" />

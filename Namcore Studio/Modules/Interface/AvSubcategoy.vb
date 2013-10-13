@@ -20,7 +20,7 @@
 '*      /Filename:      AvSubcategoy
 '*      /Description:   AvSubcategoy Object
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Namespace Framework.Modules.Interface
+Namespace Modules.Interface
     Public Class AvSubcategoy
         Public Text As String
         Public Id As Int32
