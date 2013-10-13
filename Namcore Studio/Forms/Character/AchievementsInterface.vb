@@ -303,6 +303,8 @@ Namespace Forms.Character
         Private Sub DelegateControlAdding(addNewPanel As Panel)
             addNewPanel.SetDoubleBuffered()
             AVLayoutPanel.Controls.Add(addNewPanel)
+            AVLayoutPanel.Controls.SetChildIndex(AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1),
+                                                           1)
         End Sub
         Private Sub DelegateControlUpdating(ctrl As FlowLayoutPanel)
             ctrl.Update()

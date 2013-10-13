@@ -107,6 +107,12 @@
     <Compile Include="Forms\Character\CharacterOverview.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Character\BankInterface.Designer.vb">
+      <DependentUpon>BankInterface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Character\BankInterface.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Character\QuestsInterface.Designer.vb">
       <DependentUpon>QuestsInterface.vb</DependentUpon>
     </Compile>
@@ -228,6 +234,9 @@
     <EmbeddedResource Include="Forms\Character\CharacterOverview.resx">
       <DependentUpon>CharacterOverview.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Character\BankInterface.resx">
+      <DependentUpon>BankInterface.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Character\QuestsInterface.resx">
       <DependentUpon>QuestsInterface.vb</DependentUpon>
     </EmbeddedResource>
@@ -297,6 +306,10 @@
     <None Include="Resources\INV_Misc_QuestionMark.jpg" />
     <None Include="Resources\add+.png" />
     <None Include="Resources\inv_misc_bag_08.jpg" />
+    <None Include="Resources\bank_empty.png" />
+    <None Include="Resources\bag_empty.png" />
+    <None Include="Resources\empty.png" />
+    <None Include="Resources\bank_bg.png" />
     <Content Include="Resources\namcore_bg.jpg" />
     <Content Include="Resources\nclogo.ico" />
     <Content Include="Resources\Refresh-icon.png" />
@@ -337,7 +350,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_DetectChanges="True" />
+      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

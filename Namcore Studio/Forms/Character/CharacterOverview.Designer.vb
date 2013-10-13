@@ -172,25 +172,24 @@ Namespace Forms.Character
         Me.Glyphs_bt = New System.Windows.Forms.Button()
         Me.rep_bt = New System.Windows.Forms.Button()
         Me.spellsskills_bt = New System.Windows.Forms.Button()
-        Me.professions_bt = New System.Windows.Forms.Button()
-        Me.exit_bt = New System.Windows.Forms.Button()
-        Me.savechanges_bt = New System.Windows.Forms.Button()
-        Me.reset_bt = New System.Windows.Forms.Button()
-        Me.changepanel = New System.Windows.Forms.Panel()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.racepanel = New System.Windows.Forms.Panel()
-        Me.racecombo = New System.Windows.Forms.ComboBox()
-        Me.racerefresh = New System.Windows.Forms.PictureBox()
-        Me.classpanel = New System.Windows.Forms.Panel()
-        Me.classcombo = New System.Windows.Forms.ComboBox()
-        Me.classrefresh = New System.Windows.Forms.PictureBox()
-        Me.selectenchpanel = New System.Windows.Forms.Panel()
-        Me.spellench = New System.Windows.Forms.Label()
-        Me.itmench = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.bank_bt = New System.Windows.Forms.Button()
+            Me.exit_bt = New System.Windows.Forms.Button()
+            Me.savechanges_bt = New System.Windows.Forms.Button()
+            Me.reset_bt = New System.Windows.Forms.Button()
+            Me.changepanel = New System.Windows.Forms.Panel()
+            Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+            Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+            Me.TextBox1 = New System.Windows.Forms.TextBox()
+            Me.racepanel = New System.Windows.Forms.Panel()
+            Me.racecombo = New System.Windows.Forms.ComboBox()
+            Me.racerefresh = New System.Windows.Forms.PictureBox()
+            Me.classpanel = New System.Windows.Forms.Panel()
+            Me.classcombo = New System.Windows.Forms.ComboBox()
+            Me.classrefresh = New System.Windows.Forms.PictureBox()
+            Me.selectenchpanel = New System.Windows.Forms.Panel()
+            Me.spellench = New System.Windows.Forms.Label()
+            Me.itmench = New System.Windows.Forms.Label()
+            Me.Label1 = New System.Windows.Forms.Label()
+            Me.bank_bt = New System.Windows.Forms.Button()
             Me.bag2Panel = New System.Windows.Forms.Panel()
             Me.bag2Pic = New System.Windows.Forms.PictureBox()
             Me.bag1Panel = New System.Windows.Forms.Panel()
@@ -1972,21 +1971,6 @@ Namespace Forms.Character
             Me.spellsskills_bt.Text = "Spells/Skills"
             Me.spellsskills_bt.UseVisualStyleBackColor = False
             '
-            'professions_bt
-            '
-            Me.professions_bt.BackColor = System.Drawing.Color.DimGray
-            Me.professions_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.professions_bt.Enabled = False
-            Me.professions_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.professions_bt.ForeColor = System.Drawing.Color.Black
-            Me.professions_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.professions_bt.Location = New System.Drawing.Point(572, 641)
-            Me.professions_bt.Name = "professions_bt"
-            Me.professions_bt.Size = New System.Drawing.Size(104, 34)
-            Me.professions_bt.TabIndex = 169
-            Me.professions_bt.Text = "Professions"
-            Me.professions_bt.UseVisualStyleBackColor = False
-            '
             'exit_bt
             '
             Me.exit_bt.BackColor = System.Drawing.Color.DimGray
@@ -2170,7 +2154,6 @@ Namespace Forms.Character
             '
             Me.bank_bt.BackColor = System.Drawing.Color.DimGray
             Me.bank_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.bank_bt.Enabled = False
             Me.bank_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.bank_bt.ForeColor = System.Drawing.Color.Black
             Me.bank_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
@@ -2468,7 +2451,7 @@ Namespace Forms.Character
             '
             'referenceItmPic
             '
-            Me.referenceItmPic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.empty
+            Me.referenceItmPic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bank_empty
             Me.referenceItmPic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.referenceItmPic.Location = New System.Drawing.Point(3, 3)
             Me.referenceItmPic.Name = "referenceItmPic"
@@ -2497,7 +2480,6 @@ Namespace Forms.Character
             Me.Controls.Add(Me.reset_bt)
             Me.Controls.Add(Me.savechanges_bt)
             Me.Controls.Add(Me.exit_bt)
-            Me.Controls.Add(Me.professions_bt)
             Me.Controls.Add(Me.spellsskills_bt)
             Me.Controls.Add(Me.rep_bt)
             Me.Controls.Add(Me.Glyphs_bt)
@@ -2516,7 +2498,6 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.Glyphs_bt, 0)
             Me.Controls.SetChildIndex(Me.rep_bt, 0)
             Me.Controls.SetChildIndex(Me.spellsskills_bt, 0)
-            Me.Controls.SetChildIndex(Me.professions_bt, 0)
             Me.Controls.SetChildIndex(Me.exit_bt, 0)
             Me.Controls.SetChildIndex(Me.savechanges_bt, 0)
             Me.Controls.SetChildIndex(Me.reset_bt, 0)
@@ -2809,7 +2790,6 @@ Namespace Forms.Character
         Friend WithEvents Glyphs_bt As System.Windows.Forms.Button
         Friend WithEvents rep_bt As System.Windows.Forms.Button
         Friend WithEvents spellsskills_bt As System.Windows.Forms.Button
-        Friend WithEvents professions_bt As System.Windows.Forms.Button
         Friend WithEvents exit_bt As System.Windows.Forms.Button
         Friend WithEvents savechanges_bt As System.Windows.Forms.Button
         Friend WithEvents reset_bt As System.Windows.Forms.Button
