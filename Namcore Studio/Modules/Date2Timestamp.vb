@@ -21,7 +21,6 @@
 '*      /Description:   Extension to convert a date to timestamp and vv
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Runtime.CompilerServices
-
 Namespace Modules
     Module Date2Timestamp
         ''' <summary>
