@@ -85,7 +85,7 @@ Namespace Forms.Character
             Goprep(setId, False)
             LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
         End Sub
-        Private Sub onCompleted() Handles Me.PrepareCompleted
+        Private Sub OnCompleted() Handles Me.PrepareCompleted
             CloseProcessStatus()
         End Sub
         Private Sub Goprep(ByVal setId As Integer, ByVal nxt As Boolean)
@@ -293,6 +293,7 @@ Namespace Forms.Character
                         Return itm.Socket3Pic
                     End If
                 Case 6
+                    If itm.Rarity = Nothing Then itm.Rarity = GetItemQualityByItemId(itm.Id)
                     Select Case itm.Rarity
                         Case 0, 1 : Return Color.Gray
                         Case 0, 1 : Return Color.White
