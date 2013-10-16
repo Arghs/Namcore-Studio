@@ -92,68 +92,44 @@ Namespace Framework.Core
                     If parts(0).Contains("0,0") Then
                         Dim parts2() As String = parts(0).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
-                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
-                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
-                        itm.EnchantmentType = 1
-                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
-                            itm.EnchantmentId = tmpItemId
-                            itm.EnchantmentType = 2
-                        End If
+                        Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
+                        itm.EnchantmentId = enchArray(0)
+                        itm.EnchantmentType = enchArray(1)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(1).Contains("0,0") Then
                         Dim parts2() As String = parts(1).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
-                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
-                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
-                        itm.EnchantmentType = 1
-                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
-                            itm.EnchantmentId = tmpItemId
-                            itm.EnchantmentType = 2
-                        End If
+                       Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
+                        itm.EnchantmentId = enchArray(0)
+                        itm.EnchantmentType = enchArray(1)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(2).Contains("0,0") Then
                         Dim parts2() As String = parts(2).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
-                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
-                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
-                        itm.EnchantmentType = 1
-                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
-                            itm.EnchantmentId = tmpItemId
-                            itm.EnchantmentType = 2
-                        End If
+                        Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
+                        itm.EnchantmentId = enchArray(0)
+                        itm.EnchantmentType = enchArray(1)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(3).Contains("0,0") Then
                         Dim parts2() As String = parts(3).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
-                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
-                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
-                        itm.EnchantmentType = 1
-                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
-                            itm.EnchantmentId = tmpItemId
-                            itm.EnchantmentType = 2
-                        End If
+                       Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
+                        itm.EnchantmentId = enchArray(0)
+                        itm.EnchantmentType = enchArray(1)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(4).Contains("0,0") Then
                         Dim parts2() As String = parts(4).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
-                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
-                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
-                        itm.EnchantmentType = 1
-                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
-                            itm.EnchantmentId = tmpItemId
-                            itm.EnchantmentType = 2
-                        End If
+                        Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
+                        itm.EnchantmentId = enchArray(0)
+                        itm.EnchantmentType = enchArray(1)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(5).Contains("0,0") Then
                         Dim parts2() As String = parts(5).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
-                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
-                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
-                        itm.EnchantmentType = 1
-                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
-                            itm.EnchantmentId = tmpItemId
-                            itm.EnchantmentType = 2
-                        End If
+                        Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
+                        itm.EnchantmentId = enchArray(0)
+                        itm.EnchantmentType = enchArray(1)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     Else
                         Return ""
@@ -270,13 +246,9 @@ Namespace Framework.Core
                     Dim parts() As String = input.Split(" "c)
                     If Not parts(0) = "0" Then
                         itm.EnchantmentEffectid = TryInt(parts(0))
-                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
-                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
-                        itm.EnchantmentType = 1
-                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
-                            itm.EnchantmentId = tmpItemId
-                            itm.EnchantmentType = 2
-                        End If
+                        Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
+                        itm.EnchantmentId = enchArray(0)
+                        itm.EnchantmentType = enchArray(1)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     Else
                         Return ""
@@ -367,13 +339,9 @@ Namespace Framework.Core
                     Dim parts() As String = input.Split(" "c)
                     If Not parts(22) = "0" Then
                         itm.EnchantmentEffectid = TryInt(parts(22))
-                        itm.EnchantmentId = GetSpellIdByEffectId(itm.EnchantmentEffectid)
-                        Dim tmpItemId As Integer = GetItemSpellIdByItemId(itm.EnchantmentId)
-                        itm.EnchantmentType = 1
-                        If Not tmpItemId = Nothing Or tmpItemId = 0 Then
-                            itm.EnchantmentId = tmpItemId
-                            itm.EnchantmentType = 2
-                        End If
+                        Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
+                        itm.EnchantmentId = enchArray(0)
+                        itm.EnchantmentType = enchArray(1)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     Else
                         Return ""

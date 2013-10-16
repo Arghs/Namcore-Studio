@@ -54,6 +54,37 @@ Namespace Provider
             End Try
             Return returnResult
         End Function
+        Public Function GetEnchantmentIdAndTypeByEffectId(ByRef effectId As Integer) As Integer()
+            Dim returnEnchId As Integer = 0
+            Dim returnEnchType As Integer = 0
+            Try
+                Const targetField As Integer = 2
+                Dim myResult As String = ExecuteCsvSearch(SpellEffectCsv, "EffectId", effectId.ToString(), targetField)(0)
+                Dim returnResult As Integer
+                If myResult = "-" Then myResult = 0
+                Try
+                    returnResult = CInt(myResult)
+                Catch
+                    returnResult = 0
+                End Try
+                returnEnchId = returnResult
+                returnEnchType = 1
+                Dim nextResult As String = ExecuteCsvSearch(SpellEffectCsv, "EffectId", effectId.ToString(), 0)(0)
+                If nextResult = "-" Then nextResult = 0
+                Try
+                    returnResult = CInt(nextResult)
+                Catch
+                    returnResult = 0
+                End Try
+                If returnResult <> 0 Then
+                    returnEnchId = returnResult
+                    returnEnchType = 2
+                End If
+                Return {returnEnchId, returnEnchType}
+            Catch ex As Exception
+                Return {returnEnchId, returnEnchType}
+            End Try
+        End Function
         Public Function GetEffectIdByGemId(ByVal gemId As Integer) As Integer
             Const targetField As Integer = 0
             Dim myResult As String = ExecuteCsvSearch(SpellEnchantCsv, "GemId", gemId.ToString(), targetField)(0)

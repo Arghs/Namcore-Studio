@@ -320,6 +320,13 @@ Namespace Forms.Character
                     slot_11_enchant.Click, slot_10_name.Click, slot_10_enchant.Click, slot_1_name.Click,
                     slot_1_enchant.Click, slot_0_name.Click, slot_0_enchant.Click
             If sender.text = "" Then Exit Sub
+            Dim tagItm As Item = sender.Tag
+            If tagItm.EnchantmentId = 0 Then tagItm.EnchantmentId = GetSpellIdByEffectId(tagItm.EnchantmentEffectid)
+            If tagItm.EnchantmentType = 2 Then
+                Dim tmpItmId As Integer = GetItemIdBySpellId(tagItm.EnchantmentEffectid)
+                If tmpItmId <> 0 Then tagItm.EnchantmentId = tmpItmId
+            End If
+            sender.Tag = tagItm
             TextBox1.Text = ""
             Try
                 Dim newPoint As New Point
@@ -338,7 +345,7 @@ Namespace Forms.Character
                 _tempSender = sender
                 sender.visible = False
                 If sender.name.contains("_name") Then
-                    TextBox1.Text = sender.tag.id.ToString
+                    TextBox1.Text = sender.Tag.Id.ToString
                 ElseIf sender.name.contains("_lbl") Then
                     TextBox1.Text = sender.text
                 Else

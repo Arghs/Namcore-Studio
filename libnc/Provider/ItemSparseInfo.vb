@@ -84,6 +84,18 @@ Namespace Provider
             End Try
             Return returnResult
         End Function
+        Public Function GetItemIdBySpellId(ByVal spellId As Integer) As Integer
+            Const targetField As Integer = 0
+            Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "SpellId", spellId.ToString(), targetField)(0)
+            Dim returnResult As Integer
+            If myResult = "-" Then myResult = 0
+            Try
+                returnResult = CInt(myResult)
+            Catch
+                returnResult = 0
+            End Try
+            Return returnResult
+        End Function
         Public Function GetItemBagFamilyByItemId(ByVal itemId As Integer) As Integer
             Const targetField As Integer = 8
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
