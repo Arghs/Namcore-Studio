@@ -42,8 +42,6 @@ Namespace Framework.Core
                 Case "mangos"
                     LoadAtMangos(charguid, setId)
             End Select
-            Dim mEnchHandler As CharacterEnchantmentsHandler = New CharacterEnchantmentsHandler
-            mEnchHandler.HandleEnchantments(setId)
         End Sub
 
         Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
