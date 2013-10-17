@@ -20,6 +20,7 @@
 '*      /Filename:      DBconnect
 '*      /Description:   Interface for opening a database connection
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Linq
 Imports NCFramework.My
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
@@ -86,14 +87,17 @@ Namespace Forms
                                                        GlobalVariables.GlobalConnection_Realm,
                                                        GlobalVariables.GlobalConnection_Info, chardbname_txtbox.Text,
                                                        realmdbname_txtbox.Text, False) 'todo
-                                For Each currentForm As Form In Application.OpenForms
-                                    If currentForm.Name = "LiveView" Then
-                                        Dim liveview As LiveView = DirectCast(currentForm, LiveView)
-                                        liveview.accountview.Items.Clear()
-                                        liveview.characterview.Items.Clear()
-                                        liveview.Loadaccountsandchars()
-                                    End If
-                                Next
+                                Dim liveview As New LiveView
+                                Try
+                                    For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "LiveView"
+                                        liveview = DirectCast(currentForm, LiveView)
+                                    Next
+                                Catch ex As Exception : End Try
+                                If Not liveview Is Nothing Then
+                                    liveview.accountview.Items.Clear()
+                                    liveview.characterview.Items.Clear()
+                                    liveview.Loadaccountsandchars()
+                                End If
                             Else
                                 MsgBox(ResourceHandler.GetUserMessage("FailedConnectCharacter"), MsgBoxStyle.Critical,
                                   "Error")
@@ -152,13 +156,16 @@ Namespace Forms
                                                        GlobalVariables.TargetConnection_Realm,
                                                        GlobalVariables.TargetConnection_Info, chardbname_txtbox.Text,
                                                        realmdbname_txtbox.Text, True) 'todo
-                                For Each currentForm As Form In Application.OpenForms
-                                    If currentForm.Name = "LiveView" Then
-                                        Dim liveview As LiveView = DirectCast(currentForm, LiveView)
-                                        liveview.target_accounts_tree.Nodes.Clear()
-                                        liveview.Loadtargetaccountsandchars()
-                                    End If
-                                Next
+                                Dim liveview As New LiveView
+                                Try
+                                    For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "LiveView"
+                                        liveview = DirectCast(currentForm, LiveView)
+                                    Next
+                                Catch ex As Exception : End Try
+                                If Not liveview Is Nothing Then
+                                    liveview.target_accounts_tree.Nodes.Clear()
+                                    liveview.Loadtargetaccountsandchars()
+                                End If
                             Else
                                 MsgBox(ResourceHandler.GetUserMessage("FailedConnectCharacter"), MsgBoxStyle.Critical,
                                   "Error")
@@ -177,7 +184,7 @@ Namespace Forms
         End Sub
 
         Private Sub DB_connect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-            AddHandler highlighter2.Click, AddressOf highlighter2_Click
+            AddHandler highlighter2.Click, AddressOf highlighter2_click
             Select Case GlobalVariables.con_operator
                 Case 1 : connect_header_label.Text = ResourceHandler.GetUserMessage("connecttosource")
                 Case 2 : connect_header_label.Text = ResourceHandler.GetUserMessage("connecttotarget")

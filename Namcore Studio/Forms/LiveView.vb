@@ -886,13 +886,14 @@ Namespace Forms
         End Function
 
         Private Sub Transfer_bt_Click(sender As Object, e As EventArgs) Handles Transfer_bt.Click
+            Dim stat As New ProcessStatus
             Try
-                For Each currentForm As Form In Application.OpenForms
-                    If currentForm.Name = "Process_status" Then
-                        Dim stat As ProcessStatus = DirectCast(currentForm, ProcessStatus)
-                        stat.Close()
-                    End If
+                For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "Process_status"
+                    stat = DirectCast(currentForm, ProcessStatus)
                 Next
+                If Not stat Is Nothing Then
+                    stat.Close()
+                End If
             Catch ex As Exception
 
             End Try

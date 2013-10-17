@@ -218,30 +218,26 @@ Namespace Framework.Functions
 
         Public Sub CloseProcessStatus()
             If GlobalVariables.DebugMode = False Then
-                For Each myForm As Form In Application.OpenForms
-                    If myForm.Name = "ProcessStatus" Then
+                Try
+                    For Each myForm As Form In From myForm1 As Form In Application.OpenForms Where myForm1.Name = "ProcessStatus"
+                        myForm.Close()
                         Application.DoEvents()
-                        Try
-                            myForm.Close()
-                        Catch ex As Exception : End Try
-                    End If
-                Next
+                    Next
+                Catch ex As Exception : End Try
             End If
         End Sub
 
         Public Sub NewProcessStatus()
-            For Each myForm As Form In Application.OpenForms
-                If myForm.Name = "ProcessStatus" Then
+            Try
+                For Each myForm As Form In From myForm1 As Form In Application.OpenForms Where myForm1.Name = "ProcessStatus"
                     If GlobalVariables.DebugMode = True Then
                         Exit Sub
                     Else
                         Application.DoEvents()
-                        Try
-                            myForm.Close()
-                        Catch ex As Exception : End Try
+                        myForm.Close()
                     End If
-                End If
-            Next
+                Next
+            Catch ex As Exception : End Try
             GlobalVariables.procStatus = New ProcessStatus
             GlobalVariables.procStatus.Show()
             Application.DoEvents()

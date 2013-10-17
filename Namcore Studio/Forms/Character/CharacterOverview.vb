@@ -757,12 +757,13 @@ Namespace Forms.Character
         End Sub
 
         Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Glyphs_bt.Click
-            For Each currentForm As Form In Application.OpenForms
-                If currentForm.Name = "GlyphsInterface" Then
-                    Dim mywindow As GlyphsInterface = DirectCast(currentForm, GlyphsInterface)
-                    mywindow.Close()
-                End If
+            Dim mywindow As New GlyphsInterface
+            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "GlyphsInterface"
+                mywindow = DirectCast(currentForm, GlyphsInterface)
             Next
+            If Not mywindow Is Nothing Then
+                mywindow.Close()
+            End If
             Dim glyphInterface As New GlyphsInterface
             Userwait.Show()
             Application.DoEvents()
@@ -932,12 +933,13 @@ Namespace Forms.Character
         End Sub
 
         Private Sub av_bt_Click(sender As Object, e As EventArgs) Handles av_bt.Click
-            For Each currentForm As Form In Application.OpenForms
-                If currentForm.Name = "AchievementsInterface" Then
-                    Dim mywindow As AchievementsInterface = DirectCast(currentForm, AchievementsInterface)
-                    mywindow.Close()
-                End If
+            Dim mywindow As New AchievementsInterface
+            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "AchievementsInterface"
+                mywindow = DirectCast(currentForm, AchievementsInterface)
             Next
+            If Not mywindow Is Nothing Then
+                mywindow.Close()
+            End If
             Dim avinterface As New AchievementsInterface
             Application.DoEvents()
             avinterface.Show()
@@ -945,12 +947,13 @@ Namespace Forms.Character
 
         Private Sub Button2_Click(sender As Object, e As EventArgs) Handles rep_bt.Click
             NewProcessStatus()
-            For Each currentForm As Form In Application.OpenForms
-                If currentForm.Name = "ReputationInterface" Then
-                    Dim mywindow As ReputationInterface = DirectCast(currentForm, ReputationInterface)
-                    mywindow.Close()
-                End If
+            Dim mywindow As New ReputationInterface
+            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "ReputationInterface"
+                mywindow = DirectCast(currentForm, ReputationInterface)
             Next
+            If Not mywindow Is Nothing Then
+                mywindow.Close()
+            End If
             Dim repinterface As New ReputationInterface
             Userwait.Show()
             Application.DoEvents()
@@ -961,12 +964,13 @@ Namespace Forms.Character
 
         Private Sub Quests_bt_Click(sender As Object, e As EventArgs) Handles Quests_bt.Click
             NewProcessStatus()
-            For Each currentForm As Form In Application.OpenForms
-                If currentForm.Name = "QuestsInterface" Then
-                    Dim mywindow As QuestsInterface = DirectCast(currentForm, QuestsInterface)
-                    mywindow.Close()
-                End If
+            Dim mywindow As New QuestsInterface
+            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "QuestsInterface"
+                mywindow = DirectCast(currentForm, QuestsInterface)
             Next
+            If Not mywindow Is Nothing Then
+                mywindow.Close()
+            End If
             Dim qstInterface As New QuestsInterface
             Userwait.Show()
             Application.DoEvents()
@@ -1014,12 +1018,13 @@ Namespace Forms.Character
 
         Private Sub Button4_Click(sender As Object, e As EventArgs) Handles spellsskills_bt.Click
             NewProcessStatus()
-            For Each currentForm As Form In Application.OpenForms
-                If currentForm.Name = "SpellSkillInterface" Then
-                    Dim mywindow As SpellSkillInterface = DirectCast(currentForm, SpellSkillInterface)
-                    mywindow.Close()
-                End If
+            Dim mywindow As New SpellSkillInterface
+            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "SpellSkillInterface"
+                mywindow = DirectCast(currentForm, SpellSkillInterface)
             Next
+            If Not mywindow Is Nothing Then
+                mywindow.Close()
+            End If
             Dim mspellskillInterface As New SpellSkillInterface
             Userwait.Show()
             Application.DoEvents()
@@ -1167,12 +1172,13 @@ Namespace Forms.Character
         End Sub
 
         Private Sub bank_bt_Click(sender As Object, e As EventArgs) Handles bank_bt.Click
-            For Each currentForm As Form In Application.OpenForms
-                If currentForm.Name = "BankInterface" Then
-                    Dim mywindow As BankInterface = DirectCast(currentForm, BankInterface)
-                    mywindow.Close()
-                End If
+            Dim mywindow As New BankInterface
+            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "BankInterface"
+                mywindow = DirectCast(currentForm, BankInterface)
             Next
+            If Not mywindow Is Nothing Then
+                mywindow.Close()
+            End If
             Dim bankInt As New BankInterface
             bankInt.Visible = False
             bankInt.Show()
