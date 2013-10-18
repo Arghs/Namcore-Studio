@@ -24,6 +24,7 @@ Imports libnc.Main
 Namespace Provider
     Public Module ItemInfo
         Public Function GetItemSubClassById(ByVal itemId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 2
             Dim myResult As String = ExecuteCsvSearch(ItemCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -36,6 +37,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemMainClassBySubClassId(ByVal subModuleId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(ItemCsv, "SubModule", subModuleId.ToString(), targetField)(0)
             Dim returnResult As Integer

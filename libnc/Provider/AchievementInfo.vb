@@ -24,6 +24,7 @@ Imports libnc.Main
 Namespace Provider
     Public Module AchievementInfo
         Public Function GetAvNameById(ByVal avId As Integer, ByVal locale As String) As String
+            CheckInit()
             Dim targetField As Integer = 1
             If locale = "en" Then
                 targetField += 1
@@ -33,6 +34,7 @@ Namespace Provider
             Return myResult
         End Function
         Public Function GetAvDescriptionById(ByVal avId As Integer, ByVal locale As String) As String
+            CheckInit()
             Dim targetField As Integer = 3
             If locale = "en" Then
                 targetField += 1
@@ -42,6 +44,7 @@ Namespace Provider
             Return myResult
         End Function
         Public Function GetAvSubCategoryById(ByVal avId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 5
             Dim myResult As String = ExecuteCsvSearch(AchievementCsv, "AchievementId", avId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -54,6 +57,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetAvSpellIdById(ByVal avId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 6
             Dim myResult As String = ExecuteCsvSearch(AchievementCsv, "AchievementId", avId.ToString(), targetField)(0)
             Dim returnResult As Integer

@@ -24,6 +24,7 @@ Imports libnc.Main
 Namespace Provider
     Public Module AchievementCategoryInfo
         Public Function GetAvMainCategoryIdBySubCatId(ByVal catId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 1
             Dim myResult As Integer = ExecuteCsvSearch(AchievementCategoryCsv, "CategoryId", catId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -37,6 +38,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetAvCatNameById(ByVal catId As Integer, ByVal locale As String) As String
+            CheckInit()
             Dim targetField As Integer = 2
             If locale = "en" Then
                 targetField += 1
@@ -46,6 +48,7 @@ Namespace Provider
             Return myResult
         End Function
         Public Function GetAvIdListByMainCat(ByVal mainCatid As Integer) As List(Of Integer)
+            CheckInit()
             Const targetField As Integer = 0
             Dim subCategoryList As New List(Of Integer)
             Dim myResult As String() = ExecuteCsvSearch(AchievementCategoryCsv, "MainCatId", mainCatid.ToString(), targetField)

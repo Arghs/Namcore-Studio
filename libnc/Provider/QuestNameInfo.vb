@@ -24,6 +24,7 @@ Imports libnc.Main
 Namespace Provider
     Public Module QuestNameInfo
         Public Function GetQuestTitleById(ByVal questId As Integer, ByVal locale As String) As String
+            CheckInit()
             Dim targetField As Integer = 1
             If locale = "en" Then targetField += 1
             Dim myResult As String = ExecuteCsvSearch(QuestNameCsv, "Id", questId.ToString(), targetField)(0)

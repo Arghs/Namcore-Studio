@@ -24,6 +24,7 @@ Imports libnc.Main
 Namespace Provider
     Public Module GlyphPropertiesInfo
         Public Function GetGlyphIdBySpellId(ByVal spellId As Integer, ByVal expansion As Integer) As Integer
+            CheckInit()
             Dim useTable As DataTable
             Select Case expansion
                 Case 3 : useTable = GlyphProperties0Csv
@@ -42,6 +43,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetGlyphIdByItemId(ByVal itemId As Integer, ByVal expansion As Integer) As Integer
+            CheckInit()
             '// Work around - solution
             '// Get name of item
             Dim itemName As String = GetItemNameByItemId(itemId, "de")
@@ -82,6 +84,7 @@ Namespace Provider
             End If
         End Function
         Public Function GetItemIdByGlyphId(ByVal glyphId As Integer, ByVal expansion As Integer) As Integer
+            CheckInit()
             '// Work around - solution
             '// Get name of glyph spell
             Dim spellName As String = GetSpellNameBySpellId(GetSpellIdByGlyphId(glyphId, expansion), "de")
@@ -107,6 +110,7 @@ Namespace Provider
             End If
         End Function
         Public Function GetSpellIdByGlyphId(ByVal glyphId As Integer, ByVal expansion As Integer) As Integer
+            CheckInit()
             Dim useTable As DataTable
             Select Case expansion
                 Case 3 : useTable = GlyphProperties0Csv
@@ -125,6 +129,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetIconByGlyphId(ByVal glyphId As Integer, ByVal expansion As Integer) As Integer
+            CheckInit()
             Dim useTable As DataTable
             Select Case expansion
                 Case 3 : useTable = GlyphProperties0Csv

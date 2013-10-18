@@ -24,12 +24,14 @@ Imports libnc.Main
 Namespace Provider
     Public Module FactionInfo
         Public Function ReputationGainable(ByVal factionId As Integer) As Boolean
+            CheckInit()
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(FactionCsv, "FactionId", factionId.ToString(), targetField)(0)
             If myResult = "-" Then myResult = "-1"
             If myResult = "-1" Then Return False Else Return True
         End Function
         Public Function GetFactionNameById(ByVal factionId As Integer, ByVal locale As String) As String
+            CheckInit()
             Dim targetField As Integer = 2
             If locale = "en" Then
                 targetField += 1

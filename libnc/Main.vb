@@ -20,8 +20,10 @@
 '*      /Filename:      Main
 '*      /Description:   Initializing csv & common functions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Threading
 Public Class Main
     '// Declaration
+    Public Shared IsInitialized As Boolean = False
     Public Shared AchievementCsv As DataTable
     Public Shared AchievementCategoryCsv As DataTable
     Public Shared FactionCsv As DataTable
@@ -41,6 +43,12 @@ Public Class Main
     '// Declaration
 
     Public Shared Sub Initialize()
+        IsInitialized = False
+        Dim trd As New Thread(AddressOf Init)
+        trd.Start()
+    End Sub
+
+    Private Shared Sub Init()
         FillDataTable(My.Resources.Achievement, AchievementCsv)
         FillDataTable(My.Resources.AchievementCategory, AchievementCategoryCsv)
         FillDataTable(My.Resources.Faction, FactionCsv)
@@ -57,6 +65,7 @@ Public Class Main
         FillDataTable(My.Resources.SpellEnchant, SpellEnchantCsv)
         FillDataTable(My.Resources.SpellIcon, SpellIconCsv)
         FillDataTable(My.Resources.talent, TalentCsv)
+        IsInitialized = True
     End Sub
     Public Shared Sub FillDataTable(ByVal csv As String, ByRef targetTable As DataTable)
         Try
@@ -111,4 +120,9 @@ Public Class Main
             Return Nothing
         End Try
     End Function
+    Public Shared Sub CheckInit()
+        While IsInitialized = False
+            '// Wait until DBC initialized
+        End While
+    End Sub
 End Class

@@ -24,6 +24,7 @@ Imports libnc.Main
 Namespace Provider
     Public Module SkillLineInfo
         Public Function GetSkillNameById(ByVal skillId As Integer, ByVal locale As String) As String
+            CheckInit()
             Dim targetField As Integer = 1
             If locale = "en" Then targetField += 1
             Dim myResult As String = ExecuteCsvSearch(SkillLineCsv, "SkillId", skillId.ToString(), targetField)(0)

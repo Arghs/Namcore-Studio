@@ -24,6 +24,7 @@ Imports libnc.Main
 Namespace Provider
     Public Module ItemSparseInfo
         Public Function GetItemQualityByItemId(ByVal itemId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -36,6 +37,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemInventorySlotByItemId(ByVal itemId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 2
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -48,6 +50,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemMaxStackByItemId(ByVal itemId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 3
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -60,6 +63,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemSlotCountByItemId(ByVal itemId As Integer) As Integer
+            CheckInit()
             If itemId = 23162 Then Return 36 '// "GM"-BAG (not in itemsparse)
             Const targetField As Integer = 4
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
@@ -73,6 +77,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemSpellIdByItemId(ByVal itemId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 5
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -85,6 +90,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemIdBySpellId(ByVal spellId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 0
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "SpellId", spellId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -97,6 +103,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemBagFamilyByItemId(ByVal itemId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 8
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -109,6 +116,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetItemNameByItemId(ByVal itemId As Integer, ByVal locale As String) As String
+            CheckInit()
             Dim targetField As Integer = 6
             If locale = "en" Then targetField += 1
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
@@ -116,8 +124,9 @@ Namespace Provider
             Return myResult
         End Function
         Public Function GetItemSlotNameBySlotId(ByVal slotId As Integer) As Integer
-            If slotid = 0 Then Return Nothing
-            Select Case slotid
+            CheckInit()
+            If slotId = 0 Then Return Nothing
+            Select Case slotId
                 Case 0
                     Return "head"
                 Case 1

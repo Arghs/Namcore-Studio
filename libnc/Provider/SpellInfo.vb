@@ -24,6 +24,7 @@ Imports libnc.Main
 Namespace Provider
     Public Module SpellInfo
         Public Function GetSpellNameBySpellId(ByVal spellId As Integer, ByVal locale As String) As String
+            CheckInit()
             Dim targetField As Integer = 1
             If locale = "en" Then targetField += 1
             Dim myResult As String = ExecuteCsvSearch(SpellCsv, "SpellId", spellId.ToString(), targetField)(0)
@@ -31,6 +32,7 @@ Namespace Provider
             Return myResult
         End Function
         Public Function GetEffectIdBySpellId(ByVal spellId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(SpellEffectCsv, "SpellId", spellId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -43,6 +45,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetSpellIdByEffectId(ByVal effectId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 2
             Dim myResult As String = ExecuteCsvSearch(SpellEffectCsv, "EffectId", effectId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -55,6 +58,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetEnchantmentIdAndTypeByEffectId(ByRef effectId As Integer) As Integer()
+            CheckInit()
             Dim returnEnchId As Integer = 0
             Dim returnEnchType As Integer = 0
             Try
@@ -86,6 +90,7 @@ Namespace Provider
             End Try
         End Function
         Public Function GetEffectIdByGemId(ByVal gemId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 0
             Dim myResult As String = ExecuteCsvSearch(SpellEnchantCsv, "GemId", gemId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -98,6 +103,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetGemIdByEffectId(ByVal effectId As Integer) As Integer
+            CheckInit()
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(SpellEnchantCsv, "EffectId", effectId.ToString(), targetField)(0)
             Dim returnResult As Integer
@@ -110,6 +116,7 @@ Namespace Provider
             Return returnResult
         End Function
         Public Function GetEffectNameById(ByVal effectId As Integer, ByVal locale As String) As String
+            CheckInit()
             Dim targetField As Integer = 5
             If locale = "en" Then targetField += 1
             Dim myResult As String = ExecuteCsvSearch(SpellEnchantCsv, "EffectId", effectId.ToString(), targetField)(0)
