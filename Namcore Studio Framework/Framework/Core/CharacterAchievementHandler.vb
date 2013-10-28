@@ -51,7 +51,7 @@ Namespace Framework.Core
             Dim tempdt As DataTable =
                     ReturnDataTable(
                         "SELECT " & GlobalVariables.sourceStructure.av_achievement_col(0) & ", `" &
-                        GlobalVariables.sourceStructure.av_date_col(0) & "` FROM " &
+                        GlobalVariables.sourceStructure.av_date_col(0) & "` FROM `" &
                         GlobalVariables.sourceStructure.character_achievement_tbl(0) &
                         "` WHERE " & GlobalVariables.sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
             If tmpCharacter.Achievements Is Nothing Then tmpCharacter.Achievements = New List(Of Achievement)()
@@ -85,7 +85,7 @@ Namespace Framework.Core
             Dim tempdt As DataTable =
                     ReturnDataTable(
                         "SELECT " & GlobalVariables.sourceStructure.av_achievement_col(0) & ", `" &
-                        GlobalVariables.sourceStructure.av_date_col(0) & "` FROM " &
+                        GlobalVariables.sourceStructure.av_date_col(0) & "` FROM `" &
                         GlobalVariables.sourceStructure.character_achievement_tbl(0) &
                         "` WHERE " & GlobalVariables.sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
             If tmpCharacter.Achievements Is Nothing Then tmpCharacter.Achievements = New List(Of Achievement)()
@@ -119,7 +119,7 @@ Namespace Framework.Core
             Dim tempdt As DataTable =
                     ReturnDataTable(
                         "SELECT " & GlobalVariables.sourceStructure.av_achievement_col(0) & ", `" &
-                        GlobalVariables.sourceStructure.av_date_col(0) & "` FROM " &
+                        GlobalVariables.sourceStructure.av_date_col(0) & "` FROM `" &
                         GlobalVariables.sourceStructure.character_achievement_tbl(0) &
                         "` WHERE " & GlobalVariables.sourceStructure.av_guid_col(0) & "='" & charguid.ToString() & "'")
             If tmpCharacter.Achievements Is Nothing Then tmpCharacter.Achievements = New List(Of Achievement)()

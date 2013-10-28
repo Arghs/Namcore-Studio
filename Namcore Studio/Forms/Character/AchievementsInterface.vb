@@ -23,7 +23,6 @@
 Imports Namcore_Studio.Modules
 Imports Namcore_Studio.Modules.Interface
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Modules.Interface
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Extension
@@ -425,7 +424,8 @@ Namespace Forms.Character
             If searchId = 0 Then
                 searchName = searchTxt
             End If
-            For Each charAv As Achievement In GlobalVariables.currentViewedCharSet.Achievements
+            For i = 0 To GlobalVariables.currentViewedCharSet.Achievements.Count - 1
+                Dim charAv As Achievement = GlobalVariables.currentViewedCharSet.Achievements(i)
                 Try
                     If searchName = "" Then
                         '// Id
@@ -436,6 +436,7 @@ Namespace Forms.Character
                         '// Name
                         If charAv.Name = Nothing Then
                             charAv.Name = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
+                            GlobalVariables.currentViewedCharSet.Achievements(i) = charAv
                         End If
                         If charAv.Name.ToLower.Contains(searchName.ToLower()) Then
                             foundAvList.Add(charAv)
@@ -444,7 +445,7 @@ Namespace Forms.Character
                 Catch ex As Exception
                     LogAppend("Exception during achievement browsing: " & ex.ToString(), "Achievements_interface_FilterResults", False, True)
                 End Try
-            Next
+            Next i
             For Each charAv As Achievement In foundAvList
                 AddAvToLayout(charAv)
             Next
