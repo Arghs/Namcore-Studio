@@ -92,7 +92,6 @@ Namespace Forms
                 AddCharacterSet(genSet, player)
             Next
             accountview.Update()
-            Dim cnt As Integer = 0
             For Each rowitem As DataRow In GlobalVariables.chartable.Rows
                 Dim player As New NCFramework.Framework.Modules.Character("Error", 0)
                 Dim str(6) As String
@@ -117,7 +116,6 @@ Namespace Forms
                 characterview.Items.Add(itm)
                 characterview.EnsureVisible(characterview.Items.Count - 1)
                 AddCharacterSet(genSet, player)
-                cnt += 1
             Next
             GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Copy
             GlobalVariables.modifiedCharTable = GlobalVariables.chartable.Copy
@@ -1001,15 +999,10 @@ Namespace Forms
             If GlobalVariables.armoryMode = True Then
                 Userwait.Show()
                 charview.prepare_interface(setId)
-                Userwait.Close()
-                charview.Show()
             Else
                 'todo load info
-
                 Userwait.Show()
                 charview.prepare_interface(setId)
-                Userwait.Close()
-                charview.Show()
             End If
         End Sub
 

@@ -54,9 +54,13 @@ Namespace Forms.Character
 
         Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
         Public Event PrepareCompleted As EventHandler(Of CompletedEventArgs)
+        Public Event OnCoreLoaded As EventHandler(Of CompletedEventArgs)
         Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
         Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
             RaiseEvent PrepareCompleted(Me, e)
+        End Sub
+        Protected Overridable Sub OnCoreCompleted(ByVal e As CompletedEventArgs)
+            RaiseEvent OnCoreLoaded(Me, e)
         End Sub
         '// Declaration
 
@@ -75,17 +79,31 @@ Namespace Forms.Character
                 If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
                     '//Load charset
                     LogAppend("Loading character from database", "CharacterOverview_prepare_interface", True)
-                    Dim mLoadHandler As New CoreHandler
-                    mLoadHandler.HandleLoadingRequests(setId)
-                    GlobalVariables.currentViewedCharSet.Loaded = True
-                    SetCharacterSet(setId, GlobalVariables.currentViewedCharSet)
+                    Dim loadHandlerThread As New Thread(AddressOf LoadCharacter)
+                    loadHandlerThread.Start(setId)
+                    Exit Sub
                 End If
             End If
             _doneControls = New List(Of Control)
             Goprep(setId, False)
             LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
         End Sub
+        Private Sub LoadCharacter(ByVal setId As Integer)
+            Dim mCoreHandler As New CoreHandler
+            mCoreHandler.HandleLoadingRequests(setId)
+            ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCoreCompleted),
+                           New CompletedEventArgs())
+        End Sub
+        Private Sub OnCharacterLoaded() Handles Me.OnCoreLoaded
+            GlobalVariables.currentViewedCharSet.Loaded = True
+            SetCharacterSet(_currentSet, GlobalVariables.currentViewedCharSet)
+            _doneControls = New List(Of Control)
+            Goprep(_currentSet, False)
+            LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
+        End Sub
         Private Sub OnCompleted() Handles Me.PrepareCompleted
+            Show()
+            Userwait.Close()
             CloseProcessStatus()
         End Sub
         Private Sub Goprep(ByVal setId As Integer, ByVal nxt As Boolean)

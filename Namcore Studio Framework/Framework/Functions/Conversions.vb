@@ -72,7 +72,6 @@ Namespace Framework.Functions
         End Function
 
         Public Function TryInt(ByVal mystring As String) As Integer
-            LogAppend("Converting string to integer: " & mystring, "Conversions_TryInt", False)
             Try
                 Dim parseResult As Integer = CInt(Integer.TryParse(mystring, Nothing))
                 If parseResult = 0 Then
