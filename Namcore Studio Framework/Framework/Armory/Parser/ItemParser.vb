@@ -41,99 +41,29 @@ Namespace Framework.Armory.Parser
             LogAppend("Loading character items", "ItemParser_loadItems", True)
             Do
                 Try
+                    If itemslot = 17 Then
+                        itemslot += 1
+                        Continue Do
+                    End If
                     If itemslot > 18 Then '// item slot 19+ not existent
                         Exit Do
                     End If
                     '// Loading item + info for each slot and add them to character
                     LogAppend("Now loading info for slot " & itemslot.ToString(), "ItemParser_loadItems", True)
-                    Select Case itemslot
-                        Case 0
-                            slotname = "head"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 1
-                            slotname = "neck"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 2
-                            slotname = "shoulder"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 3
-                            slotname = "shirt"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 4
-                            slotname = "chest"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 5
-                            slotname = "waist"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 6
-                            slotname = "legs"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 7
-                            slotname = "feet"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 8
-                            slotname = "wrists"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 9
-                            slotname = "hands"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 10
-                            slotname = "finger1"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 11
-                            slotname = "finger2"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 12
-                            slotname = "trinket1"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 13
-                            slotname = "trinket2"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 14
-                            slotname = "back"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                        Case 15
-                            slotname = "main"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then
-                                AddCharacterArmorItem(player, charItem)
-                                LoadWeaponType(charItem.Id, setId)
-                            End If
-                        Case 16
-                            slotname = "off"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then
-                                AddCharacterArmorItem(player, charItem)
-                                LoadWeaponType(charItem.Id, setId)
-                            End If
-                        Case 17 '// Slot 17 has been removed as of patch 5.0
-                        Case 18
-                            slotname = "tabard"
-                            Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                            If Not charItem Is Nothing Then AddCharacterArmorItem(player, charItem)
-                    End Select
+                    slotname = GetItemSlotNameBySlotId(itemslot)
+                    Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
+                    If Not charItem Is Nothing Then
+                        AddCharacterArmorItem(player, charItem)
+                        If itemslot = 15 Or itemslot = 16 Then
+                            LoadWeaponType(charItem.Id, setId)
+                        End If
+                    End If
                 Catch ex As Exception
                     LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                              "ItemParser_loadItems", False, True)
+                                                "ItemParser_loadItems", False, True)
+                Finally
                     itemslot += 1
-                    Continue Do
                 End Try
-                itemslot += 1
             Loop Until itemslot = 19
         End Sub
 
