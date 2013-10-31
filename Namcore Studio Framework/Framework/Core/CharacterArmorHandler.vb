@@ -75,256 +75,18 @@ Namespace Framework.Core
                         loopcounter += 1
                         Continue Do
                     End If
-                    Select Case itemslot
-                        Case 0
-                            slotname = "head"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 1
-                            slotname = "neck"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 2
-                            slotname = "shoulder"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 3
-                            slotname = "shirt"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 4
-                            slotname = "chest"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 5
-                            slotname = "waist"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 6
-                            slotname = "legs"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 7
-                            slotname = "feet"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 8
-                            slotname = "wrists"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 9
-                            slotname = "hands"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 10
-                            slotname = "finger1"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 11
-                            slotname = "finger2"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 12
-                            slotname = "trinket1"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 13
-                            slotname = "trinket2"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 14
-                            slotname = "back"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 15
-                            slotname = "main"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 16
-                            slotname = "off"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 17
-                            slotname = "distance"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 18
-                            slotname = "tabard"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                    End Select
-
+                    slotname = GetItemSlotNameById(itemslot)
+                    If itementry > 1 Then
+                        Dim itm As New Item
+                        itm.Slotname = slotname
+                        itm.Slot = itemslot
+                        itm.Id = itementry : itm.Guid = itemguid
+                        Dim player As Character = GetCharacterSetBySetId(tarSetId)
+                        AddCharacterArmorItem(player, itm)
+                        SetCharacterSet(tarSetId, player)
+                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
+                        LoadWeaponType(itementry, tarSetId)
+                    End If
                 Catch ex As Exception
                     LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
                               "CharacterArmorHandler_LoadAtArcemu", False, True)
@@ -368,254 +130,17 @@ Namespace Framework.Core
                     itemguid = TryInt((tempdt.Rows(loopcounter).Item(0)).ToString)
                     itemslot = TryInt((tempdt.Rows(loopcounter).Item(1)).ToString)
                     itementry = TryInt((tempdt.Rows(loopcounter).Item(2)).ToString)
-                    Select Case itemslot
-                        Case 0
-                            slotname = "head"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 1
-                            slotname = "neck"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 2
-                            slotname = "shoulder"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 3
-                            slotname = "shirt"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 4
-                            slotname = "chest"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 5
-                            slotname = "waist"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 6
-                            slotname = "legs"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 7
-                            slotname = "feet"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 8
-                            slotname = "wrists"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 9
-                            slotname = "hands"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 10
-                            slotname = "finger1"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 11
-                            slotname = "finger2"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 12
-                            slotname = "trinket1"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 13
-                            slotname = "trinket2"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 14
-                            slotname = "back"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 15
-                            slotname = "main"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 16
-                            slotname = "off"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 17
-                            slotname = "distance"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 18
-                            slotname = "tabard"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                            End If
-                    End Select
-
+                    slotname = GetItemSlotNameById(itemslot)
+                    If itementry > 1 Then
+                        Dim itm As New Item
+                        itm.Slotname = slotname
+                        itm.Slot = itemslot
+                        itm.Id = itementry : itm.Guid = itemguid
+                        Dim player As Character = GetCharacterSetBySetId(tarSetId)
+                        AddCharacterArmorItem(player, itm)
+                        SetCharacterSet(tarSetId, player)
+                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
+                    End If
                 Catch ex As Exception
                     LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
                               "CharacterArmorHandler_LoadAtTrinity", False, True)
@@ -654,255 +179,18 @@ Namespace Framework.Core
                     itemguid = TryInt((tempdt.Rows(loopcounter).Item(0)).ToString)
                     itemslot = TryInt((tempdt.Rows(loopcounter).Item(1)).ToString)
                     itementry = TryInt((tempdt.Rows(loopcounter).Item(2)).ToString)
-                    Select Case itemslot
-                        Case 0
-                            slotname = "head"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 1
-                            slotname = "neck"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 2
-                            slotname = "shoulder"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 3
-                            slotname = "shirt"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 4
-                            slotname = "chest"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 5
-                            slotname = "waist"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 6
-                            slotname = "legs"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 7
-                            slotname = "feet"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 8
-                            slotname = "wrists"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 9
-                            slotname = "hands"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 10
-                            slotname = "finger1"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 11
-                            slotname = "finger2"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 12
-                            slotname = "trinket1"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 13
-                            slotname = "trinket2"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 14
-                            slotname = "back"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 15
-                            slotname = "main"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 16
-                            slotname = "off"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 17
-                            slotname = "distance"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                        Case 18
-                            slotname = "tabard"
-                            If itementry > 1 Then
-                                Dim itm As New Item
-                                itm.slotname = slotname
-                                itm.slot = itemslot
-                                itm.id = itementry : itm.Guid = itemguid
-                                Dim player As Character = GetCharacterSetBySetId(tarSetId)
-                                AddCharacterArmorItem(player, itm)
-                                SetCharacterSet(tarSetId, player)
-                                mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                                LoadWeaponType(itementry, tarSetId)
-                            End If
-                    End Select
+                    slotname = GetItemSlotNameById(itemslot)
+                    If itementry > 1 Then
+                        Dim itm As New Item
+                        itm.Slotname = slotname
+                        itm.Slot = itemslot
+                        itm.Id = itementry : itm.Guid = itemguid
+                        Dim player As Character = GetCharacterSetBySetId(tarSetId)
+                        AddCharacterArmorItem(player, itm)
+                        SetCharacterSet(tarSetId, player)
+                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
+                        LoadWeaponType(itementry, tarSetId)
+                    End If
                 Catch ex As Exception
                     LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
                               "CharacterArmorHandler_LoadAtMangos", False, True)
@@ -912,5 +200,31 @@ Namespace Framework.Core
                 loopcounter += 1
             Loop Until loopcounter = entrycount
         End Sub
+        Private Function GetItemSlotNameById(ByVal itemslot As Integer) As String
+            Dim slotname As String
+            Select Case itemslot
+                Case 0 : slotname = "head"
+                Case 1 : slotname = "neck"
+                Case 2 : slotname = "shoulder"
+                Case 3 : slotname = "shirt"
+                Case 4 : slotname = "chest"
+                Case 5 : slotname = "waist"
+                Case 6 : slotname = "legs"
+                Case 7 : slotname = "feet"
+                Case 8 : slotname = "wrists"
+                Case 9 : slotname = "hands"
+                Case 10 : slotname = "finger1"
+                Case 11 : slotname = "finger2"
+                Case 12 : slotname = "trinket1"
+                Case 13 : slotname = "trinket2"
+                Case 14 : slotname = "back"
+                Case 15 : slotname = "main"
+                Case 16 : slotname = "off"
+                Case 17 : slotname = "distance"
+                Case 18 : slotname = "tabard"
+                Case Else : slotname = "unknown"
+            End Select
+            Return slotname
+        End Function
     End Class
 End Namespace
