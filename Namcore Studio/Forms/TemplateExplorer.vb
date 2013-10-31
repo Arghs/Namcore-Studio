@@ -24,32 +24,31 @@ Imports NCFramework.Framework.TemplateSystem
 Imports NCFramework.Framework.Modules
 Imports Namcore_Studio.Modules.Interface
 
-Public Class TemplateExplorer
+Namespace Forms
 
-    Private Sub TemplateExplorer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public Class TemplateExplorer
 
-    End Sub
-
-    Private Sub openfile_bt_Click(sender As Object, e As EventArgs) Handles openfile_bt.Click
-        Dim locOFD As New OpenFileDialog()
-        Dim locPath As String
-        With locOFD
-            .Filter = "NamCore Studio Template File (*.ncsf)|*.ncsf"
-            .Title = "Select template file"
-            .DefaultExt = ".ncsf"
-            .Multiselect = False
-            .CheckFileExists = True
-            .CheckPathExists = True
-            If (.ShowDialog() = DialogResult.OK) Then
-                locPath = .FileName()
-                If Not locPath = "" Then
-                    GlobalVariables.LoadingTemplate = True
-                    Dim mSerializer As Serializer = New Serializer
-                    GlobalVariables.globChars = mSerializer.DeSerialize(locPath, New GlobalCharVars)
-                    Hide()
-                    prepareLive_armory()
+        Private Sub openfile_bt_Click(sender As Object, e As EventArgs) Handles openfile_bt.Click
+            Dim locOfd As New OpenFileDialog()
+            Dim locPath As String
+            With locOfd
+                .Filter = "NamCore Studio Template File (*.ncsf)|*.ncsf"
+                .Title = "Select template file"
+                .DefaultExt = ".ncsf"
+                .Multiselect = False
+                .CheckFileExists = True
+                .CheckPathExists = True
+                If (.ShowDialog() = DialogResult.OK) Then
+                    locPath = .FileName()
+                    If Not locPath = "" Then
+                        GlobalVariables.LoadingTemplate = True
+                        Dim mSerializer As Serializer = New Serializer
+                        GlobalVariables.globChars = mSerializer.DeSerialize(locPath, New GlobalCharVars)
+                        Hide()
+                        prepareLive_armory()
+                    End If
                 End If
-            End If
-        End With
-    End Sub
-End Class
+            End With
+        End Sub
+    End Class
+End Namespace

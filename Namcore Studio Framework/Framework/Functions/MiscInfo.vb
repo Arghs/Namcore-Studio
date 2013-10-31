@@ -20,11 +20,8 @@
 '*      /Filename:      SpellItemInformation
 '*      /Description:   Includes functions for locating certain item and spell information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Drawing
 Imports System.Net
-Imports System.Windows.Forms
 Imports NCFramework.Framework.Extension
-Imports libnc.Provider
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 

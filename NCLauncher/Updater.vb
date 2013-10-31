@@ -392,58 +392,58 @@ End Class
 Public Class GetFileInformation
     Implements IDisposable
 
-    Private ReadOnly fvi As FileVersionInfo
+    Private ReadOnly _fvi As FileVersionInfo
 
     Public Sub New(ByVal filename As String)
-        fvi = FileVersionInfo.GetVersionInfo(Filename)
+        _fvi = FileVersionInfo.GetVersionInfo(filename)
     End Sub
 
     Public Overrides Function ToString() As String
         Dim sb As New StringBuilder
 
-        sb.Append("\n\tGetFilename:		" & Me.GetFilename)
-        sb.Append("\n\tGetFileDescription:	" & Me.GetFileDescription)
-        sb.Append("\n\tGetFileVersion:	" & Me.GetFileVersion)
-        sb.Append("\n\tGetCompanyName:	" & Me.GetCompanyName)
-        sb.Append("\n\tGetLanguage:	" & Me.GetLanguage)
-        sb.Append("\n\tGetProductName:	" & Me.GetProductName)
-        sb.Append("\n\tGetInternalName:	" & Me.GetInternalName)
-        sb.Append("\n\tGetComments:	" & Me.GetComments)
+        sb.Append("\n\tGetFilename:		" & GetFilename())
+        sb.Append("\n\tGetFileDescription:	" & GetFileDescription())
+        sb.Append("\n\tGetFileVersion:	" & GetFileVersion())
+        sb.Append("\n\tGetCompanyName:	" & GetCompanyName())
+        sb.Append("\n\tGetLanguage:	" & GetLanguage())
+        sb.Append("\n\tGetProductName:	" & GetProductName())
+        sb.Append("\n\tGetInternalName:	" & GetInternalName())
+        sb.Append("\n\tGetComments:	" & GetComments())
         sb.Replace("\n", vbCrLf)
         sb.Replace("\tGet", vbTab)
         Return sb.ToString()
     End Function
 
     Public Function GetFilename() As String
-        Return fvi.FileName
+        Return _fvi.FileName
     End Function
 
     Public Function GetFileDescription() As String
-        Return fvi.FileDescription
+        Return _fvi.FileDescription
     End Function
 
     Public Function GetFileVersion() As String
-        Return fvi.FileVersion
+        Return _fvi.FileVersion
     End Function
 
     Public Function GetCompanyName() As String
-        Return fvi.CompanyName
+        Return _fvi.CompanyName
     End Function
 
     Public Function GetLanguage() As String
-        Return fvi.Language
+        Return _fvi.Language
     End Function
 
     Public Function GetProductName() As String
-        Return fvi.ProductName
+        Return _fvi.ProductName
     End Function
 
     Public Function GetInternalName() As String
-        Return fvi.InternalName
+        Return _fvi.InternalName
     End Function
 
     Public Function GetComments() As String
-        Return fvi.Comments
+        Return _fvi.Comments
     End Function
 
     Public Sub Dispose() Implements IDisposable.Dispose

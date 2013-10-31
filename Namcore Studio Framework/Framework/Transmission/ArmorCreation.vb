@@ -46,7 +46,7 @@ Namespace Framework.Transmission
                End Select
         End Sub
 
-        Private Sub createAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
             LogAppend("Creating armor at arcemu", "ArmorCreation_createAtArcemu", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtArcemu", False)
             'Adding weapon specific spells and skills
@@ -101,7 +101,7 @@ Namespace Framework.Transmission
             For Each newItemType As String In itemtypelist
                 Dim itm As Item = GetCharacterArmorItem(player, newItemType)
                 If itemid = 0 Then Continue For
-                itemid = itm.id
+                itemid = itm.Id
                 If itemid = 0 Then Continue For
                 newItemGuid += 1
                 finalItemString = finalItemString.Replace(newItemType, itemid.ToString())
@@ -146,7 +146,7 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub createAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
             LogAppend("Creating armor at trinity", "ArmorCreation_createAtTrinity", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtTrinity", False)
             'Adding weapon specific spells and skills
@@ -201,7 +201,7 @@ Namespace Framework.Transmission
             For Each newItemType As String In itemtypelist
                 Dim itm As Item = GetCharacterArmorItem(player, newItemType)
                 If itm Is Nothing Then Continue For
-                itemid = itm.id
+                itemid = itm.Id
                 If itemid = 0 Then Continue For
                 newItemGuid += 1
                 finalItemString = finalItemString.Replace(newItemType, itemid.ToString())
@@ -254,7 +254,7 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.char_guid_col(0) & "='" & characterguid.ToString() & "')")
         End Sub
 
-        Private Sub createAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
             LogAppend("Creating armor at mangos", "ArmorCreation_createAtMangos", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtMangos", False)
             'Adding weapon specific spells and skills
@@ -309,7 +309,7 @@ Namespace Framework.Transmission
             For Each newItemType As String In itemtypelist
                 Dim itm As Item = GetCharacterArmorItem(player, newItemType)
                 If itemid = 0 Then Continue For
-                itemid = itm.id
+                itemid = itm.Id
                 If itemid = 0 Then Continue For
                 newItemGuid += 1
                 finalItemString = finalItemString.Replace(newItemType, itemid.ToString())

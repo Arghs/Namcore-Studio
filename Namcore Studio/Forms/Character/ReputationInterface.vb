@@ -392,7 +392,7 @@ Namespace Forms.Character
                         With pRepu
                             .faction = retnvalue
                             .flags = 1
-                            .Name = GetFactionNameById(.Faction, NCFramework.My.MySettings.Default.language)
+                            .Name = GetFactionNameById(.Faction, MySettings.Default.language)
                             .max = 3000
                             .standing = 0
                             .status = 3
