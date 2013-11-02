@@ -45,7 +45,8 @@ Namespace Forms
                     GlobalVariables.globChars.CharacterSets = New List(Of NCFramework.Framework.Modules.Character)
                     GlobalVariables.armoryMode = False
                     GlobalVariables.templateMode = False
-                    GlobalVariables.con_operator = 0
+                    GlobalVariables.GlobalConnectionString = ""
+                    GlobalVariables.GlobalConnectionString_Realm = ""
                     If defaultconn_radio.Checked = True Then
                         If _
                             TestConnection(
@@ -112,7 +113,8 @@ Namespace Forms
 
                     End If
                 Case 2 'Target connection @live_view
-                    GlobalVariables.con_operator = 0
+                    GlobalVariables.TargetConnectionString = ""
+                    GlobalVariables.TargetConnectionString_Realm = ""
                     If defaultconn_radio.Checked = True Then
                         If _
                             TestConnection(
