@@ -508,8 +508,7 @@ Namespace Forms
         End Sub
 
         Private Sub connect_bt_target_Click(sender As Object, e As EventArgs) Handles connect_bt_target.Click
-            GlobalVariables.con_operator = 2
-            DbConnect.Show()
+            TargetSelectInterface.Show()
         End Sub
 
         Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) _

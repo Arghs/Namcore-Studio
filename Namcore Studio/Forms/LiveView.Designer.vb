@@ -377,7 +377,7 @@
             Me.connect_bt_target.Name = "connect_bt_target"
             Me.connect_bt_target.Size = New System.Drawing.Size(147, 42)
             Me.connect_bt_target.TabIndex = 209
-            Me.connect_bt_target.Text = "Connect to target db"
+            Me.connect_bt_target.Text = "Connect to target db or create template"
             Me.connect_bt_target.UseVisualStyleBackColor = False
             '
             'target_accounts_tree
