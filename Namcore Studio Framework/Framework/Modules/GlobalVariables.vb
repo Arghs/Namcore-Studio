@@ -36,8 +36,8 @@ Namespace Framework.Modules
         Public Shared lastregion As String
         Public Shared TempCharacter As Character
         Public Shared globChars As GlobalCharVars
-        Public Shared ModCharacterSets As List(Of Character)
-        Public Shared ModCharacterSetsIndex As String
+        Public Shared ModAccountSets As List(Of Account)
+        Public Shared ModAccountSetsIndex As String
         Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
         Public Shared targetCore As String '"arcemu", "trinity", "mangos"
         Public Shared sourceExpansion As Integer '1=classic, 2=tbc,...
@@ -78,6 +78,7 @@ Namespace Framework.Modules
         Public Shared editedCharsIndex As List(Of Integer())
         Public Shared editedCharSets As List(Of Character)
         Public Shared trdrunnuing As Boolean
+        Public Shared saveTemplateMode As Boolean = False
         Public Shared procStatus As ProcessStatus
         Public Shared tempItemInfo As List(Of Item)
         Public Shared tempItemInfoIndex As List(Of String())
@@ -90,6 +91,8 @@ Namespace Framework.Modules
         Public Shared tempAchievementInfoIndex As String
         Public Shared offlineExtension As Boolean
         Public Shared forceTargetConnectionUsage As Boolean
+        Public Shared forceTemplateCharVars As Boolean
+        Public Shared templateCharVars As GlobalCharVars
         Public Shared trdRunning As Integer = 0
         Public Shared abortMe As Boolean = False
         Public Shared proccessTXT As String
@@ -106,7 +109,7 @@ Namespace Framework.Modules
 
     <Serializable()>
     Public Class GlobalCharVars
-        Public CharacterSets As List(Of Character)
-        Public CharacterSetsIndex As String
+        Public AccountSets As List(Of Account)
+        Public AccountSetsIndex As String
     End Class
 End Namespace

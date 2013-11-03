@@ -28,25 +28,25 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterActionsHandler
-        Public Sub GetCharacterActions(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+        Public Sub GetCharacterActions(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character actions for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterActionssHandler_GetCharacterActions", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(characterGuid, setId)
+                    LoadAtArcemu(characterGuid, setId, account)
                 Case "trinity"
-                    LoadAtTrinity(characterGuid, setId)
+                    LoadAtTrinity(characterGuid, setId, account)
                 Case "trinitytbc"
-                    'todo LoadAtTrinityTBC(characterGuid, setId, accountId)
+                    'todo LoadAtTrinityTBC(characterGuid, setId, accountId, account)
                 Case "mangos"
-                    LoadAtMangos(characterGuid, setId)
+                    LoadAtMangos(characterGuid, setId, account)
 
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Actions @LoadAtArcemu", "CharacterActionsHandler_LoadAtArcemu", False)
-            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId)
+            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             tmpCharacter.ArcEmuAction1 =
                 runSQLCommand_characters_string(
                     "SELECT " & GlobalVariables.sourceStructure.char_actions1_col(0) & " FROM " &
@@ -101,10 +101,10 @@ Namespace Framework.Core
                     "Something went wrong while loading character Actions! -> skipping -> Exception is: ###START###" &
                     ex.ToString() & "###END###", "CharacterActionsHandler_LoadAtArcemu", True, True)
             End Try
-            SetCharacterSet(tarSetId, tmpCharacter)
+            SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Actions @LoadAtTrinity", "CharacterActionsHandler_LoadAtTrinity", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -115,7 +115,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.character_action_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.action_guid_col(0) &
                         "='" & charguid.ToString() & "'")
-            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId)
+            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             If tmpCharacter.Actions Is Nothing Then tmpCharacter.Actions = New List(Of Action)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
@@ -140,10 +140,10 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterActionsHandler_LoadAtTrinity", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, tmpCharacter)
+            SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Actions @LoadAtMangos", "CharacterActionsHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -154,7 +154,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.character_action_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.action_guid_col(0) &
                         "='" & charguid.ToString() & "'")
-            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId)
+            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             If tmpCharacter.Actions Is Nothing Then tmpCharacter.Actions = New List(Of Action)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
@@ -179,7 +179,7 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterActionsHandler_LoadAtMangos", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, tmpCharacter)
+            SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
     End Class
 End Namespace

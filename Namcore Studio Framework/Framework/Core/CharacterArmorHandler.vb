@@ -29,22 +29,22 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Core
 
     Public Class CharacterArmorHandler
-        Public Sub GetCharacterArmor(ByVal charguid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+        Public Sub GetCharacterArmor(ByVal charguid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character Armor for charguid: " & charguid & " and setId: " & setId,
                       "CharacterArmorHandler_GetCharacterArmor", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(charguid, setId)
+                    LoadAtArcemu(charguid, setId, account)
                 Case "trinity"
-                    LoadAtTrinity(charguid, setId)
+                    LoadAtTrinity(charguid, setId, account)
                 Case "trinitytbc"
                     'todo LoadAtTrinityTBC(charguid, setId, accountId)
                 Case "mangos"
-                    LoadAtMangos(charguid, setId)
+                    LoadAtMangos(charguid, setId, account)
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Armor @LoadAtArcemu", "CharacterArmorHandler_LoadAtArcemu", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -81,11 +81,11 @@ Namespace Framework.Core
                         itm.Slotname = slotname
                         itm.Slot = itemslot
                         itm.Id = itementry : itm.Guid = itemguid
-                        Dim player As Character = GetCharacterSetBySetId(tarSetId)
+                        Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
                         AddCharacterArmorItem(player, itm)
-                        SetCharacterSet(tarSetId, player)
-                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                        LoadWeaponType(itementry, tarSetId)
+                        SetCharacterSet(tarSetId, player, account)
+                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId, GetAccountSetBySetId(player.AccountSet))
+                        LoadWeaponType(itementry, tarSetId, account)
                     End If
                 Catch ex As Exception
                     LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
@@ -97,7 +97,7 @@ Namespace Framework.Core
             Loop Until loopcounter = entrycount
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Armor @LoadAtTrinity", "CharacterArmorHandler_LoadAtTrinity", False)
             Dim cmd As String = "SELECT " & GlobalVariables.sourceStructure.invent_item_col(0) & ", " &
                                 GlobalVariables.sourceStructure.invent_slot_col(0) & ", " &
@@ -136,10 +136,10 @@ Namespace Framework.Core
                         itm.Slotname = slotname
                         itm.Slot = itemslot
                         itm.Id = itementry : itm.Guid = itemguid
-                        Dim player As Character = GetCharacterSetBySetId(tarSetId)
+                        Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
                         AddCharacterArmorItem(player, itm)
-                        SetCharacterSet(tarSetId, player)
-                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
+                        SetCharacterSet(tarSetId, player, account)
+                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId, GetAccountSetBySetId(player.AccountSet))
                     End If
                 Catch ex As Exception
                     LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
@@ -151,7 +151,7 @@ Namespace Framework.Core
             Loop Until loopcounter = entrycount
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Armor @LoadAtMangos", "CharacterArmorHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -185,11 +185,11 @@ Namespace Framework.Core
                         itm.Slotname = slotname
                         itm.Slot = itemslot
                         itm.Id = itementry : itm.Guid = itemguid
-                        Dim player As Character = GetCharacterSetBySetId(tarSetId)
+                        Dim player As Character = GetCharacterSetBySetId(tarSetId, Account)
                         AddCharacterArmorItem(player, itm)
-                        SetCharacterSet(tarSetId, player)
-                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId)
-                        LoadWeaponType(itementry, tarSetId)
+                        SetCharacterSet(tarSetId, player, Account)
+                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId, GetAccountSetBySetId(player.AccountSet))
+                        LoadWeaponType(itementry, tarSetId, account)
                     End If
                 Catch ex As Exception
                     LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",

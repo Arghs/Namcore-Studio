@@ -55,6 +55,13 @@ Namespace Framework.Armory
             Dim characterName As String
             Dim client As New WebClient
             client.CheckProxy()
+            Dim armoryAccount As New Account("Armory", 0)
+            armoryAccount.Characters = New List(Of Character)()
+            armoryAccount.CharactersIndex = ""
+            armoryAccount.SetIndex = 0
+            armoryAccount.SourceExpansion = 5
+            armoryAccount.Core = "armory"
+            SetAccountSet(0, armoryAccount)
             For Each armoryLink As String In LinkList
                 Try
                     LogAppend("URL is " & armoryLink, "ArmoryHandler_DoLoad", False)
@@ -82,7 +89,9 @@ Namespace Framework.Armory
                     player.Level = TryInt(splitString(characterContext, "<span class=""level""><strong>", "</strong></span>"))
                     player.Gender = TryInt(splitString(client.DownloadString(apiLink), """gender"":", ","""))
                     player.Race = TryInt(splitString(client.DownloadString(apiLink), """race"":", ","""))
-                    player.Cclass = TryInt(GetClassIdByName(splitString(characterContext, "/game/class/", """ class=")))
+                    player.Cclass = TryInt(GetClassIdByName(SplitString(characterContext, "/game/class/", """ class=")))
+                    player.SourceCore = "armory"
+                    player.SourceExpansion = 5
                     '// Character appearance
                     Try
                         LogAppend("Loading character appearance information", "ArmoryHandler_DoLoad", True)
@@ -110,17 +119,17 @@ Namespace Framework.Armory
                     player.InventoryZeroItems = New List(Of Item)()
                     player.InventoryZeroItems.Add(New Item With {.Id = 6948, .Count = 1, .Bag = 0, .Container = 0, .Slot = 23, .Guid = 0}) '// Adding hearthstone
                     player.SetIndex = setId
-                    AddCharacterSet(setId, player)
+                    AddCharacterSet(setId, player, armoryAccount)
                     Dim mReputationParser As ReputationParser = New ReputationParser
-                    mReputationParser.LoadReputation(setId, apiLink)
+                    mReputationParser.LoadReputation(setId, apiLink, armoryAccount)
                     Dim mGlyphParser As GlyphParser = New GlyphParser
-                    mGlyphParser.LoadGlyphs(setId, apiLink)
+                    mGlyphParser.LoadGlyphs(setId, apiLink, armoryAccount)
                     Dim mAchievementParser As AchievementParser = New AchievementParser
-                    mAchievementParser.LoadAchievements(setId, apiLink)
+                    mAchievementParser.LoadAchievements(setId, apiLink, armoryAccount)
                     Dim mProfessionParser As ProfessionParser = New ProfessionParser
-                    mProfessionParser.LoadProfessions(setId, apiLink)
+                    mProfessionParser.LoadProfessions(setId, apiLink, armoryAccount)
                     Dim mItemParser As ItemParser = New ItemParser
-                    mItemParser.LoadItems(characterContext, setId)
+                    mItemParser.LoadItems(characterContext, setId, armoryAccount)
                     LogAppend("Character loaded!", "ArmoryHandler_DoLoad", True)
                 Catch ex As Exception
                     LogAppend("Exception during character loading!: " & ex.ToString(), "ArmoryHandler_DoLoad", True, True)

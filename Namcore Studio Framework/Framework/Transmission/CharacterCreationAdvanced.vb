@@ -30,24 +30,24 @@ Imports MySql.Data.MySqlClient
 Namespace Framework.Transmission
 
     Public Class CharacterCreationAdvanced
-        Public Sub CreateNewAdvancedCharacter(ByVal charname As String, ByVal accountId As String, ByVal setId As Integer,
+        Public Sub CreateNewAdvancedCharacter(ByVal charname As String, ByVal accountId As String, ByVal setId As Integer, ByVal account As Account,
                                               Optional forceNameChange As Boolean = False)
             LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString,
                       "CharacterCreationAdvanced_CreateNewAdvancedCharacter", True)
             Select Case GlobalVariables.targetCore
                 Case "arcemu"
-                    createAtArcemu(charname, accountId.ToString, setId, forceNameChange)
+                    CreateAtArcemu(charname, accountId.ToString, setId, forceNameChange, account)
                 Case "trinity"
-                    createAtTrinity(charname, accountId.ToString, setId, forceNameChange)
+                    CreateAtTrinity(charname, accountId.ToString, setId, forceNameChange, account)
                 Case "trinitytbc"
 
                 Case "mangos"
-                    createAtMangos(charname, accountId.ToString, setId, forceNameChange)
-                End Select
+                    CreateAtMangos(charname, accountId.ToString, setId, forceNameChange, account)
+            End Select
         End Sub
 
         Private Sub CreateAtArcemu(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer,
-                                   ByVal nameChange As Boolean)
+                                   ByVal nameChange As Boolean, ByVal account As Account)
             LogAppend("Creating at arcemu", "CharacterCreationAdvanced_createAtArcemu", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -86,7 +86,7 @@ Namespace Framework.Transmission
                                            "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '0 0 0 ', @stable, @zone, " &
                                            "@title, @wFaction, '1000', @speccpunt, @activespec, @exploredZones, @knownTitles )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accid.ToString)
             tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -182,7 +182,7 @@ Namespace Framework.Transmission
                     "' WHERE " & GlobalVariables.targetStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
 
                 player.CreatedGuid = newcharguid
-                SetCharacterSet(targetSetId, player)
+                SetCharacterSet(targetSetId, player, GetAccountSetBySetId(player.AccountSet))
 
             Catch ex As Exception
                 LogAppend(
@@ -192,7 +192,7 @@ Namespace Framework.Transmission
         End Sub
 
         Private Sub CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer,
-                                    ByVal nameChange As Boolean)
+                                    ByVal nameChange As Boolean, ByVal account As Account)
             LogAppend("Creating at Trinity", "CharacterCreationAdvanced_createAtTrinity", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -239,7 +239,7 @@ Namespace Framework.Transmission
                                   "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, @leveltime, @extraflags, " &
                                   "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
             tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -332,7 +332,7 @@ Namespace Framework.Transmission
                     "', '" & SplitList(tmpstring, "position_y") & "', '" & SplitList(tmpstring, "position_z") & "' )")
 
                 player.CreatedGuid = newcharguid
-                SetCharacterSet(targetSetId, player)
+                SetCharacterSet(targetSetId, player, GetAccountSetBySetId(player.AccountSet))
             Catch ex As Exception
                 LogAppend(
                     "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),
@@ -341,7 +341,7 @@ Namespace Framework.Transmission
         End Sub
 
         Private Sub CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer,
-                                   ByVal nameChange As Boolean)
+                                   ByVal nameChange As Boolean, ByVal account As Account)
             LogAppend("Creating at Mangos", "CharacterCreationAdvanced_createAtMangos", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -388,7 +388,7 @@ Namespace Framework.Transmission
                                       "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, @leveltime, @extraflags, " &
                                       "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
             tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -494,7 +494,7 @@ Namespace Framework.Transmission
                     SplitList(tmpstring, "position_z") & "' )")
 
                 player.CreatedGuid = newcharguid
-                SetCharacterSet(targetSetId, player)
+                SetCharacterSet(targetSetId, player, GetAccountSetBySetId(player.AccountSet))
             Catch ex As Exception
                 LogAppend(
                     "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),

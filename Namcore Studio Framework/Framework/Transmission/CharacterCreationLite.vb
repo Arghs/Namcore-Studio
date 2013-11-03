@@ -30,20 +30,20 @@ Imports MySql.Data.MySqlClient
 Namespace Framework.Transmission
 
     Public Class CharacterCreationLite
-        Public Sub CreateNewLiteCharacter(ByVal charname As String, ByVal accountId As Integer, ByVal setId As Integer,
+        Public Sub CreateNewLiteCharacter(ByVal charname As String, ByVal accountId As Integer, ByVal setId As Integer, ByVal account As Account,
                                           Optional forceNameChange As Boolean = False)
             LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString,
                       "CharacterCreationLite_CreateNewLiteCharacter", True)
             Select Case GlobalVariables.targetCore
                 Case "arcemu"
-                    createAtArcemu(charname, accountId.ToString, setId, forceNameChange)
+                    CreateAtArcemu(charname, accountId.ToString, setId, forceNameChange, account)
                 Case "trinity"
-                    createAtTrinity(charname, accountId.ToString, setId, forceNameChange)
+                    CreateAtTrinity(charname, accountId.ToString, setId, forceNameChange, account)
                 Case "trinitytbc"
 
                 Case "mangos"
-                    createAtMangos(charname, accountId.ToString, setId, forceNameChange)
-                End Select
+                    CreateAtMangos(charname, accountId.ToString, setId, forceNameChange, account)
+            End Select
         End Sub
 
         Public Function CharacterExist(ByVal charname As String) As Boolean
@@ -82,7 +82,7 @@ Namespace Framework.Transmission
         End Function
 
         Private Sub CreateAtArcemu(ByVal charactername As String, ByVal accId As Integer, ByVal targetSetId As Integer,
-                                   ByVal nameChange As Boolean)
+                                   ByVal nameChange As Boolean, ByVal account As Account)
             LogAppend("Creating at arcemu", "CharacterCreationLite_createAtArcemu", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -111,7 +111,7 @@ Namespace Framework.Transmission
                                       GlobalVariables.targetStructure.char_arcemuPlayedTime_col(0) & " ) " &
                                       "VALUES ( @accid, @guid, @name, @race, @class, @gender, @level, '0', '0', '1000', @pBytes, '-14305.7', '514.08', '10', '4.30671', '0', '0 0 0 0 0 0 0 0 0 0 0 0 ', '98 98 5 ' )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accId.ToString())
             tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -122,7 +122,7 @@ Namespace Framework.Transmission
             tempcommand.Parameters.AddWithValue("@pBytes", player.PlayerBytes.ToString())
             Try
                 tempcommand.ExecuteNonQuery()
-                If NameChange = True Then
+                If nameChange = True Then
                     runSQLCommand_characters_string(
                         "UPDATE " & GlobalVariables.targetStructure.character_tbl(0) &
                         " SET forced_rename_pending='1' WHERE guid='" & newcharguid.ToString & "'", True)
@@ -453,7 +453,7 @@ Namespace Framework.Transmission
         End Sub
 
         Private Sub CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer,
-                                    ByVal nameChange As Boolean)
+                                    ByVal nameChange As Boolean, ByVal account As Account)
             LogAppend("Creating at Trinity", "CharacterCreationLite_createAtTrinity", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -483,7 +483,7 @@ Namespace Framework.Transmission
                                      "( @guid, @accid, @name, @race, @class, @gender, @level, '0', '0', @pBytes, '-14306', '515', '10', '0', '5', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1', '1000' )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
             tempcommand.Prepare()
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accid)
             tempcommand.Parameters.AddWithValue("@guid", newcharguid)
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -494,7 +494,7 @@ Namespace Framework.Transmission
             tempcommand.Parameters.AddWithValue("@pBytes", player.PlayerBytes)
             Try
                 tempcommand.ExecuteNonQuery()
-                If NameChange = True Then
+                If nameChange = True Then
                     runSQLCommand_characters_string(
                         "UPDATE " & GlobalVariables.targetStructure.character_tbl(0) & " SET " &
                         GlobalVariables.targetStructure.char_atlogin_col(0) & "='1' WHERE " &
@@ -545,7 +545,7 @@ Namespace Framework.Transmission
         End Sub
 
         Private Sub CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer,
-                                   ByVal nameChange As Boolean)
+                                   ByVal nameChange As Boolean, ByVal account As Account)
             LogAppend("Creating at Mangos", "CharacterCreationLite_createAtMangos", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -572,7 +572,7 @@ Namespace Framework.Transmission
                                                   GlobalVariables.targetStructure.char_taximask_col(0) & ", `health` ) VALUES " &
                                                   "( @guid, @accid, @name, @race, @class, @gender, @level, '0', '0', @pBytes, '-14305.7', '514.08', '10', '0', '4.30671', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 ','1000' )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
             tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -583,7 +583,7 @@ Namespace Framework.Transmission
             tempcommand.Parameters.AddWithValue("@level", player.Level.ToString())
             Try
                 tempcommand.ExecuteNonQuery()
-                If NameChange = True Then
+                If nameChange = True Then
                     runSQLCommand_characters_string(
                         "UPDATE " & GlobalVariables.targetStructure.character_tbl(0) & " SET " &
                         GlobalVariables.targetStructure.char_atlogin_col(0) & "='1' WHERE " &

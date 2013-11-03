@@ -30,19 +30,19 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Armory.Parser
 
     Public Class AchievementParser
-        Public Sub LoadAchievements(ByVal setId As Integer, ByVal apiLink As String)
+        Public Sub LoadAchievements(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
             Dim client As New WebClient
             client.CheckProxy()
             '// Retrieving character
-            Dim player As Character = GetCharacterSetBySetId(setId)
+            Dim player As Character = GetCharacterSetBySetId(setId, account)
             player.Achievements = New List(Of Achievement)
             Try
                 LogAppend("Loading character achievement information", "AchievementParser_loadAchievements", True)
                 '// Using API to load achievement info
                 Dim avContext As String = client.DownloadString(apiLink & "?fields=achievements")
                 '// Splitting to create completed-achievements and timestamp string
-                Dim avStr As String = splitString(avContext, "{""achievementsCompleted"":[", "],""") & ","
-                Dim timeStr As String = splitString(avContext, """achievementsCompletedTimestamp"":[", "],""")
+                Dim avStr As String = SplitString(avContext, "{""achievementsCompleted"":[", "],""") & ","
+                Dim timeStr As String = SplitString(avContext, """achievementsCompletedTimestamp"":[", "],""")
                 If avStr.Length > 5 Then '// Should check if av count is > 0 // TODO Confirm
                     Dim loopcounter As Integer = 0
                     Dim excounter As Integer = UBound(Split(avStr, ","))
@@ -73,7 +73,7 @@ Namespace Framework.Armory.Parser
                     Loop Until loopcounter = excounter
                     LogAppend("Loaded " & loopcounter.ToString & " achievements!", "AchievementParser_loadAchievements", True)
                     '// Saving changes to character
-                    SetCharacterSet(setId, player)
+                    SetCharacterSet(setId, player, GetAccountSetBySetId(player.AccountSet))
                 End If
             Catch ex As Exception
                 LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "AchievementParser_loadAchievements", False,

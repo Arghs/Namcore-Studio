@@ -255,7 +255,7 @@ Namespace Forms.Character
 
                     End While
 
-                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentViewedCharSet)
+                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentViewedCharSet, GetAccountSetBySetId(GlobalVariables.currentViewedCharSet.AccountSet))
                     Try
                         If _
                             AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 2).BackColor =

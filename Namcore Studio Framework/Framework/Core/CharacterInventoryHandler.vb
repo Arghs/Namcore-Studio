@@ -28,22 +28,22 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterInventoryHandler
-        Public Sub GetCharacterInventory(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+        Public Sub GetCharacterInventory(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character Inventory for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterInventoryHandler_GetCharacterInventory", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(characterGuid, setId)
+                    LoadAtArcemu(characterGuid, setId, account)
                 Case "trinity"
-                    LoadAtTrinity(characterGuid, setId)
+                    LoadAtTrinity(characterGuid, setId, account)
                 Case "trinitytbc"
                     'todo LoadAtTrinityTBC(characterGuid, setId, accountId)
                 Case "mangos"
-                    LoadAtMangos(characterGuid, setId)
+                    LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Inventory @LoadAtArcemu", "CharacterInventoryHandler_LoadAtArcemu", False)
             Dim dt As DataTable =
                     ReturnDataTable(
@@ -51,7 +51,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & charguid.ToString() & "'")
             Dim tmpext As Integer
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Dim slotlist As String = ""
             Try
                 Dim lastcount As Integer = TryInt(dt.Rows.Count.ToString)
@@ -124,18 +124,18 @@ Namespace Framework.Core
                                                 GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                         Dim newItm As New Item
-                                        newItm.slot = TryInt(tmpext.ToString)
-                                        newItm.bag = TryInt(bag)
-                                        newItm.bagguid = TryInt(bagguid)
+                                        newItm.Slot = TryInt(tmpext.ToString)
+                                        newItm.Bag = TryInt(bag)
+                                        newItm.Bagguid = TryInt(bagguid)
                                         newItm.Id = TryInt(entryid)
-                                        newItm.enchantstring = enchantments
-                                        newItm.count = TryInt(itemcount)
-                                        newItm.container = -1
-                                        newItm.guid = TryInt(item)
+                                        newItm.Enchantstring = enchantments
+                                        newItm.Count = TryInt(itemcount)
+                                        newItm.Container = -1
+                                        newItm.Guid = TryInt(item)
                                         If player.InventoryZeroItems Is Nothing Then _
                                             player.InventoryZeroItems = New List(Of Item)()
                                         player.InventoryZeroItems.Add(newItm)
-                                        SetCharacterSet(tarSetId, player)
+                                        SetCharacterSet(tarSetId, player, account)
                                     End If
                                 Else
                                     Dim bag As String
@@ -175,18 +175,18 @@ Namespace Framework.Core
                                             GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                             "='" & item & "'")
                                     Dim newItm As New Item
-                                    newItm.slot = TryInt(tmpext.ToString)
-                                    newItm.bag = TryInt(bag)
-                                    newItm.bagguid = TryInt(bagguid)
+                                    newItm.Slot = TryInt(tmpext.ToString)
+                                    newItm.Bag = TryInt(bag)
+                                    newItm.Bagguid = TryInt(bagguid)
                                     newItm.Id = TryInt(entryid)
-                                    newItm.enchantstring = enchantments
-                                    newItm.count = TryInt(itemcount)
-                                    newItm.container = -1
-                                    newItm.guid = TryInt(item)
+                                    newItm.Enchantstring = enchantments
+                                    newItm.Count = TryInt(itemcount)
+                                    newItm.Container = -1
+                                    newItm.Guid = TryInt(item)
                                     If player.InventoryItems Is Nothing Then _
                                         player.InventoryItems = New List(Of Item)()
                                     player.InventoryItems.Add(newItm)
-                                    SetCharacterSet(tarSetId, player)
+                                    SetCharacterSet(tarSetId, player, account)
                                 End If
                             Else
                                 Dim containerslot As String =
@@ -243,18 +243,18 @@ Namespace Framework.Core
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                                 "='" & item & "'")
                                         Dim newItm As New Item
-                                        newItm.slot = TryInt(tmpext.ToString)
-                                        newItm.bag = TryInt(bag)
-                                        newItm.bagguid = TryInt(bagguid)
+                                        newItm.Slot = TryInt(tmpext.ToString)
+                                        newItm.Bag = TryInt(bag)
+                                        newItm.Bagguid = TryInt(bagguid)
                                         newItm.Id = TryInt(entryid)
-                                        newItm.enchantstring = enchantments
-                                        newItm.count = TryInt(itemcount)
-                                        newItm.container = -1
-                                        newItm.guid = TryInt(item)
+                                        newItm.Enchantstring = enchantments
+                                        newItm.Count = TryInt(itemcount)
+                                        newItm.Container = -1
+                                        newItm.Guid = TryInt(item)
                                         If player.InventoryZeroItems Is Nothing Then _
                                             player.InventoryZeroItems = New List(Of Item)()
                                         player.InventoryZeroItems.Add(newItm)
-                                        SetCharacterSet(tarSetId, player)
+                                        SetCharacterSet(tarSetId, player, account)
                                     End If
                                 Else
                                     Dim bag As String
@@ -294,18 +294,18 @@ Namespace Framework.Core
                                             GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                             "='" & item & "'")
                                     Dim newItm As New Item
-                                    newItm.slot = TryInt(tmpext.ToString)
-                                    newItm.bag = TryInt(bag)
-                                    newItm.bagguid = TryInt(bagguid)
+                                    newItm.Slot = TryInt(tmpext.ToString)
+                                    newItm.Bag = TryInt(bag)
+                                    newItm.Bagguid = TryInt(bagguid)
                                     newItm.Id = TryInt(entryid)
-                                    newItm.enchantstring = enchantments
-                                    newItm.count = TryInt(itemcount)
-                                    newItm.container = -1
-                                    newItm.guid = TryInt(item)
+                                    newItm.Enchantstring = enchantments
+                                    newItm.Count = TryInt(itemcount)
+                                    newItm.Container = -1
+                                    newItm.Guid = TryInt(item)
                                     If player.InventoryItems Is Nothing Then _
                                         player.InventoryItems = New List(Of Item)()
                                     player.InventoryItems.Add(newItm)
-                                    SetCharacterSet(tarSetId, player)
+                                    SetCharacterSet(tarSetId, player, account)
                                 End If
                                 Dim containerslot2 As String =
                                         ReturnResultWithRow(
@@ -360,18 +360,18 @@ Namespace Framework.Core
                                                 GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                         Dim newItm As New Item
-                                        newItm.slot = TryInt(tmpext.ToString)
-                                        newItm.bag = TryInt(bag)
-                                        newItm.bagguid = TryInt(bagguid)
+                                        newItm.Slot = TryInt(tmpext.ToString)
+                                        newItm.Bag = TryInt(bag)
+                                        newItm.Bagguid = TryInt(bagguid)
                                         newItm.Id = TryInt(entryid)
-                                        newItm.enchantstring = enchantments
-                                        newItm.count = TryInt(itemcount)
-                                        newItm.container = -1
-                                        newItm.guid = TryInt(item)
+                                        newItm.Enchantstring = enchantments
+                                        newItm.Count = TryInt(itemcount)
+                                        newItm.Container = -1
+                                        newItm.Guid = TryInt(item)
                                         If player.InventoryZeroItems Is Nothing Then _
                                             player.InventoryZeroItems = New List(Of Item)()
                                         player.InventoryZeroItems.Add(newItm)
-                                        SetCharacterSet(tarSetId, player)
+                                        SetCharacterSet(tarSetId, player, account)
                                     End If
                                 Else
                                     Dim bag As String
@@ -411,18 +411,18 @@ Namespace Framework.Core
                                             GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                             "='" & item & "'")
                                     Dim newItm As New Item
-                                    newItm.slot = TryInt(tmpext.ToString)
-                                    newItm.bag = TryInt(bag)
-                                    newItm.bagguid = TryInt(bagguid)
+                                    newItm.Slot = TryInt(tmpext.ToString)
+                                    newItm.Bag = TryInt(bag)
+                                    newItm.Bagguid = TryInt(bagguid)
                                     newItm.Id = TryInt(entryid)
-                                    newItm.enchantstring = enchantments
-                                    newItm.count = TryInt(itemcount)
-                                    newItm.container = TryInt(containerslot2)
-                                    newItm.guid = TryInt(item)
+                                    newItm.Enchantstring = enchantments
+                                    newItm.Count = TryInt(itemcount)
+                                    newItm.Container = TryInt(containerslot2)
+                                    newItm.Guid = TryInt(item)
                                     If player.InventoryItems Is Nothing Then _
                                         player.InventoryItems = New List(Of Item)()
                                     player.InventoryItems.Add(newItm)
-                                    SetCharacterSet(tarSetId, player)
+                                    SetCharacterSet(tarSetId, player, account)
                                 End If
                             End If
                             count += 1
@@ -439,7 +439,7 @@ Namespace Framework.Core
             End Try
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Inventory @LoadAtTrinity", "CharacterInventoryHandler_LoadAtTrinity", False)
             Dim dt As DataTable =
                     ReturnDataTable(
@@ -447,7 +447,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "'")
             Dim tmpext As Integer
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = dt.Rows.Count
                 Dim count As Integer = 0
@@ -492,13 +492,13 @@ Namespace Framework.Core
                                         GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE `" &
                                         GlobalVariables.sourceStructure.invent_item_col(0) & "`='" & item & "'")
                                 Dim newItm As New Item
-                                newItm.slot = TryInt(slot)
-                                newItm.bag = TryInt(bag)
-                                newItm.bagguid = TryInt(bagguid)
+                                newItm.Slot = TryInt(slot)
+                                newItm.Bag = TryInt(bag)
+                                newItm.Bagguid = TryInt(bagguid)
                                 newItm.Id = TryInt(entryid)
-                                newItm.enchantstring = enchantments
-                                newItm.count = TryInt(itemcount)
-                                newItm.guid = TryInt(item)
+                                newItm.Enchantstring = enchantments
+                                newItm.Count = TryInt(itemcount)
+                                newItm.Guid = TryInt(item)
                                 If player.InventoryZeroItems Is Nothing Then _
                                     player.InventoryZeroItems = New List(Of Item)()
                                 player.InventoryZeroItems.Add(newItm)
@@ -537,13 +537,13 @@ Namespace Framework.Core
                                     GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE `" &
                                     GlobalVariables.sourceStructure.invent_item_col(0) & "`='" & item & "'")
                             Dim newItm As New Item
-                            newItm.slot = TryInt(slot)
-                            newItm.bag = TryInt(bag)
-                            newItm.bagguid = TryInt(bagguid)
+                            newItm.Slot = TryInt(slot)
+                            newItm.Bag = TryInt(bag)
+                            newItm.Bagguid = TryInt(bagguid)
                             newItm.Id = TryInt(entryid)
-                            newItm.enchantstring = enchantments
-                            newItm.count = TryInt(itemcount)
-                            newItm.guid = TryInt(item)
+                            newItm.Enchantstring = enchantments
+                            newItm.Count = TryInt(itemcount)
+                            newItm.Guid = TryInt(item)
                             If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of Item)()
                             player.InventoryItems.Add(newItm)
                         End If
@@ -558,10 +558,10 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterInventoryHandler_LoadAtTrinity", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Inventory @LoadAtMangos", "CharacterInventoryHandler_LoadAtMangos", False)
             Dim dt As DataTable =
                     ReturnDataTable(
@@ -569,7 +569,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "'")
             Dim tmpext As Integer
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = TryInt(dt.Rows.Count.ToString)
                 Dim count As Integer = 0
@@ -604,20 +604,20 @@ Namespace Framework.Core
                                         "SELECT `" & GlobalVariables.sourceStructure.itmins_data_col(0) & "` FROM " &
                                         GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                         GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
-                                itemcount = splititemdata(enchantments, 14)
+                                itemcount = Splititemdata(enchantments, 14)
                                 slot =
                                     runSQLCommand_characters_string(
                                         "Select `" & GlobalVariables.sourceStructure.invent_slot_col(0) & "` FROM " &
                                         GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE `" &
                                         GlobalVariables.sourceStructure.invent_item_col(0) & "`='" & item & "'")
                                 Dim newItm As New Item
-                                newItm.slot = TryInt(slot)
-                                newItm.bag = TryInt(bag)
-                                newItm.bagguid = TryInt(bagguid)
+                                newItm.Slot = TryInt(slot)
+                                newItm.Bag = TryInt(bag)
+                                newItm.Bagguid = TryInt(bagguid)
                                 newItm.Id = TryInt(entryid)
-                                newItm.enchantstring = enchantments
-                                newItm.count = TryInt(itemcount)
-                                newItm.guid = TryInt(item)
+                                newItm.Enchantstring = enchantments
+                                newItm.Count = TryInt(itemcount)
+                                newItm.Guid = TryInt(item)
                                 If player.InventoryZeroItems Is Nothing Then _
                                     player.InventoryZeroItems = New List(Of Item)()
                                 player.InventoryZeroItems.Add(newItm)
@@ -647,20 +647,20 @@ Namespace Framework.Core
                                     "SELECT `" & GlobalVariables.sourceStructure.itmins_data_col(0) & "` FROM " &
                                     GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                     GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
-                            itemcount = splititemdata(enchantments, 14)
+                            itemcount = Splititemdata(enchantments, 14)
                             slot =
                                 runSQLCommand_characters_string(
                                     "Select `" & GlobalVariables.sourceStructure.invent_slot_col(0) & "` FROM " &
                                     GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE `" &
                                     GlobalVariables.sourceStructure.invent_item_col(0) & "`='" & item & "'")
                             Dim newItm As New Item
-                            newItm.slot = TryInt(slot)
-                            newItm.bag = TryInt(bag)
-                            newItm.bagguid = TryInt(bagguid)
+                            newItm.Slot = TryInt(slot)
+                            newItm.Bag = TryInt(bag)
+                            newItm.Bagguid = TryInt(bagguid)
                             newItm.Id = TryInt(entryid)
-                            newItm.enchantstring = enchantments
-                            newItm.count = TryInt(itemcount)
-                            newItm.guid = TryInt(item)
+                            newItm.Enchantstring = enchantments
+                            newItm.Count = TryInt(itemcount)
+                            newItm.Guid = TryInt(item)
                             If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of Item)()
                             player.InventoryItems.Add(newItm)
                         End If
@@ -675,7 +675,7 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterInventoryHandler_LoadAtMangos", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
         Private Function Splititemdata(ByVal datastring As String, ByVal position As Integer) As String

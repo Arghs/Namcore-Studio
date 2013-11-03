@@ -33,11 +33,11 @@ Namespace Framework.Armory.Parser
         Private _lastStamp As Integer = 0
         '// Declaration
 
-        Public Sub LoadItems(ByVal source As String, ByVal setId As Integer)
+        Public Sub LoadItems(ByVal source As String, ByVal setId As Integer, ByVal account As Account)
             Dim slotname As String
             Dim itemslot As Integer = 0
             '// Retrieving character
-            Dim player As Character = GetCharacterSetBySetId(setId)
+            Dim player As Character = GetCharacterSetBySetId(setId, account)
             LogAppend("Loading character items", "ItemParser_loadItems", True)
             Do
                 Try
@@ -55,7 +55,7 @@ Namespace Framework.Armory.Parser
                     If Not charItem Is Nothing Then
                         AddCharacterArmorItem(player, charItem)
                         If itemslot = 15 Or itemslot = 16 Then
-                            LoadWeaponType(charItem.Id, setId)
+                            LoadWeaponType(charItem.Id, setId, account)
                         End If
                     End If
                 Catch ex As Exception

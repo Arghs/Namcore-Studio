@@ -29,25 +29,25 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Core
     Public Class CharacterAchievementHandler
         Public Sub GetCharacterAchievement(ByVal characterGuid As Integer, ByVal setId As Integer,
-                                           ByVal accountId As Integer)
+                                           ByVal account As Account)
             LogAppend("Loading character Achievement for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterAchievementsHandler_GetCharacterAchievement", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(characterGuid, setId)
+                    LoadAtArcemu(characterGuid, setId, account)
                 Case "trinity"
-                    LoadAtTrinity(characterGuid, setId)
+                    LoadAtTrinity(characterGuid, setId, account)
                 Case "trinitytbc"
-                    'todo LoadAtTrinityTBC(characterGuid, setId, accountId)
+                    'todo LoadAtTrinityTBC(characterGuid, setId, accountId, account)
                 Case "mangos"
-                    LoadAtMangos(characterGuid, setId)
+                    LoadAtMangos(characterGuid, setId, account)
 
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Achievement @LoadAtArcemu", "CharacterAchievementHandler_LoadAtArcemu", False)
-            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId)
+            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             Dim tempdt As DataTable =
                     ReturnDataTable(
                         "SELECT " & GlobalVariables.sourceStructure.av_achievement_col(0) & ", `" &
@@ -76,12 +76,12 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterAchievementHandler_LoadAtArcemu", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, tmpCharacter)
+            SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Achievement @LoadAtTrinity", "CharacterAchievementHandler_LoadAtTrinity", False)
-            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId)
+            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             Dim tempdt As DataTable =
                     ReturnDataTable(
                         "SELECT " & GlobalVariables.sourceStructure.av_achievement_col(0) & ", `" &
@@ -110,12 +110,12 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterAchievementHandler_LoadAtTrinity", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, tmpCharacter)
+            SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Achievement @LoadAtMangos", "CharacterAchievementHandler_LoadAtMangos", False)
-            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId)
+            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             Dim tempdt As DataTable =
                     ReturnDataTable(
                         "SELECT " & GlobalVariables.sourceStructure.av_achievement_col(0) & ", `" &
@@ -144,7 +144,7 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterAchievementHandler_LoadAtMangos", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, tmpCharacter)
+            SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
     End Class
 End Namespace

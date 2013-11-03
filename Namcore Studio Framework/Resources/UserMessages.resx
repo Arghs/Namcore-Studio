@@ -540,4 +540,13 @@
   <data name="FailedConnectRealm" xml:space="preserve">
     <value>Failed to connect to realm/auth database.</value>
   </data>
+  <data name="invalidFileName" xml:space="preserve">
+    <value>Invalid file name!</value>
+  </data>
+  <data name="noaccountsselected" xml:space="preserve">
+    <value>You did not select any accounts/characters that should be stored in a template file. Right click on accounts/characters and choose 'prepare for transfer'.</value>
+  </data>
+  <data name="templateFileCreated" xml:space="preserve">
+    <value>The template file has been successfully created.</value>
+  </data>
 </root>

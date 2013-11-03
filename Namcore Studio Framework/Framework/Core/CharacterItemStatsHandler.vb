@@ -29,55 +29,55 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Core
     Public Class CharacterItemStatsHandler
         Public Sub GetItemStats(ByVal cItemguid As Integer, ByRef itm As Item, ByRef player As Character,
-                                ByVal setId As Integer)
-            LogAppend("Loading character ItemStats for item: " & CItemguid.ToString() & " and setId: " & setId,
+                                ByVal setId As Integer, ByVal account As Account)
+            LogAppend("Loading character ItemStats for item: " & cItemguid.ToString() & " and setId: " & setId,
                       "CharacterItemStatssHandler_GetItemStats", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(CItemguid, setId, Itm, player)
+                    LoadAtArcemu(cItemguid, setId, itm, player, account)
                 Case "trinity"
-                    LoadAtTrinity(CItemguid, setId, Itm, player)
+                    LoadAtTrinity(cItemguid, setId, itm, player, account)
                 Case "trinitytbc"
                     'todo  LoadAtTrinityTBC(CItemguid, setId, Itm, player)
                 Case "mangos"
-                    LoadAtMangos(cItemguid, setId, itm, player)
+                    LoadAtMangos(cItemguid, setId, itm, player, account)
             End Select
         End Sub
 
         Private Sub LoadAtArcemu(ByVal item As Integer, ByVal tarSetId As Integer, ByRef itm As Item,
-                                 ByRef player As Character)
+                                 ByRef player As Character, ByVal account As Account)
             LogAppend("Loading ItemStats @LoadAtArcemu", "CharacterItemStatsHandler_LoadAtArcemu", False)
-            itm.enchstring =
+            itm.Enchstring =
                 runSQLCommand_characters_string(
                     "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
             SetCharacterArmorItem(player, itm)
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
         Private Sub LoadAtTrinity(ByVal item As Integer, ByVal tarSetId As Integer, ByRef itm As Item,
-                                  ByRef player As Character)
+                                  ByRef player As Character, ByVal account As Account)
             LogAppend("Loading ItemStats @LoadAtTrinity", "CharacterItemStatsHandler_LoadAtTrinity", False)
-            itm.enchstring =
+            itm.Enchstring =
                 runSQLCommand_characters_string(
                     "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
             SetCharacterArmorItem(player, itm)
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
         Private Sub LoadAtMangos(ByVal item As Integer, ByVal tarSetId As Integer, ByRef itm As Item,
-                                 ByRef player As Character)
+                                 ByRef player As Character, ByVal account As Account)
             LogAppend("Loading character ItemStats @LoadAtMangos", "CharacterItemStatsHandler_LoadAtMangos", False)
-            itm.enchstring =
+            itm.Enchstring =
                 runSQLCommand_characters_string(
                     "SELECT `" & GlobalVariables.sourceStructure.itmins_data_col(0) & "` FROM " &
                     GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item.ToString & "'")
             SetCharacterArmorItem(player, itm)
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
     End Class
 End Namespace

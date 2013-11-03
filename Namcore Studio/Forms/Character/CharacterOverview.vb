@@ -48,6 +48,7 @@ Namespace Forms.Character
         Dim _tmpImage As Image
         Dim _tmpSenderPic As Object
         Dim _currentSet As Integer
+        Dim _currentAccount As Account
 
         Shared _loadComplete As Boolean = False
         Shared _doneControls As List(Of Control)
@@ -64,7 +65,7 @@ Namespace Forms.Character
         End Sub
         '// Declaration
 
-        Public Sub prepare_interface(ByVal setId As Integer)
+        Public Sub prepare_interface(ByVal account As Account, ByVal setId As Integer)
             LogAppend("prepare_interface call", "CharacterOverview_prepare_interface", False)
             InfoToolTip.AutoPopDelay = 5000
             InfoToolTip.InitialDelay = 1000
@@ -74,11 +75,12 @@ Namespace Forms.Character
             GlobalVariables.currentViewedCharSetId = Nothing
             GlobalVariables.currentViewedCharSet = Nothing
             GlobalVariables.currentViewedCharSetId = setId
-            GlobalVariables.currentViewedCharSet = GetCharacterSetBySetId(setId)
+            GlobalVariables.currentViewedCharSet = GetCharacterSetBySetId(setId, account)
             If GlobalVariables.currentViewedCharSet Is Nothing Or GlobalVariables.currentViewedCharSet.Loaded = False Then
                 If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
                     '//Load charset
                     LogAppend("Loading character from database", "CharacterOverview_prepare_interface", True)
+                    _currentAccount = account
                     Dim loadHandlerThread As New Thread(AddressOf LoadCharacter)
                     loadHandlerThread.Start(setId)
                     Exit Sub
@@ -90,13 +92,13 @@ Namespace Forms.Character
         End Sub
         Private Sub LoadCharacter(ByVal setId As Integer)
             Dim mCoreHandler As New CoreHandler
-            mCoreHandler.HandleLoadingRequests(setId)
+            mCoreHandler.HandleLoadingRequests(_currentAccount, setId)
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCoreCompleted),
                            New CompletedEventArgs())
         End Sub
         Private Sub OnCharacterLoaded() Handles Me.OnCoreLoaded
             GlobalVariables.currentViewedCharSet.Loaded = True
-            SetCharacterSet(_currentSet, GlobalVariables.currentViewedCharSet)
+            SetCharacterSet(_currentSet, GlobalVariables.currentViewedCharSet, _currentAccount)
             _doneControls = New List(Of Control)
             Goprep(_currentSet, False)
             LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
@@ -275,7 +277,7 @@ Namespace Forms.Character
         Private Function LoadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
             LogAppend("Loading info for slot " & slot.ToString, "CharacterOverview_LoadInfo", True)
             _pubItm = New Item
-            Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet), slot.ToString, True)
+            Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet, _currentAccount), slot.ToString, True)
             _pubItm = itm
             If itm Is Nothing Then Return Nothing
             Select Case infotype
@@ -785,7 +787,7 @@ Namespace Forms.Character
             Dim glyphInterface As New GlyphsInterface
             Userwait.Show()
             Application.DoEvents()
-            glyphInterface.PrepareGlyphsInterface(_tmpSetId)
+            glyphInterface.PrepareGlyphsInterface(_tmpSetId, _currentAccount)
             glyphInterface.Show()
             Userwait.Close()
         End Sub
@@ -928,7 +930,7 @@ Namespace Forms.Character
                     itm.Rarity = GetItemQualityByItemId(itm.Id)
                     itm.Slot = TryInt(meSlot)
                     itm.Slotname = GetItemInventorySlotByItemId(itm.Slot)
-                    If itm.Slot = 15 Or itm.Slot = 16 Then LoadWeaponType(itm.Id, _currentSet)
+                    If itm.Slot = 15 Or itm.Slot = 16 Then LoadWeaponType(itm.Id, _currentSet, _currentAccount)
                     senderPic.Tag = itm
                     senderPic.Image = itm.Image
                     senderPic.Refresh()
@@ -1183,7 +1185,7 @@ Namespace Forms.Character
             NewProcessStatus()
             Userwait.Show()
             Dim newOverview As New CharacterOverview
-            newOverview.prepare_interface(GlobalVariables.currentViewedCharSetId)
+            newOverview.prepare_interface(_currentAccount, GlobalVariables.currentViewedCharSetId)
             Userwait.Close()
             newOverview.Show()
             Close()

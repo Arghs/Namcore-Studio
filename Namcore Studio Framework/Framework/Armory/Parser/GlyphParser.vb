@@ -29,11 +29,11 @@ Imports libnc.Provider
 Namespace Framework.Armory.Parser
 
     Public Class GlyphParser
-        Public Sub LoadGlyphs(ByVal setId As Integer, ByVal apiLink As String)
+        Public Sub LoadGlyphs(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
             Dim client As New WebClient
             client.CheckProxy()
             '// Retrieving character
-            Dim player As Character = GetCharacterSetBySetId(setID)
+            Dim player As Character = GetCharacterSetBySetId(setId, account)
             Try
                 LogAppend("Loading character glyph information", "GlyphParser_loadGlyphs", True)
                 '// Using API to load glyph info
@@ -47,18 +47,18 @@ Namespace Framework.Armory.Parser
                 For i = 1 To 2
                     LogAppend("Now parsing spec: " & i.ToString(), "GlyphParser_loadGlyphs", True)
                     Select Case i
-                        Case 1 : mainContext = splitString(glyphContext, """glyphs"":", ",""spec"":")
+                        Case 1 : mainContext = SplitString(glyphContext, """glyphs"":", ",""spec"":")
                             slotAddition = "" '// Spec 0
-                        Case 2 : mainContext = splitString(glyphContext, ",""spec"":", "}]}")
+                        Case 2 : mainContext = SplitString(glyphContext, ",""spec"":", "}]}")
                             slotAddition = "sec" '// Spec 1
-                        Case Else : mainContext = splitString(glyphContext, ",""spec"":", "}]}")
+                        Case Else : mainContext = SplitString(glyphContext, ",""spec"":", "}]}")
                             slotAddition = "sec" '// Spec 1
                     End Select
                     Dim gType As String = "minor"
                     Dim loopCounter As Integer = 0
                     Do
                         If mainContext.Contains("""" & gType & """") Then
-                            Dim glyphStr As String = splitString(mainContext, """" & gType & """:[", "]")
+                            Dim glyphStr As String = SplitString(mainContext, """" & gType & """:[", "]")
                             Dim exCounter As Integer = UBound(Split(glyphStr, "{""glyph"""))
                             Dim counter As Integer = 0
                             glyphStr = glyphStr.Replace("},", "*")
@@ -67,10 +67,10 @@ Namespace Framework.Armory.Parser
                                     Dim newGlyph As New Glyph
                                     Dim parts() As String = glyphStr.Split("*"c)
                                     newGlyph.Id = TryInt(SplitString(parts(counter), """item"":", ","""))
-                                    newGlyph.name = splitString(parts(counter), """name"":", ",""")
-                                    newGlyph.slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
+                                    newGlyph.Name = SplitString(parts(counter), """name"":", ",""")
+                                    newGlyph.Slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
                                     newGlyph.Image = GetItemIconById(newGlyph.Id, GlobalVariables.GlobalWebClient, True)
-                                    newGlyph.type = loopCounter + 1
+                                    newGlyph.Type = loopCounter + 1
                                     newGlyph.Spec = i
                                     LogAppend("Loaded glyph " & newGlyph.Name, "GlyphParser_loadGlyphs", True)
                                     AddCharacterGlyph(player, newGlyph)
@@ -89,7 +89,7 @@ Namespace Framework.Armory.Parser
                 LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "GlyphParser_loadGlyphs", False, True)
             End Try
             '// Saving changes to character
-            SetCharacterSet(setID, player)
+            SetCharacterSet(setId, player, GetAccountSetBySetId(player.AccountSet))
         End Sub
     End Class
 End Namespace

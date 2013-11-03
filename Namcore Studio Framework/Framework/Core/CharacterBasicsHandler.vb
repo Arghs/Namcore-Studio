@@ -34,22 +34,22 @@ Namespace Framework.Core
         '// Declaration
 
         Public Sub GetBasicCharacterInformation(ByVal characterGuid As Integer, ByVal setId As Integer,
-                                                ByVal accountId As Integer)
+                                                ByVal account As Account)
             LogAppend("Loading basic character information for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterBasicsHandler_GetBasicCharacterInformation", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(characterGuid, setId, accountId)
+                    LoadAtArcemu(characterGuid, setId, account)
                 Case "trinity"
-                    LoadAtTrinity(characterGuid, setId, accountId)
+                    LoadAtTrinity(characterGuid, setId, account)
                 Case "trinitytbc"
-                    LoadAtTrinityTBC(characterGuid, setId, accountId)
+                    LoadAtTrinityTbc(characterGuid, setId, account)
                 Case "mangos"
-                    LoadAtMangos(characterGuid, setId, accountId)
+                    LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal tarAccountId As Integer)
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             'Character Table
             _tempResult =
                 runSQLCommand_characters_string(
@@ -418,84 +418,18 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionX.ToString() & "</position_x><position_y>" &
                                     tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" &
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
-            'Account Table
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_name_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.AccountName = _tempResult
-            LogAppend(
-                "Loaded account name info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", True)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_arcemuPass_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.ArcEmuPass = _tempResult
-            LogAppend(
-                "Loaded account arcemuPass info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_passHash_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.PassHash = _tempResult
-            LogAppend(
-                "Loaded account passHash info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_arcemuFlags_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.ArcEmuFlags = TryInt(_tempResult)
-            LogAppend(
-                "Loaded account arcemuFlags info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_locale_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.Locale = TryInt(_tempResult)
-            LogAppend(
-                "Loaded account locale info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_arcemuGmLevel_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.ArcEmuGmLevel = _tempResult
-            LogAppend(
-                "Loaded account arcemuGmLevel info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
-            'todo Expansion!
-            Dim templevel As Integer
-            Select Case _tempResult
-                Case "AZ"
-                    templevel = 4
-                Case "A"
-                    templevel = 3
-                Case "0"
-                    templevel = 0
-                Case Else
-                    templevel = 0
-            End Select
-            tmpCharacter.GmLevel = templevel
-            tmpCharacter.RealmId = 0 'TODO multi realm support
 
-            GlobalVariables.globChars.CharacterSets.Add(tmpCharacter)
-            GlobalVariables.globChars.CharacterSetsIndex = GlobalVariables.globChars.CharacterSetsIndex & "[setId:" &
+            tmpCharacter.AccountId = account.Id
+            tmpCharacter.AccountName = account.Name
+            tmpCharacter.AccountSet = account.SetIndex
+            account.Characters.Add(tmpCharacter)
+            account.CharactersIndex = account.CharactersIndex & "[setId:" &
                                                            tarSetId.ToString & "|@" &
-                                                           (GlobalVariables.globChars.CharacterSets.Count - 1).ToString() &
+                                                           (account.Characters.Count - 1).ToString() &
                                                            "]"
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal tarAccountId As Integer)
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
 
             'Character Table
             _tempResult =
@@ -899,81 +833,18 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
 
-            'Account Table
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_name_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.AccountName = _tempResult
-            LogAppend(
-                "Loaded account name info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", True)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_passHash_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.PassHash = _tempResult
-            LogAppend(
-                "Loaded account passHash info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_sessionkey_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.SessionKey = _tempResult
-            LogAppend(
-                "Loaded account sessionkey info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_locale_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.Locale = TryInt(_tempResult)
-            LogAppend(
-                "Loaded account locale info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_joindate_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.JoinDate = TryInt(_tempResult)
-            LogAppend(
-                "Loaded account joindate info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
-            'todo Expansion!
-            'Account Access Table
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.accAcc_gmLevel_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.accountAccess_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.accAcc_accid_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.GmLevel = TryInt(_tempResult)
-            LogAppend(
-                "Loaded accountAccess gmlevel info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.accAcc_realmId_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.accountAccess_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.accAcc_accid_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.RealmId = TryInt(_tempResult)
-            LogAppend(
-                "Loaded accountAccess realmId info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
-
-            GlobalVariables.globChars.CharacterSets.Add(tmpCharacter)
-            GlobalVariables.globChars.CharacterSetsIndex = GlobalVariables.globChars.CharacterSetsIndex & "[setId:" &
+            Dim charactersAccount As Account = account
+            tmpCharacter.AccountId = charactersAccount.Id
+            tmpCharacter.AccountName = charactersAccount.Name
+            tmpCharacter.AccountSet = charactersAccount.SetIndex
+            charactersAccount.Characters.Add(tmpCharacter)
+            charactersAccount.CharactersIndex = charactersAccount.CharactersIndex & "[setId:" &
                                                            tarSetId.ToString & "|@" &
-                                                           (GlobalVariables.globChars.CharacterSets.Count - 1).ToString() &
+                                                           (charactersAccount.Characters.Count - 1).ToString() &
                                                            "]"
         End Sub
 
-        Private Sub LoadAtTrinityTbc(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal tarAccountId As Integer)
+        Private Sub LoadAtTrinityTbc(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             _tempResult =
                 runSQLCommand_characters_string(
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
@@ -1388,100 +1259,18 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" &
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
-
-            'Account Table
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_name_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.AccountName = _tempResult
-            LogAppend(
-                "Loaded account name info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", True)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_passHash_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.PassHash = _tempResult
-            LogAppend(
-                "Loaded account passHash info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_sessionkey_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.SessionKey = _tempResult
-            LogAppend(
-                "Loaded account sessionkey info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_locale_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.Locale = TryInt(_tempResult)
-            LogAppend(
-                "Loaded account locale info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_joindate_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.JoinDate = TryInt(_tempResult)
-            LogAppend(
-                "Loaded account joindate info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_v_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.V = _tempResult
-            LogAppend(
-                "Loaded account v info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_s_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.S = _tempResult
-            LogAppend(
-                "Loaded account s info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            'todo Expansion!
-            'Account Access Table
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.accAcc_gmLevel_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.accountAccess_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.accAcc_accid_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.GmLevel = TryInt(_tempResult)
-            LogAppend(
-                "Loaded accountAccess gmlevel info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.accAcc_realmId_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.accountAccess_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.accAcc_accid_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.RealmId = TryInt(_tempResult)
-            LogAppend(
-                "Loaded accountAccess realmId info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
-
-            GlobalVariables.globChars.CharacterSets.Add(tmpCharacter)
-            GlobalVariables.globChars.CharacterSetsIndex = GlobalVariables.globChars.CharacterSetsIndex & "[setId:" &
+            Dim charactersAccount As Account = account
+            tmpCharacter.AccountId = charactersAccount.Id
+            tmpCharacter.AccountName = charactersAccount.Name
+            tmpCharacter.AccountSet = charactersAccount.SetIndex
+            charactersAccount.Characters.Add(tmpCharacter)
+            charactersAccount.CharactersIndex = charactersAccount.CharactersIndex & "[setId:" &
                                                            tarSetId.ToString & "|@" &
-                                                           (GlobalVariables.globChars.CharacterSets.Count - 1).ToString() &
+                                                           (charactersAccount.Characters.Count - 1).ToString() &
                                                            "]"
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal tarAccountId As Integer)
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             _tempResult =
                 runSQLCommand_characters_string(
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
@@ -1896,94 +1685,14 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" &
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
-
-            'Account Table
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_name_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.AccountName = _tempResult
-            LogAppend(
-                "Loaded account name info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", True)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_passHash_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.PassHash = _tempResult
-            LogAppend(
-                "Loaded account passHash info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_v_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.V = _tempResult
-            LogAppend(
-                "Loaded account v info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_s_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.S = _tempResult
-            LogAppend(
-                "Loaded account s info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_sessionkey_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.SessionKey = _tempResult
-            LogAppend(
-                "Loaded account sessionkey info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_locale_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.Locale = TryInt(_tempResult)
-            LogAppend(
-                "Loaded account locale info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.acc_joindate_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.JoinDate = TryInt(_tempResult)
-            LogAppend(
-                "Loaded account joindate info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.accAcc_gmLevel_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.GmLevel = TryInt(_tempResult)
-            LogAppend(
-                "Loaded account gmlevel info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_realm_string(
-                    "SELECT " & GlobalVariables.sourceStructure.accAcc_realmId_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & tarAccountId.ToString & "'")
-            tmpCharacter.RealmId = TryInt(_tempResult)
-            LogAppend(
-                "Loaded account realmId info for accountId: " & tarAccountId.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
-            'todo Expansion!
-            GlobalVariables.globChars.CharacterSets.Add(tmpCharacter)
-            GlobalVariables.globChars.CharacterSetsIndex = GlobalVariables.globChars.CharacterSetsIndex & "[setId:" &
+            Dim charactersAccount As Account = account
+            tmpCharacter.AccountId = charactersAccount.Id
+            tmpCharacter.AccountName = charactersAccount.Name
+            tmpCharacter.AccountSet = charactersAccount.SetIndex
+            charactersAccount.Characters.Add(tmpCharacter)
+            charactersAccount.CharactersIndex = charactersAccount.CharactersIndex & "[setId:" &
                                                            tarSetId.ToString & "|@" &
-                                                           (GlobalVariables.globChars.CharacterSets.Count - 1).ToString() &
+                                                           (charactersAccount.Characters.Count - 1).ToString() &
                                                            "]"
         End Sub
     End Class

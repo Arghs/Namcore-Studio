@@ -51,8 +51,8 @@ Namespace Forms.Character
             Next
         End Sub
 
-        Public Sub PrepareGlyphsInterface(ByVal setId As Integer)
-            Dim player As NCFramework.Framework.Modules.Character = GetCharacterSetBySetId(setId)
+        Public Sub PrepareGlyphsInterface(ByVal setId As Integer, ByVal account As Account)
+            Dim player As NCFramework.Framework.Modules.Character = GetCharacterSetBySetId(setId, account)
             If player.PlayerGlyphsIndex Is Nothing Then player.PlayerGlyphsIndex = ""
             If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
             _controlLst = New List(Of Control)

@@ -53,7 +53,7 @@ Namespace Forms
             Userwait.Show()
             Application.DoEvents()
 #If CONFIG = "Debug" Then
-            GlobalVariables.DebugMode = True
+            '   GlobalVariables.DebugMode = True
 #End If
             If GlobalVariables.DebugMode = True Then
                 MySettings.Default.server_authdb = "arc_auth"

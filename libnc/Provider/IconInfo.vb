@@ -28,7 +28,7 @@ Namespace Provider
     Public Module IconInfo
         Public Function GetSpellIconById(ByVal spellId As Integer, ByVal client As WebClient) As Image
             CheckInit()
-            '// Not working: CSV does not cintain spell ids but icon ids
+            '// Not working: CSV does not contain spell ids but icon ids
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(SpellIconCsv, "SpellId", spellId.ToString(), targetField)(0)
             If myResult = "-" Then

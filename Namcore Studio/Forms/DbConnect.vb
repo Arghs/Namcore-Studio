@@ -42,7 +42,7 @@ Namespace Forms
             Select Case GlobalVariables.con_operator
                 Case 1 'Source connection @live_view
                     GlobalVariables.globChars = New GlobalCharVars()
-                    GlobalVariables.globChars.CharacterSets = New List(Of NCFramework.Framework.Modules.Character)
+                    GlobalVariables.globChars.AccountSets = New List(Of NCFramework.Framework.Modules.Account)
                     GlobalVariables.armoryMode = False
                     GlobalVariables.templateMode = False
                     GlobalVariables.GlobalConnectionString = ""

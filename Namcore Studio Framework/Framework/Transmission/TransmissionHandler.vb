@@ -40,31 +40,33 @@ Namespace Framework.Transmission
             For Each playerCharacter In GlobalVariables.charactersToCreate
                 Dim accountId As Integer = TryInt(SplitString(playerCharacter, "{AccountId}", "{/AccountId}"))
                 Dim setId As Integer = TryInt(SplitString(playerCharacter, "{setId}", "{/setId}"))
+                Dim accountSet As Integer = TryInt(SplitString(playerCharacter, "{AccountSet}", "{/AccountSet}"))
                 Dim renamePending As Boolean
                 Select Case SplitString(playerCharacter, "{renamePending}", "{/renamePending}")
                     Case "0" : renamePending = False
                     Case "1" : renamePending = True
                     Case Else : renamePending = False
                 End Select
-                Dim player As Character = GetCharacterSetBySetId(setId)
+                Dim playerAccount As Account = GetAccountSetBySetId(accountSet)
+                Dim player As Character = GetCharacterSetBySetId(setId, playerAccount)
                 Dim charname As String = player.Name
                 Dim mCharCreationLite As New CharacterCreationLite
                 Dim mCharCreationAdvanced As New CharacterCreationAdvanced
                 If lite Then
-                    mCharCreationLite.CreateNewLiteCharacter(charname, accountId, setId, renamePending)
+                    mCharCreationLite.CreateNewLiteCharacter(charname, accountId, setId, playerAccount, renamePending)
                 Else
-                    mCharCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, setId, renamePending)
+                    mCharCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, setId, playerAccount, renamePending)
                 End If
                 Dim mCharArmorCreation As New ArmorCreation
                 Dim mCharGlyphCreation As New GlyphCreation
                 Dim mCharQuestCreation As New QuestCreation
                 Dim mCharTalentCreation As New TalentCreation
-                mCharArmorCreation.AddCharacterArmor(setId)
-                mCharGlyphCreation.SetCharacterGlyphs(setId)
-                mCharQuestCreation.SetCharacterQuests(setId)
+                mCharArmorCreation.AddCharacterArmor(setId, playerAccount)
+                mCharGlyphCreation.SetCharacterGlyphs(setId, playerAccount)
+                mCharQuestCreation.SetCharacterQuests(setId, playerAccount)
                 AddSpecialSkills(setId, player)
                 AddSpecialSpells(setId, player)
-                If Not lite Then mCharTalentCreation.SetCharacterTalents(setId)
+                If Not lite Then mCharTalentCreation.SetCharacterTalents(setId, playerAccount)
             Next
             GlobalVariables.forceTargetConnectionUsage = False
         End Sub

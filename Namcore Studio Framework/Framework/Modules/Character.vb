@@ -25,6 +25,7 @@ Namespace Framework.Modules
     Public Class Character
         Public Loaded As Boolean = False
         Public SourceCore As String
+        Public SourceExpansion As Integer
         Public SetIndex As Integer
         Public Guid As Integer
         Public Name As String
@@ -77,22 +78,10 @@ Namespace Framework.Modules
         Public ArcEmuAction2 As String
 
         'Account
+
         Public AccountId As Integer
         Public AccountName As String
-        Public ArcEmuPass As String
-        Public PassHash As String
-        Public ArcEmuFlags As Integer
-        Public Locale As Integer
-        Public ArcEmuGmLevel As String
-        Public SessionKey As String
-        Public JoinDate As Integer
-        Public Expansion As Integer
-        Public V As String
-        Public S As String
-
-        'Account Access
-        Public GmLevel As Integer
-        Public RealmId As Integer
+        Public AccountSet As Integer
 
         'Misc
 

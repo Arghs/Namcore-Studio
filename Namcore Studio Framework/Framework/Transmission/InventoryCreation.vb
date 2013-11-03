@@ -28,26 +28,26 @@ Imports NCFramework.Framework.Functions
 
 Namespace Framework.Transmission
     Public Class InventoryCreation
-        Public Sub AddCharacterInventory(ByVal setId As Integer, Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId).Guid
+        Public Sub AddCharacterInventory(ByVal setId As Integer, ByVal account As Account, Optional charguid As Integer = 0)
+            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
             LogAppend(
                 "Adding inventory items to character: " & charguid.ToString() & " // setId is : " & setId.ToString(),
                 "InventoryCreation_AddCharacterInventory", True)
             Select Case GlobalVariables.targetCore
                 Case "arcemu"
-                    createAtArcemu(charguid, setId)
+                    CreateAtArcemu(charguid, setId, account)
                 Case "trinity"
-                    createAtTrinity(charguid, setId)
+                    CreateAtTrinity(charguid, setId, account)
                 Case "trinitytbc"
 
                 Case "mangos"
-                    createAtMangos(charguid, setId)
+                    CreateAtMangos(charguid, setId, account)
             End Select
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
             LogAppend("Adding inventory at arcemu", "InventoryCreation_createAtArcemu", False)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim bagexist As List(Of String) = New List(Of String)
             Dim bagstring As String = ""
             bagexist.Clear()
@@ -130,9 +130,9 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
             LogAppend("Adding inventory at trinity", "InventoryCreation_createAtTrinity", False)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim bagexist As List(Of String) = New List(Of String)
             Dim bagstring As String = ""
             bagexist.Clear()
@@ -225,9 +225,9 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
             LogAppend("Adding inventory at mangos", "InventoryCreation_createAtMangos", False)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim bagexist As List(Of String) = New List(Of String)
             Dim bagstring As String = ""
             Const bagEnchString As String = "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
@@ -329,16 +329,16 @@ Namespace Framework.Transmission
                     inventoryItem.Slot.ToString() & "', '" &
                     newguid & "', '" &
                     inventoryItem.Id.ToString() & "')")
-                    Dim mEnchCreation As New EnchantmentsCreation
-                    mEnchCreation.SetItemEnchantments(targetSetId,
-                                                      New Item _
-                                                         With {.Id = inventoryItem.Id,
-                                                         .Socket1Effectid = inventoryItem.Socket1Effectid,
-                                                         .Socket2Effectid = inventoryItem.Socket2Effectid,
-                                                         .Socket3Effectid = inventoryItem.Socket3Effectid,
-                                                         .EnchantmentEffectid = inventoryItem.EnchantmentEffectid},
-                                                      TryInt(newguid), GlobalVariables.targetCore,
-                                                      GlobalVariables.targetStructure)
+                Dim mEnchCreation As New EnchantmentsCreation
+                mEnchCreation.SetItemEnchantments(targetSetId,
+                                                  New Item _
+                                                     With {.Id = inventoryItem.Id,
+                                                     .Socket1Effectid = inventoryItem.Socket1Effectid,
+                                                     .Socket2Effectid = inventoryItem.Socket2Effectid,
+                                                     .Socket3Effectid = inventoryItem.Socket3Effectid,
+                                                     .EnchantmentEffectid = inventoryItem.EnchantmentEffectid},
+                                                  TryInt(newguid), GlobalVariables.targetCore,
+                                                  GlobalVariables.targetStructure)
             Next
         End Sub
     End Class

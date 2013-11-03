@@ -28,29 +28,29 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterSkillsHandler
-        Public Sub GetCharacterSkills(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+        Public Sub GetCharacterSkills(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character skills for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterSkillsHandler_GetCharacterSkills", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(characterGuid, setId)
+                    LoadAtArcemu(characterGuid, setId, account)
                 Case "trinity"
-                    LoadAtTrinity(characterGuid, setId)
+                    LoadAtTrinity(characterGuid, setId, account)
                 Case "trinitytbc"
                     'todo  LoadAtTrinityTBC(characterGuid, setId, accountId)
                 Case "mangos"
-                    LoadAtMangos(characterGuid, setId)
+                    LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character skills @LoadAtArcemu", "CharacterSkillsHandler_LoadAtArcemu", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
                         "SELECT " & GlobalVariables.sourceStructure.char_skills_col(0) & " FROM " &
                         GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
@@ -64,11 +64,11 @@ Namespace Framework.Core
                         Do
                             Dim skl As New Skill
                             Dim parts() As String = readedcode.Split(","c)
-                            skl.id = TryInt(parts(partscounter).ToString)
+                            skl.Id = TryInt(parts(partscounter).ToString)
                             partscounter += 1
-                            skl.value = TryInt(parts(partscounter).ToString)
+                            skl.Value = TryInt(parts(partscounter).ToString)
                             partscounter += 1
-                            skl.max = TryInt(parts(partscounter).ToString)
+                            skl.Max = TryInt(parts(partscounter).ToString)
                             partscounter += 1
                             If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
                             player.Skills.Add(skl)
@@ -85,10 +85,10 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterSkillsHandler_LoadAtArcemu", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character skills @LoadAtTrinity", "CharacterSkillsHandler_LoadAtTrinity", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -97,16 +97,16 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.skill_max_col(0) &
                         " FROM " & GlobalVariables.sourceStructure.character_skills_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.skill_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim skl As New Skill
-                        skl.id = TryInt((tempdt.Rows(count).Item(0)).ToString)
-                        skl.value = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                        skl.max = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        skl.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                        skl.Value = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        skl.Max = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
                         player.Skills.Add(skl)
                         count += 1
@@ -120,10 +120,10 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterSkillsHandler_LoadAtTrinity", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character skills @LoadAtMangos", "CharacterSkillsHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -132,16 +132,16 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.skill_max_col(0) &
                         " FROM " & GlobalVariables.sourceStructure.character_skills_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.skill_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim skl As New Skill
-                        skl.id = TryInt((tempdt.Rows(count).Item(0)).ToString)
-                        skl.value = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                        skl.max = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        skl.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                        skl.Value = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        skl.Max = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
                         player.Skills.Add(skl)
                         count += 1
@@ -155,7 +155,7 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterSkillsHandler_LoadAtMangos", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
     End Class
 End Namespace

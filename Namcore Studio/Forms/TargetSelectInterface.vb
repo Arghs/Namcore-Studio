@@ -20,6 +20,7 @@
 '*      /Filename:      TargetSelectInterface
 '*      /Description:   Select target database/template
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Linq
 Imports NCFramework.Framework.Modules
 Imports Namcore_Studio.Forms.Extension
 
@@ -38,6 +39,14 @@ Namespace Forms
         Private Sub connect_bt_Click(sender As Object, e As EventArgs) Handles connect_bt.Click
             GlobalVariables.con_operator = 2
             DbConnect.Show()
+            Close()
+        End Sub
+
+        Private Sub newtemplate_bt_Click(sender As Object, e As EventArgs) Handles newtemplate_bt.Click
+            GlobalVariables.saveTemplateMode = True
+            For Each liveview As Form In From xform As Form In Application.OpenForms Where xform.Name = "LiveView" Select xform
+                DirectCast(liveview, LiveView).PrepareTemplateCreation()
+            Next
             Close()
         End Sub
     End Class

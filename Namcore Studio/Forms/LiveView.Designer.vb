@@ -63,8 +63,8 @@
             Me.GroupBox1 = New System.Windows.Forms.GroupBox()
             Me.GroupBox2 = New System.Windows.Forms.GroupBox()
             Me.Label3 = New System.Windows.Forms.Label()
-            Me.Label2 = New System.Windows.Forms.Label()
-            Me.Label1 = New System.Windows.Forms.Label()
+            Me.info2_lbl = New System.Windows.Forms.Label()
+            Me.info1_lbl = New System.Windows.Forms.Label()
             Me.charactercontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
             Me.RemoveToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
             Me.SelectedCharacterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -84,6 +84,7 @@
             Me.closepanel = New System.Windows.Forms.Panel()
             Me.highlighter1 = New System.Windows.Forms.PictureBox()
             Me.highlighter2 = New System.Windows.Forms.PictureBox()
+            Me.createTemplate_bt = New System.Windows.Forms.Button()
             Me.Panel1.SuspendLayout()
             Me.accountcontext.SuspendLayout()
             Me.GroupBox1.SuspendLayout()
@@ -402,9 +403,10 @@
             'GroupBox2
             '
             Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+            Me.GroupBox2.Controls.Add(Me.createTemplate_bt)
             Me.GroupBox2.Controls.Add(Me.Label3)
-            Me.GroupBox2.Controls.Add(Me.Label2)
-            Me.GroupBox2.Controls.Add(Me.Label1)
+            Me.GroupBox2.Controls.Add(Me.info2_lbl)
+            Me.GroupBox2.Controls.Add(Me.info1_lbl)
             Me.GroupBox2.Controls.Add(Me.connect_bt_target)
             Me.GroupBox2.Controls.Add(Me.target_accounts_tree)
             Me.GroupBox2.Location = New System.Drawing.Point(990, -5)
@@ -424,25 +426,27 @@
             Me.Label3.TabIndex = 213
             Me.Label3.Text = "Target - Found accounts " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "and characters"
             '
-            'Label2
+            'info2_lbl
             '
-            Me.Label2.AutoSize = True
-            Me.Label2.BackColor = System.Drawing.Color.Yellow
-            Me.Label2.Location = New System.Drawing.Point(8, 462)
-            Me.Label2.Name = "Label2"
-            Me.Label2.Size = New System.Drawing.Size(262, 13)
-            Me.Label2.TabIndex = 212
-            Me.Label2.Text = "Character name conflict / forced namechange at login"
+            Me.info2_lbl.AutoSize = True
+            Me.info2_lbl.BackColor = System.Drawing.Color.Yellow
+            Me.info2_lbl.Location = New System.Drawing.Point(8, 462)
+            Me.info2_lbl.Name = "info2_lbl"
+            Me.info2_lbl.Size = New System.Drawing.Size(262, 13)
+            Me.info2_lbl.TabIndex = 212
+            Me.info2_lbl.Text = "Character name conflict / forced namechange at login"
+            Me.info2_lbl.Visible = False
             '
-            'Label1
+            'info1_lbl
             '
-            Me.Label1.AutoSize = True
-            Me.Label1.BackColor = System.Drawing.Color.Green
-            Me.Label1.Location = New System.Drawing.Point(8, 442)
-            Me.Label1.Name = "Label1"
-            Me.Label1.Size = New System.Drawing.Size(124, 13)
-            Me.Label1.TabIndex = 211
-            Me.Label1.Text = "Character can be copied"
+            Me.info1_lbl.AutoSize = True
+            Me.info1_lbl.BackColor = System.Drawing.Color.Green
+            Me.info1_lbl.Location = New System.Drawing.Point(8, 442)
+            Me.info1_lbl.Name = "info1_lbl"
+            Me.info1_lbl.Size = New System.Drawing.Size(124, 13)
+            Me.info1_lbl.TabIndex = 211
+            Me.info1_lbl.Text = "Character can be copied"
+            Me.info1_lbl.Visible = False
             '
             'charactercontext
             '
@@ -599,6 +603,20 @@
             Me.highlighter2.TabIndex = 218
             Me.highlighter2.TabStop = False
             '
+            'createTemplate_bt
+            '
+            Me.createTemplate_bt.BackColor = System.Drawing.Color.DimGray
+            Me.createTemplate_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.createTemplate_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.createTemplate_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.createTemplate_bt.Location = New System.Drawing.Point(123, 441)
+            Me.createTemplate_bt.Name = "createTemplate_bt"
+            Me.createTemplate_bt.Size = New System.Drawing.Size(147, 34)
+            Me.createTemplate_bt.TabIndex = 214
+            Me.createTemplate_bt.Text = "Create template file"
+            Me.createTemplate_bt.UseVisualStyleBackColor = False
+            Me.createTemplate_bt.Visible = False
+            '
             'LiveView
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -687,8 +705,8 @@
         Friend WithEvents SelectedCharacterToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
         Friend WithEvents CheckedCharactersToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
         Friend WithEvents Transfer_bt As System.Windows.Forms.Button
-        Friend WithEvents Label2 As System.Windows.Forms.Label
-        Friend WithEvents Label1 As System.Windows.Forms.Label
+        Friend WithEvents info2_lbl As System.Windows.Forms.Label
+        Friend WithEvents info1_lbl As System.Windows.Forms.Label
         Friend WithEvents Label3 As System.Windows.Forms.Label
         Friend WithEvents back_bt As System.Windows.Forms.Button
         Friend WithEvents mainpanel As System.Windows.Forms.Panel
@@ -696,5 +714,6 @@
         Friend WithEvents closepanel As System.Windows.Forms.Panel
         Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
         Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
+        Friend WithEvents createTemplate_bt As System.Windows.Forms.Button
     End Class
 End Namespace

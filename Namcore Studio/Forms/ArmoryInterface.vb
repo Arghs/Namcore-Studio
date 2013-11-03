@@ -192,7 +192,7 @@ Namespace Forms
         Private Sub load_bt_Click(sender As Object, e As EventArgs) Handles load_bt.Click
             LogAppend("Trigger load button click", "Armory_interface_load_bt_Click", False)
             GlobalVariables.lastregion = "armoryparser"
-            GlobalVariables.globChars.CharacterSets = New List(Of NCFramework.Framework.Modules.Character)
+            GlobalVariables.globChars.AccountSets = New List(Of NCFramework.Framework.Modules.Account)
             GlobalVariables.trdrunnuing = True
             Dim urllst As List(Of String) =
                     (From lstitm As ListViewItem In char_lst.Items Select lstitm.SubItems(3).Text).ToList()

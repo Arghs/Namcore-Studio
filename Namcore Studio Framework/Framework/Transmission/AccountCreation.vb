@@ -30,7 +30,7 @@ Namespace Framework.Transmission
 
     Public Class AccountCreation
         Public Sub CreateNewAccount(ByVal accname As String, ByVal passhas As String, ByVal realmid As Integer,
-                                    ByVal setId As Integer, Optional gmlevel As String = "A", Optional email As String = "",
+                                    ByVal setId As Integer, ByVal account As Account, Optional gmlevel As String = "A", Optional email As String = "",
                                     Optional flags As String = "0")
             LogAppend("Creating new account " & accname, "AccountCreation_CreateNewAccount", True)
             Select Case GlobalVariables.targetCore
@@ -94,13 +94,13 @@ Namespace Framework.Transmission
                                                   GlobalVariables.targetStructure.acc_expansion_col(0) & "`) " &
                                                   "VALUES (@accid, @accname, @pass, @email, @joindate, @expansion)"
                         Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection_Realm)
-                        Dim player As Character = GetCharacterSetBySetId(setId)
+                        Dim player As Character = GetCharacterSetBySetId(setId, account)
                         tempcommand.Parameters.AddWithValue("@accid", newid)
                         tempcommand.Parameters.AddWithValue("@accname", accname)
                         tempcommand.Parameters.AddWithValue("@pass", passhas)
                         tempcommand.Parameters.AddWithValue("@email", email)
-                        tempcommand.Parameters.AddWithValue("@joindate", player.JoinDate.ToString)
-                        tempcommand.Parameters.AddWithValue("@expansion", player.Expansion.ToString)
+                        tempcommand.Parameters.AddWithValue("@joindate", account.JoinDate.ToString)
+                        tempcommand.Parameters.AddWithValue("@expansion", account.Expansion.ToString)
                         Try
                             tempcommand.ExecuteNonQuery()
                         Catch ex As Exception
@@ -152,13 +152,13 @@ Namespace Framework.Transmission
                                                   "`, " & GlobalVariables.targetStructure.acc_realmID_col(0) & ") " &
                                                   "VALUES (@accid, @accname, @pass, @email, @joindate, @expansion, @realmid)"
                         Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection_Realm)
-                        Dim player As Character = GetCharacterSetBySetId(setId)
+                        Dim player As Character = GetCharacterSetBySetId(setId, account)
                         tempcommand.Parameters.AddWithValue("@accid", newid)
                         tempcommand.Parameters.AddWithValue("@accname", accname)
                         tempcommand.Parameters.AddWithValue("@pass", passhas)
                         tempcommand.Parameters.AddWithValue("@email", email)
-                        tempcommand.Parameters.AddWithValue("@joindate", player.JoinDate.ToString)
-                        tempcommand.Parameters.AddWithValue("@expansion", player.Expansion.ToString)
+                        tempcommand.Parameters.AddWithValue("@joindate", account.JoinDate.ToString)
+                        tempcommand.Parameters.AddWithValue("@expansion", account.Expansion.ToString)
                         tempcommand.Parameters.AddWithValue("@realmid", realmid)
                         Try
                             tempcommand.ExecuteNonQuery()
@@ -172,7 +172,7 @@ Namespace Framework.Transmission
                         LogAppend("Account " & accname & " does exist -> Leaving it untouched!",
                                   "AccountCreation_CreateNewAccount", False)
                     End If
-               End Select
+            End Select
         End Sub
     End Class
 End Namespace

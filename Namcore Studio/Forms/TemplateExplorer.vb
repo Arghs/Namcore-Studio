@@ -45,7 +45,7 @@ Namespace Forms
                         Dim mSerializer As Serializer = New Serializer
                         GlobalVariables.globChars = mSerializer.DeSerialize(locPath, New GlobalCharVars)
                         Hide()
-                        prepareLive_armory()
+                        prepareLive_template()
                     End If
                 End If
             End With

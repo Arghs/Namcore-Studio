@@ -25,11 +25,38 @@ Namespace Framework.Modules
     Public Class Account
         Public Id As Integer
         Public Name As String
+        Public SetIndex As Integer
         Public Transcharlist As ArrayList
+        Public ArcEmuPass As String
+        Public PassHash As String
+        Public ArcEmuFlags As Integer
+        Public Locale As Integer
+        Public ArcEmuGmLevel As String
+        Public SessionKey As String
+        Public LastLogin As DateTime
+        Public Email As String
+        Public JoinDate As Integer
+        Public Expansion As Integer
+        Public V As String
+        Public S As String
+        Public Core As String
+        Public SourceExpansion As Integer
+
+        'Account Access
+        Public GmLevel As Integer
+        Public RealmId As Integer
+
+        'Misc
+        Public Characters As List(Of Character)
+        Public CharactersIndex As String
 
         Public Sub New(accname As String, accountid As Integer)
             Name = accname
             Id = accountid
         End Sub
+
+        Public Function ShallowCopy() As Account
+            Return DirectCast(MemberwiseClone(), Account)
+        End Function
     End Class
 End Namespace

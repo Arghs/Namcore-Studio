@@ -29,29 +29,29 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterReputationHandler
-        Public Sub GetCharacterReputation(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+        Public Sub GetCharacterReputation(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character reputation for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterReputationHandler_GetCharacterReputation", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(characterGuid, setId)
+                    LoadAtArcemu(characterGuid, setId, account)
                 Case "trinity"
-                    LoadAtTrinity(characterGuid, setId)
+                    LoadAtTrinity(characterGuid, setId, account)
                 Case "trinitytbc"
                     'todo LoadAtTrinityTBC(characterGuid, setId, accountId)
                 Case "mangos"
-                    LoadAtMangos(characterGuid, setId)
+                    LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character reputation @LoadAtArcemu", "CharacterReputationHandler_LoadAtArcemu", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
                         "SELECT " & GlobalVariables.sourceStructure.char_reputation_col(0) & " FROM " &
                         GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
@@ -65,11 +65,11 @@ Namespace Framework.Core
                         Do
                             Dim rep As New Reputation
                             Dim parts() As String = readedcode.Split(","c)
-                            rep.faction = TryInt(parts(partscounter).ToString)
+                            rep.Faction = TryInt(parts(partscounter).ToString)
                             partscounter += 1
-                            rep.flags = TryInt(parts(partscounter).ToString)
+                            rep.Flags = TryInt(parts(partscounter).ToString)
                             partscounter += 1
-                            rep.standing = TryInt(parts(partscounter).ToString)
+                            rep.Standing = TryInt(parts(partscounter).ToString)
                             partscounter += 2
                             rep.UpdateValueMax()
                             If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
@@ -87,10 +87,10 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterReputationHandler_LoadAtArcemu", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character reputation @LoadAtTrinity", "CharacterReputationHandler_LoadAtTrinity", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -99,16 +99,16 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.rep_flags_col(0) &
                         " FROM " & GlobalVariables.sourceStructure.character_reputation_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim rep As New Reputation
-                        rep.faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
-                        rep.standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                        rep.flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        rep.Faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                        rep.Standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        rep.Flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         rep.UpdateValueMax()
                         If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
                         player.PlayerReputation.Add(rep)
@@ -123,10 +123,10 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterReputationHandler_LoadAtTrinity", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character reputation @LoadAtMangos", "CharacterReputationHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -135,16 +135,16 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.rep_flags_col(0) &
                         " FROM " & GlobalVariables.sourceStructure.character_reputation_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.rep_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim rep As New Reputation
-                        rep.faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
-                        rep.standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                        rep.flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        rep.Faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
+                        rep.Standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        rep.Flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         rep.UpdateValueMax()
                         If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
                         player.PlayerReputation.Add(rep)
@@ -159,7 +159,7 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterReputationHandler_LoadAtMangos", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
     End Class
 End Namespace

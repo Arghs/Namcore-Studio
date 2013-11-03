@@ -33,27 +33,27 @@ Namespace Framework.Core
         Private _sDatatable As New DataTable
         '// Declaration
 
-        Public Sub GetCharacterTalents(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+        Public Sub GetCharacterTalents(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character talents for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterTalentsHandler_GetCharacterTalents", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(characterGuid, setId)
+                    LoadAtArcemu(characterGuid, setId, account)
                 Case "trinity"
-                    LoadAtTrinity(characterGuid, setId)
+                    LoadAtTrinity(characterGuid, setId, account)
                 Case "trinitytbc"
                     'todo  LoadAtTrinityTBC(characterGuid, setId, accountId)
                 Case "mangos"
-                    LoadAtMangos(characterGuid, setId)
+                    LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             _sDatatable.Clear()
             _sDatatable.Dispose()
-            _sDatatable = gettable()
+            _sDatatable = GetTable()
             LogAppend("Loading character talents @LoadAtArcemu", "CharacterTalentsHandler_LoadAtArcemu", False)
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             If player.Talents Is Nothing Then player.Talents = New List(Of Talent)()
             Dim talentstring As String =
                     runSQLCommand_characters_string(
@@ -70,8 +70,8 @@ Namespace Framework.Core
                     Dim rurrentrank As String = (TryInt(parts(startcounter)) + 1).ToString()
                     startcounter += 1
                     Dim tal As New Talent
-                    tal.spell = TryInt(checkfield(ctalentid, rurrentrank))
-                    tal.spec = 0
+                    tal.Spell = TryInt(Checkfield(ctalentid, rurrentrank))
+                    tal.Spec = 0
                     player.Talents.Add(tal)
                 Loop Until startcounter = excounter
             End If
@@ -90,15 +90,15 @@ Namespace Framework.Core
                     Dim rurrentrank As String = (TryInt(parts(startcounter)) + 1).ToString()
                     startcounter += 1
                     Dim tal As New Talent
-                    tal.spell = TryInt(checkfield(ctalentid, rurrentrank))
-                    tal.spec = 1
+                    tal.Spell = TryInt(Checkfield(ctalentid, rurrentrank))
+                    tal.Spec = 1
                     player.Talents.Add(tal)
                 Loop Until startcounter = excounter
             End If
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character talents @LoadAtTrinity", "CharacterTalentsHandler_LoadAtTrinity", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -106,7 +106,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.character_talent_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.talent_guid_col(0) & "='" & charguid.ToString & "' AND " &
                         GlobalVariables.sourceStructure.talent_spec_col(0) & "='0'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             If player.Talents Is Nothing Then player.Talents = New List(Of Talent)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
@@ -115,8 +115,8 @@ Namespace Framework.Core
                     Do
                         Dim spell As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim tal As New Talent
-                        tal.spell = TryInt(spell)
-                        tal.spec = 0
+                        tal.Spell = TryInt(spell)
+                        tal.Spec = 0
                         player.Talents.Add(tal)
                         count += 1
                     Loop Until count = lastcount
@@ -142,8 +142,8 @@ Namespace Framework.Core
                     Do
                         Dim spell As String = (tempdt2.Rows(count).Item(0)).ToString
                         Dim tal As New Talent
-                        tal.spell = TryInt(spell)
-                        tal.spec = 1
+                        tal.Spell = TryInt(spell)
+                        tal.Spec = 1
                         player.Talents.Add(tal)
                         count += 1
                     Loop Until count = lastcount
@@ -156,13 +156,13 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterTalentsHandler_LoadAtTrinity", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             _sDatatable.Clear()
             _sDatatable.Dispose()
-            _sDatatable = gettable()
+            _sDatatable = GetTable()
             LogAppend("Loading character talents @LoadAtMangos", "CharacterTalentsHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -171,7 +171,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.character_talent_tbl(0) &
                         " WHERE " & GlobalVariables.sourceStructure.talent_spec_col(0) & "='" & charguid.ToString() &
                         "' AND " & GlobalVariables.sourceStructure.talent_spec_col(0) & "='0'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             If player.Talents Is Nothing Then player.Talents = New List(Of Talent)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
@@ -181,8 +181,8 @@ Namespace Framework.Core
                         Dim idtalent As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim currentrank As String = (tempdt.Rows(count).Item(1)).ToString
                         Dim tal As New Talent
-                        tal.spell = TryInt(checkfield(idtalent, currentrank))
-                        tal.spec = 0
+                        tal.Spell = TryInt(Checkfield(idtalent, currentrank))
+                        tal.Spec = 0
                         player.Talents.Add(tal)
                         count += 1
                     Loop Until count = lastcount
@@ -210,8 +210,8 @@ Namespace Framework.Core
                         Dim idtalent As String = (tempdt2.Rows(count).Item(0)).ToString
                         Dim currentrank As String = (tempdt2.Rows(count).Item(1)).ToString
                         Dim tal As New Talent
-                        tal.spell = TryInt(checkfield(idtalent, currentrank))
-                        tal.spec = 1
+                        tal.Spell = TryInt(Checkfield(idtalent, currentrank))
+                        tal.Spec = 1
                         player.Talents.Add(tal)
                         count += 1
                     Loop Until count = lastcount
@@ -224,7 +224,7 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterTalentsHandler_LoadAtMangos", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
         Private Function GetTable() As DataTable

@@ -30,27 +30,27 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Transmission
 
     Public Class ArmorCreation
-        Public Sub AddCharacterArmor(ByVal setId As Integer, Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId).Guid
+        Public Sub AddCharacterArmor(ByVal setId As Integer, ByVal account As Account, Optional charguid As Integer = 0)
+            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
             LogAppend("Adding armor to character: " & charguid.ToString() & " // setId is : " & setId.ToString(),
                       "ArmorCreation_AddCharacterArmor", True)
             Select Case GlobalVariables.targetCore
                 Case "arcemu"
-                    createAtArcemu(charguid, setId)
+                    CreateAtArcemu(charguid, setId, account)
                 Case "trinity"
-                    createAtTrinity(charguid, setId)
+                    CreateAtTrinity(charguid, setId, account)
                 Case "trinitytbc"
 
                 Case "mangos"
-                    createAtMangos(charguid, setId)
-               End Select
+                    CreateAtMangos(charguid, setId, account)
+            End Select
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
             LogAppend("Creating armor at arcemu", "ArmorCreation_createAtArcemu", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtArcemu", False)
             'Adding weapon specific spells and skills
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim cClass As Integer = player.Cclass
             If cClass = 1 Or cClass = 2 Or cClass = 6 Then
                 AddSpells("750,", player)
@@ -146,11 +146,11 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
             LogAppend("Creating armor at trinity", "ArmorCreation_createAtTrinity", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtTrinity", False)
             'Adding weapon specific spells and skills
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim cClass As Integer = player.Cclass
             If cClass = 1 Or cClass = 2 Or cClass = 6 Then
                 AddSpells("750,", player)
@@ -254,11 +254,11 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.char_guid_col(0) & "='" & characterguid.ToString() & "')")
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer)
+        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
             LogAppend("Creating armor at mangos", "ArmorCreation_createAtMangos", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtMangos", False)
             'Adding weapon specific spells and skills
-            Dim player As Character = GetCharacterSetBySetId(targetSetId)
+            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim cClass As Integer = player.Cclass
             If cClass = 1 Or cClass = 2 Or cClass = 6 Then
                 AddSpells("750,", player)

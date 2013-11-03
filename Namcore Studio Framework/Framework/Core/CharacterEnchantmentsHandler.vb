@@ -27,28 +27,28 @@ Imports NCFramework.Framework.Modules
 Imports libnc.Provider
 Namespace Framework.Core
     Public Class CharacterEnchantmentsHandler
-        Public Sub HandleEnchantments(ByVal setId As Integer)
+        Public Sub HandleEnchantments(ByVal setId As Integer, ByVal account As Account)
             LogAppend("Handling item enchantments for setId: " & setId, "CharacterEnchantmentsHandler_GetItemStats", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(setId)
+                    LoadAtArcemu(setId, account)
                 Case "trinity"
-                    LoadAtTrinity(setId)
+                    LoadAtTrinity(setId, account)
                 Case "trinitytbc"
                     'todo LoadAtTrinityTBC(setId)
                 Case "mangos"
-                    LoadAtMangos(setId)
+                    LoadAtMangos(setId, account)
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal tarSetId As Integer)
+        Private Sub LoadAtArcemu(ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Handling item enchantments @LoadAtArcemu", "CharacterEnchantmentsHandler_LoadAtArcemu", False)
             Dim slotname(19) As String
             slotname =
                 {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance",
                  "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
             Dim loopcounter As Integer = 0
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
 
             Do
                 Dim itm As Item = GetCharacterArmorItem(player, slotname(loopcounter))
@@ -56,7 +56,7 @@ Namespace Framework.Core
                     loopcounter += 1
                     Continue Do
                 End If
-                itm.EnchantmentName = ArcSplitEnchantString(itm.enchstring, player, itm)
+                itm.EnchantmentName = ArcSplitEnchantString(itm.Enchstring, player, itm)
                 If Not loopcounter = 17 Or Not loopcounter = 18 Then
                     itm.Socket1Effectid = ArcSplitGemString(itm.Enchstring, 29)
                     itm.Socket1Id = GetGemIdByEffectId(itm.Socket1Effectid)
@@ -77,7 +77,7 @@ Namespace Framework.Core
                 End If
                 loopcounter += 1
                 SetCharacterArmorItem(player, itm)
-                SetCharacterSet(tarSetId, player)
+                SetCharacterSet(tarSetId, player, account)
             Loop Until loopcounter = 18
         End Sub
 
@@ -207,14 +207,14 @@ Namespace Framework.Core
             End Try
         End Function
 
-        Private Sub LoadAtTrinity(ByVal tarSetId As Integer)
+        Private Sub LoadAtTrinity(ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Handling item enchantments @LoadAtTrinity", "CharacterEnchantmentsHandler_LoadAtTrinity", False)
             Dim slotname(19) As String
             slotname =
                 {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance",
                  "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
             Dim loopcounter As Integer = 0
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Do
                 Dim itm As Item
                 itm = GetCharacterArmorItem(player, slotname(loopcounter))
@@ -222,18 +222,18 @@ Namespace Framework.Core
                     loopcounter += 1
                     Continue Do
                 End If
-                itm.EnchantmentName = TrinitySplitEnchantString(itm.enchstring, itm)
+                itm.EnchantmentName = TrinitySplitEnchantString(itm.Enchstring, itm)
                 If Not loopcounter = 17 Or Not loopcounter = 18 Then
-                    itm.Socket1Name = TrinitySplitGemString(itm.enchstring, 6, itm, 1)
-                    itm.Socket2Name = TrinitySplitGemString(itm.enchstring, 9, itm, 2)
-                    itm.Socket3Name = TrinitySplitGemString(itm.enchstring, 12, itm, 3)
+                    itm.Socket1Name = TrinitySplitGemString(itm.Enchstring, 6, itm, 1)
+                    itm.Socket2Name = TrinitySplitGemString(itm.Enchstring, 9, itm, 2)
+                    itm.Socket3Name = TrinitySplitGemString(itm.Enchstring, 12, itm, 3)
                 End If
                 If loopcounter = 13 Then
                     '// TODO: Load belt buckle
                 End If
                 loopcounter += 1
                 SetCharacterArmorItem(player, itm)
-                SetCharacterSet(tarSetId, player)
+                SetCharacterSet(tarSetId, player, account)
             Loop Until loopcounter = 18
         End Sub
 
@@ -301,32 +301,32 @@ Namespace Framework.Core
             End Try
         End Function
 
-        Private Sub LoadAtMangos(ByVal tarSetId As Integer)
+        Private Sub LoadAtMangos(ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Handling item enchantments @LoadAtMangos", "CharacterEnchantmentsHandler_LoadAtMangos", False)
             Dim slotname(19) As String
             slotname =
                 {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance",
                  "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
             Dim loopcounter As Integer = 0
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Do
                 Dim itm As Item = GetCharacterArmorItem(player, slotname(loopcounter))
                 If itm Is Nothing Then
                     loopcounter += 1
                     Continue Do
                 End If
-                itm.EnchantmentName = MangosSplitEnchantString(itm.enchstring, itm)
+                itm.EnchantmentName = MangosSplitEnchantString(itm.Enchstring, itm)
                 If Not loopcounter = 17 Or Not loopcounter = 18 Then
-                    itm.Socket1Name = MangosSplitGemString(itm.enchstring, 29, itm, 1)
-                    itm.Socket2Name = MangosSplitGemString(itm.enchstring, 32, itm, 2)
-                    itm.Socket3Name = MangosSplitGemString(itm.enchstring, 35, itm, 3)
+                    itm.Socket1Name = MangosSplitGemString(itm.Enchstring, 29, itm, 1)
+                    itm.Socket2Name = MangosSplitGemString(itm.Enchstring, 32, itm, 2)
+                    itm.Socket3Name = MangosSplitGemString(itm.Enchstring, 35, itm, 3)
                 End If
                 If loopcounter = 13 Then
                     '// TODO: Load belt buckle
                 End If
                 loopcounter += 1
                 SetCharacterArmorItem(player, itm)
-                SetCharacterSet(tarSetId, player)
+                SetCharacterSet(tarSetId, player, account)
             Loop Until loopcounter = 18
         End Sub
 

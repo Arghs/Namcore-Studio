@@ -33,11 +33,11 @@ Namespace Modules.Interface
     Public Module InterfaceOperator
         Public Sub prepareLive_armory()
             If GlobalVariables.LoadingTemplate = True Then
-                GlobalVariables.globChars.CharacterSets = Nothing
-                GlobalVariables.globChars.CharacterSetsIndex = Nothing
+                GlobalVariables.globChars.AccountSets = Nothing
+                GlobalVariables.globChars.AccountSetsIndex = Nothing
                 GlobalVariables.LoadingTemplate = False
-                If GlobalVariables.globChars.CharacterSets Is Nothing Then
-                    LogAppend("Invalid templte format!", "InterfaceOperator_prepareLive_armory", True, True)
+                If GlobalVariables.globChars.AccountSets Is Nothing Then
+                    LogAppend("Invalid template format!", "InterfaceOperator_prepareLive_armory", True, True)
                     GlobalVariables.DeserializationSuccessfull = False
                 Else
                     GlobalVariables.DeserializationSuccessfull = True
@@ -85,6 +85,47 @@ Namespace Modules.Interface
             LiveView.Close()
             Dim myliveview As New LiveView
             myliveview.loadInformationSets_Armory()
+            myliveview.Show()
+        End Sub
+        Public Sub prepareLive_template()
+            If GlobalVariables.LoadingTemplate = True Then
+                GlobalVariables.LoadingTemplate = False
+                If GlobalVariables.globChars.AccountSets Is Nothing Then
+                    LogAppend("Invalid template format!", "InterfaceOperator_prepareLive_template", True, True)
+                    GlobalVariables.DeserializationSuccessfull = False
+                Else
+                    GlobalVariables.DeserializationSuccessfull = True
+                End If
+                If GlobalVariables.DeserializationSuccessfull = False Then
+                    For Each procStat As ProcessStatus In _
+                  (From currentForm As Form In Application.OpenForms Where currentForm.Name = "ProcessStatus").Cast _
+                      (Of ProcessStatus)()
+                        procStat.TopMost = False
+                        MsgBox(GetUserMessage("invalidData"), MsgBoxStyle.Critical, "Error")
+                        Main.Show()
+                        procStat.TopMost = False
+                        Exit Sub
+                    Next
+                Else
+                    Dim mSerializer As Serializer = New Serializer
+                    Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
+                    If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf") Then
+                        My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf")
+                    End If
+                    Dim _
+                        fs As _
+                            New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf",
+                                             FileMode.OpenOrCreate)
+                    fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
+                    fs.Close()
+                    ms.Close()
+                End If
+            End If
+            GlobalVariables.LoadingTemplate = False
+            GlobalVariables.armoryMode = False
+            LiveView.Close()
+            Dim myliveview As New LiveView
+            myliveview.loadInformationSets_Template()
             myliveview.Show()
         End Sub
     End Module

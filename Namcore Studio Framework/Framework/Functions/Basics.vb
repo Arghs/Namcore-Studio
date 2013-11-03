@@ -40,35 +40,77 @@ Namespace Framework.Functions
             libnc.Main.Initialize()
         End Sub
 
-        Public Function GetCharacterSetBySetId(ByVal setId As Integer) As Character
-            If Tmpset = setId Then
-                Return GlobalVariables.TempCharacter
+        Public Sub AddAccountSet(ByVal setId As Integer, ByVal player As Account, Optional globChars As GlobalCharVars = Nothing)
+            Dim useChars As GlobalCharVars
+            If GlobalVariables.forceTemplateCharVars = False Then
+                useChars = GlobalVariables.globChars
+            Else
+                useChars = GlobalVariables.templateCharVars
             End If
-            If GlobalVariables.globChars.CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
+            useChars.AccountSets.Add(player)
+            useChars.AccountSetsIndex = useChars.AccountSetsIndex & "[setId:" &
+                                                           setId.ToString & "|@" &
+                                                           (useChars.AccountSets.Count - 1).ToString &
+                                                           "]"
+        End Sub
+
+        Public Function GetAccountSetBySetId(ByVal setId As Integer) As Account
+            Dim useChars As GlobalCharVars
+            If GlobalVariables.forceTemplateCharVars = False Then
+                useChars = GlobalVariables.globChars
+            Else
+                useChars = GlobalVariables.templateCharVars
+            End If
+            If useChars.AccountSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
                 'found
-                Tmpset = setId
-                GlobalVariables.TempCharacter =
-                    GlobalVariables.globChars.CharacterSets(TryInt(SplitString(GlobalVariables.globChars.CharacterSetsIndex,
+                Return useChars.AccountSets(TryInt(SplitString(useChars.AccountSetsIndex,
                                                                                "[setId:" & setId.ToString() & "|@", "]")))
-                Return GlobalVariables.TempCharacter
             Else
                 'not found
                 Return Nothing
             End If
         End Function
 
-        Public Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character)
-            GlobalVariables.globChars.CharacterSets.Add(player)
-            GlobalVariables.globChars.CharacterSetsIndex = GlobalVariables.globChars.CharacterSetsIndex & "[setId:" &
+        Public Sub SetAccountSet(ByVal setId As Integer, ByVal account As Account)
+            Dim useChars As GlobalCharVars
+            If GlobalVariables.forceTemplateCharVars = False Then
+                useChars = GlobalVariables.globChars
+            Else
+                useChars = GlobalVariables.templateCharVars
+            End If
+            If useChars.AccountSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
+                'found
+                useChars.AccountSets(TryInt(SplitString(useChars.AccountSetsIndex,
+                                                                           "[setId:" & setId.ToString() & "|@", "]"))) =
+                    account
+            Else
+                'not found
+            End If
+        End Sub
+
+        Public Function GetCharacterSetBySetId(ByVal setId As Integer, ByVal playerAccount As Account) As Character
+            If playerAccount.CharactersIndex.Contains("setId:" & setId.ToString() & "|") Then
+                'found
+                Return playerAccount.Characters(TryInt(SplitString(playerAccount.CharactersIndex,
+                                                                               "[setId:" & setId.ToString() & "|@", "]")))
+            Else
+                'not found
+                Return Nothing
+            End If
+        End Function
+
+        Public Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character, ByVal playerAccount As Account)
+            playerAccount.Characters.Add(player)
+            playerAccount.CharactersIndex = playerAccount.CharactersIndex & "[setId:" &
                                                            setId.ToString & "|@" &
-                                                           (GlobalVariables.globChars.CharacterSets.Count - 1).ToString &
+                                                           (playerAccount.Characters.Count - 1).ToString &
                                                            "]"
         End Sub
 
-        Public Sub SetCharacterSet(ByVal setId As Integer, ByVal character As Character)
-            If GlobalVariables.globChars.CharacterSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
+        Public Sub SetCharacterSet(ByVal setId As Integer, ByVal character As Character, ByVal account As Account)
+            If account.CharactersIndex.Contains("setId:" & setId.ToString() & "|") Then
                 'found
-                GlobalVariables.globChars.CharacterSets(TryInt(SplitString(GlobalVariables.globChars.CharacterSetsIndex,
+                account.Characters(TryInt(SplitString(account.CharactersIndex,
                                                                            "[setId:" & setId.ToString() & "|@", "]"))) =
                     character
             Else

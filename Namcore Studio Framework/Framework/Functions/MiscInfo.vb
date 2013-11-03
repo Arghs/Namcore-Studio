@@ -28,13 +28,13 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Functions
 
     Public Module MiscInfo
-        Public Sub LoadWeaponType(ByVal itemid As Integer, ByVal tarSet As Integer)
+        Public Sub LoadWeaponType(ByVal itemid As Integer, ByVal tarSet As Integer, ByVal account As Account)
             If Not itemid = 0 Then
                 LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType", False)
                 Try
                     Dim client As New WebClient
                     client.CheckProxy()
-                    Dim player As Character = GetCharacterSetBySetId(tarSet)
+                    Dim player As Character = GetCharacterSetBySetId(tarSet, account)
                     '// TODO
                     Dim excerpt As String = SplitString(client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml"),
                                 "<subclass id=", "</subclass>")

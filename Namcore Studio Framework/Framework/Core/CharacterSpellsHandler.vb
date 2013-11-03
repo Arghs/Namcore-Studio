@@ -28,29 +28,29 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterSpellsHandler
-        Public Sub GetCharacterSpells(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal accountId As Integer)
+        Public Sub GetCharacterSpells(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character spells for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterSpellsHandler_GetCharacterSpells", True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    LoadAtArcemu(characterGuid, setId)
+                    LoadAtArcemu(characterGuid, setId, account)
                 Case "trinity"
-                    LoadAtTrinity(characterGuid, setId)
+                    LoadAtTrinity(characterGuid, setId, account)
                 Case "trinitytbc"
                     'todo LoadAtTrinityTBC(characterGuid, setId, accountId)
                 Case "mangos"
-                    LoadAtMangos(characterGuid, setId)
+                    LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character spells @LoadAtArcemu", "CharacterSpellsHandler_LoadAtArcemu", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
                         "SELECT " & GlobalVariables.sourceStructure.char_spells_col(0) & " FROM " &
                         GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
@@ -62,11 +62,11 @@ Namespace Framework.Core
                         Do
                             Dim parts() As String = readedcode.Split(","c)
                             Dim spl As New Spell
-                            spl.id = TryInt(parts(partscounter).ToString)
-                            spl.active = 1
-                            spl.disabled = 0
+                            spl.Id = TryInt(parts(partscounter).ToString)
+                            spl.Active = 1
+                            spl.Disabled = 0
                             partscounter += 1
-                            LogAppend("Adding spellId: " & spl.id.ToString(), "CharacterSpellsHandler_LoadAtArcemu", True)
+                            LogAppend("Adding spellId: " & spl.Id.ToString(), "CharacterSpellsHandler_LoadAtArcemu", True)
                             If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
                             player.Spells.Add(spl)
                         Loop Until partscounter = excounter - 1
@@ -81,10 +81,10 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterSpellsHandler_LoadAtArcemu", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character spells @LoadAtTrinity", "CharacterSpellsHandler_LoadAtTrinity", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -93,7 +93,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.spell_disabled_col(0) &
                         " FROM " & GlobalVariables.sourceStructure.character_spells_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
@@ -101,9 +101,9 @@ Namespace Framework.Core
                     Do
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim spl As New Spell
-                        spl.id = TryInt(readedcode)
-                        spl.active = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                        spl.disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        spl.Id = TryInt(readedcode)
+                        spl.Active = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        spl.Disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
                         player.Spells.Add(spl)
                         count += 1
@@ -117,10 +117,10 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterSpellsHandler_LoadAtTrinity", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer)
+        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character spells @LoadAtMangos", "CharacterSpellsHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -129,7 +129,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.spell_disabled_col(0) &
                         " FROM " & GlobalVariables.sourceStructure.character_spells_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim player As Character = GetCharacterSetBySetId(tarSetId)
+            Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
@@ -137,9 +137,9 @@ Namespace Framework.Core
                     Do
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim spl As New Spell
-                        spl.id = TryInt(readedcode)
-                        spl.active = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                        spl.disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        spl.Id = TryInt(readedcode)
+                        spl.Active = TryInt((tempdt.Rows(count).Item(1)).ToString)
+                        spl.Disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
                         player.Spells.Add(spl)
                         count += 1
@@ -153,7 +153,7 @@ Namespace Framework.Core
                     ex.ToString() & "###END###", "CharacterSpellsHandler_LoadAtMangos", True, True)
                 Exit Sub
             End Try
-            SetCharacterSet(tarSetId, player)
+            SetCharacterSet(tarSetId, player, account)
         End Sub
     End Class
 End Namespace

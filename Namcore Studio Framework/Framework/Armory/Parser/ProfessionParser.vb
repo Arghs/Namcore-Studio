@@ -30,11 +30,11 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Armory.Parser
 
     Public Class ProfessionParser
-        Public Sub LoadProfessions(ByVal setId As Integer, ByVal apiLink As String)
+        Public Sub LoadProfessions(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
             Dim client As New WebClient
             client.CheckProxy()
             '// Retrieving character
-            Dim player As Character = GetCharacterSetBySetId(setId)
+            Dim player As Character = GetCharacterSetBySetId(setId, account)
             player.Professions = New List(Of Profession)
             Dim pProf As Profession
             Try
@@ -49,9 +49,9 @@ Namespace Framework.Armory.Parser
                     LogAppend("pfContext loaded - length: " & pfContext.Length.ToString(),
                               "ProfessionParser_loadProfessions", False)
                 End If
-                Dim pfStr As String = splitString(pfContext, """professions"":{", "}}") & ","
-                Dim primaryPf As String = splitString(pfStr, """primary"":[", "}],")
-                Dim secondaryPf As String = splitString(pfStr, """secondary"":[", "}],")
+                Dim pfStr As String = SplitString(pfContext, """professions"":{", "}}") & ","
+                Dim primaryPf As String = SplitString(pfStr, """primary"":[", "}],")
+                Dim secondaryPf As String = SplitString(pfStr, """secondary"":[", "}],")
                 Dim usePfString As String = primaryPf
                 Do
                     pProf = New Profession()
@@ -60,9 +60,9 @@ Namespace Framework.Armory.Parser
                     Dim loopcounter As Integer = 0
                     Do
                         If usePfString = primaryPf Then
-                            pProf.primary = True
+                            pProf.Primary = True
                         Else
-                            pProf.primary = False
+                            pProf.Primary = False
                         End If
                         Dim myPart As String = partsPf(loopcounter)
                         If myPart.Length < 28 Then
@@ -90,7 +90,7 @@ Namespace Framework.Armory.Parser
                     End If
                 Loop
                 '// Saving changes to character
-                SetCharacterSet(setId, player)
+                SetCharacterSet(setId, player, GetAccountSetBySetId(player.AccountSet))
             Catch ex As Exception
                 LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "ProfessionParser_loadProfessions", False)
             End Try
