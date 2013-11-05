@@ -123,7 +123,7 @@ Namespace Provider
             If myResult = "-" Then myResult = "Not found"
             Return myResult
         End Function
-        Public Function GetItemSlotNameBySlotId(ByVal slotId As Integer) As Integer
+        Public Function GetItemSlotNameBySlotId(ByVal slotId As Integer) As String
             CheckInit()
             If slotId = 0 Then Return Nothing
             Select Case slotId

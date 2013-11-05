@@ -1964,7 +1964,7 @@ Namespace Forms.Character
             Me.spellsskills_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.spellsskills_bt.ForeColor = System.Drawing.Color.Black
             Me.spellsskills_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.spellsskills_bt.Location = New System.Drawing.Point(572, 601)
+            Me.spellsskills_bt.Location = New System.Drawing.Point(572, 599)
             Me.spellsskills_bt.Name = "spellsskills_bt"
             Me.spellsskills_bt.Size = New System.Drawing.Size(104, 34)
             Me.spellsskills_bt.TabIndex = 168

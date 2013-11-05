@@ -76,11 +76,11 @@ Namespace Forms.Character
             GlobalVariables.currentViewedCharSet = Nothing
             GlobalVariables.currentViewedCharSetId = setId
             GlobalVariables.currentViewedCharSet = GetCharacterSetBySetId(setId, account)
+            _currentAccount = account
             If GlobalVariables.currentViewedCharSet Is Nothing Or GlobalVariables.currentViewedCharSet.Loaded = False Then
                 If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
                     '//Load charset
                     LogAppend("Loading character from database", "CharacterOverview_prepare_interface", True)
-                    _currentAccount = account
                     Dim loadHandlerThread As New Thread(AddressOf LoadCharacter)
                     loadHandlerThread.Start(setId)
                     Exit Sub

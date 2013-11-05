@@ -47,6 +47,10 @@ Namespace Framework.Functions
             Else
                 useChars = GlobalVariables.templateCharVars
             End If
+            If useChars.AccountSetsIndex Is Nothing Then
+                useChars.AccountSetsIndex = ""
+                useChars.AccountSets = New List(Of Account)()
+            End If
             useChars.AccountSets.Add(player)
             useChars.AccountSetsIndex = useChars.AccountSetsIndex & "[setId:" &
                                                            setId.ToString & "|@" &
@@ -77,6 +81,10 @@ Namespace Framework.Functions
                 useChars = GlobalVariables.globChars
             Else
                 useChars = GlobalVariables.templateCharVars
+            End If
+            If useChars.AccountSetsIndex Is Nothing Then
+                useChars.AccountSetsIndex = ""
+                useChars.AccountSets = New List(Of Account)()
             End If
             If useChars.AccountSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
                 'found
@@ -119,7 +127,10 @@ Namespace Framework.Functions
         End Sub
 
         Public Sub AddCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
-            If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
+            If player.ArmorItems Is Nothing Then
+                player.ArmorItems = New List(Of Item)
+                player.ArmorItemsIndex = ""
+            End If
             player.ArmorItems.Add(itm)
             player.ArmorItemsIndex = player.ArmorItemsIndex & "[slot:" & itm.Slotname & "|@" &
                                      (player.ArmorItems.Count - 1).ToString & "]"

@@ -61,7 +61,7 @@ Namespace Framework.Armory
             armoryAccount.SetIndex = 0
             armoryAccount.SourceExpansion = 5
             armoryAccount.Core = "armory"
-            SetAccountSet(0, armoryAccount)
+            AddAccountSet(0, armoryAccount)
             For Each armoryLink As String In LinkList
                 Try
                     LogAppend("URL is " & armoryLink, "ArmoryHandler_DoLoad", False)
@@ -130,6 +130,8 @@ Namespace Framework.Armory
                     mProfessionParser.LoadProfessions(setId, apiLink, armoryAccount)
                     Dim mItemParser As ItemParser = New ItemParser
                     mItemParser.LoadItems(characterContext, setId, armoryAccount)
+                    SetCharacterSet(setId, player, armoryAccount)
+                    SetAccountSet(armoryAccount.SetIndex, armoryAccount)
                     LogAppend("Character loaded!", "ArmoryHandler_DoLoad", True)
                 Catch ex As Exception
                     LogAppend("Exception during character loading!: " & ex.ToString(), "ArmoryHandler_DoLoad", True, True)
