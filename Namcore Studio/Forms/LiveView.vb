@@ -171,6 +171,8 @@ Namespace Forms
             _checkchangestatus = False
             GlobalVariables.ModAccountSets = GlobalVariables.globChars.AccountSets
             GlobalVariables.ModAccountSetsIndex = GlobalVariables.globChars.AccountSetsIndex
+            GlobalVariables.acctable = New DataTable()
+            GlobalVariables.chartable = New DataTable()
             characterview.Items.Clear()
             accountview.Items.Clear()
             Dim armoryAccount As Account = GetAccountSetBySetId(0)
@@ -181,10 +183,17 @@ Namespace Forms
             str(2) = "-"
             str(3) = "-"
             str(4) = "-"
+            For i = 0 To 4
+                GlobalVariables.acctable.Columns.Add("")
+            Next
+            GlobalVariables.acctable.Rows.Add(str)
             itm = New ListViewItem(str)
             accountview.Items.Add(itm)
             accountview.EnsureVisible(accountview.Items.Count - 1)
             accountview.Update()
+            For i = 0 To 6
+                GlobalVariables.chartable.Columns.Add("")
+            Next
             For Each player As NCFramework.Framework.Modules.Character In armoryAccount.Characters
                 ' If infoSet = "" Then genGuid += 1 : Continue For // Needs alternative check
                 Dim cLstr(6) As String
@@ -197,6 +206,7 @@ Namespace Forms
                 cLstr(5) = GetGenderNameById(player.Gender)
                 cLstr(6) = player.Level.ToString
                 cLitm = New ListViewItem(cLstr)
+                GlobalVariables.acctable.Rows.Add(str)
                 cLitm.Tag = player
                 LogAppend("Adding character to characterview using generated Guid " & genGuid.ToString, "LiveView_loadInformationSets_Armory", False)
                 characterview.Items.Add(cLitm)
@@ -206,6 +216,8 @@ Namespace Forms
             Next
             characterview.Sort()
             characterview.Update()
+            GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Clone()
+            GlobalVariables.modifiedCharTable = GlobalVariables.chartable.Clone()
             _checkchangestatus = True
             acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
             chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
@@ -228,6 +240,14 @@ Namespace Forms
             GlobalVariables.ModAccountSetsIndex = GlobalVariables.globChars.AccountSetsIndex
             characterview.Items.Clear()
             accountview.Items.Clear()
+            GlobalVariables.acctable = New DataTable()
+            GlobalVariables.chartable = New DataTable()
+            For i = 0 To 6
+                GlobalVariables.acctable.Columns.Add("")
+            Next
+            For i = 0 To 6
+                GlobalVariables.chartable.Columns.Add("")
+            Next
             For Each playerAccount As Account In GlobalVariables.globChars.AccountSets
                 Dim str(4) As String
                 Dim itm As ListViewItem
@@ -238,6 +258,7 @@ Namespace Forms
                 str(4) = playerAccount.Email
                 itm = New ListViewItem(str)
                 itm.Tag = playerAccount
+                GlobalVariables.acctable.Rows.Add(str)
                 accountview.Items.Add(itm)
                 accountview.EnsureVisible(accountview.Items.Count - 1)
                 For Each playerCharacter As NCFramework.Framework.Modules.Character In playerAccount.Characters
@@ -252,6 +273,7 @@ Namespace Forms
                     cLstr(6) = playerCharacter.Level.ToString
                     cLitm = New ListViewItem(cLstr)
                     cLitm.Tag = playerCharacter
+                    GlobalVariables.chartable.Rows.Add(cLstr)
                     LogAppend("Adding character to characterview", "LiveView_loadInformationSets_Template", False)
                     characterview.Items.Add(cLitm)
                     characterview.EnsureVisible(characterview.Items.Count - 1)
@@ -260,6 +282,8 @@ Namespace Forms
             accountview.Update()
             characterview.Sort()
             characterview.Update()
+            GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Clone()
+            GlobalVariables.modifiedCharTable = GlobalVariables.chartable.Clone()
             _checkchangestatus = True
             acctotal.Text = "(" & accountview.Items.Count.ToString() & " Accounts total)"
             chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
