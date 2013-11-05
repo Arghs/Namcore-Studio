@@ -33,8 +33,6 @@ Namespace Modules.Interface
     Public Module InterfaceOperator
         Public Sub prepareLive_armory()
             If GlobalVariables.LoadingTemplate = True Then
-                GlobalVariables.globChars.AccountSets = Nothing
-                GlobalVariables.globChars.AccountSetsIndex = Nothing
                 GlobalVariables.LoadingTemplate = False
                 If GlobalVariables.globChars.AccountSets Is Nothing Then
                     LogAppend("Invalid template format!", "InterfaceOperator_prepareLive_armory", True, True)
