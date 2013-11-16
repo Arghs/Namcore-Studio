@@ -121,8 +121,14 @@
   <data name="bgNav1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bgNav1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bank_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bank_empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-about" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-about.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="add_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add+.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -132,6 +138,9 @@
   </data>
   <data name="armor_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\armor_bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="INV_Misc_QuestionMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\inv_misc_questionmark.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="norm_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\norm_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,6 +154,21 @@
   <data name="namcore_bg2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\namcore_bg2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bt-liveview-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-liveview-light1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-minimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-minimize.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-settings.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-close-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-close-light.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bank_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bank_bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="repbg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\repbg1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -154,8 +178,8 @@
   <data name="namcore_bg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\namcore_bg1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bank_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bank_empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bt-minimize-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-minimize-light.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="addrep" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\addrep.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,8 +187,17 @@
   <data name="namcore_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\namcore_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="INV_Misc_QuestionMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\inv_misc_questionmark.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HUD_overhaul_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HUD_overhaul_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-about-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-about-light.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HUD_overhaul2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HUD_overhaul2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="namcore_header" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\namcore_header.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,6 +232,9 @@
   <data name="plusico" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\plusico.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bt-settings-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-settings-light.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bag_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bag_empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -209,7 +245,10 @@
     <value>..\resources\addrep1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="bank_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bank_bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bt-armoryparser-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-armoryparser-light2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-templateexplorer-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-templateexplorer-light2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

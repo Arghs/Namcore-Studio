@@ -36,16 +36,46 @@ Namespace Forms
         Private Const Aioversion As Integer = 1
         Private _ptMouseDownLocation As Point
         '// Declaration
-
-        Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) _
-            Handles highlighter1.MouseEnter, highlighter2.MouseEnter, highlighter3.MouseEnter, highlighter4.MouseEnter,
-                    highlighter5.MouseEnter
-            sender.backgroundimage = My.Resources.highlight
+        Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter4.MouseEnter
+            sender.backgroundimage = My.Resources.bt_close_light
         End Sub
-
-        Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) _
-            Handles highlighter1.MouseLeave, highlighter2.MouseLeave, highlighter3.MouseLeave, highlighter4.MouseLeave,
-                    highlighter5.MouseLeave
+        Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter4.MouseLeave
+            sender.backgroundimage = My.Resources.bt_close
+        End Sub
+        Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter5.MouseEnter
+            sender.backgroundimage = My.Resources.bt_minimize_light
+        End Sub
+        Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter5.MouseLeave
+            sender.backgroundimage = My.Resources.bt_minimize
+        End Sub
+        Private Sub settingsBt_MouseEnter(sender As Object, e As EventArgs) Handles settings_pic.MouseEnter
+            sender.backgroundimage = My.Resources.bt_settings_light
+        End Sub
+        Private Sub settingsBt_MouseLeave(sender As Object, e As EventArgs) Handles settings_pic.MouseLeave
+            sender.backgroundimage = My.Resources.bt_settings
+        End Sub
+        Private Sub aboutBt_MouseEnter(sender As Object, e As EventArgs) Handles about_pic.MouseEnter
+            sender.backgroundimage = My.Resources.bt_about_light
+        End Sub
+        Private Sub aboutBt_MouseLeave(sender As Object, e As EventArgs) Handles about_pic.MouseLeave
+            sender.backgroundimage = My.Resources.bt_about
+        End Sub
+        Private Sub liveViewBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter
+            sender.backgroundimage = My.Resources.bt_liveview_light
+        End Sub
+        Private Sub liveViewBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave
+            sender.backgroundimage = Nothing
+        End Sub
+        Private Sub templateExplorerBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter2.MouseEnter
+            sender.backgroundimage = My.Resources.bt_templateexplorer_light
+        End Sub
+        Private Sub templateExplorerBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter2.MouseLeave
+            sender.backgroundimage = Nothing
+        End Sub
+        Private Sub armoryParserBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter3.MouseEnter
+            sender.backgroundimage = My.Resources.bt_armoryparser_light
+        End Sub
+        Private Sub armoryParserBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter3.MouseLeave
             sender.backgroundimage = Nothing
         End Sub
 
@@ -176,14 +206,14 @@ Namespace Forms
             Application.Exit()
         End Sub
 
-        Private Sub settings_bt_Click(sender As Object, e As EventArgs) Handles settings_bt.Click
-            SettingsInterface.Show()
-        End Sub
-
         Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
             LogAppend("Trigger Template Explorer click", "Main_highlighter2_Click", False)
             Hide()
             TemplateExplorer.Show()
+        End Sub
+
+        Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles settings_pic.Click
+            SettingsInterface.Show()
         End Sub
     End Class
 End Namespace

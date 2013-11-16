@@ -30,21 +30,25 @@
             Me.highlighter4 = New System.Windows.Forms.PictureBox()
             Me.highlighter5 = New System.Windows.Forms.PictureBox()
             Me.version_lbl = New System.Windows.Forms.Label()
-            Me.settings_bt = New System.Windows.Forms.Button()
+            Me.settings_pic = New System.Windows.Forms.PictureBox()
+            Me.about_pic = New System.Windows.Forms.PictureBox()
             CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter3, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.about_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'highlighter1
             '
             Me.highlighter1.BackColor = System.Drawing.Color.Transparent
+            Me.highlighter1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
             Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.highlighter1.Location = New System.Drawing.Point(58, 71)
+            Me.highlighter1.Location = New System.Drawing.Point(15, 146)
             Me.highlighter1.Name = "highlighter1"
-            Me.highlighter1.Size = New System.Drawing.Size(941, 76)
+            Me.highlighter1.Size = New System.Drawing.Size(995, 85)
             Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             Me.highlighter1.TabIndex = 0
             Me.highlighter1.TabStop = False
@@ -52,10 +56,11 @@
             'highlighter2
             '
             Me.highlighter2.BackColor = System.Drawing.Color.Transparent
+            Me.highlighter2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
             Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.highlighter2.Location = New System.Drawing.Point(58, 170)
+            Me.highlighter2.Location = New System.Drawing.Point(15, 256)
             Me.highlighter2.Name = "highlighter2"
-            Me.highlighter2.Size = New System.Drawing.Size(941, 76)
+            Me.highlighter2.Size = New System.Drawing.Size(995, 85)
             Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             Me.highlighter2.TabIndex = 1
             Me.highlighter2.TabStop = False
@@ -63,10 +68,11 @@
             'highlighter3
             '
             Me.highlighter3.BackColor = System.Drawing.Color.Transparent
+            Me.highlighter3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
             Me.highlighter3.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.highlighter3.Location = New System.Drawing.Point(58, 269)
+            Me.highlighter3.Location = New System.Drawing.Point(15, 360)
             Me.highlighter3.Name = "highlighter3"
-            Me.highlighter3.Size = New System.Drawing.Size(941, 76)
+            Me.highlighter3.Size = New System.Drawing.Size(995, 85)
             Me.highlighter3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             Me.highlighter3.TabIndex = 2
             Me.highlighter3.TabStop = False
@@ -74,10 +80,11 @@
             'highlighter4
             '
             Me.highlighter4.BackColor = System.Drawing.Color.Transparent
+            Me.highlighter4.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_close
             Me.highlighter4.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.highlighter4.Location = New System.Drawing.Point(1023, 9)
+            Me.highlighter4.Location = New System.Drawing.Point(985, 7)
             Me.highlighter4.Name = "highlighter4"
-            Me.highlighter4.Size = New System.Drawing.Size(22, 20)
+            Me.highlighter4.Size = New System.Drawing.Size(25, 20)
             Me.highlighter4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             Me.highlighter4.TabIndex = 3
             Me.highlighter4.TabStop = False
@@ -85,10 +92,11 @@
             'highlighter5
             '
             Me.highlighter5.BackColor = System.Drawing.Color.Transparent
+            Me.highlighter5.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_minimize
             Me.highlighter5.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.highlighter5.Location = New System.Drawing.Point(992, 9)
+            Me.highlighter5.Location = New System.Drawing.Point(954, 7)
             Me.highlighter5.Name = "highlighter5"
-            Me.highlighter5.Size = New System.Drawing.Size(22, 20)
+            Me.highlighter5.Size = New System.Drawing.Size(25, 20)
             Me.highlighter5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             Me.highlighter5.TabIndex = 4
             Me.highlighter5.TabStop = False
@@ -99,34 +107,45 @@
             Me.version_lbl.BackColor = System.Drawing.Color.Transparent
             Me.version_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.version_lbl.ForeColor = System.Drawing.SystemColors.HighlightText
-            Me.version_lbl.Location = New System.Drawing.Point(556, 372)
+            Me.version_lbl.Location = New System.Drawing.Point(523, 488)
             Me.version_lbl.Name = "version_lbl"
             Me.version_lbl.Size = New System.Drawing.Size(492, 18)
             Me.version_lbl.TabIndex = 5
             Me.version_lbl.Text = "NamCore Studio - Development - 0.0.8.45283 - © megasus 2013"
             '
-            'settings_bt
+            'settings_pic
             '
-            Me.settings_bt.BackColor = System.Drawing.Color.DimGray
-            Me.settings_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.settings_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.settings_bt.ForeColor = System.Drawing.Color.Black
-            Me.settings_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.settings_bt.Location = New System.Drawing.Point(12, 365)
-            Me.settings_bt.Name = "settings_bt"
-            Me.settings_bt.Size = New System.Drawing.Size(117, 25)
-            Me.settings_bt.TabIndex = 166
-            Me.settings_bt.Text = "Settings"
-            Me.settings_bt.UseVisualStyleBackColor = False
+            Me.settings_pic.BackColor = System.Drawing.Color.Transparent
+            Me.settings_pic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_settings
+            Me.settings_pic.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.settings_pic.Location = New System.Drawing.Point(923, 7)
+            Me.settings_pic.Name = "settings_pic"
+            Me.settings_pic.Size = New System.Drawing.Size(25, 20)
+            Me.settings_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.settings_pic.TabIndex = 167
+            Me.settings_pic.TabStop = False
+            '
+            'about_pic
+            '
+            Me.about_pic.BackColor = System.Drawing.Color.Transparent
+            Me.about_pic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_about
+            Me.about_pic.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.about_pic.Location = New System.Drawing.Point(892, 7)
+            Me.about_pic.Name = "about_pic"
+            Me.about_pic.Size = New System.Drawing.Size(25, 20)
+            Me.about_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.about_pic.TabIndex = 168
+            Me.about_pic.TabStop = False
             '
             'Main
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bgNav5
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_overhaul_min
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.ClientSize = New System.Drawing.Size(1057, 397)
-            Me.Controls.Add(Me.settings_bt)
+            Me.ClientSize = New System.Drawing.Size(1024, 512)
+            Me.Controls.Add(Me.about_pic)
+            Me.Controls.Add(Me.settings_pic)
             Me.Controls.Add(Me.version_lbl)
             Me.Controls.Add(Me.highlighter5)
             Me.Controls.Add(Me.highlighter4)
@@ -145,6 +164,8 @@
             CType(Me.highlighter3, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.about_pic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
             Me.PerformLayout()
 
@@ -155,6 +176,7 @@
         Friend WithEvents highlighter4 As System.Windows.Forms.PictureBox
         Friend WithEvents highlighter5 As System.Windows.Forms.PictureBox
         Friend WithEvents version_lbl As System.Windows.Forms.Label
-        Friend WithEvents settings_bt As System.Windows.Forms.Button
+        Friend WithEvents settings_pic As System.Windows.Forms.PictureBox
+        Friend WithEvents about_pic As System.Windows.Forms.PictureBox
     End Class
 End Namespace

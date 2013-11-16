@@ -320,6 +320,24 @@
     <None Include="Resources\bag_empty.png" />
     <None Include="Resources\empty.png" />
     <None Include="Resources\bank_bg.png" />
+    <None Include="Resources\HUD_overhaul2.jpg" />
+    <None Include="Resources\HUD_overhaul_min.jpg" />
+    <None Include="Resources\bt-about.png" />
+    <None Include="Resources\bt-about-light.png" />
+    <None Include="Resources\bt-close.png" />
+    <None Include="Resources\bt-close-light.png" />
+    <None Include="Resources\bt-minimize.png" />
+    <None Include="Resources\bt-minimize-light.png" />
+    <None Include="Resources\bt-settings.png" />
+    <None Include="Resources\bt-settings-light.png" />
+    <None Include="Resources\bt-armoryparser-light.png" />
+    <None Include="Resources\bt-liveview-light.png" />
+    <None Include="Resources\bt-templateexplorer-light.png" />
+    <None Include="Resources\bt-armoryparser-light1.png" />
+    <None Include="Resources\bt-liveview-light1.png" />
+    <None Include="Resources\bt-templateexplorer-light1.png" />
+    <None Include="Resources\bt-armoryparser-light2.png" />
+    <None Include="Resources\bt-templateexplorer-light2.png" />
     <Content Include="Resources\namcore_bg.jpg" />
     <Content Include="Resources\nclogo.ico" />
     <Content Include="Resources\Refresh-icon.png" />
@@ -360,7 +378,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_DetectChanges="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

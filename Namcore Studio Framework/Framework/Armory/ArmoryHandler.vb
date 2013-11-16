@@ -62,7 +62,7 @@ Namespace Framework.Armory
             armoryAccount.SourceExpansion = 5
             armoryAccount.Core = "armory"
             AddAccountSet(0, armoryAccount)
-            For Each armoryLink As String In LinkList
+            For Each armoryLink As String In linkList
                 Try
                     LogAppend("URL is " & armoryLink, "ArmoryHandler_DoLoad", False)
                     characterContext = client.DownloadString(armoryLink)
@@ -74,11 +74,11 @@ Namespace Framework.Armory
                     Continue For
                 End Try
                 Try
-                    Dim realm As String = splitString(armoryLink, "/character/", "/")
+                    Dim realm As String = SplitString(armoryLink, "/character/", "/")
                     characterContext = characterContext.Replace("&#39;", "")
-                    characterName = splitString(armoryLink, "/" & realm & "/", "/")
-                    apiLink = "http://" & splitString(armoryLink, "http://", ".battle") & ".battle.net/api/wow/character/" &
-                              splitString(armoryLink, "/character/", "/") & "/" & characterName
+                    characterName = SplitString(armoryLink, "/" & realm & "/", "/")
+                    apiLink = "http://" & SplitString(armoryLink, "http://", ".battle") & ".battle.net/api/wow/character/" &
+                              SplitString(armoryLink, "/character/", "/") & "/" & characterName
                     setId += 1
                     LogAppend("Loading character " & characterName & " //ident is " & setId.ToString(),
                               "ArmoryHandler_DoLoad", True)
@@ -86,9 +86,9 @@ Namespace Framework.Armory
                     Dim player As New Character(characterName, 0)
                     player.AccountId = 0
                     player.AccountName = "Armory"
-                    player.Level = TryInt(splitString(characterContext, "<span class=""level""><strong>", "</strong></span>"))
-                    player.Gender = TryInt(splitString(client.DownloadString(apiLink), """gender"":", ","""))
-                    player.Race = TryInt(splitString(client.DownloadString(apiLink), """race"":", ","""))
+                    player.Level = TryInt(SplitString(characterContext, "<span class=""level""><strong>", "</strong></span>"))
+                    player.Gender = TryInt(SplitString(client.DownloadString(apiLink), """gender"":", ","""))
+                    player.Race = TryInt(SplitString(client.DownloadString(apiLink), """race"":", ","""))
                     player.Cclass = TryInt(GetClassIdByName(SplitString(characterContext, "/game/class/", """ class=")))
                     player.SourceCore = "armory"
                     player.SourceExpansion = 5
@@ -96,10 +96,10 @@ Namespace Framework.Armory
                     Try
                         LogAppend("Loading character appearance information", "ArmoryHandler_DoLoad", True)
                         Dim appearanceContext As String = client.DownloadString(apiLink & "?fields=appearance")
-                        Dim appFace As String = Hex$(Long.Parse(splitString(appearanceContext, """faceVariation"":", ",")))
-                        Dim appSkin As String = Hex$(Long.Parse(splitString(appearanceContext, """skinColor"":", ",")))
+                        Dim appFace As String = Hex$(Long.Parse(SplitString(appearanceContext, """faceVariation"":", ",")))
+                        Dim appSkin As String = Hex$(Long.Parse(SplitString(appearanceContext, """skinColor"":", ",")))
                         Dim appHairStyle As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairVariation"":", ",")))
-                        Dim appHairColor As String = Hex$(Long.Parse(splitString(appearanceContext, """hairColor"":", ",")))
+                        Dim appHairColor As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairColor"":", ",")))
                         Dim appFeatureVar As String = Hex$(Long.Parse(SplitString(appearanceContext, """featureVariation"":", ",")))
                         If appFace.ToString.Length = 1 Then appFace = 0 & appFace
                         If appSkin.ToString.Length = 1 Then appSkin = 0 & appSkin
