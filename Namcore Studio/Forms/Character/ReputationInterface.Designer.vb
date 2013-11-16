@@ -125,9 +125,9 @@ Namespace Forms.Character
             '
             Me.RepLayoutPanel.AutoScroll = True
             Me.RepLayoutPanel.BackColor = System.Drawing.Color.Transparent
-            Me.RepLayoutPanel.Location = New System.Drawing.Point(4, 40)
+            Me.RepLayoutPanel.Location = New System.Drawing.Point(4, 93)
             Me.RepLayoutPanel.Name = "RepLayoutPanel"
-            Me.RepLayoutPanel.Size = New System.Drawing.Size(852, 553)
+            Me.RepLayoutPanel.Size = New System.Drawing.Size(852, 500)
             Me.RepLayoutPanel.TabIndex = 1
             '
             'addpanel
@@ -150,22 +150,23 @@ Namespace Forms.Character
             Me.add_pic.TabIndex = 0
             Me.add_pic.TabStop = False
             '
-            'Reputation_interface
+            'ReputationInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(862, 599)
             Me.Controls.Add(Me.addpanel)
             Me.Controls.Add(Me.RepLayoutPanel)
             Me.Controls.Add(Me.referencePanel)
             Me.DoubleBuffered = True
-            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "ReputationInterface"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Reputation_interface"
+            Me.Controls.SetChildIndex(Me.referencePanel, 0)
+            Me.Controls.SetChildIndex(Me.RepLayoutPanel, 0)
+            Me.Controls.SetChildIndex(Me.addpanel, 0)
             Me.referencePanel.ResumeLayout(False)
             Me.referencePanel.PerformLayout()
             CType(Me.reference_trackbar, System.ComponentModel.ISupportInitialize).EndInit()

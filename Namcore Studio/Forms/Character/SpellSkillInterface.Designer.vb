@@ -53,7 +53,7 @@ Namespace Forms.Character
             '
             Me.tabcontrol.Controls.Add(Me.spellPage)
             Me.tabcontrol.Controls.Add(Me.skillPage)
-            Me.tabcontrol.Location = New System.Drawing.Point(9, 41)
+            Me.tabcontrol.Location = New System.Drawing.Point(9, 83)
             Me.tabcontrol.Name = "tabcontrol"
             Me.tabcontrol.SelectedIndex = 0
             Me.tabcontrol.Size = New System.Drawing.Size(701, 458)
@@ -61,7 +61,7 @@ Namespace Forms.Character
             '
             'spellPage
             '
-            Me.spellPage.BackColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(172, Byte), Integer))
+            Me.spellPage.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
             Me.spellPage.Controls.Add(Me.resultstatusSpell_lbl)
             Me.spellPage.Controls.Add(Me.search_tb)
             Me.spellPage.Controls.Add(Me.Label1)
@@ -143,7 +143,7 @@ Namespace Forms.Character
             '
             'skillPage
             '
-            Me.skillPage.BackColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(172, Byte), Integer))
+            Me.skillPage.BackColor = System.Drawing.Color.Black
             Me.skillPage.Controls.Add(Me.resultstatusSkill_lbl)
             Me.skillPage.Controls.Add(Me.TextBox1)
             Me.skillPage.Controls.Add(Me.Label3)
@@ -231,19 +231,18 @@ Namespace Forms.Character
             '
             Me.skillMax.Text = "Maximum"
             '
-            'SpellSkill_interface
+            'SpellSkillInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.ClientSize = New System.Drawing.Size(719, 515)
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.ClientSize = New System.Drawing.Size(719, 547)
             Me.Controls.Add(Me.tabcontrol)
             Me.DoubleBuffered = True
-            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Name = "SpellSkillInterface"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "SpellSkill_interface"
+            Me.Controls.SetChildIndex(Me.tabcontrol, 0)
             Me.tabcontrol.ResumeLayout(False)
             Me.spellPage.ResumeLayout(False)
             Me.spellPage.PerformLayout()

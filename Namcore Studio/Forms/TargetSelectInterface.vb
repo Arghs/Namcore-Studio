@@ -22,20 +22,10 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
 Imports NCFramework.Framework.Modules
-Imports Namcore_Studio.Forms.Extension
 
 Namespace Forms
 
     Public Class TargetSelectInterface
-        Inherits EventTrigger
-
-        Private Sub highlighter2_Click(sender As Object, e As EventArgs)
-            Close()
-        End Sub
-        Private Sub TargetSelectInterface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-            AddHandler highlighter2.Click, AddressOf highlighter2_Click
-        End Sub
-
         Private Sub connect_bt_Click(sender As Object, e As EventArgs) Handles connect_bt.Click
             GlobalVariables.con_operator = 2
             DbConnect.Show()

@@ -68,8 +68,8 @@ Namespace Forms
             Me.GroupBox1.Controls.Add(Me.Label3)
             Me.GroupBox1.Controls.Add(Me.Label2)
             Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-            Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.GroupBox1.Location = New System.Drawing.Point(14, 229)
+            Me.GroupBox1.ForeColor = System.Drawing.Color.Black
+            Me.GroupBox1.Location = New System.Drawing.Point(14, 243)
             Me.GroupBox1.Name = "GroupBox1"
             Me.GroupBox1.Size = New System.Drawing.Size(696, 98)
             Me.GroupBox1.TabIndex = 166
@@ -101,7 +101,7 @@ Namespace Forms
             '
             Me.Label5.AutoSize = True
             Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-            Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label5.ForeColor = System.Drawing.Color.Black
             Me.Label5.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label5.Location = New System.Drawing.Point(7, 67)
             Me.Label5.Name = "Label5"
@@ -151,7 +151,7 @@ Namespace Forms
             '
             Me.Label4.AutoSize = True
             Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-            Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label4.ForeColor = System.Drawing.Color.Black
             Me.Label4.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label4.Location = New System.Drawing.Point(389, 28)
             Me.Label4.Name = "Label4"
@@ -163,7 +163,7 @@ Namespace Forms
             '
             Me.Label3.AutoSize = True
             Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-            Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label3.ForeColor = System.Drawing.Color.Black
             Me.Label3.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label3.Location = New System.Drawing.Point(171, 28)
             Me.Label3.Name = "Label3"
@@ -175,7 +175,7 @@ Namespace Forms
             '
             Me.Label2.AutoSize = True
             Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-            Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label2.ForeColor = System.Drawing.Color.Black
             Me.Label2.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label2.Location = New System.Drawing.Point(7, 28)
             Me.Label2.Name = "Label2"
@@ -190,7 +190,7 @@ Namespace Forms
             Me.char_lst.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.lstvregion, Me.Realm, Me.Charactername, Me.hyperlink})
             Me.char_lst.FullRowSelect = True
             Me.char_lst.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable
-            Me.char_lst.Location = New System.Drawing.Point(14, 69)
+            Me.char_lst.Location = New System.Drawing.Point(14, 83)
             Me.char_lst.MultiSelect = False
             Me.char_lst.Name = "char_lst"
             Me.char_lst.Size = New System.Drawing.Size(696, 154)
@@ -223,7 +223,7 @@ Namespace Forms
             Me.Label1.AutoSize = True
             Me.Label1.BackColor = System.Drawing.Color.Transparent
             Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
-            Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label1.ForeColor = System.Drawing.Color.Black
             Me.Label1.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label1.Location = New System.Drawing.Point(11, 47)
             Me.Label1.Name = "Label1"
@@ -238,7 +238,7 @@ Namespace Forms
             Me.load_bt.Enabled = False
             Me.load_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.load_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.load_bt.Location = New System.Drawing.Point(253, 333)
+            Me.load_bt.Location = New System.Drawing.Point(253, 347)
             Me.load_bt.Name = "load_bt"
             Me.load_bt.Size = New System.Drawing.Size(213, 48)
             Me.load_bt.TabIndex = 163
@@ -251,7 +251,7 @@ Namespace Forms
             Me.back_bt.Cursor = System.Windows.Forms.Cursors.Hand
             Me.back_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.back_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.back_bt.Location = New System.Drawing.Point(584, 354)
+            Me.back_bt.Location = New System.Drawing.Point(584, 368)
             Me.back_bt.Name = "back_bt"
             Me.back_bt.Size = New System.Drawing.Size(126, 27)
             Me.back_bt.TabIndex = 160
@@ -276,32 +276,36 @@ Namespace Forms
             Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
             Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.Button2.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Button2.Location = New System.Drawing.Point(14, 354)
+            Me.Button2.Location = New System.Drawing.Point(14, 368)
             Me.Button2.Name = "Button2"
             Me.Button2.Size = New System.Drawing.Size(126, 27)
             Me.Button2.TabIndex = 169
             Me.Button2.Text = "Load latest set"
             Me.Button2.UseVisualStyleBackColor = False
             '
-            'Armory_interface
+            'ArmoryInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.ClientSize = New System.Drawing.Size(718, 391)
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.ClientSize = New System.Drawing.Size(718, 401)
             Me.Controls.Add(Me.Button2)
             Me.Controls.Add(Me.GroupBox1)
             Me.Controls.Add(Me.char_lst)
-            Me.Controls.Add(Me.Label1)
             Me.Controls.Add(Me.load_bt)
             Me.Controls.Add(Me.back_bt)
+            Me.Controls.Add(Me.Label1)
             Me.DoubleBuffered = True
-            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "ArmoryInterface"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Load armory characters"
+            Me.Controls.SetChildIndex(Me.Label1, 0)
+            Me.Controls.SetChildIndex(Me.back_bt, 0)
+            Me.Controls.SetChildIndex(Me.load_bt, 0)
+            Me.Controls.SetChildIndex(Me.char_lst, 0)
+            Me.Controls.SetChildIndex(Me.GroupBox1, 0)
+            Me.Controls.SetChildIndex(Me.Button2, 0)
             Me.GroupBox1.ResumeLayout(False)
             Me.GroupBox1.PerformLayout()
             Me.ContextMenuStrip1.ResumeLayout(False)

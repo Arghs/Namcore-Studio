@@ -62,6 +62,7 @@
             Me.target_accounts_tree = New System.Windows.Forms.TreeView()
             Me.GroupBox1 = New System.Windows.Forms.GroupBox()
             Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+            Me.createTemplate_bt = New System.Windows.Forms.Button()
             Me.Label3 = New System.Windows.Forms.Label()
             Me.info2_lbl = New System.Windows.Forms.Label()
             Me.info1_lbl = New System.Windows.Forms.Label()
@@ -82,9 +83,10 @@
             Me.mainpanel = New System.Windows.Forms.Panel()
             Me.header = New System.Windows.Forms.Panel()
             Me.closepanel = New System.Windows.Forms.Panel()
-            Me.highlighter1 = New System.Windows.Forms.PictureBox()
-            Me.highlighter2 = New System.Windows.Forms.PictureBox()
-            Me.createTemplate_bt = New System.Windows.Forms.Button()
+            Me.about_pic = New System.Windows.Forms.PictureBox()
+            Me.settings_pic = New System.Windows.Forms.PictureBox()
+            Me.highlighter5 = New System.Windows.Forms.PictureBox()
+            Me.highlighter4 = New System.Windows.Forms.PictureBox()
             Me.Panel1.SuspendLayout()
             Me.accountcontext.SuspendLayout()
             Me.GroupBox1.SuspendLayout()
@@ -95,8 +97,10 @@
             Me.mainpanel.SuspendLayout()
             Me.header.SuspendLayout()
             Me.closepanel.SuspendLayout()
-            CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.about_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'connect_bt
@@ -128,7 +132,7 @@
             Me.Panel1.Controls.Add(Me.accountview)
             Me.Panel1.Location = New System.Drawing.Point(6, 13)
             Me.Panel1.Name = "Panel1"
-            Me.Panel1.Size = New System.Drawing.Size(974, 469)
+            Me.Panel1.Size = New System.Drawing.Size(986, 469)
             Me.Panel1.TabIndex = 1
             '
             'chartotal
@@ -136,7 +140,7 @@
             Me.chartotal.AutoSize = True
             Me.chartotal.BackColor = System.Drawing.Color.Transparent
             Me.chartotal.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.chartotal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.chartotal.ForeColor = System.Drawing.Color.Black
             Me.chartotal.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.chartotal.Location = New System.Drawing.Point(527, 429)
             Me.chartotal.Name = "chartotal"
@@ -149,7 +153,7 @@
             Me.acctotal.AutoSize = True
             Me.acctotal.BackColor = System.Drawing.Color.Transparent
             Me.acctotal.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.acctotal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.acctotal.ForeColor = System.Drawing.Color.Black
             Me.acctotal.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.acctotal.Location = New System.Drawing.Point(108, 429)
             Me.acctotal.Name = "acctotal"
@@ -205,7 +209,7 @@
             '
             Me.Label10.AutoSize = True
             Me.Label10.Font = New System.Drawing.Font("Franklin Gothic Medium", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label10.ForeColor = System.Drawing.Color.Black
             Me.Label10.Location = New System.Drawing.Point(9, 3)
             Me.Label10.Name = "Label10"
             Me.Label10.Size = New System.Drawing.Size(372, 24)
@@ -396,7 +400,7 @@
             Me.GroupBox1.Controls.Add(Me.Panel1)
             Me.GroupBox1.Location = New System.Drawing.Point(3, -5)
             Me.GroupBox1.Name = "GroupBox1"
-            Me.GroupBox1.Size = New System.Drawing.Size(980, 482)
+            Me.GroupBox1.Size = New System.Drawing.Size(989, 482)
             Me.GroupBox1.TabIndex = 211
             Me.GroupBox1.TabStop = False
             '
@@ -415,11 +419,25 @@
             Me.GroupBox2.TabIndex = 212
             Me.GroupBox2.TabStop = False
             '
+            'createTemplate_bt
+            '
+            Me.createTemplate_bt.BackColor = System.Drawing.Color.DimGray
+            Me.createTemplate_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.createTemplate_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.createTemplate_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.createTemplate_bt.Location = New System.Drawing.Point(123, 441)
+            Me.createTemplate_bt.Name = "createTemplate_bt"
+            Me.createTemplate_bt.Size = New System.Drawing.Size(147, 34)
+            Me.createTemplate_bt.TabIndex = 214
+            Me.createTemplate_bt.Text = "Create template file"
+            Me.createTemplate_bt.UseVisualStyleBackColor = False
+            Me.createTemplate_bt.Visible = False
+            '
             'Label3
             '
             Me.Label3.AutoSize = True
             Me.Label3.Font = New System.Drawing.Font("Franklin Gothic Medium", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label3.ForeColor = System.Drawing.Color.Black
             Me.Label3.Location = New System.Drawing.Point(160, 13)
             Me.Label3.Name = "Label3"
             Me.Label3.Size = New System.Drawing.Size(233, 48)
@@ -529,7 +547,7 @@
             Me.Transfer_bt.Enabled = False
             Me.Transfer_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.Transfer_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Transfer_bt.Location = New System.Drawing.Point(360, 545)
+            Me.Transfer_bt.Location = New System.Drawing.Point(360, 599)
             Me.Transfer_bt.Name = "Transfer_bt"
             Me.Transfer_bt.Size = New System.Drawing.Size(251, 42)
             Me.Transfer_bt.TabIndex = 214
@@ -542,7 +560,7 @@
             Me.back_bt.Cursor = System.Windows.Forms.Cursors.Hand
             Me.back_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.back_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.back_bt.Location = New System.Drawing.Point(838, 545)
+            Me.back_bt.Location = New System.Drawing.Point(838, 598)
             Me.back_bt.Name = "back_bt"
             Me.back_bt.Size = New System.Drawing.Size(147, 42)
             Me.back_bt.TabIndex = 215
@@ -555,76 +573,90 @@
             Me.mainpanel.BackColor = System.Drawing.Color.Transparent
             Me.mainpanel.Controls.Add(Me.GroupBox1)
             Me.mainpanel.Controls.Add(Me.GroupBox2)
-            Me.mainpanel.Location = New System.Drawing.Point(5, 37)
+            Me.mainpanel.Location = New System.Drawing.Point(5, 89)
             Me.mainpanel.Name = "mainpanel"
-            Me.mainpanel.Size = New System.Drawing.Size(980, 495)
+            Me.mainpanel.Size = New System.Drawing.Size(991, 495)
             Me.mainpanel.TabIndex = 219
             '
             'header
             '
-            Me.header.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.namcore_header
+            Me.header.BackColor = System.Drawing.Color.Transparent
+            Me.header.BackgroundImage = CType(resources.GetObject("header.BackgroundImage"), System.Drawing.Image)
             Me.header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
             Me.header.Controls.Add(Me.closepanel)
-            Me.header.Location = New System.Drawing.Point(4, 6)
+            Me.header.Location = New System.Drawing.Point(6, 3)
             Me.header.Name = "header"
-            Me.header.Size = New System.Drawing.Size(993, 30)
+            Me.header.Size = New System.Drawing.Size(989, 82)
             Me.header.TabIndex = 226
             '
             'closepanel
             '
-            Me.closepanel.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.minclose
-            Me.closepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-            Me.closepanel.Controls.Add(Me.highlighter1)
-            Me.closepanel.Controls.Add(Me.highlighter2)
-            Me.closepanel.Location = New System.Drawing.Point(934, -1)
+            Me.closepanel.BackColor = System.Drawing.Color.Transparent
+            Me.closepanel.Controls.Add(Me.about_pic)
+            Me.closepanel.Controls.Add(Me.settings_pic)
+            Me.closepanel.Controls.Add(Me.highlighter5)
+            Me.closepanel.Controls.Add(Me.highlighter4)
+            Me.closepanel.Location = New System.Drawing.Point(864, 1)
             Me.closepanel.Name = "closepanel"
-            Me.closepanel.Size = New System.Drawing.Size(56, 28)
-            Me.closepanel.TabIndex = 1
+            Me.closepanel.Size = New System.Drawing.Size(123, 25)
+            Me.closepanel.TabIndex = 173
             '
-            'highlighter1
+            'about_pic
             '
-            Me.highlighter1.BackColor = System.Drawing.Color.Transparent
-            Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.highlighter1.Location = New System.Drawing.Point(5, 5)
-            Me.highlighter1.Name = "highlighter1"
-            Me.highlighter1.Size = New System.Drawing.Size(20, 20)
-            Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-            Me.highlighter1.TabIndex = 217
-            Me.highlighter1.TabStop = False
+            Me.about_pic.BackColor = System.Drawing.Color.Transparent
+            Me.about_pic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_about
+            Me.about_pic.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.about_pic.Location = New System.Drawing.Point(2, 2)
+            Me.about_pic.Name = "about_pic"
+            Me.about_pic.Size = New System.Drawing.Size(25, 20)
+            Me.about_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.about_pic.TabIndex = 176
+            Me.about_pic.TabStop = False
             '
-            'highlighter2
+            'settings_pic
             '
-            Me.highlighter2.BackColor = System.Drawing.Color.Transparent
-            Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.highlighter2.Location = New System.Drawing.Point(33, 5)
-            Me.highlighter2.Name = "highlighter2"
-            Me.highlighter2.Size = New System.Drawing.Size(20, 20)
-            Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-            Me.highlighter2.TabIndex = 218
-            Me.highlighter2.TabStop = False
+            Me.settings_pic.BackColor = System.Drawing.Color.Transparent
+            Me.settings_pic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_settings
+            Me.settings_pic.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.settings_pic.Location = New System.Drawing.Point(33, 2)
+            Me.settings_pic.Name = "settings_pic"
+            Me.settings_pic.Size = New System.Drawing.Size(25, 20)
+            Me.settings_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.settings_pic.TabIndex = 175
+            Me.settings_pic.TabStop = False
             '
-            'createTemplate_bt
+            'highlighter5
             '
-            Me.createTemplate_bt.BackColor = System.Drawing.Color.DimGray
-            Me.createTemplate_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.createTemplate_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.createTemplate_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.createTemplate_bt.Location = New System.Drawing.Point(123, 441)
-            Me.createTemplate_bt.Name = "createTemplate_bt"
-            Me.createTemplate_bt.Size = New System.Drawing.Size(147, 34)
-            Me.createTemplate_bt.TabIndex = 214
-            Me.createTemplate_bt.Text = "Create template file"
-            Me.createTemplate_bt.UseVisualStyleBackColor = False
-            Me.createTemplate_bt.Visible = False
+            Me.highlighter5.BackColor = System.Drawing.Color.Transparent
+            Me.highlighter5.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_minimize
+            Me.highlighter5.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.highlighter5.Location = New System.Drawing.Point(64, 2)
+            Me.highlighter5.Name = "highlighter5"
+            Me.highlighter5.Size = New System.Drawing.Size(25, 20)
+            Me.highlighter5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.highlighter5.TabIndex = 174
+            Me.highlighter5.TabStop = False
+            '
+            'highlighter4
+            '
+            Me.highlighter4.BackColor = System.Drawing.Color.Transparent
+            Me.highlighter4.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_close
+            Me.highlighter4.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.highlighter4.Location = New System.Drawing.Point(95, 2)
+            Me.highlighter4.Name = "highlighter4"
+            Me.highlighter4.Size = New System.Drawing.Size(25, 20)
+            Me.highlighter4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.highlighter4.TabIndex = 173
+            Me.highlighter4.TabStop = False
             '
             'LiveView
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackColor = System.Drawing.SystemColors.Control
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.ClientSize = New System.Drawing.Size(1001, 600)
+            Me.ClientSize = New System.Drawing.Size(1001, 646)
             Me.Controls.Add(Me.header)
             Me.Controls.Add(Me.mainpanel)
             Me.Controls.Add(Me.back_bt)
@@ -633,8 +665,8 @@
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.KeyPreview = True
-            Me.MaximumSize = New System.Drawing.Size(1920, 600)
-            Me.MinimumSize = New System.Drawing.Size(800, 600)
+            Me.MaximumSize = New System.Drawing.Size(1920, 646)
+            Me.MinimumSize = New System.Drawing.Size(800, 646)
             Me.Name = "LiveView"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Live_View"
@@ -650,8 +682,10 @@
             Me.mainpanel.ResumeLayout(False)
             Me.header.ResumeLayout(False)
             Me.closepanel.ResumeLayout(False)
-            CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.about_pic, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub
@@ -711,9 +745,11 @@
         Friend WithEvents back_bt As System.Windows.Forms.Button
         Friend WithEvents mainpanel As System.Windows.Forms.Panel
         Friend WithEvents header As System.Windows.Forms.Panel
-        Friend WithEvents closepanel As System.Windows.Forms.Panel
-        Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox
-        Friend WithEvents highlighter2 As System.Windows.Forms.PictureBox
         Friend WithEvents createTemplate_bt As System.Windows.Forms.Button
+        Friend WithEvents closepanel As System.Windows.Forms.Panel
+        Friend WithEvents about_pic As System.Windows.Forms.PictureBox
+        Friend WithEvents settings_pic As System.Windows.Forms.PictureBox
+        Friend WithEvents highlighter5 As System.Windows.Forms.PictureBox
+        Friend WithEvents highlighter4 As System.Windows.Forms.PictureBox
     End Class
 End Namespace

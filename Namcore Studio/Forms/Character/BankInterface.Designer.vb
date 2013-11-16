@@ -272,7 +272,7 @@ Namespace Forms.Character
             Me.label2.BackColor = System.Drawing.Color.Transparent
             Me.label2.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.label2.ForeColor = System.Drawing.Color.Black
             Me.label2.Location = New System.Drawing.Point(162, 3)
             Me.label2.Name = "label2"
             Me.label2.Size = New System.Drawing.Size(88, 20)
@@ -285,7 +285,7 @@ Namespace Forms.Character
             Me.Label1.BackColor = System.Drawing.Color.Transparent
             Me.Label1.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label1.ForeColor = System.Drawing.Color.Black
             Me.Label1.Location = New System.Drawing.Point(162, 265)
             Me.Label1.Name = "Label1"
             Me.Label1.Size = New System.Drawing.Size(84, 20)
@@ -340,7 +340,7 @@ Namespace Forms.Character
             Me.BackPanel.Controls.Add(Me.bag7Panel)
             Me.BackPanel.Controls.Add(Me.BankLayoutPanel)
             Me.BackPanel.Controls.Add(Me.bag6Panel)
-            Me.BackPanel.Location = New System.Drawing.Point(2, 34)
+            Me.BackPanel.Location = New System.Drawing.Point(2, 83)
             Me.BackPanel.Name = "BackPanel"
             Me.BackPanel.Size = New System.Drawing.Size(754, 350)
             Me.BackPanel.TabIndex = 245
@@ -349,8 +349,8 @@ Namespace Forms.Character
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.ClientSize = New System.Drawing.Size(761, 388)
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.ClientSize = New System.Drawing.Size(761, 438)
             Me.Controls.Add(Me.BackPanel)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.reference_itm_panel)

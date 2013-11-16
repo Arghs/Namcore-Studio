@@ -59,7 +59,32 @@ Namespace Forms
         Public Structure Data2Thread
             Public Lite As Boolean
         End Structure
-       
+
+        Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter4.MouseEnter
+            sender.backgroundimage = My.Resources.bt_close_light
+        End Sub
+        Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter4.MouseLeave
+            sender.backgroundimage = My.Resources.bt_close
+        End Sub
+        Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter5.MouseEnter
+            sender.backgroundimage = My.Resources.bt_minimize_light
+        End Sub
+        Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter5.MouseLeave
+            sender.backgroundimage = My.Resources.bt_minimize
+        End Sub
+        Private Sub settingsBt_MouseEnter(sender As Object, e As EventArgs) Handles settings_pic.MouseEnter
+            sender.backgroundimage = My.Resources.bt_settings_light
+        End Sub
+        Private Sub settingsBt_MouseLeave(sender As Object, e As EventArgs) Handles settings_pic.MouseLeave
+            sender.backgroundimage = My.Resources.bt_settings
+        End Sub
+        Private Sub aboutBt_MouseEnter(sender As Object, e As EventArgs) Handles about_pic.MouseEnter
+            sender.backgroundimage = My.Resources.bt_about_light
+        End Sub
+        Private Sub aboutBt_MouseLeave(sender As Object, e As EventArgs) Handles about_pic.MouseLeave
+            sender.backgroundimage = My.Resources.bt_about
+        End Sub
+
         Private Sub connect_bt_Click(sender As Object, e As EventArgs) Handles connect_bt.Click
             GlobalVariables.con_operator = 1
             DbConnect.Show()
@@ -130,6 +155,7 @@ Namespace Forms
                 characterview.Items.Add(itm)
                 characterview.EnsureVisible(characterview.Items.Count - 1)
                 Dim accountSet As Integer = TryInt(SplitString(accountSetIndex, "[accountId:" & str(1) & "@SetId:", "]"))
+                player.AccountSet = accountSet
                 AddCharacterSet(genSet, player, GetAccountSetBySetId(accountSet))
             Next
             GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Copy
@@ -442,7 +468,6 @@ Namespace Forms
         End Sub
 
         Private Sub Live_View_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-            AddHandler highlighter2.Click, AddressOf highlighter2_Click
             Dim controlLst As List(Of Control)
             controlLst = FindAllChildren()
             For Each itemControl As Control In controlLst
@@ -1188,21 +1213,21 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) _
-            Handles highlighter1.MouseEnter, highlighter2.MouseEnter
+        Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs)
+
             sender.backgroundimage = My.Resources.highlight
         End Sub
 
-        Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) _
-            Handles highlighter1.MouseLeave, highlighter2.MouseLeave
+        Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs)
+
             sender.backgroundimage = Nothing
         End Sub
 
-        Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
+        Private Sub highlighter1_Click(sender As Object, e As EventArgs)
             WindowState = FormWindowState.Minimized
         End Sub
 
-        Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
+        Private Sub highlighter2_Click(sender As Object, e As EventArgs)
             back_bt.PerformClick()
         End Sub
 
@@ -1310,6 +1335,11 @@ Namespace Forms
             CloseProcessStatus()
             Userwait.Close()
             MsgBox(ResourceHandler.GetUserMessage("templateFileCreated"), MsgBoxStyle.Information, "Info")
+        End Sub
+
+     
+        Private Sub highlighter4_Click(sender As Object, e As EventArgs) Handles highlighter4.Click
+            Close()
         End Sub
     End Class
 End Namespace

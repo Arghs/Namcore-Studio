@@ -49,10 +49,10 @@ Namespace Forms.Character
             '
             'qst_lst
             '
-            Me.qst_lst.BackColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(172, Byte), Integer))
+            Me.qst_lst.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
             Me.qst_lst.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.qstid, Me.qstname, Me.finished, Me.rewarded})
             Me.qst_lst.FullRowSelect = True
-            Me.qst_lst.Location = New System.Drawing.Point(4, 81)
+            Me.qst_lst.Location = New System.Drawing.Point(4, 122)
             Me.qst_lst.Name = "qst_lst"
             Me.qst_lst.Size = New System.Drawing.Size(694, 447)
             Me.qst_lst.TabIndex = 0
@@ -136,7 +136,7 @@ Namespace Forms.Character
             Me.add_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.add_bt.ForeColor = System.Drawing.Color.Black
             Me.add_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.add_bt.Location = New System.Drawing.Point(9, 41)
+            Me.add_bt.Location = New System.Drawing.Point(9, 83)
             Me.add_bt.Name = "add_bt"
             Me.add_bt.Size = New System.Drawing.Size(155, 34)
             Me.add_bt.TabIndex = 227
@@ -148,8 +148,8 @@ Namespace Forms.Character
             Me.Label1.AutoSize = True
             Me.Label1.BackColor = System.Drawing.Color.Transparent
             Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(172, Byte), Integer))
-            Me.Label1.Location = New System.Drawing.Point(462, 59)
+            Me.Label1.ForeColor = System.Drawing.Color.Black
+            Me.Label1.Location = New System.Drawing.Point(462, 101)
             Me.Label1.Name = "Label1"
             Me.Label1.Size = New System.Drawing.Size(234, 16)
             Me.Label1.TabIndex = 228
@@ -158,7 +158,7 @@ Namespace Forms.Character
             'search_tb
             '
             Me.search_tb.ForeColor = System.Drawing.SystemColors.WindowFrame
-            Me.search_tb.Location = New System.Drawing.Point(170, 55)
+            Me.search_tb.Location = New System.Drawing.Point(170, 97)
             Me.search_tb.Name = "search_tb"
             Me.search_tb.Size = New System.Drawing.Size(100, 20)
             Me.search_tb.TabIndex = 229
@@ -169,31 +169,34 @@ Namespace Forms.Character
             Me.resultstatus_lbl.AutoSize = True
             Me.resultstatus_lbl.BackColor = System.Drawing.Color.Transparent
             Me.resultstatus_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.resultstatus_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(158, Byte), Integer), CType(CType(172, Byte), Integer))
-            Me.resultstatus_lbl.Location = New System.Drawing.Point(276, 59)
+            Me.resultstatus_lbl.ForeColor = System.Drawing.Color.Black
+            Me.resultstatus_lbl.Location = New System.Drawing.Point(276, 101)
             Me.resultstatus_lbl.Name = "resultstatus_lbl"
             Me.resultstatus_lbl.Size = New System.Drawing.Size(78, 16)
             Me.resultstatus_lbl.TabIndex = 230
             Me.resultstatus_lbl.Text = "No results"
             '
-            'Quests_interface
+            'QuestsInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.ClientSize = New System.Drawing.Size(701, 533)
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.ClientSize = New System.Drawing.Size(701, 572)
             Me.Controls.Add(Me.resultstatus_lbl)
             Me.Controls.Add(Me.search_tb)
             Me.Controls.Add(Me.Label1)
             Me.Controls.Add(Me.add_bt)
             Me.Controls.Add(Me.qst_lst)
             Me.DoubleBuffered = True
-            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "QuestsInterface"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Quests_interface"
+            Me.Controls.SetChildIndex(Me.qst_lst, 0)
+            Me.Controls.SetChildIndex(Me.add_bt, 0)
+            Me.Controls.SetChildIndex(Me.Label1, 0)
+            Me.Controls.SetChildIndex(Me.search_tb, 0)
+            Me.Controls.SetChildIndex(Me.resultstatus_lbl, 0)
             Me.qstContext.ResumeLayout(False)
             Me.ResumeLayout(False)
             Me.PerformLayout()

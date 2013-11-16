@@ -62,7 +62,7 @@ Namespace Forms
             Me.charname_lbl.BackColor = System.Drawing.Color.Transparent
             Me.charname_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.charname_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.charname_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.charname_lbl.ForeColor = System.Drawing.Color.Black
             Me.charname_lbl.Location = New System.Drawing.Point(12, 40)
             Me.charname_lbl.Name = "charname_lbl"
             Me.charname_lbl.Size = New System.Drawing.Size(119, 20)
@@ -75,7 +75,7 @@ Namespace Forms
             Me.characterview.CheckBoxes = True
             Me.characterview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.charguid, Me.caccid, Me.charname, Me.charrace, Me.charclass, Me.chargender, Me.charlevel})
             Me.characterview.FullRowSelect = True
-            Me.characterview.Location = New System.Drawing.Point(12, 193)
+            Me.characterview.Location = New System.Drawing.Point(12, 212)
             Me.characterview.MultiSelect = False
             Me.characterview.Name = "characterview"
             Me.characterview.Size = New System.Drawing.Size(478, 197)
@@ -119,7 +119,7 @@ Namespace Forms
             Me.Label2.AutoSize = True
             Me.Label2.BackColor = System.Drawing.Color.Transparent
             Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label2.ForeColor = System.Drawing.Color.Black
             Me.Label2.Location = New System.Drawing.Point(6, 22)
             Me.Label2.Name = "Label2"
             Me.Label2.Size = New System.Drawing.Size(72, 16)
@@ -132,7 +132,7 @@ Namespace Forms
             Me.level_lbl.BackColor = System.Drawing.Color.Transparent
             Me.level_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.level_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.level_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.level_lbl.ForeColor = System.Drawing.Color.Black
             Me.level_lbl.Location = New System.Drawing.Point(84, 22)
             Me.level_lbl.Name = "level_lbl"
             Me.level_lbl.Size = New System.Drawing.Size(141, 15)
@@ -144,7 +144,7 @@ Namespace Forms
             Me.Label1.AutoSize = True
             Me.Label1.BackColor = System.Drawing.Color.Transparent
             Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label1.ForeColor = System.Drawing.Color.Black
             Me.Label1.Location = New System.Drawing.Point(6, 45)
             Me.Label1.Name = "Label1"
             Me.Label1.Size = New System.Drawing.Size(58, 16)
@@ -157,7 +157,7 @@ Namespace Forms
             Me.Label3.BackColor = System.Drawing.Color.Transparent
             Me.Label3.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label3.ForeColor = System.Drawing.Color.Black
             Me.Label3.Location = New System.Drawing.Point(84, 46)
             Me.Label3.Name = "Label3"
             Me.Label3.Size = New System.Drawing.Size(67, 15)
@@ -169,7 +169,7 @@ Namespace Forms
             Me.Label4.AutoSize = True
             Me.Label4.BackColor = System.Drawing.Color.Transparent
             Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label4.ForeColor = System.Drawing.Color.Black
             Me.Label4.Location = New System.Drawing.Point(6, 68)
             Me.Label4.Name = "Label4"
             Me.Label4.Size = New System.Drawing.Size(79, 16)
@@ -182,7 +182,7 @@ Namespace Forms
             Me.Label5.BackColor = System.Drawing.Color.Transparent
             Me.Label5.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label5.ForeColor = System.Drawing.Color.Black
             Me.Label5.Location = New System.Drawing.Point(84, 69)
             Me.Label5.Name = "Label5"
             Me.Label5.Size = New System.Drawing.Size(141, 15)
@@ -206,8 +206,8 @@ Namespace Forms
             Me.Label7.AutoSize = True
             Me.Label7.BackColor = System.Drawing.Color.Transparent
             Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.Label7.Location = New System.Drawing.Point(262, 114)
+            Me.Label7.ForeColor = System.Drawing.Color.Black
+            Me.Label7.Location = New System.Drawing.Point(262, 133)
             Me.Label7.Name = "Label7"
             Me.Label7.Size = New System.Drawing.Size(84, 16)
             Me.Label7.TabIndex = 234
@@ -216,7 +216,7 @@ Namespace Forms
             'port_ud
             '
             Me.port_ud.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.port_ud.Location = New System.Drawing.Point(346, 112)
+            Me.port_ud.Location = New System.Drawing.Point(346, 131)
             Me.port_ud.Maximum = New Decimal(New Integer() {5, 0, 0, 0})
             Me.port_ud.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
             Me.port_ud.Name = "port_ud"
@@ -230,8 +230,8 @@ Namespace Forms
             Me.Label8.AutoSize = True
             Me.Label8.BackColor = System.Drawing.Color.Transparent
             Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.Label8.Location = New System.Drawing.Point(262, 139)
+            Me.Label8.ForeColor = System.Drawing.Color.Black
+            Me.Label8.Location = New System.Drawing.Point(262, 158)
             Me.Label8.Name = "Label8"
             Me.Label8.Size = New System.Drawing.Size(51, 16)
             Me.Label8.TabIndex = 236
@@ -243,8 +243,8 @@ Namespace Forms
             Me.Label9.BackColor = System.Drawing.Color.Transparent
             Me.Label9.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.Label9.Location = New System.Drawing.Point(319, 139)
+            Me.Label9.ForeColor = System.Drawing.Color.Black
+            Me.Label9.Location = New System.Drawing.Point(319, 158)
             Me.Label9.Name = "Label9"
             Me.Label9.Size = New System.Drawing.Size(157, 15)
             Me.Label9.TabIndex = 237
@@ -255,8 +255,8 @@ Namespace Forms
             Me.CheckBox1.AutoSize = True
             Me.CheckBox1.BackColor = System.Drawing.Color.Transparent
             Me.CheckBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
-            Me.CheckBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.CheckBox1.Location = New System.Drawing.Point(265, 89)
+            Me.CheckBox1.ForeColor = System.Drawing.Color.Black
+            Me.CheckBox1.Location = New System.Drawing.Point(265, 108)
             Me.CheckBox1.Name = "CheckBox1"
             Me.CheckBox1.Size = New System.Drawing.Size(118, 20)
             Me.CheckBox1.TabIndex = 238
@@ -268,8 +268,8 @@ Namespace Forms
             Me.Label10.AutoSize = True
             Me.Label10.BackColor = System.Drawing.Color.Transparent
             Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.Label10.Location = New System.Drawing.Point(13, 174)
+            Me.Label10.ForeColor = System.Drawing.Color.Black
+            Me.Label10.Location = New System.Drawing.Point(13, 193)
             Me.Label10.Name = "Label10"
             Me.Label10.Size = New System.Drawing.Size(87, 16)
             Me.Label10.TabIndex = 239
@@ -278,15 +278,15 @@ Namespace Forms
             'GroupBox1
             '
             Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+            Me.GroupBox1.Controls.Add(Me.Label5)
             Me.GroupBox1.Controls.Add(Me.Label2)
             Me.GroupBox1.Controls.Add(Me.level_lbl)
             Me.GroupBox1.Controls.Add(Me.Label3)
             Me.GroupBox1.Controls.Add(Me.Label1)
-            Me.GroupBox1.Controls.Add(Me.Label5)
             Me.GroupBox1.Controls.Add(Me.Label4)
             Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.GroupBox1.Location = New System.Drawing.Point(22, 68)
+            Me.GroupBox1.ForeColor = System.Drawing.Color.Black
+            Me.GroupBox1.Location = New System.Drawing.Point(22, 87)
             Me.GroupBox1.Name = "GroupBox1"
             Me.GroupBox1.Size = New System.Drawing.Size(235, 93)
             Me.GroupBox1.TabIndex = 240
@@ -301,7 +301,7 @@ Namespace Forms
             Me.reset_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.reset_bt.ForeColor = System.Drawing.Color.Black
             Me.reset_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.reset_bt.Location = New System.Drawing.Point(12, 396)
+            Me.reset_bt.Location = New System.Drawing.Point(12, 415)
             Me.reset_bt.Name = "reset_bt"
             Me.reset_bt.Size = New System.Drawing.Size(155, 34)
             Me.reset_bt.TabIndex = 243
@@ -316,7 +316,7 @@ Namespace Forms
             Me.savechanges_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.savechanges_bt.ForeColor = System.Drawing.Color.Black
             Me.savechanges_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.savechanges_bt.Location = New System.Drawing.Point(173, 396)
+            Me.savechanges_bt.Location = New System.Drawing.Point(173, 415)
             Me.savechanges_bt.Name = "savechanges_bt"
             Me.savechanges_bt.Size = New System.Drawing.Size(155, 34)
             Me.savechanges_bt.TabIndex = 242
@@ -330,7 +330,7 @@ Namespace Forms
             Me.exit_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.exit_bt.ForeColor = System.Drawing.Color.Black
             Me.exit_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.exit_bt.Location = New System.Drawing.Point(335, 396)
+            Me.exit_bt.Location = New System.Drawing.Point(335, 415)
             Me.exit_bt.Name = "exit_bt"
             Me.exit_bt.Size = New System.Drawing.Size(155, 34)
             Me.exit_bt.TabIndex = 241
@@ -341,27 +341,38 @@ Namespace Forms
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.ClientSize = New System.Drawing.Size(501, 442)
-            Me.Controls.Add(Me.reset_bt)
-            Me.Controls.Add(Me.savechanges_bt)
-            Me.Controls.Add(Me.exit_bt)
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.ClientSize = New System.Drawing.Size(501, 458)
             Me.Controls.Add(Me.GroupBox1)
-            Me.Controls.Add(Me.Label10)
             Me.Controls.Add(Me.CheckBox1)
             Me.Controls.Add(Me.Label9)
             Me.Controls.Add(Me.Label8)
             Me.Controls.Add(Me.port_ud)
             Me.Controls.Add(Me.Label7)
+            Me.Controls.Add(Me.reset_bt)
+            Me.Controls.Add(Me.savechanges_bt)
+            Me.Controls.Add(Me.exit_bt)
+            Me.Controls.Add(Me.Label10)
             Me.Controls.Add(Me.Label6)
             Me.Controls.Add(Me.characterview)
             Me.Controls.Add(Me.charname_lbl)
             Me.DoubleBuffered = True
-            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Name = "AccountOverview"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "AccountOverview"
+            Me.Controls.SetChildIndex(Me.charname_lbl, 0)
+            Me.Controls.SetChildIndex(Me.characterview, 0)
+            Me.Controls.SetChildIndex(Me.Label6, 0)
+            Me.Controls.SetChildIndex(Me.Label10, 0)
+            Me.Controls.SetChildIndex(Me.exit_bt, 0)
+            Me.Controls.SetChildIndex(Me.savechanges_bt, 0)
+            Me.Controls.SetChildIndex(Me.reset_bt, 0)
+            Me.Controls.SetChildIndex(Me.Label7, 0)
+            Me.Controls.SetChildIndex(Me.port_ud, 0)
+            Me.Controls.SetChildIndex(Me.Label8, 0)
+            Me.Controls.SetChildIndex(Me.Label9, 0)
+            Me.Controls.SetChildIndex(Me.CheckBox1, 0)
+            Me.Controls.SetChildIndex(Me.GroupBox1, 0)
             CType(Me.port_ud, System.ComponentModel.ISupportInitialize).EndInit()
             Me.GroupBox1.ResumeLayout(False)
             Me.GroupBox1.PerformLayout()

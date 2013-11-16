@@ -346,7 +346,7 @@ Namespace Forms.Character
                         charAv.Id = retnvalue
                         charAv.GainDate = Date.Today.ToTimeStamp()
                         If _correctIds.Contains(charAv.Id) Then
-                           AddAvToLayout(charAv)
+                            AddAvToLayout(charAv)
                         End If
                         If GlobalVariables.currentEditedCharSet Is Nothing Then
                             GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()

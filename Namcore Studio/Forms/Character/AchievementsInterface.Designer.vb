@@ -67,7 +67,7 @@ Namespace Forms.Character
             '
             Me.AVLayoutPanel.AutoScroll = True
             Me.AVLayoutPanel.BackColor = System.Drawing.Color.Transparent
-            Me.AVLayoutPanel.Location = New System.Drawing.Point(161, 72)
+            Me.AVLayoutPanel.Location = New System.Drawing.Point(161, 86)
             Me.AVLayoutPanel.Name = "AVLayoutPanel"
             Me.AVLayoutPanel.Size = New System.Drawing.Size(850, 434)
             Me.AVLayoutPanel.TabIndex = 5
@@ -79,7 +79,7 @@ Namespace Forms.Character
             Me.cat_id_92_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_92_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_92_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_92_bt.Location = New System.Drawing.Point(12, 72)
+            Me.cat_id_92_bt.Location = New System.Drawing.Point(12, 86)
             Me.cat_id_92_bt.Name = "cat_id_92_bt"
             Me.cat_id_92_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_92_bt.TabIndex = 165
@@ -93,7 +93,7 @@ Namespace Forms.Character
             Me.cat_id_96_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_96_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_96_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_96_bt.Location = New System.Drawing.Point(12, 112)
+            Me.cat_id_96_bt.Location = New System.Drawing.Point(12, 126)
             Me.cat_id_96_bt.Name = "cat_id_96_bt"
             Me.cat_id_96_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_96_bt.TabIndex = 166
@@ -107,7 +107,7 @@ Namespace Forms.Character
             Me.cat_id_97_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_97_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_97_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_97_bt.Location = New System.Drawing.Point(12, 152)
+            Me.cat_id_97_bt.Location = New System.Drawing.Point(12, 166)
             Me.cat_id_97_bt.Name = "cat_id_97_bt"
             Me.cat_id_97_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_97_bt.TabIndex = 167
@@ -121,7 +121,7 @@ Namespace Forms.Character
             Me.cat_id_95_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_95_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_95_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_95_bt.Location = New System.Drawing.Point(12, 192)
+            Me.cat_id_95_bt.Location = New System.Drawing.Point(12, 206)
             Me.cat_id_95_bt.Name = "cat_id_95_bt"
             Me.cat_id_95_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_95_bt.TabIndex = 168
@@ -135,7 +135,7 @@ Namespace Forms.Character
             Me.cat_id_168_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_168_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_168_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_168_bt.Location = New System.Drawing.Point(12, 232)
+            Me.cat_id_168_bt.Location = New System.Drawing.Point(12, 246)
             Me.cat_id_168_bt.Name = "cat_id_168_bt"
             Me.cat_id_168_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_168_bt.TabIndex = 169
@@ -149,7 +149,7 @@ Namespace Forms.Character
             Me.cat_id_169_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_169_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_169_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_169_bt.Location = New System.Drawing.Point(12, 272)
+            Me.cat_id_169_bt.Location = New System.Drawing.Point(12, 286)
             Me.cat_id_169_bt.Name = "cat_id_169_bt"
             Me.cat_id_169_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_169_bt.TabIndex = 170
@@ -163,7 +163,7 @@ Namespace Forms.Character
             Me.cat_id_201_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_201_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_201_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_201_bt.Location = New System.Drawing.Point(12, 312)
+            Me.cat_id_201_bt.Location = New System.Drawing.Point(12, 326)
             Me.cat_id_201_bt.Name = "cat_id_201_bt"
             Me.cat_id_201_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_201_bt.TabIndex = 171
@@ -177,7 +177,7 @@ Namespace Forms.Character
             Me.cat_id_15165_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_15165_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_15165_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_15165_bt.Location = New System.Drawing.Point(12, 352)
+            Me.cat_id_15165_bt.Location = New System.Drawing.Point(12, 366)
             Me.cat_id_15165_bt.Name = "cat_id_15165_bt"
             Me.cat_id_15165_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_15165_bt.TabIndex = 172
@@ -191,7 +191,7 @@ Namespace Forms.Character
             Me.cat_id_155_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_155_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_155_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_155_bt.Location = New System.Drawing.Point(12, 392)
+            Me.cat_id_155_bt.Location = New System.Drawing.Point(12, 406)
             Me.cat_id_155_bt.Name = "cat_id_155_bt"
             Me.cat_id_155_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_155_bt.TabIndex = 173
@@ -205,7 +205,7 @@ Namespace Forms.Character
             Me.cat_id_15219_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_15219_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_15219_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_15219_bt.Location = New System.Drawing.Point(12, 432)
+            Me.cat_id_15219_bt.Location = New System.Drawing.Point(12, 446)
             Me.cat_id_15219_bt.Name = "cat_id_15219_bt"
             Me.cat_id_15219_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_15219_bt.TabIndex = 174
@@ -219,7 +219,7 @@ Namespace Forms.Character
             Me.cat_id_81_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.cat_id_81_bt.ForeColor = System.Drawing.Color.Black
             Me.cat_id_81_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cat_id_81_bt.Location = New System.Drawing.Point(12, 472)
+            Me.cat_id_81_bt.Location = New System.Drawing.Point(12, 486)
             Me.cat_id_81_bt.Name = "cat_id_81_bt"
             Me.cat_id_81_bt.Size = New System.Drawing.Size(143, 34)
             Me.cat_id_81_bt.TabIndex = 175
@@ -329,7 +329,7 @@ Namespace Forms.Character
             Me.add_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.add_bt.ForeColor = System.Drawing.Color.Black
             Me.add_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.add_bt.Location = New System.Drawing.Point(893, 37)
+            Me.add_bt.Location = New System.Drawing.Point(893, 51)
             Me.add_bt.Name = "add_bt"
             Me.add_bt.Size = New System.Drawing.Size(118, 29)
             Me.add_bt.TabIndex = 225
@@ -339,7 +339,7 @@ Namespace Forms.Character
             'browse_tb
             '
             Me.browse_tb.ForeColor = System.Drawing.SystemColors.WindowFrame
-            Me.browse_tb.Location = New System.Drawing.Point(161, 43)
+            Me.browse_tb.Location = New System.Drawing.Point(310, 57)
             Me.browse_tb.Name = "browse_tb"
             Me.browse_tb.Size = New System.Drawing.Size(280, 20)
             Me.browse_tb.TabIndex = 226
@@ -348,7 +348,7 @@ Namespace Forms.Character
             'subcat_combo
             '
             Me.subcat_combo.FormattingEnabled = True
-            Me.subcat_combo.Location = New System.Drawing.Point(766, 42)
+            Me.subcat_combo.Location = New System.Drawing.Point(766, 56)
             Me.subcat_combo.Name = "subcat_combo"
             Me.subcat_combo.Size = New System.Drawing.Size(121, 21)
             Me.subcat_combo.TabIndex = 227
@@ -383,7 +383,7 @@ Namespace Forms.Character
             Me.search_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.search_bt.ForeColor = System.Drawing.Color.Black
             Me.search_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.search_bt.Location = New System.Drawing.Point(447, 37)
+            Me.search_bt.Location = New System.Drawing.Point(596, 51)
             Me.search_bt.Name = "search_bt"
             Me.search_bt.Size = New System.Drawing.Size(118, 29)
             Me.search_bt.TabIndex = 229
@@ -394,8 +394,8 @@ Namespace Forms.Character
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.ClientSize = New System.Drawing.Size(1023, 516)
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.ClientSize = New System.Drawing.Size(1023, 533)
             Me.Controls.Add(Me.search_bt)
             Me.Controls.Add(Me.waitpanel)
             Me.Controls.Add(Me.subcat_combo)

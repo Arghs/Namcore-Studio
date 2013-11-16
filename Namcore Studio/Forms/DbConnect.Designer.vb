@@ -70,7 +70,7 @@ Namespace Forms
             Me.connect_panel.BackColor = System.Drawing.Color.Transparent
             Me.connect_panel.Controls.Add(Me.login1_panel)
             Me.connect_panel.Controls.Add(Me.connect_header_label)
-            Me.connect_panel.Location = New System.Drawing.Point(12, 35)
+            Me.connect_panel.Location = New System.Drawing.Point(12, 84)
             Me.connect_panel.Name = "connect_panel"
             Me.connect_panel.Size = New System.Drawing.Size(514, 490)
             Me.connect_panel.TabIndex = 1
@@ -110,7 +110,7 @@ Namespace Forms
             Me.Label11.AutoSize = True
             Me.Label11.BackColor = System.Drawing.Color.Transparent
             Me.Label11.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label11.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label11.ForeColor = System.Drawing.Color.Black
             Me.Label11.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label11.Location = New System.Drawing.Point(364, 45)
             Me.Label11.Name = "Label11"
@@ -123,7 +123,7 @@ Namespace Forms
             Me.Label14.AutoSize = True
             Me.Label14.BackColor = System.Drawing.Color.Transparent
             Me.Label14.Font = New System.Drawing.Font("Franklin Gothic Medium", 12.0!, System.Drawing.FontStyle.Bold)
-            Me.Label14.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label14.ForeColor = System.Drawing.Color.Black
             Me.Label14.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label14.Location = New System.Drawing.Point(6, 12)
             Me.Label14.Name = "Label14"
@@ -136,7 +136,7 @@ Namespace Forms
             Me.Label15.AutoSize = True
             Me.Label15.BackColor = System.Drawing.Color.Transparent
             Me.Label15.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label15.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label15.ForeColor = System.Drawing.Color.Black
             Me.Label15.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label15.Location = New System.Drawing.Point(16, 45)
             Me.Label15.Name = "Label15"
@@ -149,7 +149,7 @@ Namespace Forms
             Me.Label16.AutoSize = True
             Me.Label16.BackColor = System.Drawing.Color.Transparent
             Me.Label16.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label16.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label16.ForeColor = System.Drawing.Color.Black
             Me.Label16.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label16.Location = New System.Drawing.Point(16, 98)
             Me.Label16.Name = "Label16"
@@ -162,7 +162,7 @@ Namespace Forms
             Me.Label17.AutoSize = True
             Me.Label17.BackColor = System.Drawing.Color.Transparent
             Me.Label17.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label17.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label17.ForeColor = System.Drawing.Color.Black
             Me.Label17.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label17.Location = New System.Drawing.Point(16, 72)
             Me.Label17.Name = "Label17"
@@ -195,7 +195,7 @@ Namespace Forms
             '
             Me.viaserver_radio.AutoSize = True
             Me.viaserver_radio.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.viaserver_radio.ForeColor = System.Drawing.Color.SteelBlue
+            Me.viaserver_radio.ForeColor = System.Drawing.Color.Black
             Me.viaserver_radio.Location = New System.Drawing.Point(3, 28)
             Me.viaserver_radio.Name = "viaserver_radio"
             Me.viaserver_radio.Size = New System.Drawing.Size(262, 21)
@@ -208,7 +208,7 @@ Namespace Forms
             Me.defaultconn_radio.AutoSize = True
             Me.defaultconn_radio.Checked = True
             Me.defaultconn_radio.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.defaultconn_radio.ForeColor = System.Drawing.Color.SteelBlue
+            Me.defaultconn_radio.ForeColor = System.Drawing.Color.Black
             Me.defaultconn_radio.Location = New System.Drawing.Point(3, 3)
             Me.defaultconn_radio.Name = "defaultconn_radio"
             Me.defaultconn_radio.Size = New System.Drawing.Size(149, 21)
@@ -270,7 +270,7 @@ Namespace Forms
             Me.Label9.AutoSize = True
             Me.Label9.BackColor = System.Drawing.Color.Transparent
             Me.Label9.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label9.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label9.ForeColor = System.Drawing.Color.Black
             Me.Label9.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label9.Location = New System.Drawing.Point(263, 66)
             Me.Label9.Name = "Label9"
@@ -283,7 +283,7 @@ Namespace Forms
             Me.Label8.AutoSize = True
             Me.Label8.BackColor = System.Drawing.Color.Transparent
             Me.Label8.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label8.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label8.ForeColor = System.Drawing.Color.Black
             Me.Label8.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label8.Location = New System.Drawing.Point(409, 38)
             Me.Label8.Name = "Label8"
@@ -296,7 +296,7 @@ Namespace Forms
             Me.Label7.AutoSize = True
             Me.Label7.BackColor = System.Drawing.Color.Transparent
             Me.Label7.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label7.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label7.ForeColor = System.Drawing.Color.Black
             Me.Label7.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label7.Location = New System.Drawing.Point(16, 170)
             Me.Label7.Name = "Label7"
@@ -317,7 +317,7 @@ Namespace Forms
             Me.Label6.AutoSize = True
             Me.Label6.BackColor = System.Drawing.Color.Transparent
             Me.Label6.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label6.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label6.ForeColor = System.Drawing.Color.Black
             Me.Label6.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label6.Location = New System.Drawing.Point(16, 144)
             Me.Label6.Name = "Label6"
@@ -338,7 +338,7 @@ Namespace Forms
             Me.Label1.AutoSize = True
             Me.Label1.BackColor = System.Drawing.Color.Transparent
             Me.Label1.Font = New System.Drawing.Font("Franklin Gothic Medium", 12.0!, System.Drawing.FontStyle.Bold)
-            Me.Label1.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label1.ForeColor = System.Drawing.Color.Black
             Me.Label1.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label1.Location = New System.Drawing.Point(6, 12)
             Me.Label1.Name = "Label1"
@@ -351,7 +351,7 @@ Namespace Forms
             Me.Label2.AutoSize = True
             Me.Label2.BackColor = System.Drawing.Color.Transparent
             Me.Label2.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label2.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label2.ForeColor = System.Drawing.Color.Black
             Me.Label2.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label2.Location = New System.Drawing.Point(16, 38)
             Me.Label2.Name = "Label2"
@@ -364,7 +364,7 @@ Namespace Forms
             Me.Label5.AutoSize = True
             Me.Label5.BackColor = System.Drawing.Color.Transparent
             Me.Label5.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label5.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label5.ForeColor = System.Drawing.Color.Black
             Me.Label5.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label5.Location = New System.Drawing.Point(16, 118)
             Me.Label5.Name = "Label5"
@@ -377,7 +377,7 @@ Namespace Forms
             Me.Label4.AutoSize = True
             Me.Label4.BackColor = System.Drawing.Color.Transparent
             Me.Label4.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label4.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label4.ForeColor = System.Drawing.Color.Black
             Me.Label4.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label4.Location = New System.Drawing.Point(16, 92)
             Me.Label4.Name = "Label4"
@@ -406,7 +406,7 @@ Namespace Forms
             Me.Label3.AutoSize = True
             Me.Label3.BackColor = System.Drawing.Color.Transparent
             Me.Label3.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label3.ForeColor = System.Drawing.Color.SteelBlue
+            Me.Label3.ForeColor = System.Drawing.Color.Black
             Me.Label3.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label3.Location = New System.Drawing.Point(16, 66)
             Me.Label3.Name = "Label3"
@@ -439,7 +439,7 @@ Namespace Forms
             '
             Me.connect_header_label.AutoSize = True
             Me.connect_header_label.Font = New System.Drawing.Font("Franklin Gothic Medium", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.connect_header_label.ForeColor = System.Drawing.Color.SteelBlue
+            Me.connect_header_label.ForeColor = System.Drawing.Color.Black
             Me.connect_header_label.Location = New System.Drawing.Point(5, 10)
             Me.connect_header_label.Name = "connect_header_label"
             Me.connect_header_label.Size = New System.Drawing.Size(234, 24)
@@ -450,8 +450,8 @@ Namespace Forms
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.ClientSize = New System.Drawing.Size(541, 507)
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.ClientSize = New System.Drawing.Size(541, 554)
             Me.Controls.Add(Me.connect_panel)
             Me.DoubleBuffered = True
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)

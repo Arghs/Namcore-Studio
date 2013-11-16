@@ -189,7 +189,7 @@
             '
             Me.idcheck.AutoSize = True
             Me.idcheck.BackColor = System.Drawing.Color.Transparent
-            Me.idcheck.ForeColor = System.Drawing.Color.SteelBlue
+            Me.idcheck.ForeColor = System.Drawing.Color.Black
             Me.idcheck.Location = New System.Drawing.Point(12, 33)
             Me.idcheck.Name = "idcheck"
             Me.idcheck.Size = New System.Drawing.Size(37, 17)
@@ -201,7 +201,7 @@
             '
             Me.namecheck.AutoSize = True
             Me.namecheck.BackColor = System.Drawing.Color.Transparent
-            Me.namecheck.ForeColor = System.Drawing.Color.SteelBlue
+            Me.namecheck.ForeColor = System.Drawing.Color.Black
             Me.namecheck.Location = New System.Drawing.Point(12, 59)
             Me.namecheck.Name = "namecheck"
             Me.namecheck.Size = New System.Drawing.Size(54, 17)
@@ -213,7 +213,7 @@
             '
             Me.gmcheck.AutoSize = True
             Me.gmcheck.BackColor = System.Drawing.Color.Transparent
-            Me.gmcheck.ForeColor = System.Drawing.Color.SteelBlue
+            Me.gmcheck.ForeColor = System.Drawing.Color.Black
             Me.gmcheck.Location = New System.Drawing.Point(12, 86)
             Me.gmcheck.Name = "gmcheck"
             Me.gmcheck.Size = New System.Drawing.Size(72, 17)
@@ -225,7 +225,7 @@
             '
             Me.logincheck.AutoSize = True
             Me.logincheck.BackColor = System.Drawing.Color.Transparent
-            Me.logincheck.ForeColor = System.Drawing.Color.SteelBlue
+            Me.logincheck.ForeColor = System.Drawing.Color.Black
             Me.logincheck.Location = New System.Drawing.Point(12, 113)
             Me.logincheck.Name = "logincheck"
             Me.logincheck.Size = New System.Drawing.Size(75, 17)
@@ -237,7 +237,7 @@
             '
             Me.emailcheck.AutoSize = True
             Me.emailcheck.BackColor = System.Drawing.Color.Transparent
-            Me.emailcheck.ForeColor = System.Drawing.Color.SteelBlue
+            Me.emailcheck.ForeColor = System.Drawing.Color.Black
             Me.emailcheck.Location = New System.Drawing.Point(12, 140)
             Me.emailcheck.Name = "emailcheck"
             Me.emailcheck.Size = New System.Drawing.Size(51, 17)
@@ -268,7 +268,7 @@
             Me.filter_label.AutoSize = True
             Me.filter_label.BackColor = System.Drawing.Color.Transparent
             Me.filter_label.Font = New System.Drawing.Font("Franklin Gothic Medium", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.filter_label.ForeColor = System.Drawing.Color.SteelBlue
+            Me.filter_label.ForeColor = System.Drawing.Color.Black
             Me.filter_label.Location = New System.Drawing.Point(7, 6)
             Me.filter_label.Name = "filter_label"
             Me.filter_label.Size = New System.Drawing.Size(145, 24)
@@ -292,7 +292,7 @@
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.ClientSize = New System.Drawing.Size(553, 216)
             Me.Controls.Add(Me.close_bt)

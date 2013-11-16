@@ -4,7 +4,7 @@ Namespace Forms
 
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
     Partial Class TargetSelectInterface
-        Inherits EventTrigger
+        Inherits Form
 
         'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
         <System.Diagnostics.DebuggerNonUserCode()> _
@@ -54,8 +54,8 @@ Namespace Forms
             Me.Label10.AutoSize = True
             Me.Label10.BackColor = System.Drawing.Color.Transparent
             Me.Label10.Font = New System.Drawing.Font("Franklin Gothic Medium", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.Label10.Location = New System.Drawing.Point(10, 41)
+            Me.Label10.ForeColor = System.Drawing.Color.Black
+            Me.Label10.Location = New System.Drawing.Point(3, 9)
             Me.Label10.Name = "Label10"
             Me.Label10.Size = New System.Drawing.Size(349, 40)
             Me.Label10.TabIndex = 227
@@ -67,8 +67,8 @@ Namespace Forms
             Me.GroupBox1.Controls.Add(Me.opentemplate_bt)
             Me.GroupBox1.Controls.Add(Me.newtemplate_bt)
             Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.GroupBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.GroupBox1.Location = New System.Drawing.Point(28, 88)
+            Me.GroupBox1.ForeColor = System.Drawing.Color.Black
+            Me.GroupBox1.Location = New System.Drawing.Point(21, 56)
             Me.GroupBox1.Name = "GroupBox1"
             Me.GroupBox1.Size = New System.Drawing.Size(249, 112)
             Me.GroupBox1.TabIndex = 228
@@ -97,7 +97,7 @@ Namespace Forms
             Me.connect_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.connect_bt.ForeColor = System.Drawing.Color.Black
             Me.connect_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.connect_bt.Location = New System.Drawing.Point(37, 217)
+            Me.connect_bt.Location = New System.Drawing.Point(30, 185)
             Me.connect_bt.Name = "connect_bt"
             Me.connect_bt.Size = New System.Drawing.Size(206, 36)
             Me.connect_bt.TabIndex = 229
@@ -108,19 +108,18 @@ Namespace Forms
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.ClientSize = New System.Drawing.Size(455, 271)
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.ClientSize = New System.Drawing.Size(370, 234)
             Me.Controls.Add(Me.connect_bt)
             Me.Controls.Add(Me.GroupBox1)
             Me.Controls.Add(Me.Label10)
-            Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.ForeColor = System.Drawing.Color.Black
+            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Name = "TargetSelectInterface"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "TargetSelectInterface"
             Me.TopMost = True
-            Me.Controls.SetChildIndex(Me.Label10, 0)
-            Me.Controls.SetChildIndex(Me.GroupBox1, 0)
-            Me.Controls.SetChildIndex(Me.connect_bt, 0)
             Me.GroupBox1.ResumeLayout(False)
             Me.ResumeLayout(False)
             Me.PerformLayout()

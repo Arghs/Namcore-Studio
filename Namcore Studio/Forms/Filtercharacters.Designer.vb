@@ -50,7 +50,7 @@
             '
             Me.classcheck.AutoSize = True
             Me.classcheck.BackColor = System.Drawing.Color.Transparent
-            Me.classcheck.ForeColor = System.Drawing.Color.SteelBlue
+            Me.classcheck.ForeColor = System.Drawing.Color.Black
             Me.classcheck.Location = New System.Drawing.Point(8, 121)
             Me.classcheck.Name = "classcheck"
             Me.classcheck.Size = New System.Drawing.Size(51, 17)
@@ -62,7 +62,7 @@
             '
             Me.racecheck.AutoSize = True
             Me.racecheck.BackColor = System.Drawing.Color.Transparent
-            Me.racecheck.ForeColor = System.Drawing.Color.SteelBlue
+            Me.racecheck.ForeColor = System.Drawing.Color.Black
             Me.racecheck.Location = New System.Drawing.Point(8, 93)
             Me.racecheck.Name = "racecheck"
             Me.racecheck.Size = New System.Drawing.Size(52, 17)
@@ -74,7 +74,7 @@
             '
             Me.namecheck.AutoSize = True
             Me.namecheck.BackColor = System.Drawing.Color.Transparent
-            Me.namecheck.ForeColor = System.Drawing.Color.SteelBlue
+            Me.namecheck.ForeColor = System.Drawing.Color.Black
             Me.namecheck.Location = New System.Drawing.Point(8, 66)
             Me.namecheck.Name = "namecheck"
             Me.namecheck.Size = New System.Drawing.Size(54, 17)
@@ -86,7 +86,7 @@
             '
             Me.guidcheck.AutoSize = True
             Me.guidcheck.BackColor = System.Drawing.Color.Transparent
-            Me.guidcheck.ForeColor = System.Drawing.Color.SteelBlue
+            Me.guidcheck.ForeColor = System.Drawing.Color.Black
             Me.guidcheck.Location = New System.Drawing.Point(8, 40)
             Me.guidcheck.Name = "guidcheck"
             Me.guidcheck.Size = New System.Drawing.Size(53, 17)
@@ -149,7 +149,7 @@
             '
             Me.levelcheck.AutoSize = True
             Me.levelcheck.BackColor = System.Drawing.Color.Transparent
-            Me.levelcheck.ForeColor = System.Drawing.Color.SteelBlue
+            Me.levelcheck.ForeColor = System.Drawing.Color.Black
             Me.levelcheck.Location = New System.Drawing.Point(8, 151)
             Me.levelcheck.Name = "levelcheck"
             Me.levelcheck.Size = New System.Drawing.Size(52, 17)
@@ -216,7 +216,7 @@
             Me.filter_label.AutoSize = True
             Me.filter_label.BackColor = System.Drawing.Color.Transparent
             Me.filter_label.Font = New System.Drawing.Font("Franklin Gothic Medium", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.filter_label.ForeColor = System.Drawing.Color.SteelBlue
+            Me.filter_label.ForeColor = System.Drawing.Color.Black
             Me.filter_label.Location = New System.Drawing.Point(6, 6)
             Me.filter_label.Name = "filter_label"
             Me.filter_label.Size = New System.Drawing.Size(159, 24)
@@ -253,7 +253,7 @@
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.ClientSize = New System.Drawing.Size(566, 221)
             Me.Controls.Add(Me.close_bt)

@@ -117,7 +117,7 @@ Namespace Forms.Character
             Me.prim_1_name.AutoSize = True
             Me.prim_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.prim_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.prim_1_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.prim_1_name.ForeColor = System.Drawing.Color.Black
             Me.prim_1_name.Location = New System.Drawing.Point(91, 66)
             Me.prim_1_name.Name = "prim_1_name"
             Me.prim_1_name.Size = New System.Drawing.Size(71, 15)
@@ -128,7 +128,7 @@ Namespace Forms.Character
             '
             Me.Label1.AutoSize = True
             Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label1.ForeColor = System.Drawing.Color.Black
             Me.Label1.Location = New System.Drawing.Point(309, 33)
             Me.Label1.Name = "Label1"
             Me.Label1.Size = New System.Drawing.Size(53, 20)
@@ -139,7 +139,7 @@ Namespace Forms.Character
             '
             Me.Label2.AutoSize = True
             Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label2.ForeColor = System.Drawing.Color.Black
             Me.Label2.Location = New System.Drawing.Point(25, 33)
             Me.Label2.Name = "Label2"
             Me.Label2.Size = New System.Drawing.Size(54, 20)
@@ -150,7 +150,7 @@ Namespace Forms.Character
             '
             Me.Label3.AutoSize = True
             Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label3.ForeColor = System.Drawing.Color.Black
             Me.Label3.Location = New System.Drawing.Point(577, 33)
             Me.Label3.Name = "Label3"
             Me.Label3.Size = New System.Drawing.Size(53, 20)
@@ -172,7 +172,7 @@ Namespace Forms.Character
             Me.prim_2_name.AutoSize = True
             Me.prim_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.prim_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.prim_2_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.prim_2_name.ForeColor = System.Drawing.Color.Black
             Me.prim_2_name.Location = New System.Drawing.Point(91, 128)
             Me.prim_2_name.Name = "prim_2_name"
             Me.prim_2_name.Size = New System.Drawing.Size(71, 15)
@@ -194,7 +194,7 @@ Namespace Forms.Character
             Me.prim_3_name.AutoSize = True
             Me.prim_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.prim_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.prim_3_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.prim_3_name.ForeColor = System.Drawing.Color.Black
             Me.prim_3_name.Location = New System.Drawing.Point(91, 190)
             Me.prim_3_name.Name = "prim_3_name"
             Me.prim_3_name.Size = New System.Drawing.Size(71, 15)
@@ -216,7 +216,7 @@ Namespace Forms.Character
             Me.major_1_name.AutoSize = True
             Me.major_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.major_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.major_1_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.major_1_name.ForeColor = System.Drawing.Color.Black
             Me.major_1_name.Location = New System.Drawing.Point(375, 66)
             Me.major_1_name.Name = "major_1_name"
             Me.major_1_name.Size = New System.Drawing.Size(71, 15)
@@ -238,7 +238,7 @@ Namespace Forms.Character
             Me.major_2_name.AutoSize = True
             Me.major_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.major_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.major_2_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.major_2_name.ForeColor = System.Drawing.Color.Black
             Me.major_2_name.Location = New System.Drawing.Point(375, 128)
             Me.major_2_name.Name = "major_2_name"
             Me.major_2_name.Size = New System.Drawing.Size(71, 15)
@@ -260,7 +260,7 @@ Namespace Forms.Character
             Me.major_3_name.AutoSize = True
             Me.major_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.major_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.major_3_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.major_3_name.ForeColor = System.Drawing.Color.Black
             Me.major_3_name.Location = New System.Drawing.Point(375, 190)
             Me.major_3_name.Name = "major_3_name"
             Me.major_3_name.Size = New System.Drawing.Size(71, 15)
@@ -282,7 +282,7 @@ Namespace Forms.Character
             Me.minor_3_name.AutoSize = True
             Me.minor_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.minor_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.minor_3_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.minor_3_name.ForeColor = System.Drawing.Color.Black
             Me.minor_3_name.Location = New System.Drawing.Point(643, 190)
             Me.minor_3_name.Name = "minor_3_name"
             Me.minor_3_name.Size = New System.Drawing.Size(71, 15)
@@ -304,7 +304,7 @@ Namespace Forms.Character
             Me.minor_2_name.AutoSize = True
             Me.minor_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.minor_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.minor_2_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.minor_2_name.ForeColor = System.Drawing.Color.Black
             Me.minor_2_name.Location = New System.Drawing.Point(643, 128)
             Me.minor_2_name.Name = "minor_2_name"
             Me.minor_2_name.Size = New System.Drawing.Size(71, 15)
@@ -326,7 +326,7 @@ Namespace Forms.Character
             Me.minor_1_name.AutoSize = True
             Me.minor_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.minor_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.minor_1_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.minor_1_name.ForeColor = System.Drawing.Color.Black
             Me.minor_1_name.Location = New System.Drawing.Point(643, 66)
             Me.minor_1_name.Name = "minor_1_name"
             Me.minor_1_name.Size = New System.Drawing.Size(71, 15)
@@ -348,7 +348,7 @@ Namespace Forms.Character
             Me.sec_minor_3_name.AutoSize = True
             Me.sec_minor_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.sec_minor_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.sec_minor_3_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.sec_minor_3_name.ForeColor = System.Drawing.Color.Black
             Me.sec_minor_3_name.Location = New System.Drawing.Point(639, 448)
             Me.sec_minor_3_name.Name = "sec_minor_3_name"
             Me.sec_minor_3_name.Size = New System.Drawing.Size(71, 15)
@@ -370,7 +370,7 @@ Namespace Forms.Character
             Me.sec_minor_2_name.AutoSize = True
             Me.sec_minor_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.sec_minor_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.sec_minor_2_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.sec_minor_2_name.ForeColor = System.Drawing.Color.Black
             Me.sec_minor_2_name.Location = New System.Drawing.Point(639, 386)
             Me.sec_minor_2_name.Name = "sec_minor_2_name"
             Me.sec_minor_2_name.Size = New System.Drawing.Size(71, 15)
@@ -392,7 +392,7 @@ Namespace Forms.Character
             Me.sec_minor_1_name.AutoSize = True
             Me.sec_minor_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.sec_minor_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.sec_minor_1_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.sec_minor_1_name.ForeColor = System.Drawing.Color.Black
             Me.sec_minor_1_name.Location = New System.Drawing.Point(639, 324)
             Me.sec_minor_1_name.Name = "sec_minor_1_name"
             Me.sec_minor_1_name.Size = New System.Drawing.Size(71, 15)
@@ -414,7 +414,7 @@ Namespace Forms.Character
             Me.sec_major_3_name.AutoSize = True
             Me.sec_major_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.sec_major_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.sec_major_3_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.sec_major_3_name.ForeColor = System.Drawing.Color.Black
             Me.sec_major_3_name.Location = New System.Drawing.Point(371, 448)
             Me.sec_major_3_name.Name = "sec_major_3_name"
             Me.sec_major_3_name.Size = New System.Drawing.Size(71, 15)
@@ -436,7 +436,7 @@ Namespace Forms.Character
             Me.sec_major_2_name.AutoSize = True
             Me.sec_major_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.sec_major_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.sec_major_2_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.sec_major_2_name.ForeColor = System.Drawing.Color.Black
             Me.sec_major_2_name.Location = New System.Drawing.Point(371, 386)
             Me.sec_major_2_name.Name = "sec_major_2_name"
             Me.sec_major_2_name.Size = New System.Drawing.Size(71, 15)
@@ -458,7 +458,7 @@ Namespace Forms.Character
             Me.sec_major_1_name.AutoSize = True
             Me.sec_major_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.sec_major_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.sec_major_1_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.sec_major_1_name.ForeColor = System.Drawing.Color.Black
             Me.sec_major_1_name.Location = New System.Drawing.Point(371, 324)
             Me.sec_major_1_name.Name = "sec_major_1_name"
             Me.sec_major_1_name.Size = New System.Drawing.Size(71, 15)
@@ -480,7 +480,7 @@ Namespace Forms.Character
             Me.sec_prim_3_name.AutoSize = True
             Me.sec_prim_3_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.sec_prim_3_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.sec_prim_3_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.sec_prim_3_name.ForeColor = System.Drawing.Color.Black
             Me.sec_prim_3_name.Location = New System.Drawing.Point(87, 448)
             Me.sec_prim_3_name.Name = "sec_prim_3_name"
             Me.sec_prim_3_name.Size = New System.Drawing.Size(71, 15)
@@ -502,7 +502,7 @@ Namespace Forms.Character
             Me.sec_prim_2_name.AutoSize = True
             Me.sec_prim_2_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.sec_prim_2_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.sec_prim_2_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.sec_prim_2_name.ForeColor = System.Drawing.Color.Black
             Me.sec_prim_2_name.Location = New System.Drawing.Point(87, 386)
             Me.sec_prim_2_name.Name = "sec_prim_2_name"
             Me.sec_prim_2_name.Size = New System.Drawing.Size(71, 15)
@@ -523,7 +523,7 @@ Namespace Forms.Character
             '
             Me.Label12.AutoSize = True
             Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label12.ForeColor = System.Drawing.Color.Black
             Me.Label12.Location = New System.Drawing.Point(573, 291)
             Me.Label12.Name = "Label12"
             Me.Label12.Size = New System.Drawing.Size(53, 20)
@@ -534,7 +534,7 @@ Namespace Forms.Character
             '
             Me.Label13.AutoSize = True
             Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label13.ForeColor = System.Drawing.Color.Black
             Me.Label13.Location = New System.Drawing.Point(21, 291)
             Me.Label13.Name = "Label13"
             Me.Label13.Size = New System.Drawing.Size(54, 20)
@@ -545,7 +545,7 @@ Namespace Forms.Character
             '
             Me.Label14.AutoSize = True
             Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.Label14.ForeColor = System.Drawing.Color.Black
             Me.Label14.Location = New System.Drawing.Point(305, 291)
             Me.Label14.Name = "Label14"
             Me.Label14.Size = New System.Drawing.Size(53, 20)
@@ -557,7 +557,7 @@ Namespace Forms.Character
             Me.sec_prim_1_name.AutoSize = True
             Me.sec_prim_1_name.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.sec_prim_1_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.sec_prim_1_name.ForeColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.sec_prim_1_name.ForeColor = System.Drawing.Color.Black
             Me.sec_prim_1_name.Location = New System.Drawing.Point(87, 324)
             Me.sec_prim_1_name.Name = "sec_prim_1_name"
             Me.sec_prim_1_name.Size = New System.Drawing.Size(71, 15)
@@ -677,28 +677,29 @@ Namespace Forms.Character
             Me.Panel1.Controls.Add(Me.Label13)
             Me.Panel1.Controls.Add(Me.sec_prim_1_name)
             Me.Panel1.Controls.Add(Me.Label14)
-            Me.Panel1.Location = New System.Drawing.Point(8, 38)
+            Me.Panel1.Location = New System.Drawing.Point(8, 84)
             Me.Panel1.Name = "Panel1"
             Me.Panel1.Size = New System.Drawing.Size(859, 516)
             Me.Panel1.TabIndex = 176
             '
-            'Glyphs_interface
+            'GlyphsInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.cleanbg
-            Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.ClientSize = New System.Drawing.Size(875, 563)
+            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.ClientSize = New System.Drawing.Size(875, 599)
+            Me.Controls.Add(Me.Panel1)
             Me.Controls.Add(Me.addpanel)
             Me.Controls.Add(Me.changepanel)
-            Me.Controls.Add(Me.Panel1)
             Me.Cursor = System.Windows.Forms.Cursors.Default
             Me.DoubleBuffered = True
-            Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "GlyphsInterface"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Glyphs_interface"
+            Me.Controls.SetChildIndex(Me.changepanel, 0)
+            Me.Controls.SetChildIndex(Me.addpanel, 0)
+            Me.Controls.SetChildIndex(Me.Panel1, 0)
             CType(Me.prim_1_pic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.prim_2_pic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.prim_3_pic, System.ComponentModel.ISupportInitialize).EndInit()
