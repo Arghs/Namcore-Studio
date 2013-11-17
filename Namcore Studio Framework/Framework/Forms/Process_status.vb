@@ -58,15 +58,21 @@ Namespace Framework.Forms
             End If
         End Sub
 
-        Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter, highlighter2.MouseEnter
-            sender.backgroundimage = My.Resources.highlight
+        Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter2.MouseEnter
+            sender.backgroundimage = My.Resources.bt_close_light
         End Sub
-
-        Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave, highlighter2.MouseLeave
-            sender.backgroundimage = Nothing
+        Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter2.MouseLeave
+            sender.backgroundimage = My.Resources.bt_close
+        End Sub
+        Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter
+            sender.backgroundimage = My.Resources.bt_minimize_light
+        End Sub
+        Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave
+            sender.backgroundimage = My.Resources.bt_minimize
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
+            Close()
         End Sub
 
         Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
@@ -84,6 +90,6 @@ Namespace Framework.Forms
                 Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
-        
+    
     End Class
 End Namespace

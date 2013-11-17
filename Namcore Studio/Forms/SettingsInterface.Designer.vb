@@ -1,7 +1,9 @@
-﻿Namespace Forms
+﻿Imports Namcore_Studio.Forms.Extension
+
+Namespace Forms
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
     Partial Class SettingsInterface
-        Inherits System.Windows.Forms.Form
+        Inherits EventTrigger
 
         'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
         <System.Diagnostics.DebuggerNonUserCode()> _
@@ -45,6 +47,7 @@
             '
             'GroupBox1
             '
+            Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
             Me.GroupBox1.Controls.Add(Me.password_tb)
             Me.GroupBox1.Controls.Add(Me.Label4)
             Me.GroupBox1.Controls.Add(Me.username_tb)
@@ -58,7 +61,7 @@
             Me.GroupBox1.Controls.Add(Me.url_tb)
             Me.GroupBox1.Controls.Add(Me.Label1)
             Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
+            Me.GroupBox1.Location = New System.Drawing.Point(12, 85)
             Me.GroupBox1.Name = "GroupBox1"
             Me.GroupBox1.Size = New System.Drawing.Size(426, 220)
             Me.GroupBox1.TabIndex = 0
@@ -201,7 +204,7 @@
             Me.apply_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.apply_bt.ForeColor = System.Drawing.Color.Black
             Me.apply_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.apply_bt.Location = New System.Drawing.Point(12, 238)
+            Me.apply_bt.Location = New System.Drawing.Point(12, 311)
             Me.apply_bt.Name = "apply_bt"
             Me.apply_bt.Size = New System.Drawing.Size(143, 34)
             Me.apply_bt.TabIndex = 166
@@ -215,26 +218,29 @@
             Me.close_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.close_bt.ForeColor = System.Drawing.Color.Black
             Me.close_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.close_bt.Location = New System.Drawing.Point(294, 238)
+            Me.close_bt.Location = New System.Drawing.Point(294, 311)
             Me.close_bt.Name = "close_bt"
             Me.close_bt.Size = New System.Drawing.Size(143, 34)
             Me.close_bt.TabIndex = 167
             Me.close_bt.Text = "Exit"
             Me.close_bt.UseVisualStyleBackColor = False
             '
-            'Settings_interface
+            'SettingsInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.ClientSize = New System.Drawing.Size(449, 284)
+            Me.ClientSize = New System.Drawing.Size(449, 354)
+            Me.Controls.Add(Me.GroupBox1)
             Me.Controls.Add(Me.close_bt)
             Me.Controls.Add(Me.apply_bt)
-            Me.Controls.Add(Me.GroupBox1)
             Me.DoubleBuffered = True
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "SettingsInterface"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Settings"
+            Me.Controls.SetChildIndex(Me.apply_bt, 0)
+            Me.Controls.SetChildIndex(Me.close_bt, 0)
+            Me.Controls.SetChildIndex(Me.GroupBox1, 0)
             Me.GroupBox1.ResumeLayout(False)
             Me.GroupBox1.PerformLayout()
             CType(Me.port_ud, System.ComponentModel.ISupportInitialize).EndInit()

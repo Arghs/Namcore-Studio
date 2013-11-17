@@ -78,7 +78,7 @@
             '
             'header
             '
-            Me.header.BackgroundImage = Global.NCFramework.My.Resources.Resources.namcore_header
+            Me.header.BackgroundImage = Global.NCFramework.My.Resources.Resources.namcore_header_new
             Me.header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
             Me.header.Controls.Add(Me.closepanel)
             Me.header.Location = New System.Drawing.Point(3, 3)
@@ -88,22 +88,23 @@
             '
             'closepanel
             '
-            Me.closepanel.BackgroundImage = Global.NCFramework.My.Resources.Resources.minclose
+            Me.closepanel.BackColor = System.Drawing.Color.Transparent
             Me.closepanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
             Me.closepanel.Controls.Add(Me.highlighter1)
             Me.closepanel.Controls.Add(Me.highlighter2)
-            Me.closepanel.Location = New System.Drawing.Point(556, 0)
+            Me.closepanel.Location = New System.Drawing.Point(552, 0)
             Me.closepanel.Name = "closepanel"
-            Me.closepanel.Size = New System.Drawing.Size(56, 28)
+            Me.closepanel.Size = New System.Drawing.Size(62, 28)
             Me.closepanel.TabIndex = 0
             '
             'highlighter1
             '
             Me.highlighter1.BackColor = System.Drawing.Color.Transparent
+            Me.highlighter1.BackgroundImage = Global.NCFramework.My.Resources.Resources.bt_minimize
             Me.highlighter1.Cursor = System.Windows.Forms.Cursors.Hand
             Me.highlighter1.Location = New System.Drawing.Point(5, 5)
             Me.highlighter1.Name = "highlighter1"
-            Me.highlighter1.Size = New System.Drawing.Size(20, 20)
+            Me.highlighter1.Size = New System.Drawing.Size(25, 20)
             Me.highlighter1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             Me.highlighter1.TabIndex = 217
             Me.highlighter1.TabStop = False
@@ -111,10 +112,11 @@
             'highlighter2
             '
             Me.highlighter2.BackColor = System.Drawing.Color.Transparent
+            Me.highlighter2.BackgroundImage = Global.NCFramework.My.Resources.Resources.bt_close
             Me.highlighter2.Cursor = System.Windows.Forms.Cursors.Hand
             Me.highlighter2.Location = New System.Drawing.Point(33, 5)
             Me.highlighter2.Name = "highlighter2"
-            Me.highlighter2.Size = New System.Drawing.Size(20, 20)
+            Me.highlighter2.Size = New System.Drawing.Size(25, 20)
             Me.highlighter2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             Me.highlighter2.TabIndex = 218
             Me.highlighter2.TabStop = False

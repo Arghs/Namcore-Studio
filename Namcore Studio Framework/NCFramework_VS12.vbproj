@@ -173,14 +173,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="References\mysql.data.dll" />
-    <Content Include="Resources\cleanbg.jpg" />
+    <None Include="Resources\bt-minimize.png" />
+    <None Include="Resources\bt-minimize-light.png" />
+    <None Include="Resources\bt-close.png" />
+    <None Include="Resources\bt-close-light.png" />
     <Content Include="Resources\empty.jpg" />
+    <None Include="Resources\namcore_header_new.jpg" />
     <None Include="Resources\empty.png" />
     <Content Include="Resources\highlight1.png" />
     <None Include="Resources\HUD_bg.jpg" />
     <Content Include="Resources\INV_Misc_QuestionMark.jpg" />
     <Content Include="Resources\minclose.jpg" />
-    <Content Include="Resources\namcore_header.jpg" />
     <None Include="Resources\nclogo.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -192,7 +195,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_DetectChanges="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

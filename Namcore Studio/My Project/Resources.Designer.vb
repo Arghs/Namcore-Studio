@@ -321,6 +321,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        '''</summary>
+        Public ReadOnly Property namcore_header_new() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("namcore_header_new", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
         '''</summary>
         Public ReadOnly Property nclogo() As System.Drawing.Icon

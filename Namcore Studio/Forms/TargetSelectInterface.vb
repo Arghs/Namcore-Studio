@@ -26,6 +26,10 @@ Imports NCFramework.Framework.Modules
 Namespace Forms
 
     Public Class TargetSelectInterface
+        '// Declaration
+        Private _ptMouseDownLocation As Point
+        '// Declaration
+
         Private Sub connect_bt_Click(sender As Object, e As EventArgs) Handles connect_bt.Click
             GlobalVariables.con_operator = 2
             DbConnect.Show()
@@ -38,6 +42,18 @@ Namespace Forms
                 DirectCast(liveview, LiveView).PrepareTemplateCreation()
             Next
             Close()
+        End Sub
+
+        Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+            If e.Button = MouseButtons.Left Then
+                _ptMouseDownLocation = e.Location
+            End If
+        End Sub
+
+        Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+            If e.Button = MouseButtons.Left Then
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+            End If
         End Sub
     End Class
 End Namespace

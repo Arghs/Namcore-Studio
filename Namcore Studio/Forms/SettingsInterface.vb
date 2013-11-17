@@ -20,6 +20,7 @@
 '*      /Filename:      SettingsInterface
 '*      /Description:   Proxy settings
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports Namcore_Studio.Forms.Extension
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Functions
 Imports NCFramework.My
@@ -30,6 +31,8 @@ Imports NCFramework.Framework.Modules
 
 Namespace Forms
     Public Class SettingsInterface
+        Inherits EventTrigger
+
         Private Sub manualproxy_radio_CheckedChanged(sender As Object, e As EventArgs) _
             Handles manualproxy_radio.CheckedChanged
             Label1.Enabled = True
@@ -73,6 +76,11 @@ Namespace Forms
                     password_tb.Text = MySettings.Default.proxy_pass
                 End If
             End If
+            AddHandler highlighter2.Click, AddressOf highlighter2_Click
+        End Sub
+
+        Private Sub highlighter2_Click(sender As Object, e As EventArgs)
+            close_bt.PerformClick()
         End Sub
 
         Private Sub defcred_cb_CheckedChanged(sender As Object, e As EventArgs) Handles defcred_cb.CheckedChanged
