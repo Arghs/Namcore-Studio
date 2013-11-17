@@ -14,14 +14,12 @@ Namcore Studio.sln.DotSettings.user
 *vshost
 *suo
 *log
-*exe
 *user
 *vsp
 *psess
 *db
 #Visual Studio Dateien ignorieren
 *.obj
-*.exe
 *.pdb
 *.user
 *.aps
