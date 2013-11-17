@@ -20,13 +20,16 @@
 '*      /Filename:      TemplateExplorer
 '*      /Description:   TODO
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports Namcore_Studio.Forms.Extension
 Imports NCFramework.Framework.TemplateSystem
 Imports NCFramework.Framework.Modules
 Imports Namcore_Studio.Modules.Interface
+Imports NCFramework.Framework.Logging
 
 Namespace Forms
 
     Public Class TemplateExplorer
+        Inherits EventTrigger
 
         Private Sub openfile_bt_Click(sender As Object, e As EventArgs) Handles openfile_bt.Click
             Dim locOfd As New OpenFileDialog()
@@ -49,6 +52,22 @@ Namespace Forms
                     End If
                 End If
             End With
+        End Sub
+
+        Private Sub TemplateExplorer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+            AddHandler highlighter2.Click, AddressOf highlighter2_Click
+        End Sub
+
+        Private Sub highlighter2_Click(sender As Object, e As EventArgs)
+            back_bt.PerformClick()
+        End Sub
+
+        Private Sub back_bt_Click(sender As Object, e As EventArgs) Handles back_bt.Click
+            LogAppend("Trigger back button click", "TemplateExplorer_highlighter2_Click", False)
+            If GlobalVariables.lastregion = "main" Or GlobalVariables.lastregion = "liveview" Then
+                Close()
+                Main.Show()
+            End If
         End Sub
     End Class
 End Namespace

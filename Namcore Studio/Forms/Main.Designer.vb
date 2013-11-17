@@ -103,13 +103,13 @@
             '
             'version_lbl
             '
-            Me.version_lbl.AutoSize = True
             Me.version_lbl.BackColor = System.Drawing.Color.Transparent
             Me.version_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.version_lbl.ForeColor = System.Drawing.SystemColors.HighlightText
-            Me.version_lbl.Location = New System.Drawing.Point(523, 488)
+            Me.version_lbl.Location = New System.Drawing.Point(375, 488)
             Me.version_lbl.Name = "version_lbl"
-            Me.version_lbl.Size = New System.Drawing.Size(492, 18)
+            Me.version_lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+            Me.version_lbl.Size = New System.Drawing.Size(638, 18)
             Me.version_lbl.TabIndex = 5
             Me.version_lbl.Text = "NamCore Studio - Development - 0.0.8.45283 - © megasus 2013"
             '
@@ -167,7 +167,6 @@
             CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.about_pic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
-            Me.PerformLayout()
 
         End Sub
         Friend WithEvents highlighter1 As System.Windows.Forms.PictureBox

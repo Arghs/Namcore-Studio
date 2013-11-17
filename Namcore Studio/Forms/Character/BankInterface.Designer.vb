@@ -328,7 +328,7 @@ Namespace Forms.Character
             'BackPanel
             '
             Me.BackPanel.BackColor = System.Drawing.Color.Transparent
-            Me.BackPanel.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bank_bg
+            Me.BackPanel.BackgroundImage = CType(resources.GetObject("BackPanel.BackgroundImage"), System.Drawing.Image)
             Me.BackPanel.Controls.Add(Me.label2)
             Me.BackPanel.Controls.Add(Me.bag5Panel)
             Me.BackPanel.Controls.Add(Me.BagItemPanel)
@@ -340,9 +340,9 @@ Namespace Forms.Character
             Me.BackPanel.Controls.Add(Me.bag7Panel)
             Me.BackPanel.Controls.Add(Me.BankLayoutPanel)
             Me.BackPanel.Controls.Add(Me.bag6Panel)
-            Me.BackPanel.Location = New System.Drawing.Point(2, 83)
+            Me.BackPanel.Location = New System.Drawing.Point(4, 88)
             Me.BackPanel.Name = "BackPanel"
-            Me.BackPanel.Size = New System.Drawing.Size(754, 350)
+            Me.BackPanel.Size = New System.Drawing.Size(754, 345)
             Me.BackPanel.TabIndex = 245
             '
             'BankInterface
@@ -351,17 +351,17 @@ Namespace Forms.Character
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(761, 438)
-            Me.Controls.Add(Me.BackPanel)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.reference_itm_panel)
+            Me.Controls.Add(Me.BackPanel)
             Me.DoubleBuffered = True
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "BankInterface"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Reputation_interface"
+            Me.Controls.SetChildIndex(Me.BackPanel, 0)
             Me.Controls.SetChildIndex(Me.reference_itm_panel, 0)
             Me.Controls.SetChildIndex(Me.referenceItmPanel, 0)
-            Me.Controls.SetChildIndex(Me.BackPanel, 0)
             Me.bag1Panel.ResumeLayout(False)
             CType(Me.bag1Pic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.bag2Panel.ResumeLayout(False)

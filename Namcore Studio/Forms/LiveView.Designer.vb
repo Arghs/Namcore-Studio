@@ -665,7 +665,7 @@
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.KeyPreview = True
-            Me.MaximumSize = New System.Drawing.Size(1920, 646)
+            Me.MaximumSize = New System.Drawing.Size(1392, 646)
             Me.MinimumSize = New System.Drawing.Size(800, 646)
             Me.Name = "LiveView"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

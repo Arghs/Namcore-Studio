@@ -1196,11 +1196,11 @@ Namespace Forms
                     _stretching = True
                     Size = New Size(e.Location.X, Size.Height)
                     Application.DoEvents()
-                    mainpanel.Size = New Size(Size.Width - 27, mainpanel.Size.Height)
-                    Dim tmpwidth As Integer = (Size.Width / 1920) * 8
+                    mainpanel.Size = New Size(Size.Width - 10, mainpanel.Size.Height)
+                    Dim tmpwidth As Integer = (Size.Width / 1920) * 9
                     header.Location = New Point(tmpwidth, header.Location.Y)
                     header.Size = New Size(Size.Width - (2 * tmpwidth), header.Size.Height)
-                    closepanel.Location = New Point(header.Size.Width - 68, closepanel.Location.Y)
+                    closepanel.Location = New Point(header.Size.Width - 125, closepanel.Location.Y)
                     Application.DoEvents()
 
                 End If
@@ -1213,25 +1213,7 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs)
-
-            sender.backgroundimage = My.Resources.highlight
-        End Sub
-
-        Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs)
-
-            sender.backgroundimage = Nothing
-        End Sub
-
-        Private Sub highlighter1_Click(sender As Object, e As EventArgs)
-            WindowState = FormWindowState.Minimized
-        End Sub
-
-        Private Sub highlighter2_Click(sender As Object, e As EventArgs)
-            back_bt.PerformClick()
-        End Sub
-
-        Private Sub Live_View_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+       Private Sub Live_View_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
             _stretching = False
             _moving = False
         End Sub
@@ -1336,10 +1318,17 @@ Namespace Forms
             Userwait.Close()
             MsgBox(ResourceHandler.GetUserMessage("templateFileCreated"), MsgBoxStyle.Information, "Info")
         End Sub
-
      
         Private Sub highlighter4_Click(sender As Object, e As EventArgs) Handles highlighter4.Click
-            Close()
+            back_bt.PerformClick()
+        End Sub
+
+        Private Sub highlighter5_Click(sender As Object, e As EventArgs) Handles highlighter5.Click
+            WindowState = FormWindowState.Minimized
+        End Sub
+
+        Private Sub settings_pic_Click(sender As Object, e As EventArgs) Handles settings_pic.Click
+            SettingsInterface.Show()
         End Sub
     End Class
 End Namespace
