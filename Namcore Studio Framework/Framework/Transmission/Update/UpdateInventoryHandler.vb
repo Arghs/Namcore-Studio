@@ -68,6 +68,34 @@ Namespace Framework.Transmission.Update
 
         Private Sub CreateItem(ByVal player As Character, ByVal itm2Add As Item, ByVal zero As Boolean)
             Select Case GlobalVariables.sourceCore
+                Case "arcemu"
+                    Dim newItemGuid As String =
+                                               ((TryInt(
+                                                   runSQLCommand_characters_string(
+                                                       "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
+                                                       GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
+                                                       GlobalVariables.targetStructure.itmins_guid_col(0) &
+                                                       "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
+                                                       GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
+                    runSQLCommand_characters_string("DELETE FROM `" & GlobalVariables.targetStructure.item_instance_tbl(0) &
+                                                    "` WHERE `" & GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "`='" & player.Guid.ToString() &
+                                                    "' AND `" & GlobalVariables.targetStructure.itmins_slot_col(0) & "`='" & itm2Add.Slot.ToString() &
+                                                    " AND `" & GlobalVariables.targetStructure.itmins_container_col(0) & "`='" & itm2Add.Container.ToString())
+                    runSQLCommand_characters_string(
+                      "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
+                      GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
+                      GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
+                      GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", " &
+                      GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
+                      GlobalVariables.targetStructure.itmins_container_col(0) & ", " &
+                      GlobalVariables.targetStructure.itmins_slot_col(0) &
+                      " ) VALUES ( '" &
+                      newItemGuid & "', '" &
+                      player.Guid.ToString() & "', '" &
+                      itm2Add.Id.ToString() & "', '" &
+                      itm2Add.Count.ToString() & "', '" &
+                      itm2Add.Container.ToString() & "', '" &
+                      itm2Add.Slot.ToString() & "' )")
                 Case "trinity"
                     Dim newItemGuid As Integer = TryInt(
                         runSQLCommand_characters_string(
@@ -127,6 +155,11 @@ Namespace Framework.Transmission.Update
 
         Private Sub DeleteItem(ByVal player As Character, ByVal itm2Delete As Item, ByVal zero As Boolean)
             Select Case GlobalVariables.sourceCore
+                Case "arcemu"
+                    runSQLCommand_characters_string("DELETE FROM `" & GlobalVariables.targetStructure.item_instance_tbl(0) &
+                                                  "` WHERE `" & GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "`='" & player.Guid.ToString() &
+                                                  "' AND `" & GlobalVariables.targetStructure.itmins_slot_col(0) & "`='" & itm2Delete.Slot.ToString() &
+                                                  " AND `" & GlobalVariables.targetStructure.itmins_container_col(0) & "`='" & itm2Delete.Container.ToString())
                 Case "trinity"
                     Select Case zero
                         Case True
@@ -150,33 +183,44 @@ Namespace Framework.Transmission.Update
             End Select
         End Sub
 
-        Private Sub UpdateItem(ByVal player As Character, ByVal itm2Delete As Item, ByVal zero As Boolean)
+        Private Sub UpdateItem(ByVal player As Character, ByVal itm2Update As Item, ByVal zero As Boolean)
             Select Case GlobalVariables.sourceCore
+                Case "arcemu"
+                    runSQLCommand_characters_string(
+                     "UPDATE " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " ( " &
+                     GlobalVariables.sourceStructure.itmins_guid_col(0) & ", " &
+                     GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & ", " &
+                     GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & ", " &
+                     GlobalVariables.sourceStructure.itmins_count_col(0) & ", " &
+                     GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
+                     ", " & GlobalVariables.sourceStructure.itmins_durability_col(0) & " ) VALUES ( '" &
+                     newItemGuid.ToString() & "', '" & itm2Add.Id.ToString & "', '" & player.Guid.ToString() &
+                     "', '1', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
                 Case "trinity"
                     Select Case zero
                         Case True
                             runSQLCommand_characters_string(
                        "UPDATE " & GlobalVariables.sourceStructure.character_inventory_tbl(0) &
-                       "SET " & GlobalVariables.sourceStructure.invent_bag_col(0) & "='" & itm2Delete.Bag.ToString & "'" &
-                       " , " & GlobalVariables.sourceStructure.invent_slot_col(0) & "='" & itm2Delete.Slot.ToString & "'" &
+                       "SET " & GlobalVariables.sourceStructure.invent_bag_col(0) & "='" & itm2Update.Bag.ToString & "'" &
+                       " , " & GlobalVariables.sourceStructure.invent_slot_col(0) & "='" & itm2Update.Slot.ToString & "'" &
                        " WHERE " & GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
-                       "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Delete.Slot.ToString() &
-                       "' AND " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '" & itm2Delete.Bag.ToString & "'")
+                       "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Update.Slot.ToString() &
+                       "' AND " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '" & itm2Update.Bag.ToString & "'")
                         Case False
                             runSQLCommand_characters_string(
                        "UPDATE " & GlobalVariables.sourceStructure.character_inventory_tbl(0) &
-                       "SET " & GlobalVariables.sourceStructure.invent_bag_col(0) & "='" & itm2Delete.Bag.ToString & "'" &
-                       " , " & GlobalVariables.sourceStructure.invent_slot_col(0) & "='" & itm2Delete.Slot.ToString & "'" &
+                       "SET " & GlobalVariables.sourceStructure.invent_bag_col(0) & "='" & itm2Update.Bag.ToString & "'" &
+                       " , " & GlobalVariables.sourceStructure.invent_slot_col(0) & "='" & itm2Update.Slot.ToString & "'" &
                        " WHERE " & GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
-                       "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Delete.Slot.ToString() &
+                       "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Update.Slot.ToString() &
                        "' AND NOT " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '0'")
                     End Select
                     runSQLCommand_characters_string("UPDATE " & GlobalVariables.sourceStructure.item_instance_tbl(0) &
-                     "SET " & GlobalVariables.sourceStructure.itmins_count_col(0) & "='" & itm2Delete.Count.ToString & "'" &
+                     "SET " & GlobalVariables.sourceStructure.itmins_count_col(0) & "='" & itm2Update.Count.ToString & "'" &
                      " WHERE " & GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & " = '" & player.Guid.ToString() &
-                     "' AND " & GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & itm2Delete.Guid.ToString() & "'")
+                     "' AND " & GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & itm2Update.Guid.ToString() & "'")
                     Dim mEnchHandler As New EnchantmentsCreation
-                    mEnchHandler.SetItemEnchantments(player.SetIndex, itm2Delete, itm2Delete.Guid, GlobalVariables.sourceCore, GlobalVariables.sourceStructure)
+                    mEnchHandler.SetItemEnchantments(player.SetIndex, itm2Update, itm2Update.Guid, GlobalVariables.sourceCore, GlobalVariables.sourceStructure)
             End Select
         End Sub
     End Class
