@@ -10,13 +10,13 @@ Imports System.Runtime.InteropServices
 ' Die Werte der Assemblyattribute überprüfen
 
 <Assembly: AssemblyTitle("NCFramework")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyDescription("NCFramework")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Namcore Studio Framework")> 
 <Assembly: AssemblyCopyright("Copyright © 2013 megasus")> 
 <Assembly: AssemblyTrademark("")> 
 
-<Assembly: ComVisible(False)> 
+<Assembly: ComVisible(True)> 
 
 'Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
 <Assembly: Guid("abb519dc-54f4-4875-9b95-f4032ddf97c4")> 
@@ -32,7 +32,7 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.0.11.46035")> 
-<Assembly: AssemblyFileVersion("0.0.11.46035")> 
+<Assembly: AssemblyVersion("0.0.11.46036")> 
+<Assembly: AssemblyFileVersion("0.0.11.46036")> 
 
 <Assembly: NeutralResourcesLanguageAttribute("en-US")> 

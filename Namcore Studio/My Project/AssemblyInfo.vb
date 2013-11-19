@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 ' Die Werte der Assemblyattribute überprüfen
 
 <Assembly: AssemblyTitle("Namcore Studio")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyDescription("Namcore Studio")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Namcore Studio")> 
 <Assembly: AssemblyCopyright("Copyright © 2013 megasus")> 
@@ -32,7 +32,7 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.0.11.46018")> 
-<Assembly: AssemblyFileVersion("0.0.11.46018")> 
+<Assembly: AssemblyVersion("0.0.11.46019")> 
+<Assembly: AssemblyFileVersion("0.0.11.46019")> 
 
 <Assembly: NeutralResourcesLanguageAttribute("en-US")> 

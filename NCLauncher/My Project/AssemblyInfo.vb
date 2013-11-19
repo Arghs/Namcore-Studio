@@ -8,13 +8,13 @@ Imports System.Runtime.InteropServices
 ' Die Werte der Assemblyattribute überprüfen
 
 <Assembly: AssemblyTitle("NCLauncher")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyDescription("NCLauncher")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("NCLauncher")> 
 <Assembly: AssemblyCopyright("Copyright ©  2013")> 
 <Assembly: AssemblyTrademark("")> 
 
-<Assembly: ComVisible(False)>
+<Assembly: ComVisible(True)> 
 
 'Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
 <Assembly: Guid("4cdb6a85-3832-4fdd-8234-8c8e1c7ff5c3")> 
