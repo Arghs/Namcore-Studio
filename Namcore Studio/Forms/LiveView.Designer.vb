@@ -669,7 +669,7 @@
             Me.MinimumSize = New System.Drawing.Size(800, 646)
             Me.Name = "LiveView"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-            Me.Text = "Live_View"
+            Me.Text = "liveview"
             Me.Panel1.ResumeLayout(False)
             Me.Panel1.PerformLayout()
             Me.accountcontext.ResumeLayout(False)

@@ -18,7 +18,7 @@
 '*
 '* //FileInfo//
 '*      /Filename:      AccountCharacterInformationProcessing
-'*      /Description:   Prepares basic account and character information for Live_View
+'*      /Description:   Prepares basic account and character information for liveview
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Modules

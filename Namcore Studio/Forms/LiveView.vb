@@ -467,7 +467,7 @@ Namespace Forms
             chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
         End Sub
 
-        Private Sub Live_View_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Private Sub liveview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             Dim controlLst As List(Of Control)
             controlLst = FindAllChildren()
             For Each itemControl As Control In controlLst
@@ -1213,7 +1213,7 @@ Namespace Forms
             End If
         End Sub
 
-       Private Sub Live_View_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+        Private Sub liveview_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
             _stretching = False
             _moving = False
         End Sub

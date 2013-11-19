@@ -48,7 +48,7 @@ Namespace Forms
                         tmpAccount(1) = sLines(i)
                         tempAccList.Add(tmpAccount)
                         For Each currentForm As Form In Application.OpenForms
-                            If currentForm.Name = "Live_View" Then
+                            If currentForm.Name = "liveview" Then
                                 Dim liveview As LiveView = DirectCast(currentForm, LiveView)
                                 liveview.transChars_specificacc(tempAccList)
                             End If
@@ -58,7 +58,7 @@ Namespace Forms
 
             Else
                 For Each currentForm As Form In Application.OpenForms
-                    If currentForm.Name = "Live_View" Then
+                    If currentForm.Name = "liveview" Then
                         Dim liveview As LiveView = DirectCast(currentForm, LiveView)
                         liveview.transChars_allacc()
                     End If

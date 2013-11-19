@@ -40,7 +40,7 @@ Namespace Forms
         Private Sub connect_bt_Click(sender As Object, e As EventArgs) Handles connect_bt.Click
             _catchError = False
             Select Case GlobalVariables.con_operator
-                Case 1 'Source connection @live_view
+                Case 1 'Source connection @liveview
                     GlobalVariables.globChars = New GlobalCharVars()
                     GlobalVariables.globChars.AccountSets = New List(Of NCFramework.Framework.Modules.Account)
                     GlobalVariables.armoryMode = False
@@ -112,7 +112,7 @@ Namespace Forms
                     Else
 
                     End If
-                Case 2 'Target connection @live_view
+                Case 2 'Target connection @liveview
                     GlobalVariables.TargetConnectionString = ""
                     GlobalVariables.TargetConnectionString_Realm = ""
                     If defaultconn_radio.Checked = True Then
