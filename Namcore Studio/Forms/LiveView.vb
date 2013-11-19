@@ -1330,5 +1330,9 @@ Namespace Forms
         Private Sub settings_pic_Click(sender As Object, e As EventArgs) Handles settings_pic.Click
             SettingsInterface.Show()
         End Sub
+
+        Private Sub about_pic_Click(sender As Object, e As EventArgs) Handles about_pic.Click
+            About.Show()
+        End Sub
     End Class
 End Namespace

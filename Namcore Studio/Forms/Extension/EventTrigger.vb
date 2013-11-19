@@ -90,5 +90,9 @@ Namespace Forms.Extension
         Public Overridable Sub settings_pic_Click(sender As Object, e As EventArgs) Handles settings_bt.Click
             SettingsInterface.Show()
         End Sub
+
+        Private Sub about_bt_Click(sender As Object, e As EventArgs) Handles about_bt.Click
+            About.Show()
+        End Sub
     End Class
 End Namespace

@@ -83,7 +83,7 @@ Namespace Forms
             Userwait.Show()
             Application.DoEvents()
 #If CONFIG = "Debug" Then
-            '   GlobalVariables.DebugMode = True
+               GlobalVariables.DebugMode = True
 #End If
             If GlobalVariables.DebugMode = True Then
                 MySettings.Default.server_authdb = "arc_auth"
@@ -214,6 +214,10 @@ Namespace Forms
 
         Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles settings_pic.Click
             SettingsInterface.Show()
+        End Sub
+
+        Private Sub about_pic_Click(sender As Object, e As EventArgs) Handles about_pic.Click
+            About.Show()
         End Sub
     End Class
 End Namespace
