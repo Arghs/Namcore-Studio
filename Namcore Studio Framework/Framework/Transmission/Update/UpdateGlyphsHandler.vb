@@ -144,6 +144,42 @@ Namespace Framework.Transmission.Update
                         LogAppend("Exception occured during glyph creation: " & ex.ToString,
                                   "UpdateGlyphsHandler_CreateGlyph", False, True)
                     End Try
+                Case "mangos"
+                    Try
+                        If glyph2Add.Type > GlobalVariables.sourceExpansion Then
+                            '// Cannot create primary glyphs in pre Cataclysm db
+                            LogAppend("Cannot create primary glyphs in pre Cataclysm db!",
+                                      "UpdateGlyphsHandler_CreateGlyph", True, True)
+                            Exit Sub
+                        End If
+                        Dim targetSlot As Integer = 0
+                        Select Case True
+                            Case glyph2Add.Slotname.Contains("minorglyph1") : targetSlot = 4
+                            Case glyph2Add.Slotname.Contains("minorglyph2") : targetSlot = 1
+                            Case glyph2Add.Slotname.Contains("minorglyph3") : targetSlot = 2
+                            Case glyph2Add.Slotname.Contains("majorglyph1") : targetSlot = 0
+                            Case glyph2Add.Slotname.Contains("majorglyph2") : targetSlot = 3
+                            Case glyph2Add.Slotname.Contains("majorglyph3") : targetSlot = 5
+                            Case glyph2Add.Slotname.Contains("primeglyph1") : targetSlot = 6
+                            Case glyph2Add.Slotname.Contains("primeglyph2") : targetSlot = 7
+                            Case glyph2Add.Slotname.Contains("primeglyph3") : targetSlot = 8
+                            Case Else
+                                LogAppend("Invalid slotname: " & glyph2Add.Slotname, "UpdateGlyphsHandler_CreateGlyph",
+                                          False, True)
+                        End Select
+                        runSQLCommand_characters_string(
+                            "UPDATE " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " SET `" &
+                            GlobalVariables.sourceStructure.glyphs_glyph_col(0) & "` = '" &
+                            GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.sourceExpansion).ToString() & "' WHERE `" &
+                            GlobalVariables.targetStructure.glyphs_guid_col(0) & "` = '" & player.Guid.ToString() &
+                            "' AND `" &
+                            GlobalVariables.targetStructure.glyphs_spec_col(0) & "` = '" & glyph2Add.Spec.ToString() &
+                            "'`" &
+                            GlobalVariables.targetStructure.glyphs_slot_col(0) & "` = '" & targetSlot.ToString() & "'")
+                    Catch ex As Exception
+                        LogAppend("Exception occured during glyph creation: " & ex.ToString,
+                                  "UpdateGlyphsHandler_CreateGlyph", False, True)
+                    End Try
             End Select
         End Sub
 
@@ -224,6 +260,35 @@ Namespace Framework.Transmission.Update
                             GlobalVariables.targetStructure.glyphs_spec_col(0) & "`='" & glyph2Delete.Spec.ToString() &
                             "' AND `" &
                             GlobalVariables.targetStructure.glyphs_guid_col(0) & "`='" & player.Guid.ToString() & "'")
+                    Catch ex As Exception
+                        LogAppend("Exception occured during glyph deletion: " & ex.ToString,
+                                  "UpdateGlyphsHandler_DeleteGlyph", False, True)
+                    End Try
+                Case "mangos"
+                    Try
+                        Dim targetSlot As Integer = 0
+                        Select Case True
+                            Case glyph2Delete.Slotname.Contains("minorglyph1") : targetSlot = 4
+                            Case glyph2Delete.Slotname.Contains("minorglyph2") : targetSlot = 1
+                            Case glyph2Delete.Slotname.Contains("minorglyph3") : targetSlot = 2
+                            Case glyph2Delete.Slotname.Contains("majorglyph1") : targetSlot = 0
+                            Case glyph2Delete.Slotname.Contains("majorglyph2") : targetSlot = 3
+                            Case glyph2Delete.Slotname.Contains("majorglyph3") : targetSlot = 5
+                            Case glyph2Delete.Slotname.Contains("primeglyph1") : targetSlot = 6
+                            Case glyph2Delete.Slotname.Contains("primeglyph2") : targetSlot = 7
+                            Case glyph2Delete.Slotname.Contains("primeglyph3") : targetSlot = 8
+                            Case Else
+                                LogAppend("Invalid slotname: " & glyph2Delete.Slotname,
+                                          "UpdateGlyphsHandler_CreateGlyph",
+                                          False, True)
+                        End Select
+                        runSQLCommand_characters_string(
+                            "DELETE FROM " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " WHERE `" &
+                            GlobalVariables.targetStructure.glyphs_guid_col(0) & "` = '" & player.Guid.ToString() &
+                            "' AND `" &
+                            GlobalVariables.targetStructure.glyphs_spec_col(0) & "` = '" & glyph2Delete.Spec.ToString() &
+                            "'`" &
+                            GlobalVariables.targetStructure.glyphs_slot_col(0) & "` = '" & targetSlot.ToString() & "'")
                     Catch ex As Exception
                         LogAppend("Exception occured during glyph deletion: " & ex.ToString,
                                   "UpdateGlyphsHandler_DeleteGlyph", False, True)
