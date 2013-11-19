@@ -24,6 +24,7 @@ Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports libnc.Provider
+
 Namespace Framework.Transmission.Update
     Public Class UpdateGlyphsHandler
         Public Sub UpdateGlyphs(ByVal player As Character, ByVal modPlayer As Character)
@@ -34,24 +35,29 @@ Namespace Framework.Transmission.Update
                 Exit Sub
             End If
             '// Any new glyphs?
-            For Each gly As Glyph In modPlayer.PlayerGlyphs
-                Dim result As Glyph = player.PlayerGlyphs.Find(Function(glyph) glyph.Id = gly.Id)
-                If result Is Nothing Then CreateGlyph(modPlayer, gly)
+            For Each gly As Glyph In _
+                From gly1 In modPlayer.PlayerGlyphs
+                    Let result = player.PlayerGlyphs.Find(Function(glyph) glyph.Id = gly1.Id) Where result Is Nothing
+                    Select gly1
+                CreateGlyph(modPlayer, gly)
             Next
             '// Any deleted glyphs?
-            For Each gly As Glyph In player.PlayerGlyphs
-                Dim result As Glyph = modPlayer.PlayerGlyphs.Find(Function(glyph) glyph.Id = gly.Id)
-                If result Is Nothing Then DeleteGlyph(modPlayer, gly)
+            For Each gly As Glyph In _
+                From gly1 In player.PlayerGlyphs
+                    Let result = modPlayer.PlayerGlyphs.Find(Function(glyph) glyph.Id = gly1.Id) Where result Is Nothing
+                    Select gly1
+                DeleteGlyph(modPlayer, gly)
             Next
         End Sub
 
         Private Sub CreateGlyph(ByVal player As Character, ByVal glyph2Add As Glyph)
             Select Case GlobalVariables.sourceCore
-                Case "trinity"
+                Case "arcemu"
                     Try
                         If glyph2Add.Type = 3 Then
                             '// Cannot create primary glyphs in pre Cataclysm db
-                            LogAppend("Cannot create primary glyphs in pre Cataclysm db!", "UpdateGlyphsHandler_CreateGlyph", True, True)
+                            LogAppend("Cannot create primary glyphs in pre Cataclysm db!",
+                                      "UpdateGlyphsHandler_CreateGlyph", True, True)
                             Exit Sub
                         End If
                         Dim useGlyphCol As String
@@ -62,7 +68,8 @@ Namespace Framework.Transmission.Update
                         Dim glyphString As String = runSQLCommand_characters_string(
                             "SELECT `" & useGlyphCol &
                             "` FROM `" & GlobalVariables.sourceStructure.character_tbl(0) &
-                            "` WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & player.Guid.ToString & "'", False)
+                            "` WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" &
+                            player.Guid.ToString & "'", False)
                         If glyphString = "" Then
                             If GlobalVariables.sourceExpansion = 4 Then
                                 glyphString = ",,,,,,,,,"
@@ -86,18 +93,63 @@ Namespace Framework.Transmission.Update
                         End If
                         glyphString = String.Join(",", parts)
                         runSQLCommand_characters_string(
-                           "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) &
-                           "` SET `" & useGlyphCol & "`='" & glyphString & "'" &
-                           " WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & player.Guid.ToString & "'", False)
+                            "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) &
+                            "` SET `" & useGlyphCol & "`='" & glyphString & "'" &
+                            " WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & player.Guid.ToString &
+                            "'", False)
                     Catch ex As Exception
-                        LogAppend("Exception occured during glyph creation: " & ex.ToString, "UpdateGlyphsHandler_CreateGlyph", False, True)
+                        LogAppend("Exception occured during glyph creation: " & ex.ToString,
+                                  "UpdateGlyphsHandler_CreateGlyph", False, True)
+                    End Try
+                Case "trinity"
+                    Try
+                        If glyph2Add.Type > GlobalVariables.sourceExpansion Then
+                            '// Cannot create primary glyphs in pre Cataclysm db
+                            LogAppend("Cannot create primary glyphs in pre Cataclysm db!",
+                                      "UpdateGlyphsHandler_CreateGlyph", True, True)
+                            Exit Sub
+                        End If
+                        Dim targetCol As String = ""
+                        Select Case True
+                            Case glyph2Add.Slotname.Contains("minorglyph1")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph5_col(0)
+                            Case glyph2Add.Slotname.Contains("minorglyph2")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph2_col(0)
+                            Case glyph2Add.Slotname.Contains("minorglyph3")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph3_col(0)
+                            Case glyph2Add.Slotname.Contains("majorglyph1")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph1_col(0)
+                            Case glyph2Add.Slotname.Contains("majorglyph2")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph4_col(0)
+                            Case glyph2Add.Slotname.Contains("majorglyph3")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph6_col(0)
+                            Case glyph2Add.Slotname.Contains("primeglyph1")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph7_col(0)
+                            Case glyph2Add.Slotname.Contains("primeglyph2")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph8_col(0)
+                            Case glyph2Add.Slotname.Contains("primeglyph3")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph9_col(0)
+                            Case Else
+                                LogAppend("Invalid slotname: " & glyph2Add.Slotname, "UpdateGlyphsHandler_CreateGlyph",
+                                          False, True)
+                        End Select
+                        runSQLCommand_characters_string(
+                            "UPDATE `" & GlobalVariables.targetStructure.character_glyphs_tbl(0) & "` SET `" & targetCol &
+                            "`='" &
+                            GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.sourceExpansion).ToString() & "' WHERE `" &
+                            GlobalVariables.targetStructure.glyphs_spec_col(0) & "`='" & glyph2Add.Spec.ToString() &
+                            "' AND `" &
+                            GlobalVariables.targetStructure.glyphs_guid_col(0) & "`='" & player.Guid.ToString() & "'")
+                    Catch ex As Exception
+                        LogAppend("Exception occured during glyph creation: " & ex.ToString,
+                                  "UpdateGlyphsHandler_CreateGlyph", False, True)
                     End Try
             End Select
         End Sub
 
         Private Sub DeleteGlyph(ByVal player As Character, ByVal glyph2Delete As Glyph)
             Select Case GlobalVariables.sourceCore
-                Case "trinity"
+                Case "arcemu"
                     Try
                         Dim useGlyphCol As String
                         Select Case glyph2Delete.Spec
@@ -107,7 +159,8 @@ Namespace Framework.Transmission.Update
                         Dim glyphString As String = runSQLCommand_characters_string(
                             "SELECT `" & useGlyphCol &
                             "` FROM `" & GlobalVariables.sourceStructure.character_tbl(0) &
-                            "` WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & player.Guid.ToString & "'", False)
+                            "` WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" &
+                            player.Guid.ToString & "'", False)
                         If glyphString = "" Then
                             If GlobalVariables.sourceExpansion = 4 Then
                                 glyphString = ",,,,,,,,,"
@@ -131,11 +184,49 @@ Namespace Framework.Transmission.Update
                         End If
                         glyphString = String.Join(",", parts)
                         runSQLCommand_characters_string(
-                           "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) &
-                           "` SET `" & useGlyphCol & "`='" & glyphString & "'" &
-                           " WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & player.Guid.ToString & "'", False)
+                            "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) &
+                            "` SET `" & useGlyphCol & "`='" & glyphString & "'" &
+                            " WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & player.Guid.ToString &
+                            "'", False)
                     Catch ex As Exception
-                        LogAppend("Exception occured during glyph creation: " & ex.ToString, "UpdateGlyphsHandler_DeleteGlyph", False, True)
+                        LogAppend("Exception occured during glyph creation: " & ex.ToString,
+                                  "UpdateGlyphsHandler_DeleteGlyph", False, True)
+                    End Try
+                Case "trinity"
+                    Try
+                        Dim targetCol As String = ""
+                        Select Case True
+                            Case glyph2Delete.Slotname.Contains("minorglyph1")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph5_col(0)
+                            Case glyph2Delete.Slotname.Contains("minorglyph2")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph2_col(0)
+                            Case glyph2Delete.Slotname.Contains("minorglyph3")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph3_col(0)
+                            Case glyph2Delete.Slotname.Contains("majorglyph1")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph1_col(0)
+                            Case glyph2Delete.Slotname.Contains("majorglyph2")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph4_col(0)
+                            Case glyph2Delete.Slotname.Contains("majorglyph3")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph6_col(0)
+                            Case glyph2Delete.Slotname.Contains("primeglyph1")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph7_col(0)
+                            Case glyph2Delete.Slotname.Contains("primeglyph2")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph8_col(0)
+                            Case glyph2Delete.Slotname.Contains("primeglyph3")
+                                targetCol = GlobalVariables.sourceStructure.glyphs_glyph9_col(0)
+                            Case Else
+                                LogAppend("Invalid slotname: " & glyph2Delete.Slotname,
+                                          "UpdateGlyphsHandler_DeleteGlyph", False, True)
+                        End Select
+                        runSQLCommand_characters_string(
+                            "UPDATE `" & GlobalVariables.targetStructure.character_glyphs_tbl(0) & "` SET `" & targetCol &
+                            "`='' WHERE `" &
+                            GlobalVariables.targetStructure.glyphs_spec_col(0) & "`='" & glyph2Delete.Spec.ToString() &
+                            "' AND `" &
+                            GlobalVariables.targetStructure.glyphs_guid_col(0) & "`='" & player.Guid.ToString() & "'")
+                    Catch ex As Exception
+                        LogAppend("Exception occured during glyph deletion: " & ex.ToString,
+                                  "UpdateGlyphsHandler_DeleteGlyph", False, True)
                     End Try
             End Select
         End Sub

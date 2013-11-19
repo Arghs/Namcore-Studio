@@ -110,8 +110,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_glyph1_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph2_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph3_col(0) & ", " &
-                    GlobalVariables.targetStructure.glyphs_glyph4_col(0) &
-                    ", " & GlobalVariables.targetStructure.glyphs_glyph5_col(0) & ", " &
+                    GlobalVariables.targetStructure.glyphs_glyph4_col(0) & ", " &
+                    GlobalVariables.targetStructure.glyphs_glyph5_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph6_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph7_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph8_col(0) &
@@ -133,8 +133,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_glyph1_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph2_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph3_col(0) & ", " &
-                    GlobalVariables.targetStructure.glyphs_glyph4_col(0) &
-                    ", " & GlobalVariables.targetStructure.glyphs_glyph5_col(0) & ", " &
+                    GlobalVariables.targetStructure.glyphs_glyph4_col(0) & ", " &
+                    GlobalVariables.targetStructure.glyphs_glyph5_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph6_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph7_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph8_col(0) &
@@ -157,8 +157,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_glyph1_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph2_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph3_col(0) & ", " &
-                    GlobalVariables.targetStructure.glyphs_glyph4_col(0) &
-                    ", " & GlobalVariables.targetStructure.glyphs_glyph5_col(0) & ", " &
+                    GlobalVariables.targetStructure.glyphs_glyph4_col(0) & ", " &
+                    GlobalVariables.targetStructure.glyphs_glyph5_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph6_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                     "', '0', '" &
                     (GetGlyphIdByItemId(GetCharacterGlyph(player, "majorglyph1").Id, GlobalVariables.targetExpansion)).ToString & "', " &
@@ -174,8 +174,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_glyph1_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph2_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph3_col(0) & ", " &
-                    GlobalVariables.targetStructure.glyphs_glyph4_col(0) &
-                    ", " & GlobalVariables.targetStructure.glyphs_glyph5_col(0) & ", " &
+                    GlobalVariables.targetStructure.glyphs_glyph4_col(0) & ", " &
+                    GlobalVariables.targetStructure.glyphs_glyph5_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph6_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                     "', '1', '" &
                     (GetGlyphIdByItemId(GetCharacterGlyph(player, "secmajorglyph1").Id, GlobalVariables.targetExpansion)).ToString & "', " &
