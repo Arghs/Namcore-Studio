@@ -187,15 +187,14 @@ Namespace Framework.Transmission.Update
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     runSQLCommand_characters_string(
-                     "UPDATE " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " ( " &
-                     GlobalVariables.sourceStructure.itmins_guid_col(0) & ", " &
-                     GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & ", " &
-                     GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & ", " &
-                     GlobalVariables.sourceStructure.itmins_count_col(0) & ", " &
-                     GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
-                     ", " & GlobalVariables.sourceStructure.itmins_durability_col(0) & " ) VALUES ( '" &
-                     newItemGuid.ToString() & "', '" & itm2Add.Id.ToString & "', '" & player.Guid.ToString() &
-                     "', '1', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
+                     "UPDATE " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " SET `" &
+                     GlobalVariables.sourceStructure.itmins_count_col(0) & "`='" & itm2Update.Count.ToString() & "', `" &
+                     GlobalVariables.sourceStructure.itmins_container_col(0) & "`='" & itm2Update.Container.ToString() & "', `" &
+                     GlobalVariables.sourceStructure.itmins_slot_col(0) & "`='" & itm2Update.Slot.ToString() & "' WHERE `" &
+                     GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "`='" & player.Guid.ToString() & "' AND `" &
+                     GlobalVariables.sourceStructure.itmins_guid_col(0) & "`='" & itm2Update.Guid.ToString() & "'")
+                    Dim mEnchHandler As New EnchantmentsCreation
+                    mEnchHandler.SetItemEnchantments(player.SetIndex, itm2Update, itm2Update.Guid, GlobalVariables.sourceCore, GlobalVariables.sourceStructure)
                 Case "trinity"
                     Select Case zero
                         Case True
