@@ -33,7 +33,7 @@ Imports Namcore_Studio.Forms.Extension
 Imports libnc.Provider
 Imports System.Net
 Imports System.Threading
-Imports NCFramework.Framework.Transmission.Update
+Imports NCFramework.Framework.Core.Update
 
 Namespace Forms.Character
     Public Class CharacterOverview

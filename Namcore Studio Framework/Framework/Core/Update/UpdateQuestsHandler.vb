@@ -24,7 +24,7 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions
 
-Namespace Framework.Transmission.Update
+Namespace Framework.Core.Update
     Public Class UpdateQuestsHandler
 
         '// Declaration

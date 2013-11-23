@@ -24,8 +24,9 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Transmission
 
-Namespace Framework.Transmission.Update
+Namespace Framework.Core.Update
     Public Class UpdateArmorHandler
         Public Sub UpdateArmor(ByVal player As Character, ByVal modPlayer As Character, ByVal createItm As List(Of Item),
                                ByVal deleteItm As List(Of Item), enchItm As List(Of Item))

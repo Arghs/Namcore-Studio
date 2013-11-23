@@ -25,7 +25,7 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports libnc.Provider
 
-Namespace Framework.Transmission.Update
+Namespace Framework.Core.Update
     Public Class UpdateGlyphsHandler
         Public Sub UpdateGlyphs(ByVal player As Character, ByVal modPlayer As Character)
             LogAppend("Updating character glyphs", "UpdateGlyphsHandler_UpdateGlyphs", True)

@@ -25,7 +25,7 @@ Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
-Namespace Framework.Transmission.Update
+Namespace Framework.Core.Update
 
     Public Class UpdateCharacterHandler
         Public Sub UpdateCharacter(ByVal comparePlayer As Character, ByVal newPlayer As Character)
