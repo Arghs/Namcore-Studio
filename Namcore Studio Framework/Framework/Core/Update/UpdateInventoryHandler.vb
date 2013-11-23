@@ -97,6 +97,9 @@ Namespace Framework.Core.Update
                       itm2Add.Count.ToString() & "', '" &
                       itm2Add.Container.ToString() & "', '" &
                       itm2Add.Slot.ToString() & "' )")
+                    Dim mEnchCreator As New EnchantmentsCreation
+                    mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
+                                                      GlobalVariables.sourceStructure)
                 Case "trinity"
                     Dim newItemGuid As Integer = TryInt(
                         runSQLCommand_characters_string(
@@ -212,7 +215,7 @@ Namespace Framework.Core.Update
                     runSQLCommand_characters_string("DELETE FROM `" & GlobalVariables.targetStructure.item_instance_tbl(0) &
                                                   "` WHERE `" & GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "`='" & player.Guid.ToString() &
                                                   "' AND `" & GlobalVariables.targetStructure.itmins_slot_col(0) & "`='" & itm2Delete.Slot.ToString() &
-                                                  " AND `" & GlobalVariables.targetStructure.itmins_container_col(0) & "`='" & itm2Delete.Container.ToString())
+                                                  " AND `" & GlobalVariables.targetStructure.itmins_container_col(0) & "`='" & itm2Delete.Container.ToString() & "'")
                 Case "trinity"
                     Select Case zero
                         Case True
