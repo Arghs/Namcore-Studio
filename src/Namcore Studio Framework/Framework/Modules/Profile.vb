@@ -123,13 +123,24 @@ Namespace Framework.Modules
     <Serializable()>
     Public Class Reputation
         Public Faction As Integer
-        Public Flags As Integer
+        Public Flags As FlagEnum = FlagEnum.FACTION_FLAG_INVISIBLE
         Public Standing As Integer
         Public Name As String
         Public Value As Integer
         Public Max As Integer
         Public Status As Integer _
         '0=stranger; 1=acquaintance; 2=unfriendly; 3=neutral; 4=friendly; 5=honored; 6=revered; 7=exalted
+        <Flags> Public Enum FlagEnum
+            FACTION_FLAG_INVISIBLE = 0
+            FACTION_FLAG_VISIBLE = 1
+            FACTION_FLAG_AT_WAR = 2
+            FACTION_FLAG_HIDDEN = 4
+            FACTION_FLAG_INVISIBLE_FORCED = 8
+            FACTION_FLAG_PEACE_FORCED = 16
+            FACTION_FLAG_INACTIVE = 32
+            FACTION_FLAG_RIVAL = 64
+            FACTION_FLAG_SPECIAL = 128
+        End Enum
         Public Sub New()
         End Sub
     End Class

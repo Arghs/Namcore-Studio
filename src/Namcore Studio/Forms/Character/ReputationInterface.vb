@@ -76,99 +76,101 @@ Namespace Forms.Character
             End Try
 
             For Each pRepu As Reputation In GlobalVariables.currentViewedCharSet.PlayerReputation
-                Dim repPanel As New Panel
-                repPanel.Name = "rep" & pRepu.faction.ToString() & "_pnl"
-                repPanel.Size = referencePanel.Size
-                repPanel.Tag = pRepu
-                If colorTicker = 0 Then
-                    colorTicker = 1
-                    repPanel.BackColor = Color.FromArgb(110, 149, 190)
-                Else
-                    colorTicker = 0
-                    repPanel.BackColor = Color.FromArgb(126, 144, 156)
-                End If
-                Dim repNameLable As New Label
-                repNameLable.Name = "rep" & pRepu.faction.ToString() & "_name_lbl"
-                Dim factionName As String = pRepu.name
-                If factionName Is Nothing Then
-                    factionName = GetFactionNameById(pRepu.Faction, MySettings.Default.language)
-                    pRepu.name = factionName
-                End If
-                repNameLable.Text = factionName
-                repNameLable.Tag = pRepu
-                repPanel.Controls.Add(repNameLable)
-                repNameLable.Location = reference_name_lbl.Location
-                Dim sliderBgPanel As New Panel
-                sliderBgPanel.Name = "rep" & pRepu.faction.ToString() & "_sliderBg_pnl"
-                sliderBgPanel.Size = reference_sliderbg_panel.Size
-                sliderBgPanel.BackgroundImage = My.Resources.repbg1
-                sliderBgPanel.BackgroundImageLayout = ImageLayout.Stretch
-                sliderBgPanel.Tag = pRepu
-                Dim progressPanel As New Panel
-                progressPanel.Name = "rep" & pRepu.faction.ToString() & "_progress_pnl"
-                progressPanel.Size = reference_percentage_panel.Size
-                progressPanel.BackColor = Color.Yellow
-                progressPanel.Tag = pRepu
-                sliderBgPanel.Controls.Add(progressPanel)
-                progressPanel.Location = reference_percentage_panel.Location
-                repPanel.Controls.Add(sliderBgPanel)
-                If pRepu.max = 0 Then pRepu.max = 1
-                setPanelPercentage(progressPanel, pRepu.value/pRepu.max)
-                sliderBgPanel.Location = reference_sliderbg_panel.Location
-                Dim slider As New TrackBar
-                slider.Name = "rep" & pRepu.faction.ToString() & "_slider"
-                slider.Maximum = pRepu.max
-                slider.Value = pRepu.value
-                slider.Size = reference_trackbar.Size
-                slider.Tag = pRepu
-                slider.TickStyle = TickStyle.None
-                repPanel.Controls.Add(slider)
-                slider.Location = reference_trackbar.Location
-                AddHandler slider.Scroll, AddressOf slider_slide '//Use MouseUp event for better performance 
-                Dim valueTxtbox As New TextBox
-                valueTxtbox.Name = "rep" & pRepu.faction.ToString() & "_value_txtbox"
-                valueTxtbox.Size = reference_txtbox.Size
-                valueTxtbox.Text = pRepu.value
-                valueTxtbox.Tag = pRepu
-                repPanel.Controls.Add(valueTxtbox)
-                valueTxtbox.Location = reference_txtbox.Location
-                AddHandler valueTxtbox.TextChanged, AddressOf txt_changed
-                AddHandler valueTxtbox.Enter, AddressOf txt_enter
-                AddHandler valueTxtbox.Leave, AddressOf txt_left
-                Dim valueLbl As New Label
-                valueLbl.Name = "rep" & pRepu.faction.ToString() & "_value_lbl"
-                valueLbl.Text = pRepu.value.ToString & "/" & pRepu.max.ToString()
-                valueLbl.Font = reference_counter_lbl.Font
-                valueLbl.ForeColor = reference_counter_lbl.ForeColor
-                valueLbl.BackColor = reference_counter_lbl.BackColor
-                valueLbl.Tag = pRepu
-                valueLbl.AutoSize = True
-                repPanel.Controls.Add(valueLbl)
-                valueLbl.Location = reference_counter_lbl.Location
-                valueLbl.BringToFront()
-                RepLayoutPanel.Controls.Add(repPanel)
-                Dim standingCombo As New ComboBox
-                standingCombo.Name = "rep" & pRepu.faction.ToString() & "_standing_combo"
-                standingCombo.Location = reference_standing_combo.Location
-                For Each itm As String In reference_standing_combo.Items
-                    standingCombo.Items.Add(itm)
-                Next
-                standingCombo.SelectedIndex = pRepu.status
-                Select Case pRepu.status
-                    Case 0 : progressPanel.BackColor = Color.DarkRed
-                    Case 1 : progressPanel.BackColor = Color.Red
-                    Case 2 : progressPanel.BackColor = Color.Red
-                    Case 3 : progressPanel.BackColor = Color.Yellow
-                    Case 4 : progressPanel.BackColor = Color.Green
-                    Case 5 : progressPanel.BackColor = Color.Green
-                    Case 6 : progressPanel.BackColor = Color.Green
-                    Case 7 : progressPanel.BackColor = Color.LightGreen
-                End Select
-                standingCombo.Tag = pRepu
+                If (pRepu.Flags And Reputation.FlagEnum.FACTION_FLAG_VISIBLE) = Reputation.FlagEnum.FACTION_FLAG_VISIBLE Then
+                    Dim repPanel As New Panel
+                    repPanel.Name = "rep" & pRepu.Faction.ToString() & "_pnl"
+                    repPanel.Size = referencePanel.Size
+                    repPanel.Tag = pRepu
+                    If colorTicker = 0 Then
+                        colorTicker = 1
+                        repPanel.BackColor = Color.FromArgb(110, 149, 190)
+                    Else
+                        colorTicker = 0
+                        repPanel.BackColor = Color.FromArgb(126, 144, 156)
+                    End If
+                    Dim repNameLable As New Label
+                    repNameLable.Name = "rep" & pRepu.Faction.ToString() & "_name_lbl"
+                    Dim factionName As String = pRepu.Name
+                    If factionName Is Nothing Then
+                        factionName = GetFactionNameById(pRepu.Faction, MySettings.Default.language)
+                        pRepu.Name = factionName
+                    End If
+                    repNameLable.Text = factionName
+                    repNameLable.Tag = pRepu
+                    repPanel.Controls.Add(repNameLable)
+                    repNameLable.Location = reference_name_lbl.Location
+                    Dim sliderBgPanel As New Panel
+                    sliderBgPanel.Name = "rep" & pRepu.Faction.ToString() & "_sliderBg_pnl"
+                    sliderBgPanel.Size = reference_sliderbg_panel.Size
+                    sliderBgPanel.BackgroundImage = My.Resources.repbg1
+                    sliderBgPanel.BackgroundImageLayout = ImageLayout.Stretch
+                    sliderBgPanel.Tag = pRepu
+                    Dim progressPanel As New Panel
+                    progressPanel.Name = "rep" & pRepu.Faction.ToString() & "_progress_pnl"
+                    progressPanel.Size = reference_percentage_panel.Size
+                    progressPanel.BackColor = Color.Yellow
+                    progressPanel.Tag = pRepu
+                    sliderBgPanel.Controls.Add(progressPanel)
+                    progressPanel.Location = reference_percentage_panel.Location
+                    repPanel.Controls.Add(sliderBgPanel)
+                    If pRepu.Max = 0 Then pRepu.Max = 1
+                    SetPanelPercentage(progressPanel, pRepu.Value / pRepu.Max)
+                    sliderBgPanel.Location = reference_sliderbg_panel.Location
+                    Dim slider As New TrackBar
+                    slider.Name = "rep" & pRepu.Faction.ToString() & "_slider"
+                    slider.Maximum = pRepu.Max
+                    slider.Value = pRepu.Value
+                    slider.Size = reference_trackbar.Size
+                    slider.Tag = pRepu
+                    slider.TickStyle = TickStyle.None
+                    repPanel.Controls.Add(slider)
+                    slider.Location = reference_trackbar.Location
+                    AddHandler slider.Scroll, AddressOf slider_slide '//Use MouseUp event for better performance 
+                    Dim valueTxtbox As New TextBox
+                    valueTxtbox.Name = "rep" & pRepu.Faction.ToString() & "_value_txtbox"
+                    valueTxtbox.Size = reference_txtbox.Size
+                    valueTxtbox.Text = pRepu.Value
+                    valueTxtbox.Tag = pRepu
+                    repPanel.Controls.Add(valueTxtbox)
+                    valueTxtbox.Location = reference_txtbox.Location
+                    AddHandler valueTxtbox.TextChanged, AddressOf txt_changed
+                    AddHandler valueTxtbox.Enter, AddressOf txt_enter
+                    AddHandler valueTxtbox.Leave, AddressOf txt_left
+                    Dim valueLbl As New Label
+                    valueLbl.Name = "rep" & pRepu.Faction.ToString() & "_value_lbl"
+                    valueLbl.Text = pRepu.Value.ToString & "/" & pRepu.Max.ToString()
+                    valueLbl.Font = reference_counter_lbl.Font
+                    valueLbl.ForeColor = reference_counter_lbl.ForeColor
+                    valueLbl.BackColor = reference_counter_lbl.BackColor
+                    valueLbl.Tag = pRepu
+                    valueLbl.AutoSize = True
+                    repPanel.Controls.Add(valueLbl)
+                    valueLbl.Location = reference_counter_lbl.Location
+                    valueLbl.BringToFront()
+                    RepLayoutPanel.Controls.Add(repPanel)
+                    Dim standingCombo As New ComboBox
+                    standingCombo.Name = "rep" & pRepu.Faction.ToString() & "_standing_combo"
+                    standingCombo.Location = reference_standing_combo.Location
+                    For Each itm As String In reference_standing_combo.Items
+                        standingCombo.Items.Add(itm)
+                    Next
+                    standingCombo.SelectedIndex = pRepu.Status
+                    Select Case pRepu.Status
+                        Case 0 : progressPanel.BackColor = Color.DarkRed
+                        Case 1 : progressPanel.BackColor = Color.Red
+                        Case 2 : progressPanel.BackColor = Color.Red
+                        Case 3 : progressPanel.BackColor = Color.Yellow
+                        Case 4 : progressPanel.BackColor = Color.Green
+                        Case 5 : progressPanel.BackColor = Color.Green
+                        Case 6 : progressPanel.BackColor = Color.Green
+                        Case 7 : progressPanel.BackColor = Color.LightGreen
+                    End Select
+                    standingCombo.Tag = pRepu
 
-                standingCombo.Text = ResourceHandler.GetUserMessage("standing_" & pRepu.status.ToString)
-                repPanel.Controls.Add(standingCombo)
-                AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
+                    standingCombo.Text = ResourceHandler.GetUserMessage("standing_" & pRepu.Status.ToString)
+                    repPanel.Controls.Add(standingCombo)
+                    AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
+                End If
             Next
             CloseProcessStatus()
         End Sub

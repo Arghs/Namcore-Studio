@@ -32,6 +32,9 @@ Namespace Framework.Core
         Public Sub GetCharacterReputation(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character reputation for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterReputationHandler_GetCharacterReputation", True)
+            Dim player As Character = GetCharacterSetBySetId(setId, account)
+            player.PlayerReputation = New List(Of Reputation)()
+            SetCharacterSet(setId, player, account)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     LoadAtArcemu(characterGuid, setId, account)
