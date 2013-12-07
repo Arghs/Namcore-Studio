@@ -1979,7 +1979,7 @@ Namespace Forms.Character
             Me.exit_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.exit_bt.ForeColor = System.Drawing.Color.Black
             Me.exit_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.exit_bt.Location = New System.Drawing.Point(741, 682)
+            Me.exit_bt.Location = New System.Drawing.Point(741, 695)
             Me.exit_bt.Name = "exit_bt"
             Me.exit_bt.Size = New System.Drawing.Size(155, 34)
             Me.exit_bt.TabIndex = 170
@@ -1993,7 +1993,7 @@ Namespace Forms.Character
             Me.savechanges_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.savechanges_bt.ForeColor = System.Drawing.Color.Black
             Me.savechanges_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.savechanges_bt.Location = New System.Drawing.Point(173, 682)
+            Me.savechanges_bt.Location = New System.Drawing.Point(173, 695)
             Me.savechanges_bt.Name = "savechanges_bt"
             Me.savechanges_bt.Size = New System.Drawing.Size(155, 34)
             Me.savechanges_bt.TabIndex = 171
@@ -2007,7 +2007,7 @@ Namespace Forms.Character
             Me.reset_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.reset_bt.ForeColor = System.Drawing.Color.Black
             Me.reset_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.reset_bt.Location = New System.Drawing.Point(12, 682)
+            Me.reset_bt.Location = New System.Drawing.Point(12, 695)
             Me.reset_bt.Name = "reset_bt"
             Me.reset_bt.Size = New System.Drawing.Size(155, 34)
             Me.reset_bt.TabIndex = 172
@@ -2466,7 +2466,7 @@ Namespace Forms.Character
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(910, 727)
+            Me.ClientSize = New System.Drawing.Size(910, 736)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.genderpanel)
             Me.Controls.Add(Me.addpanel)
