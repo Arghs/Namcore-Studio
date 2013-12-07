@@ -26,7 +26,7 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Namespace Framework.Transmission
-    Public Module ReputationCreation
+    Public Class ReputationCreation
         Public Sub AddCharacterReputation(ByVal setId As Integer, ByVal account As Account, Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
             LogAppend("Adding reputation to character: " & charguid.ToString() & " // setId is : " & setId.ToString(),
@@ -79,5 +79,5 @@ Namespace Framework.Transmission
             Next
             LogAppend("Added " & cnt.ToString() & " faction reputations", "ReputationCreation_createAtTrinity", True)
         End Sub
-    End Module
+    End Class
 End Namespace

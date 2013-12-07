@@ -61,9 +61,11 @@ Namespace Framework.Transmission
                 Dim mCharGlyphCreation As New GlyphCreation
                 Dim mCharQuestCreation As New QuestCreation
                 Dim mCharTalentCreation As New TalentCreation
+                Dim mCharReputationCreation As New ReputationCreation
                 mCharArmorCreation.AddCharacterArmor(setId, playerAccount)
                 mCharGlyphCreation.SetCharacterGlyphs(setId, playerAccount)
                 mCharQuestCreation.SetCharacterQuests(setId, playerAccount)
+                mCharReputationCreation.AddCharacterReputation(setId, playerAccount)
                 AddSpecialSkills(setId, player)
                 AddSpecialSpells(setId, player)
                 If Not lite Then mCharTalentCreation.SetCharacterTalents(setId, playerAccount)
