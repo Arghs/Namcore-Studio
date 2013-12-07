@@ -131,7 +131,9 @@ Namespace Forms
             Next
             accountview.Update()
             For Each rowitem As DataRow In GlobalVariables.chartable.Rows
-                Dim player As New NCFramework.Framework.Modules.Character("Error", 0)
+                Dim player As New NCFramework.Framework.Modules.Character()
+                player.Name = "Error"
+                player.Guid = 0
                 Dim str(6) As String
                 Dim itm As ListViewItem
                 player.Guid = TryInt(rowitem.Item(0))
@@ -776,10 +778,9 @@ Namespace Forms
                         Dim tmpAccount(2) As String
                         tmpAccount(1) = destNode.Text
                         tempAccList.Add(tmpAccount)
-                        Dim _
-                            newchar As _
-                                New NCFramework.Framework.Modules.Character(lvItem.SubItems(2).Text,
-                                                                           TryInt(lvItem.SubItems(0).Text))
+                        Dim newchar As New NCFramework.Framework.Modules.Character()
+                        newchar.Name = lvItem.SubItems(2).Text
+                        newchar.Guid = TryInt(lvItem.SubItems(0).Text)
                         Dim nodes As New List(Of String)
                         For Each parentNode As TreeNode In target_accounts_tree.Nodes
                             nodes.AddRange(GetChildren(parentNode))
@@ -929,7 +930,7 @@ Namespace Forms
 
                 For Each checkedChar As ListViewItem In characterview.CheckedItems
                     Dim thischar As NCFramework.Framework.Modules.Character = checkedChar.Tag
-                    Dim newchar As NCFramework.Framework.Modules.Character = thischar.ShallowCopy()
+                    Dim newchar As NCFramework.Framework.Modules.Character = DeepCloneHelper.DeepClone(thischar)
                     If checkedChar.SubItems(1).Text = playerAccount.Name Then
                         For Each targetaccount As TreeNode In target_accounts_tree.Nodes
                             If targetaccount.Text = playerAccount.Name Then
@@ -968,9 +969,9 @@ Namespace Forms
                     For Each account() As String In accounts
                         If account(1).ToLower() = accountnode.Text.ToLower() Then
                             Dim newcharnode As New TreeNode
-                            Dim _
-                                newchar As _
-                                    New NCFramework.Framework.Modules.Character(character(1), TryInt(character(0)))
+                            Dim newchar As New NCFramework.Framework.Modules.Character()
+                            newchar.Name = character(1)
+                            newchar.Guid = TryInt(character(0))
                             Dim nodes As New List(Of String)
                             For Each parentNode As TreeNode In target_accounts_tree.Nodes
                                 nodes.AddRange(GetChildren(parentNode))
@@ -999,7 +1000,9 @@ Namespace Forms
             For Each character() As String In GlobalVariables.trans_charlist
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
                     Dim newcharnode As New TreeNode
-                    Dim newchar As New NCFramework.Framework.Modules.Character(character(1), TryInt(character(0)))
+                    Dim newchar As New NCFramework.Framework.Modules.Character()
+                    newchar.Name = character(1)
+                    newchar.Guid = TryInt(character(0))
                     Dim nodes As New List(Of String)
                     For Each parentNode As TreeNode In target_accounts_tree.Nodes
                         nodes.AddRange(GetChildren(parentNode))

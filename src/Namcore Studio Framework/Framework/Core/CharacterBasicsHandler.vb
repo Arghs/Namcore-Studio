@@ -56,7 +56,9 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            Dim tmpCharacter As New Character(_tempResult, charguid)
+            Dim tmpCharacter As New Character()
+            tmpCharacter.Name = _tempResult
+            tmpCharacter.Guid = charguid
             tmpCharacter.SourceCore = "arcemu"
             tmpCharacter.SetIndex = tarSetId
             LogAppend(
@@ -437,7 +439,9 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            Dim tmpCharacter As New Character(_tempResult, charguid)
+            Dim tmpCharacter As New Character()
+            tmpCharacter.Name = _tempResult
+            tmpCharacter.Guid = charguid
             tmpCharacter.SourceCore = "trinity"
             tmpCharacter.SetIndex = tarSetId
             _tempResult =
@@ -850,7 +854,9 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            Dim tmpCharacter As New Character(_tempResult, charguid)
+            Dim tmpCharacter As New Character()
+            tmpCharacter.Name = _tempResult
+            tmpCharacter.Guid = charguid
             tmpCharacter.SourceCore = "trinitytbc"
             tmpCharacter.SetIndex = tarSetId
 
@@ -1276,7 +1282,9 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            Dim tmpCharacter As New Character(_tempResult, charguid)
+            Dim tmpCharacter As New Character()
+            tmpCharacter.Name = _tempResult
+            tmpCharacter.Guid = charguid
             tmpCharacter.SourceCore = "mangos"
             tmpCharacter.SetIndex = tarSetId
 

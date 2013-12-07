@@ -103,13 +103,5 @@ Namespace Framework.Modules
         Public Professions As List(Of Profession)
         Public AllInfoLoaded As Boolean = False
 
-        Public Sub New(charname As String, charguid As Integer)
-            Name = charname
-            Guid = charguid
-        End Sub
-
-        Public Function ShallowCopy() As Character
-            Return DirectCast(MemberwiseClone(), Character)
-        End Function
     End Class
 End Namespace

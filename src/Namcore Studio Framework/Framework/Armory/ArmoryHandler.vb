@@ -83,7 +83,9 @@ Namespace Framework.Armory
                     LogAppend("Loading character " & characterName & " //ident is " & setId.ToString(),
                               "ArmoryHandler_DoLoad", True)
                     LogAppend("Loading basic character information", "ArmoryHandler_DoLoad", True)
-                    Dim player As New Character(characterName, 0)
+                    Dim player As New Character()
+                    player.Name = characterName
+                    player.Guid = 0
                     player.AccountId = 0
                     player.AccountName = "Armory"
                     player.Level = TryInt(SplitString(characterContext, "<span class=""level""><strong>", "</strong></span>"))

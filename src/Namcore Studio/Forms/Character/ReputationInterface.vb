@@ -74,8 +74,8 @@ Namespace Forms.Character
             Catch ex As Exception
 
             End Try
-
-            For Each pRepu As Reputation In GlobalVariables.currentViewedCharSet.PlayerReputation
+            Dim newSet As NCFramework.Framework.Modules.Character = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+            For Each pRepu As Reputation In newSet.PlayerReputation
                 If (pRepu.Flags And Reputation.FlagEnum.FACTION_FLAG_VISIBLE) = Reputation.FlagEnum.FACTION_FLAG_VISIBLE Then
                     Dim repPanel As New Panel
                     repPanel.Name = "rep" & pRepu.Faction.ToString() & "_pnl"
@@ -199,13 +199,13 @@ Namespace Forms.Character
                                         Then
                                         setPanelPercentage(subsubCtrl, slider.Value/slider.Maximum)
                                         Dim loc As Integer =
-                                                GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
-                                                    Function(rep) (pCtrl.Tag.Equals(rep)))
+                                       GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
+                                           Function(rep) rep.Faction = pCtrl.Tag.Faction)
                                         pCtrl.Tag.value = slider.Value
                                         Dim thisRep As Reputation = pCtrl.Tag
                                         pCtrl.Tag = thisRep.UpdateStanding()
                                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                                            GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                                         GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                                     End If
                                 Next
@@ -241,7 +241,7 @@ Namespace Forms.Character
                                         Dim thisRep As Reputation = pCtrl.Tag
                                         pCtrl.Tag = thisRep.UpdateStanding()
                                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                                            GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                                         GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                                     End If
                                 Next
@@ -283,15 +283,15 @@ Namespace Forms.Character
             For Each pCtrl As Control In RepLayoutPanel.Controls
                 If pCtrl.Name.Contains("rep" & combo.Tag.faction.ToString() & "_pnl") Then
                     Dim loc As Integer =
-                            GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
-                                Function(rep) (pCtrl.Tag.Equals(rep)))
+                                        GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
+                                            Function(rep) rep.Faction = pCtrl.Tag.Faction)
                     pCtrl.Tag.value = 0
                     pCtrl.Tag.max = max
                     pCtrl.Tag.status = combo.SelectedIndex
                     Dim thisRep As Reputation = pCtrl.Tag
                     pCtrl.Tag = thisRep.UpdateStanding()
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                        GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                     DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Value = 0
                     DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Maximum =
@@ -327,11 +327,11 @@ Namespace Forms.Character
                             If int <= pCtrl.Tag.max And int >= 0 Then
                                 Dim loc As Integer =
                                         GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
-                                            Function(rep) (pCtrl.Tag.Equals(rep)))
-                                DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_slider", pCtrl),
+                                            Function(rep) rep.Faction = pCtrl.Tag.Faction)
+                                DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_slider", pCtrl), 
                                            TrackBar).
                                     Value = int
-                                DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_value_lbl", pCtrl),
+                                DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_value_lbl", pCtrl), 
                                            Label).
                                     Text = int.ToString() & "/" & pCtrl.Tag.max.ToString
                                 Dim xctrl As Control =
@@ -339,11 +339,13 @@ Namespace Forms.Character
                                                     pCtrl)
                                 Dim progresspanel As Control =
                                         findControl("rep" & pCtrl.Tag.faction.ToString() & "_progress_pnl", xctrl)
-                                setPanelPercentage(progresspanel, int/pCtrl.Tag.max)
+                                setPanelPercentage(progresspanel, int / pCtrl.Tag.max)
                                 pCtrl.Tag.value = int
+                                Dim thisRep As Reputation = pCtrl.Tag
+                                pCtrl.Tag = thisRep.UpdateStanding()
                                 _valueisok = True
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                                    GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                                 GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                             End If
                         End If
@@ -425,7 +427,7 @@ Namespace Forms.Character
                         sliderBgPanel.Controls.Add(progressPanel)
                         progressPanel.Location = reference_percentage_panel.Location
                         repPanel.Controls.Add(sliderBgPanel)
-                        setPanelPercentage(progressPanel, pRepu.value/pRepu.max)
+                        setPanelPercentage(progressPanel, pRepu.value / pRepu.max)
                         sliderBgPanel.Location = reference_sliderbg_panel.Location
                         Dim slider As New TrackBar
                         slider.Name = "rep" & pRepu.faction.ToString() & "_slider"
@@ -484,7 +486,7 @@ Namespace Forms.Character
                         repPanel.Controls.Add(standingCombo)
                         AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                            GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                         GlobalVariables.currentEditedCharSet.PlayerReputation.Add(pRepu)
                         MsgBox(ResourceHandler.GetUserMessage("factionadded"), , "Info")
                     Else

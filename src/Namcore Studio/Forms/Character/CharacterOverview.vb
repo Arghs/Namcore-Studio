@@ -112,14 +112,14 @@ Namespace Forms.Character
             _tmpSetId = setId
             _controlLst = New List(Of Control)
             _controlLst = FindAllChildren()
-            charname_lbl.Text = GlobalVariables.currentViewedCharSet.Name
-            level_lbl.Text = GlobalVariables.currentViewedCharSet.Level.ToString
-            class_lbl.Text = GetClassNameById(GlobalVariables.currentViewedCharSet.Cclass)
-            race_lbl.Text = GetRaceNameById(GlobalVariables.currentViewedCharSet.Race)
-            gender_lbl.Text = GetGenderNameById(GlobalVariables.currentViewedCharSet.Gender)
+            charname_lbl.Text = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Name
+            level_lbl.Text = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Level.ToString
+            class_lbl.Text = GetClassNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Cclass)
+            race_lbl.Text = GetRaceNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Race)
+            gender_lbl.Text = GetGenderNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Gender)
             Dim zeroBagItems As New List(Of Item)
-            If Not GlobalVariables.currentViewedCharSet.InventoryZeroItems Is Nothing Then
-                For Each potCharBag As Item In GlobalVariables.currentViewedCharSet.InventoryZeroItems
+            If Not DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems Is Nothing Then
+                For Each potCharBag As Item In DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems
                     potCharBag.BagItems = New List(Of Item)()
                     Select Case potCharBag.Slot
                         Case 19, 20, 21, 22
@@ -128,7 +128,7 @@ Namespace Forms.Character
                                     If subctrl.Name.ToLower.Contains("panel") Then
                                         Dim bagPanel As Panel = subctrl
                                         bagPanel.BackColor = Getraritycolor(GetItemQualityByItemId(potCharBag.Id))
-                                        For Each potBagItem As Item In GlobalVariables.currentViewedCharSet.InventoryItems
+                                        For Each potBagItem As Item In DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryItems
                                             If potBagItem.Bagguid = potCharBag.Guid Then
                                                 If potBagItem.Name Is Nothing Then potBagItem.Name = GetItemNameByItemId(potBagItem.Id, NCFramework.My.MySettings.Default.language)
                                                 If potBagItem.Image Is Nothing Then potBagItem.Image = GetItemIconById(potBagItem.Id, GlobalVariables.GlobalWebClient)
@@ -392,7 +392,7 @@ Namespace Forms.Character
 
                         Else
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             GlobalVariables.currentEditedCharSet.Name = TextBox1.Text
                             senderLabel.Text = TextBox1.Text
                         End If
@@ -405,7 +405,7 @@ Namespace Forms.Character
 
                             Else
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                                    GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                                 GlobalVariables.currentEditedCharSet.Level = newlvl
                                 senderLabel.Text = TextBox1.Text
                             End If
@@ -461,7 +461,7 @@ Namespace Forms.Character
                             itm.EnchantmentName = itemname
                             senderLabel.Tag = itm
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         ElseIf foundspell = True Then
                             Dim itm As Item = senderLabel.Tag
@@ -471,7 +471,7 @@ Namespace Forms.Character
                             itm.EnchantmentName = spellname
                             senderLabel.Tag = itm
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         Else
 
@@ -529,7 +529,7 @@ Namespace Forms.Character
 
                             Next
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         End If
                     End If
@@ -602,7 +602,7 @@ Namespace Forms.Character
                             End If
                         Next
                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                            GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                         RemoveCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         senderLabel.Text = Nothing
                         senderLabel.Tag = Nothing
@@ -716,7 +716,7 @@ Namespace Forms.Character
             End If
             classpanel.Location = newPoint
             senderLabel.Visible = True
-            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             GlobalVariables.currentEditedCharSet.Cclass = GetClassIdByName(senderLabel.Text)
         End Sub
 
@@ -730,7 +730,7 @@ Namespace Forms.Character
             End If
             racepanel.Location = newPoint
             senderLabel.Visible = True
-            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             GlobalVariables.currentEditedCharSet.Race = GetRaceIdByName(senderLabel.Text)
         End Sub
 
@@ -744,7 +744,7 @@ Namespace Forms.Character
             End If
             genderpanel.Location = newPoint
             senderLabel.Visible = True
-            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             If senderLabel.Text.StartsWith("M") Then
                 GlobalVariables.currentEditedCharSet.Gender = 0
             Else
@@ -937,7 +937,7 @@ Namespace Forms.Character
                     DirectCast(_tempSender, Label).Text = itm.Name
                     DirectCast(_tempSender, Label).Tag = itm
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                        GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     AddCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
                     changepanel.Location = New Point(4000, 4000)
                     addpanel.Location = New Point(4000, 4000)
@@ -1088,7 +1088,7 @@ Namespace Forms.Character
             If allowAdding = True Then
                 Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterGemId"), ResourceHandler.GetUserMessage("gemAdding"), "0"))
                 If Not retnvalue = 0 Then
-                    If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                    If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     Dim client As New WebClient
                     client.CheckProxy()
                     Dim effectId As Integer = GetEffectIdByGemId(retnvalue)

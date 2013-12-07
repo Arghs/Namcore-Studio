@@ -135,6 +135,8 @@ Namespace Framework.Core.Update
                 End If
                 Dim mUpdateQuests As New UpdateQuestsHandler
                 mUpdateQuests.UpdateQuestlog(comparePlayer, newPlayer)
+                Dim mUpdateReputation As New UpdateReputationHandler
+                mUpdateReputation.UpdateReputation(comparePlayer, newPlayer)
                 LogAppend("Update completed", "UpdateCharacterHandler_UpdateCharacter", True)
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(), "UpdateCharacterHandler_UpdateCharacter", True, True)

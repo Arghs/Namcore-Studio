@@ -205,7 +205,7 @@ Namespace Forms.Character
                         For Each av As Achievement In GlobalVariables.currentViewedCharSet.Achievements
                             If av.Id = charAv.Id Then
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then
-                                    GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                                    GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                                     GlobalVariables.currentViewedCharSet.Achievements.Remove(av)
                                 Else
                                     GlobalVariables.currentViewedCharSet.Achievements.Remove(av)
@@ -229,7 +229,7 @@ Namespace Forms.Character
                     Thread.Sleep(2000)
                 End If
 
-                For Each charAv As Achievement In GlobalVariables.currentViewedCharSet.Achievements
+                For Each charAv As Achievement In DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Achievements
 
                     If _doneAvIds.Contains(charAv.Id) Then
                         Continue For
@@ -244,7 +244,7 @@ Namespace Forms.Character
                             GlobalVariables.trdRunning -= 1
                             Exit Function
                         End If
-                       AddAvToLayout(charAv)
+                        AddAvToLayout(charAv)
                     End If
                 Next
                 If operationCount = 1 Then
@@ -349,7 +349,7 @@ Namespace Forms.Character
                             AddAvToLayout(charAv)
                         End If
                         If GlobalVariables.currentEditedCharSet Is Nothing Then
-                            GlobalVariables.currentEditedCharSet = GlobalVariables.currentViewedCharSet.ShallowCopy()
+                            GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             GlobalVariables.currentEditedCharSet.Achievements.Add(charAv)
                         Else
                             GlobalVariables.currentEditedCharSet.Achievements.Add(charAv)
