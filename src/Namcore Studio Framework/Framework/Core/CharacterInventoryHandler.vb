@@ -31,6 +31,10 @@ Namespace Framework.Core
         Public Sub GetCharacterInventory(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character Inventory for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterInventoryHandler_GetCharacterInventory", True)
+            Dim player As Character = GetCharacterSetBySetId(setId, account)
+            player.InventoryItems = New List(Of Item)()
+            player.InventoryZeroItems = New List(Of Item)()
+            SetCharacterSet(setId, player, account)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     LoadAtArcemu(characterGuid, setId, account)

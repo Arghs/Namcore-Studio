@@ -32,6 +32,10 @@ Namespace Framework.Core
         Public Sub GetCharacterGlyphs(ByVal charguid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character Glyphs for charguid: " & charguid & " and setId: " & setId,
                       "CharacterGlyphsHandler_GetCharacterGlyphs", True)
+            Dim player As Character = GetCharacterSetBySetId(setId, account)
+            player.PlayerGlyphs = New List(Of Glyph)()
+            player.PlayerGlyphsIndex = ""
+            SetCharacterSet(setId, player, account)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     LoadAtArcemu(charguid, setId, account)

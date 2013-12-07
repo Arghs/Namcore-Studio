@@ -31,6 +31,9 @@ Namespace Framework.Core
         Public Sub GetCharacterQuestlog(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character questlog for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterQuestlogHandler_GetCharacterQuestlog", True)
+            Dim player As Character = GetCharacterSetBySetId(setId, account)
+            player.Quests = New List(Of Quest)()
+            SetCharacterSet(setId, player, account)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     LoadAtArcemu(characterGuid, setId, account)
