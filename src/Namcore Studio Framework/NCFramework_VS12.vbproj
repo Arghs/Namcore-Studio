@@ -105,6 +105,7 @@
     <Compile Include="Framework\Modules\Character.vb" />
     <Compile Include="Framework\Modules\DbStructure.vb" />
     <Compile Include="Framework\Modules\GlobalVariables.vb" />
+    <Compile Include="Framework\Transmission\PlayerCreateHelper.vb" />
     <Compile Include="Framework\Modules\Profile.vb" />
     <Compile Include="Framework\Template System\Serializer.vb" />
     <Compile Include="Framework\Transmission\AccountCreation.vb" />
@@ -198,7 +199,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_DetectChanges="True" />
+      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -25,6 +25,7 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Transmission
 Imports MySql.Data.MySqlClient
 
 Namespace Framework.Transmission
@@ -151,7 +152,9 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.itmins_container_col(0) & ", " &
                     GlobalVariables.targetStructure.itmins_slot_col(0) & " ) VALUES ( '" & newcharguid.ToString() &
                     "', '" & newitemguid.ToString() & "', '6948', '1', '-1', '23' )", True)
-                'Adding special skills & spells
+                '//Adding special skills & spells
+                GetRaceSpells(player, account)
+                GetClassSpells(player, account)
                 AddSpells("6603,", player)
                 Dim cRace As Integer = player.Race
                 Dim cClass As Integer = player.Cclass
@@ -507,7 +510,10 @@ Namespace Framework.Transmission
                             GlobalVariables.targetStructure.char_guid_col(0) & "='" & newcharguid.ToString & "'", True)
                     End If
                 End If
-                'Creating hearthstone
+                '// Special Spells
+                GetRaceSpells(player, account)
+                GetClassSpells(player, account)
+                '//Creating hearthstone
                 LogAppend("Creating character hearthstone", "CharacterCreationLite_createAtArcemu", False)
                 Dim newitemguid As Integer =
                         (TryInt(
@@ -598,7 +604,10 @@ Namespace Framework.Transmission
                             "'", True)
                     End If
                 End If
-                'Creating hearthstone
+                '// Special Spells
+                GetRaceSpells(player, account)
+                GetClassSpells(player, account)
+                '// Creating hearthstone
                 LogAppend("Creating character hearthstone", "CharacterCreationLite_createAtArcemu", False)
                 Dim newitemguid As Integer =
                         (TryInt(
