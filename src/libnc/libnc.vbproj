@@ -88,6 +88,7 @@
     <Compile Include="Provider\IconInfo.vb" />
     <Compile Include="Provider\ItemInfo.vb" />
     <Compile Include="Provider\ItemSparseInfo.vb" />
+    <Compile Include="Provider\CreateInfo.vb" />
     <Compile Include="Provider\QuestNameInfo.vb" />
     <Compile Include="Provider\SkillLineInfo.vb" />
     <Compile Include="Provider\SpellInfo.vb" />
@@ -119,6 +120,7 @@
     <None Include="Resources\Item.csv" />
     <None Include="Resources\ItemDisplayInfo.csv" />
     <None Include="Resources\ItemSparse.csv" />
+    <None Include="Resources\PlayerCreateInfo.csv" />
     <None Include="Resources\questname.csv" />
     <None Include="Resources\SkillLine.csv" />
     <None Include="Resources\Spell.csv" />
