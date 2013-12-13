@@ -29,7 +29,7 @@ Namespace Framework.Modules
         Public Id As Integer
         Public Guid As Integer
         Public Name As String
-        Public Rarity As Integer '0=poor;1=common;2=uncommon;3=rare;4=epic;5=legendary;6=artifact/heirloom
+        Public Rarity As ItemRarityEnum '0=poor;1=common;2=uncommon;3=rare;4=epic;5=legendary;6=artifact/heirloom
         Public Slotname As String
         Public Slot As ItemSlotEnum
         Public Socket1Id As Integer
@@ -41,7 +41,7 @@ Namespace Framework.Modules
         Public Socket1Name As String
         Public Socket2Name As String
         Public Socket3Name As String
-        Public EnchantmentType As Integer '1=spell;2=item
+        Public EnchantmentType As ItemEnchTypeEnum '1=spell;2=item
         Public EnchantmentId As Integer
         Public EnchantmentName As String
         Public Enchstring As String
@@ -50,7 +50,7 @@ Namespace Framework.Modules
         Public Socket3Effectid As Integer
         Public EnchantmentEffectid As Integer
         Public Image As Image
-        Public UpdateRequest As Integer = 0 '0=no; 1=create; 2=delete; 3=update
+        Public UpdateRequest As ItemUpdateEnum = ItemUpdateEnum.UPDATE_NO '0=no; 1=create; 2=delete; 3=update
         Public Bag As Integer
         Public Bagguid As Integer
         Public Enchantstring As String
@@ -61,6 +61,25 @@ Namespace Framework.Modules
         Public Charges As String
         Public Duration As Integer
         Public Durability As Integer
+        Public Enum ItemUpdateEnum As UInteger
+            UPDATE_NO = 0
+            UPDATE_CREATE = 1
+            UPDATE_DELETE = 2
+            UPDATE_UPDATE = 3
+        End Enum
+        Public Enum ItemEnchTypeEnum As UInteger
+            ENCH_TYPE_SPELL = 1
+            ENCH_TYPE_ITEM = 2
+        End Enum
+        Public Enum ItemRarityEnum As UInteger
+            ITM_RARITY_POOR = 0
+            ITM_RARITY_COMMON = 1
+            ITM_RARITY_UNCOMMON = 2
+            ITM_RARITY_RARE = 3
+            ITM_RARITY_EPIC = 4
+            ITM_RARITY_LEGENDARY = 5
+            ITM_RARITY_ARTIFACT = 6
+        End Enum
         Public Enum ItemSlotEnum As UInteger
             ITM_SLOT_HEAD = 0
             ITM_SLOT_NECK = 1
