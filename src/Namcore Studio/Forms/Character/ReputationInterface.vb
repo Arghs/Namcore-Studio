@@ -197,7 +197,7 @@ Namespace Forms.Character
                                 For Each subsubCtrl As Control In subCtrl.Controls
                                     If subsubCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_progress_pnl") _
                                         Then
-                                        setPanelPercentage(subsubCtrl, slider.Value/slider.Maximum)
+                                        setPanelPercentage(subsubCtrl, slider.Value / slider.Maximum)
                                         Dim loc As Integer =
                                        GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
                                            Function(rep) rep.Faction = pCtrl.Tag.Faction)

@@ -163,7 +163,7 @@ Namespace Framework.Core.Update
                                  GlobalVariables.targetStructure.itmins_guid_col(0) &
                                  "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
                                  GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1))
-                 
+
                     Dim parts() As String = enchString.Split(" "c)
                     parts(0) = newItemGuid.ToString()
                     parts(3) = itm2Add.Id.ToString()
