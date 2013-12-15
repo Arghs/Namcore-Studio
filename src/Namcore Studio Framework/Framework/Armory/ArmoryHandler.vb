@@ -79,6 +79,7 @@ Namespace Framework.Armory
                     characterName = SplitString(armoryLink, "/" & realm & "/", "/")
                     apiLink = "http://" & SplitString(armoryLink, "http://", ".battle") & ".battle.net/api/wow/character/" &
                               SplitString(armoryLink, "/character/", "/") & "/" & characterName
+                    Dim apiContext As String = client.DownloadString(apiLink)
                     setId += 1
                     LogAppend("Loading character " & characterName & " //ident is " & setId.ToString(),
                               "ArmoryHandler_DoLoad", True)
@@ -88,10 +89,10 @@ Namespace Framework.Armory
                     player.Guid = 0
                     player.AccountId = 0
                     player.AccountName = "Armory"
-                    player.Level = TryInt(SplitString(characterContext, "<span class=""level""><strong>", "</strong></span>"))
-                    player.Gender = TryInt(SplitString(client.DownloadString(apiLink), """gender"":", ","""))
-                    player.Race = TryInt(SplitString(client.DownloadString(apiLink), """race"":", ","""))
-                    player.Cclass = TryInt(GetClassIdByName(SplitString(characterContext, "/game/class/", """ class=")))
+                    player.Level = TryInt(SplitString(apiContext, """level"":", ","))
+                    player.Gender = TryInt(SplitString(apiContext, """gender"":", ","))
+                    player.Race = TryInt(SplitString(apiContext, """race"":", ","))
+                    player.Cclass = TryInt(SplitString(apiContext, """class"":", ","))
                     player.SourceCore = "armory"
                     player.SourceExpansion = 5
                     '// Character appearance
