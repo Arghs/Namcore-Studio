@@ -23,7 +23,7 @@
 Namespace Framework.Modules
     <Serializable()>
     Public Class Character
-      
+
         <Flags> Public Enum PlayerFlagsEnum As UInteger
             PLAYER_FLAGS_GROUP_LEADER = 1
             PLAYER_FLAGS_AFK = 2
