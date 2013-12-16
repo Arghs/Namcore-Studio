@@ -23,6 +23,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions
+Imports libnc.Provider
 Namespace Framework.Transmission
     '// Declaration
     <Flags> Public Enum ChrRaces
@@ -107,8 +108,8 @@ Namespace Framework.Transmission
             Dim thisRace As ChrRaceIds = player.Race
             Dim thisRaceBit As ChrRaces = thisRace
             Dim newSpellList As New List(Of Spell)
-            Dim SpellsDt As DataTable
-            For Each spellEntry In SpellsDt.Rows
+            Dim spellsDt As DataTable = GetCreateInfoTable()
+            For Each spellEntry In spellsDt.Rows
                 If TryInt(spellEntry(0)) = 0 Then
                     newSpellList.Add(New Spell With
                                      {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
@@ -127,8 +128,8 @@ Namespace Framework.Transmission
             Dim thisClass As ChrClassIds = player.Cclass
             Dim thisClassBit As ChrClasses = thisClass
             Dim newSpellList As New List(Of Spell)
-            Dim SpellsDt As DataTable
-            For Each spellEntry In SpellsDt.Rows
+            Dim spellsDt As DataTable = GetCreateInfoTable()
+            For Each spellEntry In spellsDt.Rows
                 If TryInt(spellEntry(1)) = 0 Then
                     newSpellList.Add(New Spell With
                                      {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})

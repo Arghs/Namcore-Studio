@@ -40,6 +40,7 @@ Public Class Main
     Public Shared SpellEnchantCsv As DataTable
     Public Shared SpellIconCsv As DataTable
     Public Shared TalentCsv As DataTable
+    Public Shared CreateInfoCsv As DataTable
     '// Declaration
 
     Public Shared Sub Initialize()
@@ -65,6 +66,7 @@ Public Class Main
         FillDataTable(My.Resources.SpellEnchant, SpellEnchantCsv)
         FillDataTable(My.Resources.SpellIcon, SpellIconCsv)
         FillDataTable(My.Resources.talent, TalentCsv)
+        FillDataTable(My.Resources.PlayerCreateInfo, CreateInfoCsv)
         IsInitialized = True
     End Sub
     Public Shared Sub FillDataTable(ByVal csv As String, ByRef targetTable As DataTable)

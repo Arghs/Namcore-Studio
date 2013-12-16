@@ -185,9 +185,9 @@ Namespace Framework.Core
                         itm.Slotname = slotname
                         itm.Slot = itemslot
                         itm.Id = itementry : itm.Guid = itemguid
-                        Dim player As Character = GetCharacterSetBySetId(tarSetId, Account)
+                        Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
                         AddCharacterArmorItem(player, itm)
-                        SetCharacterSet(tarSetId, player, Account)
+                        SetCharacterSet(tarSetId, player, account)
                         mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId, GetAccountSetBySetId(player.AccountSet))
                         LoadWeaponType(itementry, tarSetId, account)
                     End If

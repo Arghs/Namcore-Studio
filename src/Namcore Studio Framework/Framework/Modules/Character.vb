@@ -23,55 +23,7 @@
 Namespace Framework.Modules
     <Serializable()>
     Public Class Character
-        Public Enum ExpansionEnum As UInteger
-            EXPANSION_CLASSIC = 0
-            EXPANSION_TBC = 1
-            EXPANSION_WOTLK = 2
-            EXPANSION_CATA = 3
-            EXPANSION_MOP = 4
-        End Enum
-        Public Enum RaceEnum As UInteger
-            PLAYER_RACE_ALL = 0
-            PLAYER_RACE_HUMAN = 1
-            PLAYER_RACE_ORC = 2
-            PLAYER_RACE_DWARF = 3
-            PLAYER_RACE_NIGHT_ELF = 4
-            PLAYER_RACE_UNDEAD = 5
-            PLAYER_RACE_TAUREN = 6
-            PLAYER_RACE_GNOME = 7
-            PLAYER_RACE_TROLL = 8
-            PLAYER_RACE_GOBLIN = 9
-            PLAYER_RACE_BLOOD_ELF = 10
-            PLAYER_RACE_DRAENEI = 11
-            PLAYER_RACE_FEL_ORC = 12
-            PLAYER_RACE_NAGA = 13
-            PLAYER_RACE_BROKEN = 14
-            PLAYER_RACE_SKELETON = 15
-            PLAYER_RACE_VRYKUL = 16
-            PLAYER_RACE_TUSKARR = 17
-            PLAYER_RACE_FOREST_TROLL = 18
-            PLAYER_RACE_TAUNKA = 19
-            PLAYER_RACE_NORTHREND_SKELETON = 20
-            PLAYER_RACE_ICE_TROLL = 21
-            PLAYER_RACE_WORGEN = 22
-        End Enum
-        Public Enum ClassEnum As UInteger
-            PLAYER_CLASS_ALL = 0
-            PLAYER_CLASS_WARRIOR = 1
-            PLAYER_CLASS_PALADIN = 2
-            PLAYER_CLASS_HUNTER = 3
-            PLAYER_CLASS_ROGUE = 4
-            PLAYER_CLASS_PRIEST = 5
-            PLAYER_CLASS_DEATH_KNIGHT = 6
-            PLAYER_CLASS_SHAMAN = 7
-            PLAYER_CLASS_MAGE = 8
-            PLAYER_CLASS_WARLOCK = 9
-            PLAYER_CLASS_DRUID = 11
-        End Enum
-        Public Enum GenderEnum As UInteger
-            GENDER_MALE = 0
-            GENDER_FEMALE = 1
-        End Enum
+      
         <Flags> Public Enum PlayerFlagsEnum As UInteger
             PLAYER_FLAGS_GROUP_LEADER = 1
             PLAYER_FLAGS_AFK = 2
@@ -122,14 +74,14 @@ Namespace Framework.Modules
         End Enum
         Public Loaded As Boolean = False
         Public SourceCore As String
-        Public SourceExpansion As ExpansionEnum
+        Public SourceExpansion As Integer
         Public SetIndex As Integer
         Public Guid As Integer
         Public Name As String
         Public Level As Integer
-        Public Race As RaceEnum
-        Public Cclass As ClassEnum
-        Public Gender As GenderEnum
+        Public Race As Integer
+        Public Cclass As Integer
+        Public Gender As Integer
         Public Xp As Integer
         Public Gold As String
         Public PlayerBytes As Integer

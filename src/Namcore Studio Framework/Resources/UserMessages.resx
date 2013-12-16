@@ -216,7 +216,7 @@
     <value>Male</value>
     <comment>character gender</comment>
   </data>
-  <data name="Monk" xml:space="preserve">
+  <data name="monk" xml:space="preserve">
     <value>Monk</value>
   </data>
   <data name="nightelf" xml:space="preserve">

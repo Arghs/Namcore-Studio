@@ -99,7 +99,7 @@ Namespace Framework.Core
                     ElseIf parts(1).Contains("0,0") Then
                         Dim parts2() As String = parts(1).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
-                       Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
+                        Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
                         itm.EnchantmentId = enchArray(0)
                         itm.EnchantmentType = enchArray(1)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
@@ -113,7 +113,7 @@ Namespace Framework.Core
                     ElseIf parts(3).Contains("0,0") Then
                         Dim parts2() As String = parts(3).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
-                       Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
+                        Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
                         itm.EnchantmentId = enchArray(0)
                         itm.EnchantmentType = enchArray(1)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)

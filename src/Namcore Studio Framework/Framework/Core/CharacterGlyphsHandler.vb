@@ -542,146 +542,146 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "majorglyph1"
                                         tmpGlyph.spec = 0
-                                        tmpGlyph.type = 2
+                                        tmpGlyph.Type = 2
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 1
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "minorglyph2"
-                                        tmpGlyph.spec = 0
-                                        tmpGlyph.type = 1
+                                        tmpGlyph.Slotname = "minorglyph2"
+                                        tmpGlyph.Spec = 0
+                                        tmpGlyph.Type = 1
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 2
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "minorglyph3"
-                                        tmpGlyph.spec = 0
-                                        tmpGlyph.type = 1
+                                        tmpGlyph.Slotname = "minorglyph3"
+                                        tmpGlyph.Spec = 0
+                                        tmpGlyph.Type = 1
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 3
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "majorglyph2"
-                                        tmpGlyph.spec = 0
-                                        tmpGlyph.type = 2
+                                        tmpGlyph.Slotname = "majorglyph2"
+                                        tmpGlyph.Spec = 0
+                                        tmpGlyph.Type = 2
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 4
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "minorglyph1"
-                                        tmpGlyph.spec = 0
-                                        tmpGlyph.type = 1
+                                        tmpGlyph.Slotname = "minorglyph1"
+                                        tmpGlyph.Spec = 0
+                                        tmpGlyph.Type = 1
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 5
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "majorglyph3"
-                                        tmpGlyph.spec = 0
-                                        tmpGlyph.type = 2
+                                        tmpGlyph.Slotname = "majorglyph3"
+                                        tmpGlyph.Spec = 0
+                                        tmpGlyph.Type = 2
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 6
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "primeglyph1"
-                                        tmpGlyph.spec = 0
-                                        tmpGlyph.type = 3
+                                        tmpGlyph.Slotname = "primeglyph1"
+                                        tmpGlyph.Spec = 0
+                                        tmpGlyph.Type = 3
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 7
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "primeglyph2"
-                                        tmpGlyph.spec = 0
-                                        tmpGlyph.type = 3
+                                        tmpGlyph.Slotname = "primeglyph2"
+                                        tmpGlyph.Spec = 0
+                                        tmpGlyph.Type = 3
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 8
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "primeglyph3"
-                                        tmpGlyph.spec = 0
-                                        tmpGlyph.type = 3
+                                        tmpGlyph.Slotname = "primeglyph3"
+                                        tmpGlyph.Spec = 0
+                                        tmpGlyph.Type = 3
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                 End Select
                             Case 1
                                 Select Case slot
                                     Case 0
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "secmajorglyph1"
-                                        tmpGlyph.spec = 1
-                                        tmpGlyph.type = 2
+                                        tmpGlyph.Slotname = "secmajorglyph1"
+                                        tmpGlyph.Spec = 1
+                                        tmpGlyph.Type = 2
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 1
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "secminorglyph2"
-                                        tmpGlyph.spec = 1
-                                        tmpGlyph.type = 1
+                                        tmpGlyph.Slotname = "secminorglyph2"
+                                        tmpGlyph.Spec = 1
+                                        tmpGlyph.Type = 1
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 2
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "secminorglyph3"
-                                        tmpGlyph.spec = 1
-                                        tmpGlyph.type = 1
+                                        tmpGlyph.Slotname = "secminorglyph3"
+                                        tmpGlyph.Spec = 1
+                                        tmpGlyph.Type = 1
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 3
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "secmajorglyph2"
-                                        tmpGlyph.spec = 1
-                                        tmpGlyph.type = 2
+                                        tmpGlyph.Slotname = "secmajorglyph2"
+                                        tmpGlyph.Spec = 1
+                                        tmpGlyph.Type = 2
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 4
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "secminorglyph1"
-                                        tmpGlyph.spec = 1
-                                        tmpGlyph.type = 1
+                                        tmpGlyph.Slotname = "secminorglyph1"
+                                        tmpGlyph.Spec = 1
+                                        tmpGlyph.Type = 1
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 5
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "secmajorglyph3"
-                                        tmpGlyph.spec = 1
-                                        tmpGlyph.type = 2
+                                        tmpGlyph.Slotname = "secmajorglyph3"
+                                        tmpGlyph.Spec = 1
+                                        tmpGlyph.Type = 2
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 6
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "secprimeglyph1"
-                                        tmpGlyph.spec = 1
-                                        tmpGlyph.type = 3
+                                        tmpGlyph.Slotname = "secprimeglyph1"
+                                        tmpGlyph.Spec = 1
+                                        tmpGlyph.Type = 3
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 7
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "secprimeglyph2"
-                                        tmpGlyph.spec = 1
-                                        tmpGlyph.type = 3
+                                        tmpGlyph.Slotname = "secprimeglyph2"
+                                        tmpGlyph.Spec = 1
+                                        tmpGlyph.Type = 3
                                         AddCharacterGlyph(player, tmpGlyph)
-                                        SetCharacterSet(tarsetId, player, account)
+                                        SetCharacterSet(tarSetId, player, account)
                                     Case 8
                                         Dim tmpGlyph As New Glyph
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
-                                        tmpGlyph.slotname = "secprimeglyph3"
-                                        tmpGlyph.spec = 1
-                                        tmpGlyph.type = 3
+                                        tmpGlyph.Slotname = "secprimeglyph3"
+                                        tmpGlyph.Spec = 1
+                                        tmpGlyph.Type = 3
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarsetId, player, account)
                                 End Select
