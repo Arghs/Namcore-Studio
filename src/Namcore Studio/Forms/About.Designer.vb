@@ -47,7 +47,7 @@
             '
             'header
             '
-            Me.header.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.namcore_header_new
+            Me.header.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.namcore_header_new
             Me.header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
             Me.header.Controls.Add(Me.Panel1)
             Me.header.Location = New System.Drawing.Point(3, 1)
@@ -69,7 +69,7 @@
             'highlighter3
             '
             Me.highlighter3.BackColor = System.Drawing.Color.Transparent
-            Me.highlighter3.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_minimize
+            Me.highlighter3.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_minimize
             Me.highlighter3.Cursor = System.Windows.Forms.Cursors.Hand
             Me.highlighter3.Location = New System.Drawing.Point(5, 5)
             Me.highlighter3.Name = "highlighter3"
@@ -81,7 +81,7 @@
             'highlighter4
             '
             Me.highlighter4.BackColor = System.Drawing.Color.Transparent
-            Me.highlighter4.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_close
+            Me.highlighter4.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_close
             Me.highlighter4.Cursor = System.Windows.Forms.Cursors.Hand
             Me.highlighter4.Location = New System.Drawing.Point(33, 5)
             Me.highlighter4.Name = "highlighter4"
@@ -93,7 +93,7 @@
             'PictureBox1
             '
             Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
-            Me.PictureBox1.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.finalnclogo
+            Me.PictureBox1.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.finalnclogo
             Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.PictureBox1.Location = New System.Drawing.Point(13, 25)
             Me.PictureBox1.Name = "PictureBox1"
@@ -205,7 +205,7 @@
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.ClientSize = New System.Drawing.Size(601, 482)
             Me.Controls.Add(Me.LinkLabel3)

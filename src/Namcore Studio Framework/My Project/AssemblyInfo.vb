@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("NCFramework")> 
 <Assembly: AssemblyDescription("NCFramework")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Namcore Studio Framework")> 
+<Assembly: AssemblyProduct("NamCore Studio Framework")> 
 <Assembly: AssemblyCopyright("Copyright © 2013 megasus")> 
 <Assembly: AssemblyTrademark("")> 
 

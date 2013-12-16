@@ -1,5 +1,5 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
@@ -244,17 +244,17 @@ Public Class Updater
                 subprogress_lbl.Text = "0 KB / " & _files2Download.Item(0).size.ToString() & " KB"
                 currentfile.Text = _files2Download.Item(0).name.ToString()
             Else
-                If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\Namcore Studio.exe") Then
+                If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\NamCore Studio.exe") Then
                 Else
-                    Process.Start(Application.StartupPath & "\Data\Namcore Studio.exe")
+                    Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
                     Close()
                 End If
             End If
 
         Else
-            If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\Namcore Studio.exe") Then
+            If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\NamCore Studio.exe") Then
             Else
-                Process.Start(Application.StartupPath & "\Data\Namcore Studio.exe")
+                Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
                 Close()
             End If
         End If

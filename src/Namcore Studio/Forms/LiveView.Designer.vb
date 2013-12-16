@@ -604,7 +604,7 @@
             'about_pic
             '
             Me.about_pic.BackColor = System.Drawing.Color.Transparent
-            Me.about_pic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_about
+            Me.about_pic.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_about
             Me.about_pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.about_pic.Location = New System.Drawing.Point(2, 2)
             Me.about_pic.Name = "about_pic"
@@ -616,7 +616,7 @@
             'settings_pic
             '
             Me.settings_pic.BackColor = System.Drawing.Color.Transparent
-            Me.settings_pic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_settings
+            Me.settings_pic.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_settings
             Me.settings_pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.settings_pic.Location = New System.Drawing.Point(33, 2)
             Me.settings_pic.Name = "settings_pic"
@@ -628,7 +628,7 @@
             'highlighter5
             '
             Me.highlighter5.BackColor = System.Drawing.Color.Transparent
-            Me.highlighter5.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_minimize
+            Me.highlighter5.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_minimize
             Me.highlighter5.Cursor = System.Windows.Forms.Cursors.Hand
             Me.highlighter5.Location = New System.Drawing.Point(64, 2)
             Me.highlighter5.Name = "highlighter5"
@@ -640,7 +640,7 @@
             'highlighter4
             '
             Me.highlighter4.BackColor = System.Drawing.Color.Transparent
-            Me.highlighter4.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_close
+            Me.highlighter4.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_close
             Me.highlighter4.Cursor = System.Windows.Forms.Cursors.Hand
             Me.highlighter4.Location = New System.Drawing.Point(95, 2)
             Me.highlighter4.Name = "highlighter4"
@@ -654,7 +654,7 @@
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackColor = System.Drawing.SystemColors.Control
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.ClientSize = New System.Drawing.Size(1001, 646)
             Me.Controls.Add(Me.header)

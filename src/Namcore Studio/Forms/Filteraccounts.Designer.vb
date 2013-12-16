@@ -292,7 +292,7 @@
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.ClientSize = New System.Drawing.Size(553, 216)
             Me.Controls.Add(Me.close_bt)

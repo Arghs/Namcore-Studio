@@ -1,4 +1,4 @@
-﻿Imports Namcore_Studio.Forms.Extension
+﻿Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -129,7 +129,7 @@ Namespace Forms
             Me.Label14.Name = "Label14"
             Me.Label14.Size = New System.Drawing.Size(195, 21)
             Me.Label14.TabIndex = 14
-            Me.Label14.Text = "Namcore Remote Server" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+            Me.Label14.Text = "NamCore Remote Server" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
             '
             'Label15
             '
@@ -200,7 +200,7 @@ Namespace Forms
             Me.viaserver_radio.Name = "viaserver_radio"
             Me.viaserver_radio.Size = New System.Drawing.Size(262, 21)
             Me.viaserver_radio.TabIndex = 212
-            Me.viaserver_radio.Text = "Connect via Namcore Remote Server"
+            Me.viaserver_radio.Text = "Connect via NamCore Remote Server"
             Me.viaserver_radio.UseVisualStyleBackColor = True
             '
             'defaultconn_radio
@@ -450,7 +450,7 @@ Namespace Forms
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(541, 554)
             Me.Controls.Add(Me.connect_panel)
             Me.DoubleBuffered = True

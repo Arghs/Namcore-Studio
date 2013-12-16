@@ -1,5 +1,5 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
@@ -22,14 +22,14 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
 Imports System.Drawing.Imaging
-Imports Namcore_Studio.Modules
-Imports Namcore_Studio.Modules.Interface
+Imports NamCore_Studio.Modules
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Core
 Imports NCFramework.Framework.Modules
-Imports Namcore_Studio.Forms.Extension
+Imports NamCore_Studio.Forms.Extension
 Imports libnc.Provider
 Imports System.Net
 Imports System.Threading

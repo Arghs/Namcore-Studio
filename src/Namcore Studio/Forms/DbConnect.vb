@@ -1,5 +1,5 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
@@ -25,8 +25,8 @@ Imports NCFramework.My
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Database
-Imports Namcore_Studio.Modules.Interface
-Imports Namcore_Studio.Forms.Extension
+Imports NamCore_Studio.Modules.Interface
+Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms
     Public Class DbConnect

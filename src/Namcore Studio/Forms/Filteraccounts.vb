@@ -1,5 +1,5 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
@@ -21,7 +21,7 @@
 '*      /Description:   Contains functions for filtering the account list
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Modules
-Imports Namcore_Studio.Modules.Interface
+Imports NamCore_Studio.Modules.Interface
 
 Namespace Forms
     Public Class FilterAccounts

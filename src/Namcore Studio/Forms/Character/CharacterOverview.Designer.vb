@@ -1,4 +1,4 @@
-﻿Imports Namcore_Studio.Forms.Extension
+﻿Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -25,153 +25,153 @@ Namespace Forms.Character
         'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
         <System.Diagnostics.DebuggerStepThrough()> _
         Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CharacterOverview))
-        Me.InventoryPanel = New System.Windows.Forms.Panel()
-        Me.slot_17_enchant = New System.Windows.Forms.Label()
-        Me.slot_17_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_17_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_17_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_17_color = New System.Windows.Forms.Panel()
-        Me.slot_17_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_17_name = New System.Windows.Forms.Label()
-        Me.slot_15_enchant = New System.Windows.Forms.Label()
-        Me.slot_15_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_15_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_15_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_15_color = New System.Windows.Forms.Panel()
-        Me.slot_15_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_15_name = New System.Windows.Forms.Label()
-        Me.slot_16_enchant = New System.Windows.Forms.Label()
-        Me.slot_16_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_16_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_16_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_16_color = New System.Windows.Forms.Panel()
-        Me.slot_16_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_16_name = New System.Windows.Forms.Label()
-        Me.slot_13_enchant = New System.Windows.Forms.Label()
-        Me.slot_13_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_13_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_13_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_13_color = New System.Windows.Forms.Panel()
-        Me.slot_13_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_13_name = New System.Windows.Forms.Label()
-        Me.slot_12_enchant = New System.Windows.Forms.Label()
-        Me.slot_12_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_12_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_12_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_12_color = New System.Windows.Forms.Panel()
-        Me.slot_12_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_12_name = New System.Windows.Forms.Label()
-        Me.slot_11_enchant = New System.Windows.Forms.Label()
-        Me.slot_11_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_11_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_11_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_11_color = New System.Windows.Forms.Panel()
-        Me.slot_11_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_11_name = New System.Windows.Forms.Label()
-        Me.slot_10_enchant = New System.Windows.Forms.Label()
-        Me.slot_10_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_10_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_10_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_10_color = New System.Windows.Forms.Panel()
-        Me.slot_10_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_10_name = New System.Windows.Forms.Label()
-        Me.slot_7_enchant = New System.Windows.Forms.Label()
-        Me.slot_7_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_7_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_7_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_7_color = New System.Windows.Forms.Panel()
-        Me.slot_7_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_7_name = New System.Windows.Forms.Label()
-        Me.slot_6_enchant = New System.Windows.Forms.Label()
-        Me.slot_6_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_6_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_6_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_6_color = New System.Windows.Forms.Panel()
-        Me.slot_6_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_6_name = New System.Windows.Forms.Label()
-        Me.slot_5_enchant = New System.Windows.Forms.Label()
-        Me.slot_5_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_5_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_5_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_5_color = New System.Windows.Forms.Panel()
-        Me.slot_5_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_5_name = New System.Windows.Forms.Label()
-        Me.slot_9_enchant = New System.Windows.Forms.Label()
-        Me.slot_9_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_9_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_9_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_9_color = New System.Windows.Forms.Panel()
-        Me.slot_9_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_9_name = New System.Windows.Forms.Label()
-        Me.slot_8_enchant = New System.Windows.Forms.Label()
-        Me.slot_8_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_8_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_8_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_8_color = New System.Windows.Forms.Panel()
-        Me.slot_8_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_8_name = New System.Windows.Forms.Label()
-        Me.slot_18_enchant = New System.Windows.Forms.Label()
-        Me.slot_18_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_18_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_18_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_18_color = New System.Windows.Forms.Panel()
-        Me.slot_18_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_18_name = New System.Windows.Forms.Label()
-        Me.slot_3_enchant = New System.Windows.Forms.Label()
-        Me.slot_3_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_3_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_3_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_3_color = New System.Windows.Forms.Panel()
-        Me.slot_3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_3_name = New System.Windows.Forms.Label()
-        Me.slot_4_enchant = New System.Windows.Forms.Label()
-        Me.slot_4_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_4_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_4_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_4_color = New System.Windows.Forms.Panel()
-        Me.slot_4_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_4_name = New System.Windows.Forms.Label()
-        Me.slot_14_enchant = New System.Windows.Forms.Label()
-        Me.slot_14_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_14_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_14_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_14_color = New System.Windows.Forms.Panel()
-        Me.slot_14_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_14_name = New System.Windows.Forms.Label()
-        Me.slot_2_enchant = New System.Windows.Forms.Label()
-        Me.slot_2_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_2_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_2_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_2_color = New System.Windows.Forms.Panel()
-        Me.slot_2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_2_name = New System.Windows.Forms.Label()
-        Me.slot_1_enchant = New System.Windows.Forms.Label()
-        Me.slot_1_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_1_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_1_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_1_color = New System.Windows.Forms.Panel()
-        Me.slot_1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_1_name = New System.Windows.Forms.Label()
-        Me.slot_0_enchant = New System.Windows.Forms.Label()
-        Me.slot_0_gem3_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_0_gem2_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_0_gem1_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_0_color = New System.Windows.Forms.Panel()
-        Me.slot_0_pic = New System.Windows.Forms.PictureBox()
-        Me.slot_0_name = New System.Windows.Forms.Label()
-        Me.charname_lbl = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.level_lbl = New System.Windows.Forms.Label()
-        Me.race_lbl = New System.Windows.Forms.Label()
-        Me.class_lbl = New System.Windows.Forms.Label()
-        Me.av_bt = New System.Windows.Forms.Button()
-        Me.Glyphs_bt = New System.Windows.Forms.Button()
-        Me.rep_bt = New System.Windows.Forms.Button()
-        Me.spellsskills_bt = New System.Windows.Forms.Button()
+            Me.components = New System.ComponentModel.Container()
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CharacterOverview))
+            Me.InventoryPanel = New System.Windows.Forms.Panel()
+            Me.slot_17_enchant = New System.Windows.Forms.Label()
+            Me.slot_17_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_17_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_17_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_17_color = New System.Windows.Forms.Panel()
+            Me.slot_17_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_17_name = New System.Windows.Forms.Label()
+            Me.slot_15_enchant = New System.Windows.Forms.Label()
+            Me.slot_15_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_15_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_15_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_15_color = New System.Windows.Forms.Panel()
+            Me.slot_15_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_15_name = New System.Windows.Forms.Label()
+            Me.slot_16_enchant = New System.Windows.Forms.Label()
+            Me.slot_16_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_16_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_16_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_16_color = New System.Windows.Forms.Panel()
+            Me.slot_16_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_16_name = New System.Windows.Forms.Label()
+            Me.slot_13_enchant = New System.Windows.Forms.Label()
+            Me.slot_13_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_13_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_13_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_13_color = New System.Windows.Forms.Panel()
+            Me.slot_13_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_13_name = New System.Windows.Forms.Label()
+            Me.slot_12_enchant = New System.Windows.Forms.Label()
+            Me.slot_12_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_12_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_12_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_12_color = New System.Windows.Forms.Panel()
+            Me.slot_12_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_12_name = New System.Windows.Forms.Label()
+            Me.slot_11_enchant = New System.Windows.Forms.Label()
+            Me.slot_11_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_11_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_11_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_11_color = New System.Windows.Forms.Panel()
+            Me.slot_11_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_11_name = New System.Windows.Forms.Label()
+            Me.slot_10_enchant = New System.Windows.Forms.Label()
+            Me.slot_10_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_10_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_10_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_10_color = New System.Windows.Forms.Panel()
+            Me.slot_10_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_10_name = New System.Windows.Forms.Label()
+            Me.slot_7_enchant = New System.Windows.Forms.Label()
+            Me.slot_7_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_7_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_7_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_7_color = New System.Windows.Forms.Panel()
+            Me.slot_7_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_7_name = New System.Windows.Forms.Label()
+            Me.slot_6_enchant = New System.Windows.Forms.Label()
+            Me.slot_6_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_6_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_6_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_6_color = New System.Windows.Forms.Panel()
+            Me.slot_6_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_6_name = New System.Windows.Forms.Label()
+            Me.slot_5_enchant = New System.Windows.Forms.Label()
+            Me.slot_5_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_5_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_5_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_5_color = New System.Windows.Forms.Panel()
+            Me.slot_5_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_5_name = New System.Windows.Forms.Label()
+            Me.slot_9_enchant = New System.Windows.Forms.Label()
+            Me.slot_9_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_9_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_9_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_9_color = New System.Windows.Forms.Panel()
+            Me.slot_9_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_9_name = New System.Windows.Forms.Label()
+            Me.slot_8_enchant = New System.Windows.Forms.Label()
+            Me.slot_8_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_8_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_8_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_8_color = New System.Windows.Forms.Panel()
+            Me.slot_8_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_8_name = New System.Windows.Forms.Label()
+            Me.slot_18_enchant = New System.Windows.Forms.Label()
+            Me.slot_18_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_18_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_18_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_18_color = New System.Windows.Forms.Panel()
+            Me.slot_18_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_18_name = New System.Windows.Forms.Label()
+            Me.slot_3_enchant = New System.Windows.Forms.Label()
+            Me.slot_3_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_3_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_3_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_3_color = New System.Windows.Forms.Panel()
+            Me.slot_3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_3_name = New System.Windows.Forms.Label()
+            Me.slot_4_enchant = New System.Windows.Forms.Label()
+            Me.slot_4_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_4_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_4_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_4_color = New System.Windows.Forms.Panel()
+            Me.slot_4_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_4_name = New System.Windows.Forms.Label()
+            Me.slot_14_enchant = New System.Windows.Forms.Label()
+            Me.slot_14_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_14_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_14_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_14_color = New System.Windows.Forms.Panel()
+            Me.slot_14_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_14_name = New System.Windows.Forms.Label()
+            Me.slot_2_enchant = New System.Windows.Forms.Label()
+            Me.slot_2_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_2_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_2_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_2_color = New System.Windows.Forms.Panel()
+            Me.slot_2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_2_name = New System.Windows.Forms.Label()
+            Me.slot_1_enchant = New System.Windows.Forms.Label()
+            Me.slot_1_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_1_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_1_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_1_color = New System.Windows.Forms.Panel()
+            Me.slot_1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_1_name = New System.Windows.Forms.Label()
+            Me.slot_0_enchant = New System.Windows.Forms.Label()
+            Me.slot_0_gem3_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_0_gem2_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_0_gem1_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_0_color = New System.Windows.Forms.Panel()
+            Me.slot_0_pic = New System.Windows.Forms.PictureBox()
+            Me.slot_0_name = New System.Windows.Forms.Label()
+            Me.charname_lbl = New System.Windows.Forms.Label()
+            Me.Label2 = New System.Windows.Forms.Label()
+            Me.Label3 = New System.Windows.Forms.Label()
+            Me.Label4 = New System.Windows.Forms.Label()
+            Me.level_lbl = New System.Windows.Forms.Label()
+            Me.race_lbl = New System.Windows.Forms.Label()
+            Me.class_lbl = New System.Windows.Forms.Label()
+            Me.av_bt = New System.Windows.Forms.Button()
+            Me.Glyphs_bt = New System.Windows.Forms.Button()
+            Me.rep_bt = New System.Windows.Forms.Button()
+            Me.spellsskills_bt = New System.Windows.Forms.Button()
             Me.exit_bt = New System.Windows.Forms.Button()
             Me.savechanges_bt = New System.Windows.Forms.Button()
             Me.reset_bt = New System.Windows.Forms.Button()
@@ -345,7 +345,7 @@ Namespace Forms.Character
             'InventoryPanel
             '
             Me.InventoryPanel.BackColor = System.Drawing.Color.Transparent
-            Me.InventoryPanel.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.armor_bg
+            Me.InventoryPanel.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.armor_bg
             Me.InventoryPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.InventoryPanel.Controls.Add(Me.slot_17_enchant)
             Me.InventoryPanel.Controls.Add(Me.slot_17_gem3_pic)
@@ -2028,7 +2028,7 @@ Namespace Forms.Character
             'PictureBox2
             '
             Me.PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.PictureBox2.Image = Global.Namcore_Studio.My.Resources.Resources.trash__delete__16x16
+            Me.PictureBox2.Image = Global.NamCore_Studio.My.Resources.Resources.trash__delete__16x16
             Me.PictureBox2.Location = New System.Drawing.Point(113, 4)
             Me.PictureBox2.Name = "PictureBox2"
             Me.PictureBox2.Size = New System.Drawing.Size(16, 16)
@@ -2039,7 +2039,7 @@ Namespace Forms.Character
             'PictureBox1
             '
             Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.PictureBox1.Image = Global.Namcore_Studio.My.Resources.Resources.Refresh_icon
+            Me.PictureBox1.Image = Global.NamCore_Studio.My.Resources.Resources.Refresh_icon
             Me.PictureBox1.Location = New System.Drawing.Point(93, 4)
             Me.PictureBox1.Name = "PictureBox1"
             Me.PictureBox1.Size = New System.Drawing.Size(16, 16)
@@ -2075,7 +2075,7 @@ Namespace Forms.Character
             'racerefresh
             '
             Me.racerefresh.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.racerefresh.Image = Global.Namcore_Studio.My.Resources.Resources.Refresh_icon
+            Me.racerefresh.Image = Global.NamCore_Studio.My.Resources.Resources.Refresh_icon
             Me.racerefresh.Location = New System.Drawing.Point(122, 4)
             Me.racerefresh.Name = "racerefresh"
             Me.racerefresh.Size = New System.Drawing.Size(16, 16)
@@ -2104,7 +2104,7 @@ Namespace Forms.Character
             'classrefresh
             '
             Me.classrefresh.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.classrefresh.Image = Global.Namcore_Studio.My.Resources.Resources.Refresh_icon
+            Me.classrefresh.Image = Global.NamCore_Studio.My.Resources.Resources.Refresh_icon
             Me.classrefresh.Location = New System.Drawing.Point(122, 4)
             Me.classrefresh.Name = "classrefresh"
             Me.classrefresh.Size = New System.Drawing.Size(16, 16)
@@ -2149,7 +2149,7 @@ Namespace Forms.Character
             Me.Label1.Name = "Label1"
             Me.Label1.Size = New System.Drawing.Size(145, 39)
             Me.Label1.TabIndex = 0
-            Me.Label1.Text = "Namcore has found two " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "matching enchantments:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Select one!)"
+            Me.Label1.Text = "NamCore has found two " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "matching enchantments:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Select one!)"
             '
             'bank_bt
             '
@@ -2197,7 +2197,7 @@ Namespace Forms.Character
             '
             'bag1Pic
             '
-            Me.bag1Pic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.inv_misc_bag_08
+            Me.bag1Pic.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.inv_misc_bag_08
             Me.bag1Pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.bag1Pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.bag1Pic.Location = New System.Drawing.Point(3, 3)
@@ -2295,7 +2295,7 @@ Namespace Forms.Character
             'PictureBox4
             '
             Me.PictureBox4.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.PictureBox4.Image = Global.Namcore_Studio.My.Resources.Resources.plusico
+            Me.PictureBox4.Image = Global.NamCore_Studio.My.Resources.Resources.plusico
             Me.PictureBox4.Location = New System.Drawing.Point(94, 4)
             Me.PictureBox4.Name = "PictureBox4"
             Me.PictureBox4.Size = New System.Drawing.Size(16, 16)
@@ -2433,7 +2433,7 @@ Namespace Forms.Character
             'genderrefresh
             '
             Me.genderrefresh.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.genderrefresh.Image = Global.Namcore_Studio.My.Resources.Resources.Refresh_icon
+            Me.genderrefresh.Image = Global.NamCore_Studio.My.Resources.Resources.Refresh_icon
             Me.genderrefresh.Location = New System.Drawing.Point(122, 4)
             Me.genderrefresh.Name = "genderrefresh"
             Me.genderrefresh.Size = New System.Drawing.Size(16, 16)
@@ -2452,7 +2452,7 @@ Namespace Forms.Character
             '
             'referenceItmPic
             '
-            Me.referenceItmPic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bank_empty
+            Me.referenceItmPic.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bank_empty
             Me.referenceItmPic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.referenceItmPic.Location = New System.Drawing.Point(3, 3)
             Me.referenceItmPic.Name = "referenceItmPic"
@@ -2465,7 +2465,7 @@ Namespace Forms.Character
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(910, 736)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.genderpanel)

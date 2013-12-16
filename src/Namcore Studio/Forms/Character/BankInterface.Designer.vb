@@ -1,4 +1,4 @@
-﻿Imports Namcore_Studio.Forms.Extension
+﻿Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -256,7 +256,7 @@ Namespace Forms.Character
             '
             'reference_itm_pic
             '
-            Me.reference_itm_pic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bank_empty
+            Me.reference_itm_pic.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bank_empty
             Me.reference_itm_pic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.reference_itm_pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.reference_itm_pic.Location = New System.Drawing.Point(3, 3)
@@ -349,7 +349,7 @@ Namespace Forms.Character
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(761, 438)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.reference_itm_panel)
@@ -385,7 +385,7 @@ Namespace Forms.Character
             Me.BackPanel.PerformLayout()
             Me.ResumeLayout(False)
 
-End Sub
+        End Sub
         Friend WithEvents bag1Panel As System.Windows.Forms.Panel
         Friend WithEvents bag1Pic As System.Windows.Forms.PictureBox
         Friend WithEvents bag2Panel As System.Windows.Forms.Panel

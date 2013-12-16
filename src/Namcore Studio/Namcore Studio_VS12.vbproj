@@ -8,9 +8,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2484CD37-5DB3-4CC6-8132-EEAFE85C75C5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Namcore_Studio.My.MyApplication</StartupObject>
-    <RootNamespace>Namcore_Studio</RootNamespace>
-    <AssemblyName>Namcore Studio</AssemblyName>
+    <StartupObject>NamCore_Studio.My.MyApplication</StartupObject>
+    <RootNamespace>NamCore_Studio</RootNamespace>
+    <AssemblyName>NamCore Studio</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -23,7 +23,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\Data\</OutputPath>
-    <DocumentationFile>Namcore Studio.xml</DocumentationFile>
+    <DocumentationFile>NamCore Studio.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
     <WarningsAsErrors>
     </WarningsAsErrors>
@@ -37,7 +37,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\NamCore Studio\Release\Data\</OutputPath>
-    <DocumentationFile>Namcore Studio.xml</DocumentationFile>
+    <DocumentationFile>NamCore Studio.xml</DocumentationFile>
     <NoWarn>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</NoWarn>
     <WarningsAsErrors>
     </WarningsAsErrors>
@@ -380,7 +380,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_DetectChanges="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

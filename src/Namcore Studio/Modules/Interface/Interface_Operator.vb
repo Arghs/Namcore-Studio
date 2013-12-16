@@ -1,5 +1,5 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
@@ -22,7 +22,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
 Imports System.Linq
-Imports Namcore_Studio.Forms
+Imports NamCore_Studio.Forms
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions.ResourceHandler
 Imports NCFramework.Framework.Forms
