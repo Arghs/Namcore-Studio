@@ -174,6 +174,19 @@ Namespace Framework.Functions
             End Select
         End Function
 
+        Public Function GetItemQualityColor(ByVal rarity As Integer) As Color
+            Select Case rarity
+                Case 0, 1 : Return Color.Gray
+                Case 0, 1 : Return Color.White
+                Case 2 : Return Color.LightGreen
+                Case 3 : Return Color.DodgerBlue
+                Case 4 : Return Color.DarkViolet
+                Case 5 : Return Color.Orange
+                Case 6, 7 : Return Color.Gold
+                Case Else : Return Color.LawnGreen
+            End Select
+        End Function
+        
         Public Function GetGenderNameById(ByVal genderid As Integer) As String
             LogAppend("Loading gender name by id: " & genderid.ToString(), "Conversions_GetGenderNameById", False)
             Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
