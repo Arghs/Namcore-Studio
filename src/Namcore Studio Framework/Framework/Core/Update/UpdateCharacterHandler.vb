@@ -137,6 +137,10 @@ Namespace Framework.Core.Update
                 mUpdateQuests.UpdateQuestlog(comparePlayer, newPlayer)
                 Dim mUpdateReputation As New UpdateReputationHandler
                 mUpdateReputation.UpdateReputation(comparePlayer, newPlayer)
+                If newPlayer.Achievements Is Nothing Then newPlayer.Achievements = New List(Of Achievement)()
+                If comparePlayer.Achievements Is Nothing Then comparePlayer.Achievements = New List(Of Achievement)()
+                Dim mUpdateAchievements As New UpdateAchievementsHandler
+                mUpdateAchievements.UpdateAchievements(comparePlayer, newPlayer)
                 LogAppend("Update completed", "UpdateCharacterHandler_UpdateCharacter", True)
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(), "UpdateCharacterHandler_UpdateCharacter", True, True)
