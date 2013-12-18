@@ -80,7 +80,7 @@
             'highlighter4
             '
             Me.highlighter4.BackColor = System.Drawing.Color.Transparent
-            Me.highlighter4.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_close
+            Me.highlighter4.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_close
             Me.highlighter4.Cursor = System.Windows.Forms.Cursors.Hand
             Me.highlighter4.Location = New System.Drawing.Point(985, 7)
             Me.highlighter4.Name = "highlighter4"
@@ -92,7 +92,7 @@
             'highlighter5
             '
             Me.highlighter5.BackColor = System.Drawing.Color.Transparent
-            Me.highlighter5.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_minimize
+            Me.highlighter5.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_minimize
             Me.highlighter5.Cursor = System.Windows.Forms.Cursors.Hand
             Me.highlighter5.Location = New System.Drawing.Point(954, 7)
             Me.highlighter5.Name = "highlighter5"
@@ -116,7 +116,7 @@
             'settings_pic
             '
             Me.settings_pic.BackColor = System.Drawing.Color.Transparent
-            Me.settings_pic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_settings
+            Me.settings_pic.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_settings
             Me.settings_pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.settings_pic.Location = New System.Drawing.Point(923, 7)
             Me.settings_pic.Name = "settings_pic"
@@ -128,7 +128,7 @@
             'about_pic
             '
             Me.about_pic.BackColor = System.Drawing.Color.Transparent
-            Me.about_pic.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.bt_about
+            Me.about_pic.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_about
             Me.about_pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.about_pic.Location = New System.Drawing.Point(892, 7)
             Me.about_pic.Name = "about_pic"
@@ -141,7 +141,7 @@
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_overhaul_min
+            Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_overhaul_min
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.ClientSize = New System.Drawing.Size(1024, 512)
             Me.Controls.Add(Me.about_pic)

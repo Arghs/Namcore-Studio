@@ -1,9 +1,9 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
-'* Free Software Foundation; either version 2 of the License, or (at your
+'* Free Software Foundation; either version 3 of the License, or (at your
 '* option) any later version.
 '*
 '* This program is distributed in the hope that it will be useful, but WITHOUT
@@ -174,6 +174,19 @@ Namespace Framework.Functions
             End Select
         End Function
 
+        Public Function GetItemQualityColor(ByVal rarity As Integer) As Color
+            Select Case rarity
+                Case 0, 1 : Return Color.Gray
+                Case 0, 1 : Return Color.White
+                Case 2 : Return Color.LightGreen
+                Case 3 : Return Color.DodgerBlue
+                Case 4 : Return Color.DarkViolet
+                Case 5 : Return Color.Orange
+                Case 6, 7 : Return Color.Gold
+                Case Else : Return Color.LawnGreen
+            End Select
+        End Function
+        
         Public Function GetGenderNameById(ByVal genderid As Integer) As String
             LogAppend("Loading gender name by id: " & genderid.ToString(), "Conversions_GetGenderNameById", False)
             Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())

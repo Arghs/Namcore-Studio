@@ -3,7 +3,7 @@
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
-'* Free Software Foundation; either version 2 of the License, or (at your
+'* Free Software Foundation; either version 3 of the License, or (at your
 '* option) any later version.
 '*
 '* This program is distributed in the hope that it will be useful, but WITHOUT
@@ -20,27 +20,33 @@
 '*      /Filename:      AchievementCreation
 '*      /Description:   Includes functions for creating character achievements
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Modules
 
-Imports Namcore_Studio.EventLogging
-Imports Namcore_Studio.CommandHandler
-Imports Namcore_Studio.GlobalVariables
-Imports Namcore_Studio.Basics
-Imports Namcore_Studio.Conversions
-Public Class AchievementCreation
-    Public Shared Sub SetCharacterAchievements(ByVal setId As Integer, Optional charguid As Integer = 0)
-        If charguid = 0 Then charguid = characterGUID
-        LogAppend("Setting Achievements for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "AchievementCreation_SetCharacterAchievements", True)
-        Dim characterAvList As List(Of String) = ConvertStringToList(GetTemporaryCharacterInformation("@character_achievement_list", setId))
-        For Each avstring As String In characterAvList
-            runSQLCommand_characters_string("INSERT INTO character_achievement ( guid, achievement, date ) VALUES ( '" & charguid.ToString() & "', '" & splitList(avstring, "av") & "', '" &
-                                            splitList(avstring, "date") & "')")
-        Next
-    End Sub
-    Public Shared Sub AddCharacterAchievement(ByVal setId As Integer, ByVal avid As Integer, Optional charguid As Integer = 0)
-        If charguid = 0 Then charguid = characterGUID
-        LogAppend("Adding Achievement " & avid.ToString() & " for character: " & charguid.ToString() & " // setId is : " & setId.ToString(), "AchievementCreation_AddCharacterAchievement", True)
-        Dim characterAvList As List(Of String) = ConvertStringToList(GetTemporaryCharacterInformation("@character_achievement_list", setId))
-        runSQLCommand_characters_string("INSERT INTO character_achievement ( guid, achievement, date ) VALUES ( '" & charguid.ToString() & "', '" & avid.ToString() & "', '" &
-                                        (DateTime.UtcNow - New DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds.ToString() & "')")
-    End Sub
-End Class
+Namespace Framework.Transmission
+    Public Class AchievementCreation
+        Public Sub AddCharacterAchievements(ByVal setId As Integer, ByVal account As Account,
+                                                   Optional charguid As Integer = 0)
+            Dim player As Character = GetCharacterSetBySetId(setId, account)
+            If charguid = 0 Then charguid = player.Guid
+            LogAppend("Adding achievements for character: " & charguid.ToString() & " // setId is : " & setId.ToString(),
+                      "AchievementCreation_SetCharacterAchievements", True)
+            Select Case GlobalVariables.sourceCore
+                Case "arcemu", "trinity", "mangos"
+                    For Each av As Achievement In player.Achievements
+                        runSQLCommand_characters_string(
+                            "INSERT INTO `" & GlobalVariables.sourceStructure.character_achievement_tbl(0) &
+                            "` ( `" & GlobalVariables.sourceStructure.av_guid_col(0) &
+                            "`, `" & GlobalVariables.sourceStructure.av_achievement_col(0) &
+                            "`, `" & GlobalVariables.sourceStructure.av_date_col(0) &
+                            "` ) VALUES ( '" & charguid.ToString() &
+                            "', '" & av.Id.ToString() &
+                            "', '" & av.GainDate.ToString() &
+                            "' )")
+                    Next
+            End Select
+        End Sub
+    End Class
+End Namespace

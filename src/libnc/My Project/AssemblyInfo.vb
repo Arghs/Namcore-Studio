@@ -8,7 +8,7 @@ Imports System.Runtime.InteropServices
 ' Die Werte der Assemblyattribute überprüfen
 
 <Assembly: AssemblyTitle("libnc")> 
-<Assembly: AssemblyDescription("Namcore Studio library")> 
+<Assembly: AssemblyDescription("NamCore Studio library")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("libnc")> 
 <Assembly: AssemblyCopyright("Copyright ©  2013")> 

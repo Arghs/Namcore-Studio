@@ -1,4 +1,4 @@
-﻿Imports Namcore_Studio.Forms.Extension
+﻿Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -238,7 +238,7 @@ Namespace Forms.Character
             '
             Me.add_pic.Cursor = System.Windows.Forms.Cursors.Hand
             Me.add_pic.Dock = System.Windows.Forms.DockStyle.Fill
-            Me.add_pic.Image = Global.Namcore_Studio.My.Resources.Resources.addrep1
+            Me.add_pic.Image = Global.NamCore_Studio.My.Resources.Resources.addrep1
             Me.add_pic.Location = New System.Drawing.Point(0, 0)
             Me.add_pic.Name = "add_pic"
             Me.add_pic.Size = New System.Drawing.Size(827, 106)
@@ -262,7 +262,7 @@ Namespace Forms.Character
             '
             'reference_delete_pic
             '
-            Me.reference_delete_pic.Image = Global.Namcore_Studio.My.Resources.Resources.trash__delete__16x16
+            Me.reference_delete_pic.Image = Global.NamCore_Studio.My.Resources.Resources.trash__delete__16x16
             Me.reference_delete_pic.Location = New System.Drawing.Point(806, 2)
             Me.reference_delete_pic.Name = "reference_delete_pic"
             Me.reference_delete_pic.Size = New System.Drawing.Size(18, 18)
@@ -304,7 +304,7 @@ Namespace Forms.Character
             'reference_icon_pic
             '
             Me.reference_icon_pic.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.reference_icon_pic.Image = Global.Namcore_Studio.My.Resources.Resources.INV_Misc_QuestionMark
+            Me.reference_icon_pic.Image = Global.NamCore_Studio.My.Resources.Resources.INV_Misc_QuestionMark
             Me.reference_icon_pic.Location = New System.Drawing.Point(16, 35)
             Me.reference_icon_pic.Name = "reference_icon_pic"
             Me.reference_icon_pic.Size = New System.Drawing.Size(56, 56)
@@ -394,7 +394,7 @@ Namespace Forms.Character
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(1023, 533)
             Me.Controls.Add(Me.search_bt)
             Me.Controls.Add(Me.waitpanel)

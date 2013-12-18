@@ -1,9 +1,9 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
-'* Free Software Foundation; either version 2 of the License, or (at your
+'* Free Software Foundation; either version 3 of the License, or (at your
 '* option) any later version.
 '*
 '* This program is distributed in the hope that it will be useful, but WITHOUT
@@ -21,7 +21,7 @@
 '*      /Description:   Provides an interface to load characters from WoW Armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
-Imports Namcore_Studio.Modules.Interface
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.TemplateSystem
 Imports NCFramework.Framework.Modules
 Imports NCFramework.My
@@ -29,7 +29,7 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Armory
-Imports Namcore_Studio.Forms.Extension
+Imports NamCore_Studio.Forms.Extension
 Imports System.Net
 
 Namespace Forms

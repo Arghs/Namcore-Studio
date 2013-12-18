@@ -1,9 +1,9 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
-'* Free Software Foundation; either version 2 of the License, or (at your
+'* Free Software Foundation; either version 3 of the License, or (at your
 '* option) any later version.
 '*
 '* This program is distributed in the hope that it will be useful, but WITHOUT
@@ -22,14 +22,14 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
 Imports System.Drawing.Imaging
-Imports Namcore_Studio.Modules
-Imports Namcore_Studio.Modules.Interface
+Imports NamCore_Studio.Modules
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Core
 Imports NCFramework.Framework.Modules
-Imports Namcore_Studio.Forms.Extension
+Imports NamCore_Studio.Forms.Extension
 Imports libnc.Provider
 Imports System.Net
 Imports System.Threading
@@ -127,7 +127,7 @@ Namespace Forms.Character
                                 If subctrl.Name.Contains((potCharBag.Slot - 17).ToString()) Then
                                     If subctrl.Name.ToLower.Contains("panel") Then
                                         Dim bagPanel As Panel = subctrl
-                                        bagPanel.BackColor = Getraritycolor(GetItemQualityByItemId(potCharBag.Id))
+                                        bagPanel.BackColor = GetItemQualityColor(GetItemQualityByItemId(potCharBag.Id))
                                         For Each potBagItem As Item In DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryItems
                                             If potBagItem.Bagguid = potCharBag.Guid Then
                                                 If potBagItem.Name Is Nothing Then potBagItem.Name = GetItemNameByItemId(potBagItem.Id, NCFramework.My.MySettings.Default.language)
@@ -314,16 +314,7 @@ Namespace Forms.Character
                     End If
                 Case 6
                     If itm.Rarity = Nothing Then itm.Rarity = GetItemQualityByItemId(itm.Id)
-                    Select Case itm.Rarity
-                        Case 0, 1 : Return Color.Gray
-                        Case 0, 1 : Return Color.White
-                        Case 2 : Return Color.LightGreen
-                        Case 3 : Return Color.DodgerBlue
-                        Case 4 : Return Color.DarkViolet
-                        Case 5 : Return Color.Orange
-                        Case 6 : Return Color.Gold
-                        Case Else : Return Color.LawnGreen
-                    End Select
+                    Return GetItemQualityColor(itm.Rarity)
                 Case Else : Return Nothing
             End Select
         End Function
@@ -514,7 +505,7 @@ Namespace Forms.Character
                                     If ctrl.Tag Is Nothing Then Continue For
                                     If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
                                         If ctrl.Name.ToLower.EndsWith("color") Then
-                                            DirectCast(ctrl, Panel).BackColor = Getraritycolor(senderLabel.Tag.rarity)
+                                            DirectCast(ctrl, Panel).BackColor = GetItemQualityColor(senderLabel.Tag.rarity)
                                             DirectCast(ctrl, Panel).Tag = senderLabel.Tag
                                         End If
                                     End If
@@ -540,20 +531,7 @@ Namespace Forms.Character
             senderLabel.Visible = True
         End Sub
 
-        Private Function Getraritycolor(ByVal rarity As Integer) As Color
-            Select Case rarity
-                Case 0, 1 : Return Color.Gray
-                Case 0, 1 : Return Color.White
-                Case 2 : Return Color.LightGreen
-                Case 3 : Return Color.DodgerBlue
-                Case 4 : Return Color.DarkViolet
-                Case 5 : Return Color.Orange
-                Case 6 : Return Color.Gold
-                Case Else : Return Color.LawnGreen
-            End Select
-        End Function
-
-        Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+       Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
             'Detele item
             Dim newPoint As New Point
             Dim senderLabel As Label = _tempSender
@@ -1161,7 +1139,7 @@ Namespace Forms.Character
         Private Sub SetInventorySlot(ByVal itm As Item, ByVal slot As Integer)
             For Each itmctrl As Panel In InventoryLayout.Controls
                 If itmctrl.Name.Contains("_" & slot.ToString() & "_") Then
-                    itmctrl.BackColor = Getraritycolor(GetItemQualityByItemId(itm.Id))
+                    itmctrl.BackColor = GetItemQualityColor(GetItemQualityByItemId(itm.Id))
                     itmctrl.Tag = itm
                     InfoToolTip.SetToolTip(itmctrl, itm.Name)
                     For Each itmPicBox As PictureBox In itmctrl.Controls

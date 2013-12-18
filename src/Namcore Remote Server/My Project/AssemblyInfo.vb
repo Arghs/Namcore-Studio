@@ -10,10 +10,10 @@ Imports System.Runtime.InteropServices
 
 ' Die Werte der Assemblyattribute überprüfen
 
-<Assembly: AssemblyTitle("Namcore Remote Server")> 
+<Assembly: AssemblyTitle("NamCore Remote Server")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Namcore Remote Server")> 
+<Assembly: AssemblyProduct("NamCore Remote Server")> 
 <Assembly: AssemblyCopyright("Copyright ©  2013 megasus")> 
 <Assembly: AssemblyTrademark("")> 
 

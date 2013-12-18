@@ -1,9 +1,9 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013 Namcore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
-'* Free Software Foundation; either version 2 of the License, or (at your
+'* Free Software Foundation; either version 3 of the License, or (at your
 '* option) any later version.
 '*
 '* This program is distributed in the hope that it will be useful, but WITHOUT
@@ -137,6 +137,10 @@ Namespace Framework.Core.Update
                 mUpdateQuests.UpdateQuestlog(comparePlayer, newPlayer)
                 Dim mUpdateReputation As New UpdateReputationHandler
                 mUpdateReputation.UpdateReputation(comparePlayer, newPlayer)
+                If newPlayer.Achievements Is Nothing Then newPlayer.Achievements = New List(Of Achievement)()
+                If comparePlayer.Achievements Is Nothing Then comparePlayer.Achievements = New List(Of Achievement)()
+                Dim mUpdateAchievements As New UpdateAchievementsHandler
+                mUpdateAchievements.UpdateAchievements(comparePlayer, newPlayer)
                 LogAppend("Update completed", "UpdateCharacterHandler_UpdateCharacter", True)
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(), "UpdateCharacterHandler_UpdateCharacter", True, True)

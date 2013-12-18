@@ -1,4 +1,4 @@
-﻿Imports Namcore_Studio.Forms.Extension
+﻿Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -578,7 +578,7 @@ Namespace Forms.Character
             'PictureBox2
             '
             Me.PictureBox2.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.PictureBox2.Image = Global.Namcore_Studio.My.Resources.Resources.trash__delete__16x16
+            Me.PictureBox2.Image = Global.NamCore_Studio.My.Resources.Resources.trash__delete__16x16
             Me.PictureBox2.Location = New System.Drawing.Point(113, 4)
             Me.PictureBox2.Name = "PictureBox2"
             Me.PictureBox2.Size = New System.Drawing.Size(16, 16)
@@ -589,7 +589,7 @@ Namespace Forms.Character
             'PictureBox1
             '
             Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.PictureBox1.Image = Global.Namcore_Studio.My.Resources.Resources.Refresh_icon
+            Me.PictureBox1.Image = Global.NamCore_Studio.My.Resources.Resources.Refresh_icon
             Me.PictureBox1.Location = New System.Drawing.Point(93, 4)
             Me.PictureBox1.Name = "PictureBox1"
             Me.PictureBox1.Size = New System.Drawing.Size(16, 16)
@@ -616,7 +616,7 @@ Namespace Forms.Character
             'PictureBox4
             '
             Me.PictureBox4.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.PictureBox4.Image = Global.Namcore_Studio.My.Resources.Resources.plusico
+            Me.PictureBox4.Image = Global.NamCore_Studio.My.Resources.Resources.plusico
             Me.PictureBox4.Location = New System.Drawing.Point(94, 4)
             Me.PictureBox4.Name = "PictureBox4"
             Me.PictureBox4.Size = New System.Drawing.Size(16, 16)
@@ -634,7 +634,7 @@ Namespace Forms.Character
             'Panel1
             '
             Me.Panel1.BackColor = System.Drawing.Color.Transparent
-            Me.Panel1.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.glyphs_bg
+            Me.Panel1.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.glyphs_bg
             Me.Panel1.Controls.Add(Me.Label2)
             Me.Panel1.Controls.Add(Me.prim_1_name)
             Me.Panel1.Controls.Add(Me.Label1)
@@ -686,7 +686,7 @@ Namespace Forms.Character
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.Namcore_Studio.My.Resources.Resources.HUD_bg
+            Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(875, 599)
             Me.Controls.Add(Me.Panel1)
             Me.Controls.Add(Me.addpanel)

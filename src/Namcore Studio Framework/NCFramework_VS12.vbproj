@@ -87,6 +87,7 @@
     <Compile Include="Framework\Core\CharacterSpellsHandler.vb" />
     <Compile Include="Framework\Core\CharacterTalentsHandler.vb" />
     <Compile Include="Framework\Core\CoreHandler.vb" />
+    <Compile Include="Framework\Core\Update\UpdateAchievementsHandler.vb" />
     <Compile Include="Framework\Core\Update\UpdateReputationHandler.vb" />
     <Compile Include="Framework\Database\CommandHandler.vb" />
     <Compile Include="Framework\Database\ConnectionHandler.vb" />
@@ -105,6 +106,7 @@
     <Compile Include="Framework\Modules\Character.vb" />
     <Compile Include="Framework\Modules\DbStructure.vb" />
     <Compile Include="Framework\Modules\GlobalVariables.vb" />
+    <Compile Include="Framework\Transmission\AchievementCreation.vb" />
     <Compile Include="Framework\Transmission\PlayerCreateHelper.vb" />
     <Compile Include="Framework\Modules\Profile.vb" />
     <Compile Include="Framework\Template System\Serializer.vb" />
@@ -199,7 +201,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.MonthStamp.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_DetectChanges="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
