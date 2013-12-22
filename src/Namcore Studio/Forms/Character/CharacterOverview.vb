@@ -1163,6 +1163,7 @@ Namespace Forms.Character
             NewProcessStatus()
             Userwait.Show()
             Dim newOverview As New CharacterOverview
+            GlobalVariables.currentEditedCharSet = Nothing
             newOverview.prepare_interface(_currentAccount, GlobalVariables.currentViewedCharSetId)
             Userwait.Close()
             newOverview.Show()

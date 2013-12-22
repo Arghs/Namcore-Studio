@@ -51,13 +51,16 @@ Namespace Forms.Character
         Public Sub PrepareInterface(ByVal setId As Integer)
             Hide()
             Dim realQstLst As New List(Of Quest)
-            Dim qst() As String = GlobalVariables.currentViewedCharSet.FinishedQuests.Split(","c)
+            If GlobalVariables.currentEditedCharSet Is Nothing Then
+                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+            End If
+            Dim qst() As String = GlobalVariables.currentEditedCharSet.FinishedQuests.Split(","c)
             For i = 0 To qst.Length - 1
                 realQstLst.Add(New Quest With {.id = TryInt(qst(i)), .rewarded = 1, .explored = 1, .status = 1})
             Next
-            If GlobalVariables.currentViewedCharSet.Quests IsNot Nothing Then
-                If GlobalVariables.currentViewedCharSet.Quests.Count > 0 Then
-                    realQstLst.AddRange(GlobalVariables.currentViewedCharSet.Quests)
+            If GlobalVariables.currentEditedCharSet.Quests IsNot Nothing Then
+                If GlobalVariables.currentEditedCharSet.Quests.Count > 0 Then
+                    realQstLst.AddRange(GlobalVariables.currentEditedCharSet.Quests)
                 End If
             End If
             _mHandler.doOperate_qst(1, realQstLst)
@@ -136,8 +139,6 @@ Namespace Forms.Character
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
-                If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                    GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                 If qst.rewarded = 1 Then
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
                         GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
@@ -166,8 +167,6 @@ Namespace Forms.Character
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
                 If qst.status = 1 Then
-                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     If qst.rewarded = 1 Then
                         GlobalVariables.currentEditedCharSet.FinishedQuests =
                             GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
@@ -211,8 +210,6 @@ Namespace Forms.Character
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
                 If qst.status = 0 Then
-                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     For Each pquest As Quest In GlobalVariables.currentEditedCharSet.Quests
                         If pquest.id = qst.id Then
                             pquest.status = 1
@@ -236,8 +233,6 @@ Namespace Forms.Character
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
                 If qst.rewarded = 1 Then
-                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
                         GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
                     qstitm.SubItems(3).Text = "0"
@@ -262,8 +257,6 @@ Namespace Forms.Character
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
                 If qst.rewarded = 0 Then
-                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
                         GlobalVariables.currentEditedCharSet.FinishedQuests & qst.id.ToString & ","
                     qstitm.SubItems(2).Text = "1"
@@ -290,8 +283,6 @@ Namespace Forms.Character
             'Add new quest
             Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterqstid"), "Add quest", "0"))
             If Not retnvalue = 0 Then
-                If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                    GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                 If GlobalVariables.currentEditedCharSet.FinishedQuests.Contains("," & retnvalue.ToString & ",") Then
                     MsgBox(ResourceHandler.GetUserMessage("qstexist"), MsgBoxStyle.Critical, "Error")
                     Exit Sub

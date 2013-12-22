@@ -52,6 +52,9 @@ Namespace Forms.Character
             Next
             Dim colorTicker As Integer = 0
             RepLayoutPanel.Controls.Add(addpanel)
+            If GlobalVariables.currentEditedCharSet Is Nothing Then
+                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+            End If
             If MySettings.Default.language = "de" Then
                 'todo
                 Dim cnt As Integer = 0
@@ -69,12 +72,12 @@ Namespace Forms.Character
                 Loop Until cnt = 8
             End If
             Try
-                GlobalVariables.currentViewedCharSet.PlayerReputation.Sort(
-                    Function(x, y) String.Compare(x.name, y.name, StringComparison.Ordinal))
+                GlobalVariables.currentEditedCharSet.PlayerReputation.Sort(
+                    Function(x, y) String.Compare(x.Name, y.Name, StringComparison.Ordinal))
             Catch ex As Exception
 
             End Try
-            Dim newSet As NCFramework.Framework.Modules.Character = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+            Dim newSet As NCFramework.Framework.Modules.Character = GlobalVariables.currentEditedCharSet
             For Each pRepu As Reputation In newSet.PlayerReputation
                 If (pRepu.Flags And Reputation.FlagEnum.FACTION_FLAG_VISIBLE) = Reputation.FlagEnum.FACTION_FLAG_VISIBLE Then
                     Dim repPanel As New Panel
@@ -199,13 +202,11 @@ Namespace Forms.Character
                                         Then
                                         setPanelPercentage(subsubCtrl, slider.Value / slider.Maximum)
                                         Dim loc As Integer =
-                                       GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
+                                       GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
                                            Function(rep) rep.Faction = pCtrl.Tag.Faction)
                                         pCtrl.Tag.value = slider.Value
                                         Dim thisRep As Reputation = pCtrl.Tag
                                         pCtrl.Tag = thisRep.UpdateStanding()
-                                        If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                            GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                                         GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                                     End If
                                 Next
@@ -235,13 +236,11 @@ Namespace Forms.Character
                                         Then
                                         setPanelPercentage(subsubCtrl, 0)
                                         Dim loc As Integer =
-                                                GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
+                                                GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
                                                     Function(rep) (pCtrl.Tag.Equals(rep)))
                                         pCtrl.Tag.value = slider.Value
                                         Dim thisRep As Reputation = pCtrl.Tag
                                         pCtrl.Tag = thisRep.UpdateStanding()
-                                        If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                            GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                                         GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                                     End If
                                 Next
@@ -283,15 +282,13 @@ Namespace Forms.Character
             For Each pCtrl As Control In RepLayoutPanel.Controls
                 If pCtrl.Name.Contains("rep" & combo.Tag.faction.ToString() & "_pnl") Then
                     Dim loc As Integer =
-                                        GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
+                                       GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
                                             Function(rep) rep.Faction = pCtrl.Tag.Faction)
                     pCtrl.Tag.value = 0
                     pCtrl.Tag.max = max
                     pCtrl.Tag.status = combo.SelectedIndex
                     Dim thisRep As Reputation = pCtrl.Tag
                     pCtrl.Tag = thisRep.UpdateStanding()
-                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                     DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Value = 0
                     DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Maximum =
@@ -326,7 +323,7 @@ Namespace Forms.Character
                         If pCtrl.Name.Contains("rep" & txtbox.Tag.faction.ToString() & "_pnl") Then
                             If int <= pCtrl.Tag.max And int >= 0 Then
                                 Dim loc As Integer =
-                                        GlobalVariables.currentViewedCharSet.PlayerReputation.FindIndex(
+                                        GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
                                             Function(rep) rep.Faction = pCtrl.Tag.Faction)
                                 DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_slider", pCtrl), 
                                            TrackBar).
@@ -344,8 +341,6 @@ Namespace Forms.Character
                                 Dim thisRep As Reputation = pCtrl.Tag
                                 pCtrl.Tag = thisRep.UpdateStanding()
                                 _valueisok = True
-                                If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                    GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                                 GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
                             End If
                         End If
@@ -382,8 +377,8 @@ Namespace Forms.Character
                         Not _
                         client.DownloadString("http://wowhead.com/faction=" & retnvalue.ToString()).Contains(
                             "<div id=""inputbox-error"">This faction doesn't exist.</div>") Then
-                        For Each opRepu As Reputation In GlobalVariables.currentViewedCharSet.PlayerReputation
-                            If opRepu.faction = retnvalue Then
+                        For Each opRepu As Reputation In GlobalVariables.currentEditedCharSet.PlayerReputation
+                            If opRepu.Faction = retnvalue Then
                                 Dim _
                                     rm2 As _
                                         New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
@@ -485,8 +480,6 @@ Namespace Forms.Character
                         standingCombo.Text = ResourceHandler.GetUserMessage("standing_" & pRepu.status.ToString)
                         repPanel.Controls.Add(standingCombo)
                         AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
-                        If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                            GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                         GlobalVariables.currentEditedCharSet.PlayerReputation.Add(pRepu)
                         MsgBox(ResourceHandler.GetUserMessage("factionadded"), , "Info")
                     Else

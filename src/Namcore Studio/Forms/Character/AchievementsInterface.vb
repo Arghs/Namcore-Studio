@@ -70,6 +70,9 @@ Namespace Forms.Character
             Next
             waitpanel.Location = New Point(367, 219)
             subcat_combo.Enabled = False
+            If GlobalVariables.currentEditedCharSet Is Nothing Then
+                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+            End If
         End Sub
 
         Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
@@ -140,7 +143,6 @@ Namespace Forms.Character
                             tmpCatids = {}
                     End Select
                     Dim catCollection As New List(Of AvSubcategoy)
-
                     For i = 0 To tmpCatids.Length - 1
                         Try
                             catCollection.Add(
@@ -202,14 +204,10 @@ Namespace Forms.Character
                     If subctrl.tag.id = charAv.Id Then
                         AVLayoutPanel.Controls.Remove(subctrl)
                         subctrl.Dispose()
-                        For Each av As Achievement In GlobalVariables.currentViewedCharSet.Achievements
+
+                        For Each av As Achievement In GlobalVariables.currentEditedCharSet.Achievements
                             If av.Id = charAv.Id Then
-                                If GlobalVariables.currentEditedCharSet Is Nothing Then
-                                    GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                                    GlobalVariables.currentViewedCharSet.Achievements.Remove(av)
-                                Else
-                                    GlobalVariables.currentViewedCharSet.Achievements.Remove(av)
-                                End If
+                                GlobalVariables.currentEditedCharSet.Achievements.Remove(av)
                                 Exit For
                             End If
                         Next
@@ -229,7 +227,7 @@ Namespace Forms.Character
                     Thread.Sleep(2000)
                 End If
 
-                For Each charAv As Achievement In DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Achievements
+                For Each charAv As Achievement In DeepCloneHelper.DeepClone(GlobalVariables.currentEditedCharSet).Achievements
 
                     If _doneAvIds.Contains(charAv.Id) Then
                         Continue For
@@ -255,7 +253,7 @@ Namespace Forms.Character
 
                     End While
 
-                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentViewedCharSet, GetAccountSetBySetId(GlobalVariables.currentViewedCharSet.AccountSet))
+                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentEditedCharSet, GetAccountSetBySetId(GlobalVariables.currentViewedCharSet.AccountSet))
                     Try
                         If _
                             AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 2).BackColor =
@@ -332,7 +330,7 @@ Namespace Forms.Character
                         Not _
                         client.DownloadString("http://wowhead.com/achievement=" & retnvalue.ToString()).Contains(
                             "<div id=""inputbox-error"">This achievement doesn't exist.</div>") Then
-                        For Each opAv As Achievement In GlobalVariables.currentViewedCharSet.Achievements
+                        For Each opAv As Achievement In GlobalVariables.currentEditedCharSet.Achievements
                             If opAv.Id = retnvalue Then
                                 Dim _
                                     rm2 As _
@@ -348,12 +346,7 @@ Namespace Forms.Character
                         If _correctIds.Contains(charAv.Id) Then
                             AddAvToLayout(charAv)
                         End If
-                        If GlobalVariables.currentEditedCharSet Is Nothing Then
-                            GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                            GlobalVariables.currentEditedCharSet.Achievements.Add(charAv)
-                        Else
-                            GlobalVariables.currentEditedCharSet.Achievements.Add(charAv)
-                        End If
+                        GlobalVariables.currentEditedCharSet.Achievements.Add(charAv)
                         MsgBox(ResourceHandler.GetUserMessage("achievementadded"), , "Info")
                     Else
                         MsgBox(ResourceHandler.GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
@@ -424,8 +417,8 @@ Namespace Forms.Character
             If searchId = 0 Then
                 searchName = searchTxt
             End If
-            For i = 0 To GlobalVariables.currentViewedCharSet.Achievements.Count - 1
-                Dim charAv As Achievement = GlobalVariables.currentViewedCharSet.Achievements(i)
+            For i = 0 To GlobalVariables.currentEditedCharSet.Achievements.Count - 1
+                Dim charAv As Achievement = GlobalVariables.currentEditedCharSet.Achievements(i)
                 Try
                     If searchName = "" Then
                         '// Id
@@ -436,7 +429,7 @@ Namespace Forms.Character
                         '// Name
                         If charAv.Name = Nothing Then
                             charAv.Name = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
-                            GlobalVariables.currentViewedCharSet.Achievements(i) = charAv
+                            GlobalVariables.currentEditedCharSet.Achievements(i) = charAv
                         End If
                         If charAv.Name.ToLower.Contains(searchName.ToLower()) Then
                             foundAvList.Add(charAv)
