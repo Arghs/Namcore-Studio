@@ -149,7 +149,7 @@ Namespace Forms.Character
                             _tempSender = ctrl
                             _tmpSenderPic = sender
                             ctrl.Visible = False
-                            addpanel.Location = New Point(ctrl.Location.X + 8, ctrl.Location.Y + 38)
+                            addpanel.Location = New Point(ctrl.Location.X + glyph_panel.Location.X, ctrl.Location.Y + glyph_panel.Location.Y)
                         End If
                     End If
                 Next
@@ -222,8 +222,8 @@ Namespace Forms.Character
                     minor_2_name.Click, minor_1_name.Click, major_3_name.Click, major_2_name.Click, major_1_name.Click
             If sender.text = "" Or Not sender.name.contains("_name") Then Exit Sub
             Dim newPoint As New Point
-            newPoint.X = sender.location.X + 8
-            newPoint.Y = sender.location.Y + 38
+            newPoint.X = sender.location.X + glyph_panel.Location.X
+            newPoint.Y = sender.location.Y + glyph_panel.Location.Y
             changepanel.Location = newPoint
             addpanel.Location = New Point(4000, 4000)
             newPoint.X = 4000
@@ -234,7 +234,7 @@ Namespace Forms.Character
             End If
             _tempSender = sender
             sender.visible = False
-            TextBox1.Text = sender.tag.id.ToString
+            TextBox1.Text = sender.Tag.Id.ToString
             _tempValue = TextBox1.Text
         End Sub
 
@@ -242,6 +242,7 @@ Namespace Forms.Character
             'delete glyph
             Dim newPoint As New Point
             Dim senderLabel As Label = _tempSender
+            Dim senderTag As Glyph = DeepCloneHelper.DeepClone(senderLabel.Tag)
             newPoint.X = 4000
             newPoint.Y = 4000
             If TypeOf _tempSender Is Label Then
@@ -253,10 +254,10 @@ Namespace Forms.Character
                         If TypeOf ctrl Is PictureBox Then
                             If ctrl.Name.EndsWith("_pic") Then
                                 If ctrl.Tag Is Nothing Then Continue For
-                                If ctrl.Tag.id = tag.id Then
-                                    DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
+                                If ctrl.Tag.Id = senderTag.Id And ctrl.Tag.Spec = senderTag.Spec Then
                                     Select Case True
                                         Case ctrl.Name.ToLower.EndsWith("_pic")
+                                            DirectCast(ctrl, PictureBox).Tag = Nothing
                                             DirectCast(ctrl, PictureBox).Image = My.Resources.empty
                                     End Select
                                 End If
@@ -264,7 +265,7 @@ Namespace Forms.Character
                         ElseIf TypeOf ctrl Is Label Then
                             If ctrl.Name.EndsWith("_name") Then
                                 If ctrl.Tag Is Nothing Then Continue For
-                                If ctrl.Tag.id = tag.id Then
+                                If ctrl.Tag.Id = senderTag.Id And ctrl.Tag.Spec = senderTag.Spec Then
                                     If ctrl.Name.ToLower.EndsWith("_name") Then
                                         DirectCast(ctrl, Label).Tag = Nothing
                                         DirectCast(ctrl, Label).Text = ""
@@ -276,20 +277,20 @@ Namespace Forms.Character
                     If GlobalVariables.currentEditedCharSet Is Nothing Then
                         GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                         Dim glyphIndex As Integer =
-                                TryInt(splitString(GlobalVariables.currentViewedCharSet.PlayerGlyphsIndex,
-                                                   "[slot:" & tag.slotname & "|@", "]"))
+                                TryInt(SplitString(GlobalVariables.currentViewedCharSet.PlayerGlyphsIndex,
+                                                   "[slot:" & senderTag.Slotname & "|@", "]"))
                         GlobalVariables.currentEditedCharSet.PlayerGlyphs.Item(glyphIndex) = Nothing
                         GlobalVariables.currentEditedCharSet.PlayerGlyphsIndex =
                             GlobalVariables.currentEditedCharSet.PlayerGlyphsIndex.Replace(
-                                "[slot:" & tag.slotname & "|@" & glyphIndex.ToString() & "]", "")
+                                "[slot:" & senderTag.Slotname & "|@" & glyphIndex.ToString() & "]", "")
                     Else
                         Dim glyphIndex As Integer =
-                                TryInt(splitString(GlobalVariables.currentViewedCharSet.PlayerGlyphsIndex,
-                                                   "[slot:" & tag.slotname & "|@", "]"))
+                                TryInt(SplitString(GlobalVariables.currentViewedCharSet.PlayerGlyphsIndex,
+                                                   "[slot:" & senderTag.Slotname & "|@", "]"))
                         GlobalVariables.currentEditedCharSet.PlayerGlyphs.Item(glyphIndex) = Nothing
                         GlobalVariables.currentEditedCharSet.PlayerGlyphsIndex =
                             GlobalVariables.currentEditedCharSet.PlayerGlyphsIndex.Replace(
-                                "[slot:" & tag.slotname & "|@" & glyphIndex.ToString() & "]", "")
+                                "[slot:" & senderTag.Slotname & "|@" & glyphIndex.ToString() & "]", "")
                     End If
                     senderLabel.Text = Nothing
                     senderLabel.Tag = Nothing
@@ -310,7 +311,7 @@ Namespace Forms.Character
                     Dim id As Integer = TryInt(TextBox1.Text)
 
                     If senderLabel.Name.ToLower.EndsWith("_name") Then
-                        If Not GetItemInventorySlotByItemId(Tag.id) = GetItemInventorySlotByItemId(id) Then
+                        If Not GetItemInventorySlotByItemId(Tag.Id) = GetItemInventorySlotByItemId(id) Then
                             MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
                                    ResourceHandler.GetUserMessage("Error"))
                         Else

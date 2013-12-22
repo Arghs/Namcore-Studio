@@ -75,7 +75,7 @@ Namespace Forms.Character
             Me.addpanel = New System.Windows.Forms.Panel()
             Me.PictureBox4 = New System.Windows.Forms.PictureBox()
             Me.TextBox2 = New System.Windows.Forms.TextBox()
-            Me.Panel1 = New System.Windows.Forms.Panel()
+            Me.glyph_panel = New System.Windows.Forms.Panel()
             CType(Me.prim_1_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.prim_2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.prim_3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,7 +99,7 @@ Namespace Forms.Character
             CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.addpanel.SuspendLayout()
             CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-            Me.Panel1.SuspendLayout()
+            Me.glyph_panel.SuspendLayout()
             Me.SuspendLayout()
             '
             'prim_1_pic
@@ -631,75 +631,75 @@ Namespace Forms.Character
             Me.TextBox2.Size = New System.Drawing.Size(86, 20)
             Me.TextBox2.TabIndex = 0
             '
-            'Panel1
+            'glyph_panel
             '
-            Me.Panel1.BackColor = System.Drawing.Color.Transparent
-            Me.Panel1.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.glyphs_bg
-            Me.Panel1.Controls.Add(Me.Label2)
-            Me.Panel1.Controls.Add(Me.prim_1_name)
-            Me.Panel1.Controls.Add(Me.Label1)
-            Me.Panel1.Controls.Add(Me.sec_minor_3_pic)
-            Me.Panel1.Controls.Add(Me.Label3)
-            Me.Panel1.Controls.Add(Me.sec_minor_3_name)
-            Me.Panel1.Controls.Add(Me.prim_1_pic)
-            Me.Panel1.Controls.Add(Me.sec_minor_2_pic)
-            Me.Panel1.Controls.Add(Me.prim_2_name)
-            Me.Panel1.Controls.Add(Me.sec_minor_2_name)
-            Me.Panel1.Controls.Add(Me.prim_2_pic)
-            Me.Panel1.Controls.Add(Me.sec_minor_1_pic)
-            Me.Panel1.Controls.Add(Me.prim_3_name)
-            Me.Panel1.Controls.Add(Me.sec_minor_1_name)
-            Me.Panel1.Controls.Add(Me.prim_3_pic)
-            Me.Panel1.Controls.Add(Me.sec_major_3_pic)
-            Me.Panel1.Controls.Add(Me.major_1_name)
-            Me.Panel1.Controls.Add(Me.sec_major_3_name)
-            Me.Panel1.Controls.Add(Me.major_1_pic)
-            Me.Panel1.Controls.Add(Me.sec_major_2_pic)
-            Me.Panel1.Controls.Add(Me.major_2_name)
-            Me.Panel1.Controls.Add(Me.sec_major_2_name)
-            Me.Panel1.Controls.Add(Me.major_2_pic)
-            Me.Panel1.Controls.Add(Me.sec_major_1_pic)
-            Me.Panel1.Controls.Add(Me.major_3_name)
-            Me.Panel1.Controls.Add(Me.sec_major_1_name)
-            Me.Panel1.Controls.Add(Me.major_3_pic)
-            Me.Panel1.Controls.Add(Me.sec_prim_3_pic)
-            Me.Panel1.Controls.Add(Me.minor_1_name)
-            Me.Panel1.Controls.Add(Me.sec_prim_3_name)
-            Me.Panel1.Controls.Add(Me.minor_1_pic)
-            Me.Panel1.Controls.Add(Me.sec_prim_2_pic)
-            Me.Panel1.Controls.Add(Me.minor_2_name)
-            Me.Panel1.Controls.Add(Me.sec_prim_2_name)
-            Me.Panel1.Controls.Add(Me.minor_2_pic)
-            Me.Panel1.Controls.Add(Me.sec_prim_1_pic)
-            Me.Panel1.Controls.Add(Me.minor_3_name)
-            Me.Panel1.Controls.Add(Me.Label12)
-            Me.Panel1.Controls.Add(Me.minor_3_pic)
-            Me.Panel1.Controls.Add(Me.Label13)
-            Me.Panel1.Controls.Add(Me.sec_prim_1_name)
-            Me.Panel1.Controls.Add(Me.Label14)
-            Me.Panel1.Location = New System.Drawing.Point(8, 84)
-            Me.Panel1.Name = "Panel1"
-            Me.Panel1.Size = New System.Drawing.Size(859, 516)
-            Me.Panel1.TabIndex = 176
+            Me.glyph_panel.BackColor = System.Drawing.Color.Transparent
+            Me.glyph_panel.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.glyphs_bg
+            Me.glyph_panel.Controls.Add(Me.Label2)
+            Me.glyph_panel.Controls.Add(Me.prim_1_name)
+            Me.glyph_panel.Controls.Add(Me.Label1)
+            Me.glyph_panel.Controls.Add(Me.sec_minor_3_pic)
+            Me.glyph_panel.Controls.Add(Me.Label3)
+            Me.glyph_panel.Controls.Add(Me.sec_minor_3_name)
+            Me.glyph_panel.Controls.Add(Me.prim_1_pic)
+            Me.glyph_panel.Controls.Add(Me.sec_minor_2_pic)
+            Me.glyph_panel.Controls.Add(Me.prim_2_name)
+            Me.glyph_panel.Controls.Add(Me.sec_minor_2_name)
+            Me.glyph_panel.Controls.Add(Me.prim_2_pic)
+            Me.glyph_panel.Controls.Add(Me.sec_minor_1_pic)
+            Me.glyph_panel.Controls.Add(Me.prim_3_name)
+            Me.glyph_panel.Controls.Add(Me.sec_minor_1_name)
+            Me.glyph_panel.Controls.Add(Me.prim_3_pic)
+            Me.glyph_panel.Controls.Add(Me.sec_major_3_pic)
+            Me.glyph_panel.Controls.Add(Me.major_1_name)
+            Me.glyph_panel.Controls.Add(Me.sec_major_3_name)
+            Me.glyph_panel.Controls.Add(Me.major_1_pic)
+            Me.glyph_panel.Controls.Add(Me.sec_major_2_pic)
+            Me.glyph_panel.Controls.Add(Me.major_2_name)
+            Me.glyph_panel.Controls.Add(Me.sec_major_2_name)
+            Me.glyph_panel.Controls.Add(Me.major_2_pic)
+            Me.glyph_panel.Controls.Add(Me.sec_major_1_pic)
+            Me.glyph_panel.Controls.Add(Me.major_3_name)
+            Me.glyph_panel.Controls.Add(Me.sec_major_1_name)
+            Me.glyph_panel.Controls.Add(Me.major_3_pic)
+            Me.glyph_panel.Controls.Add(Me.sec_prim_3_pic)
+            Me.glyph_panel.Controls.Add(Me.minor_1_name)
+            Me.glyph_panel.Controls.Add(Me.sec_prim_3_name)
+            Me.glyph_panel.Controls.Add(Me.minor_1_pic)
+            Me.glyph_panel.Controls.Add(Me.sec_prim_2_pic)
+            Me.glyph_panel.Controls.Add(Me.minor_2_name)
+            Me.glyph_panel.Controls.Add(Me.sec_prim_2_name)
+            Me.glyph_panel.Controls.Add(Me.minor_2_pic)
+            Me.glyph_panel.Controls.Add(Me.sec_prim_1_pic)
+            Me.glyph_panel.Controls.Add(Me.minor_3_name)
+            Me.glyph_panel.Controls.Add(Me.Label12)
+            Me.glyph_panel.Controls.Add(Me.minor_3_pic)
+            Me.glyph_panel.Controls.Add(Me.Label13)
+            Me.glyph_panel.Controls.Add(Me.sec_prim_1_name)
+            Me.glyph_panel.Controls.Add(Me.Label14)
+            Me.glyph_panel.Location = New System.Drawing.Point(8, 84)
+            Me.glyph_panel.Name = "glyph_panel"
+            Me.glyph_panel.Size = New System.Drawing.Size(859, 516)
+            Me.glyph_panel.TabIndex = 176
             '
             'GlyphsInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(875, 599)
-            Me.Controls.Add(Me.Panel1)
+            Me.ClientSize = New System.Drawing.Size(872, 603)
             Me.Controls.Add(Me.addpanel)
             Me.Controls.Add(Me.changepanel)
+            Me.Controls.Add(Me.glyph_panel)
             Me.Cursor = System.Windows.Forms.Cursors.Default
             Me.DoubleBuffered = True
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "GlyphsInterface"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "Glyphs_interface"
+            Me.Controls.SetChildIndex(Me.glyph_panel, 0)
             Me.Controls.SetChildIndex(Me.changepanel, 0)
             Me.Controls.SetChildIndex(Me.addpanel, 0)
-            Me.Controls.SetChildIndex(Me.Panel1, 0)
             CType(Me.prim_1_pic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.prim_2_pic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.prim_3_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -725,8 +725,8 @@ Namespace Forms.Character
             Me.addpanel.ResumeLayout(False)
             Me.addpanel.PerformLayout()
             CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
-            Me.Panel1.ResumeLayout(False)
-            Me.Panel1.PerformLayout()
+            Me.glyph_panel.ResumeLayout(False)
+            Me.glyph_panel.PerformLayout()
             Me.ResumeLayout(False)
 
         End Sub
@@ -779,6 +779,6 @@ Namespace Forms.Character
         Friend WithEvents addpanel As System.Windows.Forms.Panel
         Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
         Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-        Friend WithEvents Panel1 As System.Windows.Forms.Panel
+        Friend WithEvents glyph_panel As System.Windows.Forms.Panel
     End Class
 End Namespace
