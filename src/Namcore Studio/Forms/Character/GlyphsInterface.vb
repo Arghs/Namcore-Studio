@@ -40,6 +40,7 @@ Namespace Forms.Character
         Dim _tempSender As Object
         Dim _tmpPic As Image
         Dim _tmpSenderPic As Object
+        Dim _usePlayer As NCFramework.Framework.Modules.Character
         '// Declaration
 
         Private Sub Glyphs_interface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -52,9 +53,15 @@ Namespace Forms.Character
         End Sub
 
         Public Sub PrepareGlyphsInterface(ByVal setId As Integer, ByVal account As Account)
-            Dim player As NCFramework.Framework.Modules.Character = GetCharacterSetBySetId(setId, account)
+            Dim player As NCFramework.Framework.Modules.Character
+            If GlobalVariables.currentEditedCharSet Is Nothing Then
+                player = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+            Else
+                player = DeepCloneHelper.DeepClone(GlobalVariables.currentEditedCharSet)
+            End If
             If player.PlayerGlyphsIndex Is Nothing Then player.PlayerGlyphsIndex = ""
             If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
+            _usePlayer = player
             _controlLst = New List(Of Control)
             _controlLst = FindAllChildren()
             For Each itemControl As Control In _controlLst
@@ -109,7 +116,7 @@ Namespace Forms.Character
         End Sub
 
         Private Function LoadInfo(ByVal slot As String, ByVal infotype As Integer) As Object
-            Dim glyphitm As Glyph = GetCharacterGlyph(GlobalVariables.currentViewedCharSet, slot)
+            Dim glyphitm As Glyph = GetCharacterGlyph(_usePlayer, slot)
             _pubGlyph = glyphitm
             If glyphitm Is Nothing Then Return Nothing
             Select Case infotype
@@ -239,7 +246,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
-            'delete glyph
+            '// Delete glyph
             Dim newPoint As New Point
             Dim senderLabel As Label = _tempSender
             Dim senderTag As Glyph = DeepCloneHelper.DeepClone(senderLabel.Tag)
@@ -301,9 +308,10 @@ Namespace Forms.Character
         End Sub
 
         Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-            'Change glyph
+            '// Change glyph
             Dim newPoint As New Point
             Dim senderLabel As Label = _tempSender
+            Dim senderTag As Glyph = DeepCloneHelper.DeepClone(_tempSender.Tag)
             newPoint.X = 4000
             newPoint.Y = 4000
             If Not TextBox1.Text = _tempValue Then
@@ -311,7 +319,7 @@ Namespace Forms.Character
                     Dim id As Integer = TryInt(TextBox1.Text)
 
                     If senderLabel.Name.ToLower.EndsWith("_name") Then
-                        If Not GetItemInventorySlotByItemId(Tag.Id) = GetItemInventorySlotByItemId(id) Then
+                        If Not GetItemInventorySlotByItemId(senderTag.Id) = GetItemInventorySlotByItemId(id) Then
                             MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
                                    ResourceHandler.GetUserMessage("Error"))
                         Else
@@ -319,9 +327,9 @@ Namespace Forms.Character
                             newGlyph.Id = id
                             newGlyph.Name = GetItemNameByItemId(id.ToString, NCFramework.My.MySettings.Default.language)
                             newGlyph.Image = GetItemIconById(id, GlobalVariables.GlobalWebClient)
-                            newGlyph.Spec = Tag.spec
-                            newGlyph.Slotname = Tag.slotname
-                            newGlyph.Type = Tag.type
+                            newGlyph.Spec = senderTag.Spec
+                            newGlyph.Slotname = senderTag.Slotname
+                            newGlyph.Type = senderTag.Type
                             senderLabel.Tag = newGlyph
                             Dim txt As String = newGlyph.Name
                             If Not txt Is Nothing Then
@@ -335,11 +343,11 @@ Namespace Forms.Character
                                 Dim pictureBox = TryCast(ctrl, PictureBox)
                                 If (pictureBox IsNot Nothing) Then
                                     If ctrl.Tag Is Nothing Then Continue For
-                                    If ctrl.Tag.id = senderLabel.Tag.id Then
-                                        pictureBox.Tag = senderLabel.Tag
+                                    If ctrl.Tag.id = senderTag.Id Then
+                                        pictureBox.Tag = senderTag
                                         Select Case True
                                             Case ctrl.Name.ToLower.EndsWith("_pic")
-                                                pictureBox.Image = Tag.image
+                                                pictureBox.Image = senderTag.Image
                                         End Select
                                     End If
                                 End If
@@ -368,7 +376,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
-            'Add glyph
+            '// Add glyph
             Dim senderPic As PictureBox = _tmpSenderPic
             If Not TextBox2.Text = "" Then
                 Dim client As New WebClient
