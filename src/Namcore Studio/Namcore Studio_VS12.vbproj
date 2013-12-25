@@ -122,6 +122,12 @@
     <Compile Include="Forms\Character\BankInterface.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Character\ProfessionsInterface.Designer.vb">
+      <DependentUpon>ProfessionsInterface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Character\ProfessionsInterface.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Character\QuestsInterface.Designer.vb">
       <DependentUpon>QuestsInterface.vb</DependentUpon>
     </Compile>
@@ -256,6 +262,9 @@
     <EmbeddedResource Include="Forms\Character\BankInterface.resx">
       <DependentUpon>BankInterface.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Character\ProfessionsInterface.resx">
+      <DependentUpon>ProfessionsInterface.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Character\QuestsInterface.resx">
       <DependentUpon>QuestsInterface.vb</DependentUpon>
     </EmbeddedResource>
@@ -353,8 +362,24 @@
     <None Include="Resources\bank_bg.png" />
     <None Include="Resources\namcore_header_new.jpg" />
     <None Include="Resources\finalnclogo.png" />
+    <None Include="Resources\inv_inscription_tradeskill01.jpg" />
+    <None Include="Resources\inv_misc_armorkit_17.jpg" />
+    <None Include="Resources\inv_misc_food_15.jpg" />
+    <None Include="Resources\inv_misc_gem_01.jpg" />
+    <None Include="Resources\inv_misc_pelt_wolf_01.jpg" />
     <Content Include="Resources\nclogo.ico" />
+    <None Include="Resources\profession_bg.png" />
     <Content Include="Resources\Refresh-icon.png" />
+    <None Include="Resources\trade_alchemy.jpg" />
+    <None Include="Resources\trade_archaeology.jpg" />
+    <None Include="Resources\trade_blacksmithing.jpg" />
+    <None Include="Resources\trade_engineering.jpg" />
+    <None Include="Resources\trade_engraving.jpg" />
+    <None Include="Resources\trade_fishing.jpg" />
+    <None Include="Resources\trade_mining.jpg" />
+    <None Include="Resources\spell_holy_sealofsacrifice.jpg" />
+    <None Include="Resources\spell_nature_naturetouchgrow.jpg" />
+    <None Include="Resources\trade_tailoring.jpg" />
     <Content Include="Resources\trash_%28delete%29_16x16.gif" />
     <None Include="Resources\repbg1.jpg" />
     <None Include="Resources\plusico.png" />

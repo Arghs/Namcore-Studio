@@ -17,8 +17,8 @@
 '* Developed by Alcanmage/megasus
 '*
 '* //FileInfo//
-'*      /Filename:      QuestNameInfo
-'*      /Description:   Provides quest information
+'*      /Filename:      SkillLineInfo
+'*      /Description:   Provides skill information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports libnc.Main
 Namespace Provider
@@ -30,6 +30,21 @@ Namespace Provider
             Dim myResult As String = ExecuteCsvSearch(SkillLineCsv, "SkillId", skillId.ToString(), targetField)(0)
             If myResult = "-" Then myResult = "Not found"
             Return myResult
+        End Function
+        Public Function GetMinimumSkillBySpellId(ByVal spellId As Integer) As Integer
+            CheckInit()
+            Const targetField As Integer = 2
+            Dim myResult As String = ExecuteCsvSearch(SkillLineAbilityCsv, "SpellId", spellId.ToString(), targetField)(0)
+            If myResult = "-" Then myResult = "0"
+            Try
+                Return CInt(myResult)
+            Catch ex As Exception
+                Return 0
+            End Try
+        End Function
+        Public Function GetSkillLineAbility() As DataTable
+            CheckInit()
+            Return SkillLineAbilityCsv
         End Function
     End Module
 End Namespace

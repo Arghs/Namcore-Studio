@@ -35,6 +35,7 @@ Public Class Main
     Public Shared ItemSparseCsv As DataTable
     Public Shared QuestNameCsv As DataTable
     Public Shared SkillLineCsv As DataTable
+    Public Shared SkillLineAbilityCsv As DataTable
     Public Shared SpellCsv As DataTable
     Public Shared SpellEffectCsv As DataTable
     Public Shared SpellEnchantCsv As DataTable
@@ -61,6 +62,7 @@ Public Class Main
         FillDataTable(My.Resources.ItemSparse, ItemSparseCsv)
         FillDataTable(My.Resources.questname, QuestNameCsv)
         FillDataTable(My.Resources.SkillLine, SkillLineCsv)
+        FillDataTable(My.Resources.SkillLineAbility, SkillLineAbilityCsv)
         FillDataTable(My.Resources.Spell, SpellCsv)
         FillDataTable(My.Resources.SpellEffect, SpellEffectCsv)
         FillDataTable(My.Resources.SpellEnchant, SpellEnchantCsv)

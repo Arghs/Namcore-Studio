@@ -174,6 +174,20 @@ Namespace Framework.Functions
             End Select
         End Function
 
+        Public Function GetProficiencyLevelNameByLevel(ByVal level As Integer) As String
+            Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
+            Select Case level
+                Case 0 To 49 : Return rm.GetString("proficiency_1")
+                Case 50 To 124 : Return rm.GetString("proficiency_2")
+                Case 125 To 199 : Return rm.GetString("proficiency_3")
+                Case 200 To 274 : Return rm.GetString("proficiency_4")
+                Case 275 To 349 : Return rm.GetString("proficiency_5")
+                Case 350 To 424 : Return rm.GetString("proficiency_6")
+                Case 425 To 499 : Return rm.GetString("proficiency_7")
+                Case 500 To 600 : Return rm.GetString("proficiency_8")
+            End Select
+        End Function
+
         Public Function GetItemQualityColor(ByVal rarity As Integer) As Color
             Select Case rarity
                 Case 0, 1 : Return Color.Gray

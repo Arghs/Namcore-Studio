@@ -21,14 +21,14 @@
 '*      /Description:   Contains functions for loading character profession information 
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Net
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Modules
+Imports System.Net
+Imports libnc.Provider
 
 Namespace Framework.Armory.Parser
-
     Public Class ProfessionParser
         Public Sub LoadProfessions(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
             Dim client As New WebClient
@@ -42,23 +42,25 @@ Namespace Framework.Armory.Parser
                 '// Using API to load profession info
                 Dim pfContext As String = client.DownloadString(apiLink & "?fields=professions")
                 If pfContext Is Nothing Then
-                    LogAppend("pfContext is nothing - Failed to load Professions API", "ProfessionParser_loadProfessions",
+                    LogAppend("pfContext is nothing - Failed to load Professions API",
+                              "ProfessionParser_loadProfessions",
                               False, True)
                     Exit Sub
                 Else
                     LogAppend("pfContext loaded - length: " & pfContext.Length.ToString(),
                               "ProfessionParser_loadProfessions", False)
                 End If
-                Dim pfStr As String = SplitString(pfContext, """professions"":{", "}}") & ","
-                Dim primaryPf As String = SplitString(pfStr, """primary"":[", "}],")
-                Dim secondaryPf As String = SplitString(pfStr, """secondary"":[", "}],")
+                Dim pfStr As String = SplitString(pfContext, """professions"":{", "]},"""")") & "#end#"
+                Dim primaryPf As String = SplitString(pfStr, """primary"":[", """secondary""")
+                Dim secondaryPf As String = SplitString(pfStr, """secondary"":[", "#end#")
                 Dim usePfString As String = primaryPf
                 Do
-                    pProf = New Profession()
                     Dim excounter As Integer = UBound(Split(usePfString, "}")) + 1
                     Dim partsPf() As String = usePfString.Split("}"c)
                     Dim loopcounter As Integer = 0
                     Do
+                        pProf = New Profession()
+                        pProf.Recipes = New List(Of ProfessionSpell)()
                         If usePfString = primaryPf Then
                             pProf.Primary = True
                         Else
@@ -73,16 +75,27 @@ Namespace Framework.Armory.Parser
                             pProf.Max = TryInt(SplitString(myPart, """max"":", ","))
                             pProf.Name = SplitString(myPart, """name"":""", """,")
                             pProf.Rank = TryInt(SplitString(myPart, """rank"":", ","))
-                            LogAppend("Adding profession with id " & pProf.Id.ToString, "ProfessionParser_loadProfessions", True)
+                            If pProf.Rank = 0 Then
+                                loopcounter += 1
+                                Continue Do
+                            End If
+                            LogAppend("Adding profession with id " & pProf.Id.ToString,
+                                      "ProfessionParser_loadProfessions", True)
                             Dim recipes As String = SplitString(myPart, """recipes"":[", "]")
                             If recipes.Length > 3 Then
-                                pProf.Recipes = recipes.Split(",")
+                                Dim useRecipes As String() = recipes.Split(",")
+                                For i = 0 To useRecipes.Length - 1
+                                    pProf.Recipes.Add(New ProfessionSpell() _
+                                                         With {.SpellId = TryInt(useRecipes(i)), .Name = "",
+                                                         .MinSkill = GetMinimumSkillBySpellId(TryInt(useRecipes(i)))})
+                                Next
                             End If
                             player.Professions.Add(pProf)
                             loopcounter += 1
                         End If
                     Loop Until loopcounter = excounter
-                    LogAppend("Loaded " & loopcounter.ToString & " professions", "ProfessionParser_loadProfessions", True)
+                    LogAppend("Loaded " & player.Professions.Count.ToString & " professions", "ProfessionParser_loadProfessions",
+                              True)
                     If usePfString = secondaryPf Then
                         Exit Do
                     Else

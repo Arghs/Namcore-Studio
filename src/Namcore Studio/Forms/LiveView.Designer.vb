@@ -142,7 +142,7 @@
             Me.chartotal.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.chartotal.ForeColor = System.Drawing.Color.Black
             Me.chartotal.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.chartotal.Location = New System.Drawing.Point(527, 429)
+            Me.chartotal.Location = New System.Drawing.Point(567, 429)
             Me.chartotal.Name = "chartotal"
             Me.chartotal.Size = New System.Drawing.Size(17, 17)
             Me.chartotal.TabIndex = 29
@@ -165,7 +165,7 @@
             '
             Me.uncheckall_char.AutoSize = True
             Me.uncheckall_char.LinkColor = System.Drawing.Color.Red
-            Me.uncheckall_char.Location = New System.Drawing.Point(451, 451)
+            Me.uncheckall_char.Location = New System.Drawing.Point(491, 451)
             Me.uncheckall_char.Name = "uncheckall_char"
             Me.uncheckall_char.Size = New System.Drawing.Size(64, 13)
             Me.uncheckall_char.TabIndex = 10
@@ -176,7 +176,7 @@
             '
             Me.checkall_char.AutoSize = True
             Me.checkall_char.LinkColor = System.Drawing.Color.Red
-            Me.checkall_char.Location = New System.Drawing.Point(451, 433)
+            Me.checkall_char.Location = New System.Drawing.Point(491, 433)
             Me.checkall_char.Name = "checkall_char"
             Me.checkall_char.Size = New System.Drawing.Size(51, 13)
             Me.checkall_char.TabIndex = 9

@@ -20,14 +20,15 @@
 '*      /Filename:      QuestsInterface
 '*      /Description:   Provides an interface to display character's questlog
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.My
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Extension
-Imports libnc.Provider
 Imports System.Threading
+Imports libnc.Provider
 
 Namespace Forms.Character
     Public Class QuestsInterface
@@ -67,7 +68,7 @@ Namespace Forms.Character
             _loaded = True
         End Sub
 
-        Private Sub QuesTcompleted() Handles Me.QstCompleted
+        Private Sub QuestCompleted() Handles Me.QstCompleted
             resultstatus_lbl.Text = qst_lst.Items.Count.ToString & " results!"
             If _firstuse = True Then
                 If _lstitems Is Nothing Then _lstitems = New List(Of ListViewItem)
@@ -90,7 +91,7 @@ Namespace Forms.Character
                 str(0) = pQuest.id.ToString
                 Dim questname As String
                 If pQuest.name Is Nothing Then
-                    questname = GetQuestTitleById(pQuest.Id, NCFramework.My.MySettings.Default.language)
+                    questname = GetQuestTitleById(pQuest.Id, MySettings.Default.language)
                 Else
                     questname = pQuest.name
                 End If
@@ -297,7 +298,7 @@ Namespace Forms.Character
                                                            "0"))
                 Dim newqst As New Quest
                 newqst.id = retnvalue
-                newqst.Name = GetQuestTitleById(newqst.Id, NCFramework.My.MySettings.Default.language)
+                newqst.Name = GetQuestTitleById(newqst.Id, MySettings.Default.language)
                 If qrewarded = 1 Then
                     newqst.rewarded = 1
                     newqst.status = 1

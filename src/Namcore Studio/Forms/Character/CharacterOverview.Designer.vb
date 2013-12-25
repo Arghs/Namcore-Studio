@@ -217,6 +217,7 @@ Namespace Forms.Character
             Me.genderrefresh = New System.Windows.Forms.PictureBox()
             Me.referenceItmPanel = New System.Windows.Forms.Panel()
             Me.referenceItmPic = New System.Windows.Forms.PictureBox()
+            Me.professions_bt = New System.Windows.Forms.Button()
             Me.InventoryPanel.SuspendLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2147,7 +2148,7 @@ Namespace Forms.Character
             Me.Label1.ForeColor = System.Drawing.Color.Red
             Me.Label1.Location = New System.Drawing.Point(6, 3)
             Me.Label1.Name = "Label1"
-            Me.Label1.Size = New System.Drawing.Size(145, 39)
+            Me.Label1.Size = New System.Drawing.Size(146, 39)
             Me.Label1.TabIndex = 0
             Me.Label1.Text = "NamCore has found two " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "matching enchantments:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Select one!)"
             '
@@ -2461,12 +2462,27 @@ Namespace Forms.Character
             Me.referenceItmPic.TabIndex = 0
             Me.referenceItmPic.TabStop = False
             '
+            'professions_bt
+            '
+            Me.professions_bt.BackColor = System.Drawing.Color.DimGray
+            Me.professions_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.professions_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.professions_bt.ForeColor = System.Drawing.Color.Black
+            Me.professions_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.professions_bt.Location = New System.Drawing.Point(572, 545)
+            Me.professions_bt.Name = "professions_bt"
+            Me.professions_bt.Size = New System.Drawing.Size(104, 34)
+            Me.professions_bt.TabIndex = 229
+            Me.professions_bt.Text = "Professions"
+            Me.professions_bt.UseVisualStyleBackColor = False
+            '
             'CharacterOverview
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(910, 736)
+            Me.Controls.Add(Me.professions_bt)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.genderpanel)
             Me.Controls.Add(Me.addpanel)
@@ -2513,6 +2529,7 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.addpanel, 0)
             Me.Controls.SetChildIndex(Me.genderpanel, 0)
             Me.Controls.SetChildIndex(Me.referenceItmPanel, 0)
+            Me.Controls.SetChildIndex(Me.professions_bt, 0)
             Me.InventoryPanel.ResumeLayout(False)
             Me.InventoryPanel.PerformLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2836,5 +2853,6 @@ Namespace Forms.Character
         Friend WithEvents referenceItmPic As System.Windows.Forms.PictureBox
         Friend WithEvents InventoryLayout As System.Windows.Forms.FlowLayoutPanel
         Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
+        Friend WithEvents professions_bt As System.Windows.Forms.Button
     End Class
 End Namespace

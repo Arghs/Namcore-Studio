@@ -549,4 +549,31 @@
   <data name="templateFileCreated" xml:space="preserve">
     <value>The template file has been successfully created.</value>
   </data>
+  <data name="proficiency_1" xml:space="preserve">
+    <value>Apprentice</value>
+  </data>
+  <data name="proficiency_2" xml:space="preserve">
+    <value>Journeyman</value>
+  </data>
+  <data name="proficiency_3" xml:space="preserve">
+    <value>Expert</value>
+  </data>
+  <data name="proficiency_4" xml:space="preserve">
+    <value>Artisan</value>
+  </data>
+  <data name="proficiency_5" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="proficiency_6" xml:space="preserve">
+    <value>Grand Master</value>
+  </data>
+  <data name="proficiency_7" xml:space="preserve">
+    <value>Illustrious</value>
+  </data>
+  <data name="proficiency_8" xml:space="preserve">
+    <value>Zen Master</value>
+  </data>
+  <data name="learnprofession" xml:space="preserve">
+    <value>Do you want to teach this profession?</value>
+  </data>
 </root>

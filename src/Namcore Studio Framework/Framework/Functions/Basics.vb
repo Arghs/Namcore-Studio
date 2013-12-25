@@ -269,6 +269,25 @@ Namespace Framework.Functions
             End Try
         End Function
 
+        Public Function ExecuteDataTableSearch(ByVal dt As DataTable, ByVal startfield As String, ByVal startvalue As String, ByVal targetfield As Integer) As String()
+            Try
+                Dim foundRows() As DataRow
+                foundRows = dt.Select(startfield & " = '" & startvalue & "'")
+                If foundRows.Length = 0 Then
+                    Return {"-"}
+                Else
+                    Dim resultArray(foundRows.Count()) As String
+                    resultArray(0) = "-"
+                    For i = 0 To foundRows.Count() - 1
+                        resultArray(i) = (foundRows(i)(targetfield)).ToString
+                    Next i
+                    Return resultArray
+                End If
+            Catch ex As Exception
+                Return {"-"}
+            End Try
+        End Function
+
         Public Sub CloseProcessStatus()
             If GlobalVariables.DebugMode = False Then
                 Try

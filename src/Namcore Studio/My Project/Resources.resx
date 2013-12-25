@@ -118,14 +118,20 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="bank_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bank_empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="wait" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wait.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bt-close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt-close.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="add_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add+.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="armor_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\armor_bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Refresh_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\refresh-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,56 +142,65 @@
   <data name="bt-minimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt-minimize.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bag_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bag_empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bt-settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bt-settings.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="bt-close-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt-close-light.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bank_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bank_bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="repbg1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\repbg1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bt-minimize-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bt-minimize-light.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="glyphs_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\glyphs_bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bank_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bank_empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bt-armoryparser-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt-armoryparser-light2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HUD_overhaul_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HUD_overhaul_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bt-minimize-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-minimize-light.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bt-about-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bt-about-light.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bt-about" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bt-about.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="namcore_header" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\namcore_header.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="trash__delete__16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\trash_(delete)_16x16.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="INV_Misc_QuestionMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\inv_misc_questionmark.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="armor_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\armor_bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="finalnclogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\finalnclogo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="highlight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\highlight1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HUD_overhaul_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HUD_overhaul_min.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-templateexplorer-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-templateexplorer-light2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-about" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-about.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="INV_Misc_QuestionMark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\inv_misc_questionmark.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="namcore_header" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\namcore_header.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="header" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\header.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-about-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-about-light.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trash__delete__16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\trash_(delete)_16x16.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bt-settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bt-settings.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="nclogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\nclogo.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="glyphs_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\glyphs_bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="namcore_header_new" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\namcore_header_new.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HUD_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HUD_bg.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,8 +211,8 @@
   <data name="bt-settings-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bt-settings-light.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bt-templateexplorer-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bt-templateexplorer-light2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bag_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bag_empty.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="inv_misc_bag_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\inv_misc_bag_08.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,19 +220,55 @@
   <data name="addrep1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\addrep1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="header" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\header.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="profession_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\profession_bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="wait" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wait.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="inv_inscription_tradeskill01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inv_inscription_tradeskill01.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bank_bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bank_bg.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="inv_misc_armorkit_17" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inv_misc_armorkit_17.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="namcore_header_new" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\namcore_header_new.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="inv_misc_bag_081" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inv_misc_bag_08.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="finalnclogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\finalnclogo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="inv_misc_food_15" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inv_misc_food_15.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="inv_misc_gem_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inv_misc_gem_01.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spell_holy_sealofsacrifice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spell_holy_sealofsacrifice.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spell_nature_naturetouchgrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spell_nature_naturetouchgrow.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trade_alchemy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trade_alchemy.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trade_archaeology" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trade_archaeology.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trade_blacksmithing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trade_blacksmithing.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trade_engineering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trade_engineering.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trade_engraving" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trade_engraving.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trade_fishing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trade_fishing.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trade_mining" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trade_mining.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="inv_misc_pelt_wolf_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inv_misc_pelt_wolf_01.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trade_tailoring" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trade_tailoring.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

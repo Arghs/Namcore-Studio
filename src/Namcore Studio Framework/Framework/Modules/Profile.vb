@@ -184,7 +184,17 @@ Namespace Framework.Modules
         Public Iconname As String
         Public Rank As Integer
         Public Primary As Boolean
-        Public Recipes() As String
+        Public Recipes As List(Of ProfessionSpell)
+
+        Public Sub New()
+        End Sub
+    End Class
+
+    <Serializable()>
+    Public Class ProfessionSpell
+        Public SpellId As Integer
+        Public Name As String
+        Public MinSkill As Integer
 
         Public Sub New()
         End Sub

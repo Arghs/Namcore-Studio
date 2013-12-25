@@ -1183,5 +1183,22 @@ Namespace Forms.Character
             bankInt.Show()
             bankInt.PrepareBankInterface(GlobalVariables.currentViewedCharSetId)
         End Sub
+
+        Private Sub professions_bt_Click(sender As Object, e As EventArgs) Handles professions_bt.Click
+            NewProcessStatus()
+            Dim mywindow As New ProfessionsInterface
+            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "ProfessionsInterface"
+                mywindow = DirectCast(currentForm, ProfessionsInterface)
+            Next
+            If Not mywindow Is Nothing Then
+                mywindow.Close()
+            End If
+            Dim profinterface As New ProfessionsInterface
+            Userwait.Show()
+            Application.DoEvents()
+            profinterface.Show()
+            profinterface.PrepareInterface(_tmpSetId)
+            Userwait.Close()
+        End Sub
     End Class
 End Namespace

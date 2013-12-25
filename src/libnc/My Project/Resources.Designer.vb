@@ -454,6 +454,76 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die SkillId£SpellId£MinSkill
+        '''43££0
+        '''44££0
+        '''45££0
+        '''46££0
+        '''54££0
+        '''55££0
+        '''95££0
+        '''95££0
+        '''95££0
+        '''95££0
+        '''95££0
+        '''95££0
+        '''95££0
+        '''98££0
+        '''101££0
+        '''101££0
+        '''101££0
+        '''101££0
+        '''101££0
+        '''101££0
+        '''109££0
+        '''111££0
+        '''113££0
+        '''115££0
+        '''118££0
+        '''124££0
+        '''124££0
+        '''124££0
+        '''124££0
+        '''124££0
+        '''125££0
+        '''125££0
+        '''125££0
+        '''125££0
+        '''125££0
+        '''125££0
+        '''125££0
+        '''125££0
+        '''125££0
+        '''125££0
+        '''125££0
+        '''126££0
+        '''126££0
+        '''126££0
+        '''126££0
+        '''126££0
+        '''126££0
+        '''129££0
+        '''129££0
+        '''129££40
+        '''129££80
+        '''129££115
+        '''129££150
+        '''129££180
+        '''129££210
+        '''129££0
+        '''129££80
+        '''129££130
+        '''129££0
+        '''129££240
+        '''129££ [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Public ReadOnly Property SkillLineAbility() As String
+            Get
+                Return ResourceManager.GetString("SkillLineAbility", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die SpellId£SpellNameDE£SpellNameEN£DescriptionDE
         '''1£Word of Recall (OLD)£Word of Recall (OLD)£
         '''3£Word of Mass Recall (OLD)£Word of Mass Recall (OLD)£
