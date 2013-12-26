@@ -90,6 +90,16 @@ Namespace Framework.Armory.Parser
                                                          .MinSkill = GetMinimumSkillBySpellId(TryInt(useRecipes(i)))})
                                 Next
                             End If
+                            If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
+                            player.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = GetSkillSpellIdBySkillRank(pProf.Id, pProf.Rank)})
+                            Dim specialSpells() As Integer = GetSkillSpecialSpellIdBySkill(pProf.Id)
+                            If Not specialSpells Is Nothing Then
+                                For i = 0 To specialSpells.Length - 1
+                                    LogAppend("Adding special profession spell " & specialSpells(i).ToString,
+                                   "ProfessionParser_loadProfessions", True)
+                                    player.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = specialSpells(i)})
+                                Next
+                            End If
                             player.Professions.Add(pProf)
                             loopcounter += 1
                         End If
