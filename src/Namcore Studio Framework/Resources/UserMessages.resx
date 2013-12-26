@@ -576,4 +576,46 @@
   <data name="learnprofession" xml:space="preserve">
     <value>Do you want to teach this profession?</value>
   </data>
+  <data name="profession_129" xml:space="preserve">
+    <value>First Aid</value>
+  </data>
+  <data name="profession_164" xml:space="preserve">
+    <value>Blacksmithing</value>
+  </data>
+  <data name="profession_165" xml:space="preserve">
+    <value>Leatherworking</value>
+  </data>
+  <data name="profession_171" xml:space="preserve">
+    <value>Alchemy</value>
+  </data>
+  <data name="profession_182" xml:space="preserve">
+    <value>Herbalism</value>
+  </data>
+  <data name="profession_185" xml:space="preserve">
+    <value>Cooking</value>
+  </data>
+  <data name="profession_186" xml:space="preserve">
+    <value>Mining</value>
+  </data>
+  <data name="profession_202" xml:space="preserve">
+    <value>Engineering</value>
+  </data>
+  <data name="profession_333" xml:space="preserve">
+    <value>Enchanting</value>
+  </data>
+  <data name="profession_356" xml:space="preserve">
+    <value>Fishing</value>
+  </data>
+  <data name="profession_393" xml:space="preserve">
+    <value>Skinning</value>
+  </data>
+  <data name="profession_755" xml:space="preserve">
+    <value>Jewelcrafting</value>
+  </data>
+  <data name="profession_773" xml:space="preserve">
+    <value>Inscription</value>
+  </data>
+  <data name="profession_794" xml:space="preserve">
+    <value>Archaeology</value>
+  </data>
 </root>

@@ -25,6 +25,8 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports System.Resources
+Imports System.Reflection
 
 Namespace Framework.Core
     Public Class CharacterSkillsHandler
@@ -59,7 +61,7 @@ Namespace Framework.Core
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim excounter As Integer = UBound(readedcode.Split(CChar(";")))
                         Dim loopcounter As Integer = 0
-                        Dim finalcounter As Integer = TryInt(excounter / 3)
+                        Dim finalcounter As Integer = TryInt(excounter/3)
                         Dim partscounter As Integer = 0
                         Do
                             Dim skl As New Skill
@@ -107,8 +109,22 @@ Namespace Framework.Core
                         skl.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         skl.Value = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         skl.Max = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                        If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
-                        player.Skills.Add(skl)
+                        If GetSkillSpellIdBySkillRank(skl.Id, 1) = 0 Then
+                            '// Common skill
+                            If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
+                            player.Skills.Add(skl)
+                        Else
+                            '// Profession
+                            If player.Professions Is Nothing Then player.Professions = New List(Of Profession)()
+                            Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
+                            Dim isPrimaryProfession As Boolean = True
+                            If skl.Id = 129 Or 185 Or 356 Or 794 Then isPrimaryProfession = False
+                            player.Professions.Add(New Profession _
+                                                      With {.Id = skl.Id, .Rank = skl.Value,
+                                                      .Primary = isPrimaryProfession,
+                                                      .Recipes = New List(Of ProfessionSpell)(),
+                                                      .Name = rm.GetString("profession_" & skl.Id.ToString())})
+                        End If
                         count += 1
                     Loop Until count = lastcount
                 Else
