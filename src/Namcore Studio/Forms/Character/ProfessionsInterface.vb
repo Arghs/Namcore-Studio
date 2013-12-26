@@ -38,6 +38,7 @@ Namespace Forms.Character
         Shared _maxProgressSize As UInteger
         Shared _loaded As Boolean = False
         Shared _lstitems As List(Of ListViewItem)
+        Shared _temporarySkillLevel As Integer
         '// Declaration
 
         Public Sub PrepareInterface(ByVal setId As Integer)
@@ -46,6 +47,8 @@ Namespace Forms.Character
             If GlobalVariables.currentEditedCharSet Is Nothing Then
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             End If
+            If GlobalVariables.currentEditedCharSet.Professions Is Nothing Then GlobalVariables.currentEditedCharSet.Professions = New List(Of Profession)()
+            If GlobalVariables.currentEditedCharSet.Spells Is Nothing Then GlobalVariables.currentEditedCharSet.Spells = New List(Of Spell)()
             Dim firstResult As Boolean = True
             mainprof1_lbl.Text = "Add"
             mainprof1_pic.BackgroundImage = Nothing
@@ -168,6 +171,7 @@ Namespace Forms.Character
                 Dim itmnew As ListViewItem = itm.Clone()
                 _lstitems.Add(itmnew)
             Next
+            _temporarySkillLevel = _activeProfession.Rank
             _loaded = True
             resultstatus_lbl.Text = prof_lst.Items.Count.ToString & " results!"
             LearnToolStrip.Text = "Unlearn"
@@ -323,6 +327,15 @@ Namespace Forms.Character
                                 Exit Sub
                         End Select
                         prof = senderPanel.Tag
+                        Dim spell2Add As Integer = GetSkillSpellIdBySkillRank(prof.Id, prof.Rank)
+                        Dim specialSpells2Add() As Integer = GetSkillSpecialSpellIdBySkill(prof.Id)
+                        If Not spell2Add = Nothing And spell2Add <> 0 Then GlobalVariables.currentEditedCharSet.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = spell2Add})
+                        If Not specialSpells2Add Is Nothing Then
+                            For i = 0 To specialSpells2Add.Length - 1
+                                LogAppend("Adding special spell " & specialSpells2Add(i).ToString(), "ProfessionsInterface_ProfessionClick", False)
+                                GlobalVariables.currentEditedCharSet.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = specialSpells2Add(i)})
+                            Next
+                        End If
                     Else
                         Exit Sub
                     End If
@@ -378,6 +391,20 @@ Namespace Forms.Character
                 senderPanel = sender
             End If
             senderPanel.BackgroundImage = Nothing
+        End Sub
+
+        Private Sub rank_slider_MouseDown(sender As Object, e As MouseEventArgs) Handles rank_slider.MouseDown
+            _temporarySkillLevel = _activeProfession.Rank
+        End Sub
+
+        Private Sub rank_slider_MouseUp(sender As Object, e As MouseEventArgs) Handles rank_slider.MouseUp
+            Dim spell2Remove As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _temporarySkillLevel)
+            If Not spell2Remove = Nothing And spell2Remove <> 0 Then
+                Dim result As Spell = GlobalVariables.currentEditedCharSet.Spells.Find(Function(spell) spell.Id = spell2Remove)
+                If Not result Is Nothing Then GlobalVariables.currentEditedCharSet.Spells.Remove(result)
+            End If
+            Dim spell2Add As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _activeProfession.Rank)
+            If Not spell2Add = Nothing And spell2Add <> 0 Then GlobalVariables.currentEditedCharSet.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = spell2Add})
         End Sub
 
         Private Sub rank_slider_Scroll(sender As Object, e As EventArgs) Handles rank_slider.Scroll
