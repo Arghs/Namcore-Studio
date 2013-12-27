@@ -108,7 +108,6 @@ Namespace Forms.Character
                             Else
                                 DirectCast(itemControl, PictureBox).Image = img
                             End If
-
                             DirectCast(itemControl, PictureBox).Tag = _pubGlyph
                         End If
                 End Select

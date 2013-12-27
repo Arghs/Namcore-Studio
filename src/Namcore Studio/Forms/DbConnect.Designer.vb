@@ -45,9 +45,9 @@ Namespace Forms
             Me.Label9 = New System.Windows.Forms.Label()
             Me.Label8 = New System.Windows.Forms.Label()
             Me.Label7 = New System.Windows.Forms.Label()
-            Me.chardbname_txtbox = New System.Windows.Forms.TextBox()
+            Me.chardbname_combo = New System.Windows.Forms.ComboBox()
             Me.Label6 = New System.Windows.Forms.Label()
-            Me.realmdbname_txtbox = New System.Windows.Forms.TextBox()
+            Me.realmdbname_combo = New System.Windows.Forms.ComboBox()
             Me.Label1 = New System.Windows.Forms.Label()
             Me.Label2 = New System.Windows.Forms.Label()
             Me.Label5 = New System.Windows.Forms.Label()
@@ -127,7 +127,7 @@ Namespace Forms
             Me.Label14.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.Label14.Location = New System.Drawing.Point(6, 12)
             Me.Label14.Name = "Label14"
-            Me.Label14.Size = New System.Drawing.Size(195, 21)
+            Me.Label14.Size = New System.Drawing.Size(197, 21)
             Me.Label14.TabIndex = 14
             Me.Label14.Text = "NamCore Remote Server" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
             '
@@ -194,11 +194,12 @@ Namespace Forms
             'viaserver_radio
             '
             Me.viaserver_radio.AutoSize = True
+            Me.viaserver_radio.Enabled = False
             Me.viaserver_radio.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.viaserver_radio.ForeColor = System.Drawing.Color.Black
             Me.viaserver_radio.Location = New System.Drawing.Point(3, 28)
             Me.viaserver_radio.Name = "viaserver_radio"
-            Me.viaserver_radio.Size = New System.Drawing.Size(262, 21)
+            Me.viaserver_radio.Size = New System.Drawing.Size(264, 21)
             Me.viaserver_radio.TabIndex = 212
             Me.viaserver_radio.Text = "Connect via NamCore Remote Server"
             Me.viaserver_radio.UseVisualStyleBackColor = True
@@ -237,9 +238,9 @@ Namespace Forms
             Me.GroupBox1.Controls.Add(Me.Label9)
             Me.GroupBox1.Controls.Add(Me.Label8)
             Me.GroupBox1.Controls.Add(Me.Label7)
-            Me.GroupBox1.Controls.Add(Me.chardbname_txtbox)
+            Me.GroupBox1.Controls.Add(Me.chardbname_combo)
             Me.GroupBox1.Controls.Add(Me.Label6)
-            Me.GroupBox1.Controls.Add(Me.realmdbname_txtbox)
+            Me.GroupBox1.Controls.Add(Me.realmdbname_combo)
             Me.GroupBox1.Controls.Add(Me.Label1)
             Me.GroupBox1.Controls.Add(Me.Label2)
             Me.GroupBox1.Controls.Add(Me.Label5)
@@ -304,13 +305,13 @@ Namespace Forms
             Me.Label7.TabIndex = 26
             Me.Label7.Text = "Character db name:"
             '
-            'chardbname_txtbox
+            'chardbname_combo
             '
-            Me.chardbname_txtbox.Location = New System.Drawing.Point(183, 169)
-            Me.chardbname_txtbox.Name = "chardbname_txtbox"
-            Me.chardbname_txtbox.Size = New System.Drawing.Size(169, 20)
-            Me.chardbname_txtbox.TabIndex = 25
-            Me.chardbname_txtbox.Text = "arc_characters"
+            Me.chardbname_combo.Location = New System.Drawing.Point(183, 169)
+            Me.chardbname_combo.Name = "chardbname_combo"
+            Me.chardbname_combo.Size = New System.Drawing.Size(169, 21)
+            Me.chardbname_combo.TabIndex = 25
+            Me.chardbname_combo.Text = "arc_characters"
             '
             'Label6
             '
@@ -325,13 +326,13 @@ Namespace Forms
             Me.Label6.TabIndex = 24
             Me.Label6.Text = "Realm/Auth db name:"
             '
-            'realmdbname_txtbox
+            'realmdbname_combo
             '
-            Me.realmdbname_txtbox.Location = New System.Drawing.Point(183, 143)
-            Me.realmdbname_txtbox.Name = "realmdbname_txtbox"
-            Me.realmdbname_txtbox.Size = New System.Drawing.Size(169, 20)
-            Me.realmdbname_txtbox.TabIndex = 23
-            Me.realmdbname_txtbox.Text = "arc_auth"
+            Me.realmdbname_combo.Location = New System.Drawing.Point(183, 143)
+            Me.realmdbname_combo.Name = "realmdbname_combo"
+            Me.realmdbname_combo.Size = New System.Drawing.Size(169, 21)
+            Me.realmdbname_combo.TabIndex = 23
+            Me.realmdbname_combo.Text = "arc_auth"
             '
             'Label1
             '
@@ -489,9 +490,9 @@ Namespace Forms
         Friend WithEvents Label9 As System.Windows.Forms.Label
         Friend WithEvents Label8 As System.Windows.Forms.Label
         Friend WithEvents Label7 As System.Windows.Forms.Label
-        Friend WithEvents chardbname_txtbox As System.Windows.Forms.TextBox
+        Friend WithEvents chardbname_combo As System.Windows.Forms.ComboBox
         Friend WithEvents Label6 As System.Windows.Forms.Label
-        Friend WithEvents realmdbname_txtbox As System.Windows.Forms.TextBox
+        Friend WithEvents realmdbname_combo As System.Windows.Forms.ComboBox
         Friend WithEvents Label1 As System.Windows.Forms.Label
         Friend WithEvents Label2 As System.Windows.Forms.Label
         Friend WithEvents Label5 As System.Windows.Forms.Label

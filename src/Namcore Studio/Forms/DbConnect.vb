@@ -21,6 +21,7 @@
 '*      /Description:   Interface for opening a database connection
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
+Imports MySql.Data.MySqlClient
 Imports NCFramework.My
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
@@ -52,24 +53,24 @@ Namespace Forms
                             TestConnection(
                                 "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" &
                                 userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" &
-                                realmdbname_txtbox.Text) = True Then
+                                realmdbname_combo.Text) = True Then
                             If _
                                 TestConnection(
                                     "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" &
                                     userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" &
-                                    chardbname_txtbox.Text) = True Then
+                                    chardbname_combo.Text) = True Then
                                 GlobalVariables.GlobalConnectionString = "server=" & db_address_txtbox.Text & ";Port=" &
                                                                          port_ud.Value.ToString & ";User id=" &
                                                                          userid_txtbox.Text & ";Password=" &
                                                                          password_txtbox.Text & ";Database=" &
-                                                                         chardbname_txtbox.Text &
+                                                                         chardbname_combo.Text &
                                                                          ";Convert Zero Datetime=True"
                                 GlobalVariables.GlobalConnectionString_Realm = "server=" & db_address_txtbox.Text &
                                                                                ";Port=" &
                                                                                port_ud.Value.ToString & ";User id=" &
                                                                                userid_txtbox.Text & ";Password=" &
                                                                                password_txtbox.Text & ";Database=" &
-                                                                               realmdbname_txtbox.Text &
+                                                                               realmdbname_combo.Text &
                                                                                ";Convert Zero Datetime=True"
                                 OpenNewMySqlConnection(GlobalVariables.GlobalConnection,
                                                        GlobalVariables.GlobalConnectionString)
@@ -86,8 +87,8 @@ Namespace Forms
                                                                                          ";Database=information_schema"
                                 _strucCheck.StartCheck("trinity", 3, GlobalVariables.GlobalConnection,
                                                        GlobalVariables.GlobalConnection_Realm,
-                                                       GlobalVariables.GlobalConnection_Info, chardbname_txtbox.Text,
-                                                       realmdbname_txtbox.Text, False) 'todo
+                                                       GlobalVariables.GlobalConnection_Info, chardbname_combo.Text,
+                                                       realmdbname_combo.Text, False) 'todo
                                 Dim liveview As New LiveView
                                 Try
                                     For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "LiveView"
@@ -120,31 +121,31 @@ Namespace Forms
                             TestConnection(
                                 "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" &
                                 userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" &
-                                realmdbname_txtbox.Text) = True Then
+                                realmdbname_combo.Text) = True Then
                             If _
                                 TestConnection(
                                     "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" &
                                     userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=" &
-                                    chardbname_txtbox.Text) = True Then
+                                    chardbname_combo.Text) = True Then
                                 GlobalVariables.TargetConnectionString = "server=" & db_address_txtbox.Text & ";Port=" &
                                                                          port_ud.Value.ToString & ";User id=" &
                                                                          userid_txtbox.Text & ";Password=" &
                                                                          password_txtbox.Text & ";Database=" &
-                                                                         chardbname_txtbox.Text &
+                                                                         chardbname_combo.Text &
                                                                          ";Convert Zero Datetime=True"
                                 GlobalVariables.TargetConnectionString_Realm = "server=" & db_address_txtbox.Text &
                                                                                ";Port=" &
                                                                                port_ud.Value.ToString & ";User id=" &
                                                                                userid_txtbox.Text & ";Password=" &
                                                                                password_txtbox.Text & ";Database=" &
-                                                                               realmdbname_txtbox.Text &
+                                                                               realmdbname_combo.Text &
                                                                                ";Convert Zero Datetime=True"
                                 OpenNewMySqlConnection(GlobalVariables.TargetConnection,
                                                        GlobalVariables.TargetConnectionString)
                                 OpenNewMySqlConnection(GlobalVariables.TargetConnection_Realm,
                                                        GlobalVariables.TargetConnectionString_Realm)
-                                GlobalVariables.TargetConnRealmDBname = realmdbname_txtbox.Text
-                                GlobalVariables.TargetConnCharactersDBname = chardbname_txtbox.Text
+                                GlobalVariables.TargetConnRealmDBname = realmdbname_combo.Text
+                                GlobalVariables.TargetConnCharactersDBname = chardbname_combo.Text
                                 GlobalVariables.TargetConnection_Info.ConnectionString = "server=" &
                                                                                          db_address_txtbox.Text &
                                                                                          ";Port=" &
@@ -156,8 +157,8 @@ Namespace Forms
                                                                                          ";Database=information_schema"
                                 _strucCheck.StartCheck("trinity", 3, GlobalVariables.TargetConnection,
                                                        GlobalVariables.TargetConnection_Realm,
-                                                       GlobalVariables.TargetConnection_Info, chardbname_txtbox.Text,
-                                                       realmdbname_txtbox.Text, True) 'todo
+                                                       GlobalVariables.TargetConnection_Info, chardbname_combo.Text,
+                                                       realmdbname_combo.Text, True) 'todo
                                 Dim liveview As New LiveView
                                 Try
                                     For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "LiveView"
@@ -202,8 +203,8 @@ Namespace Forms
                 port_ud.Value = MySettings.Default.server_port
                 userid_txtbox.Text = MySettings.Default.server_login
                 password_txtbox.Text = MySettings.Default.server_pass
-                chardbname_txtbox.Text = MySettings.Default.server_chardb
-                realmdbname_txtbox.Text = MySettings.Default.server_authdb
+                chardbname_combo.Text = MySettings.Default.server_chardb
+                realmdbname_combo.Text = MySettings.Default.server_authdb
             Else
                 viaserver_radio.Checked = True
                 serveraddress_txtbox.Text = MySettings.Default.server_ncremoteaddress
@@ -222,8 +223,8 @@ Namespace Forms
                 MySettings.Default.server_port = port_ud.Value
                 MySettings.Default.server_login = userid_txtbox.Text
                 MySettings.Default.server_pass = password_txtbox.Text
-                MySettings.Default.server_chardb = chardbname_txtbox.Text
-                MySettings.Default.server_authdb = realmdbname_txtbox.Text
+                MySettings.Default.server_chardb = chardbname_combo.Text
+                MySettings.Default.server_authdb = realmdbname_combo.Text
                 MySettings.Default.Save()
             Else
                 MySettings.Default.server_defaultconn = False
@@ -231,6 +232,32 @@ Namespace Forms
                 MySettings.Default.server_nclogin = rmuser_txtbox.Text
                 MySettings.Default.Save()
             End If
+        End Sub
+
+        Private Sub selectdb_Browse(sender As Object, e As EventArgs) Handles realmdbname_combo.DropDown, chardbname_combo.DropDown
+            Dim combo As ComboBox = sender
+            Dim cmd As MySqlCommand
+            Dim dr As MySqlDataReader
+            Dim thisSqlConnection As MySqlConnection = TestConnectionAndReturn(
+                            "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" &
+                            userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=mysql")
+            If thisSqlConnection IsNot Nothing Then
+                cmd = New MySqlCommand("Show Databases", thisSqlConnection)
+                dr = cmd.ExecuteReader
+                If dr.HasRows Then
+                    combo.Items.Clear()
+                    Do While dr.Read
+                        combo.Items.Add(dr.Item("Database").ToString)
+                    Loop
+                End If
+                thisSqlConnection.Close()
+                thisSqlConnection.Dispose()
+            End If
+        End Sub
+
+        Private Sub dbname_combo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles realmdbname_combo.SelectedIndexChanged, chardbname_combo.SelectedIndexChanged
+            Dim combo As ComboBox = sender
+            combo.Text = combo.SelectedItem.ToString()
         End Sub
     End Class
 End Namespace

@@ -91,5 +91,34 @@ Namespace Framework.Database
                 Return False
             End Try
         End Function
+
+        Public Function TestConnectionAndReturn(ByVal connectionstring As String) As MySqlConnection
+            Dim sqlConnection As New MySqlConnection
+            Try
+                sqlConnection.Close()
+                sqlConnection.Dispose()
+            Catch ex As Exception
+
+            End Try
+            sqlConnection.ConnectionString = connectionstring
+            Try
+
+                If sqlConnection.State = ConnectionState.Closed Then
+                    sqlConnection.Open()
+                    Return sqlConnection
+                Else
+                    sqlConnection.Close()
+                    sqlConnection.Dispose()
+                    Return Nothing
+                End If
+            Catch ex As Exception
+                Try
+                    sqlConnection.Close()
+                    sqlConnection.Dispose()
+                Catch
+                End Try
+                Return Nothing
+            End Try
+        End Function
     End Module
 End Namespace
