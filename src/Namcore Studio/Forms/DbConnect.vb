@@ -236,6 +236,7 @@ Namespace Forms
 
         Private Sub selectdb_Browse(sender As Object, e As EventArgs) Handles realmdbname_combo.DropDown, chardbname_combo.DropDown
             Dim combo As ComboBox = sender
+            combo.Items.Clear()
             Dim cmd As MySqlCommand
             Dim dr As MySqlDataReader
             Dim thisSqlConnection As MySqlConnection = TestConnectionAndReturn(
@@ -245,7 +246,6 @@ Namespace Forms
                 cmd = New MySqlCommand("Show Databases", thisSqlConnection)
                 dr = cmd.ExecuteReader
                 If dr.HasRows Then
-                    combo.Items.Clear()
                     Do While dr.Read
                         combo.Items.Add(dr.Item("Database").ToString)
                     Loop
