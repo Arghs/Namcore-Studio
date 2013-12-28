@@ -80,6 +80,12 @@ Namespace Forms
 
         Private Sub About_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             version_lbl.Text = "Version " & My.Application.Info.Version.ToString() & " (Indev)"
+            Dim frameworkVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\NCFramework.dll")
+            Dim libncVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\libnc.dll")
+            Dim libncadvancedVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\libncadvanced.dll")
+            framework_lbl.Text = "NCFramework: " & frameworkVersion.FileVersion.ToString()
+            libnc_lbl.Text = "libnc: " & libncVersion.FileVersion.ToString()
+            libncadvanced_lbl.Text = "libncadvanced: " & libncadvancedVersion.FileVersion.ToString()
         End Sub
 
         Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked

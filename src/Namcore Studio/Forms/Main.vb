@@ -152,6 +152,12 @@ Namespace Forms
             End If
             MySettings.Default.language = "en" 'todo for testing only
             LogAppend("NamCore Studio " & My.Application.Info.Version.ToString() & " loaded", "Main_Main_Load", True)
+            Dim frameworkVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\NCFramework.dll")
+            Dim libncVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\libnc.dll")
+            Dim libncadvancedVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\libncadvanced.dll")
+            LogAppend("Using NCFramework.dll version " & frameworkVersion.FileVersion.ToString(), "Main_Main_Load", False)
+            LogAppend("Using libnc.dll version " & libncVersion.FileVersion.ToString(), "Main_Main_Load", False)
+            LogAppend("Using libncadvanced.dll version " & libncadvancedVersion.FileVersion.ToString(), "Main_Main_Load", False)
             LogAppend("System information:", "Main_Main_Load", False)
             LogAppend("/OS NAME: " & My.Computer.Info.OSFullName, "Main_Main_Load", False)
             LogAppend("/OS VERSION: " & My.Computer.Info.OSVersion, "Main_Main_Load", False)

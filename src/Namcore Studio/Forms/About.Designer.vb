@@ -37,6 +37,9 @@
             Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
             Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
             Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
+            Me.libnc_lbl = New System.Windows.Forms.Label()
+            Me.libncadvanced_lbl = New System.Windows.Forms.Label()
+            Me.framework_lbl = New System.Windows.Forms.Label()
             Me.header.SuspendLayout()
             Me.Panel1.SuspendLayout()
             CType(Me.highlighter3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,14 +120,20 @@
             'GroupBox1
             '
             Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+            Me.GroupBox1.Controls.Add(Me.framework_lbl)
+            Me.GroupBox1.Controls.Add(Me.libncadvanced_lbl)
+            Me.GroupBox1.Controls.Add(Me.libnc_lbl)
             Me.GroupBox1.Controls.Add(Me.Label2)
+            Me.GroupBox1.Controls.Add(Me.LinkLabel3)
             Me.GroupBox1.Controls.Add(Me.Label1)
             Me.GroupBox1.Controls.Add(Me.PictureBox1)
             Me.GroupBox1.Controls.Add(Me.version_lbl)
+            Me.GroupBox1.Controls.Add(Me.LinkLabel2)
+            Me.GroupBox1.Controls.Add(Me.LinkLabel1)
             Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
             Me.GroupBox1.Location = New System.Drawing.Point(12, 38)
             Me.GroupBox1.Name = "GroupBox1"
-            Me.GroupBox1.Size = New System.Drawing.Size(304, 203)
+            Me.GroupBox1.Size = New System.Drawing.Size(577, 203)
             Me.GroupBox1.TabIndex = 227
             Me.GroupBox1.TabStop = False
             Me.GroupBox1.Text = "NamCore Studio"
@@ -160,7 +169,7 @@
             Me.LinkLabel1.AutoSize = True
             Me.LinkLabel1.BackColor = System.Drawing.Color.Transparent
             Me.LinkLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.LinkLabel1.Location = New System.Drawing.Point(322, 63)
+            Me.LinkLabel1.Location = New System.Drawing.Point(454, 29)
             Me.LinkLabel1.Name = "LinkLabel1"
             Me.LinkLabel1.Size = New System.Drawing.Size(84, 16)
             Me.LinkLabel1.TabIndex = 228
@@ -172,7 +181,7 @@
             Me.LinkLabel2.AutoSize = True
             Me.LinkLabel2.BackColor = System.Drawing.Color.Transparent
             Me.LinkLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.LinkLabel2.Location = New System.Drawing.Point(322, 91)
+            Me.LinkLabel2.Location = New System.Drawing.Point(454, 57)
             Me.LinkLabel2.Name = "LinkLabel2"
             Me.LinkLabel2.Size = New System.Drawing.Size(116, 16)
             Me.LinkLabel2.TabIndex = 229
@@ -194,12 +203,51 @@
             Me.LinkLabel3.AutoSize = True
             Me.LinkLabel3.BackColor = System.Drawing.Color.Transparent
             Me.LinkLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.LinkLabel3.Location = New System.Drawing.Point(322, 119)
+            Me.LinkLabel3.Location = New System.Drawing.Point(454, 85)
             Me.LinkLabel3.Name = "LinkLabel3"
             Me.LinkLabel3.Size = New System.Drawing.Size(84, 16)
             Me.LinkLabel3.TabIndex = 231
             Me.LinkLabel3.TabStop = True
             Me.LinkLabel3.Text = "Bugreports"
+            '
+            'libnc_lbl
+            '
+            Me.libnc_lbl.BackColor = System.Drawing.Color.Transparent
+            Me.libnc_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.libnc_lbl.ForeColor = System.Drawing.Color.Black
+            Me.libnc_lbl.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.libnc_lbl.Location = New System.Drawing.Point(308, 117)
+            Me.libnc_lbl.Name = "libnc_lbl"
+            Me.libnc_lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+            Me.libnc_lbl.Size = New System.Drawing.Size(263, 16)
+            Me.libnc_lbl.TabIndex = 232
+            Me.libnc_lbl.Text = "libnc: 5.4.0.24973"
+            '
+            'libncadvanced_lbl
+            '
+            Me.libncadvanced_lbl.BackColor = System.Drawing.Color.Transparent
+            Me.libncadvanced_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.libncadvanced_lbl.ForeColor = System.Drawing.Color.Black
+            Me.libncadvanced_lbl.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.libncadvanced_lbl.Location = New System.Drawing.Point(308, 144)
+            Me.libncadvanced_lbl.Name = "libncadvanced_lbl"
+            Me.libncadvanced_lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+            Me.libncadvanced_lbl.Size = New System.Drawing.Size(263, 16)
+            Me.libncadvanced_lbl.TabIndex = 233
+            Me.libncadvanced_lbl.Text = "libncadvanced: 5.4.0.24973"
+            '
+            'framework_lbl
+            '
+            Me.framework_lbl.BackColor = System.Drawing.Color.Transparent
+            Me.framework_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.framework_lbl.ForeColor = System.Drawing.Color.Black
+            Me.framework_lbl.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.framework_lbl.Location = New System.Drawing.Point(308, 171)
+            Me.framework_lbl.Name = "framework_lbl"
+            Me.framework_lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+            Me.framework_lbl.Size = New System.Drawing.Size(263, 16)
+            Me.framework_lbl.TabIndex = 234
+            Me.framework_lbl.Text = "NCFramework: 0.0.12.46103"
             '
             'About
             '
@@ -208,11 +256,8 @@
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
             Me.ClientSize = New System.Drawing.Size(601, 482)
-            Me.Controls.Add(Me.LinkLabel3)
             Me.Controls.Add(Me.RichTextBox1)
             Me.Controls.Add(Me.GroupBox1)
-            Me.Controls.Add(Me.LinkLabel2)
-            Me.Controls.Add(Me.LinkLabel1)
             Me.Controls.Add(Me.header)
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
             Me.Name = "About"
@@ -226,7 +271,6 @@
             Me.GroupBox1.ResumeLayout(False)
             Me.GroupBox1.PerformLayout()
             Me.ResumeLayout(False)
-            Me.PerformLayout()
 
         End Sub
         Friend WithEvents header As System.Windows.Forms.Panel
@@ -242,5 +286,8 @@
         Friend WithEvents Label2 As System.Windows.Forms.Label
         Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
         Friend WithEvents LinkLabel3 As System.Windows.Forms.LinkLabel
+        Friend WithEvents libnc_lbl As System.Windows.Forms.Label
+        Friend WithEvents framework_lbl As System.Windows.Forms.Label
+        Friend WithEvents libncadvanced_lbl As System.Windows.Forms.Label
     End Class
 End Namespace
