@@ -68,8 +68,8 @@ Namespace Framework.Transmission
                 mCharQuestCreation.SetCharacterQuests(setId, playerAccount)
                 mCharReputationCreation.AddCharacterReputation(setId, playerAccount)
                 mCharAchievementCreation.AddCharacterAchievements(setId, playerAccount)
-                AddSpecialSkills(setId, player)
-                AddSpecialSpells(setId, player)
+                AddCharacterSkills(setId, playerAccount)
+                AddCharacterSpells(setId, playerAccount)
                 If Not lite Then mCharTalentCreation.SetCharacterTalents(setId, playerAccount)
             Next
             GlobalVariables.forceTargetConnectionUsage = False

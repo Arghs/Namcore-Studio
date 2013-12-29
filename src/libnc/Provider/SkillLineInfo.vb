@@ -42,6 +42,17 @@ Namespace Provider
                 Return 0
             End Try
         End Function
+        Public Function GetSkillIdBySpellId(ByVal spellId As Integer) As Integer
+            CheckInit()
+            Const targetField As Integer = 0
+            Dim myResult As String = ExecuteCsvSearch(SkillLineAbilityCsv, "SpellId", spellId.ToString(), targetField)(0)
+            If myResult = "-" Then myResult = "0"
+            Try
+                Return CInt(myResult)
+            Catch ex As Exception
+                Return 0
+            End Try
+        End Function
         Public Function GetSkillLineAbility() As DataTable
             CheckInit()
             Return SkillLineAbilityCsv

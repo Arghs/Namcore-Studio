@@ -71,9 +71,29 @@ Namespace Framework.Core
                             skl.Value = TryInt(parts(partscounter).ToString)
                             partscounter += 1
                             skl.Max = TryInt(parts(partscounter).ToString)
+                            If GetSkillSpellIdBySkillRank(skl.Id, 1) = -1 Then
+                                '// Common skill
+                                If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
+                                player.Skills.Add(skl)
+                            Else
+                                '// Profession
+                                If player.Professions Is Nothing Then player.Professions = New List(Of Profession)()
+                                Dim _
+                                    rm As _
+                                        New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
+                                Dim isPrimaryProfession As Boolean = True
+                                Select Case skl.Id
+                                    Case 129, 185, 356, 794 : isPrimaryProfession = False
+                                End Select
+                                player.Professions.Add(
+                                    New Profession _
+                                                          With {.Id = skl.Id, .Rank = skl.Value,
+                                                          .Primary = isPrimaryProfession,
+                                                          .Recipes = New List(Of ProfessionSpell)(),
+                                                          .Max = skl.Max,
+                                                          .Name = rm.GetString("profession_" & skl.Id.ToString())})
+                            End If
                             partscounter += 1
-                            If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
-                            player.Skills.Add(skl)
                             loopcounter += 1
                         Loop Until loopcounter = finalcounter
                         count += 1
@@ -109,7 +129,7 @@ Namespace Framework.Core
                         skl.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         skl.Value = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         skl.Max = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                        If GetSkillSpellIdBySkillRank(skl.Id, 1) = 0 Then
+                        If GetSkillSpellIdBySkillRank(skl.Id, 1) = -1 Then
                             '// Common skill
                             If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
                             player.Skills.Add(skl)
@@ -118,11 +138,15 @@ Namespace Framework.Core
                             If player.Professions Is Nothing Then player.Professions = New List(Of Profession)()
                             Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
                             Dim isPrimaryProfession As Boolean = True
-                            If skl.Id = 129 Or 185 Or 356 Or 794 Then isPrimaryProfession = False
-                            player.Professions.Add(New Profession _
+                            Select Case skl.Id
+                                Case 129, 185, 356, 794 : isPrimaryProfession = False
+                            End Select
+                            player.Professions.Add(
+                                New Profession _
                                                       With {.Id = skl.Id, .Rank = skl.Value,
                                                       .Primary = isPrimaryProfession,
                                                       .Recipes = New List(Of ProfessionSpell)(),
+                                                      .Max = skl.Max,
                                                       .Name = rm.GetString("profession_" & skl.Id.ToString())})
                         End If
                         count += 1
@@ -158,8 +182,26 @@ Namespace Framework.Core
                         skl.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         skl.Value = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         skl.Max = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                        If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
-                        player.Skills.Add(skl)
+                        If GetSkillSpellIdBySkillRank(skl.Id, 1) = -1 Then
+                            '// Common skill
+                            If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
+                            player.Skills.Add(skl)
+                        Else
+                            '// Profession
+                            If player.Professions Is Nothing Then player.Professions = New List(Of Profession)()
+                            Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
+                            Dim isPrimaryProfession As Boolean = True
+                            Select Case skl.Id
+                                Case 129, 185, 356, 794 : isPrimaryProfession = False
+                            End Select
+                            player.Professions.Add(
+                                New Profession _
+                                                      With {.Id = skl.Id, .Rank = skl.Value,
+                                                      .Primary = isPrimaryProfession,
+                                                      .Recipes = New List(Of ProfessionSpell)(),
+                                                      .Max = skl.Max,
+                                                      .Name = rm.GetString("profession_" & skl.Id.ToString())})
+                        End If
                         count += 1
                     Loop Until count = lastcount
                 Else

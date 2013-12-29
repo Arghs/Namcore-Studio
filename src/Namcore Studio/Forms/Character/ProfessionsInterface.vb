@@ -72,23 +72,54 @@ Namespace Forms.Character
                         mainprof2_pic.BackgroundImage = GetProfessionPic(prof.Id)
                     End If
                 Else
+                    Dim result As Profession =
+                            GlobalVariables.currentEditedCharSet.Professions.Find(
+                                Function(profession) profession.Primary = True)
                     Select Case prof.Id
                         Case 794
                             '// Archaeology
                             minprof1_select.Tag = prof
                             minprof1_lbl.Enabled = True
+                            If result Is Nothing Then
+                                If _activeProfession Is Nothing Then
+                                    _activeProfession = prof
+                                    minprof1_lbl.ForeColor = Color.White
+                                    rank_panel.Visible = True
+                                End If
+                            End If
                         Case 185
                             '// Cooking
                             minprof2_select.Tag = prof
                             minprof2_lbl.Enabled = True
+                            If result Is Nothing Then
+                                If _activeProfession Is Nothing Then
+                                    _activeProfession = prof
+                                    minprof2_lbl.ForeColor = Color.White
+                                    rank_panel.Visible = True
+                                End If
+                            End If
                         Case 129
                             '// First Aid
                             minprof3_select.Tag = prof
                             minprof3_lbl.Enabled = True
+                            If result Is Nothing Then
+                                If _activeProfession Is Nothing Then
+                                    _activeProfession = prof
+                                    minprof3_lbl.ForeColor = Color.White
+                                    rank_panel.Visible = True
+                                End If
+                            End If
                         Case 356
                             '// Fishing
                             minprof4_select.Tag = prof
                             minprof4_lbl.Enabled = True
+                            If result Is Nothing Then
+                                If _activeProfession Is Nothing Then
+                                    _activeProfession = prof
+                                    minprof4_lbl.ForeColor = Color.White
+                                    rank_panel.Visible = True
+                                End If
+                            End If
                     End Select
                 End If
             Next
@@ -104,7 +135,9 @@ Namespace Forms.Character
             minprof3_pic.Tag = minprof3_select
             minprof4_lbl.Tag = minprof4_select
             minprof4_pic.Tag = minprof4_select
-            ProfessionChange()
+            If GlobalVariables.currentEditedCharSet.Professions.Count <> 0 Then
+                ProfessionChange()
+            End If
             _loaded = True
             Show()
         End Sub
@@ -160,7 +193,7 @@ Namespace Forms.Character
             learned_bt.Text = "Learned (" & _activeProfession.Recipes.Count.ToString() & ")"
             nyl_bt.Text = "Not Yet Learned (" & _nylearnedSpellsLst.Count.ToString() & ")"
             For Each profSpell As ProfessionSpell In _activeProfession.Recipes
-                If profSpell.Name.Length < 1 Then _
+                If profSpell.Name Is Nothing Then _
                     profSpell.Name = GetSpellNameBySpellId(profSpell.SpellId, MySettings.Default.language)
                 Dim str(2) As String
                 str(0) = profSpell.SpellId.ToString()
@@ -331,15 +364,17 @@ Namespace Forms.Character
                         prof = senderPanel.Tag
                         Dim spell2Add As Integer = GetSkillSpellIdBySkillRank(prof.Id, prof.Rank)
                         Dim specialSpells2Add() As Integer = GetSkillSpecialSpellIdBySkill(prof.Id)
-                        If Not spell2Add = Nothing And spell2Add <> 0 Then _
-                            GlobalVariables.currentEditedCharSet.Spells.Add(New Spell _
+                        If Not spell2Add = -1 And spell2Add <> 0 Then _
+                            GlobalVariables.currentEditedCharSet.Spells.Add(
+                                New Spell _
                                                                                With {.Active = 1, .Disabled = 0,
                                                                                .Id = spell2Add})
                         If Not specialSpells2Add Is Nothing Then
                             For i = 0 To specialSpells2Add.Length - 1
                                 LogAppend("Adding special spell " & specialSpells2Add(i).ToString(),
                                           "ProfessionsInterface_ProfessionClick", False)
-                                GlobalVariables.currentEditedCharSet.Spells.Add(New Spell _
+                                GlobalVariables.currentEditedCharSet.Spells.Add(
+                                    New Spell _
                                                                                    With {.Active = 1, .Disabled = 0,
                                                                                    .Id = specialSpells2Add(i)})
                             Next
@@ -407,14 +442,15 @@ Namespace Forms.Character
 
         Private Sub rank_slider_MouseUp(sender As Object, e As MouseEventArgs) Handles rank_slider.MouseUp
             Dim spell2Remove As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _temporarySkillLevel)
-            If Not spell2Remove = Nothing And spell2Remove <> 0 Then
+            If Not spell2Remove = -1 And spell2Remove <> 0 Then
                 Dim result As Spell =
                         GlobalVariables.currentEditedCharSet.Spells.Find(Function(spell) spell.Id = spell2Remove)
                 If Not result Is Nothing Then GlobalVariables.currentEditedCharSet.Spells.Remove(result)
             End If
             Dim spell2Add As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _activeProfession.Rank)
-            If Not spell2Add = Nothing And spell2Add <> 0 Then _
-                GlobalVariables.currentEditedCharSet.Spells.Add(New Spell _
+            If Not spell2Add = -1 And spell2Add <> 0 Then _
+                GlobalVariables.currentEditedCharSet.Spells.Add(
+                    New Spell _
                                                                    With {.Active = 1, .Disabled = 0, .Id = spell2Add})
         End Sub
 

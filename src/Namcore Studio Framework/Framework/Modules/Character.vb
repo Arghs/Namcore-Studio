@@ -20,11 +20,14 @@
 '*      /Filename:      Character
 '*      /Description:   Character Object - character information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports libnc.Provider
+Imports NCFramework.Framework.Logging
+
 Namespace Framework.Modules
     <Serializable()>
     Public Class Character
-
-        <Flags> Public Enum PlayerFlagsEnum As UInteger
+        <Flags>
+        Public Enum PlayerFlagsEnum As UInteger
             PLAYER_FLAGS_GROUP_LEADER = 1
             PLAYER_FLAGS_AFK = 2
             PLAYER_FLAGS_DND = 4
@@ -52,7 +55,9 @@ Namespace Framework.Modules
             PLAYER_FLAGS_UNK25 = 16777216
             PLAYER_FLAGS_NO_XP_GAIN = 33554432
         End Enum
-        <Flags> Public Enum PlayerExtraFlags As UInteger
+
+        <Flags>
+        Public Enum PlayerExtraFlags As UInteger
             PLAYER_EXTRA_GM_ON = 1
             PLAYER_EXTRA_GM_ACCEPT_WHISPERS = 2
             PLAYER_EXTRA_ACCEPT_WHISPERS = 4
@@ -62,7 +67,9 @@ Namespace Framework.Modules
             PLAYER_EXTRA_HAS_310_FLYER = 64
             PLAYER_EXTRA_PVP_DEATH = 128
         End Enum
-        <Flags> Public Enum PlayerAtLoginEnum As UInteger
+
+        <Flags>
+        Public Enum PlayerAtLoginEnum As UInteger
             AT_LOGIN_RENAME = 1
             AT_LOGIN_RESET_SPELLS = 2
             AT_LOGIN_RESET_TALENTS = 4
@@ -72,6 +79,7 @@ Namespace Framework.Modules
             AT_LOGIN_CHANGE_FACTION = 64
             AT_LOGIN_CHANGE_RACE = 128
         End Enum
+
         Public Loaded As Boolean = False
         Public SourceCore As String
         Public SourceExpansion As Integer
@@ -152,5 +160,41 @@ Namespace Framework.Modules
         Public Professions As List(Of Profession)
         Public AllInfoLoaded As Boolean = False
 
+        Public Sub AddRecipeToProfession(ByVal skillId As Integer, ByVal spellId As Integer)
+            If Professions Is Nothing Then
+                Professions = New List(Of Profession)()
+                Exit Sub
+            End If
+            Try
+                Dim profIndex As Integer = Professions.FindIndex(Function(profession) profession.Id = skillId)
+                If Not profIndex = -1 Then
+                    If Professions(profIndex).Recipes Is Nothing Then _
+                        Professions(profIndex).Recipes = New List(Of ProfessionSpell)()
+                    Professions(profIndex).Recipes.Add(New ProfessionSpell _
+                                                          With {.SpellId = spellId,
+                                                          .MinSkill = GetMinimumSkillBySpellId(spellId)})
+                End If
+            Catch ex As Exception
+                LogAppend("Failed to add recipe: " & ex.ToString(), "Character_AddRecipeToProfession", False, True)
+            End Try
+        End Sub
+
+        Public Sub RemoveRecipeFromProfession(ByVal skillId As Integer, ByVal spellId As Integer)
+            If Professions Is Nothing Then
+                Professions = New List(Of Profession)()
+                Exit Sub
+            End If
+            Dim profIndex As Integer = Professions.FindIndex(Function(profession) profession.Id = skillId)
+            If Not profIndex = -1 Then
+                If Professions(profIndex).Recipes Is Nothing Then
+                    Professions(profIndex).Recipes = New List(Of ProfessionSpell)()
+                    Exit Sub
+                End If
+                Dim recipeIndex As Integer = Professions(profIndex).Recipes.FindIndex(Function(professionSpell) professionSpell.SpellId = spellId)
+                If Not recipeIndex = -1 Then
+                    Professions(profIndex).Recipes.RemoveAt(recipeIndex)
+                End If
+            End If
+        End Sub
     End Class
 End Namespace

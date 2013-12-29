@@ -25,6 +25,7 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports libnc.Provider
 
 Namespace Framework.Core
     Public Class CharacterSpellsHandler
@@ -51,6 +52,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString() & "'")
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
+            If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
@@ -67,8 +69,14 @@ Namespace Framework.Core
                             spl.Disabled = 0
                             partscounter += 1
                             LogAppend("Adding spellId: " & spl.Id.ToString(), "CharacterSpellsHandler_LoadAtArcemu", True)
-                            If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
-                            player.Spells.Add(spl)
+                            Dim professionId As Integer = GetSkillIdBySpellId(spl.Id)
+                            If professionId = 0 Then
+                                '// Common spell
+                                player.Spells.Add(spl)
+                            Else
+                                '// Profession recipe
+                                player.AddRecipeToProfession(professionId, spl.Id)
+                            End If
                         Loop Until partscounter = excounter - 1
                         count += 1
                     Loop Until count = lastcount
@@ -94,6 +102,8 @@ Namespace Framework.Core
                         " FROM " & GlobalVariables.sourceStructure.character_spells_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
+            If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
+            If player.Professions Is Nothing Then player.Professions = New List(Of Profession)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
@@ -104,8 +114,14 @@ Namespace Framework.Core
                         spl.Id = TryInt(readedcode)
                         spl.Active = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         spl.Disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                        If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
-                        player.Spells.Add(spl)
+                        Dim professionId As Integer = GetSkillIdBySpellId(spl.Id)
+                        If professionId = 0 Then
+                            '// Common spell
+                            player.Spells.Add(spl)
+                        Else
+                            '// Profession recipe
+                            player.AddRecipeToProfession(professionId, spl.Id)
+                        End If
                         count += 1
                     Loop Until count = lastcount
                 Else
@@ -130,6 +146,7 @@ Namespace Framework.Core
                         " FROM " & GlobalVariables.sourceStructure.character_spells_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.spell_guid_col(0) & "='" & charguid.ToString() & "'")
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
+            If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
                 Dim count As Integer = 0
@@ -140,8 +157,14 @@ Namespace Framework.Core
                         spl.Id = TryInt(readedcode)
                         spl.Active = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         spl.Disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                        If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
-                        player.Spells.Add(spl)
+                        Dim professionId As Integer = GetSkillIdBySpellId(spl.Id)
+                        If professionId = 0 Then
+                            '// Common spell
+                            player.Spells.Add(spl)
+                        Else
+                            '// Profession recipe
+                            player.AddRecipeToProfession(professionId, spl.Id)
+                        End If
                         count += 1
                     Loop Until count = lastcount
                 Else

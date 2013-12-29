@@ -74,6 +74,7 @@ Namespace Forms.Character
             _currentSet = setId
             GlobalVariables.currentViewedCharSetId = Nothing
             GlobalVariables.currentViewedCharSet = Nothing
+            GlobalVariables.currentEditedCharSet = Nothing
             GlobalVariables.currentViewedCharSetId = setId
             GlobalVariables.currentViewedCharSet = GetCharacterSetBySetId(setId, account)
             _currentAccount = account
