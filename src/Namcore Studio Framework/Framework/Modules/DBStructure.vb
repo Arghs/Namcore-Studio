@@ -211,6 +211,8 @@ Namespace Framework.Modules
         Public acc_email_col() As String
         Public acc_joindate_col() As String
         Public acc_lastlogin_col() As String
+        Public acc_lastip_col() As String
+        Public acc_locked_col() As String
         Public acc_expansion_col() As String
         Public acc_arcemuFlags_col() As String
         Public acc_locale_col() As String

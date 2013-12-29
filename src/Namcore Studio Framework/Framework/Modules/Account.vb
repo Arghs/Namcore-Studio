@@ -34,8 +34,10 @@ Namespace Framework.Modules
         Public ArcEmuGmLevel As String
         Public SessionKey As String
         Public LastLogin As DateTime
+        Public LastIp As String
+        Public Locked As Integer
         Public Email As String
-        Public JoinDate As Integer
+        Public JoinDate As DateTime
         Public Expansion As Integer
         Public V As String
         Public S As String

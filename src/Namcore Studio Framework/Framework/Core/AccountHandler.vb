@@ -21,21 +21,18 @@
 '*      /Description:   Contains functions for loading account
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Extension.Special
 
 Namespace Framework.Core
-
     Public Class AccountHandler
-
         '// Declaration
         Private _tempResult As String
         '// Declaration
 
-        Public Sub LoadAccount(ByVal accountId As Integer, ByVal tarSetId As Integer)
-
+        Public Sub LoadAccount(ByVal accountId As Integer, ByVal tarSetId As Integer,
+                               Optional account2Extend As Account = Nothing)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     _tempResult =
@@ -43,7 +40,8 @@ Namespace Framework.Core
                             "SELECT " & GlobalVariables.sourceStructure.acc_name_col(0) & " FROM " &
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    Dim tmpAccount As New Account(_tempResult, accountId)
+                    Dim tmpAccount As Account = account2Extend
+                    If tmpAccount Is Nothing Then tmpAccount = New Account(_tempResult, accountId)
                     tmpAccount.SourceExpansion = GlobalVariables.sourceExpansion
                     tmpAccount.Core = GlobalVariables.sourceCore
                     LogAppend(
@@ -56,7 +54,8 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.ArcEmuPass = _tempResult
                     LogAppend(
-                        "Loaded account arcemuPass info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded account arcemuPass info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
                         runSQLCommand_realm_string(
@@ -74,7 +73,8 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.ArcEmuFlags = TryInt(_tempResult)
                     LogAppend(
-                        "Loaded account arcemuFlags info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded account arcemuFlags info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
                         runSQLCommand_realm_string(
@@ -92,25 +92,27 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.ArcEmuGmLevel = _tempResult
                     LogAppend(
-                        "Loaded account arcemuGmLevel info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded account arcemuGmLevel info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
-                     runSQLCommand_realm_string(
-                         "SELECT " & GlobalVariables.sourceStructure.acc_email_col(0) & " FROM " &
-                         GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                         GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_email_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.Email = _tempResult
                     LogAppend(
                         "Loaded account email for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
-                       runSQLCommand_realm_string(
-                           "SELECT " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " FROM " &
-                           GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                           GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    tmpAccount.LastLogin = TryInt(_tempResult).ToDate
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                    tmpAccount.LastLogin = DateTime.Parse(_tempResult)
                     LogAppend(
-                        "Loaded account last login info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded account last login info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     'todo Expansion!
                     Dim templevel As Integer
@@ -131,10 +133,11 @@ Namespace Framework.Core
                 Case "trinity"
                     _tempResult =
                         runSQLCommand_realm_string(
-                                    "SELECT " & GlobalVariables.sourceStructure.acc_name_col(0) & " FROM " &
-                                    GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    Dim tmpAccount As New Account(_tempResult, accountId)
+                            "SELECT " & GlobalVariables.sourceStructure.acc_name_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                    Dim tmpAccount As Account = account2Extend
+                    If tmpAccount Is Nothing Then tmpAccount = New Account(_tempResult, accountId)
                     tmpAccount.SourceExpansion = GlobalVariables.sourceExpansion
                     tmpAccount.Core = GlobalVariables.sourceCore
                     LogAppend(
@@ -156,7 +159,8 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.SessionKey = _tempResult
                     LogAppend(
-                        "Loaded account sessionkey info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded account sessionkey info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
                         runSQLCommand_realm_string(
@@ -172,27 +176,57 @@ Namespace Framework.Core
                             "SELECT " & GlobalVariables.sourceStructure.acc_joindate_col(0) & " FROM " &
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    tmpAccount.JoinDate = TryInt(_tempResult)
+                    tmpAccount.JoinDate = DateTime.Parse(_tempResult)
                     LogAppend(
                         "Loaded account joindate info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
-                       runSQLCommand_realm_string(
-                           "SELECT " & GlobalVariables.sourceStructure.acc_email_col(0) & " FROM " &
-                           GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                           GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_lastip_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                    tmpAccount.LastIp = _tempResult
+                    LogAppend(
+                        "Loaded account lastip info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
+                    _tempResult =
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_email_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.Email = _tempResult
                     LogAppend(
                         "Loaded account email for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
-                       runSQLCommand_realm_string(
-                           "SELECT " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " FROM " &
-                           GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                           GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    tmpAccount.LastLogin = TryInt(_tempResult).ToDate
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                    tmpAccount.LastLogin = DateTime.Parse(_tempResult)
                     LogAppend(
-                        "Loaded account last login info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded account last login info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
+                        " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
+                    _tempResult =
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_locked_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                    tmpAccount.Locked = TryInt(_tempResult)
+                    LogAppend(
+                        "Loaded account lock information for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
+                        " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
+                    _tempResult =
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_expansion_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                    tmpAccount.Expansion = TryInt(_tempResult)
+                    LogAppend(
+                        "Loaded account expansion information for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     'todo Expansion!
                     'Account Access Table
@@ -203,7 +237,8 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.accAcc_accid_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.GmLevel = TryInt(_tempResult)
                     LogAppend(
-                        "Loaded accountAccess gmlevel info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded accountAccess gmlevel info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
                         runSQLCommand_realm_string(
@@ -212,7 +247,8 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.accAcc_accid_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.RealmId = TryInt(_tempResult)
                     LogAppend(
-                        "Loaded accountAccess realmId info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded accountAccess realmId info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     tmpAccount.SetIndex = tarSetId
                     AddAccountSet(tarSetId, tmpAccount)
@@ -222,7 +258,8 @@ Namespace Framework.Core
                             "SELECT " & GlobalVariables.sourceStructure.acc_name_col(0) & " FROM " &
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    Dim tmpAccount As New Account(_tempResult, accountId)
+                    Dim tmpAccount As Account = account2Extend
+                    If tmpAccount Is Nothing Then tmpAccount = New Account(_tempResult, accountId)
                     tmpAccount.SourceExpansion = GlobalVariables.sourceExpansion
                     tmpAccount.Core = GlobalVariables.sourceCore
                     LogAppend(
@@ -244,7 +281,8 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.SessionKey = _tempResult
                     LogAppend(
-                        "Loaded account sessionkey info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded account sessionkey info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
                         runSQLCommand_realm_string(
@@ -260,7 +298,7 @@ Namespace Framework.Core
                             "SELECT " & GlobalVariables.sourceStructure.acc_joindate_col(0) & " FROM " &
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    tmpAccount.JoinDate = TryInt(_tempResult)
+                    tmpAccount.JoinDate = DateTime.Parse(_tempResult)
                     LogAppend(
                         "Loaded account joindate info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
@@ -283,22 +321,23 @@ Namespace Framework.Core
                         "Loaded account s info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
-                     runSQLCommand_realm_string(
-                         "SELECT " & GlobalVariables.sourceStructure.acc_email_col(0) & " FROM " &
-                         GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                         GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_email_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.Email = _tempResult
                     LogAppend(
                         "Loaded account email for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
-                       runSQLCommand_realm_string(
-                           "SELECT " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " FROM " &
-                           GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                           GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    tmpAccount.LastLogin = TryInt(_tempResult).ToDate
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                    tmpAccount.LastLogin = DateTime.Parse(_tempResult)
                     LogAppend(
-                        "Loaded account last login info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded account last login info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     'todo Expansion!
                     'Account Access Table
@@ -309,7 +348,8 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.accAcc_accid_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.GmLevel = TryInt(_tempResult)
                     LogAppend(
-                        "Loaded accountAccess gmlevel info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded accountAccess gmlevel info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
                         runSQLCommand_realm_string(
@@ -318,7 +358,8 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.accAcc_accid_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.RealmId = TryInt(_tempResult)
                     LogAppend(
-                        "Loaded accountAccess realmId info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded accountAccess realmId info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     tmpAccount.SetIndex = tarSetId
                     AddAccountSet(tarSetId, tmpAccount)
@@ -330,7 +371,8 @@ Namespace Framework.Core
                             "SELECT " & GlobalVariables.sourceStructure.acc_name_col(0) & " FROM " &
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    Dim tmpAccount As New Account(_tempResult, accountId)
+                    Dim tmpAccount As Account = account2Extend
+                    If tmpAccount Is Nothing Then tmpAccount = New Account(_tempResult, accountId)
                     tmpAccount.SourceExpansion = GlobalVariables.sourceExpansion
                     tmpAccount.Core = GlobalVariables.sourceCore
                     LogAppend(
@@ -370,7 +412,8 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.SessionKey = _tempResult
                     LogAppend(
-                        "Loaded account sessionkey info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded account sessionkey info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
                         runSQLCommand_realm_string(
@@ -386,7 +429,7 @@ Namespace Framework.Core
                             "SELECT " & GlobalVariables.sourceStructure.acc_joindate_col(0) & " FROM " &
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    tmpAccount.JoinDate = TryInt(_tempResult)
+                    tmpAccount.JoinDate = DateTime.Parse(_tempResult)
                     LogAppend(
                         "Loaded account joindate info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
@@ -409,22 +452,23 @@ Namespace Framework.Core
                         "Loaded account realmId info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
-                     runSQLCommand_realm_string(
-                         "SELECT " & GlobalVariables.sourceStructure.acc_email_col(0) & " FROM " &
-                         GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                         GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_email_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.Email = _tempResult
                     LogAppend(
                         "Loaded account email for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
-                       runSQLCommand_realm_string(
-                           "SELECT " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " FROM " &
-                           GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
-                           GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    tmpAccount.LastLogin = TryInt(_tempResult).ToDate
+                        runSQLCommand_realm_string(
+                            "SELECT " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " FROM " &
+                            GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
+                    tmpAccount.LastLogin = DateTime.Parse(_tempResult)
                     LogAppend(
-                        "Loaded account last login info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
+                        "Loaded account last login info for accountId: " & accountId.ToString & " and setId: " &
+                        tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     'todo Expansion!
                     tmpAccount.SetIndex = tarSetId

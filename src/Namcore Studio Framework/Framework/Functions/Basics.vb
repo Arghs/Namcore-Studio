@@ -51,11 +51,16 @@ Namespace Framework.Functions
                 useChars.AccountSetsIndex = ""
                 useChars.AccountSets = New List(Of Account)()
             End If
-            useChars.AccountSets.Add(player)
-            useChars.AccountSetsIndex = useChars.AccountSetsIndex & "[setId:" &
-                                                           setId.ToString & "|@" &
-                                                           (useChars.AccountSets.Count - 1).ToString &
-                                                           "]"
+            If useChars.AccountSetsIndex.Contains("[setId:" & setId.ToString() & "|") Then
+                SetAccountSet(setId, player)
+            Else
+                useChars.AccountSets.Add(player)
+                useChars.AccountSetsIndex = useChars.AccountSetsIndex & "[setId:" &
+                                                               setId.ToString & "|@" &
+                                                               (useChars.AccountSets.Count - 1).ToString &
+                                                               "]"
+            End If
+
         End Sub
 
         Public Function GetAccountSetBySetId(ByVal setId As Integer) As Account

@@ -635,17 +635,10 @@ Namespace Forms
         Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
             'Please remember that an account which is loaded from a database needs to be completely stored temporarily
             Dim accview As New AccountOverview
-            Dim setId As Integer = characterview.SelectedItems(0).Tag
-            If GlobalVariables.armoryMode = True Then
+            Dim accTag As Account = accountview.SelectedItems(0).Tag
+            If GlobalVariables.armoryMode = False Then
                 Userwait.Show()
-                accview.prepare_interface(setId)
-                Userwait.Close()
-                accview.Show()
-            Else
-                'todo load info
-
-                Userwait.Show()
-                accview.prepare_interface(setId)
+                accview.prepare_interface(GetAccountSetBySetId(accTag.SetIndex))
                 Userwait.Close()
                 accview.Show()
             End If
@@ -1070,10 +1063,7 @@ Namespace Forms
             Next
             PrepChartrans.Show()
         End Sub
-
-        Private Sub charactercontext_Opening(sender As Object, e As CancelEventArgs) Handles charactercontext.Opening
-        End Sub
-
+       
         Private Sub checkall_char_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) _
             Handles checkall_char.LinkClicked
             For Each xitem As ListViewItem In characterview.Items

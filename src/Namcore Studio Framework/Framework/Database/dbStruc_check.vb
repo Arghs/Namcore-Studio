@@ -71,7 +71,9 @@ Namespace Framework.Database
                     dbstruc.acc_passHash_col = {"sha_pass_hash"}
                     dbstruc.acc_email_col = {"email"}
                     dbstruc.acc_joindate_col = {"joindate"}
+                    dbstruc.acc_lastip_col = {"last_ip"}
                     dbstruc.acc_lastlogin_col = {"last_login"}
+                    dbstruc.acc_locked_col = {"locked"}
                     dbstruc.acc_expansion_col = {"expansion"}
                     dbstruc.acc_locale_col = {"locale"}
                     '_account_access
@@ -234,6 +236,8 @@ Namespace Framework.Database
             col_check_realm(struc.acc_passHash_col, struc.account_tbl)
             col_check_realm(struc.acc_email_col, struc.account_tbl)
             col_check_realm(struc.acc_joindate_col, struc.account_tbl)
+            col_check_realm(struc.acc_lastip_col, struc.account_tbl)
+            col_check_realm(struc.acc_locked_col, struc.account_tbl)
             col_check_realm(struc.acc_lastlogin_col, struc.account_tbl)
             col_check_realm(struc.acc_expansion_col, struc.account_tbl)
             col_check_realm(struc.acc_locale_col, struc.account_tbl)
