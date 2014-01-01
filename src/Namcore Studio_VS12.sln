@@ -1,16 +1,18 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Namcore Studio_VS12", "Namcore Studio\Namcore Studio_VS12.vbproj", "{2484CD37-5DB3-4CC6-8132-EEAFE85C75C5}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NamcoreDirectAccess_VS12", "NamcoreDirectAccess\NamcoreDirectAccess_VS12.vbproj", "{8557CE3C-0E88-43AD-B402-B87ED445B3B4}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Namcore Remote Server_VS12", "Namcore Remote Server\Namcore Remote Server_VS12.vbproj", "{D2CC8A20-2128-4345-AF26-275C323ADD89}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NCFramework_VS12", "Namcore Studio Framework\NCFramework_VS12.vbproj", "{294DF12F-75F1-4264-A631-7399CBC0515A}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NCLauncher_VS12", "NCLauncher\NCLauncher_VS12.vbproj", "{F7479E8D-BE82-4EF3-81F2-674EAA4F06E0}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "libnc", "libnc\libnc.vbproj", "{8DB60C89-9FFF-48EC-B3FF-D563371B6F73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Namcore Remote Server_VS12", "Namcore Remote Server\Namcore Remote Server_VS12.csproj", "{F2DB729C-D991-4380-9F62-39E2AC7CE332}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,16 +45,6 @@ Global
 		{8557CE3C-0E88-43AD-B402-B87ED445B3B4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8557CE3C-0E88-43AD-B402-B87ED445B3B4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8557CE3C-0E88-43AD-B402-B87ED445B3B4}.Release|x86.ActiveCfg = Release|Any CPU
-		{D2CC8A20-2128-4345-AF26-275C323ADD89}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{D2CC8A20-2128-4345-AF26-275C323ADD89}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{D2CC8A20-2128-4345-AF26-275C323ADD89}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{D2CC8A20-2128-4345-AF26-275C323ADD89}.Debug|x86.ActiveCfg = Debug|x86
-		{D2CC8A20-2128-4345-AF26-275C323ADD89}.Debug|x86.Build.0 = Debug|x86
-		{D2CC8A20-2128-4345-AF26-275C323ADD89}.Release|Any CPU.ActiveCfg = Release|x86
-		{D2CC8A20-2128-4345-AF26-275C323ADD89}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{D2CC8A20-2128-4345-AF26-275C323ADD89}.Release|Mixed Platforms.Build.0 = Release|x86
-		{D2CC8A20-2128-4345-AF26-275C323ADD89}.Release|x86.ActiveCfg = Release|x86
-		{D2CC8A20-2128-4345-AF26-275C323ADD89}.Release|x86.Build.0 = Release|x86
 		{294DF12F-75F1-4264-A631-7399CBC0515A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{294DF12F-75F1-4264-A631-7399CBC0515A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{294DF12F-75F1-4264-A631-7399CBC0515A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -83,15 +75,25 @@ Global
 		{8DB60C89-9FFF-48EC-B3FF-D563371B6F73}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8DB60C89-9FFF-48EC-B3FF-D563371B6F73}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8DB60C89-9FFF-48EC-B3FF-D563371B6F73}.Release|x86.ActiveCfg = Release|Any CPU
+		{F2DB729C-D991-4380-9F62-39E2AC7CE332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2DB729C-D991-4380-9F62-39E2AC7CE332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2DB729C-D991-4380-9F62-39E2AC7CE332}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F2DB729C-D991-4380-9F62-39E2AC7CE332}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F2DB729C-D991-4380-9F62-39E2AC7CE332}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F2DB729C-D991-4380-9F62-39E2AC7CE332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2DB729C-D991-4380-9F62-39E2AC7CE332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2DB729C-D991-4380-9F62-39E2AC7CE332}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F2DB729C-D991-4380-9F62-39E2AC7CE332}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F2DB729C-D991-4380-9F62-39E2AC7CE332}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_DetectChanges = False
-		BuildVersion_IncrementBeforeBuild = False
-		BuildVersion_UpdateFileVersion = False
-		BuildVersion_UpdateAssemblyVersion = False
 		BuildVersion_BuildVersioningStyle = None.None.None.None
+		BuildVersion_UpdateAssemblyVersion = False
+		BuildVersion_UpdateFileVersion = False
+		BuildVersion_IncrementBeforeBuild = False
+		BuildVersion_DetectChanges = False
 	EndGlobalSection
 EndGlobal
