@@ -21,20 +21,30 @@
 //*      /Description:   todo
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 namespace Namcore_Remote_Server
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-           Server srv = new Server();
+            Log.ServerType = "World";
+
+            Log.Message(LogType.Init, "__________________________________________________________________");
+            Log.Message();
+            Log.Message(LogType.Init, "##    ##    ###    ##     ##  ######   #######  ########  ######## ");
+            Log.Message(LogType.Init, "###   ##   ## ##   ###   ### ##    ## ##     ## ##     ## ##       ");
+            Log.Message(LogType.Init, "####  ##  ##   ##  #### #### ##       ##     ## ##     ## ##       ");
+            Log.Message(LogType.Init, "## ## ## ##     ## ## ### ## ##       ##     ## ########  ######   ");
+            Log.Message(LogType.Init, "##  #### ######### ##     ## ##       ##     ## ##   ##   ##       ");
+            Log.Message(LogType.Init, "##   ### ##     ## ##     ## ##    ## ##     ## ##    ##  ##       ");
+            Log.Message(LogType.Init, "##    ## ##     ## ##     ##  ######   #######  ##     ## ######## ");
+            Log.Message(LogType.Init, "__________________________________________________________________");
+            Log.Message();
+
+            Log.Message(LogType.Normal, "Starting NamCore Remote Server...");
+
+            
+            var srv = new Server();
         }
-     
     }
 }
