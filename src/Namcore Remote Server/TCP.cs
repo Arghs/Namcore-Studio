@@ -21,15 +21,11 @@ namespace Namcore_Remote_Server
             try
             {
                 Globals.ConnectedClients = new List<RemoteClient>();
-                _tcpListener = new TcpListener(IPAddress.Parse(DBConfig.BindIP), DBConfig.BindPort);
-                Log.Message(LogType.Normal, "Listening on {0}:{1}", DBConfig.BindIP, DBConfig.BindPort);
+                _tcpListener = new TcpListener(IPAddress.Parse(MyConfig.BindIP), MyConfig.BindPort);
+                Log.Message(LogType.Normal, "Listening on {0}:{1}", MyConfig.BindIP, MyConfig.BindPort);
                 listenThread = new Thread(ListenForClients);
                 listenThread.Start();
-                while (true)
-                {
-                    string str = Console.ReadLine();
-                    SendMessage(_activeClient, str);
-                }
+              
             }
             catch (Exception e)
             {

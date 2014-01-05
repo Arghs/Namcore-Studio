@@ -1,6 +1,6 @@
 ﻿namespace Namcore_Remote_Server.Configuration
 {
-    public static class DBConfig
+    public static class MyConfig
     {
         private static readonly Config config = new Config("./Configs/Server.conf");
 
@@ -24,5 +24,7 @@
         public static int MySqlMaxPoolSize = config.Read("MySql.MaxPoolSize", 30);
 
         public static LogType LogLevel = (LogType) config.Read<uint>("LogLevel", 0, true);
+
+        public static string XmlLocation = config.Read("SaveFile", "./Configs/Save.xml");
     }
 }

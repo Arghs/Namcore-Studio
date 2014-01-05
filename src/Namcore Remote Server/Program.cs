@@ -21,6 +21,9 @@
 //*      /Description:   todo
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+using System;
+using System.Text.RegularExpressions;
+
 namespace Namcore_Remote_Server
 {
     internal class Program
@@ -42,9 +45,37 @@ namespace Namcore_Remote_Server
             Log.Message();
 
             Log.Message(LogType.Normal, "Starting NamCore Remote Server...");
-
-            
+            XML.RetrieveAccounts();
             var srv = new Server();
+            while (true)
+            {
+                string str = Console.ReadLine() ?? "";
+
+                if (str.StartsWith("/"))
+                {
+                    //command
+                    if (str.StartsWith("/account create"))
+                    {
+                        int argsCount = Regex.Matches(str, Regex.Escape(" ")).Count;
+                        switch (argsCount)
+                        {
+                            case 4:
+                                //correct
+                                string[] parts = (str + " ").Split(' ');
+                                var newAccount = new Account { Name = parts[2], Password = parts[3], Rights = (AccountRights)Convert.ToInt32(parts[4])};
+                                Globals.Accounts.Add(newAccount);
+                                break;
+                            default:
+                                //not correct
+                                Log.Message(LogType.Error, "Invalid arguments");
+                                Log.Message(LogType.Error, "Usage: /account create [accountname] [password] [rank]");
+                                break;
+                        }
+                    }
+
+                }
+                else { }
+            }
         }
     }
 }

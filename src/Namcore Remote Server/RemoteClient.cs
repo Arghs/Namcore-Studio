@@ -6,7 +6,7 @@ namespace Namcore_Remote_Server
     public  class Globals
     {
         public static List<RemoteClient> ConnectedClients { get; set; }
-       
+        public static List<Account> Accounts { get; set; }
     }
     public sealed class RemoteClient
     {
@@ -28,6 +28,7 @@ namespace Namcore_Remote_Server
         public string IP { get; set; }
         public AccountRights Rights { get; set; }
         public bool Locked { get; set; }
+        public string PassHash { get; set; }
     }
 
     public enum AccountRights
