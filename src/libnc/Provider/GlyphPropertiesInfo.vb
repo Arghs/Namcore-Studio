@@ -52,7 +52,7 @@ Namespace Provider
             If itemName.Length > 1 Then
                 Try
                     Dim foundRows() As DataRow
-                    foundRows = SpellCsv.Select("SpellNameDE" & " = '" & itemName & "'")
+                    foundRows = SpellCsv.Select("SpellNameDE" & " = '" & EscapeLikeValue(itemName) & "'")
                     If foundRows.Length = 0 Then
                         Return 0
                     Else
@@ -92,7 +92,7 @@ Namespace Provider
             If spellName.Length > 1 Then
                 Try
                     Dim foundRows() As DataRow
-                    foundRows = ItemSparseCsv.Select("ItemNameDE" & " = '" & spellName & "'")
+                    foundRows = ItemSparseCsv.Select("ItemNameDE" & " = '" & EscapeLikeValue(spellName) & "'")
                     If foundRows.Length = 0 Then
                         Return 0
                     Else
