@@ -88,6 +88,7 @@
     <Compile Include="Framework\Core\CharacterTalentsHandler.vb" />
     <Compile Include="Framework\Core\CoreHandler.vb" />
     <Compile Include="Framework\Core\Update\UpdateAchievementsHandler.vb" />
+    <Compile Include="Framework\Core\Update\UpdateAccountHandler.vb" />
     <Compile Include="Framework\Core\Update\UpdateReputationHandler.vb" />
     <Compile Include="Framework\Database\CommandHandler.vb" />
     <Compile Include="Framework\Database\ConnectionHandler.vb" />

@@ -41,7 +41,7 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     Dim tmpAccount As Account = account2Extend
-                    If tmpAccount Is Nothing Then tmpAccount = New Account(_tempResult, accountId)
+                    If tmpAccount Is Nothing Then tmpAccount = New Account() With {.Name = _tempResult, .Id = accountId}
                     tmpAccount.SourceExpansion = GlobalVariables.sourceExpansion
                     tmpAccount.Core = GlobalVariables.sourceCore
                     LogAppend(
@@ -137,7 +137,7 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     Dim tmpAccount As Account = account2Extend
-                    If tmpAccount Is Nothing Then tmpAccount = New Account(_tempResult, accountId)
+                    If tmpAccount Is Nothing Then tmpAccount = New Account() With {.Name = _tempResult, .Id = accountId}
                     tmpAccount.SourceExpansion = GlobalVariables.sourceExpansion
                     tmpAccount.Core = GlobalVariables.sourceCore
                     LogAppend(
@@ -259,7 +259,7 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     Dim tmpAccount As Account = account2Extend
-                    If tmpAccount Is Nothing Then tmpAccount = New Account(_tempResult, accountId)
+                    If tmpAccount Is Nothing Then tmpAccount = New Account() With {.Name = _tempResult, .Id = accountId}
                     tmpAccount.SourceExpansion = GlobalVariables.sourceExpansion
                     tmpAccount.Core = GlobalVariables.sourceCore
                     LogAppend(
@@ -372,7 +372,7 @@ Namespace Framework.Core
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     Dim tmpAccount As Account = account2Extend
-                    If tmpAccount Is Nothing Then tmpAccount = New Account(_tempResult, accountId)
+                    If tmpAccount Is Nothing Then tmpAccount = New Account() With {.Name = _tempResult, .Id = accountId}
                     tmpAccount.SourceExpansion = GlobalVariables.sourceExpansion
                     tmpAccount.Core = GlobalVariables.sourceCore
                     LogAppend(

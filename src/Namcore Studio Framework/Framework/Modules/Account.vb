@@ -52,13 +52,9 @@ Namespace Framework.Modules
         Public Characters As List(Of Character)
         Public CharactersIndex As String
 
-        Public Sub New(accname As String, accountid As Integer)
-            Name = accname
-            Id = accountid
-        End Sub
-
-        Public Function ShallowCopy() As Account
-            Return DirectCast(MemberwiseClone(), Account)
-        End Function
+        'Public Sub New(accname As String, accountid As Integer)
+        '    Name = accname
+        '    Id = accountid
+        'End Sub
     End Class
 End Namespace

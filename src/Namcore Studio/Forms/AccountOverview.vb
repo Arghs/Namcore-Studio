@@ -20,6 +20,7 @@
 '*      /Filename:      AccountOverview
 '*      /Description:   Provides an interface to display account information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Core
 Imports NamCore_Studio.Forms.Character
 Imports NCFramework.Framework.Modules
@@ -27,10 +28,18 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NamCore_Studio.Modules.Interface
 Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.Framework.Core.Update
 
 Namespace Forms
     Public Class AccountOverview
         Inherits EventTrigger
+
+        '// Declaration
+        Private _currentViewedAccountSet As Account
+        Private _currentEditedAccountSet As Account
+        Private _initComplete As Boolean = False
+        '// Declaration
+
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
             Close()
@@ -41,6 +50,8 @@ Namespace Forms
         End Sub
 
         Public Sub prepare_interface(ByVal accountSet As Account)
+            LogAppend("prepare_interface call", "AccountOverview_prepare_interface", False)
+            _initComplete = False
             For Each subctrl As Control In Controls
                 subctrl.SetDoubleBuffered()
             Next
@@ -75,9 +86,16 @@ Namespace Forms
                 characterview.Items.Add(itm)
             Next
             characterview.EndUpdate()
+            reset_bt.Enabled = False
+            savechanges_bt.Enabled = False
+            _currentViewedAccountSet = accountSet
+            _currentEditedAccountSet = DeepCloneHelper.DeepClone(_currentViewedAccountSet)
+            _initComplete = True
         End Sub
 
         Private Sub characterview_MouseUp(sender As Object, e As MouseEventArgs) Handles characterview.MouseUp
+            changepanel.Location = New Point(4000, 4000)
+            changepanel.Tag.Visible = True
             If e.Button = MouseButtons.Right Then
                 If characterview.SelectedItems.Count = 0 And characterview.CheckedItems.Count = 0 Then Exit Sub
                 If characterview.SelectedItems.Count = 0 Then
@@ -124,7 +142,6 @@ Namespace Forms
 
         Private Sub SelectedCharacterToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles SelectedCharacterToolStripMenuItem.Click
-
             Dim result =
                     MsgBox(
                         ResourceHandler.GetUserMessage("deletechar") & " (" &
@@ -148,7 +165,6 @@ Namespace Forms
 
         Private Sub CheckedCharactersToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles CheckedCharactersToolStripMenuItem.Click
-
             Dim result = MsgBox(ResourceHandler.GetUserMessage("deletechar"), vbYesNo,
                                 ResourceHandler.GetUserMessage("areyousure"))
             If result = MsgBoxResult.Yes Then
@@ -164,6 +180,80 @@ Namespace Forms
                         GlobalVariables.GlobalConnection)
                 Next
             End If
+        End Sub
+
+        Private Sub UpdateButtons()
+            savechanges_bt.Enabled = True
+            reset_bt.Enabled = True
+        End Sub
+
+        Private Sub TextChangeRequest(sender As Object, e As EventArgs) Handles mail_lbl.Click
+            Dim oldSenderLabel As Label = changepanel.Tag
+            If Not oldSenderLabel Is Nothing Then oldSenderLabel.Visible = True
+            Dim senderLabel As Label = sender
+            changepanel.Location = senderLabel.Location
+            changepanel.Tag = senderLabel
+            changeText_tb.Text = ""
+            changeText_tb.Text = senderLabel.Text
+            senderLabel.Visible = False
+        End Sub
+
+        Private Sub updatePic_Click(sender As Object, e As EventArgs) Handles updatePic.Click
+            Dim senderLabel As Label = changepanel.Tag
+            Select Case senderLabel.Name
+                Case mail_lbl.Name
+                    If changeText_tb.Text.Length > 0 AndAlso Not changeText_tb.Text.Contains("@") Then
+                        MsgBox(ResourceHandler.GetUserMessage("noValidEmail"), MsgBoxStyle.Critical, "Error")
+                    Else
+                        mail_lbl.Text = changeText_tb.Text
+                        _currentEditedAccountSet.Email = changeText_tb.Text
+                        changepanel.Location = New Point(4000, 4000)
+                        senderLabel.Visible = True
+                        UpdateButtons()
+                    End If
+            End Select
+        End Sub
+
+        Private Sub lockaccount_cb_CheckedChanged(sender As Object, e As EventArgs) Handles lockaccount_cb.CheckedChanged
+            If _initComplete Then
+                changepanel.Location = New Point(4000, 4000)
+                changepanel.Tag.Visible = True
+                _currentEditedAccountSet.Locked = lockaccount_cb.Checked
+                UpdateButtons()
+            End If
+        End Sub
+
+        Private Sub expansion_ud_ValueChanged(sender As Object, e As EventArgs) Handles expansion_ud.ValueChanged
+            If _initComplete Then
+                changepanel.Location = New Point(4000, 4000)
+                changepanel.Tag.Visible = True
+                _currentEditedAccountSet.Expansion = expansion_ud.Value
+                UpdateButtons()
+            End If
+        End Sub
+
+        Private Sub reset_bt_Click(sender As Object, e As EventArgs) Handles reset_bt.Click
+            changepanel.Location = New Point(4000, 4000)
+            changepanel.Tag.Visible = True
+            prepare_interface(_currentViewedAccountSet)
+        End Sub
+
+        Private Sub savechanges_bt_Click(sender As Object, e As EventArgs) Handles savechanges_bt.Click
+            changepanel.Location = New Point(4000, 4000)
+            changepanel.Tag.Visible = True
+            NewProcessStatus()
+            Dim updateHandler As New UpdateAccountHandler
+            updateHandler.UpdateAccount(_currentViewedAccountSet, _currentEditedAccountSet)
+            reset_bt.Enabled = False
+            savechanges_bt.Enabled = False
+            LogAppend("Completed account update", "AccountOverview_savechanges_bt_Click", False)
+            CloseProcessStatus()
+            MsgBox(ResourceHandler.GetUserMessage("updateAccountComplete"), , "Info")
+        End Sub
+
+        Private Sub AccountOverview_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+            changepanel.Location = New Point(4000, 4000)
+            changepanel.Tag.Visible = True
         End Sub
     End Class
 End Namespace

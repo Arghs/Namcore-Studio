@@ -908,7 +908,7 @@ Namespace Forms
                 Next
                 If needtocreate = True Then
                     Dim newaccnode As New TreeNode
-                    Dim newacc As Account = playerAccount.ShallowCopy()
+                    Dim newacc As Account = DeepCloneHelper.DeepClone(playerAccount)
                     newacc.Characters = New List(Of NCFramework.Framework.Modules.Character)()
                     newacc.CharactersIndex = ""
                     With newaccnode

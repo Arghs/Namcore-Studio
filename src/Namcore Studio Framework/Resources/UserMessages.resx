@@ -618,4 +618,13 @@
   <data name="profession_794" xml:space="preserve">
     <value>Archaeology</value>
   </data>
+  <data name="noValidEmail" xml:space="preserve">
+    <value>No valid E-Mail address entered!</value>
+  </data>
+  <data name="textTooShort" xml:space="preserve">
+    <value>The entered text is too short!</value>
+  </data>
+  <data name="updateAccountComplete" xml:space="preserve">
+    <value>Account has been updated successfully!</value>
+  </data>
 </root>

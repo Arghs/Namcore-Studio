@@ -55,7 +55,7 @@ Namespace Framework.Armory
             Dim characterName As String
             Dim client As New WebClient
             client.CheckProxy()
-            Dim armoryAccount As New Account("Armory", 0)
+            Dim armoryAccount As New Account() With {.Name = "Armory", .Id = 0}
             armoryAccount.Characters = New List(Of Character)()
             armoryAccount.CharactersIndex = ""
             armoryAccount.SetIndex = 0
