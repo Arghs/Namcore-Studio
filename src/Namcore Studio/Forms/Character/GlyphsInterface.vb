@@ -79,6 +79,12 @@ Namespace Forms.Character
                             If itemControl.Name.ToLower.Contains("2") Then tempSlotName = tempSlotName & "2"
                             If itemControl.Name.ToLower.Contains("3") Then tempSlotName = tempSlotName & "3"
                             Dim txt As String = LoadInfo(tempSlotName, 0)
+                            DirectCast(itemControl, Label).Tag = _pubGlyph
+                            DirectCast(itemControl, Label).Cursor = Cursors.IBeam
+                            If _pubGlyph Is Nothing Then Continue For
+                            If txt Is Nothing Then
+                                txt = GetItemNameByItemId(_pubGlyph.Id, NCFramework.My.MySettings.Default.language)
+                            End If
                             If Not txt Is Nothing Then
                                 If txt.Length >= 30 Then
                                     Dim ccremove As Integer = txt.Length - 28
@@ -87,8 +93,6 @@ Namespace Forms.Character
                                 txt = txt.Replace("""", "")
                             End If
                             DirectCast(itemControl, Label).Text = txt
-                            DirectCast(itemControl, Label).Tag = _pubGlyph
-                            DirectCast(itemControl, Label).Cursor = Cursors.IBeam
                         End If
                     Case TypeOf itemControl Is PictureBox
                         If itemControl.Name.ToLower.EndsWith("_pic") Then
