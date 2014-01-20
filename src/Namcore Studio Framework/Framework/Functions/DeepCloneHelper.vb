@@ -24,26 +24,26 @@ Imports System.Reflection
 
 Namespace Framework.Functions
     Public Class DeepCloneHelper
-        ''' <summary>
-        '''     Get the deep clone of an object.
-        ''' </summary>
-        ''' <typeparam name="T">The type of the obj.</typeparam>
-        ''' <param name="obj">It is the object used to deep clone.</param>
-        ''' <returns>Return the deep clone.</returns>
-        Public Shared Function DeepClone(Of T)(ByVal obj As T) As T
+    ''' <summary>
+    '''     Get the deep clone of an object.
+    ''' </summary>
+    ''' <typeparam name="T">The type of the obj.</typeparam>
+    ''' <param name="obj">It is the object used to deep clone.</param>
+    ''' <returns>Return the deep clone.</returns>
+                                Public Shared Function DeepClone (Of T)(ByVal obj As T) As T
             If obj Is Nothing Then
                 Throw New ArgumentNullException("Object is null")
             End If
             Return CType(CloneProcedure(obj), T)
         End Function
 
-
-        ''' <summary>
-        '''     This method implements deep clone using reflection.
-        ''' </summary>
-        ''' <param name="obj">It is the object used to deep clone.</param>
-        ''' <returns>Return the deep clone.</returns>
-        Private Shared Function CloneProcedure(ByVal obj As Object) As Object
+                                
+                                ''' <summary>
+                                '''     This method implements deep clone using reflection.
+                                ''' </summary>
+                                ''' <param name="obj">It is the object used to deep clone.</param>
+                                ''' <returns>Return the deep clone.</returns>
+                                Private Shared Function CloneProcedure(ByVal obj As Object) As Object
             If obj Is Nothing Then
                 Return Nothing
             End If

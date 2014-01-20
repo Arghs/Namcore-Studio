@@ -20,13 +20,12 @@
 '*      /Filename:      UpdateQuestsHandler
 '*      /Description:   Handles character glyph update requests
 '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Functions
 
 Namespace Framework.Core.Update
     Public Class UpdateQuestsHandler
-
         '// Declaration
         Dim _excounter As Integer
         Dim _quests() As String
@@ -44,7 +43,9 @@ Namespace Framework.Core.Update
                 _quests = modPlayer.FinishedQuests.Split(","c)
                 For i = 0 To _excounter - 1
                     Dim thisQuest As String = _quests(i)
-                    If Not player.FinishedQuests.StartsWith(thisQuest & ",") AndAlso Not player.FinishedQuests.Contains("," & thisQuest & ",") Then
+                    If _
+                        Not player.FinishedQuests.StartsWith(thisQuest & ",") AndAlso
+                        Not player.FinishedQuests.Contains("," & thisQuest & ",") Then
                         CreateQuest(modPlayer, New Quest With {.Id = TryInt(thisQuest), .Status = 1, .Rewarded = 1})
                     End If
                 Next
@@ -59,7 +60,9 @@ Namespace Framework.Core.Update
                 _quests = player.FinishedQuests.Split(","c)
                 For i = 0 To _excounter - 1
                     Dim thisQuest As String = _quests(i)
-                    If Not modPlayer.FinishedQuests.StartsWith(thisQuest & ",") AndAlso Not modPlayer.FinishedQuests.Contains("," & thisQuest & ",") Then
+                    If _
+                        Not modPlayer.FinishedQuests.StartsWith(thisQuest & ",") AndAlso
+                        Not modPlayer.FinishedQuests.Contains("," & thisQuest & ",") Then
                         DeleteQuest(modPlayer, New Quest With {.Id = TryInt(thisQuest)})
                     End If
                 Next

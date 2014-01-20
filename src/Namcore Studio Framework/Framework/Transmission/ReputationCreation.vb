@@ -21,13 +21,15 @@
 '*      /Description:   Includes functions for setting the faction reputations of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Modules
+
 Namespace Framework.Transmission
     Public Class ReputationCreation
-        Public Sub AddCharacterReputation(ByVal setId As Integer, ByVal account As Account, Optional charguid As Integer = 0)
+        Public Sub AddCharacterReputation(ByVal setId As Integer, ByVal account As Account,
+                                          Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
             LogAppend("Adding reputation to character: " & charguid.ToString() & " // setId is : " & setId.ToString(),
                       "ReputationCreation_AddCharacterReputation", True)
@@ -38,7 +40,9 @@ Namespace Framework.Transmission
                     CreateAtTrinity(charguid, setId, account)
             End Select
         End Sub
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                   ByVal account As Account)
             LogAppend("Adding reputation to character at arcemu", "ReputationCreation_CreateAtArcemu", False)
             Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim useStructure As DbStructure = GlobalVariables.targetStructure
@@ -47,18 +51,20 @@ Namespace Framework.Transmission
             Dim cnt As Integer = 0
             For Each playerReputation As Reputation In player.PlayerReputation '// TODO: Needs validation
                 repString &= playerReputation.Faction.ToString() & "," &
-                    playerReputation.Flags.GetHashCode.ToString() & ",0," &
-                    playerReputation.Standing.ToString()
+                             playerReputation.Flags.GetHashCode.ToString() & ",0," &
+                             playerReputation.Standing.ToString()
                 cnt += 1
             Next
             runSQLCommand_characters_string(
-                              "UPDATE `" & useStructure.character_tbl(0) &
-                              "` SET `" & useStructure.char_reputation_col(0) &
-                              "` = '" & repString &
-                              "' WHERE `" & useStructure.char_guid_col(0) & "` = '" & characterguid.ToString() & "'")
+                "UPDATE `" & useStructure.character_tbl(0) &
+                "` SET `" & useStructure.char_reputation_col(0) &
+                "` = '" & repString &
+                "' WHERE `" & useStructure.char_guid_col(0) & "` = '" & characterguid.ToString() & "'")
             LogAppend("Added " & cnt.ToString() & " faction reputations", "ReputationCreation_createAtArcemu", True)
         End Sub
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                    ByVal account As Account)
             LogAppend("Adding reputation to character at trinity", "ReputationCreation_createAtTrinity", False)
             Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim useStructure As DbStructure = GlobalVariables.targetStructure

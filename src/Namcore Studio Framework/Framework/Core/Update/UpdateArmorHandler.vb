@@ -53,7 +53,7 @@ Namespace Framework.Core.Update
                                         GlobalVariables.sourceStructure.itmins_container_col(0) & "`='0'"))
                         If Not itmguid = 0 Then
                             mEnchCreator.SetItemEnchantments(0, armorItm, itmguid, GlobalVariables.sourceCore,
-                                                              GlobalVariables.sourceStructure)
+                                                             GlobalVariables.sourceStructure)
                         End If
                     Case "trinity", "mangos"
                         Dim itmguid As Integer =
@@ -67,7 +67,7 @@ Namespace Framework.Core.Update
                                         armorItm.Slot.ToString() & "'"))
                         If Not itmguid = 0 Then
                             mEnchCreator.SetItemEnchantments(0, armorItm, itmguid, GlobalVariables.sourceCore,
-                                                              GlobalVariables.sourceStructure)
+                                                             GlobalVariables.sourceStructure)
                         End If
                 End Select
 
@@ -78,34 +78,37 @@ Namespace Framework.Core.Update
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     Dim newItemGuid As String =
-                                               ((TryInt(
-                                                   runSQLCommand_characters_string(
-                                                       "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
-                                                       GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                                       GlobalVariables.targetStructure.itmins_guid_col(0) &
-                                                       "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                                       GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
-                    runSQLCommand_characters_string("DELETE FROM `" & GlobalVariables.targetStructure.item_instance_tbl(0) &
-                                                    "` WHERE `" & GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "`='" & player.Guid.ToString() &
-                                                    "' AND `" & GlobalVariables.targetStructure.itmins_slot_col(0) & "`='" & itm2Add.Slot.ToString() &
-                                                    " AND `" & GlobalVariables.targetStructure.itmins_container_col(0) & "`='" & itm2Add.Container.ToString())
+                            ((TryInt(
+                                runSQLCommand_characters_string(
+                                    "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
+                                    GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
+                                    GlobalVariables.targetStructure.itmins_guid_col(0) &
+                                    "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
+                                    GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
                     runSQLCommand_characters_string(
-                      "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
-                      GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
-                      GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
-                      GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", " &
-                      GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
-                      GlobalVariables.targetStructure.itmins_container_col(0) & ", " &
-                      GlobalVariables.targetStructure.itmins_slot_col(0) &
-                      " ) VALUES ( '" &
-                      newItemGuid & "', '" &
-                      player.Guid.ToString() & "', '" &
-                      itm2Add.Id.ToString() & "', '" &
-                      itm2Add.Count.ToString() & "', '0', '" &
-                      itm2Add.Slot.ToString() & "' )")
+                        "DELETE FROM `" & GlobalVariables.targetStructure.item_instance_tbl(0) &
+                        "` WHERE `" & GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "`='" &
+                        player.Guid.ToString() &
+                        "' AND `" & GlobalVariables.targetStructure.itmins_slot_col(0) & "`='" & itm2Add.Slot.ToString() &
+                        " AND `" & GlobalVariables.targetStructure.itmins_container_col(0) & "`='" &
+                        itm2Add.Container.ToString())
+                    runSQLCommand_characters_string(
+                        "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
+                        GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_container_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_slot_col(0) &
+                        " ) VALUES ( '" &
+                        newItemGuid & "', '" &
+                        player.Guid.ToString() & "', '" &
+                        itm2Add.Id.ToString() & "', '" &
+                        itm2Add.Count.ToString() & "', '0', '" &
+                        itm2Add.Slot.ToString() & "' )")
                     Dim mEnchCreator As New EnchantmentsCreation
                     mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
-                                                      GlobalVariables.sourceStructure)
+                                                     GlobalVariables.sourceStructure)
                 Case "trinity"
                     Dim newItemGuid As Integer = TryInt(
                         runSQLCommand_characters_string(
@@ -127,14 +130,17 @@ Namespace Framework.Core.Update
                     If _
                         ReturnResultCount(
                             "SELECT * FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
-                            GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & player.Guid.ToString() & "' AND " &
-                            GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Add.Slot.ToString() & "'") > 0 _
+                            GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & player.Guid.ToString() &
+                            "' AND " &
+                            GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Add.Slot.ToString() & "'") >
+                        0 _
                         Then
                         '// Item in this slot already exists: Deleting it
                         runSQLCommand_characters_string(
                             "DELETE FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
-                            "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Add.Slot.ToString() &
+                            "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
+                            itm2Add.Slot.ToString() &
                             "'")
                     End If
                     runSQLCommand_characters_string(
@@ -147,18 +153,19 @@ Namespace Framework.Core.Update
 
                     Dim mEnchCreator As New EnchantmentsCreation
                     mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
-                                                      GlobalVariables.sourceStructure)
+                                                     GlobalVariables.sourceStructure)
                     '// Optional TODO: Set equipment cache
                 Case "mangos"
-                    Const enchString As String = "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
+                    Const enchString As String =
+                              "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
                     Dim newItemGuid As Integer =
-                         ((TryInt(
-                             runSQLCommand_characters_string(
-                                 "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
-                                 GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                 GlobalVariables.targetStructure.itmins_guid_col(0) &
-                                 "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                 GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1))
+                            ((TryInt(
+                                runSQLCommand_characters_string(
+                                    "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
+                                    GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
+                                    GlobalVariables.targetStructure.itmins_guid_col(0) &
+                                    "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
+                                    GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1))
 
                     Dim parts() As String = enchString.Split(" "c)
                     parts(0) = newItemGuid.ToString()
@@ -174,16 +181,19 @@ Namespace Framework.Core.Update
                         player.Guid.ToString() & "', '" &
                         myEnchString & "' )")
                     If _
-                       ReturnResultCount(
-                           "SELECT * FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
-                           GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & player.Guid.ToString() & "' AND " &
-                           GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Add.Slot.ToString() & "'") > 0 _
-                       Then
+                        ReturnResultCount(
+                            "SELECT * FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
+                            GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & player.Guid.ToString() &
+                            "' AND " &
+                            GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Add.Slot.ToString() & "'") >
+                        0 _
+                        Then
                         '// Item in this slot already exists: Deleting it
                         runSQLCommand_characters_string(
                             "DELETE FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
-                            "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Add.Slot.ToString() &
+                            "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
+                            itm2Add.Slot.ToString() &
                             "'")
                     End If
                     runSQLCommand_characters_string(
@@ -199,7 +209,7 @@ Namespace Framework.Core.Update
                         itm2Add.Id.ToString() & "')")
                     Dim mEnchCreator As New EnchantmentsCreation
                     mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
-                                                      GlobalVariables.sourceStructure)
+                                                     GlobalVariables.sourceStructure)
                     '// Optional TODO: Set equipment cache
 
             End Select
@@ -208,27 +218,33 @@ Namespace Framework.Core.Update
         Private Sub DeleteItem(ByVal player As Character, ByVal itm2Delete As Item)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
-                    runSQLCommand_characters_string("DELETE FROM `" & GlobalVariables.targetStructure.item_instance_tbl(0) &
-                                                  "` WHERE `" & GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "`='" & player.Guid.ToString() &
-                                                  "' AND `" & GlobalVariables.targetStructure.itmins_slot_col(0) & "`='" & itm2Delete.Slot.ToString() &
-                                                  " AND `" & GlobalVariables.targetStructure.itmins_container_col(0) & "`='0'")
+                    runSQLCommand_characters_string(
+                        "DELETE FROM `" & GlobalVariables.targetStructure.item_instance_tbl(0) &
+                        "` WHERE `" & GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "`='" &
+                        player.Guid.ToString() &
+                        "' AND `" & GlobalVariables.targetStructure.itmins_slot_col(0) & "`='" &
+                        itm2Delete.Slot.ToString() &
+                        " AND `" & GlobalVariables.targetStructure.itmins_container_col(0) & "`='0'")
                 Case "trinity"
                     runSQLCommand_characters_string(
                         "DELETE FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
-                        "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Delete.Slot.ToString() &
+                        "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
+                        itm2Delete.Slot.ToString() &
                         "'")
                 Case "mangos"
                     runSQLCommand_characters_string(
-                              "DELETE FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
-                              GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
-                              "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" & itm2Delete.Slot.ToString() &
-                              "' AND " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '0'")
+                        "DELETE FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
+                        GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
+                        "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
+                        itm2Delete.Slot.ToString() &
+                        "' AND " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '0'")
                     runSQLCommand_characters_string(
-                                        "DELETE FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                        GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & " = '" & player.Guid.ToString() &
-                                        "' AND " & GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & itm2Delete.Guid.ToString() &
-                                        "'")
+                        "DELETE FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                        GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & " = '" & player.Guid.ToString() &
+                        "' AND " & GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                        itm2Delete.Guid.ToString() &
+                        "'")
             End Select
         End Sub
     End Class

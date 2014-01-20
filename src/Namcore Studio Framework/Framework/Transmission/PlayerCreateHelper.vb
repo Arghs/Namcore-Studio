@@ -21,12 +21,14 @@
 '*      /Description:   Provides functions to load correct spells/items for character 
 '*                      races/classes
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Modules
 Imports libnc.Provider
+
 Namespace Framework.Transmission
     '// Declaration
-    <Flags> Public Enum ChrRaces
+    <Flags>
+    Public Enum ChrRaces
         PLAYER_RACE_ALL = 0
         PLAYER_RACE_HUMAN = 1
         PLAYER_RACE_ORC = 2
@@ -51,6 +53,7 @@ Namespace Framework.Transmission
         PLAYER_RACE_ICE_TROLL = 1048576
         PLAYER_RACE_WORGEN = 2097152
     End Enum
+
     Public Enum ChrRaceIds
         PLAYER_RACE_ALL = 0
         PLAYER_RACE_HUMAN = 1
@@ -76,7 +79,9 @@ Namespace Framework.Transmission
         PLAYER_RACE_ICE_TROLL = 21
         PLAYER_RACE_WORGEN = 22
     End Enum
-    <Flags> Public Enum ChrClasses
+
+    <Flags>
+    Public Enum ChrClasses
         PLAYER_CLASS_ALL = 0
         PLAYER_CLASS_WARRIOR = 1
         PLAYER_CLASS_PALADIN = 2
@@ -89,6 +94,7 @@ Namespace Framework.Transmission
         PLAYER_CLASS_WARLOCK = 256
         PLAYER_CLASS_DRUID = 1024
     End Enum
+
     Public Enum ChrClassIds
         PLAYER_CLASS_ALL = 0
         PLAYER_CLASS_WARRIOR = 1
@@ -111,19 +117,22 @@ Namespace Framework.Transmission
             Dim spellsDt As DataTable = GetCreateInfoTable()
             For Each spellEntry In spellsDt.Rows
                 If TryInt(spellEntry(0)) = 0 Then
-                    newSpellList.Add(New Spell With
-                                     {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                    newSpellList.Add(
+                        New Spell With
+                                        {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
                     Continue For
                 End If
                 Dim raceMask As ChrRaces = TryInt(spellEntry(0))
                 If (raceMask And thisRaceBit) = thisRaceBit Then
-                    newSpellList.Add(New Spell With
-                                     {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                    newSpellList.Add(
+                        New Spell With
+                                        {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
                 End If
             Next
             player.Spells = newSpellList
             SetCharacterSet(player.SetIndex, player, account)
         End Sub
+
         Public Sub GetClassSpells(ByRef player As Character, ByVal account As Account)
             Dim thisClass As ChrClassIds = player.Cclass
             Dim thisClassBit As ChrClasses = thisClass
@@ -131,14 +140,16 @@ Namespace Framework.Transmission
             Dim spellsDt As DataTable = GetCreateInfoTable()
             For Each spellEntry In spellsDt.Rows
                 If TryInt(spellEntry(1)) = 0 Then
-                    newSpellList.Add(New Spell With
-                                     {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                    newSpellList.Add(
+                        New Spell With
+                                        {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
                     Continue For
                 End If
                 Dim classMask As ChrClasses = TryInt(spellEntry(1))
                 If (classMask And thisClassBit) = thisClassBit Then
-                    newSpellList.Add(New Spell With
-                                     {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                    newSpellList.Add(
+                        New Spell With
+                                        {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
                 End If
             Next
             player.Spells = newSpellList

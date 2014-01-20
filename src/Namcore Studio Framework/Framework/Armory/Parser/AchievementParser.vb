@@ -21,14 +21,13 @@
 '*      /Description:   Contains functions for loading character achievement information 
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Net
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Modules
+Imports System.Net
 
 Namespace Framework.Armory.Parser
-
     Public Class AchievementParser
         Public Sub LoadAchievements(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
             Dim client As New WebClient
@@ -56,7 +55,8 @@ Namespace Framework.Armory.Parser
                                 timeStamp = timeStamp.Remove(timeStamp.Length - 3, 3)
                             Catch tmpex As Exception
                                 LogAppend(
-                                    "Exception during timestamp splitting! - timeStamp/loopcounter/excounter: " & timeStamp &
+                                    "Exception during timestamp splitting! - timeStamp/loopcounter/excounter: " &
+                                    timeStamp &
                                     "/" & loopcounter.ToString & "/" &
                                     excounter.ToString() & " # Exception is: " & tmpex.ToString(),
                                     "AchievementParser_loadAchievements", False, True)
@@ -71,7 +71,8 @@ Namespace Framework.Armory.Parser
                         av.OwnerSet = setId
                         player.Achievements.Add(av)
                     Loop Until loopcounter = excounter
-                    LogAppend("Loaded " & loopcounter.ToString & " achievements!", "AchievementParser_loadAchievements", True)
+                    LogAppend("Loaded " & loopcounter.ToString & " achievements!", "AchievementParser_loadAchievements",
+                              True)
                     '// Saving changes to character
                     SetCharacterSet(setId, player, GetAccountSetBySetId(player.AccountSet))
                 End If

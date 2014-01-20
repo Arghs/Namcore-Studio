@@ -21,15 +21,15 @@
 '*      /Description:   Provides an interface to display character bank information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing.Imaging
+Imports NCFramework.My
 Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Functions
-Imports NCFramework
 Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Extension
-Imports libnc.Provider
 Imports System.Threading
+Imports libnc.Provider
 
 Namespace Forms.Character
     Public Class BankInterface
@@ -37,13 +37,16 @@ Namespace Forms.Character
         '// Declaration
         Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
         Public Event Completed As EventHandler(Of CompletedEventArgs)
+
         Delegate Sub AddLayoutControlDelegate(layout As FlowLayoutPanel, ctrl As Control)
+
         Dim _tmpImage As Image
         '// Declaration
 
         Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
             RaiseEvent Completed(Me, e)
         End Sub
+
         Public Sub PrepareBankInterface(ByVal setId As Integer)
             Hide()
             NewProcessStatus()
@@ -60,7 +63,8 @@ Namespace Forms.Character
             Dim trd As New Thread(AddressOf DoWork)
             trd.Start(GlobalVariables.currentViewedCharSet)
         End Sub
-        Private Sub DoWork(ByVal charSet As Framework.Modules.Character)
+
+        Private Sub DoWork(ByVal charSet As NCFramework.Framework.Modules.Character)
             For i = 39 To 66
                 Dim newItemPanel As New Panel
                 newItemPanel.Name = "bankitm_slot_" & i.ToString & "_panel"
@@ -76,7 +80,8 @@ Namespace Forms.Character
                 newItemPanel.Controls.Add(newItemPic)
                 newItemPic.Location = reference_itm_pic.Location
                 AddHandler newItemPic.MouseHover, AddressOf OnItem_MouseOver
-                BankLayoutPanel.BeginInvoke(New AddLayoutControlDelegate(AddressOf DelegateLayoutControlAdding), BankLayoutPanel, newItemPanel)
+                BankLayoutPanel.BeginInvoke(New AddLayoutControlDelegate(AddressOf DelegateLayoutControlAdding),
+                                            BankLayoutPanel, newItemPanel)
             Next i
             If Not GlobalVariables.currentViewedCharSet.InventoryZeroItems Is Nothing Then
                 For Each potCharBag As Item In GlobalVariables.currentViewedCharSet.InventoryZeroItems
@@ -85,30 +90,42 @@ Namespace Forms.Character
                         Case 67 To 73
                             For Each subctrl As Control In BackPanel.Controls
                                 If subctrl.Name.Contains((potCharBag.Slot - 66).ToString()) Then
-                                    If subctrl.Name.ToLower.Contains("panel") And subctrl.Name.ToLower.StartsWith("bag") Then
+                                    If subctrl.Name.ToLower.Contains("panel") And subctrl.Name.ToLower.StartsWith("bag") _
+                                        Then
                                         Dim bagPanel As Panel = subctrl
                                         bagPanel.BackColor = Getraritycolor(GetItemQualityByItemId(potCharBag.Id))
-                                        For Each potBagItem As Item In GlobalVariables.currentViewedCharSet.InventoryItems
+                                        For Each potBagItem As Item In _
+                                            GlobalVariables.currentViewedCharSet.InventoryItems
                                             If potBagItem.Bagguid = potCharBag.Guid Then
-                                                If potBagItem.Name Is Nothing Then potBagItem.Name = GetItemNameByItemId(potBagItem.Id, NCFramework.My.MySettings.Default.language)
-                                                If potBagItem.Image Is Nothing Then potBagItem.Image = GetItemIconById(potBagItem.Id, GlobalVariables.GlobalWebClient)
+                                                If potBagItem.Name Is Nothing Then _
+                                                    potBagItem.Name = GetItemNameByItemId(potBagItem.Id,
+                                                                                          MySettings.Default.language)
+                                                If potBagItem.Image Is Nothing Then _
+                                                    potBagItem.Image = GetItemIconById(potBagItem.Id,
+                                                                                       GlobalVariables.GlobalWebClient)
                                                 potCharBag.BagItems.Add(potBagItem)
                                             End If
                                         Next
                                         potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Id)
                                         bagPanel.Tag = potCharBag
                                         For Each myPic As PictureBox In subctrl.Controls
-                                            myPic.BackgroundImage = GetItemIconById(potCharBag.Id, GlobalVariables.GlobalWebClient)
+                                            myPic.BackgroundImage = GetItemIconById(potCharBag.Id,
+                                                                                    GlobalVariables.GlobalWebClient)
                                             myPic.Tag = potCharBag
                                         Next
                                     End If
                                 End If
                             Next
                         Case 39 To 66
-                            If potCharBag.Name Is Nothing Then potCharBag.Name = GetItemNameByItemId(potCharBag.Id, NCFramework.My.MySettings.Default.language)
-                            If potCharBag.Image Is Nothing Then potCharBag.Image = GetItemIconById(potCharBag.Id, GlobalVariables.GlobalWebClient)
-                            If potCharBag.Rarity = Nothing Then potCharBag.Rarity = GetItemQualityByItemId(potCharBag.Id)
-                            Dim entry As Control = BankLayoutPanel.Controls.Find("bankitm_slot_" & potCharBag.Slot.ToString & "_panel", False)(0)
+                            If potCharBag.Name Is Nothing Then _
+                                potCharBag.Name = GetItemNameByItemId(potCharBag.Id, MySettings.Default.language)
+                            If potCharBag.Image Is Nothing Then _
+                                potCharBag.Image = GetItemIconById(potCharBag.Id, GlobalVariables.GlobalWebClient)
+                            If potCharBag.Rarity = Nothing Then _
+                                potCharBag.Rarity = GetItemQualityByItemId(potCharBag.Id)
+                            Dim entry As Control =
+                                    BankLayoutPanel.Controls.Find("bankitm_slot_" & potCharBag.Slot.ToString & "_panel",
+                                                                  False)(0)
                             entry.BackColor = Getraritycolor(potCharBag.Rarity)
                             entry.Tag = potCharBag
                             InfoToolTip.SetToolTip(entry, potCharBag.Name)
@@ -142,8 +159,9 @@ Namespace Forms.Character
             layoutPanel.Controls.Add(ctrl)
             layoutPanel.Update()
             layoutPanel.Controls.SetChildIndex(layoutPanel.Controls(layoutPanel.Controls.Count - 1),
-                                                             1)
+                                               1)
         End Sub
+
         Private Sub PrepareCompleted() Handles Me.Completed
             CloseProcessStatus()
             Userwait.Close()
@@ -152,10 +170,11 @@ Namespace Forms.Character
         End Sub
 
         Private Sub OnItem_MouseOver(sender As Object, e As EventArgs)
-
         End Sub
 
-        Private Sub OnBag_MouseOver(sender As Object, e As EventArgs) Handles Bag7Pic.MouseEnter, bag6Pic.MouseEnter, bag5Pic.MouseEnter, bag4Pic.MouseEnter, bag3Pic.MouseEnter, bag2Pic.MouseEnter, bag1Pic.MouseEnter
+        Private Sub OnBag_MouseOver(sender As Object, e As EventArgs) _
+            Handles Bag7Pic.MouseEnter, bag6Pic.MouseEnter, bag5Pic.MouseEnter, bag4Pic.MouseEnter, bag3Pic.MouseEnter,
+                    bag2Pic.MouseEnter, bag1Pic.MouseEnter
             If Not sender.BackgroundImage Is Nothing Then
                 _tmpImage = sender.BackgroundImage
                 Application.DoEvents()
@@ -172,7 +191,9 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub OnBag_MouseLeave(sender As Object, e As EventArgs) Handles Bag7Pic.MouseLeave, bag6Pic.MouseLeave, bag5Pic.MouseLeave, bag4Pic.MouseLeave, bag3Pic.MouseLeave, bag2Pic.MouseLeave, bag1Pic.MouseLeave
+        Private Sub OnBag_MouseLeave(sender As Object, e As EventArgs) _
+            Handles Bag7Pic.MouseLeave, bag6Pic.MouseLeave, bag5Pic.MouseLeave, bag4Pic.MouseLeave, bag3Pic.MouseLeave,
+                    bag2Pic.MouseLeave, bag1Pic.MouseLeave
             If Not _tmpImage Is Nothing And Not sender.BackgroundImage Is Nothing Then
                 Dim picbox As PictureBox = sender
                 picbox.BackgroundImage = _tmpImage
@@ -182,8 +203,8 @@ Namespace Forms.Character
         End Sub
 
         Private Sub SetBrightness(ByVal brightness As Single, ByVal g As Graphics, ByVal img As Image,
-                                ByVal r As Rectangle,
-                                ByRef picbox As PictureBox)
+                                  ByVal r As Rectangle,
+                                  ByRef picbox As PictureBox)
             ' Brightness should be -1 (black) to 0 (neutral) to 1 (white)
             Dim colorMatrixVal As Single()() = { _
                                                    New Single() {1, 0, 0, 0, 0},
@@ -201,7 +222,9 @@ Namespace Forms.Character
             picbox.Refresh()
         End Sub
 
-        Private Sub BagOpen(sender As Object, e As EventArgs) Handles Bag7Pic.Click, bag6Pic.Click, bag5Pic.Click, bag4Pic.Click, bag3Pic.Click, bag2Pic.Click, bag1Pic.Click
+        Private Sub BagOpen(sender As Object, e As EventArgs) _
+            Handles Bag7Pic.Click, bag6Pic.Click, bag5Pic.Click, bag4Pic.Click, bag3Pic.Click, bag2Pic.Click,
+                    bag1Pic.Click
             Dim bag As Item = sender.tag
             If bag Is Nothing Then Exit Sub
             BagItemPanel.Controls.Clear()
@@ -232,6 +255,7 @@ Namespace Forms.Character
                 SetInventorySlot(itm, itm.Slot)
             Next
         End Sub
+
         Private Sub SetInventorySlot(ByVal itm As Item, ByVal slot As Integer)
             For Each itmctrl As Panel In BagItemPanel.Controls
                 If itmctrl.Name.Contains("_" & slot.ToString() & "_") Then
@@ -248,6 +272,7 @@ Namespace Forms.Character
                 End If
             Next
         End Sub
+
         Private Sub BankInterface_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             Hide()
             Application.DoEvents()

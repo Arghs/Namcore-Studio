@@ -20,14 +20,15 @@
 '*      /Filename:      SpellSkillInterface
 '*      /Description:   Provides an interface to display character reputation information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.Functions
+Imports NCFramework.My
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Functions
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Extension
-Imports libnc.Provider
 Imports System.Threading
+Imports libnc.Provider
 
 Namespace Forms.Character
     Public Class SpellSkillInterface
@@ -88,7 +89,7 @@ Namespace Forms.Character
                 For Each pSpell As Spell In GlobalVariables.currentViewedCharSet.Spells
                     If Not pSpell.id = 0 Then
                         If pSpell.name Is Nothing Then
-                            pSpell.Name = GetSpellNameBySpellId(pSpell.Id, NCFramework.My.MySettings.Default.language)
+                            pSpell.Name = GetSpellNameBySpellId(pSpell.Id, MySettings.Default.language)
                         End If
                         Dim itm As New ListViewItem({pSpell.id.ToString, pSpell.name})
                         itm.Tag = pSpell
@@ -100,7 +101,7 @@ Namespace Forms.Character
                 For Each pSkill As Skill In GlobalVariables.currentViewedCharSet.Skills
                     If Not pSkill.id = 0 Then
                         If pSkill.name Is Nothing Then
-                            pSkill.Name = GetSkillNameById(pSkill.Id, NCFramework.My.MySettings.Default.language)
+                            pSkill.Name = GetSkillNameById(pSkill.Id, MySettings.Default.language)
                         End If
                         Dim _
                             itm As _

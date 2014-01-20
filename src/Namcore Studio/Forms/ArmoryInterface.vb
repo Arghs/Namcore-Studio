@@ -22,7 +22,6 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
 Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.TemplateSystem
 Imports NCFramework.Framework.Modules
 Imports NCFramework.My
 Imports NCFramework.Framework.Functions
@@ -31,6 +30,7 @@ Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Armory
 Imports NamCore_Studio.Forms.Extension
 Imports System.Net
+Imports NCFramework.Framework.TemplateSystem
 
 Namespace Forms
     Public Class ArmoryInterface
@@ -192,7 +192,7 @@ Namespace Forms
         Private Sub load_bt_Click(sender As Object, e As EventArgs) Handles load_bt.Click
             LogAppend("Trigger load button click", "Armory_interface_load_bt_Click", False)
             GlobalVariables.lastregion = "armoryparser"
-            GlobalVariables.globChars.AccountSets = New List(Of NCFramework.Framework.Modules.Account)
+            GlobalVariables.globChars.AccountSets = New List(Of Account)
             GlobalVariables.trdrunnuing = True
             Dim urllst As List(Of String) =
                     (From lstitm As ListViewItem In char_lst.Items Select lstitm.SubItems(3).Text).ToList()

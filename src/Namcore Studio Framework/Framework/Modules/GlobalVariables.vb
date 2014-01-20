@@ -27,7 +27,6 @@ Imports System.Threading
 Imports System.Net
 
 Namespace Framework.Modules
-
     Public Class GlobalVariables
         ' ReSharper disable InconsistentNaming
         Public Shared DebugMode As Boolean = False

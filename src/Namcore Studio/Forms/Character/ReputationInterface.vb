@@ -20,11 +20,11 @@
 '*      /Filename:      ReputationInterface
 '*      /Description:   Provides an interface to display character reputation information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Functions
 Imports NCFramework.My
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Modules
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Logging
 Imports NamCore_Studio.Forms.Extension
 Imports libnc.Provider
@@ -79,7 +79,8 @@ Namespace Forms.Character
             End Try
             Dim newSet As NCFramework.Framework.Modules.Character = GlobalVariables.currentEditedCharSet
             For Each pRepu As Reputation In newSet.PlayerReputation
-                If (pRepu.Flags And Reputation.FlagEnum.FACTION_FLAG_VISIBLE) = Reputation.FlagEnum.FACTION_FLAG_VISIBLE Then
+                If (pRepu.Flags And Reputation.FlagEnum.FACTION_FLAG_VISIBLE) = Reputation.FlagEnum.FACTION_FLAG_VISIBLE _
+                    Then
                     Dim repPanel As New Panel
                     repPanel.Name = "rep" & pRepu.Faction.ToString() & "_pnl"
                     repPanel.Size = referencePanel.Size
@@ -117,7 +118,7 @@ Namespace Forms.Character
                     progressPanel.Location = reference_percentage_panel.Location
                     repPanel.Controls.Add(sliderBgPanel)
                     If pRepu.Max = 0 Then pRepu.Max = 1
-                    SetPanelPercentage(progressPanel, pRepu.Value / pRepu.Max)
+                    SetPanelPercentage(progressPanel, pRepu.Value/pRepu.Max)
                     sliderBgPanel.Location = reference_sliderbg_panel.Location
                     Dim slider As New TrackBar
                     slider.Name = "rep" & pRepu.Faction.ToString() & "_slider"
@@ -200,10 +201,10 @@ Namespace Forms.Character
                                 For Each subsubCtrl As Control In subCtrl.Controls
                                     If subsubCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_progress_pnl") _
                                         Then
-                                        setPanelPercentage(subsubCtrl, slider.Value / slider.Maximum)
+                                        setPanelPercentage(subsubCtrl, slider.Value/slider.Maximum)
                                         Dim loc As Integer =
-                                       GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
-                                           Function(rep) rep.Faction = pCtrl.Tag.Faction)
+                                                GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
+                                                    Function(rep) rep.Faction = pCtrl.Tag.Faction)
                                         pCtrl.Tag.value = slider.Value
                                         Dim thisRep As Reputation = pCtrl.Tag
                                         pCtrl.Tag = thisRep.UpdateStanding()
@@ -253,7 +254,7 @@ Namespace Forms.Character
 
         Private Sub SetPanelPercentage(ByRef repPanel As Panel, ByVal percentage As Decimal)
             Const lengthrange As Integer = PanelMaxLength - PanelMinLength
-            repPanel.Size = New Point(percentage * lengthrange + PanelMinLength, repPanel.Size.Height)
+            repPanel.Size = New Point(percentage*lengthrange + PanelMinLength, repPanel.Size.Height)
         End Sub
 
         Private Sub StandingChanged(sender As Object, e As EventArgs)
@@ -282,8 +283,8 @@ Namespace Forms.Character
             For Each pCtrl As Control In RepLayoutPanel.Controls
                 If pCtrl.Name.Contains("rep" & combo.Tag.faction.ToString() & "_pnl") Then
                     Dim loc As Integer =
-                                       GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
-                                            Function(rep) rep.Faction = pCtrl.Tag.Faction)
+                            GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
+                                Function(rep) rep.Faction = pCtrl.Tag.Faction)
                     pCtrl.Tag.value = 0
                     pCtrl.Tag.max = max
                     pCtrl.Tag.status = combo.SelectedIndex
@@ -325,10 +326,10 @@ Namespace Forms.Character
                                 Dim loc As Integer =
                                         GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
                                             Function(rep) rep.Faction = pCtrl.Tag.Faction)
-                                DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_slider", pCtrl), 
+                                DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_slider", pCtrl),
                                            TrackBar).
                                     Value = int
-                                DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_value_lbl", pCtrl), 
+                                DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_value_lbl", pCtrl),
                                            Label).
                                     Text = int.ToString() & "/" & pCtrl.Tag.max.ToString
                                 Dim xctrl As Control =
@@ -336,7 +337,7 @@ Namespace Forms.Character
                                                     pCtrl)
                                 Dim progresspanel As Control =
                                         findControl("rep" & pCtrl.Tag.faction.ToString() & "_progress_pnl", xctrl)
-                                setPanelPercentage(progresspanel, int / pCtrl.Tag.max)
+                                setPanelPercentage(progresspanel, int/pCtrl.Tag.max)
                                 pCtrl.Tag.value = int
                                 Dim thisRep As Reputation = pCtrl.Tag
                                 pCtrl.Tag = thisRep.UpdateStanding()
@@ -422,7 +423,7 @@ Namespace Forms.Character
                         sliderBgPanel.Controls.Add(progressPanel)
                         progressPanel.Location = reference_percentage_panel.Location
                         repPanel.Controls.Add(sliderBgPanel)
-                        setPanelPercentage(progressPanel, pRepu.value / pRepu.max)
+                        setPanelPercentage(progressPanel, pRepu.value/pRepu.max)
                         sliderBgPanel.Location = reference_sliderbg_panel.Location
                         Dim slider As New TrackBar
                         slider.Name = "rep" & pRepu.faction.ToString() & "_slider"

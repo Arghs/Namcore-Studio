@@ -22,13 +22,14 @@
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Database
-Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class InventoryCreation
-        Public Sub AddCharacterInventory(ByVal setId As Integer, ByVal account As Account, Optional charguid As Integer = 0)
+        Public Sub AddCharacterInventory(ByVal setId As Integer, ByVal account As Account,
+                                         Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
             LogAppend(
                 "Adding inventory items to character: " & charguid.ToString() & " // setId is : " & setId.ToString(),
@@ -45,7 +46,8 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                   ByVal account As Account)
             LogAppend("Adding inventory at arcemu", "InventoryCreation_createAtArcemu", False)
             Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim bagexist As List(Of String) = New List(Of String)
@@ -57,13 +59,13 @@ Namespace Framework.Transmission
                     Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
                         'Item is a bag and has to be registered
                         Dim newguid As String =
-                                                ((TryInt(
-                                                    runSQLCommand_characters_string(
-                                                        "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
-                                                        GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                                        GlobalVariables.targetStructure.itmins_guid_col(0) &
-                                                        "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                                        GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
+                                ((TryInt(
+                                    runSQLCommand_characters_string(
+                                        "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
+                                        GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
+                                        GlobalVariables.targetStructure.itmins_guid_col(0) &
+                                        "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
+                                        GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
 
                         runSQLCommand_characters_string(
                             "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
@@ -97,25 +99,27 @@ Namespace Framework.Transmission
                     Select Case inventoryItem.Slot
                         Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
                         Case Else
-                            inventoryItem.Container = TryInt(SplitString(bagstring, "oldguid:" & inventoryItem.Bagguid.ToString() & ";slot:",
-                                                     ";"))
+                            inventoryItem.Container = TryInt(SplitString(bagstring,
+                                                                         "oldguid:" & inventoryItem.Bagguid.ToString() &
+                                                                         ";slot:",
+                                                                         ";"))
                     End Select
                 End If
                 runSQLCommand_characters_string(
-                          "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
-                          GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
-                          GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
-                          GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", " &
-                          GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
-                          GlobalVariables.targetStructure.itmins_container_col(0) & ", " &
-                          GlobalVariables.targetStructure.itmins_slot_col(0) &
-                          " ) VALUES ( '" &
-                          newguid & "', '" &
-                          characterguid.ToString() & "', '" &
-                          inventoryItem.Id.ToString() & "', '" &
-                          inventoryItem.Count.ToString() & "', '" &
-                          inventoryItem.Container.ToString() & "', '" &
-                          inventoryItem.Slot.ToString() & "' )")
+                    "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
+                    GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
+                    GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
+                    GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", " &
+                    GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
+                    GlobalVariables.targetStructure.itmins_container_col(0) & ", " &
+                    GlobalVariables.targetStructure.itmins_slot_col(0) &
+                    " ) VALUES ( '" &
+                    newguid & "', '" &
+                    characterguid.ToString() & "', '" &
+                    inventoryItem.Id.ToString() & "', '" &
+                    inventoryItem.Count.ToString() & "', '" &
+                    inventoryItem.Container.ToString() & "', '" &
+                    inventoryItem.Slot.ToString() & "' )")
 
                 Dim mEnchCreation As New EnchantmentsCreation
                 mEnchCreation.SetItemEnchantments(targetSetId,
@@ -130,7 +134,8 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                    ByVal account As Account)
             LogAppend("Adding inventory at trinity", "InventoryCreation_createAtTrinity", False)
             Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim bagexist As List(Of String) = New List(Of String)
@@ -142,13 +147,13 @@ Namespace Framework.Transmission
                     Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
                         'Item is a bag and has to be registered
                         Dim newguid As String =
-                                                ((TryInt(
-                                                    runSQLCommand_characters_string(
-                                                        "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
-                                                        GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                                        GlobalVariables.targetStructure.itmins_guid_col(0) &
-                                                        "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                                        GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
+                                ((TryInt(
+                                    runSQLCommand_characters_string(
+                                        "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
+                                        GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
+                                        GlobalVariables.targetStructure.itmins_guid_col(0) &
+                                        "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
+                                        GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
 
                         runSQLCommand_characters_string(
                             "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
@@ -166,9 +171,11 @@ Namespace Framework.Transmission
                             GlobalVariables.targetStructure.invent_guid_col(0) & ", " &
                             GlobalVariables.targetStructure.invent_bag_col(0) &
                             ", `" & GlobalVariables.targetStructure.invent_slot_col(0) & "`, `" &
-                            GlobalVariables.targetStructure.invent_item_col(0) & "` ) VALUES ( '" & characterguid.ToString() &
+                            GlobalVariables.targetStructure.invent_item_col(0) & "` ) VALUES ( '" &
+                            characterguid.ToString() &
                             "', '" &
-                            inventoryItem.Bag.ToString() & "', '" & inventoryItem.Slot.ToString() & "', '" & newguid & "')")
+                            inventoryItem.Bag.ToString() & "', '" & inventoryItem.Slot.ToString() & "', '" & newguid &
+                            "')")
                         bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";newguid:" & newguid & ";"
                 End Select
             Next
@@ -225,14 +232,19 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                   ByVal account As Account)
             LogAppend("Adding inventory at mangos", "InventoryCreation_createAtMangos", False)
             Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim bagexist As List(Of String) = New List(Of String)
             Dim bagstring As String = ""
-            Const bagEnchString As String = "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
-            Dim enchString As String = "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
-            If GlobalVariables.targetExpansion < 3 Then enchString = "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
+            Const bagEnchString As String =
+                      "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
+            Dim enchString As String =
+                    "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
+            If GlobalVariables.targetExpansion < 3 Then _
+                enchString =
+                    "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
 
             bagexist.Clear()
             For Each inventoryItem As Item In player.InventoryZeroItems
@@ -241,13 +253,13 @@ Namespace Framework.Transmission
                     Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
                         'Item is a bag and has to be registered
                         Dim newguid As String =
-                                                ((TryInt(
-                                                    runSQLCommand_characters_string(
-                                                        "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
-                                                        GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                                        GlobalVariables.targetStructure.itmins_guid_col(0) &
-                                                        "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                                        GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
+                                ((TryInt(
+                                    runSQLCommand_characters_string(
+                                        "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
+                                        GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
+                                        GlobalVariables.targetStructure.itmins_guid_col(0) &
+                                        "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
+                                        GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
 
                         Dim parts() As String = bagEnchString.Split(" "c)
                         parts(0) = newguid

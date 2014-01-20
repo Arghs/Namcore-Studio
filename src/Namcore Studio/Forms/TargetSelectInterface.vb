@@ -24,7 +24,6 @@ Imports System.Linq
 Imports NCFramework.Framework.Modules
 
 Namespace Forms
-
     Public Class TargetSelectInterface
         '// Declaration
         Private _ptMouseDownLocation As Point
@@ -38,7 +37,8 @@ Namespace Forms
 
         Private Sub newtemplate_bt_Click(sender As Object, e As EventArgs) Handles newtemplate_bt.Click
             GlobalVariables.saveTemplateMode = True
-            For Each liveview As Form In From xform As Form In Application.OpenForms Where xform.Name = "LiveView" Select xform
+            For Each liveview As Form In _
+                From xform As Form In Application.OpenForms Where xform.Name = "LiveView" Select xform
                 DirectCast(liveview, LiveView).PrepareTemplateCreation()
             Next
             Close()
@@ -52,7 +52,8 @@ Namespace Forms
 
         Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
             If e.Button = MouseButtons.Left Then
-                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
     End Class

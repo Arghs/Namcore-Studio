@@ -20,17 +20,16 @@
 '*      /Filename:      UpdateAccountHandler
 '*      /Description:   Handles Account update requests
 '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Update
-
     Public Class UpdateAccountHandler
         Public Sub UpdateAccount(ByVal comparePlayer As Account, ByVal newPlayer As Account)
             LogAppend("Updating Account " & comparePlayer.Name, "UpdateAccountHandler_UpdateAccount", True)
-            If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then GlobalVariables.GlobalConnection.Open()
+            If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then _
+                GlobalVariables.GlobalConnection.Open()
             If GlobalVariables.GlobalConnection_Realm.State = ConnectionState.Closed Then _
                 GlobalVariables.GlobalConnection_Realm.Open()
             GlobalVariables.forceTargetConnectionUsage = False
@@ -48,7 +47,8 @@ Namespace Framework.Core.Update
                     runSQLCommand_realm_string(
                         "UPDATE `" & GlobalVariables.sourceStructure.account_tbl(0) & "` SET `" &
                         GlobalVariables.sourceStructure.acc_expansion_col(0) &
-                        "`='" & newPlayer.Expansion.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.acc_id_col(0) &
+                        "`='" & newPlayer.Expansion.ToString() & "' WHERE `" &
+                        GlobalVariables.sourceStructure.acc_id_col(0) &
                         "`='" & newPlayer.Id.ToString() & "'")
                 End If
                 If Not newPlayer.Locked = comparePlayer.Locked Then
@@ -56,7 +56,8 @@ Namespace Framework.Core.Update
                     runSQLCommand_realm_string(
                         "UPDATE `" & GlobalVariables.sourceStructure.account_tbl(0) & "` SET `" &
                         GlobalVariables.sourceStructure.acc_locked_col(0) &
-                        "`='" & newPlayer.Locked.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.acc_id_col(0) &
+                        "`='" & newPlayer.Locked.ToString() & "' WHERE `" &
+                        GlobalVariables.sourceStructure.acc_id_col(0) &
                         "`='" & newPlayer.Id.ToString() & "'")
                 End If
             Catch ex As Exception

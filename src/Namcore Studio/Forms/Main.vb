@@ -20,14 +20,14 @@
 '*      /Filename:      Main
 '*      /Description:   Main menu
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Text
-Imports System.Xml
 Imports NCFramework.Framework.Extension
-Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.My
 Imports NCFramework.Framework.Modules
+Imports System.Text
+Imports System.Xml
 Imports System.Net
 
 Namespace Forms
@@ -39,42 +39,55 @@ Namespace Forms
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter4.MouseEnter
             sender.backgroundimage = My.Resources.bt_close_light
         End Sub
+
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter4.MouseLeave
             sender.backgroundimage = My.Resources.bt_close
         End Sub
+
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter5.MouseEnter
             sender.backgroundimage = My.Resources.bt_minimize_light
         End Sub
+
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter5.MouseLeave
             sender.backgroundimage = My.Resources.bt_minimize
         End Sub
+
         Private Sub settingsBt_MouseEnter(sender As Object, e As EventArgs) Handles settings_pic.MouseEnter
             sender.backgroundimage = My.Resources.bt_settings_light
         End Sub
+
         Private Sub settingsBt_MouseLeave(sender As Object, e As EventArgs) Handles settings_pic.MouseLeave
             sender.backgroundimage = My.Resources.bt_settings
         End Sub
+
         Private Sub aboutBt_MouseEnter(sender As Object, e As EventArgs) Handles about_pic.MouseEnter
             sender.backgroundimage = My.Resources.bt_about_light
         End Sub
+
         Private Sub aboutBt_MouseLeave(sender As Object, e As EventArgs) Handles about_pic.MouseLeave
             sender.backgroundimage = My.Resources.bt_about
         End Sub
+
         Private Sub liveViewBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter
             sender.backgroundimage = My.Resources.bt_liveview_light
         End Sub
+
         Private Sub liveViewBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave
             sender.backgroundimage = Nothing
         End Sub
+
         Private Sub templateExplorerBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter2.MouseEnter
             sender.backgroundimage = My.Resources.bt_templateexplorer_light
         End Sub
+
         Private Sub templateExplorerBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter2.MouseLeave
             sender.backgroundimage = Nothing
         End Sub
+
         Private Sub armoryParserBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter3.MouseEnter
             sender.backgroundimage = My.Resources.bt_armoryparser_light
         End Sub
+
         Private Sub armoryParserBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter3.MouseLeave
             sender.backgroundimage = Nothing
         End Sub
@@ -83,7 +96,7 @@ Namespace Forms
             Userwait.Show()
             Application.DoEvents()
 #If CONFIG = "Debug" Then
-               GlobalVariables.DebugMode = True
+            GlobalVariables.DebugMode = True
 #End If
             If GlobalVariables.DebugMode = True Then
                 MySettings.Default.server_authdb = "arc_auth"
@@ -152,12 +165,16 @@ Namespace Forms
             End If
             MySettings.Default.language = "en" 'todo for testing only
             LogAppend("NamCore Studio " & My.Application.Info.Version.ToString() & " loaded", "Main_Main_Load", True)
-            Dim frameworkVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\NCFramework.dll")
+            Dim frameworkVersion As FileVersionInfo =
+                    FileVersionInfo.GetVersionInfo(Application.StartupPath + "\NCFramework.dll")
             Dim libncVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\libnc.dll")
-            Dim libncadvancedVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\libncadvanced.dll")
-            LogAppend("Using NCFramework.dll version " & frameworkVersion.FileVersion.ToString(), "Main_Main_Load", False)
+            Dim libncadvancedVersion As FileVersionInfo =
+                    FileVersionInfo.GetVersionInfo(Application.StartupPath + "\libncadvanced.dll")
+            LogAppend("Using NCFramework.dll version " & frameworkVersion.FileVersion.ToString(), "Main_Main_Load",
+                      False)
             LogAppend("Using libnc.dll version " & libncVersion.FileVersion.ToString(), "Main_Main_Load", False)
-            LogAppend("Using libncadvanced.dll version " & libncadvancedVersion.FileVersion.ToString(), "Main_Main_Load", False)
+            LogAppend("Using libncadvanced.dll version " & libncadvancedVersion.FileVersion.ToString(), "Main_Main_Load",
+                      False)
             LogAppend("System information:", "Main_Main_Load", False)
             LogAppend("/OS NAME: " & My.Computer.Info.OSFullName, "Main_Main_Load", False)
             LogAppend("/OS VERSION: " & My.Computer.Info.OSVersion, "Main_Main_Load", False)
@@ -166,7 +183,7 @@ Namespace Forms
             LogAppend("/SYSTEM VERSION: " & Environment.Version.ToString(), "Main_Main_Load", False)
             LogAppend("/PROCESSOR COUNT: " & (Environment.ProcessorCount).ToString(), "Main_Main_Load", False)
             LogAppend(
-                "/AVAILABLE PHYSICAL MEMORY: " & (My.Computer.Info.AvailablePhysicalMemory / 1000000000).ToString() &
+                "/AVAILABLE PHYSICAL MEMORY: " & (My.Computer.Info.AvailablePhysicalMemory/1000000000).ToString() &
                 " GB",
                 "Main_Main_Load", False)
             LogAppend(

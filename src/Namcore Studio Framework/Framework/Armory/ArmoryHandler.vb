@@ -21,18 +21,16 @@
 '*      /Description:   Contains functions for parsing character information from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Threading
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Extension
 Imports System.Net
 Imports System.Text
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Armory.Parser
 
 Namespace Framework.Armory
-
     Public Class ArmoryHandler
-
         '// Declaration
         Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
         Public Event Completed As EventHandler(Of CompletedEventArgs)
@@ -77,7 +75,8 @@ Namespace Framework.Armory
                     Dim realm As String = SplitString(armoryLink, "/character/", "/")
                     characterContext = characterContext.Replace("&#39;", "")
                     characterName = SplitString(armoryLink, "/" & realm & "/", "/")
-                    apiLink = "http://" & SplitString(armoryLink, "http://", ".battle") & ".battle.net/api/wow/character/" &
+                    apiLink = "http://" & SplitString(armoryLink, "http://", ".battle") &
+                              ".battle.net/api/wow/character/" &
                               SplitString(armoryLink, "/character/", "/") & "/" & characterName
                     Dim apiContext As String = client.DownloadString(apiLink)
                     setId += 1
@@ -101,9 +100,12 @@ Namespace Framework.Armory
                         Dim appearanceContext As String = client.DownloadString(apiLink & "?fields=appearance")
                         Dim appFace As String = Hex$(Long.Parse(SplitString(appearanceContext, """faceVariation"":", ",")))
                         Dim appSkin As String = Hex$(Long.Parse(SplitString(appearanceContext, """skinColor"":", ",")))
-                        Dim appHairStyle As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairVariation"":", ",")))
-                        Dim appHairColor As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairColor"":", ",")))
-                        Dim appFeatureVar As String = Hex$(Long.Parse(SplitString(appearanceContext, """featureVariation"":", ",")))
+                        Dim appHairStyle As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairVariation"":",
+                                                                                 ",")))
+                        Dim appHairColor As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairColor"":",
+                                                                                 ",")))
+                        Dim appFeatureVar As String = Hex$(Long.Parse(SplitString(appearanceContext,
+                                                                                  """featureVariation"":", ",")))
                         If appFace.ToString.Length = 1 Then appFace = 0 & appFace
                         If appSkin.ToString.Length = 1 Then appSkin = 0 & appSkin
                         If appHairStyle.ToString.Length = 1 Then appHairStyle = 0 & appHairStyle
@@ -120,7 +122,9 @@ Namespace Framework.Armory
                     player.FinishedQuests = SplitString(client.DownloadString(apiLink & "?fields=quests") & ",",
                                                         """quests"":[", "]}")
                     player.InventoryZeroItems = New List(Of Item)()
-                    player.InventoryZeroItems.Add(New Item With {.Id = 6948, .Count = 1, .Bag = 0, .Container = 0, .Slot = 23, .Guid = 0}) '// Adding hearthstone
+                    player.InventoryZeroItems.Add(New Item _
+                                                     With {.Id = 6948, .Count = 1, .Bag = 0, .Container = 0, .Slot = 23,
+                                                     .Guid = 0}) '// Adding hearthstone
                     player.SetIndex = setId
                     AddCharacterSet(setId, player, armoryAccount)
                     Dim mReputationParser As ReputationParser = New ReputationParser
@@ -137,7 +141,8 @@ Namespace Framework.Armory
                     SetAccountSet(armoryAccount.SetIndex, armoryAccount)
                     LogAppend("Character loaded!", "ArmoryHandler_DoLoad", True)
                 Catch ex As Exception
-                    LogAppend("Exception during character loading!: " & ex.ToString(), "ArmoryHandler_DoLoad", True, True)
+                    LogAppend("Exception during character loading!: " & ex.ToString(), "ArmoryHandler_DoLoad", True,
+                              True)
                 End Try
             Next
             LogAppend("All characters loaded!", "ArmoryHandler_DoLoad", True)

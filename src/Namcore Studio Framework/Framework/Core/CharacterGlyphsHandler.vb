@@ -21,8 +21,8 @@
 '*      /Description:   Contains functions for extracting information about the equipped 
 '*                      primary and secondary glyphs of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports libnc.Provider
@@ -174,8 +174,9 @@ Namespace Framework.Core
                     SetCharacterSet(tarSetId, player, account)
                 End If
             Catch ex As Exception
-                LogAppend("Error while loading secmajorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                          "CharacterGlyphsHandler_LoadAtArcemu", False, True)
+                LogAppend(
+                    "Error while loading secmajorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###",
+                    "CharacterGlyphsHandler_LoadAtArcemu", False, True)
             End Try
             Try
                 Dim parts() As String = secglyphstring.Split(","c)
@@ -190,8 +191,9 @@ Namespace Framework.Core
                     SetCharacterSet(tarSetId, player, account)
                 End If
             Catch ex As Exception
-                LogAppend("Error while loading secmajorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                          "CharacterGlyphsHandler_LoadAtArcemu", False, True)
+                LogAppend(
+                    "Error while loading secmajorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###",
+                    "CharacterGlyphsHandler_LoadAtArcemu", False, True)
             End Try
             Try
                 Dim parts() As String = secglyphstring.Split(","c)
@@ -206,8 +208,9 @@ Namespace Framework.Core
                     SetCharacterSet(tarsetId, player, account)
                 End If
             Catch ex As Exception
-                LogAppend("Error while loading secmajorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                          "CharacterGlyphsHandler_LoadAtArcemu", False, True)
+                LogAppend(
+                    "Error while loading secmajorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###",
+                    "CharacterGlyphsHandler_LoadAtArcemu", False, True)
             End Try
             Try
                 Dim parts() As String = secglyphstring.Split(","c)
@@ -222,8 +225,9 @@ Namespace Framework.Core
                     SetCharacterSet(tarsetId, player, account)
                 End If
             Catch ex As Exception
-                LogAppend("Error while loading secminorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                          "CharacterGlyphsHandler_LoadAtArcemu", False, True)
+                LogAppend(
+                    "Error while loading secminorglyph1! -> Exception is: ###START###" & ex.ToString() & "###END###",
+                    "CharacterGlyphsHandler_LoadAtArcemu", False, True)
             End Try
             Try
                 Dim parts() As String = secglyphstring.Split(","c)
@@ -238,8 +242,9 @@ Namespace Framework.Core
                     SetCharacterSet(tarsetId, player, account)
                 End If
             Catch ex As Exception
-                LogAppend("Error while loading secminorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                          "CharacterGlyphsHandler_LoadAtArcemu", False, True)
+                LogAppend(
+                    "Error while loading secminorglyph2! -> Exception is: ###START###" & ex.ToString() & "###END###",
+                    "CharacterGlyphsHandler_LoadAtArcemu", False, True)
             End Try
             Try
                 Dim parts() As String = secglyphstring.Split(","c)
@@ -254,8 +259,9 @@ Namespace Framework.Core
                     SetCharacterSet(tarsetId, player, account)
                 End If
             Catch ex As Exception
-                LogAppend("Error while loading secminorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                          "CharacterGlyphsHandler_LoadAtArcemu", False, True)
+                LogAppend(
+                    "Error while loading secminorglyph3! -> Exception is: ###START###" & ex.ToString() & "###END###",
+                    "CharacterGlyphsHandler_LoadAtArcemu", False, True)
             End Try
         End Sub
 
@@ -689,7 +695,8 @@ Namespace Framework.Core
                     End If
                 Catch ex As Exception
                     LogAppend(
-                        "Something went wrong while loading character Glyphs -> Exception is: ###START###" & ex.ToString() &
+                        "Something went wrong while loading character Glyphs -> Exception is: ###START###" &
+                        ex.ToString() &
                         "###END###", "CharacterGlyphsHandler_LoadAtMangos", True, True)
                 End Try
                 proccounter += 1

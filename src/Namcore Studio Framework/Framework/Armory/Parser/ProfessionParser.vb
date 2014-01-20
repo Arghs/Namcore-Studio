@@ -85,26 +85,31 @@ Namespace Framework.Armory.Parser
                             If recipes.Length > 3 Then
                                 Dim useRecipes As String() = recipes.Split(",")
                                 For i = 0 To useRecipes.Length - 1
-                                    pProf.Recipes.Add(New ProfessionSpell() _
+                                    pProf.Recipes.Add(
+                                        New ProfessionSpell() _
                                                          With {.SpellId = TryInt(useRecipes(i)), .Name = "",
                                                          .MinSkill = GetMinimumSkillBySpellId(TryInt(useRecipes(i)))})
                                 Next
                             End If
                             If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
-                            player.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = GetSkillSpellIdBySkillRank(pProf.Id, pProf.Rank)})
+                            player.Spells.Add(New Spell _
+                                                 With {.Active = 1, .Disabled = 0,
+                                                 .Id = GetSkillSpellIdBySkillRank(pProf.Id, pProf.Rank)})
                             Dim specialSpells() As Integer = GetSkillSpecialSpellIdBySkill(pProf.Id)
                             If Not specialSpells Is Nothing Then
                                 For i = 0 To specialSpells.Length - 1
                                     LogAppend("Adding special profession spell " & specialSpells(i).ToString,
-                                   "ProfessionParser_loadProfessions", True)
-                                    player.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = specialSpells(i)})
+                                              "ProfessionParser_loadProfessions", True)
+                                    player.Spells.Add(New Spell _
+                                                         With {.Active = 1, .Disabled = 0, .Id = specialSpells(i)})
                                 Next
                             End If
                             player.Professions.Add(pProf)
                             loopcounter += 1
                         End If
                     Loop Until loopcounter = excounter
-                    LogAppend("Loaded " & player.Professions.Count.ToString & " professions", "ProfessionParser_loadProfessions",
+                    LogAppend("Loaded " & player.Professions.Count.ToString & " professions",
+                              "ProfessionParser_loadProfessions",
                               True)
                     If usePfString = secondaryPf Then
                         Exit Do

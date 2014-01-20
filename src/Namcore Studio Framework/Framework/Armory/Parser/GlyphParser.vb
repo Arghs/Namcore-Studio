@@ -20,14 +20,14 @@
 '*      /Filename:      GlyphParser
 '*      /Description:   Contains functions for loading character glyphs from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Net
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Modules
+Imports System.Net
 Imports libnc.Provider
-Namespace Framework.Armory.Parser
 
+Namespace Framework.Armory.Parser
     Public Class GlyphParser
         Public Sub LoadGlyphs(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
             Dim client As New WebClient

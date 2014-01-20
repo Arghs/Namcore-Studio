@@ -25,9 +25,7 @@ Imports NCFramework.Framework.Modules
 Imports MySql.Data.MySqlClient
 
 Namespace Framework.Database
-
     Public Class DbStrucCheck
-
         '// Declaration
         Dim _tmpConn As New MySqlConnection
         Dim _tmpConnRealm As New MySqlConnection
@@ -565,10 +563,12 @@ Namespace Framework.Database
                     Select Case i
                         Case 1, counter + 1
                             LogAppend(
-                                "Column " & columnname(counter) & " not found in " & tablename(0) & "! -> No alternatives!",
+                                "Column " & columnname(counter) & " not found in " & tablename(0) &
+                                "! -> No alternatives!",
                                 "dbStruc_check_col_check")
-                            _dbReport = _dbReport & "// Column " & columnname(counter) & " does not exist in " & tablename(0) &
-                                       "!"
+                            _dbReport = _dbReport & "// Column " & columnname(counter) & " does not exist in " &
+                                        tablename(0) &
+                                        "!"
                     End Select
                 End Try
                 _tmpConn.Close()
@@ -651,10 +651,12 @@ Namespace Framework.Database
                     Select Case i
                         Case 1, counter + 1
                             LogAppend(
-                                "Column " & columnname(counter) & " not found in " & tablename(0) & "! -> No alternatives!",
+                                "Column " & columnname(counter) & " not found in " & tablename(0) &
+                                "! -> No alternatives!",
                                 "dbStruc_check_col_check")
-                            _dbReport = _dbReport & "// Column " & columnname(counter) & " does not exist in " & tablename(0) &
-                                       "!"
+                            _dbReport = _dbReport & "// Column " & columnname(counter) & " does not exist in " &
+                                        tablename(0) &
+                                        "!"
                     End Select
                 End Try
                 _tmpConnRealm.Close()

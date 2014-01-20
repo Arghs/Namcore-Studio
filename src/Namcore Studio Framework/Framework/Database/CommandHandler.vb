@@ -25,7 +25,6 @@ Imports NCFramework.Framework.Logging
 Imports MySql.Data.MySqlClient
 
 Namespace Framework.Database
-
     Public Module CommandHandler
         Public Function runSQLCommand_characters_string(ByVal command As String,
                                                         Optional useTargetConnection As Boolean = False) As String
@@ -44,7 +43,8 @@ Namespace Framework.Database
                 da.Fill(dt)
                 Dim lastcount As Integer = dt.Rows.Count
                 If Not lastcount = 0 Then
-                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string", False)
+                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string",
+                              False)
                     Dim readed As String = (dt.Rows(0).Item(0)).ToString
                     If readed = "DBnull" Then
                         LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string",
@@ -60,13 +60,15 @@ Namespace Framework.Database
                 End If
             Catch ex As MySqlException
                 LogAppend(
-                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" &
+                    ex.ToString() &
                     "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
                 Return ""
             End Try
         End Function
 
-        Public Function runSQLCommand_realm_string(ByVal command As String, Optional useTargetConnection As Boolean = False) _
+        Public Function runSQLCommand_realm_string(ByVal command As String,
+                                                   Optional useTargetConnection As Boolean = False) _
             As String
             LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_realm_string",
                       False)
@@ -87,7 +89,8 @@ Namespace Framework.Database
                     LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_realm_string", False)
                     Dim readed As String = (dt.Rows(0).Item(0)).ToString
                     If readed = "DBnull" Then
-                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
+                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string",
+                                  False)
                         Return ""
                     Else
                         LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_realm_string", False)
@@ -99,7 +102,8 @@ Namespace Framework.Database
                 End If
             Catch ex As MySqlException
                 LogAppend(
-                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" &
+                    ex.ToString() &
                     "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
                 Return ""
             End Try
@@ -117,7 +121,8 @@ Namespace Framework.Database
                 da.Fill(dt)
                 Dim lastcount As Integer = dt.Rows.Count
                 If Not lastcount = 0 Then
-                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string", False)
+                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string",
+                              False)
                     Dim readed As String = (dt.Rows(0).Item(0)).ToString
                     If readed = "DBnull" Then
                         LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string",
@@ -133,7 +138,8 @@ Namespace Framework.Database
                 End If
             Catch ex As MySqlException
                 LogAppend(
-                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" &
+                    ex.ToString() &
                     "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
                 Return ""
             End Try
@@ -154,7 +160,8 @@ Namespace Framework.Database
                     LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_realm_string", False)
                     Dim readed As String = (dt.Rows(0).Item(0)).ToString
                     If readed = "DBnull" Then
-                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
+                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string",
+                                  False)
                         Return ""
                     Else
                         LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_realm_string", False)
@@ -166,7 +173,8 @@ Namespace Framework.Database
                 End If
             Catch ex As MySqlException
                 LogAppend(
-                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" &
+                    ex.ToString() &
                     "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
                 Return ""
             End Try

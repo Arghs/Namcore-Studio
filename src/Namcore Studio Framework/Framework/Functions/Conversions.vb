@@ -21,12 +21,11 @@
 '*      /Description:   Includes frequently used functions for converting various objects
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
-Imports System.Text
 Imports System.IO
 Imports NCFramework.Framework.Logging
+Imports System.Text
 
 Namespace Framework.Functions
-
     Public Module Conversions
         Public Function ConvertListToString(ByVal list As List(Of String)) As String
             LogAppend("Converting a list to a string", "Conversions_ConvertListToString", False)
@@ -95,7 +94,8 @@ Namespace Framework.Functions
                     result = Convert.ToBase64String(bytes)
                 End Using
             Catch ex As Exception
-                LogAppend("Exception during converting process: " & ex.ToString(), "Conversions_ConvertImageToString", False,
+                LogAppend("Exception during converting process: " & ex.ToString(), "Conversions_ConvertImageToString",
+                          False,
                           True)
             End Try
             Return result
@@ -112,7 +112,8 @@ Namespace Framework.Functions
                     Dim bytes() As Byte = Convert.FromBase64String(base64String)
                     img = Image.FromStream(New MemoryStream(bytes))
                 Catch ex As Exception
-                    LogAppend("Exception during converting process: " & ex.ToString(), "Conversions_ConvertStringToImage",
+                    LogAppend("Exception during converting process: " & ex.ToString(),
+                              "Conversions_ConvertStringToImage",
                               False, True)
                 End Try
             End If

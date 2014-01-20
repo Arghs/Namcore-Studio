@@ -34,18 +34,23 @@ Namespace Forms
 
         Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
             If e.Button = MouseButtons.Left Then
-                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
+
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter4.MouseEnter
             sender.backgroundimage = My.Resources.bt_close_light
         End Sub
+
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter4.MouseLeave
             sender.backgroundimage = My.Resources.bt_close
         End Sub
+
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter3.MouseEnter
             sender.backgroundimage = My.Resources.bt_minimize_light
         End Sub
+
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter3.MouseLeave
             sender.backgroundimage = My.Resources.bt_minimize
         End Sub
@@ -62,7 +67,8 @@ Namespace Forms
 
         Private Sub header_MouseMove(sender As Object, e As MouseEventArgs) Handles header.MouseMove
             If e.Button = MouseButtons.Left Then
-                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
 
@@ -70,25 +76,30 @@ Namespace Forms
             Close()
         End Sub
 
-        Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) _
+            Handles LinkLabel1.LinkClicked
             Process.Start("https://github.com/megasus/Namcore-Studio")
         End Sub
 
-        Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+        Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) _
+            Handles LinkLabel2.LinkClicked
             Process.Start("http://namcorestudio.com/")
         End Sub
 
         Private Sub About_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             version_lbl.Text = "Version " & My.Application.Info.Version.ToString() & " (Indev)"
-            Dim frameworkVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\NCFramework.dll")
+            Dim frameworkVersion As FileVersionInfo =
+                    FileVersionInfo.GetVersionInfo(Application.StartupPath + "\NCFramework.dll")
             Dim libncVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\libnc.dll")
-            Dim libncadvancedVersion As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\libncadvanced.dll")
+            Dim libncadvancedVersion As FileVersionInfo =
+                    FileVersionInfo.GetVersionInfo(Application.StartupPath + "\libncadvanced.dll")
             framework_lbl.Text = "NCFramework: " & frameworkVersion.FileVersion.ToString()
             libnc_lbl.Text = "libnc: " & libncVersion.FileVersion.ToString()
             libncadvanced_lbl.Text = "libncadvanced: " & libncadvancedVersion.FileVersion.ToString()
         End Sub
 
-        Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
+        Private Sub LinkLabel3_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) _
+            Handles LinkLabel3.LinkClicked
             Process.Start("https://github.com/megasus/Namcore-Studio/issues?milestone=1&state=open")
         End Sub
     End Class

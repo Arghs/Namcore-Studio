@@ -20,13 +20,13 @@
 '*      /Filename:      AccountOverview
 '*      /Description:   Provides an interface to display account information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Core
-Imports NamCore_Studio.Forms.Character
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NamCore_Studio.Forms.Character
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Core
 Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
 Imports NCFramework.Framework.Core.Update
 
@@ -214,7 +214,8 @@ Namespace Forms
             End Select
         End Sub
 
-        Private Sub lockaccount_cb_CheckedChanged(sender As Object, e As EventArgs) Handles lockaccount_cb.CheckedChanged
+        Private Sub lockaccount_cb_CheckedChanged(sender As Object, e As EventArgs) _
+            Handles lockaccount_cb.CheckedChanged
             If _initComplete Then
                 changepanel.Location = New Point(4000, 4000)
                 changepanel.Tag.Visible = True

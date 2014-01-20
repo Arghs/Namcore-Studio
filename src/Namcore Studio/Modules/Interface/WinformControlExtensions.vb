@@ -24,30 +24,30 @@ Imports System.Runtime.CompilerServices
 
 Namespace Modules.Interface
     Module WinformControlExtensions
-        ''' <summary>
-        '''     Recursively find all child controls for a form
-        ''' </summary>
-        ''' <param name="startingContainer">
-        '''     <c>
-        '''         <seealso cref="System.Windows.Forms.Form">
-        '''             Form
-        '''         </seealso>
-        '''     </c>
-        '''     that is the starting container to check for children.
-        ''' </param>
-        ''' <returns>
-        '''     <c>
-        '''         <seealso cref="List(Of System.Windows.Forms.Control)">
-        '''             List(Of Control)
-        '''         </seealso>
-        '''     </c>
-        '''     that contains a reference to all child controls.
-        ''' </returns>
-        ''' <remarks>
-        '''     If you put this module in a separate namespace from your form, Visual Studio
-        '''     2010 does not recognize the extension to the form.
-        ''' </remarks>
-        <Extension()>
+    ''' <summary>
+    '''     Recursively find all child controls for a form
+    ''' </summary>
+    ''' <param name="startingContainer">
+    '''     <c>
+    '''         <seealso cref="System.Windows.Forms.Form">
+    '''             Form
+    '''         </seealso>
+    '''     </c>
+    '''     that is the starting container to check for children.
+    ''' </param>
+    ''' <returns>
+    '''     <c>
+    '''         <seealso cref="List(Of System.Windows.Forms.Control)">
+    '''             List(Of Control)
+    '''         </seealso>
+    '''     </c>
+    '''     that contains a reference to all child controls.
+    ''' </returns>
+    ''' <remarks>
+    '''     If you put this module in a separate namespace from your form, Visual Studio
+    '''     2010 does not recognize the extension to the form.
+    ''' </remarks>
+                                   <Extension()>
         Public Function FindAllChildren(ByRef startingContainer As Form) As List(Of Control)
             Dim children As New List(Of Control)
 
@@ -62,28 +62,28 @@ Namespace Modules.Interface
             Return children
         End Function
 
-
-        ''' <summary>
-        '''     Recursively find all child controls for a control
-        ''' </summary>
-        ''' <param name="startingContainer">
-        '''     <c>
-        '''         <seealso cref="System.Windows.Forms.Control">
-        '''             Control
-        '''         </seealso>
-        '''     </c>
-        '''     that is the starting container to check for children.
-        ''' </param>
-        ''' <returns>
-        '''     <c>
-        '''         <seealso cref="List(Of System.Windows.Forms.Control)">
-        '''             List(Of Control)
-        '''         </seealso>
-        '''     </c>
-        '''     that contains a reference to all child controls.
-        ''' </returns>
-        ''' <remarks></remarks>
-        <Extension()>
+                                   
+                                   ''' <summary>
+                                   '''     Recursively find all child controls for a control
+                                   ''' </summary>
+                                   ''' <param name="startingContainer">
+                                   '''     <c>
+                                   '''         <seealso cref="System.Windows.Forms.Control">
+                                   '''             Control
+                                   '''         </seealso>
+                                   '''     </c>
+                                   '''     that is the starting container to check for children.
+                                   ''' </param>
+                                   ''' <returns>
+                                   '''     <c>
+                                   '''         <seealso cref="List(Of System.Windows.Forms.Control)">
+                                   '''             List(Of Control)
+                                   '''         </seealso>
+                                   '''     </c>
+                                   '''     that contains a reference to all child controls.
+                                   ''' </returns>
+                                   ''' <remarks></remarks>
+                                   <Extension()>
         Public Function FindAllChildren(ByRef startingContainer As Control) As List(Of Control)
             Dim children As New List(Of Control)
 

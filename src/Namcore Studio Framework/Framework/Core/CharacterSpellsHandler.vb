@@ -68,7 +68,8 @@ Namespace Framework.Core
                             spl.Active = 1
                             spl.Disabled = 0
                             partscounter += 1
-                            LogAppend("Adding spellId: " & spl.Id.ToString(), "CharacterSpellsHandler_LoadAtArcemu", True)
+                            LogAppend("Adding spellId: " & spl.Id.ToString(), "CharacterSpellsHandler_LoadAtArcemu",
+                                      True)
                             Dim professionId As Integer = GetSkillIdBySpellId(spl.Id)
                             If professionId = 0 Then
                                 '// Common spell

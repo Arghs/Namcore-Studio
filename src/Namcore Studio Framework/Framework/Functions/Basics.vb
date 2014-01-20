@@ -21,26 +21,26 @@
 '*      /Description:   Includes basic and frequently used functions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
-Imports System.Net
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Modules
 Imports System.Windows.Forms
 Imports NCFramework.Framework.Forms
+Imports libnc
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports System.Net
 
 Namespace Framework.Functions
-
     Public Module Basics
-
         '// Declaration
         Public Tmpset As Integer
         '// Declaration
 
         Public Sub InitializeDbc()
             LogAppend("Initializing DBC files", "Basics_InitializeDBC", True)
-            libnc.Main.Initialize()
+            Main.Initialize()
         End Sub
 
-        Public Sub AddAccountSet(ByVal setId As Integer, ByVal player As Account, Optional globChars As GlobalCharVars = Nothing)
+        Public Sub AddAccountSet(ByVal setId As Integer, ByVal player As Account,
+                                 Optional globChars As GlobalCharVars = Nothing)
             Dim useChars As GlobalCharVars
             If GlobalVariables.forceTemplateCharVars = False Then
                 useChars = GlobalVariables.globChars
@@ -56,9 +56,9 @@ Namespace Framework.Functions
             Else
                 useChars.AccountSets.Add(player)
                 useChars.AccountSetsIndex = useChars.AccountSetsIndex & "[setId:" &
-                                                               setId.ToString & "|@" &
-                                                               (useChars.AccountSets.Count - 1).ToString &
-                                                               "]"
+                                            setId.ToString & "|@" &
+                                            (useChars.AccountSets.Count - 1).ToString &
+                                            "]"
             End If
         End Sub
 
@@ -72,7 +72,7 @@ Namespace Framework.Functions
             If useChars.AccountSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
                 'found
                 Return useChars.AccountSets(TryInt(SplitString(useChars.AccountSetsIndex,
-                                                                               "[setId:" & setId.ToString() & "|@", "]")))
+                                                               "[setId:" & setId.ToString() & "|@", "]")))
             Else
                 'not found
                 Return Nothing
@@ -93,7 +93,7 @@ Namespace Framework.Functions
             If useChars.AccountSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
                 'found
                 useChars.AccountSets(TryInt(SplitString(useChars.AccountSetsIndex,
-                                                                           "[setId:" & setId.ToString() & "|@", "]"))) =
+                                                        "[setId:" & setId.ToString() & "|@", "]"))) =
                     account
             Else
                 'not found
@@ -104,7 +104,7 @@ Namespace Framework.Functions
             If playerAccount.CharactersIndex.Contains("setId:" & setId.ToString() & "|") Then
                 'found
                 Return playerAccount.Characters(TryInt(SplitString(playerAccount.CharactersIndex,
-                                                                               "[setId:" & setId.ToString() & "|@", "]")))
+                                                                   "[setId:" & setId.ToString() & "|@", "]")))
             Else
                 'not found
                 Return Nothing
@@ -114,16 +114,16 @@ Namespace Framework.Functions
         Public Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character, ByVal playerAccount As Account)
             playerAccount.Characters.Add(player)
             playerAccount.CharactersIndex = playerAccount.CharactersIndex & "[setId:" &
-                                                           setId.ToString & "|@" &
-                                                           (playerAccount.Characters.Count - 1).ToString &
-                                                           "]"
+                                            setId.ToString & "|@" &
+                                            (playerAccount.Characters.Count - 1).ToString &
+                                            "]"
         End Sub
 
         Public Sub SetCharacterSet(ByVal setId As Integer, ByVal character As Character, ByVal account As Account)
             If account.CharactersIndex.Contains("setId:" & setId.ToString() & "|") Then
                 'found
                 account.Characters(TryInt(SplitString(account.CharactersIndex,
-                                                                           "[setId:" & setId.ToString() & "|@", "]"))) =
+                                                      "[setId:" & setId.ToString() & "|@", "]"))) =
                     character
             Else
                 'not found
@@ -144,11 +144,13 @@ Namespace Framework.Functions
 
         Public Sub RemoveCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
             If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
-            Dim itmIndex As Integer = TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & itm.Slot.ToString() & "|@",
+            Dim itmIndex As Integer = TryInt(SplitString(player.ArmorItemsIndex,
+                                                         "[slotnum:" & itm.Slot.ToString() & "|@",
                                                          "]"))
             player.ArmorItems.Item(itmIndex) = New Item With {.Id = 0, .Slot = itm.Slot, .Slotname = itm.Slotname}
-            player.ArmorItemsIndex = player.ArmorItemsIndex.Replace("[slot:" & itm.Slotname & "|@" & itmIndex.ToString & "]",
-                                                                    "")
+            player.ArmorItemsIndex =
+                player.ArmorItemsIndex.Replace("[slot:" & itm.Slotname & "|@" & itmIndex.ToString & "]",
+                                               "")
             player.ArmorItemsIndex =
                 player.ArmorItemsIndex.Replace("[slotnum:" & itm.Slot.ToString() & "|@" & itmIndex.ToString & "]", "")
         End Sub
@@ -157,7 +159,8 @@ Namespace Framework.Functions
             If _
                 player.ArmorItemsIndex.Contains("[slot:" & itm.Slotname & "|@") Or
                 player.ArmorItemsIndex.Contains("[slotnum:" & itm.Slot.ToString & "|@") Then
-                player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slot:" & itm.Slotname & "|@", "]"))) = itm
+                player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slot:" & itm.Slotname & "|@", "]"))) =
+                    itm
                 player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & itm.Slot.ToString & "|@", "]"))) _
                     = itm
             Else
@@ -171,14 +174,16 @@ Namespace Framework.Functions
                 player.ArmorItemsIndex.Contains("[slot:" & slot & "|@") Or
                 player.ArmorItemsIndex.Contains("[slotnum:" & slot & "|@") Then
                 If isint = True Then
-                    Dim result As Item = player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & slot & "|@", "]")))
+                    Dim result As Item = player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex,
+                                                                              "[slotnum:" & slot & "|@", "]")))
                     If result.Id = 0 Then
                         Return Nothing
                     Else
                         Return result
                     End If
                 Else
-                    Dim result As Item = player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slot:" & slot & "|@", "]")))
+                    Dim result As Item = player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex,
+                                                                              "[slot:" & slot & "|@", "]")))
                     If result.Id = 0 Then
                         Return Nothing
                     Else
@@ -200,7 +205,8 @@ Namespace Framework.Functions
 
         Public Sub SetCharacterGlyph(ByRef player As Character, ByVal glph As Glyph)
             If player.PlayerGlyphsIndex.Contains("[slot:" & glph.Slotname & "|@") Then
-                player.PlayerGlyphs(TryInt(SplitString(player.PlayerGlyphsIndex, "[slot:" & glph.Slotname & "|@", "]"))) =
+                player.PlayerGlyphs(TryInt(SplitString(player.PlayerGlyphsIndex, "[slot:" & glph.Slotname & "|@", "]"))) _
+                    =
                     glph
             Else
 
@@ -222,7 +228,8 @@ Namespace Framework.Functions
                 Return Nothing
             End If
             LogAppend(
-                "Splitting a string. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & start & "/-/" & ending,
+                "Splitting a string. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & start & "/-/" &
+                ending,
                 "Basics_splitString", False)
             Try
                 Dim quellcode As String = source
@@ -273,7 +280,8 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function ExecuteDataTableSearch(ByVal dt As DataTable, ByVal startfield As String, ByVal startvalue As String, ByVal targetfield As Integer) As String()
+        Public Function ExecuteDataTableSearch(ByVal dt As DataTable, ByVal startfield As String,
+                                               ByVal startvalue As String, ByVal targetfield As Integer) As String()
             Try
                 Dim foundRows() As DataRow
                 foundRows = dt.Select(startfield & " = '" & startvalue & "'")
@@ -295,17 +303,20 @@ Namespace Framework.Functions
         Public Sub CloseProcessStatus()
             If GlobalVariables.DebugMode = False Then
                 Try
-                    For Each myForm As Form In From myForm1 As Form In Application.OpenForms Where myForm1.Name = "ProcessStatus"
+                    For Each myForm As Form In _
+                        From myForm1 As Form In Application.OpenForms Where myForm1.Name = "ProcessStatus"
                         myForm.Close()
                         Application.DoEvents()
                     Next
-                Catch ex As Exception : End Try
+                Catch ex As Exception :
+                End Try
             End If
         End Sub
 
         Public Sub NewProcessStatus()
             Try
-                For Each myForm As Form In From myForm1 As Form In Application.OpenForms Where myForm1.Name = "ProcessStatus"
+                For Each myForm As Form In _
+                    From myForm1 As Form In Application.OpenForms Where myForm1.Name = "ProcessStatus"
                     If GlobalVariables.DebugMode = True Then
                         Exit Sub
                     Else
@@ -313,7 +324,8 @@ Namespace Framework.Functions
                         myForm.Close()
                     End If
                 Next
-            Catch ex As Exception : End Try
+            Catch ex As Exception :
+            End Try
             GlobalVariables.procStatus = New ProcessStatus
             GlobalVariables.procStatus.Show()
             Application.DoEvents()

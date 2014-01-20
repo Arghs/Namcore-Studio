@@ -22,21 +22,20 @@
 '*                      -List all accounts and characters
 '*                      -Editing/Deleting/Transferring accounts and characters
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.ComponentModel
 Imports System.Linq
 Imports System.IO
-Imports NCFramework.Framework.Extension
-Imports NamCore_Studio.Modules.Interface
 Imports NamCore_Studio.Forms.Character
 Imports NCFramework.Framework.Forms
 Imports NCFramework.Framework.Database
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Core
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Transmission
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.TemplateSystem
+Imports NCFramework.Framework.Core
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Extension
+Imports NamCore_Studio.Modules.Interface
 Imports System.Threading
+Imports NCFramework.Framework.Transmission
+Imports NCFramework.Framework.TemplateSystem
 
 Namespace Forms
     Public Class LiveView
@@ -49,13 +48,16 @@ Namespace Forms
         Private _ptMouseDownLocation As Point
         Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
         Public Event OnCoreLoaded As EventHandler(Of CompletedEventArgs)
+
         Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
+
         Dim _filePath As String = ""
         '// Declaration
 
         Protected Overridable Sub OnCoreCompleted(ByVal e As CompletedEventArgs)
             RaiseEvent OnCoreLoaded(Me, e)
         End Sub
+
         Public Structure Data2Thread
             Public Lite As Boolean
         End Structure
@@ -63,24 +65,31 @@ Namespace Forms
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter4.MouseEnter
             sender.backgroundimage = My.Resources.bt_close_light
         End Sub
+
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter4.MouseLeave
             sender.backgroundimage = My.Resources.bt_close
         End Sub
+
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter5.MouseEnter
             sender.backgroundimage = My.Resources.bt_minimize_light
         End Sub
+
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter5.MouseLeave
             sender.backgroundimage = My.Resources.bt_minimize
         End Sub
+
         Private Sub settingsBt_MouseEnter(sender As Object, e As EventArgs) Handles settings_pic.MouseEnter
             sender.backgroundimage = My.Resources.bt_settings_light
         End Sub
+
         Private Sub settingsBt_MouseLeave(sender As Object, e As EventArgs) Handles settings_pic.MouseLeave
             sender.backgroundimage = My.Resources.bt_settings
         End Sub
+
         Private Sub aboutBt_MouseEnter(sender As Object, e As EventArgs) Handles about_pic.MouseEnter
             sender.backgroundimage = My.Resources.bt_about_light
         End Sub
+
         Private Sub aboutBt_MouseLeave(sender As Object, e As EventArgs) Handles about_pic.MouseLeave
             sender.backgroundimage = My.Resources.bt_about
         End Sub
@@ -109,7 +118,7 @@ Namespace Forms
                 genSet += 1
                 Dim accountHandler As New AccountHandler
                 accountHandler.LoadAccount(TryInt(rowitem.Item(0)), genSet)
-                Dim account As NCFramework.Framework.Modules.Account = GetAccountSetBySetId(genSet)
+                Dim account As Account = GetAccountSetBySetId(genSet)
                 Dim str(4) As String
                 Dim itm As ListViewItem
                 str(0) = rowitem.Item(0)
@@ -236,7 +245,8 @@ Namespace Forms
                 cLitm = New ListViewItem(cLstr)
                 GlobalVariables.acctable.Rows.Add(str)
                 cLitm.Tag = player
-                LogAppend("Adding character to characterview using generated Guid " & genGuid.ToString, "LiveView_loadInformationSets_Armory", False)
+                LogAppend("Adding character to characterview using generated Guid " & genGuid.ToString,
+                          "LiveView_loadInformationSets_Armory", False)
                 characterview.Items.Add(cLitm)
                 characterview.EnsureVisible(characterview.Items.Count - 1)
                 'If Not player.SetIndex = genGuid Then Throw New Exception("Player SetId does not match generated SetIndex!")
@@ -735,7 +745,9 @@ Namespace Forms
                     CheckedCharactersToolStripMenuItem.Enabled = True
                     CheckedCharactersToolStripMenuItem1.Enabled = True
                 End If
-                If GlobalVariables.saveTemplateMode = False And Not GlobalVariables.TargetConnection.State = ConnectionState.Open Then
+                If _
+                    GlobalVariables.saveTemplateMode = False And
+                    Not GlobalVariables.TargetConnection.State = ConnectionState.Open Then
                     CheckedCharactersToolStripMenuItem1.Enabled = False
                     SelectedCharacterToolStripMenuItem1.Enabled = False
                 End If
@@ -759,7 +771,7 @@ Namespace Forms
                 Dim tnNew As TreeNode
 
                 Dim lstViewColl As ListView.SelectedListViewItemCollection =
-                        CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)), 
+                        CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)),
                               ListView.SelectedListViewItemCollection)
                 For Each lvItem As ListViewItem In lstViewColl
                     tnNew = New TreeNode(lvItem.Text)
@@ -787,7 +799,8 @@ Namespace Forms
                             End If
                         End With
                         GlobalVariables.charactersToCreate.Add(
-                            "{AccountId}" & destNode.Name & "{/AccountId}{setId}" & lvItem.Tag.setIndex.ToString & "{/setId}{AccountSet}" & lvItem.Tag.AccountSet & "{/AccountSet}")
+                            "{AccountId}" & destNode.Name & "{/AccountId}{setId}" & lvItem.Tag.setIndex.ToString &
+                            "{/setId}{AccountSet}" & lvItem.Tag.AccountSet & "{/AccountSet}")
 
                         ' Remove this line if you want to only copy items
                         ' from ListView and not move them
@@ -893,7 +906,9 @@ Namespace Forms
 
         Private Sub CheckedAccountsToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles CheckedAccountsToolStripMenuItem.Click
-            Dim temparray As List(Of Account) = (From checkedAccount As ListViewItem In accountview.CheckedItems Select acc = checkedAccount.Tag).Cast(Of Account)().ToList()
+            Dim temparray As List(Of Account) =
+                    (From checkedAccount As ListViewItem In accountview.CheckedItems Select acc = checkedAccount.Tag).
+                    Cast (Of Account)().ToList()
             TransAccounts(temparray)
         End Sub
 
@@ -957,9 +972,9 @@ Namespace Forms
         End Sub
 
         Public Sub transChars_specificacc(ByVal accounts As ArrayList)
-            For Each character() As String In GlobalVariables.trans_charlist
+            For Each character () As String In GlobalVariables.trans_charlist
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
-                    For Each account() As String In accounts
+                    For Each account () As String In accounts
                         If account(1).ToLower() = accountnode.Text.ToLower() Then
                             Dim newcharnode As New TreeNode
                             Dim newchar As New NCFramework.Framework.Modules.Character()
@@ -980,7 +995,8 @@ Namespace Forms
                             End With
                             accountnode.Nodes.Add(newcharnode)
                             GlobalVariables.charactersToCreate.Add(
-                                "{AccountId}" & accountnode.Name & "{/AccountId}{setId}" & character(2) & "{/setId}{AccountSet}" & newchar.AccountSet.ToString() & "{/AccountSet}")
+                                "{AccountId}" & accountnode.Name & "{/AccountId}{setId}" & character(2) &
+                                "{/setId}{AccountSet}" & newchar.AccountSet.ToString() & "{/AccountSet}")
 
                         End If
                     Next
@@ -990,7 +1006,7 @@ Namespace Forms
         End Sub
 
         Public Sub transChars_allacc()
-            For Each character() As String In GlobalVariables.trans_charlist
+            For Each character () As String In GlobalVariables.trans_charlist
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
                     Dim newcharnode As New TreeNode
                     Dim newchar As New NCFramework.Framework.Modules.Character()
@@ -1022,7 +1038,8 @@ Namespace Forms
         Private Sub Transfer_bt_Click(sender As Object, e As EventArgs) Handles Transfer_bt.Click
             Dim stat As New ProcessStatus
             Try
-                For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "Process_status"
+                For Each currentForm As Form In _
+                    From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "Process_status"
                     stat = DirectCast(currentForm, ProcessStatus)
                 Next
                 If Not stat Is Nothing Then
@@ -1063,7 +1080,7 @@ Namespace Forms
             Next
             PrepChartrans.Show()
         End Sub
-       
+
         Private Sub checkall_char_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) _
             Handles checkall_char.LinkClicked
             For Each xitem As ListViewItem In characterview.Items
@@ -1101,7 +1118,9 @@ Namespace Forms
                     SelectedAccountToolStripMenuItem.Enabled = True
                     SelectedAccountsToolStripMenuItem.Enabled = True
                 End If
-                If GlobalVariables.saveTemplateMode = False And Not GlobalVariables.TargetConnection.State = ConnectionState.Open Then
+                If _
+                    GlobalVariables.saveTemplateMode = False And
+                    Not GlobalVariables.TargetConnection.State = ConnectionState.Open Then
                     SelectedAccountToolStripMenuItem.Enabled = False
                     CheckedAccountsToolStripMenuItem.Enabled = False
                 End If
@@ -1190,9 +1209,9 @@ Namespace Forms
                     Size = New Size(e.Location.X, Size.Height)
                     Application.DoEvents()
                     mainpanel.Size = New Size(Size.Width - 10, mainpanel.Size.Height)
-                    Dim tmpwidth As Integer = (Size.Width / 1920) * 9
+                    Dim tmpwidth As Integer = (Size.Width/1920)*9
                     header.Location = New Point(tmpwidth, header.Location.Y)
-                    header.Size = New Size(Size.Width - (2 * tmpwidth), header.Size.Height)
+                    header.Size = New Size(Size.Width - (2*tmpwidth), header.Size.Height)
                     closepanel.Location = New Point(header.Size.Width - 125, closepanel.Location.Y)
                     Application.DoEvents()
 
@@ -1256,7 +1275,7 @@ Namespace Forms
                 Userwait.Show()
                 Dim saveChars As New GlobalCharVars
                 saveChars.AccountSetsIndex = ""
-                saveChars.AccountSets = New List(Of NCFramework.Framework.Modules.Account)()
+                saveChars.AccountSets = New List(Of Account)()
                 GlobalVariables.forceTemplateCharVars = False
                 GlobalVariables.templateCharVars = saveChars
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
@@ -1290,7 +1309,7 @@ Namespace Forms
                 Next z
             Next i
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCoreCompleted),
-                           New CompletedEventArgs())
+                                    New CompletedEventArgs())
         End Sub
 
         Private Sub OnCharacterLoaded() Handles Me.OnCoreLoaded
@@ -1311,7 +1330,7 @@ Namespace Forms
             Userwait.Close()
             MsgBox(ResourceHandler.GetUserMessage("templateFileCreated"), MsgBoxStyle.Information, "Info")
         End Sub
-     
+
         Private Sub highlighter4_Click(sender As Object, e As EventArgs) Handles highlighter4.Click
             back_bt.PerformClick()
         End Sub

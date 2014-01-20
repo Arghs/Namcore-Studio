@@ -47,24 +47,31 @@ Namespace Forms.Extension
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter2.MouseEnter
             sender.backgroundimage = My.Resources.bt_close_light
         End Sub
+
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter2.MouseLeave
             sender.backgroundimage = My.Resources.bt_close
         End Sub
+
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter
             sender.backgroundimage = My.Resources.bt_minimize_light
         End Sub
+
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave
             sender.backgroundimage = My.Resources.bt_minimize
         End Sub
+
         Private Sub settingsBt_MouseEnter(sender As Object, e As EventArgs) Handles settings_bt.MouseEnter
             sender.backgroundimage = My.Resources.bt_settings_light
         End Sub
+
         Private Sub settingsBt_MouseLeave(sender As Object, e As EventArgs) Handles settings_bt.MouseLeave
             sender.backgroundimage = My.Resources.bt_settings
         End Sub
+
         Private Sub aboutBt_MouseEnter(sender As Object, e As EventArgs) Handles about_bt.MouseEnter
             sender.backgroundimage = My.Resources.bt_about_light
         End Sub
+
         Private Sub aboutBt_MouseLeave(sender As Object, e As EventArgs) Handles about_bt.MouseLeave
             sender.backgroundimage = My.Resources.bt_about
         End Sub

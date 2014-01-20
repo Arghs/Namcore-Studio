@@ -27,7 +27,6 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
-
     Public Class QuestCreation
         Public Sub SetCharacterQuests(ByVal setId As Integer, ByVal account As Account, Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
@@ -45,7 +44,8 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                   ByVal account As Account)
             LogAppend("Creating at arcemu", "QuestCreation_createAtArcemu", False)
             Dim lastslot As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -67,7 +67,8 @@ Namespace Framework.Transmission
                                                    GlobalVariables.targetStructure.qst_quest_col(0) & ", " &
                                                    GlobalVariables.targetStructure.qst_slot_col(0) & ", `" &
                                                    GlobalVariables.targetStructure.qst_completed_col(0) & "`, `" &
-                                                   GlobalVariables.targetStructure.qst_explored_col(0) & "` ) VALUES ( '" &
+                                                   GlobalVariables.targetStructure.qst_explored_col(0) &
+                                                   "` ) VALUES ( '" &
                                                    characterguid.ToString() & "', '" &
                                                    qst.Id.ToString & "', '" & lastslot.ToString & "', '" &
                                                    qst.Status.ToString & "'," & " '" & explored & "')"
@@ -85,7 +86,8 @@ Namespace Framework.Transmission
                     characterguid.ToString() & "'", True)
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                    ByVal account As Account)
             LogAppend("Creating at Trinity", "QuestCreation_createAtTrinity", False)
             Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             If Not player.Quests Is Nothing Then
@@ -115,7 +117,8 @@ Namespace Framework.Transmission
                     Do
                         Dim questid As String = parts(startcounter)
                         runSQLCommand_characters_string(
-                            "INSERT IGNORE INTO " & GlobalVariables.targetStructure.character_queststatus_rewarded_tbl(0) &
+                            "INSERT IGNORE INTO " &
+                            GlobalVariables.targetStructure.character_queststatus_rewarded_tbl(0) &
                             " ( `" & GlobalVariables.targetStructure.qstre_guid_col(0) & "`, `" &
                             GlobalVariables.targetStructure.qstre_quest_col(0) &
                             "` ) VALUES ( '" & characterguid.ToString() & "', '" & questid & "' )", True)
@@ -126,7 +129,8 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                   ByVal account As Account)
             LogAppend("Creating at Mangos", "QuestCreation_createAtMangos", False)
             Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             If Not player.Quests Is Nothing Then

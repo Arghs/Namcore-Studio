@@ -25,7 +25,6 @@ Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
-
     Public Class EnchantmentsCreation
         Public Sub SetItemEnchantments(ByVal setId As Integer, ByVal itm As Item, ByVal itmGuid As Integer,
                                        ByVal core As String, ByVal dbstruc As DBStructure)
@@ -57,7 +56,8 @@ Namespace Framework.Transmission
                         runSQLCommand_characters_string(
                             "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
                             myStructure.itmins_enchantments_col(0) & "`='" &
-                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString & "'")
+                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString &
+                            "'")
                     End If
             End Select
         End Sub
@@ -84,7 +84,8 @@ Namespace Framework.Transmission
                         runSQLCommand_characters_string(
                             "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
                             myStructure.itmins_enchantments_col(0) & "`='" &
-                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString & "'")
+                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString &
+                            "'")
                     End If
             End Select
         End Sub
@@ -111,7 +112,8 @@ Namespace Framework.Transmission
                         runSQLCommand_characters_string(
                             "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
                             myStructure.itmins_enchantments_col(0) & "`='" &
-                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString & "'")
+                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString &
+                            "'")
                     End If
             End Select
         End Sub
@@ -138,7 +140,8 @@ Namespace Framework.Transmission
                         runSQLCommand_characters_string(
                             "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
                             myStructure.itmins_enchantments_col(0) & "`='" &
-                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString & "'")
+                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString &
+                            "'")
                     End If
             End Select
         End Sub

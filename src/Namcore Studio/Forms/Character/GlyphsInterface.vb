@@ -21,9 +21,10 @@
 '*      /Description:   Provides an interface to display character's glyphs
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing.Imaging
-Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
+Imports NCFramework.My
 Imports NCFramework.Framework.Functions
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
 Imports libnc.Provider
@@ -83,7 +84,7 @@ Namespace Forms.Character
                             DirectCast(itemControl, Label).Cursor = Cursors.IBeam
                             If _pubGlyph Is Nothing Then Continue For
                             If txt Is Nothing Then
-                                txt = GetItemNameByItemId(_pubGlyph.Id, NCFramework.My.MySettings.Default.language)
+                                txt = GetItemNameByItemId(_pubGlyph.Id, MySettings.Default.language)
                             End If
                             If Not txt Is Nothing Then
                                 If txt.Length >= 30 Then
@@ -159,7 +160,8 @@ Namespace Forms.Character
                             _tempSender = ctrl
                             _tmpSenderPic = sender
                             ctrl.Visible = False
-                            addpanel.Location = New Point(ctrl.Location.X + glyph_panel.Location.X, ctrl.Location.Y + glyph_panel.Location.Y)
+                            addpanel.Location = New Point(ctrl.Location.X + glyph_panel.Location.X,
+                                                          ctrl.Location.Y + glyph_panel.Location.Y)
                         End If
                     End If
                 Next
@@ -285,7 +287,8 @@ Namespace Forms.Character
                         End If
                     Next
                     If GlobalVariables.currentEditedCharSet Is Nothing Then
-                        GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                        GlobalVariables.currentEditedCharSet =
+                            DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                         Dim glyphIndex As Integer =
                                 TryInt(SplitString(GlobalVariables.currentViewedCharSet.PlayerGlyphsIndex,
                                                    "[slot:" & senderTag.Slotname & "|@", "]"))
@@ -328,7 +331,7 @@ Namespace Forms.Character
                         Else
                             Dim newGlyph As New Glyph
                             newGlyph.Id = id
-                            newGlyph.Name = GetItemNameByItemId(id.ToString, NCFramework.My.MySettings.Default.language)
+                            newGlyph.Name = GetItemNameByItemId(id.ToString, MySettings.Default.language)
                             newGlyph.Image = GetItemIconById(id, GlobalVariables.GlobalWebClient)
                             newGlyph.Spec = senderTag.Spec
                             newGlyph.Slotname = senderTag.Slotname
@@ -357,7 +360,8 @@ Namespace Forms.Character
 
                             Next
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                                GlobalVariables.currentEditedCharSet =
+                                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterGlyph(GlobalVariables.currentEditedCharSet, newGlyph)
                         End If
                     End If
@@ -393,7 +397,7 @@ Namespace Forms.Character
                 Else
                     Dim gly As New Glyph
                     gly.id = TryInt(TextBox2.Text)
-                    gly.Name = GetItemNameByItemId(gly.Id, NCFramework.My.MySettings.Default.language)
+                    gly.Name = GetItemNameByItemId(gly.Id, MySettings.Default.language)
                     gly.Image = GetItemIconById(gly.Id, GlobalVariables.GlobalWebClient)
                     gly.slotname = ""
                     Dim slot As String = ""
@@ -408,7 +412,8 @@ Namespace Forms.Character
                     senderPic.Tag = gly
                     senderPic.Refresh()
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                        GlobalVariables.currentEditedCharSet =
+                            DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     AddCharacterGlyph(GlobalVariables.currentEditedCharSet, gly)
                     senderPic.Image = gly.image
                     DirectCast(_tempSender, Label).Text = gly.name

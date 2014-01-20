@@ -20,27 +20,28 @@
 '*      /Filename:      SpellItemInformation
 '*      /Description:   Includes functions for locating certain item and spell information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Net
 Imports System.Drawing
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports System.Net
 Imports System.Resources
 Imports System.Reflection
 
 Namespace Framework.Functions
-
     Public Module MiscInfo
         Public Sub LoadWeaponType(ByVal itemid As Integer, ByVal tarSet As Integer, ByVal account As Account)
             If Not itemid = 0 Then
-                LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType", False)
+                LogAppend("Loading weapon type of Item " & itemid.ToString, "SpellItem_Information_LoadWeaponType",
+                          False)
                 Try
                     Dim client As New WebClient
                     client.CheckProxy()
                     Dim player As Character = GetCharacterSetBySetId(tarSet, account)
                     '// TODO
-                    Dim excerpt As String = SplitString(client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml"),
-                                "<subclass id=", "</subclass>")
+                    Dim excerpt As String =
+                            SplitString(client.DownloadString("http://www.wowhead.com/item=" & itemid.ToString & "&xml"),
+                                        "<subclass id=", "</subclass>")
                     Select Case True
                         Case excerpt.ToLower.Contains(" crossbow ") '5011
                             player.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = 5011})
@@ -100,8 +101,9 @@ Namespace Framework.Functions
                             player.Skills.Add(New Skill With {.Value = 100, .Max = 100, .Id = 136})
                     End Select
                 Catch ex As Exception
-                    LogAppend("Error while loading weapon type! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                              "SpellItem_Information_LoadWeaponType", False, True)
+                    LogAppend(
+                        "Error while loading weapon type! -> Exception is: ###START###" & ex.ToString() & "###END###",
+                        "SpellItem_Information_LoadWeaponType", False, True)
                 End Try
             Else
             End If
@@ -119,7 +121,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 45542
                         Case 425 To 499 : Return 74559
                         Case 500 To 600 : Return 110406
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 164 '// Blacksmithing
                     Select Case rank
@@ -131,7 +133,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 51300
                         Case 425 To 499 : Return 76666
                         Case 500 To 600 : Return 110396
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 165 '// Leatherworking
                     Select Case rank
@@ -143,7 +145,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 51302
                         Case 425 To 499 : Return 81199
                         Case 500 To 600 : Return 110423
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 171 '// Alchemy
                     Select Case rank
@@ -155,7 +157,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 51304
                         Case 425 To 499 : Return 80731
                         Case 500 To 600 : Return 105206
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 182 '// Herbalism
                     Select Case rank
@@ -167,7 +169,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 50300
                         Case 425 To 499 : Return 74519
                         Case 500 To 600 : Return 110413
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 185 '// Cooking
                     Select Case rank
@@ -179,7 +181,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 51296
                         Case 425 To 499 : Return 88053
                         Case 500 To 600 : Return 104381
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 186 '// Mining
                     Select Case rank
@@ -191,7 +193,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 50310
                         Case 425 To 499 : Return 74517
                         Case 500 To 600 : Return 102161
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 202 '// Engineering
                     Select Case rank
@@ -203,7 +205,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 51306
                         Case 425 To 499 : Return 82774
                         Case 500 To 600 : Return 110403
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 333 '// Enchanting
                     Select Case rank
@@ -215,7 +217,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 51313
                         Case 425 To 499 : Return 74258
                         Case 500 To 600 : Return 110400
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 356 '// Fishing
                     Select Case rank
@@ -227,7 +229,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 51294
                         Case 425 To 499 : Return 88868
                         Case 500 To 600 : Return 110410
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 393 '// Skinning
                     Select Case rank
@@ -239,7 +241,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 50305
                         Case 425 To 499 : Return 74522
                         Case 500 To 600 : Return 102216
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 755 '// Jewelcrafting
                     Select Case rank
@@ -251,7 +253,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 51311
                         Case 425 To 499 : Return 73318
                         Case 500 To 600 : Return 110420
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 773 '// Inscription
                     Select Case rank
@@ -263,7 +265,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 45363
                         Case 425 To 499 : Return 86008
                         Case 500 To 600 : Return 110417
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 794 '// Archaeology
                     Select Case rank
@@ -275,9 +277,9 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 89721
                         Case 425 To 499 : Return 89722
                         Case 500 To 600 : Return 110393
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
-                Case Else : Return -1
+                Case Else : Return - 1
             End Select
         End Function
 
@@ -399,7 +401,8 @@ Namespace Framework.Functions
                 Case "monk" : Return 10
                 Case "druid" : Return 11
                 Case Else _
-                    : LogAppend("Invalid Class name: " & classname & " // Returning nothing!", "Conversions_GetClassIdByName")
+                    : LogAppend("Invalid Class name: " & classname & " // Returning nothing!",
+                                "Conversions_GetClassIdByName")
                     Return Nothing
             End Select
         End Function

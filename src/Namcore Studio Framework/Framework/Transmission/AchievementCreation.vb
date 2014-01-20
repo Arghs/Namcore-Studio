@@ -28,7 +28,7 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Transmission
     Public Class AchievementCreation
         Public Sub AddCharacterAchievements(ByVal setId As Integer, ByVal account As Account,
-                                                   Optional charguid As Integer = 0)
+                                            Optional charguid As Integer = 0)
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Adding achievements for character: " & charguid.ToString() & " // setId is : " & setId.ToString(),

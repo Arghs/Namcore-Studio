@@ -167,10 +167,11 @@ Namespace Framework.Modules
             End If
             Try
                 Dim profIndex As Integer = Professions.FindIndex(Function(profession) profession.Id = skillId)
-                If Not profIndex = -1 Then
+                If Not profIndex = - 1 Then
                     If Professions(profIndex).Recipes Is Nothing Then _
                         Professions(profIndex).Recipes = New List(Of ProfessionSpell)()
-                    Professions(profIndex).Recipes.Add(New ProfessionSpell _
+                    Professions(profIndex).Recipes.Add(
+                        New ProfessionSpell _
                                                           With {.SpellId = spellId,
                                                           .MinSkill = GetMinimumSkillBySpellId(spellId)})
                 End If
@@ -185,13 +186,15 @@ Namespace Framework.Modules
                 Exit Sub
             End If
             Dim profIndex As Integer = Professions.FindIndex(Function(profession) profession.Id = skillId)
-            If Not profIndex = -1 Then
+            If Not profIndex = - 1 Then
                 If Professions(profIndex).Recipes Is Nothing Then
                     Professions(profIndex).Recipes = New List(Of ProfessionSpell)()
                     Exit Sub
                 End If
-                Dim recipeIndex As Integer = Professions(profIndex).Recipes.FindIndex(Function(professionSpell) professionSpell.SpellId = spellId)
-                If Not recipeIndex = -1 Then
+                Dim recipeIndex As Integer =
+                        Professions(profIndex).Recipes.FindIndex(
+                            Function(professionSpell) professionSpell.SpellId = spellId)
+                If Not recipeIndex = - 1 Then
                     Professions(profIndex).Recipes.RemoveAt(recipeIndex)
                 End If
             End If

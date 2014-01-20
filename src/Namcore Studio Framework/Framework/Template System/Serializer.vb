@@ -23,12 +23,12 @@
 Imports System.IO
 Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.IO.Compression
-Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Logging
 
 Namespace Framework.TemplateSystem
     Public Class Serializer
-        Public Function Serialize(Of T)(ByVal compression As Boolean, ByVal instance As T) As MemoryStream
+        Public Function Serialize (Of T)(ByVal compression As Boolean, ByVal instance As T) As MemoryStream
             Dim fs As Stream = New MemoryStream()
             Try
                 Dim bf As New BinaryFormatter
@@ -45,11 +45,11 @@ Namespace Framework.TemplateSystem
             End Try
         End Function
 
-        Public Function Serialize(Of T)(ByVal instance As T) As MemoryStream
+        Public Function Serialize (Of T)(ByVal instance As T) As MemoryStream
             Return Serialize(False, instance)
         End Function
 
-        Public Shared Function DeSerialize(Of T)(ByVal compression As Boolean,
+        Public Shared Function DeSerialize (Of T)(ByVal compression As Boolean,
                                                   ByVal serialString As String, ByVal defaultInstance As T) As T
             GlobalVariables.DeserializationSuccessfull = False
             If serialString = "" Then
@@ -75,20 +75,20 @@ Namespace Framework.TemplateSystem
             End Try
         End Function
 
-        Public Function DeSerialize(Of T)(ByVal serialString As String,
+        Public Function DeSerialize (Of T)(ByVal serialString As String,
                                            ByVal defaultInstance As T) As T
 
-            Return DeSerialize(Of T)(False, serialString, defaultInstance)
+            Return DeSerialize (Of T)(False, serialString, defaultInstance)
         End Function
 
-        Public Function DeSerialize(Of T As New)(ByVal serialString As String) As T
-            Return DeSerialize(Of T)(serialString, New T)
+        Public Function DeSerialize (Of T As New)(ByVal serialString As String) As T
+            Return DeSerialize (Of T)(serialString, New T)
         End Function
 
-        Public Function DeSerialize(Of T As New)(
+        Public Function DeSerialize (Of T As New)(
                                                   ByVal compression As Boolean, ByVal serialString As String) As T
 
-            Return DeSerialize(Of T)(compression, serialString, New T)
+            Return DeSerialize (Of T)(compression, serialString, New T)
         End Function
     End Class
 End Namespace

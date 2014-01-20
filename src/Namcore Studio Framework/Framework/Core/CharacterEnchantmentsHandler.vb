@@ -25,10 +25,12 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports libnc.Provider
+
 Namespace Framework.Core
     Public Class CharacterEnchantmentsHandler
         Public Sub HandleEnchantments(ByVal setId As Integer, ByVal account As Account)
-            LogAppend("Handling item enchantments for setId: " & setId, "CharacterEnchantmentsHandler_GetItemStats", True)
+            LogAppend("Handling item enchantments for setId: " & setId, "CharacterEnchantmentsHandler_GetItemStats",
+                      True)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     LoadAtArcemu(setId, account)
@@ -258,7 +260,8 @@ Namespace Framework.Core
                 End If
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while splitting enchantment string -> Exception is: ###START###" & ex.ToString() &
+                    "Something went wrong while splitting enchantment string -> Exception is: ###START###" &
+                    ex.ToString() &
                     "###END###", "CharacterEnchantmentsHandler_TrinitySplitEnchantString", False, True)
                 Return ""
             End Try
@@ -351,7 +354,8 @@ Namespace Framework.Core
                 End If
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while splitting enchantment string -> Exception is: ###START###" & ex.ToString() &
+                    "Something went wrong while splitting enchantment string -> Exception is: ###START###" &
+                    ex.ToString() &
                     "###END###", "CharacterEnchantmentsHandler_MangosSplitEnchantString", False, True)
                 Return ""
             End Try
@@ -386,8 +390,9 @@ Namespace Framework.Core
                     Return ""
                 End If
             Catch ex As Exception
-                LogAppend("Something went wrong while splitting gem string -> Exception is: ###START###" & ex.ToString() &
-                                   "###END###", "CharacterEnchantmentsHandler_MangosSplitGemString", False, True)
+                LogAppend(
+                    "Something went wrong while splitting gem string -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CharacterEnchantmentsHandler_MangosSplitGemString", False, True)
                 Return ""
             End Try
         End Function

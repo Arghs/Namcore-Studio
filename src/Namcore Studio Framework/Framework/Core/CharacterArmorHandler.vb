@@ -27,7 +27,6 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
-
     Public Class CharacterArmorHandler
         Public Sub GetCharacterArmor(ByVal charguid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character Armor for charguid: " & charguid & " and setId: " & setId,
@@ -80,11 +79,13 @@ Namespace Framework.Core
                         Dim itm As New Item
                         itm.Slotname = slotname
                         itm.Slot = itemslot
-                        itm.Id = itementry : itm.Guid = itemguid
+                        itm.Id = itementry
+                        itm.Guid = itemguid
                         Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
                         AddCharacterArmorItem(player, itm)
                         SetCharacterSet(tarSetId, player, account)
-                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId, GetAccountSetBySetId(player.AccountSet))
+                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId,
+                                                      GetAccountSetBySetId(player.AccountSet))
                         LoadWeaponType(itementry, tarSetId, account)
                     End If
                 Catch ex As Exception
@@ -109,7 +110,8 @@ Namespace Framework.Core
                                 GlobalVariables.sourceStructure.item_instance_tbl(0) & "`." &
                                 GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                 " WHERE `" & GlobalVariables.sourceStructure.character_inventory_tbl(0) & "`." &
-                                GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "' AND " &
+                                GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() &
+                                "' AND " &
                                 GlobalVariables.sourceStructure.invent_bag_col(0) &
                                 "='0' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " < '19'"
             Dim tempdt As DataTable = ReturnDataTable(cmd)
@@ -135,11 +137,13 @@ Namespace Framework.Core
                         Dim itm As New Item
                         itm.Slotname = slotname
                         itm.Slot = itemslot
-                        itm.Id = itementry : itm.Guid = itemguid
+                        itm.Id = itementry
+                        itm.Guid = itemguid
                         Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
                         AddCharacterArmorItem(player, itm)
                         SetCharacterSet(tarSetId, player, account)
-                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId, GetAccountSetBySetId(player.AccountSet))
+                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId,
+                                                      GetAccountSetBySetId(player.AccountSet))
                     End If
                 Catch ex As Exception
                     LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
@@ -184,11 +188,13 @@ Namespace Framework.Core
                         Dim itm As New Item
                         itm.Slotname = slotname
                         itm.Slot = itemslot
-                        itm.Id = itementry : itm.Guid = itemguid
+                        itm.Id = itementry
+                        itm.Guid = itemguid
                         Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
                         AddCharacterArmorItem(player, itm)
                         SetCharacterSet(tarSetId, player, account)
-                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId, GetAccountSetBySetId(player.AccountSet))
+                        mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId,
+                                                      GetAccountSetBySetId(player.AccountSet))
                         LoadWeaponType(itementry, tarSetId, account)
                     End If
                 Catch ex As Exception
@@ -200,6 +206,7 @@ Namespace Framework.Core
                 loopcounter += 1
             Loop Until loopcounter = entrycount
         End Sub
+
         Private Function GetItemSlotNameById(ByVal itemslot As Integer) As String
             Dim slotname As String
             Select Case itemslot

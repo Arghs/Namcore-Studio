@@ -21,14 +21,13 @@
 '*      /Description:   Includes functions for creating the equipped items of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Text.RegularExpressions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
+Imports System.Text.RegularExpressions
 
 Namespace Framework.Transmission
-
     Public Class ArmorCreation
         Public Sub AddCharacterArmor(ByVal setId As Integer, ByVal account As Account, Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
@@ -46,7 +45,8 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                   ByVal account As Account)
             LogAppend("Creating armor at arcemu", "ArmorCreation_createAtArcemu", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtArcemu", False)
             'Adding weapon specific spells and skills
@@ -108,7 +108,8 @@ Namespace Framework.Transmission
                 If _
                     ReturnResultCount(
                         "SELECT * FROM " & GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                        GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "='" & characterguid.ToString() & "' AND " &
+                        GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "='" & characterguid.ToString() &
+                        "' AND " &
                         GlobalVariables.targetStructure.itmins_slot_col(0) & " = '" & typeCounter.ToString() & "' AND " &
                         GlobalVariables.targetStructure.itmins_container_col(0) & "='-1'") > 0 Then
                     runSQLCommand_characters_string(
@@ -138,7 +139,7 @@ Namespace Framework.Transmission
                 End If
                 Dim mEnchCreator As New EnchantmentsCreation
                 mEnchCreator.SetItemEnchantments(targetSetId, itm, newItemGuid, GlobalVariables.targetCore,
-                                                  GlobalVariables.targetStructure)
+                                                 GlobalVariables.targetStructure)
                 typeCounter += 1
             Next
             If Not Regex.IsMatch(finalItemString, "^[0-9 ]+$") Then
@@ -146,7 +147,8 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                    ByVal account As Account)
             LogAppend("Creating armor at trinity", "ArmorCreation_createAtTrinity", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtTrinity", False)
             'Adding weapon specific spells and skills
@@ -219,7 +221,8 @@ Namespace Framework.Transmission
                     ReturnResultCount(
                         "SELECT * FROM " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " WHERE " &
                         GlobalVariables.targetStructure.invent_guid_col(0) & "='" & characterguid.ToString() & "' AND " &
-                        GlobalVariables.targetStructure.invent_slot_col(0) & " = '" & typeCounter.ToString() & "'") > 0 Then
+                        GlobalVariables.targetStructure.invent_slot_col(0) & " = '" & typeCounter.ToString() & "'") > 0 _
+                    Then
                     runSQLCommand_characters_string(
                         "DELETE FROM " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " WHERE " &
                         GlobalVariables.targetStructure.invent_guid_col(0) & " = '" & characterguid.ToString() &
@@ -230,7 +233,8 @@ Namespace Framework.Transmission
                         GlobalVariables.targetStructure.invent_guid_col(0) & ", " &
                         GlobalVariables.targetStructure.invent_slot_col(0) &
                         ", " & GlobalVariables.targetStructure.invent_item_col(0) & " ) VALUES ( '" &
-                        characterguid.ToString() & "', '" & typeCounter.ToString() & "', '" & newItemGuid.ToString() & "' )")
+                        characterguid.ToString() & "', '" & typeCounter.ToString() & "', '" & newItemGuid.ToString() &
+                        "' )")
                 Else
                     runSQLCommand_characters_string(
                         "INSERT INTO " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " ( " &
@@ -241,7 +245,7 @@ Namespace Framework.Transmission
                 End If
                 Dim mEnchCreator As New EnchantmentsCreation
                 mEnchCreator.SetItemEnchantments(targetSetId, itm, newItemGuid, GlobalVariables.targetCore,
-                                                  GlobalVariables.targetStructure)
+                                                 GlobalVariables.targetStructure)
                 typeCounter += 1
             Next
             If Not Regex.IsMatch(finalItemString, "^[0-9 ]+$") Then
@@ -254,7 +258,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.char_guid_col(0) & "='" & characterguid.ToString() & "')")
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer,
+                                   ByVal account As Account)
             LogAppend("Creating armor at mangos", "ArmorCreation_createAtMangos", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtMangos", False)
             'Adding weapon specific spells and skills
@@ -318,7 +323,8 @@ Namespace Framework.Transmission
                         "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
                         GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
                         GlobalVariables.targetStructure.itmins_ownerGuid_col(0) &
-                        ", " & GlobalVariables.targetStructure.itmins_data_col(0) & ") VALUES ( '" & newItemGuid.ToString() &
+                        ", " & GlobalVariables.targetStructure.itmins_data_col(0) & ") VALUES ( '" &
+                        newItemGuid.ToString() &
                         "', '" & characterguid.ToString() &
                         "', '" & newItemGuid.ToString() & " 1191182336 3 " & itemid.ToString() &
                         " 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 ')")
@@ -327,7 +333,8 @@ Namespace Framework.Transmission
                         "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
                         GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
                         GlobalVariables.targetStructure.itmins_ownerGuid_col(0) &
-                        ", " & GlobalVariables.targetStructure.itmins_data_col(0) & ") VALUES ( '" & newItemGuid.ToString() &
+                        ", " & GlobalVariables.targetStructure.itmins_data_col(0) & ") VALUES ( '" &
+                        newItemGuid.ToString() &
                         "', '" & characterguid.ToString() &
                         "', '" & newItemGuid.ToString() & " 1191182336 3 " & itemid.ToString() &
                         " 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 ')")
@@ -336,7 +343,8 @@ Namespace Framework.Transmission
                     ReturnResultCount(
                         "SELECT * FROM " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " WHERE " &
                         GlobalVariables.targetStructure.invent_guid_col(0) & "='" & characterguid.ToString() & "' AND " &
-                        GlobalVariables.targetStructure.invent_slot_col(0) & " = '" & typeCounter.ToString() & "'") > 0 Then
+                        GlobalVariables.targetStructure.invent_slot_col(0) & " = '" & typeCounter.ToString() & "'") > 0 _
+                    Then
                     runSQLCommand_characters_string(
                         "DELETE FROM " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " WHERE " &
                         GlobalVariables.targetStructure.invent_guid_col(0) & " = '" & characterguid.ToString() &
@@ -364,7 +372,7 @@ Namespace Framework.Transmission
                 End If
                 Dim mEnchCreator As New EnchantmentsCreation
                 mEnchCreator.SetItemEnchantments(targetSetId, itm, newItemGuid, GlobalVariables.targetCore,
-                                                  GlobalVariables.targetStructure)
+                                                 GlobalVariables.targetStructure)
                 typeCounter += 1
             Next
             If Not Regex.IsMatch(finalItemString, "^[0-9 ]+$") Then

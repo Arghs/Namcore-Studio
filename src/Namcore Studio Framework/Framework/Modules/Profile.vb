@@ -23,7 +23,6 @@
 Imports System.Drawing
 
 Namespace Framework.Modules
-
     <Serializable()>
     Public Class Item
         Public Id As Integer
@@ -130,7 +129,8 @@ Namespace Framework.Modules
         Public Max As Integer
         Public Status As Integer _
         '0=stranger; 1=acquaintance; 2=unfriendly; 3=neutral; 4=friendly; 5=honored; 6=revered; 7=exalted
-        <Flags> Public Enum FlagEnum
+        <Flags>
+        Public Enum FlagEnum
             FACTION_FLAG_INVISIBLE = 0
             FACTION_FLAG_VISIBLE = 1
             FACTION_FLAG_AT_WAR = 2
@@ -141,6 +141,7 @@ Namespace Framework.Modules
             FACTION_FLAG_RIVAL = 64
             FACTION_FLAG_SPECIAL = 128
         End Enum
+
         Public Sub New()
         End Sub
     End Class

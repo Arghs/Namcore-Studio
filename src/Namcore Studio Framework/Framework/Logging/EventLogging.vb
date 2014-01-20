@@ -21,16 +21,15 @@
 '*      /Description:   Handles logging of events and exceptions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
-Imports System.Text
-Imports NCFramework.Framework.Modules
 Imports System.Windows.Forms
+Imports NCFramework.Framework.Modules
+Imports System.Text
 
 Namespace Framework.Logging
-
     Public Module EventLogging
-
         '// Declaration
         Public Delegate Sub IncomingEventDelegate(ByVal [event] As String)
+
         Public Lastprogress As Integer
         Public Isbusy As Boolean = False
         Private _mUserOut As Boolean

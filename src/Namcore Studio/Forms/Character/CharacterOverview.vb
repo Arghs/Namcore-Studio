@@ -23,16 +23,17 @@
 Imports System.Linq
 Imports System.Drawing.Imaging
 Imports NamCore_Studio.Modules
-Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
+Imports NCFramework.My
 Imports NCFramework.Framework.Core
+Imports NCFramework.Framework.Functions
+Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
+Imports System.Threading
 Imports libnc.Provider
 Imports System.Net
-Imports System.Threading
 Imports NCFramework.Framework.Core.Update
 
 Namespace Forms.Character
@@ -56,10 +57,13 @@ Namespace Forms.Character
         Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
         Public Event PrepareCompleted As EventHandler(Of CompletedEventArgs)
         Public Event OnCoreLoaded As EventHandler(Of CompletedEventArgs)
+
         Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
+
         Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
             RaiseEvent PrepareCompleted(Me, e)
         End Sub
+
         Protected Overridable Sub OnCoreCompleted(ByVal e As CompletedEventArgs)
             RaiseEvent OnCoreLoaded(Me, e)
         End Sub
@@ -78,7 +82,8 @@ Namespace Forms.Character
             GlobalVariables.currentViewedCharSetId = setId
             GlobalVariables.currentViewedCharSet = GetCharacterSetBySetId(setId, account)
             _currentAccount = account
-            If GlobalVariables.currentViewedCharSet Is Nothing Or GlobalVariables.currentViewedCharSet.Loaded = False Then
+            If GlobalVariables.currentViewedCharSet Is Nothing Or GlobalVariables.currentViewedCharSet.Loaded = False _
+                Then
                 If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
                     '//Load charset
                     LogAppend("Loading character from database", "CharacterOverview_prepare_interface", True)
@@ -91,12 +96,14 @@ Namespace Forms.Character
             Goprep(setId, False)
             LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
         End Sub
+
         Private Sub LoadCharacter(ByVal setId As Integer)
             Dim mCoreHandler As New CoreHandler
             mCoreHandler.HandleLoadingRequests(_currentAccount, setId)
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCoreCompleted),
-                           New CompletedEventArgs())
+                                    New CompletedEventArgs())
         End Sub
+
         Private Sub OnCharacterLoaded() Handles Me.OnCoreLoaded
             GlobalVariables.currentViewedCharSet.Loaded = True
             SetCharacterSet(_currentSet, GlobalVariables.currentViewedCharSet, _currentAccount)
@@ -104,11 +111,13 @@ Namespace Forms.Character
             Goprep(_currentSet, False)
             LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
         End Sub
+
         Private Sub OnCompleted() Handles Me.PrepareCompleted
             Show()
             Userwait.Close()
             CloseProcessStatus()
         End Sub
+
         Private Sub Goprep(ByVal setId As Integer, ByVal nxt As Boolean)
             _tmpSetId = setId
             _controlLst = New List(Of Control)
@@ -120,7 +129,8 @@ Namespace Forms.Character
             gender_lbl.Text = GetGenderNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Gender)
             Dim zeroBagItems As New List(Of Item)
             If Not DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems Is Nothing Then
-                For Each potCharBag As Item In DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems
+                For Each potCharBag As Item In _
+                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems
                     potCharBag.BagItems = New List(Of Item)()
                     Select Case potCharBag.Slot
                         Case 19, 20, 21, 22
@@ -129,25 +139,34 @@ Namespace Forms.Character
                                     If subctrl.Name.ToLower.Contains("panel") Then
                                         Dim bagPanel As Panel = subctrl
                                         bagPanel.BackColor = GetItemQualityColor(GetItemQualityByItemId(potCharBag.Id))
-                                        For Each potBagItem As Item In DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryItems
+                                        For Each potBagItem As Item In _
+                                            DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).
+                                                InventoryItems
                                             If potBagItem.Bagguid = potCharBag.Guid Then
-                                                If potBagItem.Name Is Nothing Then potBagItem.Name = GetItemNameByItemId(potBagItem.Id, NCFramework.My.MySettings.Default.language)
-                                                If potBagItem.Image Is Nothing Then potBagItem.Image = GetItemIconById(potBagItem.Id, GlobalVariables.GlobalWebClient)
+                                                If potBagItem.Name Is Nothing Then _
+                                                    potBagItem.Name = GetItemNameByItemId(potBagItem.Id,
+                                                                                          MySettings.Default.language)
+                                                If potBagItem.Image Is Nothing Then _
+                                                    potBagItem.Image = GetItemIconById(potBagItem.Id,
+                                                                                       GlobalVariables.GlobalWebClient)
                                                 potCharBag.BagItems.Add(potBagItem)
                                             End If
                                         Next
                                         potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Id)
                                         bagPanel.Tag = potCharBag
                                         For Each myPic As PictureBox In subctrl.Controls
-                                            myPic.BackgroundImage = GetItemIconById(potCharBag.Id, GlobalVariables.GlobalWebClient)
+                                            myPic.BackgroundImage = GetItemIconById(potCharBag.Id,
+                                                                                    GlobalVariables.GlobalWebClient)
                                             myPic.Tag = potCharBag
                                         Next
                                     End If
                                 End If
                             Next
                         Case 23 To 38
-                            If potCharBag.Name Is Nothing Then potCharBag.Name = GetItemNameByItemId(potCharBag.Id, NCFramework.My.MySettings.Default.language)
-                            If potCharBag.Image Is Nothing Then potCharBag.Image = GetItemIconById(potCharBag.Id, GlobalVariables.GlobalWebClient)
+                            If potCharBag.Name Is Nothing Then _
+                                potCharBag.Name = GetItemNameByItemId(potCharBag.Id, MySettings.Default.language)
+                            If potCharBag.Image Is Nothing Then _
+                                potCharBag.Image = GetItemIconById(potCharBag.Id, GlobalVariables.GlobalWebClient)
                             zeroBagItems.Add(potCharBag)
                     End Select
                 Next
@@ -223,7 +242,9 @@ Namespace Forms.Character
 
                             End If
                         Case TypeOf itemControl Is PictureBox
-                            If itemControl.Name.ToLower.Contains("_pic") And Not itemControl.Name.ToLower.Contains("gem") Then
+                            If _
+                                itemControl.Name.ToLower.Contains("_pic") And
+                                Not itemControl.Name.ToLower.Contains("gem") Then
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_pic"))
                                 DirectCast(itemControl, PictureBox).Image = LoadInfo(setId, slot, 2)
                                 If DirectCast(itemControl, PictureBox).Image Is Nothing Then _
@@ -243,11 +264,14 @@ Namespace Forms.Character
                                     End If
                                     Select Case gem
                                         Case 1
-                                            If Not _pubItm.Socket1Name Is Nothing Then InfoToolTip.SetToolTip(itemControl, _pubItm.Socket1Name)
+                                            If Not _pubItm.Socket1Name Is Nothing Then _
+                                                InfoToolTip.SetToolTip(itemControl, _pubItm.Socket1Name)
                                         Case 2
-                                            If Not _pubItm.Socket2Name Is Nothing Then InfoToolTip.SetToolTip(itemControl, _pubItm.Socket2Name)
+                                            If Not _pubItm.Socket2Name Is Nothing Then _
+                                                InfoToolTip.SetToolTip(itemControl, _pubItm.Socket2Name)
                                         Case 3
-                                            If Not _pubItm.Socket3Name Is Nothing Then InfoToolTip.SetToolTip(itemControl, _pubItm.Socket3Name)
+                                            If Not _pubItm.Socket3Name Is Nothing Then _
+                                                InfoToolTip.SetToolTip(itemControl, _pubItm.Socket3Name)
                                     End Select
                                 Else
 
@@ -257,7 +281,8 @@ Namespace Forms.Character
                             If itemControl.Name.ToLower.EndsWith("color") Then
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_color"))
                                 DirectCast(itemControl, Panel).BackColor = LoadInfo(setId, slot, 6)
-                                If _pubItm Is Nothing Then DirectCast(itemControl, Panel).BackColor = SystemColors.ActiveBorder
+                                If _pubItm Is Nothing Then _
+                                    DirectCast(itemControl, Panel).BackColor = SystemColors.ActiveBorder
                                 DirectCast(itemControl, Panel).Tag = _pubItm
                             End If
 
@@ -266,25 +291,26 @@ Namespace Forms.Character
                 Application.DoEvents()
                 _loadComplete = True
                 ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
-                             New CompletedEventArgs())
+                                        New CompletedEventArgs())
             Catch ex As Exception
                 LogAppend("Exception occoured: " & ex.ToString, "CharacterOverview_Goprep", True)
                 _loadComplete = True
                 ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
-                             New CompletedEventArgs())
+                                        New CompletedEventArgs())
             End Try
         End Sub
 
         Private Function LoadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer)
             LogAppend("Loading info for slot " & slot.ToString, "CharacterOverview_LoadInfo", True)
             _pubItm = New Item
-            Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet, _currentAccount), slot.ToString, True)
+            Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet, _currentAccount), slot.ToString,
+                                                    True)
             _pubItm = itm
             If itm Is Nothing Then Return Nothing
             Select Case infotype
                 Case 0
                     If itm.Name Is Nothing Then
-                        itm.Name = GetItemNameByItemId(itm.Id, NCFramework.My.MySettings.Default.language)
+                        itm.Name = GetItemNameByItemId(itm.Id, MySettings.Default.language)
                     End If
                     Return itm.Name
                 Case 1
@@ -367,7 +393,6 @@ Namespace Forms.Character
                 _tempValue = TextBox1.Text
             Catch
             End Try
-
         End Sub
 
         Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
@@ -384,7 +409,8 @@ Namespace Forms.Character
 
                         Else
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                                GlobalVariables.currentEditedCharSet =
+                                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             GlobalVariables.currentEditedCharSet.Name = TextBox1.Text
                             senderLabel.Text = TextBox1.Text
                         End If
@@ -397,7 +423,8 @@ Namespace Forms.Character
 
                             Else
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                    GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                                    GlobalVariables.currentEditedCharSet =
+                                        DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                                 GlobalVariables.currentEditedCharSet.Level = newlvl
                                 senderLabel.Text = TextBox1.Text
                             End If
@@ -453,7 +480,8 @@ Namespace Forms.Character
                             itm.EnchantmentName = itemname
                             senderLabel.Tag = itm
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                                GlobalVariables.currentEditedCharSet =
+                                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         ElseIf foundspell = True Then
                             Dim itm As Item = senderLabel.Tag
@@ -463,13 +491,15 @@ Namespace Forms.Character
                             itm.EnchantmentName = spellname
                             senderLabel.Tag = itm
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                                GlobalVariables.currentEditedCharSet =
+                                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         Else
 
                         End If
                     Else
-                        If Not GetItemInventorySlotByItemId(_tempSender.tag.Guid) = GetItemInventorySlotByItemId(Id) Then
+                        If Not GetItemInventorySlotByItemId(_tempSender.tag.Guid) = GetItemInventorySlotByItemId(Id) _
+                            Then
                             MsgBox(ResourceHandler.GetUserMessage("itemclassinvalGuid"), MsgBoxStyle.Critical,
                                    ResourceHandler.GetUserMessage("Error"))
                         Else
@@ -506,7 +536,8 @@ Namespace Forms.Character
                                     If ctrl.Tag Is Nothing Then Continue For
                                     If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
                                         If ctrl.Name.ToLower.EndsWith("color") Then
-                                            DirectCast(ctrl, Panel).BackColor = GetItemQualityColor(senderLabel.Tag.rarity)
+                                            DirectCast(ctrl, Panel).BackColor =
+                                                GetItemQualityColor(senderLabel.Tag.rarity)
                                             DirectCast(ctrl, Panel).Tag = senderLabel.Tag
                                         End If
                                     End If
@@ -521,7 +552,8 @@ Namespace Forms.Character
 
                             Next
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                                GlobalVariables.currentEditedCharSet =
+                                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         End If
                     End If
@@ -532,7 +564,7 @@ Namespace Forms.Character
             senderLabel.Visible = True
         End Sub
 
-       Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
             'Detele item
             Dim newPoint As New Point
             Dim senderLabel As Label = _tempSender
@@ -581,7 +613,8 @@ Namespace Forms.Character
                             End If
                         Next
                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                            GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                            GlobalVariables.currentEditedCharSet =
+                                DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                         RemoveCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         senderLabel.Text = Nothing
                         senderLabel.Tag = Nothing
@@ -596,7 +629,8 @@ Namespace Forms.Character
         End Sub
 
         Private Sub race_lbl_Click(sender As Object, e As EventArgs) Handles race_lbl.Click
-            racepanel.Location = New Point(sender.location.x + +GroupBox1.Location.X, sender.location.y + GroupBox1.Location.Y)
+            racepanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+                                           sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
             newpoint.Y = 4000
@@ -614,7 +648,8 @@ Namespace Forms.Character
         End Sub
 
         Private Sub class_lbl_Click(sender As Object, e As EventArgs) Handles class_lbl.Click
-            classpanel.Location = New Point(sender.location.x + +GroupBox1.Location.X, sender.location.y + GroupBox1.Location.Y)
+            classpanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+                                            sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
             newpoint.Y = 4000
@@ -650,7 +685,8 @@ Namespace Forms.Character
         End Sub
 
         Private Sub level_lbl_Click(sender As Object, e As EventArgs) Handles level_lbl.Click
-            changepanel.Location = New Point(sender.location.x + +GroupBox1.Location.X, sender.location.y + GroupBox1.Location.Y)
+            changepanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+                                             sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
             newpoint.Y = 4000
@@ -668,7 +704,8 @@ Namespace Forms.Character
         End Sub
 
         Private Sub gender_lbl_Click(sender As Object, e As EventArgs) Handles gender_lbl.Click
-            genderpanel.Location = New Point(sender.location.x + +GroupBox1.Location.X, sender.location.y + GroupBox1.Location.Y)
+            genderpanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+                                             sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
             newpoint.Y = 4000
@@ -695,7 +732,8 @@ Namespace Forms.Character
             End If
             classpanel.Location = newPoint
             senderLabel.Visible = True
-            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             GlobalVariables.currentEditedCharSet.Cclass = GetClassIdByName(senderLabel.Text)
         End Sub
 
@@ -709,7 +747,8 @@ Namespace Forms.Character
             End If
             racepanel.Location = newPoint
             senderLabel.Visible = True
-            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             GlobalVariables.currentEditedCharSet.Race = GetRaceIdByName(senderLabel.Text)
         End Sub
 
@@ -723,7 +762,8 @@ Namespace Forms.Character
             End If
             genderpanel.Location = newPoint
             senderLabel.Visible = True
-            If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             If senderLabel.Text.StartsWith("M") Then
                 GlobalVariables.currentEditedCharSet.Gender = 0
             Else
@@ -757,7 +797,8 @@ Namespace Forms.Character
 
         Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Glyphs_bt.Click
             Dim mywindow As New GlyphsInterface
-            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "GlyphsInterface"
+            For Each currentForm As Form In _
+                From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "GlyphsInterface"
                 mywindow = DirectCast(currentForm, GlyphsInterface)
             Next
             If Not mywindow Is Nothing Then
@@ -802,7 +843,7 @@ Namespace Forms.Character
             addpanel.Location = New Point(4000, 4000)
             genderpanel.Location = New Point(4000, 4000)
             For Each ctrl As Label In _
-                From ctrl1 In _controlLst.OfType(Of Label)()
+                From ctrl1 In _controlLst.OfType (Of Label)()
                     Where ctrl1.Name.StartsWith(sender.name.replace("_pic", "")) And ctrl1.Name.EndsWith("_name")
                     Where ctrl1.Text = ""
                 _tempSender = ctrl
@@ -904,7 +945,7 @@ Namespace Forms.Character
                     itm.Id = TryInt(TextBox2.Text)
                     Dim x As DateTime = Date.Now
                     itm.Guid = x.ToTimeStamp()
-                    itm.Name = GetItemNameByItemId(itm.Id, NCFramework.My.MySettings.Default.language)
+                    itm.Name = GetItemNameByItemId(itm.Id, MySettings.Default.language)
                     itm.Image = GetItemIconById(itm.Id, GlobalVariables.GlobalWebClient)
                     itm.Rarity = GetItemQualityByItemId(itm.Id)
                     itm.Slot = TryInt(meSlot)
@@ -916,7 +957,8 @@ Namespace Forms.Character
                     DirectCast(_tempSender, Label).Text = itm.Name
                     DirectCast(_tempSender, Label).Tag = itm
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                        GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                        GlobalVariables.currentEditedCharSet =
+                            DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     AddCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
                     changepanel.Location = New Point(4000, 4000)
                     addpanel.Location = New Point(4000, 4000)
@@ -933,7 +975,8 @@ Namespace Forms.Character
 
         Private Sub av_bt_Click(sender As Object, e As EventArgs) Handles av_bt.Click
             Dim mywindow As New AchievementsInterface
-            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "AchievementsInterface"
+            For Each currentForm As Form In _
+                From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "AchievementsInterface"
                 mywindow = DirectCast(currentForm, AchievementsInterface)
             Next
             If Not mywindow Is Nothing Then
@@ -947,7 +990,8 @@ Namespace Forms.Character
         Private Sub Button2_Click(sender As Object, e As EventArgs) Handles rep_bt.Click
             NewProcessStatus()
             Dim mywindow As New ReputationInterface
-            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "ReputationInterface"
+            For Each currentForm As Form In _
+                From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "ReputationInterface"
                 mywindow = DirectCast(currentForm, ReputationInterface)
             Next
             If Not mywindow Is Nothing Then
@@ -964,7 +1008,8 @@ Namespace Forms.Character
         Private Sub Quests_bt_Click(sender As Object, e As EventArgs) Handles Quests_bt.Click
             NewProcessStatus()
             Dim mywindow As New QuestsInterface
-            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "QuestsInterface"
+            For Each currentForm As Form In _
+                From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "QuestsInterface"
                 mywindow = DirectCast(currentForm, QuestsInterface)
             Next
             If Not mywindow Is Nothing Then
@@ -996,7 +1041,7 @@ Namespace Forms.Character
                 End If
                 If GlobalVariables.editedCharsIndex Is Nothing Then _
                     GlobalVariables.editedCharsIndex = New List(Of Integer())()
-                For Each indexEntry() As Integer In GlobalVariables.editedCharsIndex
+                For Each indexEntry () As Integer In GlobalVariables.editedCharsIndex
                     If indexEntry(0) = GlobalVariables.currentEditedCharSet.Guid Then
                         GlobalVariables.editedCharSets.Item(indexEntry(1)) = GlobalVariables.currentEditedCharSet
                         Exit Sub
@@ -1009,7 +1054,8 @@ Namespace Forms.Character
                     NewProcessStatus()
                     Userwait.Show()
                     Dim updateHandler As New UpdateCharacterHandler
-                    updateHandler.UpdateCharacter(GlobalVariables.currentViewedCharSet, GlobalVariables.currentEditedCharSet)
+                    updateHandler.UpdateCharacter(GlobalVariables.currentViewedCharSet,
+                                                  GlobalVariables.currentEditedCharSet)
                     Userwait.Close()
                 End If
             End If
@@ -1018,7 +1064,8 @@ Namespace Forms.Character
         Private Sub Button4_Click(sender As Object, e As EventArgs) Handles spellsskills_bt.Click
             NewProcessStatus()
             Dim mywindow As New SpellSkillInterface
-            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "SpellSkillInterface"
+            For Each currentForm As Form In _
+                From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "SpellSkillInterface"
                 mywindow = DirectCast(currentForm, SpellSkillInterface)
             Next
             If Not mywindow Is Nothing Then
@@ -1035,7 +1082,22 @@ Namespace Forms.Character
             AddHandler highlighter2.Click, AddressOf highlighter2_Click
         End Sub
 
-        Private Sub GemClick(sender As Object, e As EventArgs) Handles slot_9_gem3_pic.Click, slot_9_gem2_pic.Click, slot_9_gem1_pic.Click, slot_8_gem3_pic.Click, slot_8_gem2_pic.Click, slot_8_gem1_pic.Click, slot_7_gem3_pic.Click, slot_7_gem2_pic.Click, slot_7_gem1_pic.Click, slot_6_gem3_pic.Click, slot_6_gem2_pic.Click, slot_6_gem1_pic.Click, slot_5_gem3_pic.Click, slot_5_gem2_pic.Click, slot_5_gem1_pic.Click, slot_4_gem3_pic.Click, slot_4_gem2_pic.Click, slot_4_gem1_pic.Click, slot_3_gem3_pic.Click, slot_3_gem2_pic.Click, slot_3_gem1_pic.Click, slot_2_gem3_pic.Click, slot_2_gem2_pic.Click, slot_2_gem1_pic.Click, slot_18_gem3_pic.Click, slot_18_gem2_pic.Click, slot_18_gem1_pic.Click, slot_14_gem3_pic.Click, slot_14_gem2_pic.Click, slot_14_gem1_pic.Click, slot_13_gem3_pic.Click, slot_13_gem2_pic.Click, slot_13_gem1_pic.Click, slot_12_gem3_pic.Click, slot_12_gem2_pic.Click, slot_12_gem1_pic.Click, slot_11_gem3_pic.Click, slot_11_gem2_pic.Click, slot_11_gem1_pic.Click, slot_10_gem3_pic.Click, slot_10_gem2_pic.Click, slot_10_gem1_pic.Click, slot_1_gem3_pic.Click, slot_1_gem2_pic.Click, slot_1_gem1_pic.Click, slot_0_gem3_pic.Click, slot_0_gem2_pic.Click, slot_0_gem1_pic.Click, slot_17_gem3_pic.Click, slot_17_gem2_pic.Click, slot_17_gem1_pic.Click, slot_16_gem3_pic.Click, slot_16_gem2_pic.Click, slot_16_gem1_pic.Click, slot_15_gem3_pic.Click, slot_15_gem2_pic.Click, slot_15_gem1_pic.Click
+        Private Sub GemClick(sender As Object, e As EventArgs) _
+            Handles slot_9_gem3_pic.Click, slot_9_gem2_pic.Click, slot_9_gem1_pic.Click, slot_8_gem3_pic.Click,
+                    slot_8_gem2_pic.Click, slot_8_gem1_pic.Click, slot_7_gem3_pic.Click, slot_7_gem2_pic.Click,
+                    slot_7_gem1_pic.Click, slot_6_gem3_pic.Click, slot_6_gem2_pic.Click, slot_6_gem1_pic.Click,
+                    slot_5_gem3_pic.Click, slot_5_gem2_pic.Click, slot_5_gem1_pic.Click, slot_4_gem3_pic.Click,
+                    slot_4_gem2_pic.Click, slot_4_gem1_pic.Click, slot_3_gem3_pic.Click, slot_3_gem2_pic.Click,
+                    slot_3_gem1_pic.Click, slot_2_gem3_pic.Click, slot_2_gem2_pic.Click, slot_2_gem1_pic.Click,
+                    slot_18_gem3_pic.Click, slot_18_gem2_pic.Click, slot_18_gem1_pic.Click, slot_14_gem3_pic.Click,
+                    slot_14_gem2_pic.Click, slot_14_gem1_pic.Click, slot_13_gem3_pic.Click, slot_13_gem2_pic.Click,
+                    slot_13_gem1_pic.Click, slot_12_gem3_pic.Click, slot_12_gem2_pic.Click, slot_12_gem1_pic.Click,
+                    slot_11_gem3_pic.Click, slot_11_gem2_pic.Click, slot_11_gem1_pic.Click, slot_10_gem3_pic.Click,
+                    slot_10_gem2_pic.Click, slot_10_gem1_pic.Click, slot_1_gem3_pic.Click, slot_1_gem2_pic.Click,
+                    slot_1_gem1_pic.Click, slot_0_gem3_pic.Click, slot_0_gem2_pic.Click, slot_0_gem1_pic.Click,
+                    slot_17_gem3_pic.Click, slot_17_gem2_pic.Click, slot_17_gem1_pic.Click, slot_16_gem3_pic.Click,
+                    slot_16_gem2_pic.Click, slot_16_gem1_pic.Click, slot_15_gem3_pic.Click, slot_15_gem2_pic.Click,
+                    slot_15_gem1_pic.Click
             Dim myPic As PictureBox = sender
             Dim itm As Item = sender.tag
             Dim allowAdding As Boolean = False
@@ -1065,9 +1127,12 @@ Namespace Forms.Character
                 End Select
             End If
             If allowAdding = True Then
-                Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterGemId"), ResourceHandler.GetUserMessage("gemAdding"), "0"))
+                Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterGemId"),
+                                                           ResourceHandler.GetUserMessage("gemAdding"), "0"))
                 If Not retnvalue = 0 Then
-                    If GlobalVariables.currentEditedCharSet Is Nothing Then GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                        GlobalVariables.currentEditedCharSet =
+                            DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     Dim client As New WebClient
                     client.CheckProxy()
                     Dim effectId As Integer = GetEffectIdByGemId(retnvalue)
@@ -1079,31 +1144,33 @@ Namespace Forms.Character
                             Case myPic.Name.Contains("gem1")
                                 itm.Socket1Effectid = effectId
                                 itm.Socket1Id = retnvalue
-                                itm.Socket1Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)
+                                itm.Socket1Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
                                 itm.Socket1Pic = GetItemIconById(retnvalue, GlobalVariables.GlobalWebClient)
                             Case myPic.Name.Contains("gem2")
                                 itm.Socket2Effectid = effectId
                                 itm.Socket2Id = retnvalue
-                                itm.Socket2Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)
+                                itm.Socket2Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
                                 itm.Socket2Pic = GetItemIconById(retnvalue, GlobalVariables.GlobalWebClient)
                             Case myPic.Name.Contains("gem3")
                                 itm.Socket2Effectid = effectId
                                 itm.Socket3Effectid = effectId
                                 itm.Socket3Id = retnvalue
-                                itm.Socket3Name = GetItemNameByItemId(retnvalue, NCFramework.My.MySettings.Default.language)
+                                itm.Socket3Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
                                 itm.Socket3Pic = GetItemIconById(retnvalue, GlobalVariables.GlobalWebClient)
                         End Select
                         sender.tag = itm
                         myPic.Image = itm.Image
                         myPic.Refresh()
                         SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
-                        MsgBox(ResourceHandler.GetUserMessage("gemAdded"), MsgBoxStyle.Information, ResourceHandler.GetUserMessage("gemAdding"))
+                        MsgBox(ResourceHandler.GetUserMessage("gemAdded"), MsgBoxStyle.Information,
+                               ResourceHandler.GetUserMessage("gemAdding"))
                     End If
                 End If
             End If
         End Sub
 
-        Private Sub BagOpen(sender As Object, e As EventArgs) Handles bag5Pic.Click, bag4Pic.Click, bag3Pic.Click, bag2Pic.Click, bag1Pic.Click
+        Private Sub BagOpen(sender As Object, e As EventArgs) _
+            Handles bag5Pic.Click, bag4Pic.Click, bag3Pic.Click, bag2Pic.Click, bag1Pic.Click
             Dim bag As Item = sender.tag
             If bag Is Nothing Then Exit Sub
             InventoryLayout.Controls.Clear()
@@ -1137,6 +1204,7 @@ Namespace Forms.Character
             Next
             GroupBox2.Size = New Size(GroupBox2.Size.Width, 122 + InventoryLayout.Size.Height - 13)
         End Sub
+
         Private Sub SetInventorySlot(ByVal itm As Item, ByVal slot As Integer)
             For Each itmctrl As Panel In InventoryLayout.Controls
                 If itmctrl.Name.Contains("_" & slot.ToString() & "_") Then
@@ -1173,7 +1241,8 @@ Namespace Forms.Character
 
         Private Sub bank_bt_Click(sender As Object, e As EventArgs) Handles bank_bt.Click
             Dim mywindow As New BankInterface
-            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "BankInterface"
+            For Each currentForm As Form In _
+                From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "BankInterface"
                 mywindow = DirectCast(currentForm, BankInterface)
             Next
             If Not mywindow Is Nothing Then
@@ -1188,7 +1257,8 @@ Namespace Forms.Character
         Private Sub professions_bt_Click(sender As Object, e As EventArgs) Handles professions_bt.Click
             NewProcessStatus()
             Dim mywindow As New ProfessionsInterface
-            For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "ProfessionsInterface"
+            For Each currentForm As Form In _
+                From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "ProfessionsInterface"
                 mywindow = DirectCast(currentForm, ProfessionsInterface)
             Next
             If Not mywindow Is Nothing Then

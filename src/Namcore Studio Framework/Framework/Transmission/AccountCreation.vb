@@ -21,16 +21,16 @@
 '*      /Description:   Includes functions for creating new accounts
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Functions
+Imports MySql.Data.MySqlClient
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports MySql.Data.MySqlClient
 
 Namespace Framework.Transmission
-
     Public Class AccountCreation
         Public Sub CreateNewAccount(ByVal accname As String, ByVal passhas As String, ByVal realmid As Integer,
-                                    ByVal setId As Integer, ByVal account As Account, Optional gmlevel As String = "A", Optional email As String = "",
+                                    ByVal setId As Integer, ByVal account As Account, Optional gmlevel As String = "A",
+                                    Optional email As String = "",
                                     Optional flags As String = "0")
             LogAppend("Creating new account " & accname, "AccountCreation_CreateNewAccount", True)
             Select Case GlobalVariables.targetCore
@@ -51,7 +51,8 @@ Namespace Framework.Transmission
                                                   GlobalVariables.targetStructure.acc_id_col(0) & ", `" &
                                                   GlobalVariables.targetStructure.acc_name_col(0) & "`, `" &
                                                   GlobalVariables.targetStructure.acc_arcemuPass_col(0) &
-                                                  "`, `" & GlobalVariables.targetStructure.acc_arcemuGmLevel_col(0) & "`, `" &
+                                                  "`, `" & GlobalVariables.targetStructure.acc_arcemuGmLevel_col(0) &
+                                                  "`, `" &
                                                   GlobalVariables.targetStructure.acc_email_col(0) & "`, `" &
                                                   GlobalVariables.targetStructure.acc_arcemuFlags_col(0) & "`) " &
                                                   "VALUES (@accid, @accname, @pass, @gm, @email, @flags)"
@@ -85,7 +86,8 @@ Namespace Framework.Transmission
                                 runSQLCommand_realm_string(
                                     "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
                                     GlobalVariables.targetStructure.account_tbl(0) & "", True)
-                        Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.character_tbl(0) & " (" &
+                        Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.character_tbl(0) &
+                                                  " (" &
                                                   GlobalVariables.targetStructure.acc_id_col(0) & ", `" &
                                                   GlobalVariables.targetStructure.acc_name_col(0) & "`, `" &
                                                   GlobalVariables.targetStructure.acc_passHash_col(0) &
@@ -110,9 +112,9 @@ Namespace Framework.Transmission
                             Exit Sub
                         End Try
                         If realmid = 0 Then
-                            realmid = -1
+                            realmid = - 1
                         ElseIf realmid = Nothing Then
-                            realmid = -1
+                            realmid = - 1
                         Else
                         End If
                         runSQLCommand_realm_string(
@@ -133,9 +135,9 @@ Namespace Framework.Transmission
                         LogAppend("Account " & accname & " does not exist -> Creating it",
                                   "AccountCreation_CreateNewAccount", False)
                         If realmid = 0 Then
-                            realmid = -1
+                            realmid = - 1
                         ElseIf realmid = Nothing Then
-                            realmid = -1
+                            realmid = - 1
                         Else
                         End If
                         Dim newid As Integer =

@@ -61,11 +61,12 @@ Namespace Modules.Interface
             listviewX = CType(x, ListViewItem)
             listviewY = CType(y, ListViewItem)
 
-            compareResult = _cicComparer.Compare(listviewX.SubItems(_intColumn).Text, listviewY.SubItems(_intColumn).Text)
+            compareResult = _cicComparer.Compare(listviewX.SubItems(_intColumn).Text,
+                                                 listviewY.SubItems(_intColumn).Text)
             If _soSortOrder = SortOrder.Ascending Then
                 Return compareResult
             ElseIf _soSortOrder = SortOrder.Descending Then
-                Return compareResult * -1
+                Return compareResult*- 1
             Else
                 Return 0
             End If

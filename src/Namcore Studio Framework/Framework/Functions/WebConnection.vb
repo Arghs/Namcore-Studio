@@ -23,7 +23,6 @@
 Imports System.Net
 
 Namespace Framework.Functions
-
     Public Class WebConnection
         Public Function GetProxyServerName() As String
 

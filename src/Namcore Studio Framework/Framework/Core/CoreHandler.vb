@@ -25,20 +25,19 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
-
     Public Class CoreHandler
-
         Public Sub HandleLoadingRequests(ByVal account As Account, ByVal setId As Integer)
             LogAppend("Loading character with setId " & setId.ToString() & " from database",
                       "CoreHandler_handleLoadingRequests")
-            If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then GlobalVariables.GlobalConnection.Open()
+            If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then _
+                GlobalVariables.GlobalConnection.Open()
             If GlobalVariables.GlobalConnection_Realm.State = ConnectionState.Closed Then _
                 GlobalVariables.GlobalConnection_Realm.Open()
             GlobalVariables.forceTargetConnectionUsage = False
             Dim tmpPlayer As Character = GetCharacterSetBySetId(setId, Account)
             If tmpPlayer Is Nothing Then
                 LogAppend("Character with setId " & setId.ToString() & " not found!",
-                    "CoreHandler_handleLoadingRequests", True, True)
+                          "CoreHandler_handleLoadingRequests", True, True)
                 Exit Sub
             End If
             Dim mBasicsHandler As New CharacterBasicsHandler

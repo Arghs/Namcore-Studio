@@ -26,7 +26,8 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Transmission
     Public Class TransmissionHandler
         Public Sub HandleMigrationRequests(ByVal lite As Boolean)
-            If GlobalVariables.TargetConnection.State = ConnectionState.Closed Then GlobalVariables.TargetConnection.Open()
+            If GlobalVariables.TargetConnection.State = ConnectionState.Closed Then _
+                GlobalVariables.TargetConnection.Open()
             If GlobalVariables.TargetConnection_Realm.State = ConnectionState.Closed Then _
                 GlobalVariables.TargetConnection_Realm.Open()
             GlobalVariables.forceTargetConnectionUsage = True
@@ -55,7 +56,8 @@ Namespace Framework.Transmission
                 If lite Then
                     mCharCreationLite.CreateNewLiteCharacter(charname, accountId, setId, playerAccount, renamePending)
                 Else
-                    mCharCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, setId, playerAccount, renamePending)
+                    mCharCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, setId, playerAccount,
+                                                                     renamePending)
                 End If
                 Dim mCharArmorCreation As New ArmorCreation
                 Dim mCharGlyphCreation As New GlyphCreation

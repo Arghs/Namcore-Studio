@@ -364,7 +364,7 @@ Namespace Forms.Character
                         prof = senderPanel.Tag
                         Dim spell2Add As Integer = GetSkillSpellIdBySkillRank(prof.Id, prof.Rank)
                         Dim specialSpells2Add() As Integer = GetSkillSpecialSpellIdBySkill(prof.Id)
-                        If Not spell2Add = -1 And spell2Add <> 0 Then _
+                        If Not spell2Add = - 1 And spell2Add <> 0 Then _
                             GlobalVariables.currentEditedCharSet.Spells.Add(
                                 New Spell _
                                                                                With {.Active = 1, .Disabled = 0,
@@ -442,13 +442,13 @@ Namespace Forms.Character
 
         Private Sub rank_slider_MouseUp(sender As Object, e As MouseEventArgs) Handles rank_slider.MouseUp
             Dim spell2Remove As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _temporarySkillLevel)
-            If Not spell2Remove = -1 And spell2Remove <> 0 Then
+            If Not spell2Remove = - 1 And spell2Remove <> 0 Then
                 Dim result As Spell =
                         GlobalVariables.currentEditedCharSet.Spells.Find(Function(spell) spell.Id = spell2Remove)
                 If Not result Is Nothing Then GlobalVariables.currentEditedCharSet.Spells.Remove(result)
             End If
             Dim spell2Add As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _activeProfession.Rank)
-            If Not spell2Add = -1 And spell2Add <> 0 Then _
+            If Not spell2Add = - 1 And spell2Add <> 0 Then _
                 GlobalVariables.currentEditedCharSet.Spells.Add(
                     New Spell _
                                                                    With {.Active = 1, .Disabled = 0, .Id = spell2Add})

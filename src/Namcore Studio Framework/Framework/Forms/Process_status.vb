@@ -20,32 +20,32 @@
 '*      /Filename:      Process_status
 '*      /Description:   Provides an interface to display operation status
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Windows.Forms
 Imports System.Drawing
+Imports System.Windows.Forms
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Forms
-
     Public Class ProcessStatus
-
         '// Declaration
         Private Delegate Sub AppendTextBoxDelegate(ByVal txt As String)
+
         Private _ptMouseDownLocation As Point
         '// Declartaion
 
-        Private Sub close_bt_Click(sender As System.Object, e As EventArgs) Handles close_bt.Click
+        Private Sub close_bt_Click(sender As Object, e As EventArgs) Handles close_bt.Click
             Close()
         End Sub
 
         Public Sub AppendProc(ByVal status As String)
             If process_tb.InvokeRequired Then
-                process_tb.Invoke(New AppendTextBoxDelegate(AddressOf AppendProc), New Object() {GlobalVariables.proccessTXT})
+                process_tb.Invoke(New AppendTextBoxDelegate(AddressOf AppendProc),
+                                  New Object() {GlobalVariables.proccessTXT})
             Else
                 process_tb.Text = GlobalVariables.proccessTXT
             End If
             Application.DoEvents()
         End Sub
-        
+
         Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
             If e.Button = MouseButtons.Left Then
                 _ptMouseDownLocation = e.Location
@@ -54,19 +54,23 @@ Namespace Framework.Forms
 
         Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
             If e.Button = MouseButtons.Left Then
-                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
 
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter2.MouseEnter
             sender.backgroundimage = My.Resources.bt_close_light
         End Sub
+
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter2.MouseLeave
             sender.backgroundimage = My.Resources.bt_close
         End Sub
+
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter
             sender.backgroundimage = My.Resources.bt_minimize_light
         End Sub
+
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave
             sender.backgroundimage = My.Resources.bt_minimize
         End Sub
@@ -87,9 +91,9 @@ Namespace Framework.Forms
 
         Private Sub header_MouseMove(sender As Object, e As MouseEventArgs) Handles header.MouseMove
             If e.Button = MouseButtons.Left Then
-                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
-    
     End Class
 End Namespace

@@ -20,15 +20,16 @@
 '*      /Filename:      AchievementsInterface
 '*      /Description:   Provides an interface to display character achievement information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.My
 Imports NamCore_Studio.Modules
-Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Extension
-Imports libnc.Provider
 Imports System.Threading
+Imports libnc.Provider
 Imports System.Net
 Imports System.Resources
 Imports System.Reflection
@@ -56,6 +57,7 @@ Namespace Forms.Character
         Private WithEvents _mHandler As New TrdQueueHandler
 
         Delegate Sub AddControlDelegate(panel2Add As Panel)
+
         Delegate Sub UpdateControlDelegate(ctrl As Control)
         '// Declaration
 
@@ -227,7 +229,8 @@ Namespace Forms.Character
                     Thread.Sleep(2000)
                 End If
 
-                For Each charAv As Achievement In DeepCloneHelper.DeepClone(GlobalVariables.currentEditedCharSet).Achievements
+                For Each charAv As Achievement In _
+                    DeepCloneHelper.DeepClone(GlobalVariables.currentEditedCharSet).Achievements
 
                     If _doneAvIds.Contains(charAv.Id) Then
                         Continue For
@@ -253,7 +256,8 @@ Namespace Forms.Character
 
                     End While
 
-                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentEditedCharSet, GetAccountSetBySetId(GlobalVariables.currentViewedCharSet.AccountSet))
+                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentEditedCharSet,
+                                    GetAccountSetBySetId(GlobalVariables.currentViewedCharSet.AccountSet))
                     Try
                         If _
                             AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 2).BackColor =
@@ -264,9 +268,11 @@ Namespace Forms.Character
                             AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1).BackColor = Color.FromArgb(110, 149,
                                                                                                                 190)
                         End If
-                        AVLayoutPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControlUpdating), AVLayoutPanel)
+                        AVLayoutPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControlUpdating),
+                                                  AVLayoutPanel)
                     Catch ex As Exception
-                        AVLayoutPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControlUpdating), AVLayoutPanel)
+                        AVLayoutPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControlUpdating),
+                                                  AVLayoutPanel)
                     End Try
                     GlobalVariables.trdRunning = 0
                 End If
@@ -297,12 +303,14 @@ Namespace Forms.Character
             subcat_combo.Enabled = True
             Application.DoEvents()
         End Sub
+
         Private Sub DelegateControlAdding(addNewPanel As Panel)
             addNewPanel.SetDoubleBuffered()
             AVLayoutPanel.Controls.Add(addNewPanel)
             AVLayoutPanel.Controls.SetChildIndex(AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1),
-                                                           1)
+                                                 1)
         End Sub
+
         Private Sub DelegateControlUpdating(ctrl As FlowLayoutPanel)
             ctrl.Update()
         End Sub
@@ -428,7 +436,7 @@ Namespace Forms.Character
                     Else
                         '// Name
                         If charAv.Name = Nothing Then
-                            charAv.Name = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
+                            charAv.Name = GetAvNameById(charAv.Id, MySettings.Default.language)
                             GlobalVariables.currentEditedCharSet.Achievements(i) = charAv
                         End If
                         If charAv.Name.ToLower.Contains(searchName.ToLower()) Then
@@ -436,7 +444,8 @@ Namespace Forms.Character
                         End If
                     End If
                 Catch ex As Exception
-                    LogAppend("Exception during achievement browsing: " & ex.ToString(), "Achievements_interface_FilterResults", False, True)
+                    LogAppend("Exception during achievement browsing: " & ex.ToString(),
+                              "Achievements_interface_FilterResults", False, True)
                 End Try
             Next i
             For Each charAv As Achievement In foundAvList
@@ -444,8 +453,9 @@ Namespace Forms.Character
             Next
             GlobalVariables.trdRunning -= 1
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnFilterCompleted),
-                                New CompletedEventArgs())
+                                    New CompletedEventArgs())
         End Sub
+
         Private Sub AddAvToLayout(ByVal charAv As Achievement)
             If charAv.SubCategory = Nothing Then charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
             Dim avPanel As New Panel
@@ -455,7 +465,7 @@ Namespace Forms.Character
             Dim avNameLable As New Label
             Dim cAvName As String
             If charAv.Name = Nothing Then
-                cAvName = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
+                cAvName = GetAvNameById(charAv.Id, MySettings.Default.language)
                 charAv.Name = cAvName
             Else
                 cAvName = charAv.Name
@@ -472,7 +482,7 @@ Namespace Forms.Character
             Dim avDescrLable As New Label
             Dim descr As String
             If charAv.Description = Nothing Then
-                descr = GetAvDescriptionById(charAv.Id, NCFramework.My.MySettings.Default.language)
+                descr = GetAvDescriptionById(charAv.Id, MySettings.Default.language)
                 charAv.Description = descr
             Else
                 descr = charAv.Description
@@ -488,7 +498,7 @@ Namespace Forms.Character
             Dim avSubCatLable As New Label
             Dim subcat As String
             If charAv.SubCategoryName = Nothing Then
-                subcat = GetAvCatNameById(GetAvSubCategoryById(charAv.Id), NCFramework.My.MySettings.Default.language)
+                subcat = GetAvCatNameById(GetAvSubCategoryById(charAv.Id), MySettings.Default.language)
                 charAv.SubCategoryName = subcat
             Else
                 subcat = charAv.SubCategoryName
@@ -543,6 +553,7 @@ Namespace Forms.Character
             AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding), avPanel)
             Application.DoEvents()
         End Sub
+
         Private Sub OnFilterCompleted() Handles Me.FilterCompleted
             Try
                 For Each avPanel As Control In AVLayoutPanel.Controls
@@ -580,7 +591,7 @@ Namespace Forms.Character
                 browse_tb.Text = "Enter quest name or id"
             End If
         End Sub
-     
+
         Private Sub search_bt_Click(sender As Object, e As EventArgs) Handles search_bt.Click
             waitpanel.Location = New Point(4000, 4000)
             search_bt.Enabled = False

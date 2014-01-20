@@ -26,11 +26,11 @@ Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Update
-
     Public Class UpdateCharacterHandler
         Public Sub UpdateCharacter(ByVal comparePlayer As Character, ByVal newPlayer As Character)
             LogAppend("Updating character " & comparePlayer.Name, "UpdateCharacterHandler_UpdateCharacter", True)
-            If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then GlobalVariables.GlobalConnection.Open()
+            If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then _
+                GlobalVariables.GlobalConnection.Open()
             If GlobalVariables.GlobalConnection_Realm.State = ConnectionState.Closed Then _
                 GlobalVariables.GlobalConnection_Realm.Open()
             GlobalVariables.forceTargetConnectionUsage = False
@@ -43,13 +43,15 @@ Namespace Framework.Core.Update
                                 "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                                 GlobalVariables.sourceStructure.char_accountId_col(0) &
                                 "`='" & newPlayer.AccountId.ToString() & "' WHERE `" &
-                                GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & newPlayer.Guid.ToString() & "'")
+                                GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & newPlayer.Guid.ToString() &
+                                "'")
                         Case Else
                             runSQLCommand_characters_string(
                                 "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                                 GlobalVariables.sourceStructure.char_accountId_col(0) &
                                 "`='" & newPlayer.AccountId.ToString() & "' WHERE `" &
-                                GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & newPlayer.Guid.ToString() & "'")
+                                GlobalVariables.sourceStructure.char_guid_col(0) & "`='" & newPlayer.Guid.ToString() &
+                                "'")
                     End Select
 
                 End If
@@ -66,7 +68,8 @@ Namespace Framework.Core.Update
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                         GlobalVariables.sourceStructure.char_race_col(0) &
-                        "`='" & newPlayer.Race.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
+                        "`='" & newPlayer.Race.ToString() & "' WHERE `" &
+                        GlobalVariables.sourceStructure.char_guid_col(0) &
                         "`='" & newPlayer.Guid.ToString() & "'")
                 End If
                 If Not newPlayer.Cclass = comparePlayer.Cclass Then
@@ -74,7 +77,8 @@ Namespace Framework.Core.Update
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                         GlobalVariables.sourceStructure.char_class_col(0) &
-                        "`='" & newPlayer.Cclass.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
+                        "`='" & newPlayer.Cclass.ToString() & "' WHERE `" &
+                        GlobalVariables.sourceStructure.char_guid_col(0) &
                         "`='" & newPlayer.Guid.ToString() & "'")
                 End If
                 If Not newPlayer.Gender = comparePlayer.Gender Then
@@ -82,7 +86,8 @@ Namespace Framework.Core.Update
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                         GlobalVariables.sourceStructure.char_gender_col(0) &
-                        "`='" & newPlayer.Gender.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
+                        "`='" & newPlayer.Gender.ToString() & "' WHERE `" &
+                        GlobalVariables.sourceStructure.char_guid_col(0) &
                         "`='" & newPlayer.Guid.ToString() & "'")
                 End If
                 If Not newPlayer.Level = comparePlayer.Level Then
@@ -90,7 +95,8 @@ Namespace Framework.Core.Update
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                         GlobalVariables.sourceStructure.char_level_col(0) &
-                        "`='" & newPlayer.Level.ToString() & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) &
+                        "`='" & newPlayer.Level.ToString() & "' WHERE `" &
+                        GlobalVariables.sourceStructure.char_guid_col(0) &
                         "`='" & newPlayer.Guid.ToString() & "'")
                 End If
                 Dim itm2Create As New List(Of Item)

@@ -20,14 +20,14 @@
 '*      /Filename:      SettingsInterface
 '*      /Description:   Proxy settings
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NamCore_Studio.Forms.Extension
 Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions
 Imports NCFramework.My
+Imports NamCore_Studio.Forms.Extension
 Imports System.Net
 Imports System.Text
 Imports System.Xml
-Imports NCFramework.Framework.Modules
 
 Namespace Forms
     Public Class SettingsInterface
