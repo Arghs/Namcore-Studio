@@ -39,6 +39,7 @@ Namespace Forms.Character
         Shared _loaded As Boolean = False
         Shared _lstitems As List(Of ListViewItem)
         Shared _temporarySkillLevel As Integer
+        Shared _displayProfessionIds As List(Of Integer)
         '// Declaration
 
         Public Sub PrepareInterface(ByVal setId As Integer)
@@ -166,6 +167,22 @@ Namespace Forms.Character
             For Each itemControl As Control In controlLst
                 itemControl.SetDoubleBuffered()
             Next
+        End Sub
+
+        Private Sub profession_combo_DrawItem(ByVal sender As Object, ByVal e As DrawItemEventArgs) _
+            Handles profession_combo.DrawItem
+            If e.Index <> - 1 Then
+                e.Graphics.DrawImage(profImageList.Images(e.Index), e.Bounds.Left, e.Bounds.Top)
+                e.Graphics.DrawString(profession_combo.Items(e.Index).ToString(), profession_combo.Font, Brushes.Black,
+                                      New RectangleF(e.Bounds.X + 15, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height))
+                e.DrawFocusRectangle()
+            End If
+        End Sub
+
+        Private Sub profession_combo_MeasureItem(ByVal sender As Object, ByVal e As MeasureItemEventArgs) _
+            Handles profession_combo.MeasureItem
+            e.ItemHeight = profImageList.ImageSize.Height
+            e.ItemWidth = profImageList.ImageSize.Width
         End Sub
 
         Private Sub ProfessionChange()
@@ -383,7 +400,38 @@ Namespace Forms.Character
                         Exit Sub
                     End If
                 Else
-
+                    profImageList.Images.Clear()
+                    Dim items(10) As String
+                    Dim profIds As Integer() = ({171, 164, 333, 202, 182, 773, 755, 165, 186, 393, 197})
+                    Dim removeId As Integer
+                    If mainprof1_select.Tag IsNot Nothing Then
+                        removeId = DirectCast(mainprof1_select.Tag, Profession).Id
+                    End If
+                    If mainprof2_select.Tag IsNot Nothing Then
+                        removeId = DirectCast(mainprof2_select.Tag, Profession).Id
+                    End If
+                    _displayProfessionIds = New List(Of Integer)()
+                    Dim counter As Integer = 0
+                    For Each id As Integer In profIds
+                        If removeId <> id Then
+                            items(counter) = ResourceHandler.GetUserMessage("profession_" & id.ToString())
+                            profImageList.Images.Add(counter, GetProfessionPic(id))
+                            _displayProfessionIds.Add(id)
+                            counter += 1
+                        Else
+                            Array.Resize(items, items.Length - 1)
+                        End If
+                    Next
+                    profession_combo.Items.Clear()
+                    profession_combo.Items.AddRange(items)
+                    profession_combo.DropDownStyle = ComboBoxStyle.DropDownList
+                    profession_combo.DrawMode = DrawMode.OwnerDrawVariable
+                    profession_combo.ItemHeight = profImageList.ImageSize.Height
+                    profession_combo.MaxDropDownItems = profImageList.Images.Count
+                    profession_combo.Tag = senderPanel
+                    add_helper_panel.Location = New Point(senderPanel.Location.X + menupanel.Location.X,
+                                                          senderPanel.Location.Y + menupanel.Location.Y)
+                    Exit Sub
                 End If
             End If
             _activeProfession = prof
@@ -572,6 +620,47 @@ Namespace Forms.Character
                 resultstatus_lbl.Text = prof_lst.Items.Count.ToString & " results!"
             Next
             prof_lst.EndUpdate()
+        End Sub
+
+        Private Sub add_helper_closebox_Click(sender As Object, e As EventArgs) Handles add_helper_closebox.Click
+            add_helper_panel.Location = New Point(4000, 4000)
+        End Sub
+
+        Private Sub add_helper_closebox_MouseEnter(sender As Object, e As EventArgs) _
+            Handles add_helper_closebox.MouseEnter
+            add_helper_closebox.BackgroundImage = My.Resources.bt_close_light
+        End Sub
+
+        Private Sub add_helper_closebox_MouseLeave(sender As Object, e As EventArgs) _
+            Handles add_helper_closebox.MouseLeave
+            add_helper_closebox.BackgroundImage = My.Resources.bt_close
+        End Sub
+
+        Private Sub apply_bt_Click(sender As Object, e As EventArgs) Handles apply_bt.Click
+            If Not profession_combo.SelectedItem = Nothing Then
+                Dim newProf As New Profession
+                newProf.Recipes = New List(Of ProfessionSpell)()
+                newProf.Primary = True
+                newProf.Id = _displayProfessionIds.Item(profession_combo.SelectedIndex)
+                newProf.Rank = 1
+                newProf.Name = profession_combo.SelectedItem.ToString()
+                newProf.Max = 75
+                GlobalVariables.currentEditedCharSet.Professions.Add(newProf)
+                Dim targetPanel As Panel = DirectCast(profession_combo.Tag, Panel)
+                targetPanel.Tag = newProf
+                If targetPanel.Name.StartsWith("mainprof1") Then
+                    mainprof1_lbl.Enabled = True
+                    mainprof1_lbl.Text = newProf.Name
+                    mainprof1_pic.BackgroundImage = GetProfessionPic(newProf.Id)
+                    ProfessionClick(mainprof1_select, EventArgs.Empty)
+                Else
+                    mainprof2_lbl.Enabled = True
+                    mainprof2_lbl.Text = newProf.Name
+                    mainprof2_pic.BackgroundImage = GetProfessionPic(newProf.Id)
+                    ProfessionClick(mainprof2_select, EventArgs.Empty)
+                End If
+            End If
+            add_helper_panel.Location = New Point(4000, 4000)
         End Sub
     End Class
 End Namespace

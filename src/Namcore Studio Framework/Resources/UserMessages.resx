@@ -627,4 +627,7 @@
   <data name="updateAccountComplete" xml:space="preserve">
     <value>Account has been updated successfully!</value>
   </data>
+  <data name="profession_197" xml:space="preserve">
+    <value>Tailoring</value>
+  </data>
 </root>

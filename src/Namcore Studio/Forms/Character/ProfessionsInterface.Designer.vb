@@ -33,28 +33,29 @@ Namespace Forms.Character
         Me.profskill = CType(New System.Windows.Forms.ColumnHeader(),System.Windows.Forms.ColumnHeader)
         Me.profContext = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.LearnToolStrip = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.search_tb = New System.Windows.Forms.TextBox()
-        Me.resultstatus_lbl = New System.Windows.Forms.Label()
-        Me.menupanel = New System.Windows.Forms.Panel()
-        Me.minprof4_select = New System.Windows.Forms.Panel()
-        Me.minprof4_pic = New System.Windows.Forms.PictureBox()
-        Me.minprof4_lbl = New System.Windows.Forms.Label()
-        Me.minprof3_select = New System.Windows.Forms.Panel()
-        Me.minprof3_pic = New System.Windows.Forms.PictureBox()
-        Me.minprof3_lbl = New System.Windows.Forms.Label()
-        Me.minprof2_select = New System.Windows.Forms.Panel()
-        Me.minprof2_pic = New System.Windows.Forms.PictureBox()
-        Me.minprof2_lbl = New System.Windows.Forms.Label()
-        Me.minprof1_select = New System.Windows.Forms.Panel()
-        Me.minprof1_pic = New System.Windows.Forms.PictureBox()
-        Me.minprof1_lbl = New System.Windows.Forms.Label()
-        Me.mainprof2_select = New System.Windows.Forms.Panel()
-        Me.mainprof2_pic = New System.Windows.Forms.PictureBox()
-        Me.mainprof2_lbl = New System.Windows.Forms.Label()
-        Me.mainprof1_select = New System.Windows.Forms.Panel()
-        Me.mainprof1_pic = New System.Windows.Forms.PictureBox()
-        Me.mainprof1_lbl = New System.Windows.Forms.Label()
+            Me.LearnAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+            Me.Label1 = New System.Windows.Forms.Label()
+            Me.search_tb = New System.Windows.Forms.TextBox()
+            Me.resultstatus_lbl = New System.Windows.Forms.Label()
+            Me.menupanel = New System.Windows.Forms.Panel()
+            Me.minprof4_select = New System.Windows.Forms.Panel()
+            Me.minprof4_pic = New System.Windows.Forms.PictureBox()
+            Me.minprof4_lbl = New System.Windows.Forms.Label()
+            Me.minprof3_select = New System.Windows.Forms.Panel()
+            Me.minprof3_pic = New System.Windows.Forms.PictureBox()
+            Me.minprof3_lbl = New System.Windows.Forms.Label()
+            Me.minprof2_select = New System.Windows.Forms.Panel()
+            Me.minprof2_pic = New System.Windows.Forms.PictureBox()
+            Me.minprof2_lbl = New System.Windows.Forms.Label()
+            Me.minprof1_select = New System.Windows.Forms.Panel()
+            Me.minprof1_pic = New System.Windows.Forms.PictureBox()
+            Me.minprof1_lbl = New System.Windows.Forms.Label()
+            Me.mainprof2_select = New System.Windows.Forms.Panel()
+            Me.mainprof2_pic = New System.Windows.Forms.PictureBox()
+            Me.mainprof2_lbl = New System.Windows.Forms.Label()
+            Me.mainprof1_select = New System.Windows.Forms.Panel()
+            Me.mainprof1_pic = New System.Windows.Forms.PictureBox()
+            Me.mainprof1_lbl = New System.Windows.Forms.Label()
             Me.disp2 = New System.Windows.Forms.Label()
             Me.disp1 = New System.Windows.Forms.Label()
             Me.learned_bt = New System.Windows.Forms.Button()
@@ -65,7 +66,11 @@ Namespace Forms.Character
             Me.rankname_lbl = New System.Windows.Forms.Label()
             Me.progress_lbl = New System.Windows.Forms.Label()
             Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-            Me.LearnAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+            Me.add_helper_panel = New System.Windows.Forms.Panel()
+            Me.profession_combo = New System.Windows.Forms.ComboBox()
+            Me.add_helper_closebox = New System.Windows.Forms.PictureBox()
+            Me.profImageList = New System.Windows.Forms.ImageList(Me.components)
+            Me.apply_bt = New System.Windows.Forms.PictureBox()
             Me.profContext.SuspendLayout()
             Me.menupanel.SuspendLayout()
             Me.minprof4_select.SuspendLayout()
@@ -83,6 +88,9 @@ Namespace Forms.Character
             Me.rank_panel.SuspendLayout()
             CType(Me.rank_slider, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.GroupBox1.SuspendLayout()
+            Me.add_helper_panel.SuspendLayout()
+            CType(Me.add_helper_closebox, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.apply_bt, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'prof_lst
@@ -116,13 +124,19 @@ Namespace Forms.Character
             '
             Me.profContext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LearnToolStrip, Me.LearnAllToolStripMenuItem})
             Me.profContext.Name = "qstContext"
-            Me.profContext.Size = New System.Drawing.Size(153, 70)
+            Me.profContext.Size = New System.Drawing.Size(119, 48)
             '
             'LearnToolStrip
             '
             Me.LearnToolStrip.Name = "LearnToolStrip"
-            Me.LearnToolStrip.Size = New System.Drawing.Size(103, 22)
+            Me.LearnToolStrip.Size = New System.Drawing.Size(118, 22)
             Me.LearnToolStrip.Text = "Learn"
+            '
+            'LearnAllToolStripMenuItem
+            '
+            Me.LearnAllToolStripMenuItem.Name = "LearnAllToolStripMenuItem"
+            Me.LearnAllToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
+            Me.LearnAllToolStripMenuItem.Text = "Learn all"
             '
             'Label1
             '
@@ -488,11 +502,52 @@ Namespace Forms.Character
             Me.GroupBox1.TabStop = False
             Me.GroupBox1.Text = "Browse"
             '
-            'LearnAllToolStripMenuItem
+            'add_helper_panel
             '
-            Me.LearnAllToolStripMenuItem.Name = "LearnAllToolStripMenuItem"
-            Me.LearnAllToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-            Me.LearnAllToolStripMenuItem.Text = "Learn all"
+            Me.add_helper_panel.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
+            Me.add_helper_panel.Controls.Add(Me.apply_bt)
+            Me.add_helper_panel.Controls.Add(Me.profession_combo)
+            Me.add_helper_panel.Controls.Add(Me.add_helper_closebox)
+            Me.add_helper_panel.Location = New System.Drawing.Point(958, 313)
+            Me.add_helper_panel.Name = "add_helper_panel"
+            Me.add_helper_panel.Size = New System.Drawing.Size(212, 27)
+            Me.add_helper_panel.TabIndex = 237
+            '
+            'profession_combo
+            '
+            Me.profession_combo.FormattingEnabled = True
+            Me.profession_combo.Location = New System.Drawing.Point(3, 3)
+            Me.profession_combo.Name = "profession_combo"
+            Me.profession_combo.Size = New System.Drawing.Size(150, 21)
+            Me.profession_combo.TabIndex = 1
+            '
+            'add_helper_closebox
+            '
+            Me.add_helper_closebox.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.bt_close
+            Me.add_helper_closebox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.add_helper_closebox.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.add_helper_closebox.Location = New System.Drawing.Point(191, 1)
+            Me.add_helper_closebox.Name = "add_helper_closebox"
+            Me.add_helper_closebox.Size = New System.Drawing.Size(20, 20)
+            Me.add_helper_closebox.TabIndex = 0
+            Me.add_helper_closebox.TabStop = False
+            '
+            'profImageList
+            '
+            Me.profImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
+            Me.profImageList.ImageSize = New System.Drawing.Size(16, 16)
+            Me.profImageList.TransparentColor = System.Drawing.Color.Transparent
+            '
+            'apply_bt
+            '
+            Me.apply_bt.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.Refresh_icon
+            Me.apply_bt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.apply_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.apply_bt.Location = New System.Drawing.Point(158, 4)
+            Me.apply_bt.Name = "apply_bt"
+            Me.apply_bt.Size = New System.Drawing.Size(20, 20)
+            Me.apply_bt.TabIndex = 2
+            Me.apply_bt.TabStop = False
             '
             'ProfessionsInterface
             '
@@ -500,6 +555,7 @@ Namespace Forms.Character
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(875, 572)
+            Me.Controls.Add(Me.add_helper_panel)
             Me.Controls.Add(Me.rankname_lbl)
             Me.Controls.Add(Me.progress_lbl)
             Me.Controls.Add(Me.GroupBox1)
@@ -523,6 +579,7 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.GroupBox1, 0)
             Me.Controls.SetChildIndex(Me.progress_lbl, 0)
             Me.Controls.SetChildIndex(Me.rankname_lbl, 0)
+            Me.Controls.SetChildIndex(Me.add_helper_panel, 0)
             Me.profContext.ResumeLayout(False)
             Me.menupanel.ResumeLayout(False)
             Me.menupanel.PerformLayout()
@@ -549,6 +606,9 @@ Namespace Forms.Character
             CType(Me.rank_slider, System.ComponentModel.ISupportInitialize).EndInit()
             Me.GroupBox1.ResumeLayout(False)
             Me.GroupBox1.PerformLayout()
+            Me.add_helper_panel.ResumeLayout(False)
+            CType(Me.add_helper_closebox, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.apply_bt, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
             Me.PerformLayout()
 
@@ -592,5 +652,10 @@ Namespace Forms.Character
         Friend WithEvents progress_lbl As System.Windows.Forms.Label
         Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
         Friend WithEvents LearnAllToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+        Friend WithEvents add_helper_panel As System.Windows.Forms.Panel
+        Friend WithEvents add_helper_closebox As System.Windows.Forms.PictureBox
+        Friend WithEvents profession_combo As System.Windows.Forms.ComboBox
+        Friend WithEvents profImageList As System.Windows.Forms.ImageList
+        Friend WithEvents apply_bt As System.Windows.Forms.PictureBox
     End Class
 End Namespace

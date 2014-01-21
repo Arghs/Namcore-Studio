@@ -2469,7 +2469,7 @@ Namespace Forms.Character
             Me.professions_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.professions_bt.ForeColor = System.Drawing.Color.Black
             Me.professions_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.professions_bt.Location = New System.Drawing.Point(572, 545)
+            Me.professions_bt.Location = New System.Drawing.Point(572, 659)
             Me.professions_bt.Name = "professions_bt"
             Me.professions_bt.Size = New System.Drawing.Size(104, 34)
             Me.professions_bt.TabIndex = 229
