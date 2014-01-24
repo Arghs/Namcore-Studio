@@ -143,7 +143,7 @@ Namespace Forms.Character
             '
             'skillPage
             '
-            Me.skillPage.BackColor = System.Drawing.Color.Black
+            Me.skillPage.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
             Me.skillPage.Controls.Add(Me.resultstatusSkill_lbl)
             Me.skillPage.Controls.Add(Me.TextBox1)
             Me.skillPage.Controls.Add(Me.Label3)

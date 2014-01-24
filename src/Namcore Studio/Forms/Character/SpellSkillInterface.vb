@@ -20,6 +20,7 @@
 '*      /Filename:      SpellSkillInterface
 '*      /Description:   Provides an interface to display character reputation information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Linq
 Imports NCFramework.My
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
@@ -86,27 +87,26 @@ Namespace Forms.Character
         Public Function ContinueOperation(ByVal setId As Integer)
             LogAppend("Loading Spells/Skills", "SpellSkill_interface_continueOperation", True)
             If Not GlobalVariables.currentViewedCharSet.Spells Is Nothing Then
-                For Each pSpell As Spell In GlobalVariables.currentViewedCharSet.Spells
-                    If Not pSpell.id = 0 Then
-                        If pSpell.name Is Nothing Then
-                            pSpell.Name = GetSpellNameBySpellId(pSpell.Id, MySettings.Default.language)
-                        End If
-                        Dim itm As New ListViewItem({pSpell.id.ToString, pSpell.name})
-                        itm.Tag = pSpell
-                        spellList.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm, spellList)
+                For Each pSpell As Spell In From pSpell1 In GlobalVariables.currentViewedCharSet.Spells Where Not pSpell1.id = 0
+                    If pSpell.Name Is Nothing Then
+                        pSpell.Name = GetSpellNameBySpellId(pSpell.Id, MySettings.Default.language)
                     End If
+                    Dim itm As New ListViewItem({pSpell.Id.ToString, pSpell.Name})
+                    itm.Tag = pSpell
+                    spellList.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm, spellList)
                 Next
             End If
             If Not GlobalVariables.currentViewedCharSet.Skills Is Nothing Then
-                For Each pSkill As Skill In GlobalVariables.currentViewedCharSet.Skills
-                    If Not pSkill.id = 0 Then
-                        If pSkill.name Is Nothing Then
+                For i As Integer = 0 To GlobalVariables.currentViewedCharSet.Skills.Count - 1
+                    Dim pSkill As Skill = GlobalVariables.currentViewedCharSet.Skills(i)
+                    If Not pSkill.Id = 0 Then
+                        If pSkill.Name Is Nothing Then
                             pSkill.Name = GetSkillNameById(pSkill.Id, MySettings.Default.language)
                         End If
                         Dim _
                             itm As _
                                 New ListViewItem(
-                                    {pSkill.id.ToString, pSkill.name, pSkill.value.ToString, pSkill.max.ToString})
+                                    {pSkill.Id.ToString, pSkill.Name, pSkill.Value.ToString, pSkill.Max.ToString})
                         itm.Tag = pSkill
                         skillList.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm, skillList)
                     End If
@@ -114,9 +114,7 @@ Namespace Forms.Character
             End If
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
                                     New CompletedEventArgs())
-            ' ReSharper disable VBWarnings::BC42105
         End Function
-        ' ReSharper restore VBWarnings::BC42105
 
         Private Sub DelegateControlAdding(additm As ListViewItem, control As ListView)
             control.Items.Add(additm)
