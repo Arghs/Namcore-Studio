@@ -40,10 +40,13 @@ Namespace Forms.Character
         Shared _lstitems As List(Of ListViewItem)
         Shared _temporarySkillLevel As Integer
         Shared _displayProfessionIds As List(Of Integer)
+
+        Private _cmpFileListViewComparer As ListViewComparer
         '// Declaration
 
         Public Sub PrepareInterface(ByVal setId As Integer)
             LogAppend("Loading player professions", "ProfessionsInterface_PrepareInterface", True)
+            _cmpFileListViewComparer = New ListViewComparer(prof_lst)
             Hide()
             If GlobalVariables.currentEditedCharSet Is Nothing Then
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
@@ -253,6 +256,21 @@ Namespace Forms.Character
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
             Close()
+        End Sub
+
+        Private Sub prof_lst_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles prof_lst.ColumnClick
+            If e.Column = _cmpFileListViewComparer.SortColumn Then
+                If _cmpFileListViewComparer.SortOrder = SortOrder.Ascending Then
+                    _cmpFileListViewComparer.SortOrder = SortOrder.Descending
+                Else
+                    _cmpFileListViewComparer.SortOrder = SortOrder.Ascending
+                End If
+            Else
+                _cmpFileListViewComparer.SortOrder = SortOrder.Ascending
+            End If
+
+            _cmpFileListViewComparer.SortColumn = e.Column
+            prof_lst.Sort()
         End Sub
 
         Private Sub prof_lst_MouseUp(sender As Object, e As MouseEventArgs) Handles prof_lst.MouseUp

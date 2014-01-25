@@ -38,6 +38,7 @@ Namespace Forms
         Private _currentViewedAccountSet As Account
         Private _currentEditedAccountSet As Account
         Private _initComplete As Boolean = False
+        Private _cmpFileListViewComparer As ListViewComparer
         '// Declaration
 
 
@@ -51,6 +52,7 @@ Namespace Forms
 
         Public Sub prepare_interface(ByVal accountSet As Account)
             LogAppend("prepare_interface call", "AccountOverview_prepare_interface", False)
+            _cmpFileListViewComparer = New ListViewComparer(characterview)
             _initComplete = False
             For Each subctrl As Control In Controls
                 subctrl.SetDoubleBuffered()
@@ -115,6 +117,21 @@ Namespace Forms
                 End If
                 charactercontext.Show(characterview, e.X, e.Y)
             End If
+        End Sub
+
+        Private Sub characterview_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles characterview.ColumnClick
+            If e.Column = _cmpFileListViewComparer.SortColumn Then
+                If _cmpFileListViewComparer.SortOrder = SortOrder.Ascending Then
+                    _cmpFileListViewComparer.SortOrder = SortOrder.Descending
+                Else
+                    _cmpFileListViewComparer.SortOrder = SortOrder.Ascending
+                End If
+            Else
+                _cmpFileListViewComparer.SortOrder = SortOrder.Ascending
+            End If
+
+            _cmpFileListViewComparer.SortColumn = e.Column
+            characterview.Sort()
         End Sub
 
         Private Sub characterview_SelectedIndexChanged(sender As Object, e As EventArgs) _

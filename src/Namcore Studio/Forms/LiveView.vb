@@ -41,6 +41,7 @@ Namespace Forms
     Public Class LiveView
         '// Declaration
         Private _cmpFileListViewComparer As ListViewComparer
+        Private _cmpFileListViewComparer2 As ListViewComparer
         Dim _checkchangestatus As Boolean = False
         Dim _targetAcccharTable As DataTable
         Dim _stretching As Boolean = False
@@ -102,6 +103,7 @@ Namespace Forms
         Public Sub Loadaccountsandchars()
             NewProcessStatus()
             _cmpFileListViewComparer = New ListViewComparer(accountview)
+            _cmpFileListViewComparer2 = New ListViewComparer(characterview)
             _checkchangestatus = False
             GlobalVariables.sourceCore = "trinity" 'for testing only
             Dim mAcInfoProc As AccountCharacterInformationProcessing = New AccountCharacterInformationProcessing
@@ -488,6 +490,8 @@ Namespace Forms
             GlobalVariables.createAccountsIndex = New List(Of Integer)
             GlobalVariables.accountInfo = New List(Of Account)
             GlobalVariables.charactersToCreate = New List(Of String)
+            _cmpFileListViewComparer = New ListViewComparer(accountview)
+            _cmpFileListViewComparer2 = New ListViewComparer(characterview)
         End Sub
 
         Private Sub accountview_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles accountview.ColumnClick
@@ -505,6 +509,20 @@ Namespace Forms
             accountview.Sort()
         End Sub
 
+        Private Sub charactertview_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles characterview.ColumnClick
+            If e.Column = _cmpFileListViewComparer2.SortColumn Then
+                If _cmpFileListViewComparer2.SortOrder = SortOrder.Ascending Then
+                    _cmpFileListViewComparer2.SortOrder = SortOrder.Descending
+                Else
+                    _cmpFileListViewComparer2.SortOrder = SortOrder.Ascending
+                End If
+            Else
+                _cmpFileListViewComparer2.SortOrder = SortOrder.Ascending
+            End If
+
+            _cmpFileListViewComparer2.SortColumn = e.Column
+            characterview.Sort()
+        End Sub
 
         Private Sub accountview_ItemChecked1(sender As Object, e As ItemCheckedEventArgs) _
             Handles accountview.ItemChecked

@@ -41,6 +41,7 @@ Namespace Forms.Character
         Public Event QstCompleted As EventHandler(Of CompletedEventArgs)
         Shared _lstitems As List(Of ListViewItem)
         Private WithEvents _mHandler As New TrdQueueHandler
+        Private _cmpFileListViewComparer As ListViewComparer
 
         Delegate Sub AddItemDelegate(itm As ListViewItem)
         '// Declaration
@@ -51,6 +52,7 @@ Namespace Forms.Character
 
         Public Sub PrepareInterface(ByVal setId As Integer)
             Hide()
+            _cmpFileListViewComparer = New ListViewComparer(qst_lst)
             Dim realQstLst As New List(Of Quest)
             If GlobalVariables.currentEditedCharSet Is Nothing Then
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
@@ -82,6 +84,21 @@ Namespace Forms.Character
             Application.DoEvents()
             Show()
             CloseProcessStatus()
+        End Sub
+
+        Private Sub qst_lst_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles qst_lst.ColumnClick
+            If e.Column = _cmpFileListViewComparer.SortColumn Then
+                If _cmpFileListViewComparer.SortOrder = SortOrder.Ascending Then
+                    _cmpFileListViewComparer.SortOrder = SortOrder.Descending
+                Else
+                    _cmpFileListViewComparer.SortOrder = SortOrder.Ascending
+                End If
+            Else
+                _cmpFileListViewComparer.SortOrder = SortOrder.Ascending
+            End If
+
+            _cmpFileListViewComparer.SortColumn = e.Column
+            qst_lst.Sort()
         End Sub
 
         Public Function ContinueOperation(ByVal operationCount As Integer, ByVal questLst As List(Of Quest)) As String
