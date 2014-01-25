@@ -630,4 +630,16 @@
   <data name="profession_197" xml:space="preserve">
     <value>Tailoring</value>
   </data>
+  <data name="invalidSkillId" xml:space="preserve">
+    <value>This is not a valid skill id.</value>
+  </data>
+  <data name="invalidSpellId" xml:space="preserve">
+    <value>This is not a valid spell id.</value>
+  </data>
+  <data name="skillAlreadyPresent" xml:space="preserve">
+    <value>This skill is already active.</value>
+  </data>
+  <data name="spellAlreadyPresent" xml:space="preserve">
+    <value>This spell is already active.</value>
+  </data>
 </root>

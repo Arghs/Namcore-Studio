@@ -25,28 +25,39 @@ Namespace Forms.Character
         'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
         <System.Diagnostics.DebuggerStepThrough()> _
         Private Sub InitializeComponent()
+            Me.components = New System.ComponentModel.Container()
             Me.tabcontrol = New System.Windows.Forms.TabControl()
             Me.spellPage = New System.Windows.Forms.TabPage()
             Me.resultstatusSpell_lbl = New System.Windows.Forms.Label()
-            Me.search_tb = New System.Windows.Forms.TextBox()
+            Me.Spell_tb = New System.Windows.Forms.TextBox()
             Me.Label1 = New System.Windows.Forms.Label()
-            Me.add_bt = New System.Windows.Forms.Button()
+            Me.AddSpell_bt = New System.Windows.Forms.Button()
             Me.spellList = New System.Windows.Forms.ListView()
             Me.spellId = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
             Me.spellName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
             Me.skillPage = New System.Windows.Forms.TabPage()
             Me.resultstatusSkill_lbl = New System.Windows.Forms.Label()
-            Me.TextBox1 = New System.Windows.Forms.TextBox()
+            Me.Skill_tb = New System.Windows.Forms.TextBox()
             Me.Label3 = New System.Windows.Forms.Label()
-            Me.Button1 = New System.Windows.Forms.Button()
+            Me.AddSkill_bt = New System.Windows.Forms.Button()
             Me.skillList = New System.Windows.Forms.ListView()
             Me.skillId = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
             Me.skillName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
             Me.skillValue = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
             Me.skillMax = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+            Me.spellContext = New System.Windows.Forms.ContextMenuStrip(Me.components)
+            Me.RemoveSelectedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+            Me.skillContext = New System.Windows.Forms.ContextMenuStrip(Me.components)
+            Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+            Me.ToolStripValueTextBox = New System.Windows.Forms.ToolStripTextBox()
+            Me.SetMaximumToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+            Me.ToolStripMaxTextBox = New System.Windows.Forms.ToolStripTextBox()
+            Me.RemoveSelectedToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
             Me.tabcontrol.SuspendLayout()
             Me.spellPage.SuspendLayout()
             Me.skillPage.SuspendLayout()
+            Me.spellContext.SuspendLayout()
+            Me.skillContext.SuspendLayout()
             Me.SuspendLayout()
             '
             'tabcontrol
@@ -63,9 +74,9 @@ Namespace Forms.Character
             '
             Me.spellPage.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
             Me.spellPage.Controls.Add(Me.resultstatusSpell_lbl)
-            Me.spellPage.Controls.Add(Me.search_tb)
+            Me.spellPage.Controls.Add(Me.Spell_tb)
             Me.spellPage.Controls.Add(Me.Label1)
-            Me.spellPage.Controls.Add(Me.add_bt)
+            Me.spellPage.Controls.Add(Me.AddSpell_bt)
             Me.spellPage.Controls.Add(Me.spellList)
             Me.spellPage.Location = New System.Drawing.Point(4, 22)
             Me.spellPage.Name = "spellPage"
@@ -86,14 +97,14 @@ Namespace Forms.Character
             Me.resultstatusSpell_lbl.TabIndex = 234
             Me.resultstatusSpell_lbl.Text = "No results"
             '
-            'search_tb
+            'Spell_tb
             '
-            Me.search_tb.ForeColor = System.Drawing.SystemColors.WindowFrame
-            Me.search_tb.Location = New System.Drawing.Point(262, 55)
-            Me.search_tb.Name = "search_tb"
-            Me.search_tb.Size = New System.Drawing.Size(100, 20)
-            Me.search_tb.TabIndex = 233
-            Me.search_tb.Text = "Enter spell id"
+            Me.Spell_tb.ForeColor = System.Drawing.SystemColors.WindowFrame
+            Me.Spell_tb.Location = New System.Drawing.Point(262, 55)
+            Me.Spell_tb.Name = "Spell_tb"
+            Me.Spell_tb.Size = New System.Drawing.Size(100, 20)
+            Me.Spell_tb.TabIndex = 233
+            Me.Spell_tb.Text = "Enter spell id"
             '
             'Label1
             '
@@ -107,19 +118,19 @@ Namespace Forms.Character
             Me.Label1.TabIndex = 232
             Me.Label1.Text = "Right click to open context menu!"
             '
-            'add_bt
+            'AddSpell_bt
             '
-            Me.add_bt.BackColor = System.Drawing.Color.DimGray
-            Me.add_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.add_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.add_bt.ForeColor = System.Drawing.Color.Black
-            Me.add_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.add_bt.Location = New System.Drawing.Point(262, 6)
-            Me.add_bt.Name = "add_bt"
-            Me.add_bt.Size = New System.Drawing.Size(155, 34)
-            Me.add_bt.TabIndex = 231
-            Me.add_bt.Text = "Add spell"
-            Me.add_bt.UseVisualStyleBackColor = False
+            Me.AddSpell_bt.BackColor = System.Drawing.Color.DimGray
+            Me.AddSpell_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.AddSpell_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.AddSpell_bt.ForeColor = System.Drawing.Color.Black
+            Me.AddSpell_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.AddSpell_bt.Location = New System.Drawing.Point(262, 6)
+            Me.AddSpell_bt.Name = "AddSpell_bt"
+            Me.AddSpell_bt.Size = New System.Drawing.Size(155, 34)
+            Me.AddSpell_bt.TabIndex = 231
+            Me.AddSpell_bt.Text = "Add spell"
+            Me.AddSpell_bt.UseVisualStyleBackColor = False
             '
             'spellList
             '
@@ -146,9 +157,9 @@ Namespace Forms.Character
             '
             Me.skillPage.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
             Me.skillPage.Controls.Add(Me.resultstatusSkill_lbl)
-            Me.skillPage.Controls.Add(Me.TextBox1)
+            Me.skillPage.Controls.Add(Me.Skill_tb)
             Me.skillPage.Controls.Add(Me.Label3)
-            Me.skillPage.Controls.Add(Me.Button1)
+            Me.skillPage.Controls.Add(Me.AddSkill_bt)
             Me.skillPage.Controls.Add(Me.skillList)
             Me.skillPage.Location = New System.Drawing.Point(4, 22)
             Me.skillPage.Name = "skillPage"
@@ -169,14 +180,14 @@ Namespace Forms.Character
             Me.resultstatusSkill_lbl.TabIndex = 238
             Me.resultstatusSkill_lbl.Text = "No results"
             '
-            'TextBox1
+            'Skill_tb
             '
-            Me.TextBox1.ForeColor = System.Drawing.SystemColors.WindowFrame
-            Me.TextBox1.Location = New System.Drawing.Point(361, 55)
-            Me.TextBox1.Name = "TextBox1"
-            Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-            Me.TextBox1.TabIndex = 237
-            Me.TextBox1.Text = "Enter skill id"
+            Me.Skill_tb.ForeColor = System.Drawing.SystemColors.WindowFrame
+            Me.Skill_tb.Location = New System.Drawing.Point(361, 55)
+            Me.Skill_tb.Name = "Skill_tb"
+            Me.Skill_tb.Size = New System.Drawing.Size(100, 20)
+            Me.Skill_tb.TabIndex = 237
+            Me.Skill_tb.Text = "Enter skill id"
             '
             'Label3
             '
@@ -190,19 +201,19 @@ Namespace Forms.Character
             Me.Label3.TabIndex = 236
             Me.Label3.Text = "Right click to open context menu!"
             '
-            'Button1
+            'AddSkill_bt
             '
-            Me.Button1.BackColor = System.Drawing.Color.DimGray
-            Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.Button1.ForeColor = System.Drawing.Color.Black
-            Me.Button1.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Button1.Location = New System.Drawing.Point(361, 6)
-            Me.Button1.Name = "Button1"
-            Me.Button1.Size = New System.Drawing.Size(155, 34)
-            Me.Button1.TabIndex = 235
-            Me.Button1.Text = "Add skill"
-            Me.Button1.UseVisualStyleBackColor = False
+            Me.AddSkill_bt.BackColor = System.Drawing.Color.DimGray
+            Me.AddSkill_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.AddSkill_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.AddSkill_bt.ForeColor = System.Drawing.Color.Black
+            Me.AddSkill_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.AddSkill_bt.Location = New System.Drawing.Point(361, 6)
+            Me.AddSkill_bt.Name = "AddSkill_bt"
+            Me.AddSkill_bt.Size = New System.Drawing.Size(155, 34)
+            Me.AddSkill_bt.TabIndex = 235
+            Me.AddSkill_bt.Text = "Add skill"
+            Me.AddSkill_bt.UseVisualStyleBackColor = False
             '
             'skillList
             '
@@ -233,6 +244,54 @@ Namespace Forms.Character
             '
             Me.skillMax.Text = "Maximum"
             '
+            'spellContext
+            '
+            Me.spellContext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveSelectedToolStripMenuItem})
+            Me.spellContext.Name = "spellContext"
+            Me.spellContext.Size = New System.Drawing.Size(164, 26)
+            '
+            'RemoveSelectedToolStripMenuItem
+            '
+            Me.RemoveSelectedToolStripMenuItem.Name = "RemoveSelectedToolStripMenuItem"
+            Me.RemoveSelectedToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+            Me.RemoveSelectedToolStripMenuItem.Text = "Remove selected"
+            '
+            'skillContext
+            '
+            Me.skillContext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.SetMaximumToolStripMenuItem, Me.RemoveSelectedToolStripMenuItem1})
+            Me.skillContext.Name = "spellContext"
+            Me.skillContext.Size = New System.Drawing.Size(164, 70)
+            '
+            'ToolStripMenuItem1
+            '
+            Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripValueTextBox})
+            Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+            Me.ToolStripMenuItem1.Size = New System.Drawing.Size(163, 22)
+            Me.ToolStripMenuItem1.Text = "Set value"
+            '
+            'ToolStripValueTextBox
+            '
+            Me.ToolStripValueTextBox.Name = "ToolStripValueTextBox"
+            Me.ToolStripValueTextBox.Size = New System.Drawing.Size(100, 23)
+            '
+            'SetMaximumToolStripMenuItem
+            '
+            Me.SetMaximumToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMaxTextBox})
+            Me.SetMaximumToolStripMenuItem.Name = "SetMaximumToolStripMenuItem"
+            Me.SetMaximumToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+            Me.SetMaximumToolStripMenuItem.Text = "Set maximum"
+            '
+            'ToolStripMaxTextBox
+            '
+            Me.ToolStripMaxTextBox.Name = "ToolStripMaxTextBox"
+            Me.ToolStripMaxTextBox.Size = New System.Drawing.Size(100, 23)
+            '
+            'RemoveSelectedToolStripMenuItem1
+            '
+            Me.RemoveSelectedToolStripMenuItem1.Name = "RemoveSelectedToolStripMenuItem1"
+            Me.RemoveSelectedToolStripMenuItem1.Size = New System.Drawing.Size(163, 22)
+            Me.RemoveSelectedToolStripMenuItem1.Text = "Remove selected"
+            '
             'SpellSkillInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -250,9 +309,11 @@ Namespace Forms.Character
             Me.spellPage.PerformLayout()
             Me.skillPage.ResumeLayout(False)
             Me.skillPage.PerformLayout()
+            Me.spellContext.ResumeLayout(False)
+            Me.skillContext.ResumeLayout(False)
             Me.ResumeLayout(False)
 
-        End Sub
+End Sub
         Friend WithEvents tabcontrol As System.Windows.Forms.TabControl
         Friend WithEvents spellPage As System.Windows.Forms.TabPage
         Friend WithEvents skillPage As System.Windows.Forms.TabPage
@@ -260,17 +321,25 @@ Namespace Forms.Character
         Friend WithEvents spellId As System.Windows.Forms.ColumnHeader
         Friend WithEvents spellName As System.Windows.Forms.ColumnHeader
         Friend WithEvents resultstatusSpell_lbl As System.Windows.Forms.Label
-        Friend WithEvents search_tb As System.Windows.Forms.TextBox
+        Friend WithEvents Spell_tb As System.Windows.Forms.TextBox
         Friend WithEvents Label1 As System.Windows.Forms.Label
-        Friend WithEvents add_bt As System.Windows.Forms.Button
+        Friend WithEvents AddSpell_bt As System.Windows.Forms.Button
         Friend WithEvents resultstatusSkill_lbl As System.Windows.Forms.Label
-        Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+        Friend WithEvents Skill_tb As System.Windows.Forms.TextBox
         Friend WithEvents Label3 As System.Windows.Forms.Label
-        Friend WithEvents Button1 As System.Windows.Forms.Button
+        Friend WithEvents AddSkill_bt As System.Windows.Forms.Button
         Friend WithEvents skillList As System.Windows.Forms.ListView
         Friend WithEvents skillId As System.Windows.Forms.ColumnHeader
         Friend WithEvents skillName As System.Windows.Forms.ColumnHeader
         Friend WithEvents skillValue As System.Windows.Forms.ColumnHeader
         Friend WithEvents skillMax As System.Windows.Forms.ColumnHeader
+        Friend WithEvents spellContext As System.Windows.Forms.ContextMenuStrip
+        Friend WithEvents RemoveSelectedToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+        Friend WithEvents skillContext As System.Windows.Forms.ContextMenuStrip
+        Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+        Friend WithEvents ToolStripValueTextBox As System.Windows.Forms.ToolStripTextBox
+        Friend WithEvents SetMaximumToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+        Friend WithEvents ToolStripMaxTextBox As System.Windows.Forms.ToolStripTextBox
+        Friend WithEvents RemoveSelectedToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     End Class
 End Namespace
