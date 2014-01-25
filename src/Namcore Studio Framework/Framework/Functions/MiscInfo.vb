@@ -195,6 +195,18 @@ Namespace Framework.Functions
                         Case 500 To 600 : Return 102161
                         Case Else : Return - 1
                     End Select
+                Case 197 '// Tailoring
+                    Select Case rank
+                        Case 0 To 49 : Return 3908
+                        Case 50 To 124 : Return 3909
+                        Case 125 To 199 : Return 3910
+                        Case 200 To 274 : Return 12180
+                        Case 275 To 349 : Return 26790
+                        Case 350 To 424 : Return 51309
+                        Case 425 To 499 : Return 75156
+                        Case 500 To 600 : Return 110426
+                        Case Else : Return -1
+                    End Select
                 Case 202 '// Engineering
                     Select Case rank
                         Case 0 To 49 : Return 4036
@@ -299,6 +311,8 @@ Namespace Framework.Functions
                     Return {818}
                 Case 186 '// Mining
                     Return {2580, 2656}
+                Case 197 '// Tailoring
+                    Return Nothing
                 Case 202 '// Engineering
                     Return {49383}
                 Case 333 '// Enchanting
@@ -314,6 +328,13 @@ Namespace Framework.Functions
                 Case 794 '// Archaeology
                     Return {80451, 74268}
                 Case Else : Return Nothing
+            End Select
+        End Function
+
+        Public Function IsProfession(ByVal skillId As Integer) As Boolean
+            Select Case skillId
+                Case 171, 164, 333, 202, 182, 773, 755, 165, 186, 393, 197 : Return True
+                Case Else : Return False
             End Select
         End Function
 

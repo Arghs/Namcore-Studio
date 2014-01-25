@@ -125,6 +125,7 @@ Namespace Forms.Character
             '
             Me.spellList.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
             Me.spellList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.spellId, Me.spellName})
+            Me.spellList.FullRowSelect = True
             Me.spellList.Location = New System.Drawing.Point(6, 6)
             Me.spellList.Name = "spellList"
             Me.spellList.Size = New System.Drawing.Size(250, 420)
@@ -207,6 +208,7 @@ Namespace Forms.Character
             '
             Me.skillList.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
             Me.skillList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.skillId, Me.skillName, Me.skillValue, Me.skillMax})
+            Me.skillList.FullRowSelect = True
             Me.skillList.Location = New System.Drawing.Point(5, 4)
             Me.skillList.Name = "skillList"
             Me.skillList.Size = New System.Drawing.Size(350, 420)
