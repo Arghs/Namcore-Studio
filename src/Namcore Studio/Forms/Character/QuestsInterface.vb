@@ -20,6 +20,7 @@
 '*      /Filename:      QuestsInterface
 '*      /Description:   Provides an interface to display character's questlog
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Linq
 Imports NCFramework.My
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
@@ -52,6 +53,7 @@ Namespace Forms.Character
 
         Public Sub PrepareInterface(ByVal setId As Integer)
             Hide()
+            qst_lst.Items.Clear()
             _cmpFileListViewComparer = New ListViewComparer(qst_lst)
             Dim realQstLst As New List(Of Quest)
             If GlobalVariables.currentEditedCharSet Is Nothing Then
@@ -59,7 +61,8 @@ Namespace Forms.Character
             End If
             Dim qst() As String = GlobalVariables.currentEditedCharSet.FinishedQuests.Split(","c)
             For i = 0 To qst.Length - 1
-                realQstLst.Add(New Quest With {.id = TryInt(qst(i)), .rewarded = 1, .explored = 1, .status = 1})
+                If qst(i).Length = 0 Then Continue For
+                realQstLst.Add(New Quest With {.Id = TryInt(qst(i)), .Rewarded = 1, .Explored = 1, .Status = 1})
             Next
             If GlobalVariables.currentEditedCharSet.Quests IsNot Nothing Then
                 If GlobalVariables.currentEditedCharSet.Quests.Count > 0 Then
@@ -105,16 +108,16 @@ Namespace Forms.Character
             LogAppend("Loading quests", "Quests_interface_continueOperation", True)
             For Each pQuest As Quest In questLst
                 Dim str(3) As String
-                str(0) = pQuest.id.ToString
+                str(0) = pQuest.Id.ToString
                 Dim questname As String
-                If pQuest.name Is Nothing Then
+                If pQuest.Name Is Nothing Then
                     questname = GetQuestTitleById(pQuest.Id, MySettings.Default.language)
                 Else
-                    questname = pQuest.name
+                    questname = pQuest.Name
                 End If
                 str(1) = questname
-                str(2) = pQuest.status.ToString
-                str(3) = pQuest.rewarded.ToString
+                str(2) = pQuest.Status.ToString
+                str(3) = pQuest.Rewarded.ToString
                 Dim itm As New ListViewItem(str)
                 itm.Tag = pQuest
                 qst_lst.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm)
@@ -141,6 +144,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
+            qst_lst.Items.Clear()
             Close()
         End Sub
 
@@ -157,20 +161,21 @@ Namespace Forms.Character
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
-                If qst.rewarded = 1 Then
+                If qst.Rewarded = 1 Then
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
-                        GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
+                        GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.Id.ToString & ",", ",")
                 Else
                     If GlobalVariables.currentEditedCharSet.Quests Is Nothing Then _
                         GlobalVariables.currentEditedCharSet.Quests = New List(Of Quest)()
-                    For Each pquest As Quest In GlobalVariables.currentEditedCharSet.Quests
-                        If pquest.id = qst.id Then
-                            GlobalVariables.currentEditedCharSet.Quests.Remove(pquest)
-                        End If
+                    For Each pquest As Quest In _
+                        From pquest1 In DeepCloneHelper.DeepClone(GlobalVariables.currentEditedCharSet.Quests)
+                            Where pquest1.Id = qst.Id
+                        GlobalVariables.currentEditedCharSet.Quests.Remove(pquest)
                     Next
                 End If
-                For Each qitm As ListViewItem In _lstitems
-                    If qitm.Tag.id = qst.id Then
+                For i = 0 To _lstitems.Count - 1
+                    Dim qitm As ListViewItem = _lstitems(i)
+                    If qitm.Tag.id = qst.Id Then
                         _lstitems.Remove(qitm)
                         Exit For
                     End If
@@ -184,12 +189,12 @@ Namespace Forms.Character
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
-                If qst.status = 1 Then
-                    If qst.rewarded = 1 Then
+                If qst.Status = 1 Then
+                    If qst.Rewarded = 1 Then
                         GlobalVariables.currentEditedCharSet.FinishedQuests =
-                            GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
-                        qst.status = 0
-                        qst.rewarded = 0
+                            GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.Id.ToString & ",", ",")
+                        qst.Status = 0
+                        qst.Rewarded = 0
                         If GlobalVariables.currentEditedCharSet.Quests Is Nothing Then _
                             GlobalVariables.currentEditedCharSet.Quests = New List(Of Quest)()
                         GlobalVariables.currentEditedCharSet.Quests.Add(qst)
@@ -197,21 +202,21 @@ Namespace Forms.Character
                         qstitm.SubItems(3).Text = "0"
                         For Each qitm As ListViewItem In _lstitems
                             Dim subqst As Quest = qitm.Tag
-                            If subqst.id = qst.id Then
-                                subqst.status = 0
-                                subqst.rewarded = 0
+                            If subqst.Id = qst.Id Then
+                                subqst.Status = 0
+                                subqst.Rewarded = 0
                                 qitm.Tag = subqst
                             End If
                         Next
                     Else
                         For Each pquest As Quest In GlobalVariables.currentEditedCharSet.Quests
-                            If pquest.id = qst.id Then
-                                pquest.status = 0
+                            If pquest.Id = qst.Id Then
+                                pquest.Status = 0
                                 qstitm.SubItems(2).Text = "0"
                                 For Each qitm As ListViewItem In _lstitems
                                     Dim subqst As Quest = qitm.Tag
-                                    If subqst.id = qst.id Then
-                                        subqst.status = 0
+                                    If subqst.Id = qst.Id Then
+                                        subqst.Status = 0
                                         qitm.Tag = subqst
                                     End If
                                 Next
@@ -227,15 +232,15 @@ Namespace Forms.Character
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
-                If qst.status = 0 Then
+                If qst.Status = 0 Then
                     For Each pquest As Quest In GlobalVariables.currentEditedCharSet.Quests
-                        If pquest.id = qst.id Then
-                            pquest.status = 1
+                        If pquest.Id = qst.Id Then
+                            pquest.Status = 1
                             qstitm.SubItems(2).Text = "1"
                             For Each qitm As ListViewItem In _lstitems
                                 Dim subqst As Quest = qitm.Tag
-                                If subqst.id = qst.id Then
-                                    subqst.status = 1
+                                If subqst.Id = qst.Id Then
+                                    subqst.Status = 1
                                     qitm.Tag = subqst
                                 End If
                             Next
@@ -250,18 +255,18 @@ Namespace Forms.Character
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
-                If qst.rewarded = 1 Then
+                If qst.Rewarded = 1 Then
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
-                        GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.id.ToString & ",", ",")
+                        GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.Id.ToString & ",", ",")
                     qstitm.SubItems(3).Text = "0"
-                    qst.rewarded = 0
+                    qst.Rewarded = 0
                     If GlobalVariables.currentEditedCharSet.Quests Is Nothing Then _
                         GlobalVariables.currentEditedCharSet.Quests = New List(Of Quest)()
                     GlobalVariables.currentEditedCharSet.Quests.Add(qst)
                     For Each qitm As ListViewItem In _lstitems
                         Dim subqst As Quest = qitm.Tag
-                        If subqst.id = qst.id Then
-                            subqst.rewarded = 0
+                        If subqst.Id = qst.Id Then
+                            subqst.Rewarded = 0
                             qitm.Tag = subqst
                         End If
                     Next
@@ -274,21 +279,21 @@ Namespace Forms.Character
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = qstitm.Tag
-                If qst.rewarded = 0 Then
+                If qst.Rewarded = 0 Then
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
-                        GlobalVariables.currentEditedCharSet.FinishedQuests & qst.id.ToString & ","
+                        GlobalVariables.currentEditedCharSet.FinishedQuests & qst.Id.ToString & ","
                     qstitm.SubItems(2).Text = "1"
                     qstitm.SubItems(3).Text = "1"
                     If GlobalVariables.currentEditedCharSet.Quests Is Nothing Then _
                         GlobalVariables.currentEditedCharSet.Quests = New List(Of Quest)()
                     For Each pqst As Quest In GlobalVariables.currentEditedCharSet.Quests
-                        If pqst.id = qst.id Then GlobalVariables.currentEditedCharSet.Quests.Remove(pqst)
+                        If pqst.Id = qst.Id Then GlobalVariables.currentEditedCharSet.Quests.Remove(pqst)
                     Next
                     For Each qitm As ListViewItem In _lstitems
                         Dim subqst As Quest = qitm.Tag
-                        If subqst.id = qst.id Then
-                            subqst.status = 1
-                            subqst.rewarded = 1
+                        If subqst.Id = qst.Id Then
+                            subqst.Status = 1
+                            subqst.Rewarded = 1
                             qitm.Tag = subqst
                         End If
                     Next
@@ -306,48 +311,51 @@ Namespace Forms.Character
                     Exit Sub
                 End If
                 For Each qst As Quest In GlobalVariables.currentEditedCharSet.Quests
-                    If qst.id = retnvalue Then
+                    If qst.Id = retnvalue Then
                         MsgBox(ResourceHandler.GetUserMessage("qstexist"), MsgBoxStyle.Critical, "Error")
                         Exit Sub
                     End If
                 Next
-                Dim qrewarded As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterrewarded"), "Add quest",
+                Dim qrewarded As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterqstrewarded"),
+                                                           "Add quest",
                                                            "0"))
                 Dim newqst As New Quest
-                newqst.id = retnvalue
+                newqst.Id = retnvalue
                 newqst.Name = GetQuestTitleById(newqst.Id, MySettings.Default.language)
                 If qrewarded = 1 Then
-                    newqst.rewarded = 1
-                    newqst.status = 1
+                    newqst.Rewarded = 1
+                    newqst.Status = 1
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
                         GlobalVariables.currentEditedCharSet.FinishedQuests & "," & retnvalue.ToString
                     Dim str(3) As String
                     str(0) = retnvalue.ToString
-                    str(1) = newqst.name
+                    str(1) = newqst.Name
                     str(2) = "1"
                     str(3) = "1"
-                    Dim itm As New ListViewItem
+                    Dim itm As New ListViewItem(str)
                     itm.Tag = newqst
                     qst_lst.Items.Add(itm)
+                    qst_lst.Update()
                     MsgBox(ResourceHandler.GetUserMessage("qstadded"))
                 ElseIf qrewarded = 0 Then
-                    newqst.rewarded = 0
-                    Dim qfinished As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterfinished"),
+                    newqst.Rewarded = 0
+                    Dim qfinished As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterqstfinished"),
                                                                "Add quest",
                                                                "0"))
                     If qfinished = 0 Or qfinished = 1 Then
-                        newqst.status = qfinished
+                        newqst.Status = qfinished
                         If GlobalVariables.currentEditedCharSet.Quests Is Nothing Then _
                             GlobalVariables.currentEditedCharSet.Quests = New List(Of Quest)()
                         GlobalVariables.currentEditedCharSet.Quests.Add(newqst)
                         Dim str(3) As String
                         str(0) = retnvalue.ToString
-                        str(1) = newqst.name
+                        str(1) = newqst.Name
                         str(2) = finished.ToString
                         str(3) = "0"
-                        Dim itm As New ListViewItem
+                        Dim itm As New ListViewItem(str)
                         itm.Tag = newqst
                         qst_lst.Items.Add(itm)
+                        qst_lst.Update()
                         _lstitems.Add(itm)
                         MsgBox(ResourceHandler.GetUserMessage("qstadded"))
                     Else
@@ -392,7 +400,7 @@ Namespace Forms.Character
                 qst_lst.Items.Clear()
                 For Each itm As ListViewItem In _lstitems
                     Dim qst As Quest = itm.Tag
-                    If qst.id.ToString.Contains(value) Then
+                    If qst.Id.ToString.Contains(value) Then
                         resultcounter += 1
                         itmstoshow.Add(itm)
                     End If
