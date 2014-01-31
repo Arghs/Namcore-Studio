@@ -1041,11 +1041,11 @@ Namespace Forms.Character
                 End If
                 If GlobalVariables.editedCharsIndex Is Nothing Then _
                     GlobalVariables.editedCharsIndex = New List(Of Integer())()
-                For Each indexEntry () As Integer In GlobalVariables.editedCharsIndex
-                    If indexEntry(0) = GlobalVariables.currentEditedCharSet.Guid Then
-                        GlobalVariables.editedCharSets.Item(indexEntry(1)) = GlobalVariables.currentEditedCharSet
-                        Exit Sub
-                    End If
+                For Each indexEntry As Integer() In _
+                    From indexEntry1 In GlobalVariables.editedCharsIndex
+                        Where indexEntry1(0) = GlobalVariables.currentEditedCharSet.Guid
+                    GlobalVariables.editedCharSets.Item(indexEntry(1)) = GlobalVariables.currentEditedCharSet
+                    Exit For
                 Next
                 GlobalVariables.editedCharsIndex.Add(
                     {GlobalVariables.currentEditedCharSet.Guid, GlobalVariables.editedCharSets.Count})

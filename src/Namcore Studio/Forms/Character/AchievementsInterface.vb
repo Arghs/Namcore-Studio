@@ -255,25 +255,8 @@ Namespace Forms.Character
                     While Not _completed
 
                     End While
-
                     SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentEditedCharSet,
                                     GetAccountSetBySetId(GlobalVariables.currentViewedCharSet.AccountSet))
-                    Try
-                        If _
-                            AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 2).BackColor =
-                            Color.FromArgb(110, 149, 190) Then
-                            AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1).BackColor = Color.FromArgb(126, 144,
-                                                                                                                156)
-                        Else
-                            AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1).BackColor = Color.FromArgb(110, 149,
-                                                                                                                190)
-                        End If
-                        AVLayoutPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControlUpdating),
-                                                  AVLayoutPanel)
-                    Catch ex As Exception
-                        AVLayoutPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControlUpdating),
-                                                  AVLayoutPanel)
-                    End Try
                     GlobalVariables.trdRunning = 0
                 End If
             Catch myex As Exception

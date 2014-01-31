@@ -100,10 +100,15 @@ Public Class Main
             If foundRows.Length = 0 Then
                 Return {"-"}
             Else
-                Dim resultArray(foundRows.Count()) As String
+                Dim resultArray(foundRows.Count() - 1) As String
                 resultArray(0) = "-"
                 For i = 0 To foundRows.Count() - 1
-                    resultArray(i) = (foundRows(i)(targetfield)).ToString
+                    Dim thisResult As String = (foundRows(i)(targetfield)).ToString
+                    If Not thisResult Is Nothing Then
+                        resultArray(i) = thisResult
+                    Else
+                        resultArray.RemoveAt(i)
+                    End If
                 Next i
                 Return resultArray
             End If

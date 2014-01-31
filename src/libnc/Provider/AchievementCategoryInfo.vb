@@ -65,7 +65,7 @@ Namespace Provider
             For i = 0 To subCategoryList.Count - 1
                 Dim myNextResult As String() = ExecuteCsvSearch(AchievementCsv, "CategoryId", subCategoryList(i), 0)
                 If myNextResult(0) = "-" Then Return Nothing
-                For z = 0 To myNextResult.Length
+                For z = 0 To myNextResult.Length - 1
                     Try
                         myNextResults.Add(CInt(myNextResult(z)))
                     Catch : End Try
