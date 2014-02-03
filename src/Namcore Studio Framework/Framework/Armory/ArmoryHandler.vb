@@ -55,7 +55,6 @@ Namespace Framework.Armory
             client.CheckProxy()
             Dim armoryAccount As New Account() With {.Name = "Armory", .Id = 0}
             armoryAccount.Characters = New List(Of Character)()
-            armoryAccount.CharactersIndex = ""
             armoryAccount.SetIndex = 0
             armoryAccount.SourceExpansion = 5
             armoryAccount.Core = "armory"

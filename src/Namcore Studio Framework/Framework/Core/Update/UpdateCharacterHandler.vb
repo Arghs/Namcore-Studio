@@ -129,10 +129,8 @@ Namespace Framework.Core.Update
                     Dim mUpdateArmor As New UpdateArmorHandler
                     mUpdateArmor.UpdateArmor(comparePlayer, newPlayer, itm2Create, itm2Delete, itmsEnchChanged)
                 End If
-                If Not newPlayer.PlayerGlyphsIndex = comparePlayer.PlayerGlyphsIndex Then
-                    Dim mUpdateGlyphs As New UpdateGlyphsHandler
-                    mUpdateGlyphs.UpdateGlyphs(comparePlayer, newPlayer)
-                End If
+                Dim mUpdateGlyphs As New UpdateGlyphsHandler
+                mUpdateGlyphs.UpdateGlyphs(comparePlayer, newPlayer)
                 Dim result As Item = newPlayer.InventoryItems.Find(Function(item) Not item.UpdateRequest = 0)
                 Dim resultZero As Item = newPlayer.InventoryZeroItems.Find(Function(item) Not item.UpdateRequest = 0)
                 If Not result Is Nothing And Not resultZero Is Nothing Then

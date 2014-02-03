@@ -428,10 +428,6 @@ Namespace Framework.Core
             tmpCharacter.AccountName = account.Name
             tmpCharacter.AccountSet = account.SetIndex
             account.Characters.Add(tmpCharacter)
-            account.CharactersIndex = account.CharactersIndex & "[setId:" &
-                                      tarSetId.ToString & "|@" &
-                                      (account.Characters.Count - 1).ToString() &
-                                      "]"
         End Sub
 
         Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
@@ -848,10 +844,6 @@ Namespace Framework.Core
             tmpCharacter.AccountName = charactersAccount.Name
             tmpCharacter.AccountSet = charactersAccount.SetIndex
             charactersAccount.Characters.Add(tmpCharacter)
-            charactersAccount.CharactersIndex = charactersAccount.CharactersIndex & "[setId:" &
-                                                tarSetId.ToString & "|@" &
-                                                (charactersAccount.Characters.Count - 1).ToString() &
-                                                "]"
         End Sub
 
         Private Sub LoadAtTrinityTbc(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
@@ -1281,10 +1273,6 @@ Namespace Framework.Core
             tmpCharacter.AccountName = charactersAccount.Name
             tmpCharacter.AccountSet = charactersAccount.SetIndex
             charactersAccount.Characters.Add(tmpCharacter)
-            charactersAccount.CharactersIndex = charactersAccount.CharactersIndex & "[setId:" &
-                                                tarSetId.ToString & "|@" &
-                                                (charactersAccount.Characters.Count - 1).ToString() &
-                                                "]"
         End Sub
 
         Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
@@ -1714,10 +1702,6 @@ Namespace Framework.Core
             tmpCharacter.AccountName = charactersAccount.Name
             tmpCharacter.AccountSet = charactersAccount.SetIndex
             charactersAccount.Characters.Add(tmpCharacter)
-            charactersAccount.CharactersIndex = charactersAccount.CharactersIndex & "[setId:" &
-                                                tarSetId.ToString & "|@" &
-                                                (charactersAccount.Characters.Count - 1).ToString() &
-                                                "]"
         End Sub
     End Class
 End Namespace

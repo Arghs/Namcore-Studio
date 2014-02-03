@@ -36,7 +36,6 @@ Namespace Framework.Modules
         Public Shared TempCharacter As Character
         Public Shared globChars As GlobalCharVars
         Public Shared ModAccountSets As List(Of Account)
-        Public Shared ModAccountSetsIndex As String
         Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
         Public Shared targetCore As String '"arcemu", "trinity", "mangos"
         Public Shared sourceExpansion As Integer '1=classic, 2=tbc,...
@@ -109,6 +108,5 @@ Namespace Framework.Modules
     <Serializable()>
     Public Class GlobalCharVars
         Public AccountSets As List(Of Account)
-        Public AccountSetsIndex As String
     End Class
 End Namespace

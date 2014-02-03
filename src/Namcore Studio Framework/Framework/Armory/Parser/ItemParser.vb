@@ -52,7 +52,7 @@ Namespace Framework.Armory.Parser
                     slotname = GetItemSlotNameBySlotId(itemslot)
                     Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
                     If Not charItem Is Nothing Then
-                        AddCharacterArmorItem(player, charItem)
+                        player.ArmorItems.Add(charItem)
                         If itemslot = 15 Or itemslot = 16 Then
                             LoadWeaponType(charItem.Id, setId, account)
                         End If

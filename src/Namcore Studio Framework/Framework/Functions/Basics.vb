@@ -47,18 +47,12 @@ Namespace Framework.Functions
             Else
                 useChars = GlobalVariables.templateCharVars
             End If
-            If useChars.AccountSetsIndex Is Nothing Then
-                useChars.AccountSetsIndex = ""
-                useChars.AccountSets = New List(Of Account)()
-            End If
-            If useChars.AccountSetsIndex.Contains("[setId:" & setId.ToString() & "|") Then
+            If useChars.AccountSets Is Nothing Then useChars.AccountSets = New List(Of Account)()
+            Dim accountSet As Integer = useChars.AccountSets.FindIndex(Function(account) account.SetIndex = setId)
+            If accountSet <> -1 Then
                 SetAccountSet(setId, player)
             Else
                 useChars.AccountSets.Add(player)
-                useChars.AccountSetsIndex = useChars.AccountSetsIndex & "[setId:" &
-                                            setId.ToString & "|@" &
-                                            (useChars.AccountSets.Count - 1).ToString &
-                                            "]"
             End If
         End Sub
 
@@ -69,128 +63,75 @@ Namespace Framework.Functions
             Else
                 useChars = GlobalVariables.templateCharVars
             End If
-            If useChars.AccountSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
-                'found
-                Return useChars.AccountSets(TryInt(SplitString(useChars.AccountSetsIndex,
-                                                               "[setId:" & setId.ToString() & "|@", "]")))
+            Dim accountSet As Integer = useChars.AccountSets.FindIndex(Function(account) account.SetIndex = setId)
+            If accountSet <> -1 Then
+                Return useChars.AccountSets(accountSet)
             Else
-                'not found
                 Return Nothing
             End If
         End Function
 
-        Public Sub SetAccountSet(ByVal setId As Integer, ByVal account As Account)
+        Public Sub SetAccountSet(ByVal setId As Integer, ByVal playerAccount As Account)
             Dim useChars As GlobalCharVars
             If GlobalVariables.forceTemplateCharVars = False Then
                 useChars = GlobalVariables.globChars
             Else
                 useChars = GlobalVariables.templateCharVars
             End If
-            If useChars.AccountSetsIndex Is Nothing Then
-                useChars.AccountSetsIndex = ""
-                useChars.AccountSets = New List(Of Account)()
-            End If
-            If useChars.AccountSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
-                'found
-                useChars.AccountSets(TryInt(SplitString(useChars.AccountSetsIndex,
-                                                        "[setId:" & setId.ToString() & "|@", "]"))) =
-                    account
-            Else
-                'not found
+            If useChars.AccountSets Is Nothing Then useChars.AccountSets = New List(Of Account)()
+            Dim accountSet As Integer = useChars.AccountSets.FindIndex(Function(account) account.SetIndex = setId)
+            If accountSet <> -1 Then
+                useChars.AccountSets(accountSet) = playerAccount
             End If
         End Sub
 
         Public Function GetCharacterSetBySetId(ByVal setId As Integer, ByVal playerAccount As Account) As Character
-            If playerAccount.CharactersIndex.Contains("setId:" & setId.ToString() & "|") Then
-                'found
-                Return playerAccount.Characters(TryInt(SplitString(playerAccount.CharactersIndex,
-                                                                   "[setId:" & setId.ToString() & "|@", "]")))
+            Dim charSet As Integer = playerAccount.Characters.FindIndex(Function(character) character.SetIndex = setId)
+            If charSet <> -1 Then
+                Return playerAccount.Characters(charSet)
             Else
-                'not found
                 Return Nothing
             End If
         End Function
 
         Public Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character, ByVal playerAccount As Account)
+            player.SetIndex = setId
             playerAccount.Characters.Add(player)
-            playerAccount.CharactersIndex = playerAccount.CharactersIndex & "[setId:" &
-                                            setId.ToString & "|@" &
-                                            (playerAccount.Characters.Count - 1).ToString &
-                                            "]"
         End Sub
 
-        Public Sub SetCharacterSet(ByVal setId As Integer, ByVal character As Character, ByVal account As Account)
-            If account.CharactersIndex.Contains("setId:" & setId.ToString() & "|") Then
-                'found
-                account.Characters(TryInt(SplitString(account.CharactersIndex,
-                                                      "[setId:" & setId.ToString() & "|@", "]"))) =
-                    character
-            Else
-                'not found
+        Public Sub SetCharacterSet(ByVal setId As Integer, ByVal playerCharacter As Character, ByVal playerAccount As Account)
+            Dim charSet As Integer = PlayerAccount.Characters.FindIndex(Function(character) character.SetIndex = setId)
+            If charSet <> -1 Then
+                PlayerAccount.Characters(charSet) = playerCharacter
             End If
-        End Sub
-
-        Public Sub AddCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
-            If player.ArmorItems Is Nothing Then
-                player.ArmorItems = New List(Of Item)
-                player.ArmorItemsIndex = ""
-            End If
-            player.ArmorItems.Add(itm)
-            player.ArmorItemsIndex = player.ArmorItemsIndex & "[slot:" & itm.Slotname & "|@" &
-                                     (player.ArmorItems.Count - 1).ToString & "]"
-            player.ArmorItemsIndex = player.ArmorItemsIndex & "[slotnum:" & itm.Slot.ToString & "|@" &
-                                     (player.ArmorItems.Count - 1).ToString & "]"
         End Sub
 
         Public Sub RemoveCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
             If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
-            Dim itmIndex As Integer = TryInt(SplitString(player.ArmorItemsIndex,
-                                                         "[slotnum:" & itm.Slot.ToString() & "|@",
-                                                         "]"))
-            player.ArmorItems.Item(itmIndex) = New Item With {.Id = 0, .Slot = itm.Slot, .Slotname = itm.Slotname}
-            player.ArmorItemsIndex =
-                player.ArmorItemsIndex.Replace("[slot:" & itm.Slotname & "|@" & itmIndex.ToString & "]",
-                                               "")
-            player.ArmorItemsIndex =
-                player.ArmorItemsIndex.Replace("[slotnum:" & itm.Slot.ToString() & "|@" & itmIndex.ToString & "]", "")
+            Dim itmIndex As Integer = player.ArmorItems.FindIndex(Function(item) item.Slot = itm.Slot)
+            If itmIndex <> -1 Then
+                player.ArmorItems.RemoveAt(itmIndex)
+            End If
         End Sub
 
         Public Sub SetCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
-            If _
-                player.ArmorItemsIndex.Contains("[slot:" & itm.Slotname & "|@") Or
-                player.ArmorItemsIndex.Contains("[slotnum:" & itm.Slot.ToString & "|@") Then
-                player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slot:" & itm.Slotname & "|@", "]"))) =
-                    itm
-                player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & itm.Slot.ToString & "|@", "]"))) _
-                    = itm
-            Else
-
+            Dim itmIndex As Integer = player.ArmorItems.FindIndex(Function(item) item.Slot = itm.Slot)
+            If itmIndex = -1 Then itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slotname = itm.Slotname)
+            If itmIndex <> -1 Then
+                player.ArmorItems(itmIndex) = itm
             End If
         End Sub
 
         Public Function GetCharacterArmorItem(ByVal player As Character, ByVal slot As String,
                                               Optional isint As Boolean = False) As Item
-            If _
-                player.ArmorItemsIndex.Contains("[slot:" & slot & "|@") Or
-                player.ArmorItemsIndex.Contains("[slotnum:" & slot & "|@") Then
-                If isint = True Then
-                    Dim result As Item = player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex,
-                                                                              "[slotnum:" & slot & "|@", "]")))
-                    If result.Id = 0 Then
-                        Return Nothing
-                    Else
-                        Return result
-                    End If
-                Else
-                    Dim result As Item = player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex,
-                                                                              "[slot:" & slot & "|@", "]")))
-                    If result.Id = 0 Then
-                        Return Nothing
-                    Else
-                        Return result
-                    End If
-                End If
-
+            Dim itmIndex As Integer
+            If isint Then
+                itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slot = TryInt(slot))
+            Else
+                itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slot = slot)
+            End If
+            If itmIndex <> -1 Then
+                Return player.ArmorItems(itmIndex)
             Else
                 Return Nothing
             End If
@@ -199,24 +140,20 @@ Namespace Framework.Functions
         Public Sub AddCharacterGlyph(ByRef player As Character, ByVal gly As Glyph)
             If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
             player.PlayerGlyphs.Add(gly)
-            player.PlayerGlyphsIndex = player.PlayerGlyphsIndex & "[slot:" & gly.Slotname & "|@" &
-                                       (player.PlayerGlyphs.Count - 1).ToString & "]"
         End Sub
 
         Public Sub SetCharacterGlyph(ByRef player As Character, ByVal glph As Glyph)
-            If player.PlayerGlyphsIndex.Contains("[slot:" & glph.Slotname & "|@") Then
-                player.PlayerGlyphs(TryInt(SplitString(player.PlayerGlyphsIndex, "[slot:" & glph.Slotname & "|@", "]"))) _
-                    =
-                    glph
-            Else
-
+            Dim glyphIndex As Integer = player.PlayerGlyphs.FindIndex(Function(glyph) glyph.Slotname = glph.Slotname)
+            If glyphIndex <> -1 Then
+                player.PlayerGlyphs(glyphIndex) = glph
             End If
         End Sub
 
         Public Function GetCharacterGlyph(ByVal player As Character, ByVal slot As String) As Glyph
-            If player.PlayerGlyphsIndex Is Nothing Then Return Nothing
-            If player.PlayerGlyphsIndex.Contains("[slot:" & slot & "|@") Then
-                Return player.PlayerGlyphs(TryInt(SplitString(player.PlayerGlyphsIndex, "[slot:" & slot & "|@", "]")))
+            If player.PlayerGlyphs Is Nothing Then Return Nothing
+            Dim glyphIndex As Integer = player.PlayerGlyphs.FindIndex(Function(glyph) glyph.Slotname = slot)
+            If glyphIndex <> -1 Then
+                Return player.PlayerGlyphs(glyphIndex)
             Else
                 Return Nothing
             End If

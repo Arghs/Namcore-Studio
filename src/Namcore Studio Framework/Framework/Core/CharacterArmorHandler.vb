@@ -82,7 +82,7 @@ Namespace Framework.Core
                         itm.Id = itementry
                         itm.Guid = itemguid
                         Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
-                        AddCharacterArmorItem(player, itm)
+                        player.ArmorItems.Add(itm)
                         SetCharacterSet(tarSetId, player, account)
                         mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId,
                                                       GetAccountSetBySetId(player.AccountSet))
@@ -140,7 +140,7 @@ Namespace Framework.Core
                         itm.Id = itementry
                         itm.Guid = itemguid
                         Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
-                        AddCharacterArmorItem(player, itm)
+                        player.ArmorItems.Add(itm)
                         SetCharacterSet(tarSetId, player, account)
                         mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId,
                                                       GetAccountSetBySetId(player.AccountSet))
@@ -191,7 +191,7 @@ Namespace Framework.Core
                         itm.Id = itementry
                         itm.Guid = itemguid
                         Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
-                        AddCharacterArmorItem(player, itm)
+                        player.ArmorItems.Add(itm)
                         SetCharacterSet(tarSetId, player, account)
                         mItmStatsHandler.GetItemStats(itemguid, itm, player, tarSetId,
                                                       GetAccountSetBySetId(player.AccountSet))

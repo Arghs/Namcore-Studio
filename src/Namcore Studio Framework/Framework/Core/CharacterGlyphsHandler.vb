@@ -34,7 +34,6 @@ Namespace Framework.Core
                       "CharacterGlyphsHandler_GetCharacterGlyphs", True)
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             player.PlayerGlyphs = New List(Of Glyph)()
-            player.PlayerGlyphsIndex = ""
             SetCharacterSet(setId, player, account)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"

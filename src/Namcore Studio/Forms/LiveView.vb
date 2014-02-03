@@ -134,7 +134,6 @@ Namespace Forms
                 End If
                 itm = New ListViewItem(str)
                 account.Characters = New List(Of NCFramework.Framework.Modules.Character)()
-                account.CharactersIndex = ""
                 itm.Tag = account
                 accountSetIndex = accountSetIndex & "[accountId:" & str(0) & "@SetId:" & genSet.ToString() & "]"
                 accountview.Items.Add(itm)
@@ -209,7 +208,6 @@ Namespace Forms
             Dim genGuid As Integer = 1
             _checkchangestatus = False
             GlobalVariables.ModAccountSets = GlobalVariables.globChars.AccountSets
-            GlobalVariables.ModAccountSetsIndex = GlobalVariables.globChars.AccountSetsIndex
             GlobalVariables.acctable = New DataTable()
             GlobalVariables.chartable = New DataTable()
             characterview.Items.Clear()
@@ -277,7 +275,6 @@ Namespace Forms
             filter_char.Visible = True
             _checkchangestatus = False
             GlobalVariables.ModAccountSets = GlobalVariables.globChars.AccountSets
-            GlobalVariables.ModAccountSetsIndex = GlobalVariables.globChars.AccountSetsIndex
             characterview.Items.Clear()
             accountview.Items.Clear()
             GlobalVariables.acctable = New DataTable()
@@ -943,7 +940,6 @@ Namespace Forms
                     Dim newaccnode As New TreeNode
                     Dim newacc As Account = DeepCloneHelper.DeepClone(playerAccount)
                     newacc.Characters = New List(Of NCFramework.Framework.Modules.Character)()
-                    newacc.CharactersIndex = ""
                     With newaccnode
                         .Text = newacc.Name
                         .Tag = newacc
@@ -1292,7 +1288,6 @@ Namespace Forms
                 NewProcessStatus()
                 Userwait.Show()
                 Dim saveChars As New GlobalCharVars
-                saveChars.AccountSetsIndex = ""
                 saveChars.AccountSets = New List(Of Account)()
                 GlobalVariables.forceTemplateCharVars = False
                 GlobalVariables.templateCharVars = saveChars

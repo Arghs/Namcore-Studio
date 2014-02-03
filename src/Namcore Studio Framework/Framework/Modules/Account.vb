@@ -50,11 +50,5 @@ Namespace Framework.Modules
 
         'Misc
         Public Characters As List(Of Character)
-        Public CharactersIndex As String
-
-        'Public Sub New(accname As String, accountid As Integer)
-        '    Name = accname
-        '    Id = accountid
-        'End Sub
     End Class
 End Namespace

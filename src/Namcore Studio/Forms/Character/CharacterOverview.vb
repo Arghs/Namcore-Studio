@@ -959,7 +959,7 @@ Namespace Forms.Character
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
                         GlobalVariables.currentEditedCharSet =
                             DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                    AddCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
+                    GlobalVariables.currentEditedCharSet.ArmorItems.Add(itm)
                     changepanel.Location = New Point(4000, 4000)
                     addpanel.Location = New Point(4000, 4000)
                     racepanel.Location = New Point(4000, 4000)

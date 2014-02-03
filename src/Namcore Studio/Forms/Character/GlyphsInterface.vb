@@ -60,7 +60,6 @@ Namespace Forms.Character
             Else
                 player = DeepCloneHelper.DeepClone(GlobalVariables.currentEditedCharSet)
             End If
-            If player.PlayerGlyphsIndex Is Nothing Then player.PlayerGlyphsIndex = ""
             If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
             _usePlayer = player
             _controlLst = New List(Of Control)
@@ -289,21 +288,12 @@ Namespace Forms.Character
                     If GlobalVariables.currentEditedCharSet Is Nothing Then
                         GlobalVariables.currentEditedCharSet =
                             DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                        Dim glyphIndex As Integer =
-                                TryInt(SplitString(GlobalVariables.currentViewedCharSet.PlayerGlyphsIndex,
-                                                   "[slot:" & senderTag.Slotname & "|@", "]"))
-                        GlobalVariables.currentEditedCharSet.PlayerGlyphs.Item(glyphIndex) = Nothing
-                        GlobalVariables.currentEditedCharSet.PlayerGlyphsIndex =
-                            GlobalVariables.currentEditedCharSet.PlayerGlyphsIndex.Replace(
-                                "[slot:" & senderTag.Slotname & "|@" & glyphIndex.ToString() & "]", "")
-                    Else
-                        Dim glyphIndex As Integer =
-                                TryInt(SplitString(GlobalVariables.currentViewedCharSet.PlayerGlyphsIndex,
-                                                   "[slot:" & senderTag.Slotname & "|@", "]"))
-                        GlobalVariables.currentEditedCharSet.PlayerGlyphs.Item(glyphIndex) = Nothing
-                        GlobalVariables.currentEditedCharSet.PlayerGlyphsIndex =
-                            GlobalVariables.currentEditedCharSet.PlayerGlyphsIndex.Replace(
-                                "[slot:" & senderTag.Slotname & "|@" & glyphIndex.ToString() & "]", "")
+                    End If
+                    Dim glyphIndex As Integer =
+                            GlobalVariables.currentViewedCharSet.PlayerGlyphs.FindIndex(
+                                Function(glyph) glyph.Slotname = senderTag.Slotname)
+                    If glyphIndex <> - 1 Then
+                        GlobalVariables.currentEditedCharSet.PlayerGlyphs.RemoveAt(glyphIndex)
                     End If
                     senderLabel.Text = Nothing
                     senderLabel.Tag = Nothing
