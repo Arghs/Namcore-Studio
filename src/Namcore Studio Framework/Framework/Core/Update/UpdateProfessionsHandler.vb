@@ -20,6 +20,7 @@
 '*      /Filename:      UpdateProfessionsHandler
 '*      /Description:   Handles character profession update requests
 '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Transmission

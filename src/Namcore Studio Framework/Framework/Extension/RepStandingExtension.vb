@@ -1,5 +1,4 @@
-﻿
-'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 '* Copyright (C) 2013-2014 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
