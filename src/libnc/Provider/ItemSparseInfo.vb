@@ -47,7 +47,7 @@ Namespace Provider
             Catch
                 returnResult = 0
             End Try
-            Return returnResult
+            Return returnResult - 1
         End Function
         Public Function GetItemMaxStackByItemId(ByVal itemId As Integer) As Integer
             CheckInit()
