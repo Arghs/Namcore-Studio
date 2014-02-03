@@ -142,7 +142,7 @@ Namespace Framework.Core
                                         newItm.Id = TryInt(entryid)
                                         newItm.Enchantstring = enchantments
                                         newItm.Count = TryInt(itemcount)
-                                        newItm.Container = - 1
+                                        newItm.Container = -1
                                         newItm.Guid = TryInt(item)
                                         If player.InventoryZeroItems Is Nothing Then _
                                             player.InventoryZeroItems = New List(Of Item)()

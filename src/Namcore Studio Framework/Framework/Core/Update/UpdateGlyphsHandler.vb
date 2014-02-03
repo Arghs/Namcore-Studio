@@ -36,14 +36,14 @@ Namespace Framework.Core.Update
             End If
             '// Any new glyphs?
             For Each gly As Glyph In _
-                From gly1 In modPlayer.PlayerGlyphs
+                From gly1 In modPlayer.PlayerGlyphs Where Not gly1 Is Nothing
                     Let result = player.PlayerGlyphs.Find(Function(glyph) glyph.Id = gly1.Id) Where result Is Nothing
                     Select gly1
                 CreateGlyph(modPlayer, gly)
             Next
             '// Any deleted glyphs?
             For Each gly As Glyph In _
-                From gly1 In player.PlayerGlyphs
+                From gly1 In player.PlayerGlyphs Where Not gly1 Is Nothing
                     Let result = modPlayer.PlayerGlyphs.Find(Function(glyph) glyph.Id = gly1.Id) Where result Is Nothing
                     Select gly1
                 DeleteGlyph(modPlayer, gly)

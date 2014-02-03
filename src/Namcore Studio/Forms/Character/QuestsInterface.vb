@@ -350,7 +350,7 @@ Namespace Forms.Character
                         Dim str(3) As String
                         str(0) = retnvalue.ToString
                         str(1) = newqst.Name
-                        str(2) = finished.ToString
+                        str(2) = qfinished.ToString
                         str(3) = "0"
                         Dim itm As New ListViewItem(str)
                         itm.Tag = newqst

@@ -629,7 +629,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub race_lbl_Click(sender As Object, e As EventArgs) Handles race_lbl.Click
-            racepanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+            racepanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
                                            sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -648,7 +648,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub class_lbl_Click(sender As Object, e As EventArgs) Handles class_lbl.Click
-            classpanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+            classpanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
                                             sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -685,7 +685,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub level_lbl_Click(sender As Object, e As EventArgs) Handles level_lbl.Click
-            changepanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+            changepanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
                                              sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -704,7 +704,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub gender_lbl_Click(sender As Object, e As EventArgs) Handles gender_lbl.Click
-            genderpanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+            genderpanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
                                              sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -843,7 +843,7 @@ Namespace Forms.Character
             addpanel.Location = New Point(4000, 4000)
             genderpanel.Location = New Point(4000, 4000)
             For Each ctrl As Label In _
-                From ctrl1 In _controlLst.OfType (Of Label)()
+                From ctrl1 In _controlLst.OfType(Of Label)()
                     Where ctrl1.Name.StartsWith(sender.name.replace("_pic", "")) And ctrl1.Name.EndsWith("_name")
                     Where ctrl1.Text = ""
                 _tempSender = ctrl

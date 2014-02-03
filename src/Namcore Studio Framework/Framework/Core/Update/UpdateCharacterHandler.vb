@@ -147,6 +147,10 @@ Namespace Framework.Core.Update
                 If comparePlayer.Achievements Is Nothing Then comparePlayer.Achievements = New List(Of Achievement)()
                 Dim mUpdateAchievements As New UpdateAchievementsHandler
                 mUpdateAchievements.UpdateAchievements(comparePlayer, newPlayer)
+                Dim mUpdateSpellsSkills As New UpdateSpellsSkillsHandler
+                mUpdateSpellsSkills.UpdateSpellsSkills(comparePlayer, newPlayer)
+                Dim mUpdateProfessions As New UpdateProfessionsHandler
+                mUpdateProfessions.UpdateProfessions(comparePlayer, newPlayer)
                 LogAppend("Update completed", "UpdateCharacterHandler_UpdateCharacter", True)
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(), "UpdateCharacterHandler_UpdateCharacter", True, True)

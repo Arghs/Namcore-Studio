@@ -37,7 +37,7 @@ Namespace Framework.Core.Update
             '// Any new quests?
             For Each qst As Quest In modPlayer.Quests
                 Dim result As Quest = player.Quests.Find(Function(quest) quest.Id = qst.Id)
-                If result Is Nothing Then CreateQuest(modPlayer, qst)
+                If result Is Nothing Then CreateQuest(modPlayer, qst) : Continue For
                 If result.Status <> qst.Status Or result.Explored <> qst.Explored Then CreateQuest(modPlayer, qst, True)
             Next
             If Not modPlayer.FinishedQuests Is Nothing Then

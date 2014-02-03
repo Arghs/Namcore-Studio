@@ -294,10 +294,6 @@ Namespace Forms.Character
                                                  1)
         End Sub
 
-        Private Sub DelegateControlUpdating(ctrl As FlowLayoutPanel)
-            ctrl.Update()
-        End Sub
-
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
             _state = "closing"
             Close()
@@ -309,7 +305,6 @@ Namespace Forms.Character
                 '// Currently loading achievements
                 Exit Sub
             End If
-            If _currentCat = Nothing Then Exit Sub
             Dim retnvalue As Integer = TryInt(InputBox("Enter achievement id: ", "Add achievement", "0"))
             Userwait.Show()
             Application.DoEvents()
@@ -334,10 +329,15 @@ Namespace Forms.Character
                         Dim charAv As New Achievement
                         charAv.Id = retnvalue
                         charAv.GainDate = Date.Today.ToTimeStamp()
-                        If _correctIds.Contains(charAv.Id) Then
-                            AddAvToLayout(charAv)
-                        End If
                         GlobalVariables.currentEditedCharSet.Achievements.Add(charAv)
+                        Dim catBt As Button =
+                                CType(
+                                    Controls(
+                                        "cat_id_" &
+                                        GetAvMainCategoryIdBySubCatId(GetAvSubCategoryById(charAv.Id)).ToString() &
+                                        "_bt"),
+                                    Button)
+                        catBt.PerformClick()
                         MsgBox(ResourceHandler.GetUserMessage("achievementadded"), , "Info")
                     Else
                         MsgBox(ResourceHandler.GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
