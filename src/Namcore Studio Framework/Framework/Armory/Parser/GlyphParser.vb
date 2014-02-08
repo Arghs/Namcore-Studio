@@ -69,7 +69,7 @@ Namespace Framework.Armory.Parser
                                     newGlyph.Id = TryInt(SplitString(parts(counter), """item"":", ","""))
                                     newGlyph.Name = SplitString(parts(counter), """name"":", ",""")
                                     newGlyph.Slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
-                                    newGlyph.Image = GetItemIconById(newGlyph.Id, GlobalVariables.GlobalWebClient, True)
+                                    newGlyph.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(newGlyph.Id), GlobalVariables.GlobalWebClient)
                                     newGlyph.Type = loopCounter + 1
                                     newGlyph.Spec = i
                                     LogAppend("Loaded glyph " & newGlyph.Name, "GlyphParser_loadGlyphs", True)

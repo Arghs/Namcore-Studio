@@ -101,7 +101,7 @@ Namespace Forms.Character
                                                     potBagItem.Name = GetItemNameByItemId(potBagItem.Id,
                                                                                           MySettings.Default.language)
                                                 If potBagItem.Image Is Nothing Then _
-                                                    potBagItem.Image = GetItemIconById(potBagItem.Id,
+                                                    potBagItem.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(potBagItem.Id),
                                                                                        GlobalVariables.GlobalWebClient)
                                                 potCharBag.BagItems.Add(potBagItem)
                                             End If
@@ -109,7 +109,7 @@ Namespace Forms.Character
                                         potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Id)
                                         bagPanel.Tag = potCharBag
                                         For Each myPic As PictureBox In subctrl.Controls
-                                            myPic.BackgroundImage = GetItemIconById(potCharBag.Id,
+                                            myPic.BackgroundImage = GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
                                                                                     GlobalVariables.GlobalWebClient)
                                             myPic.Tag = potCharBag
                                         Next
@@ -120,7 +120,7 @@ Namespace Forms.Character
                             If potCharBag.Name Is Nothing Then _
                                 potCharBag.Name = GetItemNameByItemId(potCharBag.Id, MySettings.Default.language)
                             If potCharBag.Image Is Nothing Then _
-                                potCharBag.Image = GetItemIconById(potCharBag.Id, GlobalVariables.GlobalWebClient)
+                                potCharBag.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id), GlobalVariables.GlobalWebClient)
                             If potCharBag.Rarity = Nothing Then _
                                 potCharBag.Rarity = GetItemQualityByItemId(potCharBag.Id)
                             Dim entry As Control =

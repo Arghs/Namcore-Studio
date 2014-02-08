@@ -147,7 +147,7 @@ Namespace Forms.Character
                                                     potBagItem.Name = GetItemNameByItemId(potBagItem.Id,
                                                                                           MySettings.Default.language)
                                                 If potBagItem.Image Is Nothing Then _
-                                                    potBagItem.Image = GetItemIconById(potBagItem.Id,
+                                                    potBagItem.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(potBagItem.Id),
                                                                                        GlobalVariables.GlobalWebClient)
                                                 potCharBag.BagItems.Add(potBagItem)
                                             End If
@@ -155,7 +155,7 @@ Namespace Forms.Character
                                         potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Id)
                                         bagPanel.Tag = potCharBag
                                         For Each myPic As PictureBox In subctrl.Controls
-                                            myPic.BackgroundImage = GetItemIconById(potCharBag.Id,
+                                            myPic.BackgroundImage = GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
                                                                                     GlobalVariables.GlobalWebClient)
                                             myPic.Tag = potCharBag
                                         Next
@@ -166,7 +166,7 @@ Namespace Forms.Character
                             If potCharBag.Name Is Nothing Then _
                                 potCharBag.Name = GetItemNameByItemId(potCharBag.Id, MySettings.Default.language)
                             If potCharBag.Image Is Nothing Then _
-                                potCharBag.Image = GetItemIconById(potCharBag.Id, GlobalVariables.GlobalWebClient)
+                                potCharBag.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id), GlobalVariables.GlobalWebClient)
                             zeroBagItems.Add(potCharBag)
                     End Select
                 Next
@@ -317,7 +317,7 @@ Namespace Forms.Character
                     Return itm.EnchantmentName
                 Case 2
                     If itm.Image Is Nothing Then
-                        itm.Image = GetItemIconById(itm.Id, GlobalVariables.GlobalWebClient)
+                        itm.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Id), GlobalVariables.GlobalWebClient)
                     End If
                     Return itm.Image
 
@@ -946,7 +946,7 @@ Namespace Forms.Character
                     Dim x As DateTime = Date.Now
                     itm.Guid = x.ToTimeStamp()
                     itm.Name = GetItemNameByItemId(itm.Id, MySettings.Default.language)
-                    itm.Image = GetItemIconById(itm.Id, GlobalVariables.GlobalWebClient)
+                    itm.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Id), GlobalVariables.GlobalWebClient)
                     itm.Rarity = GetItemQualityByItemId(itm.Id)
                     itm.Slot = TryInt(meSlot)
                     itm.Slotname = GetItemInventorySlotByItemId(itm.Slot)
@@ -1145,18 +1145,18 @@ Namespace Forms.Character
                                 itm.Socket1Effectid = effectId
                                 itm.Socket1Id = retnvalue
                                 itm.Socket1Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
-                                itm.Socket1Pic = GetItemIconById(retnvalue, GlobalVariables.GlobalWebClient)
+                                itm.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue), GlobalVariables.GlobalWebClient)
                             Case myPic.Name.Contains("gem2")
                                 itm.Socket2Effectid = effectId
                                 itm.Socket2Id = retnvalue
                                 itm.Socket2Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
-                                itm.Socket2Pic = GetItemIconById(retnvalue, GlobalVariables.GlobalWebClient)
+                                itm.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue), GlobalVariables.GlobalWebClient)
                             Case myPic.Name.Contains("gem3")
                                 itm.Socket2Effectid = effectId
                                 itm.Socket3Effectid = effectId
                                 itm.Socket3Id = retnvalue
                                 itm.Socket3Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
-                                itm.Socket3Pic = GetItemIconById(retnvalue, GlobalVariables.GlobalWebClient)
+                                itm.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue), GlobalVariables.GlobalWebClient)
                         End Select
                         sender.tag = itm
                         myPic.Image = itm.Image

@@ -63,15 +63,15 @@ Namespace Framework.Core
                     itm.Socket1Effectid = ArcSplitGemString(itm.Enchstring, 29)
                     itm.Socket1Id = GetGemIdByEffectId(itm.Socket1Effectid)
                     itm.Socket1Name = GetEffectNameById(itm.Socket1Effectid, My.Settings.language)
-                    itm.Socket1Pic = GetItemIconById(itm.Socket1Id, GlobalVariables.GlobalWebClient)
+                    itm.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket1Id), GlobalVariables.GlobalWebClient)
                     itm.Socket2Effectid = ArcSplitGemString(itm.Enchstring, 32)
                     itm.Socket2Id = GetGemIdByEffectId(itm.Socket2Effectid)
                     itm.Socket2Name = GetEffectNameById(itm.Socket2Effectid, My.Settings.language)
-                    itm.Socket2Pic = GetItemIconById(itm.Socket2Id, GlobalVariables.GlobalWebClient)
+                    itm.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket2Id), GlobalVariables.GlobalWebClient)
                     itm.Socket3Effectid = ArcSplitGemString(itm.Enchstring, 35)
                     itm.Socket3Id = GetGemIdByEffectId(itm.Socket3Effectid)
                     itm.Socket3Name = GetEffectNameById(itm.Socket3Effectid, My.Settings.language)
-                    itm.Socket3Pic = GetItemIconById(itm.Socket3Id, GlobalVariables.GlobalWebClient)
+                    itm.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket3Id), GlobalVariables.GlobalWebClient)
                 End If
                 If loopcounter = 13 Then
                     Dim resultString As String = ArcSplitGemString(itm.Enchstring, 38)
@@ -279,17 +279,17 @@ Namespace Framework.Core
                         Case 1
                             itm.Socket1Effectid = TryInt(parts(position))
                             itm.Socket1Id = GetGemIdByEffectId(itm.Socket1Effectid)
-                            itm.Socket1Pic = GetItemIconById(itm.Socket1Id, GlobalVariables.GlobalWebClient)
+                            itm.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket1Id), GlobalVariables.GlobalWebClient)
                             Return GetEffectNameById(itm.Socket1Effectid, My.Settings.language)
                         Case 2
                             itm.Socket2Effectid = TryInt(parts(position))
                             itm.Socket2Id = GetGemIdByEffectId(itm.Socket2Effectid)
-                            itm.Socket2Pic = GetItemIconById(itm.Socket2Id, GlobalVariables.GlobalWebClient)
+                            itm.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket2Id), GlobalVariables.GlobalWebClient)
                             Return GetEffectNameById(itm.Socket2Effectid, My.Settings.language)
                         Case 3
                             itm.Socket3Effectid = TryInt(parts(position))
                             itm.Socket3Id = GetGemIdByEffectId(itm.Socket3Effectid)
-                            itm.Socket3Pic = GetItemIconById(itm.Socket3Id, GlobalVariables.GlobalWebClient)
+                            itm.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket3Id), GlobalVariables.GlobalWebClient)
                             Return GetEffectNameById(itm.Socket3Effectid, My.Settings.language)
                     End Select
                     Return "Not found"
@@ -372,17 +372,17 @@ Namespace Framework.Core
                         Case 1
                             itm.Socket1Effectid = TryInt(parts(position - 1))
                             itm.Socket1Id = GetGemIdByEffectId(itm.Socket1Effectid)
-                            itm.Socket1Pic = GetItemIconById(itm.Socket1Id, GlobalVariables.GlobalWebClient)
+                            itm.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket1Id), GlobalVariables.GlobalWebClient)
                             Return GetEffectNameById(itm.Socket1Effectid, My.Settings.language)
                         Case 2
                             itm.Socket2Effectid = TryInt(parts(position - 1))
                             itm.Socket2Id = GetGemIdByEffectId(itm.Socket2Effectid)
-                            itm.Socket2Pic = GetItemIconById(itm.Socket2Id, GlobalVariables.GlobalWebClient)
+                            itm.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket2Id), GlobalVariables.GlobalWebClient)
                             Return GetEffectNameById(itm.Socket2Effectid, My.Settings.language)
                         Case 3
                             itm.Socket3Effectid = TryInt(parts(position - 1))
                             itm.Socket3Id = GetGemIdByEffectId(itm.Socket3Effectid)
-                            itm.Socket3Pic = GetItemIconById(itm.Socket3Id, GlobalVariables.GlobalWebClient)
+                            itm.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket3Id), GlobalVariables.GlobalWebClient)
                             Return GetEffectNameById(itm.Socket3Effectid, My.Settings.language)
                     End Select
                     Return "Not found"
