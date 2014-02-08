@@ -31,6 +31,9 @@ Namespace Framework.Core
         Public Sub GetCharacterArmor(ByVal charguid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character Armor for charguid: " & charguid & " and setId: " & setId,
                       "CharacterArmorHandler_GetCharacterArmor", True)
+            Dim player As Character = GetCharacterSetBySetId(setId, account)
+            player.ArmorItems = New List(Of Item)()
+            SetCharacterSet(setId, player, account)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     LoadAtArcemu(charguid, setId, account)

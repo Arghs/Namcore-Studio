@@ -128,7 +128,7 @@ Namespace Framework.Functions
             If isint Then
                 itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slot = TryInt(slot))
             Else
-                itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slot = slot)
+                itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slotname = slot)
             End If
             If itmIndex <> -1 Then
                 Return player.ArmorItems(itmIndex)
