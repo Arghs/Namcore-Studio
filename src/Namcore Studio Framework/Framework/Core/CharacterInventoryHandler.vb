@@ -142,7 +142,7 @@ Namespace Framework.Core
                                         newItm.Id = TryInt(entryid)
                                         newItm.Enchantstring = enchantments
                                         newItm.Count = TryInt(itemcount)
-                                        newItm.Container = -1
+                                        newItm.Container = - 1
                                         newItm.Guid = TryInt(item)
                                         If player.InventoryZeroItems Is Nothing Then _
                                             player.InventoryZeroItems = New List(Of Item)()
@@ -471,62 +471,62 @@ Namespace Framework.Core
 
         Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Inventory @LoadAtTrinity", "CharacterInventoryHandler_LoadAtTrinity", False)
-            Dim dt As DataTable =
-                    ReturnDataTable(
-                        "SELECT " & GlobalVariables.sourceStructure.invent_item_col(0) & " FROM " &
-                        GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
-                        GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim tmpext As Integer
+            Dim inventoryDt As DataTable = ReturnDataTable(
+                "SELECT * FROM " &
+                GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
+                GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "'")
+            Dim itemInstanceDt As DataTable = ReturnDataTable(
+                "SELECT `" & GlobalVariables.sourceStructure.itmins_guid_col(0) & "`, `" &
+                GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & "`, `" &
+                GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "`, `" &
+                GlobalVariables.sourceStructure.itmins_count_col(0) & "`, `" &
+                GlobalVariables.sourceStructure.itmins_enchantments_col(0) & "` FROM " &
+                GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString() & "'")
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
-                Dim lastcount As Integer = dt.Rows.Count
+                Dim lastcount As Integer = inventoryDt.Rows.Count
                 Dim count As Integer = 0
                 If Not lastcount = 0 Then
                     Do
-                        Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
-                        tmpext = TryInt(readedcode)
-                        Dim bagguid As String =
-                                runSQLCommand_characters_string(
-                                    "SELECT " & GlobalVariables.sourceStructure.invent_bag_col(0) & " FROM " &
-                                    GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString &
-                                    "' AND " &
-                                    GlobalVariables.sourceStructure.invent_item_col(0) & "='" & tmpext.ToString & "'")
+                        Dim itemGuid As Integer = TryInt(inventoryDt.Rows(count).Item(3))
+                        Dim bagGuid As Integer =
+                                ExecuteDataTableSearch(inventoryDt,
+                                                       GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" &
+                                                       EscapeLikeValue(charguid.ToString) & "' AND " &
+                                                       GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
+                                                       EscapeLikeValue(itemGuid.ToString()) & "'")(0)(1)
+
                         If TryInt(bagguid) = 0 Then
-                            If tmpext > 18 Then
+                            If itemGuid > 18 Then
                                 Dim bag As String
                                 Dim item As String
                                 Dim entryid As String
                                 Dim enchantments As String
                                 Dim itemcount As String
                                 Dim slot As String
-                                bag = bagguid
-                                item = tmpext.ToString()
+                                bag = bagGuid
+                                item = itemGuid.ToString()
                                 entryid =
-                                    runSQLCommand_characters_string(
-                                        "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
-                                        GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                        GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                                    ExecuteDataTableSearch(itemInstanceDt,
+                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                           EscapeLikeValue(item) & "'")(0)(1)
                                 enchantments =
-                                    runSQLCommand_characters_string(
-                                        "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
-                                        " FROM " &
-                                        GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                        GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                                    ExecuteDataTableSearch(itemInstanceDt,
+                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                           EscapeLikeValue(item) & "'")(0)(4)
                                 itemcount =
-                                    runSQLCommand_characters_string(
-                                        "Select `" & GlobalVariables.sourceStructure.itmins_count_col(0) & "` FROM " &
-                                        GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                        GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                                    ExecuteDataTableSearch(itemInstanceDt,
+                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                           EscapeLikeValue(item) & "'")(0)(3)
                                 slot =
-                                    runSQLCommand_characters_string(
-                                        "Select `" & GlobalVariables.sourceStructure.invent_slot_col(0) & "` FROM " &
-                                        GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE `" &
-                                        GlobalVariables.sourceStructure.invent_item_col(0) & "`='" & item & "'")
+                                    ExecuteDataTableSearch(inventoryDt,
+                                                           GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
+                                                           EscapeLikeValue(itemGuid.ToString()) & "'")(0)(2)
                                 Dim newItm As New Item
                                 newItm.Slot = TryInt(slot)
                                 newItm.Bag = TryInt(bag)
-                                newItm.Bagguid = TryInt(bagguid)
+                                newItm.Bagguid = TryInt(bagGuid)
                                 newItm.Id = TryInt(entryid)
                                 newItm.Enchantstring = enchantments
                                 newItm.Count = TryInt(itemcount)
@@ -543,31 +543,26 @@ Namespace Framework.Core
                             Dim itemcount As String
                             Dim slot As String
                             bag =
-                                runSQLCommand_characters_string(
-                                    "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
-                                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & bagguid & "'")
-                            item = tmpext.ToString
+                                ExecuteDataTableSearch(itemInstanceDt,
+                                                       GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                       EscapeLikeValue(bagGuid.ToString()) & "'")(0)(1)
+                            item = itemGuid.ToString
                             entryid =
-                                runSQLCommand_characters_string(
-                                    "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
-                                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                                ExecuteDataTableSearch(itemInstanceDt,
+                                                       GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                       EscapeLikeValue(item) & "'")(0)(1)
                             enchantments =
-                                runSQLCommand_characters_string(
-                                    "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) & " FROM " &
-                                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                                ExecuteDataTableSearch(itemInstanceDt,
+                                                       GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                       EscapeLikeValue(item) & "'")(0)(4)
                             itemcount =
-                                runSQLCommand_characters_string(
-                                    "Select `" & GlobalVariables.sourceStructure.itmins_count_col(0) & "` FROM " &
-                                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                                ExecuteDataTableSearch(itemInstanceDt,
+                                                       GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                       EscapeLikeValue(item) & "'")(0)(3)
                             slot =
-                                runSQLCommand_characters_string(
-                                    "Select `" & GlobalVariables.sourceStructure.invent_slot_col(0) & "` FROM " &
-                                    GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE `" &
-                                    GlobalVariables.sourceStructure.invent_item_col(0) & "`='" & item & "'")
+                                ExecuteDataTableSearch(inventoryDt,
+                                                       GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
+                                                       EscapeLikeValue(itemGuid.ToString()) & "'")(0)(2)
                             Dim newItm As New Item
                             newItm.Slot = TryInt(slot)
                             newItm.Bag = TryInt(bag)

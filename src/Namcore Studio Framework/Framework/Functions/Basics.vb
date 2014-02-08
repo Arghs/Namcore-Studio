@@ -27,6 +27,7 @@ Imports libnc
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports System.Net
+Imports System.Text
 
 Namespace Framework.Functions
     Public Module Basics
@@ -221,7 +222,7 @@ Namespace Framework.Functions
                                                ByVal startvalue As String, ByVal targetfield As Integer) As String()
             Try
                 Dim foundRows() As DataRow
-                foundRows = dt.Select(startfield & " = '" & startvalue & "'")
+                foundRows = dt.Select(startfield & " = '" & EscapeLikeValue(startvalue) & "'")
                 If foundRows.Length = 0 Then
                     Return {"-"}
                 Else
@@ -237,6 +238,49 @@ Namespace Framework.Functions
             End Try
         End Function
 
+        Public Function ExecuteDataTableSearch(ByVal dt As DataTable, ByVal command As String) As List(Of String())
+            Try
+                Dim foundRows() As DataRow
+                foundRows = dt.Select(command)
+                If foundRows.Length = 0 Then
+                    Return Nothing
+                Else
+                    Dim resultList As New List(Of String())
+                   
+                    For i = 0 To foundRows.Count() - 1
+                        Dim colCount As Integer = foundRows(i).Table.Columns.Count()
+                        Dim resultArray(colCount) As String
+                        For z = 0 To colCount - 1
+                            resultArray(z) = (foundRows(i)(z)).ToString
+                        Next z
+                        resultList.Add(resultArray)
+                    Next i
+                    Return resultList
+                End If
+            Catch ex As Exception
+                Return Nothing
+            End Try
+        End Function
+
+        Public Function EscapeLikeValue(ByVal value As String) As String
+            Dim sb As New StringBuilder(value.Length)
+            For i = 0 To value.Length - 1
+                Dim c As Char = value(i)
+                Select Case c
+                    Case "]"
+                    Case "]"c, "["c, "%"c, "*"c
+                        sb.Append("[").Append(c).Append("]")
+                        Exit Select
+                    Case "'"c
+                        sb.Append("''")
+                        Exit Select
+                    Case Else
+                        sb.Append(c)
+                        Exit Select
+                End Select
+            Next
+            Return sb.ToString()
+        End Function
         Public Sub CloseProcessStatus()
             If GlobalVariables.DebugMode = False Then
                 Try
