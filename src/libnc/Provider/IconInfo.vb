@@ -153,7 +153,7 @@ Namespace Provider
             Main.CheckInit()
             Try
                 Const targetField As Integer = 1
-                Dim myResult As String = ""
+                Dim myResult As String
                 myResult = Main.ExecuteCsvSearch(Main.ItemDisplayInfoCsv, "ItemId", displayId.ToString(), targetField)(0)
                 If myResult Is Nothing Then
                     Return My.Resources.INV_Misc_QuestionMark

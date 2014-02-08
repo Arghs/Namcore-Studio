@@ -22,47 +22,63 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Functions
 Imports MySql.Data.MySqlClient
 
 Namespace Framework.Database
     Public Module CommandHandler
+        '// Declaration
+        Private _tempTable1Name As String
+        Private _tempTable1 As DataTable
+        Private _tempTable2Name As String
+        Private _tempTable2 As DataTable
+        '// Declaration
         Public Function runSQLCommand_characters_string(ByVal command As String,
                                                         Optional useTargetConnection As Boolean = False) As String
-            LogAppend("Executing new MySQL command. Command is: " & command,
-                      "CommandHandler_runSQLCommand_characters_string", False)
-            Dim conn As MySqlConnection
-            If GlobalVariables.forceTargetConnectionUsage Then useTargetConnection = True
-            If useTargetConnection = False Then
-                conn = GlobalVariables.GlobalConnection
-            Else
-                conn = GlobalVariables.TargetConnection
+            Dim table As String = SplitString(command.ToLower(), "from ", " where")
+            table = table.Replace("`", "")
+            LogAppend("Table is: " & table, "CommandHandler_runSQLCommand_characters_string")
+            If Not table = _tempTable1Name Then
+                _tempTable1Name = table
+                _tempTable1 = ReturnDataTable("SELECT * FROM `" & table & "`", useTargetConnection)
             End If
-            Dim da As New MySqlDataAdapter(command, conn)
-            Dim dt As New DataTable
+            Dim column As String = SplitString(command.ToLower(), "select ", " from")
+            column = column.Replace("`", "")
+            Dim args As String()
+            args = command.Split(" ")
+            Dim newcommand As String = ""
+            For i = 0 To args.Length - 1
+                If args(i) = "WHERE" Then
+                    While i < args.Length - 1
+                        i += 1
+                        newcommand &= args(i)
+                    End While
+                    Exit For
+                End If
+            Next i
+            newcommand = newcommand.Replace("`", "")
+            Dim foundRows() As DataRow
             Try
-                da.Fill(dt)
-                Dim lastcount As Integer = dt.Rows.Count
-                If Not lastcount = 0 Then
-                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string",
-                              False)
-                    Dim readed As String = (dt.Rows(0).Item(0)).ToString
-                    If readed = "DBnull" Then
-                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string",
-                                  False)
-                        Return ""
-                    Else
-                        LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_characters_string", False)
-                        Return readed
-                    End If
-                Else
+                foundRows = _tempTable1.Select(newcommand)
+                LogAppend("New command/column: " & newcommand & " / " & column, "CommandHandler_runSQLCommand_characters_string")
+                If foundRows.Length = 0 Then
                     LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_characters_string", False)
                     Return ""
+                Else
+                    Dim result = foundRows(0).Item(column)
+                    If IsDBNull(result) Then
+                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string",
+                                       False)
+                        Return ""
+                    Else
+                        Return result.ToString()
+                    End If
                 End If
-            Catch ex As MySqlException
+            Catch ex As Exception
                 LogAppend(
-                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" &
-                    ex.ToString() &
-                    "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
+                  "Exception occured: ###START###" &
+                  ex.ToString() &
+                  "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
                 Return ""
             End Try
         End Function
@@ -70,114 +86,107 @@ Namespace Framework.Database
         Public Function runSQLCommand_realm_string(ByVal command As String,
                                                    Optional useTargetConnection As Boolean = False) _
             As String
-            LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_realm_string",
-                      False)
-            Dim conn As MySqlConnection
-            If GlobalVariables.forceTargetConnectionUsage Then useTargetConnection = True
-            If useTargetConnection = False Then
-                conn = GlobalVariables.GlobalConnection_Realm
-            Else
-                conn = GlobalVariables.TargetConnection_Realm
+            Dim table As String = SplitString(command.ToLower(), "from ", " where")
+            table = table.Replace("`", "")
+            LogAppend("Table is: " & table, "CommandHandler_runSQLCommand_realm_string")
+            If Not table = _tempTable2Name Then
+                _tempTable2Name = table
+                _tempTable2 = ReturnDataTableRealm("SELECT * FROM `" & table & "`", useTargetConnection)
             End If
-            Dim da As New MySqlDataAdapter(command, conn)
-            Dim dt As New DataTable
+            Dim column As String = SplitString(command.ToLower(), "select ", " from")
+            column = column.Replace("`", "")
+            Dim args As String()
+            args = command.Split(" ")
+            Dim newcommand As String = ""
+            For i = 0 To args.Length - 1
+                If args(i) = "WHERE" Then
+                    While i < args.Length - 1
+                        i += 1
+                        newcommand &= args(i)
+                    End While
+                    Exit For
+                End If
+            Next i
+            newcommand = newcommand.Replace("`", "")
+            Dim foundRows() As DataRow
             Try
-
-                da.Fill(dt)
-                Dim lastcount As Integer = dt.Rows.Count
-                If Not lastcount = 0 Then
-                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_realm_string", False)
-                    Dim readed As String = (dt.Rows(0).Item(0)).ToString
-                    If readed = "DBnull" Then
-                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string",
-                                  False)
-                        Return ""
-                    Else
-                        LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_realm_string", False)
-                        Return readed
-                    End If
-                Else
+                foundRows = _tempTable2.Select(newcommand)
+                LogAppend("New command/column: " & newcommand & " / " & column, "CommandHandler_runSQLCommand_realm_string")
+                If foundRows.Length = 0 Then
                     LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
                     Return ""
+                Else
+                    Dim result = foundRows(0).Item(column)
+                    If IsDBNull(result) Then
+                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string",
+                                       False)
+                        Return ""
+                    Else
+                        Return result.ToString()
+                    End If
                 End If
-            Catch ex As MySqlException
+            Catch ex As Exception
                 LogAppend(
-                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" &
-                    ex.ToString() &
-                    "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
+                  "Exception occured: ###START###" &
+                  ex.ToString() &
+                  "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
                 Return ""
             End Try
         End Function
 
         Public Function runSQLCommand_characters_string_setconn(ByVal command As String,
                                                                 ByVal targetConnection As MySqlConnection) As String
-            LogAppend("Executing new MySQL command. Command is: " & command,
-                      "CommandHandler_runSQLCommand_characters_string", False)
-            Dim conn As MySqlConnection
-            conn = TargetConnection
-            Dim da As New MySqlDataAdapter(command, conn)
-            Dim dt As New DataTable
+            Dim table As String = SplitString(command.ToLower(), "from ", " where")
+            table = table.Replace("`", "")
+            LogAppend("Table is: " & table, "CommandHandler_runSQLCommand_characters_string_setconn")
+            If Not table = _tempTable1Name Then
+                _tempTable1Name = table
+                _tempTable1 = ReturnDataTable_setconn("SELECT * FROM `" & table & "`", targetConnection)
+            End If
+            Dim column As String = SplitString(command.ToLower(), "select ", " from")
+            column = column.Replace("`", "")
+            Dim args As String()
+            args = command.Split(" ")
+            Dim newcommand As String = ""
+            For i = 0 To args.Length - 1
+                If args(i) = "WHERE" Then
+                    While i < args.Length - 1
+                        i += 1
+                        newcommand &= args(i)
+                    End While
+                    Exit For
+                End If
+            Next i
+            newcommand = newcommand.Replace("`", "")
+            Dim foundRows() As DataRow
             Try
-                da.Fill(dt)
-                Dim lastcount As Integer = dt.Rows.Count
-                If Not lastcount = 0 Then
-                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_characters_string",
-                              False)
-                    Dim readed As String = (dt.Rows(0).Item(0)).ToString
-                    If readed = "DBnull" Then
-                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string",
-                                  False)
+                foundRows = _tempTable1.Select(newcommand)
+                LogAppend("New command/column: " & newcommand & " / " & column, "CommandHandler_runSQLCommand_characters_string_setconn")
+                If foundRows.Length = 0 Then
+                    LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_characters_string_setconn", False)
+                    Return ""
+                Else
+                    Dim result = foundRows(0).Item(column)
+                    If IsDBNull(result) Then
+                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string_setconn",
+                                       False)
                         Return ""
                     Else
-                        LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_characters_string", False)
-                        Return readed
+                        Return result.ToString()
                     End If
-                Else
-                    LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_characters_string", False)
-                    Return ""
                 End If
-            Catch ex As MySqlException
+            Catch ex As Exception
                 LogAppend(
-                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" &
-                    ex.ToString() &
-                    "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
+                  "Exception occured: ###START###" &
+                  ex.ToString() &
+                  "###END###", "CommandHandler_runSQLCommand_characters_string_setconn", True, True)
                 Return ""
             End Try
         End Function
 
         Public Function runSQLCommand_realm_string_setconn(ByVal command As String,
                                                            ByVal targetConnection As MySqlConnection) As String
-            LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_runSQLCommand_realm_string",
-                      False)
-            Dim conn As MySqlConnection
-            conn = GlobalVariables.TargetConnection_Realm
-            Dim da As New MySqlDataAdapter(command, conn)
-            Dim dt As New DataTable
-            Try
-                da.Fill(dt)
-                Dim lastcount As Integer = dt.Rows.Count
-                If Not lastcount = 0 Then
-                    LogAppend("Results: " & lastcount.ToString(), "CommandHandler_runSQLCommand_realm_string", False)
-                    Dim readed As String = (dt.Rows(0).Item(0)).ToString
-                    If readed = "DBnull" Then
-                        LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string",
-                                  False)
-                        Return ""
-                    Else
-                        LogAppend("Result is: " & readed, "CommandHandler_runSQLCommand_realm_string", False)
-                        Return readed
-                    End If
-                Else
-                    LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
-                    Return ""
-                End If
-            Catch ex As MySqlException
-                LogAppend(
-                    "MySQL query has not been executed! -> Returning nothing -> Exception is: ###START###" &
-                    ex.ToString() &
-                    "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
-                Return ""
-            End Try
+            Return runSQLCommand_characters_string_setconn(command, targetConnection)
         End Function
 
         Public Function ReturnDataTable(ByVal command As String, Optional useTargetConnection As Boolean = False) _
@@ -203,11 +212,39 @@ Namespace Framework.Database
             End Try
         End Function
 
+        Public Function ReturnDataTableRealm(ByVal command As String, Optional useTargetConnection As Boolean = False) _
+         As DataTable
+            LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTableRealm", False)
+            Dim conn As MySqlConnection
+            If GlobalVariables.forceTargetConnectionUsage Then useTargetConnection = True
+            If useTargetConnection = False Then
+                conn = GlobalVariables.GlobalConnection_Realm
+            Else
+                conn = GlobalVariables.TargetConnection_Realm
+            End If
+            Dim da As New MySqlDataAdapter(command, conn)
+            Dim dt As New DataTable
+            Try
+                da.Fill(dt)
+                For Each dtRow As DataRow In dt.Rows
+                    For i = 0 To dt.Rows(0).Table.Columns.Count - 1
+                        If IsDBNull(dtRow.Item(i)) Then dtRow.Item(i) = ""
+                    Next
+                Next
+                Return dt
+            Catch ex As Exception
+                LogAppend(
+                    "Failed to fill DataTable! -> Returning nothing -> Exception is: ###START###" & ex.ToString() &
+                    "###END###", "CommandHandler_ReturnDataTableRealm", True, True)
+                Return dt
+            End Try
+        End Function
+
         Public Function ReturnDataTable_setconn(ByVal command As String, ByVal targetConnection As MySqlConnection) _
             As DataTable
             LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTable", False)
             Dim conn As MySqlConnection
-            conn = TargetConnection
+            conn = targetConnection
             Dim da As New MySqlDataAdapter(command, conn)
             Dim dt As New DataTable
             Try
