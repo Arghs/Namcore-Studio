@@ -305,7 +305,11 @@ Namespace Forms.Character
             _pubItm = New Item
             Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet, _currentAccount), slot.ToString,
                                                     True)
-            _pubItm = itm
+            If itm Is Nothing Then
+                _pubItm = itm
+            Else
+                _pubItm = DeepCloneHelper.DeepClone(itm)
+            End If
             If itm Is Nothing Then Return Nothing
             Select Case infotype
                 Case 0
@@ -422,6 +426,7 @@ Namespace Forms.Character
                                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             GlobalVariables.currentEditedCharSet.Name = TextBox1.Text
                             senderLabel.Text = TextBox1.Text
+                            InfoToolTip.SetToolTip(senderLabel, TextBox1.Text)
                         End If
                     ElseIf senderLabel.Name.ToLower.EndsWith("level_lbl") Then
                         If TextBox1.Text = "" Then
@@ -488,6 +493,7 @@ Namespace Forms.Character
                             itm.EnchantmentId = TryInt(TextBox1.Text)
                             itm.EnchantmentName = itemname
                             senderLabel.Tag = itm
+                            InfoToolTip.SetToolTip(senderLabel, itm.EnchantmentName)
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                 GlobalVariables.currentEditedCharSet =
                                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
@@ -499,6 +505,7 @@ Namespace Forms.Character
                             itm.EnchantmentId = TryInt(TextBox1.Text)
                             itm.EnchantmentName = spellname
                             senderLabel.Tag = itm
+                            InfoToolTip.SetToolTip(senderLabel, itm.EnchantmentName)
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                 GlobalVariables.currentEditedCharSet =
                                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
@@ -508,64 +515,64 @@ Namespace Forms.Character
                                       ResourceHandler.GetUserMessage("Error"))
                         End If
                         Else
-                            If Not GetItemInventorySlotByItemId(_tempSender.tag.Guid) = GetItemInventorySlotByItemId(id) _
+                        If Not GetItemInventorySlotByItemId(_tempSender.Tag.Guid) = GetItemInventorySlotByItemId(id) _
                                 Then
                             MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
                                        ResourceHandler.GetUserMessage("Error"))
-                            Else
-                                Dim newitm As Item = _tempSender.tag
-                                newitm.ReplaceItem(id)
-                                senderLabel.Tag = newitm
-                                Dim txt As String = senderLabel.Tag.name
-                                If Not txt Is Nothing Then
-                                    If txt.Length >= 25 Then
-                                        Dim ccremove As Integer = txt.Length - 23
-                                        txt = txt.Remove(23, ccremove) & "..."
+                        Else
+                            Dim newitm As Item = _tempSender.Tag
+                            newitm.ReplaceItem(id)
+                            senderLabel.Tag = newitm
+                            Dim txt As String = senderLabel.Tag.name
+                            If Not txt Is Nothing Then
+                                If txt.Length >= 25 Then
+                                    Dim ccremove As Integer = txt.Length - 23
+                                    txt = txt.Remove(23, ccremove) & "..."
+                                End If
+                            End If
+                            senderLabel.Text = txt
+                            For Each ctrl As Control In _controlLst
+                                If TypeOf ctrl Is PictureBox Then
+                                    If ctrl.Tag Is Nothing Then Continue For
+                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
+                                        DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
+                                        Select Case True
+                                            Case _
+                                                ctrl.Name.ToLower.EndsWith("_pic") And
+                                                Not ctrl.Name.ToLower.Contains("gem")
+                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.image
+                                            Case ctrl.Name.ToLower.Contains("gem1")
+                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket1_pic
+                                            Case ctrl.Name.ToLower.Contains("gem2")
+                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket2_pic
+                                            Case ctrl.Name.ToLower.Contains("gem3")
+                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket3_pic
+                                        End Select
+                                    End If
+                                ElseIf TypeOf ctrl Is Panel Then
+                                    If ctrl.Tag Is Nothing Then Continue For
+                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
+                                        If ctrl.Name.ToLower.EndsWith("color") Then
+                                            DirectCast(ctrl, Panel).BackColor =
+                                                GetItemQualityColor(senderLabel.Tag.rarity)
+                                            DirectCast(ctrl, Panel).Tag = senderLabel.Tag
+                                        End If
+                                    End If
+                                ElseIf TypeOf ctrl Is Label Then
+                                    If ctrl.Tag Is Nothing Then Continue For
+                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
+                                        If ctrl.Name.ToLower.EndsWith("_enchant") Then
+                                            DirectCast(ctrl, Label).Tag = senderLabel.Tag
+                                        End If
                                     End If
                                 End If
-                                senderLabel.Text = txt
-                                For Each ctrl As Control In _controlLst
-                                    If TypeOf ctrl Is PictureBox Then
-                                        If ctrl.Tag Is Nothing Then Continue For
-                                        If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
-                                            DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
-                                            Select Case True
-                                                Case _
-                                                    ctrl.Name.ToLower.EndsWith("_pic") And
-                                                    Not ctrl.Name.ToLower.Contains("gem")
-                                                    DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.image
-                                                Case ctrl.Name.ToLower.Contains("gem1")
-                                                    DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket1_pic
-                                                Case ctrl.Name.ToLower.Contains("gem2")
-                                                    DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket2_pic
-                                                Case ctrl.Name.ToLower.Contains("gem3")
-                                                    DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket3_pic
-                                            End Select
-                                        End If
-                                    ElseIf TypeOf ctrl Is Panel Then
-                                        If ctrl.Tag Is Nothing Then Continue For
-                                        If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
-                                            If ctrl.Name.ToLower.EndsWith("color") Then
-                                                DirectCast(ctrl, Panel).BackColor =
-                                                    GetItemQualityColor(senderLabel.Tag.rarity)
-                                                DirectCast(ctrl, Panel).Tag = senderLabel.Tag
-                                            End If
-                                        End If
-                                    ElseIf TypeOf ctrl Is Label Then
-                                        If ctrl.Tag Is Nothing Then Continue For
-                                        If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
-                                            If ctrl.Name.ToLower.EndsWith("_enchant") Then
-                                                DirectCast(ctrl, Label).Tag = senderLabel.Tag
-                                            End If
-                                        End If
-                                    End If
 
-                                Next
-                                If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                    GlobalVariables.currentEditedCharSet =
-                                        DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                                SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
-                            End If
+                            Next
+                            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                GlobalVariables.currentEditedCharSet =
+                                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                            SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
+                        End If
                         End If
                 ElseIf TypeOf _tempSender Is PictureBox Then
                     If senderPic IsNot Nothing Then
@@ -636,78 +643,103 @@ Namespace Forms.Character
         Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
             'Detele item
             Dim newPoint As New Point
-            Dim senderLabel As Label = _tempSender
+            Dim senderLabel As Label = Nothing
+            Dim senderPic As PictureBox = Nothing
+            If TypeOf (_tempSender) Is Label Then
+                senderLabel = _tempSender
+            ElseIf TypeOf (_tempSender) Is PictureBox Then
+                senderPic = _tempSender
+            Else : Exit Sub
+            End If
             newPoint.X = 4000
             newPoint.Y = 4000
-            Dim tempSender = TryCast(_tempSender, Label)
-            If (tempSender IsNot Nothing) Then
-                If Not senderLabel.Name.ToLower.EndsWith("_enchant") Then
+            If senderLabel IsNot Nothing Then
+                Dim tempSender = TryCast(_tempSender, Label)
+                If (tempSender IsNot Nothing) Then
+                    If Not senderLabel.Name.ToLower.EndsWith("_enchant") Then
 
-                    Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
-                                        ResourceHandler.GetUserMessage("areyousure"))
-                    If result = MsgBoxResult.Yes Then
-                        For Each ctrl As Control In _controlLst
-                            If TypeOf ctrl Is PictureBox Then
-                                If ctrl.Tag Is Nothing Then Continue For
-                                If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
-                                    DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
-                                    Select Case True
-                                        Case _
-                                            ctrl.Name.ToLower.EndsWith("_pic") And Not ctrl.Name.ToLower.Contains("gem")
-                                            DirectCast(ctrl, PictureBox).Image = My.Resources.empty
-                                        Case ctrl.Name.ToLower.Contains("gem1")
-                                            DirectCast(ctrl, PictureBox).Image = Nothing
-                                        Case ctrl.Name.ToLower.Contains("gem2")
-                                            DirectCast(ctrl, PictureBox).Image = Nothing
-                                        Case ctrl.Name.ToLower.Contains("gem3")
-                                            DirectCast(ctrl, PictureBox).Image = Nothing
-                                    End Select
-                                End If
-                            ElseIf TypeOf ctrl Is Panel Then
-                                If ctrl.Tag Is Nothing Then Continue For
-                                If ctrl.Name.ToLower.EndsWith("color") Then
+                        Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
+                                            ResourceHandler.GetUserMessage("areyousure"))
+                        If result = MsgBoxResult.Yes Then
+                            For Each ctrl As Control In _controlLst
+                                If TypeOf ctrl Is PictureBox Then
+                                    If ctrl.Tag Is Nothing Then Continue For
                                     If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
-                                        DirectCast(ctrl, Panel).BackColor = SystemColors.ActiveBorder
-                                        DirectCast(ctrl, Panel).Tag = Nothing
+                                        DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
+                                        Select Case True
+                                            Case _
+                                                ctrl.Name.ToLower.EndsWith("_pic") And Not ctrl.Name.ToLower.Contains("gem")
+                                                DirectCast(ctrl, PictureBox).Image = My.Resources.empty
+                                            Case ctrl.Name.ToLower.Contains("gem1")
+                                                DirectCast(ctrl, PictureBox).Image = Nothing
+                                            Case ctrl.Name.ToLower.Contains("gem2")
+                                                DirectCast(ctrl, PictureBox).Image = Nothing
+                                            Case ctrl.Name.ToLower.Contains("gem3")
+                                                DirectCast(ctrl, PictureBox).Image = Nothing
+                                        End Select
+                                    End If
+                                ElseIf TypeOf ctrl Is Panel Then
+                                    If ctrl.Tag Is Nothing Then Continue For
+                                    If ctrl.Name.ToLower.EndsWith("color") Then
+                                        If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
+                                            DirectCast(ctrl, Panel).BackColor = SystemColors.ActiveBorder
+                                            DirectCast(ctrl, Panel).Tag = Nothing
+                                        End If
+                                    End If
+                                ElseIf TypeOf ctrl Is Label Then
+                                    If ctrl.Tag Is Nothing Then Continue For
+                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
+                                        If ctrl.Name.ToLower.EndsWith("_enchant") Then
+                                            DirectCast(ctrl, Label).Tag = Nothing
+                                            DirectCast(ctrl, Label).Text = ""
+                                        End If
                                     End If
                                 End If
-                            ElseIf TypeOf ctrl Is Label Then
-                                If ctrl.Tag Is Nothing Then Continue For
-                                If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
-                                    If ctrl.Name.ToLower.EndsWith("_enchant") Then
-                                        DirectCast(ctrl, Label).Tag = Nothing
-                                        DirectCast(ctrl, Label).Text = ""
-                                    End If
-                                End If
-                            End If
-                        Next
+                            Next
+                            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                GlobalVariables.currentEditedCharSet =
+                                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                            RemoveCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
+                            senderLabel.Text = Nothing
+                            senderLabel.Tag = Nothing
+                        End If
+                    Else
                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                            GlobalVariables.currentEditedCharSet =
-                                DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                        RemoveCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
-                        senderLabel.Text = Nothing
-                        senderLabel.Tag = Nothing
+                               GlobalVariables.currentEditedCharSet =
+                                   DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                        Dim pubItem As Item = tempSender.Tag
+                        pubItem.RemoveEnchantments()
+                        tempSender.Tag = pubItem
+                        tempSender.Text = "+"
+                        senderLabel.Cursor = Cursors.Hand
+                        Dim relevantControls As Control() = _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
+                        Dim matchControls As Control() = Array.FindAll(relevantControls, Function(control) control.Tag.Guid = pubItem.Guid)
+                        If Not matchControls Is Nothing Then
+                            For i = 0 To matchControls.Length - 1
+                                matchControls(i).Tag = pubItem
+                            Next
+                        End If
                     End If
-                Else
-                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                End If
+            ElseIf senderPic IsNot Nothing Then
+                '// Delete Gem
+                If GlobalVariables.currentEditedCharSet Is Nothing Then _
                            GlobalVariables.currentEditedCharSet =
                                DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                    Dim pubItem As Item = tempSender.Tag
-                    pubItem.RemoveEnchantments()
-                    tempSender.Tag = pubItem
-                    tempSender.Text = "+"
-                    senderLabel.Cursor = Cursors.Hand
-                    Dim relevantControls As Control() = _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
-                    Dim matchControls As Control() = Array.FindAll(relevantControls, Function(control) control.Tag.Guid = pubItem.Guid)
-                    If Not matchControls Is Nothing Then
-                        For i = 0 To matchControls.Length - 1
-                            matchControls(i).Tag = pubItem
-                        Next
-                    End If
+                Dim pubItem As Item = senderPic.Tag
+                pubItem.RemoveGem(TryInt(SplitString(senderPic.Name, "_gem", "_")))
+                senderPic.Image = My.Resources.add_
+                senderPic.Tag = pubItem
+                Dim relevantControls As Control() = _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
+                Dim matchControls As Control() = Array.FindAll(relevantControls, Function(control) control.Tag.Guid = pubItem.Guid)
+                If Not matchControls Is Nothing Then
+                    For i = 0 To matchControls.Length - 1
+                        matchControls(i).Tag = pubItem
+                    Next
                 End If
             End If
             changepanel.Location = newPoint
-            senderLabel.Visible = True
+            If senderLabel IsNot Nothing Then senderLabel.Visible = True
         End Sub
 
         Private Sub race_lbl_Click(sender As Object, e As EventArgs) Handles race_lbl.Click
