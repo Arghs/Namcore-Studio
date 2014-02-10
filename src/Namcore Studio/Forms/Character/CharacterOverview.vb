@@ -475,12 +475,12 @@ Namespace Forms.Character
                             Not _
                             itemcontext.Contains(
                                 "<div Guid=""inputbox-error"">This item doesn't exist or is not yet in the database.</div>") And
-                            itemcontext.Contains("subclass Guid=""6"">") Then
+                            itemcontext.Contains("</class><subclass id=""6"">") Then
                             founditem = True
                             itemname = SplitString(itemcontext, "<name><![CDATA[", "]]></name>")
                             itemname = itemname.Replace("&#x20;", " ")
                         End If
-                        If founditem = foundspell = True Then
+                        If founditem = True AndAlso foundspell = True Then
                             selectenchpanel.Location = changepanel.Location
                             spellench.Text = "Spell: " & spellname
                             spellench.Tag = spellname
@@ -500,10 +500,11 @@ Namespace Forms.Character
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         ElseIf foundspell = True Then
                             Dim itm As Item = senderLabel.Tag
-                            senderLabel.Text = spellname
-                            itm.EnchantmentType = 0
                             itm.EnchantmentId = TryInt(TextBox1.Text)
-                            itm.EnchantmentName = spellname
+                            itm.EnchantmentEffectid = GetEffectIdBySpellId(itm.EnchantmentId)
+                            itm.EnchantmentName = GetEffectNameById(itm.EnchantmentEffectid, MySettings.Default.language)
+                            itm.EnchantmentType = 0
+                            senderLabel.Text = itm.EnchantmentName
                             senderLabel.Tag = itm
                             InfoToolTip.SetToolTip(senderLabel, itm.EnchantmentName)
                             If GlobalVariables.currentEditedCharSet Is Nothing Then _
