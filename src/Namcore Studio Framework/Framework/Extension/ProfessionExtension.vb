@@ -26,7 +26,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Extension
 
-    Module ProfessionExtension
+    Public Module ProfessionExtension
         ''' <summary>
         '''     Updates reputation standing by value and status
         ''' </summary>

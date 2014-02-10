@@ -572,7 +572,7 @@ Namespace Forms.Character
             newPoint.Y = 4000
             Dim tempSender = TryCast(_tempSender, Label)
             If (tempSender IsNot Nothing) Then
-                If Not _tempSender.text.tolower.endswith("_enchant") Then
+                If Not senderLabel.Name.ToLower.EndsWith("_enchant") Then
 
                     Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
                                         ResourceHandler.GetUserMessage("areyousure"))
@@ -620,8 +620,21 @@ Namespace Forms.Character
                         senderLabel.Tag = Nothing
                     End If
                 Else
-                    tempSender.Tag = Nothing
-                    tempSender.Text = ""
+                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                           GlobalVariables.currentEditedCharSet =
+                               DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                    Dim pubItem As Item = tempSender.Tag
+                    pubItem.RemoveEnchantments()
+                    tempSender.Tag = pubItem
+                    tempSender.Text = "+"
+                    senderLabel.Cursor = Cursors.Hand
+                    Dim relevantControls As Control() = _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
+                    Dim matchControls As Control() = Array.FindAll(relevantControls, Function(control) control.Tag.Guid = pubItem.Guid)
+                    If Not matchControls Is Nothing Then
+                        For i = 0 To matchControls.Length - 1
+                            matchControls(i).Tag = pubItem
+                        Next
+                    End If
                 End If
             End If
             changepanel.Location = newPoint
