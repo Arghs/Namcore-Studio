@@ -20,11 +20,38 @@
 '*      /Filename:      EventTrigger
 '*      /Description:   Form event trigger extension
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Modules
+Imports NamCore_Studio.Modules.Interface
+
 Namespace Forms.Extension
     Public Class EventTrigger
+        Implements IMessageFilter
         '// Declaration
         Private _ptMouseDownLocation As Point
         '// Declaration
+
+        Public Sub New()
+            InitializeComponent()
+            Application.AddMessageFilter(Me)
+        End Sub
+        Protected Overrides Sub OnFormClosed(ByVal e As FormClosedEventArgs)
+            Application.RemoveMessageFilter(Me)
+        End Sub
+
+        Public Function PreFilterMessage(ByRef m As Message) As Boolean Implements IMessageFilter.PreFilterMessage
+            REM catch WM_LBUTTONDOWN
+            If m.Msg = &H201 Then
+                'Dim pos As New Point(m.LParam.ToInt32() And &HFFFF, m.LParam.ToInt32() >> 16)
+                Dim ctl As Control = FromHandle(m.HWnd)
+                If ctl IsNot Nothing Then
+                    If GlobalVariables.DebugMode Then
+                        ctl.CheckTag()
+                    End If
+                End If
+                Return False
+            End If
+            Return False
+        End Function
 
         Public Overridable Sub Meload(ByVal sender As Object, e As EventArgs) Handles MyBase.Load
             header.Size = New Point(Size.Width - 9, header.Size.Height)

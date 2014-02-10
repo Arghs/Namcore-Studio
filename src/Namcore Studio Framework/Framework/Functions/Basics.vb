@@ -203,13 +203,13 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function LoadImageFromUrl(ByRef url As String) As Image
+        Public Function LoadImageFromUrl(ByRef url As String) As Bitmap
             LogAppend("Loading image from url: " & url, "Basics_LoadImageFromUrl", False)
             Try
                 Dim request As HttpWebRequest = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
                 request.Proxy = GlobalVariables.GlobalWebClient.Proxy
                 Dim response As HttpWebResponse = DirectCast(request.GetResponse, HttpWebResponse)
-                Dim img As Image = Image.FromStream(response.GetResponseStream())
+                Dim img As Bitmap = Image.FromStream(response.GetResponseStream())
                 response.Close()
                 Return img
             Catch ex As Exception

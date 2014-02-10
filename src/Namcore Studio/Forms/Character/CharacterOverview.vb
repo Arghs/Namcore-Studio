@@ -46,7 +46,7 @@ Namespace Forms.Character
         Dim _tempValue As String
         Dim _tempSender As Object
         Dim _tmpSetId As Integer
-        Dim _tmpImage As Image
+        Dim _tmpImage As Bitmap
         Dim _tmpSenderPic As Object
         Dim _currentSet As Integer
         Dim _currentAccount As Account
@@ -253,7 +253,7 @@ Namespace Forms.Character
                             ElseIf itemControl.Name.ToLower.Contains("gem") Then
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_gem"))
                                 Dim gem As Integer = TryInt(SplitString(itemControl.Name, "gem", "_pic"))
-                                Dim img As Image = LoadInfo(setId, slot, 2 + gem)
+                                Dim img As Bitmap = LoadInfo(setId, slot, 2 + gem)
                                 DirectCast(itemControl, PictureBox).Tag = _pubItm
                                 If Not _pubItm Is Nothing Then
                                     If img Is Nothing Then
@@ -882,7 +882,7 @@ Namespace Forms.Character
                     Application.DoEvents()
                     Dim picbx As PictureBox = sender
                     Dim g As Graphics
-                    Dim img As Image
+                    Dim img As Bitmap
                     Dim r As Rectangle
                     img = picbx.Image
                     sender.Image = New Bitmap(picbx.Width, picbx.Height, PixelFormat.Format32bppArgb)
@@ -908,7 +908,7 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub SetBrightness(ByVal brightness As Single, ByVal g As Graphics, ByVal img As Image,
+        Private Sub SetBrightness(ByVal brightness As Single, ByVal g As Graphics, ByVal img As Bitmap,
                                   ByVal r As Rectangle,
                                   ByRef picbox As PictureBox)
             ' Brightness should be -1 (black) to 0 (neutral) to 1 (white)
@@ -1094,6 +1094,8 @@ Namespace Forms.Character
         Private Sub CharacterOverview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             AddHandler highlighter2.Click, AddressOf highlighter2_Click
         End Sub
+
+     
 
         Private Sub GemClick(sender As Object, e As EventArgs) _
             Handles slot_9_gem3_pic.Click, slot_9_gem2_pic.Click, slot_9_gem1_pic.Click, slot_8_gem3_pic.Click,
