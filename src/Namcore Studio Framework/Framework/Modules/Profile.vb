@@ -41,7 +41,7 @@ Namespace Framework.Modules
         Public Socket2Name As String
         Public Socket3Name As String
         Public EnchantmentType As Integer '1=spell;2=item
-        Public EnchantmentId As Integer
+        Public EnchantmentId As Integer = 0
         Public EnchantmentName As String
         Public Enchstring As String
         Public Socket1Effectid As Integer

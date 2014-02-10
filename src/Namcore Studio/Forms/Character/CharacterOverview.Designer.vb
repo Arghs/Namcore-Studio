@@ -2481,7 +2481,7 @@ Namespace Forms.Character
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(910, 736)
+            Me.ClientSize = New System.Drawing.Size(903, 736)
             Me.Controls.Add(Me.professions_bt)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.genderpanel)

@@ -256,9 +256,9 @@ Namespace Forms.Character
                                 Dim img As Bitmap = LoadInfo(setId, slot, 2 + gem)
                                 DirectCast(itemControl, PictureBox).Tag = _pubItm
                                 If Not _pubItm Is Nothing Then
+                                    DirectCast(itemControl, PictureBox).Cursor = Cursors.Hand
                                     If img Is Nothing Then
                                         DirectCast(itemControl, PictureBox).Image = My.Resources.add_
-                                        DirectCast(itemControl, PictureBox).Cursor = Cursors.Hand
                                     Else
                                         DirectCast(itemControl, PictureBox).Image = img
                                     End If
@@ -359,10 +359,12 @@ Namespace Forms.Character
                     slot_1_enchant.Click, slot_0_name.Click, slot_0_enchant.Click
             If sender.text = "" Then Exit Sub
             Dim tagItm As Item = sender.Tag
-            If tagItm.EnchantmentId = 0 Then tagItm.EnchantmentId = GetSpellIdByEffectId(tagItm.EnchantmentEffectid)
-            If tagItm.EnchantmentType = 2 Then
-                Dim tmpItmId As Integer = GetItemIdBySpellId(tagItm.EnchantmentEffectid)
-                If tmpItmId <> 0 Then tagItm.EnchantmentId = tmpItmId
+            If Not sender.text = "+" Then
+                If tagItm.EnchantmentId = 0 Then tagItm.EnchantmentId = GetSpellIdByEffectId(tagItm.EnchantmentEffectid)
+                If tagItm.EnchantmentType = 2 Then
+                    Dim tmpItmId As Integer = GetItemIdBySpellId(tagItm.EnchantmentEffectid)
+                    If tmpItmId <> 0 Then tagItm.EnchantmentId = tmpItmId
+                End If
             End If
             sender.Tag = tagItm
             TextBox1.Text = ""
@@ -398,7 +400,14 @@ Namespace Forms.Character
         Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
             'Change value
             Dim newPoint As New Point
-            Dim senderLabel As Label = _tempSender
+            Dim senderLabel As Label = Nothing
+            Dim senderPic As PictureBox = Nothing
+            If TypeOf (_tempSender) Is Label Then
+                senderLabel = _tempSender
+            ElseIf TypeOf (_tempSender) Is PictureBox Then
+                senderPic = _tempSender
+            Else : Exit Sub
+            End If
             newPoint.X = 4000
             newPoint.Y = 4000
             If Not TextBox1.Text = _tempValue Then
@@ -495,73 +504,133 @@ Namespace Forms.Character
                                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         Else
-
+                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
+                                      ResourceHandler.GetUserMessage("Error"))
                         End If
-                    Else
-                        If Not GetItemInventorySlotByItemId(_tempSender.tag.Guid) = GetItemInventorySlotByItemId(Id) _
-                            Then
-                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalGuid"), MsgBoxStyle.Critical,
-                                   ResourceHandler.GetUserMessage("Error"))
                         Else
-                            Dim newitm As Item = _tempSender.tag
-                            newitm.ReplaceItem(Id)
-                            senderLabel.Tag = newitm
-                            Dim txt As String = senderLabel.Tag.name
-                            If Not txt Is Nothing Then
-                                If txt.Length >= 25 Then
-                                    Dim ccremove As Integer = txt.Length - 23
-                                    txt = txt.Remove(23, ccremove) & "..."
-                                End If
-                            End If
-                            senderLabel.Text = txt
-                            For Each ctrl As Control In _controlLst
-                                If TypeOf ctrl Is PictureBox Then
-                                    If ctrl.Tag Is Nothing Then Continue For
-                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
-                                        DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
-                                        Select Case True
-                                            Case _
-                                                ctrl.Name.ToLower.EndsWith("_pic") And
-                                                Not ctrl.Name.ToLower.Contains("gem")
-                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.image
-                                            Case ctrl.Name.ToLower.Contains("gem1")
-                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket1_pic
-                                            Case ctrl.Name.ToLower.Contains("gem2")
-                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket2_pic
-                                            Case ctrl.Name.ToLower.Contains("gem3")
-                                                DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket3_pic
-                                        End Select
-                                    End If
-                                ElseIf TypeOf ctrl Is Panel Then
-                                    If ctrl.Tag Is Nothing Then Continue For
-                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
-                                        If ctrl.Name.ToLower.EndsWith("color") Then
-                                            DirectCast(ctrl, Panel).BackColor =
-                                                GetItemQualityColor(senderLabel.Tag.rarity)
-                                            DirectCast(ctrl, Panel).Tag = senderLabel.Tag
-                                        End If
-                                    End If
-                                ElseIf TypeOf ctrl Is Label Then
-                                    If ctrl.Tag Is Nothing Then Continue For
-                                    If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
-                                        If ctrl.Name.ToLower.EndsWith("_enchant") Then
-                                            DirectCast(ctrl, Label).Tag = senderLabel.Tag
-                                        End If
+                            If Not GetItemInventorySlotByItemId(_tempSender.tag.Guid) = GetItemInventorySlotByItemId(id) _
+                                Then
+                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
+                                       ResourceHandler.GetUserMessage("Error"))
+                            Else
+                                Dim newitm As Item = _tempSender.tag
+                                newitm.ReplaceItem(id)
+                                senderLabel.Tag = newitm
+                                Dim txt As String = senderLabel.Tag.name
+                                If Not txt Is Nothing Then
+                                    If txt.Length >= 25 Then
+                                        Dim ccremove As Integer = txt.Length - 23
+                                        txt = txt.Remove(23, ccremove) & "..."
                                     End If
                                 End If
+                                senderLabel.Text = txt
+                                For Each ctrl As Control In _controlLst
+                                    If TypeOf ctrl Is PictureBox Then
+                                        If ctrl.Tag Is Nothing Then Continue For
+                                        If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
+                                            DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
+                                            Select Case True
+                                                Case _
+                                                    ctrl.Name.ToLower.EndsWith("_pic") And
+                                                    Not ctrl.Name.ToLower.Contains("gem")
+                                                    DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.image
+                                                Case ctrl.Name.ToLower.Contains("gem1")
+                                                    DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket1_pic
+                                                Case ctrl.Name.ToLower.Contains("gem2")
+                                                    DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket2_pic
+                                                Case ctrl.Name.ToLower.Contains("gem3")
+                                                    DirectCast(ctrl, PictureBox).Image = senderLabel.Tag.socket3_pic
+                                            End Select
+                                        End If
+                                    ElseIf TypeOf ctrl Is Panel Then
+                                        If ctrl.Tag Is Nothing Then Continue For
+                                        If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
+                                            If ctrl.Name.ToLower.EndsWith("color") Then
+                                                DirectCast(ctrl, Panel).BackColor =
+                                                    GetItemQualityColor(senderLabel.Tag.rarity)
+                                                DirectCast(ctrl, Panel).Tag = senderLabel.Tag
+                                            End If
+                                        End If
+                                    ElseIf TypeOf ctrl Is Label Then
+                                        If ctrl.Tag Is Nothing Then Continue For
+                                        If ctrl.Tag.Guid = senderLabel.Tag.Guid Then
+                                            If ctrl.Name.ToLower.EndsWith("_enchant") Then
+                                                DirectCast(ctrl, Label).Tag = senderLabel.Tag
+                                            End If
+                                        End If
+                                    End If
 
-                            Next
-                            If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                GlobalVariables.currentEditedCharSet =
-                                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                            SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
+                                Next
+                                If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                    GlobalVariables.currentEditedCharSet =
+                                        DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                                SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
+                            End If
+                        End If
+                ElseIf TypeOf _tempSender Is PictureBox Then
+                    If senderPic IsNot Nothing Then
+                        If senderPic.Name.ToLower.Contains("_gem") Then
+                            Dim client As New WebClient
+                            client.CheckProxy()
+                            Dim gemContext As String
+                            Dim foundgem As Boolean = False
+                            Try
+                                gemContext = client.DownloadString("http://www.wowhead.com/item=" & TextBox1.Text & "&xml")
+                            Catch ex As Exception
+                                gemContext = ""
+                            End Try
+                            If _
+                                Not gemContext = "" And
+                                Not gemContext.Contains("<error>Item not found!</error>") And
+                                gemContext.Contains("<class id=""3"">") Then
+                                foundgem = True
+                            End If
+                            If foundgem = True Then
+                                If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                                               GlobalVariables.currentEditedCharSet =
+                                                                   DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                                Dim itm As Item = senderPic.Tag
+                                Dim socketId As Integer = TryInt(TextBox1.Text)
+                                Select Case True
+                                    Case senderPic.Name.Contains("gem1")
+                                        itm.Socket1Id = socketId
+                                        itm.Socket1Effectid = GetEffectIdByGemId(socketId)
+                                        itm.Socket1Name = GetEffectNameById(itm.Socket1Effectid, MySettings.Default.language)
+                                        itm.Socket1Pic = GetItemIconByItemId(socketId, GlobalVariables.GlobalWebClient)
+                                        senderPic.Image = itm.Socket1Pic
+                                    Case senderPic.Name.Contains("gem2")
+                                        itm.Socket2Id = socketId
+                                        itm.Socket2Effectid = GetEffectIdByGemId(socketId)
+                                        itm.Socket2Name = GetEffectNameById(itm.Socket2Effectid, MySettings.Default.language)
+                                        itm.Socket2Pic = GetItemIconByItemId(socketId, GlobalVariables.GlobalWebClient)
+                                        senderPic.Image = itm.Socket2Pic
+                                    Case senderPic.Name.Contains("gem3")
+                                        itm.Socket3Id = socketId
+                                        itm.Socket3Effectid = GetEffectIdByGemId(socketId)
+                                        itm.Socket3Name = GetEffectNameById(itm.Socket3Effectid, MySettings.Default.language)
+                                        itm.Socket3Pic = GetItemIconByItemId(socketId, GlobalVariables.GlobalWebClient)
+                                        senderPic.Image = itm.Socket3Pic
+                                End Select
+                                senderPic.Refresh()
+                                senderPic.Tag = itm
+                                Dim relevantControls As Control() = _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
+                                Dim matchControls As Control() = Array.FindAll(relevantControls, Function(control) control.Tag.Guid = itm.Guid)
+                                If Not matchControls Is Nothing Then
+                                    For i = 0 To matchControls.Length - 1
+                                        matchControls(i).Tag = itm
+                                    Next
+                                End If
+                                SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
+                            Else
+                                MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
+                                       ResourceHandler.GetUserMessage("Error"))
+                            End If
                         End If
                     End If
-
                 End If
             End If
             changepanel.Location = newPoint
-            senderLabel.Visible = True
+            If senderLabel IsNot Nothing Then senderLabel.Visible = True
         End Sub
 
         Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
@@ -1161,26 +1230,53 @@ Namespace Forms.Character
                                 itm.Socket1Id = retnvalue
                                 itm.Socket1Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
                                 itm.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue), GlobalVariables.GlobalWebClient)
+                                myPic.Image = itm.Socket1Pic
                             Case myPic.Name.Contains("gem2")
                                 itm.Socket2Effectid = effectId
                                 itm.Socket2Id = retnvalue
                                 itm.Socket2Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
                                 itm.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue), GlobalVariables.GlobalWebClient)
+                                myPic.Image = itm.Socket2Pic
                             Case myPic.Name.Contains("gem3")
                                 itm.Socket2Effectid = effectId
                                 itm.Socket3Effectid = effectId
                                 itm.Socket3Id = retnvalue
                                 itm.Socket3Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
                                 itm.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue), GlobalVariables.GlobalWebClient)
+                                myPic.Image = itm.Socket3Pic
                         End Select
                         sender.tag = itm
-                        myPic.Image = itm.Image
                         myPic.Refresh()
                         SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
                         MsgBox(ResourceHandler.GetUserMessage("gemAdded"), MsgBoxStyle.Information,
                                ResourceHandler.GetUserMessage("gemAdding"))
                     End If
                 End If
+            Else
+                Dim newPoint As New Point
+                newPoint.X = sender.location.X + InventoryPanel.Location.X + 21
+                newPoint.Y = sender.location.Y + InventoryPanel.Location.Y
+                changepanel.Location = newPoint
+                newPoint.X = 4000
+                newPoint.Y = 4000
+                classpanel.Location = newPoint
+                racepanel.Location = newPoint
+                addpanel.Location = newPoint
+                PictureBox2.Visible = True
+                If Not _tempSender Is Nothing Then
+                    _tempSender.visible = True
+                End If
+                _tempSender = sender
+                If TypeOf(sender) is Label Then sender.visible = False
+                Select Case True
+                    Case myPic.Name.Contains("gem1")
+                        TextBox1.Text = itm.Socket1Id.ToString()
+                    Case myPic.Name.Contains("gem2")
+                        TextBox1.Text = itm.Socket2Id.ToString()
+                    Case myPic.Name.Contains("gem3")
+                        TextBox1.Text = itm.Socket2Id.ToString()
+                End Select
+                _tempValue = TextBox1.Text
             End If
         End Sub
 
