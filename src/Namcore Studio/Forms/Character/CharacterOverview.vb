@@ -42,6 +42,7 @@ Namespace Forms.Character
 
         '// Declaration
         Dim _controlLst As List(Of Control)
+        Dim _inventoryControlLst As List(Of Control)
         Dim _pubItm As Item
         Dim _tempValue As String
         Dim _tempSender As Object
@@ -147,16 +148,18 @@ Namespace Forms.Character
                                                     potBagItem.Name = GetItemNameByItemId(potBagItem.Id,
                                                                                           MySettings.Default.language)
                                                 If potBagItem.Image Is Nothing Then _
-                                                    potBagItem.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(potBagItem.Id),
-                                                                                       GlobalVariables.GlobalWebClient)
+                                                    potBagItem.Image =
+                                                        GetItemIconByDisplayId(GetDisplayIdByItemId(potBagItem.Id),
+                                                                               GlobalVariables.GlobalWebClient)
                                                 potCharBag.BagItems.Add(potBagItem)
                                             End If
                                         Next
                                         potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Id)
                                         bagPanel.Tag = potCharBag
                                         For Each myPic As PictureBox In subctrl.Controls
-                                            myPic.BackgroundImage = GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
-                                                                                    GlobalVariables.GlobalWebClient)
+                                            myPic.BackgroundImage =
+                                                GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
+                                                                       GlobalVariables.GlobalWebClient)
                                             myPic.Tag = potCharBag
                                         Next
                                     End If
@@ -166,7 +169,8 @@ Namespace Forms.Character
                             If potCharBag.Name Is Nothing Then _
                                 potCharBag.Name = GetItemNameByItemId(potCharBag.Id, MySettings.Default.language)
                             If potCharBag.Image Is Nothing Then _
-                                potCharBag.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id), GlobalVariables.GlobalWebClient)
+                                potCharBag.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
+                                                                          GlobalVariables.GlobalWebClient)
                             zeroBagItems.Add(potCharBag)
                     End Select
                 Next
@@ -513,13 +517,13 @@ Namespace Forms.Character
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         Else
                             MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
-                                      ResourceHandler.GetUserMessage("Error"))
+                                   ResourceHandler.GetUserMessage("Error"))
                         End If
-                        Else
+                    Else
                         If Not GetItemInventorySlotByItemId(_tempSender.Tag.Guid) = GetItemInventorySlotByItemId(id) _
-                                Then
+                            Then
                             MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
-                                       ResourceHandler.GetUserMessage("Error"))
+                                   ResourceHandler.GetUserMessage("Error"))
                         Else
                             Dim newitm As Item = _tempSender.Tag
                             newitm.ReplaceItem(id)
@@ -574,7 +578,7 @@ Namespace Forms.Character
                                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, senderLabel.Tag)
                         End If
-                        End If
+                    End If
                 ElseIf TypeOf _tempSender Is PictureBox Then
                     If senderPic IsNot Nothing Then
                         If senderPic.Name.ToLower.Contains("_gem") Then
@@ -583,7 +587,8 @@ Namespace Forms.Character
                             Dim gemContext As String
                             Dim foundgem As Boolean = False
                             Try
-                                gemContext = client.DownloadString("http://www.wowhead.com/item=" & TextBox1.Text & "&xml")
+                                gemContext =
+                                    client.DownloadString("http://www.wowhead.com/item=" & TextBox1.Text & "&xml")
                             Catch ex As Exception
                                 gemContext = ""
                             End Try
@@ -595,34 +600,40 @@ Namespace Forms.Character
                             End If
                             If foundgem = True Then
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                                                               GlobalVariables.currentEditedCharSet =
-                                                                   DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                                    GlobalVariables.currentEditedCharSet =
+                                        DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                                 Dim itm As Item = senderPic.Tag
                                 Dim socketId As Integer = TryInt(TextBox1.Text)
                                 Select Case True
                                     Case senderPic.Name.Contains("gem1")
                                         itm.Socket1Id = socketId
                                         itm.Socket1Effectid = GetEffectIdByGemId(socketId)
-                                        itm.Socket1Name = GetEffectNameById(itm.Socket1Effectid, MySettings.Default.language)
+                                        itm.Socket1Name = GetEffectNameById(itm.Socket1Effectid,
+                                                                            MySettings.Default.language)
                                         itm.Socket1Pic = GetItemIconByItemId(socketId, GlobalVariables.GlobalWebClient)
                                         senderPic.Image = itm.Socket1Pic
                                     Case senderPic.Name.Contains("gem2")
                                         itm.Socket2Id = socketId
                                         itm.Socket2Effectid = GetEffectIdByGemId(socketId)
-                                        itm.Socket2Name = GetEffectNameById(itm.Socket2Effectid, MySettings.Default.language)
+                                        itm.Socket2Name = GetEffectNameById(itm.Socket2Effectid,
+                                                                            MySettings.Default.language)
                                         itm.Socket2Pic = GetItemIconByItemId(socketId, GlobalVariables.GlobalWebClient)
                                         senderPic.Image = itm.Socket2Pic
                                     Case senderPic.Name.Contains("gem3")
                                         itm.Socket3Id = socketId
                                         itm.Socket3Effectid = GetEffectIdByGemId(socketId)
-                                        itm.Socket3Name = GetEffectNameById(itm.Socket3Effectid, MySettings.Default.language)
+                                        itm.Socket3Name = GetEffectNameById(itm.Socket3Effectid,
+                                                                            MySettings.Default.language)
                                         itm.Socket3Pic = GetItemIconByItemId(socketId, GlobalVariables.GlobalWebClient)
                                         senderPic.Image = itm.Socket3Pic
                                 End Select
                                 senderPic.Refresh()
                                 senderPic.Tag = itm
-                                Dim relevantControls As Control() = _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
-                                Dim matchControls As Control() = Array.FindAll(relevantControls, Function(control) control.Tag.Guid = itm.Guid)
+                                Dim relevantControls As Control() =
+                                        _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
+                                Dim matchControls As Control() = Array.FindAll(relevantControls,
+                                                                               Function(control) _
+                                                                                  control.Tag.Guid = itm.Guid)
                                 If Not matchControls Is Nothing Then
                                     For i = 0 To matchControls.Length - 1
                                         matchControls(i).Tag = itm
@@ -669,7 +680,8 @@ Namespace Forms.Character
                                         DirectCast(ctrl, PictureBox).Tag = senderLabel.Tag
                                         Select Case True
                                             Case _
-                                                ctrl.Name.ToLower.EndsWith("_pic") And Not ctrl.Name.ToLower.Contains("gem")
+                                                ctrl.Name.ToLower.EndsWith("_pic") And
+                                                Not ctrl.Name.ToLower.Contains("gem")
                                                 DirectCast(ctrl, PictureBox).Image = My.Resources.empty
                                             Case ctrl.Name.ToLower.Contains("gem1")
                                                 DirectCast(ctrl, PictureBox).Image = Nothing
@@ -706,15 +718,17 @@ Namespace Forms.Character
                         End If
                     Else
                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                               GlobalVariables.currentEditedCharSet =
-                                   DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                            GlobalVariables.currentEditedCharSet =
+                                DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                         Dim pubItem As Item = tempSender.Tag
                         pubItem.RemoveEnchantments()
                         tempSender.Tag = pubItem
                         tempSender.Text = "+"
                         senderLabel.Cursor = Cursors.Hand
-                        Dim relevantControls As Control() = _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
-                        Dim matchControls As Control() = Array.FindAll(relevantControls, Function(control) control.Tag.Guid = pubItem.Guid)
+                        Dim relevantControls As Control() =
+                                _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
+                        Dim matchControls As Control() = Array.FindAll(relevantControls,
+                                                                       Function(control) control.Tag.Guid = pubItem.Guid)
                         If Not matchControls Is Nothing Then
                             For i = 0 To matchControls.Length - 1
                                 matchControls(i).Tag = pubItem
@@ -725,14 +739,16 @@ Namespace Forms.Character
             ElseIf senderPic IsNot Nothing Then
                 '// Delete Gem
                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
-                           GlobalVariables.currentEditedCharSet =
-                               DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                    GlobalVariables.currentEditedCharSet =
+                        DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                 Dim pubItem As Item = senderPic.Tag
                 pubItem.RemoveGem(TryInt(SplitString(senderPic.Name, "_gem", "_")))
                 senderPic.Image = My.Resources.add_
                 senderPic.Tag = pubItem
-                Dim relevantControls As Control() = _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
-                Dim matchControls As Control() = Array.FindAll(relevantControls, Function(control) control.Tag.Guid = pubItem.Guid)
+                Dim relevantControls As Control() =
+                        _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
+                Dim matchControls As Control() = Array.FindAll(relevantControls,
+                                                               Function(control) control.Tag.Guid = pubItem.Guid)
                 If Not matchControls Is Nothing Then
                     For i = 0 To matchControls.Length - 1
                         matchControls(i).Tag = pubItem
@@ -744,7 +760,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub race_lbl_Click(sender As Object, e As EventArgs) Handles race_lbl.Click
-            racepanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
+            racepanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
                                            sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -763,7 +779,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub class_lbl_Click(sender As Object, e As EventArgs) Handles class_lbl.Click
-            classpanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
+            classpanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
                                             sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -800,7 +816,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub level_lbl_Click(sender As Object, e As EventArgs) Handles level_lbl.Click
-            changepanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
+            changepanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
                                              sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -819,7 +835,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub gender_lbl_Click(sender As Object, e As EventArgs) Handles gender_lbl.Click
-            genderpanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
+            genderpanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
                                              sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -958,7 +974,7 @@ Namespace Forms.Character
             addpanel.Location = New Point(4000, 4000)
             genderpanel.Location = New Point(4000, 4000)
             For Each ctrl As Label In _
-                From ctrl1 In _controlLst.OfType(Of Label)()
+                From ctrl1 In _controlLst.OfType (Of Label)()
                     Where ctrl1.Name.StartsWith(sender.name.replace("_pic", "")) And ctrl1.Name.EndsWith("_name")
                     Where ctrl1.Text = ""
                 _tempSender = ctrl
@@ -1197,8 +1213,6 @@ Namespace Forms.Character
             AddHandler highlighter2.Click, AddressOf highlighter2_Click
         End Sub
 
-     
-
         Private Sub GemClick(sender As Object, e As EventArgs) _
             Handles slot_9_gem3_pic.Click, slot_9_gem2_pic.Click, slot_9_gem1_pic.Click, slot_8_gem3_pic.Click,
                     slot_8_gem2_pic.Click, slot_8_gem1_pic.Click, slot_7_gem3_pic.Click, slot_7_gem2_pic.Click,
@@ -1262,20 +1276,23 @@ Namespace Forms.Character
                                 itm.Socket1Effectid = effectId
                                 itm.Socket1Id = retnvalue
                                 itm.Socket1Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
-                                itm.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue), GlobalVariables.GlobalWebClient)
+                                itm.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue),
+                                                                        GlobalVariables.GlobalWebClient)
                                 myPic.Image = itm.Socket1Pic
                             Case myPic.Name.Contains("gem2")
                                 itm.Socket2Effectid = effectId
                                 itm.Socket2Id = retnvalue
                                 itm.Socket2Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
-                                itm.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue), GlobalVariables.GlobalWebClient)
+                                itm.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue),
+                                                                        GlobalVariables.GlobalWebClient)
                                 myPic.Image = itm.Socket2Pic
                             Case myPic.Name.Contains("gem3")
                                 itm.Socket2Effectid = effectId
                                 itm.Socket3Effectid = effectId
                                 itm.Socket3Id = retnvalue
                                 itm.Socket3Name = GetItemNameByItemId(retnvalue, MySettings.Default.language)
-                                itm.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue), GlobalVariables.GlobalWebClient)
+                                itm.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(retnvalue),
+                                                                        GlobalVariables.GlobalWebClient)
                                 myPic.Image = itm.Socket3Pic
                         End Select
                         sender.tag = itm
@@ -1300,7 +1317,7 @@ Namespace Forms.Character
                     _tempSender.visible = True
                 End If
                 _tempSender = sender
-                If TypeOf(sender) is Label Then sender.visible = False
+                If TypeOf (sender) is Label Then sender.visible = False
                 Select Case True
                     Case myPic.Name.Contains("gem1")
                         TextBox1.Text = itm.Socket1Id.ToString()
@@ -1315,6 +1332,7 @@ Namespace Forms.Character
 
         Private Sub BagOpen(sender As Object, e As EventArgs) _
             Handles bag5Pic.Click, bag4Pic.Click, bag3Pic.Click, bag2Pic.Click, bag1Pic.Click
+            _inventoryControlLst = New List(Of Control)()
             Dim bag As Item = sender.tag
             If bag Is Nothing Then Exit Sub
             InventoryLayout.Controls.Clear()
@@ -1326,6 +1344,7 @@ Namespace Forms.Character
                 newItmPanel.Margin = referenceItmPanel.Margin
                 newItmPanel.Name = "slot_" & z.ToString() & "_panel"
                 Dim subItmPic As New PictureBox
+                subItmPic.Cursor = Cursors.Hand
                 subItmPic.Size = referenceItmPic.Size
                 newItmPanel.Controls.Add(subItmPic)
                 subItmPic.Location = referenceItmPic.Location
@@ -1339,14 +1358,40 @@ Namespace Forms.Character
                 InfoToolTip.SetToolTip(newItmPanel, "Empty")
                 InfoToolTip.SetToolTip(subItmPic, "Empty")
                 InventoryLayout.Update()
+                AddHandler subItmPic.MouseEnter, AddressOf InventItem_MouseEnter
+                AddHandler subItmPic.MouseLeave, AddressOf InventItem_MouseLeave
                 Application.DoEvents()
             Next z
+            For Each ctrl As Control In InventoryLayout.Controls
+                _inventoryControlLst.Add(ctrl)
+            Next
             For Each itm As Item In bag.BagItems
                 Dim reduceVal As UInteger = 0
                 If sender.name = "bag1Pic" Then reduceVal = 23
                 SetInventorySlot(itm, itm.Slot - reduceVal)
             Next
             GroupBox2.Size = New Size(GroupBox2.Size.Width, 122 + InventoryLayout.Size.Height - 13)
+        End Sub
+
+        Private Sub InventItem_MouseEnter(sender As Object, e As EventArgs)
+            If Not _loadComplete = False Then
+                Dim picbx As PictureBox = sender
+                Dim itm As Item = picbx.Tag
+                If Not itm Is Nothing Then
+                    If Not itm.Id = 0 Then
+                        Dim parentPanel As Panel = _inventoryControlLst.Find(Function(control) control.Tag.Slot = picbx.Tag.Slot AndAlso TypeOf control Is Panel)
+                        If Not parentPanel Is Nothing Then
+                            removeinventbox.Location =
+                                                  New Point(picbx.Location.X + GroupBox2.Location.X + parentPanel.Location.X + InventoryLayout.Location.X + 1,
+                                                            picbx.Location.Y + GroupBox2.Location.Y + parentPanel.Location.Y + InventoryLayout.Location.Y + 1)
+                        End If
+                    End If
+                End If
+            End If
+        End Sub
+
+        Private Sub InventItem_MouseLeave(sender As Object, e As EventArgs)
+                removeinventbox.Location = New Point(4000, 4000)
         End Sub
 
         Private Sub SetInventorySlot(ByVal itm As Item, ByVal slot As Integer)
