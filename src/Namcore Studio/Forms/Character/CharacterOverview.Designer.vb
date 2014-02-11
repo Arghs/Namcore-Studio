@@ -219,6 +219,8 @@ Namespace Forms.Character
             Me.removeinventbox = New System.Windows.Forms.PictureBox()
             Me.referenceItmPic = New System.Windows.Forms.PictureBox()
             Me.professions_bt = New System.Windows.Forms.Button()
+            Me.loadedat_lbl = New System.Windows.Forms.Label()
+            Me.refreshchar = New System.Windows.Forms.PictureBox()
             Me.InventoryPanel.SuspendLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -343,6 +345,7 @@ Namespace Forms.Character
             Me.referenceItmPanel.SuspendLayout()
             CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.refreshchar, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'InventoryPanel
@@ -1838,7 +1841,7 @@ Namespace Forms.Character
             Me.charname_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.charname_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.charname_lbl.ForeColor = System.Drawing.Color.Black
-            Me.charname_lbl.Location = New System.Drawing.Point(277, 60)
+            Me.charname_lbl.Location = New System.Drawing.Point(234, 62)
             Me.charname_lbl.Name = "charname_lbl"
             Me.charname_lbl.Size = New System.Drawing.Size(132, 20)
             Me.charname_lbl.TabIndex = 1
@@ -2492,12 +2495,41 @@ Namespace Forms.Character
             Me.professions_bt.Text = "Professions"
             Me.professions_bt.UseVisualStyleBackColor = False
             '
+            'loadedat_lbl
+            '
+            Me.loadedat_lbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Me.loadedat_lbl.BackColor = System.Drawing.Color.Transparent
+            Me.loadedat_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+            Me.loadedat_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.loadedat_lbl.ForeColor = System.Drawing.Color.Black
+            Me.loadedat_lbl.Location = New System.Drawing.Point(377, 65)
+            Me.loadedat_lbl.Name = "loadedat_lbl"
+            Me.loadedat_lbl.RightToLeft = System.Windows.Forms.RightToLeft.No
+            Me.loadedat_lbl.Size = New System.Drawing.Size(157, 18)
+            Me.loadedat_lbl.TabIndex = 230
+            Me.loadedat_lbl.Text = "11.02.2014 - 20:42"
+            Me.loadedat_lbl.TextAlign = System.Drawing.ContentAlignment.TopRight
+            '
+            'refreshchar
+            '
+            Me.refreshchar.BackColor = System.Drawing.Color.Transparent
+            Me.refreshchar.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
+            Me.refreshchar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.refreshchar.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.refreshchar.Location = New System.Drawing.Point(533, 61)
+            Me.refreshchar.Name = "refreshchar"
+            Me.refreshchar.Size = New System.Drawing.Size(22, 22)
+            Me.refreshchar.TabIndex = 231
+            Me.refreshchar.TabStop = False
+            '
             'CharacterOverview
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(902, 736)
+            Me.Controls.Add(Me.refreshchar)
+            Me.Controls.Add(Me.loadedat_lbl)
             Me.Controls.Add(Me.professions_bt)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.genderpanel)
@@ -2546,6 +2578,8 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.genderpanel, 0)
             Me.Controls.SetChildIndex(Me.referenceItmPanel, 0)
             Me.Controls.SetChildIndex(Me.professions_bt, 0)
+            Me.Controls.SetChildIndex(Me.loadedat_lbl, 0)
+            Me.Controls.SetChildIndex(Me.refreshchar, 0)
             Me.InventoryPanel.ResumeLayout(False)
             Me.InventoryPanel.PerformLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2676,6 +2710,7 @@ Namespace Forms.Character
             Me.referenceItmPanel.ResumeLayout(False)
             CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.refreshchar, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
             Me.PerformLayout()
 
@@ -2872,5 +2907,7 @@ Namespace Forms.Character
         Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
         Friend WithEvents professions_bt As System.Windows.Forms.Button
         Friend WithEvents removeinventbox As System.Windows.Forms.PictureBox
+        Friend WithEvents loadedat_lbl As System.Windows.Forms.Label
+        Friend WithEvents refreshchar As System.Windows.Forms.PictureBox
     End Class
 End Namespace

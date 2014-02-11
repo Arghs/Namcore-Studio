@@ -34,12 +34,13 @@ Namespace Framework.Core
             If GlobalVariables.GlobalConnection_Realm.State = ConnectionState.Closed Then _
                 GlobalVariables.GlobalConnection_Realm.Open()
             GlobalVariables.forceTargetConnectionUsage = False
-            Dim tmpPlayer As Character = GetCharacterSetBySetId(setId, Account)
+            Dim tmpPlayer As Character = GetCharacterSetBySetId(setId, account)
             If tmpPlayer Is Nothing Then
                 LogAppend("Character with setId " & setId.ToString() & " not found!",
                           "CoreHandler_handleLoadingRequests", True, True)
                 Exit Sub
             End If
+            tmpPlayer.LoadedDateTime = Date.Now
             Dim mBasicsHandler As New CharacterBasicsHandler
             mBasicsHandler.GetBasicCharacterInformation(tmpPlayer.Guid, setId, Account)
             Dim mAvHandler As New CharacterAchievementHandler

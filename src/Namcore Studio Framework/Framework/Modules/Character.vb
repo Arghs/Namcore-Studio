@@ -80,6 +80,7 @@ Namespace Framework.Modules
             AT_LOGIN_CHANGE_RACE = 128
         End Enum
 
+        Public LoadedDateTime As DateTime
         Public Loaded As Boolean = False
         Public SourceCore As String
         Public SourceExpansion As Integer

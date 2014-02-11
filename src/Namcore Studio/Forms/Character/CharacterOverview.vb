@@ -71,7 +71,7 @@ Namespace Forms.Character
         End Sub
         '// Declaration
 
-        Public Sub prepare_interface(ByVal account As Account, ByVal setId As Integer)
+        Public Sub prepare_interface(ByVal account As Account, ByVal setId As Integer, Optional forceLoadChar As Boolean = False)
             LogAppend("prepare_interface call", "CharacterOverview_prepare_interface", False)
             InfoToolTip.AutoPopDelay = 5000
             InfoToolTip.InitialDelay = 1000
@@ -84,6 +84,7 @@ Namespace Forms.Character
             GlobalVariables.currentViewedCharSetId = setId
             GlobalVariables.currentViewedCharSet = GetCharacterSetBySetId(setId, account)
             _currentAccount = account
+            If forceLoadChar Then GlobalVariables.currentViewedCharSet.Loaded = False
             If GlobalVariables.currentViewedCharSet Is Nothing Or GlobalVariables.currentViewedCharSet.Loaded = False _
                 Then
                 If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
@@ -129,6 +130,7 @@ Namespace Forms.Character
             class_lbl.Text = GetClassNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Cclass)
             race_lbl.Text = GetRaceNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Race)
             gender_lbl.Text = GetGenderNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Gender)
+            loadedat_lbl.Text = GlobalVariables.currentViewedCharSet.LoadedDateTime
             Dim zeroBagItems As New List(Of Item)
             If Not DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems Is Nothing Then
                 For Each potCharBag As Item In _
@@ -1068,7 +1070,6 @@ Namespace Forms.Character
                 meSlot = meSlot.Replace("slot_", "")
                 meSlot = meSlot.Replace("_name", "")
                 If Not GetItemInventorySlotByItemId(TryInt(TextBox2.Text)) = TryInt(meSlot) Then
-
                     MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
                            ResourceHandler.GetUserMessage("Error"))
                     Exit Sub
@@ -1439,11 +1440,13 @@ Namespace Forms.Character
         End Sub
 
         Private Sub reset_bt_Click(sender As Object, e As EventArgs) Handles reset_bt.Click
-            GlyphsInterface.Close()
-            AchievementsInterface.Close()
-            QuestsInterface.Close()
-            ReputationInterface.Close()
-            SpellSkillInterface.Close()
+            For i = Application.OpenForms.Count - 1 To 0 Step -1
+                Dim openForm As Form = Application.OpenForms(i)
+                Select Case True
+                    Case TypeOf openForm Is GlyphsInterface, TypeOf openForm Is AchievementsInterface, TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface, TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface, TypeOf openForm Is SpellSkillInterface, TypeOf openForm Is ProfessionsInterface
+                        openForm.Close()
+                End Select
+            Next i
             Hide()
             NewProcessStatus()
             Userwait.Show()
@@ -1575,6 +1578,27 @@ Namespace Forms.Character
                 picbox.BackgroundImage = _tmpImage
                 picbox.Refresh()
                 Application.DoEvents()
+            End If
+        End Sub
+
+        Private Sub refreshchar_Click(sender As Object, e As EventArgs) Handles refreshchar.Click
+            Dim result = MsgBox(ResourceHandler.GetUserMessage("reloadCharacter"), MsgBoxStyle.YesNo,
+                          ResourceHandler.GetUserMessage("areyousure"))
+            If result = MsgBoxResult.Yes Then
+                For i = Application.OpenForms.Count - 1 To 0 Step -1
+                    Dim openForm As Form = Application.OpenForms(i)
+                    Select Case True
+                        Case TypeOf openForm Is GlyphsInterface, TypeOf openForm Is AchievementsInterface, TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface, TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface, TypeOf openForm Is SpellSkillInterface, TypeOf openForm Is ProfessionsInterface
+                            openForm.Close()
+                    End Select
+                Next i
+                Hide()
+                NewProcessStatus()
+                Userwait.Show()
+                Dim newOverview As New CharacterOverview
+                GlobalVariables.currentEditedCharSet = Nothing
+                newOverview.prepare_interface(_currentAccount, GlobalVariables.currentViewedCharSetId, True)
+                Close()
             End If
         End Sub
     End Class
