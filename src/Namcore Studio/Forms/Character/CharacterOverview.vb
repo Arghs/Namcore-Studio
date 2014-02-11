@@ -51,6 +51,7 @@ Namespace Forms.Character
         Dim _tmpSenderPic As Object
         Dim _currentSet As Integer
         Dim _currentAccount As Account
+        Dim _currentBag As Item
         Dim _lastRemovePic As PictureBox
 
         Shared _loadComplete As Boolean = False
@@ -725,6 +726,7 @@ Namespace Forms.Character
                                 DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                         Dim pubItem As Item = tempSender.Tag
                         pubItem.RemoveEnchantments()
+                        SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, pubItem)
                         tempSender.Tag = pubItem
                         tempSender.Text = "+"
                         senderLabel.Cursor = Cursors.Hand
@@ -746,6 +748,7 @@ Namespace Forms.Character
                         DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                 Dim pubItem As Item = senderPic.Tag
                 pubItem.RemoveGem(TryInt(SplitString(senderPic.Name, "_gem", "_")))
+                SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, pubItem)
                 senderPic.Image = My.Resources.add_
                 senderPic.Tag = pubItem
                 Dim relevantControls As Control() =
@@ -1189,6 +1192,9 @@ Namespace Forms.Character
                     Dim updateHandler As New UpdateCharacterHandler
                     updateHandler.UpdateCharacter(GlobalVariables.currentViewedCharSet,
                                                   GlobalVariables.currentEditedCharSet)
+                    GlobalVariables.currentViewedCharSet = GlobalVariables.currentEditedCharSet
+                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentViewedCharSet, _currentAccount)
+                    GlobalVariables.currentEditedCharSet = Nothing
                     Userwait.Close()
                 End If
             End If
@@ -1337,10 +1343,13 @@ Namespace Forms.Character
             _inventoryControlLst = New List(Of Control)()
             Dim bag As Item = sender.tag
             If bag Is Nothing Then Exit Sub
+            _currentBag = bag
             InventoryLayout.Controls.Clear()
             For z = 0 To bag.SlotCount - 1
                 Dim itm As New Item
                 itm.Slot = z
+                itm.Bagguid = bag.Guid
+                itm.Bag = bag.Id
                 Dim newItmPanel As New ItemPanel
                 newItmPanel.Size = referenceItmPanel.Size
                 newItmPanel.Margin = referenceItmPanel.Margin
@@ -1355,7 +1364,7 @@ Namespace Forms.Character
                 newItmPanel.BackColor = referenceItmPanel.BackColor
                 newItmPanel.Tag = itm
                 subItmPic.Tag = itm
-                'newItmPanel.SetDoubleBuffered()
+                newItmPanel.SetDoubleBuffered()
                 Dim subItmRemovePic As New PictureBox
                 subItmRemovePic.Name = "slot_" & z.ToString() & "_remove"
                 subItmRemovePic.Cursor = Cursors.Hand
@@ -1367,7 +1376,7 @@ Namespace Forms.Character
                 subItmRemovePic.BackColor = removeinventbox.BackColor
                 subItmRemovePic.Tag = {newItmPanel, subItmPic}
                 subItmRemovePic.Visible = False
-                'subItmRemovePic.SetDoubleBuffered()
+                subItmRemovePic.SetDoubleBuffered()
                 InventoryLayout.Controls.Add(newItmPanel)
                 subItmRemovePic.BringToFront()
                 InfoToolTip.SetToolTip(newItmPanel, "Empty")
@@ -1411,31 +1420,29 @@ Namespace Forms.Character
         End Sub
 
         Private Sub SetInventorySlot(ByVal itm As Item, ByVal slot As Integer)
-            For Each itmctrl As ItemPanel In InventoryLayout.Controls
-                If itmctrl.Name.Contains("_" & slot.ToString() & "_") Then
-                    itmctrl.BackColor = GetItemQualityColor(GetItemQualityByItemId(itm.Id))
-                    itmctrl.Tag = itm
-                    InfoToolTip.SetToolTip(itmctrl, itm.Name)
-                    For Each itmPicBox As PictureBox In itmctrl.Controls
-                        If Not itmPicBox.Name Is Nothing Then
-                            If itmPicBox.Name.EndsWith("_remove") Then
-                                If itm.Id <> 0 Then
-                                    itmPicBox.BackgroundImage = My.Resources.trash__delete__16x16
-                                    InfoToolTip.SetToolTip(itmPicBox, "Remove")
-                                Else
-                                    itmPicBox.BackgroundImage = My.Resources.add_
-                                    InfoToolTip.SetToolTip(itmPicBox, "Add")
-                                End If
-                                Continue For
+            For Each itmctrl As ItemPanel In From itmctrl1 As ItemPanel In InventoryLayout.Controls Where itmctrl1.Name.Contains("_" & slot.ToString() & "_")
+                itmctrl.BackColor = GetItemQualityColor(GetItemQualityByItemId(itm.Id))
+                itmctrl.Tag = itm
+                InfoToolTip.SetToolTip(itmctrl, itm.Name)
+                For Each itmPicBox As PictureBox In itmctrl.Controls
+                    If Not itmPicBox.Name Is Nothing Then
+                        If itmPicBox.Name.EndsWith("_remove") Then
+                            If itm.Id <> 0 Then
+                                itmPicBox.BackgroundImage = My.Resources.trash__delete__16x16
+                                InfoToolTip.SetToolTip(itmPicBox, "Remove")
+                            Else
+                                itmPicBox.BackgroundImage = My.Resources.add_
+                                InfoToolTip.SetToolTip(itmPicBox, "Add")
                             End If
+                            Continue For
                         End If
-                        itmPicBox.BackgroundImage = itm.Image
-                        itmPicBox.Tag = itm
-                        InfoToolTip.SetToolTip(itmPicBox, itm.Name)
-                    Next
-                    InventoryLayout.Update()
-                    Application.DoEvents()
-                End If
+                    End If
+                    itmPicBox.BackgroundImage = itm.Image
+                    itmPicBox.Tag = itm
+                    InfoToolTip.SetToolTip(itmPicBox, itm.Name)
+                Next
+                InventoryLayout.Update()
+                Application.DoEvents()
             Next
         End Sub
 
@@ -1513,8 +1520,15 @@ Namespace Forms.Character
                             replaceItm.Image = GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient)
                             replaceItm.Name = checkName
                             replaceItm.Rarity = GetItemQualityByItemId(replaceItm.Id)
+                            replaceItm.Bag = oldItm.Bag
+                            replaceItm.Bagguid = oldItm.Bagguid
                             locPanel.BackColor = GetItemQualityColor(replaceItm.Rarity)
-                            GlobalVariables.currentEditedCharSet.InventoryItems.Add(replaceItm)
+                            If replaceItm.Bagguid = 0 Then
+                                GlobalVariables.currentEditedCharSet.InventoryZeroItems.Add(replaceItm)
+                            Else
+                                GlobalVariables.currentEditedCharSet.InventoryItems.Add(replaceItm)
+                            End If
+                            _currentBag.BagItems.Add(replaceItm)
                             locPic.Tag = replaceItm
                             locPanel.Tag = replaceItm
                             locPic.BackgroundImage = replaceItm.Image
@@ -1544,9 +1558,17 @@ Namespace Forms.Character
                     locPic.Tag = replaceItm
                     InfoToolTip.SetToolTip(locPic, "Empty")
                     InfoToolTip.SetToolTip(sender, "Add")
-                    GlobalVariables.currentEditedCharSet.InventoryItems.RemoveAt(
-                        GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
-                            Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
+                    _currentBag.BagItems.Remove(_currentBag.BagItems.Find(Function(item) item.Slot = replaceItm.Slot))
+                    If oldItm.Bagguid = 0 Then
+                        GlobalVariables.currentEditedCharSet.InventoryZeroItems.RemoveAt(
+                      GlobalVariables.currentEditedCharSet.InventoryZeroItems.FindIndex(
+                          Function(item) item.Slot = oldItm.Slot))
+                    Else
+                        GlobalVariables.currentEditedCharSet.InventoryItems.RemoveAt(
+                                              GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
+                                                  Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
+                    End If
+
                     sender.BackgroundImage = My.Resources.add_
                 End If
                 sender.Visible = False

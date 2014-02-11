@@ -40,6 +40,7 @@ Namespace Framework.Core
                           "CoreHandler_handleLoadingRequests", True, True)
                 Exit Sub
             End If
+            ResetTempDataTables()
             tmpPlayer.LoadedDateTime = Date.Now
             Dim mBasicsHandler As New CharacterBasicsHandler
             mBasicsHandler.GetBasicCharacterInformation(tmpPlayer.Guid, setId, Account)

@@ -28,41 +28,44 @@ Imports NCFramework.Framework.Transmission
 
 Namespace Framework.Core.Update
     Public Class UpdateInventoryHandler
-        Public Sub UpdateInventory(ByVal modPlayer As Character)
+        Public Sub UpdateInventory(ByVal comparePlayer As Character, ByVal modPlayer As Character)
             LogAppend("Updating character inventory", "UpdateInventoryHandler_UpdateInventory", True)
             '// Any new items?
             For Each itm As Item In modPlayer.InventoryItems
-                Select Case itm.UpdateRequest
-                    Case 0
-                        '// No changes
-                    Case 1
-                        '// Create request
-                        CreateItem(modPlayer, itm, False)
-                    Case 2
-                        '// Delete request
-                        DeleteItem(modPlayer, itm, False)
-                    Case 3
-                        '// Update request
-                        UpdateItem(modPlayer, itm, False)
-                End Select
+                Dim result As Item = comparePlayer.InventoryItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid AndAlso item.Id = itm.Id)
+                If result Is Nothing Then
+                    CreateItem(modPlayer, itm, False)
+                ElseIf result.Count <> itm.Count Or result.Guid <> itm.Guid Then
+                    UpdateItem(modPlayer, itm, False)
+                End If
             Next
+            '// Any deleted items?
+            For Each itm As Item In comparePlayer.InventoryItems
+                Dim result As Item = modPlayer.InventoryItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid AndAlso item.Id = itm.Id)
+                If result Is Nothing Then
+                    DeleteItem(modPlayer, itm, False)
+                End If
+            Next
+            '// Any new items?
             For Each itm As Item In modPlayer.InventoryZeroItems
                 Select Case itm.Slot
-                    Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
-                        '// Inventory item is a bag and could be modified
-                        Select Case itm.UpdateRequest
-                            Case 0
-                                '// No changes
-                            Case 1
-                                '// Create request
-                                CreateItem(modPlayer, itm, False)
-                            Case 2
-                                '// Delete request
-                                DeleteItem(modPlayer, itm, False)
-                            Case 3
-                                '// Update request
-                                UpdateItem(modPlayer, itm, False)
-                        End Select
+                    Case 19 To 22, 67 To 73, 23 To 38, 39 To 66
+                        Dim result As Item = comparePlayer.InventoryZeroItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Id = itm.Id)
+                        If result Is Nothing Then
+                            CreateItem(modPlayer, itm, False)
+                        ElseIf result.Count <> itm.Count Or result.Guid <> itm.Guid Then
+                            UpdateItem(modPlayer, itm, False)
+                        End If
+                End Select
+            Next
+            '// Any deleted items?
+            For Each itm As Item In comparePlayer.InventoryZeroItems
+                Select Case itm.Slot
+                    Case 19 To 22, 67 To 73, 23 To 38, 39 To 66
+                        Dim result As Item = modPlayer.InventoryZeroItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Id = itm.Id)
+                        If result Is Nothing Then
+                            DeleteItem(modPlayer, itm, False)
+                        End If
                 End Select
             Next
         End Sub
@@ -135,6 +138,8 @@ Namespace Framework.Core.Update
                             GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
                             "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
                             itm2Add.Slot.ToString() &
+                            "' AND " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '" &
+                            itm2Add.Bagguid.ToString() &
                             "'")
                     End If
                     Select Case zero
@@ -155,7 +160,7 @@ Namespace Framework.Core.Update
                                 GlobalVariables.sourceStructure.invent_bag_col(0) & ", " &
                                 GlobalVariables.sourceStructure.invent_item_col(0) & " ) VALUES ( '" &
                                 player.Guid.ToString() & "', '" & itm2Add.Slot.ToString() & "', '" &
-                                itm2Add.Bag.ToString & "', '" & newItemGuid.ToString() & "' )")
+                                itm2Add.Bagguid.ToString & "', '" & newItemGuid.ToString() & "' )")
                     End Select
                     Dim mEnchCreator As New EnchantmentsCreation
                     mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
@@ -200,6 +205,8 @@ Namespace Framework.Core.Update
                             GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
                             "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
                             itm2Add.Slot.ToString() &
+                            "' AND " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '" &
+                            itm2Add.Bagguid.ToString() &
                             "'")
                     End If
                     runSQLCommand_characters_string(

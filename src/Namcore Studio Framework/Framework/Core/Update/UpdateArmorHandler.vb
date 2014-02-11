@@ -64,7 +64,8 @@ Namespace Framework.Core.Update
                                         "` WHERE `" & GlobalVariables.sourceStructure.invent_guid_col(0) & "`='" &
                                         player.Guid.ToString() & "' AND `" &
                                         GlobalVariables.sourceStructure.invent_slot_col(0) & "`='" &
-                                        armorItm.Slot.ToString() & "'"))
+                                        armorItm.Slot.ToString() & "' AND `" &
+                                        GlobalVariables.sourceStructure.invent_bag_col(0) & "`='0'"))
                         If Not itmguid = 0 Then
                             mEnchCreator.SetItemEnchantments(0, armorItm, itmguid, GlobalVariables.sourceCore,
                                                              GlobalVariables.sourceStructure)

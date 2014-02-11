@@ -343,7 +343,7 @@ Namespace Forms.Character
             Me.browse_tb.Name = "browse_tb"
             Me.browse_tb.Size = New System.Drawing.Size(280, 20)
             Me.browse_tb.TabIndex = 226
-            Me.browse_tb.Text = "Enter quest name or id"
+            Me.browse_tb.Text = "Enter achievement name or id"
             '
             'subcat_combo
             '

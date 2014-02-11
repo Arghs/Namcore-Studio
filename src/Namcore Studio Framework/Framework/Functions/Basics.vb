@@ -26,6 +26,7 @@ Imports NCFramework.Framework.Forms
 Imports libnc
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Database
 Imports System.Net
 Imports System.Text
 
@@ -38,6 +39,13 @@ Namespace Framework.Functions
         Public Sub InitializeDbc()
             LogAppend("Initializing DBC files", "Basics_InitializeDBC", True)
             Main.Initialize()
+        End Sub
+
+        Public Sub ResetTempDataTables()
+            TempTable1 = Nothing
+            TempTable1Name = ""
+            TempTable2 = Nothing
+            TempTable2Name = ""
         End Sub
 
         Public Sub AddAccountSet(ByVal setId As Integer, ByVal player As Account,

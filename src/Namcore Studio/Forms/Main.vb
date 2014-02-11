@@ -123,7 +123,7 @@ Namespace Forms
             Next
             Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2013"
             version_lbl.Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() &
-                               " - © megasus 2013"
+                               " - © megasus 2013-2014"
             If GlobalVariables.DebugMode Then
                 NewProcessStatus()
             End If

@@ -111,7 +111,7 @@
             Me.version_lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes
             Me.version_lbl.Size = New System.Drawing.Size(638, 18)
             Me.version_lbl.TabIndex = 5
-            Me.version_lbl.Text = "NamCore Studio - Development - 0.0.8.45283 - © megasus 2013"
+            Me.version_lbl.Text = "NamCore Studio - Development - 0.0.8.45283 - © megasus 2013-2014"
             '
             'settings_pic
             '

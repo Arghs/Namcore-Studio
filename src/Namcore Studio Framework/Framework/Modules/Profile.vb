@@ -49,7 +49,6 @@ Namespace Framework.Modules
         Public Socket3Effectid As Integer
         Public EnchantmentEffectid As Integer
         Public Image As Bitmap
-        Public UpdateRequest As Integer = 0 '0=no; 1=create; 2=delete; 3=update
         Public Bag As Integer
         Public Bagguid As Integer
         Public Enchantstring As String

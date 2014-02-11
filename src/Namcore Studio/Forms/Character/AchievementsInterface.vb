@@ -554,7 +554,7 @@ Namespace Forms.Character
 
             End Try
             search_bt.Enabled = True
-            browse_tb.Text = "Enter quest name or id"
+            browse_tb.Text = "Enter achievement name or id"
             browse_tb.ForeColor = SystemColors.WindowFrame
             browse_tb.Enabled = True
             subcat_combo.Enabled = True
@@ -562,7 +562,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub browse_tb_Enter(sender As Object, e As EventArgs) Handles browse_tb.Enter
-            If browse_tb.Text = "Enter quest name or id" Then
+            If browse_tb.Text = "Enter achievement name or id" Then
                 browse_tb.ForeColor = SystemColors.WindowText
                 browse_tb.Text = ""
             End If
@@ -571,7 +571,7 @@ Namespace Forms.Character
         Private Sub browse_tb_Leave(sender As Object, e As EventArgs) Handles browse_tb.Leave
             If browse_tb.Text = "" Then
                 browse_tb.ForeColor = SystemColors.WindowFrame
-                browse_tb.Text = "Enter quest name or id"
+                browse_tb.Text = "Enter achievement name or id"
             End If
         End Sub
 

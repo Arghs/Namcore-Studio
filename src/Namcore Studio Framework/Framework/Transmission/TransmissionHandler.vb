@@ -38,6 +38,7 @@ Namespace Framework.Transmission
                 'CreateNewAccount(accountInfo.Item(index).name
             Next
             '// Creating Characters
+            ResetTempDataTables()
             For Each playerCharacter In GlobalVariables.charactersToCreate
                 Dim accountId As Integer = TryInt(SplitString(playerCharacter, "{AccountId}", "{/AccountId}"))
                 Dim setId As Integer = TryInt(SplitString(playerCharacter, "{setId}", "{/setId}"))

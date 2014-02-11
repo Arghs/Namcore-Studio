@@ -29,6 +29,7 @@ Namespace Framework.Core.Update
     Public Class UpdateCharacterHandler
         Public Sub UpdateCharacter(ByVal comparePlayer As Character, ByVal newPlayer As Character)
             LogAppend("Updating character " & comparePlayer.Name, "UpdateCharacterHandler_UpdateCharacter", True)
+            ResetTempDataTables()
             If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then _
                 GlobalVariables.GlobalConnection.Open()
             If GlobalVariables.GlobalConnection_Realm.State = ConnectionState.Closed Then _
@@ -107,16 +108,16 @@ Namespace Framework.Core.Update
                     Dim entry As Item = comparePlayer.ArmorItems.Find(Function(item) item.Id = armorItm.Id)
                     If entry Is Nothing Then
                         '// Item needs to be created
-                        itm2Create.Add(entry)
+                        itm2Create.Add(armorItm)
                     Else
                         '// Item already exists: Check if gems/enchantments changed
                         If Not armorItm.EnchantmentId = entry.EnchantmentId Then
-                            itmsEnchChanged.Add(entry)
+                            itmsEnchChanged.Add(armorItm)
                         Else
                             If _
                                 Not armorItm.Socket1Id = entry.Socket1Id Or Not armorItm.Socket2Id = entry.Socket2Id Or
                                 Not armorItm.Socket3Id = entry.Socket3Id Then
-                                itmsEnchChanged.Add(entry)
+                                itmsEnchChanged.Add(armorItm)
                             End If
                         End If
                     End If
@@ -131,12 +132,8 @@ Namespace Framework.Core.Update
                 End If
                 Dim mUpdateGlyphs As New UpdateGlyphsHandler
                 mUpdateGlyphs.UpdateGlyphs(comparePlayer, newPlayer)
-                Dim result As Item = newPlayer.InventoryItems.Find(Function(item) Not item.UpdateRequest = 0)
-                Dim resultZero As Item = newPlayer.InventoryZeroItems.Find(Function(item) Not item.UpdateRequest = 0)
-                If Not result Is Nothing And Not resultZero Is Nothing Then
-                    Dim mUpdateInventory As New UpdateInventoryHandler
-                    mUpdateInventory.UpdateInventory(newPlayer)
-                End If
+                Dim mUpdateInventory As New UpdateInventoryHandler
+                mUpdateInventory.UpdateInventory(comparePlayer, newPlayer)
                 Dim mUpdateQuests As New UpdateQuestsHandler
                 mUpdateQuests.UpdateQuestlog(comparePlayer, newPlayer)
                 Dim mUpdateReputation As New UpdateReputationHandler
