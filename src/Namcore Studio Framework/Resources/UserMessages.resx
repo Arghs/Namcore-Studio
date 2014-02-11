@@ -642,4 +642,10 @@
   <data name="spellAlreadyPresent" xml:space="preserve">
     <value>This spell is already active.</value>
   </data>
+  <data name="enteritemid" xml:space="preserve">
+    <value>Enter item id:</value>
+  </data>
+  <data name="invalidItemError" xml:space="preserve">
+    <value>No item with this id found!</value>
+  </data>
 </root>

@@ -1493,16 +1493,54 @@ Namespace Forms.Character
             Dim locPic As PictureBox = sender.Tag(1)
             Dim oldItm As Item = locPic.Tag
             If oldItm.Id = Nothing Then
+                Dim result As String = InputBox(ResourceHandler.GetUserMessage("enteritemid"), "Add item", "0")
+                If result.Length = 0 Then
+                    sender.Visible = False
+                Else
+                    Dim intResult As Integer = TryInt(result)
+                    If intResult <> 0 Then
+                        Dim checkName As String = GetItemNameByItemId(intResult, MySettings.Default.language)
+                        If Not checkName = "Not found" Then
+                            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                GlobalVariables.currentEditedCharSet =
+                                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                            Dim replaceItm As New Item()
+                            replaceItm.Slot = oldItm.Slot
+                            replaceItm.Id = intResult
+                            replaceItm.Image = GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient)
+                            replaceItm.Name = checkName
+                            replaceItm.Rarity = GetItemQualityByItemId(replaceItm.Id)
+                            locPanel.BackColor = GetItemQualityColor(replaceItm.Rarity)
+                            GlobalVariables.currentEditedCharSet.InventoryItems.Add(replaceItm)
+                            locPic.Tag = replaceItm
+                            locPanel.Tag = replaceItm
+                            locPic.BackgroundImage = replaceItm.Image
+                            InfoToolTip.SetToolTip(locPic, checkName)
+                            InfoToolTip.SetToolTip(sender, "Remove")
+                            sender.BackgroundImage = My.Resources.trash__delete__16x16
+                        Else
+                            MsgBox(ResourceHandler.GetUserMessage("invalidItemError"), MsgBoxStyle.Critical, "Error")
+                        End If
+                    Else
+                        MsgBox(ResourceHandler.GetUserMessage("invalidItemError"), MsgBoxStyle.Critical, "Error")
+                    End If
+                    sender.Visible = False
+                End If
             Else
                 Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
                                     ResourceHandler.GetUserMessage("areyousure"))
                 If result = MsgBoxResult.Yes Then
+                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                        GlobalVariables.currentEditedCharSet =
+                            DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                     locPanel.BackColor = referenceItmPanel.BackColor
                     locPic.BackgroundImage = referenceItmPic.BackgroundImage
                     Dim replaceItm As New Item()
                     replaceItm.Slot = oldItm.Slot
                     locPanel.Tag = replaceItm
                     locPic.Tag = replaceItm
+                    InfoToolTip.SetToolTip(locPic, "Empty")
+                    InfoToolTip.SetToolTip(sender, "Add")
                     GlobalVariables.currentEditedCharSet.InventoryItems.RemoveAt(
                         GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
                             Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
