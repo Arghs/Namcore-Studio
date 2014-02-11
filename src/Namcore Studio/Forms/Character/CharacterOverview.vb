@@ -51,6 +51,7 @@ Namespace Forms.Character
         Dim _tmpSenderPic As Object
         Dim _currentSet As Integer
         Dim _currentAccount As Account
+        Dim _lastRemovePic As PictureBox
 
         Shared _loadComplete As Boolean = False
         Shared _doneControls As List(Of Control)
@@ -1339,7 +1340,7 @@ Namespace Forms.Character
             For z = 0 To bag.SlotCount - 1
                 Dim itm As New Item
                 itm.Slot = z
-                Dim newItmPanel As New Panel
+                Dim newItmPanel As New ItemPanel
                 newItmPanel.Size = referenceItmPanel.Size
                 newItmPanel.Margin = referenceItmPanel.Margin
                 newItmPanel.Name = "slot_" & z.ToString() & "_panel"
@@ -1353,13 +1354,30 @@ Namespace Forms.Character
                 newItmPanel.BackColor = referenceItmPanel.BackColor
                 newItmPanel.Tag = itm
                 subItmPic.Tag = itm
-                newItmPanel.SetDoubleBuffered()
+                'newItmPanel.SetDoubleBuffered()
+                Dim subItmRemovePic As New PictureBox
+                subItmRemovePic.Name = "slot_" & z.ToString() & "_remove"
+                subItmRemovePic.Cursor = Cursors.Hand
+                subItmRemovePic.Size = removeinventbox.Size
+                newItmPanel.Controls.Add(subItmRemovePic)
+                subItmRemovePic.Location = removeinventbox.Location
+                subItmRemovePic.BackgroundImageLayout = ImageLayout.Stretch
+                subItmRemovePic.BackgroundImage = My.Resources.add_
+                subItmRemovePic.BackColor = removeinventbox.BackColor
+                subItmRemovePic.Tag = {newItmPanel, subItmPic}
+                subItmRemovePic.Visible = False
+                'subItmRemovePic.SetDoubleBuffered()
                 InventoryLayout.Controls.Add(newItmPanel)
+                subItmRemovePic.BringToFront()
                 InfoToolTip.SetToolTip(newItmPanel, "Empty")
                 InfoToolTip.SetToolTip(subItmPic, "Empty")
+                InfoToolTip.SetToolTip(subItmRemovePic, "Add")
                 InventoryLayout.Update()
-                AddHandler subItmPic.MouseEnter, AddressOf InventItem_MouseEnter
-                AddHandler subItmPic.MouseLeave, AddressOf InventItem_MouseLeave
+                AddHandler newItmPanel.MouseEnter, AddressOf InventItem_MouseEnter
+                AddHandler newItmPanel.MouseLeave, AddressOf InventItem_MouseLeave
+                AddHandler subItmRemovePic.MouseClick, AddressOf removeinventbox_Click
+                AddHandler subItmRemovePic.MouseEnter, AddressOf removeinventbox_MouseEnter
+                AddHandler subItmRemovePic.MouseLeave, AddressOf removeinventbox_MouseLeave
                 Application.DoEvents()
             Next z
             For Each ctrl As Control In InventoryLayout.Controls
@@ -1375,32 +1393,41 @@ Namespace Forms.Character
 
         Private Sub InventItem_MouseEnter(sender As Object, e As EventArgs)
             If Not _loadComplete = False Then
-                Dim picbx As PictureBox = sender
-                Dim itm As Item = picbx.Tag
-                If Not itm Is Nothing Then
-                    If Not itm.Id = 0 Then
-                        Dim parentPanel As Panel = _inventoryControlLst.Find(Function(control) control.Tag.Slot = picbx.Tag.Slot AndAlso TypeOf control Is Panel)
-                        If Not parentPanel Is Nothing Then
-                            removeinventbox.Location =
-                                                  New Point(picbx.Location.X + GroupBox2.Location.X + parentPanel.Location.X + InventoryLayout.Location.X + 1,
-                                                            picbx.Location.Y + GroupBox2.Location.Y + parentPanel.Location.Y + InventoryLayout.Location.Y + 1)
-                        End If
-                    End If
+                Dim parentPanel As ItemPanel = sender
+                Dim removePic As PictureBox = parentPanel.Controls(0)
+                If Not removePic Is Nothing Then
+                    _lastRemovePic = removePic
+                    removePic.Visible = True
                 End If
             End If
         End Sub
 
         Private Sub InventItem_MouseLeave(sender As Object, e As EventArgs)
-                removeinventbox.Location = New Point(4000, 4000)
+            If _lastRemovePic IsNot Nothing Then
+                _lastRemovePic.Visible = False
+                Application.DoEvents()
+            End If
         End Sub
 
         Private Sub SetInventorySlot(ByVal itm As Item, ByVal slot As Integer)
-            For Each itmctrl As Panel In InventoryLayout.Controls
+            For Each itmctrl As ItemPanel In InventoryLayout.Controls
                 If itmctrl.Name.Contains("_" & slot.ToString() & "_") Then
                     itmctrl.BackColor = GetItemQualityColor(GetItemQualityByItemId(itm.Id))
                     itmctrl.Tag = itm
                     InfoToolTip.SetToolTip(itmctrl, itm.Name)
                     For Each itmPicBox As PictureBox In itmctrl.Controls
+                        If Not itmPicBox.Name Is Nothing Then
+                            If itmPicBox.Name.EndsWith("_remove") Then
+                                If itm.Id <> 0 Then
+                                    itmPicBox.BackgroundImage = My.Resources.trash__delete__16x16
+                                    InfoToolTip.SetToolTip(itmPicBox, "Remove")
+                                Else
+                                    itmPicBox.BackgroundImage = My.Resources.add_
+                                    InfoToolTip.SetToolTip(itmPicBox, "Add")
+                                End If
+                                Continue For
+                            End If
+                        End If
                         itmPicBox.BackgroundImage = itm.Image
                         itmPicBox.Tag = itm
                         InfoToolTip.SetToolTip(itmPicBox, itm.Name)
@@ -1459,6 +1486,58 @@ Namespace Forms.Character
             profinterface.Show()
             profinterface.PrepareInterface(_tmpSetId)
             Userwait.Close()
+        End Sub
+
+        Private Sub removeinventbox_Click(sender As Object, e As EventArgs)
+            Dim locPanel As Panel = sender.Tag(0)
+            Dim locPic As PictureBox = sender.Tag(1)
+            Dim oldItm As Item = locPic.Tag
+            If oldItm.Id = Nothing Then
+            Else
+                Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
+                                    ResourceHandler.GetUserMessage("areyousure"))
+                If result = MsgBoxResult.Yes Then
+                    locPanel.BackColor = referenceItmPanel.BackColor
+                    locPic.BackgroundImage = referenceItmPic.BackgroundImage
+                    Dim replaceItm As New Item()
+                    replaceItm.Slot = oldItm.Slot
+                    locPanel.Tag = replaceItm
+                    locPic.Tag = replaceItm
+                    GlobalVariables.currentEditedCharSet.InventoryItems.RemoveAt(
+                        GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
+                            Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
+                    sender.BackgroundImage = My.Resources.add_
+                End If
+                sender.Visible = False
+            End If
+        End Sub
+
+        Private Sub removeinventbox_MouseEnter(sender As Object, e As EventArgs)
+            If Not _loadComplete = False Then
+                If Not sender.BackgroundImage Is Nothing Then
+                    _tmpImage = sender.BackgroundImage
+                    Application.DoEvents()
+                    Dim picbx As PictureBox = sender
+                    Dim g As Graphics
+                    Dim img As Bitmap
+                    Dim r As Rectangle
+                    img = picbx.BackgroundImage
+                    sender.BackgroundImage = New Bitmap(picbx.Width, picbx.Height, PixelFormat.Format32bppArgb)
+                    g = Graphics.FromImage(picbx.BackgroundImage)
+                    r = New Rectangle(0, 0, picbx.Width, picbx.Height)
+                    g.DrawImage(img, r)
+                    SetBrightness(0.2, g, img, r, picbx)
+                End If
+            End If
+        End Sub
+
+        Private Sub removeinventbox_MouseLeave(sender As Object, e As EventArgs)
+            If Not _tmpImage Is Nothing And Not sender.BackgroundImage Is Nothing Then
+                Dim picbox As PictureBox = sender
+                picbox.BackgroundImage = _tmpImage
+                picbox.Refresh()
+                Application.DoEvents()
+            End If
         End Sub
     End Class
 End Namespace

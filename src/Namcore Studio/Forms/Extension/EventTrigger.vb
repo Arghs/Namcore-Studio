@@ -32,7 +32,7 @@ Namespace Forms.Extension
 
         Public Sub New()
             InitializeComponent()
-            Application.AddMessageFilter(Me)
+            'Application.AddMessageFilter(Me)
         End Sub
         Protected Overrides Sub OnFormClosed(ByVal e As FormClosedEventArgs)
             Application.RemoveMessageFilter(Me)

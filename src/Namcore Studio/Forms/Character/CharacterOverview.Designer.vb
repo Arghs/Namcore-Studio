@@ -216,9 +216,9 @@ Namespace Forms.Character
         Me.gendercombo = New System.Windows.Forms.ComboBox()
         Me.genderrefresh = New System.Windows.Forms.PictureBox()
         Me.referenceItmPanel = New System.Windows.Forms.Panel()
-        Me.referenceItmPic = New System.Windows.Forms.PictureBox()
-        Me.professions_bt = New System.Windows.Forms.Button()
             Me.removeinventbox = New System.Windows.Forms.PictureBox()
+            Me.referenceItmPic = New System.Windows.Forms.PictureBox()
+            Me.professions_bt = New System.Windows.Forms.Button()
             Me.InventoryPanel.SuspendLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -341,8 +341,8 @@ Namespace Forms.Character
             Me.genderpanel.SuspendLayout()
             CType(Me.genderrefresh, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.referenceItmPanel.SuspendLayout()
-            CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'InventoryPanel
@@ -2446,12 +2446,26 @@ Namespace Forms.Character
             'referenceItmPanel
             '
             Me.referenceItmPanel.BackColor = System.Drawing.SystemColors.ActiveBorder
+            Me.referenceItmPanel.Controls.Add(Me.removeinventbox)
             Me.referenceItmPanel.Controls.Add(Me.referenceItmPic)
             Me.referenceItmPanel.Location = New System.Drawing.Point(1419, 438)
             Me.referenceItmPanel.Margin = New System.Windows.Forms.Padding(1)
             Me.referenceItmPanel.Name = "referenceItmPanel"
             Me.referenceItmPanel.Size = New System.Drawing.Size(45, 45)
             Me.referenceItmPanel.TabIndex = 228
+            '
+            'removeinventbox
+            '
+            Me.removeinventbox.BackColor = System.Drawing.Color.Transparent
+            Me.removeinventbox.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.inv_misc_gem_01
+            Me.removeinventbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.removeinventbox.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.removeinventbox.Location = New System.Drawing.Point(2, 2)
+            Me.removeinventbox.Name = "removeinventbox"
+            Me.removeinventbox.Size = New System.Drawing.Size(16, 16)
+            Me.removeinventbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.removeinventbox.TabIndex = 230
+            Me.removeinventbox.TabStop = False
             '
             'referenceItmPic
             '
@@ -2478,25 +2492,12 @@ Namespace Forms.Character
             Me.professions_bt.Text = "Professions"
             Me.professions_bt.UseVisualStyleBackColor = False
             '
-            'removeinventbox
-            '
-            Me.removeinventbox.BackColor = System.Drawing.Color.Transparent
-            Me.removeinventbox.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.removeinventbox.Image = Global.NamCore_Studio.My.Resources.Resources.trash__delete__16x16
-            Me.removeinventbox.Location = New System.Drawing.Point(1422, 395)
-            Me.removeinventbox.Name = "removeinventbox"
-            Me.removeinventbox.Size = New System.Drawing.Size(16, 16)
-            Me.removeinventbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-            Me.removeinventbox.TabIndex = 230
-            Me.removeinventbox.TabStop = False
-            '
             'CharacterOverview
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(904, 736)
-            Me.Controls.Add(Me.removeinventbox)
+            Me.ClientSize = New System.Drawing.Size(902, 736)
             Me.Controls.Add(Me.professions_bt)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.genderpanel)
@@ -2545,7 +2546,6 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.genderpanel, 0)
             Me.Controls.SetChildIndex(Me.referenceItmPanel, 0)
             Me.Controls.SetChildIndex(Me.professions_bt, 0)
-            Me.Controls.SetChildIndex(Me.removeinventbox, 0)
             Me.InventoryPanel.ResumeLayout(False)
             Me.InventoryPanel.PerformLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2674,8 +2674,8 @@ Namespace Forms.Character
             Me.genderpanel.ResumeLayout(False)
             CType(Me.genderrefresh, System.ComponentModel.ISupportInitialize).EndInit()
             Me.referenceItmPanel.ResumeLayout(False)
-            CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
             Me.PerformLayout()
 
