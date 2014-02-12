@@ -53,6 +53,7 @@ Namespace Forms.Character
         Dim _currentAccount As Account
         Dim _currentBag As Item
         Dim _lastRemovePic As PictureBox
+        Dim _visibleActionControls As List(Of Control)
 
         Shared _loadComplete As Boolean = False
         Shared _doneControls As List(Of Control)
@@ -74,6 +75,7 @@ Namespace Forms.Character
 
         Public Sub prepare_interface(ByVal account As Account, ByVal setId As Integer, Optional forceLoadChar As Boolean = False)
             LogAppend("prepare_interface call", "CharacterOverview_prepare_interface", False)
+            _visibleActionControls = New List(Of Control)()
             InfoToolTip.AutoPopDelay = 5000
             InfoToolTip.InitialDelay = 1000
             InfoToolTip.ReshowDelay = 500
@@ -1403,9 +1405,14 @@ Namespace Forms.Character
 
         Private Sub InventItem_MouseEnter(sender As Object, e As EventArgs)
             If Not _loadComplete = False Then
+                For i = _visibleActionControls.Count - 1 To 0 Step -1
+                    _visibleActionControls(i).Visible = False
+                    _visibleActionControls.Remove(_visibleActionControls(i))
+                Next
                 Dim parentPanel As ItemPanel = sender
                 Dim removePic As PictureBox = parentPanel.Controls(0)
                 If Not removePic Is Nothing Then
+                    _visibleActionControls.Add(removePic)
                     _lastRemovePic = removePic
                     removePic.Visible = True
                 End If
@@ -1414,6 +1421,7 @@ Namespace Forms.Character
 
         Private Sub InventItem_MouseLeave(sender As Object, e As EventArgs)
             If _lastRemovePic IsNot Nothing Then
+                _visibleActionControls.Remove(_lastRemovePic)
                 _lastRemovePic.Visible = False
                 Application.DoEvents()
             End If

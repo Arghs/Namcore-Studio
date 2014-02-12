@@ -497,16 +497,64 @@ Namespace Framework.Core
                                                        GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
                                                        EscapeLikeValue(itemGuid.ToString()) & "'")(0)(1)
 
-                        If TryInt(bagguid) = 0 Then
-                            If itemGuid > 18 Then
+                        If TryInt(bagGuid) = 0 Then
+                            Try
+                                Dim slot As String
+                                slot =
+                                       ExecuteDataTableSearch(inventoryDt,
+                                                              GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
+                                                              EscapeLikeValue(itemGuid.ToString()) & "'")(0)(2)
+                                If slot > 18 Then
+                                    Dim bag As String
+                                    Dim item As String
+                                    Dim entryid As String
+                                    Dim enchantments As String
+                                    Dim itemcount As String
+                                    bag = bagGuid
+                                    item = itemGuid.ToString()
+                                    entryid =
+                                        ExecuteDataTableSearch(itemInstanceDt,
+                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                               EscapeLikeValue(item) & "'")(0)(1)
+                                    enchantments =
+                                        ExecuteDataTableSearch(itemInstanceDt,
+                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                               EscapeLikeValue(item) & "'")(0)(4)
+                                    itemcount =
+                                        ExecuteDataTableSearch(itemInstanceDt,
+                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                               EscapeLikeValue(item) & "'")(0)(3)
+
+                                    Dim newItm As New Item
+                                    newItm.Slot = TryInt(slot)
+                                    newItm.Bag = TryInt(bag)
+                                    newItm.Bagguid = TryInt(bagGuid)
+                                    newItm.Id = TryInt(entryid)
+                                    newItm.Enchantstring = enchantments
+                                    newItm.Count = TryInt(itemcount)
+                                    newItm.Guid = TryInt(item)
+                                    If player.InventoryZeroItems Is Nothing Then _
+                                        player.InventoryZeroItems = New List(Of Item)()
+                                    player.InventoryZeroItems.Add(newItm)
+                                End If
+                            Catch ex As Exception
+                                LogAppend(
+                   "Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" &
+                   ex.ToString() & "###END###", "CharacterInventoryHandler_LoadAtTrinity", True, True)
+                            End Try
+                        Else
+                            Try
                                 Dim bag As String
                                 Dim item As String
                                 Dim entryid As String
                                 Dim enchantments As String
                                 Dim itemcount As String
                                 Dim slot As String
-                                bag = bagGuid
-                                item = itemGuid.ToString()
+                                bag =
+                                    ExecuteDataTableSearch(itemInstanceDt,
+                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                           EscapeLikeValue(bagGuid.ToString()) & "'")(0)(1)
+                                item = itemGuid.ToString
                                 entryid =
                                     ExecuteDataTableSearch(itemInstanceDt,
                                                            GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
@@ -531,48 +579,13 @@ Namespace Framework.Core
                                 newItm.Enchantstring = enchantments
                                 newItm.Count = TryInt(itemcount)
                                 newItm.Guid = TryInt(item)
-                                If player.InventoryZeroItems Is Nothing Then _
-                                    player.InventoryZeroItems = New List(Of Item)()
-                                player.InventoryZeroItems.Add(newItm)
-                            End If
-                        Else
-                            Dim bag As String
-                            Dim item As String
-                            Dim entryid As String
-                            Dim enchantments As String
-                            Dim itemcount As String
-                            Dim slot As String
-                            bag =
-                                ExecuteDataTableSearch(itemInstanceDt,
-                                                       GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                       EscapeLikeValue(bagGuid.ToString()) & "'")(0)(1)
-                            item = itemGuid.ToString
-                            entryid =
-                                ExecuteDataTableSearch(itemInstanceDt,
-                                                       GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                       EscapeLikeValue(item) & "'")(0)(1)
-                            enchantments =
-                                ExecuteDataTableSearch(itemInstanceDt,
-                                                       GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                       EscapeLikeValue(item) & "'")(0)(4)
-                            itemcount =
-                                ExecuteDataTableSearch(itemInstanceDt,
-                                                       GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                       EscapeLikeValue(item) & "'")(0)(3)
-                            slot =
-                                ExecuteDataTableSearch(inventoryDt,
-                                                       GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
-                                                       EscapeLikeValue(itemGuid.ToString()) & "'")(0)(2)
-                            Dim newItm As New Item
-                            newItm.Slot = TryInt(slot)
-                            newItm.Bag = TryInt(bag)
-                            newItm.Bagguid = TryInt(bagguid)
-                            newItm.Id = TryInt(entryid)
-                            newItm.Enchantstring = enchantments
-                            newItm.Count = TryInt(itemcount)
-                            newItm.Guid = TryInt(item)
-                            If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of Item)()
-                            player.InventoryItems.Add(newItm)
+                                If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of Item)()
+                                player.InventoryItems.Add(newItm)
+                            Catch ex As Exception
+                                LogAppend(
+                   "Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" &
+                   ex.ToString() & "###END###", "CharacterInventoryHandler_LoadAtTrinity", True, True)
+                            End Try
                         End If
                         count += 1
                     Loop Until count = lastcount

@@ -31,11 +31,11 @@ Namespace Framework.Core.Update
         Public Sub UpdateArmor(ByVal player As Character, ByVal modPlayer As Character, ByVal createItm As List(Of Item),
                                ByVal deleteItm As List(Of Item), enchItm As List(Of Item))
             LogAppend("Updating character armor", "UpdateArmorHandler_UpdateArmor", True)
-            For Each armorItm As Item In createItm
-                CreateItem(modPlayer, armorItm)
-            Next
             For Each armorItm As Item In deleteItm
                 DeleteItem(modPlayer, armorItm)
+            Next
+            For Each armorItm As Item In createItm
+                CreateItem(modPlayer, armorItm)
             Next
             Dim mEnchCreator As New EnchantmentsCreation
             For Each armorItm As Item In enchItm

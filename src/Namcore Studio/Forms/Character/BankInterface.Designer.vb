@@ -44,11 +44,13 @@ Namespace Forms.Character
             Me.bag7Panel = New System.Windows.Forms.Panel()
             Me.Bag7Pic = New System.Windows.Forms.PictureBox()
             Me.reference_itm_panel = New System.Windows.Forms.Panel()
+            Me.removeinventboxbig = New System.Windows.Forms.PictureBox()
             Me.reference_itm_pic = New System.Windows.Forms.PictureBox()
             Me.label2 = New System.Windows.Forms.Label()
             Me.Label1 = New System.Windows.Forms.Label()
             Me.BagItemPanel = New System.Windows.Forms.FlowLayoutPanel()
             Me.referenceItmPanel = New System.Windows.Forms.Panel()
+            Me.removeinventbox = New System.Windows.Forms.PictureBox()
             Me.referenceItmPic = New System.Windows.Forms.PictureBox()
             Me.InfoToolTip = New System.Windows.Forms.ToolTip(Me.components)
             Me.BackPanel = New System.Windows.Forms.Panel()
@@ -68,8 +70,10 @@ Namespace Forms.Character
             Me.bag7Panel.SuspendLayout()
             CType(Me.Bag7Pic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.reference_itm_panel.SuspendLayout()
+            CType(Me.removeinventboxbig, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.reference_itm_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.referenceItmPanel.SuspendLayout()
+            CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.BackPanel.SuspendLayout()
             Me.SuspendLayout()
@@ -247,12 +251,26 @@ Namespace Forms.Character
             'reference_itm_panel
             '
             Me.reference_itm_panel.BackColor = System.Drawing.SystemColors.ActiveBorder
+            Me.reference_itm_panel.Controls.Add(Me.removeinventboxbig)
             Me.reference_itm_panel.Controls.Add(Me.reference_itm_pic)
             Me.reference_itm_panel.Location = New System.Drawing.Point(587, 484)
             Me.reference_itm_panel.Margin = New System.Windows.Forms.Padding(1)
             Me.reference_itm_panel.Name = "reference_itm_panel"
             Me.reference_itm_panel.Size = New System.Drawing.Size(56, 56)
             Me.reference_itm_panel.TabIndex = 240
+            '
+            'removeinventboxbig
+            '
+            Me.removeinventboxbig.BackColor = System.Drawing.Color.Transparent
+            Me.removeinventboxbig.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.inv_misc_gem_01
+            Me.removeinventboxbig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.removeinventboxbig.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.removeinventboxbig.Location = New System.Drawing.Point(2, 3)
+            Me.removeinventboxbig.Name = "removeinventboxbig"
+            Me.removeinventboxbig.Size = New System.Drawing.Size(20, 20)
+            Me.removeinventboxbig.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.removeinventboxbig.TabIndex = 247
+            Me.removeinventboxbig.TabStop = False
             '
             'reference_itm_pic
             '
@@ -307,12 +325,26 @@ Namespace Forms.Character
             'referenceItmPanel
             '
             Me.referenceItmPanel.BackColor = System.Drawing.SystemColors.ActiveBorder
+            Me.referenceItmPanel.Controls.Add(Me.removeinventbox)
             Me.referenceItmPanel.Controls.Add(Me.referenceItmPic)
             Me.referenceItmPanel.Location = New System.Drawing.Point(519, 495)
             Me.referenceItmPanel.Margin = New System.Windows.Forms.Padding(1)
             Me.referenceItmPanel.Name = "referenceItmPanel"
             Me.referenceItmPanel.Size = New System.Drawing.Size(45, 45)
             Me.referenceItmPanel.TabIndex = 244
+            '
+            'removeinventbox
+            '
+            Me.removeinventbox.BackColor = System.Drawing.Color.Transparent
+            Me.removeinventbox.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.inv_misc_gem_01
+            Me.removeinventbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.removeinventbox.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.removeinventbox.Location = New System.Drawing.Point(2, 3)
+            Me.removeinventbox.Name = "removeinventbox"
+            Me.removeinventbox.Size = New System.Drawing.Size(16, 16)
+            Me.removeinventbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.removeinventbox.TabIndex = 246
+            Me.removeinventbox.TabStop = False
             '
             'referenceItmPic
             '
@@ -350,7 +382,7 @@ Namespace Forms.Character
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(761, 438)
+            Me.ClientSize = New System.Drawing.Size(765, 438)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.reference_itm_panel)
             Me.Controls.Add(Me.BackPanel)
@@ -378,8 +410,10 @@ Namespace Forms.Character
             Me.bag7Panel.ResumeLayout(False)
             CType(Me.Bag7Pic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.reference_itm_panel.ResumeLayout(False)
+            CType(Me.removeinventboxbig, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.reference_itm_pic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.referenceItmPanel.ResumeLayout(False)
+            CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.BackPanel.ResumeLayout(False)
             Me.BackPanel.PerformLayout()
@@ -411,5 +445,7 @@ Namespace Forms.Character
         Friend WithEvents referenceItmPic As System.Windows.Forms.PictureBox
         Friend WithEvents InfoToolTip As System.Windows.Forms.ToolTip
         Friend WithEvents BackPanel As System.Windows.Forms.Panel
+        Friend WithEvents removeinventboxbig As System.Windows.Forms.PictureBox
+        Friend WithEvents removeinventbox As System.Windows.Forms.PictureBox
     End Class
 End Namespace

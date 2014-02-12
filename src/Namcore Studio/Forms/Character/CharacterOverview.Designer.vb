@@ -2502,7 +2502,7 @@ Namespace Forms.Character
             Me.loadedat_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.loadedat_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.loadedat_lbl.ForeColor = System.Drawing.Color.Black
-            Me.loadedat_lbl.Location = New System.Drawing.Point(377, 65)
+            Me.loadedat_lbl.Location = New System.Drawing.Point(376, 65)
             Me.loadedat_lbl.Name = "loadedat_lbl"
             Me.loadedat_lbl.RightToLeft = System.Windows.Forms.RightToLeft.No
             Me.loadedat_lbl.Size = New System.Drawing.Size(157, 18)
@@ -2527,7 +2527,7 @@ Namespace Forms.Character
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(902, 736)
+            Me.ClientSize = New System.Drawing.Size(901, 736)
             Me.Controls.Add(Me.refreshchar)
             Me.Controls.Add(Me.loadedat_lbl)
             Me.Controls.Add(Me.professions_bt)

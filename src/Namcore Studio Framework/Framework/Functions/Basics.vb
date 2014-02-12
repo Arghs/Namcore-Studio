@@ -257,7 +257,7 @@ Namespace Framework.Functions
                    
                     For i = 0 To foundRows.Count() - 1
                         Dim colCount As Integer = foundRows(i).Table.Columns.Count()
-                        Dim resultArray(colCount) As String
+                        Dim resultArray(colCount - 1) As String
                         For z = 0 To colCount - 1
                             resultArray(z) = (foundRows(i)(z)).ToString
                         Next z

@@ -30,6 +30,13 @@ Namespace Framework.Core.Update
     Public Class UpdateInventoryHandler
         Public Sub UpdateInventory(ByVal comparePlayer As Character, ByVal modPlayer As Character)
             LogAppend("Updating character inventory", "UpdateInventoryHandler_UpdateInventory", True)
+            '// Any deleted items?
+            For Each itm As Item In comparePlayer.InventoryItems
+                Dim result As Item = modPlayer.InventoryItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid AndAlso item.Id = itm.Id)
+                If result Is Nothing Then
+                    DeleteItem(modPlayer, itm, False)
+                End If
+            Next
             '// Any new items?
             For Each itm As Item In modPlayer.InventoryItems
                 Dim result As Item = comparePlayer.InventoryItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid AndAlso item.Id = itm.Id)
@@ -40,11 +47,14 @@ Namespace Framework.Core.Update
                 End If
             Next
             '// Any deleted items?
-            For Each itm As Item In comparePlayer.InventoryItems
-                Dim result As Item = modPlayer.InventoryItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid AndAlso item.Id = itm.Id)
-                If result Is Nothing Then
-                    DeleteItem(modPlayer, itm, False)
-                End If
+            For Each itm As Item In comparePlayer.InventoryZeroItems
+                Select Case itm.Slot
+                    Case 19 To 22, 67 To 73, 23 To 38, 39 To 66
+                        Dim result As Item = modPlayer.InventoryZeroItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Id = itm.Id)
+                        If result Is Nothing Then
+                            DeleteItem(modPlayer, itm, False)
+                        End If
+                End Select
             Next
             '// Any new items?
             For Each itm As Item In modPlayer.InventoryZeroItems
@@ -55,16 +65,6 @@ Namespace Framework.Core.Update
                             CreateItem(modPlayer, itm, False)
                         ElseIf result.Count <> itm.Count Or result.Guid <> itm.Guid Then
                             UpdateItem(modPlayer, itm, False)
-                        End If
-                End Select
-            Next
-            '// Any deleted items?
-            For Each itm As Item In comparePlayer.InventoryZeroItems
-                Select Case itm.Slot
-                    Case 19 To 22, 67 To 73, 23 To 38, 39 To 66
-                        Dim result As Item = modPlayer.InventoryZeroItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Id = itm.Id)
-                        If result Is Nothing Then
-                            DeleteItem(modPlayer, itm, False)
                         End If
                 End Select
             Next
@@ -255,7 +255,7 @@ Namespace Framework.Core.Update
                                 "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
                                 itm2Delete.Slot.ToString() &
                                 "' AND " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '" &
-                                itm2Delete.Bag.ToString & "'")
+                                itm2Delete.Bagguid.ToString & "'")
                     End Select
                     runSQLCommand_characters_string(
                         "DELETE FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
@@ -279,7 +279,7 @@ Namespace Framework.Core.Update
                                 "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
                                 itm2Delete.Slot.ToString() &
                                 "' AND " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '" &
-                                itm2Delete.Bag.ToString & "'")
+                                itm2Delete.Bagguid.ToString & "'")
                     End Select
                     runSQLCommand_characters_string(
                         "DELETE FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
