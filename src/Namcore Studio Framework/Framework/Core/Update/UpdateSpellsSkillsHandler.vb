@@ -33,7 +33,7 @@ Namespace Framework.Core.Update
             For Each spl As Spell In _
                 From spl1 In modPlayer.Spells Let result = player.Spells.Find(Function(spell) spell.Id = spl1.Id)
                     Where result Is Nothing Select spl1
-                AddSpells(spl.ToString() & ",", modPlayer)
+                AddSpells(spl.Id.ToString() & ",", modPlayer)
             Next
             For Each skl As Skill In modPlayer.Skills
                 Dim result As Skill = player.Skills.Find(Function(skill) skill.Id = skl.Id)
@@ -60,10 +60,10 @@ Namespace Framework.Core.Update
                 Case "trinity"
                     runSQLCommand_characters_string(
                         "DELETE FROM " &
-                        GlobalVariables.targetStructure.character_spells_tbl(0) &
-                        " WHERE `" & GlobalVariables.targetStructure.spell_guid_col(0) & "` = '" &
+                        GlobalVariables.sourceStructure.character_spells_tbl(0) &
+                        " WHERE `" & GlobalVariables.sourceStructure.spell_guid_col(0) & "` = '" &
                         player.Guid.ToString() & "' AND `" &
-                        GlobalVariables.targetStructure.spell_spell_col(0) &
+                        GlobalVariables.sourceStructure.spell_spell_col(0) &
                         "` = '" & spell2Delete.Id.ToString() & "'")
             End Select
         End Sub
@@ -73,10 +73,10 @@ Namespace Framework.Core.Update
                 Case "trinity"
                     runSQLCommand_characters_string(
                         "DELETE FROM " &
-                        GlobalVariables.targetStructure.character_spells_tbl(0) &
-                        " WHERE `" & GlobalVariables.targetStructure.spell_guid_col(0) & "` = '" &
+                        GlobalVariables.sourceStructure.character_spells_tbl(0) &
+                        " WHERE `" & GlobalVariables.sourceStructure.spell_guid_col(0) & "` = '" &
                         player.Guid.ToString() & "' AND `" &
-                        GlobalVariables.targetStructure.spell_spell_col(0) &
+                        GlobalVariables.sourceStructure.spell_spell_col(0) &
                         "` = '" & spell2Delete.SpellId.ToString() & "'")
             End Select
         End Sub
@@ -86,10 +86,10 @@ Namespace Framework.Core.Update
                 Case "trinity"
                     runSQLCommand_characters_string(
                         "DELETE FROM " &
-                        GlobalVariables.targetStructure.character_skills_tbl(0) &
-                        " WHERE `" & GlobalVariables.targetStructure.skill_guid_col(0) & "` = '" &
+                        GlobalVariables.sourceStructure.character_skills_tbl(0) &
+                        " WHERE `" & GlobalVariables.sourceStructure.skill_guid_col(0) & "` = '" &
                         player.Guid.ToString() & "' AND `" &
-                        GlobalVariables.targetStructure.skill_skill_col(0) &
+                        GlobalVariables.sourceStructure.skill_skill_col(0) &
                         "` = '" & skill2Delete.Id.ToString() & "'")
             End Select
         End Sub
@@ -99,10 +99,10 @@ Namespace Framework.Core.Update
                 Case "trinity"
                     runSQLCommand_characters_string(
                         "DELETE FROM " &
-                        GlobalVariables.targetStructure.character_skills_tbl(0) &
-                        " WHERE `" & GlobalVariables.targetStructure.skill_guid_col(0) & "` = '" &
+                        GlobalVariables.sourceStructure.character_skills_tbl(0) &
+                        " WHERE `" & GlobalVariables.sourceStructure.skill_guid_col(0) & "` = '" &
                         player.Guid.ToString() & "' AND `" &
-                        GlobalVariables.targetStructure.skill_skill_col(0) &
+                        GlobalVariables.sourceStructure.skill_skill_col(0) &
                         "` = '" & prof2Delete.Id.ToString() & "'")
             End Select
         End Sub

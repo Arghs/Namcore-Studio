@@ -49,6 +49,16 @@ Namespace Framework.Core.Update
                             End If
                         Next
                     End If
+                    '// Any new recipes?
+                    If Not prof.Recipes Is Nothing Then
+                        For Each recipe As ProfessionSpell In prof.Recipes
+                            Dim recipeResult As ProfessionSpell =
+                                    result.Recipes.Find(Function(professionspell) professionspell.SpellId = recipe.SpellId)
+                            If recipeResult Is Nothing Then
+                                AddSpells(recipe.SpellId.ToString() & ",", modPlayer)
+                            End If
+                        Next
+                    End If
                 End If
             Next
             '// Any deleted professions?

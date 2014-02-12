@@ -333,7 +333,7 @@ Namespace Framework.Functions
 
         Public Function IsProfession(ByVal skillId As Integer) As Boolean
             Select Case skillId
-                Case 171, 164, 333, 202, 182, 773, 755, 165, 186, 393, 197 : Return True
+                Case 171, 164, 333, 202, 182, 773, 755, 165, 186, 393, 197, 129, 185, 356, 794 : Return True
                 Case Else : Return False
             End Select
         End Function
@@ -427,7 +427,7 @@ Namespace Framework.Functions
                     Return Nothing
             End Select
         End Function
-
+        
         Public Function GetProficiencyLevelNameByLevel(ByVal level As Integer) As String
             Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
             Select Case level

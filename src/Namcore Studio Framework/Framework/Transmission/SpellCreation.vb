@@ -48,7 +48,7 @@ Namespace Framework.Transmission
                 Select Case useCore
                     Case "trinity"
                         runSQLCommand_characters_string(
-                            "INSERT INTO `" & useStructure.character_spells_tbl(0) & "`( `" &
+                            "INSERT IGNORE INTO `" & useStructure.character_spells_tbl(0) & "`( `" &
                             useStructure.spell_guid_col(0) & "`, `" &
                             useStructure.spell_spell_col(0) & "`, `" &
                             useStructure.spell_active_col(0) & "`, `" &
@@ -69,7 +69,7 @@ Namespace Framework.Transmission
                         For Each spl As Spell In player.Spells
                             LogAppend("Adding Spell " & spl.Id, "SpellCreation_AddCharacterSpells")
                             runSQLCommand_characters_string(
-                                "INSERT INTO `" & GlobalVariables.targetStructure.character_spells_tbl(0) & "`( `" &
+                                "INSERT IGNORE INTO `" & GlobalVariables.targetStructure.character_spells_tbl(0) & "`( `" &
                                 GlobalVariables.targetStructure.spell_guid_col(0) & "`, `" &
                                 GlobalVariables.targetStructure.spell_spell_col(0) & "`, `" &
                                 GlobalVariables.targetStructure.spell_active_col(0) & "`, `" &
@@ -86,7 +86,7 @@ Namespace Framework.Transmission
                                 Select spl1
                             LogAppend("Adding profession recipe " & spl.SpellId, "SpellCreation_AddCharacterSpells")
                             runSQLCommand_characters_string(
-                                "INSERT INTO `" & GlobalVariables.targetStructure.character_spells_tbl(0) & "`( `" &
+                                "INSERT IGNORE INTO `" & GlobalVariables.targetStructure.character_spells_tbl(0) & "`( `" &
                                 GlobalVariables.targetStructure.spell_guid_col(0) & "`, `" &
                                 GlobalVariables.targetStructure.spell_spell_col(0) & "`, `" &
                                 GlobalVariables.targetStructure.spell_active_col(0) & "`, `" &

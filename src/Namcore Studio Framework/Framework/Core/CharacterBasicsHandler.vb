@@ -58,6 +58,7 @@ Namespace Framework.Core
             Dim tmpCharacter As New Character()
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
+            tmpCharacter.CreatedGuid = charguid
             tmpCharacter.SourceCore = "arcemu"
             tmpCharacter.SetIndex = tarSetId
             LogAppend(
@@ -441,6 +442,7 @@ Namespace Framework.Core
             Dim tmpCharacter As New Character()
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
+            tmpCharacter.CreatedGuid = charguid
             tmpCharacter.SourceCore = "trinity"
             tmpCharacter.SetIndex = tarSetId
             _tempResult =
@@ -855,6 +857,7 @@ Namespace Framework.Core
             Dim tmpCharacter As New Character()
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
+            tmpCharacter.CreatedGuid = charguid
             tmpCharacter.SourceCore = "trinitytbc"
             tmpCharacter.SetIndex = tarSetId
 
@@ -1284,6 +1287,7 @@ Namespace Framework.Core
             Dim tmpCharacter As New Character()
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
+            tmpCharacter.CreatedGuid = charguid
             tmpCharacter.SourceCore = "mangos"
             tmpCharacter.SetIndex = tarSetId
 

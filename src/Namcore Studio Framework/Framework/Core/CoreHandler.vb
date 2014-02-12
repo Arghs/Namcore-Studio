@@ -40,8 +40,20 @@ Namespace Framework.Core
                           "CoreHandler_handleLoadingRequests", True, True)
                 Exit Sub
             End If
+            tmpPlayer.Spells = Nothing
+            tmpPlayer.Skills = Nothing
+            tmpPlayer.Quests = Nothing
+            tmpPlayer.Professions = Nothing
+            tmpPlayer.ArmorItems = Nothing
+            tmpPlayer.InventoryItems = Nothing
+            tmpPlayer.InventoryZeroItems = Nothing
+            tmpPlayer.PlayerGlyphs = Nothing
+            tmpPlayer.PlayerReputation = Nothing
+            tmpPlayer.Actions = Nothing
+            tmpPlayer.Achievements = Nothing
             ResetTempDataTables()
             tmpPlayer.LoadedDateTime = Date.Now
+            SetCharacterSet(setId, tmpPlayer, account)
             Dim mBasicsHandler As New CharacterBasicsHandler
             mBasicsHandler.GetBasicCharacterInformation(tmpPlayer.Guid, setId, Account)
             Dim mAvHandler As New CharacterAchievementHandler

@@ -43,7 +43,7 @@ Namespace Framework.Core.Update
                 If result Is Nothing Then
                     CreateItem(modPlayer, itm, False)
                 ElseIf result.Count <> itm.Count Or result.Guid <> itm.Guid Then
-                    UpdateItem(modPlayer, itm, False)
+                    UpdateItem(modPlayer, itm)
                 End If
             Next
             '// Any deleted items?
@@ -64,7 +64,7 @@ Namespace Framework.Core.Update
                         If result Is Nothing Then
                             CreateItem(modPlayer, itm, False)
                         ElseIf result.Count <> itm.Count Or result.Guid <> itm.Guid Then
-                            UpdateItem(modPlayer, itm, False)
+                            UpdateItem(modPlayer, itm)
                         End If
                 End Select
             Next
@@ -123,7 +123,7 @@ Namespace Framework.Core.Update
                         GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
                         ", " & GlobalVariables.sourceStructure.itmins_durability_col(0) & " ) VALUES ( '" &
                         newItemGuid.ToString() & "', '" & itm2Add.Id.ToString & "', '" & player.Guid.ToString() &
-                        "', '1', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
+                        "', '" & itm2Add.Count & "', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
                     If _
                         ReturnResultCount(
                             "SELECT * FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
@@ -290,7 +290,7 @@ Namespace Framework.Core.Update
             End Select
         End Sub
 
-        Private Sub UpdateItem(ByVal player As Character, ByVal itm2Update As Item, ByVal zero As Boolean)
+        Private Sub UpdateItem(ByVal player As Character, ByVal itm2Update As Item)
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     runSQLCommand_characters_string(
@@ -308,35 +308,8 @@ Namespace Framework.Core.Update
                     mEnchHandler.SetItemEnchantments(player.SetIndex, itm2Update, itm2Update.Guid,
                                                      GlobalVariables.sourceCore, GlobalVariables.sourceStructure)
                 Case "trinity"
-                    Select Case zero
-                        Case True
-                            runSQLCommand_characters_string(
-                                "UPDATE " & GlobalVariables.sourceStructure.character_inventory_tbl(0) &
-                                "SET " & GlobalVariables.sourceStructure.invent_bag_col(0) & "='" &
-                                itm2Update.Bag.ToString & "'" &
-                                " , " & GlobalVariables.sourceStructure.invent_slot_col(0) & "='" &
-                                itm2Update.Slot.ToString & "'" &
-                                " WHERE " & GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" &
-                                player.Guid.ToString() &
-                                "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
-                                itm2Update.Slot.ToString() &
-                                "' AND " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '" &
-                                itm2Update.Bag.ToString & "'")
-                        Case False
-                            runSQLCommand_characters_string(
-                                "UPDATE " & GlobalVariables.sourceStructure.character_inventory_tbl(0) &
-                                "SET " & GlobalVariables.sourceStructure.invent_bag_col(0) & "='" &
-                                itm2Update.Bag.ToString & "'" &
-                                " , " & GlobalVariables.sourceStructure.invent_slot_col(0) & "='" &
-                                itm2Update.Slot.ToString & "'" &
-                                " WHERE " & GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" &
-                                player.Guid.ToString() &
-                                "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
-                                itm2Update.Slot.ToString() &
-                                "' AND NOT " & GlobalVariables.sourceStructure.invent_bag_col(0) & " = '0'")
-                    End Select
-                    runSQLCommand_characters_string("UPDATE " & GlobalVariables.sourceStructure.item_instance_tbl(0) &
-                                                    "SET " & GlobalVariables.sourceStructure.itmins_count_col(0) & "='" &
+                    runSQLCommand_characters_string("UPDATE `" & GlobalVariables.sourceStructure.item_instance_tbl(0) &
+                                                    "` SET " & GlobalVariables.sourceStructure.itmins_count_col(0) & "='" &
                                                     itm2Update.Count.ToString & "'" &
                                                     " WHERE " & GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) &
                                                     " = '" & player.Guid.ToString() &

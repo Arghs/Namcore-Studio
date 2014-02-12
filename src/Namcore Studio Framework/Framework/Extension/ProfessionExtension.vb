@@ -54,5 +54,20 @@ Namespace Framework.Extension
                     Select prof.Recipes.Find(Function(professionspell) professionspell.SpellId = recipe.SpellId)).All(
                         Function(result) result IsNot Nothing)
         End Function
+
+        <Extension()>
+        Public Function UpdateMax(ByRef prof As Profession) As Profession
+            Select Case prof.Rank
+                Case 0 To 75 : prof.Max = 75
+                Case 75 To 150 : prof.Max = 150
+                Case 150 To 225 : prof.Max = 225
+                Case 225 To 300 : prof.Max = 300
+                Case 300 To 375 : prof.Max = 375
+                Case 375 To 450 : prof.Max = 450
+                Case 450 To 525 : prof.Max = 525
+                Case 525 To 600 : prof.Max = 600
+            End Select
+            Return prof
+        End Function
     End Module
 End Namespace

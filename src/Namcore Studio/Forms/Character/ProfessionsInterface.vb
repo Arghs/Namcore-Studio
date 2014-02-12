@@ -20,10 +20,11 @@
 '*      /Filename:      ProfessionsInterface
 '*      /Description:   Provides an interface to display character profession information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Extension
 Imports NCFramework.My
-Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
 Imports libnc.Provider
@@ -507,6 +508,11 @@ Namespace Forms.Character
         End Sub
 
         Private Sub rank_slider_MouseUp(sender As Object, e As MouseEventArgs) Handles rank_slider.MouseUp
+            _activeProfession.UpdateMax()
+            Dim profIndex As Integer =
+                    GlobalVariables.currentEditedCharSet.Professions.FindIndex(
+                        Function(profession) profession.Id = _activeProfession.Id)
+            GlobalVariables.currentEditedCharSet.Professions(profIndex) = _activeProfession
             Dim spell2Remove As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _temporarySkillLevel)
             If Not spell2Remove = - 1 And spell2Remove <> 0 Then
                 Dim result As Spell =
@@ -679,6 +685,21 @@ Namespace Forms.Character
                 End If
             End If
             add_helper_panel.Location = New Point(4000, 4000)
+        End Sub
+
+        Private Sub removeprof_bt_Click(sender As Object, e As EventArgs) Handles removeprof_bt.Click
+            If Not _activeProfession Is Nothing Then
+                Dim result = MsgBox(ResourceHandler.GetUserMessage("removeProfession"), MsgBoxStyle.YesNo, ResourceHandler.GetUserMessage("areyousure"))
+                If result = MsgBoxResult.Yes Then
+                    Hide()
+                    GlobalVariables.currentEditedCharSet.Professions.Remove(GlobalVariables.currentEditedCharSet.Professions.Find(Function(profession) profession.Id = _activeProfession.Id))
+                    _activeProfession = Nothing
+                    Dim newProf As New ProfessionsInterface
+                    newProf.PrepareInterface(GlobalVariables.currentEditedCharSet.SetIndex)
+                    newProf.Show()
+                    Close()
+                End If
+            End If
         End Sub
     End Class
 End Namespace

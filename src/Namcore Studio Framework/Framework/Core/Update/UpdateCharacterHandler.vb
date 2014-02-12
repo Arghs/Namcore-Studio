@@ -35,6 +35,7 @@ Namespace Framework.Core.Update
             If GlobalVariables.GlobalConnection_Realm.State = ConnectionState.Closed Then _
                 GlobalVariables.GlobalConnection_Realm.Open()
             GlobalVariables.forceTargetConnectionUsage = False
+            newPlayer.CreatedGuid = newPlayer.Guid
             Try
                 If Not newPlayer.AccountId = comparePlayer.AccountId Then
                     '// Account changed

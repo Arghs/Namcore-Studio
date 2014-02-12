@@ -71,6 +71,7 @@ Namespace Forms.Character
             Me.profession_combo = New System.Windows.Forms.ComboBox()
             Me.add_helper_closebox = New System.Windows.Forms.PictureBox()
             Me.profImageList = New System.Windows.Forms.ImageList(Me.components)
+            Me.removeprof_bt = New System.Windows.Forms.Button()
             Me.profContext.SuspendLayout()
             Me.menupanel.SuspendLayout()
             Me.minprof4_select.SuspendLayout()
@@ -549,12 +550,27 @@ Namespace Forms.Character
             Me.profImageList.ImageSize = New System.Drawing.Size(16, 16)
             Me.profImageList.TransparentColor = System.Drawing.Color.Transparent
             '
+            'removeprof_bt
+            '
+            Me.removeprof_bt.BackColor = System.Drawing.Color.DimGray
+            Me.removeprof_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.removeprof_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.removeprof_bt.ForeColor = System.Drawing.Color.Black
+            Me.removeprof_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.removeprof_bt.Location = New System.Drawing.Point(21, 526)
+            Me.removeprof_bt.Name = "removeprof_bt"
+            Me.removeprof_bt.Size = New System.Drawing.Size(177, 34)
+            Me.removeprof_bt.TabIndex = 238
+            Me.removeprof_bt.Text = "Remove current profession"
+            Me.removeprof_bt.UseVisualStyleBackColor = False
+            '
             'ProfessionsInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(875, 572)
+            Me.Controls.Add(Me.removeprof_bt)
             Me.Controls.Add(Me.add_helper_panel)
             Me.Controls.Add(Me.rankname_lbl)
             Me.Controls.Add(Me.progress_lbl)
@@ -580,6 +596,7 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.progress_lbl, 0)
             Me.Controls.SetChildIndex(Me.rankname_lbl, 0)
             Me.Controls.SetChildIndex(Me.add_helper_panel, 0)
+            Me.Controls.SetChildIndex(Me.removeprof_bt, 0)
             Me.profContext.ResumeLayout(False)
             Me.menupanel.ResumeLayout(False)
             Me.menupanel.PerformLayout()
@@ -657,5 +674,6 @@ Namespace Forms.Character
         Friend WithEvents profession_combo As System.Windows.Forms.ComboBox
         Friend WithEvents profImageList As System.Windows.Forms.ImageList
         Friend WithEvents apply_bt As System.Windows.Forms.PictureBox
+        Friend WithEvents removeprof_bt As System.Windows.Forms.Button
     End Class
 End Namespace

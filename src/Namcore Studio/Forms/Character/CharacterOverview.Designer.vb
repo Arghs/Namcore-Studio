@@ -221,6 +221,7 @@ Namespace Forms.Character
             Me.professions_bt = New System.Windows.Forms.Button()
             Me.loadedat_lbl = New System.Windows.Forms.Label()
             Me.refreshchar = New System.Windows.Forms.PictureBox()
+            Me.referenceCount = New System.Windows.Forms.Label()
             Me.InventoryPanel.SuspendLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2449,6 +2450,7 @@ Namespace Forms.Character
             'referenceItmPanel
             '
             Me.referenceItmPanel.BackColor = System.Drawing.SystemColors.ActiveBorder
+            Me.referenceItmPanel.Controls.Add(Me.referenceCount)
             Me.referenceItmPanel.Controls.Add(Me.removeinventbox)
             Me.referenceItmPanel.Controls.Add(Me.referenceItmPic)
             Me.referenceItmPanel.Location = New System.Drawing.Point(1419, 438)
@@ -2497,12 +2499,12 @@ Namespace Forms.Character
             '
             'loadedat_lbl
             '
-            Me.loadedat_lbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Me.loadedat_lbl.Anchor = System.Windows.Forms.AnchorStyles.None
             Me.loadedat_lbl.BackColor = System.Drawing.Color.Transparent
             Me.loadedat_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.loadedat_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.loadedat_lbl.ForeColor = System.Drawing.Color.Black
-            Me.loadedat_lbl.Location = New System.Drawing.Point(376, 65)
+            Me.loadedat_lbl.Location = New System.Drawing.Point(91, 65)
             Me.loadedat_lbl.Name = "loadedat_lbl"
             Me.loadedat_lbl.RightToLeft = System.Windows.Forms.RightToLeft.No
             Me.loadedat_lbl.Size = New System.Drawing.Size(157, 18)
@@ -2522,12 +2524,21 @@ Namespace Forms.Character
             Me.refreshchar.TabIndex = 231
             Me.refreshchar.TabStop = False
             '
+            'referenceCount
+            '
+            Me.referenceCount.AutoSize = True
+            Me.referenceCount.Location = New System.Drawing.Point(23, 3)
+            Me.referenceCount.Name = "referenceCount"
+            Me.referenceCount.Size = New System.Drawing.Size(19, 13)
+            Me.referenceCount.TabIndex = 232
+            Me.referenceCount.Text = "20"
+            '
             'CharacterOverview
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(901, 736)
+            Me.ClientSize = New System.Drawing.Size(904, 736)
             Me.Controls.Add(Me.refreshchar)
             Me.Controls.Add(Me.loadedat_lbl)
             Me.Controls.Add(Me.professions_bt)
@@ -2708,6 +2719,7 @@ Namespace Forms.Character
             Me.genderpanel.ResumeLayout(False)
             CType(Me.genderrefresh, System.ComponentModel.ISupportInitialize).EndInit()
             Me.referenceItmPanel.ResumeLayout(False)
+            Me.referenceItmPanel.PerformLayout()
             CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.refreshchar, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2909,5 +2921,6 @@ Namespace Forms.Character
         Friend WithEvents removeinventbox As System.Windows.Forms.PictureBox
         Friend WithEvents loadedat_lbl As System.Windows.Forms.Label
         Friend WithEvents refreshchar As System.Windows.Forms.PictureBox
+        Friend WithEvents referenceCount As System.Windows.Forms.Label
     End Class
 End Namespace

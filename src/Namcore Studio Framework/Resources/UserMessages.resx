@@ -651,4 +651,16 @@
   <data name="reloadCharacter" xml:space="preserve">
     <value>Do you really want to reload this character? All changes will be lost!</value>
   </data>
+  <data name="countChange" xml:space="preserve">
+    <value>Set item count</value>
+  </data>
+  <data name="enterItemCount" xml:space="preserve">
+    <value>Enter the size of this stack:</value>
+  </data>
+  <data name="removeProfession" xml:space="preserve">
+    <value>Do you really want to remove this profession and its recipes?</value>
+  </data>
+  <data name="stackSizeLimitReached" xml:space="preserve">
+    <value>The maximum stack size of this item is:</value>
+  </data>
 </root>

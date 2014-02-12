@@ -65,7 +65,7 @@ Namespace Framework.Transmission
                         Select Case useCore
                             Case "trinity"
                                 runSQLCommand_characters_string(
-                                    "INSERT INTO `" & useStructure.character_spells_tbl(0) & "` ( `" &
+                                    "INSERT IGNORE INTO `" & useStructure.character_spells_tbl(0) & "` ( `" &
                                     useStructure.spell_guid_col(0) & "`, `" &
                                     useStructure.spell_spell_col(0) & "`, `" &
                                     useStructure.spell_active_col(0) & "`, `" &

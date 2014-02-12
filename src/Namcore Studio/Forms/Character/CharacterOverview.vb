@@ -73,7 +73,8 @@ Namespace Forms.Character
         End Sub
         '// Declaration
 
-        Public Sub prepare_interface(ByVal account As Account, ByVal setId As Integer, Optional forceLoadChar As Boolean = False)
+        Public Sub prepare_interface(ByVal account As Account, ByVal setId As Integer,
+                                     Optional forceLoadChar As Boolean = False)
             LogAppend("prepare_interface call", "CharacterOverview_prepare_interface", False)
             _visibleActionControls = New List(Of Control)()
             InfoToolTip.AutoPopDelay = 5000
@@ -374,7 +375,9 @@ Namespace Forms.Character
             If sender.text = "" Then Exit Sub
             Dim tagItm As Item = sender.Tag
             If Not sender.text = "+" Then
-                If tagItm.EnchantmentId = 0 Then tagItm.EnchantmentId = GetSpellIdByEffectId(tagItm.EnchantmentEffectid, GlobalVariables.sourceExpansion)
+                If tagItm.EnchantmentId = 0 Then _
+                    tagItm.EnchantmentId = GetSpellIdByEffectId(tagItm.EnchantmentEffectid,
+                                                                GlobalVariables.sourceExpansion)
                 If tagItm.EnchantmentType = 2 Then
                     Dim tmpItmId As Integer = GetItemIdBySpellId(tagItm.EnchantmentEffectid)
                     If tmpItmId <> 0 Then tagItm.EnchantmentId = tmpItmId
@@ -511,7 +514,8 @@ Namespace Forms.Character
                         ElseIf foundspell = True Then
                             Dim itm As Item = senderLabel.Tag
                             itm.EnchantmentId = TryInt(TextBox1.Text)
-                            itm.EnchantmentEffectid = GetEffectIdBySpellId(itm.EnchantmentId, GlobalVariables.sourceExpansion)
+                            itm.EnchantmentEffectid = GetEffectIdBySpellId(itm.EnchantmentId,
+                                                                           GlobalVariables.sourceExpansion)
                             itm.EnchantmentName = GetEffectNameById(itm.EnchantmentEffectid, MySettings.Default.language)
                             itm.EnchantmentType = 0
                             senderLabel.Text = itm.EnchantmentName
@@ -1195,7 +1199,8 @@ Namespace Forms.Character
                     updateHandler.UpdateCharacter(GlobalVariables.currentViewedCharSet,
                                                   GlobalVariables.currentEditedCharSet)
                     GlobalVariables.currentViewedCharSet = GlobalVariables.currentEditedCharSet
-                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentViewedCharSet, _currentAccount)
+                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentViewedCharSet,
+                                    _currentAccount)
                     GlobalVariables.currentEditedCharSet = Nothing
                     Userwait.Close()
                 End If
@@ -1327,7 +1332,7 @@ Namespace Forms.Character
                     _tempSender.visible = True
                 End If
                 _tempSender = sender
-                If TypeOf (sender) is Label Then sender.visible = False
+                If TypeOf (sender) Is Label Then sender.visible = False
                 Select Case True
                     Case myPic.Name.Contains("gem1")
                         TextBox1.Text = itm.Socket1Id.ToString()
@@ -1344,18 +1349,20 @@ Namespace Forms.Character
             Handles bag5Pic.Click, bag4Pic.Click, bag3Pic.Click, bag2Pic.Click, bag1Pic.Click
             _inventoryControlLst = New List(Of Control)()
             Dim bag As Item = sender.tag
+            Dim reduceVal As UInteger = 0
+            If sender.name = "bag1Pic" Then reduceVal = 23
             If bag Is Nothing Then Exit Sub
             _currentBag = bag
             InventoryLayout.Controls.Clear()
             For z = 0 To bag.SlotCount - 1
                 Dim itm As New Item
-                itm.Slot = z
+                itm.Slot = z + reduceVal
                 itm.Bagguid = bag.Guid
                 itm.Bag = bag.Id
                 Dim newItmPanel As New ItemPanel
                 newItmPanel.Size = referenceItmPanel.Size
                 newItmPanel.Margin = referenceItmPanel.Margin
-                newItmPanel.Name = "slot_" & z.ToString() & "_panel"
+                newItmPanel.Name = "slot_" & (z + reduceVal).ToString() & "_panel"
                 Dim subItmPic As New PictureBox
                 subItmPic.Cursor = Cursors.Hand
                 subItmPic.Size = referenceItmPic.Size
@@ -1368,7 +1375,7 @@ Namespace Forms.Character
                 subItmPic.Tag = itm
                 newItmPanel.SetDoubleBuffered()
                 Dim subItmRemovePic As New PictureBox
-                subItmRemovePic.Name = "slot_" & z.ToString() & "_remove"
+                subItmRemovePic.Name = "slot_" & (z + reduceVal).ToString() & "_remove"
                 subItmRemovePic.Cursor = Cursors.Hand
                 subItmRemovePic.Size = removeinventbox.Size
                 newItmPanel.Controls.Add(subItmRemovePic)
@@ -1381,10 +1388,24 @@ Namespace Forms.Character
                 subItmRemovePic.SetDoubleBuffered()
                 InventoryLayout.Controls.Add(newItmPanel)
                 subItmRemovePic.BringToFront()
+                Dim subCountLabel As New Label
+                subCountLabel.Text = ""
+                subCountLabel.Name = "slot_" & (z + reduceVal).ToString() & "_count"
+                subCountLabel.Cursor = Cursors.IBeam
+                subCountLabel.Size = referenceCount.Size
+                subCountLabel.Font = referenceCount.Font
+                subCountLabel.BackColor = referenceCount.BackColor
+                subCountLabel.Tag = itm
+                newItmPanel.Controls.Add(subCountLabel)
+                subCountLabel.Location = referenceCount.Location
+                subCountLabel.Visible = False
+                subCountLabel.SetDoubleBuffered()
+                subCountLabel.BringToFront()
                 InfoToolTip.SetToolTip(newItmPanel, "Empty")
                 InfoToolTip.SetToolTip(subItmPic, "Empty")
                 InfoToolTip.SetToolTip(subItmRemovePic, "Add")
                 InventoryLayout.Update()
+                AddHandler subCountLabel.Click, AddressOf ChangeCount
                 AddHandler newItmPanel.MouseEnter, AddressOf InventItem_MouseEnter
                 AddHandler newItmPanel.MouseLeave, AddressOf InventItem_MouseLeave
                 AddHandler subItmRemovePic.MouseClick, AddressOf removeinventbox_Click
@@ -1396,21 +1417,60 @@ Namespace Forms.Character
                 _inventoryControlLst.Add(ctrl)
             Next
             For Each itm As Item In bag.BagItems
-                Dim reduceVal As UInteger = 0
-                If sender.name = "bag1Pic" Then reduceVal = 23
-                SetInventorySlot(itm, itm.Slot - reduceVal)
+                SetInventorySlot(itm, itm.Slot)
             Next
             GroupBox2.Size = New Size(GroupBox2.Size.Width, 122 + InventoryLayout.Size.Height - 13)
         End Sub
 
+        Private Sub ChangeCount(sender As Object, e As EventArgs)
+            Dim locLabel As Label = sender
+            If locLabel.Visible = True Then
+                Dim result As String = InputBox(ResourceHandler.GetUserMessage("enterItemCount"),
+                                                ResourceHandler.GetUserMessage("countChange"), "1")
+                If Not result = "" Then
+                    Dim intResult As Integer = TryInt(result)
+                    If intResult <> 0 Then
+                        Dim itm As Item = locLabel.Tag
+                        Dim maxStackSize As Integer = GetItemMaxStackByItemId(itm.Id)
+                        If intResult > maxStackSize Then
+                            MsgBox(
+                                ResourceHandler.GetUserMessage("stackSizeLimitReached") & " " & maxStackSize.ToString(),
+                                MsgBoxStyle.Critical, ResourceHandler.GetUserMessage("invalidentry"))
+                            Exit Sub
+                        End If
+                        itm.Count = intResult
+                        locLabel.Text = itm.Count
+                        If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                            GlobalVariables.currentEditedCharSet =
+                                DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                        If itm.Bagguid = 0 Then
+                            Dim oldItmIndex As Integer =
+                                    GlobalVariables.currentEditedCharSet.InventoryZeroItems.FindIndex(
+                                        Function(item) item.Slot = itm.Slot)
+                            GlobalVariables.currentEditedCharSet.InventoryZeroItems(oldItmIndex) = itm
+                        Else
+                            Dim oldItmIndex As Integer =
+                                    GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
+                                        Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid)
+                            GlobalVariables.currentEditedCharSet.InventoryItems(oldItmIndex) = itm
+                            Dim inBagIndex As Integer =
+                                    _currentBag.BagItems.FindIndex(
+                                        Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid)
+                            _currentBag.BagItems(inBagIndex) = itm
+                        End If
+                    End If
+                End If
+            End If
+        End Sub
+
         Private Sub InventItem_MouseEnter(sender As Object, e As EventArgs)
             If Not _loadComplete = False Then
-                For i = _visibleActionControls.Count - 1 To 0 Step -1
+                For i = _visibleActionControls.Count - 1 To 0 Step - 1
                     _visibleActionControls(i).Visible = False
                     _visibleActionControls.Remove(_visibleActionControls(i))
                 Next
                 Dim parentPanel As ItemPanel = sender
-                Dim removePic As PictureBox = parentPanel.Controls(0)
+                Dim removePic As PictureBox = parentPanel.Controls(1)
                 If Not removePic Is Nothing Then
                     _visibleActionControls.Add(removePic)
                     _lastRemovePic = removePic
@@ -1428,13 +1488,22 @@ Namespace Forms.Character
         End Sub
 
         Private Sub SetInventorySlot(ByVal itm As Item, ByVal slot As Integer)
-            For Each itmctrl As ItemPanel In From itmctrl1 As ItemPanel In InventoryLayout.Controls Where itmctrl1.Name.Contains("_" & slot.ToString() & "_")
+            For Each itmctrl As ItemPanel In _
+                From itmctrl1 As ItemPanel In InventoryLayout.Controls
+                    Where itmctrl1.Name.Contains("_" & slot.ToString() & "_")
                 itmctrl.BackColor = GetItemQualityColor(GetItemQualityByItemId(itm.Id))
                 itmctrl.Tag = itm
+                If itm.Count > 1 OrElse itm.Count = 1 AndAlso GetItemMaxStackByItemId(itm.Id) > 1 Then
+                    Dim countLabel As Label = itmctrl.Controls.Find("slot_" & slot.ToString() & "_count", True)(0)
+                    countLabel.Text = itm.Count.ToString()
+                    countLabel.Tag = itm
+                    countLabel.Visible = True
+                End If
                 InfoToolTip.SetToolTip(itmctrl, itm.Name)
-                For Each itmPicBox As PictureBox In itmctrl.Controls
-                    If Not itmPicBox.Name Is Nothing Then
-                        If itmPicBox.Name.EndsWith("_remove") Then
+                For Each itmPicCtrl As Control In itmctrl.Controls
+                    If Not itmPicCtrl.Name Is Nothing Then
+                        If itmPicCtrl.Name.EndsWith("_remove") Then
+                            Dim itmPicBox As PictureBox = itmPicCtrl
                             If itm.Id <> 0 Then
                                 itmPicBox.BackgroundImage = My.Resources.trash__delete__16x16
                                 InfoToolTip.SetToolTip(itmPicBox, "Remove")
@@ -1445,9 +1514,12 @@ Namespace Forms.Character
                             Continue For
                         End If
                     End If
-                    itmPicBox.BackgroundImage = itm.Image
-                    itmPicBox.Tag = itm
-                    InfoToolTip.SetToolTip(itmPicBox, itm.Name)
+                    If TypeOf itmPicCtrl Is PictureBox Then
+                        Dim itmPicBox As PictureBox = itmPicCtrl
+                        itmPicBox.BackgroundImage = itm.Image
+                        itmPicBox.Tag = itm
+                        InfoToolTip.SetToolTip(itmPicBox, itm.Name)
+                    End If
                 Next
                 InventoryLayout.Update()
                 Application.DoEvents()
@@ -1455,10 +1527,13 @@ Namespace Forms.Character
         End Sub
 
         Private Sub reset_bt_Click(sender As Object, e As EventArgs) Handles reset_bt.Click
-            For i = Application.OpenForms.Count - 1 To 0 Step -1
+            For i = Application.OpenForms.Count - 1 To 0 Step - 1
                 Dim openForm As Form = Application.OpenForms(i)
                 Select Case True
-                    Case TypeOf openForm Is GlyphsInterface, TypeOf openForm Is AchievementsInterface, TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface, TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface, TypeOf openForm Is SpellSkillInterface, TypeOf openForm Is ProfessionsInterface
+                    Case TypeOf openForm Is GlyphsInterface, TypeOf openForm Is AchievementsInterface,
+                        TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface,
+                        TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface,
+                        TypeOf openForm Is SpellSkillInterface, TypeOf openForm Is ProfessionsInterface
                         openForm.Close()
                 End Select
             Next i
@@ -1537,6 +1612,15 @@ Namespace Forms.Character
                                 GlobalVariables.currentEditedCharSet.InventoryItems.Add(replaceItm)
                             End If
                             _currentBag.BagItems.Add(replaceItm)
+                            If GetItemMaxStackByItemId(replaceItm.Id) > 1 Then
+                                Dim countLabel As Label =
+                                        locPanel.Controls.Find("slot_" & replaceItm.Slot.ToString() & "_count", True)(0)
+                                If Not countLabel Is Nothing Then
+                                    countLabel.Text = "1"
+                                    countLabel.Visible = True
+                                    countLabel.Tag = replaceItm
+                                End If
+                            End If
                             locPic.Tag = replaceItm
                             locPanel.Tag = replaceItm
                             locPic.BackgroundImage = replaceItm.Image
@@ -1567,14 +1651,19 @@ Namespace Forms.Character
                     InfoToolTip.SetToolTip(locPic, "Empty")
                     InfoToolTip.SetToolTip(sender, "Add")
                     _currentBag.BagItems.Remove(_currentBag.BagItems.Find(Function(item) item.Slot = replaceItm.Slot))
+                    Dim countLabel As Label =
+                            locPanel.Controls.Find("slot_" & replaceItm.Slot.ToString() & "_count", True)(0)
+                    countLabel.Text = ""
+                    countLabel.Visible = False
+                    countLabel.Tag = replaceItm
                     If oldItm.Bagguid = 0 Then
                         GlobalVariables.currentEditedCharSet.InventoryZeroItems.RemoveAt(
-                      GlobalVariables.currentEditedCharSet.InventoryZeroItems.FindIndex(
-                          Function(item) item.Slot = oldItm.Slot))
+                            GlobalVariables.currentEditedCharSet.InventoryZeroItems.FindIndex(
+                                Function(item) item.Slot = oldItm.Slot))
                     Else
                         GlobalVariables.currentEditedCharSet.InventoryItems.RemoveAt(
-                                              GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
-                                                  Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
+                            GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
+                                Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
                     End If
 
                     sender.BackgroundImage = My.Resources.add_
@@ -1613,12 +1702,15 @@ Namespace Forms.Character
 
         Private Sub refreshchar_Click(sender As Object, e As EventArgs) Handles refreshchar.Click
             Dim result = MsgBox(ResourceHandler.GetUserMessage("reloadCharacter"), MsgBoxStyle.YesNo,
-                          ResourceHandler.GetUserMessage("areyousure"))
+                                ResourceHandler.GetUserMessage("areyousure"))
             If result = MsgBoxResult.Yes Then
-                For i = Application.OpenForms.Count - 1 To 0 Step -1
+                For i = Application.OpenForms.Count - 1 To 0 Step - 1
                     Dim openForm As Form = Application.OpenForms(i)
                     Select Case True
-                        Case TypeOf openForm Is GlyphsInterface, TypeOf openForm Is AchievementsInterface, TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface, TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface, TypeOf openForm Is SpellSkillInterface, TypeOf openForm Is ProfessionsInterface
+                        Case TypeOf openForm Is GlyphsInterface, TypeOf openForm Is AchievementsInterface,
+                            TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface,
+                            TypeOf openForm Is QuestsInterface, TypeOf openForm Is ReputationInterface,
+                            TypeOf openForm Is SpellSkillInterface, TypeOf openForm Is ProfessionsInterface
                             openForm.Close()
                     End Select
                 Next i
