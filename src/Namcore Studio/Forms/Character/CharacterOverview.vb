@@ -374,7 +374,7 @@ Namespace Forms.Character
             If sender.text = "" Then Exit Sub
             Dim tagItm As Item = sender.Tag
             If Not sender.text = "+" Then
-                If tagItm.EnchantmentId = 0 Then tagItm.EnchantmentId = GetSpellIdByEffectId(tagItm.EnchantmentEffectid)
+                If tagItm.EnchantmentId = 0 Then tagItm.EnchantmentId = GetSpellIdByEffectId(tagItm.EnchantmentEffectid, GlobalVariables.sourceExpansion)
                 If tagItm.EnchantmentType = 2 Then
                     Dim tmpItmId As Integer = GetItemIdBySpellId(tagItm.EnchantmentEffectid)
                     If tmpItmId <> 0 Then tagItm.EnchantmentId = tmpItmId
@@ -511,7 +511,7 @@ Namespace Forms.Character
                         ElseIf foundspell = True Then
                             Dim itm As Item = senderLabel.Tag
                             itm.EnchantmentId = TryInt(TextBox1.Text)
-                            itm.EnchantmentEffectid = GetEffectIdBySpellId(itm.EnchantmentId)
+                            itm.EnchantmentEffectid = GetEffectIdBySpellId(itm.EnchantmentId, GlobalVariables.sourceExpansion)
                             itm.EnchantmentName = GetEffectNameById(itm.EnchantmentEffectid, MySettings.Default.language)
                             itm.EnchantmentType = 0
                             senderLabel.Text = itm.EnchantmentName

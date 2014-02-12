@@ -287,13 +287,13 @@ Namespace Forms.Character
 
         Private Sub search_tb_Leave(sender As Object, e As EventArgs) Handles search_tb.Leave
             If search_tb.Text = "" Then
-                search_tb.Text = "Enter profession id"
+                search_tb.Text = "Enter spell id"
             End If
         End Sub
 
         Private Sub search_tb_TextChanged(sender As Object, e As EventArgs) Handles search_tb.TextChanged
             If _loaded = False Then Exit Sub
-            If search_tb.Text = "Enter profession id" Or search_tb.Text = "" Then
+            If search_tb.Text = "Enter spell id" Or search_tb.Text = "" Then
                 If _lstitems Is Nothing Then Exit Sub
                 If _lstitems.Count = 0 Then Exit Sub
                 prof_lst.Items.Clear()
@@ -325,7 +325,7 @@ Namespace Forms.Character
                 For Each itm As ListViewItem In _lstitems
                     prof_lst.Items.Add(itm)
                 Next
-                search_tb.Text = "Enter profession id"
+                search_tb.Text = "Enter spell id"
             End If
             prof_lst.Update()
         End Sub

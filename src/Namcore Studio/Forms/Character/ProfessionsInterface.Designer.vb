@@ -157,7 +157,7 @@ Namespace Forms.Character
             Me.search_tb.Name = "search_tb"
             Me.search_tb.Size = New System.Drawing.Size(139, 20)
             Me.search_tb.TabIndex = 229
-            Me.search_tb.Text = "Enter profession id"
+            Me.search_tb.Text = "Enter spell id"
             '
             'resultstatus_lbl
             '

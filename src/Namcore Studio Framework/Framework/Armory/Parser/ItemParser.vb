@@ -170,7 +170,7 @@ Namespace Framework.Armory.Parser
                                                            """ data-spell=""" & charItem.EnchantmentId.ToString & """>",
                                                            "</span>")
                     charItem.EnchantmentType = 1
-                    charItem.EnchantmentEffectid = GetEffectIdBySpellId(charItem.EnchantmentId)
+                    charItem.EnchantmentEffectid = GetEffectIdBySpellId(charItem.EnchantmentId, 5)
                 Else
                     LogAppend("Enchantment type: item!", "ItemParser_loadItems", False)
                     '//enchantment type: item
@@ -178,7 +178,7 @@ Namespace Framework.Armory.Parser
                     charItem.EnchantmentName = SplitString(enchantContext,
                                                            "/item/" & charItem.EnchantmentId.ToString & """>", "</a>")
                     charItem.EnchantmentType = 2
-                    charItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(charItem.EnchantmentId))
+                    charItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(charItem.EnchantmentId), 5)
                 End If
             Else
                 LogAppend("Enchantment not found!?", "ItemParser_loadItems", False)

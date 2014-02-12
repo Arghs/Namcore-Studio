@@ -128,9 +128,9 @@ Namespace Framework.Transmission
                     If myItem.EnchantmentId <> 0 Then
                         If myItem.EnchantmentEffectid = 0 Then
                             If myItem.EnchantmentType = 1 Then
-                                myItem.EnchantmentEffectid = GetEffectIdBySpellId(myItem.EnchantmentId)
+                                myItem.EnchantmentEffectid = GetEffectIdBySpellId(myItem.EnchantmentId, GlobalVariables.targetExpansion)
                             Else
-                                myItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(myItem.EnchantmentId))
+                                myItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(myItem.EnchantmentId), GlobalVariables.targetExpansion)
                             End If
                         End If
                     End If
