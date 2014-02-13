@@ -216,12 +216,15 @@ Namespace Forms.Character
         Me.gendercombo = New System.Windows.Forms.ComboBox()
         Me.genderrefresh = New System.Windows.Forms.PictureBox()
         Me.referenceItmPanel = New System.Windows.Forms.Panel()
+            Me.referenceCount = New System.Windows.Forms.Label()
             Me.removeinventbox = New System.Windows.Forms.PictureBox()
             Me.referenceItmPic = New System.Windows.Forms.PictureBox()
             Me.professions_bt = New System.Windows.Forms.Button()
             Me.loadedat_lbl = New System.Windows.Forms.Label()
             Me.refreshchar = New System.Windows.Forms.PictureBox()
-            Me.referenceCount = New System.Windows.Forms.Label()
+            Me.Label7 = New System.Windows.Forms.Label()
+            Me.gold_txtbox = New System.Windows.Forms.TextBox()
+            Me.refreshgold = New System.Windows.Forms.PictureBox()
             Me.InventoryPanel.SuspendLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -347,6 +350,7 @@ Namespace Forms.Character
             CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.refreshchar, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.refreshgold, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'InventoryPanel
@@ -2459,6 +2463,15 @@ Namespace Forms.Character
             Me.referenceItmPanel.Size = New System.Drawing.Size(45, 45)
             Me.referenceItmPanel.TabIndex = 228
             '
+            'referenceCount
+            '
+            Me.referenceCount.AutoSize = True
+            Me.referenceCount.Location = New System.Drawing.Point(23, 3)
+            Me.referenceCount.Name = "referenceCount"
+            Me.referenceCount.Size = New System.Drawing.Size(19, 13)
+            Me.referenceCount.TabIndex = 232
+            Me.referenceCount.Text = "20"
+            '
             'removeinventbox
             '
             Me.removeinventbox.BackColor = System.Drawing.Color.Transparent
@@ -2499,12 +2512,11 @@ Namespace Forms.Character
             '
             'loadedat_lbl
             '
-            Me.loadedat_lbl.Anchor = System.Windows.Forms.AnchorStyles.None
             Me.loadedat_lbl.BackColor = System.Drawing.Color.Transparent
             Me.loadedat_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.loadedat_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.loadedat_lbl.ForeColor = System.Drawing.Color.Black
-            Me.loadedat_lbl.Location = New System.Drawing.Point(91, 65)
+            Me.loadedat_lbl.Location = New System.Drawing.Point(378, 65)
             Me.loadedat_lbl.Name = "loadedat_lbl"
             Me.loadedat_lbl.RightToLeft = System.Windows.Forms.RightToLeft.No
             Me.loadedat_lbl.Size = New System.Drawing.Size(157, 18)
@@ -2524,21 +2536,46 @@ Namespace Forms.Character
             Me.refreshchar.TabIndex = 231
             Me.refreshchar.TabStop = False
             '
-            'referenceCount
+            'Label7
             '
-            Me.referenceCount.AutoSize = True
-            Me.referenceCount.Location = New System.Drawing.Point(23, 3)
-            Me.referenceCount.Name = "referenceCount"
-            Me.referenceCount.Size = New System.Drawing.Size(19, 13)
-            Me.referenceCount.TabIndex = 232
-            Me.referenceCount.Text = "20"
+            Me.Label7.AutoSize = True
+            Me.Label7.BackColor = System.Drawing.Color.Transparent
+            Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.Label7.ForeColor = System.Drawing.Color.Black
+            Me.Label7.Location = New System.Drawing.Point(717, 159)
+            Me.Label7.Name = "Label7"
+            Me.Label7.Size = New System.Drawing.Size(45, 16)
+            Me.Label7.TabIndex = 232
+            Me.Label7.Text = "Gold:"
+            '
+            'gold_txtbox
+            '
+            Me.gold_txtbox.Location = New System.Drawing.Point(768, 157)
+            Me.gold_txtbox.Name = "gold_txtbox"
+            Me.gold_txtbox.Size = New System.Drawing.Size(100, 20)
+            Me.gold_txtbox.TabIndex = 233
+            '
+            'refreshgold
+            '
+            Me.refreshgold.BackColor = System.Drawing.Color.Transparent
+            Me.refreshgold.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
+            Me.refreshgold.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.refreshgold.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.refreshgold.Location = New System.Drawing.Point(870, 156)
+            Me.refreshgold.Name = "refreshgold"
+            Me.refreshgold.Size = New System.Drawing.Size(22, 22)
+            Me.refreshgold.TabIndex = 234
+            Me.refreshgold.TabStop = False
             '
             'CharacterOverview
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(904, 736)
+            Me.ClientSize = New System.Drawing.Size(902, 736)
+            Me.Controls.Add(Me.refreshgold)
+            Me.Controls.Add(Me.gold_txtbox)
+            Me.Controls.Add(Me.Label7)
             Me.Controls.Add(Me.refreshchar)
             Me.Controls.Add(Me.loadedat_lbl)
             Me.Controls.Add(Me.professions_bt)
@@ -2591,6 +2628,9 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.professions_bt, 0)
             Me.Controls.SetChildIndex(Me.loadedat_lbl, 0)
             Me.Controls.SetChildIndex(Me.refreshchar, 0)
+            Me.Controls.SetChildIndex(Me.Label7, 0)
+            Me.Controls.SetChildIndex(Me.gold_txtbox, 0)
+            Me.Controls.SetChildIndex(Me.refreshgold, 0)
             Me.InventoryPanel.ResumeLayout(False)
             Me.InventoryPanel.PerformLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2723,6 +2763,7 @@ Namespace Forms.Character
             CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.refreshchar, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.refreshgold, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
             Me.PerformLayout()
 
@@ -2922,5 +2963,8 @@ Namespace Forms.Character
         Friend WithEvents loadedat_lbl As System.Windows.Forms.Label
         Friend WithEvents refreshchar As System.Windows.Forms.PictureBox
         Friend WithEvents referenceCount As System.Windows.Forms.Label
+        Friend WithEvents Label7 As System.Windows.Forms.Label
+        Friend WithEvents gold_txtbox As System.Windows.Forms.TextBox
+        Friend WithEvents refreshgold As System.Windows.Forms.PictureBox
     End Class
 End Namespace

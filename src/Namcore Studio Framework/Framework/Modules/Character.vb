@@ -92,7 +92,7 @@ Namespace Framework.Modules
         Public Cclass As Integer
         Public Gender As Integer
         Public Xp As Integer
-        Public Gold As String
+        Public Gold As Integer
         Public PlayerBytes As Integer
         Public PlayerBytes2 As Integer
         Public PlayerFlags As PlayerFlagsEnum

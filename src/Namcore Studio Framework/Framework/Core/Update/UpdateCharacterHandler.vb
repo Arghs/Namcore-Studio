@@ -101,6 +101,15 @@ Namespace Framework.Core.Update
                         GlobalVariables.sourceStructure.char_guid_col(0) &
                         "`='" & newPlayer.Guid.ToString() & "'")
                 End If
+                If Not newPlayer.Gold = comparePlayer.Gold Then
+                    '// Gold changed
+                    runSQLCommand_characters_string(
+                        "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
+                        GlobalVariables.sourceStructure.char_gold_col(0) &
+                        "`='" & newPlayer.Gold.ToString() & "' WHERE `" &
+                        GlobalVariables.sourceStructure.char_guid_col(0) &
+                        "`='" & newPlayer.Guid.ToString() & "'")
+                End If
                 Dim itm2Create As New List(Of Item)
                 Dim itmsEnchChanged As New List(Of Item)
                 For Each armorItm As Item In newPlayer.ArmorItems

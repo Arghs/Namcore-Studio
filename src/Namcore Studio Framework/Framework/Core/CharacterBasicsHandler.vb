@@ -55,7 +55,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            Dim tmpCharacter As New Character()
+            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
@@ -123,7 +123,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_gold_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Gold = _tempResult
+            tmpCharacter.Gold = TryInt(_tempResult)
             LogAppend(
                 "Loaded character gold info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
@@ -425,10 +425,7 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" &
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
-            tmpCharacter.AccountId = account.Id
-            tmpCharacter.AccountName = account.Name
-            tmpCharacter.AccountSet = account.SetIndex
-            account.Characters.Add(tmpCharacter)
+              SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
         Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
@@ -439,7 +436,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            Dim tmpCharacter As New Character()
+            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
@@ -504,7 +501,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_gold_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Gold = _tempResult
+            tmpCharacter.Gold = TryInt(_tempResult)
             LogAppend(
                 "Loaded character gold info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
@@ -841,11 +838,7 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
 
-            Dim charactersAccount As Account = account
-            tmpCharacter.AccountId = charactersAccount.Id
-            tmpCharacter.AccountName = charactersAccount.Name
-            tmpCharacter.AccountSet = charactersAccount.SetIndex
-            charactersAccount.Characters.Add(tmpCharacter)
+            SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
         Private Sub LoadAtTrinityTbc(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
@@ -854,7 +847,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            Dim tmpCharacter As New Character()
+            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
@@ -921,7 +914,7 @@ Namespace Framework.Core
                     "SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 1398), ' ', -1) AS UNSIGNED) AS `money` FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Gold = _tempResult
+            tmpCharacter.Gold = TryInt(_tempResult)
             LogAppend(
                 "Loaded character gold info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
@@ -1271,11 +1264,7 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" &
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
-            Dim charactersAccount As Account = account
-            tmpCharacter.AccountId = charactersAccount.Id
-            tmpCharacter.AccountName = charactersAccount.Name
-            tmpCharacter.AccountSet = charactersAccount.SetIndex
-            charactersAccount.Characters.Add(tmpCharacter)
+               SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
         Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
@@ -1284,7 +1273,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            Dim tmpCharacter As New Character()
+            Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
@@ -1351,7 +1340,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_gold_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Gold = _tempResult
+            tmpCharacter.Gold = TryInt(_tempResult)
             LogAppend(
                 "Loaded character gold info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
@@ -1701,11 +1690,7 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" &
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
-            Dim charactersAccount As Account = account
-            tmpCharacter.AccountId = charactersAccount.Id
-            tmpCharacter.AccountName = charactersAccount.Name
-            tmpCharacter.AccountSet = charactersAccount.SetIndex
-            charactersAccount.Characters.Add(tmpCharacter)
+             SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
     End Class
 End Namespace

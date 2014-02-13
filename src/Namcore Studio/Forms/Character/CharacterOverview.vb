@@ -135,6 +135,7 @@ Namespace Forms.Character
             race_lbl.Text = GetRaceNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Race)
             gender_lbl.Text = GetGenderNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Gender)
             loadedat_lbl.Text = GlobalVariables.currentViewedCharSet.LoadedDateTime
+            gold_txtbox.Text = (GlobalVariables.currentViewedCharSet.Gold / 10000).ToString()
             Dim zeroBagItems As New List(Of Item)
             If Not DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems Is Nothing Then
                 For Each potCharBag As Item In _
@@ -1722,6 +1723,15 @@ Namespace Forms.Character
                 newOverview.prepare_interface(_currentAccount, GlobalVariables.currentViewedCharSetId, True)
                 Close()
             End If
+        End Sub
+
+        Private Sub refreshgold_Click(sender As Object, e As EventArgs) Handles refreshgold.Click
+            Dim goldInt As Integer = TryInt(gold_txtbox.Text)
+            gold_txtbox.Text = goldInt.ToString()
+            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+            GlobalVariables.currentEditedCharSet.Gold = goldInt * 10000
+            Focus()
         End Sub
     End Class
 End Namespace
