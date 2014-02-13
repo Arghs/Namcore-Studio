@@ -49,6 +49,7 @@ Namespace Framework.Modules
         Public Socket3Effectid As Integer
         Public EnchantmentEffectid As Integer
         Public Image As Bitmap
+        Public AddedBag As Boolean = False
         Public Bag As Integer
         Public Bagguid As Integer
         Public Enchantstring As String

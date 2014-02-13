@@ -31,6 +31,28 @@ Namespace Framework.Core.Update
         Public Sub UpdateInventory(ByVal comparePlayer As Character, ByVal modPlayer As Character)
             LogAppend("Updating character inventory", "UpdateInventoryHandler_UpdateInventory", True)
             '// Any deleted items?
+            For Each itm As Item In comparePlayer.InventoryZeroItems
+                Select Case itm.Slot
+                    Case 19 To 22, 67 To 73, 23 To 38, 39 To 66
+                        Dim result As Item = modPlayer.InventoryZeroItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Guid = itm.Guid)
+                        If result Is Nothing Then
+                            DeleteItem(modPlayer, itm, True)
+                        End If
+                End Select
+            Next
+            '// Any new items?
+            For Each itm As Item In modPlayer.InventoryZeroItems
+                Select Case itm.Slot
+                    Case 19 To 22, 67 To 73, 23 To 38, 39 To 66
+                        Dim result As Item = comparePlayer.InventoryZeroItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Guid = itm.Guid)
+                        If result Is Nothing Then
+                            CreateItem(modPlayer, itm, True)
+                        ElseIf result.Count <> itm.Count Or result.Guid <> itm.Guid Then
+                            UpdateItem(modPlayer, itm)
+                        End If
+                End Select
+            Next
+            '// Any deleted items?
             For Each itm As Item In comparePlayer.InventoryItems
                 Dim result As Item = modPlayer.InventoryItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid AndAlso item.Id = itm.Id)
                 If result Is Nothing Then
@@ -45,28 +67,6 @@ Namespace Framework.Core.Update
                 ElseIf result.Count <> itm.Count Or result.Guid <> itm.Guid Then
                     UpdateItem(modPlayer, itm)
                 End If
-            Next
-            '// Any deleted items?
-            For Each itm As Item In comparePlayer.InventoryZeroItems
-                Select Case itm.Slot
-                    Case 19 To 22, 67 To 73, 23 To 38, 39 To 66
-                        Dim result As Item = modPlayer.InventoryZeroItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Id = itm.Id)
-                        If result Is Nothing Then
-                            DeleteItem(modPlayer, itm, False)
-                        End If
-                End Select
-            Next
-            '// Any new items?
-            For Each itm As Item In modPlayer.InventoryZeroItems
-                Select Case itm.Slot
-                    Case 19 To 22, 67 To 73, 23 To 38, 39 To 66
-                        Dim result As Item = comparePlayer.InventoryZeroItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Id = itm.Id)
-                        If result Is Nothing Then
-                            CreateItem(modPlayer, itm, False)
-                        ElseIf result.Count <> itm.Count Or result.Guid <> itm.Guid Then
-                            UpdateItem(modPlayer, itm)
-                        End If
-                End Select
             Next
         End Sub
 
@@ -152,6 +152,12 @@ Namespace Framework.Core.Update
                                 GlobalVariables.sourceStructure.invent_item_col(0) & " ) VALUES ( '" &
                                 player.Guid.ToString() & "', '" & itm2Add.Slot.ToString() & "', '0', '" &
                                 newItemGuid.ToString() & "' )")
+                            If itm2Add.BagItems IsNot Nothing AndAlso itm2Add.AddedBag = True Then
+                                For Each bagItem As Item In itm2Add.BagItems
+                                    bagItem.Bagguid = newItemGuid
+                                    CreateItem(player, bagItem, False)
+                                Next
+                            End If
                         Case False
                             runSQLCommand_characters_string(
                                 "INSERT INTO " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " ( " &

@@ -54,6 +54,7 @@ Namespace Forms.Character
         Dim _currentBag As Item
         Dim _lastRemovePic As PictureBox
         Dim _visibleActionControls As List(Of Control)
+        Dim _nonUsableGuidList As List(Of Integer)
 
         Shared _loadComplete As Boolean = False
         Shared _doneControls As List(Of Control)
@@ -135,18 +136,52 @@ Namespace Forms.Character
             race_lbl.Text = GetRaceNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Race)
             gender_lbl.Text = GetGenderNameById(DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).Gender)
             loadedat_lbl.Text = GlobalVariables.currentViewedCharSet.LoadedDateTime
-            gold_txtbox.Text = (GlobalVariables.currentViewedCharSet.Gold / 10000).ToString()
+            gold_txtbox.Text = (GlobalVariables.currentViewedCharSet.Gold/10000).ToString()
             Dim zeroBagItems As New List(Of Item)
+            _nonUsableGuidList = New List(Of Integer)()
             If Not DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems Is Nothing Then
+                Dim bagsInitialized As Boolean = False
                 For Each potCharBag As Item In _
                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems
                     potCharBag.BagItems = New List(Of Item)()
                     Select Case potCharBag.Slot
                         Case 19, 20, 21, 22
                             For Each subctrl As Control In GroupBox2.Controls
-                                If subctrl.Name.Contains((potCharBag.Slot - 17).ToString()) Then
-                                    If subctrl.Name.ToLower.Contains("panel") Then
-                                        Dim bagPanel As Panel = subctrl
+                                If subctrl.Name.ToLower.Contains("panel") Then
+                                    Dim bagPanel As ItemPanel = subctrl
+                                    Dim realBagSlot As Integer = TryInt(SplitString(subctrl.Name, "bag", "Panel")) + 17
+                                    If Not bagsInitialized Then
+                                        Dim subItmRemovePic As New PictureBox
+                                        If realBagSlot = 18 Then Continue For
+                                        Dim tempItm As New Item
+                                        tempItm.Slot = realBagSlot
+                                        bagPanel.Tag = tempItm
+                                        subItmRemovePic.Name = "bag_" & realBagSlot.ToString() & "_remove"
+                                        subItmRemovePic.Cursor = Cursors.Hand
+                                        subItmRemovePic.Size = removeinventbox.Size
+                                        bagPanel.Controls.Add(subItmRemovePic)
+                                        subItmRemovePic.Location = removeinventbox.Location
+                                        subItmRemovePic.BackgroundImageLayout = ImageLayout.Stretch
+                                        subItmRemovePic.BackgroundImage = My.Resources.add_
+                                        subItmRemovePic.BackColor = removeinventbox.BackColor
+                                        subItmRemovePic.Tag =
+                                            {bagPanel,
+                                             subctrl.Controls.Find("bag" & (realBagSlot - 17).ToString() & "Pic", True)(
+                                                 0)}
+                                        subItmRemovePic.Visible = False
+                                        subItmRemovePic.SetDoubleBuffered()
+                                        subItmRemovePic.BringToFront()
+                                        InfoToolTip.SetToolTip(subItmRemovePic, "Add")
+                                        AddHandler subItmRemovePic.MouseClick, AddressOf removeinventboxBag_Click
+                                        AddHandler subItmRemovePic.MouseEnter, AddressOf removeinventbox_MouseEnter
+                                        AddHandler subItmRemovePic.MouseLeave, AddressOf removeinventbox_MouseLeave
+                                        AddHandler bagPanel.MouseEnter, AddressOf BagItem_MouseEnter
+                                        AddHandler bagPanel.MouseLeave, AddressOf BagItem_MouseLeave
+                                    End If
+                                    If subctrl.Name.Contains((potCharBag.Slot - 17).ToString()) Then
+                                        Dim subItmRemovePic As PictureBox = bagPanel.Controls.Find("bag_" & realBagSlot.ToString() & "_remove", True)(0)
+                                        subItmRemovePic.BackgroundImage = My.Resources.trash__delete__16x16
+                                        InfoToolTip.SetToolTip(subItmRemovePic, "Remove")
                                         bagPanel.BackColor = GetItemQualityColor(GetItemQualityByItemId(potCharBag.Id))
                                         For Each potBagItem As Item In _
                                             DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).
@@ -160,11 +195,14 @@ Namespace Forms.Character
                                                         GetItemIconByDisplayId(GetDisplayIdByItemId(potBagItem.Id),
                                                                                GlobalVariables.GlobalWebClient)
                                                 potCharBag.BagItems.Add(potBagItem)
+                                                _nonUsableGuidList.Add(potCharBag.Guid)
                                             End If
                                         Next
                                         potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Id)
                                         bagPanel.Tag = potCharBag
                                         For Each myPic As PictureBox In subctrl.Controls
+                                            If myPic.Name Is Nothing Then Continue For
+                                            If myPic.Name.EndsWith("_remove") Then Continue For
                                             myPic.BackgroundImage =
                                                 GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
                                                                        GlobalVariables.GlobalWebClient)
@@ -173,6 +211,7 @@ Namespace Forms.Character
                                     End If
                                 End If
                             Next
+                            bagsInitialized = True
                         Case 23 To 38
                             If potCharBag.Name Is Nothing Then _
                                 potCharBag.Name = GetItemNameByItemId(potCharBag.Id, MySettings.Default.language)
@@ -185,7 +224,7 @@ Namespace Forms.Character
                 For Each subctrl As Control In GroupBox2.Controls
                     If subctrl.Name.Contains("1") Then
                         If subctrl.Name.ToLower.Contains("panel") Then
-                            Dim bagPanel As Panel = subctrl
+                            Dim bagPanel As ItemPanel = subctrl
                             Dim bag As New Item
                             bag.BagItems = New List(Of Item)()
                             For Each myItem In zeroBagItems
@@ -1353,6 +1392,7 @@ Namespace Forms.Character
             Dim reduceVal As UInteger = 0
             If sender.name = "bag1Pic" Then reduceVal = 23
             If bag Is Nothing Then Exit Sub
+            If bag.Id = 0 AndAlso bag.Slot > 0 Then Exit Sub
             _currentBag = bag
             InventoryLayout.Controls.Clear()
             For z = 0 To bag.SlotCount - 1
@@ -1450,10 +1490,12 @@ Namespace Forms.Character
                                         Function(item) item.Slot = itm.Slot)
                             GlobalVariables.currentEditedCharSet.InventoryZeroItems(oldItmIndex) = itm
                         Else
-                            Dim oldItmIndex As Integer =
-                                    GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
-                                        Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid)
-                            GlobalVariables.currentEditedCharSet.InventoryItems(oldItmIndex) = itm
+                            If _currentBag.AddedBag = False Then
+                                Dim oldItmIndex As Integer =
+                                                                   GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
+                                                                       Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid)
+                                GlobalVariables.currentEditedCharSet.InventoryItems(oldItmIndex) = itm
+                            End If
                             Dim inBagIndex As Integer =
                                     _currentBag.BagItems.FindIndex(
                                         Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid)
@@ -1461,6 +1503,32 @@ Namespace Forms.Character
                         End If
                     End If
                 End If
+            End If
+        End Sub
+
+        Private Sub BagItem_MouseEnter(sender As Object, e As EventArgs)
+            If Not _loadComplete = False Then
+                For i = _visibleActionControls.Count - 1 To 0 Step - 1
+                    _visibleActionControls(i).Visible = False
+                    _visibleActionControls.Remove(_visibleActionControls(i))
+                Next
+                Dim parentPanel As ItemPanel = sender
+                Dim itm As Item = parentPanel.Tag
+                Dim removePic As PictureBox =
+                        parentPanel.Controls.Find("bag_" & itm.Slot.ToString() & "_remove", True)(0)
+                If Not removePic Is Nothing Then
+                    _visibleActionControls.Add(removePic)
+                    _lastRemovePic = removePic
+                    removePic.Visible = True
+                End If
+            End If
+        End Sub
+
+        Private Sub BagItem_MouseLeave(sender As Object, e As EventArgs)
+            If _lastRemovePic IsNot Nothing Then
+                _visibleActionControls.Remove(_lastRemovePic)
+                _lastRemovePic.Visible = False
+                Application.DoEvents()
             End If
         End Sub
 
@@ -1606,11 +1674,23 @@ Namespace Forms.Character
                             replaceItm.Rarity = GetItemQualityByItemId(replaceItm.Id)
                             replaceItm.Bag = oldItm.Bag
                             replaceItm.Bagguid = oldItm.Bagguid
+                            Dim newGuid As Integer = 1
+                            Do
+                                If _nonUsableGuidList.Contains(newGuid) Then
+                                    newGuid += 1
+                                Else
+                                    _nonUsableGuidList.Add(newGuid)
+                                    Exit Do
+                                End If
+                            Loop
+                            replaceItm.Guid = newGuid
                             locPanel.BackColor = GetItemQualityColor(replaceItm.Rarity)
                             If replaceItm.Bagguid = 0 Then
                                 GlobalVariables.currentEditedCharSet.InventoryZeroItems.Add(replaceItm)
                             Else
-                                GlobalVariables.currentEditedCharSet.InventoryItems.Add(replaceItm)
+                                If _currentBag.AddedBag = False Then
+                                    GlobalVariables.currentEditedCharSet.InventoryItems.Add(replaceItm)
+                                End If
                             End If
                             _currentBag.BagItems.Add(replaceItm)
                             If GetItemMaxStackByItemId(replaceItm.Id) > 1 Then
@@ -1662,11 +1742,97 @@ Namespace Forms.Character
                             GlobalVariables.currentEditedCharSet.InventoryZeroItems.FindIndex(
                                 Function(item) item.Slot = oldItm.Slot))
                     Else
-                        GlobalVariables.currentEditedCharSet.InventoryItems.RemoveAt(
-                            GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
-                                Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
+                        If _currentBag.AddedBag = False Then
+                            GlobalVariables.currentEditedCharSet.InventoryItems.RemoveAt(
+                                                     GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
+                                                         Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
+                        End If
                     End If
 
+                    sender.BackgroundImage = My.Resources.add_
+                End If
+                sender.Visible = False
+            End If
+        End Sub
+
+        Private Sub removeinventboxBag_Click(sender As Object, e As EventArgs)
+            Dim locPanel As ItemPanel = sender.Tag(0)
+            Dim locPic As PictureBox = sender.Tag(1)
+            Dim oldItm As Item = locPanel.Tag
+            If oldItm.Id = 0 Then
+                Dim result As String = InputBox(ResourceHandler.GetUserMessage("enteritemid"), "Add item", "0")
+                If result.Length = 0 Then
+                    sender.Visible = False
+                Else
+                    Dim intResult As Integer = TryInt(result)
+                    If intResult <> 0 Then
+                        Dim checkName As String = GetItemNameByItemId(intResult, MySettings.Default.language)
+                        If Not checkName = "Not found" AndAlso GetItemSlotCountByItemId(intResult) > 0 Then
+                            If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                                GlobalVariables.currentEditedCharSet =
+                                    DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                            Dim replaceItm As New Item()
+                            replaceItm.Slot = oldItm.Slot
+                            replaceItm.Id = intResult
+                            replaceItm.Image = GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient)
+                            replaceItm.Name = checkName
+                            replaceItm.Rarity = GetItemQualityByItemId(replaceItm.Id)
+                            replaceItm.AddedBag = True
+                            Dim newGuid As Integer = 1
+                            Do
+                                If _nonUsableGuidList.Contains(newGuid) Then
+                                    newGuid += 1
+                                Else
+                                    _nonUsableGuidList.Add(newGuid)
+                                    Exit Do
+                                End If
+                            Loop
+                            replaceItm.Guid = newGuid
+                            locPanel.BackColor = GetItemQualityColor(replaceItm.Rarity)
+                            GlobalVariables.currentEditedCharSet.InventoryZeroItems.Add(replaceItm)
+                            replaceItm.BagItems = New List(Of Item)()
+                            replaceItm.SlotCount = GetItemSlotCountByItemId(replaceItm.Id)
+                            locPic.Tag = replaceItm
+                            locPanel.Tag = replaceItm
+                            locPic.BackgroundImage = replaceItm.Image
+                            InfoToolTip.SetToolTip(sender, "Remove")
+                            sender.BackgroundImage = My.Resources.trash__delete__16x16
+                        Else
+                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical, "Error")
+                        End If
+                    Else
+                        MsgBox(ResourceHandler.GetUserMessage("invalidItemError"), MsgBoxStyle.Critical, "Error")
+                    End If
+                    sender.Visible = False
+                End If
+            Else
+                Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
+                                    ResourceHandler.GetUserMessage("areyousure"))
+                If result = MsgBoxResult.Yes Then
+                    BagOpen(bag1Pic, New EventArgs())
+                    If GlobalVariables.currentEditedCharSet Is Nothing Then _
+                        GlobalVariables.currentEditedCharSet =
+                            DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
+                    locPanel.BackColor = referenceItmPanel.BackColor
+                    locPic.BackgroundImage = My.Resources.bag_empty
+                    Dim replaceItm As New Item()
+                    replaceItm.Slot = oldItm.Slot
+                    locPanel.Tag = replaceItm
+                    locPic.Tag = replaceItm
+                    InfoToolTip.SetToolTip(sender, "Add")
+                    If Not oldItm.BagItems Is Nothing Then
+                        For i = oldItm.BagItems.Count - 1 To 0 Step -1
+                            Dim thisItm As Item = oldItm.BagItems(i)
+                            Dim resultItem As Item =
+                                    GlobalVariables.currentEditedCharSet.InventoryItems.Find(
+                                        Function(item) item.Bagguid = thisItm.Bagguid AndAlso item.Slot = thisItm.Slot)
+                            If resultItem IsNot Nothing Then _
+                                GlobalVariables.currentEditedCharSet.InventoryItems.Remove(resultItem)
+                        Next
+                    End If
+                    GlobalVariables.currentEditedCharSet.InventoryZeroItems.RemoveAt(
+                        GlobalVariables.currentEditedCharSet.InventoryZeroItems.FindIndex(
+                            Function(item) item.Slot = oldItm.Slot))
                     sender.BackgroundImage = My.Resources.add_
                 End If
                 sender.Visible = False
@@ -1730,7 +1896,7 @@ Namespace Forms.Character
             gold_txtbox.Text = goldInt.ToString()
             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-            GlobalVariables.currentEditedCharSet.Gold = goldInt * 10000
+            GlobalVariables.currentEditedCharSet.Gold = goldInt*10000
             Focus()
         End Sub
     End Class
