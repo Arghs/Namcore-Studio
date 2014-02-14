@@ -54,7 +54,6 @@ Namespace Forms.Character
         Dim _currentBag As Item
         Dim _lastRemovePic As PictureBox
         Dim _visibleActionControls As List(Of Control)
-        Dim _nonUsableGuidList As List(Of Integer)
 
         Shared _loadComplete As Boolean = False
         Shared _doneControls As List(Of Control)
@@ -138,14 +137,15 @@ Namespace Forms.Character
             loadedat_lbl.Text = GlobalVariables.currentViewedCharSet.LoadedDateTime
             gold_txtbox.Text = (GlobalVariables.currentViewedCharSet.Gold/10000).ToString()
             Dim zeroBagItems As New List(Of Item)
-            _nonUsableGuidList = New List(Of Integer)()
+            GlobalVariables.nonUsableGuidList = New List(Of Integer)()
             If Not DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems Is Nothing Then
                 Dim bagsInitialized As Boolean = False
                 For Each potCharBag As Item In _
                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems
                     potCharBag.BagItems = New List(Of Item)()
+                    GlobalVariables.nonUsableGuidList.Add(potCharBag.Guid)
                     Select Case potCharBag.Slot
-                        Case 19, 20, 21, 22
+                        Case 19 To 22
                             For Each subctrl As Control In GroupBox2.Controls
                                 If subctrl.Name.ToLower.Contains("panel") Then
                                     Dim bagPanel As ItemPanel = subctrl
@@ -195,7 +195,6 @@ Namespace Forms.Character
                                                         GetItemIconByDisplayId(GetDisplayIdByItemId(potBagItem.Id),
                                                                                GlobalVariables.GlobalWebClient)
                                                 potCharBag.BagItems.Add(potBagItem)
-                                                _nonUsableGuidList.Add(potCharBag.Guid)
                                             End If
                                         Next
                                         potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Id)
@@ -812,7 +811,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub race_lbl_Click(sender As Object, e As EventArgs) Handles race_lbl.Click
-            racepanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+            racepanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
                                            sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -831,7 +830,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub class_lbl_Click(sender As Object, e As EventArgs) Handles class_lbl.Click
-            classpanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+            classpanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
                                             sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -868,7 +867,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub level_lbl_Click(sender As Object, e As EventArgs) Handles level_lbl.Click
-            changepanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+            changepanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
                                              sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -887,7 +886,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub gender_lbl_Click(sender As Object, e As EventArgs) Handles gender_lbl.Click
-            genderpanel.Location = New Point(sender.location.x + + GroupBox1.Location.X,
+            genderpanel.Location = New Point(sender.location.x + +GroupBox1.Location.X,
                                              sender.location.y + GroupBox1.Location.Y)
             Dim newpoint As New Point
             newpoint.X = 4000
@@ -1026,7 +1025,7 @@ Namespace Forms.Character
             addpanel.Location = New Point(4000, 4000)
             genderpanel.Location = New Point(4000, 4000)
             For Each ctrl As Label In _
-                From ctrl1 In _controlLst.OfType (Of Label)()
+                From ctrl1 In _controlLst.OfType(Of Label)()
                     Where ctrl1.Name.StartsWith(sender.name.replace("_pic", "")) And ctrl1.Name.EndsWith("_name")
                     Where ctrl1.Text = ""
                 _tempSender = ctrl
@@ -1508,7 +1507,7 @@ Namespace Forms.Character
 
         Private Sub BagItem_MouseEnter(sender As Object, e As EventArgs)
             If Not _loadComplete = False Then
-                For i = _visibleActionControls.Count - 1 To 0 Step - 1
+                For i = _visibleActionControls.Count - 1 To 0 Step -1
                     _visibleActionControls(i).Visible = False
                     _visibleActionControls.Remove(_visibleActionControls(i))
                 Next
@@ -1534,7 +1533,7 @@ Namespace Forms.Character
 
         Private Sub InventItem_MouseEnter(sender As Object, e As EventArgs)
             If Not _loadComplete = False Then
-                For i = _visibleActionControls.Count - 1 To 0 Step - 1
+                For i = _visibleActionControls.Count - 1 To 0 Step -1
                     _visibleActionControls(i).Visible = False
                     _visibleActionControls.Remove(_visibleActionControls(i))
                 Next
@@ -1596,7 +1595,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub reset_bt_Click(sender As Object, e As EventArgs) Handles reset_bt.Click
-            For i = Application.OpenForms.Count - 1 To 0 Step - 1
+            For i = Application.OpenForms.Count - 1 To 0 Step -1
                 Dim openForm As Form = Application.OpenForms(i)
                 Select Case True
                     Case TypeOf openForm Is GlyphsInterface, TypeOf openForm Is AchievementsInterface,
@@ -1651,10 +1650,10 @@ Namespace Forms.Character
         End Sub
 
         Private Sub removeinventbox_Click(sender As Object, e As EventArgs)
-            Dim locPanel As Panel = sender.Tag(0)
+            Dim locPanel As ItemPanel = sender.Tag(0)
             Dim locPic As PictureBox = sender.Tag(1)
             Dim oldItm As Item = locPic.Tag
-            If oldItm.Id = Nothing Then
+            If oldItm.Id = 0 Then
                 Dim result As String = InputBox(ResourceHandler.GetUserMessage("enteritemid"), "Add item", "0")
                 If result.Length = 0 Then
                     sender.Visible = False
@@ -1676,10 +1675,10 @@ Namespace Forms.Character
                             replaceItm.Bagguid = oldItm.Bagguid
                             Dim newGuid As Integer = 1
                             Do
-                                If _nonUsableGuidList.Contains(newGuid) Then
+                                If GlobalVariables.nonUsableGuidList.Contains(newGuid) Then
                                     newGuid += 1
                                 Else
-                                    _nonUsableGuidList.Add(newGuid)
+                                    GlobalVariables.nonUsableGuidList.Add(newGuid)
                                     Exit Do
                                 End If
                             Loop
@@ -1780,10 +1779,10 @@ Namespace Forms.Character
                             replaceItm.AddedBag = True
                             Dim newGuid As Integer = 1
                             Do
-                                If _nonUsableGuidList.Contains(newGuid) Then
+                                If GlobalVariables.nonUsableGuidList.Contains(newGuid) Then
                                     newGuid += 1
                                 Else
-                                    _nonUsableGuidList.Add(newGuid)
+                                    GlobalVariables.nonUsableGuidList.Add(newGuid)
                                     Exit Do
                                 End If
                             Loop

@@ -1,4 +1,5 @@
-﻿Imports NamCore_Studio.Forms.Extension
+﻿Imports NamCore_Studio.Modules.Interface
+Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -27,21 +28,21 @@ Namespace Forms.Character
         Private Sub InitializeComponent()
             Me.components = New System.ComponentModel.Container()
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BankInterface))
-            Me.bag1Panel = New System.Windows.Forms.Panel()
+            Me.bag1Panel = New ItemPanel()
             Me.bag1Pic = New System.Windows.Forms.PictureBox()
-            Me.bag2Panel = New System.Windows.Forms.Panel()
+            Me.bag2Panel = New ItemPanel()
             Me.bag2Pic = New System.Windows.Forms.PictureBox()
-            Me.bag3Panel = New System.Windows.Forms.Panel()
+            Me.bag3Panel = New ItemPanel()
             Me.bag3Pic = New System.Windows.Forms.PictureBox()
-            Me.bag4Panel = New System.Windows.Forms.Panel()
+            Me.bag4Panel = New ItemPanel()
             Me.PictureBox3 = New System.Windows.Forms.PictureBox()
             Me.bag4Pic = New System.Windows.Forms.PictureBox()
-            Me.bag5Panel = New System.Windows.Forms.Panel()
+            Me.bag5Panel = New ItemPanel()
             Me.bag5Pic = New System.Windows.Forms.PictureBox()
             Me.BankLayoutPanel = New System.Windows.Forms.FlowLayoutPanel()
-            Me.bag6Panel = New System.Windows.Forms.Panel()
+            Me.bag6Panel = New ItemPanel()
             Me.bag6Pic = New System.Windows.Forms.PictureBox()
-            Me.bag7Panel = New System.Windows.Forms.Panel()
+            Me.bag7Panel = New ItemPanel()
             Me.Bag7Pic = New System.Windows.Forms.PictureBox()
             Me.reference_itm_panel = New System.Windows.Forms.Panel()
             Me.removeinventboxbig = New System.Windows.Forms.PictureBox()

@@ -61,6 +61,7 @@ Namespace Framework.Modules
         Public Shared modifiedAccTable As DataTable
         Public Shared modifiedCharTable As DataTable
         'Public Shared modifiedCharInfo As List(Of String)
+        Public Shared nonUsableGuidList As List(Of Integer)
         Public Shared armoryMode As Boolean = False
         Public Shared templateMode As Boolean = False
         Public Shared con_operator As Integer
