@@ -40,7 +40,9 @@ Namespace Forms.Character
         Public Event Completed As EventHandler(Of CompletedEventArgs)
 
         Delegate Sub AddLayoutControlDelegate(layout As FlowLayoutPanel, ctrl As Control)
+
         Delegate Sub AddControlDelegate(parentControl As Control, ctrl As Control)
+
         Delegate Sub UpdateControlDelegate(bagPanel As Control, bagsInitialized As Boolean, potCharBag As Item)
 
         Dim _tmpImage As Image
@@ -145,7 +147,7 @@ Namespace Forms.Character
                                     Dim bagPanel As ItemPanel = subctrl
                                     _actionBlocked = True
                                     bagPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControllUpdate),
-                                           bagPanel, bagsInitialized, potCharBag)
+                                                         bagPanel, bagsInitialized, potCharBag)
                                     While _actionBlocked : End While
                                 End If
                             Next
@@ -267,7 +269,8 @@ Namespace Forms.Character
                 AddHandler bagPanel.MouseLeave, AddressOf BagItem_MouseLeave
             End If
             If bagPanel.Name.Contains((potCharBag.Slot - 66).ToString()) Then
-                Dim subItmRemovePic As PictureBox = bagPanel.Controls.Find("bag_" & (realBagSlot + 66).ToString() & "_remove", True)(0)
+                Dim subItmRemovePic As PictureBox =
+                        bagPanel.Controls.Find("bag_" & (realBagSlot + 66).ToString() & "_remove", True)(0)
                 subItmRemovePic.BackgroundImage = My.Resources.trash__delete__16x16
                 InfoToolTip.SetToolTip(subItmRemovePic, "Remove")
                 bagPanel.BackColor = Getraritycolor(GetItemQualityByItemId(potCharBag.Id))
@@ -317,12 +320,6 @@ Namespace Forms.Character
             layoutPanel.Update()
             layoutPanel.Controls.SetChildIndex(layoutPanel.Controls(layoutPanel.Controls.Count - 1),
                                                1)
-        End Sub
-
-        Private Sub DelegateControlAdding(parentControl As Control, ctrl As Control)
-            ctrl.SetDoubleBuffered()
-            parentControl.Controls.Add(ctrl)
-            parentControl.Update()
         End Sub
 
         Private Sub PrepareCompleted() Handles Me.Completed
