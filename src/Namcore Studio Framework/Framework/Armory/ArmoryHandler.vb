@@ -93,6 +93,7 @@ Namespace Framework.Armory
                     player.Cclass = TryInt(SplitString(apiContext, """class"":", ","))
                     player.SourceCore = "armory"
                     player.SourceExpansion = 5
+                    player.LoadedDateTime = DateTime.Now
                     '// Character appearance
                     Try
                         LogAppend("Loading character appearance information", "ArmoryHandler_DoLoad", True)

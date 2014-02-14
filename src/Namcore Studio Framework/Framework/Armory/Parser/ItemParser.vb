@@ -37,6 +37,7 @@ Namespace Framework.Armory.Parser
             Dim itemslot As Integer = 0
             '// Retrieving character
             Dim player As Character = GetCharacterSetBySetId(setId, account)
+            player.ArmorItems = New List(Of Item)()
             LogAppend("Loading character items", "ItemParser_loadItems", True)
             Do
                 Try
