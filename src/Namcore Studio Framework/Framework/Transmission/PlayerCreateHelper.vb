@@ -23,6 +23,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Logging
 Imports libnc.Provider
 
 Namespace Framework.Transmission
@@ -110,50 +111,77 @@ Namespace Framework.Transmission
     End Enum
     '// Declaration
     Public Module PlayerCreateHelper
-        Public Sub GetRaceSpells(ByRef player As Character, ByVal account As Account)
-            Dim thisRace As ChrRaceIds = player.Race
-            Dim thisRaceBit As ChrRaces = thisRace
-            Dim newSpellList As New List(Of Spell)
-            Dim spellsDt As DataTable = GetCreateInfoTable()
-            For Each spellEntry In spellsDt.Rows
-                If TryInt(spellEntry(0)) = 0 Then
-                    newSpellList.Add(
-                        New Spell With
-                                        {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
-                    Continue For
-                End If
-                Dim raceMask As ChrRaces = TryInt(spellEntry(0))
-                If (raceMask And thisRaceBit) = thisRaceBit Then
-                    newSpellList.Add(
-                        New Spell With
-                                        {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
-                End If
-            Next
-            player.Spells = newSpellList
-            SetCharacterSet(player.SetIndex, player, account)
+        Public Sub GetRaceSpells(ByRef player As Character)
+            LogAppend("Loading race specific spells for player " & player.Name, "PlayerCreateHelper_GetRaceSpells")
+            Try
+                Dim thisRace As ChrRaceIds = player.Race
+                Dim thisRaceBit As ChrRaces = thisRace
+                Dim newSpellList As New List(Of Spell)
+                Dim spellsDt As DataTable = GetCreateInfoTable()
+                For Each spellEntry As DataRow In spellsDt.Rows
+                    Try
+                        If spellEntry.Table.Columns.Count < 2 Then Continue For
+                        For i = 0 To spellEntry.Table.Columns.Count - 1
+                            If IsDBNull(spellEntry(i)) Then Continue For
+                        Next
+                        If TryInt(spellEntry(0)) = 0 Then
+                            '// 0: Every race
+                            newSpellList.Add(
+                                New Spell With
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                            Continue For
+                        End If
+                        Dim raceMask As ChrRaces = TryInt(spellEntry(0))
+                        If (raceMask And thisRaceBit) = thisRaceBit Then
+                            newSpellList.Add(
+                                New Spell With
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                        End If
+                    Catch ex As Exception
+                        LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetRaceSpells", False, True)
+                    End Try
+                Next
+                If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
+                player.Spells.AddRange(newSpellList)
+            Catch ex As Exception
+                LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetRaceSpells", False, True)
+            End Try
         End Sub
 
-        Public Sub GetClassSpells(ByRef player As Character, ByVal account As Account)
-            Dim thisClass As ChrClassIds = player.Cclass
-            Dim thisClassBit As ChrClasses = thisClass
-            Dim newSpellList As New List(Of Spell)
-            Dim spellsDt As DataTable = GetCreateInfoTable()
-            For Each spellEntry In spellsDt.Rows
-                If TryInt(spellEntry(1)) = 0 Then
-                    newSpellList.Add(
-                        New Spell With
-                                        {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
-                    Continue For
-                End If
-                Dim classMask As ChrClasses = TryInt(spellEntry(1))
-                If (classMask And thisClassBit) = thisClassBit Then
-                    newSpellList.Add(
-                        New Spell With
-                                        {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
-                End If
-            Next
-            player.Spells = newSpellList
-            SetCharacterSet(player.SetIndex, player, account)
+        Public Sub GetClassSpells(ByRef player As Character)
+            LogAppend("Loading class specific spells for player " & player.Name, "PlayerCreateHelper_GetClassSpells")
+            Try
+                Dim thisClass As ChrClassIds = player.Cclass
+                Dim thisClassBit As ChrClasses = thisClass
+                Dim newSpellList As New List(Of Spell)
+                Dim spellsDt As DataTable = GetCreateInfoTable()
+                For Each spellEntry As DataRow In spellsDt.Rows
+                    Try
+                        If spellEntry.Table.Columns.Count < 2 Then Continue For
+                        For i = 0 To spellEntry.Table.Columns.Count - 1
+                            If IsDBNull(spellEntry(i)) Then Continue For
+                        Next
+                        If TryInt(spellEntry(1)) = 0 Then
+                            newSpellList.Add(
+                                New Spell With
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                            Continue For
+                        End If
+                        Dim classMask As ChrClasses = TryInt(spellEntry(1))
+                        If (classMask And thisClassBit) = thisClassBit Then
+                            newSpellList.Add(
+                                New Spell With
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                        End If
+                    Catch ex As Exception
+                        LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetClassSpells", False, True)
+                    End Try
+                Next
+                If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
+                player.Spells.AddRange(newSpellList)
+            Catch ex As Exception
+                LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetClassSpells", False, True)
+            End Try
         End Sub
     End Module
 End Namespace

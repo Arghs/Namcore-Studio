@@ -140,9 +140,11 @@ Namespace Framework.Modules
         Public AccountId As Integer
         Public AccountName As String
         Public AccountSet As Integer
+        Public TargetAccount As Account
 
         'Misc
 
+        Public RenamePending As Boolean = False
         Public CreatedGuid As Integer
         Public ArmorItems As List(Of Item)
         Public InventoryItems As List(Of Item)

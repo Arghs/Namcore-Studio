@@ -104,7 +104,7 @@ Namespace Framework.Core.Update
                         itm2Add.Container.ToString() & "', '" &
                         itm2Add.Slot.ToString() & "' )")
                     Dim mEnchCreator As New EnchantmentsCreation
-                    mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
+                    mEnchCreator.SetItemEnchantments(Nothing, itm2Add, newItemGuid, GlobalVariables.targetCore,
                                                      GlobalVariables.sourceStructure)
                 Case "trinity"
                     Dim newItemGuid As Integer = TryInt(
@@ -169,7 +169,7 @@ Namespace Framework.Core.Update
                                 itm2Add.Bagguid.ToString & "', '" & newItemGuid.ToString() & "' )")
                     End Select
                     Dim mEnchCreator As New EnchantmentsCreation
-                    mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
+                    mEnchCreator.SetItemEnchantments(Nothing, itm2Add, newItemGuid, GlobalVariables.targetCore,
                                                      GlobalVariables.sourceStructure)
                     '// Optional TODO: Set equipment cache
                 Case "mangos"
@@ -228,7 +228,7 @@ Namespace Framework.Core.Update
                         newItemGuid.ToString() & "', '" &
                         itm2Add.Id.ToString() & "')")
                     Dim mEnchCreator As New EnchantmentsCreation
-                    mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
+                    mEnchCreator.SetItemEnchantments(Nothing, itm2Add, newItemGuid, GlobalVariables.targetCore,
                                                      GlobalVariables.sourceStructure)
                     '// Optional TODO: Set equipment cache
             End Select
@@ -311,7 +311,7 @@ Namespace Framework.Core.Update
                         "' AND `" &
                         GlobalVariables.sourceStructure.itmins_guid_col(0) & "`='" & itm2Update.Guid.ToString() & "'")
                     Dim mEnchHandler As New EnchantmentsCreation
-                    mEnchHandler.SetItemEnchantments(player.SetIndex, itm2Update, itm2Update.Guid,
+                    mEnchHandler.SetItemEnchantments(player, itm2Update, itm2Update.Guid,
                                                      GlobalVariables.sourceCore, GlobalVariables.sourceStructure)
                 Case "trinity"
                     runSQLCommand_characters_string("UPDATE `" & GlobalVariables.sourceStructure.item_instance_tbl(0) &
@@ -322,11 +322,11 @@ Namespace Framework.Core.Update
                                                     "' AND " & GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                                     " = '" & itm2Update.Guid.ToString() & "'")
                     Dim mEnchHandler As New EnchantmentsCreation
-                    mEnchHandler.SetItemEnchantments(player.SetIndex, itm2Update, itm2Update.Guid,
+                    mEnchHandler.SetItemEnchantments(player, itm2Update, itm2Update.Guid,
                                                      GlobalVariables.sourceCore, GlobalVariables.sourceStructure)
                 Case "mangos"
                     Dim mEnchHandler As New EnchantmentsCreation
-                    mEnchHandler.SetItemEnchantments(player.SetIndex, itm2Update, itm2Update.Guid,
+                    mEnchHandler.SetItemEnchantments(player, itm2Update, itm2Update.Guid,
                                                      GlobalVariables.sourceCore, GlobalVariables.sourceStructure)
             End Select
         End Sub

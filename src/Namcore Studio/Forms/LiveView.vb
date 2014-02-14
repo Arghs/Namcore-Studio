@@ -338,9 +338,13 @@ Namespace Forms
                 Dim foundNode() As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)
                 If foundNode.Length = 0 Then
                     Dim newnode As New TreeNode
+                    Dim newAccount As New Account
+                    newAccount.Id = rowitem.Item(0)
+                    newAccount.Name = rowitem.Item(1)
                     With newnode
-                        .Name = rowitem.Item(0)
-                        .Text = rowitem.Item(1)
+                        .Name = newAccount.Id.ToString()
+                        .Text = newAccount.Name
+                        .Tag = newAccount
                     End With
                     target_accounts_tree.Nodes.Add(newnode)
                 Else
@@ -350,7 +354,6 @@ Namespace Forms
                         .Name = rowitem(2)
                         .Text = rowitem(3)
                     End With
-
                     node.Nodes.Add(subNode)
                 End If
             Next
@@ -485,9 +488,8 @@ Namespace Forms
             For Each itemControl As Control In controlLst
                 itemControl.SetDoubleBuffered()
             Next
-            GlobalVariables.createAccountsIndex = New List(Of Integer)
-            GlobalVariables.accountInfo = New List(Of Account)
-            GlobalVariables.charactersToCreate = New List(Of String)
+            GlobalVariables.accountsToCreate = New List(Of Account)
+            GlobalVariables.charactersToCreate = New List(Of NCFramework.Framework.Modules.Character)
             _cmpFileListViewComparer = New ListViewComparer(accountview)
             _cmpFileListViewComparer2 = New ListViewComparer(characterview)
         End Sub
@@ -947,10 +949,8 @@ Namespace Forms
                         .BackColor = Color.Green
                     End With
                     target_accounts_tree.Nodes.Add(newaccnode)
-                    GlobalVariables.accountInfo.Add(newacc)
-                    GlobalVariables.createAccountsIndex.Add(GlobalVariables.accountInfo.Count - 1)
+                    GlobalVariables.accountsToCreate.Add(newacc)
                 End If
-
                 For Each checkedChar As ListViewItem In characterview.CheckedItems
                     Dim thischar As NCFramework.Framework.Modules.Character = checkedChar.Tag
                     Dim newchar As NCFramework.Framework.Modules.Character = DeepCloneHelper.DeepClone(thischar)
@@ -972,11 +972,7 @@ Namespace Forms
                                     End If
                                 End With
                                 targetaccount.Nodes.Add(newcharnode)
-                                GlobalVariables.charactersToCreate.Add(
-                                    "{AccountId}" & targetaccount.Name & "{/AccountId}{setId}" &
-                                    checkedChar.Tag.SetIndex.ToString() &
-                                    "{/setId}{AccountSet}" & checkedChar.Tag.AccountSet & "{/AccountSet}")
-                                '  targetaccount.Tag.transcharlist.Add(newchar)
+                                GlobalVariables.charactersToCreate.Add(newchar)
                             End If
                         Next
 
@@ -987,32 +983,27 @@ Namespace Forms
         End Sub
 
         Public Sub transChars_specificacc(ByVal accounts As ArrayList)
-            For Each character () As String In GlobalVariables.trans_charlist
+            For Each character As NCFramework.Framework.Modules.Character In GlobalVariables.trans_charlist
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
-                    For Each account () As String In accounts
-                        If account(1).ToLower() = accountnode.Text.ToLower() Then
+                    For Each account() As String In accounts
+                        If account(0).ToLower() = accountnode.Text.ToLower() Then
                             Dim newcharnode As New TreeNode
-                            Dim newchar As New NCFramework.Framework.Modules.Character()
-                            newchar.Name = character(1)
-                            newchar.Guid = TryInt(character(0))
                             Dim nodes As New List(Of String)
                             For Each parentNode As TreeNode In target_accounts_tree.Nodes
                                 nodes.AddRange(GetChildren(parentNode))
                             Next
+                            character.TargetAccount = accountnode.Tag
                             With newcharnode
-                                .Text = newchar.Name
-                                .Tag = newchar
-                                If Not nodes.Contains("'" & newchar.Name & "'") Then
+                                .Text = character.Name
+                                .Tag = character
+                                If Not nodes.Contains("'" & character.Name & "'") Then
                                     .BackColor = Color.Green
                                 Else
                                     .BackColor = Color.Yellow
                                 End If
                             End With
                             accountnode.Nodes.Add(newcharnode)
-                            GlobalVariables.charactersToCreate.Add(
-                                "{AccountId}" & accountnode.Name & "{/AccountId}{setId}" & character(2) &
-                                "{/setId}{AccountSet}" & newchar.AccountSet.ToString() & "{/AccountSet}")
-
+                            GlobalVariables.charactersToCreate.Add(character)
                         End If
                     Next
                 Next
@@ -1021,20 +1012,18 @@ Namespace Forms
         End Sub
 
         Public Sub transChars_allacc()
-            For Each character () As String In GlobalVariables.trans_charlist
+            For Each character As NCFramework.Framework.Modules.Character In GlobalVariables.trans_charlist
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
                     Dim newcharnode As New TreeNode
-                    Dim newchar As New NCFramework.Framework.Modules.Character()
-                    newchar.Name = character(1)
-                    newchar.Guid = TryInt(character(0))
                     Dim nodes As New List(Of String)
                     For Each parentNode As TreeNode In target_accounts_tree.Nodes
                         nodes.AddRange(GetChildren(parentNode))
                     Next
+                    character.TargetAccount = accountnode.Tag
                     With newcharnode
-                        .Text = newchar.Name
-                        .Tag = newchar
-                        If Not nodes.Contains("'" & newchar.Name & "'") Then
+                        .Text = character.Name
+                        .Tag = character
+                        If Not nodes.Contains("'" & character.Name & "'") Then
                             .BackColor = Color.Green
                         Else
                             .BackColor = Color.Yellow
@@ -1071,27 +1060,18 @@ Namespace Forms
 
         Private Sub SelectedCharacterToolStripMenuItem1_Click(sender As Object, e As EventArgs) _
             Handles SelectedCharacterToolStripMenuItem1.Click
-            GlobalVariables.trans_charlist = New ArrayList()
-            Dim charId As String = characterview.SelectedItems(0).SubItems(0).Text
+            GlobalVariables.trans_charlist = New List(Of NCFramework.Framework.Modules.Character)()
             For I = 0 To characterview.SelectedItems.Count - 1
-                Dim character(2) As String
-                character(0) = charId
-                character(1) = characterview.SelectedItems(0).SubItems(2).Text
-                character(2) = characterview.SelectedItems(0).Tag.ToString
-                GlobalVariables.trans_charlist.Add(character)
+                GlobalVariables.trans_charlist.Add(characterview.SelectedItems(I).Tag)
             Next
             PrepChartrans.Show()
         End Sub
 
         Private Sub CheckedCharactersToolStripMenuItem1_Click(sender As Object, e As EventArgs) _
             Handles CheckedCharactersToolStripMenuItem1.Click
-            GlobalVariables.trans_charlist = New ArrayList()
+            GlobalVariables.trans_charlist = New List(Of NCFramework.Framework.Modules.Character)()
             For Each itm As ListViewItem In characterview.CheckedItems
-                Dim character(2) As String
-                character(0) = itm.SubItems(0).Text
-                character(1) = itm.SubItems(2).Text
-                character(2) = itm.Tag.ToString
-                GlobalVariables.trans_charlist.Add(character)
+                GlobalVariables.trans_charlist.Add(itm.Tag)
             Next
             PrepChartrans.Show()
         End Sub

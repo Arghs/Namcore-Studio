@@ -31,7 +31,7 @@ Namespace Framework.Transmission
         Private _locEnchString As String
         '// Declaration
 
-        Public Sub SetItemEnchantments(ByVal setId As Integer, ByVal itm As Item, ByVal itmGuid As Integer,
+        Public Sub SetItemEnchantments(ByVal playerCharacter As Character, ByVal itm As Item, ByVal itmGuid As Integer,
                                        ByVal core As String, ByVal dbstruc As DbStructure)
             _locEnchString = ""
             Select Case core

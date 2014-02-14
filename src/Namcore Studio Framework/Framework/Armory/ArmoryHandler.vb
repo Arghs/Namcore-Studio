@@ -94,6 +94,16 @@ Namespace Framework.Armory
                     player.SourceCore = "armory"
                     player.SourceExpansion = 5
                     player.LoadedDateTime = DateTime.Now
+                    player.InventoryItems = New List(Of Item)()
+                    player.InventoryZeroItems = New List(Of Item)()
+                    player.PlayerGlyphs = New List(Of Glyph)()
+                    player.PlayerReputation = New List(Of Reputation)()
+                    player.Achievements = New List(Of Achievement)()
+                    player.ArmorItems = New List(Of Item)()
+                    player.Actions = New List(Of Action)()
+                    player.Quests = New List(Of Quest)()
+                    player.Spells = New List(Of Spell)()
+                    player.Skills = New List(Of Skill)()
                     '// Character appearance
                     Try
                         LogAppend("Loading character appearance information", "ArmoryHandler_DoLoad", True)

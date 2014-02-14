@@ -87,6 +87,7 @@ Namespace Framework.Database
             Else
                 Dim useConn As MySqlConnection = GlobalVariables.GlobalConnection
                 If useTargetConnection Then useConn = GlobalVariables.TargetConnection
+                If GlobalVariables.forceTargetConnectionUsage Then useConn = GlobalVariables.TargetConnection
                 Return RunUsualCommand(command, useConn)
             End If
         End Function
@@ -179,6 +180,7 @@ Namespace Framework.Database
             Else
                 Dim useConn As MySqlConnection = GlobalVariables.GlobalConnection_Realm
                 If useTargetConnection Then useConn = GlobalVariables.TargetConnection_Realm
+                If GlobalVariables.forceTargetConnectionUsage Then useConn = GlobalVariables.TargetConnection
                 Return RunUsualCommand(command, useConn)
             End If
         End Function

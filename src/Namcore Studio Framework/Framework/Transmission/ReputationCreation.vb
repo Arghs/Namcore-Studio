@@ -23,28 +23,30 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class ReputationCreation
-        Public Sub AddCharacterReputation(ByVal setId As Integer, ByVal account As Account,
+        Public Sub AddCharacterReputation(ByVal player As Character,
                                           Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
-            LogAppend("Adding reputation to character: " & charguid.ToString() & " // setId is : " & setId.ToString(),
+            If charguid = 0 Then charguid = player.Guid
+            LogAppend("Adding reputation to character: " & charguid.ToString(),
                       "ReputationCreation_AddCharacterReputation", True)
-            Select Case GlobalVariables.targetCore
-                Case "arcemu"
-                    CreateAtArcemu(charguid, setId, account)
-                Case "trinity", "mangos", "trinitytbc"
-                    CreateAtTrinity(charguid, setId, account)
-            End Select
+            Try
+                Select Case GlobalVariables.targetCore
+                    Case "arcemu"
+                        CreateAtArcemu(charguid, player)
+                    Case "trinity", "mangos", "trinitytbc"
+                        CreateAtTrinity(charguid, player)
+                End Select
+            Catch ex As Exception
+                LogAppend("Exception occured: " & ex.ToString(),
+                "ReputationCreation_AddCharacterReputation", False, True)
+            End Try
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer,
-                                   ByVal account As Account)
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Adding reputation to character at arcemu", "ReputationCreation_CreateAtArcemu", False)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim useStructure As DbStructure = GlobalVariables.targetStructure
             Dim repString As String = ""
             If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
@@ -63,10 +65,8 @@ Namespace Framework.Transmission
             LogAppend("Added " & cnt.ToString() & " faction reputations", "ReputationCreation_createAtArcemu", True)
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer,
-                                    ByVal account As Account)
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Adding reputation to character at trinity", "ReputationCreation_createAtTrinity", False)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             Dim useStructure As DbStructure = GlobalVariables.targetStructure
             If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
             Dim cnt As Integer = 0

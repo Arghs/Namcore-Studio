@@ -30,24 +30,24 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Transmission
     Public Class CharacterCreationAdvanced
         Public Sub CreateNewAdvancedCharacter(ByVal charname As String, ByVal accountId As String,
-                                              ByVal setId As Integer, ByVal account As Account,
+                                              ByRef player As Character,
                                               Optional forceNameChange As Boolean = False)
             LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString,
                       "CharacterCreationAdvanced_CreateNewAdvancedCharacter", True)
             Select Case GlobalVariables.targetCore
                 Case "arcemu"
-                    CreateAtArcemu(charname, accountId.ToString, setId, forceNameChange, account)
+                    CreateAtArcemu(charname, accountId.ToString, player, forceNameChange)
                 Case "trinity"
-                    CreateAtTrinity(charname, accountId.ToString, setId, forceNameChange, account)
+                    CreateAtTrinity(charname, accountId.ToString, player, forceNameChange)
                 Case "trinitytbc"
 
                 Case "mangos"
-                    CreateAtMangos(charname, accountId.ToString, setId, forceNameChange, account)
+                    CreateAtMangos(charname, accountId.ToString, player, forceNameChange)
             End Select
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer,
-                                   ByVal nameChange As Boolean, ByVal account As Account)
+        Private Sub CreateAtArcemu(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
+                                   ByVal nameChange As Boolean)
             LogAppend("Creating at arcemu", "CharacterCreationAdvanced_createAtArcemu", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -86,7 +86,6 @@ Namespace Framework.Transmission
                                       "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '0 0 0 ', @stable, @zone, " &
                                       "@title, @wFaction, '1000', @speccpunt, @activespec, @exploredZones, @knownTitles )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accid.ToString)
             tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -183,19 +182,16 @@ Namespace Framework.Transmission
                     "UPDATE " & GlobalVariables.targetStructure.character_tbl(0) & " SET " &
                     GlobalVariables.targetStructure.char_bindzoneid_col(0) & "='" & SplitList(tmpstring, "zone") &
                     "' WHERE " & GlobalVariables.targetStructure.char_guid_col(0) & "='" & newcharguid.ToString() & "'")
-
                 player.CreatedGuid = newcharguid
-                SetCharacterSet(targetSetId, player, GetAccountSetBySetId(player.AccountSet))
-
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
                     "CharacterCreationAdvanced_createAtArcemu", False, True)
             End Try
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer,
-                                    ByVal nameChange As Boolean, ByVal account As Account)
+        Private Sub CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
+                                    ByVal nameChange As Boolean)
             LogAppend("Creating at Trinity", "CharacterCreationAdvanced_createAtTrinity", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -242,7 +238,6 @@ Namespace Framework.Transmission
                                       "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, @leveltime, @extraflags, " &
                                       "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
             tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -335,16 +330,15 @@ Namespace Framework.Transmission
                     "', '" & SplitList(tmpstring, "position_y") & "', '" & SplitList(tmpstring, "position_z") & "' )")
 
                 player.CreatedGuid = newcharguid
-                SetCharacterSet(targetSetId, player, GetAccountSetBySetId(player.AccountSet))
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
                     "CharacterCreationAdvanced_createAtTrinity", False, True)
             End Try
         End Sub
 
-        Private Sub CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer,
-                                   ByVal nameChange As Boolean, ByVal account As Account)
+        Private Sub CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
+                                   ByVal nameChange As Boolean)
             LogAppend("Creating at Mangos", "CharacterCreationAdvanced_createAtMangos", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -391,7 +385,6 @@ Namespace Framework.Transmission
                                       "( @guid, @accid, @name, @race, @class, @gender, @level, @xp, @gold, @pBytes, @pBytes2, @pFlags, @posx, @posy, @posz, @map, '4,40671', @taxi, '1', @totaltime, @leveltime, @extraflags, " &
                                       "@stable, @login, @zone, @title, @knownCurrencies, @wFaction, '5000', @speccount, @activespec, @exploredZones, @knownTitles, @action )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
             tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -497,10 +490,9 @@ Namespace Framework.Transmission
                     SplitList(tmpstring, "position_z") & "' )")
 
                 player.CreatedGuid = newcharguid
-                SetCharacterSet(targetSetId, player, GetAccountSetBySetId(player.AccountSet))
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
                     "CharacterCreationAdvanced_createAtMangos", False, True)
             End Try
         End Sub

@@ -23,7 +23,6 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
@@ -35,21 +34,25 @@ Namespace Framework.Transmission
         Private _talentId As String
         '// Declaration
 
-        Public Sub SetCharacterTalents(ByVal setId As Integer, ByVal account As Account,
-                                       Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
-            LogAppend("Setting Talents for character: " & charguid.ToString() & " // setId is : " & setId.ToString(),
+        Public Sub SetCharacterTalents(ByVal player As Character, Optional charguid As Integer = 0)
+            If charguid = 0 Then charguid = player.Guid
+            LogAppend("Setting Talents for character: " & charguid.ToString(),
                       "TalentCreation_SetCharacterTalents", True)
-            Select Case GlobalVariables.targetCore
-                Case "arcemu"
-                    CreateAtArcemu(charguid, setId, account)
-                Case "trinity"
-                    CreateAtTrinity(charguid, setId, account)
-                Case "trinitytbc"
+            Try
+                Select Case GlobalVariables.targetCore
+                    Case "arcemu"
+                        CreateAtArcemu(charguid, player)
+                    Case "trinity"
+                        CreateAtTrinity(charguid, player)
+                    Case "trinitytbc"
 
-                Case "mangos"
-                    CreateAtMangos(charguid, setId, account)
-            End Select
+                    Case "mangos"
+                        CreateAtMangos(charguid, player)
+                End Select
+            Catch ex As Exception
+                LogAppend("Exception occured: " & ex.ToString(),
+               "TalentCreation_SetCharacterTalents", False, True)
+            End Try
         End Sub
 
         Private Function LoadTalentTable() As DataTable
@@ -127,8 +130,7 @@ Namespace Framework.Transmission
             End Try
         End Function
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer,
-                                   ByVal account As Account)
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating at arcemu", "TalentCreation_createAtArcemu", False)
             _talentRank = Nothing
             _talentRank2 = Nothing
@@ -139,7 +141,6 @@ Namespace Framework.Transmission
             Dim talentlist2 As String = Nothing
             Dim finaltalentstring As String = Nothing
             Dim finaltalentstring2 As String = Nothing
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             For Each tal As Talent In player.Talents
                 Dim spellid As String = tal.Spell.ToString
                 If spellid.Contains("clear") Then
@@ -288,10 +289,8 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer,
-                                    ByVal account As Account)
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating at Trinity", "TalentCreation_createAtTrinity", False)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             For Each tal As Talent In player.Talents
                 runSQLCommand_characters_string(
                     "INSERT INTO " & GlobalVariables.targetStructure.character_talent_tbl(0) & " ( " &
@@ -304,8 +303,7 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer,
-                                   ByVal account As Account)
+        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating at Mangos", "TalentCreation_createAtMangos", False)
             _talentRank = Nothing
             _talentRank2 = Nothing
@@ -314,7 +312,6 @@ Namespace Framework.Transmission
             _sDatatable = LoadTalentTable()
             Dim talentlist As String = Nothing
             Dim talentlist2 As String = Nothing
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             For Each tal As Talent In player.Talents
                 _talentId = tal.Spell.ToString
                 Dim spec As String = tal.Spec.ToString

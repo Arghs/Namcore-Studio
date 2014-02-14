@@ -29,7 +29,7 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Transmission
     Public Class AccountCreation
         Public Sub CreateNewAccount(ByVal accname As String, ByVal passhas As String, ByVal realmid As Integer,
-                                    ByVal setId As Integer, ByVal account As Account, Optional gmlevel As String = "A",
+                                    ByVal account As Account, Optional gmlevel As String = "A",
                                     Optional email As String = "",
                                     Optional flags As String = "0")
             LogAppend("Creating new account " & accname, "AccountCreation_CreateNewAccount", True)
@@ -96,7 +96,6 @@ Namespace Framework.Transmission
                                                   GlobalVariables.targetStructure.acc_expansion_col(0) & "`) " &
                                                   "VALUES (@accid, @accname, @pass, @email, @joindate, @expansion)"
                         Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection_Realm)
-                        Dim player As Character = GetCharacterSetBySetId(setId, account)
                         tempcommand.Parameters.AddWithValue("@accid", newid)
                         tempcommand.Parameters.AddWithValue("@accname", accname)
                         tempcommand.Parameters.AddWithValue("@pass", passhas)
@@ -112,9 +111,9 @@ Namespace Framework.Transmission
                             Exit Sub
                         End Try
                         If realmid = 0 Then
-                            realmid = - 1
+                            realmid = -1
                         ElseIf realmid = Nothing Then
-                            realmid = - 1
+                            realmid = -1
                         Else
                         End If
                         runSQLCommand_realm_string(
@@ -135,9 +134,9 @@ Namespace Framework.Transmission
                         LogAppend("Account " & accname & " does not exist -> Creating it",
                                   "AccountCreation_CreateNewAccount", False)
                         If realmid = 0 Then
-                            realmid = - 1
+                            realmid = -1
                         ElseIf realmid = Nothing Then
-                            realmid = - 1
+                            realmid = -1
                         Else
                         End If
                         Dim newid As Integer =
@@ -154,7 +153,6 @@ Namespace Framework.Transmission
                                                   "`, " & GlobalVariables.targetStructure.acc_realmID_col(0) & ") " &
                                                   "VALUES (@accid, @accname, @pass, @email, @joindate, @expansion, @realmid)"
                         Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection_Realm)
-                        Dim player As Character = GetCharacterSetBySetId(setId, account)
                         tempcommand.Parameters.AddWithValue("@accid", newid)
                         tempcommand.Parameters.AddWithValue("@accname", accname)
                         tempcommand.Parameters.AddWithValue("@pass", passhas)

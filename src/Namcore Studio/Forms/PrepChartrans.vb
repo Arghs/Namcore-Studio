@@ -30,7 +30,6 @@ Namespace Forms
 
         Private Sub ApplyTrans_Click(sender As Object, e As EventArgs) Handles ApplyTrans.Click
             Dim tempAccList As New ArrayList
-
             If specific_radio.Checked = True Then
                 If accnames_txtbox.Lines.Length = 0 Then _
                     MsgBox(ResourceHandler.GetUserMessage("noaccentered"), MsgBoxStyle.Critical,
@@ -44,11 +43,11 @@ Namespace Forms
                             MsgBox(ResourceHandler.GetUserMessage("noaccentered"), MsgBoxStyle.Critical,
                                    ResourceHandler.GetUserMessage("errorbox")) : Exit Sub
                     Else
-                        Dim tmpAccount(2) As String
-                        tmpAccount(1) = sLines(i)
+                        Dim tmpAccount(0) As String
+                        tmpAccount(0) = sLines(i)
                         tempAccList.Add(tmpAccount)
                         For Each currentForm As Form In Application.OpenForms
-                            If currentForm.Name = "liveview" Then
+                            If currentForm.Name.ToLower() = "liveview" Then
                                 Dim liveview As LiveView = DirectCast(currentForm, LiveView)
                                 liveview.transChars_specificacc(tempAccList)
                             End If
@@ -58,7 +57,7 @@ Namespace Forms
 
             Else
                 For Each currentForm As Form In Application.OpenForms
-                    If currentForm.Name = "liveview" Then
+                    If currentForm.Name.ToLower() = "liveview" Then
                         Dim liveview As LiveView = DirectCast(currentForm, LiveView)
                         liveview.transChars_allacc()
                     End If

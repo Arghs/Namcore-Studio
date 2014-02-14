@@ -22,10 +22,12 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
-
+Imports NCFramework.Framework.Logging
 Namespace Framework.Transmission
     Public Class TransmissionHandler
         Public Sub HandleMigrationRequests(ByVal lite As Boolean)
+            NewProcessStatus()
+            LogAppend("Handling migration requests", "TransmissionHandler_HandleMigrationRequests", True)
             If GlobalVariables.TargetConnection.State = ConnectionState.Closed Then _
                 GlobalVariables.TargetConnection.Open()
             If GlobalVariables.TargetConnection_Realm.State = ConnectionState.Closed Then _
@@ -33,33 +35,27 @@ Namespace Framework.Transmission
             GlobalVariables.forceTargetConnectionUsage = True
             '// Creating new Accounts
             ' ReSharper disable RedundantAssignment
-            For Each index As Integer In GlobalVariables.createAccountsIndex
+            For Each account As Account In GlobalVariables.accountsToCreate
                 ' ReSharper restore RedundantAssignment
                 'CreateNewAccount(accountInfo.Item(index).name
             Next
             '// Creating Characters
             ResetTempDataTables()
-            For Each playerCharacter In GlobalVariables.charactersToCreate
-                Dim accountId As Integer = TryInt(SplitString(playerCharacter, "{AccountId}", "{/AccountId}"))
-                Dim setId As Integer = TryInt(SplitString(playerCharacter, "{setId}", "{/setId}"))
-                Dim accountSet As Integer = TryInt(SplitString(playerCharacter, "{AccountSet}", "{/AccountSet}"))
-                Dim renamePending As Boolean
-                Select Case SplitString(playerCharacter, "{renamePending}", "{/renamePending}")
-                    Case "0" : renamePending = False
-                    Case "1" : renamePending = True
-                    Case Else : renamePending = False
-                End Select
-                Dim playerAccount As Account = GetAccountSetBySetId(accountSet)
-                Dim player As Character = GetCharacterSetBySetId(setId, playerAccount)
-                Dim charname As String = player.Name
+            For Each playerCharacter As Character In GlobalVariables.charactersToCreate
+                LogAppend("Migrating character " & playerCharacter.Name, "TransmissionHandler_HandleMigrationRequests", True)
+                Dim playerAccount As Account = playerCharacter.TargetAccount
+                Dim accountId As Integer = playerAccount.Id
+                Dim renamePending As Boolean = playerCharacter.RenamePending
+                Dim charname As String = playerCharacter.Name
                 Dim mCharCreationLite As New CharacterCreationLite
                 Dim mCharCreationAdvanced As New CharacterCreationAdvanced
                 If lite Then
-                    mCharCreationLite.CreateNewLiteCharacter(charname, accountId, setId, playerAccount, renamePending)
+                    mCharCreationLite.CreateNewLiteCharacter(charname, accountId, playerCharacter, renamePending)
                 Else
-                    mCharCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, setId, playerAccount,
+                    mCharCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, playerCharacter,
                                                                      renamePending)
                 End If
+                playerCharacter.Guid = playerCharacter.CreatedGuid
                 Dim mCharArmorCreation As New ArmorCreation
                 Dim mCharGlyphCreation As New GlyphCreation
                 Dim mCharQuestCreation As New QuestCreation
@@ -68,17 +64,20 @@ Namespace Framework.Transmission
                 Dim mCharAchievementCreation As New AchievementCreation
                 Dim mCharProfessionCreation As New ProfessionCreation
                 Dim mCharInventoryCreation As New InventoryCreation
-                mCharArmorCreation.AddCharacterArmor(setId, playerAccount)
-                mCharGlyphCreation.SetCharacterGlyphs(setId, playerAccount)
-                mCharQuestCreation.SetCharacterQuests(setId, playerAccount)
-                mCharReputationCreation.AddCharacterReputation(setId, playerAccount)
-                mCharAchievementCreation.AddCharacterAchievements(setId, playerAccount)
-                mCharProfessionCreation.AddCharacterProfessions(setId, playerAccount)
-                mCharInventoryCreation.AddCharacterInventory(setId, playerAccount)
-                AddCharacterSkills(setId, playerAccount)
-                AddCharacterSpells(setId, playerAccount)
-                If Not lite Then mCharTalentCreation.SetCharacterTalents(setId, playerAccount)
+                mCharArmorCreation.AddCharacterArmor(playerCharacter)
+                mCharGlyphCreation.SetCharacterGlyphs(playerCharacter)
+                mCharQuestCreation.SetCharacterQuests(playerCharacter)
+                mCharReputationCreation.AddCharacterReputation(playerCharacter)
+                mCharAchievementCreation.AddCharacterAchievements(playerCharacter)
+                mCharProfessionCreation.AddCharacterProfessions(playerCharacter)
+                mCharInventoryCreation.AddCharacterInventory(playerCharacter)
+                AddCharacterSkills(playerCharacter)
+                AddCharacterSpells(playerCharacter)
+                If Not lite Then mCharTalentCreation.SetCharacterTalents(playerCharacter)
+                LogAppend("Character has been created!", "TransmissionHandler_HandleMigrationRequests", True)
             Next
+            LogAppend("All migration requests handled", "TransmissionHandler_HandleMigrationRequests", True)
+            CloseProcessStatus()
             GlobalVariables.forceTargetConnectionUsage = False
         End Sub
     End Class

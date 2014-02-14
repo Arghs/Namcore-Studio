@@ -29,20 +29,19 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class CharacterCreationLite
-        Public Sub CreateNewLiteCharacter(ByVal charname As String, ByVal accountId As Integer, ByVal setId As Integer,
-                                          ByVal account As Account,
+        Public Sub CreateNewLiteCharacter(ByVal charname As String, ByVal accountId As Integer, ByVal player As Character,
                                           Optional forceNameChange As Boolean = False)
             LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString,
                       "CharacterCreationLite_CreateNewLiteCharacter", True)
             Select Case GlobalVariables.targetCore
                 Case "arcemu"
-                    CreateAtArcemu(charname, accountId.ToString, setId, forceNameChange, account)
+                    CreateAtArcemu(charname, accountId.ToString, player, forceNameChange)
                 Case "trinity"
-                    CreateAtTrinity(charname, accountId.ToString, setId, forceNameChange, account)
+                    CreateAtTrinity(charname, accountId.ToString, player, forceNameChange)
                 Case "trinitytbc"
 
                 Case "mangos"
-                    CreateAtMangos(charname, accountId.ToString, setId, forceNameChange, account)
+                    CreateAtMangos(charname, accountId.ToString, player, forceNameChange)
             End Select
         End Sub
 
@@ -53,7 +52,7 @@ Namespace Framework.Transmission
                         TryInt(
                             ReturnResultCount(
                                 "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 0 _
+                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 1 _
                         Then _
                         Return False Else Return True
                 Case "trinity"
@@ -61,7 +60,7 @@ Namespace Framework.Transmission
                         TryInt(
                             ReturnResultCount(
                                 "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 0 _
+                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 1 _
                         Then _
                         Return False Else Return True
                 Case "trinitytbc"
@@ -69,7 +68,7 @@ Namespace Framework.Transmission
                         TryInt(
                             ReturnResultCount(
                                 "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 0 _
+                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 1 _
                         Then _
                         Return False Else Return True
                 Case "mangos"
@@ -77,7 +76,7 @@ Namespace Framework.Transmission
                         TryInt(
                             ReturnResultCount(
                                 "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 0 _
+                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 1 _
                         Then _
                         Return False Else Return True
                 Case Else
@@ -85,8 +84,8 @@ Namespace Framework.Transmission
             End Select
         End Function
 
-        Private Sub CreateAtArcemu(ByVal charactername As String, ByVal accId As Integer, ByVal targetSetId As Integer,
-                                   ByVal nameChange As Boolean, ByVal account As Account)
+        Private Sub CreateAtArcemu(ByVal charactername As String, ByVal accId As Integer, ByRef player As Character,
+                                   ByVal nameChange As Boolean)
             LogAppend("Creating at arcemu", "CharacterCreationLite_createAtArcemu", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -95,6 +94,7 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.char_guid_col(0) & "=(SELECT MAX(" &
                     GlobalVariables.targetStructure.char_guid_col(0) & ") FROM " &
                     GlobalVariables.targetStructure.character_tbl(0) & ")", True)) + 1
+            player.CreatedGuid = newcharguid
             Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.character_tbl(0) & " ( `" &
                                       GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_guid_col(0) & "`, `" &
@@ -115,7 +115,6 @@ Namespace Framework.Transmission
                                       GlobalVariables.targetStructure.char_arcemuPlayedTime_col(0) & " ) " &
                                       "VALUES ( @accid, @guid, @name, @race, @class, @gender, @level, '0', '0', '1000', @pBytes, '-14305.7', '514.08', '10', '4.30671', '0', '0 0 0 0 0 0 0 0 0 0 0 0 ', '98 98 5 ' )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accId.ToString())
             tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -156,8 +155,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.itmins_slot_col(0) & " ) VALUES ( '" & newcharguid.ToString() &
                     "', '" & newitemguid.ToString() & "', '6948', '1', '-1', '23' )", True)
                 '//Adding special skills & spells
-                GetRaceSpells(player, account)
-                GetClassSpells(player, account)
+                GetRaceSpells(player)
+                GetClassSpells(player)
                 AddSpells("6603,", player)
                 Dim cRace As Integer = player.Race
                 Dim cClass As Integer = player.Cclass
@@ -547,13 +546,13 @@ Namespace Framework.Transmission
                     True)
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
                     "CharacterCreationLite_createAtArcemu", False, True)
             End Try
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer,
-                                    ByVal nameChange As Boolean, ByVal account As Account)
+        Private Sub CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
+                                    ByVal nameChange As Boolean)
             LogAppend("Creating at Trinity", "CharacterCreationLite_createAtTrinity", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -562,6 +561,7 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.char_guid_col(0) &
                     "=(SELECT MAX(" & GlobalVariables.targetStructure.char_guid_col(0) & ") FROM " &
                     GlobalVariables.targetStructure.character_tbl(0) & ")", True)) + 1
+            player.CreatedGuid = newcharguid
             Dim sqlstring As String = "INSERT INTO characters ( `" & GlobalVariables.targetStructure.char_guid_col(0) &
                                       "`, `" & GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_name_col(0) & "`, `" &
@@ -583,7 +583,6 @@ Namespace Framework.Transmission
                                       "( @guid, @accid, @name, @race, @class, @gender, @level, '0', '0', @pBytes, '-14306', '515', '10', '0', '5', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1', '1000' )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
             tempcommand.Prepare()
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accid)
             tempcommand.Parameters.AddWithValue("@guid", newcharguid)
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -608,10 +607,10 @@ Namespace Framework.Transmission
                     End If
                 End If
                 '// Special Spells
-                GetRaceSpells(player, account)
-                GetClassSpells(player, account)
+                GetRaceSpells(player)
+                GetClassSpells(player)
                 '//Creating hearthstone
-                LogAppend("Creating character hearthstone", "CharacterCreationLite_createAtArcemu", False)
+                LogAppend("Creating character hearthstone", "CharacterCreationLite_createAtTrinity", False)
                 Dim newitemguid As Integer =
                         (TryInt(
                             runSQLCommand_characters_string(
@@ -642,13 +641,13 @@ Namespace Framework.Transmission
                     "', '0', '23', '" & newitemguid.ToString() & "')", True)
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
                     "CharacterCreationLite_createAtTrinity", False, True)
             End Try
         End Sub
 
-        Private Sub CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByVal targetSetId As Integer,
-                                   ByVal nameChange As Boolean, ByVal account As Account)
+        Private Sub CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
+                                   ByVal nameChange As Boolean)
             LogAppend("Creating at Mangos", "CharacterCreationLite_createAtMangos", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -657,6 +656,7 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.char_guid_col(0) &
                     "=(SELECT MAX(" & GlobalVariables.targetStructure.char_guid_col(0) & ") FROM " &
                     GlobalVariables.targetStructure.character_tbl(0) & ")", True)) + 1
+            player.CreatedGuid = newcharguid
             Dim sqlstring As String = "INSERT INTO characters ( `" & GlobalVariables.targetStructure.char_guid_col(0) &
                                       "`, `" & GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_name_col(0) & "`, `" &
@@ -675,7 +675,6 @@ Namespace Framework.Transmission
                                       GlobalVariables.targetStructure.char_taximask_col(0) & ", `health` ) VALUES " &
                                       "( @guid, @accid, @name, @race, @class, @gender, @level, '0', '0', @pBytes, '-14305.7', '514.08', '10', '0', '4.30671', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 ','1000' )"
             Dim tempcommand As New MySqlCommand(sqlstring, GlobalVariables.TargetConnection)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             tempcommand.Parameters.AddWithValue("@accid", accid.ToString())
             tempcommand.Parameters.AddWithValue("@guid", newcharguid.ToString())
             tempcommand.Parameters.AddWithValue("@name", charactername)
@@ -702,8 +701,8 @@ Namespace Framework.Transmission
                     End If
                 End If
                 '// Special Spells
-                GetRaceSpells(player, account)
-                GetClassSpells(player, account)
+                GetRaceSpells(player)
+                GetClassSpells(player)
                 '// Creating hearthstone
                 LogAppend("Creating character hearthstone", "CharacterCreationLite_createAtArcemu", False)
                 Dim newitemguid As Integer =
@@ -745,7 +744,7 @@ Namespace Framework.Transmission
                     newcharguid.ToString() & "', '0', '23', '" & newitemguid.ToString() & "', '6948')")
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the account -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
                     "CharacterCreationLite_createAtMangos", False, True)
             End Try
         End Sub

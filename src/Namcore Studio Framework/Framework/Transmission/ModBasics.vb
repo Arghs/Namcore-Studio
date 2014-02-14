@@ -27,9 +27,9 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class ModBasics
-        Public Sub SetCharacterGender(ByVal gender As Integer, ByVal setId As Integer, ByVal account As Account,
+        Public Sub SetCharacterGender(ByVal gender As Integer, ByVal player As Character,
                                       Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
+            If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting character gender to : " & gender.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterGender", True)
             Select Case GlobalVariables.targetCore
@@ -56,9 +56,9 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Public Sub SetCharacterRace(ByVal race As Integer, ByVal setId As Integer, ByVal account As Account,
-                                    Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
+        Public Sub SetCharacterRace(ByVal race As Integer, ByVal player As Character,
+                                      Optional charguid As Integer = 0)
+            If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting character race to : " & race.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterRace", True)
             Select Case GlobalVariables.targetCore
@@ -85,9 +85,9 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Public Sub SetCharacterLevel(ByVal level As Integer, ByVal setId As Integer, ByVal account As Account,
-                                     Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
+        Public Sub SetCharacterLevel(ByVal level As Integer, ByVal player As Character,
+                                      Optional charguid As Integer = 0)
+            If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting character level to : " & level.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterLevel", True)
             Select Case GlobalVariables.targetCore
@@ -114,9 +114,9 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Public Sub SetCharacterClass(ByVal cclass As Integer, ByVal setId As Integer, ByVal account As Account,
-                                     Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
+        Public Sub SetCharacterClass(ByVal cclass As Integer, ByVal player As Character,
+                                      Optional charguid As Integer = 0)
+            If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting character gender to : " & cclass.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterClass", True)
             Select Case GlobalVariables.targetCore
@@ -143,9 +143,9 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Public Sub SetCharacterGold(ByVal gold As Integer, ByVal setId As Integer, ByVal account As Account,
-                                    Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
+        Public Sub SetCharacterGold(ByVal gold As Integer, ByVal player As Character,
+                                      Optional charguid As Integer = 0)
+            If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting character gold to : " & gold.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterGold", True)
             Select Case GlobalVariables.targetCore

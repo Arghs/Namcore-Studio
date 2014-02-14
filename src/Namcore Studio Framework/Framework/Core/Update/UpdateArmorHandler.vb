@@ -52,7 +52,7 @@ Namespace Framework.Core.Update
                                         armorItm.Slot.ToString() & "' AND `" &
                                         GlobalVariables.sourceStructure.itmins_container_col(0) & "`='0'"))
                         If Not itmguid = 0 Then
-                            mEnchCreator.SetItemEnchantments(0, armorItm, itmguid, GlobalVariables.sourceCore,
+                            mEnchCreator.SetItemEnchantments(Nothing, armorItm, itmguid, GlobalVariables.sourceCore,
                                                              GlobalVariables.sourceStructure)
                         End If
                     Case "trinity", "mangos"
@@ -67,7 +67,7 @@ Namespace Framework.Core.Update
                                         armorItm.Slot.ToString() & "' AND `" &
                                         GlobalVariables.sourceStructure.invent_bag_col(0) & "`='0'"))
                         If Not itmguid = 0 Then
-                            mEnchCreator.SetItemEnchantments(0, armorItm, itmguid, GlobalVariables.sourceCore,
+                            mEnchCreator.SetItemEnchantments(Nothing, armorItm, itmguid, GlobalVariables.sourceCore,
                                                              GlobalVariables.sourceStructure)
                         End If
                 End Select
@@ -108,7 +108,7 @@ Namespace Framework.Core.Update
                         itm2Add.Count.ToString() & "', '0', '" &
                         itm2Add.Slot.ToString() & "' )")
                     Dim mEnchCreator As New EnchantmentsCreation
-                    mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
+                    mEnchCreator.SetItemEnchantments(Nothing, itm2Add, newItemGuid, GlobalVariables.targetCore,
                                                      GlobalVariables.sourceStructure)
                 Case "trinity"
                     Dim newItemGuid As Integer = TryInt(
@@ -153,7 +153,7 @@ Namespace Framework.Core.Update
                         "', '0', '" & itm2Add.Slot.ToString() & "', '" & newItemGuid.ToString() & "' )")
 
                     Dim mEnchCreator As New EnchantmentsCreation
-                    mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
+                    mEnchCreator.SetItemEnchantments(Nothing, itm2Add, newItemGuid, GlobalVariables.targetCore,
                                                      GlobalVariables.sourceStructure)
                     '// Optional TODO: Set equipment cache
                 Case "mangos"
@@ -209,7 +209,7 @@ Namespace Framework.Core.Update
                         newItemGuid.ToString() & "', '" &
                         itm2Add.Id.ToString() & "')")
                     Dim mEnchCreator As New EnchantmentsCreation
-                    mEnchCreator.SetItemEnchantments(0, itm2Add, newItemGuid, GlobalVariables.targetCore,
+                    mEnchCreator.SetItemEnchantments(Nothing, itm2Add, newItemGuid, GlobalVariables.targetCore,
                                                      GlobalVariables.sourceStructure)
                     '// Optional TODO: Set equipment cache
 

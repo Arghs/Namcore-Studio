@@ -125,7 +125,6 @@ Namespace Provider
         End Function
         Public Function GetItemSlotNameBySlotId(ByVal slotId As Integer) As String
             CheckInit()
-            If slotId = 0 Then Return Nothing
             Select Case slotId
                 Case 0
                     Return "head"

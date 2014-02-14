@@ -28,24 +28,29 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class QuestCreation
-        Public Sub SetCharacterQuests(ByVal setId As Integer, ByVal account As Account, Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
-            LogAppend("Setting quests for character: " & charguid.ToString() & " // setId is : " & setId.ToString(),
+        Public Sub SetCharacterQuests(ByVal player As Character, Optional charguid As Integer = 0)
+            If charguid = 0 Then charguid = player.Guid
+            LogAppend("Setting quests for character: " & charguid.ToString(),
                       "QuestCreation_SetCharacterQuests", True)
-            Select Case GlobalVariables.targetCore
-                Case "arcemu"
-                    CreateAtArcemu(charguid, setId, account)
-                Case "trinity"
-                    CreateAtTrinity(charguid, setId, account)
-                Case "trinitytbc"
+            Try
+                Select Case GlobalVariables.targetCore
+                    Case "arcemu"
+                        CreateAtArcemu(charguid, player)
+                    Case "trinity"
+                        CreateAtTrinity(charguid, player)
+                    Case "trinitytbc"
 
-                Case "mangos"
-                    CreateAtMangos(charguid, setId, account)
-            End Select
+                    Case "mangos"
+                        CreateAtMangos(charguid, player)
+                End Select
+            Catch ex As Exception
+                LogAppend("Exception occured: " & ex.ToString(),
+                  "QuestCreation_SetCharacterQuests", False, True)
+            End Try
+
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer,
-                                   ByVal account As Account)
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating at arcemu", "QuestCreation_createAtArcemu", False)
             Dim lastslot As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -55,7 +60,6 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.qst_slot_col(0) &
                     "=(SELECT MAX(" & GlobalVariables.targetStructure.qst_slot_col(0) & ") FROM " &
                     GlobalVariables.targetStructure.character_tbl(0) & ")", True)) + 1
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             If Not player.Quests Is Nothing Then
                 If Not player.Quests.Count = 0 Then
                     For Each qst As Quest In player.Quests
@@ -86,10 +90,8 @@ Namespace Framework.Transmission
                     characterguid.ToString() & "'", True)
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer,
-                                    ByVal account As Account)
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating at Trinity", "QuestCreation_createAtTrinity", False)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             If Not player.Quests Is Nothing Then
                 If Not player.Quests.Count = 0 Then
                     For Each qst As Quest In player.Quests
@@ -129,10 +131,8 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer,
-                                   ByVal account As Account)
+        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating at Mangos", "QuestCreation_createAtMangos", False)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             If Not player.Quests Is Nothing Then
                 If Not player.Quests.Count = 0 Then
                     For Each qst As Quest In player.Quests

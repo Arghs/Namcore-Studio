@@ -28,8 +28,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class ProfessionCreation
-        Public Sub AddCharacterProfessions(ByVal setId As Integer, ByVal account As Account)
-            Dim player As Character = GetCharacterSetBySetId(setId, Account)
+        Public Sub AddCharacterProfessions(ByVal player As Character)
             LogAppend("Adding character professions", "ProfessionCreation_AddCharacterProfessions")
             If Not player.Professions Is Nothing Then
                 For Each prof As Profession In player.Professions

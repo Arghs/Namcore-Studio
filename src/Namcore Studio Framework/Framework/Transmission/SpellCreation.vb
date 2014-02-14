@@ -21,7 +21,6 @@
 '*      /Description:   Includes functions for setting up the known spells of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
@@ -60,9 +59,8 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Public Sub AddCharacterSpells(ByVal targetSetId As Integer, ByVal accountSet As Account)
+        Public Sub AddCharacterSpells(ByVal player As Character)
             'TODO
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, accountSet)
             Select Case GlobalVariables.targetCore
                 Case "trinity", "mangos"
                     If Not player.Spells Is Nothing Then
