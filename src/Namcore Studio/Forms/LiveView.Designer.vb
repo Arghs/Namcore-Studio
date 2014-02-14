@@ -87,6 +87,7 @@
             Me.settings_pic = New System.Windows.Forms.PictureBox()
             Me.highlighter5 = New System.Windows.Forms.PictureBox()
             Me.highlighter4 = New System.Windows.Forms.PictureBox()
+            Me.refreshdb = New System.Windows.Forms.PictureBox()
             Me.Panel1.SuspendLayout()
             Me.accountcontext.SuspendLayout()
             Me.GroupBox1.SuspendLayout()
@@ -101,6 +102,7 @@
             CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.refreshdb, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'connect_bt
@@ -118,6 +120,7 @@
             '
             'Panel1
             '
+            Me.Panel1.Controls.Add(Me.refreshdb)
             Me.Panel1.Controls.Add(Me.chartotal)
             Me.Panel1.Controls.Add(Me.connect_bt)
             Me.Panel1.Controls.Add(Me.acctotal)
@@ -649,6 +652,19 @@
             Me.highlighter4.TabIndex = 173
             Me.highlighter4.TabStop = False
             '
+            'refreshdb
+            '
+            Me.refreshdb.BackColor = System.Drawing.Color.Transparent
+            Me.refreshdb.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
+            Me.refreshdb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.refreshdb.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.refreshdb.Location = New System.Drawing.Point(768, 14)
+            Me.refreshdb.Name = "refreshdb"
+            Me.refreshdb.Size = New System.Drawing.Size(30, 30)
+            Me.refreshdb.TabIndex = 232
+            Me.refreshdb.TabStop = False
+            Me.refreshdb.Visible = False
+            '
             'LiveView
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -686,6 +702,7 @@
             CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.refreshdb, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub
@@ -751,5 +768,6 @@
         Friend WithEvents settings_pic As System.Windows.Forms.PictureBox
         Friend WithEvents highlighter5 As System.Windows.Forms.PictureBox
         Friend WithEvents highlighter4 As System.Windows.Forms.PictureBox
+        Friend WithEvents refreshdb As System.Windows.Forms.PictureBox
     End Class
 End Namespace

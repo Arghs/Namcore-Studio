@@ -191,6 +191,7 @@ Namespace Forms
                     filter_acc.Visible = False
                 End If
             End With
+            refreshdb.Visible = True
             CloseProcessStatus()
         End Sub
 
@@ -1358,6 +1359,10 @@ Namespace Forms
 
         Private Sub about_pic_Click(sender As Object, e As EventArgs) Handles about_pic.Click
             About.Show()
+        End Sub
+
+        Private Sub refreshdb_Click(sender As Object, e As EventArgs) Handles refreshdb.Click
+            Loadaccountsandchars()
         End Sub
     End Class
 End Namespace
