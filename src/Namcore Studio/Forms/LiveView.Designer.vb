@@ -27,6 +27,7 @@
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LiveView))
             Me.connect_bt = New System.Windows.Forms.Button()
             Me.Panel1 = New System.Windows.Forms.Panel()
+            Me.refreshdb = New System.Windows.Forms.PictureBox()
             Me.chartotal = New System.Windows.Forms.Label()
             Me.acctotal = New System.Windows.Forms.Label()
             Me.uncheckall_char = New System.Windows.Forms.LinkLabel()
@@ -87,8 +88,8 @@
             Me.settings_pic = New System.Windows.Forms.PictureBox()
             Me.highlighter5 = New System.Windows.Forms.PictureBox()
             Me.highlighter4 = New System.Windows.Forms.PictureBox()
-            Me.refreshdb = New System.Windows.Forms.PictureBox()
             Me.Panel1.SuspendLayout()
+            CType(Me.refreshdb, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.accountcontext.SuspendLayout()
             Me.GroupBox1.SuspendLayout()
             Me.GroupBox2.SuspendLayout()
@@ -102,7 +103,6 @@
             CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.refreshdb, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'connect_bt
@@ -137,6 +137,19 @@
             Me.Panel1.Name = "Panel1"
             Me.Panel1.Size = New System.Drawing.Size(986, 469)
             Me.Panel1.TabIndex = 1
+            '
+            'refreshdb
+            '
+            Me.refreshdb.BackColor = System.Drawing.Color.Transparent
+            Me.refreshdb.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
+            Me.refreshdb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.refreshdb.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.refreshdb.Location = New System.Drawing.Point(768, 14)
+            Me.refreshdb.Name = "refreshdb"
+            Me.refreshdb.Size = New System.Drawing.Size(30, 30)
+            Me.refreshdb.TabIndex = 232
+            Me.refreshdb.TabStop = False
+            Me.refreshdb.Visible = False
             '
             'chartotal
             '
@@ -652,19 +665,6 @@
             Me.highlighter4.TabIndex = 173
             Me.highlighter4.TabStop = False
             '
-            'refreshdb
-            '
-            Me.refreshdb.BackColor = System.Drawing.Color.Transparent
-            Me.refreshdb.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
-            Me.refreshdb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.refreshdb.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.refreshdb.Location = New System.Drawing.Point(768, 14)
-            Me.refreshdb.Name = "refreshdb"
-            Me.refreshdb.Size = New System.Drawing.Size(30, 30)
-            Me.refreshdb.TabIndex = 232
-            Me.refreshdb.TabStop = False
-            Me.refreshdb.Visible = False
-            '
             'LiveView
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -688,6 +688,7 @@
             Me.Text = "liveview"
             Me.Panel1.ResumeLayout(False)
             Me.Panel1.PerformLayout()
+            CType(Me.refreshdb, System.ComponentModel.ISupportInitialize).EndInit()
             Me.accountcontext.ResumeLayout(False)
             Me.GroupBox1.ResumeLayout(False)
             Me.GroupBox2.ResumeLayout(False)
@@ -702,7 +703,6 @@
             CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.refreshdb, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub

@@ -25,7 +25,6 @@
 Imports System.Linq
 Imports System.IO
 Imports NamCore_Studio.Forms.Character
-Imports NCFramework.Framework.Forms
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Core
@@ -46,10 +45,12 @@ Namespace Forms
         Dim _targetAcccharTable As DataTable
         Dim _stretching As Boolean = False
         Dim _moving As Boolean = False
+        Dim _transmissionBlocked As Boolean = False
+
         Private _ptMouseDownLocation As Point
         Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
         Public Event OnCoreLoaded As EventHandler(Of CompletedEventArgs)
-
+        Public Event OnTransmissionCompleted As EventHandler(Of CompletedEventArgs)
         Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
 
         Dim _filePath As String = ""
@@ -57,6 +58,10 @@ Namespace Forms
 
         Protected Overridable Sub OnCoreCompleted(ByVal e As CompletedEventArgs)
             RaiseEvent OnCoreLoaded(Me, e)
+        End Sub
+
+        Protected Overridable Sub OnTransmissionEnded(ByVal e As CompletedEventArgs)
+            RaiseEvent OnTransmissionCompleted(Me, e)
         End Sub
 
         Public Structure Data2Thread
@@ -347,7 +352,8 @@ Namespace Forms
                         .Tag = newAccount
                     End With
                     target_accounts_tree.Nodes.Add(newnode)
-                Else
+                End If
+                If Not IsDBNull(rowitem(2)) Or Not IsDBNull(rowitem(3)) Then
                     Dim node As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)(0)
                     Dim subNode As New TreeNode
                     With subNode
@@ -661,14 +667,18 @@ Namespace Forms
         End Sub
 
         Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
-            'Please remember that an account which is loaded from a database needs to be completely stored temporarily
-            Dim accview As New AccountOverview
-            Dim accTag As Account = accountview.SelectedItems(0).Tag
-            If GlobalVariables.armoryMode = False Then
-                Userwait.Show()
-                accview.prepare_interface(GetAccountSetBySetId(accTag.SetIndex))
-                Userwait.Close()
-                accview.Show()
+            '// Please remember that an account which is loaded from a database needs to be completely stored temporarily
+            If _transmissionBlocked Then
+                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical, "Warning")
+            Else
+                Dim accview As New AccountOverview
+                Dim accTag As Account = accountview.SelectedItems(0).Tag
+                If GlobalVariables.armoryMode = False Then
+                    Userwait.Show()
+                    accview.prepare_interface(GetAccountSetBySetId(accTag.SetIndex))
+                    Userwait.Close()
+                    accview.Show()
+                End If
             End If
         End Sub
 
@@ -789,7 +799,7 @@ Namespace Forms
                 Dim tnNew As TreeNode
 
                 Dim lstViewColl As ListView.SelectedListViewItemCollection =
-                        CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)),
+                        CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)), 
                               ListView.SelectedListViewItemCollection)
                 For Each lvItem As ListViewItem In lstViewColl
                     tnNew = New TreeNode(lvItem.Text)
@@ -797,36 +807,26 @@ Namespace Forms
                     If Not destNode Is Nothing Then
                         destNode.Nodes.Insert(destNode.Index + 1, tnNew)
                         destNode.Expand()
-                        Dim tempAccList As New ArrayList
-                        Dim tmpAccount(2) As String
-                        tmpAccount(1) = destNode.Text
-                        tempAccList.Add(tmpAccount)
-                        Dim newchar As New NCFramework.Framework.Modules.Character()
-                        newchar.Name = lvItem.SubItems(2).Text
-                        newchar.Guid = TryInt(lvItem.SubItems(0).Text)
+                        Dim player As NCFramework.Framework.Modules.Character = lvItem.Tag
+                        player.TargetAccount = destNode.Tag
                         Dim nodes As New List(Of String)
                         For Each parentNode As TreeNode In target_accounts_tree.Nodes
                             nodes.AddRange(GetChildren(parentNode))
                         Next
                         With tnNew
-                            .Text = newchar.Name
-                            If Not nodes.Contains("'" & newchar.Name & "'") Then
+                            .Text = player.Name
+                            If Not nodes.Contains("'" & player.Name & "'") Then
                                 .BackColor = Color.Green
                             Else
                                 .BackColor = Color.Yellow
                             End If
                         End With
-                        GlobalVariables.charactersToCreate.Add(
-                            "{AccountId}" & destNode.Name & "{/AccountId}{setId}" & lvItem.Tag.setIndex.ToString &
-                            "{/setId}{AccountSet}" & lvItem.Tag.AccountSet & "{/AccountSet}")
-
-                        ' Remove this line if you want to only copy items
-                        ' from ListView and not move them
-                        lvItem.Remove()
-
+                        GlobalVariables.charactersToCreate.Add(player)
                     End If
-
                 Next lvItem
+                Transfer_bt.Enabled = True
+                info1_lbl.Visible = True
+                info2_lbl.Visible = True
             End If
         End Sub
 
@@ -926,7 +926,7 @@ Namespace Forms
             Handles CheckedAccountsToolStripMenuItem.Click
             Dim temparray As List(Of Account) =
                     (From checkedAccount As ListViewItem In accountview.CheckedItems Select acc = checkedAccount.Tag).
-                    Cast (Of Account)().ToList()
+                    Cast(Of Account)().ToList()
             TransAccounts(temparray)
         End Sub
 
@@ -1009,6 +1009,8 @@ Namespace Forms
                 Next
             Next
             Transfer_bt.Enabled = True
+            info1_lbl.Visible = True
+            info2_lbl.Visible = True
         End Sub
 
         Public Sub transChars_allacc()
@@ -1033,6 +1035,8 @@ Namespace Forms
                 Next
             Next
             Transfer_bt.Enabled = True
+            info1_lbl.Visible = True
+            info2_lbl.Visible = True
         End Sub
 
         Function GetChildren(parentNode As TreeNode) As List(Of String)
@@ -1040,22 +1044,21 @@ Namespace Forms
         End Function
 
         Private Sub Transfer_bt_Click(sender As Object, e As EventArgs) Handles Transfer_bt.Click
-            Dim stat As New ProcessStatus
-            Try
-                For Each currentForm As Form In _
-                    From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "Process_status"
-                    stat = DirectCast(currentForm, ProcessStatus)
-                Next
-                If Not stat Is Nothing Then
-                    stat.Close()
-                End If
-            Catch ex As Exception
+            If _transmissionBlocked = False Then
+                _transmissionBlocked = True
+                NewProcessStatus()
+                Dim trd As New Thread(AddressOf StartTransfer)
+                trd.Start()
+            Else
+                MsgBox(ResourceHandler.GetUserMessage("errTransmissionRunning"), MsgBoxStyle.Critical, "Error")
+            End If
+        End Sub
 
-            End Try
-            GlobalVariables.procStatus = New ProcessStatus
-            GlobalVariables.procStatus.Show()
+        Private Sub StartTransfer()
             Dim mtransfer As New TransmissionHandler
             mtransfer.HandleMigrationRequests(GlobalVariables.armoryMode)
+            ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnTransmissionEnded),
+                                 New CompletedEventArgs())
         End Sub
 
         Private Sub SelectedCharacterToolStripMenuItem1_Click(sender As Object, e As EventArgs) _
@@ -1139,17 +1142,21 @@ Namespace Forms
         End Sub
 
         Private Sub EditToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem1.Click
-            'Please remember that a character which is loaded from a database needs to be completely stored temporarily
-            NewProcessStatus()
-            Dim charview As CharacterOverview = New CharacterOverview
-            Dim player As NCFramework.Framework.Modules.Character = characterview.SelectedItems(0).Tag
-            If GlobalVariables.armoryMode = True Then
-                Userwait.Show()
-                charview.prepare_interface(GetAccountSetBySetId(player.AccountSet), player.SetIndex)
+            '// Please remember that a character which is loaded from a database needs to be completely stored temporarily
+            If _transmissionBlocked Then
+                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical, "Warning")
             Else
-                'todo load info
-                Userwait.Show()
-                charview.prepare_interface(GetAccountSetBySetId(player.AccountSet), player.SetIndex)
+                NewProcessStatus()
+                Dim charview As CharacterOverview = New CharacterOverview
+                Dim player As NCFramework.Framework.Modules.Character = characterview.SelectedItems(0).Tag
+                If GlobalVariables.armoryMode = True Then
+                    Userwait.Show()
+                    charview.prepare_interface(GetAccountSetBySetId(player.AccountSet), player.SetIndex)
+                Else
+                    'todo load info
+                    Userwait.Show()
+                    charview.prepare_interface(GetAccountSetBySetId(player.AccountSet), player.SetIndex)
+                End If
             End If
         End Sub
 
@@ -1163,6 +1170,10 @@ Namespace Forms
         End Sub
 
         Private Sub back_bt_Click(sender As Object, e As EventArgs) Handles back_bt.Click
+            If _transmissionBlocked Then
+                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical, "Warning")
+                Exit Sub
+            End If
             GlobalVariables.lastregion = "liveview"
             Close()
             Main.Show()
@@ -1180,10 +1191,6 @@ Namespace Forms
                     _ptMouseDownLocation = e.Location
                 End If
             End If
-        End Sub
-
-        Private Sub Panel1_MouseEnter(sender As Object, e As EventArgs) Handles Panel1.MouseEnter
-            Cursor = Cursors.Default
         End Sub
 
         Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
@@ -1204,9 +1211,9 @@ Namespace Forms
                     Size = New Size(e.Location.X, Size.Height)
                     Application.DoEvents()
                     mainpanel.Size = New Size(Size.Width - 10, mainpanel.Size.Height)
-                    Dim tmpwidth As Integer = (Size.Width/1920)*9
+                    Dim tmpwidth As Integer = (Size.Width / 1920) * 9
                     header.Location = New Point(tmpwidth, header.Location.Y)
-                    header.Size = New Size(Size.Width - (2*tmpwidth), header.Size.Height)
+                    header.Size = New Size(Size.Width - (2 * tmpwidth), header.Size.Height)
                     closepanel.Location = New Point(header.Size.Width - 125, closepanel.Location.Y)
                     Application.DoEvents()
 
@@ -1325,6 +1332,11 @@ Namespace Forms
             MsgBox(ResourceHandler.GetUserMessage("templateFileCreated"), MsgBoxStyle.Information, "Info")
         End Sub
 
+        Private Sub TransmissionCompleted() Handles Me.OnTransmissionCompleted
+            Transfer_bt.Enabled = False
+            _transmissionBlocked = False
+        End Sub
+
         Private Sub highlighter4_Click(sender As Object, e As EventArgs) Handles highlighter4.Click
             back_bt.PerformClick()
         End Sub
@@ -1343,6 +1355,12 @@ Namespace Forms
 
         Private Sub refreshdb_Click(sender As Object, e As EventArgs) Handles refreshdb.Click
             Loadaccountsandchars()
+        End Sub
+
+        Private Sub GroupBox2_MouseEnter(sender As Object, e As EventArgs) Handles GroupBox2.MouseEnter, target_accounts_tree.MouseEnter, characterview.MouseEnter, Panel1.MouseEnter, header.MouseEnter
+            If Not _stretching And Not _moving Then
+                Cursor = Cursors.Default
+            End If
         End Sub
     End Class
 End Namespace

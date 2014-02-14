@@ -663,4 +663,10 @@
   <data name="stackSizeLimitReached" xml:space="preserve">
     <value>The maximum stack size of this item is:</value>
   </data>
+  <data name="errTransmissionRunning" xml:space="preserve">
+    <value>You cannot start more than one transmission at the same time.</value>
+  </data>
+  <data name="errWaitTillTransmissionCompleted" xml:space="preserve">
+    <value>A transmission is running! Please wait until it is completed!</value>
+  </data>
 </root>

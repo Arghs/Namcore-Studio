@@ -1214,9 +1214,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub savechanges_bt_Click(sender As Object, e As EventArgs) Handles savechanges_bt.Click
-            If GlobalVariables.currentEditedCharSet Is Nothing Then
-
-            Else
+            If Not GlobalVariables.currentEditedCharSet Is Nothing Then
                 If GlobalVariables.editedCharSets Is Nothing Then
                     GlobalVariables.editedCharSets = New List(Of NCFramework.Framework.Modules.Character)()
                 End If
@@ -1242,6 +1240,11 @@ Namespace Forms.Character
                                     _currentAccount)
                     GlobalVariables.currentEditedCharSet = Nothing
                     Userwait.Close()
+                ElseIf GlobalVariables.armoryMode = True Then
+                    GlobalVariables.currentViewedCharSet = GlobalVariables.currentEditedCharSet
+                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentViewedCharSet,
+                                   _currentAccount)
+                    GlobalVariables.currentEditedCharSet = Nothing
                 End If
             End If
         End Sub

@@ -79,6 +79,10 @@ Namespace Framework.Transmission
             LogAppend("All migration requests handled", "TransmissionHandler_HandleMigrationRequests", True)
             CloseProcessStatus()
             GlobalVariables.forceTargetConnectionUsage = False
+            If GlobalVariables.accountsToCreate IsNot Nothing Then GlobalVariables.accountsToCreate.Clear()
+            If GlobalVariables.charactersToCreate IsNot Nothing Then GlobalVariables.charactersToCreate.Clear()
+            If GlobalVariables.trans_acclist IsNot Nothing Then GlobalVariables.trans_acclist.Clear()
+            If GlobalVariables.trans_charlist IsNot Nothing Then GlobalVariables.trans_charlist.Clear()
         End Sub
     End Class
 End Namespace
