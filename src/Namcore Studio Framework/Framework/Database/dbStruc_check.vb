@@ -157,9 +157,9 @@ Namespace Framework.Database
                     dbstruc.homebind_guid_col = {"guid"}
                     dbstruc.homebind_map_col = {"mapId"}
                     dbstruc.homebind_zone_col = {"zoneId"}
-                    dbstruc.homebind_posx_col = {"posX"}
-                    dbstruc.homebind_posy_col = {"posY"}
-                    dbstruc.homebind_posz_col = {"posZ"}
+                    dbstruc.homebind_posx_col = {"position_x", "posX"}
+                    dbstruc.homebind_posy_col = {"position_y", "posY"}
+                    dbstruc.homebind_posz_col = {"position_z", "posZ"}
                     '_character_inventory
                     dbstruc.invent_guid_col = {"guid"}
                     dbstruc.invent_bag_col = {"bag"}
@@ -492,12 +492,12 @@ Namespace Framework.Database
         End Sub
 
         Private Sub tbl_check(ByVal tablename() As String)
-            If Not _tmpConn.State = ConnectionState.Open Then
-                _tmpConn.Open()
-            End If
             Dim i As Integer = tablename.Length
             Dim counter As Integer = 0
             Do
+                If Not _tmpConn.State = ConnectionState.Open Then
+                    _tmpConn.Open()
+                End If
                 Dim myAdapter As New MySqlDataAdapter
                 Dim sqlquery = ("SELECT * FROM " & tablename(counter) & " LIMIT 1")
                 Dim myCommand As New MySqlCommand()
@@ -520,7 +520,7 @@ Namespace Framework.Database
                     Select Case i
                         Case 1, counter + 1
                             LogAppend("Table " & tablename(counter) & " not found! -> No alternatives!",
-                                      "dbStruc_check_tbl_check")
+                                      "dbStruc_check_tbl_check", True, True)
                             _dbReport = _dbReport & "// Table " & tablename(counter) & " does not exist!"
                     End Select
                 End Try
@@ -533,12 +533,12 @@ Namespace Framework.Database
         End Sub
 
         Private Sub col_check(ByRef columnname() As String, ByVal tablename() As String)
-            If Not _tmpConn.State = ConnectionState.Open Then
-                _tmpConn.Open()
-            End If
             Dim i As Integer = columnname.Length
             Dim counter As Integer = 0
             Do
+                If Not _tmpConn.State = ConnectionState.Open Then
+                    _tmpConn.Open()
+                End If
                 Dim myAdapter As New MySqlDataAdapter
                 Dim sqlquery = ("SELECT " & columnname(counter) & " FROM " & tablename(0))
                 Dim myCommand As New MySqlCommand()
@@ -565,7 +565,7 @@ Namespace Framework.Database
                             LogAppend(
                                 "Column " & columnname(counter) & " not found in " & tablename(0) &
                                 "! -> No alternatives!",
-                                "dbStruc_check_col_check")
+                                "dbStruc_check_col_check", True, True)
                             _dbReport = _dbReport & "// Column " & columnname(counter) & " does not exist in " &
                                         tablename(0) &
                                         "!"
@@ -580,12 +580,12 @@ Namespace Framework.Database
         End Sub
 
         Private Sub tbl_check_realm(ByVal tablename() As String)
-            If Not _tmpConnRealm.State = ConnectionState.Open Then
-                _tmpConnRealm.Open()
-            End If
             Dim i As Integer = tablename.Length
             Dim counter As Integer = 0
             Do
+                If Not _tmpConnRealm.State = ConnectionState.Open Then
+                    _tmpConnRealm.Open()
+                End If
                 Dim myAdapter As New MySqlDataAdapter
                 Dim sqlquery = ("SELECT * FROM " & tablename(counter) & " LIMIT 1")
                 Dim myCommand As New MySqlCommand()
@@ -608,7 +608,7 @@ Namespace Framework.Database
                     Select Case i
                         Case 1, counter + 1
                             LogAppend("Table " & tablename(counter) & " not found! -> No alternatives!",
-                                      "dbStruc_check_tbl_check")
+                                      "dbStruc_check_tbl_check", True, True)
                             _dbReport = _dbReport & "// Table " & tablename(counter) & " does not exist!"
                     End Select
                 End Try
@@ -621,12 +621,12 @@ Namespace Framework.Database
         End Sub
 
         Private Sub col_check_realm(ByRef columnname() As String, ByVal tablename() As String)
-            If Not _tmpConnRealm.State = ConnectionState.Open Then
-                _tmpConnRealm.Open()
-            End If
             Dim i As Integer = columnname.Length
             Dim counter As Integer = 0
             Do
+                If Not _tmpConnRealm.State = ConnectionState.Open Then
+                    _tmpConnRealm.Open()
+                End If
                 Dim myAdapter As New MySqlDataAdapter
                 Dim sqlquery = ("SELECT " & columnname(counter) & " FROM " & tablename(0))
                 Dim myCommand As New MySqlCommand()
@@ -653,7 +653,7 @@ Namespace Framework.Database
                             LogAppend(
                                 "Column " & columnname(counter) & " not found in " & tablename(0) &
                                 "! -> No alternatives!",
-                                "dbStruc_check_col_check")
+                                "dbStruc_check_col_check", True, True)
                             _dbReport = _dbReport & "// Column " & columnname(counter) & " does not exist in " &
                                         tablename(0) &
                                         "!"

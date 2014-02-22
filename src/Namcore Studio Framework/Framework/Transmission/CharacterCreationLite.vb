@@ -29,21 +29,24 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class CharacterCreationLite
-        Public Sub CreateNewLiteCharacter(ByVal charname As String, ByVal accountId As Integer, ByVal player As Character,
-                                          Optional forceNameChange As Boolean = False)
+        Public Function CreateNewLiteCharacter(ByVal charname As String, ByVal accountId As Integer,
+                                               ByVal player As Character,
+                                               Optional forceNameChange As Boolean = False) As Boolean
             LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString,
                       "CharacterCreationLite_CreateNewLiteCharacter", True)
             Select Case GlobalVariables.targetCore
                 Case "arcemu"
-                    CreateAtArcemu(charname, accountId.ToString, player, forceNameChange)
+                    Return CreateAtArcemu(charname, accountId.ToString, player, forceNameChange)
                 Case "trinity"
-                    CreateAtTrinity(charname, accountId.ToString, player, forceNameChange)
+                    Return CreateAtTrinity(charname, accountId.ToString, player, forceNameChange)
                 Case "trinitytbc"
-
+                    Return False
                 Case "mangos"
-                    CreateAtMangos(charname, accountId.ToString, player, forceNameChange)
+                    Return CreateAtMangos(charname, accountId.ToString, player, forceNameChange)
+                Case Else
+                    Return False
             End Select
-        End Sub
+        End Function
 
         Public Function CharacterExist(ByVal charname As String) As Boolean
             Select Case GlobalVariables.targetCore
@@ -84,8 +87,8 @@ Namespace Framework.Transmission
             End Select
         End Function
 
-        Private Sub CreateAtArcemu(ByVal charactername As String, ByVal accId As Integer, ByRef player As Character,
-                                   ByVal nameChange As Boolean)
+        Private Function CreateAtArcemu(ByVal charactername As String, ByVal accId As Integer, ByRef player As Character,
+                                        ByVal nameChange As Boolean) As Boolean
             LogAppend("Creating at arcemu", "CharacterCreationLite_createAtArcemu", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -544,15 +547,20 @@ Namespace Framework.Transmission
                 runSQLCommand_characters_string(
                     "INSERT INTO `tutorials` ( playerId ) VALUES ( " & accId.ToString() & " )",
                     True)
+                Return True
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " &
+                    ex.ToString(),
                     "CharacterCreationLite_createAtArcemu", False, True)
+                MsgBox(ResourceHandler.GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
+                Return False
             End Try
-        End Sub
+        End Function
 
-        Private Sub CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
-                                    ByVal nameChange As Boolean)
+        Private Function CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer,
+                                         ByRef player As Character,
+                                         ByVal nameChange As Boolean) As Boolean
             LogAppend("Creating at Trinity", "CharacterCreationLite_createAtTrinity", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -639,15 +647,19 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.invent_slot_col(0) & "`, `" &
                     GlobalVariables.targetStructure.invent_item_col(0) & "` ) VALUES ( '" & newcharguid.ToString() &
                     "', '0', '23', '" & newitemguid.ToString() & "')", True)
+                Return True
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " &
+                    ex.ToString(),
                     "CharacterCreationLite_createAtTrinity", False, True)
+                MsgBox(ResourceHandler.GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
+                Return False
             End Try
-        End Sub
+        End Function
 
-        Private Sub CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
-                                   ByVal nameChange As Boolean)
+        Private Function CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
+                                        ByVal nameChange As Boolean) As Boolean
             LogAppend("Creating at Mangos", "CharacterCreationLite_createAtMangos", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -742,11 +754,15 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.invent_item_col(0) & ", " &
                     GlobalVariables.targetStructure.invent_item_template_col(0) & " ) VALUES ( '" &
                     newcharguid.ToString() & "', '0', '23', '" & newitemguid.ToString() & "', '6948')")
+                Return True
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " &
+                    ex.ToString(),
                     "CharacterCreationLite_createAtMangos", False, True)
+                MsgBox(ResourceHandler.GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
+                Return False
             End Try
-        End Sub
+        End Function
     End Class
 End Namespace

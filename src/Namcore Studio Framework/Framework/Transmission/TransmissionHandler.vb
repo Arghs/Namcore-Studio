@@ -20,6 +20,7 @@
 '*      /Filename:      TransmissionHandler
 '*      /Description:   Handles account/character migration requests
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Core
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
@@ -32,7 +33,6 @@ Namespace Framework.Transmission
                 GlobalVariables.TargetConnection.Open()
             If GlobalVariables.TargetConnection_Realm.State = ConnectionState.Closed Then _
                 GlobalVariables.TargetConnection_Realm.Open()
-            GlobalVariables.forceTargetConnectionUsage = True
             '// Creating new Accounts
             ' ReSharper disable RedundantAssignment
             For Each account As Account In GlobalVariables.accountsToCreate
@@ -49,11 +49,17 @@ Namespace Framework.Transmission
                 Dim charname As String = playerCharacter.Name
                 Dim mCharCreationLite As New CharacterCreationLite
                 Dim mCharCreationAdvanced As New CharacterCreationAdvanced
+                Dim mCharLoading As New CoreHandler
+                If playerCharacter.Loaded = False Then
+                    GlobalVariables.forceTargetConnectionUsage = False
+                    mCharLoading.HandleLoadingRequests(GetAccountSetBySetId(playerCharacter.AccountSet), playerCharacter.SetIndex)
+                End If
+                GlobalVariables.forceTargetConnectionUsage = True
                 If lite Then
-                    mCharCreationLite.CreateNewLiteCharacter(charname, accountId, playerCharacter, renamePending)
+                    If mCharCreationLite.CreateNewLiteCharacter(charname, accountId, playerCharacter, renamePending) = False Then Continue For
                 Else
-                    mCharCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, playerCharacter,
-                                                                     renamePending)
+                    If mCharCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, playerCharacter,
+                                                                     renamePending) = False Then Continue For
                 End If
                 playerCharacter.Guid = playerCharacter.CreatedGuid
                 Dim mCharArmorCreation As New ArmorCreation

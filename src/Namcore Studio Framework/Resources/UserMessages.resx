@@ -669,4 +669,7 @@
   <data name="errWaitTillTransmissionCompleted" xml:space="preserve">
     <value>A transmission is running! Please wait until it is completed!</value>
   </data>
+  <data name="errCharacterCreation" xml:space="preserve">
+    <value>Fatal error during character creation! See log for further info.</value>
+  </data>
 </root>
