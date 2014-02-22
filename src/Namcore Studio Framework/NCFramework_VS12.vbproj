@@ -127,6 +127,7 @@
     <Compile Include="Framework\Core\Update\UpdateGlyphsHandler.vb" />
     <Compile Include="Framework\Core\Update\UpdateArmorHandler.vb" />
     <Compile Include="Framework\Core\Update\UpdateCharacterHandler.vb" />
+    <Compile Include="Framework\Transmission\ActionCreation.vb" />
     <Compile Include="Framework\Transmission\ReputationCreation.vb" />
     <Compile Include="Framework\Transmission\ModBasics.vb" />
     <Compile Include="Framework\Transmission\QuestCreation.vb" />
@@ -207,7 +208,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_DetectChanges="True" BuildVersion_AssemblyInfoFilename="My Project\AssemblyInfo.vb" BuildVersion_UseUniversalClock="True" />
+      <UserProperties BuildVersion_UseUniversalClock="True" BuildVersion_AssemblyInfoFilename="My Project\AssemblyInfo.vb" BuildVersion_DetectChanges="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
