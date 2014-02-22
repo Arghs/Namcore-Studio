@@ -131,25 +131,6 @@ Namespace Framework.Transmission
                             "='" & newcharguid.ToString & "'", True)
                     End If
                 End If
-                'Creating hearthstone
-                LogAppend("Creating character hearthstone", "CharacterCreationAdvanced_createAtArcemu", False)
-                Dim newitemguid As Integer =
-                        (TryInt(
-                            runSQLCommand_characters_string(
-                                "SELECT " & GlobalVariables.targetStructure.char_guid_col(0) & " FROM " &
-                                GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.itmins_guid_col(0) &
-                                "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                GlobalVariables.targetStructure.item_instance_tbl(0) & ")", True)) + 5)
-                runSQLCommand_characters_string(
-                    "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
-                    GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
-                    GlobalVariables.targetStructure.itmins_guid_col(0) &
-                    ", " & GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", flags, " &
-                    GlobalVariables.targetStructure.itmins_container_col(0) & ", " &
-                    GlobalVariables.targetStructure.itmins_slot_col(0) &
-                    " ) VALUES ( '" & newcharguid.ToString() &
-                    "', '" & newitemguid.ToString() & "', '6948', '1', '-1', '23' )", True)
                 AddSpells("6603,", player)
                 Dim tempinfo As String = player.CustomFaction.ToString
                 If Not tempinfo = "" Then _
@@ -209,16 +190,16 @@ Namespace Framework.Transmission
             Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.character_tbl(0) & " ( `" &
                                       GlobalVariables.targetStructure.char_guid_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_accountId_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_name_col(0) &
-                                      "`, `" & GlobalVariables.targetStructure.char_race_col(0) & "`, `" &
+                                      GlobalVariables.targetStructure.char_name_col(0) & "`, `" &
+                                      GlobalVariables.targetStructure.char_race_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_class_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_gender_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_level_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_xp_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_gold_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_playerBytes_col(0) & "`, `" &
-                                      GlobalVariables.targetStructure.char_playerBytes2_col(0) & "`, " &
-                                      "`" & GlobalVariables.targetStructure.char_playerFlags_col(0) & "`, `" &
+                                      GlobalVariables.targetStructure.char_playerBytes2_col(0) & "`, `" &
+                                      GlobalVariables.targetStructure.char_playerFlags_col(0) & "`, `" &
                                       GlobalVariables.targetStructure.char_posX_col(0) & "`, " &
                                       GlobalVariables.targetStructure.char_posY_col(0) & ", " &
                                       GlobalVariables.targetStructure.char_posZ_col(0) & ", " &
@@ -233,7 +214,7 @@ Namespace Framework.Transmission
                                       GlobalVariables.targetStructure.char_atlogin_col(0) & ", " &
                                       GlobalVariables.targetStructure.char_zone_col(0) & ", " &
                                       GlobalVariables.targetStructure.char_chosenTitle_col(0) & ", " &
-                                      "" & GlobalVariables.targetStructure.char_knownCurrencies_col(0) & ", " &
+                                      GlobalVariables.targetStructure.char_knownCurrencies_col(0) & ", " &
                                       GlobalVariables.targetStructure.char_watchedFaction_col(0) & ", `" &
                                       GlobalVariables.targetStructure.char_health_col(0) & "`, " &
                                       GlobalVariables.targetStructure.char_speccount_col(0) & ", " &
@@ -293,34 +274,6 @@ Namespace Framework.Transmission
                             newcharguid.ToString & "'", True)
                     End If
                 End If
-                'Creating hearthstone
-                LogAppend("Creating character hearthstone", "CharacterCreationAdvanced_createAtArcemu", False)
-                Dim newitemguid As Integer =
-                        (TryInt(
-                            runSQLCommand_characters_string(
-                                "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
-                                GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.itmins_guid_col(0) & "=(SELECT MAX(" &
-                                GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                GlobalVariables.targetStructure.item_instance_tbl(0) & ")", True)) + 1)
-                runSQLCommand_characters_string(
-                    "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
-                    GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
-                    GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", " &
-                    GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
-                    GlobalVariables.targetStructure.itmins_count_col(0) & ", charges, " &
-                    GlobalVariables.targetStructure.itmins_enchantments_col(0) & ", " &
-                    GlobalVariables.targetStructure.itmins_durability_col(0) & " ) VALUES ( '" & newitemguid.ToString &
-                    "', '6948', '" & accid.ToString() & "', '1', '0 0 0 0 0 ', '" & newitemguid.ToString() &
-                    " 1191182336 3 6948 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )",
-                    True)
-                runSQLCommand_characters_string(
-                    "INSERT INTO " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " ( " &
-                    GlobalVariables.targetStructure.invent_guid_col(0) & ", " &
-                    GlobalVariables.targetStructure.invent_bag_col(0) & ", `" &
-                    GlobalVariables.targetStructure.invent_slot_col(0) & "`, `" &
-                    GlobalVariables.targetStructure.invent_item_col(0) & "` ) VALUES ( '" & newcharguid.ToString() &
-                    "', '0', '23', '" & newitemguid.ToString() & "')", True)
                 'Set home
                 LogAppend("Setting character homebind", "CharacterCreationAdvanced_createAtTrinity", False)
                 Dim tmpstring As String = player.HomeBind
@@ -443,45 +396,6 @@ Namespace Framework.Transmission
                             newcharguid.ToString & "'", True)
                     End If
                 End If
-                'Creating hearthstone
-                LogAppend("Creating character hearthstone", "CharacterCreationAdvanced_createAtArcemu", False)
-                Dim newitemguid As Integer =
-                        (TryInt(
-                            runSQLCommand_characters_string(
-                                "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
-                                GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.itmins_guid_col(0) & "=(SELECT MAX(" &
-                                GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                GlobalVariables.targetStructure.item_instance_tbl(0) & "))", True)) + 1)
-                If GlobalVariables.targetExpansion >= 3 Then
-                    runSQLCommand_characters_string(
-                        "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
-                        GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
-                        GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
-                        GlobalVariables.targetStructure.itmins_data_col(0) & " ) VALUES ( '" & newitemguid.ToString() &
-                        "', '" & newcharguid.ToString() & "', '" & newitemguid.ToString() &
-                        " 1191182336 3 6948 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ' )",
-                        True)
-                Else
-                    'MaNGOS < 3.3 Core: watch data length
-                    runSQLCommand_characters_string(
-                        "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
-                        GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
-                        GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
-                        GlobalVariables.targetStructure.itmins_data_col(0) &
-                        " ) VALUES ( '" & newitemguid.ToString() & "', '" & accid.ToString() & "', '" &
-                        newitemguid.ToString() &
-                        " 1191182336 3 6948 1065353216 0 8 0 8 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ' )",
-                        True)
-                End If
-                runSQLCommand_characters_string(
-                    "INSERT INTO " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " ( " &
-                    GlobalVariables.targetStructure.invent_guid_col(0) & ", " &
-                    GlobalVariables.targetStructure.invent_bag_col(0) & ", " &
-                    GlobalVariables.targetStructure.invent_slot_col(0) & ", " &
-                    GlobalVariables.targetStructure.invent_item_col(0) & ", " &
-                    GlobalVariables.targetStructure.invent_item_template_col(0) &
-                    " ) VALUES ( '" & accid.ToString() & "', '0', '23', '" & newitemguid.ToString() & "', '6948')")
                 'Set home
                 LogAppend("Setting character homebind", "CharacterCreationAdvanced_createAtMangos", False)
                 Dim tmpstring As String = player.HomeBind

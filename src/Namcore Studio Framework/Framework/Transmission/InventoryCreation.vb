@@ -21,9 +21,9 @@
 '*      /Description:   Includes functions for adding the items of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
@@ -46,7 +46,7 @@ Namespace Framework.Transmission
                 End Select
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(),
-                    "InventoryCreation_AddCharacterInventory", False, True)
+                          "InventoryCreation_AddCharacterInventory", False, True)
             End Try
         End Sub
 
@@ -57,37 +57,46 @@ Namespace Framework.Transmission
             bagexist.Clear()
             If Not player.InventoryZeroItems Is Nothing Then
                 For Each inventoryItem As Item In player.InventoryZeroItems
-                    '// Just for bags
+                    Dim newguid As String =
+                            ((TryInt(
+                                runSQLCommand_characters_string(
+                                    "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
+                                    GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
+                                    GlobalVariables.targetStructure.itmins_guid_col(0) &
+                                    "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
+                                    GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
+
+                    runSQLCommand_characters_string(
+                        "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
+                        GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_container_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_slot_col(0) &
+                        " ) VALUES ( '" &
+                        newguid & "', '" &
+                        characterguid.ToString() & "', '" &
+                        inventoryItem.Id.ToString() & "', '" &
+                        inventoryItem.Count.ToString() & "', '" &
+                        inventoryItem.Container.ToString() & "', '" &
+                        inventoryItem.Slot.ToString() & "' )")
                     Select Case inventoryItem.Slot
                         Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
-                            'Item is a bag and has to be registered
-                            Dim newguid As String =
-                                    ((TryInt(
-                                        runSQLCommand_characters_string(
-                                            "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
-                                            GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                            GlobalVariables.targetStructure.itmins_guid_col(0) &
-                                            "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                            GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
-
-                            runSQLCommand_characters_string(
-                                "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
-                                GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_container_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_slot_col(0) &
-                                " ) VALUES ( '" &
-                                newguid & "', '" &
-                                characterguid.ToString() & "', '" &
-                                inventoryItem.Id.ToString() & "', '" &
-                                inventoryItem.Count.ToString() & "', '" &
-                                inventoryItem.Container.ToString() & "', '" &
-                                inventoryItem.Slot.ToString() & "' )")
-
-                            bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";slot:" & newguid & ";"
+                            '//Item is a bag and has to be registered
+                            bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";slot:" & newguid &
+                                        ";"
                     End Select
+                    Dim mEnchCreation As New EnchantmentsCreation
+                    mEnchCreation.SetItemEnchantments(player,
+                                                      New Item _
+                                                         With {.Id = inventoryItem.Id,
+                                                         .Socket1Effectid = inventoryItem.Socket1Effectid,
+                                                         .Socket2Effectid = inventoryItem.Socket2Effectid,
+                                                         .Socket3Effectid = inventoryItem.Socket3Effectid,
+                                                         .EnchantmentEffectid = inventoryItem.EnchantmentEffectid},
+                                                      TryInt(newguid), GlobalVariables.targetCore,
+                                                      GlobalVariables.targetStructure)
                 Next
             End If
             If Not player.InventoryItems Is Nothing Then
@@ -101,14 +110,11 @@ Namespace Framework.Transmission
                                     "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
                                     GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
                     If inventoryItem.Container = Nothing Then
-                        Select Case inventoryItem.Slot
-                            Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
-                            Case Else
-                                inventoryItem.Container = TryInt(SplitString(bagstring,
-                                                                             "oldguid:" & inventoryItem.Bagguid.ToString() &
-                                                                             ";slot:",
-                                                                             ";"))
-                        End Select
+                        inventoryItem.Container = TryInt(SplitString(bagstring,
+                                                                     "oldguid:" & inventoryItem.Bagguid.ToString() &
+                                                                     ";slot:",
+                                                                     ";"))
+
                     End If
                     runSQLCommand_characters_string(
                         "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
@@ -125,7 +131,6 @@ Namespace Framework.Transmission
                         inventoryItem.Count.ToString() & "', '" &
                         inventoryItem.Container.ToString() & "', '" &
                         inventoryItem.Slot.ToString() & "' )")
-
                     Dim mEnchCreation As New EnchantmentsCreation
                     mEnchCreation.SetItemEnchantments(player,
                                                       New Item _
@@ -147,42 +152,52 @@ Namespace Framework.Transmission
             bagexist.Clear()
             If Not player.InventoryZeroItems Is Nothing Then
                 For Each inventoryItem As Item In player.InventoryZeroItems
-                    '// Just for bags
+                    Dim newguid As String =
+                            ((TryInt(
+                                runSQLCommand_characters_string(
+                                    "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
+                                    GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
+                                    GlobalVariables.targetStructure.itmins_guid_col(0) &
+                                    "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
+                                    GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
+
+                    runSQLCommand_characters_string(
+                        "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
+                        GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_durability_col(0) &
+                        " ) VALUES ( '" &
+                        newguid & "', '" & inventoryItem.Id & "', '" & characterguid.ToString() &
+                        "', '" & inventoryItem.Count.ToString() & "', '1000' )")
+
+                    runSQLCommand_characters_string(
+                        "INSERT INTO " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " ( " &
+                        GlobalVariables.targetStructure.invent_guid_col(0) & ", " &
+                        GlobalVariables.targetStructure.invent_bag_col(0) &
+                        ", `" & GlobalVariables.targetStructure.invent_slot_col(0) & "`, `" &
+                        GlobalVariables.targetStructure.invent_item_col(0) & "` ) VALUES ( '" &
+                        characterguid.ToString() &
+                        "', '" &
+                        inventoryItem.Bag.ToString() & "', '" & inventoryItem.Slot.ToString() & "', '" & newguid &
+                        "')")
                     Select Case inventoryItem.Slot
                         Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
-                            'Item is a bag and has to be registered
-                            Dim newguid As String =
-                                    ((TryInt(
-                                        runSQLCommand_characters_string(
-                                            "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
-                                            GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                            GlobalVariables.targetStructure.itmins_guid_col(0) &
-                                            "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                            GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
-
-                            runSQLCommand_characters_string(
-                                "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
-                                GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_itemEntry_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_count_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_durability_col(0) &
-                                " ) VALUES ( '" &
-                                newguid & "', '" & inventoryItem.Id & "', '" & characterguid.ToString() &
-                                "', '" & inventoryItem.Count.ToString() & "', '1000' )")
-
-                            runSQLCommand_characters_string(
-                                "INSERT INTO " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " ( " &
-                                GlobalVariables.targetStructure.invent_guid_col(0) & ", " &
-                                GlobalVariables.targetStructure.invent_bag_col(0) &
-                                ", `" & GlobalVariables.targetStructure.invent_slot_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.invent_item_col(0) & "` ) VALUES ( '" &
-                                characterguid.ToString() &
-                                "', '" &
-                                inventoryItem.Bag.ToString() & "', '" & inventoryItem.Slot.ToString() & "', '" & newguid &
-                                "')")
-                            bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";newguid:" & newguid & ";"
+                            '// Item is a bag and has to be registered
+                            bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";newguid:" & newguid &
+                                        ";"
                     End Select
+                    Dim mEnchCreation As New EnchantmentsCreation
+                    mEnchCreation.SetItemEnchantments(player,
+                                                      New Item _
+                                                         With {.Id = inventoryItem.Id,
+                                                         .Socket1Effectid = inventoryItem.Socket1Effectid,
+                                                         .Socket2Effectid = inventoryItem.Socket2Effectid,
+                                                         .Socket3Effectid = inventoryItem.Socket3Effectid,
+                                                         .EnchantmentEffectid = inventoryItem.EnchantmentEffectid},
+                                                      TryInt(newguid), GlobalVariables.targetCore,
+                                                      GlobalVariables.targetStructure)
                 Next
             End If
             If Not player.InventoryItems Is Nothing Then
@@ -195,20 +210,9 @@ Namespace Framework.Transmission
                                     GlobalVariables.targetStructure.itmins_guid_col(0) &
                                     "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
                                     GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
-                    Dim newbagguid As String =
-                            runSQLCommand_characters_string(
-                                "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) &
-                                " FROM " & GlobalVariables.targetStructure.item_instance_tbl(0) &
-                                " WHERE " & GlobalVariables.targetStructure.itmins_itemEntry_col(0) & "='" &
-                                inventoryItem.Bag &
-                                "' AND " & GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "='" &
-                                characterguid.ToString() & "'")
-                    Select Case inventoryItem.Slot
-                        Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
-                        Case Else
-                            newbagguid = SplitString(bagstring, "oldguid:" & inventoryItem.Bagguid.ToString() & ";newguid:",
-                                                     ";")
-                    End Select
+                    Dim newbagguid As String = SplitString(bagstring,
+                                                           "oldguid:" & inventoryItem.Bagguid.ToString() & ";newguid:",
+                                                           ";")
                     runSQLCommand_characters_string(
                         "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
                         GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
@@ -255,49 +259,59 @@ Namespace Framework.Transmission
             bagexist.Clear()
             If Not player.InventoryZeroItems Is Nothing Then
                 For Each inventoryItem As Item In player.InventoryZeroItems
-                    '// Just for bags
+                    Dim newguid As String =
+                            ((TryInt(
+                                runSQLCommand_characters_string(
+                                    "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
+                                    GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
+                                    GlobalVariables.targetStructure.itmins_guid_col(0) &
+                                    "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
+                                    GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
+
+                    Dim parts() As String = bagEnchString.Split(" "c)
+                    parts(0) = newguid
+                    parts(3) = inventoryItem.Id.ToString()
+                    parts(14) = "1"
+                    Dim myEnchString As String = String.Join(" ", parts)
+
+                    runSQLCommand_characters_string(
+                        "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
+                        GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
+                        GlobalVariables.targetStructure.itmins_data_col(0) &
+                        " ) VALUES ( '" &
+                        newguid & "', '" & characterguid.ToString() &
+                        "', '" & myEnchString & "' )")
+
+                    runSQLCommand_characters_string(
+                        "INSERT INTO " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " ( " &
+                        GlobalVariables.targetStructure.invent_guid_col(0) & ", " &
+                        GlobalVariables.targetStructure.invent_bag_col(0) & ", `" &
+                        GlobalVariables.targetStructure.invent_slot_col(0) & "`, `" &
+                        GlobalVariables.targetStructure.invent_item_col(0) & "`, `" &
+                        GlobalVariables.targetStructure.invent_item_template_col(0) &
+                        "` ) VALUES ( '" &
+                        characterguid.ToString() & "', '" &
+                        inventoryItem.Bag.ToString() & "', '" &
+                        inventoryItem.Slot.ToString() & "', '" &
+                        newguid & "', '" &
+                        inventoryItem.Id.ToString() & "')")
                     Select Case inventoryItem.Slot
                         Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
-                            'Item is a bag and has to be registered
-                            Dim newguid As String =
-                                    ((TryInt(
-                                        runSQLCommand_characters_string(
-                                            "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
-                                            GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &
-                                            GlobalVariables.targetStructure.itmins_guid_col(0) &
-                                            "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
-                                            GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
-
-                            Dim parts() As String = bagEnchString.Split(" "c)
-                            parts(0) = newguid
-                            parts(3) = inventoryItem.Id.ToString()
-                            parts(14) = "1"
-                            Dim myEnchString As String = String.Join(" ", parts)
-
-                            runSQLCommand_characters_string(
-                                "INSERT INTO " & GlobalVariables.targetStructure.item_instance_tbl(0) & " ( " &
-                                GlobalVariables.targetStructure.itmins_guid_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & ", " &
-                                GlobalVariables.targetStructure.itmins_data_col(0) &
-                                " ) VALUES ( '" &
-                                newguid & "', '" & characterguid.ToString() &
-                                "', '" & myEnchString & "' )")
-
-                            runSQLCommand_characters_string(
-                                "INSERT INTO " & GlobalVariables.targetStructure.character_inventory_tbl(0) & " ( " &
-                                GlobalVariables.targetStructure.invent_guid_col(0) & ", " &
-                                GlobalVariables.targetStructure.invent_bag_col(0) & ", `" &
-                                GlobalVariables.targetStructure.invent_slot_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.invent_item_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.invent_item_template_col(0) &
-                                "` ) VALUES ( '" &
-                                characterguid.ToString() & "', '" &
-                                inventoryItem.Bag.ToString() & "', '" &
-                                inventoryItem.Slot.ToString() & "', '" &
-                                newguid & "', '" &
-                                inventoryItem.Id.ToString() & "')")
-                            bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";newguid:" & newguid & ";"
+                            '// Item is a bag and has to be registered
+                            bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";newguid:" & newguid &
+                                        ";"
                     End Select
+                    Dim mEnchCreation As New EnchantmentsCreation
+                    mEnchCreation.SetItemEnchantments(player,
+                                                      New Item _
+                                                         With {.Id = inventoryItem.Id,
+                                                         .Socket1Effectid = inventoryItem.Socket1Effectid,
+                                                         .Socket2Effectid = inventoryItem.Socket2Effectid,
+                                                         .Socket3Effectid = inventoryItem.Socket3Effectid,
+                                                         .EnchantmentEffectid = inventoryItem.EnchantmentEffectid},
+                                                      TryInt(newguid), GlobalVariables.targetCore,
+                                                      GlobalVariables.targetStructure)
                 Next
             End If
             If Not player.InventoryItems Is Nothing Then
@@ -310,20 +324,10 @@ Namespace Framework.Transmission
                                     GlobalVariables.targetStructure.itmins_guid_col(0) &
                                     "=(SELECT MAX(" & GlobalVariables.targetStructure.itmins_guid_col(0) & ") FROM " &
                                     GlobalVariables.targetStructure.item_instance_tbl(0) & ")")) + 1)).ToString
-                    Dim newbagguid As String =
-                            runSQLCommand_characters_string(
-                                "SELECT " & GlobalVariables.targetStructure.invent_item_col(0) &
-                                " FROM " & GlobalVariables.targetStructure.character_inventory_tbl(0) &
-                                " WHERE " & GlobalVariables.targetStructure.invent_item_template_col(0) & "='" &
-                                inventoryItem.Bag &
-                                "' AND " & GlobalVariables.targetStructure.invent_guid_col(0) & "='" &
-                                characterguid.ToString() & "'")
-                    Select Case inventoryItem.Slot
-                        Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
-                        Case Else
-                            newbagguid = SplitString(bagstring, "oldguid:" & inventoryItem.Bagguid.ToString() & ";newguid:",
-                                                     ";")
-                    End Select
+                    Dim newbagguid As String = SplitString(bagstring,
+                                                           "oldguid:" & inventoryItem.Bagguid.ToString() & ";newguid:",
+                                                           ";")
+
                     Dim parts() As String = enchString.Split(" "c)
                     parts(0) = newguid
                     parts(3) = inventoryItem.Id.ToString()

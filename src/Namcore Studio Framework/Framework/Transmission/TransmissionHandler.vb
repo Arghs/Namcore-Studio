@@ -71,12 +71,12 @@ Namespace Framework.Transmission
                 Dim mCharProfessionCreation As New ProfessionCreation
                 Dim mCharInventoryCreation As New InventoryCreation
                 mCharArmorCreation.AddCharacterArmor(playerCharacter)
+                mCharInventoryCreation.AddCharacterInventory(playerCharacter)
                 mCharGlyphCreation.SetCharacterGlyphs(playerCharacter)
                 mCharQuestCreation.SetCharacterQuests(playerCharacter)
                 mCharReputationCreation.AddCharacterReputation(playerCharacter)
                 mCharAchievementCreation.AddCharacterAchievements(playerCharacter)
                 mCharProfessionCreation.AddCharacterProfessions(playerCharacter)
-                mCharInventoryCreation.AddCharacterInventory(playerCharacter)
                 AddCharacterSkills(playerCharacter)
                 AddCharacterSpells(playerCharacter)
                 If Not lite Then mCharTalentCreation.SetCharacterTalents(playerCharacter)

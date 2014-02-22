@@ -490,27 +490,27 @@ Namespace Framework.Core
                 If Not lastcount = 0 Then
                     Do
                         Dim itemGuid As Integer = TryInt(inventoryDt.Rows(count).Item(3))
-                        Dim bagGuid As Integer =
+                        Dim bagGuid As Integer = TryInt(
                                 ExecuteDataTableSearch(inventoryDt,
                                                        GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" &
                                                        EscapeLikeValue(charguid.ToString) & "' AND " &
                                                        GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
-                                                       EscapeLikeValue(itemGuid.ToString()) & "'")(0)(1)
+                                                       EscapeLikeValue(itemGuid.ToString()) & "'")(0)(1))
 
-                        If TryInt(bagGuid) = 0 Then
+                        If bagGuid = 0 Then
                             Try
-                                Dim slot As String
-                                slot =
+                                Dim slot As Integer
+                                slot = TryInt(
                                        ExecuteDataTableSearch(inventoryDt,
                                                               GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
-                                                              EscapeLikeValue(itemGuid.ToString()) & "'")(0)(2)
+                                                              EscapeLikeValue(itemGuid.ToString()) & "'")(0)(2))
                                 If slot > 18 Then
                                     Dim bag As String
                                     Dim item As String
                                     Dim entryid As String
                                     Dim enchantments As String
                                     Dim itemcount As String
-                                    bag = bagGuid
+                                    bag = bagGuid.ToString()
                                     item = itemGuid.ToString()
                                     entryid =
                                         ExecuteDataTableSearch(itemInstanceDt,
@@ -526,9 +526,9 @@ Namespace Framework.Core
                                                                EscapeLikeValue(item) & "'")(0)(3)
 
                                     Dim newItm As New Item
-                                    newItm.Slot = TryInt(slot)
+                                    newItm.Slot = slot
                                     newItm.Bag = TryInt(bag)
-                                    newItm.Bagguid = TryInt(bagGuid)
+                                    newItm.Bagguid = bagGuid
                                     newItm.Id = TryInt(entryid)
                                     newItm.Enchantstring = enchantments
                                     newItm.Count = TryInt(itemcount)

@@ -96,13 +96,13 @@ Namespace Framework.Modules
         Public PlayerBytes As Integer
         Public PlayerBytes2 As Integer
         Public PlayerFlags As PlayerFlagsEnum
-        Public PositionX As Integer
-        Public PositionY As Integer
-        Public PositionZ As Integer
+        Public PositionX As Single
+        Public PositionY As Single
+        Public PositionZ As Single
         Public Map As Integer
         Public InstanceId As Integer
         Public InstanceModeMask As Integer
-        Public Orientation As Integer
+        Public Orientation As Single
         Public Taximask As String
         Public Cinematic As Integer
         Public TotalTime As String

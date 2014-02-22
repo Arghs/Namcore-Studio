@@ -140,21 +140,6 @@ Namespace Framework.Transmission
                                 True)
                         Next
                     End If
-                    If Not player.Professions Is Nothing Then
-                        For Each skl As Profession In player.Professions
-                            LogAppend("Adding profession " & skl.Id, "SkillCreation_AddCharacterSkills")
-                            runSQLCommand_characters_string(
-                                "INSERT IGNORE INTO `" & GlobalVariables.targetStructure.character_skills_tbl(0) & "`( `" &
-                                GlobalVariables.targetStructure.skill_guid_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.skill_skill_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.skill_value_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.skill_max_col(0) &
-                                "` ) VALUES ( '" &
-                                player.CreatedGuid.ToString & "', '" &
-                                skl.Id.ToString() & "', '" & skl.Rank.ToString() & "', '" & skl.Max.ToString() & "' )",
-                                True)
-                        Next
-                    End If
             End Select
         End Sub
     End Module

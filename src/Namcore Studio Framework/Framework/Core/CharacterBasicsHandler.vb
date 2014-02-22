@@ -159,7 +159,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posX_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionX = TryInt(_tempResult)
+            tmpCharacter.PositionX = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posX info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
@@ -168,7 +168,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posY_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionY = TryInt(_tempResult)
+            tmpCharacter.PositionY = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posY info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
@@ -177,7 +177,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posZ_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionZ = TryInt(_tempResult)
+            tmpCharacter.PositionZ = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posZ info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
@@ -204,7 +204,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_orientation_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Orientation = TryInt(_tempResult)
+            tmpCharacter.Orientation = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character orientation info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
@@ -453,7 +453,7 @@ Namespace Framework.Core
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", True)
             _tempResult =
                 runSQLCommand_characters_string(
-                    "SELECT " & GlobalVariables.sourceStructure.char_race_col(0) & " FROM " &
+                    "SELECT " & GlobalVariables.sourceStructure.char_class_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
             tmpCharacter.Cclass = TryInt(_tempResult)
@@ -537,7 +537,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posX_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionX = TryInt(_tempResult)
+            tmpCharacter.PositionX = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posX info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
@@ -546,7 +546,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posY_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionY = TryInt(_tempResult)
+            tmpCharacter.PositionY = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posY info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
@@ -555,7 +555,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posZ_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionZ = TryInt(_tempResult)
+            tmpCharacter.PositionZ = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posZ info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
@@ -591,7 +591,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_orientation_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Orientation = TryInt(_tempResult)
+            tmpCharacter.Orientation = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character orientation info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
@@ -866,7 +866,7 @@ Namespace Framework.Core
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", True)
             _tempResult =
                 runSQLCommand_characters_string(
-                    "SELECT " & GlobalVariables.sourceStructure.char_race_col(0) & " FROM " &
+                    "SELECT " & GlobalVariables.sourceStructure.char_class_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
             tmpCharacter.Cclass = TryInt(_tempResult)
@@ -950,7 +950,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posX_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionX = TryInt(_tempResult)
+            tmpCharacter.PositionX = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posX info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
@@ -959,7 +959,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posY_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionY = TryInt(_tempResult)
+            tmpCharacter.PositionY = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posY info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
@@ -968,7 +968,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posZ_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionZ = TryInt(_tempResult)
+            tmpCharacter.PositionZ = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posZ info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
@@ -1004,7 +1004,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_orientation_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Orientation = TryInt(_tempResult)
+            tmpCharacter.Orientation = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character orientation info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
@@ -1292,7 +1292,7 @@ Namespace Framework.Core
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", True)
             _tempResult =
                 runSQLCommand_characters_string(
-                    "SELECT " & GlobalVariables.sourceStructure.char_race_col(0) & " FROM " &
+                    "SELECT " & GlobalVariables.sourceStructure.char_class_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
             tmpCharacter.Cclass = TryInt(_tempResult)
@@ -1376,7 +1376,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posX_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionX = TryInt(_tempResult)
+            tmpCharacter.PositionX = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posX info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
@@ -1385,7 +1385,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posY_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionY = TryInt(_tempResult)
+            tmpCharacter.PositionY = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posY info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
@@ -1394,7 +1394,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_posZ_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PositionZ = TryInt(_tempResult)
+            tmpCharacter.PositionZ = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character posZ info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
@@ -1430,7 +1430,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_orientation_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Orientation = TryInt(_tempResult)
+            tmpCharacter.Orientation = TrySingle(_tempResult)
             LogAppend(
                 "Loaded character orientation info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)

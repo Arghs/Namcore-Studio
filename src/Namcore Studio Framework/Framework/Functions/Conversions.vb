@@ -82,6 +82,15 @@ Namespace Framework.Functions
             End Try
         End Function
 
+        Public Function TrySingle(ByVal mystring As String) As Single
+            Try
+                Return Convert.ToSingle(mystring)
+            Catch ex As Exception
+                LogAppend("Exception during TrySingle() : " & ex.ToString(), "Conversions_TrySingle", False, True)
+                Return 0
+            End Try
+        End Function
+
         Public Function ConvertImageToString(ByVal myimg As Image) As String
             LogAppend("Converting image to string", "Conversions_ConvertImageToString", False)
             If myimg Is Nothing Then Return ""

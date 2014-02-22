@@ -78,22 +78,6 @@ Namespace Framework.Transmission
                                 "' )", True)
                         Next
                     End If
-                    If Not player.Professions Is Nothing Then
-                        For Each spl As ProfessionSpell In _
-                            From prof In player.Professions Where Not prof.Recipes Is Nothing From spl1 In prof.Recipes
-                                Select spl1
-                            LogAppend("Adding profession recipe " & spl.SpellId, "SpellCreation_AddCharacterSpells")
-                            runSQLCommand_characters_string(
-                                "INSERT IGNORE INTO `" & GlobalVariables.targetStructure.character_spells_tbl(0) & "`( `" &
-                                GlobalVariables.targetStructure.spell_guid_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.spell_spell_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.spell_active_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.spell_disabled_col(0) &
-                                "` ) VALUES ( '" &
-                                player.CreatedGuid.ToString & "', '" &
-                                spl.SpellId.ToString() & "', '1', '0' )", True)
-                        Next
-                    End If
             End Select
         End Sub
     End Module
