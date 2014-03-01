@@ -191,16 +191,16 @@ Namespace Forms.Character
             Me.itmench = New System.Windows.Forms.Label()
             Me.Label1 = New System.Windows.Forms.Label()
             Me.bank_bt = New System.Windows.Forms.Button()
-            Me.bag2Panel = New ItemPanel()
+            Me.bag2Panel = New NamCore_Studio.Modules.[Interface].ItemPanel()
             Me.bag2Pic = New System.Windows.Forms.PictureBox()
-            Me.bag1Panel = New ItemPanel()
+            Me.bag1Panel = New NamCore_Studio.Modules.[Interface].ItemPanel()
             Me.bag1Pic = New System.Windows.Forms.PictureBox()
-            Me.bag4Panel = New ItemPanel()
+            Me.bag4Panel = New NamCore_Studio.Modules.[Interface].ItemPanel()
             Me.PictureBox3 = New System.Windows.Forms.PictureBox()
             Me.bag4Pic = New System.Windows.Forms.PictureBox()
-            Me.bag3Panel = New ItemPanel()
+            Me.bag3Panel = New NamCore_Studio.Modules.[Interface].ItemPanel()
             Me.bag3Pic = New System.Windows.Forms.PictureBox()
-            Me.bag5Panel = New ItemPanel()
+            Me.bag5Panel = New NamCore_Studio.Modules.[Interface].ItemPanel()
             Me.bag5Pic = New System.Windows.Forms.PictureBox()
             Me.addpanel = New System.Windows.Forms.Panel()
             Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -2426,8 +2426,8 @@ Namespace Forms.Character
             'genderpanel
             '
             Me.genderpanel.BackColor = System.Drawing.Color.Transparent
-            Me.genderpanel.Controls.Add(Me.gendercombo)
             Me.genderpanel.Controls.Add(Me.genderrefresh)
+            Me.genderpanel.Controls.Add(Me.gendercombo)
             Me.genderpanel.Location = New System.Drawing.Point(1365, 360)
             Me.genderpanel.Name = "genderpanel"
             Me.genderpanel.Size = New System.Drawing.Size(144, 25)
@@ -2574,6 +2574,7 @@ Namespace Forms.Character
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(902, 736)
+            Me.Controls.Add(Me.genderpanel)
             Me.Controls.Add(Me.refreshgold)
             Me.Controls.Add(Me.gold_txtbox)
             Me.Controls.Add(Me.Label7)
@@ -2581,7 +2582,6 @@ Namespace Forms.Character
             Me.Controls.Add(Me.loadedat_lbl)
             Me.Controls.Add(Me.professions_bt)
             Me.Controls.Add(Me.referenceItmPanel)
-            Me.Controls.Add(Me.genderpanel)
             Me.Controls.Add(Me.addpanel)
             Me.Controls.Add(Me.selectenchpanel)
             Me.Controls.Add(Me.classpanel)
@@ -2624,7 +2624,6 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.classpanel, 0)
             Me.Controls.SetChildIndex(Me.selectenchpanel, 0)
             Me.Controls.SetChildIndex(Me.addpanel, 0)
-            Me.Controls.SetChildIndex(Me.genderpanel, 0)
             Me.Controls.SetChildIndex(Me.referenceItmPanel, 0)
             Me.Controls.SetChildIndex(Me.professions_bt, 0)
             Me.Controls.SetChildIndex(Me.loadedat_lbl, 0)
@@ -2632,6 +2631,7 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.Label7, 0)
             Me.Controls.SetChildIndex(Me.gold_txtbox, 0)
             Me.Controls.SetChildIndex(Me.refreshgold, 0)
+            Me.Controls.SetChildIndex(Me.genderpanel, 0)
             Me.InventoryPanel.ResumeLayout(False)
             Me.InventoryPanel.PerformLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2932,15 +2932,10 @@ Namespace Forms.Character
         Friend WithEvents itmench As System.Windows.Forms.Label
         Friend WithEvents Label1 As System.Windows.Forms.Label
         Friend WithEvents bank_bt As System.Windows.Forms.Button
-        Friend WithEvents bag2Panel As System.Windows.Forms.Panel
         Friend WithEvents bag2Pic As System.Windows.Forms.PictureBox
-        Friend WithEvents bag1Panel As System.Windows.Forms.Panel
         Friend WithEvents bag1Pic As System.Windows.Forms.PictureBox
-        Friend WithEvents bag4Panel As System.Windows.Forms.Panel
         Friend WithEvents bag4Pic As System.Windows.Forms.PictureBox
-        Friend WithEvents bag3Panel As System.Windows.Forms.Panel
         Friend WithEvents bag3Pic As System.Windows.Forms.PictureBox
-        Friend WithEvents bag5Panel As System.Windows.Forms.Panel
         Friend WithEvents bag5Pic As System.Windows.Forms.PictureBox
         Friend WithEvents addpanel As System.Windows.Forms.Panel
         Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
@@ -2967,5 +2962,10 @@ Namespace Forms.Character
         Friend WithEvents Label7 As System.Windows.Forms.Label
         Friend WithEvents gold_txtbox As System.Windows.Forms.TextBox
         Friend WithEvents refreshgold As System.Windows.Forms.PictureBox
+        Friend WithEvents bag2Panel As NamCore_Studio.Modules.Interface.ItemPanel
+        Friend WithEvents bag1Panel As NamCore_Studio.Modules.Interface.ItemPanel
+        Friend WithEvents bag4Panel As NamCore_Studio.Modules.Interface.ItemPanel
+        Friend WithEvents bag3Panel As NamCore_Studio.Modules.Interface.ItemPanel
+        Friend WithEvents bag5Panel As NamCore_Studio.Modules.Interface.ItemPanel
     End Class
 End Namespace
