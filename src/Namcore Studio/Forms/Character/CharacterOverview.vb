@@ -1469,7 +1469,7 @@ Namespace Forms.Character
             Dim locLabel As Label = sender
             If locLabel.Visible = True Then
                 Dim result As String = InputBox(ResourceHandler.GetUserMessage("enterItemCount"),
-                                                ResourceHandler.GetUserMessage("countChange"), "1")
+                                                ResourceHandler.GetUserMessage("countChange"), locLabel.Text)
                 If Not result = "" Then
                     Dim intResult As Integer = TryInt(result)
                     If intResult <> 0 Then
