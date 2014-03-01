@@ -422,5 +422,15 @@ Namespace Forms.Character
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
             Close()
         End Sub
+
+        Private Sub glyph_panel_MouseDown(sender As Object, e As MouseEventArgs) Handles glyph_panel.MouseDown
+            changepanel.Location = New Point(4000, 4000)
+            addpanel.Location = New Point(4000, 4000)
+            If Not _tempSender Is Nothing Then
+                _tempSender.visible = True
+            End If
+            TextBox1.Text = ""
+            TextBox2.Text = ""
+        End Sub
     End Class
 End Namespace

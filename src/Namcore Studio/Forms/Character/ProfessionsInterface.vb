@@ -144,6 +144,7 @@ Namespace Forms.Character
                 ProfessionChange()
             End If
             _loaded = True
+            CloseProcessStatus()
             Show()
         End Sub
 

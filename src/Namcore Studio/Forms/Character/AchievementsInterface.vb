@@ -243,7 +243,7 @@ Namespace Forms.Character
                                   "Achievements_continueOperation", False)
                         If GlobalVariables.abortMe = True Then
                             GlobalVariables.trdRunning -= 1
-                            Exit Function
+                            Return ""
                         End If
                         AddAvToLayout(charAv)
                     End If
@@ -255,8 +255,6 @@ Namespace Forms.Character
                     While Not _completed
 
                     End While
-                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentEditedCharSet,
-                                    GetAccountSetBySetId(GlobalVariables.currentViewedCharSet.AccountSet))
                     GlobalVariables.trdRunning = 0
                 End If
             Catch myex As Exception
@@ -264,6 +262,7 @@ Namespace Forms.Character
             End Try
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
                                     New CompletedEventArgs())
+            Return ""
             ' ReSharper disable VBWarnings::BC42105
         End Function
         ' ReSharper restore VBWarnings::BC42105
