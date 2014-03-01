@@ -46,11 +46,13 @@ Namespace Forms
         Dim _stretching As Boolean = False
         Dim _moving As Boolean = False
         Dim _transmissionBlocked As Boolean = False
+        Dim _completeCharacterItems As List(Of ListViewItem)
 
         Private _ptMouseDownLocation As Point
         Private ReadOnly _context As SynchronizationContext = SynchronizationContext.Current
         Public Event OnCoreLoaded As EventHandler(Of CompletedEventArgs)
         Public Event OnTransmissionCompleted As EventHandler(Of CompletedEventArgs)
+
         Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
 
         Dim _filePath As String = ""
@@ -106,6 +108,7 @@ Namespace Forms
         End Sub
 
         Public Sub Loadaccountsandchars()
+            _completeCharacterItems = New List(Of ListViewItem)()
             NewProcessStatus()
             _cmpFileListViewComparer = New ListViewComparer(accountview)
             _cmpFileListViewComparer2 = New ListViewComparer(characterview)
@@ -117,6 +120,8 @@ Namespace Forms
             GlobalVariables.chartable = mAcInfoProc.ReturnCharacterTable(GlobalVariables.GlobalConnection,
                                                                          GlobalVariables.sourceStructure)
             GlobalVariables.chartable.Columns.Add("setId")
+            GlobalVariables.chartable.Columns.Add("accountSetId")
+            GlobalVariables.acctable.Columns.Add("setId")
             characterview.Items.Clear()
             accountview.Items.Clear()
             Dim genSet As Integer = 0
@@ -141,6 +146,7 @@ Namespace Forms
                 account.Characters = New List(Of NCFramework.Framework.Modules.Character)()
                 itm.Tag = account
                 accountSetIndex = accountSetIndex & "[accountId:" & str(0) & "@SetId:" & genSet.ToString() & "]"
+                rowitem.Item(5) = genSet.ToString()
                 accountview.Items.Add(itm)
                 accountview.EnsureVisible(accountview.Items.Count - 1)
             Next
@@ -172,6 +178,7 @@ Namespace Forms
                 characterview.Items.Add(itm)
                 characterview.EnsureVisible(characterview.Items.Count - 1)
                 Dim accountSet As Integer = TryInt(SplitString(accountSetIndex, "[accountId:" & str(1) & "@SetId:", "]"))
+                rowitem.Item(8) = accountSet.ToString()
                 player.AccountSet = accountSet
                 AddCharacterSet(genSet, player, GetAccountSetBySetId(accountSet))
             Next
@@ -402,8 +409,7 @@ Namespace Forms
 
         Public Sub Setaccountview(ByVal accounttable As DataTable)
             _checkchangestatus = False
-            GlobalVariables.sourceCore = "trinity" 'for testing only
-
+            GlobalVariables.sourceCore = "trinity" '// for testing only
             characterview.Items.Clear()
             accountview.Items.Clear()
             For Each rowitem As DataRow In accounttable.Rows
@@ -415,6 +421,7 @@ Namespace Forms
                 str(3) = rowitem.Item(3)
                 str(4) = rowitem.Item(4)
                 itm = New ListViewItem(str)
+                itm.Tag = GetAccountSetBySetId(TryInt(rowitem.Item(5)))
                 accountview.Items.Add(itm)
                 accountview.EnsureVisible(accountview.Items.Count - 1)
             Next
@@ -433,6 +440,7 @@ Namespace Forms
                         str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
                         str(6) = rowitem.Item(6)
                         itm = New ListViewItem(str)
+                        itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7)), GetAccountSetBySetId(TryInt(rowitem.Item(8))))
                         characterview.Items.Add(itm)
                         characterview.EnsureVisible(characterview.Items.Count - 1)
                     End If
@@ -476,7 +484,7 @@ Namespace Forms
                         str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
                         str(6) = rowitem.Item(6)
                         itm = New ListViewItem(str)
-                        itm.Tag = TryInt(rowitem.Item(7))
+                        itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7)), GetAccountSetBySetId(TryInt(rowitem.Item(8))))
                         characterview.Items.Add(itm)
                         characterview.EnsureVisible(characterview.Items.Count - 1)
                     End If
@@ -515,7 +523,8 @@ Namespace Forms
             accountview.Sort()
         End Sub
 
-        Private Sub charactertview_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles characterview.ColumnClick
+        Private Sub charactertview_ColumnClick(sender As Object, e As ColumnClickEventArgs) _
+            Handles characterview.ColumnClick
             If e.Column = _cmpFileListViewComparer2.SortColumn Then
                 If _cmpFileListViewComparer2.SortOrder = SortOrder.Ascending Then
                     _cmpFileListViewComparer2.SortOrder = SortOrder.Descending
@@ -532,55 +541,51 @@ Namespace Forms
 
         Private Sub accountview_ItemChecked1(sender As Object, e As ItemCheckedEventArgs) _
             Handles accountview.ItemChecked
-            If GlobalVariables.armoryMode = True Then Exit Sub 'only test
+            If GlobalVariables.armoryMode = True Then Exit Sub '// only test
             If _checkchangestatus = True Then
+                If _completeCharacterItems Is Nothing Then _completeCharacterItems = New List(Of ListViewItem)()
                 If Not accountview.CheckedItems.Count = 0 Then
-                    characterview.Items.Clear()
-                    For Each checkedrow As ListViewItem In accountview.CheckedItems
-                        Dim myaccid As String = checkedrow.SubItems(0).Text
-                        For Each rowitem As DataRow In GlobalVariables.modifiedCharTable.Rows
-                            If rowitem(1) = myaccid Then
-                                Dim str(6) As String
-                                Dim itm As ListViewItem
-                                str(0) = rowitem.Item(0)
-                                str(1) = rowitem.Item(1)
-                                str(2) = rowitem.Item(2)
-                                str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
-                                str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
-                                str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
-                                str(6) = rowitem.Item(6)
-                                itm = New ListViewItem(str)
-                                itm.Tag = TryInt(rowitem.Item(7))
-                                characterview.Items.Add(itm)
-                                characterview.EnsureVisible(characterview.Items.Count - 1)
+                    Dim validAccountIds As List(Of Integer) =
+                            (From checkedrow As ListViewItem In accountview.CheckedItems
+                            Select TryInt(checkedrow.SubItems(0).Text)).ToList()
+                    For i = characterview.Items.Count - 1 To 0 Step - 1
+                        Dim itm As ListViewItem = characterview.Items(i)
+                        itm.Checked = True
+                        Dim match As Boolean = False
+                        For Each myAccId As Integer In validAccountIds
+                            If itm.SubItems(1).Text = myAccId.ToString() Then
+                                match = True
                             End If
                         Next
-                    Next
+                        If match = False Then
+                            _completeCharacterItems.Add(itm.Clone())
+                            characterview.Items.Remove(itm)
+                        End If
+                    Next i
+                    For i = _completeCharacterItems.Count - 1 To 0 Step - 1
+                        Dim itm As ListViewItem = _completeCharacterItems.Item(i)
+                        itm.Checked = True
+                        Dim match As Boolean = False
+                        For Each myAccId As Integer In validAccountIds
+                            If itm.SubItems(1).Text = myAccId.ToString() Then
+                                match = True
+                            End If
+                        Next
+                        If match = True Then
+                            characterview.Items.Add(itm.Clone)
+                            _completeCharacterItems.Remove(itm)
+                        End If
+                    Next i
                     characterview.Update()
-                    For Each listitem As ListViewItem In characterview.Items
-                        listitem.Checked = True
-                    Next
                 Else
-                    characterview.Items.Clear()
-                    For Each listitems As ListViewItem In accountview.Items
-                        Dim myaccid As String = listitems.SubItems(0).Text
-                        For Each rowitem As DataRow In GlobalVariables.modifiedCharTable.Rows
-                            If rowitem(1) = myaccid Then
-                                Dim str(6) As String
-                                Dim itm As ListViewItem
-                                str(0) = rowitem.Item(0)
-                                str(1) = rowitem.Item(1)
-                                str(2) = rowitem.Item(2)
-                                str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
-                                str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
-                                str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
-                                str(6) = rowitem.Item(6)
-                                itm = New ListViewItem(str)
-                                itm.Tag = TryInt(rowitem.Item(7))
-                                characterview.Items.Add(itm)
-                                characterview.EnsureVisible(characterview.Items.Count - 1)
-                            End If
-                        Next
+                    For i = _completeCharacterItems.Count - 1 To 0 Step - 1
+                        Dim itm As ListViewItem = _completeCharacterItems.Item(i)
+                        itm.Checked = False
+                        characterview.Items.Add(itm.Clone)
+                        _completeCharacterItems.Remove(itm)
+                    Next i
+                    For Each itm As ListViewItem In characterview.Items
+                        itm.Checked = False
                     Next
                     characterview.Update()
                 End If
@@ -669,7 +674,8 @@ Namespace Forms
         Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
             '// Please remember that an account which is loaded from a database needs to be completely stored temporarily
             If _transmissionBlocked Then
-                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical, "Warning")
+                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical,
+                       "Warning")
             Else
                 Dim accview As New AccountOverview
                 Dim accTag As Account = accountview.SelectedItems(0).Tag
@@ -799,7 +805,7 @@ Namespace Forms
                 Dim tnNew As TreeNode
 
                 Dim lstViewColl As ListView.SelectedListViewItemCollection =
-                        CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)), 
+                        CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)),
                               ListView.SelectedListViewItemCollection)
                 For Each lvItem As ListViewItem In lstViewColl
                     tnNew = New TreeNode(lvItem.Text)
@@ -926,7 +932,7 @@ Namespace Forms
             Handles CheckedAccountsToolStripMenuItem.Click
             Dim temparray As List(Of Account) =
                     (From checkedAccount As ListViewItem In accountview.CheckedItems Select acc = checkedAccount.Tag).
-                    Cast(Of Account)().ToList()
+                    Cast (Of Account)().ToList()
             TransAccounts(temparray)
         End Sub
 
@@ -985,7 +991,7 @@ Namespace Forms
         Public Sub transChars_specificacc(ByVal accounts As ArrayList)
             For Each character As NCFramework.Framework.Modules.Character In GlobalVariables.trans_charlist
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
-                    For Each account() As String In accounts
+                    For Each account () As String In accounts
                         If account(0).ToLower() = accountnode.Text.ToLower() Then
                             Dim newcharnode As New TreeNode
                             Dim nodes As New List(Of String)
@@ -1058,7 +1064,7 @@ Namespace Forms
             Dim mtransfer As New TransmissionHandler
             mtransfer.HandleMigrationRequests(GlobalVariables.armoryMode)
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnTransmissionEnded),
-                                 New CompletedEventArgs())
+                                    New CompletedEventArgs())
         End Sub
 
         Private Sub SelectedCharacterToolStripMenuItem1_Click(sender As Object, e As EventArgs) _
@@ -1144,7 +1150,8 @@ Namespace Forms
         Private Sub EditToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem1.Click
             '// Please remember that a character which is loaded from a database needs to be completely stored temporarily
             If _transmissionBlocked Then
-                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical, "Warning")
+                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical,
+                       "Warning")
             Else
                 NewProcessStatus()
                 Dim charview As CharacterOverview = New CharacterOverview
@@ -1171,7 +1178,8 @@ Namespace Forms
 
         Private Sub back_bt_Click(sender As Object, e As EventArgs) Handles back_bt.Click
             If _transmissionBlocked Then
-                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical, "Warning")
+                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical,
+                       "Warning")
                 Exit Sub
             End If
             GlobalVariables.lastregion = "liveview"
@@ -1211,9 +1219,9 @@ Namespace Forms
                     Size = New Size(e.Location.X, Size.Height)
                     Application.DoEvents()
                     mainpanel.Size = New Size(Size.Width - 10, mainpanel.Size.Height)
-                    Dim tmpwidth As Integer = (Size.Width / 1920) * 9
+                    Dim tmpwidth As Integer = (Size.Width/1920)*9
                     header.Location = New Point(tmpwidth, header.Location.Y)
-                    header.Size = New Size(Size.Width - (2 * tmpwidth), header.Size.Height)
+                    header.Size = New Size(Size.Width - (2*tmpwidth), header.Size.Height)
                     closepanel.Location = New Point(header.Size.Width - 125, closepanel.Location.Y)
                     Application.DoEvents()
 
@@ -1357,7 +1365,9 @@ Namespace Forms
             Loadaccountsandchars()
         End Sub
 
-        Private Sub GroupBox2_MouseEnter(sender As Object, e As EventArgs) Handles GroupBox2.MouseEnter, target_accounts_tree.MouseEnter, characterview.MouseEnter, Panel1.MouseEnter, header.MouseEnter
+        Private Sub GroupBox2_MouseEnter(sender As Object, e As EventArgs) _
+            Handles GroupBox2.MouseEnter, target_accounts_tree.MouseEnter, characterview.MouseEnter, Panel1.MouseEnter,
+                    header.MouseEnter
             If Not _stretching And Not _moving Then
                 Cursor = Cursors.Default
             End If

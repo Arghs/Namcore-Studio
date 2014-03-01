@@ -298,6 +298,7 @@
             'charlevel
             '
             Me.charlevel.Text = "Level"
+            Me.charlevel.Width = 41
             '
             'accountview
             '
