@@ -363,9 +363,12 @@ Namespace Forms
                 If Not IsDBNull(rowitem(2)) Or Not IsDBNull(rowitem(3)) Then
                     Dim node As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)(0)
                     Dim subNode As New TreeNode
+                    Dim newCharacter As New NCFramework.Framework.Modules.Character
+                    newCharacter.Name = rowitem(3)
                     With subNode
                         .Name = rowitem(2)
                         .Text = rowitem(3)
+                        .Tag = newCharacter
                     End With
                     node.Nodes.Add(subNode)
                 End If
@@ -440,7 +443,8 @@ Namespace Forms
                         str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
                         str(6) = rowitem.Item(6)
                         itm = New ListViewItem(str)
-                        itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7)), GetAccountSetBySetId(TryInt(rowitem.Item(8))))
+                        itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7)),
+                                                         GetAccountSetBySetId(TryInt(rowitem.Item(8))))
                         characterview.Items.Add(itm)
                         characterview.EnsureVisible(characterview.Items.Count - 1)
                     End If
@@ -484,7 +488,8 @@ Namespace Forms
                         str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
                         str(6) = rowitem.Item(6)
                         itm = New ListViewItem(str)
-                        itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7)), GetAccountSetBySetId(TryInt(rowitem.Item(8))))
+                        itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7)),
+                                                         GetAccountSetBySetId(TryInt(rowitem.Item(8))))
                         characterview.Items.Add(itm)
                         characterview.EnsureVisible(characterview.Items.Count - 1)
                     End If
@@ -789,21 +794,12 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub characterview_SelectedIndexChanged(sender As Object, e As EventArgs) _
-            Handles characterview.SelectedIndexChanged
-        End Sub
-
-        Private Sub target_accounts_tree_AfterSelect(sender As Object, e As TreeViewEventArgs) _
-            Handles target_accounts_tree.AfterSelect
-        End Sub
-
         Private Sub target_accounts_tree_DragDrop(sender As Object, e As DragEventArgs) _
             Handles target_accounts_tree.DragDrop
             If e.Data.GetDataPresent(GetType(ListView.SelectedListViewItemCollection).ToString(), False) Then
                 Dim loc As Point = (CType(sender, TreeView)).PointToClient(New Point(e.X, e.Y))
                 Dim destNode As TreeNode = (CType(sender, TreeView)).GetNodeAt(loc)
                 Dim tnNew As TreeNode
-
                 Dim lstViewColl As ListView.SelectedListViewItemCollection =
                         CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)),
                               ListView.SelectedListViewItemCollection)
@@ -811,6 +807,9 @@ Namespace Forms
                     tnNew = New TreeNode(lvItem.Text)
                     tnNew.Tag = lvItem.Tag
                     If Not destNode Is Nothing Then
+                        If TypeOf destNode.Tag Is NCFramework.Framework.Modules.Character Then
+                            destNode = destNode.Parent
+                        End If
                         destNode.Nodes.Insert(destNode.Index + 1, tnNew)
                         destNode.Expand()
                         Dim player As NCFramework.Framework.Modules.Character = lvItem.Tag
@@ -828,11 +827,11 @@ Namespace Forms
                             End If
                         End With
                         GlobalVariables.charactersToCreate.Add(player)
+                        Transfer_bt.Enabled = True
+                        info1_lbl.Visible = True
+                        info2_lbl.Visible = True
                     End If
                 Next lvItem
-                Transfer_bt.Enabled = True
-                info1_lbl.Visible = True
-                info2_lbl.Visible = True
             End If
         End Sub
 
@@ -851,10 +850,6 @@ Namespace Forms
             Else
                 Cursor.Current = Cursors.Default
             End If
-        End Sub
-
-        Private Sub target_accounts_tree_MouseDown(sender As Object, e As MouseEventArgs) _
-            Handles target_accounts_tree.MouseDown
         End Sub
 
         Private Sub RemoveToolStripMenuItem2_Click(sender As Object, e As EventArgs) _
@@ -1137,12 +1132,12 @@ Namespace Forms
             If e.Button = MouseButtons.Right Then
                 Dim oItem As TreeNode = target_accounts_tree.GetNodeAt(e.X, e.Y)
                 If oItem IsNot Nothing Then
+                    target_accounts_tree.SelectedNode = oItem
                     If oItem.Level = 0 Then
                         targetacccontext.Show(target_accounts_tree, e.X, e.Y)
                     Else
                         targetcharcontext.Show(target_accounts_tree, e.X, e.Y)
                     End If
-
                 End If
             End If
         End Sub
