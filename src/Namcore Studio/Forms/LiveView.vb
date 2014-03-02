@@ -24,6 +24,7 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
 Imports System.IO
+Imports NCFramework.Framework
 Imports NamCore_Studio.Forms.Character
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
@@ -34,7 +35,6 @@ Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Modules.Interface
 Imports System.Threading
 Imports NCFramework.Framework.Transmission
-Imports NCFramework.Framework.TemplateSystem
 
 Namespace Forms
     Public Class LiveView

@@ -21,6 +21,7 @@
 '*      /Description:   Provides an interface to load characters from WoW Armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
+Imports NCFramework.Framework
 Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Modules
 Imports NCFramework.My
@@ -30,7 +31,6 @@ Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Armory
 Imports NamCore_Studio.Forms.Extension
 Imports System.Net
-Imports NCFramework.Framework.TemplateSystem
 
 Namespace Forms
     Public Class ArmoryInterface

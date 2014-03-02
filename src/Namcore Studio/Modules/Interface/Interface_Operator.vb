@@ -22,12 +22,12 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
 Imports System.IO
+Imports NCFramework.Framework
 Imports NamCore_Studio.Forms
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Forms
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.TemplateSystem
 
 Namespace Modules.Interface
     Public Module InterfaceOperator
