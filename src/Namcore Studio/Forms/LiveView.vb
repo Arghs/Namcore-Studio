@@ -693,10 +693,6 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub accountview_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) _
-            Handles accountview.MouseDown
-        End Sub
-
         Private Sub filter_char_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) _
             Handles filter_char.LinkClicked
             FilterCharacters.Show()
@@ -704,10 +700,6 @@ Namespace Forms
 
         Private Sub connect_bt_target_Click(sender As Object, e As EventArgs) Handles connect_bt_target.Click
             TargetSelectInterface.Show()
-        End Sub
-
-        Private Sub RemoveToolStripMenuItem_Click(sender As Object, e As EventArgs) _
-            Handles RemoveToolStripMenuItem.Click
         End Sub
 
         Private Sub SelectedCharacterToolStripMenuItem_Click(sender As Object, e As EventArgs) _
@@ -754,6 +746,10 @@ Namespace Forms
                 Next
                 Setaccountview(GlobalVariables.acctable)
             End If
+        End Sub
+
+        Private Sub accountview_ItemDrag(sender As Object, e As ItemDragEventArgs) Handles accountview.ItemDrag
+            accountview.DoDragDrop(accountview.SelectedItems, DragDropEffects.Move)
         End Sub
 
         Private Sub characterview_ItemDrag(sender As Object, e As ItemDragEventArgs) Handles characterview.ItemDrag
@@ -804,6 +800,19 @@ Namespace Forms
                         CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)),
                               ListView.SelectedListViewItemCollection)
                 For Each lvItem As ListViewItem In lstViewColl
+                    Dim account = TryCast(lvItem.Tag, Account)
+                    If (account IsNot Nothing) Then
+                        For Each itm As ListViewItem In accountview.Items
+                            itm.Checked = False
+                            If TryCast(itm.Tag, Account).SetIndex = account.SetIndex Then
+                                itm.Checked = True
+                            End If
+                        Next
+                        Dim accLst As New List(Of Account)
+                        accLst.Add(lvItem.Tag)
+                        TransAccounts(accLst)
+                        Exit Sub
+                    End If
                     tnNew = New TreeNode(lvItem.Text)
                     tnNew.Tag = lvItem.Tag
                     If Not destNode Is Nothing Then
@@ -852,59 +861,44 @@ Namespace Forms
             End If
         End Sub
 
+        Private Sub accountview_GiveFeedback(ByVal sender As Object, ByVal e As GiveFeedbackEventArgs) _
+          Handles accountview.GiveFeedback
+            e.UseDefaultCursors = False
+            If (e.Effect And DragDropEffects.Move) = DragDropEffects.Move Then
+                Cursor.Current = Cursors.Cross
+            Else
+                Cursor.Current = Cursors.Default
+            End If
+        End Sub
+
         Private Sub RemoveToolStripMenuItem2_Click(sender As Object, e As EventArgs) _
             Handles RemoveToolStripMenuItem2.Click
-
-            Dim result =
-                    MsgBox(
-                        ResourceHandler.GetUserMessage("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text &
-                        ")",
-                        vbYesNo, ResourceHandler.GetUserMessage("areyousure"))
-            If result = MsgBoxResult.Yes Then
-                Dim accountId As String = target_accounts_tree.SelectedNode.Name
-                If Not target_accounts_tree.SelectedNode.BackColor = Color.Transparent Then
-                    target_accounts_tree.SelectedNode.Remove()
-                    Exit Sub
+            If Not target_accounts_tree.SelectedNode.BackColor = Color.Transparent Then
+                If Not GlobalVariables.accountsToCreate Is Nothing Then
+                    Dim accResult As Account = GlobalVariables.accountsToCreate.Find(Function(account) account.SetIndex = TryCast(target_accounts_tree.SelectedNode.Tag, Account).SetIndex)
+                    If Not accResult Is Nothing Then GlobalVariables.accountsToCreate.Remove(accResult)
                 End If
-                Dim toBeRemovedRow As DataRow() =
-                        _targetAcccharTable.Select(
-                            GlobalVariables.targetStructure.acc_id_col(0) & " = '" & accountId & "'")
-                If Not toBeRemovedRow.Length = 0 Then _targetAcccharTable.Rows.Remove(toBeRemovedRow(0))
+                If Not GlobalVariables.charactersToCreate Is Nothing Then
+                    Dim charResult As List(Of NCFramework.Framework.Modules.Character) = GlobalVariables.charactersToCreate.FindAll(Function(character) character.TargetAccount.Id = TryCast(target_accounts_tree.SelectedNode.Tag, Account).Id)
+                    If Not charResult Is Nothing Then
+                        For Each character As NCFramework.Framework.Modules.Character In charResult
+                            GlobalVariables.charactersToCreate.Remove(character)
+                        Next
+                    End If
+                End If
                 target_accounts_tree.SelectedNode.Remove()
-                runSQLCommand_realm_string_setconn(
-                    "DELETE FROM `" & GlobalVariables.targetStructure.account_tbl(0) & "` WHERE " &
-                    GlobalVariables.targetStructure.acc_id_col(0) & "='" & accountId & "'",
-                    GlobalVariables.TargetConnection_Realm)
-                runSQLCommand_characters_string_setconn(
-                    "DELETE FROM `" & GlobalVariables.targetStructure.character_tbl(0) & "` WHERE " &
-                    GlobalVariables.targetStructure.char_accountId_col(0) & "='" & accountId & "'",
-                    GlobalVariables.TargetConnection)
-
+                Exit Sub
             End If
         End Sub
 
         Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
-
-            Dim result =
-                    MsgBox(
-                        ResourceHandler.GetUserMessage("deleteacc") & " (" & target_accounts_tree.SelectedNode.Text &
-                        ")",
-                        vbYesNo, ResourceHandler.GetUserMessage("areyousure"))
-            If result = MsgBoxResult.Yes Then
-                Dim accountId As String = target_accounts_tree.SelectedNode.Name
-                If Not target_accounts_tree.SelectedNode.BackColor = Color.Transparent Then
-                    target_accounts_tree.SelectedNode.Remove()
-                    Exit Sub
+            If Not target_accounts_tree.SelectedNode.BackColor = Color.Transparent Then
+                If Not GlobalVariables.charactersToCreate Is Nothing Then
+                    Dim charResult As NCFramework.Framework.Modules.Character = GlobalVariables.charactersToCreate.Find(Function(character) character.SetIndex = TryCast(target_accounts_tree.SelectedNode.Tag, NCFramework.Framework.Modules.Character).SetIndex)
+                    If Not charResult Is Nothing Then GlobalVariables.charactersToCreate.Remove(charResult)
                 End If
                 target_accounts_tree.SelectedNode.Remove()
-                Dim toBeRemovedRow As DataRow() =
-                        _targetAcccharTable.Select(
-                            GlobalVariables.targetStructure.acc_id_col(0) & " = '" & accountId & "'")
-                If Not toBeRemovedRow.Length = 0 Then _targetAcccharTable.Rows.Remove(toBeRemovedRow(0))
-                runSQLCommand_characters_string_setconn(
-                    "DELETE FROM `" & GlobalVariables.targetStructure.character_tbl(0) & "` WHERE " &
-                    GlobalVariables.targetStructure.char_accountId_col(0) & "='" & accountId & "'",
-                    GlobalVariables.TargetConnection)
+                Exit Sub
             End If
         End Sub
 
@@ -955,14 +949,15 @@ Namespace Forms
                 For Each checkedChar As ListViewItem In characterview.CheckedItems
                     Dim thischar As NCFramework.Framework.Modules.Character = checkedChar.Tag
                     Dim newchar As NCFramework.Framework.Modules.Character = DeepCloneHelper.DeepClone(thischar)
-                    If checkedChar.SubItems(1).Text = playerAccount.Name Then
+                    If thischar.AccountSet = playerAccount.SetIndex Then
                         For Each targetaccount As TreeNode In target_accounts_tree.Nodes
-                            If targetaccount.Text = playerAccount.Name Then
+                            If TryCast(targetaccount.Tag, Account).Name = playerAccount.Name Then
                                 Dim newcharnode As New TreeNode
                                 Dim nodes As New List(Of String)
                                 For Each parentNode As TreeNode In target_accounts_tree.Nodes
                                     nodes.AddRange(GetChildren(parentNode))
                                 Next
+                                newchar.TargetAccount = TryCast(targetaccount.Tag, Account)
                                 With newcharnode
                                     .Text = newchar.Name
                                     .Tag = newchar
@@ -976,11 +971,12 @@ Namespace Forms
                                 GlobalVariables.charactersToCreate.Add(newchar)
                             End If
                         Next
-
                     End If
                 Next
             Next
             Transfer_bt.Enabled = True
+            info1_lbl.Visible = True
+            info2_lbl.Visible = True
         End Sub
 
         Public Sub transChars_specificacc(ByVal accounts As ArrayList)
