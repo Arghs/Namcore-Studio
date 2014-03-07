@@ -121,6 +121,7 @@ Namespace Forms.Character
             End If
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
                                     New CompletedEventArgs())
+            Return Nothing
         End Function
 
         Private Sub DelegateControlAdding(additm As ListViewItem, control As ListView)

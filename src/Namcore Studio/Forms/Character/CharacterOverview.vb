@@ -138,8 +138,40 @@ Namespace Forms.Character
             gold_txtbox.Text = (GlobalVariables.currentViewedCharSet.Gold/10000).ToString()
             Dim zeroBagItems As New List(Of Item)
             GlobalVariables.nonUsableGuidList = New List(Of Integer)()
+            For Each subctrl As Control In GroupBox2.Controls
+                If subctrl.Name.ToLower.Contains("panel") Then
+                    Dim bagPanel As ItemPanel = subctrl
+                    Dim realBagSlot As Integer = TryInt(SplitString(subctrl.Name, "bag", "Panel")) + 17
+                    Dim subItmRemovePic As New PictureBox
+                    If realBagSlot = 18 Then Continue For
+                    Dim tempItm As New Item
+                    tempItm.Slot = realBagSlot
+                    bagPanel.Tag = tempItm
+                    subItmRemovePic.Name = "bag_" & realBagSlot.ToString() & "_remove"
+                    subItmRemovePic.Cursor = Cursors.Hand
+                    subItmRemovePic.Size = removeinventbox.Size
+                    bagPanel.Controls.Add(subItmRemovePic)
+                    subItmRemovePic.Location = removeinventbox.Location
+                    subItmRemovePic.BackgroundImageLayout = ImageLayout.Stretch
+                    subItmRemovePic.BackgroundImage = My.Resources.add_
+                    subItmRemovePic.BackColor = removeinventbox.BackColor
+                    subItmRemovePic.Tag =
+                        {bagPanel,
+                         subctrl.Controls.Find("bag" & (realBagSlot - 17).ToString() & "Pic", True)(
+                             0)}
+                    subItmRemovePic.Visible = False
+                    subItmRemovePic.SetDoubleBuffered()
+                    subItmRemovePic.BringToFront()
+                    InfoToolTip.SetToolTip(subItmRemovePic, "Add")
+                    AddHandler subItmRemovePic.MouseClick, AddressOf removeinventboxBag_Click
+                    AddHandler subItmRemovePic.MouseEnter, AddressOf removeinventbox_MouseEnter
+                    AddHandler subItmRemovePic.MouseLeave, AddressOf removeinventbox_MouseLeave
+                    AddHandler bagPanel.MouseEnter, AddressOf BagItem_MouseEnter
+                    AddHandler bagPanel.MouseLeave, AddressOf BagItem_MouseLeave
+                End If
+            Next
             If Not DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems Is Nothing Then
-                Dim bagsInitialized As Boolean = False
+              
                 For Each potCharBag As Item In _
                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems
                     potCharBag.BagItems = New List(Of Item)()
@@ -150,34 +182,6 @@ Namespace Forms.Character
                                 If subctrl.Name.ToLower.Contains("panel") Then
                                     Dim bagPanel As ItemPanel = subctrl
                                     Dim realBagSlot As Integer = TryInt(SplitString(subctrl.Name, "bag", "Panel")) + 17
-                                    If Not bagsInitialized Then
-                                        Dim subItmRemovePic As New PictureBox
-                                        If realBagSlot = 18 Then Continue For
-                                        Dim tempItm As New Item
-                                        tempItm.Slot = realBagSlot
-                                        bagPanel.Tag = tempItm
-                                        subItmRemovePic.Name = "bag_" & realBagSlot.ToString() & "_remove"
-                                        subItmRemovePic.Cursor = Cursors.Hand
-                                        subItmRemovePic.Size = removeinventbox.Size
-                                        bagPanel.Controls.Add(subItmRemovePic)
-                                        subItmRemovePic.Location = removeinventbox.Location
-                                        subItmRemovePic.BackgroundImageLayout = ImageLayout.Stretch
-                                        subItmRemovePic.BackgroundImage = My.Resources.add_
-                                        subItmRemovePic.BackColor = removeinventbox.BackColor
-                                        subItmRemovePic.Tag =
-                                            {bagPanel,
-                                             subctrl.Controls.Find("bag" & (realBagSlot - 17).ToString() & "Pic", True)(
-                                                 0)}
-                                        subItmRemovePic.Visible = False
-                                        subItmRemovePic.SetDoubleBuffered()
-                                        subItmRemovePic.BringToFront()
-                                        InfoToolTip.SetToolTip(subItmRemovePic, "Add")
-                                        AddHandler subItmRemovePic.MouseClick, AddressOf removeinventboxBag_Click
-                                        AddHandler subItmRemovePic.MouseEnter, AddressOf removeinventbox_MouseEnter
-                                        AddHandler subItmRemovePic.MouseLeave, AddressOf removeinventbox_MouseLeave
-                                        AddHandler bagPanel.MouseEnter, AddressOf BagItem_MouseEnter
-                                        AddHandler bagPanel.MouseLeave, AddressOf BagItem_MouseLeave
-                                    End If
                                     If subctrl.Name.Contains((potCharBag.Slot - 17).ToString()) Then
                                         Dim subItmRemovePic As PictureBox = bagPanel.Controls.Find("bag_" & realBagSlot.ToString() & "_remove", True)(0)
                                         subItmRemovePic.BackgroundImage = My.Resources.trash__delete__16x16
@@ -210,7 +214,6 @@ Namespace Forms.Character
                                     End If
                                 End If
                             Next
-                            bagsInitialized = True
                         Case 23 To 38
                             If potCharBag.Name Is Nothing Then _
                                 potCharBag.Name = GetItemNameByItemId(potCharBag.Id, MySettings.Default.language)

@@ -134,7 +134,17 @@ Namespace Forms.Character
                 BankLayoutPanel.BeginInvoke(New AddLayoutControlDelegate(AddressOf DelegateLayoutControlAdding),
                                             BankLayoutPanel, newItemPanel)
             Next i
-            Dim bagsInitialized As Boolean = False
+            For Each subctrl As Control In BackPanel.Controls
+                If _
+                    subctrl.Name.ToLower.Contains("panel") And subctrl.Name.ToLower.StartsWith("bag") And
+                    Not subctrl.Name.ToLower.Contains("item") Then
+                    Dim bagPanel As ItemPanel = subctrl
+                    _actionBlocked = True
+                    bagPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControllUpdate),
+                                         bagPanel, True, Nothing)
+                    While _actionBlocked : End While
+                End If
+            Next
             If Not GlobalVariables.currentEditedCharSet.InventoryZeroItems Is Nothing Then
                 For Each potCharBag As Item In GlobalVariables.currentEditedCharSet.InventoryZeroItems
                     potCharBag.BagItems = New List(Of Item)()
@@ -147,11 +157,10 @@ Namespace Forms.Character
                                     Dim bagPanel As ItemPanel = subctrl
                                     _actionBlocked = True
                                     bagPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControllUpdate),
-                                                         bagPanel, bagsInitialized, potCharBag)
+                                                         bagPanel, False, potCharBag)
                                     While _actionBlocked : End While
                                 End If
                             Next
-                            bagsInitialized = True
                         Case 39 To 66
                             If potCharBag.Name Is Nothing Then _
                                 potCharBag.Name = GetItemNameByItemId(potCharBag.Id, MySettings.Default.language)
@@ -238,9 +247,9 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub DelegateControllUpdate(bagPanel As Control, bagsInitialized As Boolean, potCharBag As Item)
+        Private Sub DelegateControllUpdate(bagPanel As Control, initBags As Boolean, potCharBag As Item)
             Dim realBagSlot As Integer = TryInt(SplitString(bagPanel.Name, "bag", "Panel"))
-            If Not bagsInitialized Then
+            If initBags Then
                 Dim subItmRemovePic As New PictureBox
                 Dim tempItm As New Item
                 tempItm.Slot = realBagSlot + 66
@@ -267,36 +276,37 @@ Namespace Forms.Character
                 AddHandler subItmRemovePic.MouseLeave, AddressOf removeinventbox_MouseLeave
                 AddHandler bagPanel.MouseEnter, AddressOf BagItem_MouseEnter
                 AddHandler bagPanel.MouseLeave, AddressOf BagItem_MouseLeave
-            End If
-            If bagPanel.Name.Contains((potCharBag.Slot - 66).ToString()) Then
-                Dim subItmRemovePic As PictureBox =
-                        bagPanel.Controls.Find("bag_" & (realBagSlot + 66).ToString() & "_remove", True)(0)
-                subItmRemovePic.BackgroundImage = My.Resources.trash__delete__16x16
-                InfoToolTip.SetToolTip(subItmRemovePic, "Remove")
-                bagPanel.BackColor = Getraritycolor(GetItemQualityByItemId(potCharBag.Id))
-                For Each potBagItem As Item In _
-                    GlobalVariables.currentEditedCharSet.InventoryItems
-                    If potBagItem.Bagguid = potCharBag.Guid Then
-                        If potBagItem.Name Is Nothing Then _
-                            potBagItem.Name = GetItemNameByItemId(potBagItem.Id,
-                                                                  MySettings.Default.language)
-                        If potBagItem.Image Is Nothing Then _
-                            potBagItem.Image =
-                                GetItemIconByDisplayId(GetDisplayIdByItemId(potBagItem.Id),
-                                                       GlobalVariables.GlobalWebClient)
-                        potCharBag.BagItems.Add(potBagItem)
-                    End If
-                Next
-                potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Id)
-                bagPanel.Tag = potCharBag
-                For Each myPic As PictureBox In bagPanel.Controls
-                    If myPic.Name Is Nothing Then Continue For
-                    If myPic.Name.EndsWith("_remove") Then Continue For
-                    myPic.BackgroundImage =
-                        GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
-                                               GlobalVariables.GlobalWebClient)
-                    myPic.Tag = potCharBag
-                Next
+            Else
+                If bagPanel.Name.Contains((potCharBag.Slot - 66).ToString()) Then
+                    Dim subItmRemovePic As PictureBox =
+                            bagPanel.Controls.Find("bag_" & (realBagSlot + 66).ToString() & "_remove", True)(0)
+                    subItmRemovePic.BackgroundImage = My.Resources.trash__delete__16x16
+                    InfoToolTip.SetToolTip(subItmRemovePic, "Remove")
+                    bagPanel.BackColor = Getraritycolor(GetItemQualityByItemId(potCharBag.Id))
+                    For Each potBagItem As Item In _
+                        GlobalVariables.currentEditedCharSet.InventoryItems
+                        If potBagItem.Bagguid = potCharBag.Guid Then
+                            If potBagItem.Name Is Nothing Then _
+                                potBagItem.Name = GetItemNameByItemId(potBagItem.Id,
+                                                                      MySettings.Default.language)
+                            If potBagItem.Image Is Nothing Then _
+                                potBagItem.Image =
+                                    GetItemIconByDisplayId(GetDisplayIdByItemId(potBagItem.Id),
+                                                           GlobalVariables.GlobalWebClient)
+                            potCharBag.BagItems.Add(potBagItem)
+                        End If
+                    Next
+                    potCharBag.SlotCount = GetItemSlotCountByItemId(potCharBag.Id)
+                    bagPanel.Tag = potCharBag
+                    For Each myPic As PictureBox In bagPanel.Controls
+                        If myPic.Name Is Nothing Then Continue For
+                        If myPic.Name.EndsWith("_remove") Then Continue For
+                        myPic.BackgroundImage =
+                            GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
+                                                   GlobalVariables.GlobalWebClient)
+                        myPic.Tag = potCharBag
+                    Next
+                End If
             End If
             _actionBlocked = False
         End Sub
