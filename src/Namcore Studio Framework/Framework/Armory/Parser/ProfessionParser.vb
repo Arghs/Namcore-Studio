@@ -67,7 +67,7 @@ Namespace Framework.Armory.Parser
                             pProf.Primary = False
                         End If
                         Dim myPart As String = partsPf(loopcounter)
-                        If myPart.Length < 28 Then
+                        If myPart.Length < 29 Then
                             loopcounter += 1
                         Else
                             pProf.Id = TryInt(SplitString(myPart, """id"":", ","))
