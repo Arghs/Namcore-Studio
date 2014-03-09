@@ -136,7 +136,7 @@ Public Class Main
         For i = 0 To value.Length - 1
             Dim c As Char = value(i)
             Select Case c
-                Case "]"
+                Case "]"c
                 Case "]"c, "["c, "%"c, "*"c
                     sb.Append("[").Append(c).Append("]")
                     Exit Select

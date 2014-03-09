@@ -92,8 +92,8 @@ Namespace Forms
                                 Dim liveview As New LiveView
                                 Try
                                     For Each currentForm As Form In _
-                                        From currentForm1 As Form In Application.OpenForms
-                                            Where currentForm1.Name = "LiveView"
+                                        From currentForm1 As Object In Application.OpenForms
+                                            Where TryCast(currentForm1, Form).Name = "LiveView"
                                         liveview = DirectCast(currentForm, LiveView)
                                     Next
                                 Catch ex As Exception :
@@ -165,8 +165,8 @@ Namespace Forms
                                 Dim liveview As New LiveView
                                 Try
                                     For Each currentForm As Form In _
-                                        From currentForm1 As Form In Application.OpenForms
-                                            Where currentForm1.Name = "LiveView"
+                                        From currentForm1 As Object In Application.OpenForms
+                                            Where TryCast(currentForm1, Form).Name = "LiveView"
                                         liveview = DirectCast(currentForm, LiveView)
                                     Next
                                 Catch ex As Exception :
@@ -218,7 +218,7 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub highlighter2_click()
+        Private Sub highlighter2_click(ByVal sender As Object, ByVal e As EventArgs)
             Close()
         End Sub
 
@@ -226,7 +226,7 @@ Namespace Forms
             If defaultconn_radio.Checked = True Then
                 MySettings.Default.server_defaultconn = True
                 MySettings.Default.server_address = db_address_txtbox.Text
-                MySettings.Default.server_port = port_ud.Value
+                MySettings.Default.server_port = CType(port_ud.Value, Integer)
                 MySettings.Default.server_login = userid_txtbox.Text
                 MySettings.Default.server_pass = password_txtbox.Text
                 MySettings.Default.server_chardb = chardbname_combo.Text
@@ -242,7 +242,7 @@ Namespace Forms
 
         Private Sub selectdb_Browse(sender As Object, e As EventArgs) _
             Handles realmdbname_combo.DropDown, chardbname_combo.DropDown
-            Dim combo As ComboBox = sender
+            Dim combo As ComboBox = CType(sender, ComboBox)
             combo.Items.Clear()
             Dim cmd As MySqlCommand
             Dim dr As MySqlDataReader
@@ -264,7 +264,7 @@ Namespace Forms
 
         Private Sub dbname_combo_SelectedIndexChanged(sender As Object, e As EventArgs) _
             Handles realmdbname_combo.SelectedIndexChanged, chardbname_combo.SelectedIndexChanged
-            Dim combo As ComboBox = sender
+            Dim combo As ComboBox = CType(sender, ComboBox)
             combo.Text = combo.SelectedItem.ToString()
         End Sub
     End Class

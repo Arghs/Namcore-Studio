@@ -195,7 +195,7 @@ Namespace Forms
             GlobalVariables.globChars.AccountSets = New List(Of Account)
             GlobalVariables.trdrunnuing = True
             Dim urllst As List(Of String) =
-                    (From lstitm As ListViewItem In char_lst.Items Select lstitm.SubItems(3).Text).ToList()
+                    (From lstitm As Object In char_lst.Items Select TryCast(lstitm, ListViewItem).SubItems(3).Text).ToList()
             LogAppend("Urlcount: " & urllst.Count.ToString(), "Armory_interface_load_bt_Click", False)
             NewProcessStatus()
             _mHandler.LoadArmoryCharacters(urllst)

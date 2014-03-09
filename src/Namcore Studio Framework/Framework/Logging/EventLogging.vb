@@ -61,7 +61,7 @@ Namespace Framework.Logging
                 Dim _
                     fs As _
                         New StreamWriter(Application.StartupPath & "/EventLog.log",
-                                         FileMode.OpenOrCreate, Encoding.Default)
+                                        CType(FileMode.OpenOrCreate, Boolean), Encoding.Default)
                 fs.WriteLine(GlobalVariables.eventlog)
                 fs.Close()
                 GlobalVariables.eventlog = ""

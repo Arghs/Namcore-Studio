@@ -60,21 +60,21 @@ Namespace Framework.Core
                 End If
                 itm.EnchantmentName = ArcSplitEnchantString(itm.Enchstring, player, itm)
                 If Not loopcounter = 17 Or Not loopcounter = 18 Then
-                    itm.Socket1Effectid = ArcSplitGemString(itm.Enchstring, 29)
+                    itm.Socket1Effectid = CInt(ArcSplitGemString(itm.Enchstring, 29))
                     itm.Socket1Id = GetGemIdByEffectId(itm.Socket1Effectid)
                     itm.Socket1Name = GetEffectNameById(itm.Socket1Effectid, My.Settings.language)
                     itm.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket1Id), GlobalVariables.GlobalWebClient)
-                    itm.Socket2Effectid = ArcSplitGemString(itm.Enchstring, 32)
+                    itm.Socket2Effectid = CInt(ArcSplitGemString(itm.Enchstring, 32))
                     itm.Socket2Id = GetGemIdByEffectId(itm.Socket2Effectid)
                     itm.Socket2Name = GetEffectNameById(itm.Socket2Effectid, My.Settings.language)
                     itm.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket2Id), GlobalVariables.GlobalWebClient)
-                    itm.Socket3Effectid = ArcSplitGemString(itm.Enchstring, 35)
+                    itm.Socket3Effectid = CInt(ArcSplitGemString(itm.Enchstring, 35))
                     itm.Socket3Id = GetGemIdByEffectId(itm.Socket3Effectid)
                     itm.Socket3Name = GetEffectNameById(itm.Socket3Effectid, My.Settings.language)
                     itm.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Socket3Id), GlobalVariables.GlobalWebClient)
                 End If
                 If loopcounter = 13 Then
-                    Dim resultString As String = ArcSplitGemString(itm.Enchstring, 38)
+                    Dim resultString As String = ArcSplitGemString(itm.Enchstring, 38).ToString()
                     If Not resultString = "" Then player.BeltBuckle = TryInt(resultString)
                 End If
                 loopcounter += 1
@@ -148,10 +148,10 @@ Namespace Framework.Core
         End Function
 
         Private Function ArcSplitGemString(ByVal input As String, ByVal position As Integer) _
-            As Integer
+            As String
             LogAppend("ArcSplitGemString call (input=" & input & " // position=" & position.ToString() & ")",
                       "CharacterEnchantmentsHandler_ArcSplitGemString", False)
-            Dim obvalue As Integer
+            Dim obvalue As String
             Try
                 Dim parts() As String = input.Split(";"c)
                 Dim xvalue As String
@@ -170,32 +170,32 @@ Namespace Framework.Core
                 End If
                 If parts(0).Contains(xvalue) Then
                     Dim parts2() As String = parts(0).Split(","c)
-                    obvalue = TryInt(parts2(0))
+                    obvalue = parts2(0)
                     If xvalue = "0,6" Then Return parts2(0)
                     Return obvalue
                 ElseIf parts(1).Contains(xvalue) Then
                     Dim parts2() As String = parts(1).Split(","c)
-                    obvalue = TryInt(parts2(0))
+                    obvalue = parts2(0)
                     If xvalue = "0,6" Then Return parts2(0)
                     Return obvalue
                 ElseIf parts(2).Contains(xvalue) Then
                     Dim parts2() As String = parts(2).Split(","c)
-                    obvalue = TryInt(parts2(0))
+                    obvalue = parts2(0)
                     If xvalue = "0,6" Then Return parts2(0)
                     Return obvalue
                 ElseIf parts(3).Contains(xvalue) Then
                     Dim parts2() As String = parts(3).Split(","c)
-                    obvalue = TryInt(parts2(0))
+                    obvalue = parts2(0)
                     If xvalue = "0,6" Then Return parts2(0)
                     Return obvalue
                 ElseIf parts(4).Contains(xvalue) Then
                     Dim parts2() As String = parts(4).Split(","c)
-                    obvalue = TryInt(parts2(0))
+                    obvalue = parts2(0)
                     If xvalue = "0,6" Then Return parts2(0)
                     Return obvalue
                 ElseIf parts(5).Contains(xvalue) Then
                     Dim parts2() As String = parts(5).Split(","c)
-                    obvalue = TryInt(parts2(0))
+                    obvalue = parts2(0)
                     If xvalue = "0,6" Then Return parts2(0)
                     Return obvalue
                 Else

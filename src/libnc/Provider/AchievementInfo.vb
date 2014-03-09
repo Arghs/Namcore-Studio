@@ -48,7 +48,7 @@ Namespace Provider
             Const targetField As Integer = 5
             Dim myResult As String = ExecuteCsvSearch(AchievementCsv, "AchievementId", avId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myResult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -61,7 +61,7 @@ Namespace Provider
             Const targetField As Integer = 6
             Dim myResult As String = ExecuteCsvSearch(AchievementCsv, "AchievementId", avId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myResult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch

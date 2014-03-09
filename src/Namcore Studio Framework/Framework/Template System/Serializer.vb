@@ -36,7 +36,7 @@ Namespace Framework
                 bf.Serialize(fs, instance)
                 fs.Close()
                 fs.Dispose()
-                Return fs
+                Return CType(fs, MemoryStream)
             Catch ex As Exception
                 fs.Close()
                 fs.Dispose()

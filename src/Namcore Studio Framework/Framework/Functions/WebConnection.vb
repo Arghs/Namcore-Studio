@@ -54,7 +54,7 @@ Namespace Framework.Functions
                 'thrown by the frameworks and must be caught
 
                 ' ReSharper disable VBWarnings::BC40008
-                Return useProxy.GetDefaultProxy.Address.Port
+                Return CStr(useProxy.GetDefaultProxy.Address.Port)
                 ' ReSharper restore VBWarnings::BC40008
 
             Catch 'catch the error when no proxy is specified in IE

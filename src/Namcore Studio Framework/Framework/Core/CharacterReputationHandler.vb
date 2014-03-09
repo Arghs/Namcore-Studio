@@ -71,7 +71,7 @@ Namespace Framework.Core
                             Dim parts() As String = readedcode.Split(","c)
                             rep.Faction = TryInt(parts(partscounter).ToString)
                             partscounter += 1
-                            rep.Flags = TryInt(parts(partscounter).ToString)
+                            rep.Flags = CType(TryInt(parts(partscounter).ToString), Reputation.FlagEnum)
                             partscounter += 1
                             rep.Standing = TryInt(parts(partscounter).ToString)
                             partscounter += 2
@@ -113,7 +113,7 @@ Namespace Framework.Core
                         Dim rep As New Reputation
                         rep.Faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         rep.Standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                        rep.Flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        rep.Flags = CType(TryInt((tempdt.Rows(count).Item(2)).ToString), Reputation.FlagEnum)
                         rep.UpdateValueMax()
                         If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
                         player.PlayerReputation.Add(rep)
@@ -149,7 +149,7 @@ Namespace Framework.Core
                         Dim rep As New Reputation
                         rep.Faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         rep.Standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                        rep.Flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        rep.Flags = CType(TryInt((tempdt.Rows(count).Item(2)).ToString), Reputation.FlagEnum)
                         rep.UpdateValueMax()
                         If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
                         player.PlayerReputation.Add(rep)

@@ -489,7 +489,7 @@ Namespace Framework.Core
                 Dim count As Integer = 0
                 If Not lastcount = 0 Then
                     Do
-                        Dim itemGuid As Integer = TryInt(inventoryDt.Rows(count).Item(3))
+                        Dim itemGuid As Integer = TryInt(inventoryDt.Rows(count).Item(3).ToString())
                         Dim bagGuid As Integer = TryInt(
                                 ExecuteDataTableSearch(inventoryDt,
                                                        GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" &
@@ -574,7 +574,7 @@ Namespace Framework.Core
                                 Dim newItm As New Item
                                 newItm.Slot = TryInt(slot)
                                 newItm.Bag = TryInt(bag)
-                                newItm.Bagguid = TryInt(bagGuid)
+                                newItm.Bagguid = bagGuid
                                 newItm.Id = TryInt(entryid)
                                 newItm.Enchantstring = enchantments
                                 newItm.Count = TryInt(itemcount)

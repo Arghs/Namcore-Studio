@@ -54,7 +54,7 @@ Namespace Forms.Extension
         End Function
 
         Public Overridable Sub Meload(ByVal sender As Object, e As EventArgs) Handles MyBase.Load
-            header.Size = New Point(Size.Width - 9, header.Size.Height)
+            header.Size = New Size(Size.Width - 9, header.Size.Height)
             closepanel.Location = New Point(header.Size.Width - 125, closepanel.Location.Y)
         End Sub
 
@@ -72,35 +72,35 @@ Namespace Forms.Extension
         End Sub
 
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter2.MouseEnter
-            sender.backgroundimage = My.Resources.bt_close_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_close_light
         End Sub
 
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter2.MouseLeave
-            sender.backgroundimage = My.Resources.bt_close
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_close
         End Sub
 
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter
-            sender.backgroundimage = My.Resources.bt_minimize_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize_light
         End Sub
 
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave
-            sender.backgroundimage = My.Resources.bt_minimize
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize
         End Sub
 
         Private Sub settingsBt_MouseEnter(sender As Object, e As EventArgs) Handles settings_bt.MouseEnter
-            sender.backgroundimage = My.Resources.bt_settings_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_settings_light
         End Sub
 
         Private Sub settingsBt_MouseLeave(sender As Object, e As EventArgs) Handles settings_bt.MouseLeave
-            sender.backgroundimage = My.Resources.bt_settings
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_settings
         End Sub
 
         Private Sub aboutBt_MouseEnter(sender As Object, e As EventArgs) Handles about_bt.MouseEnter
-            sender.backgroundimage = My.Resources.bt_about_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_about_light
         End Sub
 
         Private Sub aboutBt_MouseLeave(sender As Object, e As EventArgs) Handles about_bt.MouseLeave
-            sender.backgroundimage = My.Resources.bt_about
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_about
         End Sub
 
         Public Overridable Sub header_MouseDown(sender As Object, e As MouseEventArgs) Handles header.MouseDown

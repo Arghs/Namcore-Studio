@@ -28,7 +28,7 @@ Namespace Provider
             Const targetField As Integer = 2
             Dim myResult As String = ExecuteCsvSearch(ItemCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch ex As Exception
@@ -41,7 +41,7 @@ Namespace Provider
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(ItemCsv, "SubModule", subModuleId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch ex As Exception
@@ -54,7 +54,7 @@ Namespace Provider
             Const targetField As Integer = 3
             Dim myResult As String = ExecuteCsvSearch(ItemCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = -1
+            If myResult = "-" Then myResult = "-1"
             Try
                 returnResult = CInt(myResult)
             Catch ex As Exception

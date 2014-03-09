@@ -90,7 +90,7 @@ Namespace Forms
                 Else
                     gmlevelCol = GlobalVariables.sourceStructure.acc_gmlevel_col(0)
                 End If
-                If Not gmcombo2.SelectedItem = Nothing Then
+                If Not gmcombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & gmlevelCol & " " & gmcombo2.SelectedItem.ToString & " '" & gmtxtbox2.Text &
                                     "'"
                 End If
@@ -108,7 +108,7 @@ Namespace Forms
                 Dim insertstring As String = " " & logincombo1.SelectedItem.ToString() & " '" & datemin.Text & "'"
                 Dim insertstring2 As String = ""
                 GlobalVariables.sourceStructure.acc_lastlogin_col(0) = "last_login" 'todo
-                If Not logincombo2.SelectedItem = Nothing Then
+                If Not logincombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " " &
                                     logincombo2.SelectedItem.ToString & " '" & datemax.Text & "'"
                 End If

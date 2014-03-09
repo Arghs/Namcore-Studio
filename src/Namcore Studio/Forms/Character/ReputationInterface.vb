@@ -118,7 +118,7 @@ Namespace Forms.Character
                     progressPanel.Location = reference_percentage_panel.Location
                     repPanel.Controls.Add(sliderBgPanel)
                     If pRepu.Max = 0 Then pRepu.Max = 1
-                    SetPanelPercentage(progressPanel, pRepu.Value/pRepu.Max)
+                    SetPanelPercentage(progressPanel, CType((pRepu.Value/pRepu.Max), Decimal))
                     sliderBgPanel.Location = reference_sliderbg_panel.Location
                     Dim slider As New TrackBar
                     slider.Name = "rep" & pRepu.Faction.ToString() & "_slider"
@@ -133,7 +133,7 @@ Namespace Forms.Character
                     Dim valueTxtbox As New TextBox
                     valueTxtbox.Name = "rep" & pRepu.Faction.ToString() & "_value_txtbox"
                     valueTxtbox.Size = reference_txtbox.Size
-                    valueTxtbox.Text = pRepu.Value
+                    valueTxtbox.Text = pRepu.Value.ToString()
                     valueTxtbox.Tag = pRepu
                     repPanel.Controls.Add(valueTxtbox)
                     valueTxtbox.Location = reference_txtbox.Location
@@ -180,35 +180,43 @@ Namespace Forms.Character
         End Sub
 
         Private Sub slider_slide(ByVal sender As Object, ByVal e As EventArgs)
-            Dim slider As TrackBar = sender
+            Dim slider As TrackBar = CType(sender, TrackBar)
             If Not slider.Value = 0 Then
                 For Each pCtrl As Control In RepLayoutPanel.Controls
-                    If pCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_pnl") Then
+                    If pCtrl.Name.Contains("rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_pnl") Then
                         Dim namectrl() As Control =
-                                pCtrl.Controls.Find("rep" & slider.Tag.faction.ToString() & "_value_txtbox", True)
+                                pCtrl.Controls.Find(
+                                    "rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_value_txtbox", True)
                         Dim aCtrl As Control
                         For Each aCtrl In namectrl
                             DirectCast(aCtrl, TextBox).Text = slider.Value.ToString()
                         Next
                         Dim namectrl2() As Control =
-                                pCtrl.Controls.Find("rep" & slider.Tag.faction.ToString() & "_value_lbl", True)
+                                pCtrl.Controls.Find(
+                                    "rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_value_lbl", True)
                         Dim aCtrl2 As Control
                         For Each aCtrl2 In namectrl2
                             DirectCast(aCtrl2, Label).Text = slider.Value.ToString() & "/" & slider.Maximum.ToString
                         Next
                         For Each subCtrl As Control In pCtrl.Controls
-                            If subCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_sliderBg_pnl") Then
+                            If _
+                                subCtrl.Name.Contains(
+                                    "rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_sliderBg_pnl") Then
                                 For Each subsubCtrl As Control In subCtrl.Controls
-                                    If subsubCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_progress_pnl") _
+                                    If _
+                                        subsubCtrl.Name.Contains(
+                                            "rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_progress_pnl") _
                                         Then
-                                        setPanelPercentage(subsubCtrl, slider.Value/slider.Maximum)
+                                        SetPanelPercentage(CType(subsubCtrl, Panel),
+                                                           CType((slider.Value/slider.Maximum), Decimal))
                                         Dim loc As Integer =
                                                 GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
-                                                    Function(rep) rep.Faction = pCtrl.Tag.Faction)
-                                        pCtrl.Tag.value = slider.Value
-                                        Dim thisRep As Reputation = pCtrl.Tag
+                                                    Function(rep) rep.Faction = CType(pCtrl.Tag, Reputation).Faction)
+                                        CType(pCtrl.Tag, Reputation).Value = slider.Value
+                                        Dim thisRep As Reputation = CType(pCtrl.Tag, Reputation)
                                         pCtrl.Tag = thisRep.UpdateStanding()
-                                        GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
+                                        GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = CType(pCtrl.Tag,
+                                                                                                           Reputation)
                                     End If
                                 Next
                             End If
@@ -217,32 +225,39 @@ Namespace Forms.Character
                 Next
             Else
                 For Each pCtrl As Control In RepLayoutPanel.Controls
-                    If pCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_pnl") Then
+                    If pCtrl.Name.Contains("rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_pnl") Then
                         Dim namectrl() As Control =
-                                pCtrl.Controls.Find("rep" & slider.Tag.faction.ToString() & "_value_txtbox", True)
+                                pCtrl.Controls.Find(
+                                    "rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_value_txtbox", True)
                         Dim aCtrl As Control
                         For Each aCtrl In namectrl
                             DirectCast(aCtrl, TextBox).Text = slider.Value.ToString()
                         Next
                         Dim namectrl2() As Control =
-                                pCtrl.Controls.Find("rep" & slider.Tag.faction.ToString() & "_value_lbl", True)
+                                pCtrl.Controls.Find(
+                                    "rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_value_lbl", True)
                         Dim aCtrl2 As Control
                         For Each aCtrl2 In namectrl2
                             DirectCast(aCtrl2, Label).Text = slider.Value.ToString() & "/" & slider.Maximum.ToString
                         Next
                         For Each subCtrl As Control In pCtrl.Controls
-                            If subCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_sliderBg_pnl") Then
+                            If _
+                                subCtrl.Name.Contains(
+                                    "rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_sliderBg_pnl") Then
                                 For Each subsubCtrl As Control In subCtrl.Controls
-                                    If subsubCtrl.Name.Contains("rep" & slider.Tag.faction.ToString() & "_progress_pnl") _
+                                    If _
+                                        subsubCtrl.Name.Contains(
+                                            "rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_progress_pnl") _
                                         Then
-                                        setPanelPercentage(subsubCtrl, 0)
+                                        SetPanelPercentage(CType(subsubCtrl, Panel), 0)
                                         Dim loc As Integer =
                                                 GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
                                                     Function(rep) (pCtrl.Tag.Equals(rep)))
-                                        pCtrl.Tag.value = slider.Value
-                                        Dim thisRep As Reputation = pCtrl.Tag
+                                        CType(slider.Tag, Reputation).Value = slider.Value
+                                        Dim thisRep As Reputation = CType(slider.Tag, Reputation)
                                         pCtrl.Tag = thisRep.UpdateStanding()
-                                        GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
+                                        GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = CType(slider.Tag,
+                                                                                                           Reputation)
                                     End If
                                 Next
                             End If
@@ -254,11 +269,13 @@ Namespace Forms.Character
 
         Private Sub SetPanelPercentage(ByRef repPanel As Panel, ByVal percentage As Decimal)
             Const lengthrange As Integer = PanelMaxLength - PanelMinLength
-            repPanel.Size = New Point(percentage*lengthrange + PanelMinLength, repPanel.Size.Height)
+            repPanel.Size = CType(New Point(CType((percentage*lengthrange + PanelMinLength), Integer),
+                                            repPanel.Size.Height),
+                                  Size)
         End Sub
 
         Private Sub StandingChanged(sender As Object, e As EventArgs)
-            Dim combo As ComboBox = sender
+            Dim combo As ComboBox = CType(sender, ComboBox)
             Dim max As Integer
             Dim col As Color
             Select Case combo.SelectedIndex
@@ -281,68 +298,83 @@ Namespace Forms.Character
             End Select
 
             For Each pCtrl As Control In RepLayoutPanel.Controls
-                If pCtrl.Name.Contains("rep" & combo.Tag.faction.ToString() & "_pnl") Then
+                If pCtrl.Name.Contains("rep" & CType(combo.Tag, Reputation).Faction.ToString() & "_pnl") Then
                     Dim loc As Integer =
                             GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
-                                Function(rep) rep.Faction = pCtrl.Tag.Faction)
-                    pCtrl.Tag.value = 0
-                    pCtrl.Tag.max = max
-                    pCtrl.Tag.status = combo.SelectedIndex
-                    Dim thisRep As Reputation = pCtrl.Tag
+                                Function(rep) rep.Faction = CType(pCtrl.Tag, Reputation).Faction)
+                    CType(pCtrl.Tag, Reputation).Value = 0
+                    CType(pCtrl.Tag, Reputation).Max = max
+                    CType(pCtrl.Tag, Reputation).Status = combo.SelectedIndex
+                    Dim thisRep As Reputation = CType(pCtrl.Tag, Reputation)
                     pCtrl.Tag = thisRep.UpdateStanding()
-                    GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
-                    DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Value = 0
-                    DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_slider", pCtrl), TrackBar).Maximum =
+                    GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = CType(pCtrl.Tag, Reputation)
+                    DirectCast(FindControl("rep" & CType(combo.Tag, Reputation).Faction.ToString() & "_slider", pCtrl),
+                               TrackBar).Value = 0
+                    DirectCast(FindControl("rep" & CType(combo.Tag, Reputation).Faction.ToString() & "_slider", pCtrl),
+                               TrackBar).Maximum =
                         max
-                    DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_value_lbl", pCtrl), Label).Text =
+                    DirectCast(FindControl("rep" & CType(combo.Tag, Reputation).Faction.ToString() & "_value_lbl", pCtrl),
+                               Label).Text =
                         "0/" &
                         max.
                             ToString
-                    DirectCast(findControl("rep" & combo.Tag.faction.ToString() & "_value_txtbox", pCtrl), TextBox).Text _
+                    DirectCast(FindControl("rep" & CType(combo.Tag, Reputation).Faction.ToString() & "_value_txtbox",
+                                           pCtrl),
+                               TextBox).Text _
                         =
                         "0"
-                    Dim xctrl As Control = findControl("rep" & combo.Tag.faction.ToString() & "_sliderBg_pnl", pCtrl)
-                    Dim progresspanel As Control = findControl("rep" & combo.Tag.faction.ToString() & "_progress_pnl",
-                                                               xctrl)
+                    Dim xctrl As Control =
+                            FindControl("rep" & CType(combo.Tag, Reputation).Faction.ToString() & "_sliderBg_pnl", pCtrl)
+                    Dim progresspanel As Control =
+                            FindControl("rep" & CType(combo.Tag, Reputation).Faction.ToString() & "_progress_pnl",
+                                        xctrl)
                     DirectCast(progresspanel, Panel).BackColor = col
-                    setPanelPercentage(progresspanel, 0)
+                    SetPanelPercentage(CType(progresspanel, Panel), 0)
                 End If
             Next
         End Sub
 
         Private Sub txt_enter(sender As Object, e As EventArgs)
-            _lasttxtvalue = sender.text
+            _lasttxtvalue = CType(sender, TextBox).Text
         End Sub
 
         Private Sub txt_changed(sender As Object, e As EventArgs)
             _valueisok = False
-            Dim txtbox As TextBox = sender
+            Dim txtbox As TextBox = CType(sender, TextBox)
             If Not txtbox.Text.Length < 1 Then
                 Dim int As Integer = TryInt(txtbox.Text)
                 If Not int = 0 OrElse txtbox.Text = "0" Then
                     For Each pCtrl As Control In RepLayoutPanel.Controls
-                        If pCtrl.Name.Contains("rep" & txtbox.Tag.faction.ToString() & "_pnl") Then
-                            If int <= pCtrl.Tag.max And int >= 0 Then
+                        If pCtrl.Name.Contains("rep" & CType(txtbox.Tag, Reputation).Faction.ToString() & "_pnl") Then
+                            If int <= CType(pCtrl.Tag, Reputation).Max And int >= 0 Then
                                 Dim loc As Integer =
                                         GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
-                                            Function(rep) rep.Faction = pCtrl.Tag.Faction)
-                                DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_slider", pCtrl),
-                                           TrackBar).
+                                            Function(rep) rep.Faction = CType(pCtrl.Tag, Reputation).Faction)
+                                DirectCast(
+                                    FindControl("rep" & CType(pCtrl.Tag, Reputation).Faction.ToString() & "_slider",
+                                                pCtrl),
+                                    TrackBar).
                                     Value = int
-                                DirectCast(findControl("rep" & pCtrl.Tag.faction.ToString() & "_value_lbl", pCtrl),
-                                           Label).
-                                    Text = int.ToString() & "/" & pCtrl.Tag.max.ToString
+                                DirectCast(
+                                    FindControl("rep" & CType(pCtrl.Tag, Reputation).Faction.ToString() & "_value_lbl",
+                                                pCtrl),
+                                    Label).
+                                    Text = int.ToString() & "/" & CType(pCtrl.Tag, Reputation).Max.ToString
                                 Dim xctrl As Control =
-                                        findControl("rep" & pCtrl.Tag.faction.ToString() & "_sliderBg_pnl",
-                                                    pCtrl)
+                                        FindControl(
+                                            "rep" & CType(pCtrl.Tag, Reputation).Faction.ToString() & "_sliderBg_pnl",
+                                            pCtrl)
                                 Dim progresspanel As Control =
-                                        findControl("rep" & pCtrl.Tag.faction.ToString() & "_progress_pnl", xctrl)
-                                setPanelPercentage(progresspanel, int/pCtrl.Tag.max)
-                                pCtrl.Tag.value = int
-                                Dim thisRep As Reputation = pCtrl.Tag
+                                        FindControl(
+                                            "rep" & CType(pCtrl.Tag, Reputation).Faction.ToString() & "_progress_pnl",
+                                            xctrl)
+                                SetPanelPercentage(CType(progresspanel, Panel),
+                                                   CType((int/CType(pCtrl.Tag, Reputation).Max), Decimal))
+                                CType(pCtrl.Tag, Reputation).Value = int
+                                Dim thisRep As Reputation = CType(pCtrl.Tag, Reputation)
                                 pCtrl.Tag = thisRep.UpdateStanding()
                                 _valueisok = True
-                                GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = pCtrl.Tag
+                                GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = CType(pCtrl.Tag, Reputation)
                             End If
                         End If
                     Next
@@ -351,7 +383,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub txt_left(sender As Object, e As EventArgs)
-            Dim txtbox As TextBox = sender
+            Dim txtbox As TextBox = CType(sender, TextBox)
             If Not _valueisok Then
                 txtbox.Text = _lasttxtvalue
             End If
@@ -391,7 +423,7 @@ Namespace Forms.Character
                         Dim pRepu As New Reputation
                         With pRepu
                             .faction = retnvalue
-                            .flags = 1
+                            .Flags = CType(1, Reputation.FlagEnum)
                             .Name = GetFactionNameById(.Faction, MySettings.Default.language)
                             .max = 3000
                             .standing = 0
@@ -423,7 +455,7 @@ Namespace Forms.Character
                         sliderBgPanel.Controls.Add(progressPanel)
                         progressPanel.Location = reference_percentage_panel.Location
                         repPanel.Controls.Add(sliderBgPanel)
-                        setPanelPercentage(progressPanel, pRepu.value/pRepu.max)
+                        SetPanelPercentage(progressPanel, CType((pRepu.Value/pRepu.Max), Decimal))
                         sliderBgPanel.Location = reference_sliderbg_panel.Location
                         Dim slider As New TrackBar
                         slider.Name = "rep" & pRepu.faction.ToString() & "_slider"
@@ -438,7 +470,7 @@ Namespace Forms.Character
                         Dim valueTxtbox As New TextBox
                         valueTxtbox.Name = "rep" & pRepu.faction.ToString() & "_value_txtbox"
                         valueTxtbox.Size = reference_txtbox.Size
-                        valueTxtbox.Text = pRepu.value
+                        valueTxtbox.Text = pRepu.Value.ToString()
                         valueTxtbox.Tag = pRepu
                         repPanel.Controls.Add(valueTxtbox)
                         valueTxtbox.Location = reference_txtbox.Location

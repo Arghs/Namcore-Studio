@@ -46,7 +46,7 @@ Namespace Framework.Database
                 Dim column As String = SplitString(command.ToLower(), "select ", " from")
                 column = column.Replace("`", "")
                 Dim args As String()
-                args = command.Split(" ")
+                args = command.Split(" "c)
                 Dim newcommand As String = ""
                 For i = 0 To args.Length - 1
                     If args(i) = "WHERE" Then
@@ -92,7 +92,7 @@ Namespace Framework.Database
             End If
         End Function
 
-        Private Function RunUsualCommand(ByVal command As String, ByVal conn As MySqlConnection)
+        Private Function RunUsualCommand(ByVal command As String, ByVal conn As MySqlConnection) As String
             LogAppend("Executing new MySQL command. Command is: " & command,
                       "CommandHandler_RunUsualCommand", False)
             Dim da As New MySqlDataAdapter(command, conn)
@@ -139,7 +139,7 @@ Namespace Framework.Database
                 Dim column As String = SplitString(command.ToLower(), "select ", " from")
                 column = column.Replace("`", "")
                 Dim args As String()
-                args = command.Split(" ")
+                args = command.Split(" "c)
                 Dim newcommand As String = ""
                 For i = 0 To args.Length - 1
                     If args(i) = "WHERE" Then
@@ -198,7 +198,7 @@ Namespace Framework.Database
                 Dim column As String = SplitString(command.ToLower(), "select ", " from")
                 column = column.Replace("`", "")
                 Dim args As String()
-                args = command.Split(" ")
+                args = command.Split(" "c)
                 Dim newcommand As String = ""
                 For i = 0 To args.Length - 1
                     If args(i) = "WHERE" Then

@@ -31,7 +31,7 @@ Namespace Modules.Interface
         <Extension()>
         Public Sub CheckTag(ByVal ctrl As Control)
             If TypeOf (ctrl.Tag) Is Item Then
-                Dim locItm As Item = ctrl.Tag
+                Dim locItm As Item = CType(ctrl.Tag, Item)
                 Dim x As New Serialization.XmlSerializer(locItm.GetType)
                 Dim memStream As New MemoryStream
                 Dim sw As New StreamWriter(memStream)

@@ -71,35 +71,35 @@ Namespace Forms
         End Structure
 
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter4.MouseEnter
-            sender.backgroundimage = My.Resources.bt_close_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_close_light
         End Sub
 
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter4.MouseLeave
-            sender.backgroundimage = My.Resources.bt_close
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_close
         End Sub
 
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter5.MouseEnter
-            sender.backgroundimage = My.Resources.bt_minimize_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize_light
         End Sub
 
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter5.MouseLeave
-            sender.backgroundimage = My.Resources.bt_minimize
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize
         End Sub
 
         Private Sub settingsBt_MouseEnter(sender As Object, e As EventArgs) Handles settings_pic.MouseEnter
-            sender.backgroundimage = My.Resources.bt_settings_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_settings_light
         End Sub
 
         Private Sub settingsBt_MouseLeave(sender As Object, e As EventArgs) Handles settings_pic.MouseLeave
-            sender.backgroundimage = My.Resources.bt_settings
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_settings
         End Sub
 
         Private Sub aboutBt_MouseEnter(sender As Object, e As EventArgs) Handles about_pic.MouseEnter
-            sender.backgroundimage = My.Resources.bt_about_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_about_light
         End Sub
 
         Private Sub aboutBt_MouseLeave(sender As Object, e As EventArgs) Handles about_pic.MouseLeave
-            sender.backgroundimage = My.Resources.bt_about
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_about
         End Sub
 
         Private Sub connect_bt_Click(sender As Object, e As EventArgs) Handles connect_bt.Click
@@ -129,18 +129,18 @@ Namespace Forms
             For Each rowitem As DataRow In GlobalVariables.acctable.Rows
                 genSet += 1
                 Dim accountHandler As New AccountHandler
-                accountHandler.LoadAccount(TryInt(rowitem.Item(0)), genSet)
+                accountHandler.LoadAccount(TryInt(rowitem.Item(0).ToString()), genSet)
                 Dim account As Account = GetAccountSetBySetId(genSet)
                 Dim str(4) As String
                 Dim itm As ListViewItem
-                str(0) = rowitem.Item(0)
-                str(1) = rowitem.Item(1)
-                str(2) = rowitem.Item(2)
-                str(3) = rowitem.Item(3)
+                str(0) = rowitem.Item(0).ToString()
+                str(1) = rowitem.Item(1).ToString()
+                str(2) = rowitem.Item(2).ToString()
+                str(3) = rowitem.Item(3).ToString()
                 If IsDBNull(rowitem.Item(4)) Then
                     str(4) = ""
                 Else
-                    str(4) = rowitem.Item(4)
+                    str(4) = rowitem.Item(4).ToString()
                 End If
                 itm = New ListViewItem(str)
                 account.Characters = New List(Of NCFramework.Framework.Modules.Character)()
@@ -157,19 +157,19 @@ Namespace Forms
                 player.Guid = 0
                 Dim str(6) As String
                 Dim itm As ListViewItem
-                player.Guid = TryInt(rowitem.Item(0))
-                str(0) = rowitem.Item(0)
-                str(1) = rowitem.Item(1)
-                player.Name = rowitem.Item(2)
-                str(2) = rowitem.Item(2)
-                player.Race = TryInt(rowitem.Item(3))
-                str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
-                player.Cclass = TryInt(rowitem.Item(4))
-                str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
-                player.Gender = TryInt(rowitem.Item(5))
-                str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
-                player.Level = TryInt(rowitem.Item(6))
-                str(6) = rowitem.Item(6)
+                player.Guid = TryInt(rowitem.Item(0).ToString())
+                str(0) = rowitem.Item(0).ToString()
+                str(1) = rowitem.Item(1).ToString()
+                player.Name = rowitem.Item(2).ToString()
+                str(2) = rowitem.Item(2).ToString()
+                player.Race = TryInt(rowitem.Item(3).ToString())
+                str(3) = GetRaceNameById(TryInt(rowitem.Item(3).ToString()))
+                player.Cclass = TryInt(rowitem.Item(4).ToString())
+                str(4) = GetClassNameById(TryInt(rowitem.Item(4).ToString()))
+                player.Gender = TryInt(rowitem.Item(5).ToString())
+                str(5) = GetGenderNameById(TryInt(rowitem.Item(5).ToString()))
+                player.Level = TryInt(rowitem.Item(6).ToString())
+                str(6) = rowitem.Item(6).ToString()
                 itm = New ListViewItem(str)
                 genSet += 1
                 rowitem.Item(7) = genSet.ToString()
@@ -301,7 +301,7 @@ Namespace Forms
             For Each playerAccount As Account In GlobalVariables.globChars.AccountSets
                 Dim str(4) As String
                 Dim itm As ListViewItem
-                str(0) = playerAccount.Id
+                str(0) = playerAccount.Id.ToString()
                 str(1) = playerAccount.Name
                 str(2) = playerAccount.GmLevel.ToString()
                 str(3) = playerAccount.LastLogin.ToString()
@@ -347,12 +347,12 @@ Namespace Forms
                                                                        GlobalVariables.targetStructure)
             target_accounts_tree.Nodes.Clear()
             For Each rowitem As DataRow In _targetAcccharTable.Rows
-                Dim foundNode() As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)
+                Dim foundNode() As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0).ToString(), False)
                 If foundNode.Length = 0 Then
                     Dim newnode As New TreeNode
                     Dim newAccount As New Account
-                    newAccount.Id = rowitem.Item(0)
-                    newAccount.Name = rowitem.Item(1)
+                    newAccount.Id = TryInt(rowitem.Item(0).ToString())
+                    newAccount.Name = rowitem.Item(1).ToString()
                     With newnode
                         .Name = newAccount.Id.ToString()
                         .Text = newAccount.Name
@@ -361,13 +361,13 @@ Namespace Forms
                     target_accounts_tree.Nodes.Add(newnode)
                 End If
                 If Not IsDBNull(rowitem(2)) Or Not IsDBNull(rowitem(3)) Then
-                    Dim node As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)(0)
+                    Dim node As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0).ToString(), False)(0)
                     Dim subNode As New TreeNode
                     Dim newCharacter As New NCFramework.Framework.Modules.Character
-                    newCharacter.Name = rowitem(3)
+                    newCharacter.Name = rowitem(3).ToString()
                     With subNode
-                        .Name = rowitem(2)
-                        .Text = rowitem(3)
+                        .Name = rowitem(2).ToString()
+                        .Text = rowitem(3).ToString()
                         .Tag = newCharacter
                     End With
                     node.Nodes.Add(subNode)
@@ -387,20 +387,20 @@ Namespace Forms
         Public Sub LoadTargetTemplate()
             target_accounts_tree.Nodes.Clear()
             For Each rowitem As DataRow In _targetAcccharTable.Rows
-                Dim foundNode() As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)
+                Dim foundNode() As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0).ToString(), False)
                 If foundNode.Length = 0 Then
                     Dim newnode As New TreeNode
                     With newnode
-                        .Name = rowitem.Item(0)
-                        .Text = rowitem.Item(1)
+                        .Name = rowitem.Item(0).ToString()
+                        .Text = rowitem.Item(1).ToString()
                     End With
                     target_accounts_tree.Nodes.Add(newnode)
                 Else
-                    Dim node As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0), False)(0)
+                    Dim node As TreeNode = target_accounts_tree.Nodes.Find(rowitem(0).ToString(), False)(0)
                     Dim subNode As New TreeNode
                     With subNode
-                        .Name = rowitem(2)
-                        .Text = rowitem(3)
+                        .Name = rowitem(2).ToString()
+                        .Text = rowitem(3).ToString()
                     End With
 
                     node.Nodes.Add(subNode)
@@ -418,33 +418,33 @@ Namespace Forms
             For Each rowitem As DataRow In accounttable.Rows
                 Dim str(4) As String
                 Dim itm As ListViewItem
-                str(0) = rowitem.Item(0)
-                str(1) = rowitem.Item(1)
-                str(2) = rowitem.Item(2)
-                str(3) = rowitem.Item(3)
-                str(4) = rowitem.Item(4)
+                str(0) = rowitem.Item(0).ToString()
+                str(1) = rowitem.Item(1).ToString()
+                str(2) = rowitem.Item(2).ToString()
+                str(3) = rowitem.Item(3).ToString()
+                str(4) = rowitem.Item(4).ToString()
                 itm = New ListViewItem(str)
-                itm.Tag = GetAccountSetBySetId(TryInt(rowitem.Item(5)))
+                itm.Tag = GetAccountSetBySetId(TryInt(rowitem.Item(5).ToString()))
                 accountview.Items.Add(itm)
                 accountview.EnsureVisible(accountview.Items.Count - 1)
             Next
             accountview.Update()
             For Each accrowitem As DataRow In accounttable.Rows
-                Dim myaccid As String = accrowitem.Item(0)
+                Dim myaccid As String = accrowitem.Item(0).ToString()
                 For Each rowitem As DataRow In GlobalVariables.chartable.Rows
-                    If rowitem(1) = myaccid Then
+                    If rowitem(1).ToString() = myaccid Then
                         Dim str(6) As String
                         Dim itm As ListViewItem
-                        str(0) = rowitem.Item(0)
-                        str(1) = rowitem.Item(1)
-                        str(2) = rowitem.Item(2)
-                        str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
-                        str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
-                        str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
-                        str(6) = rowitem.Item(6)
+                        str(0) = rowitem.Item(0).ToString()
+                        str(1) = rowitem.Item(1).ToString()
+                        str(2) = rowitem.Item(2).ToString()
+                        str(3) = GetRaceNameById(TryInt(rowitem.Item(3).ToString()))
+                        str(4) = GetClassNameById(TryInt(rowitem.Item(4).ToString()))
+                        str(5) = GetGenderNameById(TryInt(rowitem.Item(5).ToString()))
+                        str(6) = rowitem.Item(6).ToString()
                         itm = New ListViewItem(str)
-                        itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7)),
-                                                         GetAccountSetBySetId(TryInt(rowitem.Item(8))))
+                        itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7).ToString()),
+                                                         GetAccountSetBySetId(TryInt(rowitem.Item(8).ToString())))
                         characterview.Items.Add(itm)
                         characterview.EnsureVisible(characterview.Items.Count - 1)
                     End If
@@ -464,32 +464,32 @@ Namespace Forms
             For Each rowitem As DataRow In GlobalVariables.modifiedAccTable.Rows
                 Dim str(4) As String
                 Dim itm As ListViewItem
-                str(0) = rowitem.Item(0)
-                str(1) = rowitem.Item(1)
-                str(2) = rowitem.Item(2)
-                str(3) = rowitem.Item(3)
-                str(4) = rowitem.Item(4)
+                str(0) = rowitem.Item(0).ToString()
+                str(1) = rowitem.Item(1).ToString()
+                str(2) = rowitem.Item(2).ToString()
+                str(3) = rowitem.Item(3).ToString()
+                str(4) = rowitem.Item(4).ToString()
                 itm = New ListViewItem(str)
                 accountview.Items.Add(itm)
                 accountview.EnsureVisible(accountview.Items.Count - 1)
             Next
             accountview.Update()
             For Each accrowitem As DataRow In GlobalVariables.modifiedAccTable.Rows
-                Dim myaccid As String = accrowitem.Item(0)
+                Dim myaccid As String = accrowitem.Item(0).ToString()
                 For Each rowitem As DataRow In charactertable.Rows
-                    If rowitem(1) = myaccid Then
+                    If rowitem(1).ToString() = myaccid Then
                         Dim str(6) As String
                         Dim itm As ListViewItem
-                        str(0) = rowitem.Item(0)
-                        str(1) = rowitem.Item(1)
-                        str(2) = rowitem.Item(2)
-                        str(3) = GetRaceNameById(TryInt(rowitem.Item(3)))
-                        str(4) = GetClassNameById(TryInt(rowitem.Item(4)))
-                        str(5) = GetGenderNameById(TryInt(rowitem.Item(5)))
-                        str(6) = rowitem.Item(6)
+                        str(0) = rowitem.Item(0).ToString()
+                        str(1) = rowitem.Item(1).ToString()
+                        str(2) = rowitem.Item(2).ToString()
+                        str(3) = GetRaceNameById(TryInt(rowitem.Item(3).ToString()))
+                        str(4) = GetClassNameById(TryInt(rowitem.Item(4).ToString()))
+                        str(5) = GetGenderNameById(TryInt(rowitem.Item(5).ToString()))
+                        str(6) = rowitem.Item(6).ToString()
                         itm = New ListViewItem(str)
-                        itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7)),
-                                                         GetAccountSetBySetId(TryInt(rowitem.Item(8))))
+                        itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7).ToString()),
+                                                         GetAccountSetBySetId(TryInt(rowitem.Item(8).ToString())))
                         characterview.Items.Add(itm)
                         characterview.EnsureVisible(characterview.Items.Count - 1)
                     End If
@@ -551,8 +551,8 @@ Namespace Forms
                 If _completeCharacterItems Is Nothing Then _completeCharacterItems = New List(Of ListViewItem)()
                 If Not accountview.CheckedItems.Count = 0 Then
                     Dim validAccountIds As List(Of Integer) =
-                            (From checkedrow As ListViewItem In accountview.CheckedItems
-                            Select TryInt(checkedrow.SubItems(0).Text)).ToList()
+                            (From checkedrow As Object In accountview.CheckedItems
+                            Select TryInt(TryCast(checkedrow, ListViewItem).SubItems(0).Text)).ToList()
                     For i = characterview.Items.Count - 1 To 0 Step - 1
                         Dim itm As ListViewItem = characterview.Items(i)
                         itm.Checked = True
@@ -563,7 +563,7 @@ Namespace Forms
                             End If
                         Next
                         If match = False Then
-                            _completeCharacterItems.Add(itm.Clone())
+                            _completeCharacterItems.Add(CType(itm.Clone(), ListViewItem))
                             characterview.Items.Remove(itm)
                         End If
                     Next i
@@ -577,7 +577,7 @@ Namespace Forms
                             End If
                         Next
                         If match = True Then
-                            characterview.Items.Add(itm.Clone)
+                            characterview.Items.Add(CType(itm.Clone, ListViewItem))
                             _completeCharacterItems.Remove(itm)
                         End If
                     Next i
@@ -586,7 +586,7 @@ Namespace Forms
                     For i = _completeCharacterItems.Count - 1 To 0 Step - 1
                         Dim itm As ListViewItem = _completeCharacterItems.Item(i)
                         itm.Checked = False
-                        characterview.Items.Add(itm.Clone)
+                        characterview.Items.Add(CType(itm.Clone, ListViewItem))
                         _completeCharacterItems.Remove(itm)
                     Next i
                     For Each itm As ListViewItem In characterview.Items
@@ -683,7 +683,7 @@ Namespace Forms
                        "Warning")
             Else
                 Dim accview As New AccountOverview
-                Dim accTag As Account = accountview.SelectedItems(0).Tag
+                Dim accTag As Account = CType(accountview.SelectedItems(0).Tag, Account)
                 If GlobalVariables.armoryMode = False Then
                     Userwait.Show()
                     accview.prepare_interface(GetAccountSetBySetId(accTag.SetIndex))
@@ -809,7 +809,7 @@ Namespace Forms
                             End If
                         Next
                         Dim accLst As New List(Of Account)
-                        accLst.Add(lvItem.Tag)
+                        accLst.Add(CType(lvItem.Tag, Account))
                         TransAccounts(accLst)
                         Exit Sub
                     End If
@@ -821,8 +821,10 @@ Namespace Forms
                         End If
                         destNode.Nodes.Insert(destNode.Index + 1, tnNew)
                         destNode.Expand()
-                        Dim player As NCFramework.Framework.Modules.Character = lvItem.Tag
-                        player.TargetAccount = destNode.Tag
+                        Dim player As NCFramework.Framework.Modules.Character = CType(lvItem.Tag,
+                                                                                      NCFramework.Framework.Modules.
+                                Character)
+                        player.TargetAccount = CType(destNode.Tag, Account)
                         Dim nodes As New List(Of String)
                         For Each parentNode As TreeNode In target_accounts_tree.Nodes
                             nodes.AddRange(GetChildren(parentNode))
@@ -862,7 +864,7 @@ Namespace Forms
         End Sub
 
         Private Sub accountview_GiveFeedback(ByVal sender As Object, ByVal e As GiveFeedbackEventArgs) _
-          Handles accountview.GiveFeedback
+            Handles accountview.GiveFeedback
             e.UseDefaultCursors = False
             If (e.Effect And DragDropEffects.Move) = DragDropEffects.Move Then
                 Cursor.Current = Cursors.Cross
@@ -875,11 +877,21 @@ Namespace Forms
             Handles RemoveToolStripMenuItem2.Click
             If Not target_accounts_tree.SelectedNode.BackColor = Color.Transparent Then
                 If Not GlobalVariables.accountsToCreate Is Nothing Then
-                    Dim accResult As Account = GlobalVariables.accountsToCreate.Find(Function(account) account.SetIndex = TryCast(target_accounts_tree.SelectedNode.Tag, Account).SetIndex)
+                    Dim accResult As Account =
+                            GlobalVariables.accountsToCreate.Find(
+                                Function(account) _
+                                                                     account.SetIndex =
+                                                                     TryCast(target_accounts_tree.SelectedNode.Tag,
+                                                                             Account).SetIndex)
                     If Not accResult Is Nothing Then GlobalVariables.accountsToCreate.Remove(accResult)
                 End If
                 If Not GlobalVariables.charactersToCreate Is Nothing Then
-                    Dim charResult As List(Of NCFramework.Framework.Modules.Character) = GlobalVariables.charactersToCreate.FindAll(Function(character) character.TargetAccount.Id = TryCast(target_accounts_tree.SelectedNode.Tag, Account).Id)
+                    Dim charResult As List(Of NCFramework.Framework.Modules.Character) =
+                            GlobalVariables.charactersToCreate.FindAll(
+                                Function(character) _
+                                                                          character.TargetAccount.Id =
+                                                                          TryCast(target_accounts_tree.SelectedNode.Tag,
+                                                                                  Account).Id)
                     If Not charResult Is Nothing Then
                         For Each character As NCFramework.Framework.Modules.Character In charResult
                             GlobalVariables.charactersToCreate.Remove(character)
@@ -894,7 +906,13 @@ Namespace Forms
         Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
             If Not target_accounts_tree.SelectedNode.BackColor = Color.Transparent Then
                 If Not GlobalVariables.charactersToCreate Is Nothing Then
-                    Dim charResult As NCFramework.Framework.Modules.Character = GlobalVariables.charactersToCreate.Find(Function(character) character.SetIndex = TryCast(target_accounts_tree.SelectedNode.Tag, NCFramework.Framework.Modules.Character).SetIndex)
+                    Dim charResult As NCFramework.Framework.Modules.Character =
+                            GlobalVariables.charactersToCreate.Find(
+                                Function(character) _
+                                                                       character.SetIndex =
+                                                                       TryCast(target_accounts_tree.SelectedNode.Tag,
+                                                                               NCFramework.Framework.Modules.Character).
+                                                                           SetIndex)
                     If Not charResult Is Nothing Then GlobalVariables.charactersToCreate.Remove(charResult)
                 End If
                 target_accounts_tree.SelectedNode.Remove()
@@ -905,7 +923,7 @@ Namespace Forms
         Private Sub SelectedAccountToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles SelectedAccountToolStripMenuItem.Click
             Dim temparray As New List(Of Account)
-            Dim acc As Account = accountview.SelectedItems(0).Tag
+            Dim acc As Account = CType(accountview.SelectedItems(0).Tag, Account)
             temparray.Add(acc)
             For Each checkeditem As ListViewItem In accountview.CheckedItems
                 checkeditem.Checked = False
@@ -920,8 +938,8 @@ Namespace Forms
         Private Sub CheckedAccountsToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles CheckedAccountsToolStripMenuItem.Click
             Dim temparray As List(Of Account) =
-                    (From checkedAccount As ListViewItem In accountview.CheckedItems Select acc = checkedAccount.Tag).
-                    Cast (Of Account)().ToList()
+                    (From checkedAccount As Object In accountview.CheckedItems Select acc = TryCast(checkedAccount, ListViewItem).Tag).
+                    Cast(Of Account)().ToList()
             TransAccounts(temparray)
         End Sub
 
@@ -947,7 +965,9 @@ Namespace Forms
                     GlobalVariables.accountsToCreate.Add(newacc)
                 End If
                 For Each checkedChar As ListViewItem In characterview.CheckedItems
-                    Dim thischar As NCFramework.Framework.Modules.Character = checkedChar.Tag
+                    Dim thischar As NCFramework.Framework.Modules.Character = CType(checkedChar.Tag,
+                                                                                    NCFramework.Framework.Modules.
+                            Character)
                     Dim newchar As NCFramework.Framework.Modules.Character = DeepCloneHelper.DeepClone(thischar)
                     If thischar.AccountSet = playerAccount.SetIndex Then
                         For Each targetaccount As TreeNode In target_accounts_tree.Nodes
@@ -989,7 +1009,7 @@ Namespace Forms
                             For Each parentNode As TreeNode In target_accounts_tree.Nodes
                                 nodes.AddRange(GetChildren(parentNode))
                             Next
-                            character.TargetAccount = accountnode.Tag
+                            character.TargetAccount = CType(accountnode.Tag, Account)
                             With newcharnode
                                 .Text = character.Name
                                 .Tag = character
@@ -1018,7 +1038,7 @@ Namespace Forms
                     For Each parentNode As TreeNode In target_accounts_tree.Nodes
                         nodes.AddRange(GetChildren(parentNode))
                     Next
-                    character.TargetAccount = accountnode.Tag
+                    character.TargetAccount = CType(accountnode.Tag, Account)
                     With newcharnode
                         .Text = character.Name
                         .Tag = character
@@ -1037,7 +1057,7 @@ Namespace Forms
         End Sub
 
         Function GetChildren(parentNode As TreeNode) As List(Of String)
-            Return (From childNode As TreeNode In parentNode.Nodes Select "'" & childNode.Text & "'").ToList()
+            Return (From childNode As Object In parentNode.Nodes Select "'" & TryCast(childNode, TreeNode).Text & "'").ToList()
         End Function
 
         Private Sub Transfer_bt_Click(sender As Object, e As EventArgs) Handles Transfer_bt.Click
@@ -1062,7 +1082,8 @@ Namespace Forms
             Handles SelectedCharacterToolStripMenuItem1.Click
             GlobalVariables.trans_charlist = New List(Of NCFramework.Framework.Modules.Character)()
             For I = 0 To characterview.SelectedItems.Count - 1
-                GlobalVariables.trans_charlist.Add(characterview.SelectedItems(I).Tag)
+                GlobalVariables.trans_charlist.Add(CType(characterview.SelectedItems(I).Tag,
+                                                         NCFramework.Framework.Modules.Character))
             Next
             PrepChartrans.Show()
         End Sub
@@ -1071,7 +1092,7 @@ Namespace Forms
             Handles CheckedCharactersToolStripMenuItem1.Click
             GlobalVariables.trans_charlist = New List(Of NCFramework.Framework.Modules.Character)()
             For Each itm As ListViewItem In characterview.CheckedItems
-                GlobalVariables.trans_charlist.Add(itm.Tag)
+                GlobalVariables.trans_charlist.Add(CType(itm.Tag, NCFramework.Framework.Modules.Character))
             Next
             PrepChartrans.Show()
         End Sub
@@ -1146,7 +1167,8 @@ Namespace Forms
             Else
                 NewProcessStatus()
                 Dim charview As CharacterOverview = New CharacterOverview
-                Dim player As NCFramework.Framework.Modules.Character = characterview.SelectedItems(0).Tag
+                Dim player As NCFramework.Framework.Modules.Character = CType(characterview.SelectedItems(0).Tag,
+                                                                              NCFramework.Framework.Modules.Character)
                 If GlobalVariables.armoryMode = True Then
                     Userwait.Show()
                     charview.prepare_interface(GetAccountSetBySetId(player.AccountSet), player.SetIndex)
@@ -1210,7 +1232,7 @@ Namespace Forms
                     Size = New Size(e.Location.X, Size.Height)
                     Application.DoEvents()
                     mainpanel.Size = New Size(Size.Width - 10, mainpanel.Size.Height)
-                    Dim tmpwidth As Integer = (Size.Width/1920)*9
+                    Dim tmpwidth As Integer = CType(((Size.Width/1920)*9), Integer)
                     header.Location = New Point(tmpwidth, header.Location.Y)
                     header.Size = New Size(Size.Width - (2*tmpwidth), header.Size.Height)
                     closepanel.Location = New Point(header.Size.Width - 125, closepanel.Location.Y)
@@ -1279,10 +1301,12 @@ Namespace Forms
                 GlobalVariables.forceTemplateCharVars = False
                 GlobalVariables.templateCharVars = saveChars
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
-                    Dim player As Account = accountnode.Tag
+                    Dim player As Account = CType(accountnode.Tag, Account)
                     AddAccountSet(player.SetIndex, player, saveChars)
                     For Each charnode As TreeNode In accountnode.Nodes
-                        Dim playerchar As NCFramework.Framework.Modules.Character = charnode.Tag
+                        Dim playerchar As NCFramework.Framework.Modules.Character = CType(charnode.Tag,
+                                                                                          NCFramework.Framework.Modules.
+                                Character)
                         AddCharacterSet(playerchar.SetIndex, playerchar, player)
                     Next
                 Next
@@ -1321,7 +1345,7 @@ Namespace Forms
             Dim _
                 fs As _
                     New StreamWriter(_filePath,
-                                     FileMode.OpenOrCreate)
+                                     CType(FileMode.OpenOrCreate, Boolean))
             fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
             fs.Close()
             ms.Close()

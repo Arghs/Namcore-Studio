@@ -43,7 +43,7 @@ Namespace Provider
             End Select
             Dim myResult As String = ExecuteCsvSearch(SpellEffectCsv, field, spellId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -62,7 +62,7 @@ Namespace Provider
             End Select
             Dim myResult As String = ExecuteCsvSearch(SpellEffectCsv, "EffectId", effectId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -78,7 +78,7 @@ Namespace Provider
                 Const targetField As Integer = 2
                 Dim myResult As String = ExecuteCsvSearch(SpellEffectCsv, "EffectId", effectId.ToString(), targetField)(0)
                 Dim returnResult As Integer
-                If myResult = "-" Then myResult = 0
+                If myResult = "-" Then myresult = "0"
                 Try
                     returnResult = CInt(myResult)
                 Catch
@@ -87,7 +87,7 @@ Namespace Provider
                 returnEnchId = returnResult
                 returnEnchType = 1
                 Dim nextResult As String = ExecuteCsvSearch(SpellEffectCsv, "EffectId", effectId.ToString(), 0)(0)
-                If nextResult = "-" Then nextResult = 0
+                If nextResult = "-" Then nextResult = "0"
                 Try
                     returnResult = CInt(nextResult)
                 Catch
@@ -107,7 +107,7 @@ Namespace Provider
             Const targetField As Integer = 0
             Dim myResult As String = ExecuteCsvSearch(SpellEnchantCsv, "GemId", gemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -120,7 +120,7 @@ Namespace Provider
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(SpellEnchantCsv, "EffectId", effectId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch

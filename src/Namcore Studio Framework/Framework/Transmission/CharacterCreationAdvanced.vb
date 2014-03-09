@@ -37,13 +37,13 @@ Namespace Framework.Transmission
                       "CharacterCreationAdvanced_CreateNewAdvancedCharacter", True)
             Select Case GlobalVariables.targetCore
                 Case "arcemu"
-                    Return CreateAtArcemu(charname, accountId.ToString, player, forceNameChange)
+                    Return CreateAtArcemu(charname, CInt(accountId), player, forceNameChange)
                 Case "trinity"
-                    Return CreateAtTrinity(charname, accountId.ToString, player, forceNameChange)
+                    Return CreateAtTrinity(charname, CInt(accountId), player, forceNameChange)
                 Case "trinitytbc"
                     Return False
                 Case "mangos"
-                    Return CreateAtMangos(charname, accountId.ToString, player, forceNameChange)
+                    Return CreateAtMangos(charname, CInt(accountId), player, forceNameChange)
                 Case Else
                     Return False
             End Select

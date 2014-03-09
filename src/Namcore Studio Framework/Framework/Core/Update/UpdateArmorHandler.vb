@@ -108,7 +108,7 @@ Namespace Framework.Core.Update
                         itm2Add.Count.ToString() & "', '0', '" &
                         itm2Add.Slot.ToString() & "' )")
                     Dim mEnchCreator As New EnchantmentsCreation
-                    mEnchCreator.SetItemEnchantments(Nothing, itm2Add, newItemGuid, GlobalVariables.targetCore,
+                    mEnchCreator.SetItemEnchantments(Nothing, itm2Add, TryInt(newItemGuid), GlobalVariables.targetCore,
                                                      GlobalVariables.sourceStructure)
                 Case "trinity"
                     Dim newItemGuid As Integer = TryInt(

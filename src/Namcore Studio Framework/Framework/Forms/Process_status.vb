@@ -60,19 +60,19 @@ Namespace Framework.Forms
         End Sub
 
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter2.MouseEnter
-            sender.backgroundimage = My.Resources.bt_close_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_close_light
         End Sub
 
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter2.MouseLeave
-            sender.backgroundimage = My.Resources.bt_close
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_close
         End Sub
 
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter
-            sender.backgroundimage = My.Resources.bt_minimize_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize_light
         End Sub
 
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave
-            sender.backgroundimage = My.Resources.bt_minimize
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click

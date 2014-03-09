@@ -145,7 +145,7 @@ Namespace Framework.Core
                                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString &
                                             "'")
-                    _tempResult = accountDt.Rows(0).Item(0)
+                    _tempResult = accountDt.Rows(0).Item(0).ToString()
                     Dim tmpAccount As Account = account2Extend
                     If tmpAccount Is Nothing Then tmpAccount = New Account() With {.Name = _tempResult, .Id = accountId}
                     tmpAccount.SourceExpansion = GlobalVariables.sourceExpansion
@@ -153,50 +153,50 @@ Namespace Framework.Core
                     LogAppend(
                         "Loaded account name info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", True)
-                    _tempResult = accountDt.Rows(0).Item(1)
+                    _tempResult = accountDt.Rows(0).Item(1).ToString()
                     tmpAccount.PassHash = _tempResult
                     LogAppend(
                         "Loaded account passHash info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
-                    _tempResult = accountDt.Rows(0).Item(2)
+                    _tempResult = accountDt.Rows(0).Item(2).ToString()
                     tmpAccount.SessionKey = _tempResult
                     LogAppend(
                         "Loaded account sessionkey info for accountId: " & accountId.ToString & " and setId: " &
                         tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
-                    _tempResult = accountDt.Rows(0).Item(3)
+                    _tempResult = accountDt.Rows(0).Item(3).ToString()
                     tmpAccount.Locale = TryInt(_tempResult)
                     LogAppend(
                         "Loaded account locale info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
-                    _tempResult = accountDt.Rows(0).Item(4)
+                    _tempResult = accountDt.Rows(0).Item(4).ToString()
                     tmpAccount.JoinDate = DateTime.Parse(_tempResult)
                     LogAppend(
                         "Loaded account joindate info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
-                    _tempResult = accountDt.Rows(0).Item(5)
+                    _tempResult = accountDt.Rows(0).Item(5).ToString()
                     tmpAccount.LastIp = _tempResult
                     LogAppend(
                         "Loaded account lastip info for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
-                    _tempResult = accountDt.Rows(0).Item(6)
+                    _tempResult = accountDt.Rows(0).Item(6).ToString()
                     tmpAccount.Email = _tempResult
                     LogAppend(
                         "Loaded account email for accountId: " & accountId.ToString & " and setId: " & tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
-                    _tempResult = accountDt.Rows(0).Item(7)
+                    _tempResult = accountDt.Rows(0).Item(7).ToString()
                     tmpAccount.LastLogin = DateTime.Parse(_tempResult)
                     LogAppend(
                         "Loaded account last login info for accountId: " & accountId.ToString & " and setId: " &
                         tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
-                    _tempResult = accountDt.Rows(0).Item(8)
+                    _tempResult = accountDt.Rows(0).Item(8).ToString()
                     tmpAccount.Locked = TryInt(_tempResult)
                     LogAppend(
                         "Loaded account lock information for accountId: " & accountId.ToString & " and setId: " &
                         tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
-                    _tempResult = accountDt.Rows(0).Item(9)
+                    _tempResult = accountDt.Rows(0).Item(9).ToString()
                     tmpAccount.Expansion = TryInt(_tempResult)
                     LogAppend(
                         "Loaded account expansion information for accountId: " & accountId.ToString & " and setId: " &
@@ -210,13 +210,13 @@ Namespace Framework.Core
                                             GlobalVariables.sourceStructure.accountAccess_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.accAcc_accid_col(0) & "='" &
                                             accountId.ToString & "'")
-                    _tempResult = accountAccessDt.Rows(0).Item(0)
+                    _tempResult = accountAccessDt.Rows(0).Item(0).ToString()
                     tmpAccount.GmLevel = TryInt(_tempResult)
                     LogAppend(
                         "Loaded accountAccess gmlevel info for accountId: " & accountId.ToString & " and setId: " &
                         tarSetId &
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
-                    _tempResult = accountAccessDt.Rows(0).Item(1)
+                    _tempResult = accountAccessDt.Rows(0).Item(1).ToString()
                     tmpAccount.RealmId = TryInt(_tempResult)
                     LogAppend(
                         "Loaded accountAccess realmId info for accountId: " & accountId.ToString & " and setId: " &

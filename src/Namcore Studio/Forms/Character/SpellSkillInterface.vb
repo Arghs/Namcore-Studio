@@ -88,17 +88,18 @@ Namespace Forms.Character
             CloseProcessStatus()
         End Sub
 
-        Public Function ContinueOperation(ByVal setId As Integer)
+        Public Function ContinueOperation(ByVal setId As Integer) As String
             LogAppend("Loading Spells/Skills", "SpellSkill_interface_continueOperation", True)
             If GlobalVariables.currentEditedCharSet Is Nothing Then
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             End If
             If Not GlobalVariables.currentEditedCharSet.Spells Is Nothing Then
-                For Each pSpell As Spell In From pSpell1 In GlobalVariables.currentEditedCharSet.Spells Where Not pSpell1.Id = 0
+                For Each pSpell As Spell In _
+                    From pSpell1 In GlobalVariables.currentEditedCharSet.Spells Where Not pSpell1.Id = 0
                     If pSpell.Name Is Nothing Then
                         pSpell.Name = GetSpellNameBySpellId(pSpell.Id, MySettings.Default.language)
                     End If
-                    Dim itm As New ListViewItem({pSpell.Id, pSpell.Name})
+                    Dim itm As New ListViewItem(New String() {pSpell.Id.ToString(), pSpell.Name})
                     itm.Tag = pSpell
                     spellList.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm, spellList)
                 Next
@@ -112,8 +113,9 @@ Namespace Forms.Character
                         End If
                         Dim _
                             itm As _
-                                New ListViewItem(
-                                    {pSkill.Id, pSkill.Name, pSkill.Value, pSkill.Max})
+                                New ListViewItem(New String() _
+                                                    {pSkill.Id.ToString(), pSkill.Name, pSkill.Value.ToString(),
+                                                     pSkill.Max.ToString()})
                         itm.Tag = pSkill
                         skillList.BeginInvoke(New AddItemDelegate(AddressOf DelegateControlAdding), itm, skillList)
                     End If
@@ -165,10 +167,12 @@ Namespace Forms.Character
                 Spell_tb.Text = "Enter spell id"
                 Spell_tb.ForeColor = SystemColors.WindowFrame
             Else
-                If spellList.Items.Cast(Of ListViewItem)().Any(Function(existingSpell) existingSpell.SubItems(0).Text = pSpellId.ToString()) Then
+                If _
+                    spellList.Items.Cast (Of ListViewItem)().Any(
+                        Function(existingSpell) existingSpell.SubItems(0).Text = pSpellId.ToString()) Then
                     MsgBox(ResourceHandler.GetUserMessage("spellAlreadyPresent"), MsgBoxStyle.Critical, "Attention")
                 Else
-                    Dim spell As New Spell With {.Active = True, .Disabled = False, .Id = pSpellId}
+                    Dim spell As New Spell With {.Active = 1, .Disabled = 0, .Id = pSpellId}
                     spell.Name = GetSpellNameBySpellId(pSpellId, MySettings.Default.language)
                     GlobalVariables.currentEditedCharSet.Spells.Add(spell)
                     Dim spellItem As New ListViewItem({spell.Id.ToString, spell.Name})
@@ -204,10 +208,11 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub RemoveSelectedToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoveSelectedToolStripMenuItem.Click
+        Private Sub RemoveSelectedToolStripMenuItem_Click(sender As Object, e As EventArgs) _
+            Handles RemoveSelectedToolStripMenuItem.Click
             For i = 0 To spellList.SelectedItems.Count - 1
                 Dim itm As ListViewItem = spellList.SelectedItems(0)
-                GlobalVariables.currentEditedCharSet.Spells.Remove(itm.Tag)
+                GlobalVariables.currentEditedCharSet.Spells.Remove(CType(itm.Tag, Spell))
                 spellList.Items.Remove(itm)
                 Application.DoEvents()
             Next
@@ -221,13 +226,19 @@ Namespace Forms.Character
                 Spell_tb.Text = "Enter skill id"
                 Spell_tb.ForeColor = SystemColors.WindowFrame
             Else
-                If skillList.Items.Cast(Of ListViewItem)().Any(Function(existingSkill) existingSkill.SubItems(0).Text = pSkillId.ToString()) Then
+                If _
+                    skillList.Items.Cast (Of ListViewItem)().Any(
+                        Function(existingSkill) existingSkill.SubItems(0).Text = pSkillId.ToString()) Then
                     MsgBox(ResourceHandler.GetUserMessage("skillAlreadyPresent"), MsgBoxStyle.Critical, "Attention")
                 Else
                     Dim skill As New Skill With {.Value = 1, .Max = 600, .Id = pSkillId}
                     skill.Name = GetSkillNameById(pSkillId, MySettings.Default.language)
                     GlobalVariables.currentEditedCharSet.Skills.Add(skill)
-                    Dim skillItem As New ListViewItem({skill.Id.ToString, skill.Name, skill.Value, skill.Max})
+                    Dim _
+                        skillItem As _
+                            New ListViewItem(New String() _
+                                                {skill.Id.ToString, skill.Name, skill.Value.ToString(),
+                                                 skill.Max.ToString()})
                     skillItem.Tag = skill
                     skillList.Items.Add(skillItem)
                     skillList.Update()
@@ -261,18 +272,20 @@ Namespace Forms.Character
                 skillContext.Show(skillList, e.X, e.Y)
             End If
         End Sub
-       
-        Private Sub RemoveSelectedToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles RemoveSelectedToolStripMenuItem1.Click
+
+        Private Sub RemoveSelectedToolStripMenuItem1_Click(sender As Object, e As EventArgs) _
+            Handles RemoveSelectedToolStripMenuItem1.Click
             For i = 0 To skillList.SelectedItems.Count - 1
                 Dim itm As ListViewItem = skillList.SelectedItems(0)
-                GlobalVariables.currentEditedCharSet.Skills.Remove(itm.Tag)
+                GlobalVariables.currentEditedCharSet.Skills.Remove(CType(itm.Tag, Skill))
                 skillList.Items.Remove(itm)
                 Application.DoEvents()
             Next
             resultstatusSkill_lbl.Text = skillList.Items.Count.ToString & " results"
         End Sub
 
-        Private Sub ToolStripValueTextBox_KeyDown(sender As Object, e As KeyEventArgs) Handles ToolStripValueTextBox.KeyDown
+        Private Sub ToolStripValueTextBox_KeyDown(sender As Object, e As KeyEventArgs) _
+            Handles ToolStripValueTextBox.KeyDown
             If e.KeyCode = Keys.Enter Then
                 ToolStripValueTextBox_Leave(sender, New EventArgs)
             End If
@@ -284,20 +297,24 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub ToolStripValueTextBox_Leave(sender As Object, e As EventArgs) Handles ToolStripValueTextBox.LostFocus
+        Private Sub ToolStripValueTextBox_Leave(sender As Object, e As EventArgs) _
+            Handles ToolStripValueTextBox.LostFocus
             Dim newValue As String = ToolStripValueTextBox.Text
             If newValue = "0" OrElse TryInt(newValue) <> 0 Then
                 skillList.SelectedItems(0).SubItems(2).Text = newValue
                 Dim itm As ListViewItem = skillList.SelectedItems(0)
-                Dim pSkill As Skill = itm.Tag
+                Dim pSkill As Skill = CType(itm.Tag, Skill)
                 pSkill.Value = TryInt(newValue)
                 itm.Tag = pSkill
                 skillList.SelectedItems(0).Tag = pSkill
                 skillList.Update()
                 Try
-                    GlobalVariables.currentEditedCharSet.Skills(GlobalVariables.currentEditedCharSet.Skills.FindIndex(Function(skill) skill.Id = pSkill.Id)).Value = pSkill.Value
+                    GlobalVariables.currentEditedCharSet.Skills(
+                        GlobalVariables.currentEditedCharSet.Skills.FindIndex(Function(skill) skill.Id = pSkill.Id)).
+                        Value = pSkill.Value
                 Catch ex As Exception
-                    LogAppend("Exception occured: " & ex.ToString(), "SpellSkillInterface_ToolStripValueTextBox_Leave", False, True)
+                    LogAppend("Exception occured: " & ex.ToString(), "SpellSkillInterface_ToolStripValueTextBox_Leave",
+                              False, True)
                 End Try
                 skillContext.Hide()
             End If
@@ -308,15 +325,18 @@ Namespace Forms.Character
             If newValue = "0" OrElse TryInt(newValue) <> 0 Then
                 skillList.SelectedItems(0).SubItems(3).Text = newValue
                 Dim itm As ListViewItem = skillList.SelectedItems(0)
-                Dim pSkill As Skill = itm.Tag
+                Dim pSkill As Skill = CType(itm.Tag, Skill)
                 pSkill.Value = TryInt(newValue)
                 itm.Tag = pSkill
                 skillList.SelectedItems(0).Tag = pSkill
                 skillList.Update()
                 Try
-                    GlobalVariables.currentEditedCharSet.Skills(GlobalVariables.currentEditedCharSet.Skills.FindIndex(Function(skill) skill.Id = pSkill.Id)).Max = pSkill.Max
+                    GlobalVariables.currentEditedCharSet.Skills(
+                        GlobalVariables.currentEditedCharSet.Skills.FindIndex(Function(skill) skill.Id = pSkill.Id)).Max _
+                        = pSkill.Max
                 Catch ex As Exception
-                    LogAppend("Exception occured: " & ex.ToString(), "SpellSkillInterface_ToolStripMaxTextBox_Leave", False, True)
+                    LogAppend("Exception occured: " & ex.ToString(), "SpellSkillInterface_ToolStripMaxTextBox_Leave",
+                              False, True)
                 End Try
                 skillContext.Hide()
             End If

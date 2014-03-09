@@ -36,13 +36,13 @@ Namespace Framework.Transmission
                       "CharacterCreationLite_CreateNewLiteCharacter", True)
             Select Case GlobalVariables.targetCore
                 Case "arcemu"
-                    Return CreateAtArcemu(charname, accountId.ToString, player, forceNameChange)
+                    Return CreateAtArcemu(charname, accountId, player, forceNameChange)
                 Case "trinity"
-                    Return CreateAtTrinity(charname, accountId.ToString, player, forceNameChange)
+                    Return CreateAtTrinity(charname, accountId, player, forceNameChange)
                 Case "trinitytbc"
                     Return False
                 Case "mangos"
-                    Return CreateAtMangos(charname, accountId.ToString, player, forceNameChange)
+                    Return CreateAtMangos(charname, accountId, player, forceNameChange)
                 Case Else
                     Return False
             End Select
@@ -52,34 +52,30 @@ Namespace Framework.Transmission
             Select Case GlobalVariables.targetCore
                 Case "arcemu"
                     If _
-                        TryInt(
-                            ReturnResultCount(
+                        ReturnResultCount(
                                 "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 1 _
+                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True) = 1 _
                         Then _
                         Return False Else Return True
                 Case "trinity"
                     If _
-                        TryInt(
-                            ReturnResultCount(
+                        ReturnResultCount(
                                 "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 1 _
+                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True) = 1 _
                         Then _
                         Return False Else Return True
                 Case "trinitytbc"
                     If _
-                        TryInt(
-                            ReturnResultCount(
+                        ReturnResultCount(
                                 "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 1 _
+                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True) = 1 _
                         Then _
                         Return False Else Return True
                 Case "mangos"
                     If _
-                        TryInt(
-                            ReturnResultCount(
+                        ReturnResultCount(
                                 "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True)) = 1 _
+                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True) = 1 _
                         Then _
                         Return False Else Return True
                 Case Else

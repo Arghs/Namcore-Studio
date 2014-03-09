@@ -61,7 +61,7 @@ Namespace Framework.Core
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim excounter As Integer = UBound(readedcode.Split(CChar(";")))
                         Dim loopcounter As Integer = 0
-                        Dim finalcounter As Integer = TryInt(excounter/3)
+                        Dim finalcounter As Integer = CInt(excounter / 3)
                         Dim partscounter As Integer = 0
                         Do
                             Dim skl As New Skill

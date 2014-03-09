@@ -25,7 +25,7 @@ Imports System.Drawing
 
 Namespace Provider
     Public Module IconInfo
-        Public Function GetSpellIconById(ByVal spellId As Integer, ByVal client As WebClient) As Image
+        Public Function GetSpellIconById(ByVal spellId As Integer, ByVal client As WebClient) As Bitmap
             Main.CheckInit()
             '// Not working: CSV does not contain spell ids but icon ids
             Const targetField As Integer = 1
@@ -36,7 +36,7 @@ Namespace Provider
             End If
             myResult = myResult.ToLower().Replace("INTERFACE/SPELLBOOK", "")
             If myResult = "" Then Return My.Resources.INV_Misc_QuestionMark
-            Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(myResult.ToLower())
+            Dim pic As Image = CType(libncadvanced.My.Resources.ResourceManager.GetObject(myResult.ToLower()), Image)
             If pic Is Nothing Then
                 Dim onlinePic As Image =
                         LoadImageFromUrl("http://wow.zamimg.com/images/wow/icons/large/" & myResult.ToLower() & ".jpg",
@@ -44,10 +44,10 @@ Namespace Provider
                 If onlinePic Is Nothing Then
                     Return My.Resources.INV_Misc_QuestionMark
                 Else
-                    Return onlinePic
+                    Return CType(onlinePic, Bitmap)
                 End If
             Else
-                Return pic
+                Return CType(pic, Bitmap)
             End If
         End Function
 
@@ -128,7 +128,7 @@ Namespace Provider
                     End If
                 End If
                 If myResult IsNot Nothing Then
-                    Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(myResult.ToLower())
+                    Dim pic As Image = CType(libncadvanced.My.Resources.ResourceManager.GetObject(myResult.ToLower()), Image)
                     If pic Is Nothing Then
                         Dim onlinePic As Image =
                                 LoadImageFromUrl(
@@ -149,7 +149,7 @@ Namespace Provider
             End Try
         End Function
 
-        Public Function GetItemIconByDisplayId(ByVal displayId As Integer, ByVal client As WebClient) As Image
+        Public Function GetItemIconByDisplayId(ByVal displayId As Integer, ByVal client As WebClient) As Bitmap
             Main.CheckInit()
             Try
                 Const targetField As Integer = 1
@@ -162,7 +162,7 @@ Namespace Provider
                 ElseIf myResult = "" Then
                     Return My.Resources.INV_Misc_QuestionMark
                 End If
-                Dim pic As Image = libncadvanced.My.Resources.ResourceManager.GetObject(myResult.ToLower())
+                Dim pic As Image = CType(libncadvanced.My.Resources.ResourceManager.GetObject(myResult.ToLower()), Image)
                 If pic Is Nothing Then
                     Dim onlinePic As Image =
                             LoadImageFromUrl(
@@ -170,10 +170,10 @@ Namespace Provider
                     If onlinePic Is Nothing Then
                         Return My.Resources.INV_Misc_QuestionMark
                     Else
-                        Return onlinePic
+                        Return CType(onlinePic, Bitmap)
                     End If
                 Else
-                    Return pic
+                    Return CType(pic, Bitmap)
                 End If
             Catch ex As Exception
                 Return My.Resources.INV_Misc_QuestionMark

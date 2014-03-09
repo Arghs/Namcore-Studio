@@ -109,7 +109,7 @@ Namespace Forms.Character
                     _goon = True
                 End If
                 If _goon = True Then
-                    _currentCat = TryInt(SplitString(sender.name, "cat_id_", "_bt"))
+                    _currentCat = TryInt(SplitString(TryCast(sender, Button).Name, "cat_id_", "_bt"))
                     subcat_combo.Items.Clear()
                     Application.DoEvents()
                     Dim tmpCatids As Integer()
@@ -178,7 +178,7 @@ Namespace Forms.Character
                     Loop Until AVLayoutPanel.Controls.Count = 0
                     _correctIds = New List(Of Integer)()
                     _doneAvIds = New List(Of Integer)()
-                    _correctIds = GetAvIdListByMainCat(TryInt(SplitString(sender.name, "cat_id_", "_bt")))
+                    _correctIds = GetAvIdListByMainCat(TryInt(SplitString(TryCast(sender, Button).Name, "cat_id_", "_bt")))
                     GlobalVariables.abortMe = False
                     _mHandler.doOperate_av(sender, 1)
                     _mHandler.doOperate_av(sender, 2)
@@ -196,17 +196,16 @@ Namespace Forms.Character
                 '// Currently loading achievements
                 Exit Sub
             End If
-            Dim charAv As Achievement = sender.tag
+            Dim charAv As Achievement = CType(TryCast(sender, PictureBox).Tag, Achievement)
             Dim msg As String = ResourceHandler.GetUserMessage("aus_deleteav")
             msg = msg.Replace("%avid%", charAv.Id.ToString)
             Dim result = MsgBox(msg, vbYesNo, ResourceHandler.GetUserMessage("areyousure"))
             If result = MsgBoxResult.Yes Then
                 Userwait.Show()
-                For Each subctrl In AVLayoutPanel.Controls
-                    If subctrl.tag.id = charAv.Id Then
+                For Each subctrl As Control In AVLayoutPanel.Controls
+                    If CType(subctrl.Tag, Achievement).Id = charAv.Id Then
                         AVLayoutPanel.Controls.Remove(subctrl)
                         subctrl.Dispose()
-
                         For Each av As Achievement In GlobalVariables.currentEditedCharSet.Achievements
                             If av.Id = charAv.Id Then
                                 GlobalVariables.currentEditedCharSet.Achievements.Remove(av)
@@ -367,12 +366,12 @@ Namespace Forms.Character
                     Application.DoEvents()
                 Next
             End If
-            Dim catid As Integer = subcat_combo.SelectedItem.id.ToString
+            Dim catid As Integer = CType(subcat_combo.SelectedItem, AvSubcategoy).Id
             If Not catid = 0 Then
                 Dim removeCtrlLst As New List(Of Control)
                 For Each subctrl As Control In AVLayoutPanel.Controls
                     _preCatControlLst.Add(subctrl)
-                    Dim charAv As Achievement = subctrl.Tag
+                    Dim charAv As Achievement = CType(subctrl.Tag, Achievement)
                     If Not charAv.SubCategory = catid Then
                         Dim x As Control = subctrl
                         removeCtrlLst.Add(x)
@@ -506,7 +505,7 @@ Namespace Forms.Character
             avGainDateLabel.RightToLeft = RightToLeft.Yes
             avGainDateLabel.Size = reference_date_lbl.Size
             Dim avIconPic As New PictureBox
-            Dim avImage As Image
+            Dim avImage As Bitmap
             If charAv.Icon Is Nothing Then
                 avImage = GetSpellIconById(GetAvSpellIdById((charAv.Id)), GlobalVariables.GlobalWebClient)
                 charAv.Icon = avImage
@@ -583,7 +582,7 @@ Namespace Forms.Character
             browse_tb.Enabled = False
             AVLayoutPanel.Controls.Clear()
             Application.DoEvents()
-            Dim trd As New Thread(AddressOf FilterResults)
+            Dim trd As Thread = New Thread(DirectCast(Sub() FilterResults(browseTxt), ThreadStart))
             trd.Start(browseTxt)
         End Sub
     End Class

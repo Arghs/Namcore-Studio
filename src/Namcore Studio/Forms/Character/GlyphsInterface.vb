@@ -78,7 +78,7 @@ Namespace Forms.Character
                             If itemControl.Name.ToLower.Contains("1") Then tempSlotName = tempSlotName & "1"
                             If itemControl.Name.ToLower.Contains("2") Then tempSlotName = tempSlotName & "2"
                             If itemControl.Name.ToLower.Contains("3") Then tempSlotName = tempSlotName & "3"
-                            Dim txt As String = LoadInfo(tempSlotName, 0)
+                            Dim txt As String = TryCast(LoadInfo(tempSlotName, 0), String)
                             DirectCast(itemControl, Label).Tag = _pubGlyph
                             DirectCast(itemControl, Label).Cursor = Cursors.IBeam
                             If _pubGlyph Is Nothing Then Continue For
@@ -106,7 +106,7 @@ Namespace Forms.Character
                             If itemControl.Name.ToLower.Contains("1") Then tempSlotName = tempSlotName & "1"
                             If itemControl.Name.ToLower.Contains("2") Then tempSlotName = tempSlotName & "2"
                             If itemControl.Name.ToLower.Contains("3") Then tempSlotName = tempSlotName & "3"
-                            Dim img As Image = LoadInfo(tempSlotName, 1)
+                            Dim img As Bitmap = CType(LoadInfo(tempSlotName, 1), Bitmap)
                             If img Is Nothing Then
                                 DirectCast(itemControl, PictureBox).Image = My.Resources.empty
                             Else
@@ -140,22 +140,22 @@ Namespace Forms.Character
                     sec_major_1_pic.Click, prim_3_pic.Click, prim_2_pic.Click, prim_1_pic.Click, minor_3_pic.Click,
                     minor_2_pic.Click, minor_1_pic.Click, major_3_pic.Click, major_2_pic.Click, major_1_pic.Click
             If Not _tempSender Is Nothing Then
-                _tempSender.visible = True
+                TryCast(_tempSender, Label).Visible = True
             End If
             changepanel.Location = New Point(4000, 4000)
             addpanel.Location = New Point(4000, 4000)
-            Dim gly As Glyph = sender.tag
+            Dim gly As Glyph = CType(TryCast(sender, PictureBox).Tag, Glyph)
             If Not gly Is Nothing Then
                 If Not gly.id = 0 Then
                     Process.Start("http://wowhead.com/item=" & gly.id)
                 End If
             Else
                 If Not _tempSender Is Nothing Then
-                    _tempSender.visible = True
+                    TryCast(_tempSender, Label).Visible = True
                 End If
                 For Each ctrl As Control In _controlLst
                     If TypeOf ctrl Is Label Then
-                        If ctrl.Name.StartsWith(sender.name.replace("_pic", "")) Then
+                        If ctrl.Name.StartsWith(TryCast(sender, PictureBox).Name.Replace("_pic", "")) Then
                             _tempSender = ctrl
                             _tmpSenderPic = sender
                             ctrl.Visible = False
@@ -195,19 +195,19 @@ Namespace Forms.Character
                     prim_3_pic.MouseEnter, prim_2_pic.MouseEnter, prim_1_pic.MouseEnter, minor_3_pic.MouseEnter,
                     minor_2_pic.MouseEnter, minor_1_pic.MouseEnter, major_3_pic.MouseEnter, major_2_pic.MouseEnter,
                     major_1_pic.MouseEnter
-            If Not sender.image Is Nothing Then
-                _tmpPic = sender.image
+            If Not TryCast(sender, PictureBox).Image Is Nothing Then
+                _tmpPic = TryCast(sender, PictureBox).Image
                 Application.DoEvents()
-                Dim picbx As PictureBox = sender
+                Dim picbx As PictureBox = TryCast(sender, PictureBox)
                 Dim g As Graphics
                 Dim img As Image
                 Dim r As Rectangle
                 img = picbx.Image
-                sender.Image = New Bitmap(picbx.Width, picbx.Height, PixelFormat.Format32bppArgb)
+                TryCast(sender, PictureBox).Image = New Bitmap(picbx.Width, picbx.Height, PixelFormat.Format32bppArgb)
                 g = Graphics.FromImage(picbx.Image)
                 r = New Rectangle(0, 0, picbx.Width, picbx.Height)
                 g.DrawImage(img, r)
-                setBrightness(0.2, g, img, r, picbx)
+                SetBrightness(0.2, g, img, r, picbx)
             End If
         End Sub
 
@@ -218,8 +218,8 @@ Namespace Forms.Character
                     prim_3_pic.MouseLeave, prim_2_pic.MouseLeave, prim_1_pic.MouseLeave, minor_3_pic.MouseLeave,
                     minor_2_pic.MouseLeave, minor_1_pic.MouseLeave, major_3_pic.MouseLeave, major_2_pic.MouseLeave,
                     major_1_pic.MouseLeave
-            If Not _tmpPic Is Nothing And Not sender.image Is Nothing Then
-                Dim picbox As PictureBox = sender
+            If Not _tmpPic Is Nothing And Not TryCast(sender, PictureBox).Image Is Nothing Then
+                Dim picbox As PictureBox = TryCast(sender, PictureBox)
                 picbox.Image = _tmpPic
                 picbox.Refresh()
                 Application.DoEvents()
@@ -231,29 +231,29 @@ Namespace Forms.Character
                     sec_minor_2_name.Click, sec_minor_1_name.Click, sec_major_3_name.Click, sec_major_2_name.Click,
                     sec_major_1_name.Click, prim_3_name.Click, prim_2_name.Click, prim_1_name.Click, minor_3_name.Click,
                     minor_2_name.Click, minor_1_name.Click, major_3_name.Click, major_2_name.Click, major_1_name.Click
-            If sender.text = "" Or Not sender.name.contains("_name") Then Exit Sub
+            If TryCast(sender, Label).Text = "" Or Not TryCast(sender, Label).Name.Contains("_name") Then Exit Sub
             Dim newPoint As New Point
-            newPoint.X = sender.location.X + glyph_panel.Location.X
-            newPoint.Y = sender.location.Y + glyph_panel.Location.Y
+            newPoint.X = TryCast(sender, Label).Location.X + glyph_panel.Location.X
+            newPoint.Y = TryCast(sender, Label).Location.Y + glyph_panel.Location.Y
             changepanel.Location = newPoint
             addpanel.Location = New Point(4000, 4000)
             newPoint.X = 4000
             newPoint.Y = 4000
             PictureBox2.Visible = True
             If Not _tempSender Is Nothing Then
-                _tempSender.visible = True
+                TryCast(_tempSender, Label).Visible = True
             End If
             _tempSender = sender
-            sender.visible = False
-            TextBox1.Text = sender.Tag.Id.ToString
+            TryCast(sender, Label).Visible = False
+            TextBox1.Text = CType(TryCast(sender, Label).Tag, Glyph).Id.ToString
             _tempValue = TextBox1.Text
         End Sub
 
         Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
             '// Delete glyph
             Dim newPoint As New Point
-            Dim senderLabel As Label = _tempSender
-            Dim senderTag As Glyph = DeepCloneHelper.DeepClone(senderLabel.Tag)
+            Dim senderLabel As Label = TryCast(_tempSender, Label)
+            Dim senderTag As Glyph = CType(DeepCloneHelper.DeepClone(senderLabel.Tag), Glyph)
             newPoint.X = 4000
             newPoint.Y = 4000
             If TypeOf _tempSender Is Label Then
@@ -265,7 +265,7 @@ Namespace Forms.Character
                         If TypeOf ctrl Is PictureBox Then
                             If ctrl.Name.EndsWith("_pic") Then
                                 If ctrl.Tag Is Nothing Then Continue For
-                                If ctrl.Tag.Id = senderTag.Id And ctrl.Tag.Spec = senderTag.Spec Then
+                                If CType(ctrl.Tag, Glyph).Id = senderTag.Id And CType(ctrl.Tag, Glyph).Spec = senderTag.Spec Then
                                     Select Case True
                                         Case ctrl.Name.ToLower.EndsWith("_pic")
                                             DirectCast(ctrl, PictureBox).Tag = Nothing
@@ -276,7 +276,7 @@ Namespace Forms.Character
                         ElseIf TypeOf ctrl Is Label Then
                             If ctrl.Name.EndsWith("_name") Then
                                 If ctrl.Tag Is Nothing Then Continue For
-                                If ctrl.Tag.Id = senderTag.Id And ctrl.Tag.Spec = senderTag.Spec Then
+                                If CType(ctrl.Tag, Glyph).Id = senderTag.Id And CType(ctrl.Tag, Glyph).Spec = senderTag.Spec Then
                                     If ctrl.Name.ToLower.EndsWith("_name") Then
                                         DirectCast(ctrl, Label).Tag = Nothing
                                         DirectCast(ctrl, Label).Text = ""
@@ -306,8 +306,8 @@ Namespace Forms.Character
         Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
             '// Change glyph
             Dim newPoint As New Point
-            Dim senderLabel As Label = _tempSender
-            Dim senderTag As Glyph = DeepCloneHelper.DeepClone(_tempSender.Tag)
+            Dim senderLabel As Label = CType(_tempSender, Label)
+            Dim senderTag As Glyph = CType(DeepCloneHelper.DeepClone(CType(_tempSender, Label).Tag), Glyph)
             newPoint.X = 4000
             newPoint.Y = 4000
             If Not TextBox1.Text = _tempValue Then
@@ -321,7 +321,7 @@ Namespace Forms.Character
                         Else
                             Dim newGlyph As New Glyph
                             newGlyph.Id = id
-                            newGlyph.Name = GetItemNameByItemId(id.ToString, MySettings.Default.language)
+                            newGlyph.Name = GetItemNameByItemId(id, MySettings.Default.language)
                             newGlyph.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(id), GlobalVariables.GlobalWebClient)
                             newGlyph.Spec = senderTag.Spec
                             newGlyph.Slotname = senderTag.Slotname
@@ -339,7 +339,7 @@ Namespace Forms.Character
                                 Dim pictureBox = TryCast(ctrl, PictureBox)
                                 If (pictureBox IsNot Nothing) Then
                                     If ctrl.Tag Is Nothing Then Continue For
-                                    If ctrl.Tag.id = senderTag.Id Then
+                                    If CType(ctrl.Tag, Glyph).Id = senderTag.Id Then
                                         pictureBox.Tag = senderTag
                                         Select Case True
                                             Case ctrl.Name.ToLower.EndsWith("_pic")
@@ -366,7 +366,7 @@ Namespace Forms.Character
             changepanel.Location = New Point(4000, 4000)
             addpanel.Location = New Point(4000, 4000)
             If Not _tempSender Is Nothing Then
-                _tempSender.visible = True
+                CType(_tempSender, Label).Visible = True
             End If
             TextBox1.Text = ""
             TextBox2.Text = ""
@@ -374,7 +374,7 @@ Namespace Forms.Character
 
         Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
             '// Add glyph
-            Dim senderPic As PictureBox = _tmpSenderPic
+            Dim senderPic As PictureBox = CType(_tmpSenderPic, PictureBox)
             If Not TextBox2.Text = "" Then
                 Dim client As New WebClient
                 client.CheckProxy()
@@ -411,7 +411,7 @@ Namespace Forms.Character
                     changepanel.Location = New Point(4000, 4000)
                     addpanel.Location = New Point(4000, 4000)
                     If Not _tempSender Is Nothing Then
-                        _tempSender.visible = True
+                        CType(_tempSender, Label).Visible = True
                     End If
                     TextBox1.Text = ""
                     TextBox2.Text = ""
@@ -427,7 +427,7 @@ Namespace Forms.Character
             changepanel.Location = New Point(4000, 4000)
             addpanel.Location = New Point(4000, 4000)
             If Not _tempSender Is Nothing Then
-                _tempSender.visible = True
+                CType(_tempSender, Label).Visible = True
             End If
             TextBox1.Text = ""
             TextBox2.Text = ""

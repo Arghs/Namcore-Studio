@@ -126,7 +126,7 @@ Namespace Forms
                     MySettings.Default.proxy_detect = False
                     MySettings.Default.proxy_enabled = True
                     MySettings.Default.proxy_host = url_tb.Text
-                    MySettings.Default.proxy_port = port_ud.Value
+                    MySettings.Default.proxy_port = CInt(port_ud.Value)
                     MySettings.Default.fullproxy = New WebProxy(url_tb.Text & ":" & port_ud.Value.ToString())
                     If defcred_cb.Checked = True Then
                         MySettings.Default.fullproxy.UseDefaultCredentials = True

@@ -26,7 +26,6 @@ Imports System.IO
 Imports System.Text
 
 Public Class Updater
-
     '// Declaration
     Private Const VersionUrl As String = "http://wowgeslauncher.bplaced.com/filemanager/namcore/ncversion.html"
     Private ReadOnly _client As New WebClient
@@ -43,18 +42,19 @@ Public Class Updater
 
     Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         If e.Button = MouseButtons.Left Then
-            Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+            Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                 e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
         End If
     End Sub
 
     Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) _
         Handles highlighter1.MouseEnter, highlighter2.MouseEnter
-        sender.backgroundimage = My.Resources.highlight1
+        CType(sender, PictureBox).BackgroundImage = My.Resources.highlight1
     End Sub
 
     Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) _
         Handles highlighter1.MouseLeave, highlighter2.MouseLeave
-        sender.backgroundimage = Nothing
+        CType(sender, PictureBox).BackgroundImage = Nothing
     End Sub
 
     Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
@@ -73,7 +73,8 @@ Public Class Updater
 
     Private Sub header_MouseMove(sender As Object, e As MouseEventArgs) Handles header.MouseMove
         If e.Button = MouseButtons.Left Then
-            Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+            Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                 e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
         End If
     End Sub
 
@@ -227,13 +228,16 @@ Public Class Updater
                                     New GetFileInformation(Application.StartupPath & "\" & path & fname)
                             Dim fVersion As Integer = CInt(gfi.GetFileVersion.ToString().Replace(".", ""))
                             If version > fVersion Then
-                                _totalSize += mysize
-                                _files2Download.Add(New MyFile _
-                                                      With {.name = fname, .path = path, .url = url, .size = mysize})
+                                _totalSize += CInt(mysize)
+                                _files2Download.Add(
+                                    New MyFile _
+                                                       With {.Name = fname, .Path = path, .Url = url,
+                                                       .Size = CInt(mysize)})
                             End If
                         Else
-                            _totalSize += mysize
-                            _files2Download.Add(New MyFile With {.name = fname, .path = path, .url = url, .size = mysize})
+                            _totalSize += CInt(mysize)
+                            _files2Download.Add(New MyFile _
+                                                   With {.Name = fname, .Path = path, .Url = url, .Size = CInt(mysize)})
                         End If
                     Finally
                         fileSource = fileSource.Replace("<file>" & fileContext & "</file>", "")
@@ -309,7 +313,7 @@ Public Class Updater
             'thrown by the frameworks and must be caught
 
             ' ReSharper disable VBWarnings::BC40008
-            Return useProxy.GetDefaultProxy.Address.Port
+            Return CStr(useProxy.GetDefaultProxy.Address.Port)
             ' ReSharper restore VBWarnings::BC40008
 
         Catch 'catch the error when no proxy is specified in IE
@@ -350,11 +354,11 @@ Public Class Updater
 
         Try
             ' Datei-Download via HTTP "anfordern"
-            webreq = HttpWebRequest.Create(sURL)
-            webresp = webreq.GetResponse
+            webreq = CType(HttpWebRequest.Create(sUrl), HttpWebRequest)
+            webresp = CType(webreq.GetResponse, HttpWebResponse)
 
             ' Download-Größe
-            subprogress_bar.Maximum = webresp.ContentLength
+            subprogress_bar.Maximum = CInt(webresp.ContentLength)
 
             ' lokale Datei öffnen
             stream = New FileStream(Application.StartupPath & strFolder & "\" & strFile, FileMode.Create)
@@ -362,13 +366,13 @@ Public Class Updater
             bWriter = New BinaryWriter(stream)
 
             ' Datei blockweise downloaden und lokal speichern
-            Dim qSplit2 As String = SplitString("A" & (webresp.ContentLength / 1000).ToString(), "A", ",")
+            Dim qSplit2 As String = SplitString("A" & (webresp.ContentLength/1000).ToString(), "A", ",")
             Do
                 bytesRead = bReader.Read(buffer, 0, 1024)
                 bWriter.Write(buffer, 0, bytesRead)
                 subprogress_bar.Value += bytesRead
                 globalprogress_bar.Value += bytesRead
-                Dim qSplit As String = SplitString("A" & (subprogress_bar.Value.ToString / 1000).ToString(), "A", ",")
+                Dim qSplit As String = SplitString("A" & (subprogress_bar.Value/1000).ToString(), "A", ",")
                 subprogress_lbl.Text = qSplit & " KB" & " / " & qSplit2 & " KB"
                 globalprogress_lbl.Text = subprogress_bar.Value.ToString() & " KB" & " / " &
                                           subprogress_bar.Maximum.ToString() & " KB"

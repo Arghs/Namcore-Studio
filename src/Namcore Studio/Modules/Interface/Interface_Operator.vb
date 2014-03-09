@@ -42,7 +42,7 @@ Namespace Modules.Interface
                 End If
                 If GlobalVariables.DeserializationSuccessfull = False Then
                     For Each procStat As ProcessStatus In _
-                        (From currentForm As Form In Application.OpenForms Where currentForm.Name = "ProcessStatus").
+                        (From currentForm As Object In Application.OpenForms Where TryCast(currentForm, Form).Name = "ProcessStatus").
                             Cast _
                             (Of ProcessStatus)()
                         procStat.TopMost = False
@@ -63,7 +63,7 @@ Namespace Modules.Interface
                     Dim _
                         fs As _
                             New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf",
-                                             FileMode.OpenOrCreate)
+                                             CType(FileMode.OpenOrCreate, Boolean))
                     fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
                     fs.Close()
                     ms.Close()
@@ -78,7 +78,7 @@ Namespace Modules.Interface
                 Dim _
                     fs As _
                         New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf",
-                                         FileMode.OpenOrCreate)
+                                         CType(FileMode.OpenOrCreate, Boolean))
                 fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
                 fs.Close()
                 ms.Close()
@@ -102,7 +102,7 @@ Namespace Modules.Interface
                 End If
                 If GlobalVariables.DeserializationSuccessfull = False Then
                     For Each procStat As ProcessStatus In _
-                        (From currentForm As Form In Application.OpenForms Where currentForm.Name = "ProcessStatus").
+                        (From currentForm As Object In Application.OpenForms Where TryCast(currentForm, Form).Name = "ProcessStatus").
                             Cast _
                             (Of ProcessStatus)()
                         procStat.TopMost = False
@@ -123,7 +123,7 @@ Namespace Modules.Interface
                     Dim _
                         fs As _
                             New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf",
-                                             FileMode.OpenOrCreate)
+                                             CType(FileMode.OpenOrCreate, Boolean))
                     fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
                     fs.Close()
                     ms.Close()

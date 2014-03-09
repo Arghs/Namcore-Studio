@@ -83,7 +83,7 @@ Namespace Framework.Armory.Parser
                                       "ProfessionParser_loadProfessions", True)
                             Dim recipes As String = SplitString(myPart, """recipes"":[", "]")
                             If recipes.Length > 3 Then
-                                Dim useRecipes As String() = recipes.Split(",")
+                                Dim useRecipes As String() = recipes.Split(","c)
                                 For i = 0 To useRecipes.Length - 1
                                     pProf.Recipes.Add(
                                         New ProfessionSpell() _

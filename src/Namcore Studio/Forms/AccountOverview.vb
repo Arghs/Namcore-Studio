@@ -24,8 +24,8 @@ Imports NCFramework.Framework.Database
 Imports NamCore_Studio.Forms.Character
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Core
-Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Logging
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
 Imports NCFramework.Framework.Core.Update
@@ -97,7 +97,7 @@ Namespace Forms
 
         Private Sub characterview_MouseUp(sender As Object, e As MouseEventArgs) Handles characterview.MouseUp
             changepanel.Location = New Point(4000, 4000)
-            changepanel.Tag.Visible = True
+            CType(changepanel.Tag, Label).Visible = True
             If e.Button = MouseButtons.Right Then
                 If characterview.SelectedItems.Count = 0 And characterview.CheckedItems.Count = 0 Then Exit Sub
                 If characterview.SelectedItems.Count = 0 Then
@@ -119,7 +119,8 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub characterview_ColumnClick(sender As Object, e As ColumnClickEventArgs) Handles characterview.ColumnClick
+        Private Sub characterview_ColumnClick(sender As Object, e As ColumnClickEventArgs) _
+            Handles characterview.ColumnClick
             If e.Column = _cmpFileListViewComparer.SortColumn Then
                 If _cmpFileListViewComparer.SortOrder = SortOrder.Ascending Then
                     _cmpFileListViewComparer.SortOrder = SortOrder.Descending
@@ -146,7 +147,8 @@ Namespace Forms
             'Please remember that a character which is loaded from a database needs to be completely stored temporarily
             NewProcessStatus()
             Dim charview As CharacterOverview = New CharacterOverview
-            Dim player As NCFramework.Framework.Modules.Character = characterview.SelectedItems(0).Tag
+            Dim player As NCFramework.Framework.Modules.Character = CType(characterview.SelectedItems(0).Tag,
+                                                                          NCFramework.Framework.Modules.Character)
             If GlobalVariables.armoryMode = True Then
                 Userwait.Show()
                 charview.prepare_interface(GetAccountSetBySetId(player.AccountSet), player.SetIndex)
@@ -205,9 +207,9 @@ Namespace Forms
         End Sub
 
         Private Sub TextChangeRequest(sender As Object, e As EventArgs) Handles mail_lbl.Click
-            Dim oldSenderLabel As Label = changepanel.Tag
+            Dim oldSenderLabel As Label = CType(changepanel.Tag, Label)
             If Not oldSenderLabel Is Nothing Then oldSenderLabel.Visible = True
-            Dim senderLabel As Label = sender
+            Dim senderLabel As Label = CType(sender, Label)
             changepanel.Location = senderLabel.Location
             changepanel.Tag = senderLabel
             changeText_tb.Text = ""
@@ -216,7 +218,7 @@ Namespace Forms
         End Sub
 
         Private Sub updatePic_Click(sender As Object, e As EventArgs) Handles updatePic.Click
-            Dim senderLabel As Label = changepanel.Tag
+            Dim senderLabel As Label = CType(changepanel.Tag, Label)
             Select Case senderLabel.Name
                 Case mail_lbl.Name
                     If changeText_tb.Text.Length > 0 AndAlso Not changeText_tb.Text.Contains("@") Then
@@ -235,8 +237,8 @@ Namespace Forms
             Handles lockaccount_cb.CheckedChanged
             If _initComplete Then
                 changepanel.Location = New Point(4000, 4000)
-                changepanel.Tag.Visible = True
-                _currentEditedAccountSet.Locked = lockaccount_cb.Checked
+                CType(changepanel.Tag, Label).Visible = True
+                _currentEditedAccountSet.Locked = CType(lockaccount_cb.Checked, Integer)
                 UpdateButtons()
             End If
         End Sub
@@ -244,21 +246,21 @@ Namespace Forms
         Private Sub expansion_ud_ValueChanged(sender As Object, e As EventArgs) Handles expansion_ud.ValueChanged
             If _initComplete Then
                 changepanel.Location = New Point(4000, 4000)
-                changepanel.Tag.Visible = True
-                _currentEditedAccountSet.Expansion = expansion_ud.Value
+                CType(changepanel.Tag, Label).Visible = True
+                _currentEditedAccountSet.Expansion = CType(expansion_ud.Value, Integer)
                 UpdateButtons()
             End If
         End Sub
 
         Private Sub reset_bt_Click(sender As Object, e As EventArgs) Handles reset_bt.Click
             changepanel.Location = New Point(4000, 4000)
-            changepanel.Tag.Visible = True
+            CType(changepanel.Tag, Label).Visible = True
             prepare_interface(_currentViewedAccountSet)
         End Sub
 
         Private Sub savechanges_bt_Click(sender As Object, e As EventArgs) Handles savechanges_bt.Click
             changepanel.Location = New Point(4000, 4000)
-            changepanel.Tag.Visible = True
+            CType(changepanel.Tag, Label).Visible = True
             NewProcessStatus()
             Dim updateHandler As New UpdateAccountHandler
             updateHandler.UpdateAccount(_currentViewedAccountSet, _currentEditedAccountSet)
@@ -271,7 +273,7 @@ Namespace Forms
 
         Private Sub AccountOverview_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
             changepanel.Location = New Point(4000, 4000)
-            changepanel.Tag.Visible = True
+            CType(changepanel.Tag, Label).Visible = True
         End Sub
     End Class
 End Namespace

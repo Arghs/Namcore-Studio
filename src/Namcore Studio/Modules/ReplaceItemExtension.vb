@@ -35,7 +35,7 @@ Namespace Modules
             Dim itm As Item
             itm = SourceItem
             itm.Id = newitemid
-            itm.Name = GetItemNameByItemId(newitemid.ToString(), MySettings.Default.language)
+            itm.Name = GetItemNameByItemId(newitemid, MySettings.Default.language)
             itm.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(newitemid), GlobalVariables.GlobalWebClient)
             itm.Rarity = GetItemQualityByItemId(newitemid)
             Return itm

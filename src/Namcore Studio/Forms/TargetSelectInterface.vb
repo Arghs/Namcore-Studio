@@ -38,7 +38,7 @@ Namespace Forms
         Private Sub newtemplate_bt_Click(sender As Object, e As EventArgs) Handles newtemplate_bt.Click
             GlobalVariables.saveTemplateMode = True
             For Each liveview As Form In _
-                From xform As Form In Application.OpenForms Where xform.Name = "LiveView" Select xform
+                From xform As Object In Application.OpenForms Where TryCast(xform, Form).Name = "LiveView" Select xform
                 DirectCast(liveview, LiveView).PrepareTemplateCreation()
             Next
             Close()

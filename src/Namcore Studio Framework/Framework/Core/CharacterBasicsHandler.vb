@@ -150,7 +150,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_playerFlags_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PlayerFlags = TryInt(_tempResult)
+            tmpCharacter.PlayerFlags = CType(TryInt(_tempResult), Character.PlayerFlagsEnum)
             LogAppend(
                 "Loaded character playerFlags info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", False)
@@ -231,7 +231,7 @@ Namespace Framework.Core
                         "SELECT " & GlobalVariables.sourceStructure.char_arcemuPlayedTime_col(0) & " FROM " &
                         GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")).Split(" "c)
-            tmpCharacter.TotalTime = TryInt(parts(0))
+            tmpCharacter.TotalTime = parts(0)
             LogAppend(
                 "Loaded character totaltime info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & parts(0), "CharacterBasicsHandler_LoadAtArcemu", False)
@@ -528,7 +528,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_playerFlags_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PlayerFlags = TryInt(_tempResult)
+            tmpCharacter.PlayerFlags = CType(TryInt(_tempResult), Character.PlayerFlagsEnum)
             LogAppend(
                 "Loaded character playerFlags info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
@@ -618,7 +618,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_totaltime_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.TotalTime = TryInt(_tempResult)
+            tmpCharacter.TotalTime = _tempResult
             LogAppend(
                 "Loaded character totaltime info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
@@ -636,7 +636,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_extraFlags_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.ExtraFlags = TryInt(_tempResult)
+            tmpCharacter.ExtraFlags = CType(TryInt(_tempResult), Character.PlayerExtraFlags)
             LogAppend(
                 "Loaded character extraFlags info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
@@ -654,7 +654,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_atlogin_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.AtLogin = TryInt(_tempResult)
+            tmpCharacter.AtLogin = CType(TryInt(_tempResult), Character.PlayerAtLoginEnum)
             LogAppend(
                 "Loaded character atlogin info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", False)
@@ -941,7 +941,7 @@ Namespace Framework.Core
                     "SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 237), ' ', -1) AS UNSIGNED) AS `playerFlags` FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PlayerFlags = TryInt(_tempResult)
+            tmpCharacter.PlayerFlags = CType(TryInt(_tempResult), Character.PlayerFlagsEnum)
             LogAppend(
                 "Loaded character playerFlags info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
@@ -1031,7 +1031,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_totaltime_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.TotalTime = TryInt(_tempResult)
+            tmpCharacter.TotalTime = _tempResult
             LogAppend(
                 "Loaded character totaltime info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
@@ -1049,7 +1049,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_extraFlags_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.ExtraFlags = TryInt(_tempResult)
+            tmpCharacter.ExtraFlags = CType(TryInt(_tempResult), Character.PlayerExtraFlags)
             LogAppend(
                 "Loaded character extraFlags info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
@@ -1067,7 +1067,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_atlogin_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.AtLogin = TryInt(_tempResult)
+            tmpCharacter.AtLogin = CType(TryInt(_tempResult), Character.PlayerAtLoginEnum)
             LogAppend(
                 "Loaded character atlogin info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", False)
@@ -1367,7 +1367,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_playerFlags_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.PlayerFlags = TryInt(_tempResult)
+            tmpCharacter.PlayerFlags = CType(TryInt(_tempResult), Character.PlayerFlagsEnum)
             LogAppend(
                 "Loaded character playerFlags info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
@@ -1457,7 +1457,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_totaltime_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.TotalTime = TryInt(_tempResult)
+            tmpCharacter.TotalTime = _tempResult
             LogAppend(
                 "Loaded character totaltime info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
@@ -1475,7 +1475,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_extraFlags_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.ExtraFlags = TryInt(_tempResult)
+            tmpCharacter.ExtraFlags = CType(TryInt(_tempResult), Character.PlayerExtraFlags)
             LogAppend(
                 "Loaded character extraFlags info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
@@ -1493,7 +1493,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_atlogin_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.AtLogin = TryInt(_tempResult)
+            tmpCharacter.AtLogin = CType(TryInt(_tempResult), Character.PlayerAtLoginEnum)
             LogAppend(
                 "Loaded character atlogin info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)

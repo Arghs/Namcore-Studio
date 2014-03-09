@@ -37,59 +37,59 @@ Namespace Forms
         Private _ptMouseDownLocation As Point
         '// Declaration
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter4.MouseEnter
-            sender.backgroundimage = My.Resources.bt_close_light
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_close_light
         End Sub
 
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter4.MouseLeave
-            sender.backgroundimage = My.Resources.bt_close
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_close
         End Sub
 
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter5.MouseEnter
-            sender.backgroundimage = My.Resources.bt_minimize_light
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize_light
         End Sub
 
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter5.MouseLeave
-            sender.backgroundimage = My.Resources.bt_minimize
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize
         End Sub
 
         Private Sub settingsBt_MouseEnter(sender As Object, e As EventArgs) Handles settings_pic.MouseEnter
-            sender.backgroundimage = My.Resources.bt_settings_light
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_settings_light
         End Sub
 
         Private Sub settingsBt_MouseLeave(sender As Object, e As EventArgs) Handles settings_pic.MouseLeave
-            sender.backgroundimage = My.Resources.bt_settings
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_settings
         End Sub
 
         Private Sub aboutBt_MouseEnter(sender As Object, e As EventArgs) Handles about_pic.MouseEnter
-            sender.backgroundimage = My.Resources.bt_about_light
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_about_light
         End Sub
 
         Private Sub aboutBt_MouseLeave(sender As Object, e As EventArgs) Handles about_pic.MouseLeave
-            sender.backgroundimage = My.Resources.bt_about
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_about
         End Sub
 
         Private Sub liveViewBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter
-            sender.backgroundimage = My.Resources.bt_liveview_light
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_liveview_light
         End Sub
 
         Private Sub liveViewBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave
-            sender.backgroundimage = Nothing
+            TryCast(sender, PictureBox).BackgroundImage = Nothing
         End Sub
 
         Private Sub templateExplorerBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter2.MouseEnter
-            sender.backgroundimage = My.Resources.bt_templateexplorer_light
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_templateexplorer_light
         End Sub
 
         Private Sub templateExplorerBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter2.MouseLeave
-            sender.backgroundimage = Nothing
+            TryCast(sender, PictureBox).BackgroundImage = Nothing
         End Sub
 
         Private Sub armoryParserBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter3.MouseEnter
-            sender.backgroundimage = My.Resources.bt_armoryparser_light
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_armoryparser_light
         End Sub
 
         Private Sub armoryParserBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter3.MouseLeave
-            sender.backgroundimage = Nothing
+            TryCast(sender, PictureBox).BackgroundImage = Nothing
         End Sub
 
         Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load

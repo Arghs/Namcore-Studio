@@ -26,9 +26,9 @@ Namespace Provider
         Public Function GetAvMainCategoryIdBySubCatId(ByVal catId As Integer) As Integer
             CheckInit()
             Const targetField As Integer = 1
-            Dim myResult As Integer = ExecuteCsvSearch(AchievementCategoryCsv, "CategoryId", catId.ToString(), targetField)(0)
+            Dim myResult As String = ExecuteCsvSearch(AchievementCategoryCsv, "CategoryId", catId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myResult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -63,7 +63,7 @@ Namespace Provider
             End If
             Dim myNextResults As New List(Of Integer)
             For i = 0 To subCategoryList.Count - 1
-                Dim myNextResult As String() = ExecuteCsvSearch(AchievementCsv, "CategoryId", subCategoryList(i), 0)
+                Dim myNextResult As String() = ExecuteCsvSearch(AchievementCsv, "CategoryId", subCategoryList(i).ToString(), 0)
                 If myNextResult(0) = "-" Then Return Nothing
                 For z = 0 To myNextResult.Length - 1
                     Try

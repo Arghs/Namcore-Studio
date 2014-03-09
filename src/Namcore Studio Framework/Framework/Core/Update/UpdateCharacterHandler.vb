@@ -134,7 +134,7 @@ Namespace Framework.Core.Update
                 Next
                 Dim itm2Delete As List(Of Item) =
                         (From armorItm In comparePlayer.ArmorItems
-                        Where GetCharacterArmorItem(newPlayer, armorItm.Slot, True) Is Nothing).ToList()
+                        Where GetCharacterArmorItem(newPlayer, armorItm.Slot.ToString(), True) Is Nothing).ToList()
                 If itm2Delete Is Nothing Then itm2Delete = New List(Of Item)()
                 If itm2Create.Count > 0 Or itmsEnchChanged.Count > 0 Or itm2Delete.Count > 0 Then
                     Dim mUpdateArmor As New UpdateArmorHandler

@@ -60,7 +60,6 @@ Namespace Framework.Modules
         Public Charges As String
         Public Duration As Integer
         Public Durability As Integer
-        Public Profile
         Public Sub New()
         End Sub
     End Class

@@ -65,7 +65,7 @@ Namespace Framework.Core
                               True)
                 Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
                 Dim loopcounter As Integer = 0
-                Dim finalcounter As Integer = TryInt(excounter/3)
+                Dim finalcounter As Integer = CInt(excounter / 3)
                 Const partscounter As Integer = 0
                 Do
                     Dim act As New Action
@@ -84,7 +84,7 @@ Namespace Framework.Core
                               True)
                 Dim excounter2 As Integer = UBound(readedcode2.Split(CChar(",")))
                 Dim loopcounter2 As Integer = 0
-                Dim finalcounter2 As Integer = TryInt(excounter2/3)
+                Dim finalcounter2 As Integer = CInt(excounter2 / 3)
                 Dim partscounter2 As Integer = 0
                 Do
                     Dim act As New Action

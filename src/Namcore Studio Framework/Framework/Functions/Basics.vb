@@ -217,7 +217,7 @@ Namespace Framework.Functions
                 Dim request As HttpWebRequest = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
                 request.Proxy = GlobalVariables.GlobalWebClient.Proxy
                 Dim response As HttpWebResponse = DirectCast(request.GetResponse, HttpWebResponse)
-                Dim img As Bitmap = Image.FromStream(response.GetResponseStream())
+                Dim img As Bitmap = CType(Image.FromStream(response.GetResponseStream()), Bitmap)
                 response.Close()
                 Return img
             Catch ex As Exception
@@ -275,7 +275,7 @@ Namespace Framework.Functions
             For i = 0 To value.Length - 1
                 Dim c As Char = value(i)
                 Select Case c
-                    Case "]"
+                    Case "]"c
                     Case "]"c, "["c, "%"c, "*"c
                         sb.Append("[").Append(c).Append("]")
                         Exit Select
@@ -293,7 +293,7 @@ Namespace Framework.Functions
             If GlobalVariables.DebugMode = False Then
                 Try
                     For Each myForm As Form In _
-                        From myForm1 As Form In Application.OpenForms Where myForm1.Name = "ProcessStatus"
+                        From myForm1 As Object In Application.OpenForms Where CType(myForm1, Form).Name = "ProcessStatus"
                         myForm.Close()
                         Application.DoEvents()
                     Next
@@ -305,7 +305,7 @@ Namespace Framework.Functions
         Public Sub NewProcessStatus()
             Try
                 For Each myForm As Form In _
-                    From myForm1 As Form In Application.OpenForms Where myForm1.Name = "ProcessStatus"
+                     From myForm1 As Object In Application.OpenForms Where CType(myForm1, Form).Name = "ProcessStatus"
                     If GlobalVariables.DebugMode = True Then
                         Exit Sub
                     Else

@@ -50,7 +50,7 @@ Namespace Forms
                 If guidcombo1.SelectedIndex = - 1 Then GoTo SkipStatement0
                 Dim insertstring As String = " " & guidcombo1.SelectedItem.ToString() & " '" & guidtxtbox1.Text & "'"
                 Dim insertstring2 As String = ""
-                If Not guidcombo2.SelectedItem = Nothing Then
+                If Not guidcombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & GlobalVariables.sourceStructure.char_guid_col(0) & " " &
                                     guidcombo2.SelectedItem.ToString & " '" & guidtxtbox2.Text & "'"
                 End If
@@ -115,7 +115,7 @@ Namespace Forms
                 If levelcombo1.SelectedIndex = - 1 Then GoTo SkipStatement4
                 Dim insertstring As String = " " & levelcombo1.SelectedItem.ToString() & " '" & leveltxtbox1.Text & "'"
                 Dim insertstring2 As String = ""
-                If Not levelcombo2.SelectedItem = Nothing Then
+                If Not levelcombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & GlobalVariables.sourceStructure.char_level_col(0) & " " &
                                     levelcombo2.SelectedItem.ToString & " '" & leveltxtbox2.Text & "'"
                 End If
@@ -130,7 +130,7 @@ Namespace Forms
             End If
             SkipStatement4:
             For Each myliveview As LiveView In _
-                (From currentForm As Form In Application.OpenForms Where currentForm.Name = "LiveView").Cast _
+                (From currentForm As Object In Application.OpenForms Where TryCast(currentForm, Form).Name = "LiveView").Cast _
                     (Of LiveView)()
                 myliveview.Setcharacterview(GlobalVariables.modifiedCharTable)
             Next

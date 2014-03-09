@@ -433,7 +433,7 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Function EscGly(ByVal glyph As Glyph)
+        Private Function EscGly(ByVal glyph As Glyph) As Glyph
             If glyph Is Nothing Then
                 Return New Glyph() With {.Id = 0}
             Else

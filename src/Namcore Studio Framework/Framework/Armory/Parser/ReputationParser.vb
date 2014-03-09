@@ -71,9 +71,9 @@ Namespace Framework.Armory.Parser
                                 "Adding reputation (factionID/standing):(" & factionId & "/" & standing.ToString & ")",
                                 "ReputationParser_loadReputation", False)
                             rep.Faction = TryInt(factionId)
-                            rep.Standing = TryInt(standing)
+                            rep.Standing = TryInt(CStr(standing))
                             rep.Name = SplitString(parts(loopcounter), """name"":""", """,")
-                            rep.Flags = 1
+                            rep.Flags = CType(1, Reputation.FlagEnum)
                             player.PlayerReputation.Add(rep)
                         Catch ex As Exception
                             loopcounter += 1

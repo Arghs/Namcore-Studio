@@ -78,7 +78,7 @@ Namespace Forms.Character
             If _firstuse = True Then
                 If _lstitems Is Nothing Then _lstitems = New List(Of ListViewItem)
                 For Each itm As ListViewItem In qst_lst.Items
-                    Dim itmnew As ListViewItem = itm.Clone()
+                    Dim itmnew As ListViewItem = CType(itm.Clone(), ListViewItem)
                     _lstitems.Add(itmnew)
                 Next
                 _firstuse = False
@@ -160,7 +160,7 @@ Namespace Forms.Character
             Handles RemoveToolStripMenuItem.Click
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
-                Dim qst As Quest = qstitm.Tag
+                Dim qst As Quest = CType(qstitm.Tag, Quest)
                 If qst.Rewarded = 1 Then
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
                         GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.Id.ToString & ",", ",")
@@ -175,7 +175,7 @@ Namespace Forms.Character
                 End If
                 For i = 0 To _lstitems.Count - 1
                     Dim qitm As ListViewItem = _lstitems(i)
-                    If qitm.Tag.id = qst.Id Then
+                    If CType(qitm.Tag, Quest).Id = qst.Id Then
                         _lstitems.Remove(qitm)
                         Exit For
                     End If
@@ -188,7 +188,7 @@ Namespace Forms.Character
         Private Sub finished_0_Click(sender As Object, e As EventArgs) Handles finished_0.Click
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
-                Dim qst As Quest = qstitm.Tag
+                Dim qst As Quest = CType(qstitm.Tag, Quest)
                 If qst.Status = 1 Then
                     If qst.Rewarded = 1 Then
                         GlobalVariables.currentEditedCharSet.FinishedQuests =
@@ -201,7 +201,7 @@ Namespace Forms.Character
                         qstitm.SubItems(2).Text = "0"
                         qstitm.SubItems(3).Text = "0"
                         For Each qitm As ListViewItem In _lstitems
-                            Dim subqst As Quest = qitm.Tag
+                            Dim subqst As Quest = CType(qitm.Tag, Quest)
                             If subqst.Id = qst.Id Then
                                 subqst.Status = 0
                                 subqst.Rewarded = 0
@@ -214,7 +214,7 @@ Namespace Forms.Character
                                 pquest.Status = 0
                                 qstitm.SubItems(2).Text = "0"
                                 For Each qitm As ListViewItem In _lstitems
-                                    Dim subqst As Quest = qitm.Tag
+                                    Dim subqst As Quest = CType(qitm.Tag, Quest)
                                     If subqst.Id = qst.Id Then
                                         subqst.Status = 0
                                         qitm.Tag = subqst
@@ -231,14 +231,14 @@ Namespace Forms.Character
         Private Sub finished_1_Click(sender As Object, e As EventArgs) Handles finished_1.Click
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
-                Dim qst As Quest = qstitm.Tag
+                Dim qst As Quest = CType(qstitm.Tag, Quest)
                 If qst.Status = 0 Then
                     For Each pquest As Quest In GlobalVariables.currentEditedCharSet.Quests
                         If pquest.Id = qst.Id Then
                             pquest.Status = 1
                             qstitm.SubItems(2).Text = "1"
                             For Each qitm As ListViewItem In _lstitems
-                                Dim subqst As Quest = qitm.Tag
+                                Dim subqst As Quest = CType(qitm.Tag, Quest)
                                 If subqst.Id = qst.Id Then
                                     subqst.Status = 1
                                     qitm.Tag = subqst
@@ -254,7 +254,7 @@ Namespace Forms.Character
         Private Sub rewarded_0_Click(sender As Object, e As EventArgs) Handles rewarded_0.Click
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
-                Dim qst As Quest = qstitm.Tag
+                Dim qst As Quest = CType(qstitm.Tag, Quest)
                 If qst.Rewarded = 1 Then
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
                         GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.Id.ToString & ",", ",")
@@ -264,7 +264,7 @@ Namespace Forms.Character
                         GlobalVariables.currentEditedCharSet.Quests = New List(Of Quest)()
                     GlobalVariables.currentEditedCharSet.Quests.Add(qst)
                     For Each qitm As ListViewItem In _lstitems
-                        Dim subqst As Quest = qitm.Tag
+                        Dim subqst As Quest = CType(qitm.Tag, Quest)
                         If subqst.Id = qst.Id Then
                             subqst.Rewarded = 0
                             qitm.Tag = subqst
@@ -278,7 +278,7 @@ Namespace Forms.Character
         Private Sub rewarded_1_Click(sender As Object, e As EventArgs) Handles rewarded_1.Click
             qst_lst.BeginUpdate()
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
-                Dim qst As Quest = qstitm.Tag
+                Dim qst As Quest = CType(qstitm.Tag, Quest)
                 If qst.Rewarded = 0 Then
                     GlobalVariables.currentEditedCharSet.FinishedQuests =
                         GlobalVariables.currentEditedCharSet.FinishedQuests & qst.Id.ToString & ","
@@ -290,7 +290,7 @@ Namespace Forms.Character
                         If pqst.Id = qst.Id Then GlobalVariables.currentEditedCharSet.Quests.Remove(pqst)
                     Next
                     For Each qitm As ListViewItem In _lstitems
-                        Dim subqst As Quest = qitm.Tag
+                        Dim subqst As Quest = CType(qitm.Tag, Quest)
                         If subqst.Id = qst.Id Then
                             subqst.Status = 1
                             subqst.Rewarded = 1
@@ -399,8 +399,8 @@ Namespace Forms.Character
             If Not value = 0 Then
                 qst_lst.Items.Clear()
                 For Each itm As ListViewItem In _lstitems
-                    Dim qst As Quest = itm.Tag
-                    If qst.Id.ToString.Contains(value) Then
+                    Dim qst As Quest = CType(itm.Tag, Quest)
+                    If qst.Id.ToString.Contains(CType(value, String)) Then
                         resultcounter += 1
                         itmstoshow.Add(itm)
                     End If

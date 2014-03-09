@@ -114,8 +114,8 @@ Namespace Framework.Transmission
         Public Sub GetRaceSpells(ByRef player As Character)
             LogAppend("Loading race specific spells for player " & player.Name, "PlayerCreateHelper_GetRaceSpells")
             Try
-                Dim thisRace As ChrRaceIds = player.Race
-                Dim thisRaceBit As ChrRaces = thisRace
+                Dim thisRace As ChrRaceIds = CType(player.Race, ChrRaceIds)
+                Dim thisRaceBit As ChrRaces = CType(thisRace, ChrRaces)
                 Dim newSpellList As New List(Of Spell)
                 Dim spellsDt As DataTable = GetCreateInfoTable()
                 For Each spellEntry As DataRow In spellsDt.Rows
@@ -124,18 +124,18 @@ Namespace Framework.Transmission
                         For i = 0 To spellEntry.Table.Columns.Count - 1
                             If IsDBNull(spellEntry(i)) Then Continue For
                         Next
-                        If TryInt(spellEntry(0)) = 0 Then
+                        If TryInt(CStr(spellEntry(0))) = 0 Then
                             '// 0: Every race
                             newSpellList.Add(
                                 New Spell With
-                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
                             Continue For
                         End If
-                        Dim raceMask As ChrRaces = TryInt(spellEntry(0))
+                        Dim raceMask As ChrRaces = CType(TryInt(spellEntry(0).ToString()), ChrRaces)
                         If (raceMask And thisRaceBit) = thisRaceBit Then
                             newSpellList.Add(
                                 New Spell With
-                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
                         End If
                     Catch ex As Exception
                         LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetRaceSpells", False, True)
@@ -151,8 +151,8 @@ Namespace Framework.Transmission
         Public Sub GetClassSpells(ByRef player As Character)
             LogAppend("Loading class specific spells for player " & player.Name, "PlayerCreateHelper_GetClassSpells")
             Try
-                Dim thisClass As ChrClassIds = player.Cclass
-                Dim thisClassBit As ChrClasses = thisClass
+                Dim thisClass As ChrClassIds = CType(player.Cclass, ChrClassIds)
+                Dim thisClassBit As ChrClasses = CType(thisClass, ChrClasses)
                 Dim newSpellList As New List(Of Spell)
                 Dim spellsDt As DataTable = GetCreateInfoTable()
                 For Each spellEntry As DataRow In spellsDt.Rows
@@ -161,17 +161,17 @@ Namespace Framework.Transmission
                         For i = 0 To spellEntry.Table.Columns.Count - 1
                             If IsDBNull(spellEntry(i)) Then Continue For
                         Next
-                        If TryInt(spellEntry(1)) = 0 Then
+                        If TryInt(spellEntry(1).ToString()) = 0 Then
                             newSpellList.Add(
                                 New Spell With
-                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
                             Continue For
                         End If
-                        Dim classMask As ChrClasses = TryInt(spellEntry(1))
+                        Dim classMask As ChrClasses = CType(TryInt(spellEntry(1).ToString()), ChrClasses)
                         If (classMask And thisClassBit) = thisClassBit Then
                             newSpellList.Add(
                                 New Spell With
-                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
                         End If
                     Catch ex As Exception
                         LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetClassSpells", False, True)

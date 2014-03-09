@@ -20,7 +20,6 @@
 '*      /Filename:      AccountCreation
 '*      /Description:   Includes functions for creating new accounts
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports MySql.Data.MySqlClient
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
@@ -44,9 +43,9 @@ Namespace Framework.Transmission
                                   "AccountCreation_CreateNewAccount", False)
                         'TODO multi realm support
                         Dim newid As Integer =
-                                runSQLCommand_realm_string(
+                                CInt(runSQLCommand_realm_string(
                                     "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
-                                    GlobalVariables.targetStructure.account_tbl(0) & "", True)
+                                    GlobalVariables.targetStructure.account_tbl(0) & "", True))
                         Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.account_tbl(0) & " (" &
                                                   GlobalVariables.targetStructure.acc_id_col(0) & ", `" &
                                                   GlobalVariables.targetStructure.acc_name_col(0) & "`, `" &
@@ -83,9 +82,9 @@ Namespace Framework.Transmission
                         LogAppend("Account " & accname & " does not exist -> Creating it",
                                   "AccountCreation_CreateNewAccount", False)
                         Dim newid As Integer =
-                                runSQLCommand_realm_string(
+                                CInt(runSQLCommand_realm_string(
                                     "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
-                                    GlobalVariables.targetStructure.account_tbl(0) & "", True)
+                                    GlobalVariables.targetStructure.account_tbl(0) & "", True))
                         Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.character_tbl(0) &
                                                   " (" &
                                                   GlobalVariables.targetStructure.acc_id_col(0) & ", `" &
@@ -140,9 +139,9 @@ Namespace Framework.Transmission
                         Else
                         End If
                         Dim newid As Integer =
-                                runSQLCommand_realm_string(
+                                CInt(runSQLCommand_realm_string(
                                     "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
-                                    GlobalVariables.targetStructure.account_tbl(0) & "", True)
+                                    GlobalVariables.targetStructure.account_tbl(0) & "", True))
                         Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.account_tbl(0) & " (" &
                                                   GlobalVariables.targetStructure.acc_id_col(0) & ", `" &
                                                   GlobalVariables.targetStructure.acc_name_col(0) & "`, `" &
