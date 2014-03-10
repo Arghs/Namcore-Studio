@@ -53,7 +53,7 @@ Namespace Forms.Character
             Me.subcat_combo = New System.Windows.Forms.ComboBox()
             Me.callbacktimer = New System.Windows.Forms.Timer(Me.components)
             Me.waitpanel = New System.Windows.Forms.Panel()
-            Me.Label1 = New System.Windows.Forms.Label()
+            Me.waitLabel = New System.Windows.Forms.Label()
             Me.search_bt = New System.Windows.Forms.Button()
             Me.addpanel.SuspendLayout()
             CType(Me.add_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -360,21 +360,21 @@ Namespace Forms.Character
             'waitpanel
             '
             Me.waitpanel.BackColor = System.Drawing.SystemColors.ControlDarkDark
-            Me.waitpanel.Controls.Add(Me.Label1)
+            Me.waitpanel.Controls.Add(Me.waitLabel)
             Me.waitpanel.Location = New System.Drawing.Point(1122, 210)
             Me.waitpanel.Name = "waitpanel"
             Me.waitpanel.Size = New System.Drawing.Size(413, 118)
             Me.waitpanel.TabIndex = 228
             '
-            'Label1
+            'waitLabel
             '
-            Me.Label1.AutoSize = True
-            Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label1.Location = New System.Drawing.Point(31, 48)
-            Me.Label1.Name = "Label1"
-            Me.Label1.Size = New System.Drawing.Size(339, 24)
-            Me.Label1.TabIndex = 0
-            Me.Label1.Text = "Pick category to load achievements"
+            Me.waitLabel.AutoSize = True
+            Me.waitLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.waitLabel.Location = New System.Drawing.Point(31, 48)
+            Me.waitLabel.Name = "waitLabel"
+            Me.waitLabel.Size = New System.Drawing.Size(339, 24)
+            Me.waitLabel.TabIndex = 0
+            Me.waitLabel.Text = "Pick category to load achievements"
             '
             'search_bt
             '
@@ -477,7 +477,7 @@ Namespace Forms.Character
         Friend WithEvents subcat_combo As System.Windows.Forms.ComboBox
         Friend WithEvents callbacktimer As System.Windows.Forms.Timer
         Friend WithEvents waitpanel As System.Windows.Forms.Panel
-        Friend WithEvents Label1 As System.Windows.Forms.Label
+        Friend WithEvents waitLabel As System.Windows.Forms.Label
         Friend WithEvents search_bt As System.Windows.Forms.Button
     End Class
 End Namespace

@@ -45,6 +45,7 @@ Namespace Forms.Character
         Dim _tmpSender As Object
         Dim _mEvent As EventArgs
         Dim _state As String
+        Dim _controlsToAdd As List(Of Control)
 
         Shared _doneAvIds As List(Of Integer)
         Shared _correctIds As List(Of Integer)
@@ -56,7 +57,7 @@ Namespace Forms.Character
         Public Event FilterCompleted As EventHandler(Of CompletedEventArgs)
         Private WithEvents _mHandler As New TrdQueueHandler
 
-        Delegate Sub AddControlDelegate(panel2Add As Panel)
+        Delegate Sub AddControlDelegate()
 
         Delegate Sub UpdateControlDelegate(ctrl As Control)
         '// Declaration
@@ -93,11 +94,13 @@ Namespace Forms.Character
             subcat_combo.Text = ""
             Try
                 _preCatControlLst = Nothing
-                waitpanel.Location = New Point(4000, 4000)
+                waitLabel.Text = ResourceHandler.GetUserMessage("loadingAv")
+                waitpanel.Location = New Point(367, 219)
                 _state = "catbt"
                 _tmpSender = sender
                 _mEvent = e
                 _goon = False
+                Application.DoEvents()
                 If GlobalVariables.trdRunning > 0 Then
                     '// Currently loading achievements
                     callbacktimer.Stop()
@@ -220,6 +223,7 @@ Namespace Forms.Character
         End Sub
 
         Public Function ContinueOperation(ByVal sender As Object, ByVal operationCount As Integer) As String
+            _controlsToAdd = New List(Of Control)()
             If operationCount = 1 Then _
                 LogAppend("Loading achievements", "Achievements_interface_continueOperation", True)
             GlobalVariables.trdRunning += 1
@@ -255,6 +259,7 @@ Namespace Forms.Character
 
                     End While
                     GlobalVariables.trdRunning = 0
+                    AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding))
                 End If
             Catch myex As Exception
                 GlobalVariables.trdRunning = 0
@@ -285,11 +290,20 @@ Namespace Forms.Character
             Application.DoEvents()
         End Sub
 
-        Private Sub DelegateControlAdding(addNewPanel As Panel)
-            addNewPanel.SetDoubleBuffered()
-            AVLayoutPanel.Controls.Add(addNewPanel)
-            AVLayoutPanel.Controls.SetChildIndex(AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1),
-                                                 1)
+        Private Sub DelegateControlAdding()
+            If Not _controlsToAdd Is Nothing Then
+                For Each addNewPanel As Control In _controlsToAdd
+                    addNewPanel.SetDoubleBuffered()
+                    AVLayoutPanel.Controls.Add(addNewPanel)
+                    AVLayoutPanel.Controls.SetChildIndex(AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1),
+                                                         1)
+                Next
+            End If
+            If AVLayoutPanel.Controls.Count > 0 Then
+                waitpanel.Location = New Point(4000, 4000)
+            Else
+                waitLabel.Text = ResourceHandler.GetUserMessage("noAvFound")
+            End If
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
@@ -531,7 +545,7 @@ Namespace Forms.Character
             deletePic.Cursor = Cursors.Hand
             avPanel.SetDoubleBuffered()
             AddHandler deletePic.Click, AddressOf deleteAv_click
-            AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding), avPanel)
+            _controlsToAdd.Add(avPanel)
             Application.DoEvents()
         End Sub
 
