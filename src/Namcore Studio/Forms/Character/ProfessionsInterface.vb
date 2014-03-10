@@ -197,10 +197,10 @@ Namespace Forms.Character
             rank_slider.Size = New Size(rank_panel.Size.Width + 10, rank_slider.Size.Height)
             _rank_color_panel.Size = New Size(CType((_maxProgressSize/600*_activeProfession.Rank), Integer),
                                               rank_color_panel.Size.Height)
-            rank_slider.Value = _activeProfession.Rank
-            progress_lbl.Text = _activeProfession.Rank.ToString & "/600"
-            rankname_lbl.Text = GetProficiencyLevelNameByLevel(_activeProfession.Rank)
-            Dim relevantSpellList As List(Of ProfessionSpell) = ExecuteSkillLineSearch(_activeProfession.Id)
+            rank_slider.Value = EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet)
+            progress_lbl.Text = EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet).ToString & "/600"
+            rankname_lbl.Text = GetProficiencyLevelNameByLevel(EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet))
+            Dim relevantSpellList As IEnumerable(Of ProfessionSpell) = ExecuteSkillLineSearch(_activeProfession.Id)
             _nylearnedSpellsLst = New List(Of ProfessionSpell)()
             For Each profSpell As ProfessionSpell In relevantSpellList
                 Dim entry As ProfessionSpell =
@@ -235,7 +235,7 @@ Namespace Forms.Character
             LearnToolStrip.Text = "Unlearn"
         End Sub
 
-        Private Function ExecuteSkillLineSearch(ByVal startvalue As Integer) As List(Of ProfessionSpell)
+        Private Function ExecuteSkillLineSearch(ByVal startvalue As Integer) As IEnumerable(Of ProfessionSpell)
             Dim retnLst As New List(Of ProfessionSpell)
             Try
                 Dim foundRows() As DataRow
@@ -713,5 +713,23 @@ Namespace Forms.Character
                 End If
             End If
         End Sub
+
+        Private Function EscapeRank(ByVal pProf As Profession, ByVal player As NCFramework.Framework.Modules.Character) As Integer
+            Select Case pProf.Id
+                Case 182
+                    If player.Race = 6 Then Return pProf.Rank - 15 '// Tauren herbalism bonus
+                Case 202
+                    If player.Race = 7 Then Return pProf.Rank - 15 '// Gnome engineering bonus
+                Case 755
+                    If player.Race = 11 Then Return pProf.Rank - 5 '// Draenei jewelcrafting bonus
+                Case 333
+                    If player.Race = 10 Then Return pProf.Rank - 10 '// Blood-Elf enchanting bonus
+                Case 393
+                    If player.Race = 22 Then Return pProf.Rank - 15 '// Worgen skinning bonus
+                Case 171
+                    If player.Race = 9 Then Return pProf.Rank - 15 '// Goblin alchemy bonus
+            End Select
+            Return pProf.Rank
+        End Function
     End Class
 End Namespace

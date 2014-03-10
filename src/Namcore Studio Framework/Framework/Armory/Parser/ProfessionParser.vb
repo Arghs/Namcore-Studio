@@ -21,6 +21,7 @@
 '*      /Description:   Contains functions for loading character profession information 
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.My
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
@@ -87,12 +88,15 @@ Namespace Framework.Armory.Parser
                                 For i = 0 To useRecipes.Length - 1
                                     pProf.Recipes.Add(
                                         New ProfessionSpell() _
-                                                         With {.SpellId = TryInt(useRecipes(i)), .Name = "",
+                                                         With {.SpellId = TryInt(useRecipes(i)),
+                                                         .Name =
+                                                         GetSpellNameBySpellId(.SpellId, MySettings.Default.language),
                                                          .MinSkill = GetMinimumSkillBySpellId(TryInt(useRecipes(i)))})
                                 Next
                             End If
                             If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
-                            player.Spells.Add(New Spell _
+                            player.Spells.Add(
+                                New Spell _
                                                  With {.Active = 1, .Disabled = 0,
                                                  .Id = GetSkillSpellIdBySkillRank(pProf.Id, pProf.Rank)})
                             Dim specialSpells() As Integer = GetSkillSpecialSpellIdBySkill(pProf.Id)
@@ -100,7 +104,8 @@ Namespace Framework.Armory.Parser
                                 For i = 0 To specialSpells.Length - 1
                                     LogAppend("Adding special profession spell " & specialSpells(i).ToString,
                                               "ProfessionParser_loadProfessions", True)
-                                    player.Spells.Add(New Spell _
+                                    player.Spells.Add(
+                                        New Spell _
                                                          With {.Active = 1, .Disabled = 0, .Id = specialSpells(i)})
                                 Next
                             End If
