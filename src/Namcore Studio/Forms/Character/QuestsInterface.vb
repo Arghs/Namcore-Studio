@@ -124,9 +124,8 @@ Namespace Forms.Character
             Next
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
                                     New CompletedEventArgs())
-            ' ReSharper disable VBWarnings::BC42105
+            Return ""
         End Function
-        ' ReSharper restore VBWarnings::BC42105
 
         Private Sub DelegateControlAdding(additm As ListViewItem)
             qst_lst.Items.Add(additm)

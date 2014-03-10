@@ -158,8 +158,7 @@ Namespace Framework.Armory
             LogAppend("All characters loaded!", "ArmoryHandler_DoLoad", True)
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
                                     New CompletedEventArgs())
-            ' ReSharper disable VBWarnings::BC42105
+            Return ""
         End Function
-        ' ReSharper restore VBWarnings::BC42105
     End Class
 End Namespace
