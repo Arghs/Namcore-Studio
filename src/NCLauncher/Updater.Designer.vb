@@ -160,27 +160,27 @@ Partial Class Updater
         '
         'globalprogress_lbl
         '
-        Me.globalprogress_lbl.AutoSize = True
         Me.globalprogress_lbl.BackColor = System.Drawing.SystemColors.WindowText
         Me.globalprogress_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.globalprogress_lbl.ForeColor = System.Drawing.Color.White
-        Me.globalprogress_lbl.Location = New System.Drawing.Point(237, 163)
+        Me.globalprogress_lbl.Location = New System.Drawing.Point(197, 163)
         Me.globalprogress_lbl.Name = "globalprogress_lbl"
-        Me.globalprogress_lbl.Size = New System.Drawing.Size(117, 15)
+        Me.globalprogress_lbl.Size = New System.Drawing.Size(201, 15)
         Me.globalprogress_lbl.TabIndex = 233
         Me.globalprogress_lbl.Text = "5.12MB / 11.8MB"
+        Me.globalprogress_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'subprogress_lbl
         '
-        Me.subprogress_lbl.AutoSize = True
         Me.subprogress_lbl.BackColor = System.Drawing.SystemColors.WindowText
         Me.subprogress_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.subprogress_lbl.ForeColor = System.Drawing.Color.White
-        Me.subprogress_lbl.Location = New System.Drawing.Point(244, 220)
+        Me.subprogress_lbl.Location = New System.Drawing.Point(197, 219)
         Me.subprogress_lbl.Name = "subprogress_lbl"
-        Me.subprogress_lbl.Size = New System.Drawing.Size(97, 15)
+        Me.subprogress_lbl.Size = New System.Drawing.Size(201, 15)
         Me.subprogress_lbl.TabIndex = 234
         Me.subprogress_lbl.Text = "1.1 MB / 2 MB"
+        Me.subprogress_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'subprogress_bar
         '
@@ -231,7 +231,7 @@ Partial Class Updater
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = Global.NCLauncher.My.Resources.Resources.cleanbg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(586, 303)
+        Me.ClientSize = New System.Drawing.Size(586, 275)
         Me.Controls.Add(Me.currentfile)
         Me.Controls.Add(Me.speed)
         Me.Controls.Add(Me.Label6)
@@ -248,6 +248,7 @@ Partial Class Updater
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Updater"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Updater"
         Me.header.ResumeLayout(False)
         Me.closepanel.ResumeLayout(False)

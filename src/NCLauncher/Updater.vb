@@ -24,6 +24,8 @@ Imports System.Net
 Imports System.Xml
 Imports System.IO
 Imports System.Text
+Imports System.Threading
+Imports Microsoft.SqlServer.Server
 
 Public Class Updater
     '// Declaration
@@ -32,6 +34,8 @@ Public Class Updater
     Private _ptMouseDownLocation As Point
     Private _files2Download As List(Of MyFile)
     Private _totalSize As Integer = 0
+    Private _downloadedBytes As Double
+    Private _lastValue As Integer = 0
     '// Declaration
 
     Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
@@ -87,6 +91,7 @@ Public Class Updater
         Dim uname As String = ""
         Dim pass As String = ""
         Dim fullProxy As New WebProxy
+        Dim myaioversion As Integer
         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\settings.xml") Then
             Dim xmlReader As XmlReader = New XmlTextReader(Application.StartupPath & "\Data\settings.xml")
             With xmlReader
@@ -133,7 +138,7 @@ Public Class Updater
                         Case XmlNodeType.Comment
                     End Select
                 Loop
-                .Close()  '
+                .Close()
             End With
             If proxyenabled = True Then
                 If autodetect = True Then
@@ -188,7 +193,7 @@ Public Class Updater
                 MsgBoxStyle.Exclamation, "Failed to connect")
         End Try
         If Not source = "" Then
-            Dim xmlReader As XmlReader = New XmlTextReader(Application.StartupPath & "\Data\settings.xml")
+            Dim xmlReader As XmlReader = New XmlTextReader(Application.StartupPath & "\Data\version.xml")
             With xmlReader
                 Do While .Read
                     Select Case .NodeType
@@ -196,7 +201,8 @@ Public Class Updater
                             If .AttributeCount > 0 Then
                                 While .MoveToNextAttribute
                                     Select Case .Name
-                                        Case "version"
+                                        Case "aioversion"
+                                            myaioversion = CInt(.Value)
                                     End Select
                                 End While
                             End If
@@ -206,27 +212,28 @@ Public Class Updater
                 Loop
                 .Close()
             End With
-            Dim aioversion As Integer = CInt(splitString(source, "<aioversion>", "</aioversion>"))
+            Dim aioversion As Integer = CInt(SplitString(source, "<aioversion>", "</aioversion>"))
             _files2Download = New List(Of MyFile)()
-            If aioversion = 10000 Then 'deactivated > myaioversion Then
+            If aioversion > myaioversion Then
                 'Updates available!
                 Dim fileCount As Integer = UBound(Split(source, "<file>"))
                 Dim fileCounter As Integer = 0
                 Dim fileSource As String = source
                 Do
                     fileCounter += 1
-                    Dim fileContext As String = splitString(fileSource, "<file>", "</file>")
+                    Dim fileContext As String = SplitString(fileSource, "<file>", "</file>")
                     Try
-                        Dim fname As String = splitString(fileContext, "<name>", "</name>")
-                        Dim version As Integer = CInt(splitString(fileContext, "<version>", "</version>").Replace(".",
-                                                                                                                  ""))
-                        Dim path As String = splitString(fileContext, "<path>", "</path>")
-                        Dim url As String = splitString(fileContext, "<url>", "</url>")
-                        Dim mysize As String = splitString(fileContext, "<size>", "</size>")
+                        Dim fname As String = SplitString(fileContext, "<name>", "</name>")
+                        Dim version As Integer = CInt(SplitString(fileContext, "<build>", "</build>"))
+                        Dim path As String = SplitString(fileContext, "<targetdir>", "</targetdir>")
+                        Dim url As String = SplitString(fileContext, "<location>", "</location>")
+                        Dim mysize As String = SplitString(fileContext, "<size>", "</size>")
                         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\" & path & fname) Then
                             Dim gfi As GetFileInformation =
                                     New GetFileInformation(Application.StartupPath & "\" & path & fname)
-                            Dim fVersion As Integer = CInt(gfi.GetFileVersion.ToString().Replace(".", ""))
+                            Dim fVersionFile As String = gfi.GetFileVersion
+                            Dim fVersionStr() As String = fVersionFile.Split("."c)
+                            Dim fVersion As Integer = CInt(fVersionStr(fVersionStr.Length - 1))
                             If version > fVersion Then
                                 _totalSize += CInt(mysize)
                                 _files2Download.Add(
@@ -243,10 +250,12 @@ Public Class Updater
                         fileSource = fileSource.Replace("<file>" & fileContext & "</file>", "")
                     End Try
                 Loop Until fileCounter = fileCount
-                filestatus.Text = "Loading file 1/" & _files2Download.Count.ToString()
-                globalprogress_lbl.Text = "0 KB / " & _totalSize.ToString() & " KB"
-                subprogress_lbl.Text = "0 KB / " & _files2Download.Item(0).size.ToString() & " KB"
-                currentfile.Text = _files2Download.Item(0).name.ToString()
+                If Not _files2Download.Count = 0 Then
+                    filestatus.Text = "Loading file 1/" & _files2Download.Count.ToString()
+                    globalprogress_lbl.Text = "0 KB / " & _totalSize.ToString() & " KB"
+                    subprogress_lbl.Text = "0 KB / " & _files2Download.Item(0).Size.ToString() & " KB"
+                    currentfile.Text = _files2Download.Item(0).Name.ToString()
+                End If
             Else
                 If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\NamCore Studio.exe") Then
                 Else
@@ -325,19 +334,95 @@ Public Class Updater
 
     Private Sub start_bt_Click(sender As Object, e As EventArgs) Handles start_bt.Click
         globalprogress_bar.Maximum = _totalSize
-        Const cnt As Integer = 1
-        For Each dFile As MyFile In _files2Download
-            filestatus.Text = "Loading file " & cnt.ToString & "/" & _files2Download.Count.ToString()
-            currentfile.Text = dFile.name
-            DownloadItem(dFile.url, dFile.name & ".temp", Application.StartupPath & "\" & dFile.path)
-            delete(dFile.path & dFile.name)
-            My.Computer.FileSystem.RenameFile(Application.StartupPath & "\" & dFile.path & dFile.name & ".temp",
-                                              dFile.name)
-        Next
+        Dim trd As Thread = New Thread(DirectCast(Sub() StartDownloading(), ThreadStart))
+        trd.Start()
     End Sub
 
+    Private Sub StartDownloading()
+        Dim cnt As Integer = 1
+        GetTotalSize()
+        For Each dFile As MyFile In _files2Download
+            filestatus.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), filestatus, "Loading file " & cnt.ToString & "/" & _files2Download.Count.ToString())
+            currentfile.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), currentfile, dFile.Name)
+            DownloadItem(dFile.Url, dFile.Name & ".temp", Application.StartupPath & "\" & dFile.Path)
+            delete(dFile.Path & dFile.Name)
+            My.Computer.FileSystem.RenameFile(Application.StartupPath & "\" & dFile.Path & dFile.Name & ".temp",
+                                              dFile.Name)
+            cnt += 1
+        Next
+        If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\NamCore Studio.exe") Then
+        Else
+            Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
+            Close()
+        End If
+    End Sub
+
+    Delegate Sub ChangeLabelText(lbl As Label, txt As String)
+
+    Private Sub DelegateLabelTextChange(lbl As Label, txt As String)
+        lbl.Text = txt
+        subprogress_lbl.Update()
+        subprogress_bar.Update()
+        globalprogress_lbl.Update()
+        globalprogress_bar.Update()
+        Application.DoEvents()
+    End Sub
+
+    Delegate Sub ChangeStatusValue(bar As ProgressBar, val As Integer)
+
+    Private Sub DelegateStatusChange(bar As ProgressBar, val As Integer)
+        Try
+            If val = 0 Then bar.Value = 0
+            bar.Value += val
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Delegate Sub ChangeStatusValueExpl(bar As ProgressBar, val As Integer)
+
+    Private Sub DelegateStatusChangeExpl(bar As ProgressBar, val As Integer)
+        Try
+            bar.Value = val
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+    Delegate Sub ChangeStatusMax(bar As ProgressBar, val As Integer)
+
+    Private Sub DelegateStatusMaxChange(bar As ProgressBar, val As Integer)
+        Try
+            bar.Maximum = val
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
     Private Sub delete(ByVal path As String)
         File.Delete(Application.StartupPath & "\" & path)
+    End Sub
+
+    Private Sub GetTotalSize()
+        Dim webreq As HttpWebRequest
+        Dim webresp As HttpWebResponse
+        Dim max As Integer = 0
+        Try
+            ' Datei-Download via HTTP "anfordern"
+            For Each onlineFile As MyFile In _files2Download
+                webreq = CType(HttpWebRequest.Create(onlineFile.Url), HttpWebRequest)
+                webresp = CType(webreq.GetResponse, HttpWebResponse)
+
+                ' Download-Größe
+                max += CInt(webresp.ContentLength)
+                webreq.Abort()
+                webresp.Close()
+            Next
+            globalprogress_bar.BeginInvoke(New ChangeStatusMax(AddressOf DelegateStatusMaxChange), globalprogress_bar, max)
+        Catch
+
+        End Try
     End Sub
 
     Private Sub DownloadItem(ByVal sUrl As String,
@@ -350,38 +435,50 @@ Public Class Updater
         Dim stream As FileStream
         Dim buffer() As Byte = New Byte(1024) {}
         Dim bytesRead As Integer
-        subprogress_bar.Value = 0
-
+        subprogress_bar.BeginInvoke(New ChangeStatusValue(AddressOf DelegateStatusChange), subprogress_bar, 0)
         Try
             ' Datei-Download via HTTP "anfordern"
             webreq = CType(HttpWebRequest.Create(sUrl), HttpWebRequest)
             webresp = CType(webreq.GetResponse, HttpWebResponse)
 
             ' Download-Größe
-            subprogress_bar.Maximum = CInt(webresp.ContentLength)
+            subprogress_bar.BeginInvoke(New ChangeStatusMax(AddressOf DelegateStatusMaxChange), subprogress_bar, CInt(webresp.ContentLength))
 
             ' lokale Datei öffnen
-            stream = New FileStream(Application.StartupPath & strFolder & "\" & strFile, FileMode.Create)
+            stream = New FileStream(strFolder & "\" & strFile, FileMode.Create)
             bReader = New BinaryReader(webresp.GetResponseStream)
             bWriter = New BinaryWriter(stream)
 
             ' Datei blockweise downloaden und lokal speichern
-            Dim qSplit2 As String = SplitString("A" & (webresp.ContentLength/1000).ToString(), "A", ",")
+            Dim qSplit2 As String = SplitString("A" & (webresp.ContentLength / 1000).ToString(), "A", ",")
+            Dim speedTimer As New Stopwatch
+            Dim currentspeed As Double = -1
+            Dim readings As Integer = 0
+            Const circle As Integer = 500
+            If _lastValue > 0 Then
+                globalprogress_bar.BeginInvoke(New ChangeStatusValueExpl(AddressOf DelegateStatusChangeExpl), globalprogress_bar, _lastValue)
+            End If
             Do
+                speedTimer.Start()
                 bytesRead = bReader.Read(buffer, 0, 1024)
                 bWriter.Write(buffer, 0, bytesRead)
-                subprogress_bar.Value += bytesRead
-                globalprogress_bar.Value += bytesRead
-                Dim qSplit As String = SplitString("A" & (subprogress_bar.Value/1000).ToString(), "A", ",")
-                subprogress_lbl.Text = qSplit & " KB" & " / " & qSplit2 & " KB"
-                globalprogress_lbl.Text = subprogress_bar.Value.ToString() & " KB" & " / " &
-                                          subprogress_bar.Maximum.ToString() & " KB"
-                subprogress_lbl.Update()
-                subprogress_bar.Update()
-                globalprogress_lbl.Update()
-                globalprogress_bar.Update()
+                speedTimer.Stop()
+                subprogress_bar.BeginInvoke(New ChangeStatusValue(AddressOf DelegateStatusChange), subprogress_bar, bytesRead)
+                globalprogress_bar.BeginInvoke(New ChangeStatusValue(AddressOf DelegateStatusChange), globalprogress_bar, bytesRead)
+                Dim qSplit As String = SplitString("A" & (subprogress_bar.Value / 1000).ToString(), "A", ",")
+                subprogress_lbl.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), subprogress_lbl, TausenderPunkte(CDbl(qSplit)) & " KB" & " / " & TausenderPunkte(CDbl(qSplit2)) & " KB")
+                globalprogress_lbl.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), globalprogress_lbl, TausenderPunkte(CDbl(Math.Round((_downloadedBytes + subprogress_bar.Value) / 1000, 0))) & " KB" & " / " &
+                                          TausenderPunkte(CDbl(Math.Round(globalprogress_bar.Maximum / 1000, 0))) & " KB")
+                readings += 1
+                If readings >= circle Then 'For increase precision, the speed it's calculated only every five cicles
+                    currentspeed = Math.Round((1024 * circle / (speedTimer.ElapsedMilliseconds)), 2)
+                    speedTimer.Reset()
+                    readings = 0
+                    speed.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), speed, currentspeed.ToString() & " KB/s")
+                End If
             Loop Until bytesRead = 0
-
+            _downloadedBytes += subprogress_bar.Value
+            _lastValue = globalprogress_bar.Value
             ' alle Dateien schließen
             bWriter.Close()
             bReader.Close()
@@ -390,6 +487,36 @@ Public Class Updater
         Catch ex As Exception
 
         End Try
+    End Sub
+
+
+    Private Function TausenderPunkte(Zahl As Double) As String
+        Try
+            Dim res As String = Zahl.ToString()
+            Dim append As String = ""
+            If res.Contains(",") Then
+                append = res.Substring(res.IndexOf(","))
+                res = res.Substring(0, res.IndexOf(","))
+            End If
+            Dim pkte As Integer = (res.Length - 1) \ 3
+            Dim pre As String = res.Substring(0, res.Length Mod 3)
+            res = res.Substring(res.Length Mod 3)
+            For i = pkte - 1 To 0 Step -1
+                res = res.Substring(0, i * 3) & "." & res.Substring(i * 3)
+            Next
+            Return pre & res & append
+        Catch ex As Exception
+            Return ""
+        End Try
+
+    End Function
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\NamCore Studio.exe") Then
+        Else
+            Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
+            Close()
+        End If
     End Sub
 End Class
 
