@@ -409,12 +409,9 @@ Public Class Updater
         Dim webresp As HttpWebResponse
         Dim max As Integer = 0
         Try
-            ' Datei-Download via HTTP "anfordern"
             For Each onlineFile As MyFile In _files2Download
                 webreq = CType(HttpWebRequest.Create(onlineFile.Url), HttpWebRequest)
                 webresp = CType(webreq.GetResponse, HttpWebResponse)
-
-                ' Download-Größe
                 max += CInt(webresp.ContentLength)
                 webreq.Abort()
                 webresp.Close()
@@ -437,19 +434,12 @@ Public Class Updater
         Dim bytesRead As Integer
         subprogress_bar.BeginInvoke(New ChangeStatusValue(AddressOf DelegateStatusChange), subprogress_bar, 0)
         Try
-            ' Datei-Download via HTTP "anfordern"
             webreq = CType(HttpWebRequest.Create(sUrl), HttpWebRequest)
             webresp = CType(webreq.GetResponse, HttpWebResponse)
-
-            ' Download-Größe
             subprogress_bar.BeginInvoke(New ChangeStatusMax(AddressOf DelegateStatusMaxChange), subprogress_bar, CInt(webresp.ContentLength))
-
-            ' lokale Datei öffnen
             stream = New FileStream(strFolder & "\" & strFile, FileMode.Create)
             bReader = New BinaryReader(webresp.GetResponseStream)
             bWriter = New BinaryWriter(stream)
-
-            ' Datei blockweise downloaden und lokal speichern
             Dim qSplit2 As String = SplitString("A" & (webresp.ContentLength / 1000).ToString(), "A", ",")
             Dim speedTimer As New Stopwatch
             Dim currentspeed As Double = -1
@@ -466,9 +456,9 @@ Public Class Updater
                 subprogress_bar.BeginInvoke(New ChangeStatusValue(AddressOf DelegateStatusChange), subprogress_bar, bytesRead)
                 globalprogress_bar.BeginInvoke(New ChangeStatusValue(AddressOf DelegateStatusChange), globalprogress_bar, bytesRead)
                 Dim qSplit As String = SplitString("A" & (subprogress_bar.Value / 1000).ToString(), "A", ",")
-                subprogress_lbl.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), subprogress_lbl, TausenderPunkte(CDbl(qSplit)) & " KB" & " / " & TausenderPunkte(CDbl(qSplit2)) & " KB")
-                globalprogress_lbl.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), globalprogress_lbl, TausenderPunkte(CDbl(Math.Round((_downloadedBytes + subprogress_bar.Value) / 1000, 0))) & " KB" & " / " &
-                                          TausenderPunkte(CDbl(Math.Round(globalprogress_bar.Maximum / 1000, 0))) & " KB")
+                subprogress_lbl.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), subprogress_lbl, FormatDot(CDbl(qSplit)) & " KB" & " / " & FormatDot(CDbl(qSplit2)) & " KB")
+                globalprogress_lbl.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), globalprogress_lbl, FormatDot(CDbl(Math.Round((_downloadedBytes + subprogress_bar.Value) / 1000, 0))) & " KB" & " / " &
+                                          FormatDot(CDbl(Math.Round(globalprogress_bar.Maximum / 1000, 0))) & " KB")
                 readings += 1
                 If readings >= circle Then 'For increase precision, the speed it's calculated only every five cicles
                     currentspeed = Math.Round((1024 * circle / (speedTimer.ElapsedMilliseconds)), 2)
@@ -479,7 +469,6 @@ Public Class Updater
             Loop Until bytesRead = 0
             _downloadedBytes += subprogress_bar.Value
             _lastValue = globalprogress_bar.Value
-            ' alle Dateien schließen
             bWriter.Close()
             bReader.Close()
             stream.Close()
@@ -490,13 +479,13 @@ Public Class Updater
     End Sub
 
 
-    Private Function TausenderPunkte(Zahl As Double) As String
+    Private Function FormatDot(int As Double) As String
         Try
-            Dim res As String = Zahl.ToString()
+            Dim res As String = int.ToString()
             Dim append As String = ""
             If res.Contains(",") Then
-                append = res.Substring(res.IndexOf(","))
-                res = res.Substring(0, res.IndexOf(","))
+                append = res.Substring(res.IndexOf(",", StringComparison.Ordinal))
+                res = res.Substring(0, res.IndexOf(",", StringComparison.Ordinal))
             End If
             Dim pkte As Integer = (res.Length - 1) \ 3
             Dim pre As String = res.Substring(0, res.Length Mod 3)
@@ -578,7 +567,6 @@ Public Class GetFileInformation
     End Function
 
     Public Sub Dispose() Implements IDisposable.Dispose
-        '
     End Sub
 End Class
 
