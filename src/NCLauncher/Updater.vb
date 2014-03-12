@@ -25,7 +25,7 @@ Imports System.Xml
 Imports System.IO
 Imports System.Text
 Imports System.Threading
-Imports Microsoft.SqlServer.Server
+Imports Microsoft.VisualBasic.FileIO
 
 Public Class Updater
     '// Declaration
@@ -36,6 +36,9 @@ Public Class Updater
     Private _totalSize As Integer = 0
     Private _downloadedBytes As Double
     Private _lastValue As Integer = 0
+    Private _downloadingLauncher As Boolean = False
+    Private _newAioVersion As Integer
+    Private _cancelationPending As Boolean = False
     '// Declaration
 
     Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
@@ -49,24 +52,6 @@ Public Class Updater
             Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
                                  e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
         End If
-    End Sub
-
-    Private Sub highlighter_MouseEnter(sender As Object, e As EventArgs) _
-        Handles highlighter1.MouseEnter, highlighter2.MouseEnter
-        CType(sender, PictureBox).BackgroundImage = My.Resources.highlight1
-    End Sub
-
-    Private Sub highlighter_MouseLeave(sender As Object, e As EventArgs) _
-        Handles highlighter1.MouseLeave, highlighter2.MouseLeave
-        CType(sender, PictureBox).BackgroundImage = Nothing
-    End Sub
-
-    Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
-        Close()
-    End Sub
-
-    Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
-        WindowState = FormWindowState.Minimized
     End Sub
 
     Private Sub header_MouseDown(sender As Object, e As MouseEventArgs) Handles header.MouseDown
@@ -83,6 +68,23 @@ Public Class Updater
     End Sub
 
     Private Sub Updater_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\NCLauncher.exe.temp") Then
+                My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\NCLauncher.exe.temp", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently)
+            End If
+            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\updateLauncher.bat") Then
+                My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\updateLauncher.bat", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently)
+            End If
+        Catch ex As Exception
+
+        End Try
+        Try
+            For Each proc As Process In Process.GetProcessesByName("NamCore Studio")
+                proc.Kill()
+            Next
+        Catch ex As Exception
+
+        End Try
         Dim proxyenabled As Boolean = False
         Dim defaultCredentials As Boolean = True
         Dim autodetect As Boolean = False
@@ -213,43 +215,59 @@ Public Class Updater
                 .Close()
             End With
             Dim aioversion As Integer = CInt(SplitString(source, "<aioversion>", "</aioversion>"))
+            _newAioVersion = aioversion
             _files2Download = New List(Of MyFile)()
             If aioversion > myaioversion Then
                 'Updates available!
-                Dim fileCount As Integer = UBound(Split(source, "<file>"))
-                Dim fileCounter As Integer = 0
-                Dim fileSource As String = source
-                Do
-                    fileCounter += 1
-                    Dim fileContext As String = SplitString(fileSource, "<file>", "</file>")
-                    Try
-                        Dim fname As String = SplitString(fileContext, "<name>", "</name>")
-                        Dim version As Integer = CInt(SplitString(fileContext, "<build>", "</build>"))
-                        Dim path As String = SplitString(fileContext, "<targetdir>", "</targetdir>")
-                        Dim url As String = SplitString(fileContext, "<location>", "</location>")
-                        Dim mysize As String = SplitString(fileContext, "<size>", "</size>")
-                        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\" & path & fname) Then
-                            Dim gfi As GetFileInformation =
-                                    New GetFileInformation(Application.StartupPath & "\" & path & fname)
-                            Dim fVersionFile As String = gfi.GetFileVersion
-                            Dim fVersionStr() As String = fVersionFile.Split("."c)
-                            Dim fVersion As Integer = CInt(fVersionStr(fVersionStr.Length - 1))
-                            If version > fVersion Then
+                Dim launcherContext As String = SplitString(source, "<launcher>", "</launcher>")
+                Dim launcherBuild As Integer = CInt(SplitString(launcherContext, "<build>", "</build>"))
+                Dim myBuildInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.ExecutablePath)
+                If launcherBuild > myBuildInfo.ProductPrivatePart Then
+                    Dim fname As String = SplitString(launcherContext, "<name>", "</name>")
+                    Dim url As String = SplitString(launcherContext, "<location>", "</location>")
+                    Dim mysize As String = SplitString(launcherContext, "<size>", "</size>")
+                    _totalSize += CInt(mysize)
+                    _files2Download.Add(
+                        New MyFile _
+                                           With {.Name = fname, .Path = "", .Url = url,
+                                           .Size = CInt(mysize)})
+                    _downloadingLauncher = True
+                Else
+                    Dim fileCount As Integer = UBound(Split(source, "<file>"))
+                    Dim fileCounter As Integer = 0
+                    Dim fileSource As String = source
+                    Do
+                        fileCounter += 1
+                        Dim fileContext As String = SplitString(fileSource, "<file>", "</file>")
+                        Try
+                            Dim fname As String = SplitString(fileContext, "<name>", "</name>")
+                            Dim version As Integer = CInt(SplitString(fileContext, "<build>", "</build>"))
+                            Dim path As String = SplitString(fileContext, "<targetdir>", "</targetdir>")
+                            Dim url As String = SplitString(fileContext, "<location>", "</location>")
+                            Dim mysize As String = SplitString(fileContext, "<size>", "</size>")
+                            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\" & path & fname) Then
+                                Dim gfi As GetFileInformation =
+                                        New GetFileInformation(Application.StartupPath & "\" & path & fname)
+                                Dim fVersionFile As String = gfi.GetFileVersion
+                                Dim fVersionStr() As String = fVersionFile.Split("."c)
+                                Dim fVersion As Integer = CInt(fVersionStr(fVersionStr.Length - 1))
+                                If version > fVersion Then
+                                    _totalSize += CInt(mysize)
+                                    _files2Download.Add(
+                                        New MyFile _
+                                                           With {.Name = fname, .Path = path, .Url = url,
+                                                           .Size = CInt(mysize)})
+                                End If
+                            Else
                                 _totalSize += CInt(mysize)
-                                _files2Download.Add(
-                                    New MyFile _
-                                                       With {.Name = fname, .Path = path, .Url = url,
-                                                       .Size = CInt(mysize)})
+                                _files2Download.Add(New MyFile _
+                                                       With {.Name = fname, .Path = path, .Url = url, .Size = CInt(mysize)})
                             End If
-                        Else
-                            _totalSize += CInt(mysize)
-                            _files2Download.Add(New MyFile _
-                                                   With {.Name = fname, .Path = path, .Url = url, .Size = CInt(mysize)})
-                        End If
-                    Finally
-                        fileSource = fileSource.Replace("<file>" & fileContext & "</file>", "")
-                    End Try
-                Loop Until fileCounter = fileCount
+                        Finally
+                            fileSource = fileSource.Replace("<file>" & fileContext & "</file>", "")
+                        End Try
+                    Loop Until fileCounter = fileCount
+                End If
                 If Not _files2Download.Count = 0 Then
                     filestatus.Text = "Loading file 1/" & _files2Download.Count.ToString()
                     globalprogress_lbl.Text = "0 KB / " & _totalSize.ToString() & " KB"
@@ -331,11 +349,18 @@ Public Class Updater
 
         End Try
     End Function
-
+    Dim cancelEn As Boolean = False
     Private Sub start_bt_Click(sender As Object, e As EventArgs) Handles start_bt.Click
-        globalprogress_bar.Maximum = _totalSize
-        Dim trd As Thread = New Thread(DirectCast(Sub() StartDownloading(), ThreadStart))
-        trd.Start()
+        If cancelEn = True Then
+            _cancelationPending = True
+        Else
+            cancelEn = True
+            start_bt.Text = "Cancel"
+            globalprogress_bar.Maximum = _totalSize
+            Dim trd As Thread = New Thread(DirectCast(Sub() StartDownloading(), ThreadStart))
+            trd.Start()
+        End If
+
     End Sub
 
     Private Sub StartDownloading()
@@ -344,17 +369,57 @@ Public Class Updater
         For Each dFile As MyFile In _files2Download
             filestatus.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), filestatus, "Loading file " & cnt.ToString & "/" & _files2Download.Count.ToString())
             currentfile.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), currentfile, dFile.Name)
+            If Not My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\" & dFile.Path) Then
+                My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\" & dFile.Path)
+            End If
             DownloadItem(dFile.Url, dFile.Name & ".temp", Application.StartupPath & "\" & dFile.Path)
-            delete(dFile.Path & dFile.Name)
-            My.Computer.FileSystem.RenameFile(Application.StartupPath & "\" & dFile.Path & dFile.Name & ".temp",
-                                              dFile.Name)
+            If Not _downloadingLauncher Then
+                delete(dFile.Path & dFile.Name)
+                My.Computer.FileSystem.RenameFile(Application.StartupPath & "\" & dFile.Path & dFile.Name & ".temp",
+                                                  dFile.Name)
+            End If
             cnt += 1
         Next
-        If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\NamCore Studio.exe") Then
+        If _downloadingLauncher = True Then
+            Dim fs As New StreamWriter(Application.StartupPath & "/updateLauncher.bat")
+            fs.WriteLine("@echo off" & vbNewLine &
+                         "call sleep 2 " & vbNewLine &
+                         "del NCLauncher.exe /s /q" & vbNewLine &
+                         "rename " & _files2Download(0).Name & ".temp " & _files2Download(0).Name & vbNewLine &
+                         "start " & _files2Download(0).Name & vbNewLine &
+                         "exit")
+            fs.Close()
+            Process.Start(Application.StartupPath & "/updateLauncher.bat")
         Else
-            Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
-            Close()
+            Try
+                Dim enc As New UnicodeEncoding
+                Dim xmLobj As XmlTextWriter = New XmlTextWriter(Application.StartupPath & "\Data\version.xml", enc)
+                With xmLobj
+                    .Formatting = Formatting.Indented
+                    .Indentation = 3
+                    .WriteStartDocument()
+                    .WriteStartElement("Common")
+                    .WriteAttributeString("aioversion", _newAioVersion.ToString())
+                    .WriteEndElement()
+                    .Close()
+
+                End With
+            Catch ex As Exception
+
+            End Try
+            If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\NamCore Studio.exe") Then
+            Else
+                Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
+                BeginInvoke(New MeClose(AddressOf DelegateMeClose))
+            End If
         End If
+
+        End
+    End Sub
+    Delegate Sub MeClose()
+
+    Private Sub DelegateMeClose()
+        Application.Exit()
     End Sub
 
     Delegate Sub ChangeLabelText(lbl As Label, txt As String)
@@ -465,6 +530,9 @@ Public Class Updater
                     speedTimer.Reset()
                     readings = 0
                     speed.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), speed, currentspeed.ToString() & " KB/s")
+                    If _cancelationPending Then
+                        BeginInvoke(New MeClose(AddressOf DelegateMeClose))
+                    End If
                 End If
             Loop Until bytesRead = 0
             _downloadedBytes += subprogress_bar.Value
@@ -472,7 +540,6 @@ Public Class Updater
             bWriter.Close()
             bReader.Close()
             stream.Close()
-
         Catch ex As Exception
 
         End Try
@@ -506,6 +573,24 @@ Public Class Updater
             Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
             Close()
         End If
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        If cancelEn = True Then
+            _cancelationPending = True
+        Else
+            Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
+            Close()
+        End If
+
+    End Sub
+
+    Private Sub PictureBox1_MouseEnter(sender As Object, e As EventArgs) Handles PictureBox1.MouseEnter
+        PictureBox1.BackgroundImage = My.Resources.bt_close_light
+    End Sub
+
+    Private Sub PictureBox1_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox1.MouseLeave
+        PictureBox1.BackgroundImage = My.Resources.bt_close
     End Sub
 End Class
 
