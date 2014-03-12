@@ -423,7 +423,7 @@ Public Class Updater
             End Try
             If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\NamCore Studio.exe") Then
             Else
-                Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
+                Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe", "update")
                 BeginInvoke(New MeClose(AddressOf DelegateMeClose))
             End If
         End If
@@ -584,7 +584,7 @@ Public Class Updater
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\NamCore Studio.exe") Then
         Else
-            Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
+            Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe", "update")
             Close()
         End If
     End Sub

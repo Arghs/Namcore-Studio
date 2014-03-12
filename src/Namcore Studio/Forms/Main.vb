@@ -194,6 +194,20 @@ Namespace Forms
             GlobalVariables.GlobalWebClient = New WebClient()
             GlobalVariables.GlobalWebClient = GlobalVariables.GlobalWebClient.CheckProxy()
             Userwait.Close()
+            ExecuteParams()
+        End Sub
+
+        Public Sub ExecuteParams()
+            Dim args As String()
+            args = Environment.GetCommandLineArgs()
+            For i As Integer = 1 To args.Length - 1
+                Select Case args(i).ToLower
+                    Case "update"
+                        MessageBox.Show("Update")
+                    Case "dev"
+                        GlobalVariables.DebugMode = True
+                End Select
+            Next
         End Sub
 
         Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter1.Click
