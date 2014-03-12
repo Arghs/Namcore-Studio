@@ -39,6 +39,7 @@ Public Class Updater
     Private _downloadingLauncher As Boolean = False
     Private _newAioVersion As Integer
     Private _cancelationPending As Boolean = False
+    Private _packetUrl As String
     '// Declaration
 
     Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
@@ -218,7 +219,19 @@ Public Class Updater
             _newAioVersion = aioversion
             _files2Download = New List(Of MyFile)()
             If aioversion > myaioversion Then
-                'Updates available!
+                '// Updates available!
+                _packetUrl = SplitString(source, "<packeturl>", "</packeturl>")
+                Dim forceBuildString As String = SplitString(source, "<forceatbuild>", "</forceatbuild>")
+                Dim mainBuildInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.StartupPath & "\Data\NamCore Studio.exe")
+                If forceBuildString.Length > 0 Then
+                    If CInt(forceBuildString) >= mainBuildInfo.ProductPrivatePart Then
+                        Dim result As MsgBoxResult = MsgBox("Update available." & vbNewLine & "Do you want to download the latest package?", MsgBoxStyle.YesNo, "New update available")
+                        If result = MsgBoxResult.Yes Then
+                            Process.Start(_packetUrl)
+                            Application.Exit()
+                        End If
+                    End If
+                End If
                 Dim launcherContext As String = SplitString(source, "<launcher>", "</launcher>")
                 Dim launcherBuild As Integer = CInt(SplitString(launcherContext, "<build>", "</build>"))
                 Dim myBuildInfo As FileVersionInfo = FileVersionInfo.GetVersionInfo(Application.ExecutablePath)
@@ -373,6 +386,7 @@ Public Class Updater
                 My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\" & dFile.Path)
             End If
             DownloadItem(dFile.Url, dFile.Name & ".temp", Application.StartupPath & "\" & dFile.Path)
+            If _cancelationPending Then Exit Sub
             If Not _downloadingLauncher Then
                 delete(dFile.Path & dFile.Name)
                 My.Computer.FileSystem.RenameFile(Application.StartupPath & "\" & dFile.Path & dFile.Name & ".temp",
@@ -430,7 +444,6 @@ Public Class Updater
         subprogress_bar.Update()
         globalprogress_lbl.Update()
         globalprogress_bar.Update()
-        Application.DoEvents()
     End Sub
 
     Delegate Sub ChangeStatusValue(bar As ProgressBar, val As Integer)
@@ -532,6 +545,7 @@ Public Class Updater
                     speed.BeginInvoke(New ChangeLabelText(AddressOf DelegateLabelTextChange), speed, currentspeed.ToString() & " KB/s")
                     If _cancelationPending Then
                         BeginInvoke(New MeClose(AddressOf DelegateMeClose))
+                        Exit Sub
                     End If
                 End If
             Loop Until bytesRead = 0
@@ -591,6 +605,11 @@ Public Class Updater
 
     Private Sub PictureBox1_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox1.MouseLeave
         PictureBox1.BackgroundImage = My.Resources.bt_close
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Process.Start(_packetUrl)
+        Application.Exit()
     End Sub
 End Class
 

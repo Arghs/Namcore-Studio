@@ -37,6 +37,7 @@ Partial Class Updater
         Me.Label6 = New System.Windows.Forms.Label()
         Me.speed = New System.Windows.Forms.Label()
         Me.currentfile = New System.Windows.Forms.Label()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.header.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,6 +214,18 @@ Partial Class Updater
         Me.currentfile.TabIndex = 238
         Me.currentfile.Text = "NamCore Studio.exe"
         '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.LinkLabel1.BackColor = System.Drawing.Color.Transparent
+        Me.LinkLabel1.LinkColor = System.Drawing.Color.White
+        Me.LinkLabel1.Location = New System.Drawing.Point(387, 189)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(188, 13)
+        Me.LinkLabel1.TabIndex = 239
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "Download the complete package here"
+        '
         'Updater
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -220,6 +233,7 @@ Partial Class Updater
         Me.BackgroundImage = Global.NCLauncher.My.Resources.Resources.HUD_bg
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(592, 259)
+        Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.currentfile)
         Me.Controls.Add(Me.speed)
         Me.Controls.Add(Me.Label6)
@@ -260,5 +274,6 @@ Partial Class Updater
     Friend WithEvents currentfile As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
 
 End Class
