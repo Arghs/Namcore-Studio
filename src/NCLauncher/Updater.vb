@@ -282,6 +282,9 @@ Public Class Updater
                     Loop Until fileCounter = fileCount
                 End If
                 If Not _files2Download.Count = 0 Then
+                    Dim changesLoc As String = SplitString(source, "<changesloc>", "</changesloc>")
+                    Dim changeFile As New MyFile With {.Url = changesLoc, .Path = "Data\", .Name = "Changes"}
+                    _files2Download.Add(changeFile)
                     filestatus.Text = "Loading file 1/" & _files2Download.Count.ToString()
                     globalprogress_lbl.Text = "0 KB / " & _totalSize.ToString() & " KB"
                     subprogress_lbl.Text = "0 KB / " & _files2Download.Item(0).Size.ToString() & " KB"
@@ -450,19 +453,8 @@ Public Class Updater
 
     Private Sub DelegateStatusChange(bar As ProgressBar, val As Integer)
         Try
-            If val = 0 Then bar.Value = 0
+            If val = 0 AndAlso Not bar.Name.Contains("global") Then bar.Value = 0
             bar.Value += val
-        Catch ex As Exception
-
-        End Try
-
-    End Sub
-
-    Delegate Sub ChangeStatusValueExpl(bar As ProgressBar, val As Integer)
-
-    Private Sub DelegateStatusChangeExpl(bar As ProgressBar, val As Integer)
-        Try
-            bar.Value = val
         Catch ex As Exception
 
         End Try
@@ -523,9 +515,6 @@ Public Class Updater
             Dim currentspeed As Double = -1
             Dim readings As Integer = 0
             Const circle As Integer = 500
-            If _lastValue > 0 Then
-                globalprogress_bar.BeginInvoke(New ChangeStatusValueExpl(AddressOf DelegateStatusChangeExpl), globalprogress_bar, _lastValue)
-            End If
             Do
                 speedTimer.Start()
                 bytesRead = bReader.Read(buffer, 0, 1024)

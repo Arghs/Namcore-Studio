@@ -39,6 +39,7 @@ Namespace Forms
 
         Private Sub LoadChangelog()
             LogAppend("Loading changelog", "ChangelogInterface_LoadChangelog")
+            version_lbl.Text = "NamCore Studio version " & My.Application.Info.Version.ToString() & " - Indev"
             Try
                 Using sr As New StreamReader("Changes")
                     Dim line As String

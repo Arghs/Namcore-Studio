@@ -102,5 +102,9 @@ Namespace Forms
             Handles LinkLabel3.LinkClicked
             Process.Start("https://github.com/megasus/Namcore-Studio/issues?milestone=1&state=open")
         End Sub
+
+        Private Sub version_lbl_Click(sender As Object, e As EventArgs) Handles version_lbl.Click
+            ChangelogInterface.Show()
+        End Sub
     End Class
 End Namespace

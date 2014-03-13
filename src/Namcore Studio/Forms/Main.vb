@@ -203,7 +203,8 @@ Namespace Forms
             For i As Integer = 1 To args.Length - 1
                 Select Case args(i).ToLower
                     Case "update"
-                        MessageBox.Show("Update")
+                        Hide()
+                        ChangelogInterface.Show()
                     Case "dev"
                         GlobalVariables.DebugMode = True
                 End Select
