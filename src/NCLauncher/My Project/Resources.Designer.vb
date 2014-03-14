@@ -119,5 +119,14 @@ Namespace My.Resources
                 Return CType(obj,System.Drawing.Icon)
             End Get
         End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Loading file 1/ ähnelt.
+        '''</summary>
+        Friend ReadOnly Property Updater_Updater_Load_Loading_file_1_() As String
+            Get
+                Return ResourceManager.GetString("Updater_Updater_Load_Loading_file_1_", resourceCulture)
+            End Get
+        End Property
     End Module
 End Namespace

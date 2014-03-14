@@ -35,7 +35,6 @@ Public Class Updater
     Private _files2Download As List(Of MyFile)
     Private _totalSize As Integer = 0
     Private _downloadedBytes As Double
-    Private _lastValue As Integer = 0
     Private _downloadingLauncher As Boolean = False
     Private _newAioVersion As Integer
     Private _cancelationPending As Boolean = False
@@ -539,7 +538,6 @@ Public Class Updater
                 End If
             Loop Until bytesRead = 0
             _downloadedBytes += subprogress_bar.Value
-            _lastValue = globalprogress_bar.Value
             bWriter.Close()
             bReader.Close()
             stream.Close()

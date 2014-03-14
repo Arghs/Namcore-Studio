@@ -136,4 +136,7 @@
   <data name="nclogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\nclogo.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Updater_Updater_Load_Loading_file_1_" xml:space="preserve">
+    <value>Loading file 1/</value>
+  </data>
 </root>
