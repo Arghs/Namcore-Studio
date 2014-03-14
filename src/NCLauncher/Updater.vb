@@ -571,7 +571,7 @@ Public Class Updater
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\Data\NamCore Studio.exe") Then
         Else
-            Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe", "update")
+            Process.Start(Application.StartupPath & "\Data\NamCore Studio.exe")
             Close()
         End If
     End Sub
