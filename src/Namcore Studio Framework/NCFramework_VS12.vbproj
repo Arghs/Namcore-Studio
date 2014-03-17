@@ -91,6 +91,8 @@
     <Compile Include="Framework\Core\CharacterSpellsHandler.vb" />
     <Compile Include="Framework\Core\CharacterTalentsHandler.vb" />
     <Compile Include="Framework\Core\CoreHandler.vb" />
+    <Compile Include="Framework\Core\Remove\CharacterRemoveHandler.vb" />
+    <Compile Include="Framework\Core\Remove\AccountRemoveHandler.vb" />
     <Compile Include="Framework\Core\Update\UpdateAchievementsHandler.vb" />
     <Compile Include="Framework\Core\Update\UpdateAccountHandler.vb" />
     <Compile Include="Framework\Core\Update\UpdateProfessionsHandler.vb" />
@@ -211,7 +213,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseUniversalClock="True" BuildVersion_AssemblyInfoFilename="My Project\AssemblyInfo.vb" BuildVersion_DetectChanges="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_DetectChanges="True" BuildVersion_AssemblyInfoFilename="My Project\AssemblyInfo.vb" BuildVersion_UseUniversalClock="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
