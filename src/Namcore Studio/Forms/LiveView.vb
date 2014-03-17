@@ -26,7 +26,6 @@ Imports System.Linq
 Imports System.IO
 Imports NCFramework.Framework
 Imports NamCore_Studio.Forms.Character
-Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Core
 Imports NCFramework.Framework.Functions
