@@ -62,6 +62,7 @@ Namespace Forms
                 accHandler.LoadAccount(accountSet.Id, accountSet.SetIndex, accountSet)
                 accountSet = GetAccountSetBySetId(accountSet.SetIndex)
             End If
+            characterview.Items.Clear()
             mail_lbl.Text = ""
             joindate_lbl.Text = accountSet.JoinDate.ToString()
             lastip_lbl.Text = accountSet.LastIp
@@ -237,7 +238,7 @@ Namespace Forms
             Handles lockaccount_cb.CheckedChanged
             If _initComplete Then
                 changepanel.Location = New Point(4000, 4000)
-                CType(changepanel.Tag, Label).Visible = True
+                If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
                 _currentEditedAccountSet.Locked = CType(lockaccount_cb.Checked, Integer)
                 UpdateButtons()
             End If
@@ -246,7 +247,7 @@ Namespace Forms
         Private Sub expansion_ud_ValueChanged(sender As Object, e As EventArgs) Handles expansion_ud.ValueChanged
             If _initComplete Then
                 changepanel.Location = New Point(4000, 4000)
-                CType(changepanel.Tag, Label).Visible = True
+                If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
                 _currentEditedAccountSet.Expansion = CType(expansion_ud.Value, Integer)
                 UpdateButtons()
             End If
@@ -254,13 +255,13 @@ Namespace Forms
 
         Private Sub reset_bt_Click(sender As Object, e As EventArgs) Handles reset_bt.Click
             changepanel.Location = New Point(4000, 4000)
-            CType(changepanel.Tag, Label).Visible = True
+            If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
             prepare_interface(_currentViewedAccountSet)
         End Sub
 
         Private Sub savechanges_bt_Click(sender As Object, e As EventArgs) Handles savechanges_bt.Click
             changepanel.Location = New Point(4000, 4000)
-            CType(changepanel.Tag, Label).Visible = True
+            If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
             NewProcessStatus()
             Dim updateHandler As New UpdateAccountHandler
             updateHandler.UpdateAccount(_currentViewedAccountSet, _currentEditedAccountSet)
@@ -273,7 +274,7 @@ Namespace Forms
 
         Private Sub AccountOverview_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
             changepanel.Location = New Point(4000, 4000)
-            CType(changepanel.Tag, Label).Visible = True
+            If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
         End Sub
     End Class
 End Namespace

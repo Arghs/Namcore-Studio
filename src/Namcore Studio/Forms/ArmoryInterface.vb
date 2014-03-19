@@ -253,6 +253,7 @@ Namespace Forms
             Dim mSerializer As Serializer = New Serializer
             GlobalVariables.globChars = mSerializer.DeSerialize("", New GlobalCharVars)
             prepareLive_armory()
+            Close()
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)

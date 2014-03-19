@@ -33,17 +33,17 @@ Namespace Framework.Core.Remove
             Select Case core
                 Case "trinity"
                     runSQLCommand_realm_string_setconn(
-                        "REMOVE FROM `" & dbstruc.account_tbl(0) & "` WHERE `" & dbstruc.acc_id_col(0) & "` = '" &
+                        "DELETE FROM `" & dbstruc.account_tbl(0) & "` WHERE `" & dbstruc.acc_id_col(0) & "` = '" &
                         account.Id.ToString() & "'", realmConnection)
                     runSQLCommand_realm_string_setconn(
-                        "REMOVE FROM `" & dbstruc.accountAccess_tbl(0) & "` WHERE `" & dbstruc.accAcc_accid_col(0) &
+                        "DELETE FROM `" & dbstruc.accountAccess_tbl(0) & "` WHERE `" & dbstruc.accAcc_accid_col(0) &
                         "` = '" & account.Id.ToString() & "'", realmConnection)
                     runSQLCommand_realm_string_setconn(
-                        "REMOVE FROM `account_banned` WHERE `id` = '" & account.Id.ToString() & "'", realmConnection)
+                        "DELETE FROM `account_banned` WHERE `id` = '" & account.Id.ToString() & "'", realmConnection)
                     runSQLCommand_realm_string_setconn(
-                        "REMOVE FROM `realmcharacters` WHERE `acctid` = '" & account.Id.ToString() & "'", realmConnection)
+                        "DELETE FROM `realmcharacters` WHERE `acctid` = '" & account.Id.ToString() & "'", realmConnection)
                     runSQLCommand_realm_string_setconn(
-                        "REMOVE FROM `rbac_account_permissions` WHERE `accountId` = '" & account.Id.ToString() & "'",
+                        "DELETE FROM `rbac_account_permissions` WHERE `accountId` = '" & account.Id.ToString() & "'",
                         realmConnection)
                     Dim characterRemoveHandler As New CharacterRemoveHandler
                     For Each player As Character In account.Characters
