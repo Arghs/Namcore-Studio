@@ -214,8 +214,8 @@ Namespace Forms.Character
             Me.Label5 = New System.Windows.Forms.Label()
             Me.InfoToolTip = New System.Windows.Forms.ToolTip(Me.components)
             Me.genderpanel = New System.Windows.Forms.Panel()
-            Me.gendercombo = New System.Windows.Forms.ComboBox()
             Me.genderrefresh = New System.Windows.Forms.PictureBox()
+            Me.gendercombo = New System.Windows.Forms.ComboBox()
             Me.referenceItmPanel = New System.Windows.Forms.Panel()
             Me.referenceCount = New System.Windows.Forms.Label()
             Me.removeinventbox = New System.Windows.Forms.PictureBox()
@@ -1935,7 +1935,7 @@ Namespace Forms.Character
             Me.av_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.av_bt.ForeColor = System.Drawing.Color.Black
             Me.av_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.av_bt.Location = New System.Drawing.Point(681, 583)
+            Me.av_bt.Location = New System.Drawing.Point(677, 583)
             Me.av_bt.Name = "av_bt"
             Me.av_bt.Size = New System.Drawing.Size(104, 34)
             Me.av_bt.TabIndex = 164
@@ -1949,7 +1949,7 @@ Namespace Forms.Character
             Me.Glyphs_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.Glyphs_bt.ForeColor = System.Drawing.Color.Black
             Me.Glyphs_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Glyphs_bt.Location = New System.Drawing.Point(792, 621)
+            Me.Glyphs_bt.Location = New System.Drawing.Point(788, 621)
             Me.Glyphs_bt.Name = "Glyphs_bt"
             Me.Glyphs_bt.Size = New System.Drawing.Size(104, 34)
             Me.Glyphs_bt.TabIndex = 165
@@ -1963,7 +1963,7 @@ Namespace Forms.Character
             Me.rep_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.rep_bt.ForeColor = System.Drawing.Color.Black
             Me.rep_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.rep_bt.Location = New System.Drawing.Point(572, 583)
+            Me.rep_bt.Location = New System.Drawing.Point(568, 583)
             Me.rep_bt.Name = "rep_bt"
             Me.rep_bt.Size = New System.Drawing.Size(104, 34)
             Me.rep_bt.TabIndex = 166
@@ -1977,7 +1977,7 @@ Namespace Forms.Character
             Me.spellsskills_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.spellsskills_bt.ForeColor = System.Drawing.Color.Black
             Me.spellsskills_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.spellsskills_bt.Location = New System.Drawing.Point(572, 621)
+            Me.spellsskills_bt.Location = New System.Drawing.Point(568, 621)
             Me.spellsskills_bt.Name = "spellsskills_bt"
             Me.spellsskills_bt.Size = New System.Drawing.Size(104, 34)
             Me.spellsskills_bt.TabIndex = 168
@@ -1991,7 +1991,7 @@ Namespace Forms.Character
             Me.exit_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.exit_bt.ForeColor = System.Drawing.Color.Black
             Me.exit_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.exit_bt.Location = New System.Drawing.Point(741, 695)
+            Me.exit_bt.Location = New System.Drawing.Point(737, 695)
             Me.exit_bt.Name = "exit_bt"
             Me.exit_bt.Size = New System.Drawing.Size(155, 34)
             Me.exit_bt.TabIndex = 170
@@ -2170,7 +2170,7 @@ Namespace Forms.Character
             Me.bank_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.bank_bt.ForeColor = System.Drawing.Color.Black
             Me.bank_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.bank_bt.Location = New System.Drawing.Point(792, 583)
+            Me.bank_bt.Location = New System.Drawing.Point(788, 583)
             Me.bank_bt.Name = "bank_bt"
             Me.bank_bt.Size = New System.Drawing.Size(104, 34)
             Me.bank_bt.TabIndex = 177
@@ -2329,7 +2329,7 @@ Namespace Forms.Character
             Me.Quests_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.Quests_bt.ForeColor = System.Drawing.Color.Black
             Me.Quests_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Quests_bt.Location = New System.Drawing.Point(681, 621)
+            Me.Quests_bt.Location = New System.Drawing.Point(677, 621)
             Me.Quests_bt.Name = "Quests_bt"
             Me.Quests_bt.Size = New System.Drawing.Size(104, 34)
             Me.Quests_bt.TabIndex = 186
@@ -2433,15 +2433,6 @@ Namespace Forms.Character
             Me.genderpanel.Size = New System.Drawing.Size(144, 25)
             Me.genderpanel.TabIndex = 226
             '
-            'gendercombo
-            '
-            Me.gendercombo.FormattingEnabled = True
-            Me.gendercombo.Items.AddRange(New Object() {"Male", "Female"})
-            Me.gendercombo.Location = New System.Drawing.Point(3, 2)
-            Me.gendercombo.Name = "gendercombo"
-            Me.gendercombo.Size = New System.Drawing.Size(115, 21)
-            Me.gendercombo.TabIndex = 175
-            '
             'genderrefresh
             '
             Me.genderrefresh.Cursor = System.Windows.Forms.Cursors.Hand
@@ -2451,6 +2442,15 @@ Namespace Forms.Character
             Me.genderrefresh.Size = New System.Drawing.Size(16, 16)
             Me.genderrefresh.TabIndex = 174
             Me.genderrefresh.TabStop = False
+            '
+            'gendercombo
+            '
+            Me.gendercombo.FormattingEnabled = True
+            Me.gendercombo.Items.AddRange(New Object() {"Male", "Female"})
+            Me.gendercombo.Location = New System.Drawing.Point(3, 2)
+            Me.gendercombo.Name = "gendercombo"
+            Me.gendercombo.Size = New System.Drawing.Size(115, 21)
+            Me.gendercombo.TabIndex = 175
             '
             'referenceItmPanel
             '
@@ -2504,7 +2504,7 @@ Namespace Forms.Character
             Me.professions_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.professions_bt.ForeColor = System.Drawing.Color.Black
             Me.professions_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.professions_bt.Location = New System.Drawing.Point(572, 659)
+            Me.professions_bt.Location = New System.Drawing.Point(568, 659)
             Me.professions_bt.Name = "professions_bt"
             Me.professions_bt.Size = New System.Drawing.Size(104, 34)
             Me.professions_bt.TabIndex = 229

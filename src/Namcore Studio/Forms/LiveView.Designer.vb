@@ -135,7 +135,7 @@
             Me.Panel1.Controls.Add(Me.accountview)
             Me.Panel1.Location = New System.Drawing.Point(6, 13)
             Me.Panel1.Name = "Panel1"
-            Me.Panel1.Size = New System.Drawing.Size(986, 469)
+            Me.Panel1.Size = New System.Drawing.Size(964, 469)
             Me.Panel1.TabIndex = 1
             '
             'refreshdb
@@ -408,7 +408,7 @@
             Me.target_accounts_tree.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
             Me.target_accounts_tree.Location = New System.Drawing.Point(11, 63)
             Me.target_accounts_tree.Name = "target_accounts_tree"
-            Me.target_accounts_tree.Size = New System.Drawing.Size(363, 372)
+            Me.target_accounts_tree.Size = New System.Drawing.Size(382, 372)
             Me.target_accounts_tree.TabIndex = 210
             '
             'GroupBox1
@@ -417,7 +417,7 @@
             Me.GroupBox1.Controls.Add(Me.Panel1)
             Me.GroupBox1.Location = New System.Drawing.Point(3, -5)
             Me.GroupBox1.Name = "GroupBox1"
-            Me.GroupBox1.Size = New System.Drawing.Size(989, 482)
+            Me.GroupBox1.Size = New System.Drawing.Size(972, 482)
             Me.GroupBox1.TabIndex = 211
             Me.GroupBox1.TabStop = False
             '
@@ -430,9 +430,9 @@
             Me.GroupBox2.Controls.Add(Me.info1_lbl)
             Me.GroupBox2.Controls.Add(Me.connect_bt_target)
             Me.GroupBox2.Controls.Add(Me.target_accounts_tree)
-            Me.GroupBox2.Location = New System.Drawing.Point(990, -5)
+            Me.GroupBox2.Location = New System.Drawing.Point(966, -5)
             Me.GroupBox2.Name = "GroupBox2"
-            Me.GroupBox2.Size = New System.Drawing.Size(388, 482)
+            Me.GroupBox2.Size = New System.Drawing.Size(400, 482)
             Me.GroupBox2.TabIndex = 212
             Me.GroupBox2.TabStop = False
             '
@@ -442,7 +442,7 @@
             Me.createTemplate_bt.Cursor = System.Windows.Forms.Cursors.Hand
             Me.createTemplate_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.createTemplate_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.createTemplate_bt.Location = New System.Drawing.Point(123, 441)
+            Me.createTemplate_bt.Location = New System.Drawing.Point(123, 442)
             Me.createTemplate_bt.Name = "createTemplate_bt"
             Me.createTemplate_bt.Size = New System.Drawing.Size(147, 34)
             Me.createTemplate_bt.TabIndex = 214
@@ -577,7 +577,7 @@
             Me.back_bt.Cursor = System.Windows.Forms.Cursors.Hand
             Me.back_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.back_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.back_bt.Location = New System.Drawing.Point(838, 598)
+            Me.back_bt.Location = New System.Drawing.Point(818, 599)
             Me.back_bt.Name = "back_bt"
             Me.back_bt.Size = New System.Drawing.Size(147, 42)
             Me.back_bt.TabIndex = 215

@@ -136,7 +136,7 @@ Namespace Forms
             '
             Me.joindate_lbl.AutoSize = True
             Me.joindate_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.joindate_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+            Me.joindate_lbl.Cursor = System.Windows.Forms.Cursors.Default
             Me.joindate_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.joindate_lbl.ForeColor = System.Drawing.Color.Black
             Me.joindate_lbl.Location = New System.Drawing.Point(84, 22)
@@ -161,7 +161,7 @@ Namespace Forms
             '
             Me.lastip_lbl.AutoSize = True
             Me.lastip_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.lastip_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+            Me.lastip_lbl.Cursor = System.Windows.Forms.Cursors.Default
             Me.lastip_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.lastip_lbl.ForeColor = System.Drawing.Color.Black
             Me.lastip_lbl.Location = New System.Drawing.Point(84, 46)
@@ -186,7 +186,7 @@ Namespace Forms
             '
             Me.lastlogin_lbl.AutoSize = True
             Me.lastlogin_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.lastlogin_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+            Me.lastlogin_lbl.Cursor = System.Windows.Forms.Cursors.Default
             Me.lastlogin_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.lastlogin_lbl.ForeColor = System.Drawing.Color.Black
             Me.lastlogin_lbl.Location = New System.Drawing.Point(84, 69)
