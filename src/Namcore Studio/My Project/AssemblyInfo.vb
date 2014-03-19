@@ -32,7 +32,7 @@ Imports System.Resources
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.1.1.46284")> 
-<Assembly: AssemblyFileVersion("0.1.1.46284")> 
+<Assembly: AssemblyVersion("0.1.1.46285")> 
+<Assembly: AssemblyFileVersion("0.1.1.46285")> 
 
 <Assembly: NeutralResourcesLanguage("en-US")>

@@ -97,7 +97,7 @@ Namespace Forms
 
         Private Sub characterview_MouseUp(sender As Object, e As MouseEventArgs) Handles characterview.MouseUp
             changepanel.Location = New Point(4000, 4000)
-            CType(changepanel.Tag, Label).Visible = True
+            If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
             If e.Button = MouseButtons.Right Then
                 If characterview.SelectedItems.Count = 0 And characterview.CheckedItems.Count = 0 Then Exit Sub
                 If characterview.SelectedItems.Count = 0 Then

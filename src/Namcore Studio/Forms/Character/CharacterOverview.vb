@@ -95,7 +95,7 @@ Namespace Forms.Character
                     '//Load charset
                     LogAppend("Loading character from database", "CharacterOverview_prepare_interface", True)
                     Dim loadHandlerThread As Thread = New Thread(DirectCast(Sub() LoadCharacter(setId), ThreadStart))
-                    loadHandlerThread.Start(setId)
+                    loadHandlerThread.Start()
                     Exit Sub
                 End If
             End If
