@@ -217,7 +217,7 @@ Public Class Updater
             Dim aioversion As Integer = CInt(SplitString(source, "<aioversion>", "</aioversion>"))
             _newAioVersion = aioversion
             _files2Download = New List(Of MyFile)()
-            If aioversion > myaioversion Then
+            If aioversion > 1000000 Then ' myaioversion Then
                 '// Updates available!
                 _packetUrl = SplitString(source, "<packeturl>", "</packeturl>")
                 Dim forceBuildString As String = SplitString(source, "<forceatbuild>", "</forceatbuild>")
