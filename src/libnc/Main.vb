@@ -25,6 +25,7 @@ Imports System.Text
 
 Public Class Main
     '// Declaration
+    Public Shared ForceAppExit As Boolean = False
     Public Shared IsInitialized As Boolean = False
     Public Shared AchievementCsv As DataTable
     Public Shared AchievementCategoryCsv As DataTable
@@ -74,6 +75,7 @@ Public Class Main
         IsInitialized = True
     End Sub
     Public Shared Sub FillDataTable(ByVal csv As String, ByRef targetTable As DataTable)
+        If ForceAppExit = True Then Exit Sub
         Try
             targetTable = New DataTable()
             Dim a() As String

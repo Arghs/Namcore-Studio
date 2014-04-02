@@ -121,9 +121,9 @@ Namespace Forms
             For Each itemControl As Control In controlLst
                 itemControl.SetDoubleBuffered()
             Next
-            Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2013"
+            Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2014"
             version_lbl.Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() &
-                               " - © megasus 2013-2014"
+                               " - © megasus 2014"
             If GlobalVariables.DebugMode Then
                 NewProcessStatus()
             End If
@@ -241,6 +241,7 @@ Namespace Forms
         End Sub
 
         Private Sub highlighter4_Click(sender As Object, e As EventArgs) Handles highlighter4.Click
+            libnc.Main.ForceAppExit = True
             Application.Exit()
         End Sub
 
