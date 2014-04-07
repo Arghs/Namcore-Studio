@@ -39,6 +39,7 @@ Imports NCFramework.Framework.Core.Remove
 Namespace Forms
     Public Class LiveView
         '// Declaration
+        Public Shared LiveViewInstance As LiveView
         Private _cmpFileListViewComparer As ListViewComparer
         Private _cmpFileListViewComparer2 As ListViewComparer
         Dim _checkchangestatus As Boolean = False
@@ -373,6 +374,7 @@ Namespace Forms
                     node.Nodes.Add(subNode)
                 End If
             Next
+            refreshdb_target.Visible = True
             target_accounts_tree.Update()
             CloseProcessStatus()
         End Sub
@@ -502,6 +504,7 @@ Namespace Forms
         End Sub
 
         Private Sub liveview_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+            LiveViewInstance = Me
             Dim controlLst As List(Of Control)
             controlLst = FindAllChildren()
             For Each itemControl As Control In controlLst
@@ -1299,6 +1302,14 @@ Namespace Forms
             End If
         End Sub
 
+        Public Sub UpdateCharacter(ByVal modChar As NCFramework.Framework.Modules.Character)
+            For Each listCharacterItem As ListViewItem In characterview.Items
+                If CType(listCharacterItem.Tag, NCFramework.Framework.Modules.Character).SetIndex = modChar.SetIndex Then
+                    listCharacterItem.Tag = modChar
+                End If
+            Next
+        End Sub
+
         Private Sub LoadCharacter()
             For i = 0 To GlobalVariables.templateCharVars.AccountSets.Count - 1
                 Dim account As Account = GlobalVariables.templateCharVars.AccountSets(i)
@@ -1366,6 +1377,10 @@ Namespace Forms
             If Not _stretching And Not _moving Then
                 Cursor = Cursors.Default
             End If
+        End Sub
+
+        Private Sub refreshdb_target_Click(sender As Object, e As EventArgs) Handles refreshdb_target.Click
+            Loadtargetaccountsandchars()
         End Sub
     End Class
 End Namespace

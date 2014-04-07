@@ -1254,6 +1254,7 @@ Namespace Forms.Character
                                    _currentAccount)
                     GlobalVariables.currentEditedCharSet = Nothing
                 End If
+                LiveView.LiveViewInstance.UpdateCharacter(GlobalVariables.currentViewedCharSet)
             End If
         End Sub
 

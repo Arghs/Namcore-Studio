@@ -55,10 +55,11 @@
             Me.close_bt.BackColor = System.Drawing.Color.DimGray
             Me.close_bt.Cursor = System.Windows.Forms.Cursors.Hand
             Me.close_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.close_bt.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.close_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.close_bt.Location = New System.Drawing.Point(158, 290)
+            Me.close_bt.Location = New System.Drawing.Point(13, 289)
             Me.close_bt.Name = "close_bt"
-            Me.close_bt.Size = New System.Drawing.Size(147, 42)
+            Me.close_bt.Size = New System.Drawing.Size(198, 42)
             Me.close_bt.TabIndex = 209
             Me.close_bt.Text = "Close"
             Me.close_bt.UseVisualStyleBackColor = False
@@ -68,10 +69,11 @@
             Me.cancel_bt.BackColor = System.Drawing.Color.DimGray
             Me.cancel_bt.Cursor = System.Windows.Forms.Cursors.Hand
             Me.cancel_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.cancel_bt.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.cancel_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.cancel_bt.Location = New System.Drawing.Point(325, 290)
+            Me.cancel_bt.Location = New System.Drawing.Point(413, 289)
             Me.cancel_bt.Name = "cancel_bt"
-            Me.cancel_bt.Size = New System.Drawing.Size(147, 42)
+            Me.cancel_bt.Size = New System.Drawing.Size(198, 42)
             Me.cancel_bt.TabIndex = 211
             Me.cancel_bt.Text = "Cancel"
             Me.cancel_bt.UseVisualStyleBackColor = False
@@ -81,7 +83,7 @@
             Me.header.BackgroundImage = Global.NCFramework.My.Resources.Resources.namcore_header_new
             Me.header.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
             Me.header.Controls.Add(Me.closepanel)
-            Me.header.Location = New System.Drawing.Point(3, 3)
+            Me.header.Location = New System.Drawing.Point(3, 2)
             Me.header.Name = "header"
             Me.header.Size = New System.Drawing.Size(616, 30)
             Me.header.TabIndex = 222

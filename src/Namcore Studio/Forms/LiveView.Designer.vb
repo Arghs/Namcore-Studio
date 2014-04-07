@@ -88,6 +88,7 @@
             Me.settings_pic = New System.Windows.Forms.PictureBox()
             Me.highlighter5 = New System.Windows.Forms.PictureBox()
             Me.highlighter4 = New System.Windows.Forms.PictureBox()
+            Me.refreshdb_target = New System.Windows.Forms.PictureBox()
             Me.Panel1.SuspendLayout()
             CType(Me.refreshdb, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.accountcontext.SuspendLayout()
@@ -103,6 +104,7 @@
             CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.refreshdb_target, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'connect_bt
@@ -424,6 +426,7 @@
             'GroupBox2
             '
             Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+            Me.GroupBox2.Controls.Add(Me.refreshdb_target)
             Me.GroupBox2.Controls.Add(Me.createTemplate_bt)
             Me.GroupBox2.Controls.Add(Me.Label3)
             Me.GroupBox2.Controls.Add(Me.info2_lbl)
@@ -442,9 +445,9 @@
             Me.createTemplate_bt.Cursor = System.Windows.Forms.Cursors.Hand
             Me.createTemplate_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.createTemplate_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.createTemplate_bt.Location = New System.Drawing.Point(123, 442)
+            Me.createTemplate_bt.Location = New System.Drawing.Point(276, 443)
             Me.createTemplate_bt.Name = "createTemplate_bt"
-            Me.createTemplate_bt.Size = New System.Drawing.Size(147, 34)
+            Me.createTemplate_bt.Size = New System.Drawing.Size(117, 34)
             Me.createTemplate_bt.TabIndex = 214
             Me.createTemplate_bt.Text = "Create template file"
             Me.createTemplate_bt.UseVisualStyleBackColor = False
@@ -666,6 +669,19 @@
             Me.highlighter4.TabIndex = 173
             Me.highlighter4.TabStop = False
             '
+            'refreshdb_target
+            '
+            Me.refreshdb_target.BackColor = System.Drawing.Color.Transparent
+            Me.refreshdb_target.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
+            Me.refreshdb_target.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.refreshdb_target.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.refreshdb_target.Location = New System.Drawing.Point(363, 62)
+            Me.refreshdb_target.Name = "refreshdb_target"
+            Me.refreshdb_target.Size = New System.Drawing.Size(30, 30)
+            Me.refreshdb_target.TabIndex = 233
+            Me.refreshdb_target.TabStop = False
+            Me.refreshdb_target.Visible = False
+            '
             'LiveView
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -704,6 +720,7 @@
             CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.refreshdb_target, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub
@@ -770,5 +787,6 @@
         Friend WithEvents highlighter5 As System.Windows.Forms.PictureBox
         Friend WithEvents highlighter4 As System.Windows.Forms.PictureBox
         Friend WithEvents refreshdb As System.Windows.Forms.PictureBox
+        Friend WithEvents refreshdb_target As System.Windows.Forms.PictureBox
     End Class
 End Namespace
