@@ -265,6 +265,7 @@ Namespace Forms
             NewProcessStatus()
             Dim updateHandler As New UpdateAccountHandler
             updateHandler.UpdateAccount(_currentViewedAccountSet, _currentEditedAccountSet)
+            LiveView.LiveViewInstance.UpdateAccount(_currentViewedAccountSet)
             reset_bt.Enabled = False
             savechanges_bt.Enabled = False
             LogAppend("Completed account update", "AccountOverview_savechanges_bt_Click", False)

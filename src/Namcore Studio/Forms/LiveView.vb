@@ -1310,6 +1310,14 @@ Namespace Forms
             Next
         End Sub
 
+        Public Sub UpdateAccount(ByVal modAccount As Account)
+            For Each listAccountItem As ListViewItem In accountview.Items
+                If CType(listAccountItem.Tag, Account).SetIndex = modAccount.SetIndex Then
+                    listAccountItem.Tag = modAccount
+                End If
+            Next
+        End Sub
+
         Private Sub LoadCharacter()
             For i = 0 To GlobalVariables.templateCharVars.AccountSets.Count - 1
                 Dim account As Account = GlobalVariables.templateCharVars.AccountSets(i)
