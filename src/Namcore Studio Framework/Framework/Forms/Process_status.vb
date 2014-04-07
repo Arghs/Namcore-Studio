@@ -22,12 +22,12 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
 Imports System.Windows.Forms
-Imports NCFramework.Framework.Modules
+Imports FastColoredTextBoxNS
 
 Namespace Framework.Forms
     Public Class ProcessStatus
         '// Declaration
-        Private Delegate Sub AppendTextBoxDelegate(ByVal txt As String)
+        Private Delegate Sub AppendTextBoxDelegate(ByVal txt As String, ByVal style As Style)
 
         Private _ptMouseDownLocation As Point
         '// Declartaion
@@ -36,12 +36,28 @@ Namespace Framework.Forms
             Close()
         End Sub
 
-        Public Sub AppendProc(ByVal status As String)
-            If process_tb.InvokeRequired Then
-                process_tb.Invoke(New AppendTextBoxDelegate(AddressOf AppendProc),
-                                  New Object() {GlobalVariables.proccessTXT})
+        Public Sub AppendProc(txt As String, style As Style)
+            If fctb.InvokeRequired Then
+                fctb.Invoke(New AppendTextBoxDelegate(AddressOf AppendProc),
+                                  New Object() {txt, style})
             Else
-                process_tb.Text = GlobalVariables.proccessTXT
+                txt = txt & vbCrLf
+                fctb.BeginUpdate()
+                fctb.Selection.BeginUpdate()
+                Dim userSelection As Range = fctb.Selection.Clone()
+                fctb.Selection.Start = If(fctb.LinesCount > 0, New Place(fctb(fctb.LinesCount - 1).Count, fctb.LinesCount - 1), New Place(0, 0))
+                fctb.InsertText(txt, style)
+                If Not userSelection.IsEmpty OrElse userSelection.Start.iLine < fctb.LinesCount - 2 Then
+                    fctb.Selection.Start = userSelection.Start
+                    fctb.Selection.[End] = userSelection.[End]
+                Else
+                    fctb.DoCaretVisible()
+                End If
+                fctb.Selection.EndUpdate()
+                fctb.EndUpdate()
+                If userSelection.IsEmpty OrElse Not userSelection.Start.iLine < fctb.LinesCount - 2 Then
+                    fctb.GoEnd()
+                End If
             End If
             Application.DoEvents()
         End Sub

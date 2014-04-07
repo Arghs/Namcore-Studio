@@ -22,6 +22,8 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
 Imports System.Windows.Forms
+Imports System.Drawing
+Imports FastColoredTextBoxNS
 Imports NCFramework.Framework.Modules
 Imports System.Text
 
@@ -33,6 +35,9 @@ Namespace Framework.Logging
         Public Lastprogress As Integer
         Public Isbusy As Boolean = False
         Private _mUserOut As Boolean
+        Private _infoStyle As TextStyle = New TextStyle(Brushes.Black, Nothing, FontStyle.Regular)
+        Private _warningStyle As TextStyle = New TextStyle(Brushes.BurlyWood, Nothing, FontStyle.Regular)
+        Private _errorStyle As TextStyle = New TextStyle(Brushes.Red, Nothing, FontStyle.Regular)
         '// Declaration
 
         Public Sub LogAppend(ByVal myevent As String, ByVal location As String, Optional userOut As Boolean = False,
@@ -65,8 +70,10 @@ Namespace Framework.Logging
                 fs.WriteLine(GlobalVariables.eventlog)
                 fs.Close()
                 GlobalVariables.eventlog = ""
+                Dim tempStyle As TextStyle = _infoStyle
+                If iserror Then tempStyle = _errorStyle
                 Try
-                    GlobalVariables.procStatus.AppendProc("[" & Now.TimeOfDay.ToString & "]" & status)
+                    GlobalVariables.procStatus.AppendProc("[" & Now.TimeOfDay.ToString & "]" & status, tempStyle)
                 Catch ex As Exception
 
                 End Try
