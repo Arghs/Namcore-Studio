@@ -20,6 +20,7 @@
 '*      /Filename:      Main
 '*      /Description:   Main menu
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
@@ -95,9 +96,18 @@ Namespace Forms
         Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             Userwait.Show()
             Application.DoEvents()
+
 #If CONFIG = "Debug" Then
             GlobalVariables.DebugMode = True
 #End If
+            If My.Settings.Registered = False Then
+                My.Computer.Registry.ClassesRoot.CreateSubKey(".ncsf") _
+                               .SetValue("", "NamcoreStudioFile", Microsoft.Win32.RegistryValueKind.String)
+                My.Computer.Registry.ClassesRoot.CreateSubKey("NamcoreStudioFile\shell\open\command") _
+                    .SetValue("", Application.ExecutablePath & " ""%l"" ", Microsoft.Win32.RegistryValueKind.String)
+                My.Settings.Registered = True
+            End If
+            My.Settings.Save()
             If GlobalVariables.DebugMode = True Then
                 MySettings.Default.server_authdb = "arc_auth"
                 MySettings.Default.server_chardb = "arc_characters"
@@ -207,6 +217,16 @@ Namespace Forms
                         ChangelogInterface.Show()
                     Case "dev"
                         GlobalVariables.DebugMode = True
+                    Case Else
+                        If args(i).EndsWith(".ncsf") Then
+                            LogAppend("Opening .ncsf file", "Main_ExecuteParams")
+                            Application.DoEvents()
+                            GlobalVariables.LoadingTemplate = True
+                            Dim mSerializer As Serializer = New Serializer
+                            GlobalVariables.globChars = mSerializer.DeSerialize(args(i), New GlobalCharVars)
+                            prepareLive_template()
+                            HideTimer.Start()
+                        End If
                 End Select
             Next
         End Sub
@@ -257,6 +277,13 @@ Namespace Forms
 
         Private Sub about_pic_Click(sender As Object, e As EventArgs) Handles about_pic.Click
             About.Show()
+        End Sub
+
+        Private Sub HideTimer_Tick(sender As Object, e As EventArgs) Handles HideTimer.Tick
+            If Visible = True Then
+                Hide()
+                HideTimer.Stop()
+            End If
         End Sub
     End Class
 End Namespace
