@@ -53,10 +53,10 @@ Namespace Framework
                                                   ByVal serialString As String, ByVal defaultInstance As T) As T
             GlobalVariables.DeserializationSuccessfull = False
             If serialString = "" Then
-                If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf") Then
+                If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf") Then
                     Return defaultInstance
                 End If
-                serialString = My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf"
+                serialString = My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf"
             End If
 
             Dim fs As Stream = New FileStream(serialString,

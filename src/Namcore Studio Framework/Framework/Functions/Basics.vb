@@ -56,6 +56,7 @@ Namespace Framework.Functions
             Else
                 useChars = GlobalVariables.templateCharVars
             End If
+            If Not globChars Is Nothing Then useChars = globChars
             If useChars.AccountSets Is Nothing Then useChars.AccountSets = New List(Of Account)()
             Dim accountSet As Integer = useChars.AccountSets.FindIndex(Function(account) account.SetIndex = setId)
             If accountSet <> -1 Then
@@ -105,6 +106,7 @@ Namespace Framework.Functions
 
         Public Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character, ByVal playerAccount As Account)
             player.SetIndex = setId
+            player.AccountSet = playerAccount.SetIndex
             playerAccount.Characters.Add(player)
         End Sub
 

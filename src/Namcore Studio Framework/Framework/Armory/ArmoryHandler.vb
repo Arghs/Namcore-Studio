@@ -57,6 +57,7 @@ Namespace Framework.Armory
             armoryAccount.Characters = New List(Of Character)()
             armoryAccount.SetIndex = 0
             armoryAccount.SourceExpansion = 5
+            armoryAccount.IsArmory = True
             armoryAccount.Core = "armory"
             AddAccountSet(0, armoryAccount)
             For Each armoryLink As String In linkList

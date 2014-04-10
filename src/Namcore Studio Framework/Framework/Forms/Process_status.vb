@@ -111,5 +111,11 @@ Namespace Framework.Forms
                                      e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
+
+        Private Sub ProcessStatus_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+#If CONFIG = "Debug" Then
+            Location = New Point(0, 0)
+#End If
+        End Sub
     End Class
 End Namespace

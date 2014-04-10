@@ -32,7 +32,7 @@ Namespace Framework.Functions
     ''' <returns>Return the deep clone.</returns>
                                 Public Shared Function DeepClone (Of T)(ByVal obj As T) As T
             If obj Is Nothing Then
-                Throw New ArgumentNullException("Object is null")
+                Throw New ArgumentNullException("Object is null!")
             End If
             Return CType(CloneProcedure(obj), T)
         End Function

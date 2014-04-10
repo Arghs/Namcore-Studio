@@ -50,5 +50,6 @@ Namespace Framework.Modules
 
         'Misc
         Public Characters As List(Of Character)
+        Public IsArmory As Boolean = False
     End Class
 End Namespace

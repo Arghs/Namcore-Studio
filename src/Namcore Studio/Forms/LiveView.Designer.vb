@@ -63,6 +63,7 @@
             Me.target_accounts_tree = New System.Windows.Forms.TreeView()
             Me.GroupBox1 = New System.Windows.Forms.GroupBox()
             Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+            Me.refreshdb_target = New System.Windows.Forms.PictureBox()
             Me.createTemplate_bt = New System.Windows.Forms.Button()
             Me.Label3 = New System.Windows.Forms.Label()
             Me.info2_lbl = New System.Windows.Forms.Label()
@@ -88,12 +89,12 @@
             Me.settings_pic = New System.Windows.Forms.PictureBox()
             Me.highlighter5 = New System.Windows.Forms.PictureBox()
             Me.highlighter4 = New System.Windows.Forms.PictureBox()
-            Me.refreshdb_target = New System.Windows.Forms.PictureBox()
             Me.Panel1.SuspendLayout()
             CType(Me.refreshdb, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.accountcontext.SuspendLayout()
             Me.GroupBox1.SuspendLayout()
             Me.GroupBox2.SuspendLayout()
+            CType(Me.refreshdb_target, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.charactercontext.SuspendLayout()
             Me.targetacccontext.SuspendLayout()
             Me.targetcharcontext.SuspendLayout()
@@ -104,7 +105,6 @@
             CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).BeginInit()
-            CType(Me.refreshdb_target, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'connect_bt
@@ -439,10 +439,24 @@
             Me.GroupBox2.TabIndex = 212
             Me.GroupBox2.TabStop = False
             '
+            'refreshdb_target
+            '
+            Me.refreshdb_target.BackColor = System.Drawing.Color.Transparent
+            Me.refreshdb_target.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
+            Me.refreshdb_target.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.refreshdb_target.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.refreshdb_target.Location = New System.Drawing.Point(363, 62)
+            Me.refreshdb_target.Name = "refreshdb_target"
+            Me.refreshdb_target.Size = New System.Drawing.Size(30, 30)
+            Me.refreshdb_target.TabIndex = 233
+            Me.refreshdb_target.TabStop = False
+            Me.refreshdb_target.Visible = False
+            '
             'createTemplate_bt
             '
             Me.createTemplate_bt.BackColor = System.Drawing.Color.DimGray
             Me.createTemplate_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.createTemplate_bt.Enabled = False
             Me.createTemplate_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.createTemplate_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
             Me.createTemplate_bt.Location = New System.Drawing.Point(276, 443)
@@ -669,19 +683,6 @@
             Me.highlighter4.TabIndex = 173
             Me.highlighter4.TabStop = False
             '
-            'refreshdb_target
-            '
-            Me.refreshdb_target.BackColor = System.Drawing.Color.Transparent
-            Me.refreshdb_target.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
-            Me.refreshdb_target.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-            Me.refreshdb_target.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.refreshdb_target.Location = New System.Drawing.Point(363, 62)
-            Me.refreshdb_target.Name = "refreshdb_target"
-            Me.refreshdb_target.Size = New System.Drawing.Size(30, 30)
-            Me.refreshdb_target.TabIndex = 233
-            Me.refreshdb_target.TabStop = False
-            Me.refreshdb_target.Visible = False
-            '
             'LiveView
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -710,6 +711,7 @@
             Me.GroupBox1.ResumeLayout(False)
             Me.GroupBox2.ResumeLayout(False)
             Me.GroupBox2.PerformLayout()
+            CType(Me.refreshdb_target, System.ComponentModel.ISupportInitialize).EndInit()
             Me.charactercontext.ResumeLayout(False)
             Me.targetacccontext.ResumeLayout(False)
             Me.targetcharcontext.ResumeLayout(False)
@@ -720,7 +722,6 @@
             CType(Me.settings_pic, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.highlighter5, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.highlighter4, System.ComponentModel.ISupportInitialize).EndInit()
-            CType(Me.refreshdb_target, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub
