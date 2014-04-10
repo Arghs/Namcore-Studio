@@ -101,10 +101,14 @@ Namespace Forms
             GlobalVariables.DebugMode = True
 #End If
             If My.Settings.Registered = False Then
-                My.Computer.Registry.ClassesRoot.CreateSubKey(".ncsf") _
-                               .SetValue("", "NamcoreStudioFile", Microsoft.Win32.RegistryValueKind.String)
-                My.Computer.Registry.ClassesRoot.CreateSubKey("NamcoreStudioFile\shell\open\command") _
-                    .SetValue("", Application.ExecutablePath & " ""%l"" ", Microsoft.Win32.RegistryValueKind.String)
+                Try
+                    My.Computer.Registry.ClassesRoot.CreateSubKey(".ncsf") _
+                                                .SetValue("", "NamcoreStudioFile", Microsoft.Win32.RegistryValueKind.String)
+                    My.Computer.Registry.ClassesRoot.CreateSubKey("NamcoreStudioFile\shell\open\command") _
+                        .SetValue("", Application.ExecutablePath & " ""%l"" ", Microsoft.Win32.RegistryValueKind.String)
+                Catch ex As Exception
+                    LogAppend("Unable to register file extension - Check admin rights", "Main_Main_Load", True, True)
+                End Try
                 My.Settings.Registered = True
             End If
             My.Settings.Save()
