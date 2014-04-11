@@ -1022,7 +1022,7 @@ Namespace Forms.Character
                 End Try
             End If
             If Not _tempSender Is Nothing Then
-                TryCast(sender, Label).Visible = True
+                TryCast(_tempSender, Control).Visible = True
             End If
             changepanel.Location = New Point(4000, 4000)
             racepanel.Location = New Point(4000, 4000)

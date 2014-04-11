@@ -678,4 +678,10 @@
   <data name="noAvFound" xml:space="preserve">
     <value>No achievements found!</value>
   </data>
+  <data name="addfaction" xml:space="preserve">
+    <value>Add faction</value>
+  </data>
+  <data name="enterfactionid" xml:space="preserve">
+    <value>Enter faction id: </value>
+  </data>
 </root>

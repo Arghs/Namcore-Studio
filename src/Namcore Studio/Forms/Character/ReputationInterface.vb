@@ -399,7 +399,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub add_pic_Click(sender As Object, e As EventArgs) Handles add_pic.Click
-            Dim retnvalue As Integer = TryInt(InputBox("Enter faction id: ", "Add faction", "0"))
+            Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterfactionid"), ResourceHandler.GetUserMessage("addfaction"), "0"))
             Userwait.Show()
             Application.DoEvents()
             If Not retnvalue = 0 Then
@@ -408,59 +408,57 @@ Namespace Forms.Character
                 Try
                     If _
                         Not _
-                        client.DownloadString("http://wowhead.com/faction=" & retnvalue.ToString()).Contains(
-                            "<div id=""inputbox-error"">This faction doesn't exist.</div>") Then
+                        client.DownloadString("http://www.wowdb.com/factions/" & retnvalue.ToString()).Contains(
+                            "<title>Not found - WowDB</title>") Then
                         For Each opRepu As Reputation In GlobalVariables.currentEditedCharSet.PlayerReputation
                             If opRepu.Faction = retnvalue Then
-                                Dim _
-                                    rm2 As _
-                                        New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
-                                MsgBox(rm2.GetString("factionalreadypresent"), MsgBoxStyle.Critical, "Error")
+                               
+                                MsgBox(ResourceHandler.GetUserMessage("factionalreadypresent"), MsgBoxStyle.Critical, "Error")
                                 Userwait.Close()
                                 Exit Sub
                             End If
                         Next
                         Dim pRepu As New Reputation
                         With pRepu
-                            .faction = retnvalue
+                            .Faction = retnvalue
                             .Flags = CType(1, Reputation.FlagEnum)
                             .Name = GetFactionNameById(.Faction, MySettings.Default.language)
-                            .max = 3000
-                            .standing = 0
-                            .status = 3
-                            .value = 0
+                            .Max = 3000
+                            .Standing = 0
+                            .Status = 3
+                            .Value = 0
                         End With
                         Dim repPanel As New Panel
-                        repPanel.Name = "rep" & pRepu.faction.ToString() & "_pnl"
+                        repPanel.Name = "rep" & pRepu.Faction.ToString() & "_pnl"
                         repPanel.Size = referencePanel.Size
                         repPanel.Tag = pRepu
                         repPanel.BackColor = Color.Silver
                         Dim repNameLable As New Label
-                        repNameLable.Name = "rep" & pRepu.faction.ToString() & "_name_lbl"
-                        repNameLable.Text = pRepu.name
+                        repNameLable.Name = "rep" & pRepu.Faction.ToString() & "_name_lbl"
+                        repNameLable.Text = pRepu.Name
                         repNameLable.Tag = pRepu
                         repPanel.Controls.Add(repNameLable)
                         repNameLable.Location = reference_name_lbl.Location
                         Dim sliderBgPanel As New Panel
-                        sliderBgPanel.Name = "rep" & pRepu.faction.ToString() & "_sliderBg_pnl"
+                        sliderBgPanel.Name = "rep" & pRepu.Faction.ToString() & "_sliderBg_pnl"
                         sliderBgPanel.Size = reference_sliderbg_panel.Size
                         sliderBgPanel.BackgroundImage = My.Resources.repbg1
                         sliderBgPanel.BackgroundImageLayout = ImageLayout.Stretch
                         sliderBgPanel.Tag = pRepu
                         Dim progressPanel As New Panel
-                        progressPanel.Name = "rep" & pRepu.faction.ToString() & "_progress_pnl"
+                        progressPanel.Name = "rep" & pRepu.Faction.ToString() & "_progress_pnl"
                         progressPanel.Size = reference_percentage_panel.Size
                         progressPanel.BackColor = Color.Yellow
                         progressPanel.Tag = pRepu
                         sliderBgPanel.Controls.Add(progressPanel)
                         progressPanel.Location = reference_percentage_panel.Location
                         repPanel.Controls.Add(sliderBgPanel)
-                        SetPanelPercentage(progressPanel, CType((pRepu.Value/pRepu.Max), Decimal))
+                        SetPanelPercentage(progressPanel, CType((pRepu.Value / pRepu.Max), Decimal))
                         sliderBgPanel.Location = reference_sliderbg_panel.Location
                         Dim slider As New TrackBar
-                        slider.Name = "rep" & pRepu.faction.ToString() & "_slider"
-                        slider.Maximum = pRepu.max
-                        slider.Value = pRepu.value
+                        slider.Name = "rep" & pRepu.Faction.ToString() & "_slider"
+                        slider.Maximum = pRepu.Max
+                        slider.Value = pRepu.Value
                         slider.Size = reference_trackbar.Size
                         slider.Tag = pRepu
                         slider.TickStyle = TickStyle.None
@@ -468,7 +466,7 @@ Namespace Forms.Character
                         slider.Location = reference_trackbar.Location
                         AddHandler slider.Scroll, AddressOf slider_slide '//Use MouseUp event for better performance 
                         Dim valueTxtbox As New TextBox
-                        valueTxtbox.Name = "rep" & pRepu.faction.ToString() & "_value_txtbox"
+                        valueTxtbox.Name = "rep" & pRepu.Faction.ToString() & "_value_txtbox"
                         valueTxtbox.Size = reference_txtbox.Size
                         valueTxtbox.Text = pRepu.Value.ToString()
                         valueTxtbox.Tag = pRepu
@@ -478,8 +476,8 @@ Namespace Forms.Character
                         AddHandler valueTxtbox.Enter, AddressOf txt_enter
                         AddHandler valueTxtbox.Leave, AddressOf txt_left
                         Dim valueLbl As New Label
-                        valueLbl.Name = "rep" & pRepu.faction.ToString() & "_value_lbl"
-                        valueLbl.Text = pRepu.value.ToString & "/" & pRepu.max.ToString()
+                        valueLbl.Name = "rep" & pRepu.Faction.ToString() & "_value_lbl"
+                        valueLbl.Text = pRepu.Value.ToString & "/" & pRepu.Max.ToString()
                         valueLbl.Font = reference_counter_lbl.Font
                         valueLbl.ForeColor = reference_counter_lbl.ForeColor
                         valueLbl.BackColor = reference_counter_lbl.BackColor
@@ -492,13 +490,13 @@ Namespace Forms.Character
                         RepLayoutPanel.Controls.SetChildIndex(RepLayoutPanel.Controls(RepLayoutPanel.Controls.Count - 1),
                                                               1)
                         Dim standingCombo As New ComboBox
-                        standingCombo.Name = "rep" & pRepu.faction.ToString() & "_standing_combo"
+                        standingCombo.Name = "rep" & pRepu.Faction.ToString() & "_standing_combo"
                         standingCombo.Location = reference_standing_combo.Location
                         For Each itm As String In reference_standing_combo.Items
                             standingCombo.Items.Add(itm)
                         Next
-                        standingCombo.SelectedIndex = pRepu.status
-                        Select Case pRepu.status
+                        standingCombo.SelectedIndex = pRepu.Status
+                        Select Case pRepu.Status
                             Case 0 : progressPanel.BackColor = Color.DarkRed
                             Case 1 : progressPanel.BackColor = Color.Red
                             Case 2 : progressPanel.BackColor = Color.Red
@@ -510,7 +508,7 @@ Namespace Forms.Character
                         End Select
                         standingCombo.Tag = pRepu
 
-                        standingCombo.Text = ResourceHandler.GetUserMessage("standing_" & pRepu.status.ToString)
+                        standingCombo.Text = ResourceHandler.GetUserMessage("standing_" & pRepu.Status.ToString)
                         repPanel.Controls.Add(standingCombo)
                         AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
                         GlobalVariables.currentEditedCharSet.PlayerReputation.Add(pRepu)
