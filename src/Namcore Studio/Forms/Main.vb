@@ -197,7 +197,7 @@ Namespace Forms
             LogAppend("/SYSTEM VERSION: " & Environment.Version.ToString(), "Main_Main_Load", False)
             LogAppend("/PROCESSOR COUNT: " & (Environment.ProcessorCount).ToString(), "Main_Main_Load", False)
             LogAppend(
-                "/AVAILABLE PHYSICAL MEMORY: " & (My.Computer.Info.AvailablePhysicalMemory/1000000000).ToString() &
+                "/AVAILABLE PHYSICAL MEMORY: " & (My.Computer.Info.AvailablePhysicalMemory / 1000000000).ToString() &
                 " GB",
                 "Main_Main_Load", False)
             LogAppend(
