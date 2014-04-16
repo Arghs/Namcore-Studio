@@ -134,7 +134,7 @@ Namespace Forms.Character
                             tmpCatids = {14808, 14805, 14806, 14922, 15067, 15068, 15106, 15107, 15115}
                         Case 169
                             '//Professions
-                            tmpCatids = {170, 171, 182, 15071}
+                            tmpCatids = {170, 171, 172, 15071}
                         Case 201
                             '//Reputation
                             tmpCatids = {14864, 14865, 14866, 15072, 15114}
@@ -170,6 +170,7 @@ Namespace Forms.Character
                     Catch ex As Exception
                         subcat_combo.Items.Clear()
                     End Try
+                    subcat_combo.Text = "Pick category"
                     _colorTicker = 0
                     _completed = False
                     Do
