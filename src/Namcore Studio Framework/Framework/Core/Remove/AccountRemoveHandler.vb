@@ -49,6 +49,18 @@ Namespace Framework.Core.Remove
                     For Each player As Character In account.Characters
                         characterRemoveHandler.RemoveCharacterFromDb(player, charConnection, dbstruc, core)
                     Next
+                Case "mangos"
+                    runSQLCommand_realm_string_setconn(
+                        "DELETE FROM `" & dbstruc.account_tbl(0) & "` WHERE `" & dbstruc.acc_id_col(0) & "` = '" &
+                        account.Id.ToString() & "'", realmConnection)
+                    runSQLCommand_realm_string_setconn(
+                        "DELETE FROM `account_banned` WHERE `id` = '" & account.Id.ToString() & "'", realmConnection)
+                    runSQLCommand_realm_string_setconn(
+                        "DELETE FROM `realmcharacters` WHERE `acctid` = '" & account.Id.ToString() & "'", realmConnection)
+                    Dim characterRemoveHandler As New CharacterRemoveHandler
+                    For Each player As Character In account.Characters
+                        characterRemoveHandler.RemoveCharacterFromDb(player, charConnection, dbstruc, core)
+                    Next
             End Select
         End Sub
     End Class
