@@ -226,6 +226,8 @@ Namespace Framework.Database
                     dbstruc.acc_sessionkey_col = {"sessionkey"}
                     dbstruc.acc_passHash_col = {"sha_pass_hash"}
                     dbstruc.acc_email_col = {"email"}
+                    dbstruc.acc_v_col = {"v"}
+                    dbstruc.acc_s_col = {"s"}
                     dbstruc.acc_joindate_col = {"joindate"}
                     dbstruc.acc_lastip_col = {"last_ip"}
                     dbstruc.acc_lastlogin_col = {"last_login"}
@@ -233,6 +235,7 @@ Namespace Framework.Database
                     dbstruc.acc_expansion_col = {"expansion"}
                     dbstruc.acc_locale_col = {"locale"}
                     dbstruc.acc_gmlevel_col = {"gmlevel"}
+                    dbstruc.acc_realmID_col = {"active_realm_id"}
 
                     'characters
                     dbstruc.character_tbl = {"characters"}
@@ -347,7 +350,6 @@ Namespace Framework.Database
                     dbstruc.itmins_data_col = {"data"}
 
                     check_accounts(dbstruc)
-                    check_accountAccess(dbstruc)
                     check_characters(dbstruc)
                     check_character_achievement(dbstruc)
                     check_character_action(dbstruc)
@@ -379,11 +381,14 @@ Namespace Framework.Database
             col_check_realm(struc.acc_passHash_col, struc.account_tbl)
             col_check_realm(struc.acc_email_col, struc.account_tbl)
             col_check_realm(struc.acc_joindate_col, struc.account_tbl)
+            col_check_realm(struc.acc_v_col, struc.account_tbl)
+            col_check_realm(struc.acc_s_col, struc.account_tbl)
             col_check_realm(struc.acc_lastip_col, struc.account_tbl)
             col_check_realm(struc.acc_locked_col, struc.account_tbl)
             col_check_realm(struc.acc_lastlogin_col, struc.account_tbl)
             col_check_realm(struc.acc_expansion_col, struc.account_tbl)
             col_check_realm(struc.acc_locale_col, struc.account_tbl)
+            col_check_realm(struc.acc_realmID_col, struc.account_tbl)
             If Not _dbReport = "" Then gettablescheme(struc.account_tbl(0), _authDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
@@ -476,6 +481,7 @@ Namespace Framework.Database
             tbl_check(struc.character_glyphs_tbl)
             col_check(struc.glyphs_guid_col, struc.character_glyphs_tbl)
             col_check(struc.glyphs_spec_col, struc.character_glyphs_tbl)
+            col_check(struc.glyphs_glyph_col, struc.character_glyphs_tbl)
             col_check(struc.glyphs_glyph1_col, struc.character_glyphs_tbl)
             col_check(struc.glyphs_glyph2_col, struc.character_glyphs_tbl)
             col_check(struc.glyphs_glyph3_col, struc.character_glyphs_tbl)
@@ -513,6 +519,7 @@ Namespace Framework.Database
             col_check(struc.invent_bag_col, struc.character_inventory_tbl)
             col_check(struc.invent_slot_col, struc.character_inventory_tbl)
             col_check(struc.invent_item_col, struc.character_inventory_tbl)
+            col_check(struc.invent_item_template_col, struc.character_inventory_tbl)
             If Not _dbReport = "" Then gettablescheme(struc.character_inventory_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
@@ -525,6 +532,9 @@ Namespace Framework.Database
             col_check(struc.qst_quest_col, struc.character_queststatus_tbl)
             col_check(struc.qst_status_col, struc.character_queststatus_tbl)
             col_check(struc.qst_explored_col, struc.character_queststatus_tbl)
+            col_check(struc.qst_completed_col, struc.character_queststatus_tbl)
+            col_check(struc.qst_rewarded_col, struc.character_queststatus_tbl)
+            col_check(struc.qst_slot_col, struc.character_queststatus_tbl)
             col_check(struc.qst_timer_col, struc.character_queststatus_tbl)
             If Not _dbReport = "" Then gettablescheme(struc.character_queststatus_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
@@ -583,6 +593,8 @@ Namespace Framework.Database
             col_check(struc.talent_guid_col, struc.character_talent_tbl)
             col_check(struc.talent_spell_col, struc.character_talent_tbl)
             col_check(struc.talent_spec_col, struc.character_talent_tbl)
+            col_check(struc.talent_rank_col, struc.character_talent_tbl)
+            col_check(struc.talent_talent_col, struc.character_talent_tbl)
             If Not _dbReport = "" Then gettablescheme(struc.character_talent_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
@@ -597,6 +609,8 @@ Namespace Framework.Database
             col_check(struc.itmins_count_col, struc.item_instance_tbl)
             col_check(struc.itmins_enchantments_col, struc.item_instance_tbl)
             col_check(struc.itmins_durability_col, struc.item_instance_tbl)
+            col_check(struc.itmins_data_col, struc.item_instance_tbl)
+            col_check(struc.itmins_container_col, struc.item_instance_tbl)
             If Not _dbReport = "" Then gettablescheme(struc.item_instance_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
@@ -637,6 +651,7 @@ Namespace Framework.Database
         End Sub
 
         Private Sub tbl_check(ByVal tablename() As String)
+            If tablename Is Nothing Then Exit Sub
             Dim i As Integer = tablename.Length
             Dim counter As Integer = 0
             Do
@@ -678,6 +693,7 @@ Namespace Framework.Database
         End Sub
 
         Private Sub col_check(ByRef columnname() As String, ByVal tablename() As String)
+            If tablename Is Nothing Or columnname Is Nothing Then Exit Sub
             Dim i As Integer = columnname.Length
             Dim counter As Integer = 0
             Do
@@ -725,6 +741,7 @@ Namespace Framework.Database
         End Sub
 
         Private Sub tbl_check_realm(ByVal tablename() As String)
+            If tablename Is Nothing Then Exit Sub
             Dim i As Integer = tablename.Length
             Dim counter As Integer = 0
             Do
@@ -766,6 +783,7 @@ Namespace Framework.Database
         End Sub
 
         Private Sub col_check_realm(ByRef columnname() As String, ByVal tablename() As String)
+            If tablename Is Nothing And columnname Is Nothing Then Exit Sub
             Dim i As Integer = columnname.Length
             Dim counter As Integer = 0
             Do

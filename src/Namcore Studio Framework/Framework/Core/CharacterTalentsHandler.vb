@@ -235,13 +235,12 @@ Namespace Framework.Core
                 Dim strArray As String()
                 a = Split(stext, vbNewLine)
                 For i = 0 To UBound(a)
-                    strArray = a(i).Split(CChar(";"))
+                    strArray = a(i).Split(CChar("£"))
                     If i = 0 Then
                         For Each value As String In strArray
                             dt.Columns.Add(value.Trim())
                         Next
                     Else
-                        '  Dim dr As DataRow = dt.NewRow() // never used??
                         dt.Rows.Add(strArray)
                     End If
                 Next i

@@ -1409,24 +1409,6 @@ Namespace Framework.Core
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
             _tempResult =
                 runSQLCommand_characters_string(
-                    "SELECT " & GlobalVariables.sourceStructure.char_instanceId_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.InstanceId = TryInt(_tempResult)
-            LogAppend(
-                "Loaded character instanceId info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_characters_string(
-                    "SELECT " & GlobalVariables.sourceStructure.char_instanceModeMask_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.InstanceModeMask = TryInt(_tempResult)
-            LogAppend(
-                "Loaded character instanceModeMask info for characterGuid: " & charguid.ToString & " and setId: " &
-                tarSetId & " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_characters_string(
                     "SELECT " & GlobalVariables.sourceStructure.char_orientation_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
@@ -1616,26 +1598,6 @@ Namespace Framework.Core
             tmpCharacter.ActionBars = TryInt(_tempResult)
             LogAppend(
                 "Loaded character actionBars info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_characters_string(
-                    "SELECT " & GlobalVariables.sourceStructure.char_finishedQuests_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.FinishedQuests = _tempResult
-            LogAppend(
-                "Loaded character finishedQuests info for characterGuid: " & charguid.ToString & " and setId: " &
-                tarSetId &
-                " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
-            _tempResult =
-                runSQLCommand_characters_string(
-                    "SELECT " & GlobalVariables.sourceStructure.char_customFaction_col(0) & " FROM " &
-                    GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
-                    GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.CustomFaction = TryInt(_tempResult)
-            LogAppend(
-                "Loaded character customFaction info for characterGuid: " & charguid.ToString & " and setId: " &
-                tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", False)
 
             'Character_homebind Table

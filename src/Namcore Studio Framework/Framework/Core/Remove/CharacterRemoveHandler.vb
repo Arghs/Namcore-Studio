@@ -152,9 +152,6 @@ Namespace Framework.Core.Remove
                     runSQLCommand_characters_string_setconn(
                         "DELETE FROM `petition_sign` WHERE `ownerguid` = '" & character.Guid.ToString() & "'",
                         connection)
-                    runSQLCommand_characters_string_setconn(
-                        "DELETE FROM `petition_sign` WHERE `playerguid` = '" & character.Guid.ToString() & "'",
-                        connection)
                 Case "mangos"
                     runSQLCommand_characters_string_setconn(
                         "DELETE FROM `" & dbstruc.character_tbl(0) & "` WHERE `" & dbstruc.char_guid_col(0) & "` = '" &
@@ -271,9 +268,6 @@ Namespace Framework.Core.Remove
                         "DELETE FROM `petition` WHERE `ownerguid` = '" & character.Guid.ToString() & "'", connection)
                     runSQLCommand_characters_string_setconn(
                         "DELETE FROM `petition_sign` WHERE `ownerguid` = '" & character.Guid.ToString() & "'",
-                        connection)
-                    runSQLCommand_characters_string_setconn(
-                        "DELETE FROM `petition_sign` WHERE `playerguid` = '" & character.Guid.ToString() & "'",
                         connection)
             End Select
         End Sub

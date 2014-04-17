@@ -112,6 +112,7 @@ Namespace Framework.Core
                         qst.Status = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         qst.Explored = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         qst.Timer = TryInt((tempdt.Rows(count).Item(3)).ToString)
+                        qst.Rewarded = 0
                         If player.Quests Is Nothing Then player.Quests = New List(Of Quest)()
                         player.Quests.Add(qst)
                         count += 1
@@ -212,9 +213,8 @@ Namespace Framework.Core
                         qst.Status = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         qst.Explored = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         qst.Timer = TryInt((tempdt.Rows(count).Item(3)).ToString)
-                        Dim rewarded As String = (tempdt.Rows(count).Item(4)).ToString
-                        qst.Rewarded = TryInt(rewarded)
-                        If rewarded = "1" Then
+                        qst.Rewarded = TryInt((tempdt.Rows(count).Item(4)).ToString)
+                        If qst.Rewarded = 1 Then
                             player.FinishedQuests = qst.Id & ","
                         Else
                             If player.Quests Is Nothing Then player.Quests = New List(Of Quest)()

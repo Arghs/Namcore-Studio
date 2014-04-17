@@ -54,10 +54,10 @@ Namespace Framework.Core
                 Case "mangos"
                     Return _
                         ReturnDataTable_setconn(
-                            "SELECT `" & Struc.acc_id_col(0) & "`, `" & Struc.acc_name_col(0) & "`, `" &
-                            Struc.acc_gmlevel_col(0) &
-                            "`, " & Struc.acc_lastlogin_col(0) & "`, `" & Struc.acc_email_col(0) & "` FROM " &
-                            Struc.account_tbl(0), sqlconnection)
+                            "SELECT `" & struc.acc_id_col(0) & "`, `" & struc.acc_name_col(0) & "`, `" &
+                            struc.acc_gmlevel_col(0) &
+                            "`, `" & struc.acc_lastlogin_col(0) & "`, `" & struc.acc_email_col(0) & "` FROM " &
+                            struc.account_tbl(0), sqlconnection)
                 Case Else
                     Return Nothing
             End Select

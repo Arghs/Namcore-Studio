@@ -117,6 +117,7 @@ Namespace Forms.Character
                 End If
                 str(1) = questname
                 str(2) = pQuest.Status.ToString
+                If pQuest.Status <> 1 Then str(2) = "0"
                 str(3) = pQuest.Rewarded.ToString
                 Dim itm As New ListViewItem(str)
                 itm.Tag = pQuest

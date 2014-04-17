@@ -407,7 +407,7 @@ Namespace Framework.Core
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
                         runSQLCommand_realm_string(
-                            "SELECT " & GlobalVariables.sourceStructure.accAcc_gmLevel_col(0) & " FROM " &
+                            "SELECT " & GlobalVariables.sourceStructure.acc_gmlevel_col(0) & " FROM " &
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.GmLevel = TryInt(_tempResult)
@@ -416,7 +416,7 @@ Namespace Framework.Core
                         " // result is: " & _tempResult, "AccountHandler_LoadAccount", False)
                     _tempResult =
                         runSQLCommand_realm_string(
-                            "SELECT " & GlobalVariables.sourceStructure.accAcc_realmId_col(0) & " FROM " &
+                            "SELECT " & GlobalVariables.sourceStructure.acc_realmID_col(0) & " FROM " &
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
                     tmpAccount.RealmId = TryInt(_tempResult)
