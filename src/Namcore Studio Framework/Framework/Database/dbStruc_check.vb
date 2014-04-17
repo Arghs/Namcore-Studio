@@ -216,6 +216,151 @@ Namespace Framework.Database
                     check_character_spell(dbstruc)
                     check_character_talent(dbstruc)
                     check_item_instance(dbstruc)
+                Case "mangos"
+                    dbstruc.CoreName = coreString
+                    'auth
+                    dbstruc.account_tbl = {"account"}
+                    '_account
+                    dbstruc.acc_id_col = {"id"}
+                    dbstruc.acc_name_col = {"username"}
+                    dbstruc.acc_sessionkey_col = {"sessionkey"}
+                    dbstruc.acc_passHash_col = {"sha_pass_hash"}
+                    dbstruc.acc_email_col = {"email"}
+                    dbstruc.acc_joindate_col = {"joindate"}
+                    dbstruc.acc_lastip_col = {"last_ip"}
+                    dbstruc.acc_lastlogin_col = {"last_login"}
+                    dbstruc.acc_locked_col = {"locked"}
+                    dbstruc.acc_expansion_col = {"expansion"}
+                    dbstruc.acc_locale_col = {"locale"}
+                    dbstruc.acc_gmlevel_col = {"gmlevel"}
+
+                    'characters
+                    dbstruc.character_tbl = {"characters"}
+                    dbstruc.character_achievement_tbl = {"character_achievement"}
+                    dbstruc.character_action_tbl = {"character_action"}
+                    dbstruc.character_glyphs_tbl = {"character_glyphs"}
+                    dbstruc.character_homebind_tbl = {"character_homebind"}
+                    dbstruc.character_inventory_tbl = {"character_inventory"}
+                    dbstruc.character_queststatus_tbl = {"character_queststatus"}
+                    dbstruc.character_reputation_tbl = {"character_reputation"}
+                    dbstruc.character_skills_tbl = {"character_skills"}
+                    dbstruc.character_spells_tbl = {"character_spell"}
+                    dbstruc.character_talent_tbl = {"character_talent"}
+                    dbstruc.item_instance_tbl = {"item_instance"}
+                    '_characters
+                    dbstruc.char_guid_col = {"guid"}
+                    dbstruc.char_accountId_col = {"account"}
+                    dbstruc.char_name_col = {"name"}
+                    dbstruc.char_race_col = {"race"}
+                    dbstruc.char_class_col = {"class"}
+                    dbstruc.char_gender_col = {"gender"}
+                    dbstruc.char_level_col = {"level"}
+                    dbstruc.char_gold_col = {"money"}
+                    dbstruc.char_xp_col = {"xp"}
+                    dbstruc.char_playerBytes_col = {"playerBytes"}
+                    dbstruc.char_playerBytes2_col = {"playerBytes2"}
+                    dbstruc.char_playerFlags_col = {"playerFlags"}
+                    dbstruc.char_posX_col = {"position_x"}
+                    dbstruc.char_posY_col = {"position_y"}
+                    dbstruc.char_posZ_col = {"position_z"}
+                    dbstruc.char_map_col = {"map"}
+                    dbstruc.char_orientation_col = {"orientation"}
+                    dbstruc.char_taximask_col = {"taximask"}
+                    dbstruc.char_cinematic_col = {"cinematic"}
+                    dbstruc.char_totaltime_col = {"totaltime"}
+                    dbstruc.char_leveltime_col = {"leveltime"}
+                    dbstruc.char_extraFlags_col = {"extra_flags"}
+                    dbstruc.char_health_col = {"health"}
+                    dbstruc.char_stableSlots_col = {"stable_slots"}
+                    dbstruc.char_atlogin_col = {"at_login"}
+                    dbstruc.char_zone_col = {"zone"}
+                    dbstruc.char_arenaPoints_col = {"arenaPoints"}
+                    dbstruc.char_totalHonorPoints_col = {"totalHonorPoints"}
+                    dbstruc.char_totalKills_col = {"totalKills"}
+                    dbstruc.char_chosenTitle_col = {"chosenTitle"}
+                    dbstruc.char_knownCurrencies_col = {"knownCurrencies"}
+                    dbstruc.char_watchedFaction_col = {"watchedFaction"}
+                    dbstruc.char_speccount_col = {"specCount"}
+                    dbstruc.char_activeSpec_col = {"activespec"}
+                    dbstruc.char_exploredZones_col = {"exploredZones"}
+                    dbstruc.char_equipmentCache_col = {"equipmentCache"}
+                    dbstruc.char_knownTitles_col = {"knownTitles"}
+                    dbstruc.char_actionBars_col = {"actionBars"}
+                    '_character_achievement
+                    dbstruc.av_guid_col = {"guid"}
+                    dbstruc.av_achievement_col = {"achievement"}
+                    dbstruc.av_date_col = {"date"}
+                    '_character_action
+                    dbstruc.action_guid_col = {"guid"}
+                    dbstruc.action_spec_col = {"spec"}
+                    dbstruc.action_button_col = {"button"}
+                    dbstruc.action_action_col = {"action"}
+                    dbstruc.action_type_col = {"type"}
+                    '_character_glyphs
+                    dbstruc.glyphs_guid_col = {"guid"}
+                    dbstruc.glyphs_spec_col = {"spec"}
+                    dbstruc.glyphs_slot_col = {"slot"}
+                    dbstruc.glyphs_glyph_col = {"glyph"}
+                    '_character_homebind
+                    dbstruc.homebind_guid_col = {"guid"}
+                    dbstruc.homebind_map_col = {"map", "mapId"}
+                    dbstruc.homebind_zone_col = {"zone", "zoneId"}
+                    dbstruc.homebind_posx_col = {"position_x", "posX", "positionX"}
+                    dbstruc.homebind_posy_col = {"position_y", "posY", "positionY"}
+                    dbstruc.homebind_posz_col = {"position_z", "posZ", "positionZ"}
+                    '_character_inventory
+                    dbstruc.invent_guid_col = {"guid"}
+                    dbstruc.invent_bag_col = {"bag"}
+                    dbstruc.invent_slot_col = {"slot"}
+                    dbstruc.invent_item_col = {"item"}
+                    dbstruc.invent_item_template_col = {"item_template"}
+                    '_character_queststatus
+                    dbstruc.qst_guid_col = {"guid"}
+                    dbstruc.qst_quest_col = {"quest"}
+                    dbstruc.qst_status_col = {"status"}
+                    dbstruc.qst_explored_col = {"explored"}
+                    dbstruc.qst_timer_col = {"timer"}
+                    dbstruc.qst_rewarded_col = {"rewarded"}
+                    '_character_reputation
+                    dbstruc.rep_guid_col = {"guid"}
+                    dbstruc.rep_faction_col = {"faction"}
+                    dbstruc.rep_standing_col = {"standing"}
+                    dbstruc.rep_flags_col = {"flags"}
+                    '_character_skills
+                    dbstruc.skill_guid_col = {"guid"}
+                    dbstruc.skill_skill_col = {"skill"}
+                    dbstruc.skill_value_col = {"value"}
+                    dbstruc.skill_max_col = {"max"}
+                    '_character_spell
+                    dbstruc.spell_guid_col = {"guid"}
+                    dbstruc.spell_spell_col = {"spell"}
+                    dbstruc.spell_active_col = {"active"}
+                    dbstruc.spell_disabled_col = {"disabled"}
+                    '_caracter_talent
+                    dbstruc.talent_guid_col = {"guid"}
+                    dbstruc.talent_talent_col = {"talent_id"}
+                    dbstruc.talent_rank_col = {"current_rank"}
+                    dbstruc.talent_spec_col = {"spec"}
+                    '_item_instance
+                    dbstruc.itmins_guid_col = {"guid"}
+                    dbstruc.itmins_ownerGuid_col = {"owner_guid"}
+                    dbstruc.itmins_data_col = {"data"}
+
+                    check_accounts(dbstruc)
+                    check_accountAccess(dbstruc)
+                    check_characters(dbstruc)
+                    check_character_achievement(dbstruc)
+                    check_character_action(dbstruc)
+                    If _xpac >= 3 Then check_character_glyphs(dbstruc)
+                    check_character_homebind(dbstruc)
+                    check_character_inventory(dbstruc)
+                    check_character_queststatus(dbstruc)
+                    check_character_queststatus_rewarded(dbstruc)
+                    check_character_reputation(dbstruc)
+                    check_character_skills(dbstruc)
+                    check_character_spell(dbstruc)
+                    check_character_talent(dbstruc)
+                    check_item_instance(dbstruc)
             End Select
             If target = True Then
                 GlobalVariables.targetStructure = dbstruc

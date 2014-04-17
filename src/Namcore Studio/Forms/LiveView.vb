@@ -114,7 +114,6 @@ Namespace Forms
             _cmpFileListViewComparer = New ListViewComparer(accountview)
             _cmpFileListViewComparer2 = New ListViewComparer(characterview)
             _checkchangestatus = False
-            GlobalVariables.sourceCore = "trinity" 'for testing only
             Dim mAcInfoProc As AccountCharacterInformationProcessing = New AccountCharacterInformationProcessing
             GlobalVariables.acctable = mAcInfoProc.ReturnAccountTable(GlobalVariables.GlobalConnection_Realm,
                                                                       GlobalVariables.sourceStructure)
@@ -416,7 +415,6 @@ Namespace Forms
 
         Public Sub Setaccountview(ByVal accounttable As DataTable)
             _checkchangestatus = False
-            GlobalVariables.sourceCore = "trinity" '// for testing only
             characterview.Items.Clear()
             accountview.Items.Clear()
             For Each rowitem As DataRow In accounttable.Rows
@@ -462,7 +460,6 @@ Namespace Forms
 
         Public Sub Setcharacterview(ByVal charactertable As DataTable)
             _checkchangestatus = False
-            GlobalVariables.sourceCore = "trinity" 'for testing only
             characterview.Items.Clear()
             accountview.Items.Clear()
             For Each rowitem As DataRow In GlobalVariables.modifiedAccTable.Rows

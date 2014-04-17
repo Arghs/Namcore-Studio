@@ -42,6 +42,8 @@ Namespace Forms
             _catchError = False
             Select Case GlobalVariables.con_operator
                 Case 1 'Source connection @liveview
+                    If trinity335picker.Checked = True Then GlobalVariables.sourceCore = "trinity"
+                    If mangos335picker.Checked = True Then GlobalVariables.sourceCore = "mangos"
                     GlobalVariables.globChars = New GlobalCharVars()
                     GlobalVariables.globChars.AccountSets = New List(Of Account)
                     GlobalVariables.armoryMode = False
@@ -85,7 +87,7 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.StartCheck("trinity", 3, GlobalVariables.GlobalConnection,
+                                _strucCheck.StartCheck(GlobalVariables.sourceCore, 3, GlobalVariables.GlobalConnection,
                                                        GlobalVariables.GlobalConnection_Realm,
                                                        GlobalVariables.GlobalConnection_Info, chardbname_combo.Text,
                                                        realmdbname_combo.Text, False) 'todo
@@ -96,7 +98,7 @@ Namespace Forms
                                             Where TryCast(currentForm1, Form).Name = "LiveView"
                                         liveview = DirectCast(currentForm, LiveView)
                                     Next
-                                Catch ex As Exception :
+                                Catch ex As Exception
                                 End Try
                                 If Not liveview Is Nothing Then
                                     liveview.accountview.Items.Clear()
@@ -117,6 +119,8 @@ Namespace Forms
 
                     End If
                 Case 2 'Target connection @liveview
+                    If trinity335picker.Checked = True Then GlobalVariables.targetCore = "trinity"
+                    If mangos335picker.Checked = True Then GlobalVariables.targetCore = "mangos"
                     GlobalVariables.TargetConnectionString = ""
                     GlobalVariables.TargetConnectionString_Realm = ""
                     If defaultconn_radio.Checked = True Then
@@ -158,7 +162,7 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.StartCheck("trinity", 3, GlobalVariables.TargetConnection,
+                                _strucCheck.StartCheck(GlobalVariables.sourceCore, 3, GlobalVariables.TargetConnection,
                                                        GlobalVariables.TargetConnection_Realm,
                                                        GlobalVariables.TargetConnection_Info, chardbname_combo.Text,
                                                        realmdbname_combo.Text, True) 'todo
@@ -169,7 +173,7 @@ Namespace Forms
                                             Where TryCast(currentForm1, Form).Name = "LiveView"
                                         liveview = DirectCast(currentForm, LiveView)
                                     Next
-                                Catch ex As Exception :
+                                Catch ex As Exception
                                 End Try
                                 If Not liveview Is Nothing Then
                                     liveview.target_accounts_tree.Nodes.Clear()

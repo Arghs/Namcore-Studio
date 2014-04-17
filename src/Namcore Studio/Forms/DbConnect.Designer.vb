@@ -58,11 +58,15 @@ Namespace Forms
             Me.userid_txtbox = New System.Windows.Forms.TextBox()
             Me.savelogin_bt = New System.Windows.Forms.Button()
             Me.connect_header_label = New System.Windows.Forms.Label()
+            Me.trinity335picker = New System.Windows.Forms.RadioButton()
+            Me.mangos335picker = New System.Windows.Forms.RadioButton()
+            Me.GroupBox3 = New System.Windows.Forms.GroupBox()
             Me.connect_panel.SuspendLayout()
             Me.login1_panel.SuspendLayout()
             Me.GroupBox2.SuspendLayout()
             Me.GroupBox1.SuspendLayout()
             CType(Me.port_ud, System.ComponentModel.ISupportInitialize).BeginInit()
+            Me.GroupBox3.SuspendLayout()
             Me.SuspendLayout()
             '
             'connect_panel
@@ -72,7 +76,7 @@ Namespace Forms
             Me.connect_panel.Controls.Add(Me.connect_header_label)
             Me.connect_panel.Location = New System.Drawing.Point(12, 84)
             Me.connect_panel.Name = "connect_panel"
-            Me.connect_panel.Size = New System.Drawing.Size(514, 490)
+            Me.connect_panel.Size = New System.Drawing.Size(514, 424)
             Me.connect_panel.TabIndex = 1
             '
             'login1_panel
@@ -80,9 +84,7 @@ Namespace Forms
             Me.login1_panel.Controls.Add(Me.GroupBox2)
             Me.login1_panel.Controls.Add(Me.viaserver_radio)
             Me.login1_panel.Controls.Add(Me.defaultconn_radio)
-            Me.login1_panel.Controls.Add(Me.connect_bt)
             Me.login1_panel.Controls.Add(Me.GroupBox1)
-            Me.login1_panel.Controls.Add(Me.savelogin_bt)
             Me.login1_panel.Location = New System.Drawing.Point(9, 37)
             Me.login1_panel.Name = "login1_panel"
             Me.login1_panel.Size = New System.Drawing.Size(499, 440)
@@ -112,7 +114,7 @@ Namespace Forms
             Me.Label11.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.Label11.ForeColor = System.Drawing.Color.Black
             Me.Label11.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Label11.Location = New System.Drawing.Point(364, 45)
+            Me.Label11.Location = New System.Drawing.Point(374, 45)
             Me.Label11.Name = "Label11"
             Me.Label11.Size = New System.Drawing.Size(27, 17)
             Me.Label11.TabIndex = 27
@@ -172,21 +174,24 @@ Namespace Forms
             '
             'serveraddress_txtbox
             '
-            Me.serveraddress_txtbox.Location = New System.Drawing.Point(136, 44)
+            Me.serveraddress_txtbox.Enabled = False
+            Me.serveraddress_txtbox.Location = New System.Drawing.Point(146, 44)
             Me.serveraddress_txtbox.Name = "serveraddress_txtbox"
             Me.serveraddress_txtbox.Size = New System.Drawing.Size(222, 20)
             Me.serveraddress_txtbox.TabIndex = 15
             '
             'rmpass_txtbox
             '
-            Me.rmpass_txtbox.Location = New System.Drawing.Point(136, 97)
+            Me.rmpass_txtbox.Enabled = False
+            Me.rmpass_txtbox.Location = New System.Drawing.Point(146, 97)
             Me.rmpass_txtbox.Name = "rmpass_txtbox"
             Me.rmpass_txtbox.Size = New System.Drawing.Size(169, 20)
             Me.rmpass_txtbox.TabIndex = 19
             '
             'rmuser_txtbox
             '
-            Me.rmuser_txtbox.Location = New System.Drawing.Point(136, 71)
+            Me.rmuser_txtbox.Enabled = False
+            Me.rmuser_txtbox.Location = New System.Drawing.Point(146, 71)
             Me.rmuser_txtbox.Name = "rmuser_txtbox"
             Me.rmuser_txtbox.Size = New System.Drawing.Size(169, 20)
             Me.rmuser_txtbox.TabIndex = 18
@@ -224,7 +229,7 @@ Namespace Forms
             Me.connect_bt.Cursor = System.Windows.Forms.Cursors.Hand
             Me.connect_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.connect_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.connect_bt.Location = New System.Drawing.Point(22, 385)
+            Me.connect_bt.Location = New System.Drawing.Point(21, 559)
             Me.connect_bt.Name = "connect_bt"
             Me.connect_bt.Size = New System.Drawing.Size(147, 42)
             Me.connect_bt.TabIndex = 208
@@ -429,7 +434,7 @@ Namespace Forms
             Me.savelogin_bt.Cursor = System.Windows.Forms.Cursors.Hand
             Me.savelogin_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.savelogin_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.savelogin_bt.Location = New System.Drawing.Point(361, 393)
+            Me.savelogin_bt.Location = New System.Drawing.Point(393, 567)
             Me.savelogin_bt.Name = "savelogin_bt"
             Me.savelogin_bt.Size = New System.Drawing.Size(121, 34)
             Me.savelogin_bt.TabIndex = 210
@@ -447,19 +452,64 @@ Namespace Forms
             Me.connect_header_label.TabIndex = 0
             Me.connect_header_label.Text = "Connect to source server"
             '
+            'trinity335picker
+            '
+            Me.trinity335picker.AutoSize = True
+            Me.trinity335picker.BackColor = System.Drawing.Color.Transparent
+            Me.trinity335picker.Checked = True
+            Me.trinity335picker.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold)
+            Me.trinity335picker.Location = New System.Drawing.Point(12, 19)
+            Me.trinity335picker.Name = "trinity335picker"
+            Me.trinity335picker.Size = New System.Drawing.Size(134, 21)
+            Me.trinity335picker.TabIndex = 226
+            Me.trinity335picker.TabStop = True
+            Me.trinity335picker.Text = "TrinityCore 3.3.5"
+            Me.trinity335picker.UseVisualStyleBackColor = False
+            '
+            'mangos335picker
+            '
+            Me.mangos335picker.AutoSize = True
+            Me.mangos335picker.BackColor = System.Drawing.Color.Transparent
+            Me.mangos335picker.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold)
+            Me.mangos335picker.Location = New System.Drawing.Point(169, 19)
+            Me.mangos335picker.Name = "mangos335picker"
+            Me.mangos335picker.Size = New System.Drawing.Size(119, 21)
+            Me.mangos335picker.TabIndex = 227
+            Me.mangos335picker.Text = "MaNGOS 3.3.5"
+            Me.mangos335picker.UseVisualStyleBackColor = False
+            '
+            'GroupBox3
+            '
+            Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+            Me.GroupBox3.Controls.Add(Me.trinity335picker)
+            Me.GroupBox3.Controls.Add(Me.mangos335picker)
+            Me.GroupBox3.Font = New System.Drawing.Font("Franklin Gothic Medium", 9.75!, System.Drawing.FontStyle.Bold)
+            Me.GroupBox3.Location = New System.Drawing.Point(24, 501)
+            Me.GroupBox3.Name = "GroupBox3"
+            Me.GroupBox3.Size = New System.Drawing.Size(490, 44)
+            Me.GroupBox3.TabIndex = 228
+            Me.GroupBox3.TabStop = False
+            Me.GroupBox3.Text = " Pick core"
+            '
             'DbConnect
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(541, 554)
+            Me.ClientSize = New System.Drawing.Size(541, 608)
+            Me.Controls.Add(Me.GroupBox3)
             Me.Controls.Add(Me.connect_panel)
+            Me.Controls.Add(Me.connect_bt)
+            Me.Controls.Add(Me.savelogin_bt)
             Me.DoubleBuffered = True
             Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "DbConnect"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "DB_connect"
+            Me.Controls.SetChildIndex(Me.savelogin_bt, 0)
+            Me.Controls.SetChildIndex(Me.connect_bt, 0)
             Me.Controls.SetChildIndex(Me.connect_panel, 0)
+            Me.Controls.SetChildIndex(Me.GroupBox3, 0)
             Me.connect_panel.ResumeLayout(False)
             Me.connect_panel.PerformLayout()
             Me.login1_panel.ResumeLayout(False)
@@ -469,6 +519,8 @@ Namespace Forms
             Me.GroupBox1.ResumeLayout(False)
             Me.GroupBox1.PerformLayout()
             CType(Me.port_ud, System.ComponentModel.ISupportInitialize).EndInit()
+            Me.GroupBox3.ResumeLayout(False)
+            Me.GroupBox3.PerformLayout()
             Me.ResumeLayout(False)
 
         End Sub
@@ -504,5 +556,8 @@ Namespace Forms
         Friend WithEvents savelogin_bt As System.Windows.Forms.Button
         Friend WithEvents connect_header_label As System.Windows.Forms.Label
         Friend WithEvents port_ud As System.Windows.Forms.NumericUpDown
+        Friend WithEvents trinity335picker As System.Windows.Forms.RadioButton
+        Friend WithEvents mangos335picker As System.Windows.Forms.RadioButton
+        Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     End Class
 End Namespace
