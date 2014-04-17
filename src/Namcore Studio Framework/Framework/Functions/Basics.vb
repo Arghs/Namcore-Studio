@@ -21,44 +21,48 @@
 '*      /Description:   Includes basic and frequently used functions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
-Imports System.Net
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Modules
 Imports System.Windows.Forms
 Imports NCFramework.Framework.Forms
+Imports libnc
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Database
+Imports System.Net
+Imports System.Text
 
 Namespace Framework.Functions
-
     Public Module Basics
-
         '// Declaration
         Public Tmpset As Integer
         '// Declaration
 
         Public Sub InitializeDbc()
             LogAppend("Initializing DBC files", "Basics_InitializeDBC", True)
-            libnc.Main.Initialize()
+            Main.Initialize()
         End Sub
 
-        Public Sub AddAccountSet(ByVal setId As Integer, ByVal player As Account, Optional globChars As GlobalCharVars = Nothing)
+        Public Sub ResetTempDataTables()
+            TempTable1 = Nothing
+            TempTable1Name = ""
+            TempTable2 = Nothing
+            TempTable2Name = ""
+        End Sub
+
+        Public Sub AddAccountSet(ByVal setId As Integer, ByVal player As Account,
+                                 Optional globChars As GlobalCharVars = Nothing)
             Dim useChars As GlobalCharVars
             If GlobalVariables.forceTemplateCharVars = False Then
                 useChars = GlobalVariables.globChars
             Else
                 useChars = GlobalVariables.templateCharVars
             End If
-            If useChars.AccountSetsIndex Is Nothing Then
-                useChars.AccountSetsIndex = ""
-                useChars.AccountSets = New List(Of Account)()
-            End If
-            If useChars.AccountSetsIndex.Contains("[setId:" & setId.ToString() & "|") Then
+            If Not globChars Is Nothing Then useChars = globChars
+            If useChars.AccountSets Is Nothing Then useChars.AccountSets = New List(Of Account)()
+            Dim accountSet As Integer = useChars.AccountSets.FindIndex(Function(account) account.SetIndex = setId)
+            If accountSet <> -1 Then
                 SetAccountSet(setId, player)
             Else
                 useChars.AccountSets.Add(player)
-                useChars.AccountSetsIndex = useChars.AccountSetsIndex & "[setId:" &
-                                                               setId.ToString & "|@" &
-                                                               (useChars.AccountSets.Count - 1).ToString &
-                                                               "]"
             End If
         End Sub
 
@@ -69,123 +73,76 @@ Namespace Framework.Functions
             Else
                 useChars = GlobalVariables.templateCharVars
             End If
-            If useChars.AccountSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
-                'found
-                Return useChars.AccountSets(TryInt(SplitString(useChars.AccountSetsIndex,
-                                                                               "[setId:" & setId.ToString() & "|@", "]")))
+            Dim accountSet As Integer = useChars.AccountSets.FindIndex(Function(account) account.SetIndex = setId)
+            If accountSet <> -1 Then
+                Return useChars.AccountSets(accountSet)
             Else
-                'not found
                 Return Nothing
             End If
         End Function
 
-        Public Sub SetAccountSet(ByVal setId As Integer, ByVal account As Account)
+        Public Sub SetAccountSet(ByVal setId As Integer, ByVal playerAccount As Account)
             Dim useChars As GlobalCharVars
             If GlobalVariables.forceTemplateCharVars = False Then
                 useChars = GlobalVariables.globChars
             Else
                 useChars = GlobalVariables.templateCharVars
             End If
-            If useChars.AccountSetsIndex Is Nothing Then
-                useChars.AccountSetsIndex = ""
-                useChars.AccountSets = New List(Of Account)()
-            End If
-            If useChars.AccountSetsIndex.Contains("setId:" & setId.ToString() & "|") Then
-                'found
-                useChars.AccountSets(TryInt(SplitString(useChars.AccountSetsIndex,
-                                                                           "[setId:" & setId.ToString() & "|@", "]"))) =
-                    account
-            Else
-                'not found
+            If useChars.AccountSets Is Nothing Then useChars.AccountSets = New List(Of Account)()
+            Dim accountSet As Integer = useChars.AccountSets.FindIndex(Function(account) account.SetIndex = setId)
+            If accountSet <> -1 Then
+                useChars.AccountSets(accountSet) = playerAccount
             End If
         End Sub
 
         Public Function GetCharacterSetBySetId(ByVal setId As Integer, ByVal playerAccount As Account) As Character
-            If playerAccount.CharactersIndex.Contains("setId:" & setId.ToString() & "|") Then
-                'found
-                Return playerAccount.Characters(TryInt(SplitString(playerAccount.CharactersIndex,
-                                                                               "[setId:" & setId.ToString() & "|@", "]")))
+            Dim charSet As Integer = playerAccount.Characters.FindIndex(Function(character) character.SetIndex = setId)
+            If charSet <> -1 Then
+                Return playerAccount.Characters(charSet)
             Else
-                'not found
                 Return Nothing
             End If
         End Function
 
         Public Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character, ByVal playerAccount As Account)
+            player.SetIndex = setId
+            player.AccountSet = playerAccount.SetIndex
             playerAccount.Characters.Add(player)
-            playerAccount.CharactersIndex = playerAccount.CharactersIndex & "[setId:" &
-                                                           setId.ToString & "|@" &
-                                                           (playerAccount.Characters.Count - 1).ToString &
-                                                           "]"
         End Sub
 
-        Public Sub SetCharacterSet(ByVal setId As Integer, ByVal character As Character, ByVal account As Account)
-            If account.CharactersIndex.Contains("setId:" & setId.ToString() & "|") Then
-                'found
-                account.Characters(TryInt(SplitString(account.CharactersIndex,
-                                                                           "[setId:" & setId.ToString() & "|@", "]"))) =
-                    character
-            Else
-                'not found
+        Public Sub SetCharacterSet(ByVal setId As Integer, ByVal playerCharacter As Character, ByVal playerAccount As Account)
+            Dim charSet As Integer = PlayerAccount.Characters.FindIndex(Function(character) character.SetIndex = setId)
+            If charSet <> -1 Then
+                PlayerAccount.Characters(charSet) = playerCharacter
             End If
-        End Sub
-
-        Public Sub AddCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
-            If player.ArmorItems Is Nothing Then
-                player.ArmorItems = New List(Of Item)
-                player.ArmorItemsIndex = ""
-            End If
-            player.ArmorItems.Add(itm)
-            player.ArmorItemsIndex = player.ArmorItemsIndex & "[slot:" & itm.Slotname & "|@" &
-                                     (player.ArmorItems.Count - 1).ToString & "]"
-            player.ArmorItemsIndex = player.ArmorItemsIndex & "[slotnum:" & itm.Slot.ToString & "|@" &
-                                     (player.ArmorItems.Count - 1).ToString & "]"
         End Sub
 
         Public Sub RemoveCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
             If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
-            Dim itmIndex As Integer = TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & itm.Slot.ToString() & "|@",
-                                                         "]"))
-            player.ArmorItems.Item(itmIndex) = New Item With {.Id = 0, .Slot = itm.Slot, .Slotname = itm.Slotname}
-            player.ArmorItemsIndex = player.ArmorItemsIndex.Replace("[slot:" & itm.Slotname & "|@" & itmIndex.ToString & "]",
-                                                                    "")
-            player.ArmorItemsIndex =
-                player.ArmorItemsIndex.Replace("[slotnum:" & itm.Slot.ToString() & "|@" & itmIndex.ToString & "]", "")
+            Dim itmIndex As Integer = player.ArmorItems.FindIndex(Function(item) item.Slot = itm.Slot)
+            If itmIndex <> -1 Then
+                player.ArmorItems.RemoveAt(itmIndex)
+            End If
         End Sub
 
         Public Sub SetCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
-            If _
-                player.ArmorItemsIndex.Contains("[slot:" & itm.Slotname & "|@") Or
-                player.ArmorItemsIndex.Contains("[slotnum:" & itm.Slot.ToString & "|@") Then
-                player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slot:" & itm.Slotname & "|@", "]"))) = itm
-                player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & itm.Slot.ToString & "|@", "]"))) _
-                    = itm
-            Else
-
+            Dim itmIndex As Integer = player.ArmorItems.FindIndex(Function(item) item.Slot = itm.Slot)
+            If itmIndex = -1 Then itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slotname = itm.Slotname)
+            If itmIndex <> -1 Then
+                player.ArmorItems(itmIndex) = itm
             End If
         End Sub
 
         Public Function GetCharacterArmorItem(ByVal player As Character, ByVal slot As String,
                                               Optional isint As Boolean = False) As Item
-            If _
-                player.ArmorItemsIndex.Contains("[slot:" & slot & "|@") Or
-                player.ArmorItemsIndex.Contains("[slotnum:" & slot & "|@") Then
-                If isint = True Then
-                    Dim result As Item = player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slotnum:" & slot & "|@", "]")))
-                    If result.Id = 0 Then
-                        Return Nothing
-                    Else
-                        Return result
-                    End If
-                Else
-                    Dim result As Item = player.ArmorItems(TryInt(SplitString(player.ArmorItemsIndex, "[slot:" & slot & "|@", "]")))
-                    If result.Id = 0 Then
-                        Return Nothing
-                    Else
-                        Return result
-                    End If
-                End If
-
+            Dim itmIndex As Integer
+            If isint Then
+                itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slot = TryInt(slot))
+            Else
+                itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slotname = slot)
+            End If
+            If itmIndex <> -1 Then
+                Return player.ArmorItems(itmIndex)
             Else
                 Return Nothing
             End If
@@ -194,23 +151,20 @@ Namespace Framework.Functions
         Public Sub AddCharacterGlyph(ByRef player As Character, ByVal gly As Glyph)
             If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
             player.PlayerGlyphs.Add(gly)
-            player.PlayerGlyphsIndex = player.PlayerGlyphsIndex & "[slot:" & gly.Slotname & "|@" &
-                                       (player.PlayerGlyphs.Count - 1).ToString & "]"
         End Sub
 
         Public Sub SetCharacterGlyph(ByRef player As Character, ByVal glph As Glyph)
-            If player.PlayerGlyphsIndex.Contains("[slot:" & glph.Slotname & "|@") Then
-                player.PlayerGlyphs(TryInt(SplitString(player.PlayerGlyphsIndex, "[slot:" & glph.Slotname & "|@", "]"))) =
-                    glph
-            Else
-
+            Dim glyphIndex As Integer = player.PlayerGlyphs.FindIndex(Function(glyph) glyph.Slotname = glph.Slotname)
+            If glyphIndex <> -1 Then
+                player.PlayerGlyphs(glyphIndex) = glph
             End If
         End Sub
 
         Public Function GetCharacterGlyph(ByVal player As Character, ByVal slot As String) As Glyph
-            If player.PlayerGlyphsIndex Is Nothing Then Return Nothing
-            If player.PlayerGlyphsIndex.Contains("[slot:" & slot & "|@") Then
-                Return player.PlayerGlyphs(TryInt(SplitString(player.PlayerGlyphsIndex, "[slot:" & slot & "|@", "]")))
+            If player.PlayerGlyphs Is Nothing Then Return Nothing
+            Dim glyphIndex As Integer = player.PlayerGlyphs.FindIndex(Function(glyph) glyph.Slotname = slot)
+            If glyphIndex <> -1 Then
+                Return player.PlayerGlyphs(glyphIndex)
             Else
                 Return Nothing
             End If
@@ -222,7 +176,8 @@ Namespace Framework.Functions
                 Return Nothing
             End If
             LogAppend(
-                "Splitting a string. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & start & "/-/" & ending,
+                "Splitting a string. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & start & "/-/" &
+                ending,
                 "Basics_splitString", False)
             Try
                 Dim quellcode As String = source
@@ -258,13 +213,13 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function LoadImageFromUrl(ByRef url As String) As Image
+        Public Function LoadImageFromUrl(ByRef url As String) As Bitmap
             LogAppend("Loading image from url: " & url, "Basics_LoadImageFromUrl", False)
             Try
                 Dim request As HttpWebRequest = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
                 request.Proxy = GlobalVariables.GlobalWebClient.Proxy
                 Dim response As HttpWebResponse = DirectCast(request.GetResponse, HttpWebResponse)
-                Dim img As Image = Image.FromStream(response.GetResponseStream())
+                Dim img As Bitmap = CType(Image.FromStream(response.GetResponseStream()), Bitmap)
                 response.Close()
                 Return img
             Catch ex As Exception
@@ -273,10 +228,11 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function ExecuteDataTableSearch(ByVal dt As DataTable, ByVal startfield As String, ByVal startvalue As String, ByVal targetfield As Integer) As String()
+        Public Function ExecuteDataTableSearch(ByVal dt As DataTable, ByVal startfield As String,
+                                               ByVal startvalue As String, ByVal targetfield As Integer) As String()
             Try
                 Dim foundRows() As DataRow
-                foundRows = dt.Select(startfield & " = '" & startvalue & "'")
+                foundRows = dt.Select(startfield & " = '" & EscapeLikeValue(startvalue) & "'")
                 If foundRows.Length = 0 Then
                     Return {"-"}
                 Else
@@ -292,20 +248,66 @@ Namespace Framework.Functions
             End Try
         End Function
 
+        Public Function ExecuteDataTableSearch(ByVal dt As DataTable, ByVal command As String) As List(Of String())
+            Try
+                Dim foundRows() As DataRow
+                foundRows = dt.Select(command)
+                If foundRows.Length = 0 Then
+                    Return Nothing
+                Else
+                    Dim resultList As New List(Of String())
+                   
+                    For i = 0 To foundRows.Count() - 1
+                        Dim colCount As Integer = foundRows(i).Table.Columns.Count()
+                        Dim resultArray(colCount - 1) As String
+                        For z = 0 To colCount - 1
+                            resultArray(z) = (foundRows(i)(z)).ToString
+                        Next z
+                        resultList.Add(resultArray)
+                    Next i
+                    Return resultList
+                End If
+            Catch ex As Exception
+                Return Nothing
+            End Try
+        End Function
+
+        Public Function EscapeLikeValue(ByVal value As String) As String
+            Dim sb As New StringBuilder(value.Length)
+            For i = 0 To value.Length - 1
+                Dim c As Char = value(i)
+                Select Case c
+                    Case "]"c
+                    Case "]"c, "["c, "%"c, "*"c
+                        sb.Append("[").Append(c).Append("]")
+                        Exit Select
+                    Case "'"c
+                        sb.Append("''")
+                        Exit Select
+                    Case Else
+                        sb.Append(c)
+                        Exit Select
+                End Select
+            Next
+            Return sb.ToString()
+        End Function
         Public Sub CloseProcessStatus()
             If GlobalVariables.DebugMode = False Then
                 Try
-                    For Each myForm As Form In From myForm1 As Form In Application.OpenForms Where myForm1.Name = "ProcessStatus"
+                    For Each myForm As Form In _
+                        From myForm1 As Object In Application.OpenForms Where CType(myForm1, Form).Name = "ProcessStatus"
                         myForm.Close()
                         Application.DoEvents()
                     Next
-                Catch ex As Exception : End Try
+                Catch ex As Exception :
+                End Try
             End If
         End Sub
 
         Public Sub NewProcessStatus()
             Try
-                For Each myForm As Form In From myForm1 As Form In Application.OpenForms Where myForm1.Name = "ProcessStatus"
+                For Each myForm As Form In _
+                     From myForm1 As Object In Application.OpenForms Where CType(myForm1, Form).Name = "ProcessStatus"
                     If GlobalVariables.DebugMode = True Then
                         Exit Sub
                     Else
@@ -313,7 +315,8 @@ Namespace Framework.Functions
                         myForm.Close()
                     End If
                 Next
-            Catch ex As Exception : End Try
+            Catch ex As Exception :
+            End Try
             GlobalVariables.procStatus = New ProcessStatus
             GlobalVariables.procStatus.Show()
             Application.DoEvents()

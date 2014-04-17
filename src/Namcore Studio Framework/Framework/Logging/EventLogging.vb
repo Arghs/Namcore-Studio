@@ -21,19 +21,22 @@
 '*      /Description:   Handles logging of events and exceptions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
-Imports System.Text
-Imports NCFramework.Framework.Modules
 Imports System.Windows.Forms
+Imports System.Drawing
+Imports FastColoredTextBoxNS
+Imports NCFramework.Framework.Modules
+Imports System.Text
 
 Namespace Framework.Logging
-
     Public Module EventLogging
-
         '// Declaration
         Public Delegate Sub IncomingEventDelegate(ByVal [event] As String)
+
         Public Lastprogress As Integer
         Public Isbusy As Boolean = False
         Private _mUserOut As Boolean
+        Private ReadOnly InfoStyle As TextStyle = New TextStyle(Brushes.Black, Nothing, FontStyle.Regular)
+        Private ReadOnly ErrorStyle As TextStyle = New TextStyle(Brushes.Red, Nothing, FontStyle.Regular)
         '// Declaration
 
         Public Sub LogAppend(ByVal myevent As String, ByVal location As String, Optional userOut As Boolean = False,
@@ -62,12 +65,14 @@ Namespace Framework.Logging
                 Dim _
                     fs As _
                         New StreamWriter(Application.StartupPath & "/EventLog.log",
-                                         FileMode.OpenOrCreate, Encoding.Default)
+                                        CType(FileMode.OpenOrCreate, Boolean), Encoding.Default)
                 fs.WriteLine(GlobalVariables.eventlog)
                 fs.Close()
                 GlobalVariables.eventlog = ""
+                Dim tempStyle As TextStyle = InfoStyle
+                If iserror Then tempStyle = ErrorStyle
                 Try
-                    GlobalVariables.procStatus.AppendProc("[" & Now.TimeOfDay.ToString & "]" & status)
+                    GlobalVariables.procStatus.AppendProc("[" & Now.TimeOfDay.ToString & "]" & status, tempStyle)
                 Catch ex As Exception
 
                 End Try

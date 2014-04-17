@@ -61,7 +61,7 @@ Namespace Framework.Core
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim excounter As Integer = UBound(readedcode.Split(CChar(";")))
                         Dim loopcounter As Integer = 0
-                        Dim finalcounter As Integer = TryInt(excounter/3)
+                        Dim finalcounter As Integer = CInt(excounter / 3)
                         Dim partscounter As Integer = 0
                         Do
                             Dim skl As New Skill
@@ -71,7 +71,7 @@ Namespace Framework.Core
                             skl.Value = TryInt(parts(partscounter).ToString)
                             partscounter += 1
                             skl.Max = TryInt(parts(partscounter).ToString)
-                            If GetSkillSpellIdBySkillRank(skl.Id, 1) = -1 Then
+                            If GetSkillSpellIdBySkillRank(skl.Id, 1) = - 1 Then
                                 '// Common skill
                                 If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
                                 player.Skills.Add(skl)
@@ -129,7 +129,7 @@ Namespace Framework.Core
                         skl.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         skl.Value = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         skl.Max = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                        If GetSkillSpellIdBySkillRank(skl.Id, 1) = -1 Then
+                        If GetSkillSpellIdBySkillRank(skl.Id, 1) = - 1 Then
                             '// Common skill
                             If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
                             player.Skills.Add(skl)
@@ -182,7 +182,7 @@ Namespace Framework.Core
                         skl.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         skl.Value = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         skl.Max = TryInt((tempdt.Rows(count).Item(2)).ToString)
-                        If GetSkillSpellIdBySkillRank(skl.Id, 1) = -1 Then
+                        If GetSkillSpellIdBySkillRank(skl.Id, 1) = - 1 Then
                             '// Common skill
                             If player.Skills Is Nothing Then player.Skills = New List(Of Skill)()
                             player.Skills.Add(skl)

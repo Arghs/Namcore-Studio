@@ -23,7 +23,6 @@
 Imports System.Drawing
 
 Namespace Framework.Modules
-
     <Serializable()>
     Public Class Item
         Public Id As Integer
@@ -35,22 +34,22 @@ Namespace Framework.Modules
         Public Socket1Id As Integer
         Public Socket2Id As Integer
         Public Socket3Id As Integer
-        Public Socket1Pic As Image
-        Public Socket2Pic As Image
-        Public Socket3Pic As Image
+        Public Socket1Pic As Bitmap
+        Public Socket2Pic As Bitmap
+        Public Socket3Pic As Bitmap
         Public Socket1Name As String
         Public Socket2Name As String
         Public Socket3Name As String
         Public EnchantmentType As Integer '1=spell;2=item
-        Public EnchantmentId As Integer
+        Public EnchantmentId As Integer = 0
         Public EnchantmentName As String
         Public Enchstring As String
         Public Socket1Effectid As Integer
         Public Socket2Effectid As Integer
         Public Socket3Effectid As Integer
         Public EnchantmentEffectid As Integer
-        Public Image As Image
-        Public UpdateRequest As Integer = 0 '0=no; 1=create; 2=delete; 3=update
+        Public Image As Bitmap
+        Public AddedBag As Boolean = False
         Public Bag As Integer
         Public Bagguid As Integer
         Public Enchantstring As String
@@ -61,7 +60,6 @@ Namespace Framework.Modules
         Public Charges As String
         Public Duration As Integer
         Public Durability As Integer
-
         Public Sub New()
         End Sub
     End Class
@@ -73,7 +71,7 @@ Namespace Framework.Modules
         Public Spec As Integer '1;2
         Public Name As String
         Public Slotname As String 'e.g. majorglyph1
-        Public Image As Image
+        Public Image As Bitmap
 
         Public Sub New()
         End Sub
@@ -84,7 +82,7 @@ Namespace Framework.Modules
         Public Id As Integer
         Public Name As String
         Public Description As String
-        Public Icon As Image
+        Public Icon As Bitmap
         Public GainDate As Integer
         Public OwnerSet As Integer
         Public SubCategory As Integer '//only for interfaces
@@ -130,7 +128,8 @@ Namespace Framework.Modules
         Public Max As Integer
         Public Status As Integer _
         '0=stranger; 1=acquaintance; 2=unfriendly; 3=neutral; 4=friendly; 5=honored; 6=revered; 7=exalted
-        <Flags> Public Enum FlagEnum
+        <Flags>
+        Public Enum FlagEnum
             FACTION_FLAG_INVISIBLE = 0
             FACTION_FLAG_VISIBLE = 1
             FACTION_FLAG_AT_WAR = 2
@@ -141,6 +140,7 @@ Namespace Framework.Modules
             FACTION_FLAG_RIVAL = 64
             FACTION_FLAG_SPECIAL = 128
         End Enum
+
         Public Sub New()
         End Sub
     End Class

@@ -24,7 +24,6 @@ Imports System.Linq
 Imports NCFramework.Framework.Modules
 
 Namespace Forms
-
     Public Class TargetSelectInterface
         '// Declaration
         Private _ptMouseDownLocation As Point
@@ -38,22 +37,35 @@ Namespace Forms
 
         Private Sub newtemplate_bt_Click(sender As Object, e As EventArgs) Handles newtemplate_bt.Click
             GlobalVariables.saveTemplateMode = True
-            For Each liveview As Form In From xform As Form In Application.OpenForms Where xform.Name = "LiveView" Select xform
+            For Each liveview As Form In _
+                From xform As Object In Application.OpenForms Where TryCast(xform, Form).Name = "LiveView" Select xform
                 DirectCast(liveview, LiveView).PrepareTemplateCreation()
             Next
             Close()
         End Sub
 
-        Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown, header.MouseDown
             If e.Button = MouseButtons.Left Then
                 _ptMouseDownLocation = e.Location
             End If
         End Sub
 
-        Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove, header.MouseMove
             If e.Button = MouseButtons.Left Then
-                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
+        End Sub
+        Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
+            Close()
+        End Sub
+
+        Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter2.MouseEnter
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_close_light
+        End Sub
+
+        Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter2.MouseLeave
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_close
         End Sub
     End Class
 End Namespace

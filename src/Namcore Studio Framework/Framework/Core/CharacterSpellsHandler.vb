@@ -68,14 +68,13 @@ Namespace Framework.Core
                             spl.Active = 1
                             spl.Disabled = 0
                             partscounter += 1
-                            LogAppend("Adding spellId: " & spl.Id.ToString(), "CharacterSpellsHandler_LoadAtArcemu", True)
+                            LogAppend("Adding spellId: " & spl.Id.ToString(), "CharacterSpellsHandler_LoadAtArcemu",
+                                      True)
                             Dim professionId As Integer = GetSkillIdBySpellId(spl.Id)
-                            If professionId = 0 Then
-                                '// Common spell
-                                player.Spells.Add(spl)
-                            Else
-                                '// Profession recipe
+                            If IsProfession(professionId) Then
                                 player.AddRecipeToProfession(professionId, spl.Id)
+                            Else
+                                player.Spells.Add(spl)
                             End If
                         Loop Until partscounter = excounter - 1
                         count += 1
@@ -115,12 +114,10 @@ Namespace Framework.Core
                         spl.Active = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         spl.Disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         Dim professionId As Integer = GetSkillIdBySpellId(spl.Id)
-                        If professionId = 0 Then
-                            '// Common spell
-                            player.Spells.Add(spl)
-                        Else
-                            '// Profession recipe
+                        If IsProfession(professionId) Then
                             player.AddRecipeToProfession(professionId, spl.Id)
+                        Else
+                            player.Spells.Add(spl)
                         End If
                         count += 1
                     Loop Until count = lastcount
@@ -158,12 +155,10 @@ Namespace Framework.Core
                         spl.Active = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         spl.Disabled = TryInt((tempdt.Rows(count).Item(2)).ToString)
                         Dim professionId As Integer = GetSkillIdBySpellId(spl.Id)
-                        If professionId = 0 Then
-                            '// Common spell
-                            player.Spells.Add(spl)
-                        Else
-                            '// Profession recipe
+                        If IsProfession(professionId) Then
                             player.AddRecipeToProfession(professionId, spl.Id)
+                        Else
+                            player.Spells.Add(spl)
                         End If
                         count += 1
                     Loop Until count = lastcount

@@ -28,10 +28,10 @@ Namespace Provider
             Const targetField As Integer = 2
             Dim myResult As String = ExecuteCsvSearch(ItemCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
-            Catch
+            Catch ex As Exception
                 returnResult = 0
             End Try
             Return returnResult
@@ -41,11 +41,24 @@ Namespace Provider
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(ItemCsv, "SubModule", subModuleId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
-            Catch
+            Catch ex As Exception
                 returnResult = 0
+            End Try
+            Return returnResult
+        End Function
+        Public Function GetDisplayIdByItemId(ByVal itemId As Integer) As Integer
+            CheckInit()
+            Const targetField As Integer = 3
+            Dim myResult As String = ExecuteCsvSearch(ItemCsv, "ItemId", itemId.ToString(), targetField)(0)
+            Dim returnResult As Integer
+            If myResult = "-" Then myResult = "-1"
+            Try
+                returnResult = CInt(myResult)
+            Catch ex As Exception
+                returnResult = -1
             End Try
             Return returnResult
         End Function

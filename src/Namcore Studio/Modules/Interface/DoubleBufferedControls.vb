@@ -28,8 +28,8 @@ Namespace Modules.Interface
         <Extension()>
         Public Sub SetDoubleBuffered(control As Control)
             control.GetType().InvokeMember("DoubleBuffered", BindingFlags.SetProperty Or
-                                                               BindingFlags.Instance Or BindingFlags.NonPublic, Nothing,
-                                             control, New Object() {True})
+                                                             BindingFlags.Instance Or BindingFlags.NonPublic, Nothing,
+                                           control, New Object() {True})
         End Sub
     End Module
 End Namespace

@@ -20,16 +20,18 @@
 '*      /Filename:      ResourceHandler
 '*      /Description:   Provides access to the UserMessages resource
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Resources
+Imports System.Reflection
+
 Namespace Framework.Functions
     Public Class ResourceHandler
-        Public Shared Function GetUserMessage(ByVal field As String)
+        Public Shared Function GetUserMessage(ByVal field As String) As String
             Try
-                Dim rm As New System.Resources.ResourceManager("NCFramework.UserMessages", Reflection.Assembly.GetExecutingAssembly())
+                Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
                 Return rm.GetString(field)
             Catch ex As Exception
                 Return ""
             End Try
-
         End Function
     End Class
 End Namespace

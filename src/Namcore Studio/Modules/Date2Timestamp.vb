@@ -21,12 +21,13 @@
 '*      /Description:   Extension to convert a date to timestamp and vv
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Runtime.CompilerServices
+
 Namespace Modules
     Module Date2Timestamp
-        ''' <summary>
-        '''     timestamp converter
-        ''' </summary>
-        <Extension()>
+    ''' <summary>
+    '''     timestamp converter
+    ''' </summary>
+                         <Extension()>
         Public Function ToDate(ByRef stamp As Integer) As DateTime
             Try
                 Dim span As TimeSpan
@@ -38,6 +39,7 @@ Namespace Modules
                 Return DateTime.Today
             End Try
         End Function
+
         <Extension()>
         Public Function ToTimeStamp(ByRef dt As DateTime) As Integer
             Try

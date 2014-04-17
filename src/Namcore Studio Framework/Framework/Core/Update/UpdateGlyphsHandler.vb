@@ -36,14 +36,14 @@ Namespace Framework.Core.Update
             End If
             '// Any new glyphs?
             For Each gly As Glyph In _
-                From gly1 In modPlayer.PlayerGlyphs
+                From gly1 In modPlayer.PlayerGlyphs Where Not gly1 Is Nothing
                     Let result = player.PlayerGlyphs.Find(Function(glyph) glyph.Id = gly1.Id) Where result Is Nothing
                     Select gly1
                 CreateGlyph(modPlayer, gly)
             Next
             '// Any deleted glyphs?
             For Each gly As Glyph In _
-                From gly1 In player.PlayerGlyphs
+                From gly1 In player.PlayerGlyphs Where Not gly1 Is Nothing
                     Let result = modPlayer.PlayerGlyphs.Find(Function(glyph) glyph.Id = gly1.Id) Where result Is Nothing
                     Select gly1
                 DeleteGlyph(modPlayer, gly)
@@ -85,11 +85,11 @@ Namespace Framework.Core.Update
                             Case 3 : baseInt = 6
                         End Select
                         If glyph2Add.Slotname.Contains("1") Then
-                            parts(baseInt) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion)
+                            parts(CInt(baseInt)) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
                         ElseIf glyph2Add.Slotname.Contains("2") Then
-                            parts(baseInt + 1) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion)
+                            parts(CInt(baseInt + 1)) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
                         Else
-                            parts(baseInt + 2) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion)
+                            parts(CInt(baseInt + 2)) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
                         End If
                         glyphString = String.Join(",", parts)
                         runSQLCommand_characters_string(
@@ -212,11 +212,11 @@ Namespace Framework.Core.Update
                             Case 3 : baseInt = 6
                         End Select
                         If glyph2Delete.Slotname.Contains("1") Then
-                            parts(baseInt) = ""
+                            parts(CInt(baseInt)) = ""
                         ElseIf glyph2Delete.Slotname.Contains("2") Then
-                            parts(baseInt + 1) = ""
+                            parts(CInt(baseInt + 1)) = ""
                         Else
-                            parts(baseInt + 2) = ""
+                            parts(CInt(baseInt + 2)) = ""
                         End If
                         glyphString = String.Join(",", parts)
                         runSQLCommand_characters_string(

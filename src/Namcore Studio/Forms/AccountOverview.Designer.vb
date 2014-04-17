@@ -26,47 +26,52 @@ Namespace Forms
         'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
         <System.Diagnostics.DebuggerStepThrough()> _
         Private Sub InitializeComponent()
-            Me.components = New System.ComponentModel.Container()
-            Me.accname_lbl = New System.Windows.Forms.Label()
-            Me.characterview = New System.Windows.Forms.ListView()
-            Me.charguid = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-            Me.charname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-            Me.charrace = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-            Me.charclass = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-            Me.chargender = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-            Me.charlevel = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-            Me.Label2 = New System.Windows.Forms.Label()
-            Me.joindate_lbl = New System.Windows.Forms.Label()
-            Me.Label1 = New System.Windows.Forms.Label()
-            Me.lastip_lbl = New System.Windows.Forms.Label()
-            Me.Label4 = New System.Windows.Forms.Label()
-            Me.lastlogin_lbl = New System.Windows.Forms.Label()
-            Me.online_lbl = New System.Windows.Forms.Label()
-            Me.Label7 = New System.Windows.Forms.Label()
-            Me.expansion_ud = New System.Windows.Forms.NumericUpDown()
-            Me.Label8 = New System.Windows.Forms.Label()
-            Me.mail_lbl = New System.Windows.Forms.Label()
-            Me.lockaccount_cb = New System.Windows.Forms.CheckBox()
-            Me.Label10 = New System.Windows.Forms.Label()
-            Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-            Me.reset_bt = New System.Windows.Forms.Button()
-            Me.savechanges_bt = New System.Windows.Forms.Button()
-            Me.exit_bt = New System.Windows.Forms.Button()
-            Me.charactercontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
-            Me.RemoveToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-            Me.SelectedCharacterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-            Me.CheckedCharactersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-            Me.EditToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-            CType(Me.expansion_ud, System.ComponentModel.ISupportInitialize).BeginInit()
-            Me.GroupBox1.SuspendLayout()
-            Me.charactercontext.SuspendLayout()
-            Me.SuspendLayout()
-            '
-            'accname_lbl
-            '
-            Me.accname_lbl.AutoSize = True
-            Me.accname_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.accname_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.components = New System.ComponentModel.Container()
+        Me.accname_lbl = New System.Windows.Forms.Label()
+        Me.characterview = New System.Windows.Forms.ListView()
+        Me.charguid = CType(New System.Windows.Forms.ColumnHeader(),System.Windows.Forms.ColumnHeader)
+        Me.charname = CType(New System.Windows.Forms.ColumnHeader(),System.Windows.Forms.ColumnHeader)
+        Me.charrace = CType(New System.Windows.Forms.ColumnHeader(),System.Windows.Forms.ColumnHeader)
+        Me.charclass = CType(New System.Windows.Forms.ColumnHeader(),System.Windows.Forms.ColumnHeader)
+        Me.chargender = CType(New System.Windows.Forms.ColumnHeader(),System.Windows.Forms.ColumnHeader)
+        Me.charlevel = CType(New System.Windows.Forms.ColumnHeader(),System.Windows.Forms.ColumnHeader)
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.joindate_lbl = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lastip_lbl = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lastlogin_lbl = New System.Windows.Forms.Label()
+        Me.online_lbl = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.expansion_ud = New System.Windows.Forms.NumericUpDown()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.mail_lbl = New System.Windows.Forms.Label()
+        Me.lockaccount_cb = New System.Windows.Forms.CheckBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.reset_bt = New System.Windows.Forms.Button()
+        Me.savechanges_bt = New System.Windows.Forms.Button()
+        Me.exit_bt = New System.Windows.Forms.Button()
+        Me.charactercontext = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.RemoveToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SelectedCharacterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckedCharactersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.changepanel = New System.Windows.Forms.Panel()
+        Me.updatePic = New System.Windows.Forms.PictureBox()
+        Me.changeText_tb = New System.Windows.Forms.TextBox()
+        CType(Me.expansion_ud,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox1.SuspendLayout
+        Me.charactercontext.SuspendLayout
+        Me.changepanel.SuspendLayout
+        CType(Me.updatePic,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SuspendLayout
+        '
+        'accname_lbl
+        '
+        Me.accname_lbl.AutoSize = true
+        Me.accname_lbl.BackColor = System.Drawing.Color.Transparent
+            Me.accname_lbl.Cursor = System.Windows.Forms.Cursors.Arrow
             Me.accname_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.accname_lbl.ForeColor = System.Drawing.Color.Black
             Me.accname_lbl.Location = New System.Drawing.Point(237, 63)
@@ -131,7 +136,7 @@ Namespace Forms
             '
             Me.joindate_lbl.AutoSize = True
             Me.joindate_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.joindate_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+            Me.joindate_lbl.Cursor = System.Windows.Forms.Cursors.Default
             Me.joindate_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.joindate_lbl.ForeColor = System.Drawing.Color.Black
             Me.joindate_lbl.Location = New System.Drawing.Point(84, 22)
@@ -156,7 +161,7 @@ Namespace Forms
             '
             Me.lastip_lbl.AutoSize = True
             Me.lastip_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.lastip_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+            Me.lastip_lbl.Cursor = System.Windows.Forms.Cursors.Default
             Me.lastip_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.lastip_lbl.ForeColor = System.Drawing.Color.Black
             Me.lastip_lbl.Location = New System.Drawing.Point(84, 46)
@@ -181,7 +186,7 @@ Namespace Forms
             '
             Me.lastlogin_lbl.AutoSize = True
             Me.lastlogin_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.lastlogin_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+            Me.lastlogin_lbl.Cursor = System.Windows.Forms.Cursors.Default
             Me.lastlogin_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.lastlogin_lbl.ForeColor = System.Drawing.Color.Black
             Me.lastlogin_lbl.Location = New System.Drawing.Point(84, 69)
@@ -368,50 +373,82 @@ Namespace Forms
             Me.EditToolStripMenuItem1.Size = New System.Drawing.Size(117, 22)
             Me.EditToolStripMenuItem1.Text = "Edit"
             '
+            'changepanel
+            '
+            Me.changepanel.BackColor = System.Drawing.Color.Transparent
+            Me.changepanel.Controls.Add(Me.updatePic)
+            Me.changepanel.Controls.Add(Me.changeText_tb)
+            Me.changepanel.Location = New System.Drawing.Point(799, 212)
+            Me.changepanel.Name = "changepanel"
+            Me.changepanel.Size = New System.Drawing.Size(133, 24)
+            Me.changepanel.TabIndex = 244
+            '
+            'updatePic
+            '
+            Me.updatePic.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.updatePic.Image = Global.NamCore_Studio.My.Resources.Resources.Refresh_icon
+            Me.updatePic.Location = New System.Drawing.Point(115, 4)
+            Me.updatePic.Name = "updatePic"
+            Me.updatePic.Size = New System.Drawing.Size(16, 16)
+            Me.updatePic.TabIndex = 174
+            Me.updatePic.TabStop = False
+            '
+            'changeText_tb
+            '
+            Me.changeText_tb.Location = New System.Drawing.Point(3, 2)
+            Me.changeText_tb.Name = "changeText_tb"
+            Me.changeText_tb.Size = New System.Drawing.Size(106, 20)
+            Me.changeText_tb.TabIndex = 0
+            '
             'AccountOverview
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(501, 458)
-            Me.Controls.Add(Me.GroupBox1)
-            Me.Controls.Add(Me.lockaccount_cb)
-            Me.Controls.Add(Me.mail_lbl)
-            Me.Controls.Add(Me.Label8)
-            Me.Controls.Add(Me.expansion_ud)
-            Me.Controls.Add(Me.Label7)
-            Me.Controls.Add(Me.reset_bt)
-            Me.Controls.Add(Me.savechanges_bt)
-            Me.Controls.Add(Me.exit_bt)
-            Me.Controls.Add(Me.Label10)
-            Me.Controls.Add(Me.online_lbl)
-            Me.Controls.Add(Me.characterview)
-            Me.Controls.Add(Me.accname_lbl)
-            Me.DoubleBuffered = True
-            Me.Name = "AccountOverview"
-            Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-            Me.Text = "AccountOverview"
-            Me.Controls.SetChildIndex(Me.accname_lbl, 0)
-            Me.Controls.SetChildIndex(Me.characterview, 0)
-            Me.Controls.SetChildIndex(Me.online_lbl, 0)
-            Me.Controls.SetChildIndex(Me.Label10, 0)
-            Me.Controls.SetChildIndex(Me.exit_bt, 0)
-            Me.Controls.SetChildIndex(Me.savechanges_bt, 0)
-            Me.Controls.SetChildIndex(Me.reset_bt, 0)
-            Me.Controls.SetChildIndex(Me.Label7, 0)
-            Me.Controls.SetChildIndex(Me.expansion_ud, 0)
-            Me.Controls.SetChildIndex(Me.Label8, 0)
-            Me.Controls.SetChildIndex(Me.mail_lbl, 0)
-            Me.Controls.SetChildIndex(Me.lockaccount_cb, 0)
-            Me.Controls.SetChildIndex(Me.GroupBox1, 0)
-            CType(Me.expansion_ud, System.ComponentModel.ISupportInitialize).EndInit()
-            Me.GroupBox1.ResumeLayout(False)
-            Me.GroupBox1.PerformLayout()
-            Me.charactercontext.ResumeLayout(False)
-            Me.ResumeLayout(False)
-            Me.PerformLayout()
+            Me.ClientSize = New System.Drawing.Size(500, 458)
+        Me.Controls.Add(Me.changepanel)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.lockaccount_cb)
+        Me.Controls.Add(Me.mail_lbl)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.expansion_ud)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.reset_bt)
+        Me.Controls.Add(Me.savechanges_bt)
+        Me.Controls.Add(Me.exit_bt)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.online_lbl)
+        Me.Controls.Add(Me.characterview)
+        Me.Controls.Add(Me.accname_lbl)
+        Me.DoubleBuffered = true
+        Me.Name = "AccountOverview"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "AccountOverview"
+        Me.Controls.SetChildIndex(Me.accname_lbl, 0)
+        Me.Controls.SetChildIndex(Me.characterview, 0)
+        Me.Controls.SetChildIndex(Me.online_lbl, 0)
+        Me.Controls.SetChildIndex(Me.Label10, 0)
+        Me.Controls.SetChildIndex(Me.exit_bt, 0)
+        Me.Controls.SetChildIndex(Me.savechanges_bt, 0)
+        Me.Controls.SetChildIndex(Me.reset_bt, 0)
+        Me.Controls.SetChildIndex(Me.Label7, 0)
+        Me.Controls.SetChildIndex(Me.expansion_ud, 0)
+        Me.Controls.SetChildIndex(Me.Label8, 0)
+        Me.Controls.SetChildIndex(Me.mail_lbl, 0)
+        Me.Controls.SetChildIndex(Me.lockaccount_cb, 0)
+        Me.Controls.SetChildIndex(Me.GroupBox1, 0)
+        Me.Controls.SetChildIndex(Me.changepanel, 0)
+        CType(Me.expansion_ud,System.ComponentModel.ISupportInitialize).EndInit
+        Me.GroupBox1.ResumeLayout(false)
+        Me.GroupBox1.PerformLayout
+        Me.charactercontext.ResumeLayout(false)
+        Me.changepanel.ResumeLayout(false)
+        Me.changepanel.PerformLayout
+        CType(Me.updatePic,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-        End Sub
+End Sub
         Friend WithEvents accname_lbl As System.Windows.Forms.Label
         Friend WithEvents characterview As System.Windows.Forms.ListView
         Friend WithEvents charguid As System.Windows.Forms.ColumnHeader
@@ -442,5 +479,8 @@ Namespace Forms
         Friend WithEvents SelectedCharacterToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
         Friend WithEvents CheckedCharactersToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
         Friend WithEvents EditToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+        Friend WithEvents changepanel As System.Windows.Forms.Panel
+        Friend WithEvents updatePic As System.Windows.Forms.PictureBox
+        Friend WithEvents changeText_tb As System.Windows.Forms.TextBox
     End Class
 End Namespace

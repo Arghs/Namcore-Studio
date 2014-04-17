@@ -20,14 +20,13 @@
 '*      /Filename:      TemplateExplorer
 '*      /Description:   TODO
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NamCore_Studio.Forms.Extension
-Imports NCFramework.Framework.TemplateSystem
-Imports NCFramework.Framework.Modules
-Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework
 Imports NCFramework.Framework.Logging
+Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Modules
+Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms
-
     Public Class TemplateExplorer
         Inherits EventTrigger
 

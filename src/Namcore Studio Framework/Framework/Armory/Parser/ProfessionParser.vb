@@ -21,6 +21,7 @@
 '*      /Description:   Contains functions for loading character profession information 
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.My
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
@@ -67,7 +68,7 @@ Namespace Framework.Armory.Parser
                             pProf.Primary = False
                         End If
                         Dim myPart As String = partsPf(loopcounter)
-                        If myPart.Length < 28 Then
+                        If myPart.Length < 29 Then
                             loopcounter += 1
                         Else
                             pProf.Id = TryInt(SplitString(myPart, """id"":", ","))
@@ -83,28 +84,37 @@ Namespace Framework.Armory.Parser
                                       "ProfessionParser_loadProfessions", True)
                             Dim recipes As String = SplitString(myPart, """recipes"":[", "]")
                             If recipes.Length > 3 Then
-                                Dim useRecipes As String() = recipes.Split(",")
+                                Dim useRecipes As String() = recipes.Split(","c)
                                 For i = 0 To useRecipes.Length - 1
-                                    pProf.Recipes.Add(New ProfessionSpell() _
-                                                         With {.SpellId = TryInt(useRecipes(i)), .Name = "",
+                                    pProf.Recipes.Add(
+                                        New ProfessionSpell() _
+                                                         With {.SpellId = TryInt(useRecipes(i)),
+                                                         .Name =
+                                                         GetSpellNameBySpellId(.SpellId, MySettings.Default.language),
                                                          .MinSkill = GetMinimumSkillBySpellId(TryInt(useRecipes(i)))})
                                 Next
                             End If
                             If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
-                            player.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = GetSkillSpellIdBySkillRank(pProf.Id, pProf.Rank)})
+                            player.Spells.Add(
+                                New Spell _
+                                                 With {.Active = 1, .Disabled = 0,
+                                                 .Id = GetSkillSpellIdBySkillRank(pProf.Id, pProf.Rank)})
                             Dim specialSpells() As Integer = GetSkillSpecialSpellIdBySkill(pProf.Id)
                             If Not specialSpells Is Nothing Then
                                 For i = 0 To specialSpells.Length - 1
                                     LogAppend("Adding special profession spell " & specialSpells(i).ToString,
-                                   "ProfessionParser_loadProfessions", True)
-                                    player.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = specialSpells(i)})
+                                              "ProfessionParser_loadProfessions", True)
+                                    player.Spells.Add(
+                                        New Spell _
+                                                         With {.Active = 1, .Disabled = 0, .Id = specialSpells(i)})
                                 Next
                             End If
                             player.Professions.Add(pProf)
                             loopcounter += 1
                         End If
                     Loop Until loopcounter = excounter
-                    LogAppend("Loaded " & player.Professions.Count.ToString & " professions", "ProfessionParser_loadProfessions",
+                    LogAppend("Loaded " & player.Professions.Count.ToString & " professions",
+                              "ProfessionParser_loadProfessions",
                               True)
                     If usePfString = secondaryPf Then
                         Exit Do

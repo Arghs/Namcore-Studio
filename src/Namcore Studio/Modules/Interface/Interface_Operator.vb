@@ -20,14 +20,14 @@
 '*      /Filename:      InterfaceOperator
 '*      /Description:   Includes functions to prepare interfaces
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.IO
 Imports System.Linq
+Imports System.IO
+Imports NCFramework.Framework
 Imports NamCore_Studio.Forms
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Functions.ResourceHandler
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Forms
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.TemplateSystem
+Imports NCFramework.Framework.Modules
 
 Namespace Modules.Interface
     Public Module InterfaceOperator
@@ -42,10 +42,11 @@ Namespace Modules.Interface
                 End If
                 If GlobalVariables.DeserializationSuccessfull = False Then
                     For Each procStat As ProcessStatus In _
-                  (From currentForm As Form In Application.OpenForms Where currentForm.Name = "ProcessStatus").Cast _
-                      (Of ProcessStatus)()
+                        (From currentForm As Object In Application.OpenForms Where TryCast(currentForm, Form).Name = "ProcessStatus").
+                            Cast _
+                            (Of ProcessStatus)()
                         procStat.TopMost = False
-                        MsgBox(GetUserMessage("invalidData"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(ResourceHandler.GetUserMessage("invalidData"), MsgBoxStyle.Critical, "Error")
                         Main.Show()
                         procStat.TopMost = False
                         Exit Sub
@@ -53,13 +54,16 @@ Namespace Modules.Interface
                 Else
                     Dim mSerializer As Serializer = New Serializer
                     Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
-                    If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf") Then
-                        My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf")
+                    If _
+                        My.Computer.FileSystem.FileExists(
+                            My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf") Then
+                        My.Computer.FileSystem.DeleteFile(
+                            My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf")
                     End If
                     Dim _
                         fs As _
-                            New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf",
-                                             FileMode.OpenOrCreate)
+                            New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf",
+                                             CType(FileMode.OpenOrCreate, Boolean))
                     fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
                     fs.Close()
                     ms.Close()
@@ -67,13 +71,14 @@ Namespace Modules.Interface
             Else
                 Dim mSerializer As Serializer = New Serializer
                 Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
-                If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf") Then
-                    My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf")
+                If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf") _
+                    Then
+                    My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf")
                 End If
                 Dim _
                     fs As _
-                        New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf",
-                                         FileMode.OpenOrCreate)
+                        New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf",
+                                         CType(FileMode.OpenOrCreate, Boolean))
                 fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
                 fs.Close()
                 ms.Close()
@@ -85,6 +90,7 @@ Namespace Modules.Interface
             myliveview.loadInformationSets_Armory()
             myliveview.Show()
         End Sub
+
         Public Sub prepareLive_template()
             If GlobalVariables.LoadingTemplate = True Then
                 GlobalVariables.LoadingTemplate = False
@@ -96,10 +102,11 @@ Namespace Modules.Interface
                 End If
                 If GlobalVariables.DeserializationSuccessfull = False Then
                     For Each procStat As ProcessStatus In _
-                  (From currentForm As Form In Application.OpenForms Where currentForm.Name = "ProcessStatus").Cast _
-                      (Of ProcessStatus)()
+                        (From currentForm As Object In Application.OpenForms Where TryCast(currentForm, Form).Name = "ProcessStatus").
+                            Cast _
+                            (Of ProcessStatus)()
                         procStat.TopMost = False
-                        MsgBox(GetUserMessage("invalidData"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(ResourceHandler.GetUserMessage("invalidData"), MsgBoxStyle.Critical, "Error")
                         Main.Show()
                         procStat.TopMost = False
                         Exit Sub
@@ -107,13 +114,16 @@ Namespace Modules.Interface
                 Else
                     Dim mSerializer As Serializer = New Serializer
                     Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
-                    If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf") Then
-                        My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf")
+                    If _
+                        My.Computer.FileSystem.FileExists(
+                            My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf") Then
+                        My.Computer.FileSystem.DeleteFile(
+                            My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf")
                     End If
                     Dim _
                         fs As _
-                            New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf",
-                                             FileMode.OpenOrCreate)
+                            New StreamWriter(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf",
+                                             CType(FileMode.OpenOrCreate, Boolean))
                     fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
                     fs.Close()
                     ms.Close()

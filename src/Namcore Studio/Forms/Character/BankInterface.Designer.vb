@@ -1,4 +1,5 @@
-﻿Imports NamCore_Studio.Forms.Extension
+﻿Imports NamCore_Studio.Modules.Interface
+Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -27,31 +28,35 @@ Namespace Forms.Character
         Private Sub InitializeComponent()
             Me.components = New System.ComponentModel.Container()
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(BankInterface))
-            Me.bag1Panel = New System.Windows.Forms.Panel()
+            Me.bag1Panel = New ItemPanel()
             Me.bag1Pic = New System.Windows.Forms.PictureBox()
-            Me.bag2Panel = New System.Windows.Forms.Panel()
+            Me.bag2Panel = New ItemPanel()
             Me.bag2Pic = New System.Windows.Forms.PictureBox()
-            Me.bag3Panel = New System.Windows.Forms.Panel()
+            Me.bag3Panel = New ItemPanel()
             Me.bag3Pic = New System.Windows.Forms.PictureBox()
-            Me.bag4Panel = New System.Windows.Forms.Panel()
+            Me.bag4Panel = New ItemPanel()
             Me.PictureBox3 = New System.Windows.Forms.PictureBox()
             Me.bag4Pic = New System.Windows.Forms.PictureBox()
-            Me.bag5Panel = New System.Windows.Forms.Panel()
+            Me.bag5Panel = New ItemPanel()
             Me.bag5Pic = New System.Windows.Forms.PictureBox()
             Me.BankLayoutPanel = New System.Windows.Forms.FlowLayoutPanel()
-            Me.bag6Panel = New System.Windows.Forms.Panel()
+            Me.bag6Panel = New ItemPanel()
             Me.bag6Pic = New System.Windows.Forms.PictureBox()
-            Me.bag7Panel = New System.Windows.Forms.Panel()
+            Me.bag7Panel = New ItemPanel()
             Me.Bag7Pic = New System.Windows.Forms.PictureBox()
             Me.reference_itm_panel = New System.Windows.Forms.Panel()
+            Me.removeinventboxbig = New System.Windows.Forms.PictureBox()
             Me.reference_itm_pic = New System.Windows.Forms.PictureBox()
             Me.label2 = New System.Windows.Forms.Label()
             Me.Label1 = New System.Windows.Forms.Label()
             Me.BagItemPanel = New System.Windows.Forms.FlowLayoutPanel()
             Me.referenceItmPanel = New System.Windows.Forms.Panel()
+            Me.removeinventbox = New System.Windows.Forms.PictureBox()
             Me.referenceItmPic = New System.Windows.Forms.PictureBox()
             Me.InfoToolTip = New System.Windows.Forms.ToolTip(Me.components)
             Me.BackPanel = New System.Windows.Forms.Panel()
+            Me.referenceCount = New System.Windows.Forms.Label()
+            Me.referenceCountBig = New System.Windows.Forms.Label()
             Me.bag1Panel.SuspendLayout()
             CType(Me.bag1Pic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.bag2Panel.SuspendLayout()
@@ -68,8 +73,10 @@ Namespace Forms.Character
             Me.bag7Panel.SuspendLayout()
             CType(Me.Bag7Pic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.reference_itm_panel.SuspendLayout()
+            CType(Me.removeinventboxbig, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.reference_itm_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.referenceItmPanel.SuspendLayout()
+            CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.BackPanel.SuspendLayout()
             Me.SuspendLayout()
@@ -247,12 +254,27 @@ Namespace Forms.Character
             'reference_itm_panel
             '
             Me.reference_itm_panel.BackColor = System.Drawing.SystemColors.ActiveBorder
+            Me.reference_itm_panel.Controls.Add(Me.referenceCountBig)
+            Me.reference_itm_panel.Controls.Add(Me.removeinventboxbig)
             Me.reference_itm_panel.Controls.Add(Me.reference_itm_pic)
             Me.reference_itm_panel.Location = New System.Drawing.Point(587, 484)
             Me.reference_itm_panel.Margin = New System.Windows.Forms.Padding(1)
             Me.reference_itm_panel.Name = "reference_itm_panel"
             Me.reference_itm_panel.Size = New System.Drawing.Size(56, 56)
             Me.reference_itm_panel.TabIndex = 240
+            '
+            'removeinventboxbig
+            '
+            Me.removeinventboxbig.BackColor = System.Drawing.Color.Transparent
+            Me.removeinventboxbig.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.inv_misc_gem_01
+            Me.removeinventboxbig.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.removeinventboxbig.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.removeinventboxbig.Location = New System.Drawing.Point(2, 3)
+            Me.removeinventboxbig.Name = "removeinventboxbig"
+            Me.removeinventboxbig.Size = New System.Drawing.Size(20, 20)
+            Me.removeinventboxbig.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.removeinventboxbig.TabIndex = 247
+            Me.removeinventboxbig.TabStop = False
             '
             'reference_itm_pic
             '
@@ -307,12 +329,27 @@ Namespace Forms.Character
             'referenceItmPanel
             '
             Me.referenceItmPanel.BackColor = System.Drawing.SystemColors.ActiveBorder
+            Me.referenceItmPanel.Controls.Add(Me.referenceCount)
+            Me.referenceItmPanel.Controls.Add(Me.removeinventbox)
             Me.referenceItmPanel.Controls.Add(Me.referenceItmPic)
             Me.referenceItmPanel.Location = New System.Drawing.Point(519, 495)
             Me.referenceItmPanel.Margin = New System.Windows.Forms.Padding(1)
             Me.referenceItmPanel.Name = "referenceItmPanel"
             Me.referenceItmPanel.Size = New System.Drawing.Size(45, 45)
             Me.referenceItmPanel.TabIndex = 244
+            '
+            'removeinventbox
+            '
+            Me.removeinventbox.BackColor = System.Drawing.Color.Transparent
+            Me.removeinventbox.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.inv_misc_gem_01
+            Me.removeinventbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.removeinventbox.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.removeinventbox.Location = New System.Drawing.Point(2, 3)
+            Me.removeinventbox.Name = "removeinventbox"
+            Me.removeinventbox.Size = New System.Drawing.Size(16, 16)
+            Me.removeinventbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.removeinventbox.TabIndex = 246
+            Me.removeinventbox.TabStop = False
             '
             'referenceItmPic
             '
@@ -345,12 +382,30 @@ Namespace Forms.Character
             Me.BackPanel.Size = New System.Drawing.Size(754, 345)
             Me.BackPanel.TabIndex = 245
             '
+            'referenceCount
+            '
+            Me.referenceCount.AutoSize = True
+            Me.referenceCount.Location = New System.Drawing.Point(25, 2)
+            Me.referenceCount.Name = "referenceCount"
+            Me.referenceCount.Size = New System.Drawing.Size(19, 13)
+            Me.referenceCount.TabIndex = 244
+            Me.referenceCount.Text = "20"
+            '
+            'referenceCountBig
+            '
+            Me.referenceCountBig.AutoSize = True
+            Me.referenceCountBig.Location = New System.Drawing.Point(35, 1)
+            Me.referenceCountBig.Name = "referenceCountBig"
+            Me.referenceCountBig.Size = New System.Drawing.Size(19, 13)
+            Me.referenceCountBig.TabIndex = 246
+            Me.referenceCountBig.Text = "20"
+            '
             'BankInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(761, 438)
+            Me.ClientSize = New System.Drawing.Size(768, 438)
             Me.Controls.Add(Me.referenceItmPanel)
             Me.Controls.Add(Me.reference_itm_panel)
             Me.Controls.Add(Me.BackPanel)
@@ -378,8 +433,12 @@ Namespace Forms.Character
             Me.bag7Panel.ResumeLayout(False)
             CType(Me.Bag7Pic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.reference_itm_panel.ResumeLayout(False)
+            Me.reference_itm_panel.PerformLayout()
+            CType(Me.removeinventboxbig, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.reference_itm_pic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.referenceItmPanel.ResumeLayout(False)
+            Me.referenceItmPanel.PerformLayout()
+            CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.BackPanel.ResumeLayout(False)
             Me.BackPanel.PerformLayout()
@@ -411,5 +470,9 @@ Namespace Forms.Character
         Friend WithEvents referenceItmPic As System.Windows.Forms.PictureBox
         Friend WithEvents InfoToolTip As System.Windows.Forms.ToolTip
         Friend WithEvents BackPanel As System.Windows.Forms.Panel
+        Friend WithEvents removeinventboxbig As System.Windows.Forms.PictureBox
+        Friend WithEvents removeinventbox As System.Windows.Forms.PictureBox
+        Friend WithEvents referenceCountBig As System.Windows.Forms.Label
+        Friend WithEvents referenceCount As System.Windows.Forms.Label
     End Class
 End Namespace

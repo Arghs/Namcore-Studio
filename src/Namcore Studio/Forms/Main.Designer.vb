@@ -23,6 +23,7 @@
         'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
         <System.Diagnostics.DebuggerStepThrough()> _
         Private Sub InitializeComponent()
+            Me.components = New System.ComponentModel.Container()
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
             Me.highlighter1 = New System.Windows.Forms.PictureBox()
             Me.highlighter2 = New System.Windows.Forms.PictureBox()
@@ -32,6 +33,7 @@
             Me.version_lbl = New System.Windows.Forms.Label()
             Me.settings_pic = New System.Windows.Forms.PictureBox()
             Me.about_pic = New System.Windows.Forms.PictureBox()
+            Me.HideTimer = New System.Windows.Forms.Timer(Me.components)
             CType(Me.highlighter1, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter2, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.highlighter3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,7 +113,7 @@
             Me.version_lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes
             Me.version_lbl.Size = New System.Drawing.Size(638, 18)
             Me.version_lbl.TabIndex = 5
-            Me.version_lbl.Text = "NamCore Studio - Development - 0.0.8.45283 - © megasus 2013"
+            Me.version_lbl.Text = "NamCore Studio - Development - 0.0.8.45283 - © megasus 2013-2014"
             '
             'settings_pic
             '
@@ -136,6 +138,9 @@
             Me.about_pic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
             Me.about_pic.TabIndex = 168
             Me.about_pic.TabStop = False
+            '
+            'HideTimer
+            '
             '
             'Main
             '
@@ -177,5 +182,6 @@
         Friend WithEvents version_lbl As System.Windows.Forms.Label
         Friend WithEvents settings_pic As System.Windows.Forms.PictureBox
         Friend WithEvents about_pic As System.Windows.Forms.PictureBox
+        Friend WithEvents HideTimer As System.Windows.Forms.Timer
     End Class
 End Namespace

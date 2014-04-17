@@ -28,7 +28,6 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterTalentsHandler
-
         '// Declaration
         Private _sDatatable As New DataTable
         '// Declaration
@@ -134,7 +133,8 @@ Namespace Framework.Core
                         "SELECT " & GlobalVariables.sourceStructure.talent_spell_col(0) & " FROM " &
                         GlobalVariables.sourceStructure.character_talent_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.talent_guid_col(0) &
-                        "='" & charguid.ToString & "' AND " & GlobalVariables.sourceStructure.talent_spec_col(0) & "='1'")
+                        "='" & charguid.ToString & "' AND " & GlobalVariables.sourceStructure.talent_spec_col(0) &
+                        "='1'")
             Try
                 Dim lastcount As Integer = tempdt2.Rows.Count
                 Dim count As Integer = 0
@@ -247,14 +247,16 @@ Namespace Framework.Core
                 Next i
                 Return dt
             Catch ex As Exception
-                LogAppend("Failed to load new talent datatable! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                          "CharacterTalentsHandler_gettable", False, True)
+                LogAppend(
+                    "Failed to load new talent datatable! -> Exception is: ###START###" & ex.ToString() & "###END###",
+                    "CharacterTalentsHandler_gettable", False, True)
                 Return New DataTable
             End Try
         End Function
 
         Private Function Checkfield(ByVal lId As String, ByVal rank As String) As String
-            LogAppend("Loading SpellId of Talent " & lID & " with rank " & rank, "CharacterTalentsHandler_checkfield", False)
+            LogAppend("Loading SpellId of Talent " & lID & " with rank " & rank, "CharacterTalentsHandler_checkfield",
+                      False)
             Dim byRnk As String = executex("TalentId", lID, TryInt(rank))
             If rank = "0" Then
                 LogAppend("Talent Rank is 0 -> Returning " & lID & "clear", "CharacterTalentsHandler_checkfield", False)
@@ -263,7 +265,8 @@ Namespace Framework.Core
                 LogAppend("SpellID is " & byRnk, "CharacterTalentsHandler_checkfield", False)
                 Return byRnk
             Else
-                LogAppend("SpellID " & lID & " not found! -> Returning 0", "CharacterTalentsHandler_checkfield", False, True)
+                LogAppend("SpellID " & lID & " not found! -> Returning 0", "CharacterTalentsHandler_checkfield", False,
+                          True)
                 Return "0"
             End If
         End Function
@@ -285,7 +288,8 @@ Namespace Framework.Core
             Catch ex As Exception
                 LogAppend(
                     "Something went wrong while checking talent dt for TalentId " & sID & " & rank " & rank &
-                    " -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterTalentsHandler_executex", False,
+                    " -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterTalentsHandler_executex",
+                    False,
                     True)
                 Return "-"
             End Try

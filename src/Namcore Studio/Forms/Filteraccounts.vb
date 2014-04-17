@@ -20,8 +20,8 @@
 '*      /Filename:      FilterAccounts
 '*      /Description:   Contains functions for filtering the account list
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Modules
 
 Namespace Forms
     Public Class FilterAccounts
@@ -41,11 +41,12 @@ Namespace Forms
                                      e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
+
         Private Sub ApplyFilter_Click(sender As Object, e As EventArgs) Handles ApplyFilter.Click
             GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Copy
             GlobalVariables.modifiedCharTable = GlobalVariables.chartable.Copy
             If idcheck.Checked = True Then
-                If idcombo1.SelectedIndex = -1 Then GoTo SkipStatement0
+                If idcombo1.SelectedIndex = - 1 Then GoTo SkipStatement0
                 Dim insertstring As String = " " & idcombo1.SelectedItem.ToString() & " '" & idtxtbox1.Text & "'"
                 Dim insertstring2 As String = ""
                 If Not idcombo2.SelectedItem Is Nothing Then
@@ -60,7 +61,7 @@ Namespace Forms
                     GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
                 Next i
             End If
-SkipStatement0:
+            SkipStatement0:
             If namecheck.Checked = True Then
                 Dim insertstring As String
                 Select Case namecombo1.SelectedIndex - 1
@@ -78,9 +79,9 @@ SkipStatement0:
                     GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
                 Next i
             End If
-SkipStatement1:
+            SkipStatement1:
             If gmcheck.Checked = True Then
-                If gmcombo1.SelectedIndex = -1 Then GoTo SkipStatement2
+                If gmcombo1.SelectedIndex = - 1 Then GoTo SkipStatement2
                 Dim insertstring As String = " " & gmcombo1.SelectedItem.ToString() & " '" & gmtxtbox1.Text & "'"
                 Dim insertstring2 As String = ""
                 Dim gmlevelCol As String
@@ -89,7 +90,7 @@ SkipStatement1:
                 Else
                     gmlevelCol = GlobalVariables.sourceStructure.acc_gmlevel_col(0)
                 End If
-                If Not gmcombo2.SelectedItem = Nothing Then
+                If Not gmcombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & gmlevelCol & " " & gmcombo2.SelectedItem.ToString & " '" & gmtxtbox2.Text &
                                     "'"
                 End If
@@ -101,13 +102,13 @@ SkipStatement1:
                     GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
                 Next i
             End If
-SkipStatement2:
+            SkipStatement2:
             If logincheck.Checked = True Then
-                If logincombo1.SelectedIndex = -1 Then GoTo SkipStatement3
+                If logincombo1.SelectedIndex = - 1 Then GoTo SkipStatement3
                 Dim insertstring As String = " " & logincombo1.SelectedItem.ToString() & " '" & datemin.Text & "'"
                 Dim insertstring2 As String = ""
                 GlobalVariables.sourceStructure.acc_lastlogin_col(0) = "last_login" 'todo
-                If Not logincombo2.SelectedItem = Nothing Then
+                If Not logincombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " " &
                                     logincombo2.SelectedItem.ToString & " '" & datemax.Text & "'"
                 End If
@@ -121,7 +122,7 @@ SkipStatement2:
                     GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
                 Next i
             End If
-SkipStatement3:
+            SkipStatement3:
             If emailcheck.Checked = True Then
                 Dim insertstring As String
                 Select Case emailcombo1.SelectedIndex - 1
@@ -139,7 +140,7 @@ SkipStatement3:
                     GlobalVariables.modifiedAccTable.ImportRow(foundRows(i))
                 Next i
             End If
-SkipStatement4:
+            SkipStatement4:
             For Each currentForm As Form In Application.OpenForms
                 If currentForm.Name = "LiveView" Then
                     Dim myliveview As LiveView = DirectCast(currentForm, LiveView)

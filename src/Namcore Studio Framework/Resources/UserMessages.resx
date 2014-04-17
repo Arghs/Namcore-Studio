@@ -618,4 +618,70 @@
   <data name="profession_794" xml:space="preserve">
     <value>Archaeology</value>
   </data>
+  <data name="noValidEmail" xml:space="preserve">
+    <value>No valid E-Mail address entered!</value>
+  </data>
+  <data name="textTooShort" xml:space="preserve">
+    <value>The entered text is too short!</value>
+  </data>
+  <data name="updateAccountComplete" xml:space="preserve">
+    <value>Account has been updated successfully!</value>
+  </data>
+  <data name="profession_197" xml:space="preserve">
+    <value>Tailoring</value>
+  </data>
+  <data name="invalidSkillId" xml:space="preserve">
+    <value>This is not a valid skill id.</value>
+  </data>
+  <data name="invalidSpellId" xml:space="preserve">
+    <value>This is not a valid spell id.</value>
+  </data>
+  <data name="skillAlreadyPresent" xml:space="preserve">
+    <value>This skill is already active.</value>
+  </data>
+  <data name="spellAlreadyPresent" xml:space="preserve">
+    <value>This spell is already active.</value>
+  </data>
+  <data name="enteritemid" xml:space="preserve">
+    <value>Enter item id:</value>
+  </data>
+  <data name="invalidItemError" xml:space="preserve">
+    <value>No item with this id found!</value>
+  </data>
+  <data name="reloadCharacter" xml:space="preserve">
+    <value>Do you really want to reload this character? All changes will be lost!</value>
+  </data>
+  <data name="countChange" xml:space="preserve">
+    <value>Set item count</value>
+  </data>
+  <data name="enterItemCount" xml:space="preserve">
+    <value>Enter the size of this stack:</value>
+  </data>
+  <data name="removeProfession" xml:space="preserve">
+    <value>Do you really want to remove this profession and its recipes?</value>
+  </data>
+  <data name="stackSizeLimitReached" xml:space="preserve">
+    <value>The maximum stack size of this item is:</value>
+  </data>
+  <data name="errTransmissionRunning" xml:space="preserve">
+    <value>You cannot start more than one transmission at the same time.</value>
+  </data>
+  <data name="errWaitTillTransmissionCompleted" xml:space="preserve">
+    <value>A transmission is running! Please wait until it is completed!</value>
+  </data>
+  <data name="errCharacterCreation" xml:space="preserve">
+    <value>Fatal error during character creation! See log for further info.</value>
+  </data>
+  <data name="loadingAv" xml:space="preserve">
+    <value>Loading achievements...</value>
+  </data>
+  <data name="noAvFound" xml:space="preserve">
+    <value>No achievements found!</value>
+  </data>
+  <data name="addfaction" xml:space="preserve">
+    <value>Add faction</value>
+  </data>
+  <data name="enterfactionid" xml:space="preserve">
+    <value>Enter faction id: </value>
+  </data>
 </root>

@@ -21,7 +21,6 @@
 '*      /Description:   Includes functions for setting up the known spells of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
@@ -48,7 +47,7 @@ Namespace Framework.Transmission
                 Select Case useCore
                     Case "trinity"
                         runSQLCommand_characters_string(
-                            "INSERT INTO `" & useStructure.character_spells_tbl(0) & "`( `" &
+                            "INSERT IGNORE INTO `" & useStructure.character_spells_tbl(0) & "`( `" &
                             useStructure.spell_guid_col(0) & "`, `" &
                             useStructure.spell_spell_col(0) & "`, `" &
                             useStructure.spell_active_col(0) & "`, `" &
@@ -60,16 +59,15 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Public Sub AddCharacterSpells(ByVal targetSetId As Integer, ByVal accountSet As Account)
+        Public Sub AddCharacterSpells(ByVal player As Character)
             'TODO
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, accountSet)
             Select Case GlobalVariables.targetCore
                 Case "trinity", "mangos"
                     If Not player.Spells Is Nothing Then
                         For Each spl As Spell In player.Spells
                             LogAppend("Adding Spell " & spl.Id, "SpellCreation_AddCharacterSpells")
                             runSQLCommand_characters_string(
-                                "INSERT INTO `" & GlobalVariables.targetStructure.character_spells_tbl(0) & "`( `" &
+                                "INSERT IGNORE INTO `" & GlobalVariables.targetStructure.character_spells_tbl(0) & "`( `" &
                                 GlobalVariables.targetStructure.spell_guid_col(0) & "`, `" &
                                 GlobalVariables.targetStructure.spell_spell_col(0) & "`, `" &
                                 GlobalVariables.targetStructure.spell_active_col(0) & "`, `" &
@@ -78,22 +76,6 @@ Namespace Framework.Transmission
                                 player.CreatedGuid.ToString & "', '" &
                                 spl.Id.ToString() & "', '" & spl.Active.ToString() & "', '" & spl.Disabled.ToString() &
                                 "' )", True)
-                        Next
-                    End If
-                    If Not player.Professions Is Nothing Then
-                        For Each spl As ProfessionSpell In _
-                            From prof In player.Professions Where Not prof.Recipes Is Nothing From spl1 In prof.Recipes
-                                Select spl1
-                            LogAppend("Adding profession recipe " & spl.SpellId, "SpellCreation_AddCharacterSpells")
-                            runSQLCommand_characters_string(
-                                "INSERT INTO `" & GlobalVariables.targetStructure.character_spells_tbl(0) & "`( `" &
-                                GlobalVariables.targetStructure.spell_guid_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.spell_spell_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.spell_active_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.spell_disabled_col(0) &
-                                "` ) VALUES ( '" &
-                                player.CreatedGuid.ToString & "', '" &
-                                spl.SpellId.ToString() & "', '1', '0' )", True)
                         Next
                     End If
             End Select

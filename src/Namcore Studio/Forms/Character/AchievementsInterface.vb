@@ -20,15 +20,16 @@
 '*      /Filename:      AchievementsInterface
 '*      /Description:   Provides an interface to display character achievement information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.My
 Imports NamCore_Studio.Modules
-Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Extension
-Imports libnc.Provider
 Imports System.Threading
+Imports libnc.Provider
 Imports System.Net
 Imports System.Resources
 Imports System.Reflection
@@ -44,6 +45,7 @@ Namespace Forms.Character
         Dim _tmpSender As Object
         Dim _mEvent As EventArgs
         Dim _state As String
+        Dim _controlsToAdd As List(Of Control)
 
         Shared _doneAvIds As List(Of Integer)
         Shared _correctIds As List(Of Integer)
@@ -55,7 +57,8 @@ Namespace Forms.Character
         Public Event FilterCompleted As EventHandler(Of CompletedEventArgs)
         Private WithEvents _mHandler As New TrdQueueHandler
 
-        Delegate Sub AddControlDelegate(panel2Add As Panel)
+        Delegate Sub AddControlDelegate()
+
         Delegate Sub UpdateControlDelegate(ctrl As Control)
         '// Declaration
 
@@ -91,11 +94,13 @@ Namespace Forms.Character
             subcat_combo.Text = ""
             Try
                 _preCatControlLst = Nothing
-                waitpanel.Location = New Point(4000, 4000)
+                waitLabel.Text = ResourceHandler.GetUserMessage("loadingAv")
+                waitpanel.Location = New Point(367, 219)
                 _state = "catbt"
                 _tmpSender = sender
                 _mEvent = e
                 _goon = False
+                Application.DoEvents()
                 If GlobalVariables.trdRunning > 0 Then
                     '// Currently loading achievements
                     callbacktimer.Stop()
@@ -107,7 +112,7 @@ Namespace Forms.Character
                     _goon = True
                 End If
                 If _goon = True Then
-                    _currentCat = TryInt(SplitString(sender.name, "cat_id_", "_bt"))
+                    _currentCat = TryInt(SplitString(TryCast(sender, Button).Name, "cat_id_", "_bt"))
                     subcat_combo.Items.Clear()
                     Application.DoEvents()
                     Dim tmpCatids As Integer()
@@ -129,7 +134,7 @@ Namespace Forms.Character
                             tmpCatids = {14808, 14805, 14806, 14922, 15067, 15068, 15106, 15107, 15115}
                         Case 169
                             '//Professions
-                            tmpCatids = {170, 171, 182, 15071}
+                            tmpCatids = {170, 171, 172, 15071}
                         Case 201
                             '//Reputation
                             tmpCatids = {14864, 14865, 14866, 15072, 15114}
@@ -165,6 +170,7 @@ Namespace Forms.Character
                     Catch ex As Exception
                         subcat_combo.Items.Clear()
                     End Try
+                    subcat_combo.Text = "Pick category"
                     _colorTicker = 0
                     _completed = False
                     Do
@@ -176,7 +182,7 @@ Namespace Forms.Character
                     Loop Until AVLayoutPanel.Controls.Count = 0
                     _correctIds = New List(Of Integer)()
                     _doneAvIds = New List(Of Integer)()
-                    _correctIds = GetAvIdListByMainCat(TryInt(SplitString(sender.name, "cat_id_", "_bt")))
+                    _correctIds = GetAvIdListByMainCat(TryInt(SplitString(TryCast(sender, Button).Name, "cat_id_", "_bt")))
                     GlobalVariables.abortMe = False
                     _mHandler.doOperate_av(sender, 1)
                     _mHandler.doOperate_av(sender, 2)
@@ -194,17 +200,16 @@ Namespace Forms.Character
                 '// Currently loading achievements
                 Exit Sub
             End If
-            Dim charAv As Achievement = sender.tag
+            Dim charAv As Achievement = CType(TryCast(sender, PictureBox).Tag, Achievement)
             Dim msg As String = ResourceHandler.GetUserMessage("aus_deleteav")
             msg = msg.Replace("%avid%", charAv.Id.ToString)
             Dim result = MsgBox(msg, vbYesNo, ResourceHandler.GetUserMessage("areyousure"))
             If result = MsgBoxResult.Yes Then
                 Userwait.Show()
-                For Each subctrl In AVLayoutPanel.Controls
-                    If subctrl.tag.id = charAv.Id Then
+                For Each subctrl As Control In AVLayoutPanel.Controls
+                    If CType(subctrl.Tag, Achievement).Id = charAv.Id Then
                         AVLayoutPanel.Controls.Remove(subctrl)
                         subctrl.Dispose()
-
                         For Each av As Achievement In GlobalVariables.currentEditedCharSet.Achievements
                             If av.Id = charAv.Id Then
                                 GlobalVariables.currentEditedCharSet.Achievements.Remove(av)
@@ -219,6 +224,7 @@ Namespace Forms.Character
         End Sub
 
         Public Function ContinueOperation(ByVal sender As Object, ByVal operationCount As Integer) As String
+            _controlsToAdd = New List(Of Control)()
             If operationCount = 1 Then _
                 LogAppend("Loading achievements", "Achievements_interface_continueOperation", True)
             GlobalVariables.trdRunning += 1
@@ -227,7 +233,8 @@ Namespace Forms.Character
                     Thread.Sleep(2000)
                 End If
 
-                For Each charAv As Achievement In DeepCloneHelper.DeepClone(GlobalVariables.currentEditedCharSet).Achievements
+                For Each charAv As Achievement In _
+                    DeepCloneHelper.DeepClone(GlobalVariables.currentEditedCharSet).Achievements
 
                     If _doneAvIds.Contains(charAv.Id) Then
                         Continue For
@@ -240,7 +247,7 @@ Namespace Forms.Character
                                   "Achievements_continueOperation", False)
                         If GlobalVariables.abortMe = True Then
                             GlobalVariables.trdRunning -= 1
-                            Exit Function
+                            Return ""
                         End If
                         AddAvToLayout(charAv)
                     End If
@@ -252,29 +259,15 @@ Namespace Forms.Character
                     While Not _completed
 
                     End While
-
-                    SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentEditedCharSet, GetAccountSetBySetId(GlobalVariables.currentViewedCharSet.AccountSet))
-                    Try
-                        If _
-                            AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 2).BackColor =
-                            Color.FromArgb(110, 149, 190) Then
-                            AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1).BackColor = Color.FromArgb(126, 144,
-                                                                                                                156)
-                        Else
-                            AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1).BackColor = Color.FromArgb(110, 149,
-                                                                                                                190)
-                        End If
-                        AVLayoutPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControlUpdating), AVLayoutPanel)
-                    Catch ex As Exception
-                        AVLayoutPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControlUpdating), AVLayoutPanel)
-                    End Try
                     GlobalVariables.trdRunning = 0
+                    AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding))
                 End If
             Catch myex As Exception
                 GlobalVariables.trdRunning = 0
             End Try
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
                                     New CompletedEventArgs())
+            Return ""
             ' ReSharper disable VBWarnings::BC42105
         End Function
         ' ReSharper restore VBWarnings::BC42105
@@ -297,14 +290,21 @@ Namespace Forms.Character
             subcat_combo.Enabled = True
             Application.DoEvents()
         End Sub
-        Private Sub DelegateControlAdding(addNewPanel As Panel)
-            addNewPanel.SetDoubleBuffered()
-            AVLayoutPanel.Controls.Add(addNewPanel)
-            AVLayoutPanel.Controls.SetChildIndex(AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1),
-                                                           1)
-        End Sub
-        Private Sub DelegateControlUpdating(ctrl As FlowLayoutPanel)
-            ctrl.Update()
+
+        Private Sub DelegateControlAdding()
+            If Not _controlsToAdd Is Nothing Then
+                For Each addNewPanel As Control In _controlsToAdd
+                    addNewPanel.SetDoubleBuffered()
+                    AVLayoutPanel.Controls.Add(addNewPanel)
+                    AVLayoutPanel.Controls.SetChildIndex(AVLayoutPanel.Controls(AVLayoutPanel.Controls.Count - 1),
+                                                         1)
+                Next
+            End If
+            If AVLayoutPanel.Controls.Count > 0 Then
+                waitpanel.Location = New Point(4000, 4000)
+            Else
+                waitLabel.Text = ResourceHandler.GetUserMessage("noAvFound")
+            End If
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
@@ -318,7 +318,6 @@ Namespace Forms.Character
                 '// Currently loading achievements
                 Exit Sub
             End If
-            If _currentCat = Nothing Then Exit Sub
             Dim retnvalue As Integer = TryInt(InputBox("Enter achievement id: ", "Add achievement", "0"))
             Userwait.Show()
             Application.DoEvents()
@@ -343,10 +342,15 @@ Namespace Forms.Character
                         Dim charAv As New Achievement
                         charAv.Id = retnvalue
                         charAv.GainDate = Date.Today.ToTimeStamp()
-                        If _correctIds.Contains(charAv.Id) Then
-                            AddAvToLayout(charAv)
-                        End If
                         GlobalVariables.currentEditedCharSet.Achievements.Add(charAv)
+                        Dim catBt As Button =
+                                CType(
+                                    Controls(
+                                        "cat_id_" &
+                                        GetAvMainCategoryIdBySubCatId(GetAvSubCategoryById(charAv.Id)).ToString() &
+                                        "_bt"),
+                                    Button)
+                        catBt.PerformClick()
                         MsgBox(ResourceHandler.GetUserMessage("achievementadded"), , "Info")
                     Else
                         MsgBox(ResourceHandler.GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
@@ -377,12 +381,12 @@ Namespace Forms.Character
                     Application.DoEvents()
                 Next
             End If
-            Dim catid As Integer = subcat_combo.SelectedItem.id.ToString
+            Dim catid As Integer = CType(subcat_combo.SelectedItem, AvSubcategoy).Id
             If Not catid = 0 Then
                 Dim removeCtrlLst As New List(Of Control)
                 For Each subctrl As Control In AVLayoutPanel.Controls
                     _preCatControlLst.Add(subctrl)
-                    Dim charAv As Achievement = subctrl.Tag
+                    Dim charAv As Achievement = CType(subctrl.Tag, Achievement)
                     If Not charAv.SubCategory = catid Then
                         Dim x As Control = subctrl
                         removeCtrlLst.Add(x)
@@ -428,7 +432,7 @@ Namespace Forms.Character
                     Else
                         '// Name
                         If charAv.Name = Nothing Then
-                            charAv.Name = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
+                            charAv.Name = GetAvNameById(charAv.Id, MySettings.Default.language)
                             GlobalVariables.currentEditedCharSet.Achievements(i) = charAv
                         End If
                         If charAv.Name.ToLower.Contains(searchName.ToLower()) Then
@@ -436,7 +440,8 @@ Namespace Forms.Character
                         End If
                     End If
                 Catch ex As Exception
-                    LogAppend("Exception during achievement browsing: " & ex.ToString(), "Achievements_interface_FilterResults", False, True)
+                    LogAppend("Exception during achievement browsing: " & ex.ToString(),
+                              "Achievements_interface_FilterResults", False, True)
                 End Try
             Next i
             For Each charAv As Achievement In foundAvList
@@ -444,8 +449,9 @@ Namespace Forms.Character
             Next
             GlobalVariables.trdRunning -= 1
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnFilterCompleted),
-                                New CompletedEventArgs())
+                                    New CompletedEventArgs())
         End Sub
+
         Private Sub AddAvToLayout(ByVal charAv As Achievement)
             If charAv.SubCategory = Nothing Then charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
             Dim avPanel As New Panel
@@ -455,7 +461,7 @@ Namespace Forms.Character
             Dim avNameLable As New Label
             Dim cAvName As String
             If charAv.Name = Nothing Then
-                cAvName = GetAvNameById(charAv.Id, NCFramework.My.MySettings.Default.language)
+                cAvName = GetAvNameById(charAv.Id, MySettings.Default.language)
                 charAv.Name = cAvName
             Else
                 cAvName = charAv.Name
@@ -472,7 +478,7 @@ Namespace Forms.Character
             Dim avDescrLable As New Label
             Dim descr As String
             If charAv.Description = Nothing Then
-                descr = GetAvDescriptionById(charAv.Id, NCFramework.My.MySettings.Default.language)
+                descr = GetAvDescriptionById(charAv.Id, MySettings.Default.language)
                 charAv.Description = descr
             Else
                 descr = charAv.Description
@@ -488,7 +494,7 @@ Namespace Forms.Character
             Dim avSubCatLable As New Label
             Dim subcat As String
             If charAv.SubCategoryName = Nothing Then
-                subcat = GetAvCatNameById(GetAvSubCategoryById(charAv.Id), NCFramework.My.MySettings.Default.language)
+                subcat = GetAvCatNameById(GetAvSubCategoryById(charAv.Id), MySettings.Default.language)
                 charAv.SubCategoryName = subcat
             Else
                 subcat = charAv.SubCategoryName
@@ -514,7 +520,7 @@ Namespace Forms.Character
             avGainDateLabel.RightToLeft = RightToLeft.Yes
             avGainDateLabel.Size = reference_date_lbl.Size
             Dim avIconPic As New PictureBox
-            Dim avImage As Image
+            Dim avImage As Bitmap
             If charAv.Icon Is Nothing Then
                 avImage = GetSpellIconById(GetAvSpellIdById((charAv.Id)), GlobalVariables.GlobalWebClient)
                 charAv.Icon = avImage
@@ -540,9 +546,10 @@ Namespace Forms.Character
             deletePic.Cursor = Cursors.Hand
             avPanel.SetDoubleBuffered()
             AddHandler deletePic.Click, AddressOf deleteAv_click
-            AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding), avPanel)
+            _controlsToAdd.Add(avPanel)
             Application.DoEvents()
         End Sub
+
         Private Sub OnFilterCompleted() Handles Me.FilterCompleted
             Try
                 For Each avPanel As Control In AVLayoutPanel.Controls
@@ -560,7 +567,7 @@ Namespace Forms.Character
 
             End Try
             search_bt.Enabled = True
-            browse_tb.Text = "Enter quest name or id"
+            browse_tb.Text = "Enter achievement name or id"
             browse_tb.ForeColor = SystemColors.WindowFrame
             browse_tb.Enabled = True
             subcat_combo.Enabled = True
@@ -568,7 +575,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub browse_tb_Enter(sender As Object, e As EventArgs) Handles browse_tb.Enter
-            If browse_tb.Text = "Enter quest name or id" Then
+            If browse_tb.Text = "Enter achievement name or id" Then
                 browse_tb.ForeColor = SystemColors.WindowText
                 browse_tb.Text = ""
             End If
@@ -577,10 +584,10 @@ Namespace Forms.Character
         Private Sub browse_tb_Leave(sender As Object, e As EventArgs) Handles browse_tb.Leave
             If browse_tb.Text = "" Then
                 browse_tb.ForeColor = SystemColors.WindowFrame
-                browse_tb.Text = "Enter quest name or id"
+                browse_tb.Text = "Enter achievement name or id"
             End If
         End Sub
-     
+
         Private Sub search_bt_Click(sender As Object, e As EventArgs) Handles search_bt.Click
             waitpanel.Location = New Point(4000, 4000)
             search_bt.Enabled = False
@@ -590,7 +597,7 @@ Namespace Forms.Character
             browse_tb.Enabled = False
             AVLayoutPanel.Controls.Clear()
             Application.DoEvents()
-            Dim trd As New Thread(AddressOf FilterResults)
+            Dim trd As Thread = New Thread(DirectCast(Sub() FilterResults(browseTxt), ThreadStart))
             trd.Start(browseTxt)
         End Sub
     End Class

@@ -22,14 +22,15 @@
 '*                      reputation of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterReputationHandler
-        Public Sub GetCharacterReputation(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
+        Public Sub GetCharacterReputation(ByVal characterGuid As Integer, ByVal setId As Integer,
+                                          ByVal account As Account)
             LogAppend("Loading character reputation for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterReputationHandler_GetCharacterReputation", True)
             Dim player As Character = GetCharacterSetBySetId(setId, account)
@@ -63,19 +64,20 @@ Namespace Framework.Core
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
                         Dim loopcounter As Integer = 0
-                        Dim finalcounter As Integer = CInt(excounter / 4)
+                        Dim finalcounter As Integer = CInt(excounter/4)
                         Dim partscounter As Integer = 0
                         Do
                             Dim rep As New Reputation
                             Dim parts() As String = readedcode.Split(","c)
                             rep.Faction = TryInt(parts(partscounter).ToString)
                             partscounter += 1
-                            rep.Flags = TryInt(parts(partscounter).ToString)
+                            rep.Flags = CType(TryInt(parts(partscounter).ToString), Reputation.FlagEnum)
                             partscounter += 1
                             rep.Standing = TryInt(parts(partscounter).ToString)
                             partscounter += 2
                             rep.UpdateValueMax()
-                            If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
+                            If player.PlayerReputation Is Nothing Then _
+                                player.PlayerReputation = New List(Of Reputation)()
                             player.PlayerReputation.Add(rep)
                             loopcounter += 1
                         Loop Until loopcounter = finalcounter
@@ -111,7 +113,7 @@ Namespace Framework.Core
                         Dim rep As New Reputation
                         rep.Faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         rep.Standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                        rep.Flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        rep.Flags = CType(TryInt((tempdt.Rows(count).Item(2)).ToString), Reputation.FlagEnum)
                         rep.UpdateValueMax()
                         If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
                         player.PlayerReputation.Add(rep)
@@ -147,7 +149,7 @@ Namespace Framework.Core
                         Dim rep As New Reputation
                         rep.Faction = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         rep.Standing = TryInt((tempdt.Rows(count).Item(1)).ToString)
-                        rep.Flags = TryInt((tempdt.Rows(count).Item(2)).ToString)
+                        rep.Flags = CType(TryInt((tempdt.Rows(count).Item(2)).ToString), Reputation.FlagEnum)
                         rep.UpdateValueMax()
                         If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
                         player.PlayerReputation.Add(rep)

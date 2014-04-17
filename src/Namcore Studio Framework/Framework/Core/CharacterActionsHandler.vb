@@ -61,10 +61,11 @@ Namespace Framework.Core
             Try
                 Dim readedcode As String = tmpCharacter.ArcEmuAction1
                 If Not readedcode.Length > 2 Then _
-                    LogAppend("Warning! Actions1 seems to be invalid!", "CharacterActionsHandler_LoadAtArcemu", False, True)
+                    LogAppend("Warning! Actions1 seems to be invalid!", "CharacterActionsHandler_LoadAtArcemu", False,
+                              True)
                 Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
                 Dim loopcounter As Integer = 0
-                Dim finalcounter As Integer = TryInt(excounter / 3)
+                Dim finalcounter As Integer = CInt(excounter / 3)
                 Const partscounter As Integer = 0
                 Do
                     Dim act As New Action
@@ -79,10 +80,11 @@ Namespace Framework.Core
                 Loop Until loopcounter = finalcounter
                 Dim readedcode2 As String = tmpCharacter.ArcEmuAction2
                 If Not readedcode2.Length > 2 Then _
-                    LogAppend("Warning! Actions2 seems to be invalid!", "CharacterActionsHandler_LoadAtArcemu", False, True)
+                    LogAppend("Warning! Actions2 seems to be invalid!", "CharacterActionsHandler_LoadAtArcemu", False,
+                              True)
                 Dim excounter2 As Integer = UBound(readedcode2.Split(CChar(",")))
                 Dim loopcounter2 As Integer = 0
-                Dim finalcounter2 As Integer = TryInt(excounter2 / 3)
+                Dim finalcounter2 As Integer = CInt(excounter2 / 3)
                 Dim partscounter2 As Integer = 0
                 Do
                     Dim act As New Action

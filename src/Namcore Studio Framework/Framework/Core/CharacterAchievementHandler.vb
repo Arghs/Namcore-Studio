@@ -63,7 +63,7 @@ Namespace Framework.Core
                         Dim tmpAv As New Achievement
                         tmpAv.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         tmpAv.OwnerSet = tarSetId
-                        tmpAv.GainDate = (tempdt.Rows(count).Item(1)).ToString
+                        tmpAv.GainDate = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         tmpCharacter.Achievements.Add(tmpAv)
                         count += 1
                     Loop Until count = lastcount
@@ -97,7 +97,7 @@ Namespace Framework.Core
                         Dim tmpAv As New Achievement
                         tmpAv.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         tmpAv.OwnerSet = tarSetId
-                        tmpAv.GainDate = (tempdt.Rows(count).Item(1)).ToString
+                        tmpAv.GainDate = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         tmpCharacter.Achievements.Add(tmpAv)
                         count += 1
                     Loop Until count = lastcount
@@ -131,7 +131,7 @@ Namespace Framework.Core
                         Dim tmpAv As New Achievement
                         tmpAv.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
                         tmpAv.OwnerSet = tarSetId
-                        tmpAv.GainDate = (tempdt.Rows(count).Item(1)).ToString
+                        tmpAv.GainDate = TryInt((tempdt.Rows(count).Item(1)).ToString)
                         tmpCharacter.Achievements.Add(tmpAv)
                         count += 1
                     Loop Until count = lastcount

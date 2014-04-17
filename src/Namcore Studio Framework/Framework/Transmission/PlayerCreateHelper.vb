@@ -21,12 +21,15 @@
 '*      /Description:   Provides functions to load correct spells/items for character 
 '*                      races/classes
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Logging
 Imports libnc.Provider
+
 Namespace Framework.Transmission
     '// Declaration
-    <Flags> Public Enum ChrRaces
+    <Flags>
+    Public Enum ChrRaces
         PLAYER_RACE_ALL = 0
         PLAYER_RACE_HUMAN = 1
         PLAYER_RACE_ORC = 2
@@ -51,6 +54,7 @@ Namespace Framework.Transmission
         PLAYER_RACE_ICE_TROLL = 1048576
         PLAYER_RACE_WORGEN = 2097152
     End Enum
+
     Public Enum ChrRaceIds
         PLAYER_RACE_ALL = 0
         PLAYER_RACE_HUMAN = 1
@@ -76,7 +80,9 @@ Namespace Framework.Transmission
         PLAYER_RACE_ICE_TROLL = 21
         PLAYER_RACE_WORGEN = 22
     End Enum
-    <Flags> Public Enum ChrClasses
+
+    <Flags>
+    Public Enum ChrClasses
         PLAYER_CLASS_ALL = 0
         PLAYER_CLASS_WARRIOR = 1
         PLAYER_CLASS_PALADIN = 2
@@ -89,6 +95,7 @@ Namespace Framework.Transmission
         PLAYER_CLASS_WARLOCK = 256
         PLAYER_CLASS_DRUID = 1024
     End Enum
+
     Public Enum ChrClassIds
         PLAYER_CLASS_ALL = 0
         PLAYER_CLASS_WARRIOR = 1
@@ -104,45 +111,77 @@ Namespace Framework.Transmission
     End Enum
     '// Declaration
     Public Module PlayerCreateHelper
-        Public Sub GetRaceSpells(ByRef player As Character, ByVal account As Account)
-            Dim thisRace As ChrRaceIds = player.Race
-            Dim thisRaceBit As ChrRaces = thisRace
-            Dim newSpellList As New List(Of Spell)
-            Dim spellsDt As DataTable = GetCreateInfoTable()
-            For Each spellEntry In spellsDt.Rows
-                If TryInt(spellEntry(0)) = 0 Then
-                    newSpellList.Add(New Spell With
-                                     {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
-                    Continue For
-                End If
-                Dim raceMask As ChrRaces = TryInt(spellEntry(0))
-                If (raceMask And thisRaceBit) = thisRaceBit Then
-                    newSpellList.Add(New Spell With
-                                     {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
-                End If
-            Next
-            player.Spells = newSpellList
-            SetCharacterSet(player.SetIndex, player, account)
+        Public Sub GetRaceSpells(ByRef player As Character)
+            LogAppend("Loading race specific spells for player " & player.Name, "PlayerCreateHelper_GetRaceSpells")
+            Try
+                Dim thisRace As ChrRaceIds = CType(player.Race, ChrRaceIds)
+                Dim thisRaceBit As ChrRaces = CType(thisRace, ChrRaces)
+                Dim newSpellList As New List(Of Spell)
+                Dim spellsDt As DataTable = GetCreateInfoTable()
+                For Each spellEntry As DataRow In spellsDt.Rows
+                    Try
+                        If spellEntry.Table.Columns.Count < 2 Then Continue For
+                        For i = 0 To spellEntry.Table.Columns.Count - 1
+                            If IsDBNull(spellEntry(i)) Then Continue For
+                        Next
+                        If TryInt(CStr(spellEntry(0))) = 0 Then
+                            '// 0: Every race
+                            newSpellList.Add(
+                                New Spell With
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
+                            Continue For
+                        End If
+                        Dim raceMask As ChrRaces = CType(TryInt(spellEntry(0).ToString()), ChrRaces)
+                        If (raceMask And thisRaceBit) = thisRaceBit Then
+                            newSpellList.Add(
+                                New Spell With
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
+                        End If
+                    Catch ex As Exception
+                        LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetRaceSpells", False, True)
+                    End Try
+                Next
+                If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
+                player.Spells.AddRange(newSpellList)
+            Catch ex As Exception
+                LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetRaceSpells", False, True)
+            End Try
         End Sub
-        Public Sub GetClassSpells(ByRef player As Character, ByVal account As Account)
-            Dim thisClass As ChrClassIds = player.Cclass
-            Dim thisClassBit As ChrClasses = thisClass
-            Dim newSpellList As New List(Of Spell)
-            Dim spellsDt As DataTable = GetCreateInfoTable()
-            For Each spellEntry In spellsDt.Rows
-                If TryInt(spellEntry(1)) = 0 Then
-                    newSpellList.Add(New Spell With
-                                     {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
-                    Continue For
-                End If
-                Dim classMask As ChrClasses = TryInt(spellEntry(1))
-                If (classMask And thisClassBit) = thisClassBit Then
-                    newSpellList.Add(New Spell With
-                                     {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2)), .Name = spellEntry(3)})
-                End If
-            Next
-            player.Spells = newSpellList
-            SetCharacterSet(player.SetIndex, player, account)
+
+        Public Sub GetClassSpells(ByRef player As Character)
+            LogAppend("Loading class specific spells for player " & player.Name, "PlayerCreateHelper_GetClassSpells")
+            Try
+                Dim thisClass As ChrClassIds = CType(player.Cclass, ChrClassIds)
+                Dim thisClassBit As ChrClasses = CType(thisClass, ChrClasses)
+                Dim newSpellList As New List(Of Spell)
+                Dim spellsDt As DataTable = GetCreateInfoTable()
+                For Each spellEntry As DataRow In spellsDt.Rows
+                    Try
+                        If spellEntry.Table.Columns.Count < 2 Then Continue For
+                        For i = 0 To spellEntry.Table.Columns.Count - 1
+                            If IsDBNull(spellEntry(i)) Then Continue For
+                        Next
+                        If TryInt(spellEntry(1).ToString()) = 0 Then
+                            newSpellList.Add(
+                                New Spell With
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
+                            Continue For
+                        End If
+                        Dim classMask As ChrClasses = CType(TryInt(spellEntry(1).ToString()), ChrClasses)
+                        If (classMask And thisClassBit) = thisClassBit Then
+                            newSpellList.Add(
+                                New Spell With
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
+                        End If
+                    Catch ex As Exception
+                        LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetClassSpells", False, True)
+                    End Try
+                Next
+                If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
+                player.Spells.AddRange(newSpellList)
+            Catch ex As Exception
+                LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetClassSpells", False, True)
+            End Try
         End Sub
     End Module
 End Namespace

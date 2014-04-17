@@ -20,17 +20,27 @@
 '*      /Filename:      AccountOverview
 '*      /Description:   Provides an interface to display account information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Core
-Imports NamCore_Studio.Forms.Character
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NamCore_Studio.Forms.Character
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Core
+Imports NCFramework.Framework.Logging
 Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.Framework.Core.Update
 
 Namespace Forms
     Public Class AccountOverview
         Inherits EventTrigger
+
+        '// Declaration
+        Private _currentViewedAccountSet As Account
+        Private _currentEditedAccountSet As Account
+        Private _initComplete As Boolean = False
+        Private _cmpFileListViewComparer As ListViewComparer
+        '// Declaration
+
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
             Close()
@@ -41,6 +51,9 @@ Namespace Forms
         End Sub
 
         Public Sub prepare_interface(ByVal accountSet As Account)
+            LogAppend("prepare_interface call", "AccountOverview_prepare_interface", False)
+            _cmpFileListViewComparer = New ListViewComparer(characterview)
+            _initComplete = False
             For Each subctrl As Control In Controls
                 subctrl.SetDoubleBuffered()
             Next
@@ -49,6 +62,7 @@ Namespace Forms
                 accHandler.LoadAccount(accountSet.Id, accountSet.SetIndex, accountSet)
                 accountSet = GetAccountSetBySetId(accountSet.SetIndex)
             End If
+            characterview.Items.Clear()
             mail_lbl.Text = ""
             joindate_lbl.Text = accountSet.JoinDate.ToString()
             lastip_lbl.Text = accountSet.LastIp
@@ -75,9 +89,16 @@ Namespace Forms
                 characterview.Items.Add(itm)
             Next
             characterview.EndUpdate()
+            reset_bt.Enabled = False
+            savechanges_bt.Enabled = False
+            _currentViewedAccountSet = accountSet
+            _currentEditedAccountSet = DeepCloneHelper.DeepClone(_currentViewedAccountSet)
+            _initComplete = True
         End Sub
 
         Private Sub characterview_MouseUp(sender As Object, e As MouseEventArgs) Handles characterview.MouseUp
+            changepanel.Location = New Point(4000, 4000)
+            If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
             If e.Button = MouseButtons.Right Then
                 If characterview.SelectedItems.Count = 0 And characterview.CheckedItems.Count = 0 Then Exit Sub
                 If characterview.SelectedItems.Count = 0 Then
@@ -99,6 +120,22 @@ Namespace Forms
             End If
         End Sub
 
+        Private Sub characterview_ColumnClick(sender As Object, e As ColumnClickEventArgs) _
+            Handles characterview.ColumnClick
+            If e.Column = _cmpFileListViewComparer.SortColumn Then
+                If _cmpFileListViewComparer.SortOrder = SortOrder.Ascending Then
+                    _cmpFileListViewComparer.SortOrder = SortOrder.Descending
+                Else
+                    _cmpFileListViewComparer.SortOrder = SortOrder.Ascending
+                End If
+            Else
+                _cmpFileListViewComparer.SortOrder = SortOrder.Ascending
+            End If
+
+            _cmpFileListViewComparer.SortColumn = e.Column
+            characterview.Sort()
+        End Sub
+
         Private Sub characterview_SelectedIndexChanged(sender As Object, e As EventArgs) _
             Handles characterview.SelectedIndexChanged
         End Sub
@@ -111,7 +148,8 @@ Namespace Forms
             'Please remember that a character which is loaded from a database needs to be completely stored temporarily
             NewProcessStatus()
             Dim charview As CharacterOverview = New CharacterOverview
-            Dim player As NCFramework.Framework.Modules.Character = characterview.SelectedItems(0).Tag
+            Dim player As NCFramework.Framework.Modules.Character = CType(characterview.SelectedItems(0).Tag,
+                                                                          NCFramework.Framework.Modules.Character)
             If GlobalVariables.armoryMode = True Then
                 Userwait.Show()
                 charview.prepare_interface(GetAccountSetBySetId(player.AccountSet), player.SetIndex)
@@ -124,7 +162,6 @@ Namespace Forms
 
         Private Sub SelectedCharacterToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles SelectedCharacterToolStripMenuItem.Click
-
             Dim result =
                     MsgBox(
                         ResourceHandler.GetUserMessage("deletechar") & " (" &
@@ -148,7 +185,6 @@ Namespace Forms
 
         Private Sub CheckedCharactersToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles CheckedCharactersToolStripMenuItem.Click
-
             Dim result = MsgBox(ResourceHandler.GetUserMessage("deletechar"), vbYesNo,
                                 ResourceHandler.GetUserMessage("areyousure"))
             If result = MsgBoxResult.Yes Then
@@ -164,6 +200,82 @@ Namespace Forms
                         GlobalVariables.GlobalConnection)
                 Next
             End If
+        End Sub
+
+        Private Sub UpdateButtons()
+            savechanges_bt.Enabled = True
+            reset_bt.Enabled = True
+        End Sub
+
+        Private Sub TextChangeRequest(sender As Object, e As EventArgs) Handles mail_lbl.Click
+            Dim oldSenderLabel As Label = CType(changepanel.Tag, Label)
+            If Not oldSenderLabel Is Nothing Then oldSenderLabel.Visible = True
+            Dim senderLabel As Label = CType(sender, Label)
+            changepanel.Location = senderLabel.Location
+            changepanel.Tag = senderLabel
+            changeText_tb.Text = ""
+            changeText_tb.Text = senderLabel.Text
+            senderLabel.Visible = False
+        End Sub
+
+        Private Sub updatePic_Click(sender As Object, e As EventArgs) Handles updatePic.Click
+            Dim senderLabel As Label = CType(changepanel.Tag, Label)
+            Select Case senderLabel.Name
+                Case mail_lbl.Name
+                    If changeText_tb.Text.Length > 0 AndAlso Not changeText_tb.Text.Contains("@") Then
+                        MsgBox(ResourceHandler.GetUserMessage("noValidEmail"), MsgBoxStyle.Critical, "Error")
+                    Else
+                        mail_lbl.Text = changeText_tb.Text
+                        _currentEditedAccountSet.Email = changeText_tb.Text
+                        changepanel.Location = New Point(4000, 4000)
+                        senderLabel.Visible = True
+                        UpdateButtons()
+                    End If
+            End Select
+        End Sub
+
+        Private Sub lockaccount_cb_CheckedChanged(sender As Object, e As EventArgs) _
+            Handles lockaccount_cb.CheckedChanged
+            If _initComplete Then
+                changepanel.Location = New Point(4000, 4000)
+                If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
+                _currentEditedAccountSet.Locked = CType(lockaccount_cb.Checked, Integer)
+                UpdateButtons()
+            End If
+        End Sub
+
+        Private Sub expansion_ud_ValueChanged(sender As Object, e As EventArgs) Handles expansion_ud.ValueChanged
+            If _initComplete Then
+                changepanel.Location = New Point(4000, 4000)
+                If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
+                _currentEditedAccountSet.Expansion = CType(expansion_ud.Value, Integer)
+                UpdateButtons()
+            End If
+        End Sub
+
+        Private Sub reset_bt_Click(sender As Object, e As EventArgs) Handles reset_bt.Click
+            changepanel.Location = New Point(4000, 4000)
+            If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
+            prepare_interface(_currentViewedAccountSet)
+        End Sub
+
+        Private Sub savechanges_bt_Click(sender As Object, e As EventArgs) Handles savechanges_bt.Click
+            changepanel.Location = New Point(4000, 4000)
+            If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
+            NewProcessStatus()
+            Dim updateHandler As New UpdateAccountHandler
+            updateHandler.UpdateAccount(_currentViewedAccountSet, _currentEditedAccountSet)
+            LiveView.LiveViewInstance.UpdateAccount(_currentViewedAccountSet)
+            reset_bt.Enabled = False
+            savechanges_bt.Enabled = False
+            LogAppend("Completed account update", "AccountOverview_savechanges_bt_Click", False)
+            CloseProcessStatus()
+            MsgBox(ResourceHandler.GetUserMessage("updateAccountComplete"), , "Info")
+        End Sub
+
+        Private Sub AccountOverview_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+            changepanel.Location = New Point(4000, 4000)
+            If Not changepanel.Tag Is Nothing Then CType(changepanel.Tag, Label).Visible = True
         End Sub
     End Class
 End Namespace

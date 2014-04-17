@@ -21,8 +21,11 @@
 '*      /Description:   Initializing csv & common functions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Threading
+Imports System.Text
+
 Public Class Main
     '// Declaration
+    Public Shared ForceAppExit As Boolean = False
     Public Shared IsInitialized As Boolean = False
     Public Shared AchievementCsv As DataTable
     Public Shared AchievementCategoryCsv As DataTable
@@ -72,6 +75,7 @@ Public Class Main
         IsInitialized = True
     End Sub
     Public Shared Sub FillDataTable(ByVal csv As String, ByRef targetTable As DataTable)
+        If ForceAppExit = True Then Exit Sub
         Try
             targetTable = New DataTable()
             Dim a() As String
@@ -94,14 +98,19 @@ Public Class Main
     Public Shared Function ExecuteCsvSearch(ByVal dt As DataTable, ByVal startfield As String, ByVal startvalue As String, ByVal targetfield As Integer) As String()
         Try
             Dim foundRows() As DataRow
-            foundRows = dt.Select(startfield & " = '" & startvalue & "'")
+            foundRows = dt.Select(startfield & " = '" & EscapeLikeValue(startvalue) & "'")
             If foundRows.Length = 0 Then
                 Return {"-"}
             Else
-                Dim resultArray(foundRows.Count()) As String
+                Dim resultArray(foundRows.Count() - 1) As String
                 resultArray(0) = "-"
                 For i = 0 To foundRows.Count() - 1
-                    resultArray(i) = (foundRows(i)(targetfield)).ToString
+                    Dim thisResult As String = (foundRows(i)(targetfield)).ToString
+                    If Not thisResult Is Nothing Then
+                        resultArray(i) = thisResult
+                    Else
+                        resultArray.RemoveAt(i)
+                    End If
                 Next i
                 Return resultArray
             End If
@@ -123,6 +132,25 @@ Public Class Main
         Catch ex As Exception
             Return Nothing
         End Try
+    End Function
+    Public Shared Function EscapeLikeValue(ByVal value As String) As String
+        Dim sb As New StringBuilder(value.Length)
+        For i = 0 To value.Length - 1
+            Dim c As Char = value(i)
+            Select Case c
+                Case "]"c
+                Case "]"c, "["c, "%"c, "*"c
+                    sb.Append("[").Append(c).Append("]")
+                    Exit Select
+                Case "'"c
+                    sb.Append("''")
+                    Exit Select
+                Case Else
+                    sb.Append(c)
+                    Exit Select
+            End Select
+        Next
+        Return sb.ToString()
     End Function
     Public Shared Sub CheckInit()
         While IsInitialized = False

@@ -20,32 +20,48 @@
 '*      /Filename:      Process_status
 '*      /Description:   Provides an interface to display operation status
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Windows.Forms
 Imports System.Drawing
-Imports NCFramework.Framework.Modules
+Imports System.Windows.Forms
+Imports FastColoredTextBoxNS
 
 Namespace Framework.Forms
-
     Public Class ProcessStatus
-
         '// Declaration
-        Private Delegate Sub AppendTextBoxDelegate(ByVal txt As String)
+        Private Delegate Sub AppendTextBoxDelegate(ByVal txt As String, ByVal style As Style)
+
         Private _ptMouseDownLocation As Point
         '// Declartaion
 
-        Private Sub close_bt_Click(sender As System.Object, e As EventArgs) Handles close_bt.Click
+        Private Sub close_bt_Click(sender As Object, e As EventArgs) Handles close_bt.Click
             Close()
         End Sub
 
-        Public Sub AppendProc(ByVal status As String)
-            If process_tb.InvokeRequired Then
-                process_tb.Invoke(New AppendTextBoxDelegate(AddressOf AppendProc), New Object() {GlobalVariables.proccessTXT})
+        Public Sub AppendProc(txt As String, style As Style)
+            If fctb.InvokeRequired Then
+                fctb.Invoke(New AppendTextBoxDelegate(AddressOf AppendProc),
+                                  New Object() {txt, style})
             Else
-                process_tb.Text = GlobalVariables.proccessTXT
+                txt = txt & vbCrLf
+                fctb.BeginUpdate()
+                fctb.Selection.BeginUpdate()
+                Dim userSelection As Range = fctb.Selection.Clone()
+                fctb.Selection.Start = If(fctb.LinesCount > 0, New Place(fctb(fctb.LinesCount - 1).Count, fctb.LinesCount - 1), New Place(0, 0))
+                fctb.InsertText(txt, style)
+                If Not userSelection.IsEmpty OrElse userSelection.Start.iLine < fctb.LinesCount - 2 Then
+                    fctb.Selection.Start = userSelection.Start
+                    fctb.Selection.[End] = userSelection.[End]
+                Else
+                    fctb.DoCaretVisible()
+                End If
+                fctb.Selection.EndUpdate()
+                fctb.EndUpdate()
+                If userSelection.IsEmpty OrElse Not userSelection.Start.iLine < fctb.LinesCount - 2 Then
+                    fctb.GoEnd()
+                End If
             End If
             Application.DoEvents()
         End Sub
-        
+
         Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
             If e.Button = MouseButtons.Left Then
                 _ptMouseDownLocation = e.Location
@@ -54,21 +70,25 @@ Namespace Framework.Forms
 
         Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
             If e.Button = MouseButtons.Left Then
-                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
 
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter2.MouseEnter
-            sender.backgroundimage = My.Resources.bt_close_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_close_light
         End Sub
+
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter2.MouseLeave
-            sender.backgroundimage = My.Resources.bt_close
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_close
         End Sub
+
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter1.MouseEnter
-            sender.backgroundimage = My.Resources.bt_minimize_light
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize_light
         End Sub
+
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter1.MouseLeave
-            sender.backgroundimage = My.Resources.bt_minimize
+            CType(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
@@ -87,9 +107,15 @@ Namespace Framework.Forms
 
         Private Sub header_MouseMove(sender As Object, e As MouseEventArgs) Handles header.MouseMove
             If e.Button = MouseButtons.Left Then
-                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
-    
+
+        Private Sub ProcessStatus_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+#If CONFIG = "Debug" Then
+            Location = New Point(0, 0)
+#End If
+        End Sub
     End Class
 End Namespace

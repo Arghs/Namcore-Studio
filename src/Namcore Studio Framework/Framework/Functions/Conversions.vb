@@ -21,12 +21,11 @@
 '*      /Description:   Includes frequently used functions for converting various objects
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
-Imports System.Text
 Imports System.IO
 Imports NCFramework.Framework.Logging
+Imports System.Text
 
 Namespace Framework.Functions
-
     Public Module Conversions
         Public Function ConvertListToString(ByVal list As List(Of String)) As String
             LogAppend("Converting a list to a string", "Conversions_ConvertListToString", False)
@@ -83,6 +82,15 @@ Namespace Framework.Functions
             End Try
         End Function
 
+        Public Function TrySingle(ByVal mystring As String) As Single
+            Try
+                Return Convert.ToSingle(mystring)
+            Catch ex As Exception
+                LogAppend("Exception during TrySingle() : " & ex.ToString(), "Conversions_TrySingle", False, True)
+                Return 0
+            End Try
+        End Function
+
         Public Function ConvertImageToString(ByVal myimg As Image) As String
             LogAppend("Converting image to string", "Conversions_ConvertImageToString", False)
             If myimg Is Nothing Then Return ""
@@ -95,7 +103,8 @@ Namespace Framework.Functions
                     result = Convert.ToBase64String(bytes)
                 End Using
             Catch ex As Exception
-                LogAppend("Exception during converting process: " & ex.ToString(), "Conversions_ConvertImageToString", False,
+                LogAppend("Exception during converting process: " & ex.ToString(), "Conversions_ConvertImageToString",
+                          False,
                           True)
             End Try
             Return result
@@ -112,7 +121,8 @@ Namespace Framework.Functions
                     Dim bytes() As Byte = Convert.FromBase64String(base64String)
                     img = Image.FromStream(New MemoryStream(bytes))
                 Catch ex As Exception
-                    LogAppend("Exception during converting process: " & ex.ToString(), "Conversions_ConvertStringToImage",
+                    LogAppend("Exception during converting process: " & ex.ToString(),
+                              "Conversions_ConvertStringToImage",
                               False, True)
                 End Try
             End If

@@ -1,5 +1,4 @@
-﻿
-'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 '* Copyright (C) 2013-2014 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
@@ -25,12 +24,11 @@ Imports System.Runtime.CompilerServices
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Extension
-
     Public Module RepStandingExtension
-        ''' <summary>
-        '''     Updates reputation standing by value and status
-        ''' </summary>
-        <Extension()>
+    ''' <summary>
+    '''     Updates reputation standing by value and status
+    ''' </summary>
+                                      <Extension()>
         Public Function UpdateStanding(rep As Reputation) As Reputation
             Try
                 Select Case rep.status
@@ -48,15 +46,17 @@ Namespace Framework.Extension
                 Return rep
             End Try
         End Function
-        ''' <summary>
-        '''     Updates reputation value, status and max by standing
-        ''' </summary>
-        <Extension()>
+
+                                      
+                                      ''' <summary>
+                                      '''     Updates reputation value, status and max by standing
+                                      ''' </summary>
+                                      <Extension()>
         Public Function UpdateValueMax(rep As Reputation) As Reputation
             Try
-                If rep.standing >= -42000 Then rep.value = 42000 + rep.standing : rep.status = 0 : rep.max = 36000
-                If rep.standing >= -6000 Then rep.value = 6000 + rep.standing : rep.status = 1 : rep.max = 3000
-                If rep.standing >= -3000 Then rep.value = 3000 + rep.standing : rep.status = 2 : rep.max = 3000
+                If rep.standing >= - 42000 Then rep.value = 42000 + rep.standing : rep.status = 0 : rep.max = 36000
+                If rep.standing >= - 6000 Then rep.value = 6000 + rep.standing : rep.status = 1 : rep.max = 3000
+                If rep.standing >= - 3000 Then rep.value = 3000 + rep.standing : rep.status = 2 : rep.max = 3000
                 If rep.standing >= 0 Then rep.value = rep.standing : rep.status = 3 : rep.max = 3000
                 If rep.standing >= 3000 Then rep.value = rep.standing - 3000 : rep.status = 4 : rep.max = 6000
                 If rep.standing >= 9000 Then rep.value = rep.standing - 9000 : rep.status = 5 : rep.max = 12000

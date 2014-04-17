@@ -27,6 +27,7 @@
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LiveView))
             Me.connect_bt = New System.Windows.Forms.Button()
             Me.Panel1 = New System.Windows.Forms.Panel()
+            Me.refreshdb = New System.Windows.Forms.PictureBox()
             Me.chartotal = New System.Windows.Forms.Label()
             Me.acctotal = New System.Windows.Forms.Label()
             Me.uncheckall_char = New System.Windows.Forms.LinkLabel()
@@ -62,6 +63,7 @@
             Me.target_accounts_tree = New System.Windows.Forms.TreeView()
             Me.GroupBox1 = New System.Windows.Forms.GroupBox()
             Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+            Me.refreshdb_target = New System.Windows.Forms.PictureBox()
             Me.createTemplate_bt = New System.Windows.Forms.Button()
             Me.Label3 = New System.Windows.Forms.Label()
             Me.info2_lbl = New System.Windows.Forms.Label()
@@ -88,9 +90,11 @@
             Me.highlighter5 = New System.Windows.Forms.PictureBox()
             Me.highlighter4 = New System.Windows.Forms.PictureBox()
             Me.Panel1.SuspendLayout()
+            CType(Me.refreshdb, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.accountcontext.SuspendLayout()
             Me.GroupBox1.SuspendLayout()
             Me.GroupBox2.SuspendLayout()
+            CType(Me.refreshdb_target, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.charactercontext.SuspendLayout()
             Me.targetacccontext.SuspendLayout()
             Me.targetcharcontext.SuspendLayout()
@@ -118,6 +122,7 @@
             '
             'Panel1
             '
+            Me.Panel1.Controls.Add(Me.refreshdb)
             Me.Panel1.Controls.Add(Me.chartotal)
             Me.Panel1.Controls.Add(Me.connect_bt)
             Me.Panel1.Controls.Add(Me.acctotal)
@@ -132,8 +137,21 @@
             Me.Panel1.Controls.Add(Me.accountview)
             Me.Panel1.Location = New System.Drawing.Point(6, 13)
             Me.Panel1.Name = "Panel1"
-            Me.Panel1.Size = New System.Drawing.Size(986, 469)
+            Me.Panel1.Size = New System.Drawing.Size(964, 469)
             Me.Panel1.TabIndex = 1
+            '
+            'refreshdb
+            '
+            Me.refreshdb.BackColor = System.Drawing.Color.Transparent
+            Me.refreshdb.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
+            Me.refreshdb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.refreshdb.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.refreshdb.Location = New System.Drawing.Point(768, 14)
+            Me.refreshdb.Name = "refreshdb"
+            Me.refreshdb.Size = New System.Drawing.Size(30, 30)
+            Me.refreshdb.TabIndex = 232
+            Me.refreshdb.TabStop = False
+            Me.refreshdb.Visible = False
             '
             'chartotal
             '
@@ -282,6 +300,7 @@
             'charlevel
             '
             Me.charlevel.Text = "Level"
+            Me.charlevel.Width = 41
             '
             'accountview
             '
@@ -391,7 +410,7 @@
             Me.target_accounts_tree.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
             Me.target_accounts_tree.Location = New System.Drawing.Point(11, 63)
             Me.target_accounts_tree.Name = "target_accounts_tree"
-            Me.target_accounts_tree.Size = New System.Drawing.Size(363, 372)
+            Me.target_accounts_tree.Size = New System.Drawing.Size(382, 372)
             Me.target_accounts_tree.TabIndex = 210
             '
             'GroupBox1
@@ -400,34 +419,49 @@
             Me.GroupBox1.Controls.Add(Me.Panel1)
             Me.GroupBox1.Location = New System.Drawing.Point(3, -5)
             Me.GroupBox1.Name = "GroupBox1"
-            Me.GroupBox1.Size = New System.Drawing.Size(989, 482)
+            Me.GroupBox1.Size = New System.Drawing.Size(972, 482)
             Me.GroupBox1.TabIndex = 211
             Me.GroupBox1.TabStop = False
             '
             'GroupBox2
             '
             Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+            Me.GroupBox2.Controls.Add(Me.refreshdb_target)
             Me.GroupBox2.Controls.Add(Me.createTemplate_bt)
             Me.GroupBox2.Controls.Add(Me.Label3)
             Me.GroupBox2.Controls.Add(Me.info2_lbl)
             Me.GroupBox2.Controls.Add(Me.info1_lbl)
             Me.GroupBox2.Controls.Add(Me.connect_bt_target)
             Me.GroupBox2.Controls.Add(Me.target_accounts_tree)
-            Me.GroupBox2.Location = New System.Drawing.Point(990, -5)
+            Me.GroupBox2.Location = New System.Drawing.Point(966, -5)
             Me.GroupBox2.Name = "GroupBox2"
-            Me.GroupBox2.Size = New System.Drawing.Size(388, 482)
+            Me.GroupBox2.Size = New System.Drawing.Size(400, 482)
             Me.GroupBox2.TabIndex = 212
             Me.GroupBox2.TabStop = False
+            '
+            'refreshdb_target
+            '
+            Me.refreshdb_target.BackColor = System.Drawing.Color.Transparent
+            Me.refreshdb_target.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
+            Me.refreshdb_target.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.refreshdb_target.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.refreshdb_target.Location = New System.Drawing.Point(363, 62)
+            Me.refreshdb_target.Name = "refreshdb_target"
+            Me.refreshdb_target.Size = New System.Drawing.Size(30, 30)
+            Me.refreshdb_target.TabIndex = 233
+            Me.refreshdb_target.TabStop = False
+            Me.refreshdb_target.Visible = False
             '
             'createTemplate_bt
             '
             Me.createTemplate_bt.BackColor = System.Drawing.Color.DimGray
             Me.createTemplate_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.createTemplate_bt.Enabled = False
             Me.createTemplate_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.createTemplate_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.createTemplate_bt.Location = New System.Drawing.Point(123, 441)
+            Me.createTemplate_bt.Location = New System.Drawing.Point(276, 443)
             Me.createTemplate_bt.Name = "createTemplate_bt"
-            Me.createTemplate_bt.Size = New System.Drawing.Size(147, 34)
+            Me.createTemplate_bt.Size = New System.Drawing.Size(117, 34)
             Me.createTemplate_bt.TabIndex = 214
             Me.createTemplate_bt.Text = "Create template file"
             Me.createTemplate_bt.UseVisualStyleBackColor = False
@@ -560,7 +594,7 @@
             Me.back_bt.Cursor = System.Windows.Forms.Cursors.Hand
             Me.back_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.back_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.back_bt.Location = New System.Drawing.Point(838, 598)
+            Me.back_bt.Location = New System.Drawing.Point(818, 599)
             Me.back_bt.Name = "back_bt"
             Me.back_bt.Size = New System.Drawing.Size(147, 42)
             Me.back_bt.TabIndex = 215
@@ -672,10 +706,12 @@
             Me.Text = "liveview"
             Me.Panel1.ResumeLayout(False)
             Me.Panel1.PerformLayout()
+            CType(Me.refreshdb, System.ComponentModel.ISupportInitialize).EndInit()
             Me.accountcontext.ResumeLayout(False)
             Me.GroupBox1.ResumeLayout(False)
             Me.GroupBox2.ResumeLayout(False)
             Me.GroupBox2.PerformLayout()
+            CType(Me.refreshdb_target, System.ComponentModel.ISupportInitialize).EndInit()
             Me.charactercontext.ResumeLayout(False)
             Me.targetacccontext.ResumeLayout(False)
             Me.targetcharcontext.ResumeLayout(False)
@@ -751,5 +787,7 @@
         Friend WithEvents settings_pic As System.Windows.Forms.PictureBox
         Friend WithEvents highlighter5 As System.Windows.Forms.PictureBox
         Friend WithEvents highlighter4 As System.Windows.Forms.PictureBox
+        Friend WithEvents refreshdb As System.Windows.Forms.PictureBox
+        Friend WithEvents refreshdb_target As System.Windows.Forms.PictureBox
     End Class
 End Namespace

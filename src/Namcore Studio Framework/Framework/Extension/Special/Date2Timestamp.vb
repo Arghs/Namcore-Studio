@@ -24,10 +24,10 @@ Imports System.Runtime.CompilerServices
 
 Namespace Framework.Extension.Special
     Module Date2Timestamp
-        ''' <summary>
-        '''     timestamp converter
-        ''' </summary>
-        <Extension()>
+    ''' <summary>
+    '''     timestamp converter
+    ''' </summary>
+                         <Extension()>
         Public Function ToDate(ByRef stamp As Integer) As DateTime
             Try
                 Dim span As TimeSpan
@@ -39,6 +39,7 @@ Namespace Framework.Extension.Special
                 Return DateTime.Today
             End Try
         End Function
+
         <Extension()>
         Public Function ToTimeStamp(ByRef dt As DateTime) As Integer
             Try

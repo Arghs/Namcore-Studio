@@ -23,13 +23,10 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
-
     Public Class TalentCreation
-
         '// Declaration
         Private _sDatatable As New DataTable
         Private _talentRank As String
@@ -37,20 +34,25 @@ Namespace Framework.Transmission
         Private _talentId As String
         '// Declaration
 
-        Public Sub SetCharacterTalents(ByVal setId As Integer, ByVal account As Account, Optional charguid As Integer = 0)
-            If charguid = 0 Then charguid = GetCharacterSetBySetId(setId, account).Guid
-            LogAppend("Setting Talents for character: " & charguid.ToString() & " // setId is : " & setId.ToString(),
+        Public Sub SetCharacterTalents(ByVal player As Character, Optional charguid As Integer = 0)
+            If charguid = 0 Then charguid = player.Guid
+            LogAppend("Setting Talents for character: " & charguid.ToString(),
                       "TalentCreation_SetCharacterTalents", True)
-            Select Case GlobalVariables.targetCore
-                Case "arcemu"
-                    CreateAtArcemu(charguid, setId, account)
-                Case "trinity"
-                    CreateAtTrinity(charguid, setId, account)
-                Case "trinitytbc"
+            Try
+                Select Case GlobalVariables.targetCore
+                    Case "arcemu"
+                        CreateAtArcemu(charguid, player)
+                    Case "trinity"
+                        CreateAtTrinity(charguid, player)
+                    Case "trinitytbc"
 
-                Case "mangos"
-                    CreateAtMangos(charguid, setId, account)
-            End Select
+                    Case "mangos"
+                        CreateAtMangos(charguid, player)
+                End Select
+            Catch ex As Exception
+                LogAppend("Exception occured: " & ex.ToString(),
+               "TalentCreation_SetCharacterTalents", False, True)
+            End Try
         End Sub
 
         Private Function LoadTalentTable() As DataTable
@@ -72,8 +74,9 @@ Namespace Framework.Transmission
                 Next i
                 Return dt
             Catch ex As Exception
-                LogAppend("Failed to load new talent datatable! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                          "TalentCreation_LoadTalentTable", False, True)
+                LogAppend(
+                    "Failed to load new talent datatable! -> Exception is: ###START###" & ex.ToString() & "###END###",
+                    "TalentCreation_LoadTalentTable", False, True)
                 Return New DataTable
             End Try
         End Function
@@ -127,7 +130,7 @@ Namespace Framework.Transmission
             End Try
         End Function
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating at arcemu", "TalentCreation_createAtArcemu", False)
             _talentRank = Nothing
             _talentRank2 = Nothing
@@ -138,7 +141,6 @@ Namespace Framework.Transmission
             Dim talentlist2 As String = Nothing
             Dim finaltalentstring As String = Nothing
             Dim finaltalentstring2 As String = Nothing
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             For Each tal As Talent In player.Talents
                 Dim spellid As String = tal.Spell.ToString
                 If spellid.Contains("clear") Then
@@ -207,7 +209,8 @@ Namespace Framework.Transmission
                             Else
                             End If
                         Else
-                            finaltalentstring = finaltalentstring & _talentId & "," & (CInt(Val(_talentRank))).ToString & ","
+                            finaltalentstring = finaltalentstring & _talentId & "," & (CInt(Val(_talentRank))).ToString &
+                                                ","
                             talentlist = talentlist & " " & _talentId & "rank" & _talentRank
                         End If
                     Else
@@ -250,7 +253,8 @@ Namespace Framework.Transmission
                                     finaltalentstring2 = finaltalentstring2.Replace(_talentId & ",1",
                                                                                     (CInt(Val(_talentRank2))).ToString)
                                     finaltalentstring2 = finaltalentstring2.Replace(_talentId & ",2",
-                                                                                    (CInt(Val(_talentRank2)) - 1).ToString)
+                                                                                    (CInt(Val(_talentRank2)) - 1).
+                                                                                       ToString)
                                     talentlist2 = talentlist2 & " " & _talentId & "rank" & _talentRank2
                                 End If
                             ElseIf talentlist2.Contains(_talentId & "rank1") Then
@@ -265,7 +269,8 @@ Namespace Framework.Transmission
                             Else
                             End If
                         Else
-                            finaltalentstring2 = finaltalentstring2 & _talentId & "," & (CInt(Val(_talentRank2))).ToString &
+                            finaltalentstring2 = finaltalentstring2 & _talentId & "," &
+                                                 (CInt(Val(_talentRank2))).ToString &
                                                  ","
                             talentlist2 = talentlist2 & " " & _talentId & "rank" & _talentRank2
                         End If
@@ -284,21 +289,21 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating at Trinity", "TalentCreation_createAtTrinity", False)
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             For Each tal As Talent In player.Talents
                 runSQLCommand_characters_string(
                     "INSERT INTO " & GlobalVariables.targetStructure.character_talent_tbl(0) & " ( " &
                     GlobalVariables.targetStructure.talent_guid_col(0) & ", " &
                     GlobalVariables.targetStructure.talent_spell_col(0) & ", " &
-                    GlobalVariables.targetStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString() & "', '" &
+                    GlobalVariables.targetStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString() &
+                    "', '" &
                     tal.Spell.ToString & "', '" &
                     tal.Spec.ToString & "')", True)
             Next
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal targetSetId As Integer, ByVal account As Account)
+        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating at Mangos", "TalentCreation_createAtMangos", False)
             _talentRank = Nothing
             _talentRank2 = Nothing
@@ -307,7 +312,6 @@ Namespace Framework.Transmission
             _sDatatable = LoadTalentTable()
             Dim talentlist As String = Nothing
             Dim talentlist2 As String = Nothing
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, account)
             For Each tal As Talent In player.Talents
                 _talentId = tal.Spell.ToString
                 Dim spec As String = tal.Spec.ToString
@@ -370,7 +374,8 @@ Namespace Framework.Transmission
                             GlobalVariables.targetStructure.talent_guid_col(0) & ", " &
                             GlobalVariables.targetStructure.talent_talent_col(0) & ", " &
                             GlobalVariables.targetStructure.talent_rank_col(0) & ", " &
-                            GlobalVariables.targetStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString &
+                            GlobalVariables.targetStructure.talent_spec_col(0) & " ) VALUES ( '" &
+                            characterguid.ToString &
                             "', '" & _talentId & "', '" &
                             _talentRank & "', '0' )", True)
                         talentlist = talentlist & " " & _talentId & "rank" & _talentRank
@@ -383,7 +388,8 @@ Namespace Framework.Transmission
                             Else
                                 runSQLCommand_characters_string(
                                     "UPDATE " & GlobalVariables.targetStructure.character_talent_tbl(0) & " SET " &
-                                    GlobalVariables.targetStructure.talent_rank_col(0) & "='" & _talentRank2 & "' WHERE " &
+                                    GlobalVariables.targetStructure.talent_rank_col(0) & "='" & _talentRank2 &
+                                    "' WHERE " &
                                     GlobalVariables.targetStructure.talent_guid_col(0) & "='" & characterguid.ToString &
                                     "' AND " & GlobalVariables.targetStructure.talent_talent_col(0) & "='" & _talentId &
                                     "' AND " &
@@ -395,7 +401,8 @@ Namespace Framework.Transmission
                             Else
                                 runSQLCommand_characters_string(
                                     "UPDATE " & GlobalVariables.targetStructure.character_talent_tbl(0) & " SET " &
-                                    GlobalVariables.targetStructure.talent_rank_col(0) & "='" & _talentRank2 & "' WHERE " &
+                                    GlobalVariables.targetStructure.talent_rank_col(0) & "='" & _talentRank2 &
+                                    "' WHERE " &
                                     GlobalVariables.targetStructure.talent_guid_col(0) & "='" & characterguid.ToString &
                                     "' AND " & GlobalVariables.targetStructure.talent_talent_col(0) & "='" & _talentId &
                                     "' AND " &
@@ -407,7 +414,8 @@ Namespace Framework.Transmission
                             Else
                                 runSQLCommand_characters_string(
                                     "UPDATE " & GlobalVariables.targetStructure.character_talent_tbl(0) & " SET " &
-                                    GlobalVariables.targetStructure.talent_rank_col(0) & "='" & _talentRank2 & "' WHERE " &
+                                    GlobalVariables.targetStructure.talent_rank_col(0) & "='" & _talentRank2 &
+                                    "' WHERE " &
                                     GlobalVariables.targetStructure.talent_guid_col(0) & "='" & characterguid.ToString &
                                     "' AND " & GlobalVariables.targetStructure.talent_talent_col(0) & "='" & _talentId &
                                     "' AND " &
@@ -419,7 +427,8 @@ Namespace Framework.Transmission
                             Else
                                 runSQLCommand_characters_string(
                                     "UPDATE " & GlobalVariables.targetStructure.character_talent_tbl(0) & " SET " &
-                                    GlobalVariables.targetStructure.talent_rank_col(0) & "='" & _talentRank2 & "' WHERE " &
+                                    GlobalVariables.targetStructure.talent_rank_col(0) & "='" & _talentRank2 &
+                                    "' WHERE " &
                                     GlobalVariables.targetStructure.talent_guid_col(0) & "='" & characterguid.ToString &
                                     "' AND " & GlobalVariables.targetStructure.talent_talent_col(0) & "='" & _talentId &
                                     "' AND " &
@@ -434,7 +443,8 @@ Namespace Framework.Transmission
                             GlobalVariables.targetStructure.talent_guid_col(0) & ", " &
                             GlobalVariables.targetStructure.talent_talent_col(0) & ", " &
                             GlobalVariables.targetStructure.talent_rank_col(0) & ", " &
-                            GlobalVariables.targetStructure.talent_spec_col(0) & " ) VALUES ( '" & characterguid.ToString &
+                            GlobalVariables.targetStructure.talent_spec_col(0) & " ) VALUES ( '" &
+                            characterguid.ToString &
                             "', '" & _talentId & "', '" & _talentRank2 & "', '1' )", True)
                         talentlist2 = talentlist2 & " " & _talentId & "rank" & _talentRank2
                     End If

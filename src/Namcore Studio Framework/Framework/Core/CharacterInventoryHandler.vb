@@ -21,14 +21,15 @@
 '*      /Description:   Contains functions for extracting information about the items in 
 '*                      the inventory of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterInventoryHandler
-        Public Sub GetCharacterInventory(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
+        Public Sub GetCharacterInventory(ByVal characterGuid As Integer, ByVal setId As Integer,
+                                         ByVal account As Account)
             LogAppend("Loading character Inventory for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterInventoryHandler_GetCharacterInventory", True)
             Dim player As Character = GetCharacterSetBySetId(setId, account)
@@ -70,13 +71,15 @@ Namespace Framework.Core
                                     ReturnCountResults(
                                         "SELECT " & GlobalVariables.sourceStructure.itmins_container_col(0) & " FROM " &
                                         GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                        GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString &
+                                        GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "='" &
+                                        charguid.ToString &
                                         "' AND " & GlobalVariables.sourceStructure.itmins_slot_col(0) & "='" &
                                         tmpext.ToString & "'")
                             If numresults = 1 Then
                                 Dim containerslot As String =
                                         runSQLCommand_characters_string(
-                                            "SELECT " & GlobalVariables.sourceStructure.itmins_container_col(0) & " FROM " &
+                                            "SELECT " & GlobalVariables.sourceStructure.itmins_container_col(0) &
+                                            " FROM " &
                                             GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "='" &
                                             charguid.ToString & "' AND " &
@@ -105,26 +108,31 @@ Namespace Framework.Core
                                         bag = bagguid
                                         item =
                                             runSQLCommand_characters_string(
-                                                "SELECT " & GlobalVariables.sourceStructure.itmins_guid_col(0) & " FROM " &
+                                                "SELECT " & GlobalVariables.sourceStructure.itmins_guid_col(0) &
+                                                " FROM " &
                                                 GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) &
                                                 "='" & charguid.ToString & "' AND " &
-                                                GlobalVariables.sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString &
+                                                GlobalVariables.sourceStructure.itmins_slot_col(0) & "='" &
+                                                tmpext.ToString &
                                                 "' AND " & GlobalVariables.sourceStructure.itmins_container_col(0) &
                                                 "='-1'")
                                         entryid =
                                             runSQLCommand_characters_string(
                                                 "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) &
-                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) &
+                                                " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
                                         enchantments =
                                             runSQLCommand_characters_string(
                                                 "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
-                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) &
+                                                " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                         itemcount =
                                             runSQLCommand_characters_string(
-                                                "SELECT " & GlobalVariables.sourceStructure.itmins_count_col(0) & " FROM " &
+                                                "SELECT " & GlobalVariables.sourceStructure.itmins_count_col(0) &
+                                                " FROM " &
                                                 GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                         Dim newItm As New Item
@@ -134,7 +142,7 @@ Namespace Framework.Core
                                         newItm.Id = TryInt(entryid)
                                         newItm.Enchantstring = enchantments
                                         newItm.Count = TryInt(itemcount)
-                                        newItm.Container = -1
+                                        newItm.Container = - 1
                                         newItm.Guid = TryInt(item)
                                         If player.InventoryZeroItems Is Nothing Then _
                                             player.InventoryZeroItems = New List(Of Item)()
@@ -149,7 +157,8 @@ Namespace Framework.Core
                                     Dim itemcount As String
                                     bag =
                                         runSQLCommand_characters_string(
-                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
+                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) &
+                                            " FROM " &
                                             GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                             " = '" & bagguid & "'")
@@ -163,7 +172,8 @@ Namespace Framework.Core
                                             "'")
                                     entryid =
                                         runSQLCommand_characters_string(
-                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
+                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) &
+                                            " FROM " &
                                             GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                             " = '" & item & "'")
@@ -185,7 +195,7 @@ Namespace Framework.Core
                                     newItm.Id = TryInt(entryid)
                                     newItm.Enchantstring = enchantments
                                     newItm.Count = TryInt(itemcount)
-                                    newItm.Container = -1
+                                    newItm.Container = - 1
                                     newItm.Guid = TryInt(item)
                                     If player.InventoryItems Is Nothing Then _
                                         player.InventoryItems = New List(Of Item)()
@@ -195,7 +205,8 @@ Namespace Framework.Core
                             Else
                                 Dim containerslot As String =
                                         ReturnResultWithRow(
-                                            "SELECT " & GlobalVariables.sourceStructure.itmins_container_col(0) & " FROM " &
+                                            "SELECT " & GlobalVariables.sourceStructure.itmins_container_col(0) &
+                                            " FROM " &
                                             GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "='" &
                                             charguid.ToString & "' AND " &
@@ -223,26 +234,31 @@ Namespace Framework.Core
                                         bag = bagguid
                                         item =
                                             runSQLCommand_characters_string(
-                                                "SELECT " & GlobalVariables.sourceStructure.itmins_guid_col(0) & " FROM " &
+                                                "SELECT " & GlobalVariables.sourceStructure.itmins_guid_col(0) &
+                                                " FROM " &
                                                 GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) &
                                                 "='" & charguid.ToString & "' AND " &
-                                                GlobalVariables.sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString &
+                                                GlobalVariables.sourceStructure.itmins_slot_col(0) & "='" &
+                                                tmpext.ToString &
                                                 "' AND " & GlobalVariables.sourceStructure.itmins_container_col(0) &
                                                 "='-1'")
                                         entryid =
                                             runSQLCommand_characters_string(
                                                 "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) &
-                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) &
+                                                " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
                                         enchantments =
                                             runSQLCommand_characters_string(
                                                 "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
-                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) &
+                                                " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                         itemcount =
                                             runSQLCommand_characters_string(
-                                                "SELECT " & GlobalVariables.sourceStructure.itmins_count_col(0) & " FROM " &
+                                                "SELECT " & GlobalVariables.sourceStructure.itmins_count_col(0) &
+                                                " FROM " &
                                                 GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                                 "='" & item & "'")
@@ -253,7 +269,7 @@ Namespace Framework.Core
                                         newItm.Id = TryInt(entryid)
                                         newItm.Enchantstring = enchantments
                                         newItm.Count = TryInt(itemcount)
-                                        newItm.Container = -1
+                                        newItm.Container = - 1
                                         newItm.Guid = TryInt(item)
                                         If player.InventoryZeroItems Is Nothing Then _
                                             player.InventoryZeroItems = New List(Of Item)()
@@ -268,7 +284,8 @@ Namespace Framework.Core
                                     Dim itemcount As String
                                     bag =
                                         runSQLCommand_characters_string(
-                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
+                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) &
+                                            " FROM " &
                                             GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                             " = '" & bagguid & "'")
@@ -282,7 +299,8 @@ Namespace Framework.Core
                                             "'", GlobalVariables.sourceStructure.itmins_guid_col(0), 1)
                                     entryid =
                                         runSQLCommand_characters_string(
-                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
+                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) &
+                                            " FROM " &
                                             GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                             " = '" & item & "'")
@@ -304,7 +322,7 @@ Namespace Framework.Core
                                     newItm.Id = TryInt(entryid)
                                     newItm.Enchantstring = enchantments
                                     newItm.Count = TryInt(itemcount)
-                                    newItm.Container = -1
+                                    newItm.Container = - 1
                                     newItm.Guid = TryInt(item)
                                     If player.InventoryItems Is Nothing Then _
                                         player.InventoryItems = New List(Of Item)()
@@ -313,7 +331,8 @@ Namespace Framework.Core
                                 End If
                                 Dim containerslot2 As String =
                                         ReturnResultWithRow(
-                                            "SELECT " & GlobalVariables.sourceStructure.itmins_container_col(0) & " FROM " &
+                                            "SELECT " & GlobalVariables.sourceStructure.itmins_container_col(0) &
+                                            " FROM " &
                                             GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "='" &
                                             charguid.ToString & "' AND " &
@@ -341,26 +360,31 @@ Namespace Framework.Core
                                         bag = bagguid2
                                         item =
                                             ReturnResultWithRow(
-                                                "SELECT " & GlobalVariables.sourceStructure.itmins_guid_col(0) & " FROM " &
+                                                "SELECT " & GlobalVariables.sourceStructure.itmins_guid_col(0) &
+                                                " FROM " &
                                                 GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "='" &
                                                 charguid.ToString & "' AND " &
-                                                GlobalVariables.sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString &
+                                                GlobalVariables.sourceStructure.itmins_slot_col(0) & "='" &
+                                                tmpext.ToString &
                                                 "' AND " & GlobalVariables.sourceStructure.itmins_container_col(0) &
                                                 "='-1'", GlobalVariables.sourceStructure.itmins_guid_col(0), 1)
                                         entryid =
                                             runSQLCommand_characters_string(
                                                 "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) &
-                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) &
+                                                " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
                                         enchantments =
                                             runSQLCommand_characters_string(
                                                 "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
-                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                                                " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) &
+                                                " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                         itemcount =
                                             runSQLCommand_characters_string(
-                                                "SELECT " & GlobalVariables.sourceStructure.itmins_count_col(0) & " FROM " &
+                                                "SELECT " & GlobalVariables.sourceStructure.itmins_count_col(0) &
+                                                " FROM " &
                                                 GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                                 GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
                                         Dim newItm As New Item
@@ -370,7 +394,7 @@ Namespace Framework.Core
                                         newItm.Id = TryInt(entryid)
                                         newItm.Enchantstring = enchantments
                                         newItm.Count = TryInt(itemcount)
-                                        newItm.Container = -1
+                                        newItm.Container = - 1
                                         newItm.Guid = TryInt(item)
                                         If player.InventoryZeroItems Is Nothing Then _
                                             player.InventoryZeroItems = New List(Of Item)()
@@ -385,7 +409,8 @@ Namespace Framework.Core
                                     Dim itemcount As String
                                     bag =
                                         runSQLCommand_characters_string(
-                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
+                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) &
+                                            " FROM " &
                                             GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                             " = '" & bagguid2 & "'")
@@ -399,7 +424,8 @@ Namespace Framework.Core
                                             "'", GlobalVariables.sourceStructure.itmins_guid_col(0), 1)
                                     entryid =
                                         runSQLCommand_characters_string(
-                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
+                                            "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) &
+                                            " FROM " &
                                             GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                                             GlobalVariables.sourceStructure.itmins_guid_col(0) &
                                             " = '" & item & "'")
@@ -445,111 +471,121 @@ Namespace Framework.Core
 
         Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
             LogAppend("Loading character Inventory @LoadAtTrinity", "CharacterInventoryHandler_LoadAtTrinity", False)
-            Dim dt As DataTable =
-                    ReturnDataTable(
-                        "SELECT " & GlobalVariables.sourceStructure.invent_item_col(0) & " FROM " &
-                        GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
-                        GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "'")
-            Dim tmpext As Integer
+            Dim inventoryDt As DataTable = ReturnDataTable(
+                "SELECT * FROM " &
+                GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
+                GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() & "'")
+            Dim itemInstanceDt As DataTable = ReturnDataTable(
+                "SELECT `" & GlobalVariables.sourceStructure.itmins_guid_col(0) & "`, `" &
+                GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & "`, `" &
+                GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "`, `" &
+                GlobalVariables.sourceStructure.itmins_count_col(0) & "`, `" &
+                GlobalVariables.sourceStructure.itmins_enchantments_col(0) & "` FROM " &
+                GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
+                GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString() & "'")
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
-                Dim lastcount As Integer = dt.Rows.Count
+                Dim lastcount As Integer = inventoryDt.Rows.Count
                 Dim count As Integer = 0
                 If Not lastcount = 0 Then
                     Do
-                        Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
-                        tmpext = TryInt(readedcode)
-                        Dim bagguid As String =
-                                runSQLCommand_characters_string(
-                                    "SELECT " & GlobalVariables.sourceStructure.invent_bag_col(0) & " FROM " &
-                                    GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString & "' AND " &
-                                    GlobalVariables.sourceStructure.invent_item_col(0) & "='" & tmpext.ToString & "'")
-                        If TryInt(bagguid) = 0 Then
-                            If tmpext > 18 Then
+                        Dim itemGuid As Integer = TryInt(inventoryDt.Rows(count).Item(3).ToString())
+                        Dim bagGuid As Integer = TryInt(
+                                ExecuteDataTableSearch(inventoryDt,
+                                                       GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" &
+                                                       EscapeLikeValue(charguid.ToString) & "' AND " &
+                                                       GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
+                                                       EscapeLikeValue(itemGuid.ToString()) & "'")(0)(1))
+
+                        If bagGuid = 0 Then
+                            Try
+                                Dim slot As Integer
+                                slot = TryInt(
+                                       ExecuteDataTableSearch(inventoryDt,
+                                                              GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
+                                                              EscapeLikeValue(itemGuid.ToString()) & "'")(0)(2))
+                                If slot > 18 Then
+                                    Dim bag As String
+                                    Dim item As String
+                                    Dim entryid As String
+                                    Dim enchantments As String
+                                    Dim itemcount As String
+                                    bag = bagGuid.ToString()
+                                    item = itemGuid.ToString()
+                                    entryid =
+                                        ExecuteDataTableSearch(itemInstanceDt,
+                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                               EscapeLikeValue(item) & "'")(0)(1)
+                                    enchantments =
+                                        ExecuteDataTableSearch(itemInstanceDt,
+                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                               EscapeLikeValue(item) & "'")(0)(4)
+                                    itemcount =
+                                        ExecuteDataTableSearch(itemInstanceDt,
+                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                               EscapeLikeValue(item) & "'")(0)(3)
+
+                                    Dim newItm As New Item
+                                    newItm.Slot = slot
+                                    newItm.Bag = TryInt(bag)
+                                    newItm.Bagguid = bagGuid
+                                    newItm.Id = TryInt(entryid)
+                                    newItm.Enchantstring = enchantments
+                                    newItm.Count = TryInt(itemcount)
+                                    newItm.Guid = TryInt(item)
+                                    If player.InventoryZeroItems Is Nothing Then _
+                                        player.InventoryZeroItems = New List(Of Item)()
+                                    player.InventoryZeroItems.Add(newItm)
+                                End If
+                            Catch ex As Exception
+                                LogAppend(
+                   "Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" &
+                   ex.ToString() & "###END###", "CharacterInventoryHandler_LoadAtTrinity", True, True)
+                            End Try
+                        Else
+                            Try
                                 Dim bag As String
                                 Dim item As String
                                 Dim entryid As String
                                 Dim enchantments As String
                                 Dim itemcount As String
                                 Dim slot As String
-                                bag = bagguid
-                                item = tmpext.ToString()
+                                bag =
+                                    ExecuteDataTableSearch(itemInstanceDt,
+                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                           EscapeLikeValue(bagGuid.ToString()) & "'")(0)(1)
+                                item = itemGuid.ToString
                                 entryid =
-                                    runSQLCommand_characters_string(
-                                        "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
-                                        GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                        GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                                    ExecuteDataTableSearch(itemInstanceDt,
+                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                           EscapeLikeValue(item) & "'")(0)(1)
                                 enchantments =
-                                    runSQLCommand_characters_string(
-                                        "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) & " FROM " &
-                                        GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                        GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
+                                    ExecuteDataTableSearch(itemInstanceDt,
+                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                           EscapeLikeValue(item) & "'")(0)(4)
                                 itemcount =
-                                    runSQLCommand_characters_string(
-                                        "Select `" & GlobalVariables.sourceStructure.itmins_count_col(0) & "` FROM " &
-                                        GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                        GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
+                                    ExecuteDataTableSearch(itemInstanceDt,
+                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
+                                                           EscapeLikeValue(item) & "'")(0)(3)
                                 slot =
-                                    runSQLCommand_characters_string(
-                                        "Select `" & GlobalVariables.sourceStructure.invent_slot_col(0) & "` FROM " &
-                                        GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE `" &
-                                        GlobalVariables.sourceStructure.invent_item_col(0) & "`='" & item & "'")
+                                    ExecuteDataTableSearch(inventoryDt,
+                                                           GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
+                                                           EscapeLikeValue(itemGuid.ToString()) & "'")(0)(2)
                                 Dim newItm As New Item
                                 newItm.Slot = TryInt(slot)
                                 newItm.Bag = TryInt(bag)
-                                newItm.Bagguid = TryInt(bagguid)
+                                newItm.Bagguid = bagGuid
                                 newItm.Id = TryInt(entryid)
                                 newItm.Enchantstring = enchantments
                                 newItm.Count = TryInt(itemcount)
                                 newItm.Guid = TryInt(item)
-                                If player.InventoryZeroItems Is Nothing Then _
-                                    player.InventoryZeroItems = New List(Of Item)()
-                                player.InventoryZeroItems.Add(newItm)
-                            End If
-                        Else
-                            Dim bag As String
-                            Dim item As String
-                            Dim entryid As String
-                            Dim enchantments As String
-                            Dim itemcount As String
-                            Dim slot As String
-                            bag =
-                                runSQLCommand_characters_string(
-                                    "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
-                                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & bagguid & "'")
-                            item = tmpext.ToString
-                            entryid =
-                                runSQLCommand_characters_string(
-                                    "SELECT " & GlobalVariables.sourceStructure.itmins_itemEntry_col(0) & " FROM " &
-                                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
-                            enchantments =
-                                runSQLCommand_characters_string(
-                                    "SELECT " & GlobalVariables.sourceStructure.itmins_enchantments_col(0) & " FROM " &
-                                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" & item & "'")
-                            itemcount =
-                                runSQLCommand_characters_string(
-                                    "Select `" & GlobalVariables.sourceStructure.itmins_count_col(0) & "` FROM " &
-                                    GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & item & "'")
-                            slot =
-                                runSQLCommand_characters_string(
-                                    "Select `" & GlobalVariables.sourceStructure.invent_slot_col(0) & "` FROM " &
-                                    GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE `" &
-                                    GlobalVariables.sourceStructure.invent_item_col(0) & "`='" & item & "'")
-                            Dim newItm As New Item
-                            newItm.Slot = TryInt(slot)
-                            newItm.Bag = TryInt(bag)
-                            newItm.Bagguid = TryInt(bagguid)
-                            newItm.Id = TryInt(entryid)
-                            newItm.Enchantstring = enchantments
-                            newItm.Count = TryInt(itemcount)
-                            newItm.Guid = TryInt(item)
-                            If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of Item)()
-                            player.InventoryItems.Add(newItm)
+                                If player.InventoryItems Is Nothing Then player.InventoryItems = New List(Of Item)()
+                                player.InventoryItems.Add(newItm)
+                            Catch ex As Exception
+                                LogAppend(
+                   "Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" &
+                   ex.ToString() & "###END###", "CharacterInventoryHandler_LoadAtTrinity", True, True)
+                            End Try
                         End If
                         count += 1
                     Loop Until count = lastcount
@@ -585,7 +621,8 @@ Namespace Framework.Core
                                 runSQLCommand_characters_string(
                                     "SELECT " & GlobalVariables.sourceStructure.invent_bag_col(0) & " FROM " &
                                     GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
-                                    GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString & "' AND " &
+                                    GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString &
+                                    "' AND " &
                                     GlobalVariables.sourceStructure.invent_item_col(0) & "='" & tmpext.ToString & "'")
                         If TryInt(bagguid) = 0 Then
                             If tmpext > 18 Then
@@ -599,10 +636,12 @@ Namespace Framework.Core
                                 item = tmpext.ToString()
                                 entryid =
                                     runSQLCommand_characters_string(
-                                        "SELECT " & GlobalVariables.sourceStructure.invent_item_template_col(0) & " FROM " &
+                                        "SELECT " & GlobalVariables.sourceStructure.invent_item_template_col(0) &
+                                        " FROM " &
                                         GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
                                         GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & charguid.ToString &
-                                        "' AND " & GlobalVariables.sourceStructure.invent_item_col(0) & "='" & item & "'")
+                                        "' AND " & GlobalVariables.sourceStructure.invent_item_col(0) & "='" & item &
+                                        "'")
                                 enchantments =
                                     runSQLCommand_characters_string(
                                         "SELECT `" & GlobalVariables.sourceStructure.itmins_data_col(0) & "` FROM " &
@@ -644,7 +683,8 @@ Namespace Framework.Core
                                     "SELECT " & GlobalVariables.sourceStructure.invent_item_template_col(0) & " FROM " &
                                     GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
                                     GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & charguid.ToString &
-                                    "' AND " & GlobalVariables.sourceStructure.invent_item_col(0) & "='" & tmpext.ToString &
+                                    "' AND " & GlobalVariables.sourceStructure.invent_item_col(0) & "='" &
+                                    tmpext.ToString &
                                     "'")
                             enchantments =
                                 runSQLCommand_characters_string(

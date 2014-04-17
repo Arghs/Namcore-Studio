@@ -24,12 +24,11 @@ Imports System.Runtime.CompilerServices
 Imports System.Net
 
 Namespace Framework.Extension
-
     Public Module WebClientProxyExtension
-        ''' <summary>
-        '''     proxy information handler
-        ''' </summary>
-        <Extension()>
+    ''' <summary>
+    '''     proxy information handler
+    ''' </summary>
+                                         <Extension()>
         Public Function CheckProxy(ByRef client As WebClient) As WebClient
             Try
                 If My.Settings.proxy_enabled = True Then
@@ -46,5 +45,4 @@ Namespace Framework.Extension
             End Try
         End Function
     End Module
-
 End Namespace

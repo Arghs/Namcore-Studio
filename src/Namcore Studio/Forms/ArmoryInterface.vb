@@ -21,8 +21,8 @@
 '*      /Description:   Provides an interface to load characters from WoW Armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
+Imports NCFramework.Framework
 Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.TemplateSystem
 Imports NCFramework.Framework.Modules
 Imports NCFramework.My
 Imports NCFramework.Framework.Functions
@@ -192,10 +192,10 @@ Namespace Forms
         Private Sub load_bt_Click(sender As Object, e As EventArgs) Handles load_bt.Click
             LogAppend("Trigger load button click", "Armory_interface_load_bt_Click", False)
             GlobalVariables.lastregion = "armoryparser"
-            GlobalVariables.globChars.AccountSets = New List(Of NCFramework.Framework.Modules.Account)
+            GlobalVariables.globChars.AccountSets = New List(Of Account)
             GlobalVariables.trdrunnuing = True
             Dim urllst As List(Of String) =
-                    (From lstitm As ListViewItem In char_lst.Items Select lstitm.SubItems(3).Text).ToList()
+                    (From lstitm As Object In char_lst.Items Select TryCast(lstitm, ListViewItem).SubItems(3).Text).ToList()
             LogAppend("Urlcount: " & urllst.Count.ToString(), "Armory_interface_load_bt_Click", False)
             NewProcessStatus()
             _mHandler.LoadArmoryCharacters(urllst)
@@ -253,6 +253,7 @@ Namespace Forms
             Dim mSerializer As Serializer = New Serializer
             GlobalVariables.globChars = mSerializer.DeSerialize("", New GlobalCharVars)
             prepareLive_armory()
+            Close()
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)

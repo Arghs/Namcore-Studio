@@ -24,6 +24,7 @@ Namespace Modules.Interface
     Public Class AvSubcategoy
         Public Text As String
         Public Id As Int32
+
         Public Overrides Function ToString() As String
             Return Text
         End Function

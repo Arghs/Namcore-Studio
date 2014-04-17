@@ -35,3 +35,4 @@ Requires following dbc/db2 files:
 - ItemDisplayInfo.dbc
 - SpellEffect.dbc
 - SpellIcon.dbc
+- SpellWotLK.dbc (Spell.dbc WotLK)

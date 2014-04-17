@@ -21,7 +21,6 @@
 '*      /Description:   Includes functions for setting up the known skills of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
@@ -48,7 +47,7 @@ Namespace Framework.Transmission
                 Select Case useCore
                     Case "trinity"
                         runSQLCommand_characters_string(
-                            "INSERT INTO `" & useStructure.character_skills_tbl(0) & "`( `" &
+                            "INSERT IGNORE INTO `" & useStructure.character_skills_tbl(0) & "`( `" &
                             useStructure.skill_guid_col(0) & "`, `" &
                             useStructure.skill_skill_col(0) & "`, `" &
                             useStructure.skill_value_col(0) & "`, `" &
@@ -60,16 +59,77 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Public Sub AddCharacterSkills(ByVal targetSetId As Integer, ByVal accountSet As Account)
+        Public Sub AddUpdateSkill(ByVal skill As Skill, ByVal player As Character,
+                          Optional forceTargetCore As Boolean = False)
             'TODO
-            Dim player As Character = GetCharacterSetBySetId(targetSetId, accountSet)
+            Dim useCore As String
+            Dim useStructure As DbStructure
+            If forceTargetCore Then
+                useCore = GlobalVariables.targetCore
+                useStructure = GlobalVariables.targetStructure
+            Else
+                useCore = GlobalVariables.sourceCore
+                useStructure = GlobalVariables.sourceStructure
+            End If
+            LogAppend("Adding Skill " & skill.Id.ToString(), "SkillCreation_AddUpdateSkill")
+            Select Case useCore
+                Case "trinity"
+                    runSQLCommand_characters_string(
+                        "INSERT IGNORE INTO `" & useStructure.character_skills_tbl(0) & "` ( `" &
+                        useStructure.skill_guid_col(0) & "`, `" &
+                        useStructure.skill_skill_col(0) & "`, `" &
+                        useStructure.skill_value_col(0) & "`, `" &
+                        useStructure.skill_max_col(0) &
+                        "` ) VALUES ( '" &
+                        player.CreatedGuid.ToString & "', '" &
+                        skill.Id.ToString() & "', '" & skill.Value.ToString() & "', '" & skill.Max.ToString() & "' ) on duplicate key update `" &
+                        useStructure.skill_value_col(0) & "`=values(`" &
+                        useStructure.skill_value_col(0) & "`), `" &
+                        useStructure.skill_max_col(0) & "`=values(`" &
+                        useStructure.skill_max_col(0) & "`)", forceTargetCore)
+            End Select
+        End Sub
+
+        Public Sub AddProfession(ByVal prof As Profession, ByVal player As Character,
+                         Optional forceTargetCore As Boolean = False)
+            'TODO
+            Dim useCore As String
+            Dim useStructure As DbStructure
+            If forceTargetCore Then
+                useCore = GlobalVariables.targetCore
+                useStructure = GlobalVariables.targetStructure
+            Else
+                useCore = GlobalVariables.sourceCore
+                useStructure = GlobalVariables.sourceStructure
+            End If
+            LogAppend("Adding Skill " & prof.Id.ToString(), "SkillCreation_AddUpdateSkill")
+            Select Case useCore
+                Case "trinity"
+                    runSQLCommand_characters_string(
+                        "INSERT IGNORE INTO `" & useStructure.character_skills_tbl(0) & "` ( `" &
+                        useStructure.skill_guid_col(0) & "`, `" &
+                        useStructure.skill_skill_col(0) & "`, `" &
+                        useStructure.skill_value_col(0) & "`, `" &
+                        useStructure.skill_max_col(0) &
+                        "` ) VALUES ( '" &
+                        player.CreatedGuid.ToString & "', '" &
+                        prof.Id.ToString() & "', '" & prof.Rank.ToString() & "', '" & prof.Max.ToString() & "' ) on duplicate key update `" &
+                        useStructure.skill_value_col(0) & "`=values(`" &
+                        useStructure.skill_value_col(0) & "`), `" &
+                        useStructure.skill_max_col(0) & "`=values(`" &
+                        useStructure.skill_max_col(0) & "`)", forceTargetCore)
+            End Select
+        End Sub
+
+        Public Sub AddCharacterSkills(ByVal player As Character)
+            'TODO
             Select Case GlobalVariables.targetCore
                 Case "trinity", "mangos"
                     If Not player.Skills Is Nothing Then
                         For Each skl As Skill In player.Skills
                             LogAppend("Adding Skill " & skl.Id, "SkillCreation_AddCharacterSkills")
                             runSQLCommand_characters_string(
-                                "INSERT INTO `" & GlobalVariables.targetStructure.character_skills_tbl(0) & "`( `" &
+                                "INSERT IGNORE INTO `" & GlobalVariables.targetStructure.character_skills_tbl(0) & "`( `" &
                                 GlobalVariables.targetStructure.skill_guid_col(0) & "`, `" &
                                 GlobalVariables.targetStructure.skill_skill_col(0) & "`, `" &
                                 GlobalVariables.targetStructure.skill_value_col(0) & "`, `" &
@@ -77,21 +137,6 @@ Namespace Framework.Transmission
                                 "` ) VALUES ( '" &
                                 player.CreatedGuid.ToString & "', '" &
                                 skl.Id.ToString() & "', '" & skl.Value.ToString() & "', '" & skl.Max.ToString() & "' )",
-                                True)
-                        Next
-                    End If
-                    If Not player.Professions Is Nothing Then
-                        For Each skl As Profession In player.Professions
-                            LogAppend("Adding profession " & skl.Id, "SkillCreation_AddCharacterSkills")
-                            runSQLCommand_characters_string(
-                                "INSERT INTO `" & GlobalVariables.targetStructure.character_skills_tbl(0) & "`( `" &
-                                GlobalVariables.targetStructure.skill_guid_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.skill_skill_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.skill_value_col(0) & "`, `" &
-                                GlobalVariables.targetStructure.skill_max_col(0) &
-                                "` ) VALUES ( '" &
-                                player.CreatedGuid.ToString & "', '" &
-                                skl.Id.ToString() & "', '" & skl.Rank.ToString() & "', '" & skl.Max.ToString() & "' )",
                                 True)
                         Next
                     End If

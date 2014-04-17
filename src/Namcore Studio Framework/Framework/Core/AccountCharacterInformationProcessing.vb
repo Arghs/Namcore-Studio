@@ -25,9 +25,9 @@ Imports NCFramework.Framework.Modules
 Imports MySql.Data.MySqlClient
 
 Namespace Framework.Core
-
     Public Class AccountCharacterInformationProcessing
-        Public Function ReturnAccountTable(ByVal sqlconnection As MySqlConnection, ByVal struc As DBStructure) As DataTable
+        Public Function ReturnAccountTable(ByVal sqlconnection As MySqlConnection, ByVal struc As DBStructure) _
+            As DataTable
             Select Case GlobalVariables.sourceCore
                 Case "arcemu"
                     Return _
@@ -39,7 +39,8 @@ Namespace Framework.Core
                 Case "trinity"
                     Return _
                         ReturnDataTable_setconn(
-                            "SELECT " & Struc.account_tbl(0) & ".`" & Struc.acc_id_col(0) & "`, `" & Struc.acc_name_col(0) &
+                            "SELECT " & Struc.account_tbl(0) & ".`" & Struc.acc_id_col(0) & "`, `" &
+                            Struc.acc_name_col(0) &
                             "`, `" & Struc.accountAccess_tbl(0) & "`." & Struc.accAcc_gmLevel_col(0) & ", `" &
                             Struc.acc_lastlogin_col(0) &
                             "`, `" & Struc.acc_email_col(0) & "` FROM " & Struc.account_tbl(0) & " JOIN `" &
@@ -70,14 +71,16 @@ Namespace Framework.Core
                         ReturnDataTable_setconn(
                             "SELECT " & Struc.char_guid_col(0) & ", " & Struc.char_accountId_col(0) & ", " &
                             Struc.char_name_col(0) &
-                            ", " & Struc.char_race_col(0) & ", " & Struc.char_class_col(0) & ", " & Struc.char_gender_col(0) &
+                            ", " & Struc.char_race_col(0) & ", " & Struc.char_class_col(0) & ", " &
+                            Struc.char_gender_col(0) &
                             ", " & Struc.char_level_col(0) & " FROM characters", sqlconnection)
                 Case "trinity"
                     Return _
                         ReturnDataTable_setconn(
                             "SELECT " & Struc.char_guid_col(0) & ", " & Struc.char_accountId_col(0) & ", " &
                             Struc.char_name_col(0) &
-                            ", " & Struc.char_race_col(0) & ", " & Struc.char_class_col(0) & ", " & Struc.char_gender_col(0) &
+                            ", " & Struc.char_race_col(0) & ", " & Struc.char_class_col(0) & ", " &
+                            Struc.char_gender_col(0) &
                             ", " & Struc.char_level_col(0) & " FROM characters", sqlconnection)
                 Case "trinitytbc"
                     Return ReturnDataTable_setconn("SELECT", sqlconnection)
@@ -86,7 +89,8 @@ Namespace Framework.Core
                         ReturnDataTable_setconn(
                             "SELECT " & Struc.char_guid_col(0) & ", " & Struc.char_accountId_col(0) & ", " &
                             Struc.char_name_col(0) &
-                            ", " & Struc.char_race_col(0) & ", " & Struc.char_class_col(0) & ", " & Struc.char_gender_col(0) &
+                            ", " & Struc.char_race_col(0) & ", " & Struc.char_class_col(0) & ", " &
+                            Struc.char_gender_col(0) &
                             ", " & Struc.char_level_col(0) & " FROM characters", sqlconnection)
                 Case Else
                     Return Nothing

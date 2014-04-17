@@ -28,26 +28,32 @@ Imports NCFramework.Framework.Modules
 Namespace Modules.Interface
     Public Class TrdQueueHandler
         Public Function doOperate_av(ByVal sender As Object, ByVal cnt As Integer) As String
-            For Each x As Form In From mForm As Form In Application.OpenForms Where mForm.Name = "AchievementsInterface" Select mForm
+            For Each x As Form In _
+               From mForm As Object In Application.OpenForms Where TryCast(mForm, Form).Name = "AchievementsInterface" Select mForm
                 ThreadExtensions.QueueUserWorkItem(
-                    New Func(Of Object, Integer, String)(AddressOf DirectCast(x, AchievementsInterface).ContinueOperation),
+                    New Func(Of Object, Integer, String)(
+                        AddressOf DirectCast(x, AchievementsInterface).ContinueOperation),
                     sender, cnt)
             Next
             Return Nothing
         End Function
 
         Public Function doOperate_qst(ByVal cnt As Integer, ByVal qsts As List(Of Quest)) As String
-            For Each x As Form In From mForm As Form In Application.OpenForms Where mForm.Name = "QuestsInterface" Select mForm
+            For Each x As Form In _
+               From mForm As Object In Application.OpenForms Where TryCast(mForm, Form).Name = "QuestsInterface" Select mForm
                 ThreadExtensions.QueueUserWorkItem(
-                    New Func(Of Integer, List(Of Quest), String)(AddressOf DirectCast(x, QuestsInterface).ContinueOperation), cnt, qsts)
+                    New Func(Of Integer, List(Of Quest), String)(
+                        AddressOf DirectCast(x, QuestsInterface).ContinueOperation), cnt, qsts)
             Next
             Return Nothing
         End Function
 
         Public Function doOperate_spellSkill(ByVal targetSetId As Integer) As String
-            For Each x As Form In From mForm As Form In Application.OpenForms Where mForm.Name = "SpellSkillInterface" Select mForm
-                ThreadExtensions.QueueUserWorkItem(New Func(Of Integer, String)(AddressOf DirectCast(x, SpellSkillInterface).ContinueOperation),
-                                                   targetSetId)
+            For Each x As Form In _
+                 From mForm As Object In Application.OpenForms Where TryCast(mForm, Form).Name = "SpellSkillInterface" Select mForm
+                ThreadExtensions.QueueUserWorkItem(
+                    New Func(Of Integer, String)(AddressOf DirectCast(x, SpellSkillInterface).ContinueOperation),
+                    targetSetId)
             Next
             Return Nothing
         End Function

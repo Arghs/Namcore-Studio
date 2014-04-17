@@ -21,8 +21,8 @@
 '*      /Description:   Contains functions for filtering the character list
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
-Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Modules
 
 Namespace Forms
     Public Class FilterCharacters
@@ -42,14 +42,15 @@ Namespace Forms
                                      e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
+
         Private Sub ApplyFilter_Click(sender As Object, e As EventArgs) Handles ApplyFilter.Click
             GlobalVariables.modifiedAccTable = GlobalVariables.acctable.Copy
             GlobalVariables.modifiedCharTable = GlobalVariables.chartable.Copy
             If guidcheck.Checked = True Then
-                If guidcombo1.SelectedIndex = -1 Then GoTo SkipStatement0
+                If guidcombo1.SelectedIndex = - 1 Then GoTo SkipStatement0
                 Dim insertstring As String = " " & guidcombo1.SelectedItem.ToString() & " '" & guidtxtbox1.Text & "'"
                 Dim insertstring2 As String = ""
-                If Not guidcombo2.SelectedItem = Nothing Then
+                If Not guidcombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & GlobalVariables.sourceStructure.char_guid_col(0) & " " &
                                     guidcombo2.SelectedItem.ToString & " '" & guidtxtbox2.Text & "'"
                 End If
@@ -62,7 +63,7 @@ Namespace Forms
                     GlobalVariables.modifiedCharTable.ImportRow(foundRows(i))
                 Next i
             End If
-SkipStatement0:
+            SkipStatement0:
             If namecheck.Checked = True Then
                 Dim insertstring As String
                 Select Case namecombo1.SelectedIndex - 1
@@ -80,7 +81,7 @@ SkipStatement0:
                     GlobalVariables.modifiedCharTable.ImportRow(foundRows(i))
                 Next i
             End If
-SkipStatement1:
+            SkipStatement1:
             If racecheck.Checked = True Then
                 Dim id As Integer = racecombo.SelectedIndex + 1
                 Select Case id
@@ -96,10 +97,10 @@ SkipStatement1:
                     GlobalVariables.modifiedCharTable.ImportRow(foundRows(i))
                 Next i
             End If
-SkipStatement2:
+            SkipStatement2:
             If classcheck.Checked = True Then
                 Dim id As Integer = classcombo.SelectedIndex + 1
-                If id = -1 Then GoTo SkipStatement3
+                If id = - 1 Then GoTo SkipStatement3
                 Dim foundRows() As DataRow
                 Dim clonedDt As DataTable = GlobalVariables.modifiedCharTable.Copy
                 foundRows =
@@ -109,12 +110,12 @@ SkipStatement2:
                     GlobalVariables.modifiedCharTable.ImportRow(foundRows(i))
                 Next i
             End If
-SkipStatement3:
+            SkipStatement3:
             If levelcheck.Checked = True Then
-                If levelcombo1.SelectedIndex = -1 Then GoTo SkipStatement4
+                If levelcombo1.SelectedIndex = - 1 Then GoTo SkipStatement4
                 Dim insertstring As String = " " & levelcombo1.SelectedItem.ToString() & " '" & leveltxtbox1.Text & "'"
                 Dim insertstring2 As String = ""
-                If Not levelcombo2.SelectedItem = Nothing Then
+                If Not levelcombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & GlobalVariables.sourceStructure.char_level_col(0) & " " &
                                     levelcombo2.SelectedItem.ToString & " '" & leveltxtbox2.Text & "'"
                 End If
@@ -127,9 +128,9 @@ SkipStatement3:
                     GlobalVariables.modifiedCharTable.ImportRow(foundRows(i))
                 Next i
             End If
-SkipStatement4:
+            SkipStatement4:
             For Each myliveview As LiveView In _
-                (From currentForm As Form In Application.OpenForms Where currentForm.Name = "LiveView").Cast _
+                (From currentForm As Object In Application.OpenForms Where TryCast(currentForm, Form).Name = "LiveView").Cast _
                     (Of LiveView)()
                 myliveview.Setcharacterview(GlobalVariables.modifiedCharTable)
             Next

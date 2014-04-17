@@ -23,19 +23,18 @@
 Imports System.Threading
 
 Namespace Framework.Extension
-
     Public Class CompletedEventArgs
         Inherits EventArgs
     End Class
 
     Public Class ThreadExtensions
-
         '// Declaration
         Private _args() As Object
         Private _delegateToInvoke As [Delegate]
         '// Declaration
 
-        Public Shared Function QueueUserWorkItem(ByVal method As [Delegate], ByVal ParamArray args() As Object) As Boolean
+        Public Shared Function QueueUserWorkItem(ByVal method As [Delegate], ByVal ParamArray args() As Object) _
+            As Boolean
             Return _
                 ThreadPool.QueueUserWorkItem(AddressOf ProperDelegate,
                                              New ThreadExtensions With {._args = args, ._delegateToInvoke = method})

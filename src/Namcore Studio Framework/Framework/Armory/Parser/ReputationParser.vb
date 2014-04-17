@@ -21,14 +21,13 @@
 '*      /Description:   Contains functions for loading character reputation information from 
 '*                      wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Net
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Modules
+Imports System.Net
 
 Namespace Framework.Armory.Parser
-
     Public Class ReputationParser
         Public Sub LoadReputation(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
             Dim client As New WebClient
@@ -56,7 +55,8 @@ Namespace Framework.Armory.Parser
                         Dim rep As New Reputation
                         Try
                             Dim factionId As String = SplitString(parts(loopcounter), """id"":", ",")
-                            LogAppend("Now adding fation with id: " & factionId, "ReputationParser_loadReputation", False)
+                            LogAppend("Now adding fation with id: " & factionId, "ReputationParser_loadReputation",
+                                      False)
                             Dim standing As Integer = TryInt(SplitString(parts(loopcounter), """value"":", ","))
                             Dim orgstanding As Integer = TryInt(SplitString(parts(loopcounter), """standing"":", ","))
                             rep.Status = orgstanding
@@ -67,12 +67,13 @@ Namespace Framework.Armory.Parser
                             If orgstanding > 4 Then standing += 6000
                             If orgstanding > 5 Then standing += 12000
                             If orgstanding > 6 Then standing += 21000
-                            LogAppend("Adding reputation (factionID/standing):(" & factionId & "/" & standing.ToString & ")",
-                                      "ReputationParser_loadReputation", False)
+                            LogAppend(
+                                "Adding reputation (factionID/standing):(" & factionId & "/" & standing.ToString & ")",
+                                "ReputationParser_loadReputation", False)
                             rep.Faction = TryInt(factionId)
-                            rep.Standing = TryInt(standing)
+                            rep.Standing = TryInt(CStr(standing))
                             rep.Name = SplitString(parts(loopcounter), """name"":""", """,")
-                            rep.Flags = 1
+                            rep.Flags = CType(1, Reputation.FlagEnum)
                             player.PlayerReputation.Add(rep)
                         Catch ex As Exception
                             loopcounter += 1

@@ -1,0 +1,49 @@
+====================================================================================
+  Copyright (C) 2013-2014 NamCore Studio <https://github.com/megasus/Namcore-Studio>
+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the
+  Free Software Foundation; either version 3 of the License, or (at your
+  option) any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+  more details.
+
+  You should have received a copy of the GNU General Public License along
+  with this program. If not, see <http://www.gnu.org/licenses/>.
+
+  Developed by Alcanmage/megasus
+====================================================================================
+
+				NCS - Installation
+
+After compiling the source or extracting the binary, make sure the following file
+structure applies:
+
+---------------------------
+\
+	NCLauncher.exe
+	[...]
+
+\Data\
+	libnc.dll
+	libncadvanced.dll
+	mysql.data.dll
+	NamCore Studio.exe
+	NCFramework.dll
+	version.xml
+	[...]
+---------------------------
+
+Please make sure to have .Net Framework 3.5 installed, otherwise the application will
+not work!
+
+In order to start NamCore Studio, run NCLauncher.exe in the application's root 
+directory.
+You might need to run the app as an administrator.
+
+
+For additional info and support visit: http://namcorestudio.com/
+or contact the developer via: geslauncher@web.de

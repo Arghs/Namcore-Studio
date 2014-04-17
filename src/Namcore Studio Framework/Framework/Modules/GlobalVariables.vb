@@ -27,7 +27,6 @@ Imports System.Threading
 Imports System.Net
 
 Namespace Framework.Modules
-
     Public Class GlobalVariables
         ' ReSharper disable InconsistentNaming
         Public Shared DebugMode As Boolean = False
@@ -37,7 +36,6 @@ Namespace Framework.Modules
         Public Shared TempCharacter As Character
         Public Shared globChars As GlobalCharVars
         Public Shared ModAccountSets As List(Of Account)
-        Public Shared ModAccountSetsIndex As String
         Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
         Public Shared targetCore As String '"arcemu", "trinity", "mangos"
         Public Shared sourceExpansion As Integer '1=classic, 2=tbc,...
@@ -63,11 +61,12 @@ Namespace Framework.Modules
         Public Shared modifiedAccTable As DataTable
         Public Shared modifiedCharTable As DataTable
         'Public Shared modifiedCharInfo As List(Of String)
+        Public Shared nonUsableGuidList As List(Of Integer)
         Public Shared armoryMode As Boolean = False
         Public Shared templateMode As Boolean = False
         Public Shared con_operator As Integer
-        Public Shared trans_charlist As ArrayList
-        Public Shared trans_acclist As ArrayList
+        Public Shared trans_charlist As List(Of Character)
+        Public Shared trans_acclist As List(Of Account)
         Public Shared sourceStructure As DbStructure
         Public Shared targetStructure As DbStructure
         Public Shared trd As Thread
@@ -84,9 +83,8 @@ Namespace Framework.Modules
         Public Shared tempItemInfoIndex As List(Of String())
         Public Shared tempGlyphInfo As List(Of Glyph)
         Public Shared tempGlyphInfoIndex As List(Of String())
-        Public Shared accountInfo As List(Of Account)
-        Public Shared createAccountsIndex As List(Of Integer)
-        Public Shared charactersToCreate As List(Of String)
+        Public Shared accountsToCreate As List(Of Account)
+        Public Shared charactersToCreate As List(Of Character)
         Public Shared tempAchievementInfo As List(Of ListViewItem)
         Public Shared tempAchievementInfoIndex As String
         Public Shared offlineExtension As Boolean
@@ -110,6 +108,5 @@ Namespace Framework.Modules
     <Serializable()>
     Public Class GlobalCharVars
         Public AccountSets As List(Of Account)
-        Public AccountSetsIndex As String
     End Class
 End Namespace

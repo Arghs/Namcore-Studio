@@ -23,12 +23,25 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Modules
+Imports libnc.Provider
 
 Namespace Framework.Transmission
-
     Public Class EnchantmentsCreation
-        Public Sub SetItemEnchantments(ByVal setId As Integer, ByVal itm As Item, ByVal itmGuid As Integer,
-                                       ByVal core As String, ByVal dbstruc As DBStructure)
+        '// Declaration
+        Private _locEnchString As String
+        '// Declaration
+
+        Public Sub SetItemEnchantments(ByVal playerCharacter As Character, ByVal itm As Item, ByVal itmGuid As Integer,
+                                       ByVal core As String, ByVal dbstruc As DbStructure)
+            _locEnchString = ""
+            Select Case core
+                Case "trinity"
+                    _locEnchString =
+                            runSQLCommand_characters_string(
+                                "SELECT `" & dbstruc.itmins_enchantments_col(0) & "` FROM `" &
+                                dbstruc.item_instance_tbl(0) &
+                                "` WHERE `" & dbstruc.itmins_guid_col(0) & "`='" & itmGuid.ToString & "'")
+            End Select
             SetGem1(itm, itmGuid, core, dbstruc)
             SetGem2(itm, itmGuid, core, dbstruc)
             SetGem3(itm, itmGuid, core, dbstruc)
@@ -39,107 +52,95 @@ Namespace Framework.Transmission
                             ByVal myStructure As DbStructure)
             Select Case myCore
                 Case "trinity"
-                    If Not myItem.Socket1Id = Nothing Then
-                        Dim enchString As String =
-                                runSQLCommand_characters_string(
-                                    "SELECT `" & myStructure.itmins_enchantments_col(0) & "` FROM `" &
-                                    myStructure.item_instance_tbl(0) &
-                                    "` WHERE `" & myStructure.itmins_guid_col(0) & "`='" & myItemGuid.ToString & "'")
-                        If IsDBNull(enchString) Or enchString.Length < 5 Then
-                            enchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
-                        End If
-                        Dim parts() As String = enchString.Split(" "c)
-                        If myItem.Socket1Effectid = Nothing Then
-                            'TODO
-                        End If
-                        parts(6) = myItem.Socket1Effectid.ToString()
-                        enchString = String.Join(" ", parts)
-                        runSQLCommand_characters_string(
-                            "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
-                            myStructure.itmins_enchantments_col(0) & "`='" &
-                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString & "'")
+                    If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
+                        _locEnchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
                     End If
+                    Dim parts() As String = _locEnchString.Split(" "c)
+                    If myItem.Socket1Id <> 0 Then
+                        If myItem.Socket1Effectid = 0 Then
+                            myItem.Socket1Effectid = GetEffectIdByGemId(myItem.Socket1Id)
+                        End If
+                    End If
+                    parts(6) = myItem.Socket1Effectid.ToString()
+                    _locEnchString = String.Join(" ", parts)
+                    runSQLCommand_characters_string(
+                        "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
+                        myStructure.itmins_enchantments_col(0) & "`='" &
+                        _locEnchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString &
+                        "'")
             End Select
         End Sub
 
         Private Sub SetGem2(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As String,
-                            ByVal myStructure As DBStructure)
+                            ByVal myStructure As DbStructure)
             Select Case myCore
                 Case "trinity"
-                    If Not myItem.Socket2Id = Nothing Then
-                        Dim enchString As String =
-                                runSQLCommand_characters_string(
-                                    "SELECT `" & myStructure.itmins_enchantments_col(0) & "` FROM `" &
-                                    myStructure.item_instance_tbl(0) &
-                                    "` WHERE `" & myStructure.itmins_guid_col(0) & "`='" & myItemGuid.ToString & "'")
-                        If IsDBNull(enchString) Or enchString.Length < 5 Then
-                            enchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
-                        End If
-                        Dim parts() As String = enchString.Split(" "c)
-                        If myItem.Socket2Effectid = Nothing Then
-                            'TODO
-                        End If
-                        parts(9) = myItem.Socket2Effectid.ToString()
-                        enchString = String.Join(" ", parts)
-                        runSQLCommand_characters_string(
-                            "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
-                            myStructure.itmins_enchantments_col(0) & "`='" &
-                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString & "'")
+                    If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
+                        _locEnchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
                     End If
+                    Dim parts() As String = _locEnchString.Split(" "c)
+                    If myItem.Socket2Id <> 0 Then
+                        If myItem.Socket2Effectid = 0 Then
+                            myItem.Socket2Effectid = GetEffectIdByGemId(myItem.Socket2Id)
+                        End If
+                    End If
+                    parts(9) = myItem.Socket2Effectid.ToString()
+                    _locEnchString = String.Join(" ", parts)
+                    runSQLCommand_characters_string(
+                        "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
+                        myStructure.itmins_enchantments_col(0) & "`='" &
+                        _locEnchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString &
+                        "'")
             End Select
         End Sub
 
         Private Sub SetGem3(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As String,
-                            ByVal myStructure As DBStructure)
+                            ByVal myStructure As DbStructure)
             Select Case myCore
                 Case "trinity"
-                    If Not myItem.Socket3Id = Nothing Then
-                        Dim enchString As String =
-                                runSQLCommand_characters_string(
-                                    "SELECT `" & myStructure.itmins_enchantments_col(0) & "` FROM `" &
-                                    myStructure.item_instance_tbl(0) &
-                                    "` WHERE `" & myStructure.itmins_guid_col(0) & "`='" & myItemGuid.ToString & "'")
-                        If IsDBNull(enchString) Or enchString.Length < 5 Then
-                            enchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
-                        End If
-                        Dim parts() As String = enchString.Split(" "c)
-                        If myItem.Socket3Effectid = Nothing Then
-                            'TODO
-                        End If
-                        parts(12) = myItem.Socket3Effectid.ToString()
-                        enchString = String.Join(" ", parts)
-                        runSQLCommand_characters_string(
-                            "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
-                            myStructure.itmins_enchantments_col(0) & "`='" &
-                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString & "'")
+                    If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
+                        _locEnchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
                     End If
+                    Dim parts() As String = _locEnchString.Split(" "c)
+                    If myItem.Socket3Id <> 0 Then
+                        If myItem.Socket3Effectid = 0 Then
+                            myItem.Socket3Effectid = GetEffectIdByGemId(myItem.Socket3Id)
+                        End If
+                    End If
+                    parts(12) = myItem.Socket3Effectid.ToString()
+                    _locEnchString = String.Join(" ", parts)
+                    runSQLCommand_characters_string(
+                        "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
+                        myStructure.itmins_enchantments_col(0) & "`='" &
+                        _locEnchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString &
+                        "'")
             End Select
         End Sub
 
         Private Sub SetEnch(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As String,
-                            ByVal myStructure As DBStructure)
+                            ByVal myStructure As DbStructure)
             Select Case myCore
                 Case "trinity"
-                    If Not myItem.EnchantmentId = Nothing Then
-                        Dim enchString As String =
-                                runSQLCommand_characters_string(
-                                    "SELECT `" & myStructure.itmins_enchantments_col(0) & "` FROM `" &
-                                    myStructure.item_instance_tbl(0) &
-                                    "` WHERE `" & myStructure.itmins_guid_col(0) & "`='" & myItemGuid.ToString & "'")
-                        If IsDBNull(enchString) Or enchString.Length < 5 Then
-                            enchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
-                        End If
-                        Dim parts() As String = enchString.Split(" "c)
-                        If myItem.EnchantmentEffectid = Nothing Then
-                            'TODO
-                        End If
-                        parts(0) = myItem.EnchantmentEffectid.ToString()
-                        enchString = String.Join(" ", parts)
-                        runSQLCommand_characters_string(
-                            "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
-                            myStructure.itmins_enchantments_col(0) & "`='" &
-                            enchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString & "'")
+                    If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
+                        _locEnchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
                     End If
+                    Dim parts() As String = _locEnchString.Split(" "c)
+                    If myItem.EnchantmentId <> 0 Then
+                        If myItem.EnchantmentEffectid = 0 Then
+                            If myItem.EnchantmentType = 1 Then
+                                myItem.EnchantmentEffectid = GetEffectIdBySpellId(myItem.EnchantmentId, GlobalVariables.targetExpansion)
+                            Else
+                                myItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(myItem.EnchantmentId), GlobalVariables.targetExpansion)
+                            End If
+                        End If
+                    End If
+                    parts(0) = myItem.EnchantmentEffectid.ToString()
+                    _locEnchString = String.Join(" ", parts)
+                    runSQLCommand_characters_string(
+                        "UPDATE `" & myStructure.item_instance_tbl(0) & "` SET `" &
+                        myStructure.itmins_enchantments_col(0) & "`='" &
+                        _locEnchString & "' WHERE `" & myStructure.invent_guid_col(0) & "`='" & myItemGuid.ToString &
+                        "'")
             End Select
         End Sub
     End Class

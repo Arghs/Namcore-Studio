@@ -30,7 +30,6 @@ Namespace Forms
 
         Private Sub ApplyTrans_Click(sender As Object, e As EventArgs) Handles ApplyTrans.Click
             Dim tempAccList As New ArrayList
-
             If specific_radio.Checked = True Then
                 If accnames_txtbox.Lines.Length = 0 Then _
                     MsgBox(ResourceHandler.GetUserMessage("noaccentered"), MsgBoxStyle.Critical,
@@ -44,11 +43,11 @@ Namespace Forms
                             MsgBox(ResourceHandler.GetUserMessage("noaccentered"), MsgBoxStyle.Critical,
                                    ResourceHandler.GetUserMessage("errorbox")) : Exit Sub
                     Else
-                        Dim tmpAccount(2) As String
-                        tmpAccount(1) = sLines(i)
+                        Dim tmpAccount(0) As String
+                        tmpAccount(0) = sLines(i)
                         tempAccList.Add(tmpAccount)
                         For Each currentForm As Form In Application.OpenForms
-                            If currentForm.Name = "liveview" Then
+                            If currentForm.Name.ToLower() = "liveview" Then
                                 Dim liveview As LiveView = DirectCast(currentForm, LiveView)
                                 liveview.transChars_specificacc(tempAccList)
                             End If
@@ -58,7 +57,7 @@ Namespace Forms
 
             Else
                 For Each currentForm As Form In Application.OpenForms
-                    If currentForm.Name = "liveview" Then
+                    If currentForm.Name.ToLower() = "liveview" Then
                         Dim liveview As LiveView = DirectCast(currentForm, LiveView)
                         liveview.transChars_allacc()
                     End If
@@ -71,6 +70,7 @@ Namespace Forms
             Handles specific_radio.CheckedChanged
             If specific_radio.Checked = True Then all_radio.Checked = False
         End Sub
+
         Private Sub me_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
             If e.Button = MouseButtons.Left Then
                 _ptMouseDownLocation = e.Location
@@ -79,23 +79,29 @@ Namespace Forms
 
         Private Sub me_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
             If e.Button = MouseButtons.Left Then
-                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
+
         Private Sub all_radio_CheckedChanged(sender As Object, e As EventArgs) Handles all_radio.CheckedChanged
             If all_radio.Checked = True Then specific_radio.Checked = False
         End Sub
+
         Private Sub closeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter4.MouseEnter
-            sender.backgroundimage = My.Resources.bt_close_light
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_close_light
         End Sub
+
         Private Sub closeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter4.MouseLeave
-            sender.backgroundimage = My.Resources.bt_close
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_close
         End Sub
+
         Private Sub minimizeBt_MouseEnter(sender As Object, e As EventArgs) Handles highlighter3.MouseEnter
-            sender.backgroundimage = My.Resources.bt_minimize_light
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize_light
         End Sub
+
         Private Sub minimizeBt_MouseLeave(sender As Object, e As EventArgs) Handles highlighter3.MouseLeave
-            sender.backgroundimage = My.Resources.bt_minimize
+            TryCast(sender, PictureBox).BackgroundImage = My.Resources.bt_minimize
         End Sub
 
         Private Sub highlighter1_Click(sender As Object, e As EventArgs) Handles highlighter3.Click
@@ -110,7 +116,8 @@ Namespace Forms
 
         Private Sub header_MouseMove(sender As Object, e As MouseEventArgs) Handles header.MouseMove
             If e.Button = MouseButtons.Left Then
-                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X, e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
+                Location = New Point(e.Location.X - _ptMouseDownLocation.X + Location.X,
+                                     e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
 

@@ -28,6 +28,9 @@ Namespace Forms.Character
             Me.components = New System.ComponentModel.Container()
             Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AchievementsInterface))
             Me.AVLayoutPanel = New System.Windows.Forms.FlowLayoutPanel()
+            Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+            Me.search_bt = New System.Windows.Forms.Button()
+            Me.browse_tb = New System.Windows.Forms.TextBox()
             Me.cat_id_92_bt = New System.Windows.Forms.Button()
             Me.cat_id_96_bt = New System.Windows.Forms.Button()
             Me.cat_id_97_bt = New System.Windows.Forms.Button()
@@ -49,12 +52,11 @@ Namespace Forms.Character
             Me.reference_icon_pic = New System.Windows.Forms.PictureBox()
             Me.reference_name_lbl = New System.Windows.Forms.Label()
             Me.add_bt = New System.Windows.Forms.Button()
-            Me.browse_tb = New System.Windows.Forms.TextBox()
             Me.subcat_combo = New System.Windows.Forms.ComboBox()
             Me.callbacktimer = New System.Windows.Forms.Timer(Me.components)
             Me.waitpanel = New System.Windows.Forms.Panel()
-            Me.Label1 = New System.Windows.Forms.Label()
-            Me.search_bt = New System.Windows.Forms.Button()
+            Me.waitLabel = New System.Windows.Forms.Label()
+            Me.GroupBox1.SuspendLayout()
             Me.addpanel.SuspendLayout()
             CType(Me.add_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.referencePanel.SuspendLayout()
@@ -71,6 +73,39 @@ Namespace Forms.Character
             Me.AVLayoutPanel.Name = "AVLayoutPanel"
             Me.AVLayoutPanel.Size = New System.Drawing.Size(850, 434)
             Me.AVLayoutPanel.TabIndex = 5
+            '
+            'GroupBox1
+            '
+            Me.GroupBox1.Controls.Add(Me.search_bt)
+            Me.GroupBox1.Controls.Add(Me.browse_tb)
+            Me.GroupBox1.Location = New System.Drawing.Point(435, 41)
+            Me.GroupBox1.Name = "GroupBox1"
+            Me.GroupBox1.Size = New System.Drawing.Size(418, 42)
+            Me.GroupBox1.TabIndex = 0
+            Me.GroupBox1.TabStop = False
+            '
+            'search_bt
+            '
+            Me.search_bt.BackColor = System.Drawing.Color.DimGray
+            Me.search_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.search_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.search_bt.ForeColor = System.Drawing.Color.Black
+            Me.search_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.search_bt.Location = New System.Drawing.Point(296, 9)
+            Me.search_bt.Name = "search_bt"
+            Me.search_bt.Size = New System.Drawing.Size(118, 29)
+            Me.search_bt.TabIndex = 229
+            Me.search_bt.Text = "Search"
+            Me.search_bt.UseVisualStyleBackColor = False
+            '
+            'browse_tb
+            '
+            Me.browse_tb.ForeColor = System.Drawing.SystemColors.WindowFrame
+            Me.browse_tb.Location = New System.Drawing.Point(5, 14)
+            Me.browse_tb.Name = "browse_tb"
+            Me.browse_tb.Size = New System.Drawing.Size(285, 20)
+            Me.browse_tb.TabIndex = 226
+            Me.browse_tb.Text = "Enter achievement name or id"
             '
             'cat_id_92_bt
             '
@@ -329,26 +364,17 @@ Namespace Forms.Character
             Me.add_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.add_bt.ForeColor = System.Drawing.Color.Black
             Me.add_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.add_bt.Location = New System.Drawing.Point(893, 51)
+            Me.add_bt.Location = New System.Drawing.Point(276, 50)
             Me.add_bt.Name = "add_bt"
             Me.add_bt.Size = New System.Drawing.Size(118, 29)
             Me.add_bt.TabIndex = 225
             Me.add_bt.Text = "Add new"
             Me.add_bt.UseVisualStyleBackColor = False
             '
-            'browse_tb
-            '
-            Me.browse_tb.ForeColor = System.Drawing.SystemColors.WindowFrame
-            Me.browse_tb.Location = New System.Drawing.Point(310, 57)
-            Me.browse_tb.Name = "browse_tb"
-            Me.browse_tb.Size = New System.Drawing.Size(280, 20)
-            Me.browse_tb.TabIndex = 226
-            Me.browse_tb.Text = "Enter quest name or id"
-            '
             'subcat_combo
             '
             Me.subcat_combo.FormattingEnabled = True
-            Me.subcat_combo.Location = New System.Drawing.Point(766, 56)
+            Me.subcat_combo.Location = New System.Drawing.Point(880, 55)
             Me.subcat_combo.Name = "subcat_combo"
             Me.subcat_combo.Size = New System.Drawing.Size(121, 21)
             Me.subcat_combo.TabIndex = 227
@@ -360,46 +386,32 @@ Namespace Forms.Character
             'waitpanel
             '
             Me.waitpanel.BackColor = System.Drawing.SystemColors.ControlDarkDark
-            Me.waitpanel.Controls.Add(Me.Label1)
+            Me.waitpanel.Controls.Add(Me.waitLabel)
             Me.waitpanel.Location = New System.Drawing.Point(1122, 210)
             Me.waitpanel.Name = "waitpanel"
             Me.waitpanel.Size = New System.Drawing.Size(413, 118)
             Me.waitpanel.TabIndex = 228
             '
-            'Label1
+            'waitLabel
             '
-            Me.Label1.AutoSize = True
-            Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label1.Location = New System.Drawing.Point(31, 48)
-            Me.Label1.Name = "Label1"
-            Me.Label1.Size = New System.Drawing.Size(339, 24)
-            Me.Label1.TabIndex = 0
-            Me.Label1.Text = "Pick category to load achievements"
-            '
-            'search_bt
-            '
-            Me.search_bt.BackColor = System.Drawing.Color.DimGray
-            Me.search_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.search_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.search_bt.ForeColor = System.Drawing.Color.Black
-            Me.search_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.search_bt.Location = New System.Drawing.Point(596, 51)
-            Me.search_bt.Name = "search_bt"
-            Me.search_bt.Size = New System.Drawing.Size(118, 29)
-            Me.search_bt.TabIndex = 229
-            Me.search_bt.Text = "Search"
-            Me.search_bt.UseVisualStyleBackColor = False
+            Me.waitLabel.AutoSize = True
+            Me.waitLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.waitLabel.Location = New System.Drawing.Point(31, 48)
+            Me.waitLabel.Name = "waitLabel"
+            Me.waitLabel.Size = New System.Drawing.Size(339, 24)
+            Me.waitLabel.TabIndex = 0
+            Me.waitLabel.Text = "Pick category to load achievements"
             '
             'AchievementsInterface
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+            Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(72, Byte), Integer), CType(CType(119, Byte), Integer), CType(CType(149, Byte), Integer))
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
             Me.ClientSize = New System.Drawing.Size(1023, 533)
-            Me.Controls.Add(Me.search_bt)
+            Me.Controls.Add(Me.GroupBox1)
             Me.Controls.Add(Me.waitpanel)
             Me.Controls.Add(Me.subcat_combo)
-            Me.Controls.Add(Me.browse_tb)
             Me.Controls.Add(Me.add_bt)
             Me.Controls.Add(Me.referencePanel)
             Me.Controls.Add(Me.addpanel)
@@ -435,10 +447,11 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.addpanel, 0)
             Me.Controls.SetChildIndex(Me.referencePanel, 0)
             Me.Controls.SetChildIndex(Me.add_bt, 0)
-            Me.Controls.SetChildIndex(Me.browse_tb, 0)
             Me.Controls.SetChildIndex(Me.subcat_combo, 0)
             Me.Controls.SetChildIndex(Me.waitpanel, 0)
-            Me.Controls.SetChildIndex(Me.search_bt, 0)
+            Me.Controls.SetChildIndex(Me.GroupBox1, 0)
+            Me.GroupBox1.ResumeLayout(False)
+            Me.GroupBox1.PerformLayout()
             Me.addpanel.ResumeLayout(False)
             CType(Me.add_pic, System.ComponentModel.ISupportInitialize).EndInit()
             Me.referencePanel.ResumeLayout(False)
@@ -448,7 +461,6 @@ Namespace Forms.Character
             Me.waitpanel.ResumeLayout(False)
             Me.waitpanel.PerformLayout()
             Me.ResumeLayout(False)
-            Me.PerformLayout()
 
         End Sub
         Friend WithEvents AVLayoutPanel As System.Windows.Forms.FlowLayoutPanel
@@ -477,7 +489,8 @@ Namespace Forms.Character
         Friend WithEvents subcat_combo As System.Windows.Forms.ComboBox
         Friend WithEvents callbacktimer As System.Windows.Forms.Timer
         Friend WithEvents waitpanel As System.Windows.Forms.Panel
-        Friend WithEvents Label1 As System.Windows.Forms.Label
+        Friend WithEvents waitLabel As System.Windows.Forms.Label
         Friend WithEvents search_bt As System.Windows.Forms.Button
+        Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     End Class
 End Namespace

@@ -20,14 +20,14 @@
 '*      /Filename:      SettingsInterface
 '*      /Description:   Proxy settings
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NamCore_Studio.Forms.Extension
 Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Functions
 Imports NCFramework.My
+Imports NamCore_Studio.Forms.Extension
 Imports System.Net
 Imports System.Text
 Imports System.Xml
-Imports NCFramework.Framework.Modules
 
 Namespace Forms
     Public Class SettingsInterface
@@ -126,7 +126,7 @@ Namespace Forms
                     MySettings.Default.proxy_detect = False
                     MySettings.Default.proxy_enabled = True
                     MySettings.Default.proxy_host = url_tb.Text
-                    MySettings.Default.proxy_port = port_ud.Value
+                    MySettings.Default.proxy_port = CInt(port_ud.Value)
                     MySettings.Default.fullproxy = New WebProxy(url_tb.Text & ":" & port_ud.Value.ToString())
                     If defcred_cb.Checked = True Then
                         MySettings.Default.fullproxy.UseDefaultCredentials = True

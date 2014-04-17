@@ -80,6 +80,7 @@ Namespace Framework.Modules
             AT_LOGIN_CHANGE_RACE = 128
         End Enum
 
+        Public LoadedDateTime As DateTime
         Public Loaded As Boolean = False
         Public SourceCore As String
         Public SourceExpansion As Integer
@@ -91,17 +92,17 @@ Namespace Framework.Modules
         Public Cclass As Integer
         Public Gender As Integer
         Public Xp As Integer
-        Public Gold As String
+        Public Gold As Integer
         Public PlayerBytes As Integer
         Public PlayerBytes2 As Integer
         Public PlayerFlags As PlayerFlagsEnum
-        Public PositionX As Integer
-        Public PositionY As Integer
-        Public PositionZ As Integer
+        Public PositionX As Single
+        Public PositionY As Single
+        Public PositionZ As Single
         Public Map As Integer
         Public InstanceId As Integer
         Public InstanceModeMask As Integer
-        Public Orientation As Integer
+        Public Orientation As Single
         Public Taximask As String
         Public Cinematic As Integer
         Public TotalTime As String
@@ -139,17 +140,17 @@ Namespace Framework.Modules
         Public AccountId As Integer
         Public AccountName As String
         Public AccountSet As Integer
+        Public TargetAccount As Account
 
         'Misc
 
+        Public RenamePending As Boolean = False
         Public CreatedGuid As Integer
         Public ArmorItems As List(Of Item)
-        Public ArmorItemsIndex As String
         Public InventoryItems As List(Of Item)
         Public InventoryZeroItems As List(Of Item)
         Public Quests As List(Of Quest)
         Public PlayerGlyphs As List(Of Glyph)
-        Public PlayerGlyphsIndex As String
         Public Achievements As List(Of Achievement)
         Public Actions As List(Of Action)
         Public BeltBuckle As Integer
@@ -167,10 +168,11 @@ Namespace Framework.Modules
             End If
             Try
                 Dim profIndex As Integer = Professions.FindIndex(Function(profession) profession.Id = skillId)
-                If Not profIndex = -1 Then
+                If Not profIndex = - 1 Then
                     If Professions(profIndex).Recipes Is Nothing Then _
                         Professions(profIndex).Recipes = New List(Of ProfessionSpell)()
-                    Professions(profIndex).Recipes.Add(New ProfessionSpell _
+                    Professions(profIndex).Recipes.Add(
+                        New ProfessionSpell _
                                                           With {.SpellId = spellId,
                                                           .MinSkill = GetMinimumSkillBySpellId(spellId)})
                 End If
@@ -185,13 +187,15 @@ Namespace Framework.Modules
                 Exit Sub
             End If
             Dim profIndex As Integer = Professions.FindIndex(Function(profession) profession.Id = skillId)
-            If Not profIndex = -1 Then
+            If Not profIndex = - 1 Then
                 If Professions(profIndex).Recipes Is Nothing Then
                     Professions(profIndex).Recipes = New List(Of ProfessionSpell)()
                     Exit Sub
                 End If
-                Dim recipeIndex As Integer = Professions(profIndex).Recipes.FindIndex(Function(professionSpell) professionSpell.SpellId = spellId)
-                If Not recipeIndex = -1 Then
+                Dim recipeIndex As Integer =
+                        Professions(profIndex).Recipes.FindIndex(
+                            Function(professionSpell) professionSpell.SpellId = spellId)
+                If Not recipeIndex = - 1 Then
                     Professions(profIndex).Recipes.RemoveAt(recipeIndex)
                 End If
             End If

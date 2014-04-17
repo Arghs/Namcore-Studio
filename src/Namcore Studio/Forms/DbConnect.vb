@@ -23,10 +23,10 @@
 Imports System.Linq
 Imports MySql.Data.MySqlClient
 Imports NCFramework.My
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Database
-Imports NamCore_Studio.Modules.Interface
 Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms
@@ -43,7 +43,7 @@ Namespace Forms
             Select Case GlobalVariables.con_operator
                 Case 1 'Source connection @liveview
                     GlobalVariables.globChars = New GlobalCharVars()
-                    GlobalVariables.globChars.AccountSets = New List(Of NCFramework.Framework.Modules.Account)
+                    GlobalVariables.globChars.AccountSets = New List(Of Account)
                     GlobalVariables.armoryMode = False
                     GlobalVariables.templateMode = False
                     GlobalVariables.GlobalConnectionString = ""
@@ -91,10 +91,13 @@ Namespace Forms
                                                        realmdbname_combo.Text, False) 'todo
                                 Dim liveview As New LiveView
                                 Try
-                                    For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "LiveView"
+                                    For Each currentForm As Form In _
+                                        From currentForm1 As Object In Application.OpenForms
+                                            Where TryCast(currentForm1, Form).Name = "LiveView"
                                         liveview = DirectCast(currentForm, LiveView)
                                     Next
-                                Catch ex As Exception : End Try
+                                Catch ex As Exception :
+                                End Try
                                 If Not liveview Is Nothing Then
                                     liveview.accountview.Items.Clear()
                                     liveview.characterview.Items.Clear()
@@ -102,12 +105,12 @@ Namespace Forms
                                 End If
                             Else
                                 MsgBox(ResourceHandler.GetUserMessage("FailedConnectCharacter"), MsgBoxStyle.Critical,
-                                  "Error")
+                                       "Error")
                                 _catchError = True
                             End If
                         Else
                             MsgBox(ResourceHandler.GetUserMessage("FailedConnectRealm"), MsgBoxStyle.Critical,
-                                     "Error")
+                                   "Error")
                             _catchError = True
                         End If
                     Else
@@ -161,22 +164,25 @@ Namespace Forms
                                                        realmdbname_combo.Text, True) 'todo
                                 Dim liveview As New LiveView
                                 Try
-                                    For Each currentForm As Form In From currentForm1 As Form In Application.OpenForms Where currentForm1.Name = "LiveView"
+                                    For Each currentForm As Form In _
+                                        From currentForm1 As Object In Application.OpenForms
+                                            Where TryCast(currentForm1, Form).Name = "LiveView"
                                         liveview = DirectCast(currentForm, LiveView)
                                     Next
-                                Catch ex As Exception : End Try
+                                Catch ex As Exception :
+                                End Try
                                 If Not liveview Is Nothing Then
                                     liveview.target_accounts_tree.Nodes.Clear()
                                     liveview.Loadtargetaccountsandchars()
                                 End If
                             Else
                                 MsgBox(ResourceHandler.GetUserMessage("FailedConnectCharacter"), MsgBoxStyle.Critical,
-                                  "Error")
+                                       "Error")
                                 _catchError = True
                             End If
                         Else
                             MsgBox(ResourceHandler.GetUserMessage("FailedConnectRealm"), MsgBoxStyle.Critical,
-                                     "Error")
+                                   "Error")
                             _catchError = True
                         End If
                     End If
@@ -212,7 +218,7 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub highlighter2_click()
+        Private Sub highlighter2_click(ByVal sender As Object, ByVal e As EventArgs)
             Close()
         End Sub
 
@@ -220,7 +226,7 @@ Namespace Forms
             If defaultconn_radio.Checked = True Then
                 MySettings.Default.server_defaultconn = True
                 MySettings.Default.server_address = db_address_txtbox.Text
-                MySettings.Default.server_port = port_ud.Value
+                MySettings.Default.server_port = CType(port_ud.Value, Integer)
                 MySettings.Default.server_login = userid_txtbox.Text
                 MySettings.Default.server_pass = password_txtbox.Text
                 MySettings.Default.server_chardb = chardbname_combo.Text
@@ -234,14 +240,15 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub selectdb_Browse(sender As Object, e As EventArgs) Handles realmdbname_combo.DropDown, chardbname_combo.DropDown
-            Dim combo As ComboBox = sender
+        Private Sub selectdb_Browse(sender As Object, e As EventArgs) _
+            Handles realmdbname_combo.DropDown, chardbname_combo.DropDown
+            Dim combo As ComboBox = CType(sender, ComboBox)
             combo.Items.Clear()
             Dim cmd As MySqlCommand
             Dim dr As MySqlDataReader
             Dim thisSqlConnection As MySqlConnection = TestConnectionAndReturn(
-                            "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" &
-                            userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=mysql")
+                "server=" & db_address_txtbox.Text & ";Port=" & port_ud.Value.ToString & ";User id=" &
+                userid_txtbox.Text & ";Password=" & password_txtbox.Text & ";Database=mysql")
             If thisSqlConnection IsNot Nothing Then
                 cmd = New MySqlCommand("Show Databases", thisSqlConnection)
                 dr = cmd.ExecuteReader
@@ -255,8 +262,9 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub dbname_combo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles realmdbname_combo.SelectedIndexChanged, chardbname_combo.SelectedIndexChanged
-            Dim combo As ComboBox = sender
+        Private Sub dbname_combo_SelectedIndexChanged(sender As Object, e As EventArgs) _
+            Handles realmdbname_combo.SelectedIndexChanged, chardbname_combo.SelectedIndexChanged
+            Dim combo As ComboBox = CType(sender, ComboBox)
             combo.Text = combo.SelectedItem.ToString()
         End Sub
     End Class

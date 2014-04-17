@@ -21,12 +21,12 @@
 '*      /Description:   Used to serialize objects for later saving
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
-Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.IO.Compression
+Imports System.Runtime.Serialization.Formatters.Binary
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
-Namespace Framework.TemplateSystem
+Namespace Framework
     Public Class Serializer
         Public Function Serialize(Of T)(ByVal compression As Boolean, ByVal instance As T) As MemoryStream
             Dim fs As Stream = New MemoryStream()
@@ -36,7 +36,7 @@ Namespace Framework.TemplateSystem
                 bf.Serialize(fs, instance)
                 fs.Close()
                 fs.Dispose()
-                Return fs
+                Return CType(fs, MemoryStream)
             Catch ex As Exception
                 fs.Close()
                 fs.Dispose()
@@ -53,10 +53,10 @@ Namespace Framework.TemplateSystem
                                                   ByVal serialString As String, ByVal defaultInstance As T) As T
             GlobalVariables.DeserializationSuccessfull = False
             If serialString = "" Then
-                If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf") Then
+                If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf") Then
                     Return defaultInstance
                 End If
-                serialString = My.Computer.FileSystem.SpecialDirectories.Temp & "/lastset.ncsf"
+                serialString = My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf"
             End If
 
             Dim fs As Stream = New FileStream(serialString,

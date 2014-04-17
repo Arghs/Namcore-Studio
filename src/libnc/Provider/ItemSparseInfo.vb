@@ -28,7 +28,7 @@ Namespace Provider
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -41,20 +41,20 @@ Namespace Provider
             Const targetField As Integer = 2
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
                 returnResult = 0
             End Try
-            Return returnResult
+            Return returnResult - 1
         End Function
         Public Function GetItemMaxStackByItemId(ByVal itemId As Integer) As Integer
             CheckInit()
             Const targetField As Integer = 3
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -68,7 +68,7 @@ Namespace Provider
             Const targetField As Integer = 4
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -81,7 +81,7 @@ Namespace Provider
             Const targetField As Integer = 5
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -94,7 +94,7 @@ Namespace Provider
             Const targetField As Integer = 0
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "SpellId", spellId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -107,7 +107,7 @@ Namespace Provider
             Const targetField As Integer = 8
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myresult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -125,7 +125,6 @@ Namespace Provider
         End Function
         Public Function GetItemSlotNameBySlotId(ByVal slotId As Integer) As String
             CheckInit()
-            If slotId = 0 Then Return Nothing
             Select Case slotId
                 Case 0
                     Return "head"

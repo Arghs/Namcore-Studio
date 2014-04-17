@@ -25,6 +25,7 @@ Namespace Forms
         'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
         <System.Diagnostics.DebuggerStepThrough()> _
         Private Sub InitializeComponent()
+            Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TemplateExplorer))
             Me.openfile_bt = New System.Windows.Forms.Button()
             Me.back_bt = New System.Windows.Forms.Button()
             Me.SuspendLayout()
@@ -64,6 +65,7 @@ Namespace Forms
             Me.ClientSize = New System.Drawing.Size(684, 342)
             Me.Controls.Add(Me.back_bt)
             Me.Controls.Add(Me.openfile_bt)
+            Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
             Me.Name = "TemplateExplorer"
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             Me.Text = "TemplateExplorer"

@@ -34,7 +34,7 @@ Namespace Provider
             Const targetField As Integer = 0
             Dim myResult As String = ExecuteCsvSearch(useTable, "SpellId", spellId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myResult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -52,7 +52,7 @@ Namespace Provider
             If itemName.Length > 1 Then
                 Try
                     Dim foundRows() As DataRow
-                    foundRows = SpellCsv.Select("SpellNameDE" & " = '" & itemName & "'")
+                    foundRows = SpellCsv.Select("SpellNameDE" & " = '" & EscapeLikeValue(itemName) & "'")
                     If foundRows.Length = 0 Then
                         Return 0
                     Else
@@ -92,7 +92,7 @@ Namespace Provider
             If spellName.Length > 1 Then
                 Try
                     Dim foundRows() As DataRow
-                    foundRows = ItemSparseCsv.Select("ItemNameDE" & " = '" & spellName & "'")
+                    foundRows = ItemSparseCsv.Select("ItemNameDE" & " = '" & EscapeLikeValue(spellName) & "'")
                     If foundRows.Length = 0 Then
                         Return 0
                     Else
@@ -120,7 +120,7 @@ Namespace Provider
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(useTable, "GlyphId", glyphId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myResult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch
@@ -139,7 +139,7 @@ Namespace Provider
             Const targetField As Integer = 2
             Dim myResult As String = ExecuteCsvSearch(useTable, "GlyphId", glyphId.ToString(), targetField)(0)
             Dim returnResult As Integer
-            If myResult = "-" Then myResult = 0
+            If myResult = "-" Then myResult = "0"
             Try
                 returnResult = CInt(myResult)
             Catch

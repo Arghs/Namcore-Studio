@@ -1,4 +1,5 @@
-﻿Imports NamCore_Studio.Forms.Extension
+﻿Imports NamCore_Studio.Modules.Interface
+Imports NamCore_Studio.Forms.Extension
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -190,16 +191,16 @@ Namespace Forms.Character
             Me.itmench = New System.Windows.Forms.Label()
             Me.Label1 = New System.Windows.Forms.Label()
             Me.bank_bt = New System.Windows.Forms.Button()
-            Me.bag2Panel = New System.Windows.Forms.Panel()
+            Me.bag2Panel = New NamCore_Studio.Modules.[Interface].ItemPanel()
             Me.bag2Pic = New System.Windows.Forms.PictureBox()
-            Me.bag1Panel = New System.Windows.Forms.Panel()
+            Me.bag1Panel = New NamCore_Studio.Modules.[Interface].ItemPanel()
             Me.bag1Pic = New System.Windows.Forms.PictureBox()
-            Me.bag4Panel = New System.Windows.Forms.Panel()
+            Me.bag4Panel = New NamCore_Studio.Modules.[Interface].ItemPanel()
             Me.PictureBox3 = New System.Windows.Forms.PictureBox()
             Me.bag4Pic = New System.Windows.Forms.PictureBox()
-            Me.bag3Panel = New System.Windows.Forms.Panel()
+            Me.bag3Panel = New NamCore_Studio.Modules.[Interface].ItemPanel()
             Me.bag3Pic = New System.Windows.Forms.PictureBox()
-            Me.bag5Panel = New System.Windows.Forms.Panel()
+            Me.bag5Panel = New NamCore_Studio.Modules.[Interface].ItemPanel()
             Me.bag5Pic = New System.Windows.Forms.PictureBox()
             Me.addpanel = New System.Windows.Forms.Panel()
             Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -213,11 +214,18 @@ Namespace Forms.Character
             Me.Label5 = New System.Windows.Forms.Label()
             Me.InfoToolTip = New System.Windows.Forms.ToolTip(Me.components)
             Me.genderpanel = New System.Windows.Forms.Panel()
-            Me.gendercombo = New System.Windows.Forms.ComboBox()
             Me.genderrefresh = New System.Windows.Forms.PictureBox()
+            Me.gendercombo = New System.Windows.Forms.ComboBox()
             Me.referenceItmPanel = New System.Windows.Forms.Panel()
+            Me.referenceCount = New System.Windows.Forms.Label()
+            Me.removeinventbox = New System.Windows.Forms.PictureBox()
             Me.referenceItmPic = New System.Windows.Forms.PictureBox()
             Me.professions_bt = New System.Windows.Forms.Button()
+            Me.loadedat_lbl = New System.Windows.Forms.Label()
+            Me.refreshchar = New System.Windows.Forms.PictureBox()
+            Me.Label7 = New System.Windows.Forms.Label()
+            Me.gold_txtbox = New System.Windows.Forms.TextBox()
+            Me.refreshgold = New System.Windows.Forms.PictureBox()
             Me.InventoryPanel.SuspendLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.slot_17_gem2_pic, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -340,7 +348,10 @@ Namespace Forms.Character
             Me.genderpanel.SuspendLayout()
             CType(Me.genderrefresh, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.referenceItmPanel.SuspendLayout()
+            CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).BeginInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.refreshchar, System.ComponentModel.ISupportInitialize).BeginInit()
+            CType(Me.refreshgold, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'InventoryPanel
@@ -1836,7 +1847,7 @@ Namespace Forms.Character
             Me.charname_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
             Me.charname_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.charname_lbl.ForeColor = System.Drawing.Color.Black
-            Me.charname_lbl.Location = New System.Drawing.Point(277, 60)
+            Me.charname_lbl.Location = New System.Drawing.Point(234, 62)
             Me.charname_lbl.Name = "charname_lbl"
             Me.charname_lbl.Size = New System.Drawing.Size(132, 20)
             Me.charname_lbl.TabIndex = 1
@@ -1924,7 +1935,7 @@ Namespace Forms.Character
             Me.av_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.av_bt.ForeColor = System.Drawing.Color.Black
             Me.av_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.av_bt.Location = New System.Drawing.Point(681, 583)
+            Me.av_bt.Location = New System.Drawing.Point(677, 583)
             Me.av_bt.Name = "av_bt"
             Me.av_bt.Size = New System.Drawing.Size(104, 34)
             Me.av_bt.TabIndex = 164
@@ -1938,7 +1949,7 @@ Namespace Forms.Character
             Me.Glyphs_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.Glyphs_bt.ForeColor = System.Drawing.Color.Black
             Me.Glyphs_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Glyphs_bt.Location = New System.Drawing.Point(792, 621)
+            Me.Glyphs_bt.Location = New System.Drawing.Point(788, 621)
             Me.Glyphs_bt.Name = "Glyphs_bt"
             Me.Glyphs_bt.Size = New System.Drawing.Size(104, 34)
             Me.Glyphs_bt.TabIndex = 165
@@ -1952,7 +1963,7 @@ Namespace Forms.Character
             Me.rep_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.rep_bt.ForeColor = System.Drawing.Color.Black
             Me.rep_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.rep_bt.Location = New System.Drawing.Point(572, 583)
+            Me.rep_bt.Location = New System.Drawing.Point(568, 583)
             Me.rep_bt.Name = "rep_bt"
             Me.rep_bt.Size = New System.Drawing.Size(104, 34)
             Me.rep_bt.TabIndex = 166
@@ -1966,7 +1977,7 @@ Namespace Forms.Character
             Me.spellsskills_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.spellsskills_bt.ForeColor = System.Drawing.Color.Black
             Me.spellsskills_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.spellsskills_bt.Location = New System.Drawing.Point(572, 621)
+            Me.spellsskills_bt.Location = New System.Drawing.Point(568, 621)
             Me.spellsskills_bt.Name = "spellsskills_bt"
             Me.spellsskills_bt.Size = New System.Drawing.Size(104, 34)
             Me.spellsskills_bt.TabIndex = 168
@@ -1980,7 +1991,7 @@ Namespace Forms.Character
             Me.exit_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.exit_bt.ForeColor = System.Drawing.Color.Black
             Me.exit_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.exit_bt.Location = New System.Drawing.Point(741, 695)
+            Me.exit_bt.Location = New System.Drawing.Point(737, 695)
             Me.exit_bt.Name = "exit_bt"
             Me.exit_bt.Size = New System.Drawing.Size(155, 34)
             Me.exit_bt.TabIndex = 170
@@ -2159,7 +2170,7 @@ Namespace Forms.Character
             Me.bank_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.bank_bt.ForeColor = System.Drawing.Color.Black
             Me.bank_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.bank_bt.Location = New System.Drawing.Point(792, 583)
+            Me.bank_bt.Location = New System.Drawing.Point(788, 583)
             Me.bank_bt.Name = "bank_bt"
             Me.bank_bt.Size = New System.Drawing.Size(104, 34)
             Me.bank_bt.TabIndex = 177
@@ -2318,7 +2329,7 @@ Namespace Forms.Character
             Me.Quests_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.Quests_bt.ForeColor = System.Drawing.Color.Black
             Me.Quests_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.Quests_bt.Location = New System.Drawing.Point(681, 621)
+            Me.Quests_bt.Location = New System.Drawing.Point(677, 621)
             Me.Quests_bt.Name = "Quests_bt"
             Me.Quests_bt.Size = New System.Drawing.Size(104, 34)
             Me.Quests_bt.TabIndex = 186
@@ -2415,21 +2426,12 @@ Namespace Forms.Character
             'genderpanel
             '
             Me.genderpanel.BackColor = System.Drawing.Color.Transparent
-            Me.genderpanel.Controls.Add(Me.gendercombo)
             Me.genderpanel.Controls.Add(Me.genderrefresh)
+            Me.genderpanel.Controls.Add(Me.gendercombo)
             Me.genderpanel.Location = New System.Drawing.Point(1365, 360)
             Me.genderpanel.Name = "genderpanel"
             Me.genderpanel.Size = New System.Drawing.Size(144, 25)
             Me.genderpanel.TabIndex = 226
-            '
-            'gendercombo
-            '
-            Me.gendercombo.FormattingEnabled = True
-            Me.gendercombo.Items.AddRange(New Object() {"Male", "Female"})
-            Me.gendercombo.Location = New System.Drawing.Point(3, 2)
-            Me.gendercombo.Name = "gendercombo"
-            Me.gendercombo.Size = New System.Drawing.Size(115, 21)
-            Me.gendercombo.TabIndex = 175
             '
             'genderrefresh
             '
@@ -2441,15 +2443,48 @@ Namespace Forms.Character
             Me.genderrefresh.TabIndex = 174
             Me.genderrefresh.TabStop = False
             '
+            'gendercombo
+            '
+            Me.gendercombo.FormattingEnabled = True
+            Me.gendercombo.Items.AddRange(New Object() {"Male", "Female"})
+            Me.gendercombo.Location = New System.Drawing.Point(3, 2)
+            Me.gendercombo.Name = "gendercombo"
+            Me.gendercombo.Size = New System.Drawing.Size(115, 21)
+            Me.gendercombo.TabIndex = 175
+            '
             'referenceItmPanel
             '
             Me.referenceItmPanel.BackColor = System.Drawing.SystemColors.ActiveBorder
+            Me.referenceItmPanel.Controls.Add(Me.referenceCount)
+            Me.referenceItmPanel.Controls.Add(Me.removeinventbox)
             Me.referenceItmPanel.Controls.Add(Me.referenceItmPic)
             Me.referenceItmPanel.Location = New System.Drawing.Point(1419, 438)
             Me.referenceItmPanel.Margin = New System.Windows.Forms.Padding(1)
             Me.referenceItmPanel.Name = "referenceItmPanel"
             Me.referenceItmPanel.Size = New System.Drawing.Size(45, 45)
             Me.referenceItmPanel.TabIndex = 228
+            '
+            'referenceCount
+            '
+            Me.referenceCount.AutoSize = True
+            Me.referenceCount.Location = New System.Drawing.Point(23, 3)
+            Me.referenceCount.Name = "referenceCount"
+            Me.referenceCount.Size = New System.Drawing.Size(19, 13)
+            Me.referenceCount.TabIndex = 232
+            Me.referenceCount.Text = "20"
+            '
+            'removeinventbox
+            '
+            Me.removeinventbox.BackColor = System.Drawing.Color.Transparent
+            Me.removeinventbox.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.inv_misc_gem_01
+            Me.removeinventbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.removeinventbox.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.removeinventbox.Location = New System.Drawing.Point(2, 2)
+            Me.removeinventbox.Name = "removeinventbox"
+            Me.removeinventbox.Size = New System.Drawing.Size(16, 16)
+            Me.removeinventbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+            Me.removeinventbox.TabIndex = 230
+            Me.removeinventbox.TabStop = False
             '
             'referenceItmPic
             '
@@ -2469,22 +2504,84 @@ Namespace Forms.Character
             Me.professions_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.professions_bt.ForeColor = System.Drawing.Color.Black
             Me.professions_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.professions_bt.Location = New System.Drawing.Point(572, 545)
+            Me.professions_bt.Location = New System.Drawing.Point(568, 659)
             Me.professions_bt.Name = "professions_bt"
             Me.professions_bt.Size = New System.Drawing.Size(104, 34)
             Me.professions_bt.TabIndex = 229
             Me.professions_bt.Text = "Professions"
             Me.professions_bt.UseVisualStyleBackColor = False
             '
+            'loadedat_lbl
+            '
+            Me.loadedat_lbl.BackColor = System.Drawing.Color.Transparent
+            Me.loadedat_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+            Me.loadedat_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.loadedat_lbl.ForeColor = System.Drawing.Color.Black
+            Me.loadedat_lbl.Location = New System.Drawing.Point(378, 65)
+            Me.loadedat_lbl.Name = "loadedat_lbl"
+            Me.loadedat_lbl.RightToLeft = System.Windows.Forms.RightToLeft.No
+            Me.loadedat_lbl.Size = New System.Drawing.Size(157, 18)
+            Me.loadedat_lbl.TabIndex = 230
+            Me.loadedat_lbl.Text = "11.02.2014 - 20:42"
+            Me.loadedat_lbl.TextAlign = System.Drawing.ContentAlignment.TopRight
+            '
+            'refreshchar
+            '
+            Me.refreshchar.BackColor = System.Drawing.Color.Transparent
+            Me.refreshchar.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
+            Me.refreshchar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.refreshchar.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.refreshchar.Location = New System.Drawing.Point(533, 61)
+            Me.refreshchar.Name = "refreshchar"
+            Me.refreshchar.Size = New System.Drawing.Size(22, 22)
+            Me.refreshchar.TabIndex = 231
+            Me.refreshchar.TabStop = False
+            '
+            'Label7
+            '
+            Me.Label7.AutoSize = True
+            Me.Label7.BackColor = System.Drawing.Color.Transparent
+            Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.Label7.ForeColor = System.Drawing.Color.Black
+            Me.Label7.Location = New System.Drawing.Point(717, 159)
+            Me.Label7.Name = "Label7"
+            Me.Label7.Size = New System.Drawing.Size(45, 16)
+            Me.Label7.TabIndex = 232
+            Me.Label7.Text = "Gold:"
+            '
+            'gold_txtbox
+            '
+            Me.gold_txtbox.Location = New System.Drawing.Point(768, 157)
+            Me.gold_txtbox.Name = "gold_txtbox"
+            Me.gold_txtbox.Size = New System.Drawing.Size(100, 20)
+            Me.gold_txtbox.TabIndex = 233
+            '
+            'refreshgold
+            '
+            Me.refreshgold.BackColor = System.Drawing.Color.Transparent
+            Me.refreshgold.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.refresh
+            Me.refreshgold.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+            Me.refreshgold.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.refreshgold.Location = New System.Drawing.Point(870, 156)
+            Me.refreshgold.Name = "refreshgold"
+            Me.refreshgold.Size = New System.Drawing.Size(22, 22)
+            Me.refreshgold.TabIndex = 234
+            Me.refreshgold.TabStop = False
+            '
             'CharacterOverview
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(910, 736)
+            Me.ClientSize = New System.Drawing.Size(902, 736)
+            Me.Controls.Add(Me.genderpanel)
+            Me.Controls.Add(Me.refreshgold)
+            Me.Controls.Add(Me.gold_txtbox)
+            Me.Controls.Add(Me.Label7)
+            Me.Controls.Add(Me.refreshchar)
+            Me.Controls.Add(Me.loadedat_lbl)
             Me.Controls.Add(Me.professions_bt)
             Me.Controls.Add(Me.referenceItmPanel)
-            Me.Controls.Add(Me.genderpanel)
             Me.Controls.Add(Me.addpanel)
             Me.Controls.Add(Me.selectenchpanel)
             Me.Controls.Add(Me.classpanel)
@@ -2527,9 +2624,14 @@ Namespace Forms.Character
             Me.Controls.SetChildIndex(Me.classpanel, 0)
             Me.Controls.SetChildIndex(Me.selectenchpanel, 0)
             Me.Controls.SetChildIndex(Me.addpanel, 0)
-            Me.Controls.SetChildIndex(Me.genderpanel, 0)
             Me.Controls.SetChildIndex(Me.referenceItmPanel, 0)
             Me.Controls.SetChildIndex(Me.professions_bt, 0)
+            Me.Controls.SetChildIndex(Me.loadedat_lbl, 0)
+            Me.Controls.SetChildIndex(Me.refreshchar, 0)
+            Me.Controls.SetChildIndex(Me.Label7, 0)
+            Me.Controls.SetChildIndex(Me.gold_txtbox, 0)
+            Me.Controls.SetChildIndex(Me.refreshgold, 0)
+            Me.Controls.SetChildIndex(Me.genderpanel, 0)
             Me.InventoryPanel.ResumeLayout(False)
             Me.InventoryPanel.PerformLayout()
             CType(Me.slot_17_gem3_pic, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2658,7 +2760,11 @@ Namespace Forms.Character
             Me.genderpanel.ResumeLayout(False)
             CType(Me.genderrefresh, System.ComponentModel.ISupportInitialize).EndInit()
             Me.referenceItmPanel.ResumeLayout(False)
+            Me.referenceItmPanel.PerformLayout()
+            CType(Me.removeinventbox, System.ComponentModel.ISupportInitialize).EndInit()
             CType(Me.referenceItmPic, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.refreshchar, System.ComponentModel.ISupportInitialize).EndInit()
+            CType(Me.refreshgold, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
             Me.PerformLayout()
 
@@ -2826,15 +2932,10 @@ Namespace Forms.Character
         Friend WithEvents itmench As System.Windows.Forms.Label
         Friend WithEvents Label1 As System.Windows.Forms.Label
         Friend WithEvents bank_bt As System.Windows.Forms.Button
-        Friend WithEvents bag2Panel As System.Windows.Forms.Panel
         Friend WithEvents bag2Pic As System.Windows.Forms.PictureBox
-        Friend WithEvents bag1Panel As System.Windows.Forms.Panel
         Friend WithEvents bag1Pic As System.Windows.Forms.PictureBox
-        Friend WithEvents bag4Panel As System.Windows.Forms.Panel
         Friend WithEvents bag4Pic As System.Windows.Forms.PictureBox
-        Friend WithEvents bag3Panel As System.Windows.Forms.Panel
         Friend WithEvents bag3Pic As System.Windows.Forms.PictureBox
-        Friend WithEvents bag5Panel As System.Windows.Forms.Panel
         Friend WithEvents bag5Pic As System.Windows.Forms.PictureBox
         Friend WithEvents addpanel As System.Windows.Forms.Panel
         Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
@@ -2854,5 +2955,17 @@ Namespace Forms.Character
         Friend WithEvents InventoryLayout As System.Windows.Forms.FlowLayoutPanel
         Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
         Friend WithEvents professions_bt As System.Windows.Forms.Button
+        Friend WithEvents removeinventbox As System.Windows.Forms.PictureBox
+        Friend WithEvents loadedat_lbl As System.Windows.Forms.Label
+        Friend WithEvents refreshchar As System.Windows.Forms.PictureBox
+        Friend WithEvents referenceCount As System.Windows.Forms.Label
+        Friend WithEvents Label7 As System.Windows.Forms.Label
+        Friend WithEvents gold_txtbox As System.Windows.Forms.TextBox
+        Friend WithEvents refreshgold As System.Windows.Forms.PictureBox
+        Friend WithEvents bag2Panel As NamCore_Studio.Modules.Interface.ItemPanel
+        Friend WithEvents bag1Panel As NamCore_Studio.Modules.Interface.ItemPanel
+        Friend WithEvents bag4Panel As NamCore_Studio.Modules.Interface.ItemPanel
+        Friend WithEvents bag3Panel As NamCore_Studio.Modules.Interface.ItemPanel
+        Friend WithEvents bag5Panel As NamCore_Studio.Modules.Interface.ItemPanel
     End Class
 End Namespace
