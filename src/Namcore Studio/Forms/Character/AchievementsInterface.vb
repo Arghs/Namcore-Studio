@@ -447,13 +447,14 @@ Namespace Forms.Character
             For Each charAv As Achievement In foundAvList
                 AddAvToLayout(charAv)
             Next
+            AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding))
             GlobalVariables.trdRunning -= 1
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnFilterCompleted),
                                     New CompletedEventArgs())
         End Sub
 
         Private Sub AddAvToLayout(ByVal charAv As Achievement)
-            If charAv.SubCategory = Nothing Then charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
+            If charAv.SubCategory = 0 Then charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
             Dim avPanel As New Panel
             avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
             avPanel.Size = referencePanel.Size
@@ -546,6 +547,7 @@ Namespace Forms.Character
             deletePic.Cursor = Cursors.Hand
             avPanel.SetDoubleBuffered()
             AddHandler deletePic.Click, AddressOf deleteAv_click
+            If _controlsToAdd Is Nothing Then _controlsToAdd = New List(Of Control)()
             _controlsToAdd.Add(avPanel)
             Application.DoEvents()
         End Sub
@@ -589,6 +591,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub search_bt_Click(sender As Object, e As EventArgs) Handles search_bt.Click
+            If Not _controlsToAdd Is Nothing Then _controlsToAdd.Clear()
             waitpanel.Location = New Point(4000, 4000)
             search_bt.Enabled = False
             Dim browseTxt As String = browse_tb.Text
@@ -598,7 +601,7 @@ Namespace Forms.Character
             AVLayoutPanel.Controls.Clear()
             Application.DoEvents()
             Dim trd As Thread = New Thread(DirectCast(Sub() FilterResults(browseTxt), ThreadStart))
-            trd.Start(browseTxt)
+            trd.Start()
         End Sub
     End Class
 End Namespace
