@@ -783,7 +783,7 @@ Namespace Framework.Database
         End Sub
 
         Private Sub col_check_realm(ByRef columnname() As String, ByVal tablename() As String)
-            If tablename Is Nothing And columnname Is Nothing Then Exit Sub
+            If tablename Is Nothing Or columnname Is Nothing Then Exit Sub
             Dim i As Integer = columnname.Length
             Dim counter As Integer = 0
             Do
