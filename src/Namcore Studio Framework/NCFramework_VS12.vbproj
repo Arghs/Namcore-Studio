@@ -116,10 +116,12 @@
     <Compile Include="Framework\Functions\MiscInfo.vb" />
     <Compile Include="Framework\Functions\WebConnection.vb" />
     <Compile Include="Framework\Logging\EventLogging.vb" />
+    <Compile Include="Framework\Modules\TemplateEntry.vb" />
     <Compile Include="Framework\Modules\Account.vb" />
     <Compile Include="Framework\Modules\Character.vb" />
     <Compile Include="Framework\Modules\DbStructure.vb" />
     <Compile Include="Framework\Modules\GlobalVariables.vb" />
+    <Compile Include="Framework\Template System\TaexHandler.vb" />
     <Compile Include="Framework\Transmission\AchievementCreation.vb" />
     <Compile Include="Framework\Transmission\PlayerCreateHelper.vb" />
     <Compile Include="Framework\Modules\Profile.vb" />
@@ -216,7 +218,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseUniversalClock="True" BuildVersion_AssemblyInfoFilename="My Project\AssemblyInfo.vb" BuildVersion_DetectChanges="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_DetectChanges="True" BuildVersion_AssemblyInfoFilename="My Project\AssemblyInfo.vb" BuildVersion_UseUniversalClock="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
