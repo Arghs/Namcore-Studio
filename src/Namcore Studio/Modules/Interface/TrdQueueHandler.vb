@@ -21,6 +21,7 @@
 '*      /Description:   Handles threadding queue items
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
+Imports NamCore_Studio.Forms
 Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Character
 Imports NCFramework.Framework.Modules
@@ -54,6 +55,15 @@ Namespace Modules.Interface
                 ThreadExtensions.QueueUserWorkItem(
                     New Func(Of Integer, String)(AddressOf DirectCast(x, SpellSkillInterface).ContinueOperation),
                     targetSetId)
+            Next
+            Return Nothing
+        End Function
+
+        Public Function doOperate_templateExplorer() As String
+            For Each x As Form In _
+                 From mForm As Object In Application.OpenForms Where TryCast(mForm, Form).Name = "TemplateExplorer" Select mForm
+                ThreadExtensions.QueueUserWorkItem(
+                    New Func(Of String)(AddressOf DirectCast(x, TemplateExplorer).ContinueOperation))
             Next
             Return Nothing
         End Function
