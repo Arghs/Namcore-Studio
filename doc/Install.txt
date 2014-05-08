@@ -28,6 +28,7 @@ structure applies:
 	[...]
 
 \Data\
+	FastColoredTextBox.dll
 	libnc.dll
 	libncadvanced.dll
 	mysql.data.dll
