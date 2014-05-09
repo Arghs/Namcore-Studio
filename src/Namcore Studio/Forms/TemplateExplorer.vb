@@ -62,7 +62,6 @@ Namespace Forms
         Private Sub TemplateExplorer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             AddHandler highlighter2.Click, AddressOf highlighter2_Click
             _mHandler.doOperate_templateExplorer()
-            Rater1.CurrentRating = 5
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
