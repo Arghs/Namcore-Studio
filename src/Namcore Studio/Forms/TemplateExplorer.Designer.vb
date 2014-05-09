@@ -38,9 +38,11 @@ Namespace Forms
             Me.reference_date_lbl = New System.Windows.Forms.Label()
             Me.reference_templatename_lbl = New System.Windows.Forms.Label()
             Me.template_layout_panel = New System.Windows.Forms.FlowLayoutPanel()
+            Me.Rater1 = New ShaperRater.Rater()
             Me.reference_template_panel.SuspendLayout()
             CType(Me.reference_rating_rater, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.reference_description_panel.SuspendLayout()
+            CType(Me.Rater1, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.SuspendLayout()
             '
             'openfile_bt
@@ -102,6 +104,7 @@ Namespace Forms
             Me.reference_rating_rater.RadiusOuter = 10.0!
             Me.reference_rating_rater.RightToLeft = System.Windows.Forms.RightToLeft.No
             Me.reference_rating_rater.Shape = ShaperRater.Rater.eShape.Circle
+            Me.reference_rating_rater.ShapeColorFill = System.Drawing.Color.Cornsilk
             Me.reference_rating_rater.Size = New System.Drawing.Size(131, 23)
             Me.reference_rating_rater.TabIndex = 230
             '
@@ -187,11 +190,30 @@ Namespace Forms
             Me.template_layout_panel.Size = New System.Drawing.Size(609, 381)
             Me.template_layout_panel.TabIndex = 228
             '
+            'Rater1
+            '
+            Me.Rater1.BackColor = System.Drawing.Color.Transparent
+            Me.Rater1.CurrentRating = 0
+            Me.Rater1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.Rater1.LabelAlignment = System.Drawing.ContentAlignment.MiddleCenter
+            Me.Rater1.LabelShow = False
+            Me.Rater1.LabelText = "RateLabel"
+            Me.Rater1.LabelTextItems = New String() {"Poor", "Fair", "Good", "Better", "Best"}
+            Me.Rater1.Location = New System.Drawing.Point(279, 500)
+            Me.Rater1.Margin = New System.Windows.Forms.Padding(4)
+            Me.Rater1.Name = "Rater1"
+            Me.Rater1.RadiusInner = 0.0!
+            Me.Rater1.RadiusOuter = 10.0!
+            Me.Rater1.Shape = ShaperRater.Rater.eShape.Circle
+            Me.Rater1.Size = New System.Drawing.Size(278, 30)
+            Me.Rater1.TabIndex = 229
+            '
             'TemplateExplorer
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.ClientSize = New System.Drawing.Size(773, 543)
+            Me.ClientSize = New System.Drawing.Size(772, 543)
+            Me.Controls.Add(Me.Rater1)
             Me.Controls.Add(Me.template_layout_panel)
             Me.Controls.Add(Me.reference_template_panel)
             Me.Controls.Add(Me.back_bt)
@@ -204,10 +226,12 @@ Namespace Forms
             Me.Controls.SetChildIndex(Me.back_bt, 0)
             Me.Controls.SetChildIndex(Me.reference_template_panel, 0)
             Me.Controls.SetChildIndex(Me.template_layout_panel, 0)
+            Me.Controls.SetChildIndex(Me.Rater1, 0)
             Me.reference_template_panel.ResumeLayout(False)
             Me.reference_template_panel.PerformLayout()
             CType(Me.reference_rating_rater, System.ComponentModel.ISupportInitialize).EndInit()
             Me.reference_description_panel.ResumeLayout(False)
+            CType(Me.Rater1, System.ComponentModel.ISupportInitialize).EndInit()
             Me.ResumeLayout(False)
 
         End Sub
@@ -223,5 +247,6 @@ Namespace Forms
         Friend WithEvents reference_author_lbl As System.Windows.Forms.Label
         Friend WithEvents reference_rating_rater As ShaperRater.Rater
         Friend WithEvents template_layout_panel As System.Windows.Forms.FlowLayoutPanel
+        Friend WithEvents Rater1 As ShaperRater.Rater
     End Class
 End Namespace

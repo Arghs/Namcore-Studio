@@ -20,6 +20,7 @@
 '*      /Filename:      TemplateExplorer
 '*      /Description:   TODO
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework
 Imports NCFramework.Framework.Modules
@@ -61,6 +62,7 @@ Namespace Forms
         Private Sub TemplateExplorer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             AddHandler highlighter2.Click, AddressOf highlighter2_Click
             _mHandler.doOperate_templateExplorer()
+            Rater1.CurrentRating = 5
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
@@ -151,9 +153,18 @@ Namespace Forms
                         .Size = reference_rating_rater.Size
                         .Location = reference_rating_rater.Location
                         .BackColor = reference_rating_rater.BackColor
+                        .ShapeBorderEmptyColor = reference_rating_rater.ShapeBorderEmptyColor
+                        .ShapeBorderFilledColor = reference_rating_rater.ShapeBorderFilledColor
+                        .ShapeBorderHoverColor = reference_rating_rater.ShapeBorderHoverColor
+                        .ShapeColorEmpty = reference_rating_rater.ShapeColorEmpty
+                        .ShapeColorFill = reference_rating_rater.ShapeColorFill
+                        .ShapeColorHover = reference_rating_rater.ShapeColorHover
+                        .RadiusInner = 0.0!
+                        .RadiusOuter = 10.0!
                         .CurrentRating = entry.Rating
                         .LabelShow = False
                         .Shape = reference_rating_rater.Shape
+                        .SetDoubleBuffered()
                     End With
                     Dim downloadLbl As New Label
                     templatePanel.Controls.Add(downloadLbl)

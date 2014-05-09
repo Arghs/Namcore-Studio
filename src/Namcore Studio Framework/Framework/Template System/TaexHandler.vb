@@ -48,7 +48,7 @@ Namespace Framework
                     entry.FileGuid = TryInt(SplitString(entryContext, "<entry_fileguid>", "</entry_fileguid>"))
                     xml = xml.Replace("<entry>" & entryContext & "</entry>", "")
                     templateEntryLst.Add(entry)
-                    If templateEntryLst.Count >= count Then Exit While
+                    If templateEntryLst.Count >= count And count <> 0 Then Exit While
                 End While
                 Return templateEntryLst
             Catch ex As Exception
