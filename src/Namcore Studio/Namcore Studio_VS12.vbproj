@@ -173,6 +173,12 @@
     <Compile Include="Forms\Character\GlyphsInterface.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\LoginExplorer.Designer.vb">
+      <DependentUpon>LoginExplorer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginExplorer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Main.Designer.vb">
       <DependentUpon>Main.vb</DependentUpon>
     </Compile>
@@ -302,6 +308,9 @@
     <EmbeddedResource Include="Forms\Character\GlyphsInterface.resx">
       <DependentUpon>GlyphsInterface.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginExplorer.resx">
+      <DependentUpon>LoginExplorer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
@@ -421,7 +430,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_DetectChanges="True" BuildVersion_AssemblyInfoFilename="My Project\AssemblyInfo.vb" BuildVersion_UseUniversalClock="True" />
+      <UserProperties BuildVersion_UseUniversalClock="True" BuildVersion_AssemblyInfoFilename="My Project\AssemblyInfo.vb" BuildVersion_DetectChanges="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

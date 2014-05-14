@@ -20,6 +20,7 @@
 '*      /Filename:      TemplateExplorer
 '*      /Description:   TODO
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework
@@ -57,6 +58,16 @@ Namespace Forms
                     End If
                 End If
             End With
+        End Sub
+
+        Public Sub SetLogin(ByVal loggedIn As Boolean, Optional userName As String = "")
+            If loggedIn Then
+                login_lbl.Text = userName
+                login_lbl.BackColor = Color.Green
+            Else
+                login_lbl.Text = "Not logged in"
+                login_lbl.BackColor = Color.Red
+            End If
         End Sub
 
         Private Sub TemplateExplorer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -228,6 +239,10 @@ Namespace Forms
 
         Private Sub Download_Click(sender As Object, e As EventArgs)
 
+        End Sub
+
+        Private Sub login_bt_Click(sender As Object, e As EventArgs) Handles login_bt.Click
+            LoginExplorer.Show()
         End Sub
     End Class
 End Namespace

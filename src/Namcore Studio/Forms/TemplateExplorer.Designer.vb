@@ -38,6 +38,8 @@ Namespace Forms
             Me.reference_date_lbl = New System.Windows.Forms.Label()
             Me.reference_templatename_lbl = New System.Windows.Forms.Label()
             Me.template_layout_panel = New System.Windows.Forms.FlowLayoutPanel()
+            Me.login_bt = New System.Windows.Forms.Button()
+            Me.login_lbl = New System.Windows.Forms.Label()
             Me.reference_template_panel.SuspendLayout()
             CType(Me.reference_rating_rater, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.reference_description_panel.SuspendLayout()
@@ -50,7 +52,7 @@ Namespace Forms
             Me.openfile_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
             Me.openfile_bt.ForeColor = System.Drawing.Color.Black
             Me.openfile_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.openfile_bt.Location = New System.Drawing.Point(12, 98)
+            Me.openfile_bt.Location = New System.Drawing.Point(12, 490)
             Me.openfile_bt.Name = "openfile_bt"
             Me.openfile_bt.Size = New System.Drawing.Size(135, 41)
             Me.openfile_bt.TabIndex = 167
@@ -188,11 +190,38 @@ Namespace Forms
             Me.template_layout_panel.Size = New System.Drawing.Size(609, 381)
             Me.template_layout_panel.TabIndex = 228
             '
+            'login_bt
+            '
+            Me.login_bt.BackColor = System.Drawing.Color.DimGray
+            Me.login_bt.Cursor = System.Windows.Forms.Cursors.Hand
+            Me.login_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+            Me.login_bt.ForeColor = System.Drawing.Color.Black
+            Me.login_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+            Me.login_bt.Location = New System.Drawing.Point(7, 122)
+            Me.login_bt.Name = "login_bt"
+            Me.login_bt.Size = New System.Drawing.Size(135, 41)
+            Me.login_bt.TabIndex = 229
+            Me.login_bt.Text = "Login"
+            Me.login_bt.UseVisualStyleBackColor = False
+            '
+            'login_lbl
+            '
+            Me.login_lbl.AutoSize = True
+            Me.login_lbl.BackColor = System.Drawing.Color.Red
+            Me.login_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
+            Me.login_lbl.Location = New System.Drawing.Point(9, 98)
+            Me.login_lbl.Name = "login_lbl"
+            Me.login_lbl.Size = New System.Drawing.Size(93, 15)
+            Me.login_lbl.TabIndex = 0
+            Me.login_lbl.Text = "Not logged in"
+            '
             'TemplateExplorer
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
             Me.ClientSize = New System.Drawing.Size(772, 543)
+            Me.Controls.Add(Me.login_lbl)
+            Me.Controls.Add(Me.login_bt)
             Me.Controls.Add(Me.template_layout_panel)
             Me.Controls.Add(Me.reference_template_panel)
             Me.Controls.Add(Me.back_bt)
@@ -205,11 +234,14 @@ Namespace Forms
             Me.Controls.SetChildIndex(Me.back_bt, 0)
             Me.Controls.SetChildIndex(Me.reference_template_panel, 0)
             Me.Controls.SetChildIndex(Me.template_layout_panel, 0)
+            Me.Controls.SetChildIndex(Me.login_bt, 0)
+            Me.Controls.SetChildIndex(Me.login_lbl, 0)
             Me.reference_template_panel.ResumeLayout(False)
             Me.reference_template_panel.PerformLayout()
             CType(Me.reference_rating_rater, System.ComponentModel.ISupportInitialize).EndInit()
             Me.reference_description_panel.ResumeLayout(False)
             Me.ResumeLayout(False)
+            Me.PerformLayout()
 
         End Sub
         Friend WithEvents openfile_bt As System.Windows.Forms.Button
@@ -224,5 +256,7 @@ Namespace Forms
         Friend WithEvents reference_author_lbl As System.Windows.Forms.Label
         Friend WithEvents reference_rating_rater As ShaperRater.Rater
         Friend WithEvents template_layout_panel As System.Windows.Forms.FlowLayoutPanel
+        Friend WithEvents login_bt As System.Windows.Forms.Button
+        Friend WithEvents login_lbl As System.Windows.Forms.Label
     End Class
 End Namespace

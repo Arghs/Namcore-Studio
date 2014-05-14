@@ -33,6 +33,10 @@ Namespace Framework.Modules
         Public Shared LoadingTemplate As Boolean = False
         Public Shared DeserializationSuccessfull As Boolean = False
         Public Shared lastregion As String
+        Public Shared Te_isLogin As Boolean = False
+        Public Shared Te_userName As String
+        Public Shared Te_flags As Integer
+        Public Shared Te_passHash As String
         Public Shared TempCharacter As Character
         Public Shared globChars As GlobalCharVars
         Public Shared ModAccountSets As List(Of Account)

@@ -684,4 +684,16 @@
   <data name="enterfactionid" xml:space="preserve">
     <value>Enter faction id: </value>
   </data>
+  <data name="accountLocked" xml:space="preserve">
+    <value>This account has been locked! Please contact support.</value>
+  </data>
+  <data name="invalidCredentialsEntered" xml:space="preserve">
+    <value>Invalid credentials entered!</value>
+  </data>
+  <data name="invalidInfo" xml:space="preserve">
+    <value>Invalid username/password combination!</value>
+  </data>
+  <data name="loginFailed" xml:space="preserve">
+    <value>Unable to reach server. Login failed!</value>
+  </data>
 </root>
