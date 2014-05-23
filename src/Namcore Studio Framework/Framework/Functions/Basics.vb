@@ -272,6 +272,17 @@ Namespace Framework.Functions
             End Try
         End Function
 
+        Public Function SafeExecuteDataTableSearch(ByVal dt As DataTable, ByVal command As String, ByVal position As Integer) As String
+            Dim tmpLst As List(Of String()) = ExecuteDataTableSearch(dt, command)
+            If tmpLst Is Nothing Then Return Nothing
+            If tmpLst.Count >= 1 Then
+                If tmpLst(0).Length - 1 >= position Then
+                    Return tmpLst(0)(position)
+                End If
+            End If
+            Return Nothing
+        End Function
+
         Public Function EscapeLikeValue(ByVal value As String) As String
             Dim sb As New StringBuilder(value.Length)
             For i = 0 To value.Length - 1
@@ -299,7 +310,7 @@ Namespace Framework.Functions
                         myForm.Close()
                         Application.DoEvents()
                     Next
-                Catch ex As Exception :
+                Catch ex As Exception
                 End Try
             End If
         End Sub
@@ -315,7 +326,7 @@ Namespace Framework.Functions
                         myForm.Close()
                     End If
                 Next
-            Catch ex As Exception :
+            Catch ex As Exception
             End Try
             GlobalVariables.procStatus = New ProcessStatus
             GlobalVariables.procStatus.Show()

@@ -830,16 +830,18 @@ Namespace Forms
                             End If
                         End With
                         GlobalVariables.charactersToCreate.Add(player)
-                        Transfer_bt.Enabled = True
+                        If GlobalVariables.saveTemplateMode = False Then Transfer_bt.Enabled = True
                         info1_lbl.Visible = True
                         info2_lbl.Visible = True
                     End If
                 Next lvItem
             End If
-            If target_accounts_tree.Nodes.Count > 0 Then
-                createTemplate_bt.Enabled = True
-            Else
-                createTemplate_bt.Enabled = False
+            If GlobalVariables.saveTemplateMode = True Then
+                If target_accounts_tree.Nodes.Count > 0 Then
+                    createTemplate_bt.Enabled = True
+                Else
+                    createTemplate_bt.Enabled = False
+                End If
             End If
         End Sub
 
@@ -896,12 +898,14 @@ Namespace Forms
                     End If
                 End If
                 target_accounts_tree.SelectedNode.Remove()
-                If target_accounts_tree.Nodes.Count > 0 Then
-                    createTemplate_bt.Enabled = True
-                Else
-                    createTemplate_bt.Enabled = False
+                If GlobalVariables.saveTemplateMode = True Then
+                    If target_accounts_tree.Nodes.Count > 0 Then
+                        createTemplate_bt.Enabled = True
+                    Else
+                        createTemplate_bt.Enabled = False
+                    End If
+                    Exit Sub
                 End If
-                Exit Sub
             End If
         End Sub
 
@@ -997,13 +1001,15 @@ Namespace Forms
                     End If
                 Next
             Next
-            Transfer_bt.Enabled = True
+            If GlobalVariables.saveTemplateMode = False Then Transfer_bt.Enabled = True
             info1_lbl.Visible = True
             info2_lbl.Visible = True
-            If target_accounts_tree.Nodes.Count > 0 Then
-                createTemplate_bt.Enabled = True
-            Else
-                createTemplate_bt.Enabled = False
+            If GlobalVariables.saveTemplateMode = True Then
+                If target_accounts_tree.Nodes.Count > 0 Then
+                    createTemplate_bt.Enabled = True
+                Else
+                    createTemplate_bt.Enabled = False
+                End If
             End If
         End Sub
 
@@ -1033,7 +1039,7 @@ Namespace Forms
                     Next
                 Next
             Next
-            Transfer_bt.Enabled = True
+            If GlobalVariables.saveTemplateMode = False Then Transfer_bt.Enabled = True
             info1_lbl.Visible = True
             info2_lbl.Visible = True
         End Sub
@@ -1059,7 +1065,7 @@ Namespace Forms
                     accountnode.Nodes.Add(newcharnode)
                 Next
             Next
-            Transfer_bt.Enabled = True
+            If GlobalVariables.saveTemplateMode = False Then Transfer_bt.Enabled = True
             info1_lbl.Visible = True
             info2_lbl.Visible = True
         End Sub
@@ -1307,12 +1313,12 @@ Namespace Forms
                 GlobalVariables.forceTemplateCharVars = False
                 GlobalVariables.templateCharVars = saveChars
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
-                    Dim player As Account = CType(accountnode.Tag, Account)
+                    Dim player As Account = DeepCloneHelper.DeepClone(CType(accountnode.Tag, Account))
                     AddAccountSet(player.SetIndex, player, saveChars)
                     For Each charnode As TreeNode In accountnode.Nodes
-                        Dim playerchar As NCFramework.Framework.Modules.Character = CType(charnode.Tag,
+                        Dim playerchar As NCFramework.Framework.Modules.Character = DeepCloneHelper.DeepClone(CType(charnode.Tag, 
                                                                                           NCFramework.Framework.Modules.
-                                Character)
+                                Character))
                         AddCharacterSet(playerchar.SetIndex, playerchar, player)
                     Next
                 Next
@@ -1321,13 +1327,11 @@ Namespace Forms
                 If GlobalVariables.armoryMode = False AndAlso GlobalVariables.templateMode = False Then
                     Dim loadHandlerThread As New Thread(AddressOf LoadCharacter)
                     loadHandlerThread.Start()
+                    Exit Sub
                 End If
+                If My.Computer.FileSystem.FileExists(_filePath) Then My.Computer.FileSystem.DeleteFile(_filePath)
                 Dim mSerializer As Serializer = New Serializer
-                Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.templateCharVars)
-                If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf") _
-                    Then
-                    My.Computer.FileSystem.DeleteFile(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf")
-                End If
+                Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
                 Dim _
                     fs As _
                         New StreamWriter(_filePath,
@@ -1335,7 +1339,10 @@ Namespace Forms
                 fs.BaseStream.Write(ms.ToArray, 0, ms.ToArray.Length)
                 fs.Close()
                 ms.Close()
+                LogAppend("Template file created!", "LiveView_OnCharacterLoaded", True)
+                CloseProcessStatus()
                 Userwait.Close()
+                MsgBox(ResourceHandler.GetUserMessage("templateFileCreated"), MsgBoxStyle.Information, "Info")
             End If
         End Sub
 
@@ -1376,9 +1383,11 @@ Namespace Forms
         Private Sub OnCharacterLoaded() Handles Me.OnCoreLoaded
             GlobalVariables.forceTemplateCharVars = False
             LogAppend("Characters loaded!", "LiveView_OnCharacterLoaded", True)
-
+            If My.Computer.FileSystem.FileExists(_filePath) Then My.Computer.FileSystem.DeleteFile(_filePath)
             Dim mSerializer As Serializer = New Serializer
-            Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
+            Dim useChars As GlobalCharVars = GlobalVariables.globChars
+            If GlobalVariables.saveTemplateMode = True Then useChars = GlobalVariables.templateCharVars
+            Dim ms As MemoryStream = mSerializer.Serialize(useChars)
             Dim _
                 fs As _
                     New StreamWriter(_filePath,
