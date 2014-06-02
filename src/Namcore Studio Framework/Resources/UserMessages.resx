@@ -684,4 +684,10 @@
   <data name="enterfactionid" xml:space="preserve">
     <value>Enter faction id: </value>
   </data>
+  <data name="addAv" xml:space="preserve">
+    <value>Add achievement</value>
+  </data>
+  <data name="enterAvId" xml:space="preserve">
+    <value>Enter achievement id:</value>
+  </data>
 </root>
