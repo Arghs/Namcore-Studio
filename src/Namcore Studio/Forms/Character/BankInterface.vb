@@ -57,6 +57,7 @@ Namespace Forms.Character
         End Sub
 
         Public Sub PrepareBankInterface(ByVal setId As Integer)
+            '// Setting up interface
             _visibleActionControls = New List(Of Control)()
             Hide()
             NewProcessStatus()
@@ -77,7 +78,10 @@ Namespace Forms.Character
         End Sub
 
         Private Sub DoWork()
+            LogAppend("DoWork call", "BankInterface_DoWork")
             For i = 39 To 66
+                '// Adding slots for main bank items
+                LogAppend("Setting up main bank-itemslot " & i.ToString(), "BankInterface_DoWork")
                 Dim itm As New Item
                 itm.Slot = i
                 itm.Bagguid = 0
@@ -147,9 +151,12 @@ Namespace Forms.Character
             Next
             If Not GlobalVariables.currentEditedCharSet.InventoryZeroItems Is Nothing Then
                 For Each potCharBag As Item In GlobalVariables.currentEditedCharSet.InventoryZeroItems
+                    '// Look for bank items & bags
                     potCharBag.BagItems = New List(Of Item)()
                     Select Case potCharBag.Slot
                         Case 67 To 73
+                            '// Found a bag -> set up matching slot
+                            LogAppend("Initializing bag (" & potCharBag.Id.ToString() & ") for slot " & potCharBag.Slot.ToString(), "BankInterface_DoWork", True)
                             For Each subctrl As Control In BackPanel.Controls
                                 If _
                                     subctrl.Name.ToLower.Contains("panel") And subctrl.Name.ToLower.StartsWith("bag") And
@@ -162,6 +169,8 @@ Namespace Forms.Character
                                 End If
                             Next
                         Case 39 To 66
+                            '// Found a main bank item -> set up matching slot
+                            LogAppend("Initializing main item (" & potCharBag.Id.ToString() & ") for slot " & potCharBag.Slot.ToString(), "BankInterface_DoWork", True)
                             If potCharBag.Name Is Nothing Then _
                                 potCharBag.Name = GetItemNameByItemId(potCharBag.Id, MySettings.Default.language)
                             If potCharBag.Image Is Nothing Then _
@@ -189,6 +198,7 @@ Namespace Forms.Character
                             If _
                                 potCharBag.Count > 1 OrElse
                                 potCharBag.Count = 1 AndAlso GetItemMaxStackByItemId(potCharBag.Id) > 1 Then
+                                '// Set up item stack label
                                 Dim countLabel As Label =
                                         CType(entry.Controls.Find("bankitm_slot_" & potCharBag.Slot.ToString() & "_count",
                                                                   True)(0), Label)
@@ -205,27 +215,34 @@ Namespace Forms.Character
         End Sub
 
         Private Sub ChangeCount(sender As Object, e As EventArgs)
+            '// Changing item stack size
             Dim locLabel As Label = CType(sender, Label)
             If locLabel.Visible = True Then
                 Dim result As String = InputBox(ResourceHandler.GetUserMessage("enterItemCount"),
                                                 ResourceHandler.GetUserMessage("countChange"), locLabel.Text)
                 If Not result = "" Then
+                    LogAppend("User entered stack size: " & result, "BankInterface_ChangeCount")
                     Dim intResult As Integer = TryInt(result)
                     If intResult <> 0 Then
                         Dim itm As Item = CType(locLabel.Tag, Item)
                         Dim maxStackSize As Integer = GetItemMaxStackByItemId(itm.Id)
+                        '// Check if stack size within limit
                         If intResult > maxStackSize Then
+                            '// Invalid stack size
+                            LogAppend("Stack size above limit. Limit is: " & maxStackSize.ToString(), "BankInterface_ChangeCount")
                             MsgBox(
                                 ResourceHandler.GetUserMessage("stackSizeLimitReached") & " " & maxStackSize.ToString(),
                                 MsgBoxStyle.Critical, ResourceHandler.GetUserMessage("invalidentry"))
                             Exit Sub
                         End If
+                        '// Stack size valid -> applying to item
                         itm.Count = intResult
                         locLabel.Text = CType(itm.Count, String)
                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
                             GlobalVariables.currentEditedCharSet =
                                 DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                         If itm.Bagguid = 0 Then
+                            '// Apply changes to character
                             Dim oldItmIndex As Integer =
                                     GlobalVariables.currentEditedCharSet.InventoryZeroItems.FindIndex(
                                         Function(item) item.Slot = itm.Slot)
@@ -248,8 +265,11 @@ Namespace Forms.Character
         End Sub
 
         Private Sub DelegateControllUpdate(bagPanel As Control, initBags As Boolean, potCharBag As Item)
+            '// Set up or initialize bag
             Dim realBagSlot As Integer = TryInt(SplitString(bagPanel.Name, "bag", "Panel"))
+            LogAppend("Updating bag panel with slot: " & realBagSlot.ToString() & " for item slot: " & potCharBag.Slot.ToString() & " - Initializing bags: " & initBags.ToString(), "BankInterface_DelegateControllUpdate")
             If initBags Then
+                '// Only initializing bag slot (not set up)
                 Dim subItmRemovePic As New PictureBox
                 Dim tempItm As New Item
                 tempItm.Slot = realBagSlot + 66
@@ -277,6 +297,7 @@ Namespace Forms.Character
                 AddHandler bagPanel.MouseEnter, AddressOf BagItem_MouseEnter
                 AddHandler bagPanel.MouseLeave, AddressOf BagItem_MouseLeave
             Else
+                '// Filling bag slot
                 If bagPanel.Name.Contains((potCharBag.Slot - 66).ToString()) Then
                     Dim subItmRemovePic As PictureBox =
                             CType(bagPanel.Controls.Find("bag_" & (realBagSlot + 66).ToString() & "_remove", True)(0), PictureBox)
@@ -293,6 +314,7 @@ Namespace Forms.Character
                                 potBagItem.Image =
                                     GetItemIconByDisplayId(GetDisplayIdByItemId(potBagItem.Id),
                                                            GlobalVariables.GlobalWebClient)
+                            '// Adding items to bag pointer
                             potCharBag.BagItems.Add(potBagItem)
                         End If
                     Next
