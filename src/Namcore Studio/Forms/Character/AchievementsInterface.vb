@@ -390,7 +390,7 @@ Namespace Forms.Character
                                     Controls(
                                         "cat_id_" &
                                         GetAvMainCategoryIdBySubCatId(GetAvSubCategoryById(charAv.Id)).ToString() &
-                                        "_bt"),
+                                        "_bt"), 
                                     Button)
                         catBt.PerformClick()
                         MsgBox(ResourceHandler.GetUserMessage("achievementadded"), , "Info")
