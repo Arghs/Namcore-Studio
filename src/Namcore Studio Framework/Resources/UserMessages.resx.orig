@@ -684,6 +684,7 @@
   <data name="enterfactionid" xml:space="preserve">
     <value>Enter faction id: </value>
   </data>
+<<<<<<< HEAD
   <data name="accountLocked" xml:space="preserve">
     <value>This account has been locked! Please contact support.</value>
   </data>
@@ -695,12 +696,12 @@
   </data>
   <data name="loginFailed" xml:space="preserve">
     <value>Unable to reach server. Login failed!</value>
-  </data>
-   <data name="addAv" xml:space="preserve">
+=======
+  <data name="addAv" xml:space="preserve">
     <value>Add achievement</value>
   </data>
   <data name="enterAvId" xml:space="preserve">
     <value>Enter achievement id:</value>
+>>>>>>> master
   </data>
-
 </root>

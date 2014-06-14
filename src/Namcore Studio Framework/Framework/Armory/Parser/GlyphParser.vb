@@ -35,7 +35,7 @@ Namespace Framework.Armory.Parser
             '// Retrieving character
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             Try
-                LogAppend("Loading character glyph information", "GlyphParser_loadGlyphs", True)
+                LogAppend("Loading character glyph information - setId: " & setId.ToString() & " - apiLink: " & apiLink, "GlyphParser_loadGlyphs", True)
                 '// Using API to load glyph info
                 Dim glyphContext As String = client.DownloadString(apiLink & "?fields=talents")
                 Dim slotAddition As String
@@ -64,6 +64,7 @@ Namespace Framework.Armory.Parser
                             glyphStr = glyphStr.Replace("},", "*")
                             If Not glyphStr.Length <= 3 Then
                                 Do
+                                    '// Creating new glyph object
                                     Dim newGlyph As New Glyph
                                     Dim parts() As String = glyphStr.Split("*"c)
                                     newGlyph.Id = TryInt(SplitString(parts(counter), """item"":", ","""))

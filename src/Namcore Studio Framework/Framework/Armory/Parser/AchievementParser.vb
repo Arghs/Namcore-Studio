@@ -36,7 +36,9 @@ Namespace Framework.Armory.Parser
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             player.Achievements = New List(Of Achievement)
             Try
-                LogAppend("Loading character achievement information", "AchievementParser_loadAchievements", True)
+                LogAppend(
+                    "Loading character achievement information - setId: " & setId.ToString() & " - apiLink: " & apiLink,
+                    "AchievementParser_loadAchievements", True)
                 '// Using API to load achievement info
                 Dim avContext As String = client.DownloadString(apiLink & "?fields=achievements")
                 '// Splitting to create completed-achievements and timestamp string
@@ -65,6 +67,7 @@ Namespace Framework.Armory.Parser
                         loopcounter += 1
                         LogAppend("Adding achievement " & avId & " with timestamp " & timeStamp,
                                   "AchievementParser_loadAchievements", False)
+                        '// Creating new achievement object
                         Dim av As New Achievement
                         av.Id = TryInt(avId)
                         av.GainDate = TryInt(timeStamp)

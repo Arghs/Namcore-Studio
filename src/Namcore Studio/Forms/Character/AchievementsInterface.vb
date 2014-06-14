@@ -31,8 +31,6 @@ Imports NamCore_Studio.Forms.Extension
 Imports System.Threading
 Imports libnc.Provider
 Imports System.Net
-Imports System.Resources
-Imports System.Reflection
 
 Namespace Forms.Character
     Public Class AchievementsInterface
@@ -69,6 +67,7 @@ Namespace Forms.Character
             Dim controlLst As List(Of Control)
             controlLst = FindAllChildren()
             For Each itemControl As Control In controlLst
+                '// Set all controls double buffered to prevent flickering
                 itemControl.SetDoubleBuffered()
             Next
             waitpanel.Location = New Point(367, 219)
@@ -90,6 +89,12 @@ Namespace Forms.Character
             Handles cat_id_97_bt.Click, cat_id_96_bt.Click, cat_id_95_bt.Click, cat_id_92_bt.Click, cat_id_81_bt.Click,
                     cat_id_201_bt.Click, cat_id_169_bt.Click, cat_id_168_bt.Click, cat_id_155_bt.Click,
                     cat_id_15219_bt.Click, cat_id_15165_bt.Click
+            '// Category selected
+            LogAppend("catbt_click event raised for sender: " & TryCast(sender, Button).Name,
+                      "AchievementsInterface_catbt_click")
+            LogAppend(
+                "Additional info - trdRunning: " & GlobalVariables.trdRunning.ToString() & " - abortMe: " &
+                GlobalVariables.abortMe.ToString(), "AchievementsInterface_catbt_click")
             subcat_combo.Enabled = False
             subcat_combo.Text = ""
             Try
@@ -103,8 +108,10 @@ Namespace Forms.Character
                 Application.DoEvents()
                 If GlobalVariables.trdRunning > 0 Then
                     '// Currently loading achievements
+                    '// -> Cancel current operation
                     callbacktimer.Stop()
                     GlobalVariables.abortMe = True
+                    '// Callbacktimer will call this sub again when abortion successfull
                     callbacktimer.Enabled = True
                     callbacktimer.Start()
                     Exit Sub
@@ -112,10 +119,12 @@ Namespace Forms.Character
                     _goon = True
                 End If
                 If _goon = True Then
+                    '// No more threads running
                     _currentCat = TryInt(SplitString(TryCast(sender, Button).Name, "cat_id_", "_bt"))
                     subcat_combo.Items.Clear()
                     Application.DoEvents()
                     Dim tmpCatids As Integer()
+                    '// Initializing matching subcategory ids for selected category
                     Select Case _currentCat
                         Case 96
                             '//Quests
@@ -145,10 +154,12 @@ Namespace Forms.Character
                             '//Pet Battles
                             tmpCatids = {15118, 15119, 15120}
                         Case Else
+                            '// Invalid
                             tmpCatids = {}
                     End Select
                     Dim catCollection As New List(Of AvSubcategoy)
                     For i = 0 To tmpCatids.Length - 1
+                        '// Loading localized names for subcategories
                         Try
                             catCollection.Add(
                                 New AvSubcategoy _
@@ -161,6 +172,7 @@ Namespace Forms.Character
                                       "Achievements_interface_catbt_click", False, True)
                         End Try
                     Next
+                    '// Adding category names to combobox
                     subcat_combo.Items.Add(
                         New AvSubcategoy With {.Text = ResourceHandler.GetUserMessage("subcat0"), .Id = 0})
                     Try
@@ -173,6 +185,7 @@ Namespace Forms.Character
                     subcat_combo.Text = "Pick category"
                     _colorTicker = 0
                     _completed = False
+                    '// Clean up AVLayoutPanel
                     Do
                         For Each subctrl As Control In AVLayoutPanel.Controls
                             AVLayoutPanel.Controls.Remove(subctrl)
@@ -182,43 +195,57 @@ Namespace Forms.Character
                     Loop Until AVLayoutPanel.Controls.Count = 0
                     _correctIds = New List(Of Integer)()
                     _doneAvIds = New List(Of Integer)()
+                    '// Setting up correct ids
                     _correctIds = GetAvIdListByMainCat(TryInt(SplitString(TryCast(sender, Button).Name, "cat_id_", "_bt")))
+                    '// _correctIds will not contain every achievement id that matches the selected category
                     GlobalVariables.abortMe = False
+                    '// Starting 2 operating threads
                     _mHandler.doOperate_av(sender, 1)
                     _mHandler.doOperate_av(sender, 2)
                 End If
             Catch ex As Exception
+                LogAppend("Something went wrong: " & ex.ToString(), "AchievementsInterface_catbt_click", False, True)
                 GlobalVariables.trdRunning = 0
                 GlobalVariables.abortMe = False
             End Try
         End Sub
 
         Private Sub deleteAv_click(sender As Object, e As EventArgs)
-            '// Delete achievement
-
+            '// Delete character achievement
+            LogAppend("Deleting achievement. Sender: " & TryCast(sender, PictureBox).Name,
+                      "AchievementsInterface_deleteAv_click", False, False)
             If GlobalVariables.trdRunning > 0 Then
-                '// Currently loading achievements
+                '// Currently loading achievements -> Exit
                 Exit Sub
             End If
+            '// Get the achievement object which is referenced in sender's tag
             Dim charAv As Achievement = CType(TryCast(sender, PictureBox).Tag, Achievement)
             Dim msg As String = ResourceHandler.GetUserMessage("aus_deleteav")
             msg = msg.Replace("%avid%", charAv.Id.ToString)
             Dim result = MsgBox(msg, vbYesNo, ResourceHandler.GetUserMessage("areyousure"))
             If result = MsgBoxResult.Yes Then
-                Userwait.Show()
-                For Each subctrl As Control In AVLayoutPanel.Controls
-                    If CType(subctrl.Tag, Achievement).Id = charAv.Id Then
-                        AVLayoutPanel.Controls.Remove(subctrl)
-                        subctrl.Dispose()
-                        For Each av As Achievement In GlobalVariables.currentEditedCharSet.Achievements
-                            If av.Id = charAv.Id Then
-                                GlobalVariables.currentEditedCharSet.Achievements.Remove(av)
-                                Exit For
-                            End If
-                        Next
-                        Exit For
-                    End If
-                Next
+                Try
+                    Userwait.Show()
+                    '// Locating achievement and matching controls
+                    For Each subctrl As Control In AVLayoutPanel.Controls
+                        If CType(subctrl.Tag, Achievement).Id = charAv.Id Then
+                            '// Removing control from layout panel
+                            AVLayoutPanel.Controls.Remove(subctrl)
+                            subctrl.Dispose()
+                            For Each av As Achievement In GlobalVariables.currentEditedCharSet.Achievements
+                                If av.Id = charAv.Id Then
+                                    '// Removing achievement from character achievements
+                                    GlobalVariables.currentEditedCharSet.Achievements.Remove(av)
+                                    Exit For
+                                End If
+                            Next
+                            Exit For
+                        End If
+                    Next
+                Catch ex As Exception
+                    LogAppend("Something went wrong: " & ex.ToString(), "AchievementsInterface_deleteAv_click", False,
+                              True)
+                End Try
             End If
             Userwait.Close()
         End Sub
@@ -226,26 +253,27 @@ Namespace Forms.Character
         Public Function ContinueOperation(ByVal sender As Object, ByVal operationCount As Integer) As String
             _controlsToAdd = New List(Of Control)()
             If operationCount = 1 Then _
-                LogAppend("Loading achievements", "Achievements_interface_continueOperation", True)
+                LogAppend("Loading achievements", "AchievementsInterface_ContinueOperation", True)
             GlobalVariables.trdRunning += 1
             Try
                 If operationCount = 2 Then
                     Thread.Sleep(2000)
                 End If
-
                 For Each charAv As Achievement In _
                     DeepCloneHelper.DeepClone(GlobalVariables.currentEditedCharSet).Achievements
-
                     If _doneAvIds.Contains(charAv.Id) Then
+                        '// Achievement already added
                         Continue For
                     Else
                         _doneAvIds.Add(charAv.Id)
-                        Application.DoEvents()
                     End If
                     If _correctIds.Contains(charAv.Id) Then
-                        LogAppend("Operating next av / operation_count is:" & operationCount.ToString(),
-                                  "Achievements_continueOperation", False)
+                        LogAppend(
+                            "Operating achievement " & charAv.Id.ToString() & " / operationCount is:" &
+                            operationCount.ToString(),
+                            "Achievements_continueOperation", False)
                         If GlobalVariables.abortMe = True Then
+                            '// Forced abortion
                             GlobalVariables.trdRunning -= 1
                             Return ""
                         End If
@@ -257,21 +285,26 @@ Namespace Forms.Character
                     Application.DoEvents()
                 Else
                     While Not _completed
-
+                        '// Wait on first thread to finish
                     End While
                     GlobalVariables.trdRunning = 0
                     AVLayoutPanel.BeginInvoke(New AddControlDelegate(AddressOf DelegateControlAdding))
                 End If
             Catch myex As Exception
+                LogAppend("Something went wrong: " & myex.ToString(), "AchievementsInterface_ContinueOperation", False,
+                          True)
+                LogAppend("Additional info - trdRunning: " & GlobalVariables.trdRunning.ToString() & " - abortMe: " &
+                          GlobalVariables.abortMe.ToString() & " - operationCount: " & operationCount.ToString(),
+                          "AchievementsInterface_ContinueOperation", False, True)
                 GlobalVariables.trdRunning = 0
             End Try
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCompleted),
                                     New CompletedEventArgs())
             Return ""
-            ' ReSharper disable VBWarnings::BC42105
         End Function
-        ' ReSharper restore VBWarnings::BC42105
+
         Private Sub OnCompleted() Handles Me.AvCompleted
+            '// Set background color for each achievement panel
             Try
                 For Each avPanel As Control In AVLayoutPanel.Controls
                     If _colorTicker = 1 Then
@@ -281,11 +314,13 @@ Namespace Forms.Character
                     Else
                         _colorTicker = 1
                         Application.DoEvents()
-                        avPanel.BackColor = Color.FromArgb(126, 144, 156) 'Color.SaddleBrown
+                        avPanel.BackColor = Color.FromArgb(126, 144, 156)
                     End If
                 Next
             Catch ex As Exception
-
+                LogAppend("Something went wrong: " & ex.ToString(), "AchievementsInterface_OnCompleted", False, True)
+                LogAppend("Additional info - trdRunning: " & GlobalVariables.trdRunning.ToString() & " - abortMe: " &
+                          GlobalVariables.abortMe.ToString(), "AchievementsInterface_ContinueOperation", False, True)
             End Try
             subcat_combo.Enabled = True
             Application.DoEvents()
@@ -308,6 +343,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub highlighter2_Click(sender As Object, e As EventArgs)
+            LogAppend("Close button clicked", "AchievementsInterface_highlighter2_Click")
             _state = "closing"
             Close()
         End Sub
@@ -318,27 +354,33 @@ Namespace Forms.Character
                 '// Currently loading achievements
                 Exit Sub
             End If
-            Dim retnvalue As Integer = TryInt(InputBox("Enter achievement id: ", "Add achievement", "0"))
+            LogAppend("Adding new achievement", "AchievementsInterface_add_bt_Click")
+            Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterAvId"),
+                                                       ResourceHandler.GetUserMessage("addAv"), "0"))
             Userwait.Show()
             Application.DoEvents()
             If Not retnvalue = 0 Then
+                LogAppend("Checking validity of achievement id: " & retnvalue.ToString(),
+                          "AchievementsInterface_add_bt_Click")
                 Dim client As New WebClient
                 client.CheckProxy()
                 Try
+                    '// Check if achievement is valid
                     If _
                         Not _
                         client.DownloadString("http://wowhead.com/achievement=" & retnvalue.ToString()).Contains(
                             "<div id=""inputbox-error"">This achievement doesn't exist.</div>") Then
+                        '// Check if character already has this achievement
                         For Each opAv As Achievement In GlobalVariables.currentEditedCharSet.Achievements
                             If opAv.Id = retnvalue Then
-                                Dim _
-                                    rm2 As _
-                                        New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
-                                MsgBox(rm2.GetString("achievementalreadypresent"), MsgBoxStyle.Critical, "Error")
+                                LogAppend("Character has this achievement already", "AchievementsInterface_add_bt_Click")
+                                MsgBox(ResourceHandler.GetUserMessage("achievementalreadypresent"), MsgBoxStyle.Critical,
+                                       "Error")
                                 Userwait.Close()
                                 Exit Sub
                             End If
                         Next
+                        LogAppend("Achievement id is valid and not yet added", "AchievementsInterface_add_bt_Click")
                         Dim charAv As New Achievement
                         charAv.Id = retnvalue
                         charAv.GainDate = Date.Today.ToTimeStamp()
@@ -348,17 +390,23 @@ Namespace Forms.Character
                                     Controls(
                                         "cat_id_" &
                                         GetAvMainCategoryIdBySubCatId(GetAvSubCategoryById(charAv.Id)).ToString() &
-                                        "_bt"),
+                                        "_bt"), 
                                     Button)
                         catBt.PerformClick()
                         MsgBox(ResourceHandler.GetUserMessage("achievementadded"), , "Info")
                     Else
+                        '// Achievement id invalid
+                        LogAppend("Achievement id is invalid", "AchievementsInterface_add_bt_Click")
                         MsgBox(ResourceHandler.GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
                     End If
                 Catch ex As Exception
+                    '// Something went wrong (404 or client problem)
+                    LogAppend("Achievement id is invalid / Exception occured: " & ex.ToString(),
+                              "AchievementsInterface_add_bt_Click", False, True)
                     MsgBox(ResourceHandler.GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
                 End Try
             Else
+                LogAppend("Achievement id 0 - invalid", "AchievementsInterface_add_bt_Click", False)
                 MsgBox(ResourceHandler.GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
             End If
             Userwait.Close()
@@ -366,7 +414,11 @@ Namespace Forms.Character
 
         Private Sub subcat_combo_SelectedIndexChanged(sender As Object, e As EventArgs) _
             Handles subcat_combo.SelectedIndexChanged
+            '// Selecting achievement sub-category
             If GlobalVariables.trdRunning > 0 Then
+                '// Check if another thread is operating
+                LogAppend("User tried to change av subcategory - blocking",
+                          "AchievementsInterface_subcat_combo_SelectedIndexChanged")
                 subcat_combo.SelectedIndex = 0
                 Exit Sub
             End If
@@ -374,6 +426,7 @@ Namespace Forms.Character
             If _preCatControlLst Is Nothing Then
                 _preCatControlLst = New List(Of Control)
             Else
+                '// Clean layout panel
                 AVLayoutPanel.Controls.Clear()
                 For Each avPanel In _preCatControlLst
                     AVLayoutPanel.Controls.Add(avPanel)
@@ -382,24 +435,35 @@ Namespace Forms.Character
                 Next
             End If
             Dim catid As Integer = CType(subcat_combo.SelectedItem, AvSubcategoy).Id
+            LogAppend("Subcategory " & catid.ToString() & " selected",
+                      "AchievementsInterface_subcat_combo_SelectedIndexChanged")
             If Not catid = 0 Then
                 Dim removeCtrlLst As New List(Of Control)
                 For Each subctrl As Control In AVLayoutPanel.Controls
                     _preCatControlLst.Add(subctrl)
+                    '// Get achievement pointer in every control tag and check for matching subcategory
                     Dim charAv As Achievement = CType(subctrl.Tag, Achievement)
                     If Not charAv.SubCategory = catid Then
+                        '// Subcategory does not match -> Remove control
                         Dim x As Control = subctrl
                         removeCtrlLst.Add(x)
                     End If
                 Next
-                For Each ctrl As Control In removeCtrlLst
-                    AVLayoutPanel.Controls.Remove(ctrl)
-                Next
+                Try
+                    For Each ctrl As Control In removeCtrlLst
+                        AVLayoutPanel.Controls.Remove(ctrl)
+                    Next
+                Catch ex As Exception
+                    LogAppend("Something went wrong while removing controls: " & ex.ToString(),
+                              "AchievementsInterface_subcat_combo_SelectedIndexChanged", False, True)
+                End Try
             End If
             OnCompleted()
         End Sub
 
         Private Sub callbacktimer_Tick(sender As Object, e As EventArgs) Handles callbacktimer.Tick
+            '// Checks if operations are running
+            '// Calls back when threads disposed
             callbacktimer.Stop()
             If GlobalVariables.trdRunning = 0 Then
                 _goon = True
@@ -413,7 +477,9 @@ Namespace Forms.Character
         End Sub
 
         Private Sub FilterResults(ByVal searchTxt As String)
-            LogAppend("Filtering achievements", "Achievements_interface_FilterResults", True)
+            '// Filter achievements by name or id
+            LogAppend("Filtering achievements by search-text: '" & searchTxt & "'",
+                      "Achievements_interface_FilterResults", True)
             GlobalVariables.trdRunning += 1
             Dim foundAvList As New List(Of Achievement)
             Dim searchId As Integer = TryInt(searchTxt)
@@ -427,15 +493,18 @@ Namespace Forms.Character
                     If searchName = "" Then
                         '// Id
                         If charAv.Id = searchId Then
+                            '// Matching id -> add to results
                             foundAvList.Add(charAv)
                         End If
                     Else
                         '// Name
                         If charAv.Name = Nothing Then
+                            '// Achievement name has to be loaded first if null
                             charAv.Name = GetAvNameById(charAv.Id, MySettings.Default.language)
                             GlobalVariables.currentEditedCharSet.Achievements(i) = charAv
                         End If
                         If charAv.Name.ToLower.Contains(searchName.ToLower()) Then
+                            '// Matching name -> add to results
                             foundAvList.Add(charAv)
                         End If
                     End If
@@ -454,7 +523,20 @@ Namespace Forms.Character
         End Sub
 
         Private Sub AddAvToLayout(ByVal charAv As Achievement)
-            If charAv.SubCategory = 0 Then charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
+            '// Add achievement to layout panel
+            If charAv Is Nothing Then
+                LogAppend("Failed to add achievement to layout panel because it is null",
+                          "AchievementsInterface_AddAvToLayout", False, True)
+                Exit Sub
+            Else
+                LogAppend("Adding achievement with id " & charAv.Id.ToString() & " to layout panel",
+                          "AchievementsInterface_AddAvToLayout")
+            End If
+            If charAv.SubCategory = 0 Then
+                '// Subcategory not loaded yet
+                charAv.SubCategory = GetAvSubCategoryById(charAv.Id)
+            End If
+            '// Setting up and creating new controls for achievement
             Dim avPanel As New Panel
             avPanel.Name = "av" & charAv.Id.ToString() & "_pnl"
             avPanel.Size = referencePanel.Size
@@ -553,6 +635,8 @@ Namespace Forms.Character
         End Sub
 
         Private Sub OnFilterCompleted() Handles Me.FilterCompleted
+            '// Finished filtering achievements -> set background color now
+            LogAppend("FilterCompleted event fired", "AchievementsInterface_OnFilterCompleted")
             Try
                 For Each avPanel As Control In AVLayoutPanel.Controls
                     If _colorTicker = 1 Then
@@ -562,12 +646,14 @@ Namespace Forms.Character
                     Else
                         _colorTicker = 1
                         Application.DoEvents()
-                        avPanel.BackColor = Color.FromArgb(126, 144, 156) 'Color.SaddleBrown
+                        avPanel.BackColor = Color.FromArgb(126, 144, 156)
                     End If
                 Next
             Catch ex As Exception
-
+                LogAppend("Something went wrong while setting background color for av panel: " & ex.ToString(),
+                          "AchievementsInterface_OnFilterCompleted", False, True)
             End Try
+            '// Reset browse/filtering controls
             search_bt.Enabled = True
             browse_tb.Text = "Enter achievement name or id"
             browse_tb.ForeColor = SystemColors.WindowFrame
@@ -591,6 +677,8 @@ Namespace Forms.Character
         End Sub
 
         Private Sub search_bt_Click(sender As Object, e As EventArgs) Handles search_bt.Click
+            '// Searching for achievement
+            LogAppend("Search_bt clicked", "AchievementsInterface_search_bt_Click")
             If Not _controlsToAdd Is Nothing Then _controlsToAdd.Clear()
             waitpanel.Location = New Point(4000, 4000)
             search_bt.Enabled = False

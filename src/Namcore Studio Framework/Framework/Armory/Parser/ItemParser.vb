@@ -38,7 +38,7 @@ Namespace Framework.Armory.Parser
             '// Retrieving character
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             player.ArmorItems = New List(Of Item)()
-            LogAppend("Loading character items", "ItemParser_loadItems", True)
+            LogAppend("Loading character items - setId: " & setId.ToString(), "ItemParser_loadItems", True)
             Do
                 Try
                     If itemslot = 17 Then
@@ -55,6 +55,7 @@ Namespace Framework.Armory.Parser
                     If Not charItem Is Nothing Then
                         player.ArmorItems.Add(charItem)
                         If itemslot = 15 Or itemslot = 16 Then
+                            '// Item is a weapon -> Add neccessary spells/skills
                             LoadWeaponType(charItem.Id, setId, account)
                         End If
                     End If
@@ -98,9 +99,10 @@ Namespace Framework.Armory.Parser
             charItem.Slotname = slotname
             charItem.Slot = slot
             If charItem.Id = Nothing Then
+                '// Item ID not found
                 LogAppend("Item Id is 0 - Failed to load", "ItemParser_loadItems", False, True)
                 Return New Item
-            End If '// Item ID not found
+            End If
             charItem.Name = SplitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
             If GlobalVariables.offlineExtension = True Then _
                 charItem.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Id), GlobalVariables.GlobalWebClient) Else 

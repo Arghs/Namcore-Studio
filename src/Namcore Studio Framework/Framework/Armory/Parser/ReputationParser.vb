@@ -36,7 +36,7 @@ Namespace Framework.Armory.Parser
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             player.PlayerReputation = New List(Of Reputation)
             Try
-                LogAppend("Loading character reputation information", "ReputationParser_loadReputation", True)
+                LogAppend("Loading character reputation information - setId: " & setId.ToString() & " - apiLink: " & apiLink, "ReputationParser_loadReputation", True)
                 Dim reputationContext As String = client.DownloadString(apiLink & "?fields=reputation")
                 If reputationContext Is Nothing Then
                     LogAppend("Failed to load Reputation API", "ReputationParser_loadReputation", False, True)
