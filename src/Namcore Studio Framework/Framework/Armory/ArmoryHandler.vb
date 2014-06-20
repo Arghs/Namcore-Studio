@@ -109,21 +109,15 @@ Namespace Framework.Armory
                     Try
                         LogAppend("Loading character appearance information", "ArmoryHandler_DoLoad", True)
                         Dim appearanceContext As String = client.DownloadString(apiLink & "?fields=appearance")
-                        Dim appFace As String = Hex$(Long.Parse(SplitString(appearanceContext, """faceVariation"":", ",")))
-                        Dim appSkin As String = Hex$(Long.Parse(SplitString(appearanceContext, """skinColor"":", ",")))
-                        Dim appHairStyle As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairVariation"":",
-                                                                                 ",")))
-                        Dim appHairColor As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairColor"":",
-                                                                                 ",")))
-                        Dim appFeatureVar As String = Hex$(Long.Parse(SplitString(appearanceContext,
-                                                                                  """featureVariation"":", ",")))
-                        If appFace.ToString.Length = 1 Then appFace = 0 & appFace
-                        If appSkin.ToString.Length = 1 Then appSkin = 0 & appSkin
-                        If appHairStyle.ToString.Length = 1 Then appHairStyle = 0 & appHairStyle
-                        If appHairColor.ToString.Length = 1 Then appHairColor = 0 & appHairColor
-                        ' ReSharper disable RedundantAssignment
-                        If appFeatureVar.Length = 1 Then appFeatureVar = "0" & appFeatureVar 'todo //not used
-                        ' ReSharper restore RedundantAssignment
+                        Dim appFace As Integer = CInt(Hex$(Long.Parse(SplitString(appearanceContext, """faceVariation"":", ","))))
+                        Dim appSkin As Integer = CInt(Hex$(Long.Parse(SplitString(appearanceContext, """skinColor"":", ","))))
+                        Dim appHairStyle As Integer = CInt(Hex$(Long.Parse(SplitString(appearanceContext, """hairVariation"":",
+                                                                                 ","))))
+                        Dim appHairColor As Integer = CInt(Hex$(Long.Parse(SplitString(appearanceContext, """hairColor"":",
+                                                                                 ","))))
+                        Dim appFeatureVar As Integer = CInt(Hex$(Long.Parse(SplitString(appearanceContext,
+                                                                                  """featureVariation"":", ","))))
+                        player.SetPlayerBytes(appSkin, appFace, appHairStyle, appHairColor)
                         Dim byteStr As String = ((appHairColor) & (appHairStyle) & (appFace) & (appSkin)).ToString
                         player.PlayerBytes = TryInt((CLng("&H" & byteStr).ToString))
                     Catch ex As Exception
