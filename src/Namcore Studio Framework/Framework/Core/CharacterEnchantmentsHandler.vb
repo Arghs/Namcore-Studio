@@ -32,13 +32,11 @@ Namespace Framework.Core
             LogAppend("Handling item enchantments for setId: " & setId, "CharacterEnchantmentsHandler_GetItemStats",
                       True)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     LoadAtArcemu(setId, account)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     LoadAtTrinity(setId, account)
-                Case "trinitytbc"
-                    'todo LoadAtTrinityTBC(setId)
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     LoadAtMangos(setId, account)
             End Select
         End Sub

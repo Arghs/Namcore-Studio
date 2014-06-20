@@ -33,13 +33,11 @@ Namespace Framework.Transmission
                       "ActionCreation_SetCharacterActions", True)
             Try
                 Select Case GlobalVariables.targetCore
-                    Case "arcemu"
+                    Case Modules.Core.ARCEMU
                         '  CreateAtArcemu(charguid, player)
-                    Case "trinity"
+                    Case Modules.Core.TRINITY
                         CreateAtTrinity(charguid, player)
-                    Case "trinitytbc"
-
-                    Case "mangos"
+                    Case Modules.Core.MANGOS
                         CreateAtMangos(charguid, player)
                 End Select
             Catch ex As Exception

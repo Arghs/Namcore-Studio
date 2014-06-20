@@ -32,10 +32,10 @@ Namespace Framework.Transmission
         '// Declaration
 
         Public Sub SetItemEnchantments(ByVal playerCharacter As Character, ByVal itm As Item, ByVal itmGuid As Integer,
-                                       ByVal core As String, ByVal dbstruc As DbStructure)
+                                       ByVal core As Modules.Core, ByVal dbstruc As DbStructure)
             _locEnchString = ""
             Select Case core
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     _locEnchString =
                             runSQLCommand_characters_string(
                                 "SELECT `" & dbstruc.itmins_enchantments_col(0) & "` FROM `" &
@@ -48,10 +48,10 @@ Namespace Framework.Transmission
             SetEnch(itm, itmGuid, core, dbstruc)
         End Sub
 
-        Private Sub SetGem1(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As String,
+        Private Sub SetGem1(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As Modules.Core,
                             ByVal myStructure As DbStructure)
             Select Case myCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
                         _locEnchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
                     End If
@@ -71,10 +71,10 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Private Sub SetGem2(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As String,
+        Private Sub SetGem2(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As Modules.Core,
                             ByVal myStructure As DbStructure)
             Select Case myCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
                         _locEnchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
                     End If
@@ -94,10 +94,10 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Private Sub SetGem3(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As String,
+        Private Sub SetGem3(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As Modules.Core,
                             ByVal myStructure As DbStructure)
             Select Case myCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
                         _locEnchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
                     End If
@@ -117,10 +117,10 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Private Sub SetEnch(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As String,
+        Private Sub SetEnch(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As Modules.Core,
                             ByVal myStructure As DbStructure)
             Select Case myCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
                         _locEnchString = "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
                     End If

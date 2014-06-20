@@ -57,7 +57,7 @@ Namespace Framework.Core.Update
 
         Public Sub DeleteSpell(ByVal player As Character, ByVal spell2Delete As Spell)
             Select Case GlobalVariables.sourceCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "DELETE FROM " &
                         GlobalVariables.sourceStructure.character_spells_tbl(0) &
@@ -70,7 +70,7 @@ Namespace Framework.Core.Update
 
         Public Sub DeleteRecipe(ByVal player As Character, ByVal spell2Delete As ProfessionSpell)
             Select Case GlobalVariables.sourceCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "DELETE FROM " &
                         GlobalVariables.sourceStructure.character_spells_tbl(0) &
@@ -83,7 +83,7 @@ Namespace Framework.Core.Update
 
         Public Sub DeleteSkill(ByVal player As Character, ByVal skill2Delete As Skill)
             Select Case GlobalVariables.sourceCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "DELETE FROM " &
                         GlobalVariables.sourceStructure.character_skills_tbl(0) &
@@ -96,7 +96,7 @@ Namespace Framework.Core.Update
 
         Public Sub DeleteProfession(ByVal player As Character, ByVal prof2Delete As Profession)
             Select Case GlobalVariables.sourceCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "DELETE FROM " &
                         GlobalVariables.sourceStructure.character_skills_tbl(0) &

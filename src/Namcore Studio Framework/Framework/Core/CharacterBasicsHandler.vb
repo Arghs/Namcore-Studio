@@ -37,13 +37,16 @@ Namespace Framework.Core
             LogAppend("Loading basic character information for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterBasicsHandler_GetBasicCharacterInformation", True)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     LoadAtArcemu(characterGuid, setId, account)
-                Case "trinity"
-                    LoadAtTrinity(characterGuid, setId, account)
-                Case "trinitytbc"
-                    LoadAtTrinityTbc(characterGuid, setId, account)
-                Case "mangos"
+                Case Modules.Core.TRINITY
+                    Select Case GlobalVariables.sourceExpansion
+                        Case 2
+                            LoadAtTrinityTbc(characterGuid, setId, account)
+                        Case Else
+                            LoadAtTrinity(characterGuid, setId, account)
+                    End Select
+                Case Modules.Core.MANGOS
                     LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub
@@ -59,7 +62,7 @@ Namespace Framework.Core
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
-            tmpCharacter.SourceCore = "arcemu"
+            tmpCharacter.SourceCore = Modules.Core.ARCEMU
             tmpCharacter.SetIndex = tarSetId
             LogAppend(
                 "Loaded character name info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
@@ -440,7 +443,7 @@ Namespace Framework.Core
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
-            tmpCharacter.SourceCore = "trinity"
+            tmpCharacter.SourceCore = Modules.Core.TRINITY
             tmpCharacter.SetIndex = tarSetId
             _tempResult =
                 runSQLCommand_characters_string(
@@ -851,7 +854,8 @@ Namespace Framework.Core
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
-            tmpCharacter.SourceCore = "trinitytbc"
+            tmpCharacter.SourceCore = Modules.Core.TRINITY
+            tmpCharacter.SourceExpansion = 2
             tmpCharacter.SetIndex = tarSetId
 
             'Character Table
@@ -1277,7 +1281,7 @@ Namespace Framework.Core
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
-            tmpCharacter.SourceCore = "mangos"
+            tmpCharacter.SourceCore = Modules.Core.MANGOS
             tmpCharacter.SetIndex = tarSetId
 
             'Character Table

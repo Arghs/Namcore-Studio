@@ -27,11 +27,11 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Remove
     Public Class AccountRemoveHandler
-        Public Sub RemoveAccountFromDb(ByVal account As Account, ByVal core As String,
+        Public Sub RemoveAccountFromDb(ByVal account As Account, ByVal core As Modules.Core,
                                        ByVal realmConnection As MySqlConnection, ByVal charConnection As MySqlConnection, ByVal dbstruc As DbStructure)
             LogAppend("Removing account " & account.Name & " from database", "AccountRemoveHandler_RemoveAccountFromDb")
             Select Case core
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_realm_string_setconn(
                         "DELETE FROM `" & dbstruc.account_tbl(0) & "` WHERE `" & dbstruc.acc_id_col(0) & "` = '" &
                         account.Id.ToString() & "'", realmConnection)
@@ -49,7 +49,7 @@ Namespace Framework.Core.Remove
                     For Each player As Character In account.Characters
                         characterRemoveHandler.RemoveCharacterFromDb(player, charConnection, dbstruc, core)
                     Next
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     runSQLCommand_realm_string_setconn(
                         "DELETE FROM `" & dbstruc.account_tbl(0) & "` WHERE `" & dbstruc.acc_id_col(0) & "` = '" &
                         account.Id.ToString() & "'", realmConnection)

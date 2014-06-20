@@ -28,11 +28,11 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Core.Remove
     Public Class CharacterRemoveHandler
         Public Sub RemoveCharacterFromDb(ByVal character As Character, ByVal connection As MySqlConnection,
-                                         ByVal dbstruc As DbStructure, ByVal core As String)
+                                         ByVal dbstruc As DbStructure, ByVal core As Modules.Core)
             LogAppend("Removing character " & character.Name & " from database",
                       "CharacterRemoveHandler_RemoveCharacterFromDb")
             Select Case core
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string_setconn(
                         "DELETE FROM `" & dbstruc.character_tbl(0) & "` WHERE `" & dbstruc.char_guid_col(0) & "` = '" &
                         character.Guid.ToString() & "'", connection)
@@ -152,7 +152,7 @@ Namespace Framework.Core.Remove
                     runSQLCommand_characters_string_setconn(
                         "DELETE FROM `petition_sign` WHERE `ownerguid` = '" & character.Guid.ToString() & "'",
                         connection)
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     runSQLCommand_characters_string_setconn(
                         "DELETE FROM `" & dbstruc.character_tbl(0) & "` WHERE `" & dbstruc.char_guid_col(0) & "` = '" &
                         character.Guid.ToString() & "'", connection)

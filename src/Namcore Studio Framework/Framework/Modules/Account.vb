@@ -41,7 +41,7 @@ Namespace Framework.Modules
         Public Expansion As Integer
         Public V As String
         Public S As String
-        Public Core As String
+        Public Core As Core
         Public SourceExpansion As Integer
 
         'Account Access

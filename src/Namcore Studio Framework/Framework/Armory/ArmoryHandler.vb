@@ -58,7 +58,7 @@ Namespace Framework.Armory
             armoryAccount.SetIndex = 0
             armoryAccount.SourceExpansion = 5
             armoryAccount.IsArmory = True
-            armoryAccount.Core = "armory"
+            armoryAccount.Core = Modules.Core.ARMORY
             AddAccountSet(0, armoryAccount)
             For Each armoryLink As String In linkList
                 Try
@@ -92,7 +92,7 @@ Namespace Framework.Armory
                     player.Gender = TryInt(SplitString(apiContext, """gender"":", ","))
                     player.Race = TryInt(SplitString(apiContext, """race"":", ","))
                     player.Cclass = TryInt(SplitString(apiContext, """class"":", ","))
-                    player.SourceCore = "armory"
+                    player.SourceCore = Modules.Core.ARMORY
                     player.SourceExpansion = 5
                     player.LoadedDateTime = DateTime.Now
                     player.InventoryItems = New List(Of Item)()

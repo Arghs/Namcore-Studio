@@ -34,9 +34,9 @@ Namespace Framework.Transmission
                       "ReputationCreation_AddCharacterReputation", True)
             Try
                 Select Case GlobalVariables.targetCore
-                    Case "arcemu"
+                    Case Modules.Core.ARCEMU
                         CreateAtArcemu(charguid, player)
-                    Case "trinity", "mangos", "trinitytbc"
+                    Case Modules.Core.TRINITY, Modules.Core.MANGOS
                         CreateAtTrinity(charguid, player)
                 End Select
             Catch ex As Exception

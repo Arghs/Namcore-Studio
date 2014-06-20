@@ -40,7 +40,7 @@ Namespace Framework.Transmission
         Public Sub AddUpdateProfession(ByVal prof As Profession, ByVal player As Character, ByVal newAdding As Boolean,
                           Optional forceTargetCore As Boolean = False)
             'TODO
-            Dim useCore As String
+            Dim useCore As Modules.Core
             Dim useStructure As DbStructure
             If forceTargetCore Then
                 useCore = GlobalVariables.targetCore
@@ -62,7 +62,7 @@ Namespace Framework.Transmission
                 If Not prof.Recipes Is Nothing Then
                     For Each recipe As ProfessionSpell In prof.Recipes
                         Select Case useCore
-                            Case "trinity"
+                            Case Modules.Core.TRINITY
                                 runSQLCommand_characters_string(
                                     "INSERT IGNORE INTO `" & useStructure.character_spells_tbl(0) & "` ( `" &
                                     useStructure.spell_guid_col(0) & "`, `" &

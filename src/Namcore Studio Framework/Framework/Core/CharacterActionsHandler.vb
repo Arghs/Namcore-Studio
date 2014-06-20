@@ -32,13 +32,11 @@ Namespace Framework.Core
             LogAppend("Loading character actions for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterActionssHandler_GetCharacterActions", True)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     LoadAtArcemu(characterGuid, setId, account)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     LoadAtTrinity(characterGuid, setId, account)
-                Case "trinitytbc"
-                    'todo LoadAtTrinityTBC(characterGuid, setId, accountId, account)
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     LoadAtMangos(characterGuid, setId, account)
 
             End Select

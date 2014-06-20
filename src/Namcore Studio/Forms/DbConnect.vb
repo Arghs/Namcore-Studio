@@ -42,8 +42,8 @@ Namespace Forms
             _catchError = False
             Select Case GlobalVariables.con_operator
                 Case 1 'Source connection @liveview
-                    If trinity335picker.Checked = True Then GlobalVariables.sourceCore = "trinity"
-                    If mangos335picker.Checked = True Then GlobalVariables.sourceCore = "mangos"
+                    If trinity335picker.Checked = True Then GlobalVariables.sourceCore = Core.TRINITY
+                    If mangos335picker.Checked = True Then GlobalVariables.sourceCore = Core.MANGOS
                     GlobalVariables.globChars = New GlobalCharVars()
                     GlobalVariables.globChars.AccountSets = New List(Of Account)
                     GlobalVariables.armoryMode = False
@@ -119,8 +119,8 @@ Namespace Forms
 
                     End If
                 Case 2 'Target connection @liveview
-                    If trinity335picker.Checked = True Then GlobalVariables.targetCore = "trinity"
-                    If mangos335picker.Checked = True Then GlobalVariables.targetCore = "mangos"
+                    If trinity335picker.Checked = True Then GlobalVariables.targetCore = Core.TRINITY
+                    If mangos335picker.Checked = True Then GlobalVariables.targetCore = Core.MANGOS
                     GlobalVariables.TargetConnectionString = ""
                     GlobalVariables.TargetConnectionString_Realm = ""
                     If defaultconn_radio.Checked = True Then

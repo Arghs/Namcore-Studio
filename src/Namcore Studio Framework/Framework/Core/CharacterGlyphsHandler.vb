@@ -36,13 +36,11 @@ Namespace Framework.Core
             player.PlayerGlyphs = New List(Of Glyph)()
             SetCharacterSet(setId, player, account)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     LoadAtArcemu(charguid, setId, account)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     LoadAtTrinity(charguid, setId, account)
-                Case "trinitytbc"
-                    'todo LoadAtTrinityTBC(charguid, setId, accountId)
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     LoadAtMangos(charguid, setId, account)
             End Select
         End Sub

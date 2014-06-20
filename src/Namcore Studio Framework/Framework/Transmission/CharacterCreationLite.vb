@@ -35,13 +35,11 @@ Namespace Framework.Transmission
             LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString,
                       "CharacterCreationLite_CreateNewLiteCharacter", True)
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Return CreateAtArcemu(charname, accountId, player, forceNameChange)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     Return CreateAtTrinity(charname, accountId, player, forceNameChange)
-                Case "trinitytbc"
-                    Return False
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     Return CreateAtMangos(charname, accountId, player, forceNameChange)
                 Case Else
                     Return False
@@ -50,28 +48,7 @@ Namespace Framework.Transmission
 
         Public Function CharacterExist(ByVal charname As String) As Boolean
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
-                    If _
-                        ReturnResultCount(
-                                "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True) = 1 _
-                        Then _
-                        Return False Else Return True
-                Case "trinity"
-                    If _
-                        ReturnResultCount(
-                                "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True) = 1 _
-                        Then _
-                        Return False Else Return True
-                Case "trinitytbc"
-                    If _
-                        ReturnResultCount(
-                                "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
-                                GlobalVariables.targetStructure.char_name_col(0) & "='" & charname & "'", True) = 1 _
-                        Then _
-                        Return False Else Return True
-                Case "mangos"
+                Case Modules.Core.ARCEMU, Modules.Core.TRINITY, Modules.Core.MANGOS
                     If _
                         ReturnResultCount(
                                 "SELECT * FROM " & GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &

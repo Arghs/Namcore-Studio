@@ -54,7 +54,7 @@ Namespace Framework.Core.Update
 
         Private Sub AddReputation(ByVal player As Character, ByVal fac As Reputation)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Dim repString As String = runSQLCommand_characters_string(
                         "SELECT `" & GlobalVariables.sourceStructure.char_reputation_col(0) &
                         "` FROM `" & GlobalVariables.sourceStructure.character_tbl(0) &
@@ -70,7 +70,7 @@ Namespace Framework.Core.Update
                         "` = '" & repString &
                         "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "` = '" &
                         player.Guid.ToString() & "'")
-                Case "trinity", "mangos", "trinitytbc"
+                Case Modules.Core.TRINITY, Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "INSERT INTO `" & GlobalVariables.sourceStructure.character_reputation_tbl(0) &
                         "` ( `" & GlobalVariables.sourceStructure.rep_guid_col(0) &
@@ -87,7 +87,7 @@ Namespace Framework.Core.Update
 
         Private Sub DeleteReputation(ByVal player As Character, ByVal fac As Reputation)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Dim repString As String = runSQLCommand_characters_string(
                         "SELECT `" & GlobalVariables.sourceStructure.char_reputation_col(0) &
                         "` FROM `" & GlobalVariables.sourceStructure.character_tbl(0) &
@@ -113,7 +113,7 @@ Namespace Framework.Core.Update
                             "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "` = '" &
                             player.Guid.ToString() & "'")
                     End If
-                Case "trinity", "mangos", "trinitytbc"
+                Case Modules.Core.TRINITY, Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "DELETE FROM `" & GlobalVariables.sourceStructure.character_reputation_tbl(0) &
                         " WHERE `" & GlobalVariables.sourceStructure.rep_guid_col(0) &
@@ -125,7 +125,7 @@ Namespace Framework.Core.Update
 
         Private Sub ModReputation(ByVal player As Character, ByVal fac As Reputation)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Dim repString As String = runSQLCommand_characters_string(
                         "SELECT `" & GlobalVariables.sourceStructure.char_reputation_col(0) &
                         "` FROM `" & GlobalVariables.sourceStructure.character_tbl(0) &
@@ -152,7 +152,7 @@ Namespace Framework.Core.Update
                             player.Guid.ToString() & "'")
 
                     End If
-                Case "trinity", "mangos", "trinitytbc"
+                Case Modules.Core.TRINITY, Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.sourceStructure.character_reputation_tbl(0) &
                         "` SET  `" & GlobalVariables.sourceStructure.rep_standing_col(0) &

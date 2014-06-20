@@ -17,8 +17,8 @@
 '* Developed by Alcanmage/megasus
 '*
 '* //FileInfo//
-'*      /Filename:      Item
-'*      /Description:   Item/Glyph Object - item/glyph information class
+'*      /Filename:      Profile
+'*      /Description:   Profile objects
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
 

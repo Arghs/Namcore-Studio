@@ -33,13 +33,11 @@ Namespace Framework.Core
             LogAppend("Loading character ItemStats for item: " & cItemguid.ToString() & " and setId: " & setId,
                       "CharacterItemStatssHandler_GetItemStats", True)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     LoadAtArcemu(cItemguid, setId, itm, player, account)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     LoadAtTrinity(cItemguid, setId, itm, player, account)
-                Case "trinitytbc"
-                    'todo  LoadAtTrinityTBC(CItemguid, setId, Itm, player)
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     LoadAtMangos(cItemguid, setId, itm, player, account)
             End Select
         End Sub

@@ -36,8 +36,8 @@ Namespace Framework.Modules
         Public Shared TempCharacter As Character
         Public Shared globChars As GlobalCharVars
         Public Shared ModAccountSets As List(Of Account)
-        Public Shared sourceCore As String '"arcemu", "trinity", "mangos"
-        Public Shared targetCore As String '"arcemu", "trinity", "mangos"
+        Public Shared sourceCore As Core 'Modules.Core.ARCEMU, Modules.Core.TRINITY, Modules.Core.MANGOS
+        Public Shared targetCore As Core 'Modules.Core.ARCEMU, Modules.Core.TRINITY, Modules.Core.MANGOS
         Public Shared sourceExpansion As Integer '1=classic, 2=tbc,...
         Public Shared targetExpansion As Integer '1=classic, 2=tbc,...
         Public Shared eventlog As String

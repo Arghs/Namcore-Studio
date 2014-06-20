@@ -36,13 +36,11 @@ Namespace Framework.Transmission
             LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString,
                       "CharacterCreationAdvanced_CreateNewAdvancedCharacter", True)
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Return CreateAtArcemu(charname, CInt(accountId), player, forceNameChange)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     Return CreateAtTrinity(charname, CInt(accountId), player, forceNameChange)
-                Case "trinitytbc"
-                    Return False
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     Return CreateAtMangos(charname, CInt(accountId), player, forceNameChange)
                 Case Else
                     Return False

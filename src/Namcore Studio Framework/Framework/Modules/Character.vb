@@ -82,7 +82,7 @@ Namespace Framework.Modules
 
         Public LoadedDateTime As DateTime
         Public Loaded As Boolean = False
-        Public SourceCore As String
+        Public SourceCore As Core
         Public SourceExpansion As Integer
         Public SetIndex As Integer
         Public Guid As Integer

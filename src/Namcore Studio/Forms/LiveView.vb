@@ -343,7 +343,6 @@ Namespace Forms
         End Sub
 
         Public Sub Loadtargetaccountsandchars()
-            GlobalVariables.targetCore = "trinity" 'todo for testing only
             Dim mAcInfoProc As AccountCharacterInformationProcessing = New AccountCharacterInformationProcessing
             _targetAcccharTable = mAcInfoProc.ReturnTargetAccCharTable(GlobalVariables.TargetConnection_Realm,
                                                                        GlobalVariables.targetStructure)

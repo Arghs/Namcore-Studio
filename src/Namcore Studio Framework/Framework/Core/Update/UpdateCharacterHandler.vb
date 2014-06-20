@@ -40,7 +40,7 @@ Namespace Framework.Core.Update
                 If Not newPlayer.AccountId = comparePlayer.AccountId Then
                     '// Account changed
                     Select Case GlobalVariables.sourceCore
-                        Case "trinity"
+                        Case Modules.Core.TRINITY
                             runSQLCommand_characters_string(
                                 "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                                 GlobalVariables.sourceStructure.char_accountId_col(0) &

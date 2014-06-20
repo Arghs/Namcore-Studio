@@ -30,29 +30,31 @@ Namespace Framework.Core
             As DataTable
             '// Provides a DataTable listing detected accounts
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Return _
                         ReturnDataTable_setconn(
                             "SELECT `" & struc.acc_id_col(0) & "`, `" & struc.acc_name_col(0) & "`, `" &
                             struc.acc_gmlevel_col(0) &
                             "`, `" & struc.acc_lastlogin_col(0) & "`, `" & struc.acc_email_col(0) & "` FROM " &
                             struc.account_tbl(0), sqlconnection)
-                Case "trinity"
-                    Return _
-                        ReturnDataTable_setconn(
-                            "SELECT " & struc.account_tbl(0) & ".`" & struc.acc_id_col(0) & "`, `" &
-                            struc.acc_name_col(0) &
-                            "`, `" & struc.accountAccess_tbl(0) & "`." & struc.accAcc_gmLevel_col(0) & ", `" &
-                            struc.acc_lastlogin_col(0) &
-                            "`, `" & struc.acc_email_col(0) & "` FROM " & struc.account_tbl(0) & " JOIN `" &
-                            struc.accountAccess_tbl(0) &
-                            "` ON `" & struc.account_tbl(0) & "`." & struc.acc_id_col(0) & " = `" &
-                            struc.accountAccess_tbl(0) &
-                            "`.`" & struc.accAcc_accid_col(0) & "`", sqlconnection)
-                Case "trinitytbc"
-                    'todo
-                    Return Nothing
-                Case "mangos"
+                Case Modules.Core.TRINITY
+                    Select Case GlobalVariables.sourceExpansion
+                        Case Is > 2
+                            Return ReturnDataTable_setconn(
+                                "SELECT " & struc.account_tbl(0) & ".`" & struc.acc_id_col(0) & "`, `" &
+                                struc.acc_name_col(0) &
+                                "`, `" & struc.accountAccess_tbl(0) & "`." & struc.accAcc_gmLevel_col(0) & ", `" &
+                                struc.acc_lastlogin_col(0) &
+                                "`, `" & struc.acc_email_col(0) & "` FROM " & struc.account_tbl(0) & " JOIN `" &
+                                struc.accountAccess_tbl(0) &
+                                "` ON `" & struc.account_tbl(0) & "`." & struc.acc_id_col(0) & " = `" &
+                                struc.accountAccess_tbl(0) &
+                                "`.`" & struc.accAcc_accid_col(0) & "`", sqlconnection)
+                        Case Else
+                            Return Nothing
+                            '// TODO: EXPANSION SUPPORT
+                    End Select
+                Case Modules.Core.MANGOS
                     Return _
                         ReturnDataTable_setconn(
                             "SELECT `" & struc.acc_id_col(0) & "`, `" & struc.acc_name_col(0) & "`, `" &
@@ -68,7 +70,7 @@ Namespace Framework.Core
             As DataTable
             '// Provides a DataTable listing detected characters
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Return _
                         ReturnDataTable_setconn(
                             "SELECT " & struc.char_guid_col(0) & ", " & struc.char_accountId_col(0) & ", " &
@@ -76,17 +78,21 @@ Namespace Framework.Core
                             ", " & struc.char_race_col(0) & ", " & struc.char_class_col(0) & ", " &
                             struc.char_gender_col(0) &
                             ", " & struc.char_level_col(0) & " FROM characters", sqlconnection)
-                Case "trinity"
-                    Return _
-                        ReturnDataTable_setconn(
-                            "SELECT " & struc.char_guid_col(0) & ", " & struc.char_accountId_col(0) & ", " &
-                            struc.char_name_col(0) &
-                            ", " & struc.char_race_col(0) & ", " & struc.char_class_col(0) & ", " &
-                            struc.char_gender_col(0) &
-                            ", " & struc.char_level_col(0) & " FROM characters", sqlconnection)
-                Case "trinitytbc"
-                    Return ReturnDataTable_setconn("SELECT", sqlconnection)
-                Case "mangos"
+                Case Modules.Core.TRINITY
+                    Select Case GlobalVariables.sourceExpansion
+                        Case Is > 2
+                            Return _
+                                ReturnDataTable_setconn(
+                                    "SELECT " & struc.char_guid_col(0) & ", " & struc.char_accountId_col(0) & ", " &
+                                    struc.char_name_col(0) &
+                                    ", " & struc.char_race_col(0) & ", " & struc.char_class_col(0) & ", " &
+                                    struc.char_gender_col(0) &
+                                    ", " & struc.char_level_col(0) & " FROM characters", sqlconnection)
+                        Case Else
+                            Return Nothing
+                            '// TODO: EXPANSION SUPPORT
+                    End Select
+                Case Modules.Core.MANGOS
                     Return _
                         ReturnDataTable_setconn(
                             "SELECT " & struc.char_guid_col(0) & ", " & struc.char_accountId_col(0) & ", " &
@@ -103,7 +109,7 @@ Namespace Framework.Core
             As DataTable
             '// Provides a DataTable listing detected accounts/characters on target database
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Return _
                         ReturnDataTable_setconn(
                             "SELECT u1.`" & struc.acc_id_col(0) & "`, u1.`" & struc.acc_name_col(0) & "`, u2.`" &
@@ -113,20 +119,26 @@ Namespace Framework.Core
                             " u1 LEFT JOIN " & GlobalVariables.TargetConnCharactersDBname & "." & struc.character_tbl(0) &
                             " u2 ON u2.`" & struc.char_accountId_col(0) &
                             "` = u1.`" & struc.acc_id_col(0) & "`", sqlconnection)
-                Case "trinity"
-                    Return _
-                        ReturnDataTable_setconn(
-                            "SELECT u1.`" & struc.acc_id_col(0) & "`, u1.`" & struc.acc_name_col(0) & "`, u2.`" &
-                            struc.char_guid_col(0) &
-                            "`, u2.`" & struc.char_name_col(0) & "` FROM " & GlobalVariables.TargetConnRealmDBname & "." &
-                            struc.account_tbl(0) &
-                            " u1 LEFT JOIN " & GlobalVariables.TargetConnCharactersDBname & "." & struc.character_tbl(0) &
-                            " u2 ON u2.`" & struc.char_accountId_col(0) &
-                            "` = u1.`" & struc.acc_id_col(0) & "`", sqlconnection)
-                Case "trinitytbc"
-                    'todo
-                    Return Nothing
-                Case "mangos"
+                Case Modules.Core.TRINITY
+                    Select Case GlobalVariables.sourceExpansion
+                        Case Is > 2
+                            Return _
+                                ReturnDataTable_setconn(
+                                    "SELECT u1.`" & struc.acc_id_col(0) & "`, u1.`" & struc.acc_name_col(0) & "`, u2.`" &
+                                    struc.char_guid_col(0) &
+                                    "`, u2.`" & struc.char_name_col(0) & "` FROM " &
+                                    GlobalVariables.TargetConnRealmDBname & "." &
+                                    struc.account_tbl(0) &
+                                    " u1 LEFT JOIN " & GlobalVariables.TargetConnCharactersDBname & "." &
+                                    struc.character_tbl(0) &
+                                    " u2 ON u2.`" & struc.char_accountId_col(0) &
+                                    "` = u1.`" & struc.acc_id_col(0) & "`", sqlconnection)
+                        Case Else
+                            Return Nothing
+                            '// TODO: EXPANSION SUPPORT
+                    End Select
+
+                Case Modules.Core.MANGOS
                     Return _
                         ReturnDataTable_setconn(
                             "SELECT u1.`" & struc.acc_id_col(0) & "`, u1.`" & struc.acc_name_col(0) & "`, u2.`" &
