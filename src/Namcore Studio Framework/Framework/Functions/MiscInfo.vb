@@ -189,7 +189,7 @@ Namespace Framework.Functions
                         Case 350 To 424 : Return 51309
                         Case 425 To 499 : Return 75156
                         Case 500 To 600 : Return 110426
-                        Case Else : Return -1
+                        Case Else : Return - 1
                     End Select
                 Case 202 '// Engineering
                     Select Case rank
@@ -322,7 +322,7 @@ Namespace Framework.Functions
             End Select
         End Function
 
-        Public Function GetRaceNameById(ByVal raceid As Integer) As String
+        Public Function GetRaceNameById(ByVal raceid As UInteger) As String
             LogAppend("Loading race name by id: " & raceid.ToString(), "Conversions_GetRaceNameById", False)
             Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
             Select Case raceid
@@ -347,7 +347,7 @@ Namespace Framework.Functions
             End Select
         End Function
 
-        Public Function GetClassNameById(ByVal classid As Integer) As String
+        Public Function GetClassNameById(ByVal classid As UInteger) As String
             LogAppend("Loading class name by id: " & classid.ToString(), "Conversions_GetClassNameById", False)
             Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
             Select Case classid
@@ -369,7 +369,7 @@ Namespace Framework.Functions
             End Select
         End Function
 
-        Public Function GetRaceIdByName(ByVal racename As String) As Integer
+        Public Function GetRaceIdByName(ByVal racename As String) As UInteger
             LogAppend("Loading race id by name: " & racename.ToString(), "Conversions_GetRaceIdByName", False)
             Select Case racename.ToLower()
                 Case "human" : Return 1
@@ -391,7 +391,7 @@ Namespace Framework.Functions
             End Select
         End Function
 
-        Public Function GetClassIdByName(ByVal classname As String) As Integer
+        Public Function GetClassIdByName(ByVal classname As String) As UInteger
             LogAppend("Loading class id by name: " & classname.ToString(), "Conversions_GetClassIdByName", False)
             Select Case classname
                 Case "warrior" : Return 1
@@ -411,7 +411,7 @@ Namespace Framework.Functions
                     Return Nothing
             End Select
         End Function
-        
+
         Public Function GetProficiencyLevelNameByLevel(ByVal level As Integer) As String
             Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
             Select Case level
@@ -440,14 +440,14 @@ Namespace Framework.Functions
             End Select
         End Function
 
-        Public Function GetGenderNameById(ByVal genderid As Integer) As String
-            LogAppend("Loading gender name by id: " & genderid.ToString(), "Conversions_GetGenderNameById", False)
+        Public Function GetGenderNameById(ByVal genderId As UInteger) As String
+            LogAppend("Loading gender name by id: " & genderId.ToString(), "Conversions_GetGenderNameById", False)
             Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
             Select Case genderid
                 Case 0 : Return rm.GetString("male")
                 Case 1 : Return rm.GetString("female")
                 Case Else _
-                    : LogAppend("Invalid GenderId: " & genderid.ToString() & " // Returning nothing!",
+                    : LogAppend("Invalid GenderId: " & genderId.ToString() & " // Returning nothing!",
                                 "Conversions_GetGenderNameById")
                     Return Nothing
             End Select

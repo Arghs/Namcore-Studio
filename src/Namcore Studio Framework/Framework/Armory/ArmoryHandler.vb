@@ -89,9 +89,9 @@ Namespace Framework.Armory
                     player.AccountId = 0
                     player.AccountName = "Armory"
                     player.Level = TryInt(SplitString(apiContext, """level"":", ","))
-                    player.Gender = TryInt(SplitString(apiContext, """gender"":", ","))
-                    player.Race = TryInt(SplitString(apiContext, """race"":", ","))
-                    player.Cclass = TryInt(SplitString(apiContext, """class"":", ","))
+                    player.Gender(0) = TryUInt(SplitString(apiContext, """gender"":", ","))
+                    player.Race(0) = TryUInt(SplitString(apiContext, """race"":", ","))
+                    player.Cclass(0) = TryUInt(SplitString(apiContext, """class"":", ","))
                     player.SourceCore = Modules.Core.ARMORY
                     player.SourceExpansion = 5
                     player.LoadedDateTime = DateTime.Now

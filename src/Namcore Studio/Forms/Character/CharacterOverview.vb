@@ -920,7 +920,7 @@ Namespace Forms.Character
             senderLabel.Visible = True
             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-            GlobalVariables.currentEditedCharSet.Cclass = GetClassIdByName(senderLabel.Text)
+            GlobalVariables.currentEditedCharSet.Cclass(0) = GetClassIdByName(senderLabel.Text)
         End Sub
 
         Private Sub racerefresh_Click(sender As Object, e As EventArgs) Handles racerefresh.Click
@@ -935,7 +935,7 @@ Namespace Forms.Character
             senderLabel.Visible = True
             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-            GlobalVariables.currentEditedCharSet.Race = GetRaceIdByName(senderLabel.Text)
+            GlobalVariables.currentEditedCharSet.Race(0) = GetRaceIdByName(senderLabel.Text)
         End Sub
 
         Private Sub genderrefresh_Click(sender As Object, e As EventArgs) Handles genderrefresh.Click
@@ -951,9 +951,9 @@ Namespace Forms.Character
             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             If senderLabel.Text.StartsWith("M") Then
-                GlobalVariables.currentEditedCharSet.Gender = 0
+                GlobalVariables.currentEditedCharSet.Gender(0) = 0
             Else
-                GlobalVariables.currentEditedCharSet.Gender = 1
+                GlobalVariables.currentEditedCharSet.Gender(0) = 1
             End If
         End Sub
 

@@ -717,17 +717,17 @@ Namespace Forms.Character
         Private Function EscapeRank(ByVal pProf As Profession, ByVal player As NCFramework.Framework.Modules.Character) As Integer
             Select Case pProf.Id
                 Case 182
-                    If player.Race = 6 Then Return pProf.Rank - 15 '// Tauren herbalism bonus
+                    If player.Race(0) = 6 Then Return pProf.Rank - 15 '// Tauren herbalism bonus
                 Case 202
-                    If player.Race = 7 Then Return pProf.Rank - 15 '// Gnome engineering bonus
+                    If player.Race(0) = 7 Then Return pProf.Rank - 15 '// Gnome engineering bonus
                 Case 755
-                    If player.Race = 11 Then Return pProf.Rank - 5 '// Draenei jewelcrafting bonus
+                    If player.Race(0) = 11 Then Return pProf.Rank - 5 '// Draenei jewelcrafting bonus
                 Case 333
-                    If player.Race = 10 Then Return pProf.Rank - 10 '// Blood-Elf enchanting bonus
+                    If player.Race(0) = 10 Then Return pProf.Rank - 10 '// Blood-Elf enchanting bonus
                 Case 393
-                    If player.Race = 22 Then Return pProf.Rank - 15 '// Worgen skinning bonus
+                    If player.Race(0) = 22 Then Return pProf.Rank - 15 '// Worgen skinning bonus
                 Case 171
-                    If player.Race = 9 Then Return pProf.Rank - 15 '// Goblin alchemy bonus
+                    If player.Race(0) = 9 Then Return pProf.Rank - 15 '// Goblin alchemy bonus
             End Select
             Return pProf.Rank
         End Function

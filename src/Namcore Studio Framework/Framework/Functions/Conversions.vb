@@ -82,6 +82,20 @@ Namespace Framework.Functions
             End Try
         End Function
 
+        Public Function TryUInt(ByVal mystring As String) As UInteger
+            Try
+                Dim parseResult As Integer = CInt(Integer.TryParse(mystring, Nothing))
+                If parseResult = 0 Then
+                    Return 0
+                Else
+                    Return CUInt(mystring)
+                End If
+            Catch ex As Exception
+                LogAppend("Exception during TryInt() : " & ex.ToString(), "Conversions_TryInt", False, True)
+                Return 0
+            End Try
+        End Function
+
         Public Function TrySingle(ByVal mystring As String) As Single
             Try
                 Return Convert.ToSingle(mystring)
