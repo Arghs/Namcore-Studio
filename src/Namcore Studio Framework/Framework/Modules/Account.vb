@@ -23,13 +23,21 @@
 Namespace Framework.Modules
     <Serializable()>
     Public Class Account
+        <Flags()>
+        Public Enum ArcEmuFlag
+            EXPANSION_CLASSIC = 0
+            EXPANSION_TBC = 8
+            EXPANSION_WOTLK = 16
+            EXPANSION_WOTLK_TBC = 24
+            EXPANSION_CATA = 32
+        End Enum
         Public Id As Integer
         Public Name As String
         Public SetIndex As Integer
         Public Transcharlist As ArrayList
         Public ArcEmuPass As String
         Public PassHash As String
-        Public ArcEmuFlags As Integer
+        Public ArcEmuFlags As ArcEmuFlag
         Public Locale As Integer
         Public ArcEmuGmLevel As String
         Public SessionKey As String

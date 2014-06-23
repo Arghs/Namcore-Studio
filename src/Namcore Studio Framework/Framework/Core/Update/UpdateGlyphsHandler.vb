@@ -80,9 +80,9 @@ Namespace Framework.Core.Update
                         Dim parts() As String = glyphString.Split(","c)
                         Dim baseInt As UInteger
                         Select Case glyph2Add.Type
-                            Case 1 : baseInt = 0
-                            Case 2 : baseInt = 3
-                            Case 3 : baseInt = 6
+                            Case Glyph.GlyphType.GLYTYPE_MINOR : baseInt = 0
+                            Case Glyph.GlyphType.GLYTYPE_MAJOR : baseInt = 3
+                            Case Glyph.GlyphType.GLYTYPE_PRIME : baseInt = 6
                         End Select
                         If glyph2Add.Slotname.Contains("1") Then
                             parts(CInt(baseInt)) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
@@ -207,9 +207,9 @@ Namespace Framework.Core.Update
                         Dim parts() As String = glyphString.Split(","c)
                         Dim baseInt As UInteger
                         Select Case glyph2Delete.Type
-                            Case 1 : baseInt = 0
-                            Case 2 : baseInt = 3
-                            Case 3 : baseInt = 6
+                            Case Glyph.GlyphType.GLYTYPE_MINOR : baseInt = 0
+                            Case Glyph.GlyphType.GLYTYPE_MAJOR : baseInt = 3
+                            Case Glyph.GlyphType.GLYTYPE_PRIME : baseInt = 6
                         End Select
                         If glyph2Delete.Slotname.Contains("1") Then
                             parts(CInt(baseInt)) = ""

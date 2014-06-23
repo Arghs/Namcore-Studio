@@ -29,8 +29,6 @@ Imports NCFramework.Framework.Logging
 Imports NamCore_Studio.Forms.Extension
 Imports libnc.Provider
 Imports System.Net
-Imports System.Resources
-Imports System.Reflection
 
 Namespace Forms.Character
     Public Class ReputationInterface
@@ -160,14 +158,14 @@ Namespace Forms.Character
                     Next
                     standingCombo.SelectedIndex = pRepu.Status
                     Select Case pRepu.Status
-                        Case 0 : progressPanel.BackColor = Color.DarkRed
-                        Case 1 : progressPanel.BackColor = Color.Red
-                        Case 2 : progressPanel.BackColor = Color.Red
-                        Case 3 : progressPanel.BackColor = Color.Yellow
-                        Case 4 : progressPanel.BackColor = Color.Green
-                        Case 5 : progressPanel.BackColor = Color.Green
-                        Case 6 : progressPanel.BackColor = Color.Green
-                        Case 7 : progressPanel.BackColor = Color.LightGreen
+                        Case Reputation.RepStatus.REPSTAT_STRANGER : progressPanel.BackColor = Color.DarkRed
+                        Case Reputation.RepStatus.REPSTAT_ACQUAINTANCE : progressPanel.BackColor = Color.Red
+                        Case Reputation.RepStatus.REPSTAT_UNFRIENDLY : progressPanel.BackColor = Color.Red
+                        Case Reputation.RepStatus.REPSTAT_NEUTRAL : progressPanel.BackColor = Color.Yellow
+                        Case Reputation.RepStatus.REPSTAT_FRIENDLY : progressPanel.BackColor = Color.Green
+                        Case Reputation.RepStatus.REPSTAT_HONORED : progressPanel.BackColor = Color.Green
+                        Case Reputation.RepStatus.REPSTAT_REVERED : progressPanel.BackColor = Color.Green
+                        Case Reputation.RepStatus.REPSTAT_EXALTED : progressPanel.BackColor = Color.LightGreen
                     End Select
                     standingCombo.Tag = pRepu
 
@@ -304,7 +302,7 @@ Namespace Forms.Character
                                 Function(rep) rep.Faction = CType(pCtrl.Tag, Reputation).Faction)
                     CType(pCtrl.Tag, Reputation).Value = 0
                     CType(pCtrl.Tag, Reputation).Max = max
-                    CType(pCtrl.Tag, Reputation).Status = combo.SelectedIndex
+                    CType(pCtrl.Tag, Reputation).Status = CType(combo.SelectedIndex, Reputation.RepStatus)
                     Dim thisRep As Reputation = CType(pCtrl.Tag, Reputation)
                     pCtrl.Tag = thisRep.UpdateStanding()
                     GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = CType(pCtrl.Tag, Reputation)
@@ -425,7 +423,7 @@ Namespace Forms.Character
                             .Name = GetFactionNameById(.Faction, MySettings.Default.language)
                             .Max = 3000
                             .Standing = 0
-                            .Status = 3
+                            .Status = Reputation.RepStatus.REPSTAT_NEUTRAL
                             .Value = 0
                         End With
                         Dim repPanel As New Panel
@@ -497,14 +495,14 @@ Namespace Forms.Character
                         Next
                         standingCombo.SelectedIndex = pRepu.Status
                         Select Case pRepu.Status
-                            Case 0 : progressPanel.BackColor = Color.DarkRed
-                            Case 1 : progressPanel.BackColor = Color.Red
-                            Case 2 : progressPanel.BackColor = Color.Red
-                            Case 3 : progressPanel.BackColor = Color.Yellow
-                            Case 4 : progressPanel.BackColor = Color.Green
-                            Case 5 : progressPanel.BackColor = Color.Green
-                            Case 6 : progressPanel.BackColor = Color.Green
-                            Case 7 : progressPanel.BackColor = Color.LightGreen
+                            Case Reputation.RepStatus.REPSTAT_STRANGER : progressPanel.BackColor = Color.DarkRed
+                            Case Reputation.RepStatus.REPSTAT_ACQUAINTANCE : progressPanel.BackColor = Color.Red
+                            Case Reputation.RepStatus.REPSTAT_UNFRIENDLY : progressPanel.BackColor = Color.Red
+                            Case Reputation.RepStatus.REPSTAT_NEUTRAL : progressPanel.BackColor = Color.Yellow
+                            Case Reputation.RepStatus.REPSTAT_FRIENDLY : progressPanel.BackColor = Color.Green
+                            Case Reputation.RepStatus.REPSTAT_HONORED : progressPanel.BackColor = Color.Green
+                            Case Reputation.RepStatus.REPSTAT_REVERED : progressPanel.BackColor = Color.Green
+                            Case Reputation.RepStatus.REPSTAT_EXALTED : progressPanel.BackColor = Color.LightGreen
                         End Select
                         standingCombo.Tag = pRepu
 

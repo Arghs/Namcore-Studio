@@ -41,7 +41,7 @@ Namespace Framework.Core
                     LoadAtArcemu(characterGuid, setId, account)
                 Case Modules.Core.TRINITY
                     Select Case GlobalVariables.sourceExpansion
-                        Case 2
+                        Case Expansion.TBC
                             LoadAtTrinityTbc(characterGuid, setId, account)
                         Case Else
                             LoadAtTrinity(characterGuid, setId, account)
@@ -855,7 +855,7 @@ Namespace Framework.Core
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
             tmpCharacter.SourceCore = Modules.Core.TRINITY
-            tmpCharacter.SourceExpansion = 2
+            tmpCharacter.SourceExpansion = Expansion.TBC
             tmpCharacter.SetIndex = tarSetId
 
             'Character Table

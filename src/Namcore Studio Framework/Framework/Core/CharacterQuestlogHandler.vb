@@ -39,7 +39,7 @@ Namespace Framework.Core
                     LoadAtArcemu(characterGuid, setId, account)
                 Case Modules.Core.TRINITY
                     Select Case GlobalVariables.sourceExpansion
-                        Case 2
+                        Case Expansion.TBC
                             LoadAtTrinityTbc(characterGuid, setId, account)
                         Case Else
                             LoadAtTrinity(characterGuid, setId, account)

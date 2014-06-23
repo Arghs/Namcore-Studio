@@ -87,7 +87,7 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.StartCheck(GlobalVariables.sourceCore, 3, GlobalVariables.GlobalConnection,
+                                _strucCheck.StartCheck(GlobalVariables.sourceCore, Expansion.WOTLK, GlobalVariables.GlobalConnection,
                                                        GlobalVariables.GlobalConnection_Realm,
                                                        GlobalVariables.GlobalConnection_Info, chardbname_combo.Text,
                                                        realmdbname_combo.Text, False) 'todo
@@ -162,7 +162,7 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.StartCheck(GlobalVariables.sourceCore, 3, GlobalVariables.TargetConnection,
+                                _strucCheck.StartCheck(GlobalVariables.sourceCore, Expansion.WOTLK, GlobalVariables.TargetConnection,
                                                        GlobalVariables.TargetConnection_Realm,
                                                        GlobalVariables.TargetConnection_Info, chardbname_combo.Text,
                                                        realmdbname_combo.Text, True) 'todo

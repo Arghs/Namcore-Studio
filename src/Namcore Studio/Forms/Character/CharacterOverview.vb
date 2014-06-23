@@ -397,7 +397,7 @@ Namespace Forms.Character
                         Return itm.Socket3Pic
                     End If
                 Case 6
-                    If itm.Rarity = Nothing Then itm.Rarity = GetItemQualityByItemId(itm.Id)
+                    If itm.Rarity = Nothing Then itm.Rarity = CType(GetItemQualityByItemId(itm.Id), Item.RarityType)
                     Return GetItemQualityColor(itm.Rarity)
                 Case Else : Return Nothing
             End Select
@@ -545,7 +545,7 @@ Namespace Forms.Character
                         ElseIf founditem = True Then
                             Dim itm As Item = CType(senderLabel.Tag, Item)
                             senderLabel.Text = itemname
-                            itm.EnchantmentType = 1
+                            itm.EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_SPELL
                             itm.EnchantmentId = TryInt(TextBox1.Text)
                             itm.EnchantmentName = itemname
                             senderLabel.Tag = itm
@@ -963,7 +963,7 @@ Namespace Forms.Character
             newPoint.X = 4000
             newPoint.Y = 4000
             senderLabel.Text = CStr(itmench.Tag)
-            CType(senderLabel.Tag, Item).EnchantmentType = 1
+            CType(senderLabel.Tag, Item).EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_SPELL
             CType(senderLabel.Tag, Item).EnchantmentId = TryInt(TextBox1.Text)
             CType(senderLabel.Tag, Item).EnchantmentName = CStr(itmench.Tag)
             selectenchpanel.Location = newPoint
@@ -975,7 +975,7 @@ Namespace Forms.Character
             newPoint.X = 4000
             newPoint.Y = 4000
             senderLabel.Text = CStr(spellench.Tag)
-            CType(senderLabel.Tag, Item).EnchantmentType = 1
+            CType(senderLabel.Tag, Item).EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_SPELL
             CType(senderLabel.Tag, Item).EnchantmentId = TryInt(TextBox1.Text)
             CType(senderLabel.Tag, Item).EnchantmentName = CStr(spellench.Tag)
             selectenchpanel.Location = newPoint
@@ -1133,7 +1133,7 @@ Namespace Forms.Character
                     itm.Guid = x.ToTimeStamp()
                     itm.Name = GetItemNameByItemId(itm.Id, MySettings.Default.language)
                     itm.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(itm.Id), GlobalVariables.GlobalWebClient)
-                    itm.Rarity = GetItemQualityByItemId(itm.Id)
+                    itm.Rarity = CType(GetItemQualityByItemId(itm.Id), Item.RarityType)
                     itm.Slot = TryInt(meSlot)
                     itm.Slotname = CStr(GetItemInventorySlotByItemId(itm.Slot))
                     If itm.Slot = 15 Or itm.Slot = 16 Then LoadWeaponType(itm.Id, _currentSet, _currentAccount)
@@ -1685,7 +1685,7 @@ Namespace Forms.Character
                             replaceItm.Id = intResult
                             replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient), Bitmap)
                             replaceItm.Name = checkName
-                            replaceItm.Rarity = GetItemQualityByItemId(replaceItm.Id)
+                            replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.Bag = oldItm.Bag
                             replaceItm.Bagguid = oldItm.Bagguid
                             Dim newGuid As Integer = 1
@@ -1790,7 +1790,7 @@ Namespace Forms.Character
                             replaceItm.Id = intResult
                             replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient), Bitmap)
                             replaceItm.Name = checkName
-                            replaceItm.Rarity = GetItemQualityByItemId(replaceItm.Id)
+                            replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.AddedBag = True
                             Dim newGuid As Integer = 1
                             Do

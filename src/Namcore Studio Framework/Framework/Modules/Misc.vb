@@ -22,11 +22,19 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Namespace Framework.Modules
-    Public Enum Core
+    Public Enum Core As Integer
         NONE = -1
         ARMORY = 0
         TRINITY = 1
         MANGOS = 2
         ARCEMU = 3
+    End Enum
+    Public Enum Expansion As Integer
+        CLASSIC = 1
+        TBC = 2
+        WOTLK = 3
+        CATA = 4
+        MOP = 5
+        WOD = 6
     End Enum
 End Namespace

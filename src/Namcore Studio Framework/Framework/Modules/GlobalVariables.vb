@@ -36,10 +36,10 @@ Namespace Framework.Modules
         Public Shared TempCharacter As Character
         Public Shared globChars As GlobalCharVars
         Public Shared ModAccountSets As List(Of Account)
-        Public Shared sourceCore As Core 'Modules.Core.ARCEMU, Modules.Core.TRINITY, Modules.Core.MANGOS
-        Public Shared targetCore As Core 'Modules.Core.ARCEMU, Modules.Core.TRINITY, Modules.Core.MANGOS
-        Public Shared sourceExpansion As Integer '1=classic, 2=tbc,...
-        Public Shared targetExpansion As Integer '1=classic, 2=tbc,...
+        Public Shared sourceCore As Core
+        Public Shared targetCore As Core
+        Public Shared sourceExpansion As Expansion
+        Public Shared targetExpansion As Expansion
         Public Shared eventlog As String
         Public Shared eventlog_full As String
         Public Shared effectname_dt As DataTable
@@ -87,7 +87,6 @@ Namespace Framework.Modules
         Public Shared charactersToCreate As List(Of Character)
         Public Shared tempAchievementInfo As List(Of ListViewItem)
         Public Shared tempAchievementInfoIndex As String
-        Public Shared offlineExtension As Boolean
         Public Shared forceTargetConnectionUsage As Boolean
         Public Shared forceTemplateCharVars As Boolean
         Public Shared templateCharVars As GlobalCharVars

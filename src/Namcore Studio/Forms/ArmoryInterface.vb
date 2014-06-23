@@ -243,7 +243,6 @@ Namespace Forms
                 itemControl.SetDoubleBuffered()
             Next
             'todo
-            GlobalVariables.offlineExtension = False
             GlobalVariables.globChars = New GlobalCharVars()
         End Sub
 

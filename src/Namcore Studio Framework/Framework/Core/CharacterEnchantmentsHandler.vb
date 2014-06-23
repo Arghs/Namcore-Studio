@@ -94,42 +94,42 @@ Namespace Framework.Core
                         itm.EnchantmentEffectid = TryInt(parts2(0))
                         Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
                         itm.EnchantmentId = enchArray(0)
-                        itm.EnchantmentType = enchArray(1)
+                        itm.EnchantmentType = CType(enchArray(1), Item.EnchantmentTypes)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(1).Contains("0,0") Then
                         Dim parts2() As String = parts(1).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
                         Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
                         itm.EnchantmentId = enchArray(0)
-                        itm.EnchantmentType = enchArray(1)
+                        itm.EnchantmentType = CType(enchArray(1), Item.EnchantmentTypes)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(2).Contains("0,0") Then
                         Dim parts2() As String = parts(2).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
                         Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
                         itm.EnchantmentId = enchArray(0)
-                        itm.EnchantmentType = enchArray(1)
+                        itm.EnchantmentType = CType(enchArray(1), Item.EnchantmentTypes)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(3).Contains("0,0") Then
                         Dim parts2() As String = parts(3).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
                         Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
                         itm.EnchantmentId = enchArray(0)
-                        itm.EnchantmentType = enchArray(1)
+                        itm.EnchantmentType = CType(enchArray(1), Item.EnchantmentTypes)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(4).Contains("0,0") Then
                         Dim parts2() As String = parts(4).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
                         Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
                         itm.EnchantmentId = enchArray(0)
-                        itm.EnchantmentType = enchArray(1)
+                        itm.EnchantmentType = CType(enchArray(1), Item.EnchantmentTypes)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     ElseIf parts(5).Contains("0,0") Then
                         Dim parts2() As String = parts(5).Split(","c)
                         itm.EnchantmentEffectid = TryInt(parts2(0))
                         Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
                         itm.EnchantmentId = enchArray(0)
-                        itm.EnchantmentType = enchArray(1)
+                        itm.EnchantmentType = CType(enchArray(1), Item.EnchantmentTypes)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     Else
                         Return ""
@@ -248,7 +248,7 @@ Namespace Framework.Core
                         itm.EnchantmentEffectid = TryInt(parts(0))
                         Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
                         itm.EnchantmentId = enchArray(0)
-                        itm.EnchantmentType = enchArray(1)
+                        itm.EnchantmentType = CType(enchArray(1), Item.EnchantmentTypes)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     Else
                         Return ""
@@ -342,7 +342,7 @@ Namespace Framework.Core
                         itm.EnchantmentEffectid = TryInt(parts(22))
                         Dim enchArray As Integer() = GetEnchantmentIdAndTypeByEffectId(itm.EnchantmentEffectid)
                         itm.EnchantmentId = enchArray(0)
-                        itm.EnchantmentType = enchArray(1)
+                        itm.EnchantmentType = CType(enchArray(1), Item.EnchantmentTypes)
                         Return GetEffectNameById(itm.EnchantmentEffectid, My.Settings.language)
                     Else
                         Return ""

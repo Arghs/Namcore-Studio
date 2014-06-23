@@ -32,14 +32,14 @@ Namespace Framework.Extension
         Public Function UpdateStanding(rep As Reputation) As Reputation
             Try
                 Select Case rep.status
-                    Case 0 : rep.standing = rep.value - 42000
-                    Case 1 : rep.standing = rep.value - 6000
-                    Case 2 : rep.standing = rep.value - 3000
-                    Case 3 : rep.standing = rep.value
-                    Case 4 : rep.standing = 3000 + rep.value
-                    Case 5 : rep.standing = 9000 + rep.value
-                    Case 6 : rep.standing = 21000 + rep.value
-                    Case 7 : rep.standing = 42000 + rep.value
+                    Case Reputation.RepStatus.REPSTAT_STRANGER : rep.Standing = rep.Value - 42000
+                    Case Reputation.RepStatus.REPSTAT_ACQUAINTANCE : rep.Standing = rep.Value - 6000
+                    Case Reputation.RepStatus.REPSTAT_UNFRIENDLY : rep.Standing = rep.Value - 3000
+                    Case Reputation.RepStatus.REPSTAT_NEUTRAL : rep.Standing = rep.Value
+                    Case Reputation.RepStatus.REPSTAT_FRIENDLY : rep.Standing = 3000 + rep.Value
+                    Case Reputation.RepStatus.REPSTAT_HONORED : rep.Standing = 9000 + rep.Value
+                    Case Reputation.RepStatus.REPSTAT_REVERED : rep.Standing = 21000 + rep.Value
+                    Case Reputation.RepStatus.REPSTAT_EXALTED : rep.Standing = 42000 + rep.Value
                 End Select
                 Return rep
             Catch ex As Exception
@@ -54,14 +54,14 @@ Namespace Framework.Extension
                                       <Extension()>
         Public Function UpdateValueMax(rep As Reputation) As Reputation
             Try
-                If rep.standing >= - 42000 Then rep.value = 42000 + rep.standing : rep.status = 0 : rep.max = 36000
-                If rep.standing >= - 6000 Then rep.value = 6000 + rep.standing : rep.status = 1 : rep.max = 3000
-                If rep.standing >= - 3000 Then rep.value = 3000 + rep.standing : rep.status = 2 : rep.max = 3000
-                If rep.standing >= 0 Then rep.value = rep.standing : rep.status = 3 : rep.max = 3000
-                If rep.standing >= 3000 Then rep.value = rep.standing - 3000 : rep.status = 4 : rep.max = 6000
-                If rep.standing >= 9000 Then rep.value = rep.standing - 9000 : rep.status = 5 : rep.max = 12000
-                If rep.standing >= 21000 Then rep.value = rep.standing - 21000 : rep.status = 6 : rep.max = 21000
-                If rep.standing >= 42000 Then rep.value = rep.standing - 42000 : rep.status = 7 : rep.max = 999
+                If rep.Standing >= -42000 Then rep.Value = 42000 + rep.Standing : rep.Status = Reputation.RepStatus.REPSTAT_STRANGER : rep.Max = 36000
+                If rep.Standing >= -6000 Then rep.Value = 6000 + rep.Standing : rep.Status = Reputation.RepStatus.REPSTAT_ACQUAINTANCE : rep.Max = 3000
+                If rep.Standing >= -3000 Then rep.Value = 3000 + rep.Standing : rep.Status = Reputation.RepStatus.REPSTAT_UNFRIENDLY : rep.Max = 3000
+                If rep.Standing >= 0 Then rep.Value = rep.Standing : rep.Status = Reputation.RepStatus.REPSTAT_NEUTRAL : rep.Max = 3000
+                If rep.Standing >= 3000 Then rep.Value = rep.Standing - 3000 : rep.Status = Reputation.RepStatus.REPSTAT_FRIENDLY : rep.Max = 6000
+                If rep.Standing >= 9000 Then rep.Value = rep.Standing - 9000 : rep.Status = Reputation.RepStatus.REPSTAT_HONORED : rep.Max = 12000
+                If rep.Standing >= 21000 Then rep.Value = rep.Standing - 21000 : rep.Status = Reputation.RepStatus.REPSTAT_REVERED : rep.Max = 21000
+                If rep.Standing >= 42000 Then rep.Value = rep.Standing - 42000 : rep.Status = Reputation.RepStatus.REPSTAT_EXALTED : rep.Max = 999
                 Return rep
             Catch ex As Exception
                 Return rep

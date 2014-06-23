@@ -38,7 +38,7 @@ Namespace Framework.Core
                             "`, `" & struc.acc_lastlogin_col(0) & "`, `" & struc.acc_email_col(0) & "` FROM " &
                             struc.account_tbl(0), sqlconnection)
                 Case Modules.Core.TRINITY
-                    Select Case GlobalVariables.sourceExpansion
+                    Select Case CInt(GlobalVariables.sourceExpansion)
                         Case Is > 2
                             Return ReturnDataTable_setconn(
                                 "SELECT " & struc.account_tbl(0) & ".`" & struc.acc_id_col(0) & "`, `" &
@@ -79,7 +79,7 @@ Namespace Framework.Core
                             struc.char_gender_col(0) &
                             ", " & struc.char_level_col(0) & " FROM characters", sqlconnection)
                 Case Modules.Core.TRINITY
-                    Select Case GlobalVariables.sourceExpansion
+                    Select Case CInt(GlobalVariables.sourceExpansion)
                         Case Is > 2
                             Return _
                                 ReturnDataTable_setconn(
@@ -120,7 +120,7 @@ Namespace Framework.Core
                             " u2 ON u2.`" & struc.char_accountId_col(0) &
                             "` = u1.`" & struc.acc_id_col(0) & "`", sqlconnection)
                 Case Modules.Core.TRINITY
-                    Select Case GlobalVariables.sourceExpansion
+                    Select Case CInt(GlobalVariables.sourceExpansion)
                         Case Is > 2
                             Return _
                                 ReturnDataTable_setconn(

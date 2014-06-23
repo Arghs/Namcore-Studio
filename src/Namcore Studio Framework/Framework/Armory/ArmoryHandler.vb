@@ -93,7 +93,7 @@ Namespace Framework.Armory
                     player.Race(0) = TryUInt(SplitString(apiContext, """race"":", ","))
                     player.Cclass(0) = TryUInt(SplitString(apiContext, """class"":", ","))
                     player.SourceCore = Modules.Core.ARMORY
-                    player.SourceExpansion = 5
+                    player.SourceExpansion = Expansion.MOP
                     player.LoadedDateTime = DateTime.Now
                     player.InventoryItems = New List(Of Item)()
                     player.InventoryZeroItems = New List(Of Item)()

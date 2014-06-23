@@ -71,7 +71,7 @@ Namespace Framework.Core
                             "SELECT " & GlobalVariables.sourceStructure.acc_arcemuFlags_col(0) & " FROM " &
                             GlobalVariables.sourceStructure.account_tbl(0) & " WHERE " &
                             GlobalVariables.sourceStructure.acc_id_col(0) & "='" & accountId.ToString & "'")
-                    tmpAccount.ArcEmuFlags = TryInt(_tempResult)
+                    tmpAccount.ArcEmuFlags = CType(TryInt(_tempResult), Account.ArcEmuFlag)
                     LogAppend(
                         "Loaded account arcemuFlags info for accountId: " & accountId.ToString & " and setId: " &
                         tarSetId &
@@ -131,7 +131,7 @@ Namespace Framework.Core
                     tmpAccount.SetIndex = tarSetId
                     AddAccountSet(tarSetId, tmpAccount)
                 Case Modules.Core.TRINITY
-                    Select Case GlobalVariables.sourceExpansion
+                    Select Case CInt(GlobalVariables.sourceExpansion)
                         Case Is > 2
                             Dim accountDt As DataTable =
                                     ReturnDataTableRealm(

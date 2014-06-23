@@ -25,10 +25,25 @@ Imports System.Drawing
 Namespace Framework.Modules
     <Serializable()>
     Public Class Item
+        Public Enum RarityType As Integer
+            RARITY_POOR = 0
+            RARITY_COMMON = 1
+            RARITY_UNCOMMON = 2
+            RARITY_RARE = 3
+            RARITY_EPIC = 4
+            RARITY_LEGENDARY = 5
+            RARITY_ARTIFACT_HEIRLOOM = 6
+        End Enum
+
+        Public Enum EnchantmentTypes As Integer
+            ENCHTYPE_SPELL = 1
+            ENCHTYPE_ITEM = 2
+        End Enum
+
         Public Id As Integer
         Public Guid As Integer
         Public Name As String
-        Public Rarity As Integer '0=poor;1=common;2=uncommon;3=rare;4=epic;5=legendary;6=artifact/heirloom
+        Public Rarity As RarityType
         Public Slotname As String
         Public Slot As Integer
         Public Socket1Id As Integer
@@ -40,7 +55,7 @@ Namespace Framework.Modules
         Public Socket1Name As String
         Public Socket2Name As String
         Public Socket3Name As String
-        Public EnchantmentType As Integer '1=spell;2=item
+        Public EnchantmentType As EnchantmentTypes
         Public EnchantmentId As Integer = 0
         Public EnchantmentName As String
         Public Enchstring As String
@@ -66,11 +81,16 @@ Namespace Framework.Modules
 
     <Serializable()>
     Public Class Glyph
+        Public Enum GlyphType As Integer
+            GLYTYPE_MINOR = 1
+            GLYTYPE_MAJOR = 2
+            GLYTYPE_PRIME = 3
+        End Enum
         Public Id As Integer
-        Public Type As Integer '1=minor;2=major;3=prime
-        Public Spec As Integer '1;2
+        Public Type As GlyphType
+        Public Spec As Integer
         Public Name As String
-        Public Slotname As String 'e.g. majorglyph1
+        Public Slotname As String '// e.g. majorglyph1
         Public Image As Bitmap
 
         Public Sub New()
@@ -120,14 +140,24 @@ Namespace Framework.Modules
 
     <Serializable()>
     Public Class Reputation
+        Public Enum RepStatus As Integer
+            REPSTAT_STRANGER = 0
+            REPSTAT_ACQUAINTANCE = 1
+            REPSTAT_UNFRIENDLY = 2
+            REPSTAT_NEUTRAL = 3
+            REPSTAT_FRIENDLY = 4
+            REPSTAT_HONORED = 5
+            REPSTAT_REVERED = 6
+            REPSTAT_EXALTED = 7
+        End Enum
+
         Public Faction As Integer
         Public Flags As FlagEnum = FlagEnum.FACTION_FLAG_INVISIBLE
         Public Standing As Integer
         Public Name As String
         Public Value As Integer
         Public Max As Integer
-        Public Status As Integer _
-        '0=stranger; 1=acquaintance; 2=unfriendly; 3=neutral; 4=friendly; 5=honored; 6=revered; 7=exalted
+        Public Status As RepStatus
         <Flags>
         Public Enum FlagEnum
             FACTION_FLAG_INVISIBLE = 0

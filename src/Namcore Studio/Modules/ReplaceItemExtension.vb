@@ -37,7 +37,7 @@ Namespace Modules
             itm.Id = newitemid
             itm.Name = GetItemNameByItemId(newitemid, MySettings.Default.language)
             itm.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(newitemid), GlobalVariables.GlobalWebClient)
-            itm.Rarity = GetItemQualityByItemId(newitemid)
+            itm.Rarity = CType(GetItemQualityByItemId(newitemid), Item.RarityType)
             Return itm
         End Function
     End Module

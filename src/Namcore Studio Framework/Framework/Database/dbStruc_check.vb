@@ -37,7 +37,7 @@ Namespace Framework.Database
         Dim _xpac As Integer
         '// Declaration
 
-        Public Sub StartCheck(ByVal coreString As Modules.Core, ByVal expansion As Integer, ByVal sqlconn As MySqlConnection,
+        Public Sub StartCheck(ByVal coreString As Modules.Core, ByVal expansion As Expansion, ByVal sqlconn As MySqlConnection,
                               ByVal realmsqlconn As MySqlConnection, ByVal infosqlconn As MySqlConnection,
                               ByVal characterDbname As String, ByVal authDbname As String, ByVal target As Boolean)
             If target = True Then

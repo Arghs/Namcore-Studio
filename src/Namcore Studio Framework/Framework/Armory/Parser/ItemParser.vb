@@ -104,10 +104,8 @@ Namespace Framework.Armory.Parser
                 Return New Item
             End If
             charItem.Name = SplitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
-            If GlobalVariables.offlineExtension = True Then _
-                charItem.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Id), GlobalVariables.GlobalWebClient) Else 
-            charItem.Image = LoadImageFromUrl(SplitString(relevantItemContext, "<img src=""", """ alt"))
-            charItem.Rarity = TryInt(SplitString(relevantItemContext, "item-quality-", """ style="))
+            charItem.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Id), GlobalVariables.GlobalWebClient)
+            charItem.Rarity = CType(TryInt(SplitString(relevantItemContext, "item-quality-", """ style=")), Item.RarityType)
             Dim socketContext As String
             If relevantItemContext.Contains("<span class=""sockets"">") Then
                 LogAppend("Item gems active!", "ItemParser_loadItems", False)
@@ -119,10 +117,7 @@ Namespace Framework.Armory.Parser
                                                              "<span class=""frame"">")
                 If Not oneSocketContext.Length <= 49 Then
                     charItem.Socket1Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
-                    If GlobalVariables.offlineExtension = True Then _
-                        charItem.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket1Id), GlobalVariables.GlobalWebClient) Else 
-                    charItem.Socket1Pic = LoadImageFromUrl(SplitString(oneSocketContext,
-                                                                       "<img src=""", """ alt="""))
+                    charItem.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket1Id), GlobalVariables.GlobalWebClient)
                     charItem.Socket1Effectid = GetEffectIdByGemId(charItem.Socket1Id)
                     charItem.Socket1Name = GetEffectNameById(charItem.Socket1Effectid, My.Settings.language)
                 Else
@@ -135,10 +130,7 @@ Namespace Framework.Armory.Parser
                                             Nothing, , 1)
                     oneSocketContext = SplitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                     charItem.Socket2Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
-                    If GlobalVariables.offlineExtension = True Then _
-                        charItem.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket2Id), GlobalVariables.GlobalWebClient) Else 
-                    charItem.Socket2Pic = LoadImageFromUrl(SplitString(oneSocketContext,
-                                                                       "<img src=""", """ alt="""))
+                    charItem.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket2Id), GlobalVariables.GlobalWebClient)
                     charItem.Socket2Effectid = GetEffectIdByGemId(charItem.Socket2Id)
                     charItem.Socket2Name = GetEffectNameById(charItem.Socket2Effectid, My.Settings.language)
                     If socketCount > 2 Then
@@ -149,11 +141,7 @@ Namespace Framework.Armory.Parser
                         oneSocketContext = SplitString(socketContext, "<span class=""icon-socket",
                                                        "<span class=""frame"">")
                         charItem.Socket3Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
-                        If GlobalVariables.offlineExtension = True Then _
-                            charItem.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket3Id), GlobalVariables.GlobalWebClient) _
-                            Else 
-                        charItem.Socket3Pic = LoadImageFromUrl(SplitString(oneSocketContext,
-                                                                           "<img src=""", """ alt="""))
+                        charItem.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket3Id), GlobalVariables.GlobalWebClient)
                         charItem.Socket3Effectid = GetEffectIdByGemId(charItem.Socket3Id)
                         charItem.Socket3Name = GetEffectNameById(charItem.Socket3Effectid, My.Settings.language)
                     End If
@@ -172,7 +160,7 @@ Namespace Framework.Armory.Parser
                     charItem.EnchantmentName = SplitString(enchantContext,
                                                            """ data-spell=""" & charItem.EnchantmentId.ToString & """>",
                                                            "</span>")
-                    charItem.EnchantmentType = 1
+                    charItem.EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_SPELL
                     charItem.EnchantmentEffectid = GetEffectIdBySpellId(charItem.EnchantmentId, 5)
                 Else
                     LogAppend("Enchantment type: item!", "ItemParser_loadItems", False)
@@ -180,7 +168,7 @@ Namespace Framework.Armory.Parser
                     charItem.EnchantmentId = TryInt(SplitString(enchantContext, "/item/", """>"))
                     charItem.EnchantmentName = SplitString(enchantContext,
                                                            "/item/" & charItem.EnchantmentId.ToString & """>", "</a>")
-                    charItem.EnchantmentType = 2
+                    charItem.EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_ITEM
                     charItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(charItem.EnchantmentId), 5)
                 End If
             Else

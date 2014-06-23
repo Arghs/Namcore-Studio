@@ -181,7 +181,7 @@ Namespace Forms.Character
                                 potCharBag.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
                                                                           GlobalVariables.GlobalWebClient)
                             If potCharBag.Rarity = Nothing Then _
-                                potCharBag.Rarity = GetItemQualityByItemId(potCharBag.Id)
+                                potCharBag.Rarity = CType(GetItemQualityByItemId(potCharBag.Id), Item.RarityType)
                             Dim aentry As Control() =
                                     BankLayoutPanel.Controls.Find("bankitm_slot_" & potCharBag.Slot.ToString & "_panel",
                                                                   True)
@@ -602,7 +602,7 @@ Namespace Forms.Character
                             replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient),
                                                      Bitmap)
                             replaceItm.Name = checkName
-                            replaceItm.Rarity = GetItemQualityByItemId(replaceItm.Id)
+                            replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.Bag = oldItm.Bag
                             replaceItm.Bagguid = oldItm.Bagguid
                             '// Generate an available GUID
@@ -726,7 +726,7 @@ Namespace Forms.Character
                             replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient),
                                                      Bitmap)
                             replaceItm.Name = checkName
-                            replaceItm.Rarity = GetItemQualityByItemId(replaceItm.Id)
+                            replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.AddedBag = True
                             Dim newGuid As Integer = 1
                             Do

@@ -71,7 +71,7 @@ Namespace Framework.Armory.Parser
                                     newGlyph.Name = SplitString(parts(counter), """name"":", ",""")
                                     newGlyph.Slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
                                     newGlyph.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(newGlyph.Id), GlobalVariables.GlobalWebClient)
-                                    newGlyph.Type = loopCounter + 1
+                                    newGlyph.Type = CType(loopCounter + 1, Glyph.GlyphType)
                                     newGlyph.Spec = i
                                     LogAppend("Loaded glyph " & newGlyph.Name, "GlyphParser_loadGlyphs", True)
                                     AddCharacterGlyph(player, newGlyph)

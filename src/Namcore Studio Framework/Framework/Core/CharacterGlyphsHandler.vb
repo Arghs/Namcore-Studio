@@ -69,7 +69,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "majorglyph1"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarSetId, player, account)
                 End If
@@ -85,7 +85,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "majorglyph2"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarSetId, player, account)
                 End If
@@ -101,7 +101,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "majorglyph3"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarSetId, player, account)
                 End If
@@ -117,7 +117,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "minorglyph1"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarSetId, player, account)
                 End If
@@ -133,7 +133,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "minorglyph2"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarSetId, player, account)
                 End If
@@ -149,7 +149,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "minorglyph3"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarSetId, player, account)
                 End If
@@ -166,7 +166,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secmajorglyph1"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarSetId, player, account)
                 End If
@@ -183,7 +183,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secmajorglyph2"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarSetId, player, account)
                 End If
@@ -200,7 +200,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secmajorglyph3"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -217,7 +217,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secminorglyph1"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -234,7 +234,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secminorglyph2"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -251,7 +251,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secminorglyph3"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -329,7 +329,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "majorglyph1"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -339,7 +339,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "minorglyph1"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -349,7 +349,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "minorglyph2"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -359,7 +359,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "majorglyph2"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -369,7 +369,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "minorglyph3"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -379,7 +379,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "majorglyph3"
                     tmpGlyph.Spec = 0
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -390,7 +390,7 @@ Namespace Framework.Core
                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.Slotname = "primeglyph1"
                         tmpGlyph.Spec = 0
-                        tmpGlyph.Type = 3
+                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                         AddCharacterGlyph(player, tmpGlyph)
                         SetCharacterSet(tarsetId, player, account)
                     End If
@@ -400,7 +400,7 @@ Namespace Framework.Core
                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.Slotname = "primeglyph2"
                         tmpGlyph.Spec = 0
-                        tmpGlyph.Type = 3
+                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                         AddCharacterGlyph(player, tmpGlyph)
                         SetCharacterSet(tarsetId, player, account)
                     End If
@@ -410,7 +410,7 @@ Namespace Framework.Core
                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.Slotname = "primeglyph3"
                         tmpGlyph.Spec = 0
-                        tmpGlyph.Type = 3
+                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                         AddCharacterGlyph(player, tmpGlyph)
                         SetCharacterSet(tarsetId, player, account)
                     End If
@@ -426,7 +426,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secmajorglyph1"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -436,7 +436,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secminorglyph1"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -446,7 +446,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secminorglyph2"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -456,7 +456,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secmajorglyph2"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -466,7 +466,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secminorglyph3"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 1
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -476,7 +476,7 @@ Namespace Framework.Core
                     tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                     tmpGlyph.Slotname = "secmajorglyph3"
                     tmpGlyph.Spec = 1
-                    tmpGlyph.Type = 2
+                    tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                     AddCharacterGlyph(player, tmpGlyph)
                     SetCharacterSet(tarsetId, player, account)
                 End If
@@ -486,7 +486,7 @@ Namespace Framework.Core
                         Dim tmpGlyph As New Glyph
                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.Spec = 1
-                        tmpGlyph.Type = 3
+                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                         AddCharacterGlyph(player, tmpGlyph)
                         SetCharacterSet(tarsetId, player, account)
                     End If
@@ -496,7 +496,7 @@ Namespace Framework.Core
                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.Slotname = "secprimeglyph2"
                         tmpGlyph.Spec = 1
-                        tmpGlyph.Type = 3
+                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                         AddCharacterGlyph(player, tmpGlyph)
                         SetCharacterSet(tarsetId, player, account)
                     End If
@@ -506,7 +506,7 @@ Namespace Framework.Core
                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                         tmpGlyph.Slotname = "secprimeglyph3"
                         tmpGlyph.Spec = 1
-                        tmpGlyph.Type = 3
+                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                         AddCharacterGlyph(player, tmpGlyph)
                         SetCharacterSet(tarsetId, player, account)
                     End If
@@ -545,7 +545,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.slotname = "majorglyph1"
                                         tmpGlyph.spec = 0
-                                        tmpGlyph.Type = 2
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 1
@@ -553,7 +553,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "minorglyph2"
                                         tmpGlyph.Spec = 0
-                                        tmpGlyph.Type = 1
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 2
@@ -561,7 +561,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "minorglyph3"
                                         tmpGlyph.Spec = 0
-                                        tmpGlyph.Type = 1
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 3
@@ -569,7 +569,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "majorglyph2"
                                         tmpGlyph.Spec = 0
-                                        tmpGlyph.Type = 2
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 4
@@ -577,7 +577,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "minorglyph1"
                                         tmpGlyph.Spec = 0
-                                        tmpGlyph.Type = 1
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 5
@@ -585,7 +585,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "majorglyph3"
                                         tmpGlyph.Spec = 0
-                                        tmpGlyph.Type = 2
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 6
@@ -593,7 +593,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "primeglyph1"
                                         tmpGlyph.Spec = 0
-                                        tmpGlyph.Type = 3
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 7
@@ -601,7 +601,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "primeglyph2"
                                         tmpGlyph.Spec = 0
-                                        tmpGlyph.Type = 3
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 8
@@ -609,7 +609,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "primeglyph3"
                                         tmpGlyph.Spec = 0
-                                        tmpGlyph.Type = 3
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                 End Select
@@ -620,7 +620,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "secmajorglyph1"
                                         tmpGlyph.Spec = 1
-                                        tmpGlyph.Type = 2
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 1
@@ -628,7 +628,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "secminorglyph2"
                                         tmpGlyph.Spec = 1
-                                        tmpGlyph.Type = 1
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 2
@@ -636,7 +636,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "secminorglyph3"
                                         tmpGlyph.Spec = 1
-                                        tmpGlyph.Type = 1
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 3
@@ -644,7 +644,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "secmajorglyph2"
                                         tmpGlyph.Spec = 1
-                                        tmpGlyph.Type = 2
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 4
@@ -652,7 +652,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "secminorglyph1"
                                         tmpGlyph.Spec = 1
-                                        tmpGlyph.Type = 1
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MINOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 5
@@ -660,7 +660,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "secmajorglyph3"
                                         tmpGlyph.Spec = 1
-                                        tmpGlyph.Type = 2
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_MAJOR
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 6
@@ -668,7 +668,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "secprimeglyph1"
                                         tmpGlyph.Spec = 1
-                                        tmpGlyph.Type = 3
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 7
@@ -676,7 +676,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "secprimeglyph2"
                                         tmpGlyph.Spec = 1
-                                        tmpGlyph.Type = 3
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarSetId, player, account)
                                     Case 8
@@ -684,7 +684,7 @@ Namespace Framework.Core
                                         tmpGlyph.Id = GetItemIdByGlyphId(prevglyphid, GlobalVariables.sourceExpansion)
                                         tmpGlyph.Slotname = "secprimeglyph3"
                                         tmpGlyph.Spec = 1
-                                        tmpGlyph.Type = 3
+                                        tmpGlyph.Type = Glyph.GlyphType.GLYTYPE_PRIME
                                         AddCharacterGlyph(player, tmpGlyph)
                                         SetCharacterSet(tarsetId, player, account)
                                 End Select
