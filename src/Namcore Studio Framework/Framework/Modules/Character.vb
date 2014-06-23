@@ -201,12 +201,17 @@ Namespace Framework.Modules
             End If
         End Sub
 
-        Public Sub SetPlayerBytes(Optional skinColor As Integer = 0, Optional faceStyle As Integer = 0, Optional hairStyle As Integer = 0, Optional hairColor As Integer = 0)
+        Public Sub SetPlayerBytes(Optional skinColor As Integer = 0, Optional faceStyle As Integer = 0,
+                                  Optional hairStyle As Integer = 0, Optional hairColor As Integer = 0)
             If skinColor = 0 Then skinColor = PlayerBytes Mod 256
             If faceStyle = 0 Then faceStyle = (PlayerBytes >> 8) Mod 256
             If hairStyle = 0 Then hairStyle = (PlayerBytes >> 16) Mod 256
             If hairColor = 0 Then hairColor = (PlayerBytes >> 24) Mod 256
             PlayerBytes = skinColor Or faceStyle << 8 Or hairStyle << 16 Or hairColor << 24
+        End Sub
+
+        Public Sub SetPlayerBytes2(ByVal facialHair As Integer)
+            PlayerBytes2 = facialHair Mod 256
         End Sub
     End Class
 End Namespace
