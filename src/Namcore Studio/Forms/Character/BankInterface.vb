@@ -181,7 +181,7 @@ Namespace Forms.Character
                                 potCharBag.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
                                                                           GlobalVariables.GlobalWebClient)
                             If potCharBag.Rarity = Nothing Then _
-                                potCharBag.Rarity = GetItemQualityByItemId(potCharBag.Id)
+                                potCharBag.Rarity = CType(GetItemQualityByItemId(potCharBag.Id), Item.RarityType)
                             Dim aentry As Control() =
                                     BankLayoutPanel.Controls.Find("bankitm_slot_" & potCharBag.Slot.ToString & "_panel",
                                                                   True)
@@ -206,7 +206,7 @@ Namespace Forms.Character
                                 Dim countLabel As Label =
                                         CType(
                                             entry.Controls.Find("bankitm_slot_" & potCharBag.Slot.ToString() & "_count",
-                                                                True)(0),
+                                                                True)(0), 
                                             Label)
                                 countLabel.Text = potCharBag.Count.ToString()
                                 countLabel.Tag = potCharBag
@@ -310,7 +310,7 @@ Namespace Forms.Character
                 '// Filling bag slot
                 If bagPanel.Name.Contains((potCharBag.Slot - 66).ToString()) Then
                     Dim subItmRemovePic As PictureBox =
-                            CType(bagPanel.Controls.Find("bag_" & (realBagSlot + 66).ToString() & "_remove", True)(0),
+                            CType(bagPanel.Controls.Find("bag_" & (realBagSlot + 66).ToString() & "_remove", True)(0), 
                                   PictureBox)
                     subItmRemovePic.BackgroundImage = My.Resources.trash__delete__16x16
                     InfoToolTip.SetToolTip(subItmRemovePic, "Remove")
@@ -385,7 +385,7 @@ Namespace Forms.Character
 
         Private Sub BagItem_MouseEnter(sender As Object, e As EventArgs)
             '// On bag item hover
-            For i = _visibleActionControls.Count - 1 To 0 Step - 1
+            For i = _visibleActionControls.Count - 1 To 0 Step -1
                 '// Hide controls of previous hover
                 _visibleActionControls(i).Visible = False
                 _visibleActionControls.Remove(_visibleActionControls(i))
@@ -546,7 +546,7 @@ Namespace Forms.Character
 
         Private Sub InventItem_MouseEnter(sender As Object, e As EventArgs)
             '// Inventory item mouse hover
-            For i = _visibleActionControls.Count - 1 To 0 Step - 1
+            For i = _visibleActionControls.Count - 1 To 0 Step -1
                 '// Hide controls of previous hover
                 _visibleActionControls(i).Visible = False
                 _visibleActionControls.Remove(_visibleActionControls(i))
@@ -554,7 +554,7 @@ Namespace Forms.Character
             Dim parentPanel As ItemPanel = CType(sender, ItemPanel)
             Dim itm As Item = CType(parentPanel.Tag, Item)
             Dim removePic As PictureBox =
-                    CType(parentPanel.Controls.Find("bankitm_slot_" & itm.Slot.ToString & "_remove", True)(0),
+                    CType(parentPanel.Controls.Find("bankitm_slot_" & itm.Slot.ToString & "_remove", True)(0), 
                           PictureBox)
             If Not removePic Is Nothing Then
                 '// Add control pointer to list to allow referencing (hide) on new hover
@@ -599,10 +599,10 @@ Namespace Forms.Character
                             '// Load item properties
                             replaceItm.Slot = oldItm.Slot
                             replaceItm.Id = intResult
-                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient),
+                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient), 
                                                      Bitmap)
                             replaceItm.Name = checkName
-                            replaceItm.Rarity = GetItemQualityByItemId(replaceItm.Id)
+                            replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.Bag = oldItm.Bag
                             replaceItm.Bagguid = oldItm.Bagguid
                             '// Generate an available GUID
@@ -639,7 +639,7 @@ Namespace Forms.Character
                                         CType(
                                             locPanel.Controls.Find(
                                                 "bankitm_slot_" & replaceItm.Slot.ToString() & "_count",
-                                                True)(0),
+                                                True)(0), 
                                             Label)
                                 If Not countLabel Is Nothing Then
                                     countLabel.Text = "1"
@@ -693,7 +693,7 @@ Namespace Forms.Character
                     End If
                     Dim countLabel As Label =
                             CType(
-                                locPanel.Controls.Find("bankitm_slot_" & replaceItm.Slot.ToString() & "_count", True)(0),
+                                locPanel.Controls.Find("bankitm_slot_" & replaceItm.Slot.ToString() & "_count", True)(0), 
                                 Label)
                     countLabel.Text = ""
                     countLabel.Visible = False
@@ -723,10 +723,10 @@ Namespace Forms.Character
                             Dim replaceItm As New Item()
                             replaceItm.Slot = oldItm.Slot
                             replaceItm.Id = intResult
-                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient),
+                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient), 
                                                      Bitmap)
                             replaceItm.Name = checkName
-                            replaceItm.Rarity = GetItemQualityByItemId(replaceItm.Id)
+                            replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.AddedBag = True
                             Dim newGuid As Integer = 1
                             Do
@@ -772,7 +772,7 @@ Namespace Forms.Character
                     locPic.Tag = replaceItm
                     InfoToolTip.SetToolTip(TryCast(sender, PictureBox), "Add")
                     If Not oldItm.BagItems Is Nothing Then
-                        For i = oldItm.BagItems.Count - 1 To 0 Step - 1
+                        For i = oldItm.BagItems.Count - 1 To 0 Step -1
                             Dim thisItm As Item = oldItm.BagItems(i)
                             Dim resultItem As Item =
                                     GlobalVariables.currentEditedCharSet.InventoryItems.Find(

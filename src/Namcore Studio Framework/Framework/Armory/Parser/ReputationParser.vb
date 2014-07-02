@@ -59,7 +59,7 @@ Namespace Framework.Armory.Parser
                                       False)
                             Dim standing As Integer = TryInt(SplitString(parts(loopcounter), """value"":", ","))
                             Dim orgstanding As Integer = TryInt(SplitString(parts(loopcounter), """standing"":", ","))
-                            rep.Status = orgstanding
+                            rep.Status = CType(orgstanding, Reputation.RepStatus)
                             rep.Max = TryInt(SplitString(parts(loopcounter), """max"":", "}"))
                             rep.Value = standing
                             loopcounter += 1

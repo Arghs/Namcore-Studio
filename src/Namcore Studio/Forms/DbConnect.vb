@@ -42,8 +42,8 @@ Namespace Forms
             _catchError = False
             Select Case GlobalVariables.con_operator
                 Case 1 'Source connection @liveview
-                    If trinity335picker.Checked = True Then GlobalVariables.sourceCore = "trinity"
-                    If mangos335picker.Checked = True Then GlobalVariables.sourceCore = "mangos"
+                    If trinity335picker.Checked = True Then GlobalVariables.sourceCore = Core.TRINITY
+                    If mangos335picker.Checked = True Then GlobalVariables.sourceCore = Core.MANGOS
                     GlobalVariables.globChars = New GlobalCharVars()
                     GlobalVariables.globChars.AccountSets = New List(Of Account)
                     GlobalVariables.armoryMode = False
@@ -87,7 +87,7 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.StartCheck(GlobalVariables.sourceCore, 3, GlobalVariables.GlobalConnection,
+                                _strucCheck.StartCheck(GlobalVariables.sourceCore, Expansion.WOTLK, GlobalVariables.GlobalConnection,
                                                        GlobalVariables.GlobalConnection_Realm,
                                                        GlobalVariables.GlobalConnection_Info, chardbname_combo.Text,
                                                        realmdbname_combo.Text, False) 'todo
@@ -119,8 +119,8 @@ Namespace Forms
 
                     End If
                 Case 2 'Target connection @liveview
-                    If trinity335picker.Checked = True Then GlobalVariables.targetCore = "trinity"
-                    If mangos335picker.Checked = True Then GlobalVariables.targetCore = "mangos"
+                    If trinity335picker.Checked = True Then GlobalVariables.targetCore = Core.TRINITY
+                    If mangos335picker.Checked = True Then GlobalVariables.targetCore = Core.MANGOS
                     GlobalVariables.TargetConnectionString = ""
                     GlobalVariables.TargetConnectionString_Realm = ""
                     If defaultconn_radio.Checked = True Then
@@ -162,7 +162,7 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.StartCheck(GlobalVariables.sourceCore, 3, GlobalVariables.TargetConnection,
+                                _strucCheck.StartCheck(GlobalVariables.sourceCore, Expansion.WOTLK, GlobalVariables.TargetConnection,
                                                        GlobalVariables.TargetConnection_Realm,
                                                        GlobalVariables.TargetConnection_Info, chardbname_combo.Text,
                                                        realmdbname_combo.Text, True) 'todo

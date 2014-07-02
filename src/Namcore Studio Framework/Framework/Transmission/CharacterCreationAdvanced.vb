@@ -26,23 +26,20 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Functions.ResourceHandler
 
 Namespace Framework.Transmission
     Public Class CharacterCreationAdvanced
         Public Function CreateNewAdvancedCharacter(ByVal charname As String, ByVal accountId As String,
-                                              ByRef player As Character,
-                                              Optional forceNameChange As Boolean = False) As Boolean
+                                                   ByRef player As Character,
+                                                   Optional forceNameChange As Boolean = False) As Boolean
             LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString,
                       "CharacterCreationAdvanced_CreateNewAdvancedCharacter", True)
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Return CreateAtArcemu(charname, CInt(accountId), player, forceNameChange)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     Return CreateAtTrinity(charname, CInt(accountId), player, forceNameChange)
-                Case "trinitytbc"
-                    Return False
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     Return CreateAtMangos(charname, CInt(accountId), player, forceNameChange)
                 Case Else
                     Return False
@@ -50,7 +47,7 @@ Namespace Framework.Transmission
         End Function
 
         Private Function CreateAtArcemu(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
-                                   ByVal nameChange As Boolean) As Boolean
+                                        ByVal nameChange As Boolean) As Boolean
             LogAppend("Creating at arcemu", "CharacterCreationAdvanced_createAtArcemu", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -170,15 +167,17 @@ Namespace Framework.Transmission
                 Return True
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " &
+                    ex.ToString(),
                     "CharacterCreationAdvanced_createAtArcemu", False, True)
-                MsgBox(GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
+                MsgBox(ResourceHandler.GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
                 Return False
             End Try
         End Function
 
-        Private Function CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
-                                    ByVal nameChange As Boolean) As Boolean
+        Private Function CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer,
+                                         ByRef player As Character,
+                                         ByVal nameChange As Boolean) As Boolean
             LogAppend("Creating at Trinity", "CharacterCreationAdvanced_createAtTrinity", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -292,15 +291,16 @@ Namespace Framework.Transmission
                 Return True
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " &
+                    ex.ToString(),
                     "CharacterCreationAdvanced_createAtTrinity", False, True)
-                MsgBox(GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
+                MsgBox(ResourceHandler.GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
                 Return False
             End Try
         End Function
 
         Private Function CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
-                                   ByVal nameChange As Boolean) As Boolean
+                                        ByVal nameChange As Boolean) As Boolean
             LogAppend("Creating at Mangos", "CharacterCreationAdvanced_createAtMangos", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -416,9 +416,10 @@ Namespace Framework.Transmission
                 Return True
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while creating the character -> Skipping! -> Error message is: " & ex.ToString(),
+                    "Something went wrong while creating the character -> Skipping! -> Error message is: " &
+                    ex.ToString(),
                     "CharacterCreationAdvanced_createAtMangos", False, True)
-                MsgBox(GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
+                MsgBox(ResourceHandler.GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
                 Return False
             End Try
         End Function

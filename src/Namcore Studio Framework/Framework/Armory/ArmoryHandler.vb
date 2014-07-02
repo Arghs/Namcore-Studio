@@ -58,7 +58,7 @@ Namespace Framework.Armory
             armoryAccount.SetIndex = 0
             armoryAccount.SourceExpansion = 5
             armoryAccount.IsArmory = True
-            armoryAccount.Core = "armory"
+            armoryAccount.Core = Modules.Core.ARMORY
             AddAccountSet(0, armoryAccount)
             For Each armoryLink As String In linkList
                 Try
@@ -89,11 +89,11 @@ Namespace Framework.Armory
                     player.AccountId = 0
                     player.AccountName = "Armory"
                     player.Level = TryInt(SplitString(apiContext, """level"":", ","))
-                    player.Gender = TryInt(SplitString(apiContext, """gender"":", ","))
-                    player.Race = TryInt(SplitString(apiContext, """race"":", ","))
-                    player.Cclass = TryInt(SplitString(apiContext, """class"":", ","))
-                    player.SourceCore = "armory"
-                    player.SourceExpansion = 5
+                    player.Gender(0) = TryUInt(SplitString(apiContext, """gender"":", ","))
+                    player.Race(0) = TryUInt(SplitString(apiContext, """race"":", ","))
+                    player.Cclass(0) = TryUInt(SplitString(apiContext, """class"":", ","))
+                    player.SourceCore = Modules.Core.ARMORY
+                    player.SourceExpansion = Expansion.MOP
                     player.LoadedDateTime = DateTime.Now
                     player.InventoryItems = New List(Of Item)()
                     player.InventoryZeroItems = New List(Of Item)()
@@ -109,23 +109,20 @@ Namespace Framework.Armory
                     Try
                         LogAppend("Loading character appearance information", "ArmoryHandler_DoLoad", True)
                         Dim appearanceContext As String = client.DownloadString(apiLink & "?fields=appearance")
-                        Dim appFace As String = Hex$(Long.Parse(SplitString(appearanceContext, """faceVariation"":", ",")))
-                        Dim appSkin As String = Hex$(Long.Parse(SplitString(appearanceContext, """skinColor"":", ",")))
-                        Dim appHairStyle As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairVariation"":",
-                                                                                 ",")))
-                        Dim appHairColor As String = Hex$(Long.Parse(SplitString(appearanceContext, """hairColor"":",
-                                                                                 ",")))
-                        Dim appFeatureVar As String = Hex$(Long.Parse(SplitString(appearanceContext,
-                                                                                  """featureVariation"":", ",")))
-                        If appFace.ToString.Length = 1 Then appFace = 0 & appFace
-                        If appSkin.ToString.Length = 1 Then appSkin = 0 & appSkin
-                        If appHairStyle.ToString.Length = 1 Then appHairStyle = 0 & appHairStyle
-                        If appHairColor.ToString.Length = 1 Then appHairColor = 0 & appHairColor
-                        ' ReSharper disable RedundantAssignment
-                        If appFeatureVar.Length = 1 Then appFeatureVar = "0" & appFeatureVar 'todo //not used
-                        ' ReSharper restore RedundantAssignment
-                        Dim byteStr As String = ((appHairColor) & (appHairStyle) & (appFace) & (appSkin)).ToString
-                        player.PlayerBytes = TryInt((CLng("&H" & byteStr).ToString))
+                        Dim appFace As Integer = CInt(Hex$(Long.Parse(SplitString(appearanceContext,
+                                                                                  """faceVariation"":", ","))))
+                        Dim appSkin As Integer = CInt(Hex$(Long.Parse(SplitString(appearanceContext, """skinColor"":",
+                                                                                  ","))))
+                        Dim appHairStyle As Integer = CInt(Hex$(Long.Parse(SplitString(appearanceContext,
+                                                                                       """hairVariation"":",
+                                                                                       ","))))
+                        Dim appHairColor As Integer = CInt(Hex$(Long.Parse(SplitString(appearanceContext,
+                                                                                       """hairColor"":",
+                                                                                       ","))))
+                        Dim appFeatureVar As Integer = CInt(Hex$(Long.Parse(SplitString(appearanceContext,
+                                                                                        """featureVariation"":", ","))))
+                        player.SetPlayerBytes(appSkin, appFace, appHairStyle, appHairColor)
+                        player.SetPlayerBytes2(appFeatureVar)
                     Catch ex As Exception
                         LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "ArmoryHandler_DoLoad", False, True)
                     End Try
@@ -133,7 +130,8 @@ Namespace Framework.Armory
                     player.FinishedQuests = SplitString(client.DownloadString(apiLink & "?fields=quests") & ",",
                                                         """quests"":[", "]}")
                     player.InventoryZeroItems = New List(Of Item)()
-                    player.InventoryZeroItems.Add(New Item _
+                    player.InventoryZeroItems.Add(
+                        New Item _
                                                      With {.Id = 6948, .Count = 1, .Bag = 0, .Container = 0, .Slot = 23,
                                                      .Guid = 0}) '// Adding hearthstone
                     player.SetIndex = setId

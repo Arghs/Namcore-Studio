@@ -34,14 +34,12 @@ Namespace Framework.Core
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             player.ArmorItems = New List(Of Item)()
             SetCharacterSet(setId, player, account)
-            Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+             Select Case GlobalVariables.sourceCore
+                Case Modules.Core.ARCEMU
                     LoadAtArcemu(charguid, setId, account)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     LoadAtTrinity(charguid, setId, account)
-                Case "trinitytbc"
-                    'todo LoadAtTrinityTBC(charguid, setId, accountId)
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     LoadAtMangos(charguid, setId, account)
             End Select
         End Sub

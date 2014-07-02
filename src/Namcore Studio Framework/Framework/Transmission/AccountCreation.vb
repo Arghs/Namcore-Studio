@@ -33,7 +33,7 @@ Namespace Framework.Transmission
                                     Optional flags As String = "0")
             LogAppend("Creating new account " & accname, "AccountCreation_CreateNewAccount", True)
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     If _
                         ReturnResultCount(
                             "SELECT `" & GlobalVariables.targetStructure.acc_name_col(0) & "` FROM " &
@@ -73,7 +73,7 @@ Namespace Framework.Transmission
                         LogAppend("Account " & accname & " does exist -> Leaving it untouched!",
                                   "AccountCreation_CreateNewAccount", False)
                     End If
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     If _
                         ReturnResultCount(
                             "SELECT `" & GlobalVariables.targetStructure.acc_name_col(0) & "` FROM " &
@@ -122,9 +122,7 @@ Namespace Framework.Transmission
                         LogAppend("Account " & accname & " does exist -> Leaving it untouched!",
                                   "AccountCreation_CreateNewAccount", False)
                     End If
-                Case "trinitytbc"
-                    'TODO
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     If _
                         ReturnResultCount(
                             "SELECT `" & GlobalVariables.targetStructure.acc_name_col(0) & "` FROM " &

@@ -52,7 +52,7 @@ Namespace Framework.Core.Update
 
         Private Sub CreateGlyph(ByVal player As Character, ByVal glyph2Add As Glyph)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Try
                         If glyph2Add.Type = 3 Then
                             '// Cannot create primary glyphs in pre Cataclysm db
@@ -80,9 +80,9 @@ Namespace Framework.Core.Update
                         Dim parts() As String = glyphString.Split(","c)
                         Dim baseInt As UInteger
                         Select Case glyph2Add.Type
-                            Case 1 : baseInt = 0
-                            Case 2 : baseInt = 3
-                            Case 3 : baseInt = 6
+                            Case Glyph.GlyphType.GLYTYPE_MINOR : baseInt = 0
+                            Case Glyph.GlyphType.GLYTYPE_MAJOR : baseInt = 3
+                            Case Glyph.GlyphType.GLYTYPE_PRIME : baseInt = 6
                         End Select
                         If glyph2Add.Slotname.Contains("1") Then
                             parts(CInt(baseInt)) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
@@ -101,7 +101,7 @@ Namespace Framework.Core.Update
                         LogAppend("Exception occured during glyph creation: " & ex.ToString,
                                   "UpdateGlyphsHandler_CreateGlyph", False, True)
                     End Try
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     Try
                         If glyph2Add.Type > GlobalVariables.sourceExpansion Then
                             '// Cannot create primary glyphs in pre Cataclysm db
@@ -144,7 +144,7 @@ Namespace Framework.Core.Update
                         LogAppend("Exception occured during glyph creation: " & ex.ToString,
                                   "UpdateGlyphsHandler_CreateGlyph", False, True)
                     End Try
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     Try
                         If glyph2Add.Type > GlobalVariables.sourceExpansion Then
                             '// Cannot create primary glyphs in pre Cataclysm db
@@ -185,7 +185,7 @@ Namespace Framework.Core.Update
 
         Private Sub DeleteGlyph(ByVal player As Character, ByVal glyph2Delete As Glyph)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Try
                         Dim useGlyphCol As String
                         Select Case glyph2Delete.Spec
@@ -207,9 +207,9 @@ Namespace Framework.Core.Update
                         Dim parts() As String = glyphString.Split(","c)
                         Dim baseInt As UInteger
                         Select Case glyph2Delete.Type
-                            Case 1 : baseInt = 0
-                            Case 2 : baseInt = 3
-                            Case 3 : baseInt = 6
+                            Case Glyph.GlyphType.GLYTYPE_MINOR : baseInt = 0
+                            Case Glyph.GlyphType.GLYTYPE_MAJOR : baseInt = 3
+                            Case Glyph.GlyphType.GLYTYPE_PRIME : baseInt = 6
                         End Select
                         If glyph2Delete.Slotname.Contains("1") Then
                             parts(CInt(baseInt)) = ""
@@ -228,7 +228,7 @@ Namespace Framework.Core.Update
                         LogAppend("Exception occured during glyph creation: " & ex.ToString,
                                   "UpdateGlyphsHandler_DeleteGlyph", False, True)
                     End Try
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     Try
                         Dim targetCol As String = ""
                         Select Case True
@@ -264,7 +264,7 @@ Namespace Framework.Core.Update
                         LogAppend("Exception occured during glyph deletion: " & ex.ToString,
                                   "UpdateGlyphsHandler_DeleteGlyph", False, True)
                     End Try
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     Try
                         Dim targetSlot As Integer = 0
                         Select Case True

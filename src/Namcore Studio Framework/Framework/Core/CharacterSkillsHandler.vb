@@ -33,14 +33,12 @@ Namespace Framework.Core
         Public Sub GetCharacterSkills(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character skills for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterSkillsHandler_GetCharacterSkills", True)
-            Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+           Select Case GlobalVariables.sourceCore
+                Case Modules.Core.ARCEMU
                     LoadAtArcemu(characterGuid, setId, account)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     LoadAtTrinity(characterGuid, setId, account)
-                Case "trinitytbc"
-                    'todo  LoadAtTrinityTBC(characterGuid, setId, accountId)
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub

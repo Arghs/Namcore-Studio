@@ -40,7 +40,7 @@ Namespace Framework.Core.Update
             Dim mEnchCreator As New EnchantmentsCreation
             For Each armorItm As Item In enchItm
                 Select Case GlobalVariables.sourceCore
-                    Case "arcemu"
+                    Case Modules.Core.ARCEMU
                         Dim itmguid As Integer =
                                 TryInt(
                                     runSQLCommand_characters_string(
@@ -55,7 +55,7 @@ Namespace Framework.Core.Update
                             mEnchCreator.SetItemEnchantments(Nothing, armorItm, itmguid, GlobalVariables.sourceCore,
                                                              GlobalVariables.sourceStructure)
                         End If
-                    Case "trinity", "mangos"
+                    Case Modules.Core.TRINITY, Modules.Core.MANGOS
                         Dim itmguid As Integer =
                                 TryInt(
                                     runSQLCommand_characters_string(
@@ -77,7 +77,7 @@ Namespace Framework.Core.Update
 
         Private Sub CreateItem(ByVal player As Character, ByVal itm2Add As Item)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     Dim newItemGuid As String =
                             ((TryInt(
                                 runSQLCommand_characters_string(
@@ -110,7 +110,7 @@ Namespace Framework.Core.Update
                     Dim mEnchCreator As New EnchantmentsCreation
                     mEnchCreator.SetItemEnchantments(Nothing, itm2Add, TryInt(newItemGuid), GlobalVariables.targetCore,
                                                      GlobalVariables.sourceStructure)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     Dim newItemGuid As Integer = TryInt(
                         runSQLCommand_characters_string(
                             "SELECT " & GlobalVariables.sourceStructure.itmins_guid_col(0) & " FROM " &
@@ -156,7 +156,7 @@ Namespace Framework.Core.Update
                     mEnchCreator.SetItemEnchantments(Nothing, itm2Add, newItemGuid, GlobalVariables.targetCore,
                                                      GlobalVariables.sourceStructure)
                     '// Optional TODO: Set equipment cache
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     Const enchString As String =
                               "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
                     Dim newItemGuid As Integer =
@@ -218,7 +218,7 @@ Namespace Framework.Core.Update
 
         Private Sub DeleteItem(ByVal player As Character, ByVal itm2Delete As Item)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     runSQLCommand_characters_string(
                         "DELETE FROM `" & GlobalVariables.targetStructure.item_instance_tbl(0) &
                         "` WHERE `" & GlobalVariables.targetStructure.itmins_ownerGuid_col(0) & "`='" &
@@ -226,14 +226,14 @@ Namespace Framework.Core.Update
                         "' AND `" & GlobalVariables.targetStructure.itmins_slot_col(0) & "`='" &
                         itm2Delete.Slot.ToString() &
                         " AND `" & GlobalVariables.targetStructure.itmins_container_col(0) & "`='0'")
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "DELETE FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &
                         "' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " = '" &
                         itm2Delete.Slot.ToString() &
                         "'")
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "DELETE FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" & player.Guid.ToString() &

@@ -33,21 +33,19 @@ Namespace Framework.Transmission
             LogAppend("Setting character gender to : " & gender.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterGender", True)
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_gender_col(0) & "='" & gender.ToString() & "' WHERE " &
                         GlobalVariables.targetStructure.char_guid_col(0) &
                         "='" & charguid.ToString() & "'", True)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_gender_col(0) & "='" & gender.ToString() & "' WHERE " &
                         GlobalVariables.targetStructure.char_guid_col(0) &
                         "='" & charguid.ToString() & "'", True)
-                Case "trinitytbc"
-
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_gender_col(0) & "='" & gender.ToString() & "' WHERE " &
@@ -62,21 +60,19 @@ Namespace Framework.Transmission
             LogAppend("Setting character race to : " & race.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterRace", True)
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_race_col(0) & "='" & race.ToString() & "' WHERE " &
                         GlobalVariables.targetStructure.char_guid_col(0) &
                         "='" & charguid.ToString() & "'", True)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_race_col(0) & "='" & race.ToString() & "' WHERE " &
                         GlobalVariables.targetStructure.char_guid_col(0) &
                         "='" & charguid.ToString() & "'", True)
-                Case "trinitytbc"
-
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_race_col(0) & "='" & race.ToString() & "' WHERE " &
@@ -91,21 +87,19 @@ Namespace Framework.Transmission
             LogAppend("Setting character level to : " & level.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterLevel", True)
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_level_col(0) & "='" & level.ToString() & "' WHERE " &
                         GlobalVariables.targetStructure.char_guid_col(0) &
                         "='" & charguid.ToString() & "'", True)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_level_col(0) & "='" & level.ToString() & "' WHERE " &
                         GlobalVariables.targetStructure.char_guid_col(0) &
                         "='" & charguid.ToString() & "'", True)
-                Case "trinitytbc"
-
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_level_col(0) & "='" & level.ToString() & "' WHERE " &
@@ -120,21 +114,19 @@ Namespace Framework.Transmission
             LogAppend("Setting character gender to : " & cclass.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterClass", True)
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_class_col(0) & "='" & cclass.ToString() & "' WHERE " &
                         GlobalVariables.targetStructure.char_guid_col(0) &
                         "='" & charguid.ToString() & "'", True)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_class_col(0) & "='" & cclass.ToString() & "' WHERE " &
                         GlobalVariables.targetStructure.char_guid_col(0) &
                         "='" & charguid.ToString() & "'", True)
-                Case "trinitytbc"
-
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_class_col(0) & "='" & cclass.ToString() & "' WHERE " &
@@ -149,21 +141,19 @@ Namespace Framework.Transmission
             LogAppend("Setting character gold to : " & gold.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterGold", True)
             Select Case GlobalVariables.targetCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_gold_col(0) & "='" & gold.ToString() & "' WHERE " &
                         GlobalVariables.targetStructure.char_guid_col(0) &
                         "='" & charguid.ToString() & "'", True)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_gold_col(0) & "='" & gold.ToString() & "' WHERE " &
                         GlobalVariables.targetStructure.char_guid_col(0) &
                         "='" & charguid.ToString() & "'", True)
-                Case "trinitytbc"
-
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.targetStructure.character_tbl(0) & "` SET " &
                         GlobalVariables.targetStructure.char_gold_col(0) & "='" & gold.ToString() & "' WHERE " &

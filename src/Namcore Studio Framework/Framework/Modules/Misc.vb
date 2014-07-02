@@ -17,28 +17,24 @@
 '* Developed by Alcanmage/megasus
 '*
 '* //FileInfo//
-'*      /Filename:      ReplaceItemExtension
-'*      /Description:   Extension to update an existing item by new id
+'*      /Filename:      Misc
+'*      /Description:   Miscellaneous objects
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Runtime.CompilerServices
-Imports NCFramework.My
-Imports NCFramework.Framework.Modules
-Imports libnc.Provider
 
-Namespace Modules
-    Module ReplaceItemExtension
-    ''' <summary>
-    '''     Replaces an Item
-    ''' </summary>
-                               <Extension()>
-        Public Function ReplaceItem(ByRef sourceItem As Item, ByVal newitemid As Integer) As Item
-            Dim itm As Item
-            itm = SourceItem
-            itm.Id = newitemid
-            itm.Name = GetItemNameByItemId(newitemid, MySettings.Default.language)
-            itm.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(newitemid), GlobalVariables.GlobalWebClient)
-            itm.Rarity = CType(GetItemQualityByItemId(newitemid), Item.RarityType)
-            Return itm
-        End Function
-    End Module
+Namespace Framework.Modules
+    Public Enum Core As Integer
+        NONE = -1
+        ARMORY = 0
+        TRINITY = 1
+        MANGOS = 2
+        ARCEMU = 3
+    End Enum
+    Public Enum Expansion As Integer
+        CLASSIC = 1
+        TBC = 2
+        WOTLK = 3
+        CATA = 4
+        MOP = 5
+        WOD = 6
+    End Enum
 End Namespace

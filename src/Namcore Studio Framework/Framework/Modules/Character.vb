@@ -80,17 +80,103 @@ Namespace Framework.Modules
             AT_LOGIN_CHANGE_RACE = 128
         End Enum
 
+        Public Enum ClassId As UInteger
+            PET_TALENTS = 0
+            WARRIOR = 1
+            PALADIN = 2
+            HUNTER = 3
+            ROGUE = 4
+            PRIEST = 5
+            DEATHKNIGHT = 6
+            SHAMAN = 7
+            MAGE = 8
+            WARLOCK = 9
+            DRUID = 11
+            MONK = 12
+        End Enum
+
+        Public Enum RaceId As UInteger
+            NONE = 0
+            HUMAN = 1
+            ORC = 2
+            DWARF = 3
+            NIGHTELF = 4
+            UNDEAD = 5
+            TAUREN = 6
+            GNOME = 7
+            TROLL = 8
+            GOBLIN = 9
+            BLOODELF = 10
+            DRAENEI = 11
+            WORGEN = 22
+            PANDAREN = 24
+        End Enum
+
+        Public Enum GenderType As UInteger
+            MALE = 0
+            FEMALE = 1
+            NEUTRAL = 2
+        End Enum
+
         Public LoadedDateTime As DateTime
         Public Loaded As Boolean = False
-        Public SourceCore As String
-        Public SourceExpansion As Integer
+        Public SourceCore As Core
+        Public SourceExpansion As Expansion
         Public SetIndex As Integer
         Public Guid As Integer
         Public Name As String
         Public Level As Integer
-        Public Race As Integer
-        Public Cclass As Integer
-        Public Gender As Integer
+        Private _charRace As RaceId
+        Public Overloads Property Race() As RaceId
+            Get
+                Return _charRace
+            End Get
+            Set(value As RaceId)
+                _charRace = value
+            End Set
+        End Property
+        Public Overloads Property Race(ByVal id As UInteger) As UInteger
+            Get
+                Return _charRace
+            End Get
+            Set(value As UInteger)
+                _charRace = CType(value, RaceId)
+            End Set
+        End Property
+        Private _charClass As ClassId
+        Public Overloads Property Cclass() As ClassId
+            Get
+                Return _charClass
+            End Get
+            Set(value As ClassId)
+                _charClass = value
+            End Set
+        End Property
+        Public Overloads Property Cclass(ByVal id As UInteger) As UInteger
+            Get
+                Return _charClass
+            End Get
+            Set(value As UInteger)
+                _charClass = CType(value, ClassId)
+            End Set
+        End Property
+        Private _charGender As GenderType
+        Public Property Gender() As GenderType
+            Get
+                Return _charGender
+            End Get
+            Set(value As GenderType)
+                _charGender = value
+            End Set
+        End Property
+        Public Property Gender(ByVal id As UInteger) As UInteger
+            Get
+                Return _charGender
+            End Get
+            Set(value As UInteger)
+                _charGender = CType(value, GenderType)
+            End Set
+        End Property
         Public Xp As Integer
         Public Gold As Integer
         Public PlayerBytes As Integer
@@ -168,7 +254,7 @@ Namespace Framework.Modules
             End If
             Try
                 Dim profIndex As Integer = Professions.FindIndex(Function(profession) profession.Id = skillId)
-                If Not profIndex = - 1 Then
+                If Not profIndex = -1 Then
                     If Professions(profIndex).Recipes Is Nothing Then _
                         Professions(profIndex).Recipes = New List(Of ProfessionSpell)()
                     Professions(profIndex).Recipes.Add(
@@ -187,7 +273,7 @@ Namespace Framework.Modules
                 Exit Sub
             End If
             Dim profIndex As Integer = Professions.FindIndex(Function(profession) profession.Id = skillId)
-            If Not profIndex = - 1 Then
+            If Not profIndex = -1 Then
                 If Professions(profIndex).Recipes Is Nothing Then
                     Professions(profIndex).Recipes = New List(Of ProfessionSpell)()
                     Exit Sub
@@ -195,10 +281,23 @@ Namespace Framework.Modules
                 Dim recipeIndex As Integer =
                         Professions(profIndex).Recipes.FindIndex(
                             Function(professionSpell) professionSpell.SpellId = spellId)
-                If Not recipeIndex = - 1 Then
+                If Not recipeIndex = -1 Then
                     Professions(profIndex).Recipes.RemoveAt(recipeIndex)
                 End If
             End If
+        End Sub
+
+        Public Sub SetPlayerBytes(Optional skinColor As Integer = 0, Optional faceStyle As Integer = 0,
+                                  Optional hairStyle As Integer = 0, Optional hairColor As Integer = 0)
+            If skinColor = 0 Then skinColor = PlayerBytes Mod 256
+            If faceStyle = 0 Then faceStyle = (PlayerBytes >> 8) Mod 256
+            If hairStyle = 0 Then hairStyle = (PlayerBytes >> 16) Mod 256
+            If hairColor = 0 Then hairColor = (PlayerBytes >> 24) Mod 256
+            PlayerBytes = skinColor Or faceStyle << 8 Or hairStyle << 16 Or hairColor << 24
+        End Sub
+
+        Public Sub SetPlayerBytes2(ByVal facialHair As Integer)
+            PlayerBytes2 = facialHair Mod 256
         End Sub
     End Class
 End Namespace

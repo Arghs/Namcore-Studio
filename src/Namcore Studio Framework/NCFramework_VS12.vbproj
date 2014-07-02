@@ -117,6 +117,7 @@
     <Compile Include="Framework\Functions\MiscInfo.vb" />
     <Compile Include="Framework\Functions\WebConnection.vb" />
     <Compile Include="Framework\Logging\EventLogging.vb" />
+    <Compile Include="Framework\Modules\Misc.vb" />
     <Compile Include="Framework\Modules\TemplateEntry.vb" />
     <Compile Include="Framework\Modules\Account.vb" />
     <Compile Include="Framework\Modules\Character.vb" />

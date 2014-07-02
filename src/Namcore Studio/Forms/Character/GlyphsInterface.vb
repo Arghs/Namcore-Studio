@@ -391,9 +391,9 @@ Namespace Forms.Character
                     gly.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(gly.Id), GlobalVariables.GlobalWebClient)
                     gly.slotname = ""
                     Dim slot As String = ""
-                    If senderPic.Name.Contains("minor") Then gly.type = 1 : slot = "minor"
-                    If senderPic.Name.Contains("major") Then gly.type = 2 : slot = "major"
-                    If senderPic.Name.Contains("prim") Then gly.type = 3 : slot = "prim"
+                    If senderPic.Name.Contains("minor") Then gly.Type = Glyph.GlyphType.GLYTYPE_MINOR : slot = "minor"
+                    If senderPic.Name.Contains("major") Then gly.Type = Glyph.GlyphType.GLYTYPE_MAJOR : slot = "major"
+                    If senderPic.Name.Contains("prim") Then gly.Type = Glyph.GlyphType.GLYTYPE_PRIME : slot = "prim"
                     If senderPic.Name.Contains("sec") Then gly.spec = 1 : gly.slotname = "sec" Else gly.spec = 0
                     gly.slotname = gly.slotname & slot & "glyph"
                     If senderPic.Name.Contains("_1_") Then gly.slotname = gly.slotname & "1"

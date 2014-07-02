@@ -35,13 +35,16 @@ Namespace Framework.Core
             player.Quests = New List(Of Quest)()
             SetCharacterSet(setId, player, account)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     LoadAtArcemu(characterGuid, setId, account)
-                Case "trinity"
-                    LoadAtTrinity(characterGuid, setId, account)
-                Case "trinitytbc"
-                    LoadAtTrinityTbc(characterGuid, setId, account)
-                Case "mangos"
+                Case Modules.Core.TRINITY
+                    Select Case GlobalVariables.sourceExpansion
+                        Case Expansion.TBC
+                            LoadAtTrinityTbc(characterGuid, setId, account)
+                        Case Else
+                            LoadAtTrinity(characterGuid, setId, account)
+                    End Select
+                Case Modules.Core.MANGOS
                     LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub

@@ -73,7 +73,7 @@ Namespace Framework.Core.Update
 
         Private Sub CreateQuest(ByVal player As Character, ByVal qst2Add As Quest, Optional update As Boolean = False)
             Select Case GlobalVariables.sourceCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     If qst2Add.Rewarded = 1 Then
                         runSQLCommand_characters_string(
                             "INSERT IGNORE INTO " &
@@ -110,7 +110,7 @@ Namespace Framework.Core.Update
 
         Private Sub DeleteQuest(ByVal player As Character, ByVal quest2Delete As Quest)
             Select Case GlobalVariables.sourceCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     If quest2Delete.Rewarded = 1 Then
                         runSQLCommand_characters_string(
                             "DELETE FROM " &

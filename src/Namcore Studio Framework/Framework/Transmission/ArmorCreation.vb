@@ -21,9 +21,9 @@
 '*      /Description:   Includes functions for creating the equipped items of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports System.Text.RegularExpressions
 
@@ -35,37 +35,46 @@ Namespace Framework.Transmission
                       "ArmorCreation_AddCharacterArmor", True)
             Try
                 Select Case GlobalVariables.targetCore
-                    Case "arcemu"
+                    Case Modules.Core.ARCEMU
                         CreateAtArcemu(charguid, player)
-                    Case "trinity"
+                    Case Modules.Core.TRINITY
                         CreateAtTrinity(charguid, player)
-                    Case "trinitytbc"
-
-                    Case "mangos"
+                    Case Modules.Core.MANGOS
                         CreateAtMangos(charguid, player)
                 End Select
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(),
-                     "ArmorCreation_AddCharacterArmor", False, True)
+                          "ArmorCreation_AddCharacterArmor", False, True)
             End Try
         End Sub
 
         Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating armor at arcemu", "ArmorCreation_createAtArcemu", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtArcemu", False)
-            'Adding weapon specific spells and skills
-            Dim cClass As Integer = player.Cclass
-            If cClass = 1 Or cClass = 2 Or cClass = 6 Then
-                AddSpells("750,", player)
-                AddSkills("293,", player)
-            ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 6 Or cClass = 7 Then
-                AddSpells("8737,", player)
-                AddSkills("413,", player)
-            ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 4 Or cClass = 6 Or cClass = 7 Or cClass = 11 Then
-                AddSpells("9077,", player)
-                AddSkills("414,", player)
-            Else
-            End If
+            '// Adding weapon specific spells and skills
+            Select Case player.Cclass
+                Case Character.ClassId.WARRIOR, Character.ClassId.PALADIN, Character.ClassId.DEATHKNIGHT
+                    AddSpells("750,", player)
+                    AddSkills("293,", player)
+                    AddSpells("8737,", player)
+                    AddSkills("413,", player)
+                Case Character.ClassId.HUNTER, Character.ClassId.DEATHKNIGHT, Character.ClassId.SHAMAN
+                    AddSpells("8737,", player)
+                    AddSkills("413,", player)
+                Case Character.ClassId.ROGUE, Character.ClassId.DRUID
+                    AddSpells("9077,", player)
+                    AddSkills("414,", player)
+                Case Character.ClassId.MONK
+                    AddSpells("15590,", player)
+                    AddSkills("473,", player)
+                    AddSpells("196,", player)
+                    AddSpells("198,", player)
+                    AddSpells("201,", player)
+                    AddSpells("200,", player)
+                    AddSkills("229,", player)
+                    AddSpells("227,", player)
+                    AddSkills("136,", player)
+            End Select
             LogAppend("Adding items", "ArmorCreation_createAtArcemu", False)
             Dim itemid As Integer
             Dim itemtypelist(18) As String
@@ -88,11 +97,11 @@ Namespace Framework.Transmission
             itemtypelist(16) = "off"
             itemtypelist(17) = "distance"
             itemtypelist(18) = "tabard"
-            'Build item type string
+            '// Build item type string
             Dim finalItemString As String = itemtypelist.Aggregate("",
                                                                    Function(current, newItemType) _
                                                                       current & newItemType & " 0 ")
-            Dim typeCounter As Integer = -1
+            Dim typeCounter As Integer = - 1
             Dim newItemGuid As Integer =
                     TryInt(
                         runSQLCommand_characters_string(
@@ -153,19 +162,30 @@ Namespace Framework.Transmission
         Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating armor at trinity", "ArmorCreation_createAtTrinity", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtTrinity", False)
-            'Adding weapon specific spells and skills
-            Dim cClass As Integer = player.Cclass
-            If cClass = 1 Or cClass = 2 Or cClass = 6 Then
-                AddSpells("750,", player)
-                AddSkills("293,", player)
-            ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 6 Or cClass = 7 Then
-                AddSpells("8737,", player)
-                AddSkills("413,", player)
-            ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 4 Or cClass = 6 Or cClass = 7 Or cClass = 11 Then
-                AddSpells("9077,", player)
-                AddSkills("414,", player)
-            Else
-            End If
+            '// Adding weapon specific spells and skills
+            Select Case player.Cclass
+                Case Character.ClassId.WARRIOR, Character.ClassId.PALADIN, Character.ClassId.DEATHKNIGHT
+                    AddSpells("750,", player)
+                    AddSkills("293,", player)
+                    AddSpells("8737,", player)
+                    AddSkills("413,", player)
+                Case Character.ClassId.HUNTER, Character.ClassId.DEATHKNIGHT, Character.ClassId.SHAMAN
+                    AddSpells("8737,", player)
+                    AddSkills("413,", player)
+                Case Character.ClassId.ROGUE, Character.ClassId.DRUID
+                    AddSpells("9077,", player)
+                    AddSkills("414,", player)
+                Case Character.ClassId.MONK
+                    AddSpells("15590,", player)
+                    AddSkills("473,", player)
+                    AddSpells("196,", player)
+                    AddSpells("198,", player)
+                    AddSpells("201,", player)
+                    AddSpells("200,", player)
+                    AddSkills("229,", player)
+                    AddSpells("227,", player)
+                    AddSkills("136,", player)
+            End Select
             LogAppend("Adding items", "ArmorCreation_createAtTrinity", False)
             Dim itemid As Integer
             Dim itemtypelist(18) As String
@@ -188,11 +208,11 @@ Namespace Framework.Transmission
             itemtypelist(16) = "off"
             itemtypelist(17) = "distance"
             itemtypelist(18) = "tabard"
-            'Build item type string
+            '// Build item type string
             Dim finalItemString As String = itemtypelist.Aggregate("",
                                                                    Function(current, newItemType) _
                                                                       current & newItemType & " 0 ")
-            Dim typeCounter As Integer = -1
+            Dim typeCounter As Integer = - 1
             Dim newItemGuid As Integer =
                     TryInt(
                         runSQLCommand_characters_string(
@@ -263,18 +283,29 @@ Namespace Framework.Transmission
             LogAppend("Creating armor at mangos", "ArmorCreation_createAtMangos", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtMangos", False)
             'Adding weapon specific spells and skills
-            Dim cClass As Integer = player.Cclass
-            If cClass = 1 Or cClass = 2 Or cClass = 6 Then
-                AddSpells("750,", player)
-                AddSkills("293,", player)
-            ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 6 Or cClass = 7 Then
-                AddSpells("8737,", player)
-                AddSkills("413,", player)
-            ElseIf cClass = 1 Or cClass = 2 Or cClass = 3 Or cClass = 4 Or cClass = 6 Or cClass = 7 Or cClass = 11 Then
-                AddSpells("9077,", player)
-                AddSkills("414,", player)
-            Else
-            End If
+            Select Case player.Cclass
+                Case Character.ClassId.WARRIOR, Character.ClassId.PALADIN, Character.ClassId.DEATHKNIGHT
+                    AddSpells("750,", player)
+                    AddSkills("293,", player)
+                    AddSpells("8737,", player)
+                    AddSkills("413,", player)
+                Case Character.ClassId.HUNTER, Character.ClassId.DEATHKNIGHT, Character.ClassId.SHAMAN
+                    AddSpells("8737,", player)
+                    AddSkills("413,", player)
+                Case Character.ClassId.ROGUE, Character.ClassId.DRUID
+                    AddSpells("9077,", player)
+                    AddSkills("414,", player)
+                Case Character.ClassId.MONK
+                    AddSpells("15590,", player)
+                    AddSkills("473,", player)
+                    AddSpells("196,", player)
+                    AddSpells("198,", player)
+                    AddSpells("201,", player)
+                    AddSpells("200,", player)
+                    AddSkills("229,", player)
+                    AddSpells("227,", player)
+                    AddSkills("136,", player)
+            End Select
             LogAppend("Adding items", "ArmorCreation_createAtMangos", False)
             Dim itemid As Integer
             Dim itemtypelist(18) As String
@@ -297,11 +328,11 @@ Namespace Framework.Transmission
             itemtypelist(16) = "off"
             itemtypelist(17) = "distance"
             itemtypelist(18) = "tabard"
-            'Build item type string
+            '// Build item type string
             Dim finalItemString As String = itemtypelist.Aggregate("",
                                                                    Function(current, newItemType) _
                                                                       current & newItemType & " 0 ")
-            Dim typeCounter As Integer = -1
+            Dim typeCounter As Integer = - 1
             Dim newItemGuid As Integer =
                     TryInt(
                         runSQLCommand_characters_string(

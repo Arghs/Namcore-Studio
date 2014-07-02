@@ -24,13 +24,14 @@
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports System.Reflection
 
 Namespace Framework.Transmission
     Public Module SpellCreation
         Public Sub AddSpells(ByVal spellstring As String, ByVal player As Character,
                              Optional forceTargetCore As Boolean = False)
             'TODO
-            Dim useCore As String
+            Dim useCore As Modules.Core
             Dim useStructure As DbStructure
             If forceTargetCore Then
                 useCore = GlobalVariables.targetCore
@@ -45,7 +46,7 @@ Namespace Framework.Transmission
                 Dim mySpell As String = mySpells(i)
                 LogAppend("Adding Spell " & mySpell, "SpellCreation_AddSpells")
                 Select Case useCore
-                    Case "trinity"
+                    Case Modules.Core.TRINITY
                         runSQLCommand_characters_string(
                             "INSERT IGNORE INTO `" & useStructure.character_spells_tbl(0) & "`( `" &
                             useStructure.spell_guid_col(0) & "`, `" &
@@ -62,7 +63,7 @@ Namespace Framework.Transmission
         Public Sub AddCharacterSpells(ByVal player As Character)
             'TODO
             Select Case GlobalVariables.targetCore
-                Case "trinity", "mangos"
+                Case Modules.Core.TRINITY, Modules.Core.MANGOS
                     If Not player.Spells Is Nothing Then
                         For Each spl As Spell In player.Spells
                             LogAppend("Adding Spell " & spl.Id, "SpellCreation_AddCharacterSpells")

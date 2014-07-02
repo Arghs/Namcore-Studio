@@ -40,7 +40,7 @@ Namespace Framework.Core.Update
                 If Not newPlayer.AccountId = comparePlayer.AccountId Then
                     '// Account changed
                     Select Case GlobalVariables.sourceCore
-                        Case "trinity"
+                        Case Modules.Core.TRINITY
                             runSQLCommand_characters_string(
                                 "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
                                 GlobalVariables.sourceStructure.char_accountId_col(0) &
@@ -65,7 +65,7 @@ Namespace Framework.Core.Update
                         "`='" & newPlayer.Name & "' WHERE `" & GlobalVariables.sourceStructure.char_guid_col(0) & "`='" &
                         newPlayer.Guid.ToString() & "'")
                 End If
-                If Not newPlayer.Race = comparePlayer.Race Then
+                If Not newPlayer.Race(0) = comparePlayer.Race Then
                     '// Race changed
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
@@ -74,7 +74,7 @@ Namespace Framework.Core.Update
                         GlobalVariables.sourceStructure.char_guid_col(0) &
                         "`='" & newPlayer.Guid.ToString() & "'")
                 End If
-                If Not newPlayer.Cclass = comparePlayer.Cclass Then
+                If Not newPlayer.Cclass(0) = comparePlayer.Cclass Then
                     '// Class changed
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &
@@ -83,7 +83,7 @@ Namespace Framework.Core.Update
                         GlobalVariables.sourceStructure.char_guid_col(0) &
                         "`='" & newPlayer.Guid.ToString() & "'")
                 End If
-                If Not newPlayer.Gender = comparePlayer.Gender Then
+                If Not newPlayer.Gender(0) = comparePlayer.Gender Then
                     '// Gender changed
                     runSQLCommand_characters_string(
                         "UPDATE `" & GlobalVariables.sourceStructure.character_tbl(0) & "` SET `" &

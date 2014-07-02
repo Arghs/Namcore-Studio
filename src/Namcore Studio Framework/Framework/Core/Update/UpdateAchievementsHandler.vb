@@ -54,7 +54,7 @@ Namespace Framework.Core.Update
             LogAppend("Creating achievement with id " & av.Id.ToString(), "UpdateAchievementsHandler_CreateAchievement",
                       True)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu", "trinity", "mangos"
+                Case Modules.Core.ARCEMU, Modules.Core.TRINITY, Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "INSERT INTO `" & GlobalVariables.sourceStructure.character_achievement_tbl(0) &
                         "` ( `" & GlobalVariables.sourceStructure.av_guid_col(0) &
@@ -71,7 +71,7 @@ Namespace Framework.Core.Update
             LogAppend("Removing achievement with id " & av.Id.ToString(), "UpdateAchievementsHandler_RemoveAchievement",
                       True)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu", "trinity", "mangos"
+                Case Modules.Core.ARCEMU, Modules.Core.TRINITY, Modules.Core.MANGOS
                     runSQLCommand_characters_string(
                         "DELETE FROM `" & GlobalVariables.sourceStructure.character_achievement_tbl(0) &
                         "` WHERE `" & GlobalVariables.sourceStructure.av_guid_col(0) &

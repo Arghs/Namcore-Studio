@@ -32,7 +32,7 @@ Namespace Framework.Transmission
             LogAppend("Adding achievements for character: " & charguid.ToString(),
                       "AchievementCreation_SetCharacterAchievements", True)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu", "trinity", "mangos"
+                Case Modules.Core.ARCEMU, Modules.Core.TRINITY, Modules.Core.MANGOS
                     For Each av As Achievement In player.Achievements
                         runSQLCommand_characters_string(
                             "INSERT INTO `" & GlobalVariables.sourceStructure.character_achievement_tbl(0) &

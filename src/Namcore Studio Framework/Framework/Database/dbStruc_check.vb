@@ -37,7 +37,7 @@ Namespace Framework.Database
         Dim _xpac As Integer
         '// Declaration
 
-        Public Sub StartCheck(ByVal coreString As String, ByVal expansion As Integer, ByVal sqlconn As MySqlConnection,
+        Public Sub StartCheck(ByVal coreString As Modules.Core, ByVal expansion As Expansion, ByVal sqlconn As MySqlConnection,
                               ByVal realmsqlconn As MySqlConnection, ByVal infosqlconn As MySqlConnection,
                               ByVal characterDbname As String, ByVal authDbname As String, ByVal target As Boolean)
             If target = True Then
@@ -51,14 +51,14 @@ Namespace Framework.Database
             _tmpConnRealm = realmsqlconn
             _tmpConnInfo = infosqlconn
             _characterDb = characterDbname
-            _authDb = authDBNAME
+            _authDb = authDbname
             _xpac = expansion
             _dbReport = ""
             _tablescheme = ""
-            Dim dbstruc As New DBStructure
+            Dim dbstruc As New DbStructure
             Select Case coreString
-                Case "trinity"
-                    dbstruc.coreName = coreString
+                Case Modules.Core.TRINITY
+                    dbstruc.CoreName = coreString.ToString()
                     'auth
                     dbstruc.account_tbl = {"account"}
                     dbstruc.accountAccess_tbl = {"account_access"}
@@ -216,8 +216,8 @@ Namespace Framework.Database
                     check_character_spell(dbstruc)
                     check_character_talent(dbstruc)
                     check_item_instance(dbstruc)
-                Case "mangos"
-                    dbstruc.CoreName = coreString
+                Case Modules.Core.MANGOS
+                    dbstruc.CoreName = coreString.ToString()
                     'auth
                     dbstruc.account_tbl = {"account"}
                     '_account

@@ -36,14 +36,12 @@ Namespace Framework.Core
             player.InventoryItems = New List(Of Item)()
             player.InventoryZeroItems = New List(Of Item)()
             SetCharacterSet(setId, player, account)
-            Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+           Select Case GlobalVariables.sourceCore
+                Case Modules.Core.ARCEMU
                     LoadAtArcemu(characterGuid, setId, account)
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     LoadAtTrinity(characterGuid, setId, account)
-                Case "trinitytbc"
-                    'todo LoadAtTrinityTBC(characterGuid, setId, accountId)
-                Case "mangos"
+                Case Modules.Core.MANGOS
                     LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub

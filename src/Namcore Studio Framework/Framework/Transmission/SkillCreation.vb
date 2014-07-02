@@ -30,7 +30,7 @@ Namespace Framework.Transmission
         Public Sub AddSkills(ByVal skillsstring As String, ByVal player As Character,
                              Optional forceTargetCore As Boolean = False)
             'TODO
-            Dim useCore As String
+            Dim useCore As Modules.Core
             Dim useStructure As DbStructure
             If forceTargetCore Then
                 useCore = GlobalVariables.targetCore
@@ -45,7 +45,7 @@ Namespace Framework.Transmission
                 Dim mySkill As String = mySkills(i)
                 LogAppend("Adding Skill " & mySkill, "SkillCreation_AddSkills")
                 Select Case useCore
-                    Case "trinity"
+                    Case Modules.Core.TRINITY
                         runSQLCommand_characters_string(
                             "INSERT IGNORE INTO `" & useStructure.character_skills_tbl(0) & "`( `" &
                             useStructure.skill_guid_col(0) & "`, `" &
@@ -62,7 +62,7 @@ Namespace Framework.Transmission
         Public Sub AddUpdateSkill(ByVal skill As Skill, ByVal player As Character,
                           Optional forceTargetCore As Boolean = False)
             'TODO
-            Dim useCore As String
+            Dim useCore As Modules.Core
             Dim useStructure As DbStructure
             If forceTargetCore Then
                 useCore = GlobalVariables.targetCore
@@ -73,7 +73,7 @@ Namespace Framework.Transmission
             End If
             LogAppend("Adding Skill " & skill.Id.ToString(), "SkillCreation_AddUpdateSkill")
             Select Case useCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "INSERT IGNORE INTO `" & useStructure.character_skills_tbl(0) & "` ( `" &
                         useStructure.skill_guid_col(0) & "`, `" &
@@ -93,7 +93,7 @@ Namespace Framework.Transmission
         Public Sub AddProfession(ByVal prof As Profession, ByVal player As Character,
                          Optional forceTargetCore As Boolean = False)
             'TODO
-            Dim useCore As String
+            Dim useCore As Modules.Core
             Dim useStructure As DbStructure
             If forceTargetCore Then
                 useCore = GlobalVariables.targetCore
@@ -104,7 +104,7 @@ Namespace Framework.Transmission
             End If
             LogAppend("Adding Skill " & prof.Id.ToString(), "SkillCreation_AddUpdateSkill")
             Select Case useCore
-                Case "trinity"
+                Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
                         "INSERT IGNORE INTO `" & useStructure.character_skills_tbl(0) & "` ( `" &
                         useStructure.skill_guid_col(0) & "`, `" &
@@ -124,7 +124,7 @@ Namespace Framework.Transmission
         Public Sub AddCharacterSkills(ByVal player As Character)
             'TODO
             Select Case GlobalVariables.targetCore
-                Case "trinity", "mangos"
+                Case Modules.Core.TRINITY, Modules.Core.MANGOS
                     If Not player.Skills Is Nothing Then
                         For Each skl As Skill In player.Skills
                             LogAppend("Adding Skill " & skl.Id, "SkillCreation_AddCharacterSkills")

@@ -37,13 +37,16 @@ Namespace Framework.Core
             LogAppend("Loading basic character information for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterBasicsHandler_GetBasicCharacterInformation", True)
             Select Case GlobalVariables.sourceCore
-                Case "arcemu"
+                Case Modules.Core.ARCEMU
                     LoadAtArcemu(characterGuid, setId, account)
-                Case "trinity"
-                    LoadAtTrinity(characterGuid, setId, account)
-                Case "trinitytbc"
-                    LoadAtTrinityTbc(characterGuid, setId, account)
-                Case "mangos"
+                Case Modules.Core.TRINITY
+                    Select Case GlobalVariables.sourceExpansion
+                        Case Expansion.TBC
+                            LoadAtTrinityTbc(characterGuid, setId, account)
+                        Case Else
+                            LoadAtTrinity(characterGuid, setId, account)
+                    End Select
+                Case Modules.Core.MANGOS
                     LoadAtMangos(characterGuid, setId, account)
             End Select
         End Sub
@@ -59,7 +62,7 @@ Namespace Framework.Core
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
-            tmpCharacter.SourceCore = "arcemu"
+            tmpCharacter.SourceCore = Modules.Core.ARCEMU
             tmpCharacter.SetIndex = tarSetId
             LogAppend(
                 "Loaded character name info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
@@ -69,7 +72,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_race_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Race = TryInt(_tempResult)
+            tmpCharacter.Race(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character race info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", True)
@@ -78,7 +81,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_class_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Cclass = TryInt(_tempResult)
+            tmpCharacter.Cclass(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character class info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", True)
@@ -87,7 +90,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_gender_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Gender = TryInt(_tempResult)
+            tmpCharacter.Gender(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character gender info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtArcemu", True)
@@ -425,7 +428,7 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" &
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
-              SetCharacterSet(tarSetId, tmpCharacter, account)
+            SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
         Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
@@ -440,14 +443,14 @@ Namespace Framework.Core
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
-            tmpCharacter.SourceCore = "trinity"
+            tmpCharacter.SourceCore = Modules.Core.TRINITY
             tmpCharacter.SetIndex = tarSetId
             _tempResult =
                 runSQLCommand_characters_string(
                     "SELECT " & GlobalVariables.sourceStructure.char_race_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Race = TryInt(_tempResult)
+            tmpCharacter.Race(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character race info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", True)
@@ -456,7 +459,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_class_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Cclass = TryInt(_tempResult)
+            tmpCharacter.Cclass(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character class info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", True)
@@ -465,7 +468,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_gender_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Gender = TryInt(_tempResult)
+            tmpCharacter.Gender(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character gender info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinity", True)
@@ -851,7 +854,8 @@ Namespace Framework.Core
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
-            tmpCharacter.SourceCore = "trinitytbc"
+            tmpCharacter.SourceCore = Modules.Core.TRINITY
+            tmpCharacter.SourceExpansion = Expansion.TBC
             tmpCharacter.SetIndex = tarSetId
 
             'Character Table
@@ -860,7 +864,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_race_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Race = TryInt(_tempResult)
+            tmpCharacter.Race(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character race info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", True)
@@ -869,7 +873,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_class_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Cclass = TryInt(_tempResult)
+            tmpCharacter.Cclass(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character class info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", True)
@@ -878,7 +882,7 @@ Namespace Framework.Core
                     "SELECT CAST(SUBSTRING_INDEX(SUBSTRING_INDEX(`data`, ' ', 242), ' ', -1) AS UNSIGNED) AS `gender` FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "'")
-            tmpCharacter.Gender = TryInt(_tempResult)
+            tmpCharacter.Gender(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character gender info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtTrinityTBC", True)
@@ -1264,7 +1268,7 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" &
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
-               SetCharacterSet(tarSetId, tmpCharacter, account)
+            SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
         Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
@@ -1277,7 +1281,7 @@ Namespace Framework.Core
             tmpCharacter.Name = _tempResult
             tmpCharacter.Guid = charguid
             tmpCharacter.CreatedGuid = charguid
-            tmpCharacter.SourceCore = "mangos"
+            tmpCharacter.SourceCore = Modules.Core.MANGOS
             tmpCharacter.SetIndex = tarSetId
 
             'Character Table
@@ -1286,7 +1290,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_race_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Race = TryInt(_tempResult)
+            tmpCharacter.Race(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character race info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", True)
@@ -1295,7 +1299,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_class_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Cclass = TryInt(_tempResult)
+            tmpCharacter.Cclass(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character class info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", True)
@@ -1304,7 +1308,7 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_gender_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.Gender = TryInt(_tempResult)
+            tmpCharacter.Gender(0) = TryUInt(_tempResult)
             LogAppend(
                 "Loaded character gender info for characterGuid: " & charguid.ToString & " and setId: " & tarSetId &
                 " // result is: " & _tempResult, "CharacterBasicsHandler_LoadAtMangos", True)
@@ -1652,7 +1656,7 @@ Namespace Framework.Core
                                     tmpCharacter.BindPositionY.ToString() & "</position_y><position_z>" &
                                     tmpCharacter.BindPositionZ.ToString() & "</position_z>"
 
-             SetCharacterSet(tarSetId, tmpCharacter, account)
+            SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
     End Class
 End Namespace

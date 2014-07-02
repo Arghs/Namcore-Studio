@@ -162,12 +162,12 @@ Namespace Forms
                 str(1) = rowitem.Item(1).ToString()
                 player.Name = rowitem.Item(2).ToString()
                 str(2) = rowitem.Item(2).ToString()
-                player.Race = TryInt(rowitem.Item(3).ToString())
-                str(3) = GetRaceNameById(TryInt(rowitem.Item(3).ToString()))
-                player.Cclass = TryInt(rowitem.Item(4).ToString())
-                str(4) = GetClassNameById(TryInt(rowitem.Item(4).ToString()))
-                player.Gender = TryInt(rowitem.Item(5).ToString())
-                str(5) = GetGenderNameById(TryInt(rowitem.Item(5).ToString()))
+                player.Race(0) = TryUInt(rowitem.Item(3).ToString())
+                str(3) = GetRaceNameById(TryUInt(rowitem.Item(3).ToString()))
+                player.Cclass(0) = TryUInt(rowitem.Item(4).ToString())
+                str(4) = GetClassNameById(TryUInt(rowitem.Item(4).ToString()))
+                player.Gender(0) = TryUInt(rowitem.Item(5).ToString())
+                str(5) = GetGenderNameById(TryUInt(rowitem.Item(5).ToString()))
                 player.Level = TryInt(rowitem.Item(6).ToString())
                 str(6) = rowitem.Item(6).ToString()
                 itm = New ListViewItem(str)
@@ -343,7 +343,6 @@ Namespace Forms
         End Sub
 
         Public Sub Loadtargetaccountsandchars()
-            GlobalVariables.targetCore = "trinity" 'todo for testing only
             Dim mAcInfoProc As AccountCharacterInformationProcessing = New AccountCharacterInformationProcessing
             _targetAcccharTable = mAcInfoProc.ReturnTargetAccCharTable(GlobalVariables.TargetConnection_Realm,
                                                                        GlobalVariables.targetStructure)
@@ -440,9 +439,9 @@ Namespace Forms
                         str(0) = rowitem.Item(0).ToString()
                         str(1) = rowitem.Item(1).ToString()
                         str(2) = rowitem.Item(2).ToString()
-                        str(3) = GetRaceNameById(TryInt(rowitem.Item(3).ToString()))
-                        str(4) = GetClassNameById(TryInt(rowitem.Item(4).ToString()))
-                        str(5) = GetGenderNameById(TryInt(rowitem.Item(5).ToString()))
+                        str(3) = GetRaceNameById(TryUInt(rowitem.Item(3).ToString()))
+                        str(4) = GetClassNameById(TryUInt(rowitem.Item(4).ToString()))
+                        str(5) = GetGenderNameById(TryUInt(rowitem.Item(5).ToString()))
                         str(6) = rowitem.Item(6).ToString()
                         itm = New ListViewItem(str)
                         itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7).ToString()),
@@ -484,9 +483,9 @@ Namespace Forms
                         str(0) = rowitem.Item(0).ToString()
                         str(1) = rowitem.Item(1).ToString()
                         str(2) = rowitem.Item(2).ToString()
-                        str(3) = GetRaceNameById(TryInt(rowitem.Item(3).ToString()))
-                        str(4) = GetClassNameById(TryInt(rowitem.Item(4).ToString()))
-                        str(5) = GetGenderNameById(TryInt(rowitem.Item(5).ToString()))
+                        str(3) = GetRaceNameById(TryUInt(rowitem.Item(3).ToString()))
+                        str(4) = GetClassNameById(TryUInt(rowitem.Item(4).ToString()))
+                        str(5) = GetGenderNameById(TryUInt(rowitem.Item(5).ToString()))
                         str(6) = rowitem.Item(6).ToString()
                         itm = New ListViewItem(str)
                         itm.Tag = GetCharacterSetBySetId(TryInt(rowitem.Item(7).ToString()),
