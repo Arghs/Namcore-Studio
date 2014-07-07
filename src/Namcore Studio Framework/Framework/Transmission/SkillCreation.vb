@@ -60,7 +60,7 @@ Namespace Framework.Transmission
         End Sub
 
         Public Sub AddUpdateSkill(ByVal skill As Skill, ByVal player As Character,
-                          Optional forceTargetCore As Boolean = False)
+                                  Optional forceTargetCore As Boolean = False)
             'TODO
             Dim useCore As Modules.Core
             Dim useStructure As DbStructure
@@ -82,7 +82,8 @@ Namespace Framework.Transmission
                         useStructure.skill_max_col(0) &
                         "` ) VALUES ( '" &
                         player.CreatedGuid.ToString & "', '" &
-                        skill.Id.ToString() & "', '" & skill.Value.ToString() & "', '" & skill.Max.ToString() & "' ) on duplicate key update `" &
+                        skill.Id.ToString() & "', '" & skill.Value.ToString() & "', '" & skill.Max.ToString() &
+                        "' ) on duplicate key update `" &
                         useStructure.skill_value_col(0) & "`=values(`" &
                         useStructure.skill_value_col(0) & "`), `" &
                         useStructure.skill_max_col(0) & "`=values(`" &
@@ -91,7 +92,7 @@ Namespace Framework.Transmission
         End Sub
 
         Public Sub AddProfession(ByVal prof As Profession, ByVal player As Character,
-                         Optional forceTargetCore As Boolean = False)
+                                 Optional forceTargetCore As Boolean = False)
             'TODO
             Dim useCore As Modules.Core
             Dim useStructure As DbStructure
@@ -113,7 +114,8 @@ Namespace Framework.Transmission
                         useStructure.skill_max_col(0) &
                         "` ) VALUES ( '" &
                         player.CreatedGuid.ToString & "', '" &
-                        prof.Id.ToString() & "', '" & prof.Rank.ToString() & "', '" & prof.Max.ToString() & "' ) on duplicate key update `" &
+                        prof.Id.ToString() & "', '" & prof.Rank.ToString() & "', '" & prof.Max.ToString() &
+                        "' ) on duplicate key update `" &
                         useStructure.skill_value_col(0) & "`=values(`" &
                         useStructure.skill_value_col(0) & "`), `" &
                         useStructure.skill_max_col(0) & "`=values(`" &
@@ -129,7 +131,8 @@ Namespace Framework.Transmission
                         For Each skl As Skill In player.Skills
                             LogAppend("Adding Skill " & skl.Id, "SkillCreation_AddCharacterSkills")
                             runSQLCommand_characters_string(
-                                "INSERT IGNORE INTO `" & GlobalVariables.targetStructure.character_skills_tbl(0) & "`( `" &
+                                "INSERT IGNORE INTO `" & GlobalVariables.targetStructure.character_skills_tbl(0) &
+                                "`( `" &
                                 GlobalVariables.targetStructure.skill_guid_col(0) & "`, `" &
                                 GlobalVariables.targetStructure.skill_skill_col(0) & "`, `" &
                                 GlobalVariables.targetStructure.skill_value_col(0) & "`, `" &

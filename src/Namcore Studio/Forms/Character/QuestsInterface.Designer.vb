@@ -1,4 +1,5 @@
 ﻿Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.My.Resources
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -162,7 +163,7 @@ Namespace Forms.Character
             Me.search_tb.Name = "search_tb"
             Me.search_tb.Size = New System.Drawing.Size(100, 20)
             Me.search_tb.TabIndex = 229
-            Me.search_tb.Text = "Enter quest id"
+            Me.search_tb.Text = MSG_ENTERQUESTID
             '
             'resultstatus_lbl
             '

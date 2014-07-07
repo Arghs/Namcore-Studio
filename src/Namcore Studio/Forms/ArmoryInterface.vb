@@ -23,13 +23,14 @@
 Imports System.Linq
 Imports NCFramework.Framework
 Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports NCFramework.My
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Armory
 Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.My.Resources
 Imports System.Net
 
 Namespace Forms
@@ -50,14 +51,11 @@ Namespace Forms
                     "http://#replaceregion#.battle.net/wow/#replacelang#/character/#replacerealm#/#replacecharacter#/advanced"
 
             If globalregion.SelectedItem Is Nothing Then
-                MsgBox(ResourceHandler.GetUserMessage("regionnotset"), MsgBoxStyle.Critical,
-                       ResourceHandler.GetUserMessage("attention"))
+                MsgBox(MSG_ARMORYREGIONNOTSET, MsgBoxStyle.Critical, MSG_ATTENTION)
             ElseIf realmname.Text = "" Then
-                MsgBox(ResourceHandler.GetUserMessage("realmnamenotset"), MsgBoxStyle.Critical,
-                       ResourceHandler.GetUserMessage("attention"))
+                MsgBox(MSG_REALMNOTSET, MsgBoxStyle.Critical, MSG_ATTENTION)
             ElseIf charname.Text = "" Then
-                MsgBox(ResourceHandler.GetUserMessage("charnamenotset"), MsgBoxStyle.Critical,
-                       ResourceHandler.GetUserMessage("attention"))
+                MsgBox(MSG_CHARNAMENOTSET, MsgBoxStyle.Critical, MSG_ATTENTION)
             Else
                 templink = templink.Replace("#replaceregion#", globalregion.SelectedItem.ToString)
                 templink = templink.Replace("#replacerealm#", realmname.Text)
@@ -83,8 +81,7 @@ Namespace Forms
                 Catch ex As Exception
                     If ex.ToString.Contains("404") Then
                         LogAppend("Character not found - error 404!", "Armory_interface_addChar_bt_Click", False, True)
-                        MsgBox(ResourceHandler.GetUserMessage("charnotfound"), MsgBoxStyle.Critical,
-                               ResourceHandler.GetUserMessage("attention"))
+                        MsgBox(MSG_CHARNOTFOUND, MsgBoxStyle.Critical, MSG_ATTENTION)
                         Exit Sub
                     End If
                 End Try
@@ -96,8 +93,7 @@ Namespace Forms
                 End If
                 If checkcode.Contains("error=503") Then
                     LogAppend("Character not found - error 503", "Armory_interface_addChar_bt_Click", False, True)
-                    MsgBox(ResourceHandler.GetUserMessage("charnotfound"), MsgBoxStyle.Critical,
-                           ResourceHandler.GetUserMessage("attention"))
+                    MsgBox(MSG_CHARNOTFOUND, MsgBoxStyle.Critical, MSG_ATTENTION)
                     Exit Sub
                 End If
                 Dim str(3) As String
@@ -137,8 +133,7 @@ Namespace Forms
 
             If Not templink.Contains(".battle.net/wow/") Then
                 LogAppend("Invalid URL Exception", "Armory_interface_addURL_bt_Click", False, True)
-                MsgBox(ResourceHandler.GetUserMessage("invalidurl"), MsgBoxStyle.Critical,
-                       ResourceHandler.GetUserMessage("attention"))
+                MsgBox(MSG_INVALIDURL, MsgBoxStyle.Critical, MSG_ATTENTION)
             Else
                 templink = templink.Replace("/simple", "/advanced")
                 If Not templink.StartsWith("http://") Then templink = "http://" & templink
@@ -151,8 +146,7 @@ Namespace Forms
                 Catch ex As Exception
                     If ex.ToString.Contains("404") Then
                         LogAppend("Character not found - error 404", "Armory_interface_addURL_bt_Click", False, True)
-                        MsgBox(ResourceHandler.GetUserMessage("charnotfound"), MsgBoxStyle.Critical,
-                               ResourceHandler.GetUserMessage("attention"))
+                        MsgBox(MSG_CHARNOTFOUND, MsgBoxStyle.Critical, MSG_ATTENTION)
                         Exit Sub
                     End If
                 End Try
@@ -164,8 +158,7 @@ Namespace Forms
                 End If
                 If checkcode.Contains("error=503") Then
                     LogAppend("Character not found - error 503", "Armory_interface_addURL_bt_Click", False, True)
-                    MsgBox(ResourceHandler.GetUserMessage("charnotfound"), MsgBoxStyle.Critical,
-                           ResourceHandler.GetUserMessage("attention"))
+                    MsgBox(MSG_CHARNOTFOUND, MsgBoxStyle.Critical, MSG_ATTENTION)
                     Exit Sub
                 End If
                 Dim str(3) As String
@@ -195,7 +188,8 @@ Namespace Forms
             GlobalVariables.globChars.AccountSets = New List(Of Account)
             GlobalVariables.trdrunnuing = True
             Dim urllst As List(Of String) =
-                    (From lstitm As Object In char_lst.Items Select TryCast(lstitm, ListViewItem).SubItems(3).Text).ToList()
+                    (From lstitm As Object In char_lst.Items Select TryCast(lstitm, ListViewItem).SubItems(3).Text).
+                    ToList()
             LogAppend("Urlcount: " & urllst.Count.ToString(), "Armory_interface_load_bt_Click", False)
             NewProcessStatus()
             _mHandler.LoadArmoryCharacters(urllst)

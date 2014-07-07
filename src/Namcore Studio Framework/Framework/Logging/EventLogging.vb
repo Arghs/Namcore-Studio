@@ -20,10 +20,11 @@
 '*      /Filename:      EventLogging
 '*      /Description:   Handles logging of events and exceptions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Drawing
+Imports System.ComponentModel
+Imports FastColoredTextBoxNS
 Imports System.IO
 Imports System.Windows.Forms
-Imports System.Drawing
-Imports FastColoredTextBoxNS
 Imports NCFramework.Framework.Modules
 Imports System.Text
 
@@ -39,6 +40,7 @@ Namespace Framework.Logging
         Private ReadOnly ErrorStyle As TextStyle = New TextStyle(Brushes.Red, Nothing, FontStyle.Regular)
         '// Declaration
 
+        <Localizable(False)>
         Public Sub LogAppend(ByVal myevent As String, ByVal location As String, Optional userOut As Boolean = False,
                              Optional iserror As Boolean = False)
             _mUserOut = userOut
@@ -65,7 +67,7 @@ Namespace Framework.Logging
                 Dim _
                     fs As _
                         New StreamWriter(Application.StartupPath & "/EventLog.log",
-                                        CType(FileMode.OpenOrCreate, Boolean), Encoding.Default)
+                                         CType(FileMode.OpenOrCreate, Boolean), Encoding.Default)
                 fs.WriteLine(GlobalVariables.eventlog)
                 fs.Close()
                 GlobalVariables.eventlog = ""

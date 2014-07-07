@@ -28,7 +28,8 @@ Imports NCFramework.Framework.Modules
 Namespace Framework.Core.Remove
     Public Class AccountRemoveHandler
         Public Sub RemoveAccountFromDb(ByVal account As Account, ByVal core As Modules.Core,
-                                       ByVal realmConnection As MySqlConnection, ByVal charConnection As MySqlConnection, ByVal dbstruc As DbStructure)
+                                       ByVal realmConnection As MySqlConnection, ByVal charConnection As MySqlConnection,
+                                       ByVal dbstruc As DbStructure)
             LogAppend("Removing account " & account.Name & " from database", "AccountRemoveHandler_RemoveAccountFromDb")
             Select Case core
                 Case Modules.Core.TRINITY
@@ -41,7 +42,8 @@ Namespace Framework.Core.Remove
                     runSQLCommand_realm_string_setconn(
                         "DELETE FROM `account_banned` WHERE `id` = '" & account.Id.ToString() & "'", realmConnection)
                     runSQLCommand_realm_string_setconn(
-                        "DELETE FROM `realmcharacters` WHERE `acctid` = '" & account.Id.ToString() & "'", realmConnection)
+                        "DELETE FROM `realmcharacters` WHERE `acctid` = '" & account.Id.ToString() & "'",
+                        realmConnection)
                     runSQLCommand_realm_string_setconn(
                         "DELETE FROM `rbac_account_permissions` WHERE `accountId` = '" & account.Id.ToString() & "'",
                         realmConnection)
@@ -56,7 +58,8 @@ Namespace Framework.Core.Remove
                     runSQLCommand_realm_string_setconn(
                         "DELETE FROM `account_banned` WHERE `id` = '" & account.Id.ToString() & "'", realmConnection)
                     runSQLCommand_realm_string_setconn(
-                        "DELETE FROM `realmcharacters` WHERE `acctid` = '" & account.Id.ToString() & "'", realmConnection)
+                        "DELETE FROM `realmcharacters` WHERE `acctid` = '" & account.Id.ToString() & "'",
+                        realmConnection)
                     Dim characterRemoveHandler As New CharacterRemoveHandler
                     For Each player As Character In account.Characters
                         characterRemoveHandler.RemoveCharacterFromDb(player, charConnection, dbstruc, core)

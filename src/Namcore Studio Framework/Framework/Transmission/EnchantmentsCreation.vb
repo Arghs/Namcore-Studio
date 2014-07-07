@@ -37,10 +37,10 @@ Namespace Framework.Transmission
             Select Case core
                 Case Modules.Core.TRINITY
                     _locEnchString =
-                            runSQLCommand_characters_string(
-                                "SELECT `" & dbstruc.itmins_enchantments_col(0) & "` FROM `" &
-                                dbstruc.item_instance_tbl(0) &
-                                "` WHERE `" & dbstruc.itmins_guid_col(0) & "`='" & itmGuid.ToString & "'")
+                        runSQLCommand_characters_string(
+                            "SELECT `" & dbstruc.itmins_enchantments_col(0) & "` FROM `" &
+                            dbstruc.item_instance_tbl(0) &
+                            "` WHERE `" & dbstruc.itmins_guid_col(0) & "`='" & itmGuid.ToString & "'")
             End Select
             SetGem1(itm, itmGuid, core, dbstruc)
             SetGem2(itm, itmGuid, core, dbstruc)
@@ -128,9 +128,12 @@ Namespace Framework.Transmission
                     If myItem.EnchantmentId <> 0 Then
                         If myItem.EnchantmentEffectid = 0 Then
                             If myItem.EnchantmentType = 1 Then
-                                myItem.EnchantmentEffectid = GetEffectIdBySpellId(myItem.EnchantmentId, GlobalVariables.targetExpansion)
+                                myItem.EnchantmentEffectid = GetEffectIdBySpellId(myItem.EnchantmentId,
+                                                                                  GlobalVariables.targetExpansion)
                             Else
-                                myItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(myItem.EnchantmentId), GlobalVariables.targetExpansion)
+                                myItem.EnchantmentEffectid =
+                                    GetEffectIdBySpellId(GetItemSpellIdByItemId(myItem.EnchantmentId),
+                                                         GlobalVariables.targetExpansion)
                             End If
                         End If
                     End If

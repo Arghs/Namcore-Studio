@@ -117,144 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="areyousure" xml:space="preserve">
-    <value>Are you sure?</value>
-    <comment>msgbox title</comment>
-  </data>
-  <data name="attention" xml:space="preserve">
-    <value>Attention</value>
-  </data>
-  <data name="bloodelf" xml:space="preserve">
-    <value>Blood Elf</value>
-    <comment>character race</comment>
-  </data>
-  <data name="charnamenotset" xml:space="preserve">
-    <value>You did not set any character name.</value>
-  </data>
-  <data name="charnotfound" xml:space="preserve">
-    <value>Character not found!</value>
-  </data>
-  <data name="connecttosource" xml:space="preserve">
-    <value>Connect to source server</value>
-  </data>
-  <data name="connecttotarget" xml:space="preserve">
-    <value>Connect to target server</value>
-  </data>
-  <data name="deathknight" xml:space="preserve">
-    <value>Death Knight</value>
-    <comment>character class</comment>
-  </data>
-  <data name="deleteacc" xml:space="preserve">
-    <value>Do you really want to delete the selected accounts?</value>
-    <comment>msgbox msg</comment>
-  </data>
-  <data name="deletechar" xml:space="preserve">
-    <value>Do you really want to delete the selected characters?</value>
-    <comment>msgbox msg</comment>
-  </data>
-  <data name="deleteitem" xml:space="preserve">
-    <value>Do you really want to delete the selected item?</value>
-  </data>
-  <data name="draenei" xml:space="preserve">
-    <value>Draenei</value>
-    <comment>character race</comment>
-  </data>
-  <data name="druid" xml:space="preserve">
-    <value>Druid</value>
-    <comment>character class</comment>
-  </data>
-  <data name="dwarf" xml:space="preserve">
-    <value>Dwarf</value>
-    <comment>character race</comment>
-  </data>
-  <data name="errorbox" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="factionadded" xml:space="preserve">
-    <value>Faction successfully added!</value>
-  </data>
-  <data name="factionalreadypresent" xml:space="preserve">
-    <value>The player already has reputation at this faction!</value>
-  </data>
-  <data name="female" xml:space="preserve">
-    <value>Female</value>
-    <comment>character gender</comment>
-  </data>
-  <data name="glyphnotfound" xml:space="preserve">
-    <value>This is not a valid glyph!</value>
-  </data>
-  <data name="gnome" xml:space="preserve">
-    <value>Gnome</value>
-    <comment>character race</comment>
-  </data>
-  <data name="goblin" xml:space="preserve">
-    <value>Goblin</value>
-    <comment>character race</comment>
-  </data>
-  <data name="human" xml:space="preserve">
-    <value>Human</value>
-    <comment>character race</comment>
-  </data>
-  <data name="hunter" xml:space="preserve">
-    <value>Hunter</value>
-    <comment>character class</comment>
-  </data>
-  <data name="invalidrepid" xml:space="preserve">
-    <value>Invalid faction id!</value>
-  </data>
-  <data name="invalidurl" xml:space="preserve">
-    <value>Entered URL is not valid!</value>
-  </data>
-  <data name="itemclassinvalid" xml:space="preserve">
-    <value>The class of the entered item does not match the source item class!</value>
-  </data>
-  <data name="mage" xml:space="preserve">
-    <value>Mage</value>
-    <comment>character class</comment>
-  </data>
-  <data name="male" xml:space="preserve">
-    <value>Male</value>
-    <comment>character gender</comment>
-  </data>
-  <data name="monk" xml:space="preserve">
-    <value>Monk</value>
-  </data>
-  <data name="nightelf" xml:space="preserve">
-    <value>Night Elf</value>
-    <comment>character race</comment>
-  </data>
-  <data name="noaccentered" xml:space="preserve">
-    <value>You did not enter any accounts!</value>
-  </data>
-  <data name="orc" xml:space="preserve">
-    <value>Orc</value>
-    <comment>character race</comment>
-  </data>
-  <data name="paladin" xml:space="preserve">
-    <value>Paladin</value>
-    <comment>character class</comment>
-  </data>
-  <data name="pandaren" xml:space="preserve">
-    <value>Pandaren</value>
-  </data>
-  <data name="priest" xml:space="preserve">
-    <value>Priest</value>
-    <comment>character class</comment>
-  </data>
-  <data name="realmnamenotset" xml:space="preserve">
-    <value>You did not set any realm name.</value>
-  </data>
-  <data name="regionnotset" xml:space="preserve">
-    <value>You did not select any Battle.net region.</value>
-  </data>
-  <data name="rogue" xml:space="preserve">
-    <value>Rogue</value>
-    <comment>character class</comment>
-  </data>
-  <data name="shaman" xml:space="preserve">
-    <value>Shaman</value>
-    <comment>character class</comment>
-  </data>
   <data name="standing_0" xml:space="preserve">
     <value>Stranger</value>
   </data>
@@ -278,45 +140,6 @@
   </data>
   <data name="standing_7" xml:space="preserve">
     <value>Exalted</value>
-  </data>
-  <data name="tauren" xml:space="preserve">
-    <value>Tauren</value>
-    <comment>character race</comment>
-  </data>
-  <data name="troll" xml:space="preserve">
-    <value>Troll</value>
-    <comment>character race</comment>
-  </data>
-  <data name="undead" xml:space="preserve">
-    <value>Undead</value>
-    <comment>character race</comment>
-  </data>
-  <data name="urlnotset" xml:space="preserve">
-    <value>You did not enter a correct url.</value>
-  </data>
-  <data name="warlock" xml:space="preserve">
-    <value>Warlock</value>
-    <comment>character class</comment>
-  </data>
-  <data name="warrior" xml:space="preserve">
-    <value>Warrior</value>
-    <comment>character class</comment>
-  </data>
-  <data name="worgen" xml:space="preserve">
-    <value>Worgen</value>
-    <comment>character race</comment>
-  </data>
-  <data name="achievementadded" xml:space="preserve">
-    <value>Achievement successfully added!</value>
-  </data>
-  <data name="achievementalreadypresent" xml:space="preserve">
-    <value>The player already has this achievement.</value>
-  </data>
-  <data name="invalidavid" xml:space="preserve">
-    <value>Invalid achievement id!</value>
-  </data>
-  <data name="aus_deleteav" xml:space="preserve">
-    <value>Do you really want to delete the achievement %avid% from character?</value>
   </data>
   <data name="subcat0" xml:space="preserve">
     <value>All</value>
@@ -501,54 +324,6 @@
   <data name="subcat187" xml:space="preserve">
     <value>Love is in the Air</value>
   </data>
-  <data name="enterqstfinished" xml:space="preserve">
-    <value>Enter quest finished status (0/1):</value>
-  </data>
-  <data name="enterqstid" xml:space="preserve">
-    <value>Enter quest id:</value>
-  </data>
-  <data name="enterqstrewarded" xml:space="preserve">
-    <value>Enter quest rewarded status (0/1):</value>
-  </data>
-  <data name="invalidentry" xml:space="preserve">
-    <value>Invalid entry!</value>
-  </data>
-  <data name="qstadded" xml:space="preserve">
-    <value>Quest added!</value>
-  </data>
-  <data name="qstexist" xml:space="preserve">
-    <value>The character already has this quest!</value>
-  </data>
-  <data name="invalidData" xml:space="preserve">
-    <value>The template file could not be loaded, because it is outdated.</value>
-  </data>
-  <data name="enterGemId" xml:space="preserve">
-    <value>Enter gem id:</value>
-  </data>
-  <data name="gemAdding" xml:space="preserve">
-    <value>Add new gem</value>
-  </data>
-  <data name="invalidGemError" xml:space="preserve">
-    <value>Invalid gem id!</value>
-  </data>
-  <data name="gemAdded" xml:space="preserve">
-    <value>Gem successfully added.</value>
-  </data>
-  <data name="FailedConnectCharacter" xml:space="preserve">
-    <value>Failed to connect to character database.</value>
-  </data>
-  <data name="FailedConnectRealm" xml:space="preserve">
-    <value>Failed to connect to realm/auth database.</value>
-  </data>
-  <data name="invalidFileName" xml:space="preserve">
-    <value>Invalid file name!</value>
-  </data>
-  <data name="noaccountsselected" xml:space="preserve">
-    <value>You did not select any accounts/characters that should be stored in a template file. Right click on accounts/characters and choose 'prepare for transfer'.</value>
-  </data>
-  <data name="templateFileCreated" xml:space="preserve">
-    <value>The template file has been successfully created.</value>
-  </data>
   <data name="proficiency_1" xml:space="preserve">
     <value>Apprentice</value>
   </data>
@@ -572,9 +347,6 @@
   </data>
   <data name="proficiency_8" xml:space="preserve">
     <value>Zen Master</value>
-  </data>
-  <data name="learnprofession" xml:space="preserve">
-    <value>Do you want to teach this profession?</value>
   </data>
   <data name="profession_129" xml:space="preserve">
     <value>First Aid</value>
@@ -618,76 +390,7 @@
   <data name="profession_794" xml:space="preserve">
     <value>Archaeology</value>
   </data>
-  <data name="noValidEmail" xml:space="preserve">
-    <value>No valid E-Mail address entered!</value>
-  </data>
-  <data name="textTooShort" xml:space="preserve">
-    <value>The entered text is too short!</value>
-  </data>
-  <data name="updateAccountComplete" xml:space="preserve">
-    <value>Account has been updated successfully!</value>
-  </data>
   <data name="profession_197" xml:space="preserve">
     <value>Tailoring</value>
-  </data>
-  <data name="invalidSkillId" xml:space="preserve">
-    <value>This is not a valid skill id.</value>
-  </data>
-  <data name="invalidSpellId" xml:space="preserve">
-    <value>This is not a valid spell id.</value>
-  </data>
-  <data name="skillAlreadyPresent" xml:space="preserve">
-    <value>This skill is already active.</value>
-  </data>
-  <data name="spellAlreadyPresent" xml:space="preserve">
-    <value>This spell is already active.</value>
-  </data>
-  <data name="enteritemid" xml:space="preserve">
-    <value>Enter item id:</value>
-  </data>
-  <data name="invalidItemError" xml:space="preserve">
-    <value>No item with this id found!</value>
-  </data>
-  <data name="reloadCharacter" xml:space="preserve">
-    <value>Do you really want to reload this character? All changes will be lost!</value>
-  </data>
-  <data name="countChange" xml:space="preserve">
-    <value>Set item count</value>
-  </data>
-  <data name="enterItemCount" xml:space="preserve">
-    <value>Enter the size of this stack:</value>
-  </data>
-  <data name="removeProfession" xml:space="preserve">
-    <value>Do you really want to remove this profession and its recipes?</value>
-  </data>
-  <data name="stackSizeLimitReached" xml:space="preserve">
-    <value>The maximum stack size of this item is:</value>
-  </data>
-  <data name="errTransmissionRunning" xml:space="preserve">
-    <value>You cannot start more than one transmission at the same time.</value>
-  </data>
-  <data name="errWaitTillTransmissionCompleted" xml:space="preserve">
-    <value>A transmission is running! Please wait until it is completed!</value>
-  </data>
-  <data name="errCharacterCreation" xml:space="preserve">
-    <value>Fatal error during character creation! See log for further info.</value>
-  </data>
-  <data name="loadingAv" xml:space="preserve">
-    <value>Loading achievements...</value>
-  </data>
-  <data name="noAvFound" xml:space="preserve">
-    <value>No achievements found!</value>
-  </data>
-  <data name="addfaction" xml:space="preserve">
-    <value>Add faction</value>
-  </data>
-  <data name="enterfactionid" xml:space="preserve">
-    <value>Enter faction id: </value>
-  </data>
-  <data name="addAv" xml:space="preserve">
-    <value>Add achievement</value>
-  </data>
-  <data name="enterAvId" xml:space="preserve">
-    <value>Enter achievement id:</value>
   </data>
 </root>

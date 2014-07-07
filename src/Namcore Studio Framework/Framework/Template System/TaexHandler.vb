@@ -20,18 +20,20 @@
 '*      /Filename:      TaexHandler
 '*      /Description:   Template Explorer database handler
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Net
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Modules
+Imports System.Net
+
 Namespace Framework
     Public Class TaexHandler
         Public Function LoadTemplateEntries(Optional count As Integer = 0) As List(Of TemplateEntry)
             Dim teClient As New WebClient
             teClient.CheckProxy()
             Try
-                Dim xml As String = teClient.DownloadString("http://wowgeslauncher.bplaced.net/filemanager/namcore/service/get.php")
+                Dim xml As String =
+                        teClient.DownloadString("http://wowgeslauncher.bplaced.net/filemanager/namcore/service/get.php")
                 Dim templateEntryLst As New List(Of TemplateEntry)
                 While xml.Contains("<entry>")
                     Dim entryContext As String = SplitString(xml, "<entry>", "</entry>")
@@ -42,9 +44,11 @@ Namespace Framework
                     entry.Name = SplitString(entryContext, "<entry_name>", "</entry_name>")
                     entry.Description = SplitString(entryContext, "<entry_description>", "</entry_description>")
                     entry.Data = SplitString(entryContext, "<entry_data>", "</entry_data>")
-                    entry.DownloadCount = TryInt(SplitString(entryContext, "<entry_downloadcount>", "</entry_downloadcount>"))
+                    entry.DownloadCount = TryInt(SplitString(entryContext, "<entry_downloadcount>",
+                                                             "</entry_downloadcount>"))
                     entry.Rating = TryInt(SplitString(entryContext, "<entry_rating>", "</entry_rating>"))
-                    entry.CreatedDate = DateTime.Parse(SplitString(entryContext, "<entry_creationdate>", "</entry_creationdate>"))
+                    entry.CreatedDate = DateTime.Parse(SplitString(entryContext, "<entry_creationdate>",
+                                                                   "</entry_creationdate>"))
                     entry.FileGuid = TryInt(SplitString(entryContext, "<entry_fileguid>", "</entry_fileguid>"))
                     xml = xml.Replace("<entry>" & entryContext & "</entry>", "")
                     templateEntryLst.Add(entry)

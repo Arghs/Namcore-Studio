@@ -85,11 +85,14 @@ Namespace Framework.Core.Update
                             Case Glyph.GlyphType.GLYTYPE_PRIME : baseInt = 6
                         End Select
                         If glyph2Add.Slotname.Contains("1") Then
-                            parts(CInt(baseInt)) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
+                            parts(CInt(baseInt)) =
+                                GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
                         ElseIf glyph2Add.Slotname.Contains("2") Then
-                            parts(CInt(baseInt + 1)) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
+                            parts(CInt(baseInt + 1)) =
+                                GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
                         Else
-                            parts(CInt(baseInt + 2)) = GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
+                            parts(CInt(baseInt + 2)) =
+                                GetGlyphIdByItemId(glyph2Add.Id, GlobalVariables.targetExpansion).ToString()
                         End If
                         glyphString = String.Join(",", parts)
                         runSQLCommand_characters_string(

@@ -35,7 +35,7 @@ Namespace Framework.Core
         Public Sub GetCharacterTalents(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character talents for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterTalentsHandler_GetCharacterTalents", True)
-             Select Case GlobalVariables.sourceCore
+            Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     LoadAtArcemu(characterGuid, setId, account)
                 Case Modules.Core.TRINITY

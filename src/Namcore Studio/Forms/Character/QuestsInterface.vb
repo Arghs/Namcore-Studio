@@ -29,6 +29,7 @@ Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Extension
 Imports System.Threading
+Imports NCFramework.My.Resources
 Imports libnc.Provider
 
 Namespace Forms.Character
@@ -74,7 +75,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub QuestCompleted() Handles Me.QstCompleted
-            resultstatus_lbl.Text = qst_lst.Items.Count.ToString & " results!"
+            resultstatus_lbl.Text = qst_lst.Items.Count.ToString & MISC_PROFRESULTS
             If _firstuse = True Then
                 If _lstitems Is Nothing Then _lstitems = New List(Of ListViewItem)
                 For Each itm As ListViewItem In qst_lst.Items
@@ -303,22 +304,20 @@ Namespace Forms.Character
         End Sub
 
         Private Sub add_bt_Click(sender As Object, e As EventArgs) Handles add_bt.Click
-            'Add new quest
-            Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterqstid"), "Add quest", "0"))
+            '// Add new quest
+            Dim retnvalue As Integer = TryInt(InputBox(MSG_ENTERQUESTID, MSG_ADDQUEST, "0"))
             If Not retnvalue = 0 Then
                 If GlobalVariables.currentEditedCharSet.FinishedQuests.Contains("," & retnvalue.ToString & ",") Then
-                    MsgBox(ResourceHandler.GetUserMessage("qstexist"), MsgBoxStyle.Critical, "Error")
+                    MsgBox(MSG_QUESTALREADYPRESENT, MsgBoxStyle.Critical, MSG_ERROR)
                     Exit Sub
                 End If
                 For Each qst As Quest In GlobalVariables.currentEditedCharSet.Quests
                     If qst.Id = retnvalue Then
-                        MsgBox(ResourceHandler.GetUserMessage("qstexist"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_QUESTALREADYPRESENT, MsgBoxStyle.Critical, MSG_ERROR)
                         Exit Sub
                     End If
                 Next
-                Dim qrewarded As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterqstrewarded"),
-                                                           "Add quest",
-                                                           "0"))
+                Dim qrewarded As Integer = TryInt(InputBox(MSG_SETQSTREWARDEDSTATUS, MSG_ADDQUEST, "0"))
                 Dim newqst As New Quest
                 newqst.Id = retnvalue
                 newqst.Name = GetQuestTitleById(newqst.Id, MySettings.Default.language)
@@ -336,11 +335,11 @@ Namespace Forms.Character
                     itm.Tag = newqst
                     qst_lst.Items.Add(itm)
                     qst_lst.Update()
-                    MsgBox(ResourceHandler.GetUserMessage("qstadded"))
+                    MsgBox(MSG_QUESTADDED)
                 ElseIf qrewarded = 0 Then
                     newqst.Rewarded = 0
-                    Dim qfinished As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterqstfinished"),
-                                                               "Add quest",
+                    Dim qfinished As Integer = TryInt(InputBox(MSG_SETQSTFINISHEDSTATUS,
+                                                               MSG_ADDQUEST,
                                                                "0"))
                     If qfinished = 0 Or qfinished = 1 Then
                         newqst.Status = qfinished
@@ -357,14 +356,14 @@ Namespace Forms.Character
                         qst_lst.Items.Add(itm)
                         qst_lst.Update()
                         _lstitems.Add(itm)
-                        MsgBox(ResourceHandler.GetUserMessage("qstadded"))
+                        MsgBox(MSG_QUESTADDED)
                     Else
-                        MsgBox(ResourceHandler.GetUserMessage("invalidentry"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDENTRY, MsgBoxStyle.Critical, MSG_ERROR)
                         Exit Sub
                     End If
 
                 Else
-                    MsgBox(ResourceHandler.GetUserMessage("invalidentry"), MsgBoxStyle.Critical, "Error")
+                    MsgBox(MSG_INVALIDENTRY, MsgBoxStyle.Critical, MSG_ERROR)
                     Exit Sub
                 End If
             End If
@@ -376,13 +375,13 @@ Namespace Forms.Character
 
         Private Sub search_tb_Leave(sender As Object, e As EventArgs) Handles search_tb.Leave
             If search_tb.Text = "" Then
-                search_tb.Text = "Enter quest id"
+                search_tb.Text = MSG_ENTERQUESTID
             End If
         End Sub
 
         Private Sub search_tb_TextChanged(sender As Object, e As EventArgs) Handles search_tb.TextChanged
             If _loaded = False Then Exit Sub
-            If search_tb.Text = "Enter quest id" Or search_tb.Text = "" Then
+            If search_tb.Text = MSG_ENTERQUESTID Or search_tb.Text = "" Then
                 If _lstitems Is Nothing Then Exit Sub
                 If _lstitems.Count = 0 Then Exit Sub
                 qst_lst.Items.Clear()
@@ -390,7 +389,7 @@ Namespace Forms.Character
                     qst_lst.Items.Add(itm)
                 Next
                 qst_lst.Update()
-                resultstatus_lbl.Text = qst_lst.Items.Count.ToString & " results!"
+                resultstatus_lbl.Text = qst_lst.Items.Count.ToString & MISC_PROFRESULTS
                 Exit Sub
             End If
             Dim value As Integer = TryInt(search_tb.Text)
@@ -408,13 +407,13 @@ Namespace Forms.Character
                 For Each qstitm In itmstoshow
                     qst_lst.Items.Add(qstitm)
                 Next
-                resultstatus_lbl.Text = resultcounter.ToString & " results!"
+                resultstatus_lbl.Text = resultcounter.ToString & MISC_PROFRESULTS
             Else
                 qst_lst.Items.Clear()
                 For Each itm As ListViewItem In _lstitems
                     qst_lst.Items.Add(itm)
                 Next
-                search_tb.Text = "Enter quest id"
+                search_tb.Text = MSG_ENTERQUESTID
             End If
             qst_lst.Update()
         End Sub

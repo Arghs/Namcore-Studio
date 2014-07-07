@@ -33,6 +33,7 @@ Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Modules.Interface
 Imports System.Threading
+Imports NCFramework.My.Resources
 Imports NCFramework.Framework.Core.Remove
 Imports NCFramework.Framework.Transmission
 
@@ -153,7 +154,7 @@ Namespace Forms
             accountview.Update()
             For Each rowitem As DataRow In GlobalVariables.chartable.Rows
                 Dim player As New NCFramework.Framework.Modules.Character()
-                player.Name = "Error"
+                player.Name = MSG_ERROR
                 player.Guid = 0
                 Dim str(6) As String
                 Dim itm As ListViewItem
@@ -622,10 +623,9 @@ Namespace Forms
         Private Sub SelectedAccountsToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles SelectedAccountsToolStripMenuItem.Click
             Dim result =
-                    MsgBox(
-                        ResourceHandler.GetUserMessage("deleteacc") & " (" &
-                        accountview.SelectedItems(0).SubItems(1).Text &
-                        ")", vbYesNo, ResourceHandler.GetUserMessage("areyousure"))
+                    MsgBox(MSG_DELETEACC & " (" &
+                           accountview.SelectedItems(0).SubItems(1).Text &
+                           ")", vbYesNo, MSG_AREYOUSURE)
             If result = MsgBoxResult.Yes Then
                 Dim accountId As String = accountview.SelectedItems(0).SubItems(0).Text
                 For I = 0 To accountview.SelectedItems.Count - 1
@@ -647,8 +647,7 @@ Namespace Forms
 
         Private Sub CheckedAccountsToolStripMenuItem1_Click(sender As Object, e As EventArgs) _
             Handles CheckedAccountsToolStripMenuItem1.Click
-            Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteacc"), vbYesNo,
-                                ResourceHandler.GetUserMessage("areyousure"))
+            Dim result = MsgBox(MSG_DELETEACC, vbYesNo, MSG_AREYOUSURE)
             If result = MsgBoxResult.Yes Then
                 For Each itm As ListViewItem In accountview.CheckedItems
                     Dim accountRemoveHandler As New AccountRemoveHandler
@@ -669,8 +668,8 @@ Namespace Forms
         Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
             '// Please remember that an account which is loaded from a database needs to be completely stored temporarily
             If _transmissionBlocked Then
-                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical,
-                       "Warning")
+                MsgBox(MSG_WAITONTRANSMISSIONCOMPLETE, MsgBoxStyle.Critical,
+                       MSG_WARNING)
             Else
                 Dim accview As New AccountOverview
                 Dim accTag As Account = CType(accountview.SelectedItems(0).Tag, Account)
@@ -695,10 +694,8 @@ Namespace Forms
         Private Sub SelectedCharacterToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles SelectedCharacterToolStripMenuItem.Click
             Dim result =
-                    MsgBox(
-                        ResourceHandler.GetUserMessage("deletechar") & " (" &
-                        characterview.SelectedItems(0).SubItems(2).Text & ")", vbYesNo,
-                        ResourceHandler.GetUserMessage("areyousure"))
+                    MsgBox(MSG_DELETECHARACTER & " (" &
+                           characterview.SelectedItems(0).SubItems(2).Text & ")", vbYesNo, MSG_AREYOUSURE)
             If result = MsgBoxResult.Yes Then
                 Dim charId As String = characterview.SelectedItems(0).SubItems(0).Text
                 For I = 0 To characterview.SelectedItems.Count - 1
@@ -718,8 +715,7 @@ Namespace Forms
 
         Private Sub CheckedCharactersToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles CheckedCharactersToolStripMenuItem.Click
-            Dim result = MsgBox(ResourceHandler.GetUserMessage("deletechar"), vbYesNo,
-                                ResourceHandler.GetUserMessage("areyousure"))
+            Dim result = MsgBox(MSG_DELETECHARACTER, vbYesNo, MSG_AREYOUSURE)
             If result = MsgBoxResult.Yes Then
                 For Each itm As ListViewItem In characterview.CheckedItems
                     Dim charRemoveHandler As New CharacterRemoveHandler
@@ -788,7 +784,7 @@ Namespace Forms
                 Dim destNode As TreeNode = (CType(sender, TreeView)).GetNodeAt(loc)
                 Dim tnNew As TreeNode
                 Dim lstViewColl As ListView.SelectedListViewItemCollection =
-                        CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)), 
+                        CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)),
                               ListView.SelectedListViewItemCollection)
                 For Each lvItem As ListViewItem In lstViewColl
                     Dim account = TryCast(lvItem.Tag, Account)
@@ -812,7 +808,7 @@ Namespace Forms
                         End If
                         destNode.Nodes.Insert(destNode.Index + 1, tnNew)
                         destNode.Expand()
-                        Dim player As NCFramework.Framework.Modules.Character = CType(lvItem.Tag, 
+                        Dim player As NCFramework.Framework.Modules.Character = CType(lvItem.Tag,
                                                                                       NCFramework.Framework.Modules.
                                 Character)
                         player.TargetAccount = CType(destNode.Tag, Account)
@@ -1082,7 +1078,7 @@ Namespace Forms
                 Dim trd As New Thread(AddressOf StartTransfer)
                 trd.Start()
             Else
-                MsgBox(ResourceHandler.GetUserMessage("errTransmissionRunning"), MsgBoxStyle.Critical, "Error")
+                MsgBox(MSG_TRANSMISSIONRUNNING, MsgBoxStyle.Critical, MSG_ERROR)
             End If
         End Sub
 
@@ -1177,8 +1173,7 @@ Namespace Forms
         Private Sub EditToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem1.Click
             '// Please remember that a character which is loaded from a database needs to be completely stored temporarily
             If _transmissionBlocked Then
-                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical,
-                       "Warning")
+                MsgBox(MSG_WAITONTRANSMISSIONCOMPLETE, MsgBoxStyle.Critical, MSG_WARNING)
             Else
                 NewProcessStatus()
                 Dim charview As CharacterOverview = New CharacterOverview
@@ -1202,8 +1197,7 @@ Namespace Forms
 
         Private Sub back_bt_Click(sender As Object, e As EventArgs) Handles back_bt.Click
             If _transmissionBlocked Then
-                MsgBox(ResourceHandler.GetUserMessage("errWaitTillTransmissionCompleted"), MsgBoxStyle.Critical,
-                       "Warning")
+                MsgBox(MSG_WAITONTRANSMISSIONCOMPLETE, MsgBoxStyle.Critical, MSG_WARNING)
                 Exit Sub
             End If
             GlobalVariables.lastregion = "liveview"
@@ -1284,13 +1278,13 @@ Namespace Forms
 
         Private Sub createTemplate_bt_Click(sender As Object, e As EventArgs) Handles createTemplate_bt.Click
             If target_accounts_tree.Nodes.Count = 0 Then
-                MsgBox(ResourceHandler.GetUserMessage("noaccountsselected"), MsgBoxStyle.Critical, "Error")
+                MsgBox(MSG_NOACCOUNTSELECTED, MsgBoxStyle.Critical, MSG_ERROR)
             Else
                 Dim locOfd As New SaveFileDialog()
                 Dim writepath As String = ""
                 With locOfd
                     .Filter = "NamCore Studio Template File (*.ncsf)|*.ncsf"
-                    .Title = "Save template file"
+                    .Title = MSG_SAVETEMPLATE
                     .DefaultExt = ".ncsf"
                     .FileName = "Characters.ncsf"
                     .DefaultExt = "ncsf"
@@ -1300,7 +1294,7 @@ Namespace Forms
                     End If
                 End With
                 If writepath = "" Then
-                    MsgBox(ResourceHandler.GetUserMessage("invalidFileName"), MsgBoxStyle.Critical, "Error")
+                    MsgBox(MSG_INVALIDFILENAME, MsgBoxStyle.Critical, MSG_ERROR)
                     Exit Sub
                 Else
                     _filePath = writepath
@@ -1315,9 +1309,9 @@ Namespace Forms
                     Dim player As Account = DeepCloneHelper.DeepClone(CType(accountnode.Tag, Account))
                     AddAccountSet(player.SetIndex, player, saveChars)
                     For Each charnode As TreeNode In accountnode.Nodes
-                        Dim playerchar As NCFramework.Framework.Modules.Character = DeepCloneHelper.DeepClone(CType(charnode.Tag, 
-                                                                                          NCFramework.Framework.Modules.
-                                Character))
+                        Dim playerchar As NCFramework.Framework.Modules.Character =
+                                DeepCloneHelper.DeepClone(CType(charnode.Tag,
+                                                                NCFramework.Framework.Modules.Character))
                         AddCharacterSet(playerchar.SetIndex, playerchar, player)
                     Next
                 Next
@@ -1341,7 +1335,7 @@ Namespace Forms
                 LogAppend("Template file created!", "LiveView_OnCharacterLoaded", True)
                 CloseProcessStatus()
                 Userwait.Close()
-                MsgBox(ResourceHandler.GetUserMessage("templateFileCreated"), MsgBoxStyle.Information, "Info")
+                MsgBox(MSG_TEMPLATEFILECREATED, MsgBoxStyle.Information, MSG_INFO)
             End If
         End Sub
 
@@ -1397,7 +1391,7 @@ Namespace Forms
             LogAppend("Template file created!", "LiveView_OnCharacterLoaded", True)
             CloseProcessStatus()
             Userwait.Close()
-            MsgBox(ResourceHandler.GetUserMessage("templateFileCreated"), MsgBoxStyle.Information, "Info")
+            MsgBox(MSG_TEMPLATEFILECREATED, MsgBoxStyle.Information, MSG_INFO)
         End Sub
 
         Private Sub TransmissionCompleted() Handles Me.OnTransmissionCompleted

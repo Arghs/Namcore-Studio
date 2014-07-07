@@ -1,4 +1,5 @@
 ﻿Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.My.Resources
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -158,7 +159,7 @@ Namespace Forms.Character
             Me.search_tb.Name = "search_tb"
             Me.search_tb.Size = New System.Drawing.Size(139, 20)
             Me.search_tb.TabIndex = 229
-            Me.search_tb.Text = "Enter spell id"
+            Me.search_tb.Text = MSG_ENTERSPELLID
             '
             'resultstatus_lbl
             '
@@ -220,7 +221,7 @@ Namespace Forms.Character
             Me.minprof4_lbl.Name = "minprof4_lbl"
             Me.minprof4_lbl.Size = New System.Drawing.Size(58, 16)
             Me.minprof4_lbl.TabIndex = 233
-            Me.minprof4_lbl.Text = "Fishing"
+            Me.minprof4_lbl.Text = PROF_FISHING
             '
             'minprof3_select
             '
@@ -253,7 +254,7 @@ Namespace Forms.Character
             Me.minprof3_lbl.Name = "minprof3_lbl"
             Me.minprof3_lbl.Size = New System.Drawing.Size(65, 16)
             Me.minprof3_lbl.TabIndex = 233
-            Me.minprof3_lbl.Text = "First Aid"
+            Me.minprof3_lbl.Text = PROF_FIRSTAID
             '
             'minprof2_select
             '
@@ -286,7 +287,7 @@ Namespace Forms.Character
             Me.minprof2_lbl.Name = "minprof2_lbl"
             Me.minprof2_lbl.Size = New System.Drawing.Size(65, 16)
             Me.minprof2_lbl.TabIndex = 233
-            Me.minprof2_lbl.Text = "Cooking"
+            Me.minprof2_lbl.Text = PROF_COOKING
             '
             'minprof1_select
             '
@@ -319,7 +320,7 @@ Namespace Forms.Character
             Me.minprof1_lbl.Name = "minprof1_lbl"
             Me.minprof1_lbl.Size = New System.Drawing.Size(96, 16)
             Me.minprof1_lbl.TabIndex = 233
-            Me.minprof1_lbl.Text = "Archaeology"
+            Me.minprof1_lbl.Text = PROF_ARCHAEOLOGY
             '
             'mainprof2_select
             '

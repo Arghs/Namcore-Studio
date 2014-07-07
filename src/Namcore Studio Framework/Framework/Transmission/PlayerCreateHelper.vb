@@ -22,8 +22,8 @@
 '*                      races/classes
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
 Imports libnc.Provider
 
 Namespace Framework.Transmission
@@ -128,14 +128,16 @@ Namespace Framework.Transmission
                             '// 0: Every race
                             newSpellList.Add(
                                 New Spell With
-                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()),
+                                                .Name = spellEntry(3).ToString()})
                             Continue For
                         End If
                         Dim raceMask As ChrRaces = CType(TryInt(spellEntry(0).ToString()), ChrRaces)
                         If (raceMask And thisRaceBit) = thisRaceBit Then
                             newSpellList.Add(
                                 New Spell With
-                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()),
+                                                .Name = spellEntry(3).ToString()})
                         End If
                     Catch ex As Exception
                         LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetRaceSpells", False, True)
@@ -164,14 +166,16 @@ Namespace Framework.Transmission
                         If TryInt(spellEntry(1).ToString()) = 0 Then
                             newSpellList.Add(
                                 New Spell With
-                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()),
+                                                .Name = spellEntry(3).ToString()})
                             Continue For
                         End If
                         Dim classMask As ChrClasses = CType(TryInt(spellEntry(1).ToString()), ChrClasses)
                         If (classMask And thisClassBit) = thisClassBit Then
                             newSpellList.Add(
                                 New Spell With
-                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()), .Name = spellEntry(3).ToString()})
+                                                {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()),
+                                                .Name = spellEntry(3).ToString()})
                         End If
                     Catch ex As Exception
                         LogAppend("Exception occured " & ex.ToString(), "PlayerCreateHelper_GetClassSpells", False, True)

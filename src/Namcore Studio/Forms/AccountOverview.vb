@@ -28,6 +28,7 @@ Imports NCFramework.Framework.Logging
 Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.My.Resources
 Imports NCFramework.Framework.Core.Update
 
 Namespace Forms
@@ -163,10 +164,9 @@ Namespace Forms
         Private Sub SelectedCharacterToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles SelectedCharacterToolStripMenuItem.Click
             Dim result =
-                    MsgBox(
-                        ResourceHandler.GetUserMessage("deletechar") & " (" &
-                        characterview.SelectedItems(0).SubItems(2).Text & ")", vbYesNo,
-                        ResourceHandler.GetUserMessage("areyousure"))
+                    MsgBox(MSG_DELETECHARACTER & " (" &
+                           characterview.SelectedItems(0).SubItems(2).Text & ")", vbYesNo,
+                           MSG_AREYOUSURE)
             If result = MsgBoxResult.Yes Then
                 Dim charId As String = characterview.SelectedItems(0).SubItems(0).Text
                 For I = 0 To characterview.SelectedItems.Count - 1
@@ -185,8 +185,7 @@ Namespace Forms
 
         Private Sub CheckedCharactersToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles CheckedCharactersToolStripMenuItem.Click
-            Dim result = MsgBox(ResourceHandler.GetUserMessage("deletechar"), vbYesNo,
-                                ResourceHandler.GetUserMessage("areyousure"))
+            Dim result = MsgBox(MSG_DELETECHARACTER, vbYesNo, MSG_AREYOUSURE)
             If result = MsgBoxResult.Yes Then
                 For Each itm As ListViewItem In characterview.CheckedItems
                     characterview.Items.Remove(itm)
@@ -223,7 +222,7 @@ Namespace Forms
             Select Case senderLabel.Name
                 Case mail_lbl.Name
                     If changeText_tb.Text.Length > 0 AndAlso Not changeText_tb.Text.Contains("@") Then
-                        MsgBox(ResourceHandler.GetUserMessage("noValidEmail"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDEMAIL, MsgBoxStyle.Critical, MSG_ERROR)
                     Else
                         mail_lbl.Text = changeText_tb.Text
                         _currentEditedAccountSet.Email = changeText_tb.Text
@@ -270,7 +269,7 @@ Namespace Forms
             savechanges_bt.Enabled = False
             LogAppend("Completed account update", "AccountOverview_savechanges_bt_Click", False)
             CloseProcessStatus()
-            MsgBox(ResourceHandler.GetUserMessage("updateAccountComplete"), , "Info")
+            MsgBox(MSG_ACCOUNTUPDATECOMPLETE, , MSG_INFO)
         End Sub
 
         Private Sub AccountOverview_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown

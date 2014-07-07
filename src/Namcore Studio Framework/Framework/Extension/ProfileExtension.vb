@@ -25,12 +25,11 @@ Imports System.Runtime.CompilerServices
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Extension
-
     Public Module ProfileExtension
-        ''' <summary>
-        '''     Removes item enchantments
-        ''' </summary>
-        <Extension()>
+    ''' <summary>
+    '''     Removes item enchantments
+    ''' </summary>
+                                  <Extension()>
         Public Function RemoveEnchantments(ByRef itm As Item) As Item
             itm.EnchantmentEffectid = Nothing
             itm.EnchantmentId = Nothing
@@ -38,10 +37,12 @@ Namespace Framework.Extension
             itm.EnchantmentType = Nothing
             Return itm
         End Function
-        ''' <summary>
-        '''     Removes item gems by position
-        ''' </summary>
-        <Extension()>
+
+                                  
+                                  ''' <summary>
+                                  '''     Removes item gems by position
+                                  ''' </summary>
+                                  <Extension()>
         Public Function RemoveGem(ByRef itm As Item, ByVal position As Integer) As Item
             Select Case position
                 Case 1

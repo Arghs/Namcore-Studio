@@ -34,7 +34,9 @@ Namespace Framework.Core.Update
             For Each itm As Item In comparePlayer.InventoryZeroItems
                 Select Case itm.Slot
                     Case 19 To 22, 67 To 73, 23 To 38, 39 To 66
-                        Dim result As Item = modPlayer.InventoryZeroItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Guid = itm.Guid)
+                        Dim result As Item =
+                                modPlayer.InventoryZeroItems.Find(
+                                    Function(item) item.Slot = itm.Slot AndAlso item.Guid = itm.Guid)
                         If result Is Nothing Then
                             DeleteItem(modPlayer, itm, True)
                         End If
@@ -44,7 +46,9 @@ Namespace Framework.Core.Update
             For Each itm As Item In modPlayer.InventoryZeroItems
                 Select Case itm.Slot
                     Case 19 To 22, 67 To 73, 23 To 38, 39 To 66
-                        Dim result As Item = comparePlayer.InventoryZeroItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Guid = itm.Guid)
+                        Dim result As Item =
+                                comparePlayer.InventoryZeroItems.Find(
+                                    Function(item) item.Slot = itm.Slot AndAlso item.Guid = itm.Guid)
                         If result Is Nothing Then
                             CreateItem(modPlayer, itm, True)
                         ElseIf result.Count <> itm.Count Or result.Guid <> itm.Guid Then
@@ -54,14 +58,22 @@ Namespace Framework.Core.Update
             Next
             '// Any deleted items?
             For Each itm As Item In comparePlayer.InventoryItems
-                Dim result As Item = modPlayer.InventoryItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid AndAlso item.Id = itm.Id)
+                Dim result As Item =
+                        modPlayer.InventoryItems.Find(
+                            Function(item) _
+                                                         item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid AndAlso
+                                                         item.Id = itm.Id)
                 If result Is Nothing Then
                     DeleteItem(modPlayer, itm, False)
                 End If
             Next
             '// Any new items?
             For Each itm As Item In modPlayer.InventoryItems
-                Dim result As Item = comparePlayer.InventoryItems.Find(Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid AndAlso item.Id = itm.Id)
+                Dim result As Item =
+                        comparePlayer.InventoryItems.Find(
+                            Function(item) _
+                                                             item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid AndAlso
+                                                             item.Id = itm.Id)
                 If result Is Nothing Then
                     CreateItem(modPlayer, itm, False)
                 ElseIf result.Count <> itm.Count Or result.Guid <> itm.Guid Then
@@ -123,7 +135,8 @@ Namespace Framework.Core.Update
                         GlobalVariables.sourceStructure.itmins_enchantments_col(0) &
                         ", " & GlobalVariables.sourceStructure.itmins_durability_col(0) & " ) VALUES ( '" &
                         newItemGuid.ToString() & "', '" & itm2Add.Id.ToString & "', '" & player.Guid.ToString() &
-                        "', '" & itm2Add.Count & "', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
+                        "', '" & itm2Add.Count &
+                        "', '0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ', '1000' )")
                     If _
                         ReturnResultCount(
                             "SELECT * FROM " & GlobalVariables.sourceStructure.character_inventory_tbl(0) & " WHERE " &
@@ -315,7 +328,8 @@ Namespace Framework.Core.Update
                                                      GlobalVariables.sourceCore, GlobalVariables.sourceStructure)
                 Case Modules.Core.TRINITY
                     runSQLCommand_characters_string("UPDATE `" & GlobalVariables.sourceStructure.item_instance_tbl(0) &
-                                                    "` SET " & GlobalVariables.sourceStructure.itmins_count_col(0) & "='" &
+                                                    "` SET " & GlobalVariables.sourceStructure.itmins_count_col(0) &
+                                                    "='" &
                                                     itm2Update.Count.ToString & "'" &
                                                     " WHERE " & GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) &
                                                     " = '" & player.Guid.ToString() &

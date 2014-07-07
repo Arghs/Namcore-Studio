@@ -24,10 +24,10 @@ Imports System.Linq
 Imports MySql.Data.MySqlClient
 Imports NCFramework.My
 Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Database
 Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.My.Resources
 
 Namespace Forms
     Public Class DbConnect
@@ -87,7 +87,8 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.StartCheck(GlobalVariables.sourceCore, Expansion.WOTLK, GlobalVariables.GlobalConnection,
+                                _strucCheck.StartCheck(GlobalVariables.sourceCore, Expansion.WOTLK,
+                                                       GlobalVariables.GlobalConnection,
                                                        GlobalVariables.GlobalConnection_Realm,
                                                        GlobalVariables.GlobalConnection_Info, chardbname_combo.Text,
                                                        realmdbname_combo.Text, False) 'todo
@@ -106,13 +107,13 @@ Namespace Forms
                                     liveview.Loadaccountsandchars()
                                 End If
                             Else
-                                MsgBox(ResourceHandler.GetUserMessage("FailedConnectCharacter"), MsgBoxStyle.Critical,
-                                       "Error")
+                                MsgBox(MSG_FAILEDCONNECTCHARACTER, MsgBoxStyle.Critical,
+                                       MSG_ERROR)
                                 _catchError = True
                             End If
                         Else
-                            MsgBox(ResourceHandler.GetUserMessage("FailedConnectRealm"), MsgBoxStyle.Critical,
-                                   "Error")
+                            MsgBox(MSG_FAILEDCONNECTREALM, MsgBoxStyle.Critical,
+                                   MSG_ERROR)
                             _catchError = True
                         End If
                     Else
@@ -162,7 +163,8 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.StartCheck(GlobalVariables.sourceCore, Expansion.WOTLK, GlobalVariables.TargetConnection,
+                                _strucCheck.StartCheck(GlobalVariables.sourceCore, Expansion.WOTLK,
+                                                       GlobalVariables.TargetConnection,
                                                        GlobalVariables.TargetConnection_Realm,
                                                        GlobalVariables.TargetConnection_Info, chardbname_combo.Text,
                                                        realmdbname_combo.Text, True) 'todo
@@ -180,13 +182,13 @@ Namespace Forms
                                     liveview.Loadtargetaccountsandchars()
                                 End If
                             Else
-                                MsgBox(ResourceHandler.GetUserMessage("FailedConnectCharacter"), MsgBoxStyle.Critical,
-                                       "Error")
+                                MsgBox(MSG_FAILEDCONNECTCHARACTER, MsgBoxStyle.Critical,
+                                       MSG_ERROR)
                                 _catchError = True
                             End If
                         Else
-                            MsgBox(ResourceHandler.GetUserMessage("FailedConnectRealm"), MsgBoxStyle.Critical,
-                                   "Error")
+                            MsgBox(MSG_FAILEDCONNECTREALM, MsgBoxStyle.Critical,
+                                   MSG_ERROR)
                             _catchError = True
                         End If
                     End If
@@ -199,8 +201,8 @@ Namespace Forms
         Private Sub DB_connect_Load(sender As Object, e As EventArgs) Handles MyBase.Load
             AddHandler highlighter2.Click, AddressOf highlighter2_click
             Select Case GlobalVariables.con_operator
-                Case 1 : connect_header_label.Text = ResourceHandler.GetUserMessage("connecttosource")
-                Case 2 : connect_header_label.Text = ResourceHandler.GetUserMessage("connecttotarget")
+                Case 1 : connect_header_label.Text = MSG_CONNECTSOURCE
+                Case 2 : connect_header_label.Text = MSG_CONNECTTARGET
             End Select
             Dim controlLst As List(Of Control)
             controlLst = FindAllChildren()

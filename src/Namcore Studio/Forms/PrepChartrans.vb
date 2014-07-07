@@ -20,7 +20,7 @@
 '*      /Filename:      PrepChartrans
 '*      /Description:   Character transfer interface
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
+Imports NCFramework.My.Resources
 
 Namespace Forms
     Public Class PrepChartrans
@@ -32,16 +32,15 @@ Namespace Forms
             Dim tempAccList As New ArrayList
             If specific_radio.Checked = True Then
                 If accnames_txtbox.Lines.Length = 0 Then _
-                    MsgBox(ResourceHandler.GetUserMessage("noaccentered"), MsgBoxStyle.Critical,
-                           ResourceHandler.GetUserMessage("errorbox")) : Exit Sub
+                    MsgBox(MSG_NOACCOUNTENTERED, MsgBoxStyle.Critical,
+                           MSG_ERROR) : Exit Sub
                 Dim sLines() As String = accnames_txtbox.Lines
                 Dim removecount As Integer
                 For i As Integer = 0 To sLines.Length - 1
                     If sLines(i) = "" Then
                         removecount += 1
                         If removecount = sLines.Length Then _
-                            MsgBox(ResourceHandler.GetUserMessage("noaccentered"), MsgBoxStyle.Critical,
-                                   ResourceHandler.GetUserMessage("errorbox")) : Exit Sub
+                            MsgBox(MSG_NOACCOUNTENTERED, MsgBoxStyle.Critical, MSG_ERROR) : Exit Sub
                     Else
                         Dim tmpAccount(0) As String
                         tmpAccount(0) = sLines(i)

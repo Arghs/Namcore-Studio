@@ -36,7 +36,7 @@ Namespace Framework.Core
             player.InventoryItems = New List(Of Item)()
             player.InventoryZeroItems = New List(Of Item)()
             SetCharacterSet(setId, player, account)
-           Select Case GlobalVariables.sourceCore
+            Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     LoadAtArcemu(characterGuid, setId, account)
                 Case Modules.Core.TRINITY
@@ -493,7 +493,7 @@ Namespace Framework.Core
                     Do
                         Dim itemGuid As Integer = TryInt(inventoryDt.Rows(count).Item(3).ToString())
                         Dim bagGuid As Integer = TryInt(
-                                SafeExecuteDataTableSearch(inventoryDt,
+                            SafeExecuteDataTableSearch(inventoryDt,
                                                        GlobalVariables.sourceStructure.invent_guid_col(0) & " = '" &
                                                        EscapeLikeValue(charguid.ToString) & "' AND " &
                                                        GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
@@ -503,9 +503,10 @@ Namespace Framework.Core
                             Try
                                 Dim slot As Integer
                                 slot = TryInt(
-                                       SafeExecuteDataTableSearch(inventoryDt,
-                                                              GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
-                                                              EscapeLikeValue(itemGuid.ToString()) & "'", 2))
+                                    SafeExecuteDataTableSearch(inventoryDt,
+                                                               GlobalVariables.sourceStructure.invent_item_col(0) &
+                                                               " = '" &
+                                                               EscapeLikeValue(itemGuid.ToString()) & "'", 2))
                                 If slot > 18 Then
                                     Dim bag As String
                                     Dim item As String
@@ -516,20 +517,23 @@ Namespace Framework.Core
                                     item = itemGuid.ToString()
                                     entryid =
                                         SafeExecuteDataTableSearch(itemInstanceDt,
-                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                               EscapeLikeValue(item) & "'", 1)
+                                                                   GlobalVariables.sourceStructure.itmins_guid_col(0) &
+                                                                   " = '" &
+                                                                   EscapeLikeValue(item) & "'", 1)
                                     If entryid Is Nothing Then
                                         count += 1
                                         Continue Do
                                     End If
                                     enchantments =
                                         SafeExecuteDataTableSearch(itemInstanceDt,
-                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                               EscapeLikeValue(item) & "'", 4)
+                                                                   GlobalVariables.sourceStructure.itmins_guid_col(0) &
+                                                                   " = '" &
+                                                                   EscapeLikeValue(item) & "'", 4)
                                     itemcount =
                                         SafeExecuteDataTableSearch(itemInstanceDt,
-                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                               EscapeLikeValue(item) & "'", 3)
+                                                                   GlobalVariables.sourceStructure.itmins_guid_col(0) &
+                                                                   " = '" &
+                                                                   EscapeLikeValue(item) & "'", 3)
 
                                     Dim newItm As New Item
                                     newItm.Slot = slot
@@ -545,8 +549,8 @@ Namespace Framework.Core
                                 End If
                             Catch ex As Exception
                                 LogAppend(
-                   "Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" &
-                   ex.ToString() & "###END###", "CharacterInventoryHandler_LoadAtTrinity", True, True)
+                                    "Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" &
+                                    ex.ToString() & "###END###", "CharacterInventoryHandler_LoadAtTrinity", True, True)
                             End Try
                         Else
                             Try
@@ -558,25 +562,30 @@ Namespace Framework.Core
                                 Dim slot As String
                                 bag =
                                     SafeExecuteDataTableSearch(itemInstanceDt,
-                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                           EscapeLikeValue(bagGuid.ToString()) & "'", 1)
+                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) &
+                                                               " = '" &
+                                                               EscapeLikeValue(bagGuid.ToString()) & "'", 1)
                                 item = itemGuid.ToString
                                 entryid =
                                     SafeExecuteDataTableSearch(itemInstanceDt,
-                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                           EscapeLikeValue(item) & "'", 1)
+                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) &
+                                                               " = '" &
+                                                               EscapeLikeValue(item) & "'", 1)
                                 enchantments =
                                     SafeExecuteDataTableSearch(itemInstanceDt,
-                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                           EscapeLikeValue(item) & "'", 4)
+                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) &
+                                                               " = '" &
+                                                               EscapeLikeValue(item) & "'", 4)
                                 itemcount =
                                     SafeExecuteDataTableSearch(itemInstanceDt,
-                                                           GlobalVariables.sourceStructure.itmins_guid_col(0) & " = '" &
-                                                           EscapeLikeValue(item) & "'", 3)
+                                                               GlobalVariables.sourceStructure.itmins_guid_col(0) &
+                                                               " = '" &
+                                                               EscapeLikeValue(item) & "'", 3)
                                 slot =
                                     SafeExecuteDataTableSearch(inventoryDt,
-                                                           GlobalVariables.sourceStructure.invent_item_col(0) & " = '" &
-                                                           EscapeLikeValue(itemGuid.ToString()) & "'", 2)
+                                                               GlobalVariables.sourceStructure.invent_item_col(0) &
+                                                               " = '" &
+                                                               EscapeLikeValue(itemGuid.ToString()) & "'", 2)
                                 Dim newItm As New Item
                                 newItm.Slot = TryInt(slot)
                                 newItm.Bag = TryInt(bag)
@@ -589,8 +598,8 @@ Namespace Framework.Core
                                 player.InventoryItems.Add(newItm)
                             Catch ex As Exception
                                 LogAppend(
-                   "Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" &
-                   ex.ToString() & "###END###", "CharacterInventoryHandler_LoadAtTrinity", True, True)
+                                    "Something went wrong while loading character Inventory! -> skipping -> Exception is: ###START###" &
+                                    ex.ToString() & "###END###", "CharacterInventoryHandler_LoadAtTrinity", True, True)
                             End Try
                         End If
                         count += 1

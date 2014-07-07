@@ -31,6 +31,7 @@ Namespace Framework.Modules
             EXPANSION_WOTLK_TBC = 24
             EXPANSION_CATA = 32
         End Enum
+
         Public Id As Integer
         Public Name As String
         Public SetIndex As Integer

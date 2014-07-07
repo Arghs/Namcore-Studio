@@ -26,6 +26,7 @@ Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports NCFramework.My.Resources
 
 Namespace Framework.Transmission
     Public Class CharacterCreationLite
@@ -144,7 +145,7 @@ Namespace Framework.Transmission
                     "Something went wrong while creating the character -> Skipping! -> Error message is: " &
                     ex.ToString(),
                     "CharacterCreationLite_createAtArcemu", False, True)
-                MsgBox(ResourceHandler.GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
+                MsgBox(MSG_FATALDURINGCHARCREATION, MsgBoxStyle.Critical, MSG_ERROR)
                 Return False
             End Try
         End Function
@@ -244,7 +245,7 @@ Namespace Framework.Transmission
                     "Something went wrong while creating the character -> Skipping! -> Error message is: " &
                     ex.ToString(),
                     "CharacterCreationLite_createAtTrinity", False, True)
-                MsgBox(ResourceHandler.GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
+                MsgBox(MSG_FATALDURINGCHARCREATION, MsgBoxStyle.Critical, MSG_ERROR)
                 Return False
             End Try
         End Function
@@ -351,7 +352,7 @@ Namespace Framework.Transmission
                     "Something went wrong while creating the character -> Skipping! -> Error message is: " &
                     ex.ToString(),
                     "CharacterCreationLite_createAtMangos", False, True)
-                MsgBox(ResourceHandler.GetUserMessage("errCharacterCreation"), MsgBoxStyle.Critical, "Error")
+                MsgBox(MSG_FATALDURINGCHARCREATION, MsgBoxStyle.Critical, MSG_ERROR)
                 Return False
             End Try
         End Function

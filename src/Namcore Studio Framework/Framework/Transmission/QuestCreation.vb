@@ -21,9 +21,9 @@
 '*      /Description:   Includes functions for setting up the questlog of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
@@ -43,9 +43,8 @@ Namespace Framework.Transmission
                 End Select
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(),
-                  "QuestCreation_SetCharacterQuests", False, True)
+                          "QuestCreation_SetCharacterQuests", False, True)
             End Try
-
         End Sub
 
         Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)

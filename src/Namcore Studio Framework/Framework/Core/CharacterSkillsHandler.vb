@@ -33,7 +33,7 @@ Namespace Framework.Core
         Public Sub GetCharacterSkills(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
             LogAppend("Loading character skills for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterSkillsHandler_GetCharacterSkills", True)
-           Select Case GlobalVariables.sourceCore
+            Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     LoadAtArcemu(characterGuid, setId, account)
                 Case Modules.Core.TRINITY
@@ -59,7 +59,7 @@ Namespace Framework.Core
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim excounter As Integer = UBound(readedcode.Split(CChar(";")))
                         Dim loopcounter As Integer = 0
-                        Dim finalcounter As Integer = CInt(excounter / 3)
+                        Dim finalcounter As Integer = CInt(excounter/3)
                         Dim partscounter As Integer = 0
                         Do
                             Dim skl As New Skill

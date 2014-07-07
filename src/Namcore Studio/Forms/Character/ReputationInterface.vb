@@ -28,6 +28,7 @@ Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Logging
 Imports NamCore_Studio.Forms.Extension
 Imports libnc.Provider
+Imports NCFramework.My.Resources
 Imports System.Net
 
 Namespace Forms.Character
@@ -58,14 +59,14 @@ Namespace Forms.Character
                 Dim cnt As Integer = 0
                 Do
 
-                    reference_standing_combo.Items.Add(ResourceHandler.GetUserMessage("standing_" & cnt.ToString))
+                    reference_standing_combo.Items.Add(ResourceHandler.GetLocalizedString("standing_" & cnt.ToString))
                     cnt += 1
                 Loop Until cnt = 8
             Else
                 Dim cnt As Integer = 0
                 Do
 
-                    reference_standing_combo.Items.Add(ResourceHandler.GetUserMessage("standing_" & cnt.ToString))
+                    reference_standing_combo.Items.Add(ResourceHandler.GetLocalizedString("standing_" & cnt.ToString))
                     cnt += 1
                 Loop Until cnt = 8
             End If
@@ -169,7 +170,7 @@ Namespace Forms.Character
                     End Select
                     standingCombo.Tag = pRepu
 
-                    standingCombo.Text = ResourceHandler.GetUserMessage("standing_" & pRepu.Status.ToString)
+                    standingCombo.Text = ResourceHandler.GetLocalizedString("standing_" & pRepu.Status.ToString)
                     repPanel.Controls.Add(standingCombo)
                     AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
                 End If
@@ -397,7 +398,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub add_pic_Click(sender As Object, e As EventArgs) Handles add_pic.Click
-            Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterfactionid"), ResourceHandler.GetUserMessage("addfaction"), "0"))
+            Dim retnvalue As Integer = TryInt(InputBox(MSG_ENTERFACTIONID, MSG_ADDFACTION, "0"))
             Userwait.Show()
             Application.DoEvents()
             If Not retnvalue = 0 Then
@@ -410,8 +411,8 @@ Namespace Forms.Character
                             "<title>Not found - WowDB</title>") Then
                         For Each opRepu As Reputation In GlobalVariables.currentEditedCharSet.PlayerReputation
                             If opRepu.Faction = retnvalue Then
-                               
-                                MsgBox(ResourceHandler.GetUserMessage("factionalreadypresent"), MsgBoxStyle.Critical, "Error")
+
+                                MsgBox(MSG_FACTIONALREADYPRESENT, MsgBoxStyle.Critical, MSG_ERROR)
                                 Userwait.Close()
                                 Exit Sub
                             End If
@@ -451,7 +452,7 @@ Namespace Forms.Character
                         sliderBgPanel.Controls.Add(progressPanel)
                         progressPanel.Location = reference_percentage_panel.Location
                         repPanel.Controls.Add(sliderBgPanel)
-                        SetPanelPercentage(progressPanel, CType((pRepu.Value / pRepu.Max), Decimal))
+                        SetPanelPercentage(progressPanel, CType((pRepu.Value/pRepu.Max), Decimal))
                         sliderBgPanel.Location = reference_sliderbg_panel.Location
                         Dim slider As New TrackBar
                         slider.Name = "rep" & pRepu.Faction.ToString() & "_slider"
@@ -506,23 +507,23 @@ Namespace Forms.Character
                         End Select
                         standingCombo.Tag = pRepu
 
-                        standingCombo.Text = ResourceHandler.GetUserMessage("standing_" & pRepu.Status.ToString)
+                        standingCombo.Text = ResourceHandler.GetLocalizedString("standing_" & pRepu.Status.ToString)
                         repPanel.Controls.Add(standingCombo)
                         AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
                         GlobalVariables.currentEditedCharSet.PlayerReputation.Add(pRepu)
-                        MsgBox(ResourceHandler.GetUserMessage("factionadded"), , "Info")
+                        MsgBox(MSG_FACTIONADDED, , MSG_INFO)
                     Else
 
-                        MsgBox(ResourceHandler.GetUserMessage("invalidrepid"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDFACTIONID, MsgBoxStyle.Critical, MSG_ERROR)
                     End If
                 Catch ex As Exception
 
-                    MsgBox(ResourceHandler.GetUserMessage("invalidrepid"), MsgBoxStyle.Critical, "Error")
+                    MsgBox(MSG_INVALIDFACTIONID, MsgBoxStyle.Critical, MSG_ERROR)
                 End Try
 
             Else
 
-                MsgBox(ResourceHandler.GetUserMessage("invalidrepid"), MsgBoxStyle.Critical, "Error")
+                MsgBox(MSG_INVALIDFACTIONID, MsgBoxStyle.Critical, MSG_ERROR)
             End If
             Userwait.Close()
         End Sub

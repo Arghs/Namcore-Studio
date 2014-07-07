@@ -37,7 +37,8 @@ Namespace Framework.Core.Remove
                         "DELETE FROM `" & dbstruc.character_tbl(0) & "` WHERE `" & dbstruc.char_guid_col(0) & "` = '" &
                         character.Guid.ToString() & "'", connection)
                     runSQLCommand_characters_string_setconn(
-                        "DELETE FROM `" & dbstruc.character_achievement_tbl(0) & "` WHERE `" & dbstruc.av_guid_col(0) & "` = '" &
+                        "DELETE FROM `" & dbstruc.character_achievement_tbl(0) & "` WHERE `" & dbstruc.av_guid_col(0) &
+                        "` = '" &
                         character.Guid.ToString() & "'", connection)
                     runSQLCommand_characters_string_setconn(
                         "DELETE FROM `arena_team` WHERE `captainGuid` = '" & character.Guid.ToString() & "'", connection)
@@ -95,8 +96,9 @@ Namespace Framework.Core.Remove
                         connection)
                     If character.SourceExpansion >= 4 Then
                         runSQLCommand_characters_string_setconn(
-                                             "DELETE FROM `character_queststatus_monthly` WHERE `guid` = '" & character.Guid.ToString() & "'",
-                                             connection)
+                            "DELETE FROM `character_queststatus_monthly` WHERE `guid` = '" & character.Guid.ToString() &
+                            "'",
+                            connection)
                     End If
                     runSQLCommand_characters_string_setconn(
                         "DELETE FROM `" & dbstruc.character_queststatus_rewarded_tbl(0) & "` WHERE `" &
@@ -157,7 +159,8 @@ Namespace Framework.Core.Remove
                         "DELETE FROM `" & dbstruc.character_tbl(0) & "` WHERE `" & dbstruc.char_guid_col(0) & "` = '" &
                         character.Guid.ToString() & "'", connection)
                     runSQLCommand_characters_string_setconn(
-                        "DELETE FROM `" & dbstruc.character_achievement_tbl(0) & "` WHERE `" & dbstruc.av_guid_col(0) & "` = '" &
+                        "DELETE FROM `" & dbstruc.character_achievement_tbl(0) & "` WHERE `" & dbstruc.av_guid_col(0) &
+                        "` = '" &
                         character.Guid.ToString() & "'", connection)
                     runSQLCommand_characters_string_setconn(
                         "DELETE FROM `arena_team` WHERE `captainguid` = '" & character.Guid.ToString() & "'", connection)
@@ -212,8 +215,9 @@ Namespace Framework.Core.Remove
                         connection)
                     If character.SourceExpansion >= 4 Then
                         runSQLCommand_characters_string_setconn(
-                                             "DELETE FROM `character_queststatus_monthly` WHERE `guid` = '" & character.Guid.ToString() & "'",
-                                             connection)
+                            "DELETE FROM `character_queststatus_monthly` WHERE `guid` = '" & character.Guid.ToString() &
+                            "'",
+                            connection)
                     End If
                     runSQLCommand_characters_string_setconn(
                         "DELETE FROM `" & dbstruc.character_queststatus_rewarded_tbl(0) & "` WHERE `" &

@@ -25,7 +25,7 @@ Imports System.Reflection
 
 Namespace Framework.Functions
     Public Class ResourceHandler
-        Public Shared Function GetUserMessage(ByVal field As String) As String
+        Public Shared Function GetLocalizedString(ByVal field As String) As String
             Try
                 Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
                 Return rm.GetString(field)

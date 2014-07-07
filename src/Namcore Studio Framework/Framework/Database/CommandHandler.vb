@@ -20,12 +20,14 @@
 '*      /Filename:      CommandHandler
 '*      /Description:   Handles and logs MySQL commands and exceptions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.ComponentModel
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports MySql.Data.MySqlClient
 
 Namespace Framework.Database
+    <Localizable(False)>
     Public Module CommandHandler
         '// Declaration
         Public TempTable1Name As String
@@ -63,15 +65,18 @@ Namespace Framework.Database
                 Dim foundRows() As DataRow
                 Try
                     foundRows = TempTable1.Select(newcommand)
-                    LogAppend("New command/column: " & newcommand & " / " & column, "CommandHandler_runSQLCommand_characters_string")
+                    LogAppend("New command/column: " & newcommand & " / " & column,
+                              "CommandHandler_runSQLCommand_characters_string")
                     If foundRows.Length = 0 Then
-                        LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_characters_string", False)
+                        LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_characters_string",
+                                  False)
                         Return ""
                     Else
                         Dim result = foundRows(0).Item(column)
                         If IsDBNull(result) Then
-                            LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string",
-                                           False)
+                            LogAppend("Readed DBnull -> returning nothing",
+                                      "CommandHandler_runSQLCommand_characters_string",
+                                      False)
                             Return ""
                         Else
                             Return result.ToString()
@@ -79,9 +84,9 @@ Namespace Framework.Database
                     End If
                 Catch ex As Exception
                     LogAppend(
-                      "Exception occured: ###START###" &
-                      ex.ToString() &
-                      "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
+                        "Exception occured: ###START###" &
+                        ex.ToString() &
+                        "###END###", "CommandHandler_runSQLCommand_characters_string", True, True)
                     Return ""
                 End Try
             Else
@@ -156,7 +161,8 @@ Namespace Framework.Database
                 Dim foundRows() As DataRow
                 Try
                     foundRows = TempTable2.Select(newcommand)
-                    LogAppend("New command/column: " & newcommand & " / " & column, "CommandHandler_runSQLCommand_realm_string")
+                    LogAppend("New command/column: " & newcommand & " / " & column,
+                              "CommandHandler_runSQLCommand_realm_string")
                     If foundRows.Length = 0 Then
                         LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_realm_string", False)
                         Return ""
@@ -164,7 +170,7 @@ Namespace Framework.Database
                         Dim result = foundRows(0).Item(column)
                         If IsDBNull(result) Then
                             LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_realm_string",
-                                           False)
+                                      False)
                             Return ""
                         Else
                             Return result.ToString()
@@ -172,9 +178,9 @@ Namespace Framework.Database
                     End If
                 Catch ex As Exception
                     LogAppend(
-                      "Exception occured: ###START###" &
-                      ex.ToString() &
-                      "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
+                        "Exception occured: ###START###" &
+                        ex.ToString() &
+                        "###END###", "CommandHandler_runSQLCommand_realm_string", True, True)
                     Return ""
                 End Try
             Else
@@ -185,6 +191,7 @@ Namespace Framework.Database
             End If
         End Function
 
+        <Localizable(False)>
         Public Function runSQLCommand_characters_string_setconn(ByVal command As String,
                                                                 ByVal targetConnection As MySqlConnection) As String
             If Not command.Contains("SELECT MAX(") AndAlso command.ToLower.StartsWith("select") Then
@@ -215,15 +222,18 @@ Namespace Framework.Database
                 Dim foundRows() As DataRow
                 Try
                     foundRows = TempTable1.Select(newcommand)
-                    LogAppend("New command/column: " & newcommand & " / " & column, "CommandHandler_runSQLCommand_characters_string_setconn")
+                    LogAppend("New command/column: " & newcommand & " / " & column,
+                              "CommandHandler_runSQLCommand_characters_string_setconn")
                     If foundRows.Length = 0 Then
-                        LogAppend("0 Results -> returning nothing", "CommandHandler_runSQLCommand_characters_string_setconn", False)
+                        LogAppend("0 Results -> returning nothing",
+                                  "CommandHandler_runSQLCommand_characters_string_setconn", False)
                         Return ""
                     Else
                         Dim result = foundRows(0).Item(column)
                         If IsDBNull(result) Then
-                            LogAppend("Readed DBnull -> returning nothing", "CommandHandler_runSQLCommand_characters_string_setconn",
-                                           False)
+                            LogAppend("Readed DBnull -> returning nothing",
+                                      "CommandHandler_runSQLCommand_characters_string_setconn",
+                                      False)
                             Return ""
                         Else
                             Return result.ToString()
@@ -231,9 +241,9 @@ Namespace Framework.Database
                     End If
                 Catch ex As Exception
                     LogAppend(
-                      "Exception occured: ###START###" &
-                      ex.ToString() &
-                      "###END###", "CommandHandler_runSQLCommand_characters_string_setconn", True, True)
+                        "Exception occured: ###START###" &
+                        ex.ToString() &
+                        "###END###", "CommandHandler_runSQLCommand_characters_string_setconn", True, True)
                     Return ""
                 End Try
             Else
@@ -270,8 +280,9 @@ Namespace Framework.Database
         End Function
 
         Public Function ReturnDataTableRealm(ByVal command As String, Optional useTargetConnection As Boolean = False) _
-         As DataTable
-            LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTableRealm", False)
+            As DataTable
+            LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTableRealm",
+                      False)
             Dim conn As MySqlConnection
             If GlobalVariables.forceTargetConnectionUsage Then useTargetConnection = True
             If useTargetConnection = False Then

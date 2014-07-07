@@ -53,7 +53,8 @@ Namespace Framework.Core.Update
                     If Not prof.Recipes Is Nothing Then
                         For Each recipe As ProfessionSpell In prof.Recipes
                             Dim recipeResult As ProfessionSpell =
-                                    result.Recipes.Find(Function(professionspell) professionspell.SpellId = recipe.SpellId)
+                                    result.Recipes.Find(
+                                        Function(professionspell) professionspell.SpellId = recipe.SpellId)
                             If recipeResult Is Nothing Then
                                 AddSpells(recipe.SpellId.ToString() & ",", modPlayer)
                             End If

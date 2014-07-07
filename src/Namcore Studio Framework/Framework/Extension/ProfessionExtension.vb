@@ -25,12 +25,11 @@ Imports System.Runtime.CompilerServices
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Extension
-
     Public Module ProfessionExtension
-        ''' <summary>
-        '''     Updates reputation standing by value and status
-        ''' </summary>
-        <Extension()>
+    ''' <summary>
+    '''     Updates reputation standing by value and status
+    ''' </summary>
+                                     <Extension()>
         Public Function RecipeListsIdentical(ByVal prof As Profession,
                                              ByVal recipeListB As List(Of ProfessionSpell)) As Boolean
 

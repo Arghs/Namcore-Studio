@@ -20,11 +20,13 @@
 '*      /Filename:      dbStruc_check
 '*      /Description:   Contains functions for checking database compatibility
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.ComponentModel
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports MySql.Data.MySqlClient
 
 Namespace Framework.Database
+    <Localizable(False)>
     Public Class DbStrucCheck
         '// Declaration
         Dim _tmpConn As New MySqlConnection
@@ -37,7 +39,8 @@ Namespace Framework.Database
         Dim _xpac As Integer
         '// Declaration
 
-        Public Sub StartCheck(ByVal coreString As Modules.Core, ByVal expansion As Expansion, ByVal sqlconn As MySqlConnection,
+        Public Sub StartCheck(ByVal coreString As Modules.Core, ByVal expansion As Expansion,
+                              ByVal sqlconn As MySqlConnection,
                               ByVal realmsqlconn As MySqlConnection, ByVal infosqlconn As MySqlConnection,
                               ByVal characterDbname As String, ByVal authDbname As String, ByVal target As Boolean)
             If target = True Then
@@ -372,7 +375,7 @@ Namespace Framework.Database
             sqlconn.Open()
         End Sub
 
-        Private Sub check_accounts(ByVal struc As DBStructure)
+        Private Sub check_accounts(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check_realm(struc.account_tbl)
@@ -389,22 +392,22 @@ Namespace Framework.Database
             col_check_realm(struc.acc_expansion_col, struc.account_tbl)
             col_check_realm(struc.acc_locale_col, struc.account_tbl)
             col_check_realm(struc.acc_realmID_col, struc.account_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.account_tbl(0), _authDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.account_tbl(0), _authDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_accountAccess(ByVal struc As DBStructure)
+        Private Sub check_accountAccess(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check_realm(struc.accountAccess_tbl)
             col_check_realm(struc.accAcc_accid_col, struc.accountAccess_tbl)
             col_check_realm(struc.accAcc_gmLevel_col, struc.accountAccess_tbl)
             col_check_realm(struc.accAcc_realmId_col, struc.accountAccess_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.accountAccess_tbl(0), _authDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.accountAccess_tbl(0), _authDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_characters(ByVal struc As DBStructure)
+        Private Sub check_characters(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_tbl)
@@ -447,22 +450,22 @@ Namespace Framework.Database
             col_check(struc.char_knownCurrencies_col, struc.character_tbl)
             col_check(struc.char_equipmentCache_col, struc.character_tbl)
             col_check(struc.char_actionBars_col, struc.character_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_achievement(ByVal struc As DBStructure)
+        Private Sub check_character_achievement(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_achievement_tbl)
             col_check(struc.av_guid_col, struc.character_achievement_tbl)
             col_check(struc.av_achievement_col, struc.character_achievement_tbl)
             col_check(struc.av_date_col, struc.character_achievement_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_achievement_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_achievement_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_action(ByVal struc As DBStructure)
+        Private Sub check_character_action(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_action_tbl)
@@ -471,11 +474,11 @@ Namespace Framework.Database
             col_check(struc.action_button_col, struc.character_action_tbl)
             col_check(struc.action_action_col, struc.character_action_tbl)
             col_check(struc.action_type_col, struc.character_action_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_action_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_action_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_glyphs(ByVal struc As DBStructure)
+        Private Sub check_character_glyphs(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_glyphs_tbl)
@@ -493,11 +496,11 @@ Namespace Framework.Database
                 col_check(struc.glyphs_glyph8_col, struc.character_glyphs_tbl)
                 col_check(struc.glyphs_glyph9_col, struc.character_glyphs_tbl)
             End If
-            If Not _dbReport = "" Then gettablescheme(struc.character_glyphs_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_glyphs_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_homebind(ByVal struc As DBStructure)
+        Private Sub check_character_homebind(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_homebind_tbl)
@@ -507,11 +510,11 @@ Namespace Framework.Database
             col_check(struc.homebind_posx_col, struc.character_homebind_tbl)
             col_check(struc.homebind_posy_col, struc.character_homebind_tbl)
             col_check(struc.homebind_posz_col, struc.character_homebind_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_homebind_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_homebind_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_inventory(ByVal struc As DBStructure)
+        Private Sub check_character_inventory(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_inventory_tbl)
@@ -520,11 +523,11 @@ Namespace Framework.Database
             col_check(struc.invent_slot_col, struc.character_inventory_tbl)
             col_check(struc.invent_item_col, struc.character_inventory_tbl)
             col_check(struc.invent_item_template_col, struc.character_inventory_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_inventory_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_inventory_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_queststatus(ByVal struc As DBStructure)
+        Private Sub check_character_queststatus(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_queststatus_tbl)
@@ -536,21 +539,21 @@ Namespace Framework.Database
             col_check(struc.qst_rewarded_col, struc.character_queststatus_tbl)
             col_check(struc.qst_slot_col, struc.character_queststatus_tbl)
             col_check(struc.qst_timer_col, struc.character_queststatus_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_queststatus_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_queststatus_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_queststatus_rewarded(ByVal struc As DBStructure)
+        Private Sub check_character_queststatus_rewarded(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_queststatus_rewarded_tbl)
             col_check(struc.qstre_guid_col, struc.character_queststatus_rewarded_tbl)
             col_check(struc.qstre_quest_col, struc.character_queststatus_rewarded_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_queststatus_rewarded_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_queststatus_rewarded_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_reputation(ByVal struc As DBStructure)
+        Private Sub check_character_reputation(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_reputation_tbl)
@@ -558,11 +561,11 @@ Namespace Framework.Database
             col_check(struc.rep_faction_col, struc.character_reputation_tbl)
             col_check(struc.rep_standing_col, struc.character_reputation_tbl)
             col_check(struc.rep_flags_col, struc.character_reputation_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_reputation_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_reputation_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_skills(ByVal struc As DBStructure)
+        Private Sub check_character_skills(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_skills_tbl)
@@ -570,11 +573,11 @@ Namespace Framework.Database
             col_check(struc.skill_skill_col, struc.character_skills_tbl)
             col_check(struc.skill_value_col, struc.character_skills_tbl)
             col_check(struc.skill_max_col, struc.character_skills_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_skills_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_skills_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_spell(ByVal struc As DBStructure)
+        Private Sub check_character_spell(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_spells_tbl)
@@ -582,11 +585,11 @@ Namespace Framework.Database
             col_check(struc.spell_spell_col, struc.character_spells_tbl)
             col_check(struc.spell_active_col, struc.character_spells_tbl)
             col_check(struc.spell_disabled_col, struc.character_spells_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_spells_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_spells_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_talent(ByVal struc As DBStructure)
+        Private Sub check_character_talent(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_talent_tbl)
@@ -595,11 +598,11 @@ Namespace Framework.Database
             col_check(struc.talent_spec_col, struc.character_talent_tbl)
             col_check(struc.talent_rank_col, struc.character_talent_tbl)
             col_check(struc.talent_talent_col, struc.character_talent_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.character_talent_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.character_talent_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_item_instance(ByVal struc As DBStructure)
+        Private Sub check_item_instance(ByVal struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.item_instance_tbl)
@@ -611,7 +614,7 @@ Namespace Framework.Database
             col_check(struc.itmins_durability_col, struc.item_instance_tbl)
             col_check(struc.itmins_data_col, struc.item_instance_tbl)
             col_check(struc.itmins_container_col, struc.item_instance_tbl)
-            If Not _dbReport = "" Then gettablescheme(struc.item_instance_tbl(0), _characterDb)
+            If Not _dbReport = "" Then Gettablescheme(struc.item_instance_tbl(0), _characterDb)
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 

@@ -22,11 +22,12 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework
 Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.My
+Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports Microsoft.Win32
 Imports System.Text
 Imports System.Xml
 Imports System.Net
@@ -103,9 +104,9 @@ Namespace Forms
             If My.Settings.Registered = False Then
                 Try
                     My.Computer.Registry.ClassesRoot.CreateSubKey(".ncsf") _
-                                                .SetValue("", "NamcoreStudioFile", Microsoft.Win32.RegistryValueKind.String)
+                        .SetValue("", "NamcoreStudioFile", RegistryValueKind.String)
                     My.Computer.Registry.ClassesRoot.CreateSubKey("NamcoreStudioFile\shell\open\command") _
-                        .SetValue("", Application.ExecutablePath & " ""%l"" ", Microsoft.Win32.RegistryValueKind.String)
+                        .SetValue("", Application.ExecutablePath & " ""%l"" ", RegistryValueKind.String)
                 Catch ex As Exception
                     LogAppend("Unable to register file extension - Check admin rights", "Main_Main_Load", True, True)
                 End Try
@@ -197,7 +198,7 @@ Namespace Forms
             LogAppend("/SYSTEM VERSION: " & Environment.Version.ToString(), "Main_Main_Load", False)
             LogAppend("/PROCESSOR COUNT: " & (Environment.ProcessorCount).ToString(), "Main_Main_Load", False)
             LogAppend(
-                "/AVAILABLE PHYSICAL MEMORY: " & (My.Computer.Info.AvailablePhysicalMemory / 1000000000).ToString() &
+                "/AVAILABLE PHYSICAL MEMORY: " & (My.Computer.Info.AvailablePhysicalMemory/1000000000).ToString() &
                 " GB",
                 "Main_Main_Load", False)
             LogAppend(

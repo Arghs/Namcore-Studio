@@ -21,9 +21,10 @@
 '*      /Description:   Handles account/character migration requests
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Core
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Functions
+
 Namespace Framework.Transmission
     Public Class TransmissionHandler
         Public Sub HandleMigrationRequests(ByVal lite As Boolean)
@@ -42,7 +43,8 @@ Namespace Framework.Transmission
             '// Creating Characters
             ResetTempDataTables()
             For Each playerCharacter As Character In GlobalVariables.charactersToCreate
-                LogAppend("Migrating character " & playerCharacter.Name, "TransmissionHandler_HandleMigrationRequests", True)
+                LogAppend("Migrating character " & playerCharacter.Name, "TransmissionHandler_HandleMigrationRequests",
+                          True)
                 Dim playerAccount As Account = playerCharacter.TargetAccount
                 Dim accountId As Integer = playerAccount.Id
                 Dim renamePending As Boolean = playerCharacter.RenamePending
@@ -52,14 +54,17 @@ Namespace Framework.Transmission
                 Dim mCharLoading As New CoreHandler
                 If playerCharacter.Loaded = False Then
                     GlobalVariables.forceTargetConnectionUsage = False
-                    mCharLoading.HandleLoadingRequests(GetAccountSetBySetId(playerCharacter.AccountSet), playerCharacter.SetIndex)
+                    mCharLoading.HandleLoadingRequests(GetAccountSetBySetId(playerCharacter.AccountSet),
+                                                       playerCharacter.SetIndex)
                 End If
                 GlobalVariables.forceTargetConnectionUsage = True
                 If lite Then
-                    If mCharCreationLite.CreateNewLiteCharacter(charname, accountId, playerCharacter, renamePending) = False Then Continue For
+                    If _
+                        mCharCreationLite.CreateNewLiteCharacter(charname, accountId, playerCharacter, renamePending) =
+                        False Then Continue For
                 Else
                     If mCharCreationAdvanced.CreateNewAdvancedCharacter(charname, accountId.ToString, playerCharacter,
-                                                                     renamePending) = False Then Continue For
+                                                                        renamePending) = False Then Continue For
                 End If
                 playerCharacter.Guid = playerCharacter.CreatedGuid
                 Dim mCharArmorCreation As New ArmorCreation

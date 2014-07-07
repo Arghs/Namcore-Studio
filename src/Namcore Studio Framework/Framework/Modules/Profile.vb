@@ -75,6 +75,7 @@ Namespace Framework.Modules
         Public Charges As String
         Public Duration As Integer
         Public Durability As Integer
+
         Public Sub New()
         End Sub
     End Class
@@ -86,6 +87,7 @@ Namespace Framework.Modules
             GLYTYPE_MAJOR = 2
             GLYTYPE_PRIME = 3
         End Enum
+
         Public Id As Integer
         Public Type As GlyphType
         Public Spec As Integer
@@ -158,6 +160,7 @@ Namespace Framework.Modules
         Public Value As Integer
         Public Max As Integer
         Public Status As RepStatus
+
         <Flags>
         Public Enum FlagEnum
             FACTION_FLAG_INVISIBLE = 0

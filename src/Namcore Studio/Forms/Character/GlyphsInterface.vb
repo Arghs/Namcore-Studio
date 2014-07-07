@@ -28,6 +28,7 @@ Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
 Imports libnc.Provider
+Imports NCFramework.My.Resources
 Imports System.Net
 
 Namespace Forms.Character
@@ -126,7 +127,8 @@ Namespace Forms.Character
                 Case 0 : Return glyphitm.name
                 Case 1
                     If glyphitm.Image Is Nothing Then
-                        Return GetItemIconByDisplayId(GetDisplayIdByItemId(glyphitm.Id), GlobalVariables.GlobalWebClient)
+                        Return _
+                            GetItemIconByDisplayId(GetDisplayIdByItemId(glyphitm.Id), GlobalVariables.GlobalWebClient)
                     Else
                         Return glyphitm.Image
                     End If
@@ -257,15 +259,16 @@ Namespace Forms.Character
             newPoint.X = 4000
             newPoint.Y = 4000
             If TypeOf _tempSender Is Label Then
-                Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
-                                    ResourceHandler.GetUserMessage("areyousure"))
+                Dim result = MsgBox(MSG_DELETEITEM, vbYesNo, MSG_AREYOUSURE)
                 If result = MsgBoxResult.Yes Then
 
                     For Each ctrl As Control In _controlLst
                         If TypeOf ctrl Is PictureBox Then
                             If ctrl.Name.EndsWith("_pic") Then
                                 If ctrl.Tag Is Nothing Then Continue For
-                                If CType(ctrl.Tag, Glyph).Id = senderTag.Id And CType(ctrl.Tag, Glyph).Spec = senderTag.Spec Then
+                                If _
+                                    CType(ctrl.Tag, Glyph).Id = senderTag.Id And
+                                    CType(ctrl.Tag, Glyph).Spec = senderTag.Spec Then
                                     Select Case True
                                         Case ctrl.Name.ToLower.EndsWith("_pic")
                                             DirectCast(ctrl, PictureBox).Tag = Nothing
@@ -276,7 +279,9 @@ Namespace Forms.Character
                         ElseIf TypeOf ctrl Is Label Then
                             If ctrl.Name.EndsWith("_name") Then
                                 If ctrl.Tag Is Nothing Then Continue For
-                                If CType(ctrl.Tag, Glyph).Id = senderTag.Id And CType(ctrl.Tag, Glyph).Spec = senderTag.Spec Then
+                                If _
+                                    CType(ctrl.Tag, Glyph).Id = senderTag.Id And
+                                    CType(ctrl.Tag, Glyph).Spec = senderTag.Spec Then
                                     If ctrl.Name.ToLower.EndsWith("_name") Then
                                         DirectCast(ctrl, Label).Tag = Nothing
                                         DirectCast(ctrl, Label).Text = ""
@@ -316,13 +321,13 @@ Namespace Forms.Character
 
                     If senderLabel.Name.ToLower.EndsWith("_name") Then
                         If Not GetItemInventorySlotByItemId(senderTag.Id) = GetItemInventorySlotByItemId(id) Then
-                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
-                                   ResourceHandler.GetUserMessage("Error"))
+                            MsgBox(MSG_INVALIDITEMCLASS, MsgBoxStyle.Critical, MSG_ERROR)
                         Else
                             Dim newGlyph As New Glyph
                             newGlyph.Id = id
                             newGlyph.Name = GetItemNameByItemId(id, MySettings.Default.language)
-                            newGlyph.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(id), GlobalVariables.GlobalWebClient)
+                            newGlyph.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(id),
+                                                                    GlobalVariables.GlobalWebClient)
                             newGlyph.Spec = senderTag.Spec
                             newGlyph.Slotname = senderTag.Slotname
                             newGlyph.Type = senderTag.Type
@@ -381,8 +386,7 @@ Namespace Forms.Character
                 Dim qCode As String = client.DownloadString("http://wowhead.com/item=" & TextBox2.Text)
                 If Not qCode.Contains("Glyph") Then
 
-                    MsgBox(ResourceHandler.GetUserMessage("glyphnotfound"), MsgBoxStyle.Critical,
-                           ResourceHandler.GetUserMessage("Error"))
+                    MsgBox(MSG_INVALIDGLYPH, MsgBoxStyle.Critical, MSG_ERROR)
                     Exit Sub
                 Else
                     Dim gly As New Glyph

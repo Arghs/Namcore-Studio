@@ -20,13 +20,14 @@
 '*      /Filename:      Basics
 '*      /Description:   Includes basic and frequently used functions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Windows.Forms
 Imports NCFramework.Framework.Forms
+Imports NCFramework.Framework.Database
 Imports libnc
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Database
 Imports System.Net
 Imports System.Text
 
@@ -59,7 +60,7 @@ Namespace Framework.Functions
             If Not globChars Is Nothing Then useChars = globChars
             If useChars.AccountSets Is Nothing Then useChars.AccountSets = New List(Of Account)()
             Dim accountSet As Integer = useChars.AccountSets.FindIndex(Function(account) account.SetIndex = setId)
-            If accountSet <> -1 Then
+            If accountSet <> - 1 Then
                 SetAccountSet(setId, player)
             Else
                 useChars.AccountSets.Add(player)
@@ -74,7 +75,7 @@ Namespace Framework.Functions
                 useChars = GlobalVariables.templateCharVars
             End If
             Dim accountSet As Integer = useChars.AccountSets.FindIndex(Function(account) account.SetIndex = setId)
-            If accountSet <> -1 Then
+            If accountSet <> - 1 Then
                 Return useChars.AccountSets(accountSet)
             Else
                 Return Nothing
@@ -90,14 +91,14 @@ Namespace Framework.Functions
             End If
             If useChars.AccountSets Is Nothing Then useChars.AccountSets = New List(Of Account)()
             Dim accountSet As Integer = useChars.AccountSets.FindIndex(Function(account) account.SetIndex = setId)
-            If accountSet <> -1 Then
+            If accountSet <> - 1 Then
                 useChars.AccountSets(accountSet) = playerAccount
             End If
         End Sub
 
         Public Function GetCharacterSetBySetId(ByVal setId As Integer, ByVal playerAccount As Account) As Character
             Dim charSet As Integer = playerAccount.Characters.FindIndex(Function(character) character.SetIndex = setId)
-            If charSet <> -1 Then
+            If charSet <> - 1 Then
                 Return playerAccount.Characters(charSet)
             Else
                 Return Nothing
@@ -110,25 +111,26 @@ Namespace Framework.Functions
             playerAccount.Characters.Add(player)
         End Sub
 
-        Public Sub SetCharacterSet(ByVal setId As Integer, ByVal playerCharacter As Character, ByVal playerAccount As Account)
-            Dim charSet As Integer = PlayerAccount.Characters.FindIndex(Function(character) character.SetIndex = setId)
-            If charSet <> -1 Then
-                PlayerAccount.Characters(charSet) = playerCharacter
+        Public Sub SetCharacterSet(ByVal setId As Integer, ByVal playerCharacter As Character,
+                                   ByVal playerAccount As Account)
+            Dim charSet As Integer = playerAccount.Characters.FindIndex(Function(character) character.SetIndex = setId)
+            If charSet <> - 1 Then
+                playerAccount.Characters(charSet) = playerCharacter
             End If
         End Sub
 
         Public Sub RemoveCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
             If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
             Dim itmIndex As Integer = player.ArmorItems.FindIndex(Function(item) item.Slot = itm.Slot)
-            If itmIndex <> -1 Then
+            If itmIndex <> - 1 Then
                 player.ArmorItems.RemoveAt(itmIndex)
             End If
         End Sub
 
         Public Sub SetCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
             Dim itmIndex As Integer = player.ArmorItems.FindIndex(Function(item) item.Slot = itm.Slot)
-            If itmIndex = -1 Then itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slotname = itm.Slotname)
-            If itmIndex <> -1 Then
+            If itmIndex = - 1 Then itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slotname = itm.Slotname)
+            If itmIndex <> - 1 Then
                 player.ArmorItems(itmIndex) = itm
             End If
         End Sub
@@ -141,7 +143,7 @@ Namespace Framework.Functions
             Else
                 itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slotname = slot)
             End If
-            If itmIndex <> -1 Then
+            If itmIndex <> - 1 Then
                 Return player.ArmorItems(itmIndex)
             Else
                 Return Nothing
@@ -155,7 +157,7 @@ Namespace Framework.Functions
 
         Public Sub SetCharacterGlyph(ByRef player As Character, ByVal glph As Glyph)
             Dim glyphIndex As Integer = player.PlayerGlyphs.FindIndex(Function(glyph) glyph.Slotname = glph.Slotname)
-            If glyphIndex <> -1 Then
+            If glyphIndex <> - 1 Then
                 player.PlayerGlyphs(glyphIndex) = glph
             End If
         End Sub
@@ -163,13 +165,14 @@ Namespace Framework.Functions
         Public Function GetCharacterGlyph(ByVal player As Character, ByVal slot As String) As Glyph
             If player.PlayerGlyphs Is Nothing Then Return Nothing
             Dim glyphIndex As Integer = player.PlayerGlyphs.FindIndex(Function(glyph) glyph.Slotname = slot)
-            If glyphIndex <> -1 Then
+            If glyphIndex <> - 1 Then
                 Return player.PlayerGlyphs(glyphIndex)
             Else
                 Return Nothing
             End If
         End Function
 
+        <Localizable(False)>
         Public Function SplitString(ByVal source As String, ByVal start As String, ByVal ending As String) As String
             If source Is Nothing Or start Is Nothing Or ending Is Nothing Then
                 LogAppend("Failed to split a string: source might be nothing", "Basics_splitString", False, True)
@@ -256,7 +259,7 @@ Namespace Framework.Functions
                     Return Nothing
                 Else
                     Dim resultList As New List(Of String())
-                   
+
                     For i = 0 To foundRows.Count() - 1
                         Dim colCount As Integer = foundRows(i).Table.Columns.Count()
                         Dim resultArray(colCount - 1) As String
@@ -272,7 +275,8 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function SafeExecuteDataTableSearch(ByVal dt As DataTable, ByVal command As String, ByVal position As Integer) As String
+        Public Function SafeExecuteDataTableSearch(ByVal dt As DataTable, ByVal command As String,
+                                                   ByVal position As Integer) As String
             Dim tmpLst As List(Of String()) = ExecuteDataTableSearch(dt, command)
             If tmpLst Is Nothing Then Return Nothing
             If tmpLst.Count >= 1 Then
@@ -302,11 +306,13 @@ Namespace Framework.Functions
             Next
             Return sb.ToString()
         End Function
+
         Public Sub CloseProcessStatus()
             If GlobalVariables.DebugMode = False Then
                 Try
                     For Each myForm As Form In _
-                        From myForm1 As Object In Application.OpenForms Where CType(myForm1, Form).Name = "ProcessStatus"
+                        From myForm1 As Object In Application.OpenForms
+                            Where CType(myForm1, Form).Name = "ProcessStatus"
                         myForm.Close()
                         Application.DoEvents()
                     Next
@@ -318,7 +324,7 @@ Namespace Framework.Functions
         Public Sub NewProcessStatus()
             Try
                 For Each myForm As Form In _
-                     From myForm1 As Object In Application.OpenForms Where CType(myForm1, Form).Name = "ProcessStatus"
+                    From myForm1 As Object In Application.OpenForms Where CType(myForm1, Form).Name = "ProcessStatus"
                     If GlobalVariables.DebugMode = True Then
                         Exit Sub
                     Else

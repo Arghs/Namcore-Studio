@@ -56,6 +56,7 @@ Namespace Forms
                                      e.Location.Y - _ptMouseDownLocation.Y + Location.Y)
             End If
         End Sub
+
         Private Sub highlighter2_Click(sender As Object, e As EventArgs) Handles highlighter2.Click
             Close()
         End Sub

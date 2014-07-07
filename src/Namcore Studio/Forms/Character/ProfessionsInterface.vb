@@ -27,6 +27,7 @@ Imports NCFramework.Framework.Logging
 Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.My.Resources
 Imports libnc.Provider
 
 Namespace Forms.Character
@@ -57,9 +58,9 @@ Namespace Forms.Character
             If GlobalVariables.currentEditedCharSet.Spells Is Nothing Then _
                 GlobalVariables.currentEditedCharSet.Spells = New List(Of Spell)()
             Dim firstResult As Boolean = True
-            mainprof1_lbl.Text = "Add"
+            mainprof1_lbl.Text = MISC_PROFADD
             mainprof1_pic.BackgroundImage = Nothing
-            mainprof2_lbl.Text = "Add"
+            mainprof2_lbl.Text = MISC_PROFADD
             mainprof2_pic.BackgroundImage = Nothing
             For Each prof As Profession In GlobalVariables.currentEditedCharSet.Professions
                 If prof.Primary = True Then
@@ -199,7 +200,8 @@ Namespace Forms.Character
                                               rank_color_panel.Size.Height)
             rank_slider.Value = EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet)
             progress_lbl.Text = EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet).ToString & "/600"
-            rankname_lbl.Text = GetProficiencyLevelNameByLevel(EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet))
+            rankname_lbl.Text = GetProficiencyLevelNameByLevel(EscapeRank(_activeProfession,
+                                                                          GlobalVariables.currentEditedCharSet))
             Dim relevantSpellList As IEnumerable(Of ProfessionSpell) = ExecuteSkillLineSearch(_activeProfession.Id)
             _nylearnedSpellsLst = New List(Of ProfessionSpell)()
             For Each profSpell As ProfessionSpell In relevantSpellList
@@ -213,8 +215,8 @@ Namespace Forms.Character
             prof_lst.Items.Clear()
             nyl_bt.Enabled = True
             learned_bt.Enabled = False
-            learned_bt.Text = "Learned (" & _activeProfession.Recipes.Count.ToString() & ")"
-            nyl_bt.Text = "Not Yet Learned (" & _nylearnedSpellsLst.Count.ToString() & ")"
+            learned_bt.Text = MISC_PROFLEARNED & " (" & _activeProfession.Recipes.Count.ToString() & ")"
+            nyl_bt.Text = MISC_PROFNYLEARNED & " (" & _nylearnedSpellsLst.Count.ToString() & ")"
             For Each profSpell As ProfessionSpell In _activeProfession.Recipes
                 If profSpell.Name Is Nothing Then _
                     profSpell.Name = GetSpellNameBySpellId(profSpell.SpellId, MySettings.Default.language)
@@ -231,8 +233,8 @@ Namespace Forms.Character
             Next
             _temporarySkillLevel = _activeProfession.Rank
             _loaded = True
-            resultstatus_lbl.Text = prof_lst.Items.Count.ToString & " results!"
-            LearnToolStrip.Text = "Unlearn"
+            resultstatus_lbl.Text = prof_lst.Items.Count.ToString & MISC_PROFRESULTS
+            LearnToolStrip.Text = MISC_PROFUNLEARN
         End Sub
 
         Private Function ExecuteSkillLineSearch(ByVal startvalue As Integer) As IEnumerable(Of ProfessionSpell)
@@ -290,13 +292,13 @@ Namespace Forms.Character
 
         Private Sub search_tb_Leave(sender As Object, e As EventArgs) Handles search_tb.Leave
             If search_tb.Text = "" Then
-                search_tb.Text = "Enter spell id"
+                search_tb.Text = MSG_ENTERSPELLID
             End If
         End Sub
 
         Private Sub search_tb_TextChanged(sender As Object, e As EventArgs) Handles search_tb.TextChanged
             If _loaded = False Then Exit Sub
-            If search_tb.Text = "Enter spell id" Or search_tb.Text = "" Then
+            If search_tb.Text = MSG_ENTERSPELLID Or search_tb.Text = "" Then
                 If _lstitems Is Nothing Then Exit Sub
                 If _lstitems.Count = 0 Then Exit Sub
                 prof_lst.Items.Clear()
@@ -304,7 +306,7 @@ Namespace Forms.Character
                     prof_lst.Items.Add(itm)
                 Next
                 prof_lst.Update()
-                resultstatus_lbl.Text = prof_lst.Items.Count.ToString & " results!"
+                resultstatus_lbl.Text = prof_lst.Items.Count.ToString & MISC_PROFRESULTS
                 Exit Sub
             End If
             Dim value As Integer = TryInt(search_tb.Text)
@@ -322,13 +324,13 @@ Namespace Forms.Character
                 For Each profitm In itmstoshow
                     prof_lst.Items.Add(profitm)
                 Next
-                resultstatus_lbl.Text = resultcounter.ToString & " results!"
+                resultstatus_lbl.Text = resultcounter.ToString & MISC_PROFRESULTS
             Else
                 prof_lst.Items.Clear()
                 For Each itm As ListViewItem In _lstitems
                     prof_lst.Items.Add(itm)
                 Next
-                search_tb.Text = "Enter spell id"
+                search_tb.Text = MSG_ENTERSPELLID
             End If
             prof_lst.Update()
         End Sub
@@ -350,8 +352,7 @@ Namespace Forms.Character
             Dim prof As Profession = CType(senderPanel.Tag, Profession)
             If prof Is Nothing Then
                 If senderPanel.Name.StartsWith("minprof") Then
-                    Dim msgResult As MsgBoxResult = MsgBox(ResourceHandler.GetUserMessage("learnprofession"),
-                                                           MsgBoxStyle.YesNo, "Profession not known")
+                    Dim msgResult As MsgBoxResult = MsgBox(MSG_TEACHPROFESSION, MsgBoxStyle.YesNo, MSG_PROFESSIONUNKNOWN)
                     If msgResult = MsgBoxResult.Yes Then
                         Select Case senderPanel.Name
                             Case "minprof1_select"
@@ -360,7 +361,7 @@ Namespace Forms.Character
                                 newProf.Primary = False
                                 newProf.Id = 794
                                 newProf.Rank = 1
-                                newProf.Name = "Archaeology"
+                                newProf.Name = PROF_ARCHAEOLOGY
                                 newProf.Max = 75
                                 GlobalVariables.currentEditedCharSet.Professions.Add(newProf)
                                 senderPanel.Tag = newProf
@@ -371,7 +372,7 @@ Namespace Forms.Character
                                 newProf.Primary = False
                                 newProf.Id = 185
                                 newProf.Rank = 1
-                                newProf.Name = "Cooking"
+                                newProf.Name = PROF_COOKING
                                 newProf.Max = 75
                                 GlobalVariables.currentEditedCharSet.Professions.Add(newProf)
                                 senderPanel.Tag = newProf
@@ -382,7 +383,7 @@ Namespace Forms.Character
                                 newProf.Primary = False
                                 newProf.Id = 129
                                 newProf.Rank = 1
-                                newProf.Name = "First Aid"
+                                newProf.Name = PROF_FIRSTAID
                                 newProf.Max = 75
                                 GlobalVariables.currentEditedCharSet.Professions.Add(newProf)
                                 senderPanel.Tag = newProf
@@ -393,7 +394,7 @@ Namespace Forms.Character
                                 newProf.Primary = False
                                 newProf.Id = 356
                                 newProf.Rank = 1
-                                newProf.Name = "Fishing"
+                                newProf.Name = PROF_FISHING
                                 newProf.Max = 75
                                 GlobalVariables.currentEditedCharSet.Professions.Add(newProf)
                                 senderPanel.Tag = newProf
@@ -437,7 +438,7 @@ Namespace Forms.Character
                     Dim counter As Integer = 0
                     For Each id As Integer In profIds
                         If removeId <> id Then
-                            items(counter) = ResourceHandler.GetUserMessage("profession_" & id.ToString())
+                            items(counter) = ResourceHandler.GetLocalizedString("profession_" & id.ToString())
                             profImageList.Images.Add(CType(counter, String), GetProfessionPic(id))
                             _displayProfessionIds.Add(id)
                             counter += 1
@@ -559,9 +560,9 @@ Namespace Forms.Character
                 Dim itmnew As ListViewItem = CType(itm.Clone(), ListViewItem)
                 _lstitems.Add(itmnew)
             Next
-            resultstatus_lbl.Text = prof_lst.Items.Count.ToString & " results!"
-            LearnToolStrip.Text = "Unlearn"
-            LearnAllToolStripMenuItem.Text = "Unlearn all"
+            resultstatus_lbl.Text = prof_lst.Items.Count.ToString & MISC_PROFRESULTS
+            LearnToolStrip.Text = MISC_PROFUNLEARN
+            LearnAllToolStripMenuItem.Text = MISC_PROFUNLEARNALL
         End Sub
 
         Private Sub nyl_bt_Click(sender As Object, e As EventArgs) Handles nyl_bt.Click
@@ -581,9 +582,9 @@ Namespace Forms.Character
                 Dim itmnew As ListViewItem = CType(itm.Clone(), ListViewItem)
                 _lstitems.Add(itmnew)
             Next
-            resultstatus_lbl.Text = prof_lst.Items.Count.ToString & " results!"
-            LearnToolStrip.Text = "Learn"
-            LearnAllToolStripMenuItem.Text = "Learn all"
+            resultstatus_lbl.Text = prof_lst.Items.Count.ToString & MISC_PROFRESULTS
+            LearnToolStrip.Text = MISC_PROFLEARN
+            LearnAllToolStripMenuItem.Text = MISC_PROFLEARNALL
         End Sub
 
         Private Sub LearnToolStrip_Click(sender As Object, e As EventArgs) Handles LearnToolStrip.Click
@@ -606,8 +607,8 @@ Namespace Forms.Character
                                     Function(professionSpell) professionSpell.SpellId = senderTag.SpellId)
                         If result IsNot Nothing Then _activeProfession.Recipes.Remove(result)
                 End Select
-                learned_bt.Text = "Learned (" & _activeProfession.Recipes.Count.ToString() & ")"
-                nyl_bt.Text = "Not Yet Learned (" & _nylearnedSpellsLst.Count.ToString() & ")"
+                learned_bt.Text = MISC_PROFLEARNED & " (" & _activeProfession.Recipes.Count.ToString() & ")"
+                nyl_bt.Text = MISC_PROFNYLEARNED & " (" & _nylearnedSpellsLst.Count.ToString() & ")"
                 For Each pitm As ListViewItem In _lstitems
                     If CType(pitm.Tag, ProfessionSpell).SpellId = senderTag.SpellId Then
                         _lstitems.Remove(pitm)
@@ -615,7 +616,7 @@ Namespace Forms.Character
                     End If
                 Next
                 prof_lst.Items.Remove(listOb)
-                resultstatus_lbl.Text = prof_lst.Items.Count.ToString & " results!"
+                resultstatus_lbl.Text = prof_lst.Items.Count.ToString & MISC_PROFRESULTS
             Next
             prof_lst.EndUpdate()
         End Sub
@@ -641,8 +642,8 @@ Namespace Forms.Character
                                     Function(professionSpell) professionSpell.SpellId = senderTag.SpellId)
                         If result IsNot Nothing Then _activeProfession.Recipes.Remove(result)
                 End Select
-                learned_bt.Text = "Learned (" & _activeProfession.Recipes.Count.ToString() & ")"
-                nyl_bt.Text = "Not Yet Learned (" & _nylearnedSpellsLst.Count.ToString() & ")"
+                learned_bt.Text = MISC_PROFLEARNED & " (" & _activeProfession.Recipes.Count.ToString() & ")"
+                nyl_bt.Text = MISC_PROFNYLEARNED & " (" & _nylearnedSpellsLst.Count.ToString() & ")"
                 For Each pitm As ListViewItem In _lstitems
                     If CType(pitm.Tag, ProfessionSpell).SpellId = senderTag.SpellId Then
                         _lstitems.Remove(pitm)
@@ -650,7 +651,7 @@ Namespace Forms.Character
                     End If
                 Next
                 prof_lst.Items.Remove(listOb)
-                resultstatus_lbl.Text = prof_lst.Items.Count.ToString & " results!"
+                resultstatus_lbl.Text = prof_lst.Items.Count.ToString & MISC_PROFRESULTS
             Next
             prof_lst.EndUpdate()
         End Sub
@@ -698,8 +699,7 @@ Namespace Forms.Character
 
         Private Sub removeprof_bt_Click(sender As Object, e As EventArgs) Handles removeprof_bt.Click
             If Not _activeProfession Is Nothing Then
-                Dim result = MsgBox(ResourceHandler.GetUserMessage("removeProfession"), MsgBoxStyle.YesNo,
-                                    ResourceHandler.GetUserMessage("areyousure"))
+                Dim result = MsgBox(MSG_DELETEPROFESSION, MsgBoxStyle.YesNo, MSG_AREYOUSURE)
                 If result = MsgBoxResult.Yes Then
                     Hide()
                     GlobalVariables.currentEditedCharSet.Professions.Remove(
@@ -714,7 +714,8 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Function EscapeRank(ByVal pProf As Profession, ByVal player As NCFramework.Framework.Modules.Character) As Integer
+        Private Function EscapeRank(ByVal pProf As Profession, ByVal player As NCFramework.Framework.Modules.Character) _
+            As Integer
             Select Case pProf.Id
                 Case 182
                     If player.Race(0) = 6 Then Return pProf.Rank - 15 '// Tauren herbalism bonus

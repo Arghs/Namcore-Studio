@@ -39,7 +39,9 @@ Namespace Framework.Armory.Parser
             player.Professions = New List(Of Profession)
             Dim pProf As Profession
             Try
-                LogAppend("Loading character profession information - setId: " & setId.ToString() & " - apiLink: " & apiLink, "ProfessionParser_loadProfessions", True)
+                LogAppend(
+                    "Loading character profession information - setId: " & setId.ToString() & " - apiLink: " & apiLink,
+                    "ProfessionParser_loadProfessions", True)
                 '// Using API to load profession info
                 Dim pfContext As String = client.DownloadString(apiLink & "?fields=professions")
                 If pfContext Is Nothing Then

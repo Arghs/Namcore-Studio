@@ -22,8 +22,9 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Runtime.CompilerServices
 Imports System.IO
-Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports System.Xml.Serialization
 Imports System.Xml
 
 Namespace Modules.Interface
@@ -32,7 +33,7 @@ Namespace Modules.Interface
         Public Sub CheckTag(ByVal ctrl As Control)
             If TypeOf (ctrl.Tag) Is Item Then
                 Dim locItm As Item = CType(ctrl.Tag, Item)
-                Dim x As New Serialization.XmlSerializer(locItm.GetType)
+                Dim x As New XmlSerializer(locItm.GetType)
                 Dim memStream As New MemoryStream
                 Dim sw As New StreamWriter(memStream)
                 x.Serialize(sw, locItm)

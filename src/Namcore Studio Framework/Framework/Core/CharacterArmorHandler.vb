@@ -21,8 +21,8 @@
 '*      /Description:   Contains functions for extracting information about the equipped 
 '*                      armor of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
@@ -34,7 +34,7 @@ Namespace Framework.Core
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             player.ArmorItems = New List(Of Item)()
             SetCharacterSet(setId, player, account)
-             Select Case GlobalVariables.sourceCore
+            Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     LoadAtArcemu(charguid, setId, account)
                 Case Modules.Core.TRINITY

@@ -130,7 +130,8 @@ Namespace Forms
             End If
             SkipStatement4:
             For Each myliveview As LiveView In _
-                (From currentForm As Object In Application.OpenForms Where TryCast(currentForm, Form).Name = "LiveView").Cast _
+                (From currentForm As Object In Application.OpenForms Where TryCast(currentForm, Form).Name = "LiveView") _
+                    .Cast _
                     (Of LiveView)()
                 myliveview.Setcharacterview(GlobalVariables.modifiedCharTable)
             Next

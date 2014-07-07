@@ -20,11 +20,12 @@
 '*      /Filename:      TemplateExplorer
 '*      /Description:   TODO
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework
 Imports NCFramework.Framework.Logging
 Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework
 Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.My.Resources
 
 Namespace Forms
     Public Class TemplateExplorer
@@ -35,7 +36,7 @@ Namespace Forms
             Dim locPath As String
             With locOfd
                 .Filter = "NamCore Studio Template File (*.ncsf)|*.ncsf"
-                .Title = "Select template file"
+                .Title = MSG_SELECTTEMPLATEFILE
                 .DefaultExt = ".ncsf"
                 .Multiselect = False
                 .CheckFileExists = True

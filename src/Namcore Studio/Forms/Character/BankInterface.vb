@@ -30,6 +30,7 @@ Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Extension
 Imports System.Threading
+Imports NCFramework.My.Resources
 Imports libnc.Provider
 
 Namespace Forms.Character
@@ -127,7 +128,7 @@ Namespace Forms.Character
                 subCountLabel.Visible = False
                 subCountLabel.SetDoubleBuffered()
                 subCountLabel.BringToFront()
-                InfoToolTip.SetToolTip(subItmRemovePic, "Add")
+                InfoToolTip.SetToolTip(subItmRemovePic, TOOLTIP_ADD)
                 Application.DoEvents()
                 AddHandler subCountLabel.Click, AddressOf ChangeCount
                 AddHandler newItemPanel.MouseEnter, AddressOf InventItem_MouseEnter
@@ -193,7 +194,7 @@ Namespace Forms.Character
                             entryRemove.BackColor = entry.BackColor
                             entryRemove.BackgroundImage = My.Resources.trash__delete__16x16
                             InfoToolTip.SetToolTip(entry, potCharBag.Name)
-                            InfoToolTip.SetToolTip(entryRemove, "Remove")
+                            InfoToolTip.SetToolTip(entryRemove, TOOLTIP_REMOVE)
                             Dim pic As Control =
                                     entry.Controls.Find("bankitm_slot_" & potCharBag.Slot.ToString & "_pic", True)(0)
                             pic.BackgroundImage = potCharBag.Image
@@ -206,7 +207,7 @@ Namespace Forms.Character
                                 Dim countLabel As Label =
                                         CType(
                                             entry.Controls.Find("bankitm_slot_" & potCharBag.Slot.ToString() & "_count",
-                                                                True)(0), 
+                                                                True)(0),
                                             Label)
                                 countLabel.Text = potCharBag.Count.ToString()
                                 countLabel.Tag = potCharBag
@@ -224,8 +225,8 @@ Namespace Forms.Character
             '// Changing item stack size
             Dim locLabel As Label = CType(sender, Label)
             If locLabel.Visible = True Then
-                Dim result As String = InputBox(ResourceHandler.GetUserMessage("enterItemCount"),
-                                                ResourceHandler.GetUserMessage("countChange"), locLabel.Text)
+                Dim result As String = InputBox(MSG_ENTERITEMCOUNT,
+                                                MSG_ITEMCOUNTCHANGE, locLabel.Text)
                 If Not result = "" Then
                     LogAppend("User entered stack size: " & result, "BankInterface_ChangeCount")
                     Dim intResult As Integer = TryInt(result)
@@ -237,9 +238,8 @@ Namespace Forms.Character
                             '// Invalid stack size
                             LogAppend("Stack size above limit. Limit is: " & maxStackSize.ToString(),
                                       "BankInterface_ChangeCount")
-                            MsgBox(
-                                ResourceHandler.GetUserMessage("stackSizeLimitReached") & " " & maxStackSize.ToString(),
-                                MsgBoxStyle.Critical, ResourceHandler.GetUserMessage("invalidentry"))
+                            MsgBox(MSG_STACKLIMITREACHED & " " & maxStackSize.ToString(),
+                                   MsgBoxStyle.Critical, MSG_INVALIDENTRY)
                             Exit Sub
                         End If
                         '// Stack size valid -> applying to item
@@ -300,7 +300,7 @@ Namespace Forms.Character
                 subItmRemovePic.SetDoubleBuffered()
                 subItmRemovePic.BringToFront()
                 Application.DoEvents()
-                InfoToolTip.SetToolTip(subItmRemovePic, "Add")
+                InfoToolTip.SetToolTip(subItmRemovePic, TOOLTIP_ADD)
                 AddHandler subItmRemovePic.MouseClick, AddressOf removeinventboxBag_Click
                 AddHandler subItmRemovePic.MouseEnter, AddressOf removeinventbox_MouseEnter
                 AddHandler subItmRemovePic.MouseLeave, AddressOf removeinventbox_MouseLeave
@@ -310,10 +310,10 @@ Namespace Forms.Character
                 '// Filling bag slot
                 If bagPanel.Name.Contains((potCharBag.Slot - 66).ToString()) Then
                     Dim subItmRemovePic As PictureBox =
-                            CType(bagPanel.Controls.Find("bag_" & (realBagSlot + 66).ToString() & "_remove", True)(0), 
+                            CType(bagPanel.Controls.Find("bag_" & (realBagSlot + 66).ToString() & "_remove", True)(0),
                                   PictureBox)
                     subItmRemovePic.BackgroundImage = My.Resources.trash__delete__16x16
-                    InfoToolTip.SetToolTip(subItmRemovePic, "Remove")
+                    InfoToolTip.SetToolTip(subItmRemovePic, TOOLTIP_REMOVE)
                     bagPanel.BackColor = Getraritycolor(GetItemQualityByItemId(potCharBag.Id))
                     For Each potBagItem As Item In _
                         GlobalVariables.currentEditedCharSet.InventoryItems
@@ -385,7 +385,7 @@ Namespace Forms.Character
 
         Private Sub BagItem_MouseEnter(sender As Object, e As EventArgs)
             '// On bag item hover
-            For i = _visibleActionControls.Count - 1 To 0 Step -1
+            For i = _visibleActionControls.Count - 1 To 0 Step - 1
                 '// Hide controls of previous hover
                 _visibleActionControls(i).Visible = False
                 _visibleActionControls.Remove(_visibleActionControls(i))
@@ -525,9 +525,9 @@ Namespace Forms.Character
                 subCountLabel.Visible = False
                 subCountLabel.SetDoubleBuffered()
                 subCountLabel.BringToFront()
-                InfoToolTip.SetToolTip(newItmPanel, "Empty")
-                InfoToolTip.SetToolTip(subItmPic, "Empty")
-                InfoToolTip.SetToolTip(subItmRemovePic, "Add")
+                InfoToolTip.SetToolTip(newItmPanel, TOOLTIP_EMPTY)
+                InfoToolTip.SetToolTip(subItmPic, TOOLTIP_EMPTY)
+                InfoToolTip.SetToolTip(subItmRemovePic, TOOLTIP_ADD)
                 BagItemPanel.Update()
                 Application.DoEvents()
                 newItmPanel.SetDoubleBuffered()
@@ -546,7 +546,7 @@ Namespace Forms.Character
 
         Private Sub InventItem_MouseEnter(sender As Object, e As EventArgs)
             '// Inventory item mouse hover
-            For i = _visibleActionControls.Count - 1 To 0 Step -1
+            For i = _visibleActionControls.Count - 1 To 0 Step - 1
                 '// Hide controls of previous hover
                 _visibleActionControls(i).Visible = False
                 _visibleActionControls.Remove(_visibleActionControls(i))
@@ -554,7 +554,7 @@ Namespace Forms.Character
             Dim parentPanel As ItemPanel = CType(sender, ItemPanel)
             Dim itm As Item = CType(parentPanel.Tag, Item)
             Dim removePic As PictureBox =
-                    CType(parentPanel.Controls.Find("bankitm_slot_" & itm.Slot.ToString & "_remove", True)(0), 
+                    CType(parentPanel.Controls.Find("bankitm_slot_" & itm.Slot.ToString & "_remove", True)(0),
                           PictureBox)
             If Not removePic Is Nothing Then
                 '// Add control pointer to list to allow referencing (hide) on new hover
@@ -579,7 +579,7 @@ Namespace Forms.Character
             Dim oldItm As Item = CType(locPic.Tag, Item)
             If oldItm.Id = 0 Then
                 '// Slot empty -> 'Add'-Mode
-                Dim result As String = InputBox(ResourceHandler.GetUserMessage("enteritemid"), "Add item", "0")
+                Dim result As String = InputBox(MSG_ENTERITEMID, MSG_ADDITEM, "0")
                 If result.Length = 0 Then
                     CType(sender, PictureBox).Visible = False
                 Else
@@ -599,7 +599,7 @@ Namespace Forms.Character
                             '// Load item properties
                             replaceItm.Slot = oldItm.Slot
                             replaceItm.Id = intResult
-                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient), 
+                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient),
                                                      Bitmap)
                             replaceItm.Name = checkName
                             replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
@@ -639,7 +639,7 @@ Namespace Forms.Character
                                         CType(
                                             locPanel.Controls.Find(
                                                 "bankitm_slot_" & replaceItm.Slot.ToString() & "_count",
-                                                True)(0), 
+                                                True)(0),
                                             Label)
                                 If Not countLabel Is Nothing Then
                                     countLabel.Text = "1"
@@ -651,22 +651,21 @@ Namespace Forms.Character
                             locPanel.Tag = replaceItm
                             locPic.BackgroundImage = replaceItm.Image
                             InfoToolTip.SetToolTip(locPic, checkName)
-                            InfoToolTip.SetToolTip(TryCast(sender, PictureBox), "Remove")
+                            InfoToolTip.SetToolTip(TryCast(sender, PictureBox), TOOLTIP_REMOVE)
                             TryCast(sender, PictureBox).BackgroundImage = My.Resources.trash__delete__16x16
                         Else
                             LogAppend("Item id is invalid", "BankInterface_removeinventbox_Click")
-                            MsgBox(ResourceHandler.GetUserMessage("invalidItemError"), MsgBoxStyle.Critical, "Error")
+                            MsgBox(MSG_INVALIDITEMID, MsgBoxStyle.Critical, MSG_ERROR)
                         End If
                     Else
                         LogAppend("Item id is invalid", "BankInterface_removeinventbox_Click")
-                        MsgBox(ResourceHandler.GetUserMessage("invalidItemError"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDITEMID, MsgBoxStyle.Critical, MSG_ERROR)
                     End If
                     TryCast(sender, PictureBox).Visible = False
                 End If
             Else
                 '// Slot not empty -> 'Remove'-Mode
-                Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
-                                    ResourceHandler.GetUserMessage("areyousure"))
+                Dim result = MsgBox(MSG_DELETEITEM, vbYesNo, MSG_AREYOUSURE)
                 If result = MsgBoxResult.Yes Then
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
                         GlobalVariables.currentEditedCharSet =
@@ -677,8 +676,8 @@ Namespace Forms.Character
                     replaceItm.Slot = oldItm.Slot
                     locPanel.Tag = replaceItm
                     locPic.Tag = replaceItm
-                    InfoToolTip.SetToolTip(locPic, "Empty")
-                    InfoToolTip.SetToolTip(TryCast(sender, PictureBox), "Add")
+                    InfoToolTip.SetToolTip(locPic, TOOLTIP_EMPTY)
+                    InfoToolTip.SetToolTip(TryCast(sender, PictureBox), TOOLTIP_ADD)
                     If oldItm.Bagguid = 0 Then
                         GlobalVariables.currentEditedCharSet.InventoryZeroItems.RemoveAt(
                             GlobalVariables.currentEditedCharSet.InventoryZeroItems.FindIndex(
@@ -693,7 +692,7 @@ Namespace Forms.Character
                     End If
                     Dim countLabel As Label =
                             CType(
-                                locPanel.Controls.Find("bankitm_slot_" & replaceItm.Slot.ToString() & "_count", True)(0), 
+                                locPanel.Controls.Find("bankitm_slot_" & replaceItm.Slot.ToString() & "_count", True)(0),
                                 Label)
                     countLabel.Text = ""
                     countLabel.Visible = False
@@ -709,7 +708,7 @@ Namespace Forms.Character
             Dim locPic As PictureBox = CType(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
             Dim oldItm As Item = CType(locPanel.Tag, Item)
             If oldItm.Id = 0 Then
-                Dim result As String = InputBox(ResourceHandler.GetUserMessage("enteritemid"), "Add item", "0")
+                Dim result As String = InputBox(MSG_ENTERITEMID, MSG_ADDITEM, "0")
                 If result.Length = 0 Then
                     TryCast(sender, PictureBox).Visible = False
                 Else
@@ -723,7 +722,7 @@ Namespace Forms.Character
                             Dim replaceItm As New Item()
                             replaceItm.Slot = oldItm.Slot
                             replaceItm.Id = intResult
-                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient), 
+                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient),
                                                      Bitmap)
                             replaceItm.Name = checkName
                             replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
@@ -745,19 +744,18 @@ Namespace Forms.Character
                             locPic.Tag = replaceItm
                             locPanel.Tag = replaceItm
                             locPic.BackgroundImage = replaceItm.Image
-                            InfoToolTip.SetToolTip(TryCast(sender, PictureBox), "Remove")
+                            InfoToolTip.SetToolTip(TryCast(sender, PictureBox), TOOLTIP_REMOVE)
                             TryCast(sender, PictureBox).BackgroundImage = My.Resources.trash__delete__16x16
                         Else
-                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical, "Error")
+                            MsgBox(MSG_INVALIDITEMCLASS, MsgBoxStyle.Critical, MSG_ERROR)
                         End If
                     Else
-                        MsgBox(ResourceHandler.GetUserMessage("invalidItemError"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDITEMID, MsgBoxStyle.Critical, MSG_ERROR)
                     End If
                     TryCast(sender, PictureBox).Visible = False
                 End If
             Else
-                Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
-                                    ResourceHandler.GetUserMessage("areyousure"))
+                Dim result = MsgBox(MSG_DELETEITEM, vbYesNo, MSG_AREYOUSURE)
                 If result = MsgBoxResult.Yes Then
                     BagItemPanel.Controls.Clear()
                     _currentBag = Nothing
@@ -770,9 +768,9 @@ Namespace Forms.Character
                     replaceItm.Slot = oldItm.Slot
                     locPanel.Tag = replaceItm
                     locPic.Tag = replaceItm
-                    InfoToolTip.SetToolTip(TryCast(sender, PictureBox), "Add")
+                    InfoToolTip.SetToolTip(TryCast(sender, PictureBox), TOOLTIP_ADD)
                     If Not oldItm.BagItems Is Nothing Then
-                        For i = oldItm.BagItems.Count - 1 To 0 Step -1
+                        For i = oldItm.BagItems.Count - 1 To 0 Step - 1
                             Dim thisItm As Item = oldItm.BagItems(i)
                             Dim resultItem As Item =
                                     GlobalVariables.currentEditedCharSet.InventoryItems.Find(
@@ -837,10 +835,10 @@ Namespace Forms.Character
                             Dim itmPicBox As PictureBox = CType(itmPicCtrl, PictureBox)
                             If itm.Id <> 0 Then
                                 itmPicBox.BackgroundImage = My.Resources.trash__delete__16x16
-                                InfoToolTip.SetToolTip(itmPicBox, "Remove")
+                                InfoToolTip.SetToolTip(itmPicBox, TOOLTIP_REMOVE)
                             Else
                                 itmPicBox.BackgroundImage = My.Resources.add_
-                                InfoToolTip.SetToolTip(itmPicBox, "Add")
+                                InfoToolTip.SetToolTip(itmPicBox, TOOLTIP_ADD)
                             End If
                             Continue For
                         End If

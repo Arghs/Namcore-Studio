@@ -26,6 +26,7 @@ Imports NCFramework.Framework.Modules
 Imports libnc.Provider
 Imports System.Resources
 Imports System.Reflection
+Imports NCFramework.My.Resources
 
 Namespace Framework.Functions
     Public Module MiscInfo
@@ -423,7 +424,7 @@ Namespace Framework.Functions
                 Case 350 To 424 : Return rm.GetString("proficiency_6")
                 Case 425 To 499 : Return rm.GetString("proficiency_7")
                 Case 500 To 600 : Return rm.GetString("proficiency_8")
-                Case Else : Return "Error"
+                Case Else : Return MSG_ERROR
             End Select
         End Function
 

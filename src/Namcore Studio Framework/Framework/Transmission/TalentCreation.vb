@@ -49,7 +49,7 @@ Namespace Framework.Transmission
                 End Select
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(),
-               "TalentCreation_SetCharacterTalents", False, True)
+                          "TalentCreation_SetCharacterTalents", False, True)
             End Try
         End Sub
 

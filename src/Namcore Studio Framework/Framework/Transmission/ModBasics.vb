@@ -22,7 +22,6 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
@@ -55,7 +54,7 @@ Namespace Framework.Transmission
         End Sub
 
         Public Sub SetCharacterRace(ByVal race As Integer, ByVal player As Character,
-                                      Optional charguid As Integer = 0)
+                                    Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting character race to : " & race.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterRace", True)
@@ -82,7 +81,7 @@ Namespace Framework.Transmission
         End Sub
 
         Public Sub SetCharacterLevel(ByVal level As Integer, ByVal player As Character,
-                                      Optional charguid As Integer = 0)
+                                     Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting character level to : " & level.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterLevel", True)
@@ -109,7 +108,7 @@ Namespace Framework.Transmission
         End Sub
 
         Public Sub SetCharacterClass(ByVal cclass As Integer, ByVal player As Character,
-                                      Optional charguid As Integer = 0)
+                                     Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting character gender to : " & cclass.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterClass", True)
@@ -136,7 +135,7 @@ Namespace Framework.Transmission
         End Sub
 
         Public Sub SetCharacterGold(ByVal gold As Integer, ByVal player As Character,
-                                      Optional charguid As Integer = 0)
+                                    Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting character gold to : " & gold.ToString() & " // charguid is : " & charguid.ToString(),
                       "ModBasics_SetCharacterGold", True)

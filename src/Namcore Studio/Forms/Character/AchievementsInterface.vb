@@ -29,6 +29,7 @@ Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Extension
 Imports System.Threading
+Imports NCFramework.My.Resources
 Imports libnc.Provider
 Imports System.Net
 
@@ -99,7 +100,7 @@ Namespace Forms.Character
             subcat_combo.Text = ""
             Try
                 _preCatControlLst = Nothing
-                waitLabel.Text = ResourceHandler.GetUserMessage("loadingAv")
+                waitLabel.Text = MSG_LOADINGAVS
                 waitpanel.Location = New Point(367, 219)
                 _state = "catbt"
                 _tmpSender = sender
@@ -165,7 +166,7 @@ Namespace Forms.Character
                                 New AvSubcategoy _
                                                  With { _
                                                  .Text =
-                                                 ResourceHandler.GetUserMessage("subcat" & tmpCatids(i).ToString),
+                                                 ResourceHandler.GetLocalizedString("subcat" & tmpCatids(i).ToString),
                                                  .Id = tmpCatids(i)})
                         Catch ex As Exception
                             LogAppend("Exception while adding achievement subcategory item: " & ex.ToString,
@@ -174,7 +175,7 @@ Namespace Forms.Character
                     Next
                     '// Adding category names to combobox
                     subcat_combo.Items.Add(
-                        New AvSubcategoy With {.Text = ResourceHandler.GetUserMessage("subcat0"), .Id = 0})
+                        New AvSubcategoy With {.Text = ResourceHandler.GetLocalizedString("subcat0"), .Id = 0})
                     Try
                         For Each cat As AvSubcategoy In catCollection
                             subcat_combo.Items.Add(cat)
@@ -182,7 +183,7 @@ Namespace Forms.Character
                     Catch ex As Exception
                         subcat_combo.Items.Clear()
                     End Try
-                    subcat_combo.Text = "Pick category"
+                    subcat_combo.Text = MSG_PICKCAT
                     _colorTicker = 0
                     _completed = False
                     '// Clean up AVLayoutPanel
@@ -220,9 +221,9 @@ Namespace Forms.Character
             End If
             '// Get the achievement object which is referenced in sender's tag
             Dim charAv As Achievement = CType(TryCast(sender, PictureBox).Tag, Achievement)
-            Dim msg As String = ResourceHandler.GetUserMessage("aus_deleteav")
+            Dim msg As String = MSG_DELETEAV
             msg = msg.Replace("%avid%", charAv.Id.ToString)
-            Dim result = MsgBox(msg, vbYesNo, ResourceHandler.GetUserMessage("areyousure"))
+            Dim result = MsgBox(msg, vbYesNo, MSG_AREYOUSURE)
             If result = MsgBoxResult.Yes Then
                 Try
                     Userwait.Show()
@@ -338,7 +339,7 @@ Namespace Forms.Character
             If AVLayoutPanel.Controls.Count > 0 Then
                 waitpanel.Location = New Point(4000, 4000)
             Else
-                waitLabel.Text = ResourceHandler.GetUserMessage("noAvFound")
+                waitLabel.Text = MSG_NOAVSFOUND
             End If
         End Sub
 
@@ -355,8 +356,7 @@ Namespace Forms.Character
                 Exit Sub
             End If
             LogAppend("Adding new achievement", "AchievementsInterface_add_bt_Click")
-            Dim retnvalue As Integer = TryInt(InputBox(ResourceHandler.GetUserMessage("enterAvId"),
-                                                       ResourceHandler.GetUserMessage("addAv"), "0"))
+            Dim retnvalue As Integer = TryInt(InputBox(MSG_ENTERAVID, MSG_ADDAV, "0"))
             Userwait.Show()
             Application.DoEvents()
             If Not retnvalue = 0 Then
@@ -374,8 +374,8 @@ Namespace Forms.Character
                         For Each opAv As Achievement In GlobalVariables.currentEditedCharSet.Achievements
                             If opAv.Id = retnvalue Then
                                 LogAppend("Character has this achievement already", "AchievementsInterface_add_bt_Click")
-                                MsgBox(ResourceHandler.GetUserMessage("achievementalreadypresent"), MsgBoxStyle.Critical,
-                                       "Error")
+                                MsgBox(MSG_AVALREADYPRESENT, MsgBoxStyle.Critical,
+                                       MSG_ERROR)
                                 Userwait.Close()
                                 Exit Sub
                             End If
@@ -390,24 +390,24 @@ Namespace Forms.Character
                                     Controls(
                                         "cat_id_" &
                                         GetAvMainCategoryIdBySubCatId(GetAvSubCategoryById(charAv.Id)).ToString() &
-                                        "_bt"), 
+                                        "_bt"),
                                     Button)
                         catBt.PerformClick()
-                        MsgBox(ResourceHandler.GetUserMessage("achievementadded"), , "Info")
+                        MsgBox(MSG_AVADDED, , MSG_INFO)
                     Else
                         '// Achievement id invalid
                         LogAppend("Achievement id is invalid", "AchievementsInterface_add_bt_Click")
-                        MsgBox(ResourceHandler.GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDAVID, MsgBoxStyle.Critical, MSG_ERROR)
                     End If
                 Catch ex As Exception
                     '// Something went wrong (404 or client problem)
                     LogAppend("Achievement id is invalid / Exception occured: " & ex.ToString(),
                               "AchievementsInterface_add_bt_Click", False, True)
-                    MsgBox(ResourceHandler.GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
+                    MsgBox(MSG_INVALIDAVID, MsgBoxStyle.Critical, MSG_ERROR)
                 End Try
             Else
                 LogAppend("Achievement id 0 - invalid", "AchievementsInterface_add_bt_Click", False)
-                MsgBox(ResourceHandler.GetUserMessage("invalidavid"), MsgBoxStyle.Critical, "Error")
+                MsgBox(MSG_INVALIDAVID, MsgBoxStyle.Critical, MSG_ERROR)
             End If
             Userwait.Close()
         End Sub
@@ -655,7 +655,7 @@ Namespace Forms.Character
             End Try
             '// Reset browse/filtering controls
             search_bt.Enabled = True
-            browse_tb.Text = "Enter achievement name or id"
+            browse_tb.Text = MSG_ENTERAVNAMEID
             browse_tb.ForeColor = SystemColors.WindowFrame
             browse_tb.Enabled = True
             subcat_combo.Enabled = True
@@ -663,7 +663,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub browse_tb_Enter(sender As Object, e As EventArgs) Handles browse_tb.Enter
-            If browse_tb.Text = "Enter achievement name or id" Then
+            If browse_tb.Text = MSG_ENTERAVNAMEID Then
                 browse_tb.ForeColor = SystemColors.WindowText
                 browse_tb.Text = ""
             End If
@@ -672,7 +672,7 @@ Namespace Forms.Character
         Private Sub browse_tb_Leave(sender As Object, e As EventArgs) Handles browse_tb.Leave
             If browse_tb.Text = "" Then
                 browse_tb.ForeColor = SystemColors.WindowFrame
-                browse_tb.Text = "Enter achievement name or id"
+                browse_tb.Text = MSG_ENTERAVNAMEID
             End If
         End Sub
 
@@ -683,7 +683,7 @@ Namespace Forms.Character
             waitpanel.Location = New Point(4000, 4000)
             search_bt.Enabled = False
             Dim browseTxt As String = browse_tb.Text
-            browse_tb.Text = "Browsing achievements..."
+            browse_tb.Text = MSG_BROWSINGAVS
             browse_tb.ForeColor = SystemColors.WindowFrame
             browse_tb.Enabled = False
             AVLayoutPanel.Controls.Clear()

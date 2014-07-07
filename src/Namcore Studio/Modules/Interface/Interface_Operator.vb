@@ -22,12 +22,12 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
 Imports System.IO
-Imports NCFramework.Framework
 Imports NamCore_Studio.Forms
-Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework
 Imports NCFramework.Framework.Forms
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports NCFramework.My.Resources
 
 Namespace Modules.Interface
     Public Module InterfaceOperator
@@ -42,11 +42,12 @@ Namespace Modules.Interface
                 End If
                 If GlobalVariables.DeserializationSuccessfull = False Then
                     For Each procStat As ProcessStatus In _
-                        (From currentForm As Object In Application.OpenForms Where TryCast(currentForm, Form).Name = "ProcessStatus").
+                        (From currentForm As Object In Application.OpenForms
+                            Where TryCast(currentForm, Form).Name = "ProcessStatus").
                             Cast _
                             (Of ProcessStatus)()
                         procStat.TopMost = False
-                        MsgBox(ResourceHandler.GetUserMessage("invalidData"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDDATA, MsgBoxStyle.Critical, MSG_ERROR)
                         Main.Show()
                         procStat.TopMost = False
                         Exit Sub
@@ -102,11 +103,12 @@ Namespace Modules.Interface
                 End If
                 If GlobalVariables.DeserializationSuccessfull = False Then
                     For Each procStat As ProcessStatus In _
-                        (From currentForm As Object In Application.OpenForms Where TryCast(currentForm, Form).Name = "ProcessStatus").
+                        (From currentForm As Object In Application.OpenForms
+                            Where TryCast(currentForm, Form).Name = "ProcessStatus").
                             Cast _
                             (Of ProcessStatus)()
                         procStat.TopMost = False
-                        MsgBox(ResourceHandler.GetUserMessage("invalidData"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDDATA, MsgBoxStyle.Critical, MSG_ERROR)
                         Main.Show()
                         procStat.TopMost = False
                         Exit Sub

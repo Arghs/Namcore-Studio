@@ -35,7 +35,8 @@ Namespace Framework.Armory.Parser
             '// Retrieving character
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             Try
-                LogAppend("Loading character glyph information - setId: " & setId.ToString() & " - apiLink: " & apiLink, "GlyphParser_loadGlyphs", True)
+                LogAppend("Loading character glyph information - setId: " & setId.ToString() & " - apiLink: " & apiLink,
+                          "GlyphParser_loadGlyphs", True)
                 '// Using API to load glyph info
                 Dim glyphContext As String = client.DownloadString(apiLink & "?fields=talents")
                 Dim slotAddition As String
@@ -70,7 +71,8 @@ Namespace Framework.Armory.Parser
                                     newGlyph.Id = TryInt(SplitString(parts(counter), """item"":", ","""))
                                     newGlyph.Name = SplitString(parts(counter), """name"":", ",""")
                                     newGlyph.Slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
-                                    newGlyph.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(newGlyph.Id), GlobalVariables.GlobalWebClient)
+                                    newGlyph.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(newGlyph.Id),
+                                                                            GlobalVariables.GlobalWebClient)
                                     newGlyph.Type = CType(loopCounter + 1, Glyph.GlyphType)
                                     newGlyph.Spec = i
                                     LogAppend("Loaded glyph " & newGlyph.Name, "GlyphParser_loadGlyphs", True)

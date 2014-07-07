@@ -42,9 +42,8 @@ Namespace Framework.Transmission
                 End Select
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(),
-                  "ActionCreation_SetCharacterActions", False, True)
+                          "ActionCreation_SetCharacterActions", False, True)
             End Try
-
         End Sub
 
         Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
@@ -57,7 +56,7 @@ Namespace Framework.Transmission
                             GlobalVariables.targetStructure.action_guid_col(0) & ", " &
                             GlobalVariables.targetStructure.action_spec_col(0) & ", `" &
                             GlobalVariables.targetStructure.action_action_col(0) & "`, `" &
-                             GlobalVariables.targetStructure.action_type_col(0) & "`, `" &
+                            GlobalVariables.targetStructure.action_type_col(0) & "`, `" &
                             GlobalVariables.targetStructure.action_button_col(0) & "` ) VALUES ( '" &
                             characterguid.ToString() & "', '" & action.Spec.ToString &
                             "', '" & action.ActionId.ToString() & "', '" & action.ActionType.ToString &
@@ -71,7 +70,7 @@ Namespace Framework.Transmission
 
         Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal player As Character)
             LogAppend("Creating at Mangos", "ActionCreation_createAtMangos", False)
-           If Not player.Actions Is Nothing Then
+            If Not player.Actions Is Nothing Then
                 If Not player.Actions.Count = 0 Then
                     For Each action As Action In player.Actions
                         runSQLCommand_characters_string(
@@ -79,7 +78,7 @@ Namespace Framework.Transmission
                             GlobalVariables.targetStructure.action_guid_col(0) & ", " &
                             GlobalVariables.targetStructure.action_spec_col(0) & ", `" &
                             GlobalVariables.targetStructure.action_action_col(0) & "`, `" &
-                             GlobalVariables.targetStructure.action_type_col(0) & "`, `" &
+                            GlobalVariables.targetStructure.action_type_col(0) & "`, `" &
                             GlobalVariables.targetStructure.action_button_col(0) & "` ) VALUES ( '" &
                             characterguid.ToString() & "', '" & action.Spec.ToString &
                             "', '" & action.ActionId.ToString() & "', '" & action.ActionType.ToString &

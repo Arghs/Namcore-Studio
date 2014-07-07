@@ -29,6 +29,7 @@ Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Extension
 Imports System.Threading
+Imports NCFramework.My.Resources
 Imports libnc.Provider
 
 Namespace Forms.Character
@@ -72,8 +73,8 @@ Namespace Forms.Character
         End Sub
 
         Private Sub MeCompleted() Handles Me.ThisCompleted
-            resultstatusSpell_lbl.Text = spellList.Items.Count.ToString & " results"
-            resultstatusSkill_lbl.Text = skillList.Items.Count.ToString & " results!"
+            resultstatusSpell_lbl.Text = spellList.Items.Count.ToString & MISC_SPELLSKILLRESULTS
+            resultstatusSkill_lbl.Text = skillList.Items.Count.ToString & MISC_PROFRESULTS
             If _spellItemList Is Nothing Then _spellItemList = New List(Of ListViewItem)()
             If _skillItemList Is Nothing Then _skillItemList = New List(Of ListViewItem)()
             For Each spellItm As ListViewItem In spellList.Items
@@ -113,7 +114,8 @@ Namespace Forms.Character
                         End If
                         Dim _
                             itm As _
-                                New ListViewItem(New String() _
+                                New ListViewItem(
+                                    New String() _
                                                     {pSkill.Id.ToString(), pSkill.Name, pSkill.Value.ToString(),
                                                      pSkill.Max.ToString()})
                         itm.Tag = pSkill
@@ -163,14 +165,14 @@ Namespace Forms.Character
         Private Sub AddSpell_bt_Click(sender As Object, e As EventArgs) Handles AddSpell_bt.Click
             Dim pSpellId As Integer = TryInt(Spell_tb.Text)
             If pSpellId = 0 Then
-                MsgBox(ResourceHandler.GetUserMessage("invalidSpellId"), MsgBoxStyle.Critical, "Attention")
-                Spell_tb.Text = "Enter spell id"
+                MsgBox(MSG_INVALIDSPELLID, MsgBoxStyle.Critical, MSG_ATTENTION)
+                Spell_tb.Text = MSG_ENTERSPELLID
                 Spell_tb.ForeColor = SystemColors.WindowFrame
             Else
                 If _
                     spellList.Items.Cast (Of ListViewItem)().Any(
                         Function(existingSpell) existingSpell.SubItems(0).Text = pSpellId.ToString()) Then
-                    MsgBox(ResourceHandler.GetUserMessage("spellAlreadyPresent"), MsgBoxStyle.Critical, "Attention")
+                    MsgBox(MSG_SPELLALREADYPRESENT, MsgBoxStyle.Critical, MSG_ATTENTION)
                 Else
                     Dim spell As New Spell With {.Active = 1, .Disabled = 0, .Id = pSpellId}
                     spell.Name = GetSpellNameBySpellId(pSpellId, MySettings.Default.language)
@@ -180,15 +182,15 @@ Namespace Forms.Character
                     spellList.Items.Add(spellItem)
                     spellList.Update()
                     spellList.Sort()
-                    Spell_tb.Text = "Enter spell id"
+                    Spell_tb.Text = MSG_ENTERSPELLID
                     Spell_tb.ForeColor = SystemColors.WindowFrame
-                    resultstatusSpell_lbl.Text = spellList.Items.Count.ToString & " results"
+                    resultstatusSpell_lbl.Text = spellList.Items.Count.ToString & MISC_SPELLSKILLRESULTS
                 End If
             End If
         End Sub
 
         Private Sub searchSpell_tb_Enter(sender As Object, e As EventArgs) Handles Spell_tb.Enter
-            If Spell_tb.Text = "Enter spell id" Then
+            If Spell_tb.Text = MSG_ENTERSPELLID Then
                 Spell_tb.Text = ""
                 Skill_tb.ForeColor = Color.Black
             End If
@@ -196,7 +198,7 @@ Namespace Forms.Character
 
         Private Sub searchSpell_tb_Leave(sender As Object, e As EventArgs) Handles Spell_tb.Leave
             If Spell_tb.Text.Length = 0 Then
-                Spell_tb.Text = "Enter spell id"
+                Spell_tb.Text = MSG_ENTERSPELLID
                 Spell_tb.ForeColor = SystemColors.WindowFrame
             End If
         End Sub
@@ -216,42 +218,43 @@ Namespace Forms.Character
                 spellList.Items.Remove(itm)
                 Application.DoEvents()
             Next
-            resultstatusSpell_lbl.Text = spellList.Items.Count.ToString & " results"
+            resultstatusSpell_lbl.Text = spellList.Items.Count.ToString & MISC_SPELLSKILLRESULTS
         End Sub
 
         Private Sub AddSkill_bt_Click(sender As Object, e As EventArgs) Handles AddSkill_bt.Click
             Dim pSkillId As Integer = TryInt(Skill_tb.Text)
             If pSkillId = 0 Then
-                MsgBox(ResourceHandler.GetUserMessage("invalidSkillId"), MsgBoxStyle.Critical, "Attention")
-                Spell_tb.Text = "Enter skill id"
+                MsgBox(MSG_INVALIDSKILLID, MsgBoxStyle.Critical, MSG_ATTENTION)
+                Spell_tb.Text = MSG_ENTERSKILLID
                 Spell_tb.ForeColor = SystemColors.WindowFrame
             Else
                 If _
                     skillList.Items.Cast (Of ListViewItem)().Any(
                         Function(existingSkill) existingSkill.SubItems(0).Text = pSkillId.ToString()) Then
-                    MsgBox(ResourceHandler.GetUserMessage("skillAlreadyPresent"), MsgBoxStyle.Critical, "Attention")
+                    MsgBox(MSG_SKILLALREADYPRESENT, MsgBoxStyle.Critical, MSG_ATTENTION)
                 Else
                     Dim skill As New Skill With {.Value = 1, .Max = 600, .Id = pSkillId}
                     skill.Name = GetSkillNameById(pSkillId, MySettings.Default.language)
                     GlobalVariables.currentEditedCharSet.Skills.Add(skill)
                     Dim _
                         skillItem As _
-                            New ListViewItem(New String() _
+                            New ListViewItem(
+                                New String() _
                                                 {skill.Id.ToString, skill.Name, skill.Value.ToString(),
                                                  skill.Max.ToString()})
                     skillItem.Tag = skill
                     skillList.Items.Add(skillItem)
                     skillList.Update()
                     skillList.Sort()
-                    Spell_tb.Text = "Enter skill id"
+                    Spell_tb.Text = MSG_ENTERSKILLID
                     Spell_tb.ForeColor = SystemColors.WindowFrame
-                    resultstatusSkill_lbl.Text = skillList.Items.Count.ToString & " results"
+                    resultstatusSkill_lbl.Text = skillList.Items.Count.ToString & MISC_SPELLSKILLRESULTS
                 End If
             End If
         End Sub
 
         Private Sub searchSkill_tb_Enter(sender As Object, e As EventArgs) Handles Skill_tb.Enter
-            If Skill_tb.Text = "Enter skill id" Then
+            If Skill_tb.Text = MSG_ENTERSKILLID Then
                 Skill_tb.Text = ""
                 Skill_tb.ForeColor = Color.Black
             End If
@@ -259,7 +262,7 @@ Namespace Forms.Character
 
         Private Sub searchSkill_tb_Leave(sender As Object, e As EventArgs) Handles Skill_tb.Leave
             If Skill_tb.Text.Length = 0 Then
-                Skill_tb.Text = "Enter skill id"
+                Skill_tb.Text = MSG_ENTERSKILLID
                 Skill_tb.ForeColor = SystemColors.WindowFrame
             End If
         End Sub
@@ -281,7 +284,7 @@ Namespace Forms.Character
                 skillList.Items.Remove(itm)
                 Application.DoEvents()
             Next
-            resultstatusSkill_lbl.Text = skillList.Items.Count.ToString & " results"
+            resultstatusSkill_lbl.Text = skillList.Items.Count.ToString & MISC_SPELLSKILLRESULTS
         End Sub
 
         Private Sub ToolStripValueTextBox_KeyDown(sender As Object, e As KeyEventArgs) _

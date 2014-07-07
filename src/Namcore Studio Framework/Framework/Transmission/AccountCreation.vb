@@ -43,9 +43,10 @@ Namespace Framework.Transmission
                                   "AccountCreation_CreateNewAccount", False)
                         'TODO multi realm support
                         Dim newid As Integer =
-                                CInt(runSQLCommand_realm_string(
-                                    "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
-                                    GlobalVariables.targetStructure.account_tbl(0) & "", True))
+                                CInt(
+                                    runSQLCommand_realm_string(
+                                        "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
+                                        GlobalVariables.targetStructure.account_tbl(0) & "", True))
                         Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.account_tbl(0) & " (" &
                                                   GlobalVariables.targetStructure.acc_id_col(0) & ", `" &
                                                   GlobalVariables.targetStructure.acc_name_col(0) & "`, `" &
@@ -82,9 +83,10 @@ Namespace Framework.Transmission
                         LogAppend("Account " & accname & " does not exist -> Creating it",
                                   "AccountCreation_CreateNewAccount", False)
                         Dim newid As Integer =
-                                CInt(runSQLCommand_realm_string(
-                                    "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
-                                    GlobalVariables.targetStructure.account_tbl(0) & "", True))
+                                CInt(
+                                    runSQLCommand_realm_string(
+                                        "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
+                                        GlobalVariables.targetStructure.account_tbl(0) & "", True))
                         Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.character_tbl(0) &
                                                   " (" &
                                                   GlobalVariables.targetStructure.acc_id_col(0) & ", `" &
@@ -110,9 +112,9 @@ Namespace Framework.Transmission
                             Exit Sub
                         End Try
                         If realmid = 0 Then
-                            realmid = -1
+                            realmid = - 1
                         ElseIf realmid = Nothing Then
-                            realmid = -1
+                            realmid = - 1
                         Else
                         End If
                         runSQLCommand_realm_string(
@@ -131,15 +133,16 @@ Namespace Framework.Transmission
                         LogAppend("Account " & accname & " does not exist -> Creating it",
                                   "AccountCreation_CreateNewAccount", False)
                         If realmid = 0 Then
-                            realmid = -1
+                            realmid = - 1
                         ElseIf realmid = Nothing Then
-                            realmid = -1
+                            realmid = - 1
                         Else
                         End If
                         Dim newid As Integer =
-                                CInt(runSQLCommand_realm_string(
-                                    "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
-                                    GlobalVariables.targetStructure.account_tbl(0) & "", True))
+                                CInt(
+                                    runSQLCommand_realm_string(
+                                        "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
+                                        GlobalVariables.targetStructure.account_tbl(0) & "", True))
                         Dim sqlstring As String = "INSERT INTO " & GlobalVariables.targetStructure.account_tbl(0) & " (" &
                                                   GlobalVariables.targetStructure.acc_id_col(0) & ", `" &
                                                   GlobalVariables.targetStructure.acc_name_col(0) & "`, `" &

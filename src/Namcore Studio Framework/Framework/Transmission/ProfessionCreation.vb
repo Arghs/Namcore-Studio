@@ -21,7 +21,6 @@
 '*      /Description:   Includes functions for adding professions of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
@@ -38,7 +37,7 @@ Namespace Framework.Transmission
         End Sub
 
         Public Sub AddUpdateProfession(ByVal prof As Profession, ByVal player As Character, ByVal newAdding As Boolean,
-                          Optional forceTargetCore As Boolean = False)
+                                       Optional forceTargetCore As Boolean = False)
             'TODO
             Dim useCore As Modules.Core
             Dim useStructure As DbStructure

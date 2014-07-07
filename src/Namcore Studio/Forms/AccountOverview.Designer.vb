@@ -71,341 +71,341 @@ Namespace Forms
         '
         Me.accname_lbl.AutoSize = true
         Me.accname_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.accname_lbl.Cursor = System.Windows.Forms.Cursors.Arrow
-            Me.accname_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.accname_lbl.ForeColor = System.Drawing.Color.Black
-            Me.accname_lbl.Location = New System.Drawing.Point(237, 63)
-            Me.accname_lbl.Name = "accname_lbl"
-            Me.accname_lbl.Size = New System.Drawing.Size(119, 20)
-            Me.accname_lbl.TabIndex = 224
-            Me.accname_lbl.Text = "Accountname"
-            '
-            'characterview
-            '
-            Me.characterview.BackColor = System.Drawing.Color.FromArgb(CType(CType(126, Byte), Integer), CType(CType(144, Byte), Integer), CType(CType(156, Byte), Integer))
-            Me.characterview.CheckBoxes = True
-            Me.characterview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.charguid, Me.charname, Me.charrace, Me.charclass, Me.chargender, Me.charlevel})
-            Me.characterview.FullRowSelect = True
-            Me.characterview.Location = New System.Drawing.Point(12, 212)
-            Me.characterview.MultiSelect = False
-            Me.characterview.Name = "characterview"
-            Me.characterview.Size = New System.Drawing.Size(478, 197)
-            Me.characterview.TabIndex = 225
-            Me.characterview.UseCompatibleStateImageBehavior = False
-            Me.characterview.View = System.Windows.Forms.View.Details
-            '
-            'charguid
-            '
-            Me.charguid.Text = "GUID"
-            Me.charguid.Width = 41
-            '
-            'charname
-            '
-            Me.charname.Text = "Name"
-            Me.charname.Width = 134
-            '
-            'charrace
-            '
-            Me.charrace.Text = "Race"
-            '
-            'charclass
-            '
-            Me.charclass.Text = "Class"
-            '
-            'chargender
-            '
-            Me.chargender.Text = "Gender"
-            '
-            'charlevel
-            '
-            Me.charlevel.Text = "Level"
-            '
-            'Label2
-            '
-            Me.Label2.AutoSize = True
-            Me.Label2.BackColor = System.Drawing.Color.Transparent
-            Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label2.ForeColor = System.Drawing.Color.Black
-            Me.Label2.Location = New System.Drawing.Point(6, 22)
-            Me.Label2.Name = "Label2"
-            Me.Label2.Size = New System.Drawing.Size(72, 16)
-            Me.Label2.TabIndex = 226
-            Me.Label2.Text = "Joindate:"
-            '
-            'joindate_lbl
-            '
-            Me.joindate_lbl.AutoSize = True
-            Me.joindate_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.joindate_lbl.Cursor = System.Windows.Forms.Cursors.Default
-            Me.joindate_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.joindate_lbl.ForeColor = System.Drawing.Color.Black
-            Me.joindate_lbl.Location = New System.Drawing.Point(84, 22)
-            Me.joindate_lbl.Name = "joindate_lbl"
-            Me.joindate_lbl.Size = New System.Drawing.Size(141, 15)
-            Me.joindate_lbl.TabIndex = 227
-            Me.joindate_lbl.Text = "2012-10-28 19:15:50"
-            '
-            'Label1
-            '
-            Me.Label1.AutoSize = True
-            Me.Label1.BackColor = System.Drawing.Color.Transparent
-            Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label1.ForeColor = System.Drawing.Color.Black
-            Me.Label1.Location = New System.Drawing.Point(6, 45)
-            Me.Label1.Name = "Label1"
-            Me.Label1.Size = New System.Drawing.Size(58, 16)
-            Me.Label1.TabIndex = 228
-            Me.Label1.Text = "Last ip:"
-            '
-            'lastip_lbl
-            '
-            Me.lastip_lbl.AutoSize = True
-            Me.lastip_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.lastip_lbl.Cursor = System.Windows.Forms.Cursors.Default
-            Me.lastip_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.lastip_lbl.ForeColor = System.Drawing.Color.Black
-            Me.lastip_lbl.Location = New System.Drawing.Point(84, 46)
-            Me.lastip_lbl.Name = "lastip_lbl"
-            Me.lastip_lbl.Size = New System.Drawing.Size(67, 15)
-            Me.lastip_lbl.TabIndex = 229
-            Me.lastip_lbl.Text = "127.0.0.1"
-            '
-            'Label4
-            '
-            Me.Label4.AutoSize = True
-            Me.Label4.BackColor = System.Drawing.Color.Transparent
-            Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label4.ForeColor = System.Drawing.Color.Black
-            Me.Label4.Location = New System.Drawing.Point(6, 68)
-            Me.Label4.Name = "Label4"
-            Me.Label4.Size = New System.Drawing.Size(79, 16)
-            Me.Label4.TabIndex = 230
-            Me.Label4.Text = "Last login:"
-            '
-            'lastlogin_lbl
-            '
-            Me.lastlogin_lbl.AutoSize = True
-            Me.lastlogin_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.lastlogin_lbl.Cursor = System.Windows.Forms.Cursors.Default
-            Me.lastlogin_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.lastlogin_lbl.ForeColor = System.Drawing.Color.Black
-            Me.lastlogin_lbl.Location = New System.Drawing.Point(84, 69)
-            Me.lastlogin_lbl.Name = "lastlogin_lbl"
-            Me.lastlogin_lbl.Size = New System.Drawing.Size(141, 15)
-            Me.lastlogin_lbl.TabIndex = 231
-            Me.lastlogin_lbl.Text = "2012-10-28 19:15:50"
-            '
-            'online_lbl
-            '
-            Me.online_lbl.AutoSize = True
-            Me.online_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.online_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.online_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-            Me.online_lbl.Location = New System.Drawing.Point(438, 65)
-            Me.online_lbl.Name = "online_lbl"
-            Me.online_lbl.Size = New System.Drawing.Size(52, 16)
-            Me.online_lbl.TabIndex = 232
-            Me.online_lbl.Text = "Online"
-            '
-            'Label7
-            '
-            Me.Label7.AutoSize = True
-            Me.Label7.BackColor = System.Drawing.Color.Transparent
-            Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label7.ForeColor = System.Drawing.Color.Black
-            Me.Label7.Location = New System.Drawing.Point(262, 133)
-            Me.Label7.Name = "Label7"
-            Me.Label7.Size = New System.Drawing.Size(84, 16)
-            Me.Label7.TabIndex = 234
-            Me.Label7.Text = "Expansion:"
-            '
-            'expansion_ud
-            '
-            Me.expansion_ud.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.expansion_ud.Location = New System.Drawing.Point(346, 131)
-            Me.expansion_ud.Maximum = New Decimal(New Integer() {5, 0, 0, 0})
-            Me.expansion_ud.Name = "expansion_ud"
-            Me.expansion_ud.Size = New System.Drawing.Size(37, 21)
-            Me.expansion_ud.TabIndex = 235
-            Me.expansion_ud.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-            Me.expansion_ud.Value = New Decimal(New Integer() {2, 0, 0, 0})
-            '
-            'Label8
-            '
-            Me.Label8.AutoSize = True
-            Me.Label8.BackColor = System.Drawing.Color.Transparent
-            Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label8.ForeColor = System.Drawing.Color.Black
-            Me.Label8.Location = New System.Drawing.Point(262, 158)
-            Me.Label8.Name = "Label8"
-            Me.Label8.Size = New System.Drawing.Size(51, 16)
-            Me.Label8.TabIndex = 236
-            Me.Label8.Text = "Email:"
-            '
-            'mail_lbl
-            '
-            Me.mail_lbl.AutoSize = True
-            Me.mail_lbl.BackColor = System.Drawing.Color.Transparent
-            Me.mail_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
-            Me.mail_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.mail_lbl.ForeColor = System.Drawing.Color.Black
-            Me.mail_lbl.Location = New System.Drawing.Point(319, 158)
-            Me.mail_lbl.Name = "mail_lbl"
-            Me.mail_lbl.Size = New System.Drawing.Size(157, 15)
-            Me.mail_lbl.TabIndex = 237
-            Me.mail_lbl.Text = "admin@yourserver.com"
-            '
-            'lockaccount_cb
-            '
-            Me.lockaccount_cb.AutoSize = True
-            Me.lockaccount_cb.BackColor = System.Drawing.Color.Transparent
-            Me.lockaccount_cb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
-            Me.lockaccount_cb.ForeColor = System.Drawing.Color.Black
-            Me.lockaccount_cb.Location = New System.Drawing.Point(265, 108)
-            Me.lockaccount_cb.Name = "lockaccount_cb"
-            Me.lockaccount_cb.Size = New System.Drawing.Size(118, 20)
-            Me.lockaccount_cb.TabIndex = 238
-            Me.lockaccount_cb.Text = "Lock account"
-            Me.lockaccount_cb.UseVisualStyleBackColor = False
-            '
-            'Label10
-            '
-            Me.Label10.AutoSize = True
-            Me.Label10.BackColor = System.Drawing.Color.Transparent
-            Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.Label10.ForeColor = System.Drawing.Color.Black
-            Me.Label10.Location = New System.Drawing.Point(13, 193)
-            Me.Label10.Name = "Label10"
-            Me.Label10.Size = New System.Drawing.Size(87, 16)
-            Me.Label10.TabIndex = 239
-            Me.Label10.Text = "Characters:"
-            '
-            'GroupBox1
-            '
-            Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-            Me.GroupBox1.Controls.Add(Me.lastlogin_lbl)
-            Me.GroupBox1.Controls.Add(Me.Label2)
-            Me.GroupBox1.Controls.Add(Me.joindate_lbl)
-            Me.GroupBox1.Controls.Add(Me.lastip_lbl)
-            Me.GroupBox1.Controls.Add(Me.Label1)
-            Me.GroupBox1.Controls.Add(Me.Label4)
-            Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-            Me.GroupBox1.ForeColor = System.Drawing.Color.Black
-            Me.GroupBox1.Location = New System.Drawing.Point(14, 89)
-            Me.GroupBox1.Name = "GroupBox1"
-            Me.GroupBox1.Size = New System.Drawing.Size(235, 93)
-            Me.GroupBox1.TabIndex = 240
-            Me.GroupBox1.TabStop = False
-            Me.GroupBox1.Text = "General"
-            '
-            'reset_bt
-            '
-            Me.reset_bt.BackColor = System.Drawing.Color.DimGray
-            Me.reset_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.reset_bt.Enabled = False
-            Me.reset_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.reset_bt.ForeColor = System.Drawing.Color.Black
-            Me.reset_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.reset_bt.Location = New System.Drawing.Point(12, 415)
-            Me.reset_bt.Name = "reset_bt"
-            Me.reset_bt.Size = New System.Drawing.Size(155, 34)
-            Me.reset_bt.TabIndex = 243
-            Me.reset_bt.Text = "Reset"
-            Me.reset_bt.UseVisualStyleBackColor = False
-            '
-            'savechanges_bt
-            '
-            Me.savechanges_bt.BackColor = System.Drawing.Color.DimGray
-            Me.savechanges_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.savechanges_bt.Enabled = False
-            Me.savechanges_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.savechanges_bt.ForeColor = System.Drawing.Color.Black
-            Me.savechanges_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.savechanges_bt.Location = New System.Drawing.Point(173, 415)
-            Me.savechanges_bt.Name = "savechanges_bt"
-            Me.savechanges_bt.Size = New System.Drawing.Size(155, 34)
-            Me.savechanges_bt.TabIndex = 242
-            Me.savechanges_bt.Text = "Save changes"
-            Me.savechanges_bt.UseVisualStyleBackColor = False
-            '
-            'exit_bt
-            '
-            Me.exit_bt.BackColor = System.Drawing.Color.DimGray
-            Me.exit_bt.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.exit_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-            Me.exit_bt.ForeColor = System.Drawing.Color.Black
-            Me.exit_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
-            Me.exit_bt.Location = New System.Drawing.Point(335, 415)
-            Me.exit_bt.Name = "exit_bt"
-            Me.exit_bt.Size = New System.Drawing.Size(155, 34)
-            Me.exit_bt.TabIndex = 241
-            Me.exit_bt.Text = "Exit"
-            Me.exit_bt.UseVisualStyleBackColor = False
-            '
-            'charactercontext
-            '
-            Me.charactercontext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem1, Me.EditToolStripMenuItem1})
-            Me.charactercontext.Name = "charactercontext"
-            Me.charactercontext.Size = New System.Drawing.Size(118, 48)
-            '
-            'RemoveToolStripMenuItem1
-            '
-            Me.RemoveToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SelectedCharacterToolStripMenuItem, Me.CheckedCharactersToolStripMenuItem})
-            Me.RemoveToolStripMenuItem1.Name = "RemoveToolStripMenuItem1"
-            Me.RemoveToolStripMenuItem1.Size = New System.Drawing.Size(117, 22)
-            Me.RemoveToolStripMenuItem1.Text = "Remove"
-            '
-            'SelectedCharacterToolStripMenuItem
-            '
-            Me.SelectedCharacterToolStripMenuItem.Name = "SelectedCharacterToolStripMenuItem"
-            Me.SelectedCharacterToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-            Me.SelectedCharacterToolStripMenuItem.Text = "Selected character"
-            '
-            'CheckedCharactersToolStripMenuItem
-            '
-            Me.CheckedCharactersToolStripMenuItem.Name = "CheckedCharactersToolStripMenuItem"
-            Me.CheckedCharactersToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-            Me.CheckedCharactersToolStripMenuItem.Text = "Checked characters"
-            '
-            'EditToolStripMenuItem1
-            '
-            Me.EditToolStripMenuItem1.Name = "EditToolStripMenuItem1"
-            Me.EditToolStripMenuItem1.Size = New System.Drawing.Size(117, 22)
-            Me.EditToolStripMenuItem1.Text = "Edit"
-            '
-            'changepanel
-            '
-            Me.changepanel.BackColor = System.Drawing.Color.Transparent
-            Me.changepanel.Controls.Add(Me.updatePic)
-            Me.changepanel.Controls.Add(Me.changeText_tb)
-            Me.changepanel.Location = New System.Drawing.Point(799, 212)
-            Me.changepanel.Name = "changepanel"
-            Me.changepanel.Size = New System.Drawing.Size(133, 24)
-            Me.changepanel.TabIndex = 244
-            '
-            'updatePic
-            '
-            Me.updatePic.Cursor = System.Windows.Forms.Cursors.Hand
-            Me.updatePic.Image = Global.NamCore_Studio.My.Resources.Resources.Refresh_icon
-            Me.updatePic.Location = New System.Drawing.Point(115, 4)
-            Me.updatePic.Name = "updatePic"
-            Me.updatePic.Size = New System.Drawing.Size(16, 16)
-            Me.updatePic.TabIndex = 174
-            Me.updatePic.TabStop = False
-            '
-            'changeText_tb
-            '
-            Me.changeText_tb.Location = New System.Drawing.Point(3, 2)
-            Me.changeText_tb.Name = "changeText_tb"
-            Me.changeText_tb.Size = New System.Drawing.Size(106, 20)
-            Me.changeText_tb.TabIndex = 0
-            '
-            'AccountOverview
-            '
-            Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-            Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
-            Me.ClientSize = New System.Drawing.Size(500, 458)
+        Me.accname_lbl.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.accname_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.accname_lbl.ForeColor = System.Drawing.Color.Black
+        Me.accname_lbl.Location = New System.Drawing.Point(237, 63)
+        Me.accname_lbl.Name = "accname_lbl"
+        Me.accname_lbl.Size = New System.Drawing.Size(119, 20)
+        Me.accname_lbl.TabIndex = 224
+        Me.accname_lbl.Text = "Accountname"
+        '
+        'characterview
+        '
+        Me.characterview.BackColor = System.Drawing.Color.FromArgb(CType(CType(126,Byte),Integer), CType(CType(144,Byte),Integer), CType(CType(156,Byte),Integer))
+        Me.characterview.CheckBoxes = true
+        Me.characterview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.charguid, Me.charname, Me.charrace, Me.charclass, Me.chargender, Me.charlevel})
+        Me.characterview.FullRowSelect = true
+        Me.characterview.Location = New System.Drawing.Point(12, 212)
+        Me.characterview.MultiSelect = false
+        Me.characterview.Name = "characterview"
+        Me.characterview.Size = New System.Drawing.Size(478, 197)
+        Me.characterview.TabIndex = 225
+        Me.characterview.UseCompatibleStateImageBehavior = false
+        Me.characterview.View = System.Windows.Forms.View.Details
+        '
+        'charguid
+        '
+        Me.charguid.Text = "GUID"
+        Me.charguid.Width = 41
+        '
+        'charname
+        '
+        Me.charname.Text = "Name"
+        Me.charname.Width = 134
+        '
+        'charrace
+        '
+        Me.charrace.Text = "Race"
+        '
+        'charclass
+        '
+        Me.charclass.Text = "Class"
+        '
+        'chargender
+        '
+        Me.chargender.Text = "Gender"
+        '
+        'charlevel
+        '
+        Me.charlevel.Text = "Level"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = true
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(6, 22)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(72, 16)
+        Me.Label2.TabIndex = 226
+        Me.Label2.Text = "Joindate:"
+        '
+        'joindate_lbl
+        '
+        Me.joindate_lbl.AutoSize = true
+        Me.joindate_lbl.BackColor = System.Drawing.Color.Transparent
+        Me.joindate_lbl.Cursor = System.Windows.Forms.Cursors.Default
+        Me.joindate_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic),System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.joindate_lbl.ForeColor = System.Drawing.Color.Black
+        Me.joindate_lbl.Location = New System.Drawing.Point(84, 22)
+        Me.joindate_lbl.Name = "joindate_lbl"
+        Me.joindate_lbl.Size = New System.Drawing.Size(141, 15)
+        Me.joindate_lbl.TabIndex = 227
+        Me.joindate_lbl.Text = "2012-10-28 19:15:50"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = true
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(6, 45)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(58, 16)
+        Me.Label1.TabIndex = 228
+        Me.Label1.Text = "Last ip:"
+        '
+        'lastip_lbl
+        '
+        Me.lastip_lbl.AutoSize = true
+        Me.lastip_lbl.BackColor = System.Drawing.Color.Transparent
+        Me.lastip_lbl.Cursor = System.Windows.Forms.Cursors.Default
+        Me.lastip_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic),System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.lastip_lbl.ForeColor = System.Drawing.Color.Black
+        Me.lastip_lbl.Location = New System.Drawing.Point(84, 46)
+        Me.lastip_lbl.Name = "lastip_lbl"
+        Me.lastip_lbl.Size = New System.Drawing.Size(67, 15)
+        Me.lastip_lbl.TabIndex = 229
+        Me.lastip_lbl.Text = "127.0.0.1"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = true
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Black
+        Me.Label4.Location = New System.Drawing.Point(6, 68)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(79, 16)
+        Me.Label4.TabIndex = 230
+        Me.Label4.Text = "Last login:"
+        '
+        'lastlogin_lbl
+        '
+        Me.lastlogin_lbl.AutoSize = true
+        Me.lastlogin_lbl.BackColor = System.Drawing.Color.Transparent
+        Me.lastlogin_lbl.Cursor = System.Windows.Forms.Cursors.Default
+        Me.lastlogin_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic),System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.lastlogin_lbl.ForeColor = System.Drawing.Color.Black
+        Me.lastlogin_lbl.Location = New System.Drawing.Point(84, 69)
+        Me.lastlogin_lbl.Name = "lastlogin_lbl"
+        Me.lastlogin_lbl.Size = New System.Drawing.Size(141, 15)
+        Me.lastlogin_lbl.TabIndex = 231
+        Me.lastlogin_lbl.Text = "2012-10-28 19:15:50"
+        '
+        'online_lbl
+        '
+        Me.online_lbl.AutoSize = true
+        Me.online_lbl.BackColor = System.Drawing.Color.Transparent
+        Me.online_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.online_lbl.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(192,Byte),Integer), CType(CType(0,Byte),Integer))
+        Me.online_lbl.Location = New System.Drawing.Point(438, 65)
+        Me.online_lbl.Name = "online_lbl"
+        Me.online_lbl.Size = New System.Drawing.Size(52, 16)
+        Me.online_lbl.TabIndex = 232
+        Me.online_lbl.Text = "Online"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = true
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(262, 133)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(84, 16)
+        Me.Label7.TabIndex = 234
+        Me.Label7.Text = "Expansion:"
+        '
+        'expansion_ud
+        '
+        Me.expansion_ud.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.expansion_ud.Location = New System.Drawing.Point(346, 131)
+        Me.expansion_ud.Maximum = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.expansion_ud.Name = "expansion_ud"
+        Me.expansion_ud.Size = New System.Drawing.Size(37, 21)
+        Me.expansion_ud.TabIndex = 235
+        Me.expansion_ud.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.expansion_ud.Value = New Decimal(New Integer() {2, 0, 0, 0})
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = true
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.Black
+        Me.Label8.Location = New System.Drawing.Point(262, 158)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(51, 16)
+        Me.Label8.TabIndex = 236
+        Me.Label8.Text = "Email:"
+        '
+        'mail_lbl
+        '
+        Me.mail_lbl.AutoSize = true
+        Me.mail_lbl.BackColor = System.Drawing.Color.Transparent
+        Me.mail_lbl.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.mail_lbl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic),System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.mail_lbl.ForeColor = System.Drawing.Color.Black
+        Me.mail_lbl.Location = New System.Drawing.Point(319, 158)
+        Me.mail_lbl.Name = "mail_lbl"
+        Me.mail_lbl.Size = New System.Drawing.Size(157, 15)
+        Me.mail_lbl.TabIndex = 237
+        Me.mail_lbl.Text = "admin@yourserver.com"
+        '
+        'lockaccount_cb
+        '
+        Me.lockaccount_cb.AutoSize = true
+        Me.lockaccount_cb.BackColor = System.Drawing.Color.Transparent
+        Me.lockaccount_cb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.lockaccount_cb.ForeColor = System.Drawing.Color.Black
+        Me.lockaccount_cb.Location = New System.Drawing.Point(265, 108)
+        Me.lockaccount_cb.Name = "lockaccount_cb"
+        Me.lockaccount_cb.Size = New System.Drawing.Size(118, 20)
+        Me.lockaccount_cb.TabIndex = 238
+        Me.lockaccount_cb.Text = "Lock account"
+        Me.lockaccount_cb.UseVisualStyleBackColor = false
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = true
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.Black
+        Me.Label10.Location = New System.Drawing.Point(13, 193)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(87, 16)
+        Me.Label10.TabIndex = 239
+        Me.Label10.Text = "Characters:"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox1.Controls.Add(Me.lastlogin_lbl)
+        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.joindate_lbl)
+        Me.GroupBox1.Controls.Add(Me.lastip_lbl)
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.GroupBox1.ForeColor = System.Drawing.Color.Black
+        Me.GroupBox1.Location = New System.Drawing.Point(14, 89)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(235, 93)
+        Me.GroupBox1.TabIndex = 240
+        Me.GroupBox1.TabStop = false
+        Me.GroupBox1.Text = "General"
+        '
+        'reset_bt
+        '
+        Me.reset_bt.BackColor = System.Drawing.Color.DimGray
+        Me.reset_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.reset_bt.Enabled = false
+        Me.reset_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.reset_bt.ForeColor = System.Drawing.Color.Black
+        Me.reset_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.reset_bt.Location = New System.Drawing.Point(12, 415)
+        Me.reset_bt.Name = "reset_bt"
+        Me.reset_bt.Size = New System.Drawing.Size(155, 34)
+        Me.reset_bt.TabIndex = 243
+        Me.reset_bt.Text = "Reset"
+        Me.reset_bt.UseVisualStyleBackColor = false
+        '
+        'savechanges_bt
+        '
+        Me.savechanges_bt.BackColor = System.Drawing.Color.DimGray
+        Me.savechanges_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.savechanges_bt.Enabled = false
+        Me.savechanges_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.savechanges_bt.ForeColor = System.Drawing.Color.Black
+        Me.savechanges_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.savechanges_bt.Location = New System.Drawing.Point(173, 415)
+        Me.savechanges_bt.Name = "savechanges_bt"
+        Me.savechanges_bt.Size = New System.Drawing.Size(155, 34)
+        Me.savechanges_bt.TabIndex = 242
+        Me.savechanges_bt.Text = "Save changes"
+        Me.savechanges_bt.UseVisualStyleBackColor = false
+        '
+        'exit_bt
+        '
+        Me.exit_bt.BackColor = System.Drawing.Color.DimGray
+        Me.exit_bt.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.exit_bt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.exit_bt.ForeColor = System.Drawing.Color.Black
+        Me.exit_bt.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.exit_bt.Location = New System.Drawing.Point(335, 415)
+        Me.exit_bt.Name = "exit_bt"
+        Me.exit_bt.Size = New System.Drawing.Size(155, 34)
+        Me.exit_bt.TabIndex = 241
+        Me.exit_bt.Text = "Exit"
+        Me.exit_bt.UseVisualStyleBackColor = false
+        '
+        'charactercontext
+        '
+        Me.charactercontext.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RemoveToolStripMenuItem1, Me.EditToolStripMenuItem1})
+        Me.charactercontext.Name = "charactercontext"
+        Me.charactercontext.Size = New System.Drawing.Size(118, 48)
+        '
+        'RemoveToolStripMenuItem1
+        '
+        Me.RemoveToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SelectedCharacterToolStripMenuItem, Me.CheckedCharactersToolStripMenuItem})
+        Me.RemoveToolStripMenuItem1.Name = "RemoveToolStripMenuItem1"
+        Me.RemoveToolStripMenuItem1.Size = New System.Drawing.Size(117, 22)
+        Me.RemoveToolStripMenuItem1.Text = "Remove"
+        '
+        'SelectedCharacterToolStripMenuItem
+        '
+        Me.SelectedCharacterToolStripMenuItem.Name = "SelectedCharacterToolStripMenuItem"
+        Me.SelectedCharacterToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.SelectedCharacterToolStripMenuItem.Text = "Selected character"
+        '
+        'CheckedCharactersToolStripMenuItem
+        '
+        Me.CheckedCharactersToolStripMenuItem.Name = "CheckedCharactersToolStripMenuItem"
+        Me.CheckedCharactersToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.CheckedCharactersToolStripMenuItem.Text = "Checked characters"
+        '
+        'EditToolStripMenuItem1
+        '
+        Me.EditToolStripMenuItem1.Name = "EditToolStripMenuItem1"
+        Me.EditToolStripMenuItem1.Size = New System.Drawing.Size(117, 22)
+        Me.EditToolStripMenuItem1.Text = "Edit"
+        '
+        'changepanel
+        '
+        Me.changepanel.BackColor = System.Drawing.Color.Transparent
+        Me.changepanel.Controls.Add(Me.updatePic)
+        Me.changepanel.Controls.Add(Me.changeText_tb)
+        Me.changepanel.Location = New System.Drawing.Point(799, 212)
+        Me.changepanel.Name = "changepanel"
+        Me.changepanel.Size = New System.Drawing.Size(133, 24)
+        Me.changepanel.TabIndex = 244
+        '
+        'updatePic
+        '
+        Me.updatePic.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.updatePic.Image = Global.NamCore_Studio.My.Resources.Resources.Refresh_icon
+        Me.updatePic.Location = New System.Drawing.Point(115, 4)
+        Me.updatePic.Name = "updatePic"
+        Me.updatePic.Size = New System.Drawing.Size(16, 16)
+        Me.updatePic.TabIndex = 174
+        Me.updatePic.TabStop = false
+        '
+        'changeText_tb
+        '
+        Me.changeText_tb.Location = New System.Drawing.Point(3, 2)
+        Me.changeText_tb.Name = "changeText_tb"
+        Me.changeText_tb.Size = New System.Drawing.Size(106, 20)
+        Me.changeText_tb.TabIndex = 0
+        '
+        'AccountOverview
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackgroundImage = Global.NamCore_Studio.My.Resources.Resources.HUD_bg
+        Me.ClientSize = New System.Drawing.Size(500, 458)
         Me.Controls.Add(Me.changepanel)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.lockaccount_cb)

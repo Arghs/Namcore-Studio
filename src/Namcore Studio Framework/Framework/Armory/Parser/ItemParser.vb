@@ -105,7 +105,8 @@ Namespace Framework.Armory.Parser
             End If
             charItem.Name = SplitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
             charItem.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Id), GlobalVariables.GlobalWebClient)
-            charItem.Rarity = CType(TryInt(SplitString(relevantItemContext, "item-quality-", """ style=")), Item.RarityType)
+            charItem.Rarity = CType(TryInt(SplitString(relevantItemContext, "item-quality-", """ style=")),
+                                    Item.RarityType)
             Dim socketContext As String
             If relevantItemContext.Contains("<span class=""sockets"">") Then
                 LogAppend("Item gems active!", "ItemParser_loadItems", False)
@@ -117,7 +118,8 @@ Namespace Framework.Armory.Parser
                                                              "<span class=""frame"">")
                 If Not oneSocketContext.Length <= 49 Then
                     charItem.Socket1Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
-                    charItem.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket1Id), GlobalVariables.GlobalWebClient)
+                    charItem.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket1Id),
+                                                                 GlobalVariables.GlobalWebClient)
                     charItem.Socket1Effectid = GetEffectIdByGemId(charItem.Socket1Id)
                     charItem.Socket1Name = GetEffectNameById(charItem.Socket1Effectid, My.Settings.language)
                 Else
@@ -130,7 +132,8 @@ Namespace Framework.Armory.Parser
                                             Nothing, , 1)
                     oneSocketContext = SplitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
                     charItem.Socket2Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
-                    charItem.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket2Id), GlobalVariables.GlobalWebClient)
+                    charItem.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket2Id),
+                                                                 GlobalVariables.GlobalWebClient)
                     charItem.Socket2Effectid = GetEffectIdByGemId(charItem.Socket2Id)
                     charItem.Socket2Name = GetEffectNameById(charItem.Socket2Effectid, My.Settings.language)
                     If socketCount > 2 Then
@@ -141,7 +144,8 @@ Namespace Framework.Armory.Parser
                         oneSocketContext = SplitString(socketContext, "<span class=""icon-socket",
                                                        "<span class=""frame"">")
                         charItem.Socket3Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
-                        charItem.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket3Id), GlobalVariables.GlobalWebClient)
+                        charItem.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket3Id),
+                                                                     GlobalVariables.GlobalWebClient)
                         charItem.Socket3Effectid = GetEffectIdByGemId(charItem.Socket3Id)
                         charItem.Socket3Name = GetEffectNameById(charItem.Socket3Effectid, My.Settings.language)
                     End If
@@ -169,7 +173,8 @@ Namespace Framework.Armory.Parser
                     charItem.EnchantmentName = SplitString(enchantContext,
                                                            "/item/" & charItem.EnchantmentId.ToString & """>", "</a>")
                     charItem.EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_ITEM
-                    charItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(charItem.EnchantmentId), 5)
+                    charItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(charItem.EnchantmentId),
+                                                                        5)
                 End If
             Else
                 LogAppend("Enchantment not found!?", "ItemParser_loadItems", False)

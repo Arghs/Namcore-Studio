@@ -21,8 +21,8 @@
 '*      /Description:   Provides an interface to display operation status
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
-Imports System.Windows.Forms
 Imports FastColoredTextBoxNS
+Imports System.Windows.Forms
 
 Namespace Framework.Forms
     Public Class ProcessStatus
@@ -39,13 +39,16 @@ Namespace Framework.Forms
         Public Sub AppendProc(txt As String, style As Style)
             If fctb.InvokeRequired Then
                 fctb.Invoke(New AppendTextBoxDelegate(AddressOf AppendProc),
-                                  New Object() {txt, style})
+                            New Object() {txt, style})
             Else
                 txt = txt & vbCrLf
                 fctb.BeginUpdate()
                 fctb.Selection.BeginUpdate()
                 Dim userSelection As Range = fctb.Selection.Clone()
-                fctb.Selection.Start = If(fctb.LinesCount > 0, New Place(fctb(fctb.LinesCount - 1).Count, fctb.LinesCount - 1), New Place(0, 0))
+                fctb.Selection.Start =
+                    If _
+                        (fctb.LinesCount > 0, New Place(fctb(fctb.LinesCount - 1).Count, fctb.LinesCount - 1),
+                         New Place(0, 0))
                 fctb.InsertText(txt, style)
                 If Not userSelection.IsEmpty OrElse userSelection.Start.iLine < fctb.LinesCount - 2 Then
                     fctb.Selection.Start = userSelection.Start

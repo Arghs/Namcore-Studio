@@ -32,6 +32,7 @@ Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
 Imports System.Threading
+Imports NCFramework.My.Resources
 Imports libnc.Provider
 Imports System.Net
 Imports NCFramework.Framework.Core.Update
@@ -162,7 +163,7 @@ Namespace Forms.Character
                     subItmRemovePic.Visible = False
                     subItmRemovePic.SetDoubleBuffered()
                     subItmRemovePic.BringToFront()
-                    InfoToolTip.SetToolTip(subItmRemovePic, "Add")
+                    InfoToolTip.SetToolTip(subItmRemovePic, TOOLTIP_ADD)
                     AddHandler subItmRemovePic.MouseClick, AddressOf removeinventboxBag_Click
                     AddHandler subItmRemovePic.MouseEnter, AddressOf removeinventbox_MouseEnter
                     AddHandler subItmRemovePic.MouseLeave, AddressOf removeinventbox_MouseLeave
@@ -171,7 +172,7 @@ Namespace Forms.Character
                 End If
             Next
             If Not DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems Is Nothing Then
-              
+
                 For Each potCharBag As Item In _
                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).InventoryZeroItems
                     potCharBag.BagItems = New List(Of Item)()
@@ -183,9 +184,13 @@ Namespace Forms.Character
                                     Dim bagPanel As ItemPanel = TryCast(subctrl, ItemPanel)
                                     Dim realBagSlot As Integer = TryInt(SplitString(subctrl.Name, "bag", "Panel")) + 17
                                     If subctrl.Name.Contains((potCharBag.Slot - 17).ToString()) Then
-                                        Dim subItmRemovePic As PictureBox = CType(bagPanel.Controls.Find("bag_" & realBagSlot.ToString() & "_remove", True)(0), PictureBox)
+                                        Dim subItmRemovePic As PictureBox =
+                                                CType(
+                                                    bagPanel.Controls.Find("bag_" & realBagSlot.ToString() & "_remove",
+                                                                           True)(0),
+                                                    PictureBox)
                                         subItmRemovePic.BackgroundImage = My.Resources.trash__delete__16x16
-                                        InfoToolTip.SetToolTip(subItmRemovePic, "Remove")
+                                        InfoToolTip.SetToolTip(subItmRemovePic, TOOLTIP_REMOVE)
                                         bagPanel.BackColor = GetItemQualityColor(GetItemQualityByItemId(potCharBag.Id))
                                         For Each potBagItem As Item In _
                                             DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet).
@@ -353,7 +358,8 @@ Namespace Forms.Character
             End Try
         End Sub
 
-        Private Function LoadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer) As Object
+        Private Function LoadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer) _
+            As Object
             LogAppend("Loading info for slot " & slot.ToString, "CharacterOverview_LoadInfo", True)
             _pubItm = New Item
             Dim itm As Item = GetCharacterArmorItem(GetCharacterSetBySetId(targetSet, _currentAccount), slot.ToString,
@@ -569,14 +575,15 @@ Namespace Forms.Character
                                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, CType(senderLabel.Tag, Item))
                         Else
-                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
-                                   ResourceHandler.GetUserMessage("Error"))
+                            MsgBox(MSG_INVALIDITEMCLASS, MsgBoxStyle.Critical, MSG_ERROR)
                         End If
                     Else
-                        If Not GetItemInventorySlotByItemId(CType(senderLabel.Tag, Item).Guid) = GetItemInventorySlotByItemId(id) _
+                        If _
+                            Not _
+                            GetItemInventorySlotByItemId(CType(senderLabel.Tag, Item).Guid) =
+                            GetItemInventorySlotByItemId(id) _
                             Then
-                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
-                                   ResourceHandler.GetUserMessage("Error"))
+                            MsgBox(MSG_INVALIDITEMCLASS, MsgBoxStyle.Critical, MSG_ERROR)
                         Else
                             Dim newitm As Item = CType(senderLabel.Tag, Item)
                             newitm.ReplaceItem(id)
@@ -600,11 +607,14 @@ Namespace Forms.Character
                                                 Not ctrl.Name.ToLower.Contains("gem")
                                                 DirectCast(ctrl, PictureBox).Image = CType(senderLabel.Tag, Item).Image
                                             Case ctrl.Name.ToLower.Contains("gem1")
-                                                DirectCast(ctrl, PictureBox).Image = CType(senderLabel.Tag, Item).Socket1Pic
+                                                DirectCast(ctrl, PictureBox).Image =
+                                                    CType(senderLabel.Tag, Item).Socket1Pic
                                             Case ctrl.Name.ToLower.Contains("gem2")
-                                                DirectCast(ctrl, PictureBox).Image = CType(senderLabel.Tag, Item).Socket1Pic
+                                                DirectCast(ctrl, PictureBox).Image =
+                                                    CType(senderLabel.Tag, Item).Socket1Pic
                                             Case ctrl.Name.ToLower.Contains("gem3")
-                                                DirectCast(ctrl, PictureBox).Image = CType(senderLabel.Tag, Item).Socket3Pic
+                                                DirectCast(ctrl, PictureBox).Image =
+                                                    CType(senderLabel.Tag, Item).Socket3Pic
                                         End Select
                                     End If
                                 ElseIf TypeOf ctrl Is Panel Then
@@ -663,21 +673,27 @@ Namespace Forms.Character
                                         itm.Socket1Effectid = GetEffectIdByGemId(socketId)
                                         itm.Socket1Name = GetEffectNameById(itm.Socket1Effectid,
                                                                             MySettings.Default.language)
-                                        itm.Socket1Pic = CType(GetItemIconByItemId(socketId, GlobalVariables.GlobalWebClient), Bitmap)
+                                        itm.Socket1Pic = CType(GetItemIconByItemId(socketId,
+                                                                                   GlobalVariables.GlobalWebClient),
+                                                               Bitmap)
                                         senderPic.Image = itm.Socket1Pic
                                     Case senderPic.Name.Contains("gem2")
                                         itm.Socket2Id = socketId
                                         itm.Socket2Effectid = GetEffectIdByGemId(socketId)
                                         itm.Socket2Name = GetEffectNameById(itm.Socket2Effectid,
                                                                             MySettings.Default.language)
-                                        itm.Socket2Pic = CType(GetItemIconByItemId(socketId, GlobalVariables.GlobalWebClient), Bitmap)
+                                        itm.Socket2Pic = CType(GetItemIconByItemId(socketId,
+                                                                                   GlobalVariables.GlobalWebClient),
+                                                               Bitmap)
                                         senderPic.Image = itm.Socket2Pic
                                     Case senderPic.Name.Contains("gem3")
                                         itm.Socket3Id = socketId
                                         itm.Socket3Effectid = GetEffectIdByGemId(socketId)
                                         itm.Socket3Name = GetEffectNameById(itm.Socket3Effectid,
                                                                             MySettings.Default.language)
-                                        itm.Socket3Pic = CType(GetItemIconByItemId(socketId, GlobalVariables.GlobalWebClient), Bitmap)
+                                        itm.Socket3Pic = CType(GetItemIconByItemId(socketId,
+                                                                                   GlobalVariables.GlobalWebClient),
+                                                               Bitmap)
                                         senderPic.Image = itm.Socket3Pic
                                 End Select
                                 senderPic.Refresh()
@@ -686,7 +702,8 @@ Namespace Forms.Character
                                         _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
                                 Dim matchControls As Control() = Array.FindAll(relevantControls,
                                                                                Function(control) _
-                                                                                  CType(control.Tag, Item).Guid = itm.Guid)
+                                                                                  CType(control.Tag, Item).Guid =
+                                                                                  itm.Guid)
                                 If Not matchControls Is Nothing Then
                                     For i = 0 To matchControls.Length - 1
                                         matchControls(i).Tag = itm
@@ -694,8 +711,7 @@ Namespace Forms.Character
                                 End If
                                 SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
                             Else
-                                MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
-                                       ResourceHandler.GetUserMessage("Error"))
+                                MsgBox(MSG_INVALIDITEMCLASS, MsgBoxStyle.Critical, MSG_ERROR)
                             End If
                         End If
                     End If
@@ -723,8 +739,7 @@ Namespace Forms.Character
                 If (tempSender IsNot Nothing) Then
                     If Not senderLabel.Name.ToLower.EndsWith("_enchant") Then
 
-                        Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
-                                            ResourceHandler.GetUserMessage("areyousure"))
+                        Dim result = MsgBox(MSG_DELETEITEM, vbYesNo, MSG_AREYOUSURE)
                         If result = MsgBoxResult.Yes Then
                             For Each ctrl As Control In _controlLst
                                 If TypeOf ctrl Is PictureBox Then
@@ -782,7 +797,8 @@ Namespace Forms.Character
                         Dim relevantControls As Control() =
                                 _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
                         Dim matchControls As Control() = Array.FindAll(relevantControls,
-                                                                       Function(control) CType(control.Tag, Item).Guid = pubItem.Guid)
+                                                                       Function(control) _
+                                                                          CType(control.Tag, Item).Guid = pubItem.Guid)
                         If Not matchControls Is Nothing Then
                             For i = 0 To matchControls.Length - 1
                                 matchControls(i).Tag = pubItem
@@ -803,7 +819,8 @@ Namespace Forms.Character
                 Dim relevantControls As Control() =
                         _controlLst.FindAll(Function(control) control.Tag IsNot Nothing).ToArray()
                 Dim matchControls As Control() = Array.FindAll(relevantControls,
-                                                               Function(control) CType(control.Tag, Item).Guid = pubItem.Guid)
+                                                               Function(control) _
+                                                                  CType(control.Tag, Item).Guid = pubItem.Guid)
                 If Not matchControls Is Nothing Then
                     For i = 0 To matchControls.Length - 1
                         matchControls(i).Tag = pubItem
@@ -1030,8 +1047,10 @@ Namespace Forms.Character
             addpanel.Location = New Point(4000, 4000)
             genderpanel.Location = New Point(4000, 4000)
             For Each ctrl As Label In _
-                From ctrl1 In _controlLst.OfType(Of Label)()
-                    Where ctrl1.Name.StartsWith(TryCast(sender, PictureBox).Name.Replace("_pic", "")) And ctrl1.Name.EndsWith("_name")
+                From ctrl1 In _controlLst.OfType (Of Label)()
+                    Where _
+                        ctrl1.Name.StartsWith(TryCast(sender, PictureBox).Name.Replace("_pic", "")) And
+                        ctrl1.Name.EndsWith("_name")
                     Where ctrl1.Text = ""
                 _tempSender = ctrl
                 _tmpSenderPic = sender
@@ -1059,7 +1078,8 @@ Namespace Forms.Character
                     Dim img As Bitmap
                     Dim r As Rectangle
                     img = CType(picbx.Image, Bitmap)
-                    TryCast(sender, PictureBox).Image = New Bitmap(picbx.Width, picbx.Height, PixelFormat.Format32bppArgb)
+                    TryCast(sender, PictureBox).Image = New Bitmap(picbx.Width, picbx.Height,
+                                                                   PixelFormat.Format32bppArgb)
                     g = Graphics.FromImage(picbx.Image)
                     r = New Rectangle(0, 0, picbx.Width, picbx.Height)
                     g.DrawImage(img, r)
@@ -1123,8 +1143,7 @@ Namespace Forms.Character
                 meSlot = meSlot.Replace("slot_", "")
                 meSlot = meSlot.Replace("_name", "")
                 If Not GetItemInventorySlotByItemId(TryInt(TextBox2.Text)) = TryInt(meSlot) Then
-                    MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical,
-                           ResourceHandler.GetUserMessage("Error"))
+                    MsgBox(MSG_INVALIDITEMCLASS, MsgBoxStyle.Critical, MSG_ERROR)
                     Exit Sub
                 Else
                     Dim itm As New Item
@@ -1251,7 +1270,7 @@ Namespace Forms.Character
                 ElseIf GlobalVariables.armoryMode = True Then
                     GlobalVariables.currentViewedCharSet = GlobalVariables.currentEditedCharSet
                     SetCharacterSet(GlobalVariables.currentViewedCharSetId, GlobalVariables.currentViewedCharSet,
-                                   _currentAccount)
+                                    _currentAccount)
                     GlobalVariables.currentEditedCharSet = Nothing
                 End If
                 LiveView.LiveViewInstance.UpdateCharacter(GlobalVariables.currentViewedCharSet)
@@ -1325,8 +1344,7 @@ Namespace Forms.Character
                 End Select
             End If
             If allowAdding = True Then
-                Dim retnvalue As Integer = TryInt(InputBox(CStr(ResourceHandler.GetUserMessage("enterGemId")),
-                                                           CStr(ResourceHandler.GetUserMessage("gemAdding")), "0"))
+                Dim retnvalue As Integer = TryInt(InputBox(MSG_ENTERGEMID, MSG_ADDGEM, "0"))
                 If Not retnvalue = 0 Then
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
                         GlobalVariables.currentEditedCharSet =
@@ -1335,7 +1353,7 @@ Namespace Forms.Character
                     client.CheckProxy()
                     Dim effectId As Integer = GetEffectIdByGemId(retnvalue)
                     If effectId = Nothing Or effectId = 0 Then
-                        MsgBox(ResourceHandler.GetUserMessage("invalidGemError"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDGEMID, MsgBoxStyle.Critical, MSG_ERROR)
                         Exit Sub
                     Else
                         Select Case True
@@ -1365,8 +1383,7 @@ Namespace Forms.Character
                         myPic.Tag = itm
                         myPic.Refresh()
                         SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, itm)
-                        MsgBox(ResourceHandler.GetUserMessage("gemAdded"), MsgBoxStyle.Information,
-                               ResourceHandler.GetUserMessage("gemAdding"))
+                        MsgBox(MSG_GEMADDED, MsgBoxStyle.Information, MSG_ADDGEM)
                     End If
                 End If
             Else
@@ -1454,9 +1471,9 @@ Namespace Forms.Character
                 subCountLabel.Visible = False
                 subCountLabel.SetDoubleBuffered()
                 subCountLabel.BringToFront()
-                InfoToolTip.SetToolTip(newItmPanel, "Empty")
-                InfoToolTip.SetToolTip(subItmPic, "Empty")
-                InfoToolTip.SetToolTip(subItmRemovePic, "Add")
+                InfoToolTip.SetToolTip(newItmPanel, TOOLTIP_EMPTY)
+                InfoToolTip.SetToolTip(subItmPic, TOOLTIP_EMPTY)
+                InfoToolTip.SetToolTip(subItmRemovePic, TOOLTIP_ADD)
                 InventoryLayout.Update()
                 AddHandler subCountLabel.Click, AddressOf ChangeCount
                 AddHandler newItmPanel.MouseEnter, AddressOf InventItem_MouseEnter
@@ -1478,17 +1495,15 @@ Namespace Forms.Character
         Private Sub ChangeCount(sender As Object, e As EventArgs)
             Dim locLabel As Label = CType(sender, Label)
             If locLabel.Visible = True Then
-                Dim result As String = InputBox(CStr(ResourceHandler.GetUserMessage("enterItemCount")),
-                                                CStr(ResourceHandler.GetUserMessage("countChange")), locLabel.Text)
+                Dim result As String = InputBox(MSG_ENTERITEMCOUNT, MSG_ITEMCOUNTCHANGE, locLabel.Text)
                 If Not result = "" Then
                     Dim intResult As Integer = TryInt(result)
                     If intResult <> 0 Then
                         Dim itm As Item = CType(locLabel.Tag, Item)
                         Dim maxStackSize As Integer = GetItemMaxStackByItemId(itm.Id)
                         If intResult > maxStackSize Then
-                            MsgBox(
-                                ResourceHandler.GetUserMessage("stackSizeLimitReached") & " " & maxStackSize.ToString(),
-                                MsgBoxStyle.Critical, ResourceHandler.GetUserMessage("invalidentry"))
+                            MsgBox(MSG_STACKLIMITREACHED & " " & maxStackSize.ToString(),
+                                   MsgBoxStyle.Critical, MSG_INVALIDENTRY)
                             Exit Sub
                         End If
                         itm.Count = intResult
@@ -1504,8 +1519,8 @@ Namespace Forms.Character
                         Else
                             If _currentBag.AddedBag = False Then
                                 Dim oldItmIndex As Integer =
-                                                                   GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
-                                                                       Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid)
+                                        GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
+                                            Function(item) item.Slot = itm.Slot AndAlso item.Bagguid = itm.Bagguid)
                                 GlobalVariables.currentEditedCharSet.InventoryItems(oldItmIndex) = itm
                             End If
                             Dim inBagIndex As Integer =
@@ -1520,7 +1535,7 @@ Namespace Forms.Character
 
         Private Sub BagItem_MouseEnter(sender As Object, e As EventArgs)
             If Not _loadComplete = False Then
-                For i = _visibleActionControls.Count - 1 To 0 Step -1
+                For i = _visibleActionControls.Count - 1 To 0 Step - 1
                     _visibleActionControls(i).Visible = False
                     _visibleActionControls.Remove(_visibleActionControls(i))
                 Next
@@ -1546,7 +1561,7 @@ Namespace Forms.Character
 
         Private Sub InventItem_MouseEnter(sender As Object, e As EventArgs)
             If Not _loadComplete = False Then
-                For i = _visibleActionControls.Count - 1 To 0 Step -1
+                For i = _visibleActionControls.Count - 1 To 0 Step - 1
                     _visibleActionControls(i).Visible = False
                     _visibleActionControls.Remove(_visibleActionControls(i))
                 Next
@@ -1575,7 +1590,8 @@ Namespace Forms.Character
                 itmctrl.BackColor = GetItemQualityColor(GetItemQualityByItemId(itm.Id))
                 itmctrl.Tag = itm
                 If itm.Count > 1 OrElse itm.Count = 1 AndAlso GetItemMaxStackByItemId(itm.Id) > 1 Then
-                    Dim countLabel As Label = CType(itmctrl.Controls.Find("slot_" & slot.ToString() & "_count", True)(0), Label)
+                    Dim countLabel As Label = CType(itmctrl.Controls.Find("slot_" & slot.ToString() & "_count", True)(0),
+                                                    Label)
                     countLabel.Text = itm.Count.ToString()
                     countLabel.Tag = itm
                     countLabel.Visible = True
@@ -1587,10 +1603,10 @@ Namespace Forms.Character
                             Dim itmPicBox As PictureBox = CType(itmPicCtrl, PictureBox)
                             If itm.Id <> 0 Then
                                 itmPicBox.BackgroundImage = My.Resources.trash__delete__16x16
-                                InfoToolTip.SetToolTip(itmPicBox, "Remove")
+                                InfoToolTip.SetToolTip(itmPicBox, TOOLTIP_REMOVE)
                             Else
                                 itmPicBox.BackgroundImage = My.Resources.add_
-                                InfoToolTip.SetToolTip(itmPicBox, "Add")
+                                InfoToolTip.SetToolTip(itmPicBox, TOOLTIP_ADD)
                             End If
                             Continue For
                         End If
@@ -1608,7 +1624,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub reset_bt_Click(sender As Object, e As EventArgs) Handles reset_bt.Click
-            For i = Application.OpenForms.Count - 1 To 0 Step -1
+            For i = Application.OpenForms.Count - 1 To 0 Step - 1
                 Dim openForm As Form = Application.OpenForms(i)
                 Select Case True
                     Case TypeOf openForm Is GlyphsInterface, TypeOf openForm Is AchievementsInterface,
@@ -1669,7 +1685,7 @@ Namespace Forms.Character
             Dim locPic As PictureBox = TryCast(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
             Dim oldItm As Item = CType(locPic.Tag, Item)
             If oldItm.Id = 0 Then
-                Dim result As String = InputBox(ResourceHandler.GetUserMessage("enteritemid"), "Add item", "0")
+                Dim result As String = InputBox(MSG_ENTERITEMID, MSG_ADDITEM, "0")
                 If result.Length = 0 Then
                     TryCast(sender, PictureBox).Visible = False
                 Else
@@ -1683,7 +1699,8 @@ Namespace Forms.Character
                             Dim replaceItm As New Item()
                             replaceItm.Slot = oldItm.Slot
                             replaceItm.Id = intResult
-                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient), Bitmap)
+                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient),
+                                                     Bitmap)
                             replaceItm.Name = checkName
                             replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.Bag = oldItm.Bag
@@ -1709,7 +1726,10 @@ Namespace Forms.Character
                             _currentBag.BagItems.Add(replaceItm)
                             If GetItemMaxStackByItemId(replaceItm.Id) > 1 Then
                                 Dim countLabel As Label =
-                                        CType(locPanel.Controls.Find("slot_" & replaceItm.Slot.ToString() & "_count", True)(0), Label)
+                                        CType(
+                                            locPanel.Controls.Find("slot_" & replaceItm.Slot.ToString() & "_count", True)(
+                                                0),
+                                            Label)
                                 If Not countLabel Is Nothing Then
                                     countLabel.Text = "1"
                                     countLabel.Visible = True
@@ -1720,19 +1740,18 @@ Namespace Forms.Character
                             locPanel.Tag = replaceItm
                             locPic.BackgroundImage = replaceItm.Image
                             InfoToolTip.SetToolTip(locPic, checkName)
-                            InfoToolTip.SetToolTip(TryCast(sender, PictureBox), "Remove")
+                            InfoToolTip.SetToolTip(TryCast(sender, PictureBox), TOOLTIP_REMOVE)
                             TryCast(sender, PictureBox).BackgroundImage = My.Resources.trash__delete__16x16
                         Else
-                            MsgBox(ResourceHandler.GetUserMessage("invalidItemError"), MsgBoxStyle.Critical, "Error")
+                            MsgBox(MSG_INVALIDITEMID, MsgBoxStyle.Critical, MSG_ERROR)
                         End If
                     Else
-                        MsgBox(ResourceHandler.GetUserMessage("invalidItemError"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDITEMID, MsgBoxStyle.Critical, MSG_ERROR)
                     End If
                     TryCast(sender, PictureBox).Visible = False
                 End If
             Else
-                Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
-                                    ResourceHandler.GetUserMessage("areyousure"))
+                Dim result = MsgBox(MSG_DELETEITEM, vbYesNo, MSG_AREYOUSURE)
                 If result = MsgBoxResult.Yes Then
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
                         GlobalVariables.currentEditedCharSet =
@@ -1743,11 +1762,12 @@ Namespace Forms.Character
                     replaceItm.Slot = oldItm.Slot
                     locPanel.Tag = replaceItm
                     locPic.Tag = replaceItm
-                    InfoToolTip.SetToolTip(locPic, "Empty")
-                    InfoToolTip.SetToolTip(TryCast(sender, PictureBox), "Add")
+                    InfoToolTip.SetToolTip(locPic, TOOLTIP_EMPTY)
+                    InfoToolTip.SetToolTip(TryCast(sender, PictureBox), TOOLTIP_ADD)
                     _currentBag.BagItems.Remove(_currentBag.BagItems.Find(Function(item) item.Slot = replaceItm.Slot))
                     Dim countLabel As Label =
-                            CType(locPanel.Controls.Find("slot_" & replaceItm.Slot.ToString() & "_count", True)(0), Label)
+                            CType(locPanel.Controls.Find("slot_" & replaceItm.Slot.ToString() & "_count", True)(0),
+                                  Label)
                     countLabel.Text = ""
                     countLabel.Visible = False
                     countLabel.Tag = replaceItm
@@ -1758,8 +1778,8 @@ Namespace Forms.Character
                     Else
                         If _currentBag.AddedBag = False Then
                             GlobalVariables.currentEditedCharSet.InventoryItems.RemoveAt(
-                                                     GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
-                                                         Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
+                                GlobalVariables.currentEditedCharSet.InventoryItems.FindIndex(
+                                    Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
                         End If
                     End If
 
@@ -1774,7 +1794,7 @@ Namespace Forms.Character
             Dim locPic As PictureBox = TryCast(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
             Dim oldItm As Item = CType(locPanel.Tag, Item)
             If oldItm.Id = 0 Then
-                Dim result As String = InputBox(ResourceHandler.GetUserMessage("enteritemid"), "Add item", "0")
+                Dim result As String = InputBox(MSG_ENTERITEMID, MSG_ADDITEM, "0")
                 If result.Length = 0 Then
                     TryCast(sender, PictureBox).Visible = False
                 Else
@@ -1788,7 +1808,8 @@ Namespace Forms.Character
                             Dim replaceItm As New Item()
                             replaceItm.Slot = oldItm.Slot
                             replaceItm.Id = intResult
-                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient), Bitmap)
+                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient),
+                                                     Bitmap)
                             replaceItm.Name = checkName
                             replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.AddedBag = True
@@ -1809,19 +1830,18 @@ Namespace Forms.Character
                             locPic.Tag = replaceItm
                             locPanel.Tag = replaceItm
                             locPic.BackgroundImage = replaceItm.Image
-                            InfoToolTip.SetToolTip(TryCast(sender, PictureBox), "Remove")
+                            InfoToolTip.SetToolTip(TryCast(sender, PictureBox), TOOLTIP_REMOVE)
                             TryCast(sender, PictureBox).BackgroundImage = My.Resources.trash__delete__16x16
                         Else
-                            MsgBox(ResourceHandler.GetUserMessage("itemclassinvalid"), MsgBoxStyle.Critical, "Error")
+                            MsgBox(MSG_INVALIDITEMCLASS, MsgBoxStyle.Critical, MSG_ERROR)
                         End If
                     Else
-                        MsgBox(ResourceHandler.GetUserMessage("invalidItemError"), MsgBoxStyle.Critical, "Error")
+                        MsgBox(MSG_INVALIDITEMID, MsgBoxStyle.Critical, MSG_ERROR)
                     End If
                     TryCast(sender, PictureBox).Visible = False
                 End If
             Else
-                Dim result = MsgBox(ResourceHandler.GetUserMessage("deleteitem"), vbYesNo,
-                                    ResourceHandler.GetUserMessage("areyousure"))
+                Dim result = MsgBox(MSG_DELETEITEM, vbYesNo, MSG_AREYOUSURE)
                 If result = MsgBoxResult.Yes Then
                     BagOpen(bag1Pic, New EventArgs())
                     If GlobalVariables.currentEditedCharSet Is Nothing Then _
@@ -1833,9 +1853,9 @@ Namespace Forms.Character
                     replaceItm.Slot = oldItm.Slot
                     locPanel.Tag = replaceItm
                     locPic.Tag = replaceItm
-                    InfoToolTip.SetToolTip(TryCast(sender, PictureBox), "Add")
+                    InfoToolTip.SetToolTip(TryCast(sender, PictureBox), TOOLTIP_ADD)
                     If Not oldItm.BagItems Is Nothing Then
-                        For i = oldItm.BagItems.Count - 1 To 0 Step -1
+                        For i = oldItm.BagItems.Count - 1 To 0 Step - 1
                             Dim thisItm As Item = oldItm.BagItems(i)
                             Dim resultItem As Item =
                                     GlobalVariables.currentEditedCharSet.InventoryItems.Find(
@@ -1863,7 +1883,8 @@ Namespace Forms.Character
                     Dim img As Bitmap
                     Dim r As Rectangle
                     img = CType(picbx.BackgroundImage, Bitmap)
-                    TryCast(sender, PictureBox).BackgroundImage = New Bitmap(picbx.Width, picbx.Height, PixelFormat.Format32bppArgb)
+                    TryCast(sender, PictureBox).BackgroundImage = New Bitmap(picbx.Width, picbx.Height,
+                                                                             PixelFormat.Format32bppArgb)
                     g = Graphics.FromImage(picbx.BackgroundImage)
                     r = New Rectangle(0, 0, picbx.Width, picbx.Height)
                     g.DrawImage(img, r)
@@ -1882,8 +1903,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub refreshchar_Click(sender As Object, e As EventArgs) Handles refreshchar.Click
-            Dim result = MsgBox(ResourceHandler.GetUserMessage("reloadCharacter"), MsgBoxStyle.YesNo,
-                                ResourceHandler.GetUserMessage("areyousure"))
+            Dim result = MsgBox(MSG_RELOADCHARACTER, MsgBoxStyle.YesNo, MSG_AREYOUSURE)
             If result = MsgBoxResult.Yes Then
                 For i = Application.OpenForms.Count - 1 To 0 Step - 1
                     Dim openForm As Form = Application.OpenForms(i)

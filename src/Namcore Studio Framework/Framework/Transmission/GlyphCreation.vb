@@ -20,9 +20,9 @@
 '*      /Filename:      GlyphCreation
 '*      /Description:   Includes functions for creating the glyphs of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Modules
 Imports libnc.Provider
 
@@ -43,7 +43,7 @@ Namespace Framework.Transmission
                 End Select
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(),
-                      "GlyphCreation_SetCharacterGlyphs", False, True)
+                          "GlyphCreation_SetCharacterGlyphs", False, True)
             End Try
         End Sub
 
@@ -78,23 +78,29 @@ Namespace Framework.Transmission
                                                 (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph3")).Id,
                                                                     GlobalVariables.targetExpansion).ToString))
             glyphstring2 = glyphstring2.Replace("minor1",
-                                                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph1")).Id,
-                                                                    GlobalVariables.targetExpansion).ToString))
+                                                (GetGlyphIdByItemId(
+                                                    EscGly(GetCharacterGlyph(player, "secminorglyph1")).Id,
+                                                    GlobalVariables.targetExpansion).ToString))
             glyphstring2 = glyphstring2.Replace("minor2",
-                                                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph2")).Id,
-                                                                    GlobalVariables.targetExpansion).ToString))
+                                                (GetGlyphIdByItemId(
+                                                    EscGly(GetCharacterGlyph(player, "secminorglyph2")).Id,
+                                                    GlobalVariables.targetExpansion).ToString))
             glyphstring2 = glyphstring2.Replace("minor3",
-                                                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph3")).Id,
-                                                                    GlobalVariables.targetExpansion).ToString))
+                                                (GetGlyphIdByItemId(
+                                                    EscGly(GetCharacterGlyph(player, "secminorglyph3")).Id,
+                                                    GlobalVariables.targetExpansion).ToString))
             glyphstring2 = glyphstring2.Replace("major1",
-                                                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph1")).Id,
-                                                                    GlobalVariables.targetExpansion).ToString))
+                                                (GetGlyphIdByItemId(
+                                                    EscGly(GetCharacterGlyph(player, "secmajorglyph1")).Id,
+                                                    GlobalVariables.targetExpansion).ToString))
             glyphstring2 = glyphstring2.Replace("major2",
-                                                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph2")).Id,
-                                                                    GlobalVariables.targetExpansion).ToString))
+                                                (GetGlyphIdByItemId(
+                                                    EscGly(GetCharacterGlyph(player, "secmajorglyph2")).Id,
+                                                    GlobalVariables.targetExpansion).ToString))
             glyphstring2 = glyphstring2.Replace("major3",
-                                                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph3")).Id,
-                                                                    GlobalVariables.targetExpansion).ToString))
+                                                (GetGlyphIdByItemId(
+                                                    EscGly(GetCharacterGlyph(player, "secmajorglyph3")).Id,
+                                                    GlobalVariables.targetExpansion).ToString))
             runSQLCommand_characters_string(
                 "UPDATE " & GlobalVariables.targetStructure.character_tbl(0) & " SET " &
                 GlobalVariables.targetStructure.char_glyphs1_col(0) & "='" & glyphstring1 & "' WHERE " &
@@ -131,31 +137,40 @@ Namespace Framework.Transmission
                     ", " & GlobalVariables.targetStructure.glyphs_glyph9_col(0) & " ) VALUES ( '" &
                     characterguid.ToString() &
                     "', '0', '" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph1")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph1")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph2")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph2")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph3")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph3")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph2")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph2")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph1")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph1")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph3")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph3")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph1")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph1")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph2")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph2")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph3")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph3")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "' )", True)
                 runSQLCommand_characters_string(
                     "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -172,31 +187,40 @@ Namespace Framework.Transmission
                     ", " & GlobalVariables.targetStructure.glyphs_glyph9_col(0) & " ) VALUES ( '" &
                     characterguid.ToString() &
                     "', '1', '" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph1")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph1")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph2")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph2")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph3")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph3")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph2")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph2")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph1")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph1")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph3")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph3")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph1")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph1")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph2")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph2")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph3")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph3")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "' )", True)
             ElseIf GlobalVariables.targetExpansion = 3 Then
                 runSQLCommand_characters_string(
@@ -210,22 +234,28 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_glyph5_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph6_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                     "', '0', '" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph1")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph1")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph2")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph2")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph3")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph3")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph2")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph2")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph1")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph1")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph3")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph3")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString & "' )", True)
                 runSQLCommand_characters_string(
                     "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -238,22 +268,28 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_glyph5_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph6_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                     "', '1', '" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph1")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph1")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph2")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph2")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph3")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph3")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph2")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph2")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph1")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph1")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "', " &
                     "'" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph3")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph3")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString & "' )", True)
             End If
         End Sub
@@ -270,7 +306,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '0', '4', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph1")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph1")).Id, GlobalVariables.targetExpansion)) _
+                    .
                     ToString() & "' )", True)
             runSQLCommand_characters_string(
                 "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -279,7 +316,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '0', '1', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph2")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph2")).Id, GlobalVariables.targetExpansion)) _
+                    .
                     ToString() & "' )", True)
             runSQLCommand_characters_string(
                 "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -288,7 +326,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '0', '2', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph3")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph3")).Id, GlobalVariables.targetExpansion)) _
+                    .
                     ToString() & "' )", True)
             runSQLCommand_characters_string(
                 "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -297,7 +336,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '0', '0', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph1")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph1")).Id, GlobalVariables.targetExpansion)) _
+                    .
                     ToString() & "' )", True)
             runSQLCommand_characters_string(
                 "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -306,7 +346,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '0', '3', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph2")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph2")).Id, GlobalVariables.targetExpansion)) _
+                    .
                     ToString() & "' )", True)
             runSQLCommand_characters_string(
                 "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -315,7 +356,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '0', '5', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph3")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "majorglyph3")).Id, GlobalVariables.targetExpansion)) _
+                    .
                     ToString() & "' )", True)
 
             runSQLCommand_characters_string(
@@ -325,7 +367,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '1', '4', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph1")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph1")).Id,
+                                    GlobalVariables.targetExpansion)).
                     ToString() & "' )", True)
             runSQLCommand_characters_string(
                 "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -334,7 +377,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '1', '1', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph2")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph2")).Id,
+                                    GlobalVariables.targetExpansion)).
                     ToString() & "' )", True)
             runSQLCommand_characters_string(
                 "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -343,7 +387,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '1', '2', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph3")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secminorglyph3")).Id,
+                                    GlobalVariables.targetExpansion)).
                     ToString() & "' )", True)
             runSQLCommand_characters_string(
                 "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -352,7 +397,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '1', '0', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph1")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph1")).Id,
+                                    GlobalVariables.targetExpansion)).
                     ToString() & "' )", True)
             runSQLCommand_characters_string(
                 "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -361,7 +407,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '1', '3', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph2")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph2")).Id,
+                                    GlobalVariables.targetExpansion)).
                     ToString() & "' )", True)
             runSQLCommand_characters_string(
                 "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -370,7 +417,8 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                 GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                 "', '1', '5', '" &
-                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph3")).Id, GlobalVariables.targetExpansion)).
+                (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secmajorglyph3")).Id,
+                                    GlobalVariables.targetExpansion)).
                     ToString() & "' )", True)
             If GlobalVariables.targetExpansion = 4 Then
                 runSQLCommand_characters_string(
@@ -380,7 +428,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                     "', '0', '6', '" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph1")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph1")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString() & "' )", True)
                 runSQLCommand_characters_string(
                     "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -389,7 +438,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                     "', '0', '7', '" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph2")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph2")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString() & "' )", True)
                 runSQLCommand_characters_string(
                     "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -398,7 +448,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                     "', '0', '8', '" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph3")).Id, GlobalVariables.targetExpansion)).
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "primeglyph3")).Id,
+                                        GlobalVariables.targetExpansion)).
                         ToString() & "' )", True)
 
                 runSQLCommand_characters_string(
@@ -408,7 +459,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                     "', '1', '6', '" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph1")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph1")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString() & "' )", True)
                 runSQLCommand_characters_string(
                     "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -417,7 +469,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                     "', '1', '7', '" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph2")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph2")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString() & "' )", True)
                 runSQLCommand_characters_string(
                     "INSERT INTO " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " ( " &
@@ -426,7 +479,8 @@ Namespace Framework.Transmission
                     GlobalVariables.targetStructure.glyphs_slot_col(0) & ", " &
                     GlobalVariables.targetStructure.glyphs_glyph_col(0) & " ) VALUES ( '" & characterguid.ToString() &
                     "', '1', '8', '" &
-                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph3")).Id, GlobalVariables.targetExpansion)) _
+                    (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "secprimeglyph3")).Id,
+                                        GlobalVariables.targetExpansion)) _
                         .ToString() & "' )", True)
             End If
         End Sub

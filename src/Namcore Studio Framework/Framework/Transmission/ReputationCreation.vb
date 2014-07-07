@@ -41,7 +41,7 @@ Namespace Framework.Transmission
                 End Select
             Catch ex As Exception
                 LogAppend("Exception occured: " & ex.ToString(),
-                "ReputationCreation_AddCharacterReputation", False, True)
+                          "ReputationCreation_AddCharacterReputation", False, True)
             End Try
         End Sub
 

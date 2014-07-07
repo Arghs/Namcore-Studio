@@ -1,4 +1,5 @@
 ﻿Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.My.Resources
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -105,7 +106,7 @@ Namespace Forms.Character
             Me.browse_tb.Name = "browse_tb"
             Me.browse_tb.Size = New System.Drawing.Size(285, 20)
             Me.browse_tb.TabIndex = 226
-            Me.browse_tb.Text = "Enter achievement name or id"
+            Me.browse_tb.Text = MSG_ENTERAVNAMEID
             '
             'cat_id_92_bt
             '
@@ -378,7 +379,7 @@ Namespace Forms.Character
             Me.subcat_combo.Name = "subcat_combo"
             Me.subcat_combo.Size = New System.Drawing.Size(121, 21)
             Me.subcat_combo.TabIndex = 227
-            Me.subcat_combo.Text = "Pick category"
+            Me.subcat_combo.Text = MSG_PICKCAT
             '
             'callbacktimer
             '

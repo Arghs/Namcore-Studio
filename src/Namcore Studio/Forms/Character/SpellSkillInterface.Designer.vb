@@ -1,4 +1,5 @@
 ﻿Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.My.Resources
 
 Namespace Forms.Character
     <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
@@ -104,7 +105,7 @@ Namespace Forms.Character
             Me.Spell_tb.Name = "Spell_tb"
             Me.Spell_tb.Size = New System.Drawing.Size(100, 20)
             Me.Spell_tb.TabIndex = 233
-            Me.Spell_tb.Text = "Enter spell id"
+            Me.Spell_tb.Text = MSG_ENTERSPELLID
             '
             'Label1
             '
@@ -187,7 +188,7 @@ Namespace Forms.Character
             Me.Skill_tb.Name = "Skill_tb"
             Me.Skill_tb.Size = New System.Drawing.Size(100, 20)
             Me.Skill_tb.TabIndex = 237
-            Me.Skill_tb.Text = "Enter skill id"
+            Me.Skill_tb.Text = MSG_ENTERSKILLID
             '
             'Label3
             '

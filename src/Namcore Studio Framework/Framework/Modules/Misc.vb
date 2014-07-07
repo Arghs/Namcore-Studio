@@ -23,12 +23,13 @@
 
 Namespace Framework.Modules
     Public Enum Core As Integer
-        NONE = -1
+        NONE = - 1
         ARMORY = 0
         TRINITY = 1
         MANGOS = 2
         ARCEMU = 3
     End Enum
+
     Public Enum Expansion As Integer
         CLASSIC = 1
         TBC = 2

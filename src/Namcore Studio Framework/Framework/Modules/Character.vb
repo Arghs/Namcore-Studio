@@ -127,6 +127,7 @@ Namespace Framework.Modules
         Public Name As String
         Public Level As Integer
         Private _charRace As RaceId
+
         Public Overloads Property Race() As RaceId
             Get
                 Return _charRace
@@ -135,6 +136,7 @@ Namespace Framework.Modules
                 _charRace = value
             End Set
         End Property
+
         Public Overloads Property Race(ByVal id As UInteger) As UInteger
             Get
                 Return _charRace
@@ -143,7 +145,9 @@ Namespace Framework.Modules
                 _charRace = CType(value, RaceId)
             End Set
         End Property
+
         Private _charClass As ClassId
+
         Public Overloads Property Cclass() As ClassId
             Get
                 Return _charClass
@@ -152,6 +156,7 @@ Namespace Framework.Modules
                 _charClass = value
             End Set
         End Property
+
         Public Overloads Property Cclass(ByVal id As UInteger) As UInteger
             Get
                 Return _charClass
@@ -160,7 +165,9 @@ Namespace Framework.Modules
                 _charClass = CType(value, ClassId)
             End Set
         End Property
+
         Private _charGender As GenderType
+
         Public Property Gender() As GenderType
             Get
                 Return _charGender
@@ -169,6 +176,7 @@ Namespace Framework.Modules
                 _charGender = value
             End Set
         End Property
+
         Public Property Gender(ByVal id As UInteger) As UInteger
             Get
                 Return _charGender
@@ -177,6 +185,7 @@ Namespace Framework.Modules
                 _charGender = CType(value, GenderType)
             End Set
         End Property
+
         Public Xp As Integer
         Public Gold As Integer
         Public PlayerBytes As Integer
@@ -254,7 +263,7 @@ Namespace Framework.Modules
             End If
             Try
                 Dim profIndex As Integer = Professions.FindIndex(Function(profession) profession.Id = skillId)
-                If Not profIndex = -1 Then
+                If Not profIndex = - 1 Then
                     If Professions(profIndex).Recipes Is Nothing Then _
                         Professions(profIndex).Recipes = New List(Of ProfessionSpell)()
                     Professions(profIndex).Recipes.Add(
@@ -273,7 +282,7 @@ Namespace Framework.Modules
                 Exit Sub
             End If
             Dim profIndex As Integer = Professions.FindIndex(Function(profession) profession.Id = skillId)
-            If Not profIndex = -1 Then
+            If Not profIndex = - 1 Then
                 If Professions(profIndex).Recipes Is Nothing Then
                     Professions(profIndex).Recipes = New List(Of ProfessionSpell)()
                     Exit Sub
@@ -281,7 +290,7 @@ Namespace Framework.Modules
                 Dim recipeIndex As Integer =
                         Professions(profIndex).Recipes.FindIndex(
                             Function(professionSpell) professionSpell.SpellId = spellId)
-                If Not recipeIndex = -1 Then
+                If Not recipeIndex = - 1 Then
                     Professions(profIndex).Recipes.RemoveAt(recipeIndex)
                 End If
             End If

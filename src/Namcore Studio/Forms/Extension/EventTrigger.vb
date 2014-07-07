@@ -20,8 +20,8 @@
 '*      /Filename:      EventTrigger
 '*      /Description:   Form event trigger extension
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Modules
 
 Namespace Forms.Extension
     Public Class EventTrigger
@@ -34,6 +34,7 @@ Namespace Forms.Extension
             InitializeComponent()
             'Application.AddMessageFilter(Me)
         End Sub
+
         Protected Overrides Sub OnFormClosed(ByVal e As FormClosedEventArgs)
             Application.RemoveMessageFilter(Me)
         End Sub
