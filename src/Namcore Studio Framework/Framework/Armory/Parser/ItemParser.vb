@@ -42,7 +42,6 @@ Namespace Framework.Armory.Parser
             Do
                 Try
                     If itemslot = 17 Then
-                        itemslot += 1
                         Continue Do
                     End If
                     If itemslot > 18 Then '// item slot 19+ not existent
