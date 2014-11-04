@@ -372,7 +372,7 @@ Namespace Framework.Database
             Else
                 GlobalVariables.sourceStructure = dbstruc
             End If
-            sqlconn.Open()
+            If Not sqlconn.State = ConnectionState.Open Then sqlconn.Open()
         End Sub
 
         Private Sub check_accounts(ByVal struc As DbStructure)

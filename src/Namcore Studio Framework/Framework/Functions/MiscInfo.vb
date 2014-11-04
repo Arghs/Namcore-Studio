@@ -325,22 +325,20 @@ Namespace Framework.Functions
 
         Public Function GetRaceNameById(ByVal raceid As UInteger) As String
             LogAppend("Loading race name by id: " & raceid.ToString(), "Conversions_GetRaceNameById", False)
-            Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
             Select Case raceid
-                Case 1 : Return rm.GetString("human")
-                Case 2 : Return rm.GetString("orc")
-                Case 3 : Return rm.GetString("dwarf")
-                Case 4 : Return rm.GetString("nightelf")
-                Case 5 : Return rm.GetString("undead")
-                Case 6 : Return rm.GetString("tauren")
-                Case 7 : Return rm.GetString("gnome")
-                Case 8 : Return rm.GetString("troll")
-                Case 9 : Return rm.GetString("goblin")
-                Case 10 : Return rm.GetString("bloodelf")
-                Case 11 : Return rm.GetString("draenei")
-                Case 22 : Return rm.GetString("worgen")
-                Case 25 : Return rm.GetString("pandaren")
-                Case 26 : Return rm.GetString("pandaren")
+                Case 1 : Return CHAR_RACE_HUMAN
+                Case 2 : Return CHAR_RACE_ORC
+                Case 3 : Return CHAR_RACE_DWARF
+                Case 4 : Return CHAR_RACE_NIGHTELF
+                Case 5 : Return CHAR_RACE_UNDEAD
+                Case 6 : Return CHAR_RACE_TAUREN
+                Case 7 : Return CHAR_RACE_GNOME
+                Case 8 : Return CHAR_RACE_TROLL
+                Case 9 : Return CHAR_RACE_GOBLIN
+                Case 10 : Return CHAR_RACE_BLOODELF
+                Case 11 : Return CHAR_RACE_DRAENEI
+                Case 22 : Return CHAR_RACE_WORGEN
+                Case 25, 26 : Return CHAR_RACE_PANDAREN
                 Case Else _
                     : LogAppend("Invalid RaceId: " & raceid.ToString() & " // Returning nothing!",
                                 "Conversions_GetRaceNameById")
@@ -350,19 +348,18 @@ Namespace Framework.Functions
 
         Public Function GetClassNameById(ByVal classid As UInteger) As String
             LogAppend("Loading class name by id: " & classid.ToString(), "Conversions_GetClassNameById", False)
-            Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
             Select Case classid
-                Case 1 : Return rm.GetString("warrior")
-                Case 2 : Return rm.GetString("paladin")
-                Case 3 : Return rm.GetString("hunter")
-                Case 4 : Return rm.GetString("rogue")
-                Case 5 : Return rm.GetString("priest")
-                Case 6 : Return rm.GetString("deathknight")
-                Case 7 : Return rm.GetString("shaman")
-                Case 8 : Return rm.GetString("mage")
-                Case 9 : Return rm.GetString("warlock")
-                Case 10 : Return rm.GetString("monk")
-                Case 11 : Return rm.GetString("druid")
+                Case 1 : Return CHAR_CLASS_WARRIOR
+                Case 2 : Return CHAR_CLASS_PALADIN
+                Case 3 : Return CHAR_CLASS_HUNTER
+                Case 4 : Return CHAR_CLASS_ROGUE
+                Case 5 : Return CHAR_CLASS_PRIEST
+                Case 6 : Return CHAR_CLASS_DEATHKNIGHT
+                Case 7 : Return CHAR_CLASS_SHAMAN
+                Case 8 : Return CHAR_CLASS_MAGE
+                Case 9 : Return CHAR_CLASS_WARLOCK
+                Case 10 : Return CHAR_CLASS_MONK
+                Case 11 : Return CHAR_CLASS_DRUID
                 Case Else _
                     : LogAppend("Invalid ClassId: " & classid.ToString() & " // Returning nothing!",
                                 "Conversions_GetClassNameById")
@@ -443,10 +440,9 @@ Namespace Framework.Functions
 
         Public Function GetGenderNameById(ByVal genderId As UInteger) As String
             LogAppend("Loading gender name by id: " & genderId.ToString(), "Conversions_GetGenderNameById", False)
-            Dim rm As New ResourceManager("NCFramework.UserMessages", Assembly.GetExecutingAssembly())
             Select Case genderid
-                Case 0 : Return rm.GetString("male")
-                Case 1 : Return rm.GetString("female")
+                Case 0 : Return CHAR_GENDER_MALE
+                Case 1 : Return CHAR_GENDER_FEMALE
                 Case Else _
                     : LogAppend("Invalid GenderId: " & genderId.ToString() & " // Returning nothing!",
                                 "Conversions_GetGenderNameById")

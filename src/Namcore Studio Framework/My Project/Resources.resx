@@ -421,4 +421,82 @@
   <data name="MSG_INVALIDURL" xml:space="preserve">
     <value>Entered URL is not valid!</value>
   </data>
+  <data name="CHAR_CLASS_DEATHKNIGHT" xml:space="preserve">
+    <value>Death Knight</value>
+  </data>
+  <data name="CHAR_CLASS_DRUID" xml:space="preserve">
+    <value>Druid</value>
+  </data>
+  <data name="CHAR_CLASS_HUNTER" xml:space="preserve">
+    <value>Hunter</value>
+  </data>
+  <data name="CHAR_CLASS_MAGE" xml:space="preserve">
+    <value>Mage</value>
+  </data>
+  <data name="CHAR_CLASS_MONK" xml:space="preserve">
+    <value>Monk</value>
+  </data>
+  <data name="CHAR_CLASS_PALADIN" xml:space="preserve">
+    <value>Paladin</value>
+  </data>
+  <data name="CHAR_CLASS_PRIEST" xml:space="preserve">
+    <value>Priest</value>
+  </data>
+  <data name="CHAR_CLASS_ROGUE" xml:space="preserve">
+    <value>Rogue</value>
+  </data>
+  <data name="CHAR_CLASS_SHAMAN" xml:space="preserve">
+    <value>Shaman</value>
+  </data>
+  <data name="CHAR_CLASS_WARLOCK" xml:space="preserve">
+    <value>Warlock</value>
+  </data>
+  <data name="CHAR_CLASS_WARRIOR" xml:space="preserve">
+    <value>Warrior</value>
+  </data>
+  <data name="CHAR_GENDER_FEMALE" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="CHAR_GENDER_MALE" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="CHAR_RACE_BLOODELF" xml:space="preserve">
+    <value>Blood Elf</value>
+  </data>
+  <data name="CHAR_RACE_DRAENEI" xml:space="preserve">
+    <value>Draenei</value>
+  </data>
+  <data name="CHAR_RACE_DWARF" xml:space="preserve">
+    <value>Dwarf</value>
+  </data>
+  <data name="CHAR_RACE_GNOME" xml:space="preserve">
+    <value>Gnome</value>
+  </data>
+  <data name="CHAR_RACE_GOBLIN" xml:space="preserve">
+    <value>Goblin</value>
+  </data>
+  <data name="CHAR_RACE_HUMAN" xml:space="preserve">
+    <value>Human</value>
+  </data>
+  <data name="CHAR_RACE_NIGHTELF" xml:space="preserve">
+    <value>Night Elf</value>
+  </data>
+  <data name="CHAR_RACE_ORC" xml:space="preserve">
+    <value>Orc</value>
+  </data>
+  <data name="CHAR_RACE_PANDAREN" xml:space="preserve">
+    <value>Pandaren</value>
+  </data>
+  <data name="CHAR_RACE_TAUREN" xml:space="preserve">
+    <value>Tauren</value>
+  </data>
+  <data name="CHAR_RACE_TROLL" xml:space="preserve">
+    <value>Troll</value>
+  </data>
+  <data name="CHAR_RACE_UNDEAD" xml:space="preserve">
+    <value>Undead</value>
+  </data>
+  <data name="CHAR_RACE_WORGEN" xml:space="preserve">
+    <value>Worgen</value>
+  </data>
 </root>

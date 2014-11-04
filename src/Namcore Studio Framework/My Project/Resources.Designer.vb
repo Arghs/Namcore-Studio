@@ -101,6 +101,240 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Death Knight ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_DEATHKNIGHT() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_DEATHKNIGHT", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Druid ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_DRUID() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_DRUID", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Hunter ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_HUNTER() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_HUNTER", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Mage ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_MAGE() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_MAGE", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Monk ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_MONK() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_MONK", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Paladin ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_PALADIN() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_PALADIN", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Priest ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_PRIEST() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_PRIEST", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Rogue ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_ROGUE() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_ROGUE", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Shaman ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_SHAMAN() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_SHAMAN", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Warlock ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_WARLOCK() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_WARLOCK", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Warrior ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_CLASS_WARRIOR() As String
+            Get
+                Return ResourceManager.GetString("CHAR_CLASS_WARRIOR", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Female ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_GENDER_FEMALE() As String
+            Get
+                Return ResourceManager.GetString("CHAR_GENDER_FEMALE", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Male ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_GENDER_MALE() As String
+            Get
+                Return ResourceManager.GetString("CHAR_GENDER_MALE", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Blood Elf ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_BLOODELF() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_BLOODELF", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Draenei ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_DRAENEI() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_DRAENEI", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Dwarf ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_DWARF() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_DWARF", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Gnome ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_GNOME() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_GNOME", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Goblin ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_GOBLIN() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_GOBLIN", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Human ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_HUMAN() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_HUMAN", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Night Elf ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_NIGHTELF() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_NIGHTELF", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Orc ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_ORC() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_ORC", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Pandaren ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_PANDAREN() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_PANDAREN", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Tauren ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_TAUREN() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_TAUREN", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Troll ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_TROLL() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_TROLL", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Undead ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_UNDEAD() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_UNDEAD", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Worgen ähnelt.
+        '''</summary>
+        Public ReadOnly Property CHAR_RACE_WORGEN() As String
+            Get
+                Return ResourceManager.GetString("CHAR_RACE_WORGEN", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
         Public ReadOnly Property empty() As System.Drawing.Bitmap
