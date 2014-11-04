@@ -120,7 +120,7 @@ Namespace Framework.Core
                             " u2 ON u2.`" & struc.char_accountId_col(0) &
                             "` = u1.`" & struc.acc_id_col(0) & "`", sqlconnection)
                 Case Modules.Core.TRINITY
-                    Select Case CInt(GlobalVariables.sourceExpansion)
+                    Select Case CInt(GlobalVariables.targetExpansion)
                         Case Is > 2
                             Return _
                                 ReturnDataTable_setconn(

@@ -163,7 +163,7 @@ Namespace Forms
                                                                                          ";Password=" &
                                                                                          password_txtbox.Text &
                                                                                          ";Database=information_schema"
-                                _strucCheck.StartCheck(GlobalVariables.sourceCore, Expansion.WOTLK,
+                                _strucCheck.StartCheck(GlobalVariables.targetCore, Expansion.WOTLK,
                                                        GlobalVariables.TargetConnection,
                                                        GlobalVariables.TargetConnection_Realm,
                                                        GlobalVariables.TargetConnection_Info, chardbname_combo.Text,
