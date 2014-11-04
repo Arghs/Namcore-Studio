@@ -325,6 +325,7 @@ Namespace Forms
                     cLstr(6) = playerCharacter.Level.ToString
                     cLitm = New ListViewItem(cLstr)
                     cLitm.Tag = playerCharacter
+                    playerCharacter.Loaded = True
                     GlobalVariables.chartable.Rows.Add(cLstr)
                     LogAppend("Adding character to characterview", "LiveView_loadInformationSets_Template", False)
                     characterview.Items.Add(cLitm)

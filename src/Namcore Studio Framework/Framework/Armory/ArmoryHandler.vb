@@ -146,6 +146,7 @@ Namespace Framework.Armory
                     mProfessionParser.LoadProfessions(setId, apiLink, armoryAccount)
                     Dim mItemParser As ItemParser = New ItemParser
                     mItemParser.LoadItems(characterContext, setId, armoryAccount)
+                    player.Loaded = True
                     SetCharacterSet(setId, player, armoryAccount)
                     SetAccountSet(armoryAccount.SetIndex, armoryAccount)
                     LogAppend("Character loaded!", "ArmoryHandler_DoLoad", True)
