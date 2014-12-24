@@ -17,6 +17,7 @@ build/
 [Oo]bj/
 *.sln.ide/
 *ide*/
+Namcore Data Processor.sln.ide/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
