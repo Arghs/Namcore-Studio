@@ -1,150 +1,212 @@
-﻿Imports System.Runtime.InteropServices
+﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+'* Copyright (C) 2013-2014 NamCore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2010-2013 TOM_RUS' dbcviewer <https://github.com/tomrus88/dbcviewer>
+'*
+'* This program is free software; you can redistribute it and/or modify it
+'* under the terms of the GNU General Public License as published by the
+'* Free Software Foundation; either version 3 of the License, or (at your
+'* option) any later version.
+'*
+'* This program is distributed in the hope that it will be useful, but WITHOUT
+'* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+'* FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+'* more details.
+'*
+'* You should have received a copy of the GNU General Public License along
+'* with this program. If not, see <http://www.gnu.org/licenses/>.
+'*
+'* Developed by Alcanmage/megasus
+'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Globalization
 Imports System.IO
+Imports System.Runtime.CompilerServices
+Imports System.Runtime.InteropServices
 Imports System.Text
 
+Namespace Reader
+
 #Region "Coords3"
-''' <summary>
-''' Represents a coordinates of WoW object without orientation.
-''' </summary>
-<StructLayout(LayoutKind.Sequential)>
-Public Structure Coords3
-    Public X As Single, Y As Single, Z As Single
+
+
     ''' <summary>
-    ''' Converts the numeric values of this instance to its equivalent string representations, separator is space.
+    '''     Represents a coordinates of WoW object without orientation.
     ''' </summary>
-    Public Function GetCoords() As String
-        Dim coords As String = [String].Empty
-        coords += X.ToString(CultureInfo.InvariantCulture)
-        coords += " "
-        coords += Y.ToString(CultureInfo.InvariantCulture)
-        coords += " "
-        coords += Z.ToString(CultureInfo.InvariantCulture)
-        Return coords
-    End Function
-End Structure
+    <StructLayout(LayoutKind.Sequential)>
+    Public Structure Coords3
+        Public X As Single, Y As Single, Z As Single
+
+
+        ''' <summary>
+        '''     Converts the numeric values of this instance to its equivalent string representations, separator is space.
+        ''' </summary>
+        Public Function GetCoords() As String
+            Dim coords As String = [String].Empty
+            coords += X.ToString(CultureInfo.InvariantCulture)
+            coords += " "
+            coords += Y.ToString(CultureInfo.InvariantCulture)
+            coords += " "
+            coords += Z.ToString(CultureInfo.InvariantCulture)
+            Return coords
+        End Function
+    End Structure
+
 #End Region
+
 #Region "Coords4"
-''' <summary>
-''' Represents a coordinates of WoW object with specified orientation.
-''' </summary>
-<StructLayout(LayoutKind.Sequential)>
-Public Structure Coords4
-    Public X As Single, Y As Single, Z As Single, O As Single
-    ''' <summary>
-    ''' Converts the numeric values of this instance to its equivalent string representations, separator is space.
-    ''' </summary>
-    Public Function GetCoordsAsString() As String
-        Dim coords As String = [String].Empty
-        coords += X.ToString(CultureInfo.InvariantCulture)
-        coords += " "
-        coords += Y.ToString(CultureInfo.InvariantCulture)
-        coords += " "
-        coords += Z.ToString(CultureInfo.InvariantCulture)
-        coords += " "
-        coords += O.ToString(CultureInfo.InvariantCulture)
-        Return coords
-    End Function
-End Structure
-#End Region
-Public Module BinaryReaderExtensions
 
-    Public Function FromFile(fileName As String) As BinaryReader
-        Return New BinaryReader(New FileStream(fileName, FileMode.Open), Encoding.UTF8)
-    End Function
+
+    ''' <summary>
+    '''     Represents a coordinates of WoW object with specified orientation.
+    ''' </summary>
+    <StructLayout(LayoutKind.Sequential)>
+    Public Structure Coords4
+        Public X As Single, Y As Single, Z As Single, O As Single
+
+
+        ''' <summary>
+        '''     Converts the numeric values of this instance to its equivalent string representations, separator is space.
+        ''' </summary>
+        Public Function GetCoordsAsString() As String
+            Dim coords As String = [String].Empty
+            coords += X.ToString(CultureInfo.InvariantCulture)
+            coords += " "
+            coords += Y.ToString(CultureInfo.InvariantCulture)
+            coords += " "
+            coords += Z.ToString(CultureInfo.InvariantCulture)
+            coords += " "
+            coords += O.ToString(CultureInfo.InvariantCulture)
+            Return coords
+        End Function
+    End Structure
+
+#End Region
+
+    Public Module BinaryReaderExtensions
+        Public Function FromFile(fileName As String) As BinaryReader
+            Return New BinaryReader(New FileStream(fileName, FileMode.Open), Encoding.UTF8)
+        End Function
+
 #Region "ReadPackedGuid"
-    ''' <summary>
-    ''' Reads the packed guid from the current stream and advances the current position of the stream by packed guid size.
-    ''' </summary>
 
-    Public Function ReadPackedGuid(reader As BinaryReader) As ULong
-        Dim res As ULong = 0
-        Dim mask As Byte = reader.ReadByte()
-        If mask = 0 Then
-            Return res
-        End If
-        Dim i As Integer = 0
-        While i < 9
-            If (mask And 1 << i) <> 0 Then
-                res += CULng(reader.ReadByte()) << (i * 8)
+
+        ''' <summary>
+        '''     Reads the packed guid from the current stream and advances the current position of the stream by packed guid size.
+        ''' </summary>
+
+        Public Function ReadPackedGuid(reader As BinaryReader) As ULong
+            Dim res As ULong = 0
+            Dim mask As Byte = reader.ReadByte()
+            If mask = 0 Then
+                Return res
             End If
-            i += 1
-        End While
-        Return res
-    End Function
-#End Region
-#Region "ReadStringNumber"
-    ''' <summary>
-    ''' Reads the string with known length from the current stream and advances the current position of the stream by string length.
-    ''' </summary>
+            Dim i As Integer = 0
+            While i < 9
+                If (mask And 1 << i) <> 0 Then
+                    res += CULng(reader.ReadByte()) << (i * 8)
+                End If
+                i += 1
+            End While
+            Return res
+        End Function
 
-    Public Function ReadStringNumber(reader As BinaryReader) As String
-        Dim text As String = [String].Empty
-        Dim num As UInteger = reader.ReadUInt32()
-        ' string length
-        For i As UInteger = 0 To num - 1
-            text += Convert.ToChar(reader.ReadByte())
-        Next
-        Return text
-    End Function
 #End Region
+
+#Region "ReadStringNumber"
+
+
+        ''' <summary>
+        '''     Reads the string with known length from the current stream and advances the current position of the stream by
+        '''     string length.
+        ''' </summary>
+
+        Public Function ReadStringNumber(reader As BinaryReader) As String
+            Dim text As String = [String].Empty
+            Dim num As UInteger = reader.ReadUInt32()
+            ' string length
+            For i = 0 To num - 1
+                text += Convert.ToChar(reader.ReadByte())
+            Next
+            Return text
+        End Function
+
+#End Region
+
 #Region "ReadStringNull"
-    ''' <summary>
-    ''' Reads the NULL terminated string from the current stream and advances the current position of the stream by string length + 1.
-    ''' </summary>
-    <System.Runtime.CompilerServices.Extension>
-    Public Function ReadStringNull(reader As BinaryReader) As String
-        Dim num As Byte
-        Dim text As String = [String].Empty
-        Dim temp As New System.Collections.Generic.List(Of Byte)()
-        While (InlineAssignHelper(num, reader.ReadByte())) <> 0
-            temp.Add(num)
-        End While
-        text = Encoding.UTF8.GetString(temp.ToArray())
-        Return text
-    End Function
+
+
+        ''' <summary>
+        '''     Reads the NULL terminated string from the current stream and advances the current position of the stream by string
+        '''     length + 1.
+        ''' </summary>
+        <Extension>
+        Public Function ReadStringNull(reader As BinaryReader) As String
+            Dim num As Byte
+            Dim text As String
+            Dim temp As New List(Of Byte)()
+            While (InlineAssignHelper(num, reader.ReadByte())) <> 0
+                temp.Add(num)
+            End While
+            text = Encoding.UTF8.GetString(temp.ToArray())
+            Return text
+        End Function
+
 #End Region
+
 #Region "ReadCoords3"
-    ''' <summary>
-    ''' Reads the object coordinates from the current stream and advances the current position of the stream by 12 bytes.
-    ''' </summary>
-    Public Function ReadCoords3(reader As BinaryReader) As Coords3
-        Dim v As Coords3
-        v.X = reader.ReadSingle()
-        v.Y = reader.ReadSingle()
-        v.Z = reader.ReadSingle()
-        Return v
-    End Function
+
+
+        ''' <summary>
+        '''     Reads the object coordinates from the current stream and advances the current position of the stream by 12 bytes.
+        ''' </summary>
+        Public Function ReadCoords3(reader As BinaryReader) As Coords3
+            Dim v As Coords3
+            v.X = reader.ReadSingle()
+            v.Y = reader.ReadSingle()
+            v.Z = reader.ReadSingle()
+            Return v
+        End Function
+
 #End Region
+
 #Region "ReadCoords4"
-    ''' <summary>
-    ''' Reads the object coordinates and orientation from the current stream and advances the current position of the stream by 16 bytes.
-    ''' </summary>
-    Public Function ReadCoords4(reader As BinaryReader) As Coords4
-        Dim v As Coords4
-        v.X = reader.ReadSingle()
-        v.Y = reader.ReadSingle()
-        v.Z = reader.ReadSingle()
-        v.O = reader.ReadSingle()
-        Return v
-    End Function
+
+
+        ''' <summary>
+        '''     Reads the object coordinates and orientation from the current stream and advances the current position of the
+        '''     stream by 16 bytes.
+        ''' </summary>
+        Public Function ReadCoords4(reader As BinaryReader) As Coords4
+            Dim v As Coords4
+            v.X = reader.ReadSingle()
+            v.Y = reader.ReadSingle()
+            v.Z = reader.ReadSingle()
+            v.O = reader.ReadSingle()
+            Return v
+        End Function
+
 #End Region
+
 #Region "ReadStruct"
-    ''' <summary>
-    ''' Reads struct from the current stream and advances the current position if the stream by SizeOf(T) bytes.
-    ''' </summary>
-    ''' <typeparam name="T"></typeparam>
-    ''' <returns></returns>
-    Public Function ReadStruct(Of T As Structure)(reader As BinaryReader) As T
-        Dim rawData As Byte() = reader.ReadBytes(Marshal.SizeOf(GetType(T)))
-        Dim handle As GCHandle = GCHandle.Alloc(rawData, GCHandleType.Pinned)
-        Dim returnObject As T = DirectCast(Marshal.PtrToStructure(handle.AddrOfPinnedObject(), GetType(T)), T)
-        handle.Free()
-        Return returnObject
-    End Function
-    Private Function InlineAssignHelper(Of T)(ByRef target As T, value As T) As T
-        target = value
-        Return value
-    End Function
+
+
+        ''' <summary>
+        '''     Reads struct from the current stream and advances the current position if the stream by SizeOf(T) bytes.
+        ''' </summary>
+        ''' <typeparam name="T"></typeparam>
+        ''' <returns></returns>
+        Public Function ReadStruct(Of T As Structure)(reader As BinaryReader) As T
+            Dim rawData As Byte() = reader.ReadBytes(Marshal.SizeOf(GetType(T)))
+            Dim handle As GCHandle = GCHandle.Alloc(rawData, GCHandleType.Pinned)
+            Dim returnObject As T = DirectCast(Marshal.PtrToStructure(handle.AddrOfPinnedObject(), GetType(T)), T)
+            handle.Free()
+            Return returnObject
+        End Function
+
+        Private Function InlineAssignHelper(Of T)(ByRef target As T, value As T) As T
+            target = value
+            Return value
+        End Function
+
 #End Region
-End Module
+    End Module
+End Namespace

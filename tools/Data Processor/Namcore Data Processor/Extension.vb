@@ -1,6 +1,5 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 '* Copyright (C) 2013-2014 NamCore Studio <https://github.com/megasus/Namcore-Studio>
-'* Copyright (C) 2010-2013 TOM_RUS' dbcviewer <https://github.com/tomrus88/dbcviewer>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
@@ -17,16 +16,22 @@
 '*
 '* Developed by Alcanmage/megasus
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.IO
+Imports System.Runtime.CompilerServices
 
-Namespace Reader
-    Public Interface IWowClientDbReader
-        ReadOnly Property RecordsCount() As Integer
-        ReadOnly Property FieldsCount() As Integer
-        ReadOnly Property RecordSize() As Integer
-        ReadOnly Property StringTableSize() As Integer
-        ReadOnly Property StringTable() As Dictionary(Of Integer, String)
-        Function GetRowAsByteArray(row As Integer) As Byte()
-        Default ReadOnly Property Item(row As Integer) As BinaryReader
-    End Interface
-End Namespace
+Module Extensions
+    <Extension()>
+    Public Sub RemoveAt(Of T)(ByRef arr As T(), ByVal index As Integer)
+        Dim uBound = arr.GetUpperBound(0)
+        Dim lBound = arr.GetLowerBound(0)
+        Dim arrLen = uBound - lBound
+        If index < lBound OrElse index > uBound Then
+            Throw New ArgumentOutOfRangeException(
+                String.Format("Index must be from {0} to {1}.", lBound, uBound))
+        Else
+            Dim outArr(arrLen - 1) As T
+            Array.Copy(arr, 0, outArr, 0, index)
+            Array.Copy(arr, index + 1, outArr, index, uBound - index)
+            arr = outArr
+        End If
+    End Sub
+End Module
