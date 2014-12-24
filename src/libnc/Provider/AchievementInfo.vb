@@ -56,7 +56,7 @@ Namespace Provider
             End Try
             Return returnResult
         End Function
-        Public Function GetAvSpellIdById(ByVal avId As Integer) As Integer
+        Public Function GetAvIconIdById(ByVal avId As Integer) As Integer
             CheckInit()
             Const targetField As Integer = 6
             Dim myResult As String = ExecuteCsvSearch(AchievementCsv, "AchievementId", avId.ToString(), targetField)(0)

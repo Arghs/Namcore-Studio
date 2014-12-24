@@ -29,7 +29,11 @@ Namespace Provider
             Select Case expansion
                 Case 3 : useTable = GlyphProperties0Csv
                 Case 4 : useTable = GlyphProperties1Csv
-                Case Else : useTable = GlyphProperties2Csv
+                Case 5 : useTable = GlyphProperties2Csv
+                Case 6 : useTable = GlyphProperties3Csv
+                Case Else
+                    Debug.WriteLine("[Warning] Invalid expansion @libnc_GetGlyphIdBySpellId: " & expansion)
+                    useTable = GlyphProperties3Csv
             End Select
             Const targetField As Integer = 0
             Dim myResult As String = ExecuteCsvSearch(useTable, "SpellId", spellId.ToString(), targetField)(0)
@@ -115,7 +119,11 @@ Namespace Provider
             Select Case expansion
                 Case 3 : useTable = GlyphProperties0Csv
                 Case 4 : useTable = GlyphProperties1Csv
-                Case Else : useTable = GlyphProperties2Csv
+                Case 5 : useTable = GlyphProperties2Csv
+                Case 6 : useTable = GlyphProperties3Csv
+                Case Else
+                    Debug.WriteLine("[Warning] Invalid expansion @libnc_GetSpellIdByGlyphId: " & expansion)
+                    useTable = GlyphProperties3Csv
             End Select
             Const targetField As Integer = 1
             Dim myResult As String = ExecuteCsvSearch(useTable, "GlyphId", glyphId.ToString(), targetField)(0)
@@ -134,7 +142,11 @@ Namespace Provider
             Select Case expansion
                 Case 3 : useTable = GlyphProperties0Csv
                 Case 4 : useTable = GlyphProperties1Csv
-                Case Else : useTable = GlyphProperties2Csv
+                Case 5 : useTable = GlyphProperties2Csv
+                Case 6 : useTable = GlyphProperties3Csv
+                Case Else
+                    Debug.WriteLine("[Warning] Invalid expansion @libnc_GetIconByGlyphId: " & expansion)
+                    useTable = GlyphProperties3Csv
             End Select
             Const targetField As Integer = 2
             Dim myResult As String = ExecuteCsvSearch(useTable, "GlyphId", glyphId.ToString(), targetField)(0)

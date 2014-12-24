@@ -242,6 +242,45 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die GlyphId£SpellId£Icon
+        '''161£54810£3114
+        '''162£54811£3113
+        '''163£54812£3312
+        '''164£114338£3124
+        '''165£114234£3129
+        '''166£116186£3112
+        '''167£54821£3128
+        '''168£114300£3123
+        '''169£54832£3121
+        '''170£54733£3127
+        '''171£116218£3098
+        '''172£17076£3125
+        '''173£54825£3119
+        '''174£114228£3120
+        '''175£146655£3117
+        '''176£114333£3122
+        '''177£54831£3118
+        '''178£116216£3116
+        '''179£116203£3126
+        '''180£127540£3110
+        '''181£54760£3115
+        '''183£54922£3128
+        '''184£146955£3121
+        '''185£54923£3112
+        '''186£54924£3115
+        '''187£54926£3117
+        '''188£54927£3110
+        '''189£54928£3119
+        '''190£89401£3118
+        '''191£54930£3125 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Public ReadOnly Property GlyphProperties3() As String
+            Get
+                Return ResourceManager.GetString("GlyphProperties3", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         '''</summary>
         Public ReadOnly Property INV_Misc_QuestionMark() As System.Drawing.Bitmap
@@ -253,43 +292,46 @@ Namespace My.Resources
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die ItemId£Class£SubClass£DisplayId
-        '''17£4£4£5663
+        '''17£4£4£5661
         '''25£2£7£1542
         '''35£2£10£472
         '''36£2£4£5194
         '''37£2£0£8483
-        '''38£4£0£33310
-        '''39£4£1£9892
-        '''40£4£1£10141
-        '''41£4£0£4553
-        '''42£4£0£4562
-        '''43£4£1£9938
-        '''44£4£1£9937
+        '''38£4£0£5729
+        '''39£4£1£6050
+        '''40£4£1£6051
+        '''41£4£0£0
+        '''42£4£0£0
+        '''43£4£1£6060
+        '''44£4£1£1882
         '''45£4£0£3265
-        '''46£4£0£4528
-        '''47£4£1£9915
-        '''48£4£1£9913
+        '''46£4£0£0
+        '''47£4£1£9767
+        '''48£4£1£5341
         '''49£4£0£9906
-        '''50£4£0£4535
-        '''51£4£1£9946
-        '''52£4£1£9945
-        '''53£4£0£9944
-        '''54£4£0£4541
-        '''55£4£1£9929
+        '''50£4£0£0
+        '''51£4£1£7081
+        '''52£4£1£5848
+        '''53£4£0£8370
+        '''54£4£0£0
+        '''55£4£1£6077
         '''56£4£1£12647
         '''57£4£1£12645
-        '''58£4£0£4499
+        '''58£4£0£0
         '''59£4£1£3261
-        '''60£4£2£16891
-        '''61£4£2£73729
-        '''77£4£1£2645
+        '''60£4£2£15441
+        '''61£4£2£65304
+        '''77£4£1£0
         '''79£4£1£73553
-        '''80£4£1£16854
-        '''85£4£2£16883
-        '''86£4£0£4520
-        '''87£4£0£261
-        '''88£4£1£374
-        '''89£4 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''80£4£1£7180
+        '''85£4£2£10888
+        '''86£4£0£0
+        '''87£4£0£0
+        '''88£4£1£0
+        '''89£4£0£0
+        '''90£4£0£0
+        '''91£4£1£0
+        '''92£4£ [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property Item() As String
             Get
@@ -298,35 +340,79 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die ItemId£Icon
-        '''224£INV_Jewelry_Ring_03
-        '''233£INV_Boots_01
-        '''242£INV_Boots_01
-        '''245£INV_Boots_01
-        '''249£INV_Boots_01
-        '''253£INV_Boots_01
-        '''257£INV_Boots_01
-        '''261£INV_Boots_01
-        '''292£INV_Potion_08
-        '''295£INV_Boots_02
-        '''302£INV_Boots_01
-        '''310£INV_Belt_01
-        '''311£INV_Boots_01
-        '''362£INV_Misc_Bag_01
-        '''365£INV_Pants_02
-        '''368£INV_Pants_02
-        '''369£INV_Shirt_01
-        '''370£INV_Pants_02
-        '''371£INV_Shirt_01
-        '''372£INV_Pants_02
-        '''373£INV_Shirt_01
-        '''374£INV_Pants_02
-        '''383£INV_Shirt_01
-        '''386£INV_Pants_02
-        '''387£INV_Shirt_01
-        '''392£INV_Pants_02
-        '''393£INV_Shirt_01
-        '''394 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die SpellId£Icon
+        '''224£
+        '''233£
+        '''242£
+        '''245£
+        '''249£
+        '''253£
+        '''257£
+        '''261£
+        '''292£
+        '''295£
+        '''302£
+        '''310£
+        '''311£
+        '''362£
+        '''365£
+        '''368£
+        '''369£
+        '''370£
+        '''371£
+        '''372£
+        '''373£
+        '''374£
+        '''383£
+        '''386£
+        '''387£
+        '''392£
+        '''393£
+        '''394£
+        '''395£
+        '''396£
+        '''453£
+        '''472£
+        '''510£Axe_1H_Flint_A_01.mdx
+        '''557£
+        '''568£
+        '''634£
+        '''679£
+        '''683£
+        '''684£
+        '''685£
+        '''687£
+        '''691£
+        '''697£
+        '''703£
+        '''704£
+        '''782£
+        '''811£
+        '''845£
+        '''859£
+        '''918£
+        '''920£
+        '''925£
+        '''926£
+        '''928£
+        '''929£
+        '''945£
+        '''954£
+        '''959£
+        '''961£
+        '''972£
+        '''976£
+        '''977£
+        '''981£
+        '''983£
+        '''989£
+        '''992£
+        '''1007£
+        '''1013£
+        '''1017£Axe_1H_Flint_A_01.mdx
+        '''1019£
+        '''1020£Axe_1H_Flint_A_01.mdx
+        '''1022 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property ItemDisplayInfo() As String
             Get
@@ -336,16 +422,16 @@ Namespace My.Resources
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die ItemId£Quality£InventoryType£MaxStack£SlotCount£SpellId£ItemNameDE£ItemNameEN£BagFamily
-        '''17£0£4£1£0£7£Martinsfuror£Martin Fury£0
-        '''25£1£21£1£0£0£Abgenutztes Kurzschwert£Worn Shortsword£0
-        '''35£1£17£1£0£0£Gebogener Stab£Bent Staff£0
-        '''36£1£21£1£0£0£Abgenutzter Streitkolben£Worn Mace£0
-        '''37£1£21£1£0£0£Abgenutzte Axt£Worn Axe£0
-        '''38£1£4£1£0£0£Rekrutenhemd£Recruit&apos;s Shirt£0
-        '''39£1£7£1£0£0£Rekrutenhose£Recruit&apos;s Pants£0
-        '''40£1£8£1£0£0£Rekrutenstiefel£Recruit&apos;s Boots£0
-        '''43£1£8£1£0£0£Knappenstiefel£Squire&apos;s Boots£0
-        '''44£1£ [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''17£0£4£0£0£Martinsfuror£Martin Fury£0
+        '''25£1£21£0£0£Abgenutztes Kurzschwert£Worn Shortsword£0
+        '''35£1£17£0£0£Gebogener Stab£Bent Staff£0
+        '''36£1£21£0£0£Abgenutzter Streitkolben£Worn Mace£0
+        '''37£1£21£0£0£Abgenutzte Axt£Worn Axe£0
+        '''38£1£4£0£0£Rekrutenhemd£Recruit&apos;s Shirt£0
+        '''39£1£7£0£0£Rekrutenhose£Recruit&apos;s Pants£0
+        '''40£1£8£0£0£Rekrutenstiefel£Recruit&apos;s Boots£0
+        '''43£1£8£0£0£Knappenstiefel£Squire&apos;s Boots£0
+        '''44£1£7£0£0£Knappenhose£ [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property ItemSparse() As String
             Get
@@ -416,13 +502,13 @@ Namespace My.Resources
         '''55£Zweihandschwerter£Two-Handed Swords
         '''95£Verteidigung£Defense
         '''98£Sprache: Gemeinsprache£Language: Common
-        '''101£Volksfähigkeit - Zwerge£Dwarven Racial
+        '''101£Volksfähigkeit - Zwerge£Racial - Dwarf
         '''109£Sprache: Orcisch£Language: Orcish
         '''111£Sprache: Zwergisch£Language: Dwarven
         '''113£Sprache: Darnassisch£Language: Darnassian
         '''115£Sprache: Taurahe£Language: Taurahe
         '''118£Beidhändigkeit£Dual Wield
-        '''124£Volksfähigkeit - Tauren£Tauren Racial        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''124£Volksfähigkeit - Tauren£Racial - Taure [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property SkillLine() As String
             Get
@@ -444,10 +530,8 @@ Namespace My.Resources
         '''95£107£0
         '''95£5301£0
         '''95£32215£0
-        '''95£45903£0
         '''98£668£0
         '''101£20596£0
-        '''101£20595£0
         '''101£20594£0
         '''101£59224£0
         '''101£79739£0
@@ -462,18 +546,19 @@ Namespace My.Resources
         '''124£20551£0
         '''124£20552£0
         '''124£79746£0
+        '''124£154743£0
         '''125£20572£0
         '''125£20573£0
-        '''125£20574£0
-        '''125£20575£0
-        '''125£20576£0
         '''125£21563£0
         '''125£33702£0
         '''125£33697£0
-        '''125£54562£0
-        '''125£65222£0
         '''125£79743£0
-        '''1 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''126£20583£0
+        '''126£20582£0
+        '''126£20585£0
+        '''126£58984£0
+        '''126£21009£0
+        '''126£76252£0        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property SkillLineAbility() As String
             Get
@@ -489,12 +574,11 @@ Namespace My.Resources
         '''5£Todesberührung£Death Touch£isavaliable
         '''7£Selbstmord£Suicide£isavaliable
         '''10£Blizzard£Blizzard£isavaliable
-        '''13£Schwimmtempo (TEST)£Swim Speed (TEST)£
+        '''13£Schwimmgeschwindigkeit (TEST)£Swim Speed (TEST)£
         '''14£Manasauger£Mana Drain£
         '''17£Machtwort: Schild£Power Word: Shield£isavaliable
-        '''18£Selbstheilung£Heal Self (TEST)£
         '''22£Super-Essen (TEST)£Super Food (TEST)£
-        '''2 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''24£Große Selbstheilung£Majo [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property Spell() As String
             Get
@@ -504,45 +588,52 @@ Namespace My.Resources
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die ItemId£EffectId£SpellId£SpellId335
-        '''0£0£1£587
-        '''0£0£3£587
-        '''0£0£4£587
-        '''0£0£5£587
-        '''0£0£7£587
-        '''0£0£10£587
-        '''0£0£10£587
-        '''0£0£10£587
-        '''0£0£12£587
-        '''0£0£13£587
-        '''0£0£14£587
+        '''0£0£1£1
+        '''0£0£3£1
+        '''0£0£4£1
+        '''0£0£5£1
+        '''0£0£7£1
+        '''0£0£10£1
+        '''0£0£10£1
+        '''0£0£10£1
+        '''0£0£12£1
+        '''0£0£13£1
+        '''0£0£14£1
         '''0£127£17£17
-        '''0£0£18£587
-        '''0£0£22£587
-        '''0£0£24£587
-        '''0£0£25£587
-        '''0£0£26£587
-        '''0£8£27£12324
-        '''0£0£31£587
-        '''0£0£33£587
-        '''0£0£34£587
-        '''0£0£35£587
-        '''0£1£43£13741
+        '''0£0£18£1
+        '''0£0£22£1
+        '''0£0£24£1
+        '''0£0£25£1
+        '''0£0£26£1
+        '''0£8£27£27
+        '''0£0£31£1
+        '''0£0£33£1
+        '''0£0£34£1
+        '''0£0£35£1
         '''0£75£45£23382
-        '''0£0£53£587
-        '''0£0£53£587
-        '''0£0£53£587
-        '''0£0£56£587
-        '''0£0£59£587
+        '''0£0£53£1
+        '''0£0£53£1
+        '''0£0£53£1
+        '''0£0£56£1
+        '''0£0£59£1
         '''0£917504£65£65
-        '''0£0£66£587
-        '''0£0£66£587
-        '''0£18£71£19603
-        '''0£0£75£587
+        '''0£0£66£1
+        '''0£0£66£1
+        '''0£18£71£71
+        '''0£1£71£43
+        '''0£0£71£1
+        '''0£127£71£17
+        '''0£127£71£17
+        '''0£0£75£1
         '''0£127£77£17
-        '''0£1£77£13741
-        '''0£0£78£587
-        '''0£0£78£587
-        '''0£90£81 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''0£1£77£43
+        '''0£0£78£1
+        '''0£0£78£1
+        '''0£90£81£81
+        '''0£1£91£43
+        '''0£0£96£1
+        '''0£0£96£1
+        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property SpellEffect() As String
             Get
@@ -552,15 +643,14 @@ Namespace My.Resources
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die EffectId£GemId£Points1£Points2£Points3£EffectNameDE£EffectNameEN
-        '''2£0£0£0£0£Frostbrand£Frostbrand
-        '''5£0£100£0£0£Flammenzunge£Flametongue
         '''13£0£3£0£0£Geschärft (+$k1 Schaden)£Sharpened (+$k1 Damage)
         '''14£0£4£0£0£Geschärft (+$k1 Schaden)£Sharpened (+$k1 Damage)
         '''15£0£8£0£0£Verstärkt (+$k1 Rüstung)£Reinforced (+$k1 Armor)
         '''16£0£16£0£0£Verstärkt (+$k1 Rüstung)£Reinforced (+$k1 Armor)
         '''17£0£24£0£0£Verstärkt (+$k1 Rüstung)£Reinforced (+$k1 Armor)
         '''18£0£32£0£0£Verstärkt (+$k1 Rüstung)£Reinforced (+$k1 Armor)
-        '''19£0£2 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''19£0£2£0£0£Beschwert (+$k1 Schaden)£Weighted (+$k1 Damage)
+        '''20£0£3£0£0£Beschw [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property SpellEnchant() As String
             Get
@@ -570,26 +660,18 @@ Namespace My.Resources
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die SpellId£Icon
-        '''1£Trade_Engineering
-        '''9£Spell_Shadow_BlackPlague
-        '''10£Spell_Nature_NaturesBlessing
-        '''11£Spell_Fire_Fire
-        '''12£Spell_Fire_Fireball
-        '''13£Spell_Nature_MagicImmunity
-        '''14£Spell_Frost_Frost
-        '''15£Spell_Frost_Stun
-        '''16£Spell_Fire_FireArmor
-        '''17£Spell_Frost_IceShock
-        '''18£Spell_Fire_FireBolt
-        '''19£Spell_Nature_LightningShield
-        '''20£Spell_Nature_StrangleVines
-        '''21£Spell_Nature_FarSight
-        '''22£Spell_Shadow_ShadeTrueSight
-        '''23£Ability_ShockWave
-        '''24£Spell_Nature_Reincarnation
-        '''25£Ability_ThunderBolt
-        '''26£Ability_MeleeDamage
-        '''2 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''1£Interface\Icons\Trade_Engineering
+        '''9£Interface\Icons\Spell_Shadow_BlackPlague
+        '''10£Interface\Icons\Spell_Nature_NaturesBlessing
+        '''11£Interface\Icons\Spell_Fire_Fire
+        '''12£Interface\Icons\Spell_Fire_Fireball
+        '''13£Interface\Icons\Spell_Nature_MagicImmunity
+        '''14£Interface\Icons\Spell_Frost_Frost
+        '''15£Interface\Icons\Spell_Frost_Stun
+        '''16£Interface\Icons\Spell_Fire_FireArmor
+        '''17£Interface\Icons\Spell_Frost_IceShock
+        '''18£Interface\Icons\Spell_Fire_FireBolt
+        '''19£Interface\Icons\Spell_Nature_LightningShield        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property SpellIcon() As String
             Get

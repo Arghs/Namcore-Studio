@@ -33,6 +33,7 @@ Public Class Main
     Public Shared GlyphProperties0Csv As DataTable
     Public Shared GlyphProperties1Csv As DataTable
     Public Shared GlyphProperties2Csv As DataTable
+    Public Shared GlyphProperties3Csv As DataTable
     Public Shared ItemCsv As DataTable
     Public Shared ItemDisplayInfoCsv As DataTable
     Public Shared ItemSparseCsv As DataTable
@@ -60,6 +61,7 @@ Public Class Main
         FillDataTable(My.Resources.GlyphProperties0, GlyphProperties0Csv)
         FillDataTable(My.Resources.GlyphProperties1, GlyphProperties1Csv)
         FillDataTable(My.Resources.GlyphProperties2, GlyphProperties2Csv)
+        FillDataTable(My.Resources.GlyphProperties3, GlyphProperties3Csv)
         FillDataTable(My.Resources.Item, ItemCsv)
         FillDataTable(My.Resources.ItemDisplayInfo, ItemDisplayInfoCsv)
         FillDataTable(My.Resources.ItemSparse, ItemSparseCsv)

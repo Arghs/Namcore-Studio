@@ -7,15 +7,15 @@
 55£Zweihandschwerter£Two-Handed Swords
 95£Verteidigung£Defense
 98£Sprache: Gemeinsprache£Language: Common
-101£Volksfähigkeit - Zwerge£Dwarven Racial
+101£Volksfähigkeit - Zwerge£Racial - Dwarf
 109£Sprache: Orcisch£Language: Orcish
 111£Sprache: Zwergisch£Language: Dwarven
 113£Sprache: Darnassisch£Language: Darnassian
 115£Sprache: Taurahe£Language: Taurahe
 118£Beidhändigkeit£Dual Wield
-124£Volksfähigkeit - Tauren£Tauren Racial
-125£Volksfähigkeit - Orcs£Orc Racial
-126£Volksfähigkeit - Nachtelfen£Night Elf Racial
+124£Volksfähigkeit - Tauren£Racial - Tauren
+125£Volksfähigkeit - Orcs£Racial - Orc
+126£Volksfähigkeit - Nachtelfen£Racial - Night Elf
 129£Erste Hilfe£First Aid
 136£Stäbe£Staves
 137£Sprache: Thalassisch£Language: Thalassian
@@ -90,10 +90,10 @@
 753£Volksfähigkeit - Gnome£Racial - Gnome
 754£Volksfähigkeit - Menschen£Racial - Human
 755£Juwelierskunst£Jewelcrafting
-756£Volksfähigkeit - Blutelfen£Blood Elf Racial
+756£Volksfähigkeit - Blutelfen£Racial - Blood Elf
 758£Tier  - Ereignis, Ferngesteuert£Pet - Event - Remote Control
 759£Sprache: Draenei£Language: Draenei
-760£Volksfähigkeit - Draenei£Draenei Racial
+760£Volksfähigkeit - Draenei£Racial - Draenei
 761£Begleiter - Teufelswache£Pet - Felguard
 762£Reiten£Riding
 763£Tier - Drachenfalke£Pet - Dragonhawk
@@ -108,12 +108,12 @@
 777£Reittiere£Mounts
 778£Begleiter£Companions
 780£Tier - Exotische Schimäre£Pet - Exotic Chimaera
-781£Tier - Exotischer Teufelssaurier£Pet - Exotic Devlisaur
+781£Begleiter - Exotischer Teufelssaurier£Pet - Exotic Devilsaur
 782£Begleiter - Ghul£Pet - Ghoul
 783£Tier - Exotischer Silithid£Pet - Exotic Silithid
 784£Tier - Exotischer Wurm£Pet - Exotic Worm
-785£Tier - Wespe£Pet- Wasp
-786£Tier - Exotisches Rhinozeros£Pet - Exotic Rhino
+785£Begleiter - Wespe£Pet - Wasp
+786£Begleiter - Exotischer Grollhuf£Pet - Exotic Clefthoof
 787£Tier - Exotischer Kernhund£Pet - Exotic Core Hound
 788£Tier - Exotische Geisterbestie£Pet - Exotic Spirit Beast
 789£Volksfähigkeit - Worgen£Racial - Worgen
@@ -130,15 +130,15 @@
 808£Tier - Fuchs£Pet - Fox
 810£Alle - Glyphen£All - Glyphs
 811£Tier - Hund£Pet - Dog
-815£Affe£Monkey
-817£Schieferspinne£Shale Spider
+815£Begleiter - Affe£Pet - Monkey
+817£Begleiter - Schieferspinne£Pet - Shale Spider
 818£Käfer£Beetle
 821£Alle - Gildenboni£All - Guild Perks
-824£Hydra£Hydra
+824£Begleiter - Hydra£Pet - Hydra
 829£Mönch£Monk
 840£Krieger£Warrior
 849£Hexenmeister£Warlock
-899£Pandaren-Volksfähigkeit£Pandaren Racial
+899£Volksfähigkeit - Pandaren£Racial - Pandaren
 904£Magier£Mage
 905£Sprache: Pandaren (Neutral)£Language: Pandaren Neutral
 906£Sprache: Pandaren (Allianz)£Language: Pandaren Alliance
@@ -165,8 +165,18 @@
 983£Stachelschwein£Porcupine
 984£Kranich£Crane
 985£Wasserschreiter£Water Strider
-986£Qilen£Quilen
-987£Ziege£Goat
+986£Begleiter - Exotischer Qilen£Pet - Exotic Quilen
+987£Begleiter - Ziege£Pet - Goat
 988£Basilisk£Basilisk
 999£KEINE SPIELER£NO PLAYERS
 1305£Terrorhorn£Direhorn
+1748£Begleiter - Ursturmelementar£Pet - Primal Storm Elemental
+1777£Begleiter - Niederer Wasserelementar£Pet - Water Elemental Minor Talent Version
+1818£Tier - Exotischer Rylak£Pet - Exotic Rylak
+1819£Begleiter - Flussbestien£Pet - Riverbeast
+1830£Unused£Unused
+1945£Holzfällen£Logging
+1981£Begleiter - Terrorwache£Pet - Terrorguard
+1982£Begleiter - Abyssal£Pet - Abyssal
+1993£Begleiter - Hirsch£Pet - Stag
+2000£Handelsposten£Trading Post

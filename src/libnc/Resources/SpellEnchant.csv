@@ -1,6 +1,4 @@
 ﻿EffectId£GemId£Points1£Points2£Points3£EffectNameDE£EffectNameEN
-2£0£0£0£0£Frostbrand£Frostbrand
-5£0£100£0£0£Flammenzunge£Flametongue
 13£0£3£0£0£Geschärft (+$k1 Schaden)£Sharpened (+$k1 Damage)
 14£0£4£0£0£Geschärft (+$k1 Schaden)£Sharpened (+$k1 Damage)
 15£0£8£0£0£Verstärkt (+$k1 Rüstung)£Reinforced (+$k1 Armor)
@@ -13,7 +11,7 @@
 24£0£5£0£0£+$k1 Mana£+$k1 Mana
 25£0£15£0£0£Schattenöl£Shadow Oil
 26£0£10£0£0£Frostöl£Frost Oil
-27£0£4294967286£0£0£Zerrissen£Sundered
+27£0£-10£0£0£Zerrissen£Sundered
 28£0£0£0£0£+4 alle Widerstandsarten£+4 All Resistances
 30£0£1£0£0£Zielfernrohr (+$k1 Schaden)£Scope (+$k1 Damage)
 31£0£0£0£0£+4 Wildtiertötung£+4 Beastslaying
@@ -226,7 +224,6 @@
 264£0£0£0£0£Angelköder (+$8083s1 Angeln)£Fishing Lure (+$8083s1 Fishing Skill)
 265£0£0£0£0£Angelköder (+$8084s1 Angeln)£Fishing Lure (+$8084s1 Fishing Skill)
 266£0£0£0£0£Angelköder (+$8085s1 Angeln)£Fishing Lure (+$8085s1 Fishing Skill)
-283£0£20£0£0£Windzorn£Windfury
 286£0£0£0£0£+2 Waffenfeuerschaden£+2 Weapon Fire Damage
 287£0£0£0£0£+4 Waffenfeuerschaden£+4 Weapon Fire Damage
 288£0£0£0£0£+6 Waffenfeuerschaden£+6 Weapon Fire Damage
@@ -309,7 +306,7 @@
 447£0£0£0£0£+$9413s1 Schattenzauberschaden£+$9413s1 Shadow Spell Damage
 448£0£0£0£0£+$9414s1 Schattenzauberschaden£+$9414s1 Shadow Spell Damage
 463£0£0£0£0£Mithrilstachel (16-20)£Mithril Spike (16-20)
-464£0£0£0£0£+$7215s1% Reittiertempo£+$7215s1% Mount Speed
+464£0£0£0£0£+$7215s1% Reitgeschwindigkeit£+$7215s1% Mount Speed
 483£0£6£0£0£Geschärft (+$k1 Schaden)£Sharpened (+$k1 Damage)
 484£0£6£0£0£Beschwert (+$k1 Schaden)£Weighted (+$k1 Damage)
 583£0£1£1£0£+$k1 Beweglichkeit und +$k2 Willenskraft£+$k1 Agility / +$k2 Spirit
@@ -374,7 +371,7 @@
 927£0£7£0£0£+$k1 Stärke£+$k1 Strength
 928£0£0£0£0£+$13824s1 alle Werte£+$13824s1 All Stats
 929£0£7£0£0£+$k1 Ausdauer£+$k1 Stamina
-930£0£0£0£0£+$13927s1% Reittiertempo£+$13927s1% Mount Speed
+930£0£0£0£0£+$13927s1% Reitgeschwindigkeit£+$13927s1% Mount Speed
 931£0£10£0£0£+$k1 Tempo£+$k1 Haste
 943£0£3£0£0£+$k1 Waffenschaden£+$k1 Weapon Damage
 963£0£7£0£0£+$k1 Waffenschaden£+$k1 Weapon Damage
@@ -787,52 +784,52 @@
 1531£0£10£10£0£+$k1 Stärke und +$k2 Ausdauer£+$k1 Strength and +$k2 Stamina
 1532£0£15£110£15£+$k1 Stärke, +$k2 Rüstung und +$k3 Feuerwiderstand£+$k1 Strength, +$k2 Armor and +$k3 Fire Resistance
 1543£0£15£100£15£+$k1 Intelligenz, +$k2 Mana und +$k3 Feuerwiderstand£+$k1 Intellect, +$k2 Mana and +$k3 Fire Resistance
-1563£0£2£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1583£0£4£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1584£0£6£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1585£0£8£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1586£0£10£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1587£0£12£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1588£0£14£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1589£0£16£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1590£0£18£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1591£0£20£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1592£0£22£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1593£0£24£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1594£0£26£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1595£0£28£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1596£0£30£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1597£0£32£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1598£0£34£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1599£0£36£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1600£0£38£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1601£0£32£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1602£0£42£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1603£0£44£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1604£0£46£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1605£0£48£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1606£0£50£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1607£0£52£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1608£0£54£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1609£0£56£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1610£0£58£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1611£0£60£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1612£0£62£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1613£0£64£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1614£0£66£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1615£0£68£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1616£0£70£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1617£0£72£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1618£0£74£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1619£0£76£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1620£0£78£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1621£0£80£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1622£0£82£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1623£0£84£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1624£0£86£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1625£0£88£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1626£0£90£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-1627£0£92£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1563£0£1£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1583£0£2£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1584£0£3£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1585£0£4£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1586£0£5£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1587£0£6£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1588£0£7£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1589£0£8£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1590£0£9£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1591£0£10£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1592£0£11£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1593£0£12£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1594£0£13£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1595£0£14£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1596£0£15£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1597£0£16£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1598£0£17£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1599£0£18£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1600£0£19£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1601£0£16£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1602£0£21£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1603£0£22£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1604£0£23£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1605£0£24£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1606£0£25£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1607£0£26£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1608£0£27£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1609£0£28£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1610£0£29£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1611£0£30£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1612£0£31£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1613£0£32£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1614£0£33£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1615£0£34£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1616£0£35£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1617£0£36£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1618£0£37£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1619£0£38£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1620£0£39£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1621£0£40£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1622£0£41£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1623£0£42£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1624£0£43£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1625£0£44£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1626£0£45£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+1627£0£46£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 1643£0£8£0£0£Geschärft (+$k1 Schaden)£Sharpened (+$k1 Damage)
 1703£0£8£0£0£Beschwert (+$k1 Schaden)£Weighted (+$k1 Damage)
 1704£0£0£0£0£Thoriumstachel (20-30)£Thorium Spike (20-30)
@@ -954,44 +951,44 @@
 2037£0£19£19£0£Blocken Stufe 64£Block Level 64
 2038£0£20£20£0£Blocken Stufe 65£Block Level 65
 2039£0£20£20£0£Blocken Stufe 66£Block Level 66
-2040£0£2£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2041£0£5£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2042£0£7£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2043£0£10£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2044£0£12£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2045£0£14£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2046£0£17£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2047£0£19£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2048£0£22£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2049£0£24£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2050£0£26£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2051£0£29£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2052£0£31£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2053£0£34£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2054£0£36£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2055£0£38£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2056£0£41£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2057£0£43£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2058£0£46£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2059£0£48£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2060£0£50£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2061£0£53£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2062£0£55£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2063£0£58£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2064£0£60£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2065£0£62£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2066£0£65£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2067£0£67£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2068£0£70£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2069£0£72£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2070£0£74£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2071£0£77£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2072£0£79£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2073£0£82£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2074£0£84£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2075£0£86£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2076£0£89£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
-2077£0£91£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2040£0£1£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2041£0£2£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2042£0£3£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2043£0£5£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2044£0£6£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2045£0£7£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2046£0£8£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2047£0£9£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2048£0£11£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2049£0£12£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2050£0£13£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2051£0£14£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2052£0£15£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2053£0£17£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2054£0£18£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2055£0£19£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2056£0£20£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2057£0£21£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2058£0£23£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2059£0£24£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2060£0£25£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2061£0£26£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2062£0£27£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2063£0£29£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2064£0£30£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2065£0£31£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2066£0£32£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2067£0£33£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2068£0£35£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2069£0£36£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2070£0£37£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2071£0£38£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2072£0£39£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2073£0£41£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2074£0£42£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2075£0£43£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2076£0£44£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
+2077£0£45£0£0£+$k1 Distanzangriffskraft£+$k1 Ranged Attack Power
 2078£0£12£0£0£+$k1 Ausweichen£+$k1 Dodge
 2079£0£0£0£0£+$13590s1 Arkanzauberschaden£+$13590s1 Arcane Spell Damage
 2080£0£0£0£0£+$13591s1 Arkanzauberschaden£+$13591s1 Arcane Spell Damage
@@ -1347,7 +1344,7 @@
 2504£0£30£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2505£0£29£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2506£0£28£0£0£+$k1 kritischer Nahkampftrefferwert£+$k1 Melee Critical Strike
-2523£0£30£0£0£+$k1 Distanztrefferwert£+$k1 Ranged Hit
+2523£0£30£0£0£+$k1 kritischer Distanztrefferwert£+$k1 Ranged Critical Strike
 2543£0£10£0£0£+$k1 Tempo£+$k1 Haste
 2544£0£8£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2545£0£12£0£0£+$k1 Ausweichen£+$k1 Dodge
@@ -1359,17 +1356,17 @@
 2568£0£22£0£0£+$k1 Intelligenz£+$k1 Intellect
 2583£0£10£10£10£+$k1 Ausweichen, +$k2 Ausdauer und +$k3 Parieren£+$k1 Dodge +$k2 Stamina +$k3 Parry
 2584£0£10£10£10£+$k1 Ausweichen, +$k2 Ausdauer und +$k3 Intelligenz£+$k1 Dodge +$k2 Stamina and +$k3 Intellect
-2585£0£28£12£0£+$k1 Angriffskraft und +$k2 Ausweichen£+$k1 Attack Power and +$k2 Dodge
-2586£0£24£10£10£+$k1 Distanzangriffskraft, +$k2 Ausdauer und +$k3 Trefferwert£+$k1 Ranged Attack Power/+$k2 Stamina/+$k3 Hit
+2585£0£14£12£0£+$k1 Angriffskraft und +$k2 Ausweichen£+$k1 Attack Power and +$k2 Dodge
+2586£0£12£10£10£+$k1 Distanzangriffskraft, +$k2 Ausdauer und +$k3 kritischer Trefferwert£+$k1 Ranged Attack Power/+$k2 Stamina/+$k3 Critical Strike
 2587£0£13£15£0£+$k1 Zaubermacht und +$k2 Intelligenz£+$k1 Spell Power and +$k2 Intellect
-2588£0£18£8£0£+$k1 Zaubermacht und +$k2 Trefferwert£+$k1 Spell Power and +$k2 Hit
+2588£0£18£8£0£+$k1 Zaubermacht und +$k2 kritischer Trefferwert£+$k1 Spell Power and +$k2 Critical Strike
 2589£0£18£10£0£+$k1 Zaubermacht und +$k2 Ausdauer£+$k1 Spell Power and +$k2 Stamina
 2590£0£10£10£10£+$k1 Intelligenz, +$k2 Ausdauer und +$k3 Willenskraft£+$k1 Intellect +$k2 Stamina and +$k3 Spirit
 2591£0£12£10£10£+$k2 Intelligenz, +$k3 Ausdauer und +$k1 Zaubermacht£+$k2 Intellect +$k3 Stamina +$k1 Spell Power
 2603£0£0£0£0£+$24303s1 Angeln£+$24303s1 Fishing
 2604£0£18£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2605£0£18£0£0£+$k1 Zaubermacht£+$k1 Spell Power
-2606£0£30£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+2606£0£15£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 2607£0£12£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2608£0£13£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2609£0£15£0£0£+$k1 Zaubermacht£+$k1 Spell Power
@@ -1406,16 +1403,16 @@
 2655£0£15£0£0£+$k1 Parieren£+$k1 Parry
 2656£0£10£10£0£+$k1 Willenskraft und +$k2 Ausdauer£+$k1 Spirit and +$k2 Stamina
 2657£0£12£0£0£+$k1 Beweglichkeit£+$k1 Agility
-2658£0£10£10£0£+$k1 Trefferwert und +$k2 kritischer Trefferwert£+$k1 Hit and +$k2 Critical Strike
+2658£0£10£10£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 2659£0£150£0£0£+$k1 Gesundheit£+$k1 Health
 2660£0£150£0£0£+$k1 Mana£+$k1 Mana
-2661£0£0£0£0£+$27959s1 alle Werte£+$27959s1 All Stats
+2661£0£0£0£0£+$144845s1 alle Werte£+$144845s1 All Stats
 2662£0£120£0£0£+$k1 Rüstung£+$k1 Armor
 2663£0£0£0£0£+7 alle Widerstandsarten£+7 Resist All
 2664£0£0£0£0£+$27963s1 alle Widerstandsarten£+$27963s1 Resist All
 2665£0£35£0£0£+$k1 Willenskraft£+$k1 Spirit
 2666£0£30£0£0£+$k1 Intelligenz£+$k1 Intellect
-2667£0£70£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+2667£0£35£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 2668£0£20£0£0£+$k1 Stärke£+$k1 Strength
 2669£0£40£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2670£0£35£0£0£+$k1 Beweglichkeit£+$k1 Agility
@@ -1445,7 +1442,7 @@
 2694£23113£6£0£0£+$k1 Intelligenz£+$k1 Intellect
 2695£23114£12£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2696£23115£12£0£0£+$k1 Ausweichen£+$k1 Dodge
-2697£23116£12£6£0£+$k1 Trefferwert£+$k1 Hit
+2697£23116£12£6£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2698£23118£9£0£0£+$k1 Ausdauer£+$k1 Stamina
 2699£23119£12£0£0£+$k1 Willenskraft£+$k1 Spirit
 2700£23120£6£0£0£+$k1 PvP-Macht£+$k1 PvP Power
@@ -1465,7 +1462,7 @@
 2714£0£0£0£0£Teufelsstahlstachel (26-38)£Felsteel Spike (26-38)
 2715£0£16£6£0£+$k1 Zaubermacht und alle 5 Sek. $k2 Mana£+$k1 Spell Power and $k2 Mana every 5 seconds
 2716£0£16£100£0£+$k1 Ausdauer und +$k2 Rüstung£+$k1 Stamina and +$k2 Armor
-2717£0£26£14£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
+2717£0£13£14£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
 2718£0£0£0£0£Geringe Rune des Schutzes£Lesser Rune of Warding
 2719£0£0£0£0£Geringer Zauberschutz der Abschirmung£Lesser Ward of Shielding
 2720£0£0£0£0£Großer Zauberschutz der Abschirmung£Greater Ward of Shielding
@@ -1503,8 +1500,8 @@
 2752£23098£3£6£3£+$k2 kritischer Trefferwert und +$k1 Stärke£+$k2 Critical Strike and +$k1 Strength
 2753£24058£4£8£4£+$k1 kritischer Trefferwert und +$k2 Stärke£+$k1 Critical Strike and +$k2 Strength
 2754£24036£16£0£0£+$k1 Parieren£+$k1 Parry
-2755£23100£3£6£0£+$k2 Trefferwert und +$k1 Beweglichkeit£+$k2 Hit and +$k1 Agility
-2756£24061£4£8£4£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+2755£23100£3£6£0£+$k2 kritischer Trefferwert und +$k1 Beweglichkeit£+$k2 Critical Strike and +$k1 Agility
+2756£24061£4£8£4£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 2757£23104£4£6£3£+$k2 kritischer Trefferwert und +$k1 Ausdauer£+$k2 Critical Strike and +$k1 Stamina
 2758£24067£6£8£4£+$k2 kritischer Trefferwert und +$k1 Ausdauer£+$k2 Critical Strike and +$k1 Stamina
 2759£24053£8£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
@@ -1512,12 +1509,12 @@
 2761£24059£4£8£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 2762£23103£6£3£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
 2763£24066£8£4£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
-2764£24051£16£8£0£+$k1 Trefferwert£+$k1 Hit
+2764£24051£16£8£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2765£24039£8£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 2766£0£8£0£0£+$k1 Intelligenz£+$k1 Intellect
-2767£0£8£0£0£+$k1 Trefferwert£+$k1 Hit
+2767£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2768£0£16£0£0£+$k1 Zaubermacht£+$k1 Spell Power
-2769£0£11£0£0£+$k1 Trefferwert£+$k1 Hit
+2769£0£11£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2770£0£7£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2771£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2772£0£14£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
@@ -1531,10 +1528,10 @@
 2780£0£16£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 2781£0£19£0£0£+$k1 Ausdauer£+$k1 Stamina
 2782£0£10£0£0£+$k1 Beweglichkeit£+$k1 Agility
-2783£0£14£0£0£+$k1 Trefferwert£+$k1 Hit
-2784£0£12£0£0£+$k1 Trefferwert£+$k1 Hit
-2785£0£13£0£0£+$k1 Trefferwert£+$k1 Hit
-2786£0£7£0£0£+$k1 Trefferwert£+$k1 Hit
+2783£0£14£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+2784£0£12£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+2785£0£13£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+2786£0£7£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2787£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2788£0£9£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 2789£0£15£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
@@ -1577,7 +1574,7 @@
 2826£0£0£0£0£+$i Blocken£+$i Block
 2827£25890£28£0£0£+$k1 kritischer Trefferwert und $11818s1% Zauberreflexion£+$k1 Critical Strike and $11818s1% Spell Reflect
 2828£25893£0£0£0£Chance, Zaubertempo zu erhöhen£Chance to Increase Spell Cast Speed
-2829£25894£24£0£0£+$k1 kritischer Trefferwert und geringe Bewegungstempoerhöhung£+$k1 Critical Strike and Minor Run Speed Increase
+2829£25894£24£0£0£+$k1 kritischer Trefferwert und geringe Geschwindigkeitserhöhung£+$k1 Critical Strike and Minor Run Speed Increase
 2830£25895£24£0£0£+$k1 kritischer Trefferwert und um $55378s1% verringerte Dauer von Bewegungseinschränkung£+$k1 Critical Strike and Reduces Snare/Root Duration by $55378s1%
 2831£25896£18£0£0£+$k1 Ausdauer und um 10% verringerte Dauer von Betäubungseffekten£+$k1 Stamina and Stun Duration Reduced by 10%
 2832£25897£12£0£0£+$k1 Intelligenz und um 2% verringerte Bedrohung£+$k1 Intellect and 2% Reduced Threat
@@ -1592,8 +1589,8 @@
 2841£0£10£0£0£+$k1 Ausdauer£+$k1 Stamina
 2842£0£8£0£0£+$k1 Willenskraft£+$k1 Spirit
 2843£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-2844£0£8£0£0£+$k1 Trefferwert£+$k1 Hit
-2845£0£11£0£0£+$k1 Trefferwert£+$k1 Hit
+2844£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+2845£0£11£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2846£0£4£0£0£Alle 5 Sek. 4 Mana£4 mana per 5 sec.
 2847£0£4£0£0£Alle 5 Sek. 4 Mana£4 mana per 5 sec.
 2848£0£5£0£0£Alle 5 Sek. 5 Mana£5 mana per 5 sec.
@@ -1608,7 +1605,7 @@
 2857£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2858£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2859£0£3£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-2860£0£3£0£0£+$k1 Trefferwert£+$k1 Hit
+2860£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2861£0£3£0£0£+$k1 Ausweichen£+$k1 Dodge
 2862£0£3£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 2863£0£3£0£0£+$k1 Intelligenz£+$k1 Intellect
@@ -1621,20 +1618,20 @@
 2870£0£3£0£0£+$k1 Parieren£+$k1 Parry
 2871£0£4£0£0£+$k1 Ausweichen£+$k1 Dodge
 2872£0£5£0£0£+$k1 Zaubermacht£+$k1 Spell Power
-2873£0£4£0£0£+$k1 Trefferwert£+$k1 Hit
+2873£0£4£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2874£0£4£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2875£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2876£0£3£0£0£+$k1 Ausweichen£+$k1 Dodge
 2877£0£4£0£0£+$k1 Beweglichkeit£+$k1 Agility
 2878£0£4£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 2879£0£3£0£0£+$k1 Stärke£+$k1 Strength
-2880£0£3£0£0£+$k1 Trefferwert£+$k1 Hit
+2880£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2881£0£1£0£0£+2 Willenskraft£+2 Spirit
 2882£0£6£0£0£+$k1 Ausdauer£+$k1 Stamina
 2883£0£4£0£0£+$k1 Ausdauer£+$k1 Stamina
 2884£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2885£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-2886£0£2£0£0£+$k1 Trefferwert£+$k1 Hit
+2886£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2887£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2888£0£0£0£0£+6 Blockwert£+6 Block Value
 2889£0£5£0£0£+$k1 Zaubermacht£+$k1 Spell Power
@@ -1645,7 +1642,7 @@
 2894£27774£7£0£0£+$k1 Stärke£+$k1 Strength
 2895£0£4£0£0£+$k1 Ausdauer£+$k1 Stamina
 2896£27777£7£0£0£+$k1 Intelligenz£+$k1 Intellect
-2897£27782£3£4£0£+$k1 Ausdauer und +$k2 kritischer Trefferwert£+$k1 Stamina, +$k2 Crit
+2897£27782£3£4£0£+$k1 Ausdauer und +$k2 kritischer Trefferwert£+$k1 Stamina, +$k2 Critical Strike
 2898£27785£3£4£0£+$k1 Ausdauer und +$k2 kritischer Trefferwert£+$k1 Stamina and +$k2 Critical Strike
 2899£27786£3£4£0£+$k1 Ausdauer und +$k2 kritischer Trefferwert£+$k1 Stamina and +$k2 Critical Strike
 2900£0£4£0£0£+$k1 Zaubermacht£+$k1 Spell Power
@@ -1653,8 +1650,8 @@
 2902£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2906£0£0£0£0£+$i Ausdauer und +$i Intelligenz£+$i Stamina and +$i Intellect
 2907£0£2£0£0£+$k1 Parieren£+$k1 Parry
-2908£0£4£0£0£+$k1 Trefferwert£+$k1 Hit
-2909£0£2£0£0£+$k1 Trefferwert£+$k1 Hit
+2908£0£4£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+2909£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2910£0£3£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2911£28117£10£0£0£+$k1 Stärke£+$k1 Strength
 2912£28118£10£0£0£+$k1 Intelligenz£+$k1 Intellect
@@ -1672,20 +1669,18 @@
 2925£0£3£0£0£+$k1 Ausdauer£+$k1 Stamina
 2926£0£2£0£0£+$k1 Ausweichen£+$k1 Dodge
 2927£0£4£0£0£+$k1 Stärke£+$k1 Strength
-2928£0£12£0£0£+$k1 Intelligenz£+$k1 Intellect
 2929£0£2£0£0£+$k1 Waffenschaden£+$k1 Weapon Damage
 2930£0£10£0£0£+$k1 Intelligenz£+$k1 Intellect
-2931£0£4£0£0£+$19988s1 alle Werte£+$19988s1 All Stats
 2932£0£4£0£0£+$k1 Ausweichen£+$k1 Dodge
 2933£0£15£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 2934£0£10£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-2935£0£15£0£0£+$k1 Trefferwert£+$k1 Hit
-2936£0£8£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+2935£0£15£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+2936£0£4£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 2937£0£20£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2938£0£16£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 2939£0£0£6£0£Schwaches Tempo und Beweglichkeit +$k2£Minor Speed and +$k2 Agility
 2940£0£0£9£0£Schwaches Tempo und +$k2 Ausdauer£Minor Speed and +$k2 Stamina
-2941£0£2£0£0£+$k1 Trefferwert£+$k1 Hit
+2941£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2942£28290£12£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2943£28360£7£0£0£+$k1 Beweglichkeit£+$k1 Agility
 2944£28361£7£0£0£+$k1 Beweglichkeit£+$k1 Agility
@@ -1710,14 +1705,14 @@
 2963£28465£8£0£0£+$k1 Willenskraft£+$k1 Spirit
 2964£28466£4£0£0£+$k1 Intelligenz£+$k1 Intellect
 2965£28467£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-2966£28468£8£0£0£+$k1 Trefferwert£+$k1 Hit
+2966£28468£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2967£28469£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2968£28470£8£0£0£+$k1 Ausweichen£+$k1 Dodge
-2969£28556£10£0£0£+$k1 kritischer Trefferwert und geringe Bewegungstempoerhöhung£+$k1 Critical Strike and Minor Run Speed Increase
-2970£28557£10£0£0£+$k1 Intelligenz und geringe Bewegungstempoerhöhung£+$k1 Intellect and Minor Run Speed Increase
+2969£28556£10£0£0£+$k1 kritischer Trefferwert und geringe Geschwindigkeitserhöhung£+$k1 Critical Strike and Minor Run Speed Increase
+2970£28557£10£0£0£+$k1 Intelligenz und geringe Geschwindigkeitserhöhung£+$k1 Intellect and Minor Run Speed Increase
 2971£28595£6£0£0£+$k1 Beweglichkeit£+$k1 Agility
 2972£0£4£0£0£+$k1 Blocken£+$k1 Block
-2973£0£6£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+2973£0£3£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 2974£0£4£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2975£0£0£0£0£+5 Blockwert£+5 Block Value
 2976£0£2£0£0£+$k1 Ausweichen£+$k1 Dodge
@@ -1727,10 +1722,10 @@
 2980£0£15£10£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 2981£0£15£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 2982£0£18£10£0£+$k1 Zaubermacht und +$k2 kritischer Trefferwert£+$k1 Spell Power and +$k2 Critical Strike
-2983£0£26£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+2983£0£13£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 2984£0£8£0£0£+$k1 Ausdauer£+$k1 Stamina
 2985£0£8£0£0£+$k1 Ausdauer£+$k1 Stamina
-2986£0£30£10£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
+2986£0£15£10£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
 2987£0£8£0£0£+$k1 Ausdauer£+$k1 Stamina
 2988£0£8£0£0£+$k1 Ausdauer£+$k1 Stamina
 2989£0£8£0£0£+$k1 Ausdauer£+$k1 Stamina
@@ -1741,27 +1736,26 @@
 2994£0£13£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 2995£0£12£15£0£+$k2 kritischer Trefferwert und +$k1 Zaubermacht£+$k2 Critical Strike and +$k1 Spell Power
 2996£0£13£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-2997£0£20£15£0£+$k2 kritischer Trefferwert und +$k1 Angriffskraft£+$k2 Critical Strike and +$k1 Attack Power
+2997£0£10£15£0£+$k2 kritischer Trefferwert und +$k1 Angriffskraft£+$k2 Critical Strike and +$k1 Attack Power
 2998£0£0£0£0£+$35442s1 alle Widerstandsarten£+$35442s1 All Resistances
 2999£0£17£16£0£+$k2 Parieren und +$k1 Ausweichen£+$k2 Parry and +$k1 Dodge
 3000£0£12£12£18£+$k3 Ausdauer, +$k1 Ausweichen und +$k2 PvP-Abhärtung£+$k3 Stamina, +$k1 Dodge, and +$k2 PvP Resilience
 3001£0£16£18£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-3002£0£22£14£0£+$k1 Zaubermacht und +$k2 Trefferwert£+$k1 Spell Power and +$k2 Hit
-3003£0£34£16£0£+$k1 Angriffskraft und +$k2 Trefferwert£+$k1 Attack Power and +$k2 Hit
+3002£0£22£14£0£+$k1 Zaubermacht und +$k2 kritischer Trefferwert£+$k1 Spell Power and +$k2 Critical Strike
+3003£0£17£16£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
 3004£0£20£18£0£+$k2 Ausdauer und +$k1 PvP-Abhärtung£+$k2 Stamina and +$k1 PvP Resilience
 3005£0£20£0£0£+$k1 Naturwiderstand£+$k1 Nature Resistance
 3006£0£20£0£0£+$k1 Arkanwiderstand£+$k1 Arcane Resistance
 3007£0£20£0£0£+$k1 Feuerwiderstand£+$k1 Fire Resistance
 3008£0£20£0£0£+$k1 Frostwiderstand£+$k1 Frost Resistance
 3009£0£20£0£0£+$k1 Schattenwiderstand£+$k1 Shadow Resistance
-3010£0£10£40£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
+3010£0£10£20£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
 3011£0£30£10£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
-3012£0£12£50£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
+3012£0£12£25£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
 3013£0£40£12£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
 3015£0£2£0£0£+$k1 Stärke£+$k1 Strength
 3016£0£2£0£0£+$k1 Intelligenz£+$k1 Intellect
 3017£0£3£0£0£+$k1 Blocken£+$k1 Block
-3021£0£100£0£0£Felsbeißer£Rockbiter
 3045£30546£5£6£0£+$k1 Stärke und +$k2 Ausdauer£+$k1 Strength and +$k2 Stamina
 3046£30547£5£4£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 3047£30548£10£6£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
@@ -1769,23 +1763,23 @@
 3049£30550£10£8£0£+$k1 kritischer Trefferwert und +$k2 Willenskraft£+$k1 Critical Strike and +$k2 Spirit
 3050£30551£5£4£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 3051£30552£6£5£0£+$k2 Intelligenz und +$k1 Ausdauer£+$k2 Intellect and +$k1 Stamina
-3052£30553£5£4£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3052£30553£5£4£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3053£30554£5£4£0£+$k1 Parieren und +$k2 Ausweichen£+$k1 Parry and +$k2 Dodge
 3054£30555£6£5£0£+$k2 Intelligenz und +$k1 Ausdauer£+$k2 Intellect and +$k1 Stamina
-3055£30556£5£4£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3055£30556£5£4£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3056£30558£4£5£0£+$k2 Parieren und +$k1 Ausweichen£+$k2 Parry and +$k1 Dodge
-3057£30559£5£4£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+3057£30559£5£4£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 3058£30560£5£4£0£+$k1 kritischer Trefferwert und +$k2 Willenskraft£+$k1 Critical Strike and +$k2 Spirit
 3059£30562£5£2£0£+$k1 kritischer Trefferwert und alle 5 Sek. $k2 Mana£+$k1 Critical Strike and $k2 mana per 5 sec.
 3060£30563£5£6£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
-3061£30564£5£4£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
+3061£30564£5£4£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 3062£30565£5£6£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
 3063£30566£6£5£0£+$k2 Parieren und +$k1 Ausdauer£+$k2 Parry and +$k1 Stamina
 3064£30572£10£5£0£+$k1 Willenskraft und +$k2 Intelligenz£+$k1 Spirit and +$k2 Intellect
 3065£30571£8£0£0£+$k1 Stärke£+$k1 Strength
 3066£30573£5£5£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
 3067£30574£5£6£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
-3068£30575£5£4£0£+$k1 Ausweichen und +$k2 Trefferwert£+$k1 Dodge and +$k2 Hit
+3068£30575£5£4£0£+$k1 Ausweichen und +$k2 kritischer Trefferwert£+$k1 Dodge and +$k2 Critical Strike
 3069£30581£5£4£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 3070£30582£5£4£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3071£30583£5£6£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
@@ -1805,13 +1799,13 @@
 3085£30602£6£5£0£+$k1 Ausdauer und +$k2 kritischer Trefferwert£+$k1 Stamina and +$k2 Critical Strike
 3086£30603£5£8£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3087£30604£5£4£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
-3088£30605£10£8£0£+$k1 Trefferwert und +$k2 Ausweichen£+$k1 Hit and +$k2 Dodge
-3089£30606£10£8£0£+$k1 Trefferwert und +$k2 Tempo£+$k1 Hit and +$k2 Haste
+3088£30605£10£8£0£+$k1 kritischer Trefferwert und +$k2 Ausweichen£+$k1 Critical Strike and +$k2 Dodge
+3089£30606£10£8£0£+$k1 kritischer Trefferwert und +$k2 Tempo£+$k1 Critical Strike and +$k2 Haste
 3090£30607£5£4£0£+$k1 Parieren und +$k2 PvP-Abhärtung£+$k1 Parry and +$k2 PvP Resilience
 3091£30608£5£5£0£+$k2 kritischer Trefferwert und +$k1 PvP-Macht£+$k2 Critical Strike and +$k1 PvP Power
 3092£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3093£0£0£0£0£+$37362s1 Angriffskraft gegen Untote und Dämonen£+$37362s1 Attack Power vs Undead and Demons
-3094£0£4£0£0£+$k1 Waffenkunde£+$k1 Expertise
+3094£0£4£0£0£+$k1 Tempo£+$k1 Haste
 3095£0£0£0£0£+$37890s1 alle Widerstandsarten£+$37890s1 Resist All
 3096£0£17£16£0£+$k1 Stärke und +$k2 Intelligenz£+$k1 Strength and +$k2 Intellect
 3097£0£2£0£0£+$k1 Willenskraft£+$k1 Spirit
@@ -1821,17 +1815,17 @@
 3101£31118£5£6£0£+$k1 Stärke und +$k2 Ausdauer£+$k1 Strength and +$k2 Stamina
 3102£0£20£0£0£Gift£Poison
 3103£30598£8£0£0£+$k1 Stärke£+$k1 Strength
-3104£31860£12£0£0£+$k1 Trefferwert£+$k1 Hit
-3105£31861£16£0£0£+$k1 Trefferwert£+$k1 Hit
+3104£31860£12£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+3105£31861£16£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3106£31862£3£4£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
 3107£31863£4£6£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
 3108£31864£3£4£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
-3109£31865£4£8£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-3110£31866£6£3£0£+$k2 Intelligenz und +$k1 Trefferwert£+$k2 Intellect and +$k1 Hit
-3111£31867£4£8£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
+3109£31865£4£8£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+3110£31866£6£3£0£+$k2 Intelligenz und +$k1 kritischer Trefferwert£+$k2 Intellect and +$k1 Critical Strike
+3111£31867£4£8£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 3112£31868£4£8£4£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3113£31869£3£6£3£+$k1 kritischer Trefferwert und +$k2 Beweglichkeit£+$k1 Critical Strike and +$k2 Agility
-3114£0£4£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3114£0£2£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 3115£32193£10£0£0£+$k1 Stärke£+$k1 Strength
 3116£32194£10£0£0£+$k1 Beweglichkeit£+$k1 Agility
 3117£32195£10£0£0£+$k1 Intelligenz£+$k1 Intellect
@@ -1845,22 +1839,22 @@
 3125£32203£10£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 3126£32204£10£0£0£+$k1 Intelligenz£+$k1 Intellect
 3127£32205£20£10£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3128£32206£20£10£0£+$k1 Trefferwert£+$k1 Hit
+3128£32206£20£10£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3129£32207£20£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3130£32208£20£0£0£+$k1 Ausweichen£+$k1 Dodge
 3131£32209£10£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-3132£32210£20£8£0£+$k1 Trefferwert£+$k1 Hit
+3132£32210£20£8£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3133£32211£5£7£0£+$k1 Stärke und +$k2 Ausdauer£+$k1 Strength and +$k2 Stamina
 3134£32212£5£7£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
 3135£32213£5£7£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
-3136£32214£5£10£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3136£32214£5£10£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3137£32215£5£7£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 3138£32216£5£10£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3139£32217£5£10£5£+$k2 kritischer Trefferwert und +$k1 Stärke£+$k2 Critical Strike and +$k1 Strength
 3140£32218£5£10£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 3141£32219£5£10£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
-3142£32220£5£10£5£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-3143£32221£5£10£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
+3142£32220£5£10£5£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+3143£32221£5£10£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 3144£32222£5£10£5£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3145£32223£10£7£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 3146£32224£10£5£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
@@ -1902,8 +1896,8 @@
 3215£33138£12£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 3216£33139£12£0£0£+$k1 Intelligenz£+$k1 Intellect
 3217£33140£24£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3218£33141£24£0£0£+$k1 Trefferwert£+$k1 Hit
-3219£33142£24£8£0£+$k1 Trefferwert£+$k1 Hit
+3218£33141£24£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+3219£33142£24£8£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3220£33143£24£12£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3221£33144£24£0£0£+$k1 Ausweichen£+$k1 Dodge
 3222£0£20£0£0£+$k1 Beweglichkeit£+$k1 Agility
@@ -1912,13 +1906,13 @@
 3225£0£0£0£0£Scharfrichter£Executioner
 3226£33782£4£6£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 3227£0£10£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3228£0£34£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3228£0£17£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 3229£0£12£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 3230£0£20£0£0£+$k1 Frostwiderstand£+$k1 Frost Resistance
-3231£0£15£0£0£+$k1 Waffenkunde£+$k1 Expertise
-3232£0£0£15£0£+$k2 Ausdauer und schwache Bewegungstempoerhöhung£+$k2 Stamina and Minor Speed Increase
+3231£0£15£0£0£+$k1 Tempo£+$k1 Haste
+3232£0£0£15£0£+$k2 Ausdauer und schwache Geschwindigkeitserhöhung£+$k2 Stamina and Minor Speed Increase
 3233£0£250£0£0£+$k1 Mana£+$k1 Mana
-3234£0£20£0£0£+$k1 Trefferwert£+$k1 Hit
+3234£0£20£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3235£0£0£0£0£+$44491s1 alle Widerstandsarten£+$44491s1 Resist All
 3236£0£200£0£0£+$k1 Gesundheit£+$k1 Health
 3237£0£10£0£0£+$k1 Waffenschaden£+$k1 Weapon Damage
@@ -1932,12 +1926,12 @@
 3245£0£20£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 3246£0£28£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 3247£0£0£0£0£+$44594s1 Angriffskraft gegen Untote£+$44594s1 Attack Power versus Undead
-3248£0£18£0£0£+$k1 Waffenkunde£+$k1 Expertise
+3248£0£18£0£0£+$k1 Tempo£+$k1 Haste
 3249£0£16£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3250£0£0£15£0£Eiswandler£Icewalker
 3251£0£0£0£0£Riesentöten£Giantslaying
 3252£0£0£0£0£+$44624s1 alle Werte£+$44624s1 All Stats
-3253£0£0£10£0£+$25063s1% Bedrohung und +10 Parieren£+$25063s1% Threat and 10 Parry
+3253£0£0£10£0£+$25063s1% Bedrohung und +$k2 Parieren£+$25063s1% Threat and +$k2 Parry
 3254£34143£4£0£0£+$44627s1 alle Werte£+$44627s1 All Stats
 3255£0£55£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 3256£0£40£10£0£+$k2 Beweglichkeit und +$k1 Rüstung£+$k2 Agility and +$k1 Armor
@@ -1960,7 +1954,7 @@
 3273£0£0£0£0£Todeskälte£Deathfrost
 3274£35501£24£0£0£+$k1 Ausweichen und +$55283s1% Schildblockwert£+$k1 Dodge and +$55283s1% Shield Block Value
 3275£35503£12£0£0£+$k1 Intelligenz und +$55275s1% maximales Mana£+$k1 Intellect and +$55275s1% Maximum Mana
-3276£35487£20£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3276£35487£10£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 3277£35488£12£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 3278£35489£12£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 3279£0£3£0£0£+$k1 Zaubermacht£+$k1 Spell Power
@@ -1973,11 +1967,11 @@
 3286£35760£5£10£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 3287£35761£20£0£0£+$k1 Tempo£+$k1 Haste
 3288£0£0£0£0£Test Reitgertenverzauberung£Test Riding Crop Enchant
-3289£0£0£0£0£+10% Reittiertempo£+10% Mount Speed
+3289£0£0£0£0£+10% Reitgeschwindigkeit£+10% Mount Speed
 3290£0£0£0£0£Federgetriebener Unhangexpander£Spring Loaded Cape Expander
 3291£0£0£0£0£Test On Use Charges£Test On Use Charges
-3292£36766£34£0£0£+$k1 Beweglichkeit£+$k1 Agility
-3293£36767£51£0£0£+$k1 Ausdauer£+$k1 Stamina
+3292£36766£20£0£0£+$k1 Beweglichkeit£+$k1 Agility
+3293£36767£30£0£0£+$k1 Ausdauer£+$k1 Stamina
 3294£0£25£0£0£+$k1 Ausdauer£+$k1 Stamina
 3295£0£16£20£20£+$k1 Tempo£+$k1 Haste
 3296£0£0£10£0£+$k2 Willenskraft und 2% verringerte Bedrohung£+$k2 Spirit and 2% Reduced Threat
@@ -1999,7 +1993,7 @@
 3312£0£8£0£0£+$k1 Stärke£+$k1 Strength
 3313£0£8£0£0£+$k1 Beweglichkeit£+$k1 Agility
 3314£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3315£0£0£0£0£+3% Reittiertempo£+3% Mount Speed
+3315£0£0£0£0£+3% Reitgeschwindigkeit£+3% Mount Speed
 3316£0£6£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3317£37430£24£0£0£+$k1 Ausdauer£+$k1 Stamina
 3318£37503£5£10£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
@@ -2009,13 +2003,13 @@
 3322£0£100£0£0£Gefrorene Runenwaffe£Frozen Rune Weapon
 3324£34835£10£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3325£0£45£15£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
-3326£0£15£55£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
+3326£0£15£27£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
 3327£0£55£22£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
-3328£0£22£75£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
+3328£0£22£37£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
 3329£0£12£0£0£+$k1 Ausdauer£+$k1 Stamina
 3330£0£18£0£0£+$k1 Ausdauer£+$k1 Stamina
 3331£0£72£35£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
-3332£0£36£100£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
+3332£0£36£50£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
 3333£38498£0£0£0£QA Test Leer - Violette Edelsteinverzauberung£QA Test Blank Purple Gem Enchant
 3334£38538£1£0£0£Nordendflug£Northrend Flight
 3335£38545£10£0£0£+$k1 Beweglichkeit£+$k1 Agility
@@ -2028,26 +2022,23 @@
 3342£0£100£0£0£Gefrorene Runenklinge 3£Frozen Rune Weapon 3
 3343£0£100£0£0£Gefrorene Runenklinge 4£Frozen Rune Weapon 4
 3344£0£100£0£0£Gefrorene Runenklinge 5£Frozen Rune Weapon 5
-3345£0£20£0£0£Lebensgeister£Earthliving
-3351£0£6£0£0£+$k1 Trefferwert£+$k1 Hit
+3351£0£6£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3352£0£8£0£0£+$k1 Willenskraft£+$k1 Spirit
 3353£0£8£0£0£+$k1 Intelligenz£+$k1 Intellect
 3354£0£12£0£0£+$k1 Ausdauer£+$k1 Stamina
 3355£0£6£0£0£+$k1 Beweglichkeit£+$k1 Agility
-3356£0£12£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3356£0£6£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 3357£0£6£0£0£+$k1 Stärke£+$k1 Strength
 3358£0£6£0£0£+$k1 Ausweichen£+$k1 Dodge
 3359£0£4£0£0£+$k1 Parieren£+$k1 Parry
 3360£0£8£0£0£+$k1 Parieren£+$k1 Parry
 3361£0£6£0£0£+$k1 Blocken£+$k1 Block
-3362£0£6£0£0£+$k1 Waffenkunde£+$k1 Expertise
+3362£0£6£0£0£+$k1 Tempo£+$k1 Haste
 3363£0£0£0£0£+9 Blockwert£+9 Block Value
 3364£0£0£0£0£Runenwaffe verstärken£Empower Rune Weapon
-3365£0£0£0£0£Rune des Schwertberstens£Rune of Swordshattering
 3366£0£100£0£0£Rune des Lichbanns£Rune of Lichbane
 3367£0£0£0£0£Rune des Zauberberstens£Rune of Spellshattering
 3368£0£0£0£0£Rune des gefallenen Kreuzfahrers£Rune of the Fallen Crusader
-3369£0£0£0£0£Rune des schwarzen Gletschers£Rune of Cinderglacier
 3370£0£100£100£0£Rune des schneidenden Eises£Rune of Razorice
 3371£39900£12£0£0£+$k1 Stärke£+$k1 Strength
 3374£39905£12£0£0£+$k1 Beweglichkeit£+$k1 Agility
@@ -2055,11 +2046,11 @@
 3376£39907£24£0£0£+$k1 Ausweichen£+$k1 Dodge
 3377£39908£24£0£0£+$k1 Parieren£+$k1 Parry
 3378£39909£24£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3379£39910£24£0£0£+$k1 Waffenkunde£+$k1 Expertise
+3379£39910£24£0£0£+$k1 Tempo£+$k1 Haste
 3380£39911£12£0£0£+$k1 Intelligenz£+$k1 Intellect
 3381£39912£12£0£0£+$k1 Intelligenz£+$k1 Intellect
 3382£39914£24£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3383£39915£24£0£0£+$k1 Trefferwert£+$k1 Hit
+3383£39915£24£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3384£39916£24£0£0£+$k1 Ausweichen£+$k1 Dodge
 3385£39917£12£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 3386£39918£24£0£0£+$k1 Tempo£+$k1 Haste
@@ -2074,48 +2065,48 @@
 3395£39937£6£9£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
 3396£39938£12£9£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 3397£39939£12£9£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
-3398£39940£12£9£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
+3398£39940£12£9£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 3399£39941£6£12£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-3400£39942£6£12£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3400£39942£6£12£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3401£39943£6£12£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-3402£39944£6£12£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3402£39944£6£12£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3403£39945£6£6£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
 3404£39946£6£12£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 3405£39947£6£12£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-3406£39953£6£12£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3406£39953£6£12£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3407£39949£6£12£0£+$k1 Stärke und +$k2 Ausweichen£+$k1 Strength and +$k2 Dodge
 3408£39950£6£6£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
 3409£39951£6£12£0£+$k1 Stärke und +$k2 Tempo£+$k1 Strength and +$k2 Haste
 3410£39952£6£12£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-3411£39948£6£12£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+3411£39948£6£12£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 3412£39954£6£6£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
 3413£39955£6£12£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
 3414£39956£6£12£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
-3415£39957£6£12£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
+3415£39957£6£12£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 3416£39958£6£6£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 3417£39959£6£12£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 3418£39964£12£12£0£+$k1 Ausweichen und +$k2 Parieren£+$k1 Dodge and +$k2 Parry
 3419£39965£12£12£0£+$k1 Parieren und +$k2 Ausweichen£+$k1 Parry and +$k2 Dodge
-3420£39966£12£12£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
-3421£39967£12£12£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+3420£39966£12£12£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+3421£39967£12£12£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 3422£39960£6£12£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-3423£39961£6£12£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3423£39961£6£12£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3424£39962£6£6£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
 3426£39963£6£12£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
 3427£39968£6£9£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 3428£39974£12£9£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
-3429£39975£12£12£0£+$k1 Trefferwert und +$k2 Ausweichen£+$k1 Hit and +$k2 Dodge
+3429£39975£12£12£0£+$k1 kritischer Trefferwert und +$k2 Ausweichen£+$k1 Critical Strike and +$k2 Dodge
 3430£39976£12£9£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 3431£39977£6£9£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 3432£39978£12£9£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 3433£39979£6£12£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3434£39980£12£12£0£+$k1 kritischer Trefferwert und +$k2 Willenskraft£+$k1 Critical Strike and +$k2 Spirit
-3435£39981£12£12£0£+$k1 Trefferwert und +$k2 Tempo£+$k1 Hit and +$k2 Haste
+3435£39981£12£12£0£+$k1 kritischer Trefferwert und +$k2 Tempo£+$k1 Critical Strike and +$k2 Haste
 3436£39982£6£12£0£+$k1 PvP-Abhärtung und +$k2 Willenskraft£+$k1 PvP Resilience and +$k2 Spirit
 3437£39983£12£12£0£+$k1 Tempo und +$k2 Willenskraft£+$k1 Haste and +$k2 Spirit
 3438£39984£6£12£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3439£39985£12£12£0£+$k1 kritischer Trefferwert und +$k2 Willenskraft£+$k1 Critical Strike and +$k2 Spirit
-3440£39986£12£12£0£+$k1 Trefferwert und +$k2 Tempo£+$k1 Hit and +$k2 Haste
+3440£39986£12£12£0£+$k1 kritischer Trefferwert und +$k2 Tempo£+$k1 Critical Strike and +$k2 Haste
 3441£39988£6£12£0£+$k1 PvP-Abhärtung und +$k2 Willenskraft£+$k1 PvP Resilience and +$k2 Spirit
 3442£39989£12£12£0£+$k1 Tempo und +$k2 Willenskraft£+$k1 Haste and +$k2 Spirit
 3443£39990£12£6£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
@@ -2128,14 +2119,14 @@
 3450£40000£32£0£0£+$k1 Ausweichen£+$k1 Dodge
 3451£40001£32£0£0£+$k1 Parieren£+$k1 Parry
 3452£40002£32£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3453£40003£32£0£0£+$k1 Waffenkunde£+$k1 Expertise
+3453£40003£32£0£0£+$k1 Tempo£+$k1 Haste
 3454£40008£24£0£0£+$k1 Ausdauer£+$k1 Stamina
 3455£40009£32£0£0£+$k1 Willenskraft£+$k1 Spirit
 3456£40010£32£0£0£+$k1 Willenskraft£+$k1 Spirit
 3457£40011£16£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 3458£40012£16£0£0£+$k1 Intelligenz£+$k1 Intellect
 3459£40013£32£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3460£40014£32£0£0£+$k1 Trefferwert£+$k1 Hit
+3460£40014£32£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3461£40015£32£0£0£+$k1 Ausweichen£+$k1 Dodge
 3462£40016£16£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 3463£40017£32£0£0£+$k1 Tempo£+$k1 Haste
@@ -2146,48 +2137,48 @@
 3468£40031£16£12£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 3469£40032£16£12£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
 3470£40033£16£12£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
-3471£40034£16£12£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
+3471£40034£16£12£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 3472£40026£8£16£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3473£40027£8£16£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-3474£40024£8£16£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-3475£40030£8£16£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3474£40024£8£16£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+3475£40030£8£16£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3476£40028£8£8£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
 3477£40037£8£16£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-3478£40038£8£16£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+3478£40038£8£16£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 3479£40039£8£16£0£+$k1 Stärke und +$k2 Ausweichen£+$k1 Strength and +$k2 Dodge
 3480£40040£8£8£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
 3481£40041£8£16£0£+$k1 Stärke und +$k2 Tempo£+$k1 Strength and +$k2 Haste
 3482£40043£8£16£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-3483£40044£8£16£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3483£40044£8£16£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3484£40045£8£8£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
 3485£40046£8£16£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
 3486£40047£8£16£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 3487£40048£8£16£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
-3488£40049£8£16£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
+3488£40049£8£16£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 3489£40050£8£8£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 3490£40051£8£16£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 3491£40052£8£16£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-3492£40053£8£16£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3492£40053£8£16£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3493£40054£8£8£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
 3494£40055£8£16£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
 3495£40056£16£16£0£+$k1 Ausweichen und +$k2 Parieren£+$k1 Dodge and +$k2 Parry
 3496£40057£16£16£0£+$k1 Parieren und +$k2 Ausweichen£+$k1 Parry and +$k2 Dodge
-3497£40058£16£16£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
-3498£40059£16£16£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+3497£40058£16£16£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+3498£40059£16£16£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 3499£40085£8£12£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 3500£40086£16£12£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
-3501£40088£16£16£0£+$k1 Trefferwert und +$k2 Ausweichen£+$k1 Hit and +$k2 Dodge
+3501£40088£16£16£0£+$k1 kritischer Trefferwert und +$k2 Ausweichen£+$k1 Critical Strike and +$k2 Dodge
 3502£40089£16£12£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 3503£40090£8£12£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 3504£40091£16£12£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 3505£40092£8£16£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3506£40095£16£16£0£+$k1 kritischer Trefferwert und +$k2 Willenskraft£+$k1 Critical Strike and +$k2 Spirit
-3507£40099£16£16£0£+$k1 Trefferwert und +$k2 Tempo£+$k1 Hit and +$k2 Haste
+3507£40099£16£16£0£+$k1 kritischer Trefferwert und +$k2 Tempo£+$k1 Critical Strike and +$k2 Haste
 3508£40102£8£16£0£+$k1 PvP-Abhärtung und +$k2 Willenskraft£+$k1 PvP Resilience and +$k2 Spirit
 3509£40104£16£16£0£+$k1 Tempo und +$k2 Willenskraft£+$k1 Haste and +$k2 Spirit
 3510£40094£8£16£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3511£40096£16£16£0£+$k1 kritischer Trefferwert und +$k2 Willenskraft£+$k1 Critical Strike and +$k2 Spirit
-3512£40100£16£16£0£+$k1 Trefferwert und +$k2 Tempo£+$k1 Hit and +$k2 Haste
+3512£40100£16£16£0£+$k1 kritischer Trefferwert und +$k2 Tempo£+$k1 Critical Strike and +$k2 Haste
 3513£40103£8£16£0£+$k1 Willenskraft und +$k2 PvP-Abhärtung£+$k1 Spirit and +$k2 PvP Resilience
 3514£40105£16£16£0£+$k1 Tempo und +$k2 Willenskraft£+$k1 Haste and +$k2 Spirit
 3515£40098£16£8£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
@@ -2199,11 +2190,11 @@
 3521£40114£20£0£0£+$k1 Beweglichkeit£+$k1 Agility
 3522£40115£40£0£0£+$k1 Ausweichen£+$k1 Dodge
 3523£40116£40£0£0£+$k1 Parieren£+$k1 Parry
-3524£40118£40£0£0£+$k1 Waffenkunde£+$k1 Expertise
+3524£40118£40£0£0£+$k1 Tempo£+$k1 Haste
 3525£40117£40£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3526£40123£20£0£0£+$k1 Intelligenz£+$k1 Intellect
 3527£40124£40£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3528£40125£40£0£0£+$k1 Trefferwert£+$k1 Hit
+3528£40125£40£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3529£40126£40£0£0£+$k1 Ausweichen£+$k1 Dodge
 3530£40127£20£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 3531£40128£40£0£0£+$k1 Tempo£+$k1 Haste
@@ -2217,49 +2208,49 @@
 3539£40136£10£15£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
 3540£40138£20£15£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 3541£40139£20£15£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
-3542£40141£20£15£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
+3542£40141£20£15£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 3543£40140£20£15£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
-3544£40131£10£20£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3544£40131£10£20£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3545£40133£10£20£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3546£40134£10£20£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-3547£40137£10£20£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3547£40137£10£20£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3548£40135£10£10£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
 3549£40142£10£20£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-3550£40143£10£20£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+3550£40143£10£20£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 3551£40144£10£20£0£+$k1 Stärke und +$k2 Ausweichen£+$k1 Strength and +$k2 Dodge
 3552£40145£10£10£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
 3553£40146£10£20£0£+$k1 Stärke und +$k2 Tempo£+$k1 Strength and +$k2 Haste
 3554£40147£10£20£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-3555£40148£10£20£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3555£40148£10£20£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3556£40149£10£10£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
 3557£40150£10£20£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
 3558£40151£10£20£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3559£40152£10£20£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
-3560£40153£10£20£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
+3560£40153£10£20£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 3561£40154£10£10£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 3563£40155£10£10£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 3564£40156£10£20£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-3565£40157£10£20£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3565£40157£10£20£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3566£40158£10£10£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
 3567£40159£10£20£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
 3568£40160£20£20£0£+$k1 Ausweichen und +$k2 Parieren£+$k1 Dodge and +$k2 Parry
 3569£40161£20£20£0£+$k1 Parieren und +$k2 Ausweichen£+$k1 Parry and +$k2 Dodge
-3570£40162£20£20£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
-3571£40163£20£20£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+3570£40162£20£20£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+3571£40163£20£20£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 3572£40164£10£15£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 3573£40165£20£15£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
-3574£40166£20£20£0£+$k1 Trefferwert und +$k2 Ausweichen£+$k1 Hit and +$k2 Dodge
+3574£40166£20£20£0£+$k1 kritischer Trefferwert und +$k2 Ausweichen£+$k1 Critical Strike and +$k2 Dodge
 3575£40167£20£15£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 3576£40168£10£15£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 3577£40169£20£15£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 3578£40170£10£20£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3579£40171£20£20£0£+$k1 kritischer Trefferwert und +$k2 Willenskraft£+$k1 Critical Strike and +$k2 Spirit
-3580£40172£20£20£0£+$k1 Trefferwert und +$k2 Tempo£+$k1 Hit and +$k2 Haste
+3580£40172£20£20£0£+$k1 kritischer Trefferwert und +$k2 Tempo£+$k1 Critical Strike and +$k2 Haste
 3581£40173£10£20£0£+$k1 PvP-Abhärtung und +$k2 Willenskraft£+$k1 PvP Resilience and +$k2 Spirit
 3582£40174£20£20£0£+$k1 Tempo und +$k2 Willenskraft£+$k1 Haste and +$k2 Spirit
 3583£40175£10£20£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3584£40176£20£20£0£+$k1 kritischer Trefferwert und +$k2 Willenskraft£+$k1 Critical Strike and +$k2 Spirit
-3585£40177£20£20£0£+$k1 Trefferwert und +$k2 Tempo£+$k1 Hit and +$k2 Haste
+3585£40177£20£20£0£+$k1 kritischer Trefferwert und +$k2 Tempo£+$k1 Critical Strike and +$k2 Haste
 3586£40178£10£20£0£+$k1 PvP-Abhärtung und +$k2 Willenskraft£+$k1 PvP Resilience and +$k2 Spirit
 3587£40179£10£20£0£+$k1 Tempo und +$k2 Willenskraft£+$k1 Haste and +$k2 Spirit
 3588£40180£20£10£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
@@ -2268,7 +2259,6 @@
 3591£40232£4£2£0£+$k1 Intelligenz und alle 5 Sek. +$k2 Mana£Test +$k1 Intellect and +$k2 Mana every 5 seconds
 3592£0£0£0£0£+$54288s1 Zaubermacht gegen Untote£+$54288s1 Spell Power vs Undead
 3593£0£0£0£0£+$54289s1 Angriffskraft gegen Untote£+$54289s1 Attack Power vs Undead
-3594£0£0£0£0£Rune des Schwertbrechens£Rune of Swordbreaking
 3595£0£0£0£0£Rune des Zauberbrechens£Rune of Spellbreaking
 3596£0£5£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 3597£0£0£0£0£Meisterlicher Feuerstein£Master Firestone
@@ -2276,11 +2266,9 @@
 3600£0£6£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 3601£0£0£0£0£Bombengürtel£Frag Belt
 3602£0£7£0£0£+$k1 Zaubermacht£+$k1 Spell Power
-3603£0£0£0£0£Handmontierte Pyrorakete£Hand-Mounted Pyro Rocket
-3604£0£0£1£0£Hypergeschwindigkeitsbeschleuniger£Hyperspeed Accelerators
 3605£0£0£23£0£Dehnbares Innenfutter£Flexweave Underlay
 3607£0£40£0£0£+$k1 Distanzangriffstempo£+$k1 Ranged Haste
-3608£0£40£0£0£+$k1 kritischer Distanztrefferwert£+$k1 Ranged Critical Strike
+3608£0£40£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3609£0£0£0£0£Feuerstein£Firestone
 3610£0£0£0£0£Feuerstein£Firestone
 3611£0£0£0£0£Großer Feuerstein£Greater Firestone
@@ -2297,13 +2285,13 @@
 3622£41307£50£0£0£+$k1 kritischer Trefferwert und $11818s1% Zauberreflexion£+$k1 Critical Strike and $11818s1% Spell Reflect
 3623£41333£21£0£0£+$k1 Intelligenz und +$55275s1% maximales Mana£+$k1 Intellect and +$55275s1% Maximum Mana
 3624£41335£42£0£0£+$k1 kritischer Trefferwert und um $55378s1% verringerte Dauer von Bewegungseinschränkung£+$k1 Critical Strike and Reduces Snare/Root Duration by $55378s1%
-3625£41339£42£0£0£+$k1 kritischer Trefferwert und geringe Bewegungstempoerhöhung£+$k1 Critical Strike and Minor Run Speed Increase
+3625£41339£42£0£0£+$k1 kritischer Trefferwert und geringe Geschwindigkeitserhöhung£+$k1 Critical Strike and Minor Run Speed Increase
 3626£41395£21£0£0£+$k1 Intelligenz und um 2% verringerte Bedrohung£+$k1 Intellect and 2% Reduced Threat
 3627£41401£21£0£0£+$k1 Intelligenz und Chance, beim Zauberwirken Mana zu regenerieren£+$k1 Intellect and Chance to restore mana on spellcast
 3628£41398£21£0£0£+$k1 Beweglichkeit und um $44797s1% erhöhter kritischer Effekt£+$k1 Agility and $44797s1% Increased Critical Effect
-3630£0£42£0£0£+$k1 Ausweichen und Chance, bei einem Treffer Gesundheit zu regenerieren£+$k1 Dodge and Chance to Restore Health on hit
+3630£0£42£0£0£+$k1 Ausweichen und Chance, bei einem Treffer Gesundheit zu regenerieren£+$k1 Dodge and Chance to Restore Health on Hit
 3631£41396£42£0£0£+$k1 Ausweichen und +$55283s1% Schildblockwert£+$k1 Dodge and +$55283s1% Shield Block Value
-3632£41375£21£0£0£+$k1 Intelligenz und geringe Bewegungstempoerhöhung£+$k1 Intellect and Minor Run Speed Increase
+3632£41375£21£0£0£+$k1 Intelligenz und geringe Geschwindigkeitserhöhung£+$k1 Intellect and Minor Run Speed Increase
 3633£41376£42£0£0£+$k1 Willenskraft und um 3% erhöhter kritischer Effekt£+$k1 Spirit and 3% Increased Critical Effect
 3634£41377£32£0£0£+$k1 Ausdauer und um 2% verringerter Zauberschaden£+$k1 Stamina and Reduce Spell Damage Taken by 2%
 3635£41378£21£0£0£+$k1 Intelligenz und um 10% verringerte Dauer von Stilleeffekten£+$k1 Intellect and Silence Duration Reduced by 10%
@@ -2317,7 +2305,7 @@
 3643£41400£16£0£0£Chance, Nahkampf- und Distanzangriffstempo zu erhöhen£Chance to Increase Melee/Ranged Attack Speed
 3644£41434£14£0£0£+$k1 Beweglichkeit£+$k1 Agility
 3646£41439£28£0£0£+$k1 Ausweichen£+$k1 Dodge
-3647£41437£28£0£0£+$k1 Waffenkunde£+$k1 Expertise
+3647£41437£28£0£0£+$k1 Tempo£+$k1 Haste
 3648£41435£28£0£0£+$k1 Parieren£+$k1 Parry
 3649£41432£14£0£0£+$k1 Stärke£+$k1 Strength
 3650£41438£14£0£0£+$k1 Intelligenz£+$k1 Intellect
@@ -2330,51 +2318,51 @@
 3657£41448£28£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3658£41449£28£0£0£+$k1 Ausweichen£+$k1 Dodge
 3659£41446£28£0£0£+$k1 Tempo£+$k1 Haste
-3660£41447£28£0£0£+$k1 Trefferwert£+$k1 Hit
+3660£41447£28£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3661£41444£14£0£0£+$k1 Intelligenz£+$k1 Intellect
 3662£41445£14£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-3663£41454£7£14£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3663£41454£7£14£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3664£41450£7£10£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
 3665£41456£14£10£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
-3666£41462£7£14£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3666£41462£7£14£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3667£41460£7£10£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
 3668£41458£14£10£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
-3669£41453£14£10£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
+3669£41453£14£10£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 3670£41451£14£10£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
 3671£41461£7£10£0£+$k1 Stärke und +$k2 Ausdauer£+$k1 Strength and +$k2 Stamina
 3672£41459£7£14£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3673£41457£7£14£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3674£41455£7£7£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
 3675£41452£7£10£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
-3676£0£14£7£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert (ALT)£+$k1 Attack Power and +$k2 Critical Strike (OLD)
+3676£0£7£7£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert (ALT)£+$k1 Attack Power and +$k2 Critical Strike (OLD)
 3677£41485£7£14£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
 3678£41501£7£14£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
-3679£41496£7£14£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3679£41496£7£14£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3680£41487£7£7£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
 3681£41492£7£14£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-3682£41488£7£14£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+3682£41488£7£14£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 3683£41483£7£7£0£+$k1 Stärke und +$k2 Ausweichen£+$k1 Strength and +$k2 Dodge
 3684£41499£7£7£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
 3685£41489£7£14£0£+$k1 Stärke und +$k2 Tempo£+$k1 Strength and +$k2 Haste
 3686£41484£7£14£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-3687£41491£7£14£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
+3687£41491£7£14£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3688£41493£7£7£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
 3689£41494£7£14£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3690£41495£7£14£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
-3691£41502£7£14£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
+3691£41502£7£14£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 3692£41486£7£7£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 3693£41497£7£14£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 3694£41500£14£14£0£+$k1 Ausweichen und +$k2 Parieren£+$k1 Dodge and +$k2 Parry
 3695£41490£14£14£0£+$k1 Parieren und +$k2 Ausweichen£+$k1 Parry and +$k2 Dodge
-3696£41482£14£14£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
-3697£41498£14£14£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+3696£41482£14£14£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+3697£41498£14£14£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 3698£41470£14£14£0£+$k1 kritischer Trefferwert und +$k2 Willenskraft£+$k1 Critical Strike and +$k2 Spirit
 3699£41468£14£10£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
 3700£41464£14£10£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 3701£41467£14£14£0£+$k1 Tempo und +$k2 Willenskraft£+$k1 Haste and +$k2 Spirit
 3702£41466£14£10£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
-3703£41475£14£14£0£+$k1 Trefferwert und +$k2 Tempo£+$k1 Hit and +$k2 Haste
-3704£41481£14£14£0£+$k1 Trefferwert und +$k2 Ausweichen£+$k1 Hit and +$k2 Dodge
+3703£41475£14£14£0£+$k1 kritischer Trefferwert und +$k2 Tempo£+$k1 Critical Strike and +$k2 Haste
+3704£41481£14£14£0£+$k1 kritischer Trefferwert und +$k2 Ausweichen£+$k1 Critical Strike and +$k2 Dodge
 3705£41473£7£14£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3706£41479£7£10£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 3707£41480£7£14£0£+$k1 PvP-Abhärtung und +$k2 Willenskraft£+$k1 PvP Resilience and +$k2 Spirit
@@ -2382,7 +2370,7 @@
 3709£41472£14£7£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
 3710£41477£14£14£0£+$k1 kritischer Trefferwert und +$k2 Willenskraft£+$k1 Critical Strike and +$k2 Spirit
 3711£41463£7£14£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-3712£41469£14£14£0£+$k1 Trefferwert und +$k2 Tempo£+$k1 Hit and +$k2 Haste
+3712£41469£14£14£0£+$k1 kritischer Trefferwert und +$k2 Tempo£+$k1 Critical Strike and +$k2 Haste
 3713£41471£7£14£0£+$k1 PvP-Abhärtung und +$k2 Willenskraft£+$k1 PvP Resilience and +$k2 Spirit
 3714£41465£14£14£0£+$k1 Tempo und +$k2 Willenskraft£+$k1 Haste and +$k2 Spirit
 3715£41478£14£7£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
@@ -2392,66 +2380,54 @@
 3719£0£50£20£0£+$k1 Zaubermacht und +$k2 Willenskraft£+$k1 Spell Power and +$k2 Spirit
 3720£0£35£20£0£+$k1 Zaubermacht und +$k2 Ausdauer£+$k1 Spell Power and +$k2 Stamina
 3721£0£50£30£0£+$k1 Zaubermacht und +$k2 Ausdauer£+$k1 Spell Power and +$k2 Stamina
-3722£0£0£1£0£Hell leuchtendes Garn£Lightweave Embroidery
 3723£0£1£0£0£Handschuhsockel£Socket Gloves
 3726£0£0£0£0£+$i Tempo£+$i Haste
-3727£0£0£0£0£+$i Trefferwert£+$i Hit
-3728£0£0£1£0£Dunkel glühendes Garn£Darkglow Embroidery
+3727£0£0£0£0£+$i kritischer Trefferwert£+$i Critical Strike
 3729£0£1£0£0£Gürtelsockel£Socket Belt
-3730£0£0£1£0£Schwertwallgarn£Swordguard Embroidery
 3731£0£0£28£0£Titanwaffenkette£Titanium Weapon Chain
-3732£42142£34£0£0£+$k1 Stärke£+$k1 Strength
-3733£42143£34£0£0£+$k1 Beweglichkeit£+$k1 Agility
-3734£42144£34£0£0£+$k1 Intelligenz£+$k1 Intellect
-3735£42145£68£0£0£+$k1 Willenskraft£+$k1 Spirit
-3736£42146£68£0£0£+$k1 Willenskraft£+$k1 Spirit
-3737£42148£34£0£0£+$k1 Intelligenz£+$k1 Intellect
-3738£42149£68£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3739£42150£68£0£0£+$k1 Tempo£+$k1 Haste
-3740£42151£68£0£0£+$k1 Ausweichen£+$k1 Dodge
-3741£42152£68£0£0£+$k1 Parieren£+$k1 Parry
-3742£42156£68£0£0£+$k1 Trefferwert£+$k1 Hit
-3743£42157£68£0£0£+$k1 Ausweichen£+$k1 Dodge
-3744£42158£34£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-3745£42153£68£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3746£42154£68£0£0£+$k1 Waffenkunde£+$k1 Expertise
-3747£42155£34£0£0£+$k1 PvP-Macht£+$k1 PvP Power
-3748£0£0£0£0£Titanstachel (45-67)£Titanium Spike (45-67)
+3732£42142£20£0£0£+$k1 Stärke£+$k1 Strength
+3733£42143£20£0£0£+$k1 Beweglichkeit£+$k1 Agility
+3734£42144£20£0£0£+$k1 Intelligenz£+$k1 Intellect
+3735£42145£40£0£0£+$k1 Willenskraft£+$k1 Spirit
+3736£42146£40£0£0£+$k1 Willenskraft£+$k1 Spirit
+3737£42148£20£0£0£+$k1 Intelligenz£+$k1 Intellect
+3738£42149£40£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+3739£42150£40£0£0£+$k1 Tempo£+$k1 Haste
+3740£42151£40£0£0£+$k1 Ausweichen£+$k1 Dodge
+3741£42152£40£0£0£+$k1 Parieren£+$k1 Parry
+3742£42156£40£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+3743£42157£40£0£0£+$k1 Ausweichen£+$k1 Dodge
+3744£42158£20£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
+3745£42153£40£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+3746£42154£40£0£0£+$k1 Tempo£+$k1 Haste
+3747£42155£20£0£0£+$k1 PvP-Macht£+$k1 PvP Power
+3748£0£0£0£0£Titanstachel£Titanium Spike
 3749£42701£0£7£0£+$56527s1 alle Werte£+$56527s1 All Stats
 3750£42702£0£0£0£+$56529s1 alle Werte£+$56529s1 All Stats
 3751£0£6£0£0£+$k1 Ausweichen£+$k1 Dodge
 3752£0£5£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 3753£0£9£0£0£+$k1 Zaubermacht£+$k1 Spell Power
-3754£0£24£10£10£+$k1 Angriffskraft, +$k2 Ausdauer und +$k3 Trefferwert£+$k1 Attack Power +$k2 Stamina +$k3 Hit
-3755£0£28£12£0£+$k1 Angriffskraft und +$k2 Ausweichen£+$k1 Attack Power +$k2 Dodge
-3756£0£130£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-3757£0£102£0£0£+$k1 Ausdauer£+$k1 Stamina
-3758£0£57£0£0£+$k1 Intelligenz£+$k1 Intellect
-3759£0£102£0£0£+$k1 Ausdauer£+$k1 Stamina
-3760£0£102£0£0£+$k1 Ausdauer£+$k1 Stamina
-3761£0£102£0£0£+$k1 Ausdauer£+$k1 Stamina
-3762£0£102£0£0£+$k1 Ausdauer£+$k1 Stamina
-3763£0£102£0£0£+$k1 Ausdauer£+$k1 Stamina
-3764£0£12£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3754£0£12£10£10£+$k1 Angriffskraft, +$k2 Ausdauer und +$k3 kritischer Trefferwert£+$k1 Attack Power +$k3 Stamina +$k2 Critical Strike
+3755£0£14£12£0£+$k1 Angriffskraft und +$k2 Ausweichen£+$k1 Attack Power +$k2 Dodge
+3764£0£6£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 3765£0£4£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3766£0£12£0£0£+$k1 Ausdauer£+$k1 Stamina
 3767£41429£7£14£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3775£0£30£15£0£+$k1 Zaubermacht und +$k2 kritischer Trefferwert£+$k1 Spell Power and +$k2 Critical Strike
-3776£0£45£15£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
+3776£0£22£15£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
 3777£0£22£20£0£+$k2 Ausweichen und +$k1 Ausdauer£+$k2 Dodge and +$k1 Stamina
-3778£0£8£0£0£+$k1 Waffenkunde£+$k1 Expertise
-3788£0£25£25£0£+$k1 Trefferwert und +$k2 kritischer Trefferwert£+$k1 Hit and +$k2 Critical Strike
+3778£0£8£0£0£+$k1 Tempo£+$k1 Haste
+3788£0£50£25£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3789£0£0£0£0£Berserker£Berserking
 3790£0£0£0£0£Schwarzmagie£Black Magic
-3791£0£24£0£0£+$k1 Ausdauer£+$k1 Stamina
 3792£44066£20£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-3793£0£40£15£0£+$k1 Angriffskraft und +$k2 PvP-Abhärtung£+$k1 Attack Power and +$k2 PvP Resilience
-3794£0£23£15£0£+$k1 Zaubermacht und +$k2 PvP-Abhärtung£+$k1 Spell Power and +$k2 PvP Resilience
-3795£0£50£20£0£+$k1 Angriffskraft und +$k2 PvP-Abhärtung£+$k1 Attack Power and +$k2 PvP Resilience
+3793£0£20£15£0£+$k1 Angriffskraft£+$k1 Attack Power
+3794£0£23£15£0£+$k1 Zaubermacht£+$k1 Spell Power
+3795£0£25£20£0£+$k1 Angriffskraft und +$k2 PvP-Abhärtung£+$k1 Attack Power and +$k2 PvP Resilience
 3796£0£29£20£0£+$k1 Zaubermacht und +$k2 PvP-Abhärtung£+$k1 Spell Power and +$k2 PvP Resilience
 3797£0£29£20£0£+$k1 Zaubermacht und +$k2 PvP-Abhärtung£+$k1 Spell Power and +$k2 PvP Resilience
-3798£44076£17£0£0£+$k1 kritischer Trefferwert und geringe Bewegungstempoerhöhung£+$k1 Critical Strike and Minor Run Speed Increase
-3799£44078£17£0£0£+$k1 Intelligenz und geringe Bewegungstempoerhöhung£+$k1 Intellect and Minor Run Speed Increase
+3798£44076£17£0£0£+$k1 kritischer Trefferwert und geringe Geschwindigkeitserhöhung£+$k1 Critical Strike and Minor Run Speed Increase
+3799£44078£17£0£0£+$k1 Intelligenz und geringe Geschwindigkeitserhöhung£+$k1 Intellect and Minor Run Speed Increase
 3800£44082£17£0£0£+$k1 kritischer Trefferwert und um $55357s1% verkürzte Dauer von Furchteffekten£+$k1 Critical Strike and Fear Duration Reduced by $55357s1%
 3801£44081£17£0£0£+$k1 kritischer Trefferwert und um $55378s1% verringerte Dauer von Bewegungseinschränkung£+$k1 Critical Strike and Reduces Snare/Root Duration by $55378s1%
 3802£44084£17£0£0£+$k1 Intelligenz und um 10% verringerte Dauer von Stilleeffekten£+$k1 Intellect and Silence Duration Reduced by 10%
@@ -2460,7 +2436,7 @@
 3805£44089£17£0£0£+$k1 Intelligenz und um 10% verringerte Dauer von Betäubungseffekten£+$k1 Intellect and Stun Duration Reduced by 10%
 3806£0£18£10£0£+$k1 Zaubermacht und +$k2 kritischer Trefferwert£+$k1 Spell Power and +$k2 Critical Strike
 3807£0£15£10£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-3808£0£40£15£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
+3808£0£20£15£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
 3809£0£21£16£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3810£0£24£15£0£+$k1 Zaubermacht und +$k2 kritischer Trefferwert£+$k1 Spell Power and +$k2 Critical Strike
 3811£0£20£22£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
@@ -2469,35 +2445,33 @@
 3814£0£25£30£0£+$k1 Schattenwiderstand und +$k2 Ausdauer£+$k1 Shadow Resistance and +$k2 Stamina
 3815£0£25£30£0£+$k1 Arkanwiderstand und +$k2 Ausdauer£+$k1 Arcane Resistance and +$k2 Stamina
 3816£0£25£30£0£+$k1 Feuerwiderstand und +$k2 Ausdauer£+$k1 Fire Resistance and +$k2 Stamina
-3817£0£50£20£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
+3817£0£25£20£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
 3818£0£37£20£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
 3819£0£26£20£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3820£0£26£20£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 3821£0£8£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 3822£0£55£22£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
-3823£0£22£75£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
-3824£0£24£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3823£0£22£37£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
+3824£0£12£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 3825£0£15£0£0£+$k1 Tempo£+$k1 Haste
-3826£0£12£12£0£+$k1 Trefferwert und +$k2 kritischer Trefferwert£+$k1 Hit and +$k2 Critical Strike
-3827£0£110£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-3828£0£85£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-3829£0£35£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3826£0£24£12£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+3827£0£55£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3828£0£42£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3829£0£17£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 3830£0£50£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 3831£0£23£0£0£+$k1 Tempo£+$k1 Haste
 3832£0£0£0£0£+$60694s1 alle Werte£+$60694s1 All Stats
-3833£0£65£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3833£0£32£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 3834£0£63£0£0£+$k1 Zaubermacht£+$k1 Spell Power
-3835£0£120£15£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
-3836£0£60£15£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-3837£0£60£15£0£+$k1 Ausweichen und +$k2 Parieren£+$k1 Dodge and +$k2 Parry
-3838£0£70£15£0£+$k1 Zaubermacht und +$k2 kritischer Trefferwert£+$k1 Spell Power and +$k2 Critical Strike
-3839£0£32£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-3840£0£16£0£0£+$k1 Intelligenz£+$k1 Intellect
+3835£0£20£15£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
+3836£0£21£16£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
+3837£0£22£20£0£+$k2 Ausweichen und +$k1 Ausdauer£+$k2 Dodge and +$k1 Stamina
+3838£0£30£15£0£+$k1 Zaubermacht und +$k2 kritischer Trefferwert£+$k1 Spell Power and +$k2 Critical Strike
 3841£0£23£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 3842£0£30£25£0£+$k1 Ausdauer und +$k2 PvP-Abhärtung£+$k1 Stamina and +$k2 PvP Resilience
 3843£0£15£0£0£Zielfernrohr (+$k1 Schaden)£Scope (+$k1 Damage)
 3844£0£45£0£0£+$k1 Willenskraft£+$k1 Spirit
-3845£0£50£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3845£0£25£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 3846£0£40£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 3847£0£0£0£0£Rune des Steinhautgargoyles£Rune of the Stoneskin Gargoyle
 3848£0£1£0£0£Stabsockel£Socket Staff
@@ -2510,45 +2484,42 @@
 3855£0£69£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 3856£0£100£0£0£+$k1 Beweglichkeit£+$k1 Agility
 3857£0£6£0£0£+$k1 Ausweichen£+$k1 Dodge
-3858£0£5£0£0£+$k1 Trefferwert£+$k1 Hit
+3858£0£10£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3859£0£0£0£0£Elastisches Arachnogewebe£Springy Arachnoweave
-3860£0£0£0£0£Vernetzte Rüstungsverstärkung£Reticulated Armor Webbing
 3861£45862£20£0£0£+$k1 Stärke£+$k1 Strength
 3862£45879£20£0£0£+$k1 Beweglichkeit£+$k1 Agility
 3863£45880£30£0£0£+$k1 Ausdauer£+$k1 Stamina
 3864£45881£40£0£0£+$k1 Willenskraft£+$k1 Spirit
 3865£45882£20£0£0£+$k1 Intelligenz£+$k1 Intellect
 3866£45883£20£0£0£+$k1 Intelligenz£+$k1 Intellect
-3867£45987£40£0£0£+$k1 Trefferwert£+$k1 Hit
+3867£45987£40£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3868£0£0£0£0£Angelköder (+$8085s1 Angeln)£Fishing Lure (+$8085s1 Fishing Skill)
 3869£0£0£0£0£Klingenbarrikade£Blade Ward
 3870£0£0£0£0£Blutsauger£Blood Draining
 3871£0£6£0£0£+$k1 Parieren£+$k1 Parry
 3872£0£50£20£0£+$k1 Zaubermacht und +$k2 Willenskraft£+$k1 Spell Power and +$k2 Spirit
 3873£0£50£30£0£+$k1 Zaubermacht und +$k2 Ausdauer£+$k1 Spell Power and +$k2 Stamina
-3874£0£130£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-3875£0£30£10£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
+3875£0£15£10£0£+$k1 Angriffskraft und +$k2 kritischer Trefferwert£+$k1 Attack Power and +$k2 Critical Strike
 3876£0£15£10£0£+$k1 Ausweichen und +$k2 Parieren£+$k1 Dodge and +$k2 Parry
-3877£0£16£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+3877£0£8£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 3879£49110£0£0£0£+$k1 alle Werte£+$k1 All Stats
 3880£0£6£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3881£0£68£0£0£Alle 5 Sek. $k1 Mana£+$k1 Mana every 5 seconds
 3882£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3883£0£0£0£0£Rune der nerubischen Panzerung£Rune of the Nerubian Carapace
 3884£52070£24£24£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
 3885£52127£30£30£0£+$k1 Meisterschaft und +$k2 Willenskraft£+$k1 Mastery and +$k2 Spirit
-3886£52128£30£30£0£+$k1 Meisterschaft und +$k2 Trefferwert£+$k1 Mastery and +$k2 Hit
+3886£52128£30£30£0£+$k2 Meisterschaft und +$k1 kritischer Trefferwert£+$k2 Mastery and +$k1 Critical Strike
 3887£52130£35£35£0£+$k2 Meisterschaft und +$k1 Willenskraft£+$k2 Mastery and +$k1 Spirit
-3888£52129£35£35£0£+$k1 Meisterschaft und +$k2 Trefferwert£+$k1 Mastery and +$k2 Hit
+3888£52129£35£35£0£+$k2 Meisterschaft und +$k1 kritischer Trefferwert£+$k2 Mastery and +$k1 Critical Strike
 3889£52081£30£0£0£+$k1 Stärke£+$k1 Strength
 3890£52082£30£0£0£+$k1 Beweglichkeit£+$k1 Agility
 3891£52083£60£20£0£+$k1 Parieren£+$k1 Parry
 3892£52084£30£0£0£+$k1 Intelligenz£+$k1 Intellect
-3893£52085£60£20£0£+$k1 Waffenkunde£+$k1 Expertise
+3893£52085£60£20£0£+$k1 Tempo£+$k1 Haste
 3894£52086£45£20£0£+$k1 Ausdauer£+$k1 Stamina
 3895£52087£60£0£0£+$k1 Willenskraft£+$k1 Spirit
 3896£52088£30£20£0£+$k1 PvP-Macht£+$k1 PvP Power
-3897£52089£60£0£0£+$k1 Trefferwert£+$k1 Hit
+3897£52089£60£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3898£52090£60£0£0£+$k1 Ausweichen£+$k1 Dodge
 3899£52092£30£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 3900£52093£60£0£0£+$k1 Tempo£+$k1 Haste
@@ -2557,15 +2528,15 @@
 3903£52097£30£23£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
 3904£52096£15£23£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
 3905£52098£15£23£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
-3906£52099£30£23£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
+3906£52099£30£23£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 3907£52100£15£30£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-3908£52101£15£30£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
-3909£52102£15£30£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-3910£52103£30£30£0£+$k1 Parieren und +$k2 Trefferwert£+$k1 Parry and +$k2 Hit
-3911£52104£15£30£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
-3912£52105£30£30£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
+3908£52101£15£30£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
+3909£52102£15£30£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+3910£52103£30£30£0£+$k1 Parieren und +$k2 kritischer Trefferwert£+$k1 Parry and +$k2 Critical Strike
+3911£52104£15£30£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
+3912£52105£30£30£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 3913£52106£15£30£0£+$k1 Beweglichkeit und +$k2 Ausweichen£+$k1 Agility and +$k2 Dodge
-3914£52107£30£30£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+3914£52107£30£30£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 3915£52108£15£30£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 3916£52109£15£30£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3917£52110£15£30£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
@@ -2576,19 +2547,19 @@
 3922£52115£15£30£0£+$k1 Beweglichkeit und +$k2 Meisterschaft£+$k1 Agility and +$k2 Mastery
 3923£52116£30£30£0£+$k1 Parieren und +$k2 Meisterschaft£+$k1 Parry and +$k2 Mastery
 3924£52117£15£30£0£+$k1 Intelligenz und +$k2 Meisterschaft£+$k1 Intellect and +$k2 Mastery
-3925£52118£30£30£0£+$k1 Waffenkunde und +$k2 Meisterschaft£+$k1 Expertise and +$k2 Mastery
+3925£52118£30£30£0£+$k1 Tempo und +$k2 Meisterschaft£+$k1 Haste and +$k2 Mastery
 3926£52119£30£23£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
-3927£52120£30£30£0£+$k1 Ausweichen und +$k2 Trefferwert£+$k1 Dodge and +$k2 Hit
+3927£52120£30£30£0£+$k1 Ausweichen und +$k2 kritischer Trefferwert£+$k1 Dodge and +$k2 Critical Strike
 3928£52121£30£23£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
-3929£52122£30£30£0£+$k1 kritischer Trefferwert und +$k2 Trefferwert£+$k1 Critical Strike and +$k2 Hit
+3929£52122£60£30£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3930£52123£15£23£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 3931£52124£30£23£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
-3932£52125£30£30£0£+$k1 Tempo und +$k2 Trefferwert£+$k1 Haste and +$k2 Hit
+3932£52125£30£30£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 3933£52126£30£23£0£+$k1 Meisterschaft und +$k2 Ausdauer£+$k1 Mastery and +$k2 Stamina
 3936£52091£60£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-3937£52156£18£35£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+3937£52156£18£35£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 3938£52157£18£35£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-3939£52158£35£26£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
+3939£52158£35£26£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 3940£52159£18£26£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 3941£52160£35£26£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
 3942£52161£18£26£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
@@ -2598,24 +2569,24 @@
 3946£52165£35£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 3947£52166£70£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3948£52167£70£0£0£+$k1 Ausweichen£+$k1 Dodge
-3949£52168£70£0£0£+$k1 Trefferwert£+$k1 Hit
+3949£52168£70£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3950£52169£35£20£0£+$k1 PvP-Macht£+$k1 PvP Power
 3951£52170£70£0£0£+$k1 Willenskraft£+$k1 Spirit
 3952£52171£53£20£0£+$k1 Ausdauer£+$k1 Stamina
-3953£52172£70£0£0£+$k1 Waffenkunde£+$k1 Expertise
+3953£52172£70£0£0£+$k1 Tempo£+$k1 Haste
 3954£52173£35£0£0£+$k1 Intelligenz£+$k1 Intellect
 3955£52174£70£0£0£+$k1 Parieren£+$k1 Parry
 3956£52175£35£0£0£+$k1 Beweglichkeit£+$k1 Agility
 3957£52176£35£0£0£+$k1 Stärke£+$k1 Strength
 3958£52131£35£26£0£+$k1 Meisterschaft und +$k2 Ausdauer£+$k1 Mastery and +$k2 Stamina
-3959£52132£35£35£0£+$k1 Tempo und +$k2 Trefferwert£+$k1 Haste and +$k2 Hit
+3959£52132£35£35£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 3960£52133£35£26£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 3961£52134£18£26£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
-3962£52135£35£35£0£+$k1 kritischer Trefferwert und +$k2 Trefferwert£+$k1 Critical Strike and +$k2 Hit
+3962£52135£70£35£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 3963£52136£35£26£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
-3964£52137£35£35£0£+$k1 Ausweichen und +$k2 Trefferwert£+$k1 Dodge and +$k2 Hit
+3964£52137£35£35£0£+$k1 Ausweichen und +$k2 kritischer Trefferwert£+$k1 Dodge and +$k2 Critical Strike
 3965£52138£35£26£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
-3966£52139£35£35£0£+$k1 Waffenkunde und +$k2 Meisterschaft£+$k1 Expertise and +$k2 Mastery
+3966£52139£35£35£0£+$k1 Tempo und +$k2 Meisterschaft£+$k1 Haste and +$k2 Mastery
 3967£52140£18£35£0£+$k1 Intelligenz und +$k2 Meisterschaft£+$k1 Intellect and +$k2 Mastery
 3968£52141£35£35£0£+$k1 Parieren und +$k2 Meisterschaft£+$k1 Parry and +$k2 Mastery
 3969£52142£18£35£0£+$k1 Beweglichkeit und +$k2 Meisterschaft£+$k1 Agility and +$k2 Mastery
@@ -2626,19 +2597,19 @@
 3974£52147£18£35£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 3975£52148£18£35£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 3976£52149£18£35£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-3977£52150£35£35£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+3977£52150£35£35£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 3978£52151£18£35£0£+$k1 Beweglichkeit und +$k2 Ausweichen£+$k1 Agility and +$k2 Dodge
-3979£52152£35£35£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
-3980£52153£18£35£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
-3981£52154£35£35£0£+$k1 Parieren und +$k2 Trefferwert£+$k1 Parry and +$k2 Hit
-3982£52155£17£35£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-3983£52203£40£40£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
+3979£52152£35£35£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+3980£52153£18£35£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
+3981£52154£35£35£0£+$k1 Parieren und +$k2 kritischer Trefferwert£+$k1 Parry and +$k2 Critical Strike
+3982£52155£17£35£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+3983£52203£40£40£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 3984£52210£40£30£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
-3985£52213£20£40£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
-3986£52217£20£40£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
-3987£52220£20£40£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-3988£52221£40£30£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
-3989£52234£40£40£0£+$k1 Parieren und +$k2 Trefferwert£+$k1 Parry and +$k2 Hit
+3985£52213£20£40£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
+3986£52217£20£40£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
+3987£52220£20£40£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+3988£52221£40£30£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
+3989£52234£40£40£0£+$k1 Parieren und +$k2 kritischer Trefferwert£+$k1 Parry and +$k2 Critical Strike
 3990£52236£20£40£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 3991£52238£20£30£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
 3992£52243£20£30£0£+$k1 Stärke und +$k2 Ausdauer£+$k1 Strength and +$k2 Stamina
@@ -2647,13 +2618,13 @@
 3995£52207£40£0£0£+$k1 Intelligenz£+$k1 Intellect
 3996£52212£40£0£0£+$k1 Beweglichkeit£+$k1 Agility
 3997£52216£80£0£0£+$k1 Parieren£+$k1 Parry
-3998£52230£80£0£0£+$k1 Waffenkunde£+$k1 Expertise
+3998£52230£80£0£0£+$k1 Tempo£+$k1 Haste
 3999£52219£80£0£0£+$k1 Meisterschaft£+$k1 Mastery
 4000£52226£40£20£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 4001£52232£80£0£0£+$k1 Tempo£+$k1 Haste
 4002£52241£80£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4003£52247£80£20£0£+$k1 Ausweichen£+$k1 Dodge
-4004£52235£80£0£0£+$k1 Trefferwert£+$k1 Hit
+4004£52235£80£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4005£52242£60£0£0£+$k1 Ausdauer£+$k1 Stamina
 4006£52244£80£0£0£+$k1 Willenskraft£+$k1 Spirit
 4007£52246£40£0£0£+$k1 PvP-Macht£+$k1 PvP Power
@@ -2665,36 +2636,36 @@
 4013£52214£20£40£0£+$k1 Stärke und +$k2 Tempo£+$k1 Strength and +$k2 Haste
 4014£52215£40£40£0£+$k1 Parieren und +$k2 Meisterschaft£+$k1 Parry and +$k2 Mastery
 4015£52222£20£40£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-4016£52224£40£40£0£+$k1 Waffenkunde und +$k2 Meisterschaft£+$k1 Expertise and +$k2 Mastery
+4016£52224£40£40£0£+$k1 Tempo und +$k2 Meisterschaft£+$k1 Haste and +$k2 Mastery
 4017£52229£20£40£0£+$k1 Beweglichkeit und +$k2 Ausweichen£+$k1 Agility and +$k2 Dodge
 4018£52239£20£40£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 4019£52240£20£40£0£+$k1 Stärke und +$k2 Meisterschaft£+$k1 Strength and +$k2 Mastery
-4020£52249£40£40£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+4020£52249£40£40£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 4021£52218£40£30£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 4022£52223£40£30£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
-4023£52225£40£40£0£+$k1 Tempo und +$k2 Trefferwert£+$k1 Haste and +$k2 Hit
-4024£52227£40£40£0£+$k1 Ausweichen und +$k2 Trefferwert£+$k1 Dodge and +$k2 Hit
-4025£52228£40£40£0£+$k1 kritischer Trefferwert und +$k2 Trefferwert£+$k1 Critical Strike and +$k2 Hit
+4023£52225£40£40£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+4024£52227£40£40£0£+$k1 Ausweichen und +$k2 kritischer Trefferwert£+$k1 Dodge and +$k2 Critical Strike
+4025£52228£80£40£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4026£52231£20£30£0£+$k1 Meisterschaft und +$k2 Ausdauer£+$k1 Mastery and +$k2 Stamina
 4027£52233£40£30£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
-4028£52237£40£40£0£+$k1 Meisterschaft und +$k2 Trefferwert£+$k1 Mastery and +$k2 Hit
+4028£52237£40£40£0£+$k1 Meisterschaft und +$k2 kritischer Trefferwert£+$k1 Mastery and +$k2 Critical Strike
 4029£52245£20£30£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 4030£52250£40£40£0£+$k1 Meisterschaft und +$k2 Willenskraft£+$k1 Mastery and +$k2 Spirit
-4031£52255£67£20£0£+$k1 Stärke£+$k1 Strength
-4032£52257£67£0£0£+$k1 Intelligenz£+$k1 Intellect
-4033£52258£67£0£0£+$k1 Beweglichkeit£+$k1 Agility
-4034£52259£67£0£0£+$k1 Parieren£+$k1 Parry
-4035£52269£134£0£0£+$k1 Meisterschaft£+$k1 Mastery
-4036£52267£67£20£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-4037£52260£134£0£0£+$k1 Waffenkunde£+$k1 Expertise
-4038£52268£134£0£0£+$k1 Tempo£+$k1 Haste
-4039£52264£134£0£0£+$k1 Trefferwert£+$k1 Hit
-4040£52266£134£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-4041£52261£101£0£0£+$k1 Ausdauer£+$k1 Stamina
-4042£52262£134£0£0£+$k1 Willenskraft£+$k1 Spirit
-4043£52263£67£0£0£+$k1 PvP-Macht£+$k1 PvP Power
-4044£52265£134£20£0£+$k1 Ausweichen£+$k1 Dodge
-4045£52289£108£0£0£+$k1 Meisterschaft und geringe Bewegungstempoerhöhung£+$k1 Mastery and Minor Run Speed Increase
+4031£52255£40£20£0£+$k1 Stärke£+$k1 Strength
+4032£52257£40£0£0£+$k1 Intelligenz£+$k1 Intellect
+4033£52258£40£0£0£+$k1 Beweglichkeit£+$k1 Agility
+4034£52259£80£0£0£+$k1 Parieren£+$k1 Parry
+4035£52269£80£0£0£+$k1 Meisterschaft£+$k1 Mastery
+4036£52267£40£20£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
+4037£52260£80£0£0£+$k1 Tempo£+$k1 Haste
+4038£52268£80£0£0£+$k1 Tempo£+$k1 Haste
+4039£52264£80£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4040£52266£80£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4041£52261£60£0£0£+$k1 Ausdauer£+$k1 Stamina
+4042£52262£80£0£0£+$k1 Willenskraft£+$k1 Spirit
+4043£52263£40£0£0£+$k1 PvP-Macht£+$k1 PvP Power
+4044£52265£80£20£0£+$k1 Ausweichen£+$k1 Dodge
+4045£52289£108£0£0£+$k1 Meisterschaft und geringe Geschwindigkeitserhöhung£+$k1 Mastery and Minor Run Speed Increase
 4046£52291£108£0£0£+$k1 kritischer Trefferwert und um $44797s1% erhöhter kritischer Effekt£+$k1 Critical Strike and $44797s1% Increased Critical Effect
 4047£52292£54£0£0£+$k1 Intelligenz und um 2% verringerte Bedrohung£+$k1 Intellect and 2% Reduced Threat
 4048£52293£81£0£0£+$k1 Ausdauer und +$55283s1% Schildblockwert£+$k1 Stamina and +$55283s1% Shield Block Value
@@ -2707,11 +2678,11 @@
 4055£52300£108£0£0£+$k1 kritischer Trefferwert und um $55378s1% verringerte Dauer von Bewegungseinschränkung£+$k1 Critical Strike and Reduces Snare/Root Duration by $55378s1%
 4056£52301£108£0£0£+$k1 kritischer Trefferwert und um $55357s1% verkürzte Dauer von Furchteffekten£+$k1 Critical Strike and Fear Duration Reduced by $55357s1%
 4057£52302£54£0£0£+$k1 Intelligenz und um 10% verringerte Dauer von Stilleeffekten£+$k1 Intellect and Silence Duration Reduced by 10%
-4058£0£0£0£0£+$i Waffenkunde£+$i Expertise
+4058£0£0£0£0£+$i Tempo£+$i Haste
 4059£0£0£0£0£+$i Meisterschaft£+$i Mastery
 4060£0£0£0£0£+$i Parieren£+$i Parry
 4061£0£50£0£0£+$k1 Meisterschaft£+$k1 Mastery
-4062£0£30£0£0£+$k1 Ausdauer und geringe Bewegungstempoerhöhung£+$k1 Stamina and Minor Movement Speed
+4062£0£30£0£0£+$k1 Ausdauer und geringe Geschwindigkeitserhöhung£+$k1 Stamina and Minor Movement Speed
 4063£0£0£0£0£+$74190s1 alle Werte£+$74190s1 All Stats
 4064£0£56£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 4065£0£50£0£0£+$k1 Tempo£+$k1 Haste
@@ -2727,24 +2698,20 @@
 4075£0£35£0£0£+$k1 Stärke£+$k1 Strength
 4076£0£35£0£0£+$k1 Beweglichkeit£+$k1 Agility
 4077£0£40£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-4078£0£40£0£0£+$k1 Stärke£+$k1 Strength
-4079£0£40£0£0£+$k1 Beweglichkeit£+$k1 Agility
-4080£0£40£0£0£+$k1 Intelligenz£+$k1 Intellect
-4081£0£60£0£0£+$k1 Ausdauer£+$k1 Stamina
-4082£0£50£0£0£+$k1 Waffenkunde£+$k1 Expertise
+4082£0£50£0£0£+$k1 Tempo£+$k1 Haste
 4083£0£0£0£0£Hurrikan£Hurricane
 4084£0£0£0£0£Gesang des Herzens£Heartsong
 4085£0£50£0£0£+$k1 Meisterschaft£+$k1 Mastery
 4086£0£50£0£0£+$k1 Ausweichen£+$k1 Dodge
 4087£0£50£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4088£0£40£0£0£+$k1 Willenskraft£+$k1 Spirit
-4089£0£50£0£0£+$k1 Trefferwert£+$k1 Hit
+4089£0£50£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4090£0£30£0£0£+$k1 Ausdauer£+$k1 Stamina
 4091£0£40£0£0£+$k1 Intelligenz£+$k1 Intellect
-4092£0£50£0£0£+$k1 Trefferwert£+$k1 Hit
+4092£0£50£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4093£0£50£0£0£+$k1 Willenskraft£+$k1 Spirit
 4094£0£50£0£0£+$k1 Meisterschaft£+$k1 Mastery
-4095£0£50£0£0£+$k1 Waffenkunde£+$k1 Expertise
+4095£0£50£0£0£+$k1 Tempo£+$k1 Haste
 4096£0£50£0£0£+$k1 Intelligenz£+$k1 Intellect
 4097£0£0£0£0£Machtstrom£Power Torrent
 4098£0£0£0£0£Windwandler£Windwalk
@@ -2753,8 +2720,8 @@
 4101£0£65£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4102£0£0£0£0£+$74249s1 alle Werte£+$74249s1 All Stats
 4103£0£75£0£0£+$k1 Ausdauer£+$k1 Stamina
-4104£0£35£0£0£+$k1 Meisterschaft und geringe Bewegungstempoerhöhung£+$k1 Mastery and Minor Movement Speed
-4105£0£25£0£0£+$k1 Beweglichkeit und geringe Bewegungstempoerhöhung£+$k1 Agility and Minor Movement Speed
+4104£0£35£0£0£+$k1 Meisterschaft und geringe Geschwindigkeitserhöhung£+$k1 Mastery and Minor Movement Speed
+4105£0£25£0£0£+$k1 Beweglichkeit und geringe Geschwindigkeitserhöhung£+$k1 Agility and Minor Movement Speed
 4106£0£50£0£0£+$k1 Stärke£+$k1 Strength
 4107£0£65£0£0£+$k1 Meisterschaft£+$k1 Mastery
 4108£0£65£0£0£+$k1 Tempo£+$k1 Haste
@@ -2764,18 +2731,14 @@
 4112£0£95£80£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 4113£0£95£80£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 4114£0£95£55£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-4115£0£0£1£0£Hell leuchtendes Garn£Lightweave Embroidery
-4116£0£0£1£0£Dunkel glühendes Garn£Darkglow Embroidery
-4117£0£0£1£0£Schwertwallgarn£Swordguard Embroidery
-4118£0£0£1£0£Schwertwallgarn£Swordguard Embroidery
 4119£54616£50£0£0£+$k1 Stärke£+$k1 Strength
 4120£0£36£0£0£+$k1 Ausdauer£+$k1 Stamina
 4121£0£44£0£0£+$k1 Ausdauer£+$k1 Stamina
-4122£0£45£110£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
+4122£0£45£55£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
 4123£0£10£0£0£+$k1 Meisterschaft£+$k1 Mastery
 4124£0£85£45£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
 4125£0£30£0£0£+$k1 Willenskraft£+$k1 Spirit
-4126£0£55£190£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
+4126£0£55£95£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
 4127£0£145£55£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
 4128£0£30£0£0£+$k1 Tempo£+$k1 Haste
 4129£0£20£0£0£+$k1 Willenskraft£+$k1 Spirit
@@ -2790,7 +2753,7 @@
 4138£0£30£0£0£+$k1 Meisterschaft£+$k1 Mastery
 4139£0£20£0£0£+$k1 Parieren£+$k1 Parry
 4140£0£20£0£0£+$k1 Tempo£+$k1 Haste
-4141£0£20£0£0£+$k1 Trefferwert£+$k1 Hit
+4141£0£20£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4142£0£10£0£0£+$k1 Willenskraft£+$k1 Spirit
 4143£0£10£0£0£+$k1 Intelligenz£+$k1 Intellect
 4144£0£20£0£0£+$k1 Intelligenz£+$k1 Intellect
@@ -2809,40 +2772,33 @@
 4157£0£30£0£0£+$k1 Ausweichen£+$k1 Dodge
 4158£0£30£0£0£+$k1 Stärke£+$k1 Strength
 4159£0£45£0£0£+$k1 Ausdauer£+$k1 Stamina
-4160£0£10£0£0£+$k1 Trefferwert£+$k1 Hit
-4161£0£20£0£0£+$k1 Trefferwert£+$k1 Hit
-4162£0£30£0£0£+$k1 Trefferwert£+$k1 Hit
-4163£0£10£0£0£+$k1 Waffenkunde£+$k1 Expertise
-4164£0£20£0£0£+$k1 Waffenkunde£+$k1 Expertise
-4165£0£30£0£0£+$k1 Waffenkunde£+$k1 Expertise
+4160£0£10£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4161£0£20£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4162£0£30£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4163£0£10£0£0£+$k1 Tempo£+$k1 Haste
+4164£0£20£0£0£+$k1 Tempo£+$k1 Haste
+4165£0£30£0£0£+$k1 Tempo£+$k1 Haste
 4166£59477£208£20£0£+$k1 Ausweichen£+$k1 Dodge
 4167£59478£208£20£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4168£59479£208£20£0£+$k1 Tempo£+$k1 Haste
 4169£59480£208£20£0£+$k1 Meisterschaft£+$k1 Mastery
-4170£59489£208£20£0£+$k1 Waffenkunde£+$k1 Expertise
+4170£59489£208£20£0£+$k1 Tempo£+$k1 Haste
 4171£59491£208£20£0£+$k1 Parieren£+$k1 Parry
-4172£59493£208£20£0£+$k1 Trefferwert£+$k1 Hit
+4172£59493£208£20£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4173£59496£208£20£0£+$k1 Willenskraft£+$k1 Spirit
 4175£0£0£0£0£Gnomisches Röntgenzielfernrohr£Gnomish X-Ray Scope
-4176£0£88£0£0£+$k1 Distanztrefferwert£+$k1 Ranged Hit
+4176£0£88£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4177£0£88£0£0£+$k1 Distanzangriffstempo£+$k1 Ranged Haste
 4178£0£900£0£0£+$k1 Rüstung£+$k1 Armor
-4179£0£0£1£0£Synapsenfedern£Synapse Springs
-4180£0£0£1£0£Schnelldrehende Abwehrplatten£Quickflip Deflection Plates
-4181£0£0£0£0£Teserschocker£Tazik Shocker
 4184£0£10£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 4185£0£20£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 4186£0£30£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 4187£0£0£0£0£Unsichtbarkeitsfeld£Invisibility Field
 4188£0£0£0£0£Geerdeter Plasmaschild£Grounded Plasma Shield
-4189£0£195£0£0£+$k1 Ausdauer£+$k1 Stamina
-4190£0£130£0£0£+$k1 Beweglichkeit£+$k1 Agility
-4191£0£130£0£0£+$k1 Stärke£+$k1 Strength
-4192£0£130£0£0£+$k1 Intelligenz£+$k1 Intellect
-4193£0£130£25£0£+$k1 Beweglichkeit und +$k2 Meisterschaft£+$k1 Agility and +$k2 Mastery
-4194£0£130£25£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-4195£0£195£25£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
-4196£0£130£25£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
+4193£0£50£25£0£+$k1 Beweglichkeit und +$k2 Meisterschaft£+$k1 Agility and +$k2 Mastery
+4194£0£50£25£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
+4195£0£75£25£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
+4196£0£50£25£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 4197£0£45£20£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
 4198£0£75£25£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
 4199£0£30£20£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
@@ -2860,8 +2816,8 @@
 4212£63696£7£0£0£+$k1 Stärke£+$k1 Strength
 4213£63697£7£0£0£+$k1 Stärke£+$k1 Strength
 4214£0£0£0£0£Pappkamerad£Cardboard Assassin
-4215£0£0£0£0£Elementiumstachel (90-133)£Elementium Spike (90-133)
-4216£0£0£0£0£Pyriumstachel (210-350)£Pyrium Spike (210-350)
+4215£0£0£0£0£Elementiumstachel£Elementium Spike
+4216£0£0£0£0£Pyriumstachel£Pyrium Spike
 4217£0£0£40£0£Pyriumwaffenkette£Pyrium Weapon Chain
 4222£0£0£0£0£Gedankenverstärkungsschüssel£Mind Amplification Dish
 4223£0£0£24£0£Nitrobooster£Nitro Boosts
@@ -2892,17 +2848,17 @@
 4266£69923£50£15£0£+$k1 Beweglichkeit£+$k1 Agility
 4267£0£0£0£0£Flintlockes Holzhacker£Flintlocke's Woodchucker
 4270£0£145£55£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
-4273£71817£100£0£0£+$k1 Trefferwert£+$k1 Hit
+4273£71817£100£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4274£71818£100£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 4275£71819£100£0£0£+$k1 Willenskraft£+$k1 Spirit
 4276£71820£75£0£0£+$k1 Ausdauer£+$k1 Stamina
 4277£71822£50£50£0£+$k1 Willenskraft und +$k2 kritischer Trefferwert£+$k1 Spirit and +$k2 Critical Strike
-4278£71823£50£50£0£+$k1 kritischer Trefferwert und +$k2 Trefferwert£+$k1 Critical Strike and +$k2 Hit
-4279£71824£50£50£0£+$k1 Tempo und +$k2 Trefferwert£+$k1 Haste and +$k2 Hit
-4280£71825£50£50£0£+$k1 Trefferwert und +$k2 Meisterschaft£+$k1 Hit and +$k2 Mastery
+4278£71823£100£50£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4279£71824£50£50£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+4280£71825£50£50£0£+$k2 kritischer Trefferwert und +$k1 Meisterschaft£+$k2 Critical Strike and +$k1 Mastery
 4281£71826£50£25£0£+$k2 PvP-Macht und +$k1 Meisterschaft£+$k2 PvP Power and +$k1 Mastery
 4282£71827£50£50£0£+$k1 Willenskraft und +$k2 Meisterschaft£+$k1 Spirit and +$k2 Mastery
-4283£71828£50£25£0£+$k1 Trefferwert und +$k2 PvP-Abhärtung£+$k1 Hit and +$k2 PvP Resilience
+4283£71828£50£25£0£+$k1 kritischer Trefferwert und +$k2 PvP-Abhärtung£+$k1 Critical Strike and +$k2 PvP Resilience
 4284£71829£25£25£0£+$k1 PvP-Macht und +$k2 PvP-Abhärtung£+$k1 PvP Power and +$k2 PvP Resilience
 4285£71830£50£25£0£+$k1 Willenskraft und +$k2 PvP-Abhärtung£+$k1 Spirit and +$k2 PvP Resilience
 4286£71831£50£25£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
@@ -2911,45 +2867,45 @@
 4289£71834£50£37£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
 4290£71835£50£37£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 4291£71836£50£37£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
-4292£71837£50£50£0£+$k1 Trefferwert und +$k2 Ausweichen£+$k1 Hit and +$k2 Dodge
+4292£71837£50£50£0£+$k1 kritischer Trefferwert und +$k2 Ausweichen£+$k1 Critical Strike and +$k2 Dodge
 4293£71838£50£37£0£+$k1 Meisterschaft und +$k2 Ausdauer£+$k1 Mastery and +$k2 Stamina
 4294£71839£25£37£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 4295£71840£25£50£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-4296£71841£50£50£0£+$k1 Waffenkunde und +$k2 kritischer Trefferwert£+$k1 Expertise and +$k2 Critical Strike
+4296£71841£50£50£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 4297£71842£25£50£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 4298£71843£25£50£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4299£71844£25£50£0£+$k1 Beweglichkeit und +$k2 Ausweichen£+$k1 Agility and +$k2 Dodge
-4300£71845£50£50£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+4300£71845£50£50£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 4301£71846£50£50£0£+$k1 Parieren und +$k2 Ausweichen£+$k1 Parry and +$k2 Dodge
 4302£71847£25£50£0£+$k1 Stärke und +$k2 Ausweichen£+$k1 Strength and +$k2 Dodge
 4303£71848£25£50£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
-4304£71849£50£50£0£+$k1 Waffenkunde und +$k2 Tempo£+$k1 Expertise and +$k2 Haste
+4304£71849£50£50£0£+$k1 Tempo£+$k1 Haste
 4305£71850£25£50£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 4306£71851£25£50£0£+$k1 Stärke und +$k2 Tempo£+$k1 Strength and +$k2 Haste
 4307£71852£25£50£0£+$k1 Beweglichkeit und +$k2 Meisterschaft£+$k1 Agility and +$k2 Mastery
-4308£71853£50£50£0£+$k1 Waffenkunde und +$k2 Meisterschaft£+$k1 Expertise and +$k2 Mastery
+4308£71853£50£50£0£+$k1 Tempo und +$k2 Meisterschaft£+$k1 Haste and +$k2 Mastery
 4309£71854£25£50£0£+$k1 Intelligenz und +$k2 Meisterschaft£+$k1 Intellect and +$k2 Mastery
 4310£71855£50£50£0£+$k1 Parieren und +$k2 Meisterschaft£+$k1 Parry and +$k2 Mastery
 4311£71856£25£50£0£+$k1 Stärke und +$k2 Meisterschaft£+$k1 Strength and +$k2 Mastery
 4312£71857£25£25£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
-4313£71858£50£25£0£+$k1 Waffenkunde und +$k2 PvP-Abhärtung£+$k1 Expertise and +$k2 PvP Resilience
+4313£71858£50£25£0£+$k1 Tempo und +$k2 PvP-Abhärtung£+$k1 Haste and +$k2 PvP Resilience
 4314£71859£25£25£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 4315£71860£50£25£0£+$k1 Parieren und +$k2 PvP-Abhärtung£+$k1 Parry and +$k2 PvP Resilience
 4316£71861£25£25£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
-4317£71862£25£50£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-4318£71863£50£50£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
-4319£71864£25£50£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
-4320£71865£50£50£0£+$k1 Parieren und +$k2 Trefferwert£+$k1 Parry and +$k2 Hit
-4321£71866£25£50£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+4317£71862£25£50£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+4318£71863£50£50£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+4319£71864£25£50£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
+4320£71865£50£50£0£+$k1 Parieren und +$k2 kritischer Trefferwert£+$k1 Parry and +$k2 Critical Strike
+4321£71866£25£50£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4322£71867£25£25£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
 4323£71868£25£50£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 4324£71869£25£37£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
-4325£71870£50£37£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
+4325£71870£50£37£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 4326£71871£25£37£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 4327£71872£50£37£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
 4328£71873£25£37£0£+$k1 Stärke und +$k2 Ausdauer£+$k1 Strength and +$k2 Stamina
 4329£71879£50£37£0£+$k1 Beweglichkeit£+$k1 Agility
-4330£71880£100£37£0£+$k1 Waffenkunde£+$k1 Expertise
+4330£71880£100£37£0£+$k1 Tempo£+$k1 Haste
 4331£71881£50£37£0£+$k1 Intelligenz£+$k1 Intellect
 4332£71882£100£37£0£+$k1 Parieren£+$k1 Parry
 4333£71883£50£37£0£+$k1 Stärke£+$k1 Strength
@@ -2958,9 +2914,6 @@
 4336£71876£100£37£0£+$k1 Tempo£+$k1 Haste
 4337£71877£100£37£0£+$k1 Meisterschaft£+$k1 Mastery
 4338£71878£50£37£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-4359£0£160£0£0£+$k1 Beweglichkeit£+$k1 Agility
-4360£0£160£0£0£+$k1 Intelligenz£+$k1 Intellect
-4361£0£240£0£0£+$k1 Ausdauer£+$k1 Stamina
 4411£0£170£0£0£+$k1 Meisterschaft£+$k1 Mastery
 4412£0£170£0£0£+$k1 Ausweichen£+$k1 Dodge
 4414£0£180£0£0£+$k1 Intelligenz£+$k1 Intellect
@@ -2970,42 +2923,42 @@
 4418£0£200£0£0£+$k1 Willenskraft£+$k1 Spirit
 4419£0£80£0£0£+$k1 alle Werte£+$k1 All Stats
 4420£0£300£0£0£+$k1 Ausdauer£+$k1 Stamina
-4421£0£180£0£0£+$k1 Trefferwert£+$k1 Hit
+4421£0£180£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4422£0£200£0£0£+$k1 Ausdauer£+$k1 Stamina
 4423£0£180£0£0£+$k1 Intelligenz£+$k1 Intellect
 4424£0£180£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4426£0£175£0£0£+$k1 Tempo£+$k1 Haste
-4427£0£175£0£0£+$k1 Trefferwert£+$k1 Hit
-4428£0£140£0£0£+$k1 Beweglichkeit und geringe Bewegungstempoerhöhung£+$k1 Agility & Minor Speed Increase
-4429£0£140£0£0£+$k1 Meisterschaft und geringe Bewegungstempoerhöhung£+$k1 Mastery & Minor Speed Increase
+4427£0£175£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4428£0£140£0£0£+$k1 Beweglichkeit und geringe Geschwindigkeitserhöhung£+$k1 Agility & Minor Speed Increase
+4429£0£140£0£0£+$k1 Meisterschaft und geringe Geschwindigkeitserhöhung£+$k1 Mastery & Minor Speed Increase
 4430£0£170£0£0£+$k1 Tempo£+$k1 Haste
-4431£0£170£0£0£+$k1 Waffenkunde£+$k1 Expertise
+4431£0£170£0£0£+$k1 Tempo£+$k1 Haste
 4432£0£170£0£0£+$k1 Stärke£+$k1 Strength
 4433£0£170£0£0£+$k1 Meisterschaft£+$k1 Mastery
 4434£0£165£0£0£+$k1 Intelligenz£+$k1 Intellect
 4435£0£145£55£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
 4436£0£145£55£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
-4437£0£55£190£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
+4437£0£55£95£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
 4438£0£145£55£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
 4439£0£145£55£0£+$k1 Ausdauer und +$k2 Beweglichkeit£+$k1 Stamina and +$k2 Agility
-4440£0£55£190£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
+4440£0£55£95£0£+$k2 Angriffskraft und +$k1 kritischer Trefferwert£+$k2 Attack Power and +$k1 Critical Strike
 4441£0£0£0£0£Windweise£Windsong
 4442£0£0£0£0£Jadegeist£Jade Spirit
 4443£0£0£0£0£Elementarkraft£Elemental Force
 4444£0£0£0£0£Tanzender Stahl£Dancing Steel
 4445£0£0£0£0£Koloss£Colossus
 4446£0£0£0£0£Flussgesang£River's Song
-4453£76502£240£0£0£+$k1 Trefferwert£+$k1 Hit
+4453£76502£240£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4454£76504£120£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 4455£76505£240£0£0£+$k1 Willenskraft£+$k1 Spirit
 4456£76506£180£0£0£+$k1 Ausdauer£+$k1 Stamina
 4457£76507£120£120£0£+$k1 Willenskraft und +$k2 kritischer Trefferwert£+$k1 Spirit and +$k2 Critical Strike
-4458£76508£120£120£0£+$k1 kritischer Trefferwert und +$k2 Trefferwert£+$k1 Critical Strike and +$k2 Hit
-4459£76509£120£120£0£+$k1 Tempo und +$k2 Trefferwert£+$k1 Haste and +$k2 Hit
-4460£76510£120£120£0£+$k1 Trefferwert und +$k2 Meisterschaft£+$k1 Hit and +$k2 Mastery
+4458£76508£240£120£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4459£76509£120£120£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+4460£76510£120£120£0£+$k1 kritischer Trefferwert und +$k2 Meisterschaft£+$k1 Critical Strike and +$k2 Mastery
 4461£76511£60£120£0£+$k1 PvP-Macht und +$k2 Meisterschaft£+$k1 PvP Power and +$k2 Mastery
 4462£76512£120£120£0£+$k1 Willenskraft und +$k2 Meisterschaft£+$k1 Spirit and +$k2 Mastery
-4463£76513£120£60£0£+$k1 Trefferwert und +$k2 PvP-Abhärtung£+$k1 Hit and +$k2 PvP Resilience
+4463£76513£120£60£0£+$k1 kritischer Trefferwert und +$k2 PvP-Abhärtung£+$k1 Critical Strike and +$k2 PvP Resilience
 4464£76514£60£60£0£+$k1 PvP-Macht und +$k2 PvP-Abhärtung£+$k1 PvP Power and +$k2 PvP Resilience
 4465£76515£120£60£0£+$k1 Willenskraft und +$k2 PvP-Abhärtung£+$k1 Spirit and +$k2 PvP Resilience
 4466£76517£120£60£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
@@ -3014,45 +2967,45 @@
 4469£76520£120£90£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
 4470£76521£120£90£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 4471£76522£120£90£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
-4472£76523£120£90£0£+$k1 Trefferwert und +$k2 Ausdauer£+$k1 Hit and +$k2 Stamina
+4472£76523£120£90£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
 4473£76524£120£90£0£+$k1 Meisterschaft und +$k2 Ausdauer£+$k1 Mastery and +$k2 Stamina
 4474£76525£60£90£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 4475£76526£60£120£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-4476£76527£120£120£0£+$k1 Waffenkunde und +$k2 kritischer Trefferwert£+$k1 Expertise and +$k2 Critical Strike
+4476£76527£120£120£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 4477£76528£60£120£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 4478£76529£60£120£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4479£76530£60£120£0£+$k1 Beweglichkeit und +$k2 Ausweichen£+$k1 Agility and +$k2 Dodge
-4480£76531£120£120£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+4480£76531£120£120£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 4481£76532£120£120£0£+$k1 Parieren und +$k2 Ausweichen£+$k1 Parry and +$k2 Dodge
 4482£76533£60£120£0£+$k1 Stärke und +$k2 Ausweichen£+$k1 Strength and +$k2 Dodge
 4483£76534£60£120£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
-4484£76535£120£120£0£+$k1 Waffenkunde und +$k2 Tempo£+$k1 Expertise and +$k2 Haste
+4484£76535£240£120£0£+$k1 Tempo£+$k1 Haste
 4485£76536£60£120£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 4486£76537£60£120£0£+$k1 Stärke und +$k2 Tempo£+$k1 Strength and +$k2 Haste
 4487£76538£60£120£0£+$k1 Beweglichkeit und +$k2 Meisterschaft£+$k1 Agility and +$k2 Mastery
-4488£76539£120£120£0£+$k1 Waffenkunde und +$k2 Meisterschaft£+$k1 Expertise and +$k2 Mastery
+4488£76539£120£120£0£+$k1 Tempo und +$k2 Meisterschaft£+$k1 Haste and +$k2 Mastery
 4489£76540£60£120£0£+$k1 Intelligenz und +$k2 Meisterschaft£+$k1 Intellect and +$k2 Mastery
 4490£76541£120£120£0£+$k1 Parieren und +$k2 Meisterschaft£+$k1 Parry and +$k2 Mastery
 4491£76542£60£120£0£+$k1 Stärke und +$k2 Meisterschaft£+$k1 Strength and +$k2 Mastery
 4492£76543£60£60£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
-4493£76544£120£60£0£+$k1 Waffenkunde und +$k2 PvP-Abhärtung£+$k1 Expertise and +$k2 PvP Resilience
+4493£76544£120£60£0£+$k1 Tempo und +$k2 PvP-Abhärtung£+$k1 Haste and +$k2 PvP Resilience
 4494£76545£60£60£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 4495£76546£120£60£0£+$k1 Parieren und +$k2 PvP-Abhärtung£+$k1 Parry and +$k2 PvP Resilience
 4496£76547£60£60£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
-4497£76548£60£120£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-4498£76549£120£120£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
-4499£76550£60£120£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
-4500£76551£120£120£0£+$k1 Parieren und +$k2 Trefferwert£+$k1 Parry and +$k2 Hit
-4501£76552£60£120£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+4497£76548£60£120£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+4498£76549£120£120£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+4499£76550£60£120£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
+4500£76551£120£120£0£+$k1 Parieren und +$k2 kritischer Trefferwert£+$k1 Parry and +$k2 Critical Strike
+4501£76552£60£120£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4502£76553£60£60£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
 4503£76554£60£120£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 4504£76555£60£90£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
-4505£76556£120£90£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
+4505£76556£120£90£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 4506£76557£60£90£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 4507£76558£120£90£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
 4508£76559£60£90£0£+$k1 Stärke und +$k2 Ausdauer£+$k1 Strength and +$k2 Stamina
 4509£76560£120£0£0£+$k1 Beweglichkeit£+$k1 Agility
-4511£76561£240£0£0£+$k1 Waffenkunde£+$k1 Expertise
+4511£76561£240£0£0£+$k1 Tempo£+$k1 Haste
 4512£76562£120£0£0£+$k1 Intelligenz£+$k1 Intellect
 4513£76563£240£0£0£+$k1 Parieren£+$k1 Parry
 4514£76564£120£0£0£+$k1 Stärke£+$k1 Strength
@@ -3061,17 +3014,17 @@
 4517£76567£240£0£0£+$k1 Tempo£+$k1 Haste
 4518£76568£240£0£0£+$k1 Meisterschaft£+$k1 Mastery
 4519£76569£120£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-4520£76570£320£0£0£+$k1 Trefferwert£+$k1 Hit
+4520£76570£320£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4521£76571£160£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 4522£76572£320£0£0£+$k1 Willenskraft£+$k1 Spirit
 4523£76573£240£0£0£+$k1 Ausdauer£+$k1 Stamina
 4524£76574£160£160£0£+$k1 Willenskraft und +$k2 kritischer Trefferwert£+$k1 Spirit and +$k2 Critical Strike
-4525£76575£160£160£0£+$k1 kritischer Trefferwert und +$k2 Trefferwert£+$k1 Critical Strike and +$k2 Hit
-4526£76576£160£160£0£+$k1 Tempo und +$k2 Trefferwert£+$k1 Haste and +$k2 Hit
-4527£76577£160£160£0£+$k1 Trefferwert und +$k2 Meisterschaft£+$k1 Hit and +$k2 Mastery
+4525£76575£320£160£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4526£76576£160£160£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+4527£76577£160£160£0£+$k1 kritischer Trefferwert und +$k2 Meisterschaft£+$k1 Critical Strike and +$k2 Mastery
 4528£76578£80£160£0£+$k1 PvP-Macht und +$k2 Meisterschaft£+$k1 PvP Power and +$k2 Mastery
 4529£76579£160£160£0£+$k1 Willenskraft und +$k2 Meisterschaft£+$k1 Spirit and +$k2 Mastery
-4530£76580£160£80£0£+$k1 Trefferwert und +$k2 PvP-Abhärtung£+$k1 Hit and +$k2 PvP Resilience
+4530£76580£160£80£0£+$k1 kritischer Trefferwert und +$k2 PvP-Abhärtung£+$k1 Critical Strike and +$k2 PvP Resilience
 4531£76581£80£80£0£+$k1 PvP-Macht und +$k2 PvP-Abhärtung£+$k1 PvP Power and +$k2 PvP Resilience
 4532£76582£160£80£0£+$k1 Willenskraft und +$k2 PvP-Abhärtung£+$k1 Spirit and +$k2 PvP Resilience
 4533£76583£160£80£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
@@ -3080,45 +3033,45 @@
 4537£76586£160£120£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
 4538£76587£160£120£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 4539£76588£160£120£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
-4540£76589£160£120£0£+$k1 Trefferwert und +$k2 Ausdauer£+$k1 Hit and +$k2 Stamina
+4540£76589£160£120£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
 4541£76590£160£120£0£+$k1 Meisterschaft und +$k2 Ausdauer£+$k1 Mastery and +$k2 Stamina
 4542£76591£80£120£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 4543£76592£80£160£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-4544£76593£160£160£0£+$k1 Waffenkunde und +$k2 kritischer Trefferwert£+$k1 Expertise and +$k2 Critical Strike
+4544£76593£160£160£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 4545£76594£80£160£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 4546£76595£80£160£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4547£76596£80£160£0£+$k1 Beweglichkeit und +$k2 Ausweichen£+$k1 Agility and +$k2 Dodge
-4548£76597£160£160£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+4548£76597£160£160£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 4549£76598£160£160£0£+$k1 Parieren und +$k2 Ausweichen£+$k1 Parry and +$k2 Dodge
 4550£76599£80£160£0£+$k1 Stärke und +$k2 Ausweichen£+$k1 Strength and +$k2 Dodge
 4551£76600£80£160£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
-4552£76601£160£160£0£+$k1 Waffenkunde und +$k2 Tempo£+$k1 Expertise and +$k2 Haste
+4552£76601£320£160£0£+$k1 Tempo£+$k1 Haste
 4553£76602£80£160£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 4554£76603£80£160£0£+$k1 Stärke und +$k2 Tempo£+$k1 Strength and +$k2 Haste
 4555£76604£80£160£0£+$k1 Beweglichkeit und +$k2 Meisterschaft£+$k1 Agility and +$k2 Mastery
-4556£76605£160£160£0£+$k1 Waffenkunde und +$k2 Meisterschaft£+$k1 Expertise and +$k2 Mastery
+4556£76605£160£160£0£+$k1 Tempo und +$k2 Meisterschaft£+$k1 Haste and +$k2 Mastery
 4557£76606£80£160£0£+$k1 Intelligenz und +$k2 Meisterschaft£+$k1 Intellect and +$k2 Mastery
 4558£76607£160£160£0£+$k1 Parieren und +$k2 Meisterschaft£+$k1 Parry and +$k2 Mastery
 4559£76608£80£160£0£+$k1 Stärke und +$k2 Meisterschaft£+$k1 Strength and +$k2 Mastery
 4560£76609£80£80£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
-4561£76610£160£80£0£+$k1 Waffenkunde und +$k2 PvP-Abhärtung£+$k1 Expertise and +$k2 PvP Resilience
+4561£76610£160£80£0£+$k1 Tempo und +$k2 PvP-Abhärtung£+$k1 Haste and +$k2 PvP Resilience
 4562£76611£80£80£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 4563£76612£160£80£0£+$k1 Parieren und +$k2 PvP-Abhärtung£+$k1 Parry and +$k2 PvP Resilience
 4564£76613£80£80£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
-4565£76614£80£160£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-4566£76615£160£160£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
-4567£76616£80£160£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
-4568£76617£160£160£0£+$k1 Parieren und +$k2 Trefferwert£+$k1 Parry and +$k2 Hit
-4569£76618£80£160£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+4565£76614£80£160£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+4566£76615£160£160£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+4567£76616£80£160£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
+4568£76617£160£160£0£+$k1 Parieren und +$k2 kritischer Trefferwert£+$k1 Parry and +$k2 Critical Strike
+4569£76618£80£160£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4570£76619£80£80£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
 4571£76620£80£160£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 4572£76621£80£120£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
-4573£76622£160£120£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
+4573£76622£160£120£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 4574£76623£80£120£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
 4575£76624£160£120£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
 4576£76625£80£120£0£+$k1 Stärke und +$k2 Ausdauer£+$k1 Strength and +$k2 Stamina
 4577£76626£160£0£0£+$k1 Beweglichkeit£+$k1 Agility
-4578£76627£320£0£0£+$k1 Waffenkunde£+$k1 Expertise
+4578£76627£320£0£0£+$k1 Tempo£+$k1 Haste
 4579£76628£160£0£0£+$k1 Intelligenz£+$k1 Intellect
 4580£76629£320£0£0£+$k1 Parieren£+$k1 Parry
 4581£76630£160£0£0£+$k1 Stärke£+$k1 Strength
@@ -3127,17 +3080,17 @@
 4584£76633£320£0£0£+$k1 Tempo£+$k1 Haste
 4585£76634£320£0£0£+$k1 Meisterschaft£+$k1 Mastery
 4586£76635£160£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-4587£76636£320£0£0£+$k1 Trefferwert£+$k1 Hit
+4587£76636£320£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4588£76637£160£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 4589£76638£320£0£0£+$k1 Willenskraft£+$k1 Spirit
 4590£76639£240£0£0£+$k1 Ausdauer£+$k1 Stamina
 4591£76640£160£160£0£+$k1 Willenskraft und +$k2 kritischer Trefferwert£+$k1 Spirit and +$k2 Critical Strike
-4592£76641£160£160£0£+$k1 kritischer Trefferwert und +$k2 Trefferwert£+$k1 Critical Strike and +$k2 Hit
-4593£76642£160£160£0£+$k1 Tempo und +$k2 Trefferwert£+$k1 Haste and +$k2 Hit
-4594£76643£160£160£0£+$k1 Trefferwert und +$k2 Meisterschaft£+$k1 Hit and +$k2 Mastery
+4592£76641£320£160£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4593£76642£160£160£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+4594£76643£160£160£0£+$k1 kritischer Trefferwert und +$k2 Meisterschaft£+$k1 Critical Strike and +$k2 Mastery
 4595£76644£80£160£0£+$k1 PvP-Macht und +$k2 Meisterschaft£+$k1 PvP Power and +$k2 Mastery
 4596£76645£160£160£0£+$k1 Willenskraft und +$k2 Meisterschaft£+$k1 Spirit and +$k2 Mastery
-4597£76646£160£80£0£+$k1 Trefferwert und +$k2 PvP-Abhärtung£+$k1 Hit and +$k2 PvP Resilience
+4597£76646£160£80£0£+$k1 kritischer Trefferwert und +$k2 PvP-Abhärtung£+$k1 Critical Strike and +$k2 PvP Resilience
 4598£76647£80£80£0£+$k1 PvP-Macht und +$k2 PvP-Abhärtung£+$k1 PvP Power and +$k2 PvP Resilience
 4599£76648£160£80£0£+$k1 Willenskraft und +$k2 PvP-Abhärtung£+$k1 Spirit and +$k2 PvP Resilience
 4600£76649£160£80£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
@@ -3146,36 +3099,36 @@
 4603£76652£160£120£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
 4604£76653£160£120£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
 4605£76654£160£120£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
-4606£76655£160£120£0£+$k1 Trefferwert und +$k2 Ausdauer£+$k1 Hit and +$k2 Stamina
+4606£76655£160£120£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
 4607£76656£160£120£0£+$k1 Meisterschaft und +$k2 Ausdauer£+$k1 Mastery and +$k2 Stamina
 4608£76657£80£120£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 4609£76658£80£160£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-4610£76659£160£160£0£+$k1 Waffenkunde und +$k2 kritischer Trefferwert£+$k1 Expertise and +$k2 Critical Strike
+4610£76659£160£160£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 4611£76660£80£160£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 4612£76661£80£160£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4613£76662£80£160£0£+$k1 Beweglichkeit und +$k2 Ausweichen£+$k1 Agility and +$k2 Dodge
-4614£76663£160£160£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+4614£76663£160£160£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 4615£76664£160£160£0£+$k1 Parieren und +$k2 Ausweichen£+$k1 Parry and +$k2 Dodge
 4616£76665£80£160£0£+$k1 Stärke und +$k2 Ausweichen£+$k1 Strength and +$k2 Dodge
 4617£76666£80£160£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
-4618£76667£160£160£0£+$k1 Waffenkunde und +$k2 Tempo£+$k1 Expertise and +$k2 Haste
+4618£76667£320£160£0£+$k1 Tempo£+$k1 Haste
 4619£76668£80£160£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
 4620£76669£80£160£0£+$k1 Stärke und +$k2 Tempo£+$k1 Strength and +$k2 Haste
 4621£76670£80£160£0£+$k1 Beweglichkeit und +$k2 Meisterschaft£+$k1 Agility and +$k2 Mastery
-4622£76671£160£160£0£+$k1 Waffenkunde und +$k2 Meisterschaft£+$k1 Expertise and +$k2 Mastery
+4622£76671£160£160£0£+$k1 Tempo und +$k2 Meisterschaft£+$k1 Haste and +$k2 Mastery
 4623£76672£80£160£0£+$k1 Intelligenz und +$k2 Meisterschaft£+$k1 Intellect and +$k2 Mastery
 4624£76673£160£160£0£+$k1 Parieren und +$k2 Meisterschaft£+$k1 Parry and +$k2 Mastery
 4625£76674£80£160£0£+$k1 Stärke und +$k2 Meisterschaft£+$k1 Strength and +$k2 Mastery
 4626£76675£80£80£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
-4627£76676£160£80£0£+$k1 Waffenkunde und +$k2 PvP-Abhärtung£+$k1 Expertise and +$k2 PvP Resilience
+4627£76676£160£80£0£+$k1 Tempo und +$k2 PvP-Abhärtung£+$k1 Haste and +$k2 PvP Resilience
 4628£76677£80£80£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 4629£76678£160£80£0£+$k1 Parieren und +$k2 PvP-Abhärtung£+$k1 Parry and +$k2 PvP Resilience
 4630£76679£80£80£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
-4631£76680£80£160£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-4632£76681£160£160£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
-4633£76682£80£160£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
-4634£76683£160£160£0£+$k1 Parieren und +$k2 Trefferwert£+$k1 Parry and +$k2 Hit
-4635£76684£80£160£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+4631£76680£80£160£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+4632£76681£160£160£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+4633£76682£80£160£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
+4634£76683£160£160£0£+$k1 Parieren und +$k2 kritischer Trefferwert£+$k1 Parry and +$k2 Critical Strike
+4635£76684£80£160£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4636£76685£80£80£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
 4637£76686£80£160£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 4638£76687£80£120£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
@@ -3191,14 +3144,14 @@
 4649£76699£320£0£0£+$k1 Tempo£+$k1 Haste
 4650£76700£320£0£0£+$k1 Meisterschaft£+$k1 Mastery
 4651£76701£160£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-4652£76688£160£120£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
-4653£76693£320£0£0£+$k1 Waffenkunde£+$k1 Expertise
-4654£76714£24£0£0£+$k1 Trefferwert£+$k1 Hit
+4652£76688£160£120£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
+4653£76693£320£0£0£+$k1 Tempo£+$k1 Haste
+4654£76714£24£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4655£76879£216£0£0£+$k1 Intelligenz und +$55275s1% maximales Mana£+$k1 Intellect and +$55275s1% Maximum Mana
 4656£76884£216£0£0£+$k1 Beweglichkeit und um $44797s1% erhöhter kritischer Effekt£+$k1 Agility and $44797s1% Increased Critical Effect
 4657£76886£216£0£0£+$k1 Stärke und um $44797s1% erhöhter kritischer Effekt£+$k1 Strength and $44797s1% Increased Critical Effect
 4658£76885£216£0£0£+$k1 Intelligenz und um $44797s1% erhöhter kritischer Effekt£+$k1 Intellect and $44797s1% Increased Critical Effect
-4659£76887£432£0£0£+$k1 Meisterschaft und geringe Bewegungstempoerhöhung£+$k1 Mastery and Minor Run Speed Increase
+4659£76887£432£0£0£+$k1 Meisterschaft und geringe Geschwindigkeitserhöhung£+$k1 Mastery and Minor Run Speed Increase
 4660£76888£432£0£0£+$k1 Willenskraft und um 3% erhöhter kritischer Effekt£+$k1 Spirit and 3% Increased Critical Effect
 4661£76890£432£0£0£+$k1 kritischer Trefferwert und $11818s1% Zauberreflexion£+$k1 Critical Strike and $11818s1% Spell Reflect
 4662£76891£324£0£0£+$k1 Ausdauer und um $55358s1% verringerte Dauer von Betäubungseffekten£+$k1 Stamina and Stun Duration Reduced by $55358s1%
@@ -3209,7 +3162,7 @@
 4668£76896£432£0£0£+$k1 Ausweichen und +$55283s1% Schildblockwert£+$k1 Dodge and +$55283s1% Shield Block Value
 4669£76897£324£0£0£+$k1 Ausdauer und um $55345s1% verringerter Zauberschaden£+$k1 Stamina and Reduce Spell Damage Taken by $55345s1%
 4671£0£10£5£16£+$k1 Stärke, +$k2 Parieren und +$13839s1 kritischer Trefferwert£+$k1 Strength +$k2 Parry +$13839s1 Critical Strike
-4672£77130£50£25£0£+$k1 Trefferwert und +$k2 PvP-Abhärtung£+$k1 Hit and +$k2 PvP Resilience
+4672£77130£50£25£0£+$k1 kritischer Trefferwert und +$k2 PvP-Abhärtung£+$k1 Critical Strike and +$k2 PvP Resilience
 4673£77131£50£25£0£+$k2 PvP-Macht und +$k1 Meisterschaft£+$k2 PvP Power and +$k1 Mastery
 4674£77132£25£25£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
 4675£77133£25£25£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
@@ -3220,14 +3173,12 @@
 4680£77138£50£25£0£+$k1 Parieren und +$k2 PvP-Abhärtung£+$k1 Parry and +$k2 PvP Resilience
 4681£77139£25£37£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 4682£77140£50£0£0£+$k1 PvP-Macht£+$k1 PvP Power
-4683£77141£50£25£0£+$k1 Waffenkunde und +$k2 PvP-Abhärtung£+$k1 Expertise and +$k2 PvP Resilience
+4683£77141£50£25£0£+$k1 Tempo und +$k2 PvP-Abhärtung£+$k1 Haste and +$k2 PvP Resilience
 4684£77142£50£25£0£+$k1 Willenskraft und +$k2 PvP-Abhärtung£+$k1 Spirit and +$k2 PvP Resilience
 4685£77143£25£25£0£+$k1 PvP-Macht und +$k2 PvP-Abhärtung£+$k1 PvP Power and +$k2 PvP Resilience
 4686£77144£25£25£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 4687£0£0£160£0£+$k2 Beweglichkeit£+$k2 Agility
 4688£0£0£0£0£Samurai£Samurai
-4697£0£0£1£0£Phasenfinger£Phase Fingers
-4698£0£0£0£0£Brandsatzschleuder£Incindiary Fireworks Launcher
 4699£0£0£0£0£Fürst von Schmetternichs Todeszielfernrohr£Lord Blastington's Scope of Doom
 4700£0£0£0£0£Verspiegeltes Zielfernrohr£Mirror Scope
 4701£0£200£0£0£+$k1 Stärke£+$k1 Strength
@@ -3275,20 +3226,19 @@
 4804£0£200£100£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 4805£0£300£100£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
 4806£0£200£100£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
-4807£0£160£0£0£+$k1 Stärke£+$k1 Strength
 4808£0£0£0£0£Magische Waffe£Magic Weapon
-4810£83141£320£20£0£+$k1 Stärke£+$k1 Strength
-4811£83150£320£0£0£+$k1 Intelligenz£+$k1 Intellect
-4812£83151£320£0£0£+$k1 Beweglichkeit£+$k1 Agility
-4813£83152£480£0£0£+$k1 Parieren£+$k1 Parry
-4814£83143£480£0£0£+$k1 Meisterschaft£+$k1 Mastery
-4815£83147£480£0£0£+$k1 Waffenkunde£+$k1 Expertise
-4816£83142£480£0£0£+$k1 Tempo£+$k1 Haste
-4817£83144£480£0£0£+$k1 Trefferwert£+$k1 Hit
-4818£83146£480£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-4819£83145£480£20£0£+$k1 Ausweichen£+$k1 Dodge
-4820£83148£480£0£0£+$k1 Ausdauer£+$k1 Stamina
-4821£83149£480£0£0£+$k1 Willenskraft£+$k1 Spirit
+4810£83141£160£20£0£+$k1 Stärke£+$k1 Strength
+4811£83150£160£0£0£+$k1 Intelligenz£+$k1 Intellect
+4812£83151£160£0£0£+$k1 Beweglichkeit£+$k1 Agility
+4813£83152£320£0£0£+$k1 Parieren£+$k1 Parry
+4814£83143£320£0£0£+$k1 Meisterschaft£+$k1 Mastery
+4815£83147£320£0£0£+$k1 Tempo£+$k1 Haste
+4816£83142£320£0£0£+$k1 Tempo£+$k1 Haste
+4817£83144£320£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4818£83146£320£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4819£83145£320£20£0£+$k1 Ausweichen£+$k1 Dodge
+4820£83148£240£0£0£+$k1 Ausdauer£+$k1 Stamina
+4821£83149£320£0£0£+$k1 Willenskraft£+$k1 Spirit
 4822£0£285£165£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 4823£0£285£165£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4824£0£430£165£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
@@ -3302,50 +3252,44 @@
 4832£0£90£0£0£+$k1 Ausdauer£+$k1 Stamina
 4833£0£60£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4834£0£60£0£0£+$k1 Meisterschaft£+$k1 Mastery
-4835£0£60£0£0£+$k1 Trefferwert£+$k1 Hit
+4835£0£60£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4836£0£60£0£0£+$k1 Tempo£+$k1 Haste
-4837£0£60£0£0£+$k1 Waffenkunde£+$k1 Expertise
-4838£0£60£0£0£+$k1 Willenskraft£+$k1 Spirit
-4839£0£60£0£0£+$k1 Ausweichen£+$k1 Dodge
-4840£0£60£0£0£+$k1 Parieren£+$k1 Parry
+4837£0£60£0£0£+$k1 Tempo£+$k1 Haste
+4838£0£60£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4839£0£60£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4840£0£60£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4841£0£60£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 4842£0£60£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 4843£0£120£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-4844£0£120£0£0£+$k1 Ausweichen£+$k1 Dodge
-4845£0£120£0£0£+$k1 Waffenkunde£+$k1 Expertise
+4844£0£120£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4845£0£120£0£0£+$k1 Tempo£+$k1 Haste
 4846£0£120£0£0£+$k1 Tempo£+$k1 Haste
-4847£0£120£0£0£+$k1 Trefferwert£+$k1 Hit
+4847£0£120£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4848£0£120£0£0£+$k1 Intelligenz£+$k1 Intellect
 4849£0£120£0£0£+$k1 Meisterschaft£+$k1 Mastery
-4850£0£120£0£0£+$k1 Parieren£+$k1 Parry
+4850£0£120£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4851£0£120£0£0£+$k1 PvP-Macht£+$k1 PvP Power
-4852£0£120£0£0£+$k1 Willenskraft£+$k1 Spirit
+4852£0£120£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4853£0£120£0£0£+$k1 Stärke£+$k1 Strength
 4854£0£180£0£0£+$k1 Ausdauer£+$k1 Stamina
 4855£0£180£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-4856£0£180£0£0£+$k1 Ausweichen£+$k1 Dodge
-4857£0£180£0£0£+$k1 Waffenkunde£+$k1 Expertise
+4856£0£180£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+4857£0£180£0£0£+$k1 Tempo£+$k1 Haste
 4858£0£180£0£0£+$k1 Tempo£+$k1 Haste
-4859£0£180£0£0£+$k1 Trefferwert£+$k1 Hit
+4859£0£180£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4860£0£180£0£0£+$k1 Intelligenz£+$k1 Intellect
 4861£0£180£0£0£+$k1 Meisterschaft£+$k1 Mastery
-4862£0£180£0£0£+$k1 Parieren£+$k1 Parry
+4862£0£180£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4863£0£180£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 4864£0£120£0£0£+$k1 PvP-Macht£+$k1 PvP Power
 4865£0£180£0£0£+$k1 PvP-Macht£+$k1 PvP Power
-4866£0£180£0£0£+$k1 Willenskraft£+$k1 Spirit
+4866£0£180£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4867£0£270£0£0£+$k1 Ausdauer£+$k1 Stamina
 4868£0£180£0£0£+$k1 Stärke£+$k1 Strength
 4869£0£150£0£0£+$k1 Ausdauer£+$k1 Stamina
 4870£0£250£100£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
 4871£0£170£100£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 4872£0£170£100£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-4873£0£57£0£0£+$k1 Beweglichkeit£+$k1 Agility
-4874£0£57£0£0£+$k1 Stärke£+$k1 Strength
-4875£0£500£0£0£+$k1 Beweglichkeit£+$k1 Agility
-4877£0£500£0£0£+$k1 Intelligenz£+$k1 Intellect
-4878£0£750£0£0£+$k1 Ausdauer£+$k1 Stamina
-4879£0£500£0£0£+$k1 Stärke£+$k1 Strength
 4880£0£285£165£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 4881£0£285£165£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4882£0£430£165£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
@@ -3356,18 +3300,14 @@
 4887£0£55£22£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
 4888£0£37£22£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4891£0£0£0£0£Pandarischer Angelköder£Pandaren Fishing Lure
-4892£0£0£1£0£Hell leuchtendes Garn£Lightweave Embroidery
-4893£0£0£1£0£Dunkel glühendes Garn£Darkglow Embroidery
-4894£0£0£1£0£Schwertwallgarn£Swordguard Embroidery
 4895£0£285£165£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 4896£0£285£165£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
 4897£0£0£23£0£Goblingleiter£Goblin Glider
-4898£0£0£1£0£Synapsenfedern£Synapse Springs
 4899£77544£600£37£0£+$k1 Parieren£+$k1 Parry
 4900£77547£600£37£0£+$k1 Meisterschaft£+$k1 Mastery
-4901£77543£600£37£0£+$k1 Waffenkunde£+$k1 Expertise
+4901£77543£600£37£0£+$k1 Tempo£+$k1 Haste
 4902£77542£600£37£0£+$k1 Tempo£+$k1 Haste
-4903£77545£600£37£0£+$k1 Trefferwert£+$k1 Hit
+4903£77545£600£37£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4904£77541£600£37£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4905£77546£600£37£0£+$k1 Willenskraft£+$k1 Spirit
 4906£77540£600£37£0£+$k1 Ausweichen£+$k1 Dodge
@@ -3376,39 +3316,39 @@
 4909£0£120£80£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 4910£0£180£80£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
 4911£0£520£100£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-4912£0£780£100£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
-4913£0£520£100£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-4914£0£520£100£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
-4915£0£520£100£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
+4912£0£300£100£0£+$k1 Ausdauer und +$k2 Ausweichen£+$k1 Stamina and +$k2 Dodge
+4913£0£200£100£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
+4914£0£200£100£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+4915£0£200£100£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 4916£0£520£100£0£+$k1 Willenskraft und +$k2 kritischer Trefferwert£+$k1 Spirit and +$k2 Critical Strike
 4918£0£0£200£0£Waffenkette aus lebendigem Stahl£Living Steel Weapon Chain
 4919£0£0£0£0£Angelköder (+$128586s1 Angeln)£Fishing Lure (+$128586s1 Fishing Skill)
 4920£0£10£0£0£+$k1 Maximale Gesundheit£+$k1 Maximum Health
-4921£88952£200£200£0£+$k1 Waffenkunde und +$k2 Trefferwert£+$k1 Expertise and +$k2 Hit
+4921£88952£200£200£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 4922£88953£200£150£0£+$k1 Parieren und +$k2 Ausdauer£+$k1 Parry and +$k2 Stamina
-4923£88954£100£200£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
-4924£88955£100£200£0£+$k1 Beweglichkeit und +$k2 Trefferwert£+$k1 Agility and +$k2 Hit
-4925£88956£200£150£0£+$k1 Waffenkunde und +$k2 Ausdauer£+$k1 Expertise and +$k2 Stamina
+4923£88954£100£200£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
+4924£88955£100£200£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
+4925£88956£200£150£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 4926£88958£100£200£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
-4927£88959£200£200£0£+$k1 Parieren und +$k2 Trefferwert£+$k1 Parry and +$k2 Hit
+4927£88959£200£200£0£+$k1 Parieren und +$k2 kritischer Trefferwert£+$k1 Parry and +$k2 Critical Strike
 4928£88960£100£150£0£+$k1 Beweglichkeit und +$k2 Ausdauer£+$k1 Agility and +$k2 Stamina
 4929£88961£100£150£0£+$k1 Stärke und +$k2 Ausdauer£+$k1 Strength and +$k2 Stamina
 4930£88962£100£150£0£+$k1 Intelligenz und +$k2 Ausdauer£+$k1 Intellect and +$k2 Stamina
-4931£88963£100£200£0£+$k1 Intelligenz und +$k2 Trefferwert£+$k1 Intellect and +$k2 Hit
-4932£88911£200£100£0£+$k1 Trefferwert und +$k2 PvP-Abhärtung£+$k1 Hit and +$k2 PvP Resilience
+4931£88963£100£200£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
+4932£88911£200£100£0£+$k1 kritischer Trefferwert und +$k2 PvP-Abhärtung£+$k1 Critical Strike and +$k2 PvP Resilience
 4933£88912£100£200£0£+$k1 PvP-Macht und +$k2 Meisterschaft£+$k1 PvP Power and +$k2 Mastery
 4934£88913£200£200£0£+$k1 Tempo und +$k2 Willenskraft£+$k1 Haste and +$k2 Spirit
-4935£0£100£200£0£+$k1 Stärke und +$k2 Trefferwert£+$k1 Strength and +$k2 Hit
+4935£0£100£200£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
 4936£88914£200£150£0£+$k1 Tempo und +$k2 Ausdauer£+$k1 Haste and +$k2 Stamina
 4937£88915£200£150£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
-4938£88916£200£200£0£+$k1 Tempo und +$k2 Trefferwert£+$k1 Haste and +$k2 Hit
+4938£88916£200£200£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 4939£88917£200£200£0£+$k1 Willenskraft und +$k2 kritischer Trefferwert£+$k1 Spirit and +$k2 Critical Strike
-4940£88918£200£150£0£+$k1 Trefferwert und +$k2 Ausdauer£+$k1 Hit and +$k2 Stamina
-4941£88919£200£200£0£+$k1 kritischer Trefferwert und +$k2 Trefferwert£+$k1 Critical Strike and +$k2 Hit
+4940£88918£200£150£0£+$k1 kritischer Trefferwert und +$k2 Ausdauer£+$k1 Critical Strike and +$k2 Stamina
+4941£88919£400£200£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 4942£88920£200£150£0£+$k1 Meisterschaft und +$k2 Ausdauer£+$k1 Mastery and +$k2 Stamina
 4943£88921£200£100£0£+$k1 kritischer Trefferwert und +$k2 PvP-Macht£+$k1 Critical Strike and +$k2 PvP Power
 4944£88922£200£150£0£+$k1 Ausweichen und +$k2 Ausdauer£+$k1 Dodge and +$k2 Stamina
-4945£88923£200£200£0£+$k1 Trefferwert und +$k2 Meisterschaft£+$k1 Hit and +$k2 Mastery
+4945£88923£200£200£0£+$k1 kritischer Trefferwert und +$k2 Meisterschaft£+$k1 Critical Strike and +$k2 Mastery
 4946£88924£200£100£0£+$k1 Tempo und +$k2 PvP-Macht£+$k1 Haste and +$k2 PvP Power
 4947£88925£100£150£0£+$k1 PvP-Abhärtung und +$k2 Ausdauer£+$k1 PvP Resilience and +$k2 Stamina
 4948£88926£200£100£0£+$k1 Willenskraft und +$k2 PvP-Abhärtung£+$k1 Spirit and +$k2 PvP Resilience
@@ -3417,24 +3357,24 @@
 4951£88930£100£200£0£+$k1 Beweglichkeit und +$k2 Meisterschaft£+$k1 Agility and +$k2 Mastery
 4952£88931£100£200£0£+$k1 Intelligenz und +$k2 Meisterschaft£+$k1 Intellect and +$k2 Mastery
 4953£88932£100£200£0£+$k1 Stärke und +$k2 Ausweichen£+$k1 Strength and +$k2 Dodge
-4954£88933£200£200£0£+$k1 Waffenkunde und +$k2 kritischer Trefferwert£+$k1 Expertise and +$k2 Critical Strike
+4954£88933£200£200£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 4955£88934£100£200£0£+$k1 Beweglichkeit und +$k2 kritischer Trefferwert£+$k1 Agility and +$k2 Critical Strike
 4956£88935£100£200£0£+$k1 Beweglichkeit und +$k2 Tempo£+$k1 Agility and +$k2 Haste
 4957£88936£100£200£0£+$k1 Stärke und +$k2 Tempo£+$k1 Strength and +$k2 Haste
 4958£88937£200£200£0£+$k1 Parieren und +$k2 Meisterschaft£+$k1 Parry and +$k2 Mastery
 4959£88938£100£200£0£+$k1 Stärke und +$k2 kritischer Trefferwert£+$k1 Strength and +$k2 Critical Strike
-4960£88939£200£200£0£+$k1 Waffenkunde und +$k2 Meisterschaft£+$k1 Expertise and +$k2 Mastery
+4960£88939£200£200£0£+$k1 Tempo und +$k2 Meisterschaft£+$k1 Haste and +$k2 Mastery
 4961£88940£100£100£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
 4962£88941£100£200£0£+$k1 Beweglichkeit und +$k2 Ausweichen£+$k1 Agility and +$k2 Dodge
 4963£88942£100£200£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 4964£88943£100£200£0£+$k1 Intelligenz und +$k2 Tempo£+$k1 Intellect and +$k2 Haste
-4965£88944£200£200£0£+$k1 Waffenkunde und +$k2 Ausweichen£+$k1 Expertise and +$k2 Dodge
+4965£88944£200£200£0£+$k1 Tempo und +$k2 Ausweichen£+$k1 Haste and +$k2 Dodge
 4966£88945£100£100£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
 4967£88946£100£200£0£+$k1 Stärke und +$k2 Meisterschaft£+$k1 Strength and +$k2 Mastery
 4968£88947£200£100£0£+$k1 Parieren und +$k2 PvP-Abhärtung£+$k1 Parry and +$k2 PvP Resilience
 4969£88948£200£200£0£+$k1 Parieren und +$k2 Ausweichen£+$k1 Parry and +$k2 Dodge
-4970£88949£200£100£0£+$k1 Waffenkunde und +$k2 PvP-Abhärtung£+$k1 Expertise and +$k2 PvP Resilience
-4971£88950£200£200£0£+$k1 Waffenkunde und +$k2 Tempo£+$k1 Expertise and +$k2 Haste
+4970£88949£200£100£0£+$k1 Tempo und +$k2 PvP-Abhärtung£+$k1 Haste and +$k2 PvP Resilience
+4971£88950£400£200£0£+$k1 Tempo£+$k1Haste
 4972£88951£100£100£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
 4973£88987£100£100£0£+$k1 Intelligenz und +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
 4984£89674£80£80£0£+$k1 Stärke und +$k2 PvP-Macht£+$k1 Strength and +$k2 PvP Power
@@ -3452,7 +3392,7 @@
 4997£89881£500£0£0£+$k1 Stärke£+$k1 Strength
 4998£89882£500£0£0£+$k1 Intelligenz£+$k1 Intellect
 5000£0£0£0£0£Wassergleitjets£Watergliding Jets
-5001£0£0£0£0£Geistereisenstachel£Ghost Iron Spike (600-1000)
+5001£0£0£0£0£Geistereisenstachel£Ghost Iron Spike
 5002£0£1£0£0£Gürtelsockel£Socket Belt
 5003£0£170£100£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
 5004£0£170£100£0£+$k1 Intelligenz und +$k2 Willenskraft£+$k1 Intellect and +$k2 Spirit
@@ -3460,16 +3400,16 @@
 5012£93366£550£0£0£+$k1 Intelligenz£+$k1 Intellect
 5013£93365£550£0£0£+$k1 Stärke£+$k1 Strength
 5015£0£1£0£0£Sha-berührte Waffe sockeln£Socket Sha-Touched Weapon
-5016£93404£160£160£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
-5017£93405£160£160£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
-5018£93406£160£160£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
-5019£93408£160£160£0£+$k1 Stärke und +$k2 PvP-Macht£+$k1 Strength and +$k2 PvP Power
-5020£93409£160£160£0£+$k1 Beweglichkeit und +$k2 PvP-Macht£+$k1 Agility and +$k2 PvP Power
-5021£93410£160£160£0£+$k1 Intelligenz and +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
-5024£93705£160£160£0£+$k1 Trefferwert und +$k2 Ausweichen£+$k1 Hit and +$k2 Dodge
-5025£93706£120£120£0£+$k1 Trefferwert und +$k2 Ausweichen£+$k1 Hit and +$k2 Dodge
-5026£93707£160£160£0£+$k1 Trefferwert und +$k2 Ausweichen£+$k1 Hit and +$k2 Dodge
-5027£93708£200£200£0£+$k1 Trefferwert und +$k2 Ausweichen£+$k1 Hit and +$k2 Dodge
+5016£93404£80£80£0£+$k1 Stärke und +$k2 PvP-Abhärtung£+$k1 Strength and +$k2 PvP Resilience
+5017£93405£80£80£0£+$k1 Beweglichkeit und +$k2 PvP-Abhärtung£+$k1 Agility and +$k2 PvP Resilience
+5018£93406£80£80£0£+$k1 Intelligenz und +$k2 PvP-Abhärtung£+$k1 Intellect and +$k2 PvP Resilience
+5019£93408£80£80£0£+$k1 Stärke und +$k2 PvP-Macht£+$k1 Strength and +$k2 PvP Power
+5020£93409£80£80£0£+$k1 Beweglichkeit und +$k2 PvP-Macht£+$k1 Agility and +$k2 PvP Power
+5021£93410£80£80£0£+$k1 Intelligenz and +$k2 PvP-Macht£+$k1 Intellect and +$k2 PvP Power
+5024£93705£160£160£0£+$k1 kritischer Trefferwert und +$k2 Ausweichen£+$k1 Critical Strike and +$k2 Dodge
+5025£93706£120£120£0£+$k1 kritischer Trefferwert und +$k2 Ausweichen£+$k1 Critical Strike and +$k2 Dodge
+5026£93707£160£160£0£+$k1 kritischer Trefferwert und +$k2 Ausweichen£+$k1 Critical Strike and +$k2 Dodge
+5027£93708£200£200£0£+$k1 kritischer Trefferwert und +$k2 Ausweichen£+$k1 Critical Strike and +$k2 Dodge
 5029£0£0£0£0£Spezial - Jaina - Knisternder Blitz£Custom - Jaina - Crackling Lightning
 5030£95344£324£0£0£+$k1 Ausdauer & Chance, bei erlittenen Treffern $137593s1% Schadensverringerung zu erhalten£+$k1 Stamina and chance on being hit to gain $137593s1% reduction to damage taken
 5031£95345£324£0£0£+$k1 Intelligenz & Chance bei hilfreichen Zaubern, dass Zauber für 4 Sek. kein Mana kosten£+$k1 Intellect and chance on beneficial spell to make your spells cost no mana for 4 sec.
@@ -3497,7 +3437,7 @@
 5057£0£14£0£0£+$k1 Intelligenz£+$k1 Intellect
 5058£0£14£0£0£+$k1 Tempo£+$k1 Haste
 5059£0£22£14£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
-5060£0£10£0£0£+$k1 Meisterschaft und geringe Bewegungstempoerhöhung£+$k1 Mastery & Minor Speed Increase
+5060£0£10£0£0£+$k1 Meisterschaft und geringe Geschwindigkeitserhöhung£+$k1 Mastery & Minor Speed Increase
 5061£0£14£0£0£+$k1 Intelligenz£+$k1 Intellect
 5062£0£0£0£0£Jadegeist£Jade Spirit
 5063£0£0£1£0£Synapsenfedern£Synapse Springs
@@ -3533,7 +3473,7 @@
 5093£0£8£0£0£+$k1 Intelligenz£+$k1 Intellect
 5094£0£8£0£0£+$k1 Tempo£+$k1 Haste
 5095£0£13£8£0£+$k1 Intelligenz und +$k2 kritischer Trefferwert£+$k1 Intellect and +$k2 Critical Strike
-5096£0£6£0£0£+$k1 Meisterschaft und geringe Bewegungstempoerhöhung£+$k1 Mastery & Minor Speed Increase
+5096£0£6£0£0£+$k1 Meisterschaft und geringe Geschwindigkeitserhöhung£+$k1 Mastery & Minor Speed Increase
 5097£0£8£0£0£+$k1 Intelligenz£+$k1 Intellect
 5098£0£0£0£0£Jadegeist£Jade Spirit
 5099£0£8£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
@@ -3541,12 +3481,12 @@
 5101£0£7£0£0£+$k1 Meisterschaft£+$k1 Mastery
 5102£0£9£0£0£+$k1 Intelligenz£+$k1 Intellect
 5103£0£3£0£0£+$k1 Intelligenz£+$k1 Intellect
-5104£0£3£0£0£+$k1 Trefferwert£+$k1 Hit
+5104£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5105£0£9£0£0£+$k1 Tempo£+$k1 Haste
-5106£98025£8£8£0£+$k1 kritischer Trefferwert und +$k2 Trefferwert£+$k1 Critical Strike and +$k2 Hit
+5106£98025£16£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5107£98026£16£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-5108£98027£8£8£0£+$k1 Waffenkunde und +$k2 kritischer Trefferwert£+$k1 Expertise and +$k2 Critical Strike
-5109£98028£8£8£0£+$k1 Waffenkunde und +$k2 kritischer Trefferwert£+$k1 Expertise and +$k2 Critical Strike
+5108£98027£8£8£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
+5109£98028£8£8£0£+$k1 Tempo und +$k2 kritischer Trefferwert£+$k1 Haste and +$k2 Critical Strike
 5110£0£0£1£0£Hell leuchtendes Garn£Lightweave Embroidery
 5111£0£3£0£0£+$k1 alle Werte£+$k1 All Stats
 5112£0£7£0£0£+$k1 Intelligenz£+$k1 Intellect
@@ -3555,8 +3495,8 @@
 5115£98056£20£0£0£+$k1 Intelligenz£+$k1 Intellect
 5116£0£6£0£0£+$k1 Tempo£+$k1 Haste
 5117£98088£16£0£0£+$k1 Meisterschaft£+$k1 Mastery
-5118£98089£8£8£0£+$k1 Waffenkunde und +$k2 Meisterschaft£+$k1 Expertise and +$k2 Mastery
-5119£98090£16£0£0£+$k1 Trefferwert£+$k1 Hit
+5118£98089£8£8£0£+$k1 Tempo und +$k2 Meisterschaft£+$k1 Haste and +$k2 Mastery
+5119£98090£16£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5120£98094£8£0£0£+$k1 Intelligenz£+$k1 Intellect
 5124£0£0£0£0£Geist der Eroberung£Spirit of Conquest
 5125£0£0£0£0£Blutiger tanzender Stahl£Bloody Dancing Steel
@@ -3574,18 +3514,18 @@
 5165£0£7£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 5166£0£9£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 5167£0£9£0£0£+$k1 Zaubermacht£+$k1 Spell Power
-5168£0£4£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-5169£0£6£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-5170£0£8£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-5171£0£8£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-5172£0£12£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-5173£0£16£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-5174£0£32£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5168£0£2£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5169£0£3£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5170£0£4£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5171£0£4£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5172£0£6£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5173£0£8£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5174£0£16£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 5175£0£9£0£0£+$k1 Ausdauer£+$k1 Stamina
 5176£0£9£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 5177£0£30£0£0£+$k1 Intelligenz£+$k1 Intellect
 5178£0£8£0£0£+$k1 Intelligenz£+$k1 Intellect
-5179£0£8£0£0£+$k1 Trefferwert£+$k1 Hit
+5179£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5180£0£7£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 5181£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5182£0£10£0£0£+$k1 Beweglichkeit£+$k1 Agility
@@ -3594,11 +3534,11 @@
 5185£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5186£0£8£0£0£+$k1 Willenskraft£+$k1 Spirit
 5187£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-5188£0£8£0£0£+$k1 Trefferwert£+$k1 Hit
+5188£0£8£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5189£0£4£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 5190£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5191£0£3£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
-5192£0£3£0£0£+$k1 Trefferwert£+$k1 Hit
+5192£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5193£0£3£0£0£+$k1 Ausweichen£+$k1 Dodge
 5194£0£3£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 5195£0£3£0£0£+$k1 Intelligenz£+$k1 Intellect
@@ -3617,8 +3557,8 @@
 5208£0£4£0£0£+$k1 Ausweichen£+$k1 Dodge
 5209£0£5£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 5210£0£5£0£0£+$k1 Zaubermacht£+$k1 Spell Power
-5211£0£4£0£0£+$k1 Trefferwert£+$k1 Hit
-5212£0£4£0£0£+$k1 Trefferwert£+$k1 Hit
+5211£0£4£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+5212£0£4£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5213£0£4£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5214£0£4£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5215£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
@@ -3628,14 +3568,14 @@
 5219£0£4£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 5220£0£4£0£0£+$k1 PvP-Abhärtung£+$k1 PvP Resilience
 5221£0£3£0£0£+$k1 Stärke£+$k1 Strength
-5222£0£3£0£0£+$k1 Trefferwert£+$k1 Hit
-5223£0£3£0£0£+$k1 Trefferwert£+$k1 Hit
+5222£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+5223£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5224£0£1£0£0£+2 Willenskraft£+2 Spirit
 5225£0£6£0£0£+$k1 Ausdauer£+$k1 Stamina
 5226£0£6£0£0£+$k1 Ausdauer£+$k1 Stamina
 5227£0£4£0£0£+$k1 Ausdauer£+$k1 Stamina
 5228£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
-5229£0£2£0£0£+$k1 Trefferwert£+$k1 Hit
+5229£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5230£0£3£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5231£0£5£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 5232£0£5£0£0£+$k1 Zaubermacht£+$k1 Spell Power
@@ -3649,21 +3589,21 @@
 5240£0£4£0£0£+$k1 Zaubermacht£+$k1 Spell Power
 5241£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5242£0£2£0£0£+$k1 Parieren£+$k1 Parry
-5243£0£2£0£0£+$k1 Trefferwert£+$k1 Hit
+5243£0£2£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5244£0£3£0£0£+$k1 Ausdauer£+$k1 Stamina
 5245£0£2£0£0£+$k1 Ausweichen£+$k1 Dodge
 5246£0£4£0£0£+$k1 Stärke£+$k1 Strength
 5247£0£4£0£0£+$k1 Stärke£+$k1 Strength
-5248£0£8£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-5249£0£8£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5248£0£4£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5249£0£4£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 5250£0£15£0£0£+$k1 Stärke£+$k1 Strength
-5251£0£6£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5251£0£3£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 5252£0£2£0£0£+$k1 Ausweichen£+$k1 Dodge
 5253£0£2£0£0£+$k1 Stärke£+$k1 Strength
-5254£0£4£0£0£+$k1 Waffenkunde£+$k1 Expertise
-5255£0£26£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-5256£0£4£0£0£+$k1 Angriffskraft£+$k1 Attack Power
-5257£0£24£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5254£0£4£0£0£+$k1 Tempo£+$k1 Haste
+5255£0£13£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5256£0£2£0£0£+$k1 Angriffskraft£+$k1 Attack Power
+5257£0£12£0£0£+$k1 Angriffskraft£+$k1 Attack Power
 5258£0£12£0£0£+$k1 Beweglichkeit£+$k1 Agility
 5259£0£20£0£0£+$k1 Beweglichkeit£+$k1 Agility
 5260£0£18£0£0£+$k1 Ausweichen£+$k1 Dodge
@@ -3671,3 +3611,100 @@
 5265£0£4£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
 5266£0£4£0£0£+$k1 Tempo£+$k1 Haste
 5267£0£6£0£0£+$k1 Tempo£+$k1 Haste
+5269£0£0£0£0£Schlackenhammer£Slaghammer
+5270£0£0£0£0£Waffe der Lehmgeister£Living Clay Weapon
+5274£0£0£0£0£+$25065s1 Feuerzaubermacht£+$25065s1 Fire Spell Power
+5275£0£0£0£0£Glotz' Raketenspalter£Oglethorpe's Missile Splitter
+5276£0£0£0£0£Megawattglühfaden£Megawatt Filament
+5280£0£0£0£0£+$i Bonusrüstung£+$i Bonus Armor
+5281£0£100£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+5284£0£30£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+5285£0£40£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+5286£0£4£0£0£+$k1 Rüstung£+$k1 Armor
+5287£0£4£0£0£+$k1 Rüstung£+$k1 Armor
+5288£0£4£0£0£+$k1 Rüstung£+$k1 Armor
+5292£0£40£0£0£+$k1 Tempo£+$k1 Haste
+5293£0£40£0£0£+$k1 Meisterschaft£+$k1 Mastery
+5294£0£40£0£0£+$k1 Mehrfachschlag£+$k1 Multistrike
+5295£0£40£0£0£+$k1 Vielseitigkeit£+$k1 Versatility
+5296£0£4£0£0£+$k1 Willenskraft£+$k1 Spirit
+5297£0£30£0£0£+$k1 Tempo£+$k1 Haste
+5298£0£100£0£0£+$k1 Tempo£+$k1 Haste
+5299£0£30£0£0£+$k1 Meisterschaft£+$k1 Mastery
+5300£0£100£0£0£+$k1 Meisterschaft£+$k1 Mastery
+5301£0£30£0£0£+$k1 Mehrfachschlag£+$k1 Multistrike
+5302£0£100£0£0£+$k1 Mehrfachschlag£+$k1 Multistrike
+5303£0£30£0£0£+$k1 Vielseitigkeit£+$k1 Versatility
+5304£0£100£0£0£+$k1 Vielseitigkeit£+$k1 Versatility
+5305£0£100£0£0£+$k1 Vielseitigkeit£+$k1 Versatility
+5306£0£60£0£0£+$k1 Vielseitigkeit£+$k1 Versatility
+5309£0£4£10£0£+$k1 Rüstung und +10% Bewegungsgeschwindigkeit£+$k1 Armor & +10% Speed
+5310£0£100£0£0£+$k1 kritischer Trefferwert und +$24090s1% Bewegungsgeschwindigkeit£+$k1 Critical Strike & +$24090s1% Speed
+5311£0£100£0£0£+$k1 Tempo und +10% Bewegungsgeschwindigkeit£+$k1 Haste & +10% Speed
+5312£0£100£0£0£+$k1 Meisterschaft und +10% Bewegungsgeschwindigkeit£+$k1 Mastery & +10% Speed
+5313£0£100£0£0£+$k1 Mehrfachschlag und +10% Bewegungsgeschwindigkeit£+$k1 Multistrike & +10% Speed
+5314£0£100£0£0£+$k1 Vielseitigkeit und +10% Bewegungsgeschwindigkeit£+$k1 Versatility & +10% Speed
+5315£0£4£0£0£+$k1 Willenskraft und +10% Bewegungsgeschwindigkeit£+$k1 Spirit & +10% Speed
+5316£0£4£0£0£+$k1 Rüstung£+$k1 Armor
+5317£0£75£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+5318£0£75£0£0£+$k1 Tempo£+$k1 Haste
+5319£0£75£0£0£+$k1 Meisterschaft£+$k1 Mastery
+5320£0£75£0£0£+$k1 Mehrfachschlag£+$k1 Multistrike
+5321£0£75£0£0£+$k1 Vielseitigkeit£+$k1 Versatility
+5322£0£4£0£0£+$k1 Willenskraft£+$k1 Spirit
+5323£0£4£0£0£+$k1 Rüstung£+$k1 Armor
+5324£0£50£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+5325£0£50£0£0£+$k1 Tempo£+$k1 Haste
+5326£0£50£0£0£+$k1 Meisterschaft£+$k1 Mastery
+5327£0£50£0£0£+$k1 Mehrfachschlag£+$k1 Multistrike
+5328£0£50£0£0£+$k1 Vielseitigkeit£+$k1 Versatility
+5329£0£100£0£0£+$k1 Vielseitigkeit£+$k1 Versatility
+5330£0£0£0£0£Mal des Donnerfürsten£Mark of the Thunderlord
+5331£0£0£0£0£Mal der Zerschmetterten Hand£Mark of the Shattered Hand
+5332£0£0£0£0£Frostbrand Visual Only£Frostbrand Visual Only
+5333£111294£0£0£0£Chance, bei Nahkampf- und Distanzangriffen in Talador den Mehrfachschlag um $160222s1 zu erhöhen.£Chance on melee or ranged attacks in Talador to increase multi-strike by $160222s1.
+5334£0£0£0£0£Mal der Frostwölfe£Mark of the Frostwolf
+5335£0£0£0£0£Mal des Schattenmondklans£Mark of Shadowmoon
+5336£0£0£0£0£Mal des Schwarzfels£Mark of Blackrock
+5337£0£0£0£0£Mal des Kriegshymnenklans£Mark of Warsong
+5339£115803£0£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+5340£115804£0£0£0£+$k1 Tempo£+$k1 Haste
+5342£115805£0£0£0£+$k1 Meisterschaft£+$k1 Mastery
+5343£115806£0£0£0£+$k1 Mehrfachschlag£+$k1 Multistrike
+5344£115807£0£0£0£+$k1 Vielseitigkeit£+$k1 Versatility
+5345£115808£0£0£0£+$k1 Ausdauer£+$k1 Stamina
+5346£115809£0£0£0£+$k1 kritischer Trefferwert£+$k1 Critical Strike
+5347£115811£0£0£0£+$k1 Tempo£+$k1 Haste
+5348£115812£0£0£0£+$k1 Meisterschaft£+$k1 Mastery
+5349£115813£0£0£0£+$k1 Mehrfachschlag£+$k1 Multistrike
+5350£115814£0£0£0£+$k1 Vielseitigkeit£+$k1 Versatility
+5351£115815£0£0£0£+$k1 Ausdauer£+$k1 Stamina
+5352£0£0£0£0£Ruhm der Donnerfürsten£Glory of the Thunderlord
+5353£0£0£0£0£Ruhm des Schattenmondklans£Glory of the Shadowmoon
+5354£0£0£0£0£Ruhm des Schwarzfelsklans£Glory of the Blackrock
+5355£0£0£0£0£Ruhm des Kriegshymnenklans£Glory of the Warsong
+5356£0£0£0£0£Ruhm des Frostwolfklans£Glory of the Frostwolf
+5357£0£0£0£0£+4 Angelfertigkeit£+4 Fishing
+5360£0£0£0£0£Versteckt£Hidden
+5364£0£0£0£0£Vergiftet£Poisoned
+5380£0£0£0£0£Schmetterlinge£Butterflies
+5383£0£0£0£0£Hemets Herzsucher£Hemet's Heartseeker
+5384£0£0£0£0£Mal des Blutenden Auges£Mark of Bleeding Hollow
+5385£0£0£0£0£Versteckt£Hidden
+5386£0£0£0£0£Angelköder (+$174472s1 Angelfertigkeit)£Fishing Lure (+$174472s1 Fishing Skill)
+5387£0£0£0£0£Beweglichkeit£Agility
+5388£0£0£0£0£Große Zaubermacht£Greater Spellpower
+5389£0£0£0£0£Schlagen£Striking
+5390£0£0£0£0£Meister des Kampfes£Battlemaster
+5391£0£0£0£0£Berserker£Berserking
+5392£0£0£0£0£Blutsauger£Blood Draining
+5393£0£0£0£0£Kreuzfahrer£Crusader
+5394£0£0£0£0£Flammen von Ragnaros£Flames of Ragnaros
+5395£0£0£0£0£Schmetterlinge£Butterflies
+5396£0£0£0£0£Glorreiche Tyrannei£Glorious Tyranny
+5397£0£0£0£0£Sieg der Ursprünglichen£Primal Victory
+5398£0£20£0£0£Lebensgeister£Earthliving
+5399£0£0£0£0£Frostbrand£Frostbrand
+5400£0£100£0£0£Flammenzunge£Flametongue
+5401£0£20£0£0£Windzorn£Windfury
+5402£0£100£0£0£Steinbeißer£Rockbiter

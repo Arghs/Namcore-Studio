@@ -605,7 +605,7 @@ Namespace Forms.Character
             Dim avIconPic As New PictureBox
             Dim avImage As Bitmap
             If charAv.Icon Is Nothing Then
-                avImage = GetSpellIconById(GetAvSpellIdById((charAv.Id)), GlobalVariables.GlobalWebClient)
+                avImage = GetSpellIconById(GetAvIconIdById((charAv.Id)), GlobalVariables.GlobalWebClient)
                 charAv.Icon = avImage
             Else
                 avImage = charAv.Icon

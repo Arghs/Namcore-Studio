@@ -32,13 +32,13 @@ Module Main
     Public GlyphProps0Dic As Dictionary(Of Integer, String())
     Public GlyphProps1Dic As Dictionary(Of Integer, String())
     Public GlyphProps2Dic As Dictionary(Of Integer, String())
+    Public GlyphProps3Dic As Dictionary(Of Integer, String())
     Public ItemAppearanceDic As Dictionary(Of Integer, String())
     Public ItemDic As Dictionary(Of Integer, String())
     Public ItemDisplayDic As Dictionary(Of Integer, String())
     Public ItemModifiedAppearanceDic As Dictionary(Of Integer, String())
     Public ItemSparseDeDic As Dictionary(Of Integer, String())
     Public ItemSparseEnDic As Dictionary(Of Integer, String())
-    Public SkillDic As Dictionary(Of Integer, String())
     Public SkillLineAbilityDic As Dictionary(Of Integer, String())
     Public SkillLineDeDic As Dictionary(Of Integer, String())
     Public SkillLineEnDic As Dictionary(Of Integer, String())
@@ -65,14 +65,14 @@ Module Main
         AchievementDeDic.Add(4, {"string", "Name"})
         AchievementDeDic.Add(5, {"string", "Description"})
         AchievementDeDic.Add(6, {"int", "CategoryId"})
-        AchievementDeDic.Add(10, {"int", "SpellId"})
+        AchievementDeDic.Add(10, {"int", "IconId"})
 
         AchievementEnDic = New Dictionary(Of Integer, String())()
         AchievementEnDic.Add(0, {"int", "Id"})
         AchievementEnDic.Add(4, {"string", "Name"})
         AchievementEnDic.Add(5, {"string", "Description"})
         AchievementEnDic.Add(6, {"int", "CategoryId"})
-        AchievementEnDic.Add(10, {"int", "SpellId"})
+        AchievementEnDic.Add(10, {"int", "IconId"})
 
         EnchantmentDeDic = New Dictionary(Of Integer, String())()
         EnchantmentDeDic.Add(0, {"int", "EffectId"})
@@ -115,6 +115,11 @@ Module Main
         GlyphProps2Dic.Add(1, {"int", "SpellId"})
         GlyphProps2Dic.Add(3, {"int", "Icon"})
 
+        GlyphProps3Dic = New Dictionary(Of Integer, String())()
+        GlyphProps3Dic.Add(0, {"int", "Id"})
+        GlyphProps3Dic.Add(1, {"int", "SpellId"})
+        GlyphProps3Dic.Add(3, {"int", "Icon"})
+
         ItemAppearanceDic = New Dictionary(Of Integer, String())()
         ItemAppearanceDic.Add(0, {"int", "AppearanceId"})
         ItemAppearanceDic.Add(1, {"int", "DisplayId"})
@@ -150,15 +155,6 @@ Module Main
         ItemSparseEnDic.Add(70, {"string", "ItemName"})
         ItemSparseEnDic.Add(87, {"int", "BagFamily"})
 
-        SkillDic = New Dictionary(Of Integer, String())()
-        SkillDic.Add(0, {"int", "Id"})
-        SkillDic.Add(1, {"int", "RefIdSkillLineCategory"})
-        SkillDic.Add(2, {"string", "Name"})
-        SkillDic.Add(3, {"string", "Description"})
-        SkillDic.Add(5, {"string", "RefIdSpellIcon"})
-        SkillDic.Add(6, {"string", "Verb"})
-        SkillDic.Add(7, {"int", "CanLink"})
-
         SkillLineAbilityDic = New Dictionary(Of Integer, String())()
         SkillLineAbilityDic.Add(0, {"int", "Id"})
         SkillLineAbilityDic.Add(1, {"int", "SkillId"})
@@ -190,7 +186,7 @@ Module Main
 
         SpellLkDic = New Dictionary(Of Integer, String())()
         SpellLkDic.Add(0, {"int", "Id"})
-        SpellLkDic.Add(108, {"int", "EffectMiscValue_1"})
+        SpellLkDic.Add(110, {"int", "EffectMiscValue"})
 
         SplEffectDic = New Dictionary(Of Integer, String())()
         SplEffectDic.Add(11, {"int", "ItemId"})
@@ -253,6 +249,7 @@ Module Main
                 Log(vbTab & "\Shared\GlyphProperties0.dbc  (WotLK GlyphProperties.dbc)", LogLevel.INFO)
                 Log(vbTab & "\Shared\GlyphProperties1.dbc  (Cata GlyphProperties.dbc)", LogLevel.INFO)
                 Log(vbTab & "\Shared\GlyphProperties2.dbc  (MoP GlyphProperties.dbc)", LogLevel.INFO)
+                Log(vbTab & "\Shared\GlyphProperties3.dbc  (WoD GlyphProperties.dbc)", LogLevel.INFO)
                 Log(vbTab & "\Shared\Item.db2", LogLevel.INFO)
                 Log(vbTab & "\Shared\ItemAppearance.db2", LogLevel.INFO)
                 Log(vbTab & "\Shared\ItemDisplayInfo.dbc", LogLevel.INFO)
@@ -387,7 +384,7 @@ Module Main
             End If
             If achievementDe IsNot Nothing Or achievementEn IsNot Nothing Then
                 Dim completeContent As String =
-                        "AchievementId£NameDE£NameEN£DescriptionDE£DescriptionEN£CategoryId£SpellId"
+                        "AchievementId£NameDE£NameEN£DescriptionDE£DescriptionEN£CategoryId£IconId"
                 Try
                     For i = 0 To achievementDe.Rows.Count - 1
                         ReportStatus(i + 1, achievementDe.Rows.Count)
@@ -396,7 +393,7 @@ Module Main
                                            LinkedContent(entry, achievementEn, "Id", "Name") & "£" &
                                            entry("Description") & "£" &
                                            LinkedContent(entry, achievementEn, "Id", "Description") & "£" &
-                                           entry("CategoryId") & "£" & entry("SpellId")
+                                           entry("CategoryId") & "£" & entry("IconId")
                     Next i
                     FileWriter("Achievement.csv", completeContent)
                 Catch ex As Exception
@@ -449,7 +446,7 @@ Module Main
                 spellIcon = ReadDb(dbcPath, SpellIconDic)
             End If
             If spellIcon IsNot Nothing Then
-                Dim completeContent As String = "SpellId£Icon"
+                Dim completeContent As String = "IconId£Icon"
                 Try
                     For i = 0 To spellIcon.Rows.Count - 1
                         ReportStatus(i + 1, spellIcon.Rows.Count)
@@ -591,6 +588,28 @@ Module Main
             Else
                 Log("Cannot proceed with this file!", LogLevel.CRITICAL)
             End If
+
+            Log("Converting GlyphProperties3.dbc", LogLevel.NORMAL)
+            Dim glyphProps3 As DataTable = Nothing
+            dbcPath = "\Shared\GlyphProperties3.dbc"
+            If CheckExistence(dbcPath) Then
+                glyphProps3 = ReadDb(dbcPath, GlyphProps2Dic)
+            End If
+            If glyphProps3 IsNot Nothing Then
+                Dim completeContent As String = "GlyphId£SpellId£Icon"
+                Try
+                    For i = 0 To glyphProps3.Rows.Count - 1
+                        ReportStatus(i + 1, glyphProps3.Rows.Count)
+                        Dim entry As DataRow = glyphProps3(i)
+                        completeContent &= vbNewLine & ContentBuilder(entry, "Id", "SpellId", "Icon")
+                    Next i
+                    FileWriter("GlyphProperties3.csv", completeContent)
+                Catch ex As Exception
+                    Log("Something went wrong: " & ex.ToString(), LogLevel.CRITICAL)
+                End Try
+            Else
+                Log("Cannot proceed with this file!", LogLevel.CRITICAL)
+            End If
         Else
             Log("Skipping GlyphProperties.dbc", LogLevel.NORMAL)
         End If
@@ -708,7 +727,7 @@ Module Main
                         ReportStatus(i + 1, effectDb.Rows.Count)
                         Dim entry As DataRow = effectDb(i)
                         completeContent &= vbNewLine & ContentBuilder(entry, "ItemId", "EffectId", "SpellId") & "£" &
-                                           LinkedContent(entry, spellWotLk, "EffectId", "EffectMiscValue_1", "Id")
+                                           LinkedContent(entry, spellWotLk, "EffectId", "EffectMiscValue", "Id")
                     Next i
                     FileWriter("SpellEffect.csv", completeContent)
                 Catch ex As Exception

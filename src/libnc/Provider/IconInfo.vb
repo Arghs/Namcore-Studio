@@ -25,12 +25,11 @@ Imports System.Drawing
 
 Namespace Provider
     Public Module IconInfo
-        Public Function GetSpellIconById(ByVal spellId As Integer, ByVal client As WebClient) As Bitmap
+        Public Function GetSpellIconById(ByVal iconId As Integer, ByVal client As WebClient) As Bitmap
             Main.CheckInit()
-            '// Not working: CSV does not contain spell ids but icon ids
             Const targetField As Integer = 1
             Dim myResult As String =
-                    Main.ExecuteCsvSearch(Main.SpellIconCsv, "SpellId", spellId.ToString(), targetField)(0)
+                    Main.ExecuteCsvSearch(Main.SpellIconCsv, "IconId", iconId.ToString(), targetField)(0)
             If myResult = "-" Then
                 Return My.Resources.INV_Misc_QuestionMark
             End If

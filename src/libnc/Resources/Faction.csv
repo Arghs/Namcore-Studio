@@ -40,7 +40,7 @@
 43£-1£Basilisk£Basilisk
 44£-1£Drachenschwarm, Grün£Dragonflight, Green
 45£-1£Verirrte£Lost Ones
-46£29£ Schmiedekunst - Rüstungsschmiedekunst£ Blacksmithing - Armorsmithing
+46£29£Schmiedekunst - Rüstungsschmiedekunst£ Blacksmithing - Armorsmithing
 47£20£Eisenschmiede£Ironforge
 48£-1£Dunkeleisenzwerge£Dark Iron Dwarves
 49£-1£Mensch, Nachtwache£Human, Night Watch
@@ -77,10 +77,10 @@
 80£-1£Drachenschwarm, Schwarz£Dragonflight, Black
 81£16£Donnerfels£Thunder Bluff
 82£-1£Troll, Bleichborken£Troll, Witherbark
-83£23£ Lederverarbeitung - Elementar£ Leatherworking - Elemental
+83£23£Lederverarbeitung - Elementar£ Leatherworking - Elemental
 84£-1£Stacheleber, Klingenmähnen£Quilboar, Razormane
 85£-1£Stacheleber, Borstennacken£Quilboar, Bristleback
-86£22£ Lederverarbeitung - Drachen£ Leatherworking - Dragonscale
+86£22£Lederverarbeitung - Drachen£ Leatherworking - Dragonscale
 87£0£Blutsegelbukaniere£Bloodsail Buccaneers
 88£-1£Tiefschwarze Grotte£Blackfathom
 89£-1£Makrura£Makrura
@@ -103,7 +103,7 @@
 249£-1£Sillithid£Silithid
 269£-1£Überlebende aus Silbermond£Silvermoon Remnant
 270£51£Stamm der Zandalari£Zandalar Tribe
-289£30£ Schmiedekunst - Waffenschmiedekunst£ Blacksmithing - Weaponsmithing
+289£30£Schmiedekunst - Waffenschmiedekunst£ Blacksmithing - Weaponsmithing
 309£-1£Skorpid£Scorpid
 310£-1£Wildtier - Fledermaus£Beast - Bat
 311£-1£Titanisch£Titan
@@ -126,12 +126,12 @@
 530£15£Dunkelspeertrolle£Darkspear Trolls
 531£-1£Drachenschwarm, Bronze£Dragonflight, Bronze
 532£-1£Drachenschwarm, Blau£Dragonflight, Blue
-549£24£ Lederverarbeitung - Stamm£ Leatherworking - Tribal
-550£26£ Ingenieurskunst - Goblin£ Engineering - Goblin
-551£25£ Ingenieurskunst - Gnom£ Engineering - Gnome
-569£33£ Schmiedekunst - Hammerschmiedekunst£ Blacksmithing - Hammersmithing
-570£31£ Schmiedekunst - Axtschmiedekunst£ Blacksmithing - Axesmithing
-571£32£ Schmiedekunst - Schwertschmiedekunst£ Blacksmithing - Swordsmithing
+549£24£Lederverarbeitung - Stamm£ Leatherworking - Tribal
+550£26£Ingenieurskunst - Goblin£ Engineering - Goblin
+551£25£Ingenieurskunst - Gnom£ Engineering - Gnome
+569£33£Schmiedekunst - Hammerschmiedekunst£ Blacksmithing - Hammersmithing
+570£31£Schmiedekunst - Axtschmiedekunst£ Blacksmithing - Axesmithing
+571£32£Schmiedekunst - Schwertschmiedekunst£ Blacksmithing - Swordsmithing
 572£-1£Troll, Blutfratzen£Troll, Vilebranch
 573£-1£Südmeerfreibeuter£Southsea Freebooters
 574£34£Darrowehr£Caer Darrow
@@ -484,19 +484,69 @@
 1370£-1£Friendly, Force Reaction 7£Friendly, Force Reaction 7
 1371£-1£Pel'zin£Paw'don Village
 1372£-1£Honigtau£Honeydew Village
-1374£197£Shlae'gararena£Brawl'gar Arena
+1374£197£Shlae'gararena (Saison 1)£Brawl'gar Arena (Season 1)
 1375£198£Herrschaftsoffensive£Dominance Offensive
 1376£199£Operation Schildwall£Operation: Shieldwall
 1387£207£Offensive der Kirin Tor£Kirin Tor Offensive
 1388£208£Sonnenhäscheransturm£Sunreaver Onslaught
 1416£221£Akamas Vertrauen£Akama's Trust
-1419£220£Bizmos Boxbar£Bizmo's Brawlpub
+1419£220£Bizmos Boxbar (Saison 1)£Bizmo's Brawlpub (Season 1)
 1433£227£Monster, Neutralität erzwungen für Zwangsreaktion£Monster, Enforced Neutral For Force Reaction
 1435£228£Shado-Pan-Vorstoß£Shado-Pan Assault
 1440£229£Rebellion der Dunkelspeere£Darkspear Rebellion
 1443£-1£Kor'kron£Kor'kron
+1444£230£Warlords of Draenor£Warlords of Draenor
+1445£231£Frostwolforcs£Frostwolf Orcs
 1447£-1£Dunkelspeertrolle£Darkspear Trolls
-1457£-1£Klingen der Ewigkeit£Blades of Eternity
+1457£-1£Schotlinge£Forelings
+1483£-1£Schotlingfresser£Foreling-Eaters
 1491£-1£Die Zeitenwanderer£The Timewalkers
 1492£241£Kaiser Shaohao£Emperor Shaohao
+1496£-1£Frostfeueroger£Frostfire Ogres
 1500£-1£Rotes Phantom£Red Phantom
+1508£-1£Schattenmondorcs£Shadowmoon Orcs
+1509£-1£Die Fahlen£The Pale
+1514£-1£Jünger von Rukhmar£Adherents of Rukhmar
+1515£247£Ausgestoßene Arakkoa£Arakkoa Outcasts
+1520£250£Exilanten des Schattenmondklans£Shadowmoon Exiles
+1521£-1£Schattenrat£Shadow Council
+1591£-1£Draenei, Draenor£Draenei, Draenor
+1617£-1£Die Ursprünglichen£Primal
+1618£-1£Die Brecher£Breaker
+1623£-1£Die Eiserne Horde£The Iron Horde
+1665£-1£Die Sargerai£The Sargerei
+1674£-1£Draenorsporen£Draenor Spores
+1679£251£Operation Erdferkel£Operation: Aardvark
+1680£-1£Hochfels£Highmaul
+1681£252£Vol'jins Speer£Vol'jin's Spear
+1682£253£Wrynns Vorhut£Wrynn's Vanguard
+1687£-1£Goren von Gorgrond£Gorgrond Goren
+1690£136£Shlae'gararena£Brawl'gar Arena
+1691£135£Bizmos Boxbar£Bizmo's Brawlpub
+1708£107£Orcs des Lachenden Schädels£Laughing Skull Orcs
+1710£121£Sha'tarverteidigung£Sha'tari Defense
+1711£124£Werterhaltungsgesellschaft des Dampfdruckkartells£Steamwheedle Preservation Society
+1712£125£GarInvasion_IronHorde£GarInvasion_IronHorde
+1713£126£GarInvasion_ShadowCouncil£GarInvasion_ShadowCouncil
+1714£128£GarInvasion_Ogres£GarInvasion_Ogres
+1715£129£GarInvasion_Primals£GarInvasion_Primals
+1716£132£GarInvasion_Breakers£GarInvasion_Breakers
+1717£133£GarInvasion_ThunderLord£GarInvasion_ThunderLord
+1718£134£GarInvasion_Shadowmoon£GarInvasion_Shadowmoon
+1731£254£Exarchenrat£Council of Exarchs
+1732£138£Draenorexpedition des Dampfdruckkartells£Steamwheedle Draenor Expedition
+1733£255£Delvar Eisenfaust£Delvar Ironfist
+1735£242£Kasernenleibwachen£Barracks Bodyguards
+1736£243£Tormmok£Tormmok
+1737£244£Krallenpriester Ishaal£Talonpriest Ishaal
+1738£245£Beschützerin Illona£Defender Illona
+1739£246£Vivianne£Vivianne
+1740£248£Aeda Morgenglanz£Aeda Brightdawn
+1741£137£Leorajh£Leorajh
+1746£-1£Nagrandgronn£Nagrand Gronn
+1747£-1£Schatz des Kolosseums£Coliseum Treasure
+1756£-1£LVA_Looters£LVA_Looters
+1757£-1£LVA_Preservers£LVA_Preservers
+1758£-1£LVA_Naturalists£LVA_Naturalists
+1759£-1£LVA_Machines£LVA_Machines
+1760£-1£Gladiatoren von Hochfels£Highmaul Gladiators

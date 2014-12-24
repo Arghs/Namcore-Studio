@@ -18,7 +18,9 @@
 15088£15076£Allgemein£General
 15090£15078£Schlachtfelder£Battlegrounds
 15118£15117£Sammeln£Collect
-15222£15165£Feuerprobe£Proving Grounds
+15229£15165£Mists of Pandaria£Mists of Pandaria
+15238£15237£Gebäude£Buildings
+15247£15246£Spielzeugkiste£Toy Box
 96£-1£Quests£Quests
 124£122£Schlachtfelder£Battlegrounds
 136£128£Ehrenhafte Siege£Honorable Kills
@@ -38,6 +40,9 @@
 15084£15079£The Burning Crusade£The Burning Crusade
 15091£15078£Arena£Arena
 15119£15117£Kampf£Battle
+15222£15165£Feuerprobe£Proving Grounds
+15239£15237£Anhänger£Followers
+15248£15246£Reittiere£Mounts
 97£-1£Erkundung£Exploration
 125£122£Dungeons£Dungeons
 128£1£Siege£Kills
@@ -55,6 +60,7 @@
 15078£15076£Spieler gegen Spieler£Player vs. Player
 15085£15079£Wrath of the Lich King - Dungeons£Lich King Dungeon
 15120£15117£Stufe£Level
+15249£15237£Invasionen£Invasions
 95£-1£Spieler gegen Spieler£Player vs. Player
 122£1£Tode£Deaths
 126£122£Welt£World
@@ -69,6 +75,7 @@
 15079£15076£Dungeons & Schlachtzüge£Dungeons & Raids
 15086£15079£Wrath of the Lich King - Schlachtzüge£Lich King Raid
 15096£14807£Cataclysm£Cataclysm
+15240£15237£Missionen£Missions
 127£122£Wiederbelebung£Resurrection
 133£1£Quests£Quests
 161£155£Sonnenwende£Midsummer
@@ -81,6 +88,7 @@
 15083£15079£Cataclysm - Dungeons£Cataclysm Dungeon
 15114£201£Pandaria£Pandaria
 15164£14807£Mists of Pandaria£Mists of Pandaria
+15242£15237£Monumente£Monuments
 162£155£Braufest£Brewfest
 169£-1£Berufe£Professions
 14807£1£Dungeons & Schlachtzüge£Dungeons & Raids
@@ -90,7 +98,8 @@
 15089£15076£Ruf£Reputation
 15110£96£Pandaria£Pandaria
 15113£97£Pandaria£Pandaria
-15171£14807£Dungeon-Herausforderungen£Dungeon Challenges
+15232£201£Draenor£Draenor
+15233£14807£Warlords of Draenor£Warlords of Draenor
 132£1£Fertigkeiten£Skills
 158£155£Schlotternächte£Hallow's End
 201£-1£Ruf£Reputation
@@ -98,6 +107,9 @@
 15093£15076£Heldentaten der Gilde£Guild Feats of Strength
 15106£168£Pandaria - Dungeons£Pandaria Dungeon
 15153£15079£Pandaria - Dungeons£Pandaria Dungeon
+15171£14807£Dungeon-Herausforderungen£Dungeon Challenges
+15220£96£Draenor£Draenor
+15235£97£Draenor£Draenor
 134£1£Reise£Travel
 14981£155£Die Pilgerfreuden£Pilgrim's Bounty
 15074£95£Zwillingsgipfel£Twin Peaks
@@ -107,23 +119,31 @@
 131£1£Körpersprache£Social
 155£-1£Weltereignisse£World Events
 156£155£Winterhauch£Winter Veil
-15115£168£Dungeon-Herausforderungen£Dungeon Challenges
-15151£15079£Dungeon-Herausforderungen£Dungeon Challenges
 15162£95£Silberbruchmine£Silvershard Mines
+15228£168£Draenor - Dungeons£Draenor Dungeon
+15243£15079£Draenor - Dungeons£Draenor Dungeon
 21£1£Spieler gegen Spieler£Player vs. Player
 14941£155£Argentumturnier£Argent Tournament
 15117£-1£Haustierkämpfe£Pet Battles
 15163£95£Tempel von Katmogu£Temple of Kotmogu
-81£-1£Heldentaten£Feats of Strength
+15231£168£Draenor - Schlachtzüge£Draenor Raid
+15244£15079£Draenor - Schlachtzüge£Draenor Raid
 15101£155£Dunkelmond-Jahrmarkt£Darkmoon Faire
+15115£168£Dungeon-Herausforderungen£Dungeon Challenges
+15151£15079£Dungeon-Herausforderungen£Dungeon Challenges
 15176£1£Ehemalige Erfolge£Legacy
 15218£95£Tiefenwindschlucht£Deepwind Gorge
+15246£-1£Sammlungen£Collections
 14901£95£Tausendwinter£Wintergrasp
-15076£-1£Gilde£Guild
 15202£155£Kampfgilde£Brawler's Guild
 15219£1£Haustierkämpfe£Pet Battles
-1£-1£Statistiken£Statistics
+15237£-1£Garnisonen£Garrisons
 15075£95£Tol Barad£Tol Barad
 15227£1£Die Feuerprobe£Proving Grounds
+15234£-1£Klassisch£Legacy
+81£-1£Heldentaten£Feats of Strength
+15241£95£Ashran£Ashran
+15076£-1£Gilde£Guild
 15092£95£Gewertete Schlachtfelder£Rated Battleground
+1£-1£Statistiken£Statistics
 165£95£Arena£Arena
