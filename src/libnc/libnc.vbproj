@@ -123,7 +123,6 @@
     <None Include="Resources\GlyphProperties2.csv" />
     <None Include="Resources\GlyphProperties3.csv" />
     <None Include="Resources\Item.csv" />
-    <None Include="Resources\ItemDisplayInfo.csv" />
     <None Include="Resources\ItemSparse.csv" />
     <None Include="Resources\PlayerCreateInfo.csv" />
     <None Include="Resources\questname.csv" />
@@ -141,7 +140,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_IncrementBeforeBuild="True" BuildVersion_DetectChanges="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -51,14 +51,14 @@ Namespace Provider
         End Function
 
         Public Function GetItemIconByItemId(ByVal itemId As Integer, ByVal client As WebClient,
-                                            Optional forceOnline As Boolean = False) As Image
+                                            Optional forceOnline As Boolean = False) As Bitmap
             Main.CheckInit()
             Try
-                Const targetField As Integer = 1
+                Const targetField As Integer = 3
                 Dim myResult As String = ""
                 If forceOnline = False Then
                     myResult =
-                        Main.ExecuteCsvSearch(Main.ItemDisplayInfoCsv, "ItemId", GetDisplayIdByItemId(itemId).ToString(),
+                        Main.ExecuteCsvSearch(Main.ItemCsv, "ItemId", itemId.ToString(),
                                               targetField)(0)
                     If myResult Is Nothing Then
                         Try
@@ -136,43 +136,12 @@ Namespace Provider
                         If onlinePic Is Nothing Then
                             Return My.Resources.INV_Misc_QuestionMark
                         Else
-                            Return onlinePic
+                            Return CType(onlinePic, Bitmap)
                         End If
                     Else
-                        Return pic
+                        Return CType(pic, Bitmap)
                     End If
                 Else : Return My.Resources.INV_Misc_QuestionMark
-                End If
-            Catch ex As Exception
-                Return My.Resources.INV_Misc_QuestionMark
-            End Try
-        End Function
-
-        Public Function GetItemIconByDisplayId(ByVal displayId As Integer, ByVal client As WebClient) As Bitmap
-            Main.CheckInit()
-            Try
-                Const targetField As Integer = 1
-                Dim myResult As String
-                myResult = Main.ExecuteCsvSearch(Main.ItemDisplayInfoCsv, "ItemId", displayId.ToString(), targetField)(0)
-                If myResult Is Nothing Then
-                    Return My.Resources.INV_Misc_QuestionMark
-                ElseIf myResult = "-" Then
-                    Return My.Resources.INV_Misc_QuestionMark
-                ElseIf myResult = "" Then
-                    Return My.Resources.INV_Misc_QuestionMark
-                End If
-                Dim pic As Image = CType(libncadvanced.My.Resources.ResourceManager.GetObject(myResult.ToLower()), Image)
-                If pic Is Nothing Then
-                    Dim onlinePic As Image =
-                            LoadImageFromUrl(
-                                "http://wow.zamimg.com/images/wow/icons/large/" & myResult.ToLower() & ".jpg", client)
-                    If onlinePic Is Nothing Then
-                        Return My.Resources.INV_Misc_QuestionMark
-                    Else
-                        Return CType(onlinePic, Bitmap)
-                    End If
-                Else
-                    Return CType(pic, Bitmap)
                 End If
             Catch ex As Exception
                 Return My.Resources.INV_Misc_QuestionMark

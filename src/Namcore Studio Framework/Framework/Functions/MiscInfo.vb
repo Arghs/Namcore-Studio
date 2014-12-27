@@ -443,10 +443,55 @@ Namespace Framework.Functions
             Select Case genderid
                 Case 0 : Return CHAR_GENDER_MALE
                 Case 1 : Return CHAR_GENDER_FEMALE
-                Case Else _
-                    : LogAppend("Invalid GenderId: " & genderId.ToString() & " // Returning nothing!",
-                                "Conversions_GetGenderNameById")
+                Case Else
+                    LogAppend("Invalid GenderId: " & genderId.ToString() & " // Returning nothing!",
+                               "Conversions_GetGenderNameById")
                     Return Nothing
+            End Select
+        End Function
+
+        Public Function GetSlotIdByName(ByVal name As String) As Integer
+            LogAppend("Loading item slot id by name: " & name, "Conversions_GetSlotIdByName", False)
+            Select Case name.ToLower()
+                Case "head"
+                    Return 0
+                Case "neck"
+                    Return 1
+                Case "shoulder"
+                    Return 2
+                Case "shirt"
+                    Return 3
+                Case "chest"
+                    Return 4
+                Case "waist"
+                    Return 5
+                Case "legs"
+                    Return 6
+                Case "feet"
+                    Return 7
+                Case "wrist"
+                    Return 8
+                Case "hands"
+                    Return 9
+                Case "finger1"
+                    Return 10
+                Case "finger2"
+                    Return 11
+                Case "trinket1"
+                    Return 12
+                Case "trinket2"
+                    Return 13
+                Case "back"
+                    Return 14
+                Case "mainhand"
+                    Return 15
+                Case "offhand"
+                    Return 16
+                Case "tabard"
+                    Return 18
+                Case Else
+                    LogAppend("Invalid slot name: " & name, "Conversions_GetSlotIdByName", True, True)
+                    Return -1
             End Select
         End Function
     End Module

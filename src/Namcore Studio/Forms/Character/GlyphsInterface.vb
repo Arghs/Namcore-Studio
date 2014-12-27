@@ -128,7 +128,7 @@ Namespace Forms.Character
                 Case 1
                     If glyphitm.Image Is Nothing Then
                         Return _
-                            GetItemIconByDisplayId(GetDisplayIdByItemId(glyphitm.Id), GlobalVariables.GlobalWebClient)
+                            GetItemIconByItemId(glyphitm.Id, GlobalVariables.GlobalWebClient)
                     Else
                         Return glyphitm.Image
                     End If
@@ -326,8 +326,7 @@ Namespace Forms.Character
                             Dim newGlyph As New Glyph
                             newGlyph.Id = id
                             newGlyph.Name = GetItemNameByItemId(id, MySettings.Default.language)
-                            newGlyph.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(id),
-                                                                    GlobalVariables.GlobalWebClient)
+                            newGlyph.Image = GetItemIconByItemId(id, GlobalVariables.GlobalWebClient)
                             newGlyph.Spec = senderTag.Spec
                             newGlyph.Slotname = senderTag.Slotname
                             newGlyph.Type = senderTag.Type
@@ -392,7 +391,7 @@ Namespace Forms.Character
                     Dim gly As New Glyph
                     gly.id = TryInt(TextBox2.Text)
                     gly.Name = GetItemNameByItemId(gly.Id, MySettings.Default.language)
-                    gly.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(gly.Id), GlobalVariables.GlobalWebClient)
+                    gly.Image = GetItemIconByItemId(gly.Id, GlobalVariables.GlobalWebClient)
                     gly.slotname = ""
                     Dim slot As String = ""
                     If senderPic.Name.Contains("minor") Then gly.Type = Glyph.GlyphType.GLYTYPE_MINOR : slot = "minor"

@@ -179,8 +179,7 @@ Namespace Forms.Character
                             If potCharBag.Name Is Nothing Then _
                                 potCharBag.Name = GetItemNameByItemId(potCharBag.Id, MySettings.Default.language)
                             If potCharBag.Image Is Nothing Then _
-                                potCharBag.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
-                                                                          GlobalVariables.GlobalWebClient)
+                                potCharBag.Image = GetItemIconByItemId(potCharBag.Id, GlobalVariables.GlobalWebClient)
                             If potCharBag.Rarity = Nothing Then _
                                 potCharBag.Rarity = CType(GetItemQualityByItemId(potCharBag.Id), Item.RarityType)
                             Dim aentry As Control() =
@@ -322,9 +321,7 @@ Namespace Forms.Character
                                 potBagItem.Name = GetItemNameByItemId(potBagItem.Id,
                                                                       MySettings.Default.language)
                             If potBagItem.Image Is Nothing Then _
-                                potBagItem.Image =
-                                    GetItemIconByDisplayId(GetDisplayIdByItemId(potBagItem.Id),
-                                                           GlobalVariables.GlobalWebClient)
+                                potBagItem.Image = GetItemIconByItemId(potBagItem.Id, GlobalVariables.GlobalWebClient)
                             '// Adding items to bag pointer
                             potCharBag.BagItems.Add(potBagItem)
                         End If
@@ -334,9 +331,7 @@ Namespace Forms.Character
                     For Each myPic As PictureBox In bagPanel.Controls
                         If myPic.Name Is Nothing Then Continue For
                         If myPic.Name.EndsWith("_remove") Then Continue For
-                        myPic.BackgroundImage =
-                            GetItemIconByDisplayId(GetDisplayIdByItemId(potCharBag.Id),
-                                                   GlobalVariables.GlobalWebClient)
+                        myPic.BackgroundImage = GetItemIconByItemId(potCharBag.Id, GlobalVariables.GlobalWebClient)
                         myPic.Tag = potCharBag
                     Next
                 End If
@@ -599,8 +594,7 @@ Namespace Forms.Character
                             '// Load item properties
                             replaceItm.Slot = oldItm.Slot
                             replaceItm.Id = intResult
-                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient),
-                                                     Bitmap)
+                            replaceItm.Image = GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient)
                             replaceItm.Name = checkName
                             replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.Bag = oldItm.Bag
@@ -722,8 +716,7 @@ Namespace Forms.Character
                             Dim replaceItm As New Item()
                             replaceItm.Slot = oldItm.Slot
                             replaceItm.Id = intResult
-                            replaceItm.Image = CType(GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient),
-                                                     Bitmap)
+                            replaceItm.Image = GetItemIconByItemId(replaceItm.Id, GlobalVariables.GlobalWebClient)
                             replaceItm.Name = checkName
                             replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.AddedBag = True

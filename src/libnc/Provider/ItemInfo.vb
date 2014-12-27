@@ -49,18 +49,5 @@ Namespace Provider
             End Try
             Return returnResult
         End Function
-        Public Function GetDisplayIdByItemId(ByVal itemId As Integer) As Integer
-            CheckInit()
-            Const targetField As Integer = 3
-            Dim myResult As String = ExecuteCsvSearch(ItemCsv, "ItemId", itemId.ToString(), targetField)(0)
-            Dim returnResult As Integer
-            If myResult = "-" Then myResult = "-1"
-            Try
-                returnResult = CInt(myResult)
-            Catch ex As Exception
-                returnResult = -1
-            End Try
-            Return returnResult
-        End Function
     End Module
 End Namespace

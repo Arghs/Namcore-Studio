@@ -20,9 +20,12 @@
 '*      /Filename:      ItemParser
 '*      /Description:   Contains functions for loading character items from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports Newtonsoft.Json.Linq
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Modules
+Imports System.Net
 Imports libnc.Provider
 Imports NCFramework.Framework.Extension.Special
 
@@ -32,154 +35,93 @@ Namespace Framework.Armory.Parser
         Private _lastStamp As Integer = 0
         '// Declaration
 
-        Public Sub LoadItems(ByVal source As String, ByVal setId As Integer, ByVal account As Account)
-            Dim slotname As String
-            Dim itemslot As Integer = 0
+        Public Sub LoadItems(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
+            Dim client As New WebClient
+            client.CheckProxy()
             '// Retrieving character
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             player.ArmorItems = New List(Of Item)()
-            LogAppend("Loading character items - setId: " & setId.ToString(), "ItemParser_loadItems", True)
-            Do
-                Try
-                    If itemslot = 17 Then
-                        Continue Do
-                    End If
-                    If itemslot > 18 Then '// item slot 19+ not existent
-                        Exit Do
-                    End If
-                    '// Loading item + info for each slot and add them to character
-                    LogAppend("Now loading info for slot " & itemslot.ToString(), "ItemParser_loadItems", True)
-                    slotname = GetItemSlotNameBySlotId(itemslot)
-                    Dim charItem As Item = GetItemInfo(itemslot, slotname, source)
-                    If Not charItem Is Nothing Then
-                        player.ArmorItems.Add(charItem)
-                        If itemslot = 15 Or itemslot = 16 Then
-                            '// Item is a weapon -> Add neccessary spells/skills
-                            LoadWeaponType(charItem.Id, setId, account)
+            LogAppend("Loading character items - setId: " & setId.ToString(), "ItemParser_LoadItems", True)
+            Try
+                '// Using API to load item info
+                Dim itemContext As String = client.DownloadString(apiLink & "?fields=items")
+                If Not itemContext.Contains("""items"":") Then
+                    LogAppend("No items found!?", "ItemParser_LoadItems", True)
+                    Exit Sub
+                End If
+                Dim jResults As JObject = JObject.Parse(itemContext)
+                Dim results As List(Of JToken) = jResults.Children().ToList()
+                Dim token As JProperty = CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "items"),
+                                               JProperty)
+                If token.HasChildren() Then
+                    For i As Integer = 0 To token.GetChildren.Count - 1
+                        Dim chld As JProperty = token.GetChildren(i)
+                        If Not chld.HasChildren Then Continue For
+                        If Not chld.HasItem("id") Then Continue For
+                        Dim playerItem As New Item
+                        playerItem.Id = CInt(chld.GetItem("id"))
+                        playerItem.Slot = GetSlotIdByName(chld.Name)
+                        LogAppend("Now loading info for slot " & playerItem.Slot.ToString(), "ItemParser_LoadItems",
+                                  True)
+                        playerItem.Slotname = GetItemSlotNameBySlotId(playerItem.Slot)
+                        Dim x As DateTime = Date.Now
+                        If _lastStamp = 0 Then
+                            _lastStamp = x.ToTimeStamp()
+                        Else
+                            _lastStamp += 1
                         End If
-                    End If
-                Catch ex As Exception
-                    LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                              "ItemParser_loadItems", False, True)
-                Finally
-                    itemslot += 1
-                End Try
-            Loop Until itemslot = 19
+                        playerItem.Guid = _lastStamp
+                        playerItem.Name = chld.GetItem("name")
+                        playerItem.Rarity = CType(CInt(chld.GetItem("quality")), Item.RarityType)
+                        If chld.HasItem("tooltipParams") Then
+                            Dim tChlds As JProperty = chld.GetChild("tooltipParams")
+                            If tChlds.HasItem("gem0") Then
+                                LogAppend("Found gem socket @0", "ItemParser_LoadItems", False)
+                                playerItem.Socket1Id = CInt(tChlds.GetItem("gem0"))
+                                playerItem.Socket1Pic = GetItemIconByItemId(playerItem.Socket1Id, GlobalVariables.GlobalWebClient)
+                                playerItem.Socket1Effectid = GetEffectIdByGemId(playerItem.Socket1Id)
+                                playerItem.Socket1Name = GetEffectNameById(playerItem.Socket1Effectid, My.Settings.language)
+                            End If
+                            If tChlds.HasItem("gem1") Then
+                                LogAppend("Found gem socket @1", "ItemParser_LoadItems", False)
+                                playerItem.Socket2Id = CInt(tChlds.GetItem("gem1"))
+                                playerItem.Socket2Pic = GetItemIconByItemId(playerItem.Socket2Id, GlobalVariables.GlobalWebClient)
+                                playerItem.Socket2Effectid = GetEffectIdByGemId(playerItem.Socket2Id)
+                                playerItem.Socket2Name = GetEffectNameById(playerItem.Socket2Effectid, My.Settings.language)
+                            End If
+                            If tChlds.HasItem("gem2") Then
+                                LogAppend("Found gem socket @2", "ItemParser_LoadItems", False)
+                                playerItem.Socket3Id = CInt(tChlds.GetItem("gem2"))
+                                playerItem.Socket3Pic = GetItemIconByItemId(playerItem.Socket3Id, GlobalVariables.GlobalWebClient)
+                                playerItem.Socket3Effectid = GetEffectIdByGemId(playerItem.Socket3Id)
+                                playerItem.Socket3Name = GetEffectNameById(playerItem.Socket3Effectid, My.Settings.language)
+                            End If
+                            If tChlds.HasItem("enchant") Then
+                                LogAppend("Found item enchantment", "ItemParser_LoadItems", False)
+                                playerItem.EnchantmentEffectid = CInt(tChlds.GetItem("enchant"))
+                                playerItem.EnchantmentId =
+                                    GetEnchantmentIdAndTypeByEffectId(playerItem.EnchantmentEffectid)(0)
+                                playerItem.EnchantmentType =
+                                    CType(GetEnchantmentIdAndTypeByEffectId(playerItem.EnchantmentEffectid)(1),
+                                          Item.EnchantmentTypes)
+                                If playerItem.EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_ITEM Then
+                                    LogAppend("Enchantment type: item!", "ItemParser_LoadItems", False)
+                                Else
+                                    LogAppend("Enchantment type: spell!", "ItemParser_LoadItems", False)
+                                End If
+                            End If
+                        End If
+                        player.ArmorItems.Add(playerItem)
+                        Select Case playerItem.Slot
+                            Case 15, 16
+                                LoadWeaponType(playerItem.Id, setId, account)
+                        End Select
+                    Next
+                End If
+            Catch ex As Exception
+                LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
+                          "ItemParser_LoadItems", False, True)
+            End Try
         End Sub
-
-        Private Function GetItemInfo(ByVal slot As Integer, ByVal slotname As String, ByVal sourceCode As String) _
-            As Item
-            LogAppend("Loading item information (slot: " & slot.ToString() & ")", "ItemParser_loadItems", True)
-            Dim endString As String
-            If slot = 16 Then
-                endString = "<script type=""text/javascript"">"
-            Else
-                endString = "<div data-id"
-            End If
-            Dim relevantItemContext As String = SplitString(sourceCode,
-                                                            "<div data-id=""" & slot.ToString & """ data-type",
-                                                            endString)
-            If relevantItemContext Is Nothing Then
-                LogAppend("RelevantItemContext is nothing - prevent NullReferenceException - Item not found",
-                          "ItemParser_loadItems", False, True)
-                Return New Item
-            End If
-            If Not relevantItemContext.Contains("/item/") Then Return Nothing '//Not item
-            Dim charItem As New Item
-            '// Loading main Item Info
-            charItem.Id = TryInt(SplitString(relevantItemContext, "/item/", """ class=""item"""))
-            Dim x As DateTime = Date.Now
-            If _lastStamp = 0 Then
-                _lastStamp = x.ToTimeStamp()
-            Else
-                _lastStamp += 1
-            End If
-            charItem.Guid = _lastStamp
-            charItem.Slotname = slotname
-            charItem.Slot = slot
-            If charItem.Id = Nothing Then
-                '// Item ID not found
-                LogAppend("Item Id is 0 - Failed to load", "ItemParser_loadItems", False, True)
-                Return New Item
-            End If
-            charItem.Name = SplitString(relevantItemContext, "<span class=""name-shadow"">", "</span>")
-            charItem.Image = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Id), GlobalVariables.GlobalWebClient)
-            charItem.Rarity = CType(TryInt(SplitString(relevantItemContext, "item-quality-", """ style=")),
-                                    Item.RarityType)
-            Dim socketContext As String
-            If relevantItemContext.Contains("<span class=""sockets"">") Then
-                LogAppend("Item gems active!", "ItemParser_loadItems", False)
-                '// Gems active
-                socketContext = SplitString(relevantItemContext & "</div>", "<span class=""sockets"">", "</div>")
-                Dim socketCount As Integer = UBound(Split(socketContext, "socket-"))
-                LogAppend("socketCount: " & socketCount.ToString(), "ItemParser_loadItems", False)
-                Dim oneSocketContext As String = SplitString(socketContext, "<span class=""icon-socket",
-                                                             "<span class=""frame"">")
-                If Not oneSocketContext.Length <= 49 Then
-                    charItem.Socket1Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
-                    charItem.Socket1Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket1Id),
-                                                                 GlobalVariables.GlobalWebClient)
-                    charItem.Socket1Effectid = GetEffectIdByGemId(charItem.Socket1Id)
-                    charItem.Socket1Name = GetEffectNameById(charItem.Socket1Effectid, My.Settings.language)
-                Else
-                    LogAppend("oneSocketContext length is less then 49/ is: " & oneSocketContext.Length,
-                              "ItemParser_loadItems", False, True)
-                End If
-                If socketCount > 1 Then
-                    socketContext = Replace(socketContext,
-                                            "<span class=""icon-socket" & oneSocketContext & "<span class=""frame"">",
-                                            Nothing, , 1)
-                    oneSocketContext = SplitString(socketContext, "<span class=""icon-socket", "<span class=""frame"">")
-                    charItem.Socket2Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
-                    charItem.Socket2Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket2Id),
-                                                                 GlobalVariables.GlobalWebClient)
-                    charItem.Socket2Effectid = GetEffectIdByGemId(charItem.Socket2Id)
-                    charItem.Socket2Name = GetEffectNameById(charItem.Socket2Effectid, My.Settings.language)
-                    If socketCount > 2 Then
-                        socketContext = Replace(socketContext,
-                                                "<span class=""icon-socket" & oneSocketContext &
-                                                "<span class=""frame"">",
-                                                Nothing, , 1)
-                        oneSocketContext = SplitString(socketContext, "<span class=""icon-socket",
-                                                       "<span class=""frame"">")
-                        charItem.Socket3Id = TryInt(SplitString(oneSocketContext, "/item/", """ class="))
-                        charItem.Socket3Pic = GetItemIconByDisplayId(GetDisplayIdByItemId(charItem.Socket3Id),
-                                                                     GlobalVariables.GlobalWebClient)
-                        charItem.Socket3Effectid = GetEffectIdByGemId(charItem.Socket3Id)
-                        charItem.Socket3Name = GetEffectNameById(charItem.Socket3Effectid, My.Settings.language)
-                    End If
-                End If
-            Else
-                LogAppend("No gems found!?", "ItemParser_loadItems", False)
-            End If
-            If relevantItemContext.Contains("<span class=""enchant-") Then
-                LogAppend("Enchantment active!", "ItemParser_loadItems", False)
-                '// Enchantment active
-                Dim enchantContext As String = SplitString(relevantItemContext, " class=""enchant color", "</span>")
-                If enchantContext.Contains("data-spell=") Then
-                    LogAppend("Enchantment type: spell!", "ItemParser_loadItems", False)
-                    '//enchantment type: spell
-                    charItem.EnchantmentId = TryInt(SplitString(enchantContext, """ data-spell=""", """>"))
-                    charItem.EnchantmentName = SplitString(enchantContext,
-                                                           """ data-spell=""" & charItem.EnchantmentId.ToString & """>",
-                                                           "</span>")
-                    charItem.EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_SPELL
-                    charItem.EnchantmentEffectid = GetEffectIdBySpellId(charItem.EnchantmentId, 5)
-                Else
-                    LogAppend("Enchantment type: item!", "ItemParser_loadItems", False)
-                    '//enchantment type: item
-                    charItem.EnchantmentId = TryInt(SplitString(enchantContext, "/item/", """>"))
-                    charItem.EnchantmentName = SplitString(enchantContext,
-                                                           "/item/" & charItem.EnchantmentId.ToString & """>", "</a>")
-                    charItem.EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_ITEM
-                    charItem.EnchantmentEffectid = GetEffectIdBySpellId(GetItemSpellIdByItemId(charItem.EnchantmentId),
-                                                                        5)
-                End If
-            Else
-                LogAppend("Enchantment not found!?", "ItemParser_loadItems", False)
-            End If
-            LogAppend("Returning item!", "ItemParser_loadItems", False)
-            Return charItem
-        End Function
     End Class
 End Namespace
