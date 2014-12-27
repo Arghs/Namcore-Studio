@@ -29,13 +29,13 @@ Module Main
     Public EnchantmentEnDic As Dictionary(Of Integer, String())
     Public FactionDeDic As Dictionary(Of Integer, String())
     Public FactionEnDic As Dictionary(Of Integer, String())
+    Public FileDataDic As Dictionary(Of Integer, String())
     Public GlyphProps0Dic As Dictionary(Of Integer, String())
     Public GlyphProps1Dic As Dictionary(Of Integer, String())
     Public GlyphProps2Dic As Dictionary(Of Integer, String())
     Public GlyphProps3Dic As Dictionary(Of Integer, String())
     Public ItemAppearanceDic As Dictionary(Of Integer, String())
     Public ItemDic As Dictionary(Of Integer, String())
-    Public ItemDisplayDic As Dictionary(Of Integer, String())
     Public ItemModifiedAppearanceDic As Dictionary(Of Integer, String())
     Public ItemSparseDeDic As Dictionary(Of Integer, String())
     Public ItemSparseEnDic As Dictionary(Of Integer, String())
@@ -100,6 +100,10 @@ Module Main
         FactionEnDic.Add(1, {"int", "ReputationIndex"})
         FactionEnDic.Add(23, {"string", "Name"})
 
+        FileDataDic = New Dictionary(Of Integer, String())()
+        FileDataDic.Add(0, {"int", "FileId"})
+        FileDataDic.Add(1, {"string", "Name"})
+
         GlyphProps0Dic = New Dictionary(Of Integer, String())()
         GlyphProps0Dic.Add(0, {"int", "Id"})
         GlyphProps0Dic.Add(1, {"int", "SpellId"})
@@ -122,16 +126,13 @@ Module Main
 
         ItemAppearanceDic = New Dictionary(Of Integer, String())()
         ItemAppearanceDic.Add(0, {"int", "AppearanceId"})
-        ItemAppearanceDic.Add(1, {"int", "DisplayId"})
+        ItemAppearanceDic.Add(2, {"int", "FileId"})
 
         ItemDic = New Dictionary(Of Integer, String())()
         ItemDic.Add(0, {"int", "Id"})
         ItemDic.Add(1, {"int", "ItemClass"})
         ItemDic.Add(2, {"int", "SubClass"})
-
-        ItemDisplayDic = New Dictionary(Of Integer, String())()
-        ItemDisplayDic.Add(0, {"int", "Id"})
-        ItemDisplayDic.Add(5, {"string", "Icon"})
+        ItemDic.Add(7, {"int", "FileId"})
 
         ItemModifiedAppearanceDic = New Dictionary(Of Integer, String())()
         ItemModifiedAppearanceDic.Add(1, {"int", "ItemId"})
@@ -246,13 +247,13 @@ Module Main
                 Log(vbTab & "\EN\SpellItemEnchantment.dbc", LogLevel.INFO)
                 Log("", LogLevel.INFO)
                 Log("  Shared", LogLevel.INFO)
+                Log(vbTab & "\Shared\FileData.dbc", LogLevel.INFO)
                 Log(vbTab & "\Shared\GlyphProperties0.dbc  (WotLK GlyphProperties.dbc)", LogLevel.INFO)
                 Log(vbTab & "\Shared\GlyphProperties1.dbc  (Cata GlyphProperties.dbc)", LogLevel.INFO)
                 Log(vbTab & "\Shared\GlyphProperties2.dbc  (MoP GlyphProperties.dbc)", LogLevel.INFO)
                 Log(vbTab & "\Shared\GlyphProperties3.dbc  (WoD GlyphProperties.dbc)", LogLevel.INFO)
                 Log(vbTab & "\Shared\Item.db2", LogLevel.INFO)
                 Log(vbTab & "\Shared\ItemAppearance.db2", LogLevel.INFO)
-                Log(vbTab & "\Shared\ItemDisplayInfo.dbc", LogLevel.INFO)
                 Log(vbTab & "\Shared\ItemModifiedAppearance.db2", LogLevel.INFO)
                 Log(vbTab & "\Shared\SkillLineAbility.dbc", LogLevel.INFO)
                 Log(vbTab & "\Shared\SpellEffect.dbc", LogLevel.INFO)
@@ -301,7 +302,7 @@ Module Main
             If CheckExistence(dbcPath) Then
                 itemSparseEn = ReadDb(dbcPath, ItemSparseEnDic)
             End If
-            If itemSparseDe IsNot Nothing Or itemSparseEn IsNot Nothing Then
+            If itemSparseDe IsNot Nothing And itemSparseEn IsNot Nothing Then
                 Dim completeContent As String =
                         "ItemId£Quality£InventoryType£MaxStack£SlotCount£SpellId£ItemNameDE£ItemNameEN£BagFamily"
                 Try
@@ -328,12 +329,17 @@ Module Main
         If skipvalue < 2 Then
             Log("Converting Item.db2", LogLevel.NORMAL)
             Dim itemDb2 As DataTable = Nothing
+            Dim fileData As DataTable = Nothing
             Dim itemModAppearance As DataTable = Nothing
             Dim itemAppearance As DataTable = Nothing
 
             dbcPath = "\Shared\Item.db2"
             If CheckExistence(dbcPath) Then
                 itemDb2 = ReadDb(dbcPath, ItemDic)
+            End If
+            dbcPath = "\Shared\FileData.dbc"
+            If CheckExistence(dbcPath) Then
+                fileData = ReadDb(dbcPath, FileDataDic)
             End If
             dbcPath = "\Shared\ItemModifiedAppearance.db2"
             If CheckExistence(dbcPath) Then
@@ -343,21 +349,29 @@ Module Main
             If CheckExistence(dbcPath) Then
                 itemAppearance = ReadDb(dbcPath, ItemAppearanceDic)
             End If
-            If itemDb2 IsNot Nothing Or itemModAppearance IsNot Nothing Or itemAppearance IsNot Nothing Then
-                Dim completeContent As String = "ItemId£Class£SubClass£DisplayId"
+
+            If _
+                itemDb2 IsNot Nothing And fileData IsNot Nothing And itemModAppearance IsNot Nothing And
+                itemAppearance IsNot Nothing Then
+                Dim completeContent As String = "ItemId£Class£SubClass£Icon"
                 Try
                     For i = 0 To itemDb2.Rows.Count - 1
                         ReportStatus(i + 1, itemDb2.Rows.Count)
                         Dim entry As DataRow = itemDb2(i)
-                        Dim dr() As DataRow = ExecuteDtSearch(itemAppearance, "AppearanceId",
-                                                              LinkedContent(entry, itemModAppearance, "Id", "ItemId",
-                                                                            "AppearanceId"))
-                        If dr IsNot Nothing Then
-                            completeContent &= vbNewLine & ContentBuilder(entry, "Id", "ItemClass", "SubClass") & "£" &
-                                               dr(0)("DisplayId")
+                        Dim lContent As String = LinkedContent(entry, fileData, "FileId", "Name")
+                        If lContent.Length > 0 Then
+                            lContent = lContent.Remove(lContent.Length - 4)
                         Else
-                            completeContent &= vbNewLine & ContentBuilder(entry, "Id", "ItemClass", "SubClass") & "£0"
+                            Dim dr() As DataRow = ExecuteDtSearch(itemAppearance, "AppearanceId",
+                                                                  LinkedContent(entry, itemModAppearance, "Id", "ItemId",
+                                                                                "AppearanceId"))
+                            If dr IsNot Nothing Then
+                                lContent = LinkedContent(dr(0), fileData, "FileId", "Name")
+                                If lContent.Length > 0 Then lContent = lContent.Remove(lContent.Length - 4)
+                            End If
                         End If
+                        completeContent &= vbNewLine & ContentBuilder(entry, "Id", "ItemClass", "SubClass") & "£" &
+                                           lContent
                     Next i
                     FileWriter("Item.csv", completeContent)
                 Catch ex As Exception
@@ -382,7 +396,7 @@ Module Main
             If CheckExistence(dbcPath) Then
                 achievementEn = ReadDb(dbcPath, AchievementEnDic)
             End If
-            If achievementDe IsNot Nothing Or achievementEn IsNot Nothing Then
+            If achievementDe IsNot Nothing And achievementEn IsNot Nothing Then
                 Dim completeContent As String =
                         "AchievementId£NameDE£NameEN£DescriptionDE£DescriptionEN£CategoryId£IconId"
                 Try
@@ -418,7 +432,7 @@ Module Main
             If CheckExistence(dbcPath) Then
                 avCatEn = ReadDb(dbcPath, AchievementCatEnDic)
             End If
-            If avCatDe IsNot Nothing Or avCatEn IsNot Nothing Then
+            If avCatDe IsNot Nothing And avCatEn IsNot Nothing Then
                 Dim completeContent As String = "CategoryId£MainCatId£NameDE£NameEN"
                 Try
                     For i = 0 To avCatDe.Rows.Count - 1
@@ -465,32 +479,6 @@ Module Main
         End If
 
         If skipvalue < 6 Then
-            Log("Converting ItemDisplayInfo.dbc", LogLevel.NORMAL)
-            Dim displayInfo As DataTable = Nothing
-            dbcPath = "\Shared\ItemDisplayInfo.dbc"
-            If CheckExistence(dbcPath) Then
-                displayInfo = ReadDb(dbcPath, ItemDisplayDic)
-            End If
-            If displayInfo IsNot Nothing Then
-                Dim completeContent As String = "SpellId£Icon"
-                Try
-                    For i = 0 To displayInfo.Rows.Count - 1
-                        ReportStatus(i + 1, displayInfo.Rows.Count)
-                        Dim entry As DataRow = displayInfo(i)
-                        completeContent &= vbNewLine & ContentBuilder(entry, "Id", "Icon")
-                    Next i
-                    FileWriter("ItemDisplayInfo.csv", completeContent)
-                Catch ex As Exception
-                    Log("Something went wrong: " & ex.ToString(), LogLevel.CRITICAL)
-                End Try
-            Else
-                Log("Cannot proceed with this file!", LogLevel.CRITICAL)
-            End If
-        Else
-            Log("Skipping ItemDisplayInfo.dbc", LogLevel.NORMAL)
-        End If
-
-        If skipvalue < 7 Then
             Log("Converting Faction.dbc", LogLevel.NORMAL)
             Dim factionDe As DataTable = Nothing
             Dim factionEn As DataTable = Nothing
@@ -502,7 +490,7 @@ Module Main
             If CheckExistence(dbcPath) Then
                 factionEn = ReadDb(dbcPath, FactionEnDic)
             End If
-            If factionDe IsNot Nothing Or factionEn IsNot Nothing Then
+            If factionDe IsNot Nothing And factionEn IsNot Nothing Then
                 Dim completeContent As String = "FactionId£Index£NameDE£NameEN"
                 Try
                     For i = 0 To factionDe.Rows.Count - 1
@@ -522,7 +510,7 @@ Module Main
             Log("Skipping Faction.dbc", LogLevel.NORMAL)
         End If
 
-        If skipvalue < 8 Then
+        If skipvalue < 7 Then
             Log("Converting GlyphProperties0.dbc", LogLevel.NORMAL)
             Dim glyphProps As DataTable = Nothing
             dbcPath = "\Shared\GlyphProperties0.dbc"
@@ -614,7 +602,7 @@ Module Main
             Log("Skipping GlyphProperties.dbc", LogLevel.NORMAL)
         End If
 
-        If skipvalue < 9 Then
+        If skipvalue < 8 Then
             Log("Converting SkillLine.dbc", LogLevel.NORMAL)
             Dim skillLineDe As DataTable = Nothing
             Dim skillLineEn As DataTable = Nothing
@@ -626,7 +614,7 @@ Module Main
             If CheckExistence(dbcPath) Then
                 skillLineEn = ReadDb(dbcPath, SkillLineEnDic)
             End If
-            If skillLineDe IsNot Nothing Or skillLineEn IsNot Nothing Then
+            If skillLineDe IsNot Nothing And skillLineEn IsNot Nothing Then
                 Dim completeContent As String = "SkillId£NameDE£NameEN"
                 Try
                     For i = 0 To skillLineDe.Rows.Count - 1
@@ -646,7 +634,7 @@ Module Main
             Log("Skipping SkillLine.dbc", LogLevel.NORMAL)
         End If
 
-        If skipvalue < 10 Then
+        If skipvalue < 9 Then
             Log("Converting Spell.dbc, SpellItemEnchantment.dbc and SpellEffect.dbc", LogLevel.NORMAL)
             Dim spellDe As DataTable = Nothing
             Dim spellEn As DataTable = Nothing
@@ -680,7 +668,7 @@ Module Main
                 spellWotLk = ReadDb(dbcPath, SpellLkDic)
             End If
 
-            If spellDe IsNot Nothing Or spellEn IsNot Nothing Then
+            If spellDe IsNot Nothing And spellEn IsNot Nothing Then
                 Dim completeContent As String = "SpellId£SpellNameDE£SpellNameEN£DescriptionDE"
                 Try
                     For i = 0 To spellDe.Rows.Count - 1
@@ -701,7 +689,7 @@ Module Main
                 Log("Cannot proceed with this file!", LogLevel.CRITICAL)
             End If
 
-            If enchantmentDe IsNot Nothing Or enchantmentEn IsNot Nothing Then
+            If enchantmentDe IsNot Nothing And enchantmentEn IsNot Nothing Then
                 Dim completeContent As String = "EffectId£GemId£Points1£Points2£Points3£EffectNameDE£EffectNameEN"
                 Try
                     For i = 0 To enchantmentDe.Rows.Count - 1
@@ -720,7 +708,7 @@ Module Main
                 Log("Cannot proceed with this file!", LogLevel.CRITICAL)
             End If
 
-            If effectDb IsNot Nothing Or spellWotLk IsNot Nothing Then
+            If effectDb IsNot Nothing And spellWotLk IsNot Nothing Then
                 Dim completeContent As String = "ItemId£EffectId£SpellId£SpellId335"
                 Try
                     For i = 0 To effectDb.Rows.Count - 1
@@ -740,7 +728,7 @@ Module Main
             Log("Skipping Spell.dbc, SpellItemEnchantment.dbc and SpellEffect.dbc", LogLevel.NORMAL)
         End If
 
-        If skipvalue < 11 Then
+        If skipvalue < 10 Then
             Log("Converting SkillLineAbility.dbc", LogLevel.NORMAL)
             Dim skillLine As DataTable = Nothing
             dbcPath = "\Shared\SkillLineAbility.dbc"
