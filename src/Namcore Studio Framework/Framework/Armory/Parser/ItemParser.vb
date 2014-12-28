@@ -104,6 +104,7 @@ Namespace Framework.Armory.Parser
                                 playerItem.EnchantmentType =
                                     CType(GetEnchantmentIdAndTypeByEffectId(playerItem.EnchantmentEffectid)(1),
                                           Item.EnchantmentTypes)
+                                playerItem.EnchantmentName = GetEffectNameById(playerItem.EnchantmentEffectid, My.Settings.language)
                                 If playerItem.EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_ITEM Then
                                     LogAppend("Enchantment type: item!", "ItemParser_LoadItems", False)
                                 Else
