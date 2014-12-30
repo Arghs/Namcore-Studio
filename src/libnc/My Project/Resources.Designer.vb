@@ -291,47 +291,31 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die ItemId£Class£SubClass£DisplayId
-        '''17£4£4£5661
-        '''25£2£7£1542
-        '''35£2£10£472
-        '''36£2£4£5194
-        '''37£2£0£8483
-        '''38£4£0£5729
-        '''39£4£1£6050
-        '''40£4£1£6051
-        '''41£4£0£0
-        '''42£4£0£0
-        '''43£4£1£6060
-        '''44£4£1£1882
-        '''45£4£0£3265
-        '''46£4£0£0
-        '''47£4£1£9767
-        '''48£4£1£5341
-        '''49£4£0£9906
-        '''50£4£0£0
-        '''51£4£1£7081
-        '''52£4£1£5848
-        '''53£4£0£8370
-        '''54£4£0£0
-        '''55£4£1£6077
-        '''56£4£1£12647
-        '''57£4£1£12645
-        '''58£4£0£0
-        '''59£4£1£3261
-        '''60£4£2£15441
-        '''61£4£2£65304
-        '''77£4£1£0
-        '''79£4£1£73553
-        '''80£4£1£7180
-        '''85£4£2£10888
-        '''86£4£0£0
-        '''87£4£0£0
-        '''88£4£1£0
-        '''89£4£0£0
-        '''90£4£0£0
-        '''91£4£1£0
-        '''92£4£ [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die ItemId£Class£SubClass£Icon
+        '''17£4£4£INV_Chest_Samurai
+        '''25£2£7£INV_Sword_04
+        '''35£2£10£INV_Staff_08
+        '''36£2£4£INV_Mace_03
+        '''37£2£0£INV_Axe_11
+        '''38£4£0£INV_Shirt_05
+        '''39£4£1£INV_Pants_02
+        '''40£4£1£INV_Boots_06
+        '''41£4£0£INV_Belt_05
+        '''42£4£0£INV_Belt_05
+        '''43£4£1£INV_Boots_01
+        '''44£4£1£INV_Pants_02
+        '''45£4£0£INV_Shirt_01
+        '''46£4£0£INV_Belt_06
+        '''47£4£1£INV_Boots_05
+        '''48£4£1£INV_Pants_02
+        '''49£4£0£INV_Shirt_05
+        '''50£4£0£INV_Belt_04
+        '''51£4£1£INV_Boots_04
+        '''52£4£1£INV_Pants_02
+        '''53£4£0£INV_Shirt_01
+        '''54£4£0£INV_Belt_04
+        '''55£4£1£INV_BOOTS_09
+        '''56£ [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property Item() As String
             Get
@@ -405,9 +389,9 @@ Namespace My.Resources
         '''13£Die Volksmiliz£The People&apos;s Militia
         '''14£Die Volksmili [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property questname() As String
+        Public ReadOnly Property Questnames() As String
             Get
-                Return ResourceManager.GetString("questname", resourceCulture)
+                Return ResourceManager.GetString("Questnames", resourceCulture)
             End Get
         End Property
         

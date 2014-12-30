@@ -63,7 +63,7 @@ Public Class Main
         FillDataTable(My.Resources.GlyphProperties3, GlyphProperties3Csv)
         FillDataTable(My.Resources.Item, ItemCsv)
         FillDataTable(My.Resources.ItemSparse, ItemSparseCsv)
-        FillDataTable(My.Resources.questname, QuestNameCsv)
+        FillDataTable(My.Resources.Questnames, QuestNameCsv)
         FillDataTable(My.Resources.SkillLine, SkillLineCsv)
         FillDataTable(My.Resources.SkillLineAbility, SkillLineAbilityCsv)
         FillDataTable(My.Resources.Spell, SpellCsv)

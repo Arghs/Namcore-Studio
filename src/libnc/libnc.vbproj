@@ -125,7 +125,7 @@
     <None Include="Resources\Item.csv" />
     <None Include="Resources\ItemSparse.csv" />
     <None Include="Resources\PlayerCreateInfo.csv" />
-    <None Include="Resources\questname.csv" />
+    <None Include="Resources\Questnames.csv" />
     <None Include="Resources\SkillLine.csv" />
     <None Include="Resources\SkillLineAbility.csv" />
     <None Include="Resources\Spell.csv" />
@@ -140,7 +140,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_IncrementBeforeBuild="True" BuildVersion_DetectChanges="True" />
+      <UserProperties BuildVersion_DetectChanges="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
