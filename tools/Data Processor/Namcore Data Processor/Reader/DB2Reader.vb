@@ -1,5 +1,5 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013-2014 NamCore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013-2015 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '* Copyright (C) 2010-2013 TOM_RUS' dbcviewer <https://github.com/tomrus88/dbcviewer>
 '*
 '* This program is free software; you can redistribute it and/or modify it

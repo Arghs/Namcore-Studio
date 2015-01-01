@@ -13,7 +13,7 @@ Imports System.Resources
 <Assembly: AssemblyDescription("NamCore Studio")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("NamCore Studio")>
-<Assembly: AssemblyCopyright("Copyright © 2014 megasus")>
+<Assembly: AssemblyCopyright("Copyright © 2015 megasus")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(True)>

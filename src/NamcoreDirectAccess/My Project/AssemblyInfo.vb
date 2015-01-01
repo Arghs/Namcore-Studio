@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("NamcoreDirectAccess")> 
-<Assembly: AssemblyCopyright("Copyright ©  2014 megasus")> 
+<Assembly: AssemblyCopyright("Copyright ©  2015 megasus")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)> 

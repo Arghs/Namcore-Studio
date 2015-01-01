@@ -1,5 +1,5 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013-2014 NamCore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013-2015 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
@@ -203,7 +203,7 @@ Module Main
         DisableTime = True
         Log(New String("-", 50), LogLevel.INFO)
         Log("* Welcome to the NamCore Data Processor (" & My.Application.Info.Version.ToString() & ")", LogLevel.INFO)
-        Log("* Copyright (C) 2013-2014 NamCore Studio", LogLevel.INFO)
+        Log("* Copyright (C) 2013-2015 NamCore Studio", LogLevel.INFO)
         Log("* Developed by Alcanmage/megasus", LogLevel.INFO)
         Log(New String("-", 50), LogLevel.INFO)
         Log("", LogLevel.INFO)
