@@ -20,6 +20,7 @@
 '*      /Filename:      GlyphParser
 '*      /Description:   Contains functions for loading character glyphs from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports Newtonsoft.Json.Linq
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
@@ -36,59 +37,61 @@ Namespace Framework.Armory.Parser
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             Try
                 LogAppend("Loading character glyph information - setId: " & setId.ToString() & " - apiLink: " & apiLink,
-                          "GlyphParser_loadGlyphs", True)
+                          "GlyphParser_LoadGlyphs", True)
                 '// Using API to load glyph info
                 Dim glyphContext As String = client.DownloadString(apiLink & "?fields=talents")
-                Dim slotAddition As String
-                Dim mainContext As String
                 If Not glyphContext.Contains("""glyphs"":") Then
-                    LogAppend("No glyphs found!?", "GlyphParser_loadGlyphs", True)
+                    LogAppend("No glyphs found!?", "GlyphParser_LoadGlyphs", True)
                     Exit Sub '// Skip if no glyphs
                 End If
-                For i = 1 To 2
-                    LogAppend("Now parsing spec: " & i.ToString(), "GlyphParser_loadGlyphs", True)
-                    Select Case i
-                        Case 1 : mainContext = SplitString(glyphContext, """glyphs"":", ",""spec"":")
-                            slotAddition = "" '// Spec 0
-                        Case 2 : mainContext = SplitString(glyphContext, ",""spec"":", "}]}")
-                            slotAddition = "sec" '// Spec 1
-                        Case Else : mainContext = SplitString(glyphContext, ",""spec"":", "}]}")
-                            slotAddition = "sec" '// Spec 1
-                    End Select
-                    Dim gType As String = "minor"
-                    Dim loopCounter As Integer = 0
-                    Do
-                        If mainContext.Contains("""" & gType & """") Then
-                            Dim glyphStr As String = SplitString(mainContext, """" & gType & """:[", "]")
-                            Dim exCounter As Integer = UBound(Split(glyphStr, "{""glyph"""))
-                            Dim counter As Integer = 0
-                            glyphStr = glyphStr.Replace("},", "*")
-                            If Not glyphStr.Length <= 3 Then
-                                Do
-                                    '// Creating new glyph object
-                                    Dim newGlyph As New Glyph
-                                    Dim parts() As String = glyphStr.Split("*"c)
-                                    newGlyph.Id = TryInt(SplitString(parts(counter), """item"":", ","""))
-                                    newGlyph.Name = SplitString(parts(counter), """name"":", ",""")
-                                    newGlyph.Slotname = slotAddition & gType & "glyph" & (counter + 1).ToString()
-                                    newGlyph.Image = GetItemIconByItemId(newGlyph.Id, GlobalVariables.GlobalWebClient)
-                                    newGlyph.Type = CType(loopCounter + 1, Glyph.GlyphType)
-                                    newGlyph.Spec = i
-                                    LogAppend("Loaded glyph " & newGlyph.Name, "GlyphParser_loadGlyphs", True)
-                                    AddCharacterGlyph(player, newGlyph)
-                                    counter += 1
-                                Loop Until counter = exCounter
-                            End If
-                        Else
-                            LogAppend("mainContext does not contain: " & gType & " / No glyphs in this category!",
-                                      "GlyphParser_loadGlyphs", False)
+                Dim jResults As JObject = JObject.Parse(glyphContext)
+                Dim results As List(Of JToken) = jResults.Children().ToList()
+                Dim token As JProperty =
+                        CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "talents"),
+                              JProperty)
+                If token.HasChildren Then
+                    For i = 0 To token.GetObjects().Count - 1
+                        Dim glyphToken As JProperty = token.GetObjects()(i).Children.Cast(Of JProperty).ToList().Find(Function(jProperty) jProperty.Name = "glyphs")
+                        If glyphToken.HasItem("major") Then
+                            Dim majorToken As List(Of JObject) = glyphToken.GetChild("major").GetObjects()
+                            For z = 0 To majorToken.Count - 1
+                                Dim singleGlyph As List(Of JProperty) = majorToken(z).Children.Cast(Of JProperty).ToList()
+                                Dim pGlyph As New Glyph
+                                With pGlyph
+                                    .Id = CInt(singleGlyph.GetValue("item"))
+                                    .Name = singleGlyph.GetValue("name")
+                                    .Image = GetItemIconByItemId( .Id, GlobalVariables.GlobalWebClient)
+                                    .Spec = i + 1
+                                    .Type = Glyph.GlyphType.GLYTYPE_MAJOR
+                                    .Slotname = "majorglyph" & (z + 1).ToString()
+                                    If i = 1 Then .Slotname = "sec" & .Slotname
+                                    AddCharacterGlyph(player, pGlyph)
+                                    LogAppend("Loaded glyph " & .Name, "GlyphParser_LoadGlyphs", True)
+                                End With
+                            Next z
                         End If
-                        gType = "major"
-                        loopCounter += 1
-                    Loop Until loopCounter = 2
-                Next i
+                        If glyphToken.HasItem("minor") Then
+                            Dim minorToken As List(Of JObject) = glyphToken.GetChild("minor").GetObjects()
+                            For z = 0 To minorToken.Count - 1
+                                Dim singleGlyph As List(Of JProperty) = minorToken(z).Children.Cast(Of JProperty).ToList()
+                                Dim pGlyph As New Glyph
+                                With pGlyph
+                                    .Id = CInt(singleGlyph.GetValue("item"))
+                                    .Name = singleGlyph.GetValue("name")
+                                    .Image = GetItemIconByItemId( .Id, GlobalVariables.GlobalWebClient)
+                                    .Spec = i + 1
+                                    .Type = Glyph.GlyphType.GLYTYPE_MINOR
+                                    .Slotname = "minorglyph" & (z + 1).ToString()
+                                    If i = 1 Then .Slotname = "sec" & .Slotname
+                                    AddCharacterGlyph(player, pGlyph)
+                                    LogAppend("Loaded glyph " & .Name, "GlyphParser_LoadGlyphs", True)
+                                End With
+                            Next z
+                        End If
+                    Next i
+                End If
             Catch ex As Exception
-                LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "GlyphParser_loadGlyphs", False, True)
+                LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "GlyphParser_LoadGlyphs", False, True)
             End Try
             '// Saving changes to character
             SetCharacterSet(setId, player, GetAccountSetBySetId(player.AccountSet))

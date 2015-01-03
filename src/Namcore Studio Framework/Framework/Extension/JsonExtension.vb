@@ -54,9 +54,20 @@ Namespace Framework.Extension
         End Function
 
         <Extension()>
+        Public Function GetObjects(ByVal prop As JProperty) As List(Of JObject)
+            prop.CreateReader()
+            Return CType(prop.Value, JArray).Cast(Of JObject).ToList()
+        End Function
+
+        <Extension()>
         Public Function GetValue(ByVal prop As JProperty, ByVal name As String) As String
             prop.CreateReader()
             Return CType(prop.GetChildren().Single(Function(jtoken) jtoken.Name = name).Value, String)
+        End Function
+
+        <Extension()>
+        Public Function GetValue(ByVal prop As List(Of JProperty), ByVal name As String) As String
+            Return CType(prop.Find(Function(jProperty) jProperty.Name = name).Value, String)
         End Function
 
         <Extension()>
