@@ -33,7 +33,7 @@ Namespace Provider
             If myResult = "-" Then
                 Return My.Resources.INV_Misc_QuestionMark
             End If
-            myResult = myResult.ToLower().Replace("INTERFACE/SPELLBOOK", "")
+            myResult = myResult.ToLower().Replace("interface\icons\", "")
             If myResult = "" Then Return My.Resources.INV_Misc_QuestionMark
             Dim pic As Image = CType(libncadvanced.My.Resources.ResourceManager.GetObject(myResult.ToLower()), Image)
             If pic Is Nothing Then

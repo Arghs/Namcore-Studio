@@ -562,7 +562,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die SpellId£Icon
+        '''  Sucht eine lokalisierte Zeichenfolge, die IconId£Icon
         '''1£Interface\Icons\Trade_Engineering
         '''9£Interface\Icons\Spell_Shadow_BlackPlague
         '''10£Interface\Icons\Spell_Nature_NaturesBlessing
@@ -574,7 +574,8 @@ Namespace My.Resources
         '''16£Interface\Icons\Spell_Fire_FireArmor
         '''17£Interface\Icons\Spell_Frost_IceShock
         '''18£Interface\Icons\Spell_Fire_FireBolt
-        '''19£Interface\Icons\Spell_Nature_LightningShield        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''19£Interface\Icons\Spell_Nature_LightningShield
+        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Public ReadOnly Property SpellIcon() As String
             Get
@@ -604,9 +605,9 @@ Namespace My.Resources
         '''35£11124£12378£12398£12399£12400
         '''1733£34293 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Public ReadOnly Property talent() As String
+        Public ReadOnly Property Talent() As String
             Get
-                Return ResourceManager.GetString("talent", resourceCulture)
+                Return ResourceManager.GetString("Talent", resourceCulture)
             End Get
         End Property
     End Module

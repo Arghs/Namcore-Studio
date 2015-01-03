@@ -70,7 +70,7 @@ Public Class Main
         FillDataTable(My.Resources.SpellEffect, SpellEffectCsv)
         FillDataTable(My.Resources.SpellEnchant, SpellEnchantCsv)
         FillDataTable(My.Resources.SpellIcon, SpellIconCsv)
-        FillDataTable(My.Resources.talent, TalentCsv)
+        FillDataTable(My.Resources.Talent, TalentCsv)
         FillDataTable(My.Resources.PlayerCreateInfo, CreateInfoCsv)
         IsInitialized = True
     End Sub
