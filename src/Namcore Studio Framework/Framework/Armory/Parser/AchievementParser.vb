@@ -21,6 +21,7 @@
 '*      /Description:   Contains functions for loading character achievement information 
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports Newtonsoft.Json.Linq
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
@@ -38,49 +39,50 @@ Namespace Framework.Armory.Parser
             Try
                 LogAppend(
                     "Loading character achievement information - setId: " & setId.ToString() & " - apiLink: " & apiLink,
-                    "AchievementParser_loadAchievements", True)
+                    "AchievementParser_LoadAchievements", True)
                 '// Using API to load achievement info
                 Dim avContext As String = client.DownloadString(apiLink & "?fields=achievements")
-                '// Splitting to create completed-achievements and timestamp string
-                Dim avStr As String = SplitString(avContext, "{""achievementsCompleted"":[", "],""") & ","
-                Dim timeStr As String = SplitString(avContext, """achievementsCompletedTimestamp"":[", "],""")
-                If avStr.Length > 5 Then '// Should check if av count is > 0 // TODO Confirm
-                    Dim loopcounter As Integer = 0
-                    Dim excounter As Integer = UBound(Split(avStr, ","))
-                    Dim partsAv() As String = avStr.Split(","c)
-                    Dim partsTime() As String = timeStr.Split(","c)
-                    Do
-                        Dim avId As String = partsAv(loopcounter)
-                        Dim timeStamp = partsTime(loopcounter)
-                        If timeStamp.Contains("000") Then
-                            Try
-                                timeStamp = timeStamp.Remove(timeStamp.Length - 3, 3)
-                            Catch tmpex As Exception
-                                LogAppend(
-                                    "Exception during timestamp splitting! - timeStamp/loopcounter/excounter: " &
-                                    timeStamp &
-                                    "/" & loopcounter.ToString & "/" &
-                                    excounter.ToString() & " # Exception is: " & tmpex.ToString(),
-                                    "AchievementParser_loadAchievements", False, True)
-                            End Try
-                        End If
-                        loopcounter += 1
-                        LogAppend("Adding achievement " & avId & " with timestamp " & timeStamp,
-                                  "AchievementParser_loadAchievements", False)
-                        '// Creating new achievement object
-                        Dim av As New Achievement
-                        av.Id = TryInt(avId)
-                        av.GainDate = TryInt(timeStamp)
-                        av.OwnerSet = setId
-                        player.Achievements.Add(av)
-                    Loop Until loopcounter = excounter
-                    LogAppend("Loaded " & loopcounter.ToString & " achievements!", "AchievementParser_loadAchievements",
-                              True)
-                    '// Saving changes to character
-                    SetCharacterSet(setId, player, GetAccountSetBySetId(player.AccountSet))
+                If Not avContext.Contains("""achievements"":") Then
+                    LogAppend("No achievements found!?", "AchievementParser_LoadAchievements", True)
+                    Exit Sub
                 End If
+                Dim jResults As JObject = JObject.Parse(avContext)
+                Dim results As List(Of JToken) = jResults.Children().ToList()
+                Dim token As JProperty =
+                        CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "achievements"),
+                              JProperty)
+                If token.HasChildren() Then
+                    Dim completedAvs() As Integer =
+                            token.GetValues("achievementsCompleted").ToList().ConvertAll(
+                                Function(str) Integer.Parse(str)) _
+                            .ToArray()
+                    Dim completedStamps() As Long =
+                            token.GetValues("achievementsCompletedTimestamp").ToList().ConvertAll(
+                                Function(str) Long.Parse(str)).ToArray()
+                    If Not completedAvs Is Nothing AndAlso Not completedStamps Is Nothing Then
+                        For i = 0 To completedAvs.Count - 1
+                            Dim playerAv As New Achievement
+                            playerAv.Id = completedAvs(i)
+                            If completedStamps.Count < i Then
+                                LogAppend(
+                                    "No timestamp found for achievement: " & playerAv.Id.ToString() & " @" &
+                                    i.ToString(), "AchievementParser_LoadAchievements", True, True)
+                                Exit Sub
+                            End If
+                            playerAv.GainDate = CInt(completedStamps(i) / 1000)
+                            playerAv.OwnerSet = setId
+                            player.Achievements.Add(playerAv)
+                        Next i
+                    End If
+                End If
+                LogAppend("Loaded " & player.Achievements.Count.ToString & " achievements!",
+                          "AchievementParser_LoadAchievements",
+                          True)
+
+                SetCharacterSet(setId, player, GetAccountSetBySetId(player.AccountSet))
+
             Catch ex As Exception
-                LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "AchievementParser_loadAchievements", False,
+                LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "AchievementParser_LoadAchievements", False,
                           True)
             End Try
         End Sub

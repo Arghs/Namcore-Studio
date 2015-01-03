@@ -54,9 +54,24 @@ Namespace Framework.Extension
         End Function
 
         <Extension()>
-        Public Function GetItem(ByVal prop As JProperty, ByVal name As String) As String
+        Public Function GetValue(ByVal prop As JProperty, ByVal name As String) As String
             prop.CreateReader()
             Return CType(prop.GetChildren().Single(Function(jtoken) jtoken.Name = name).Value, String)
+        End Function
+
+        <Extension()>
+        Public Function GetValues(ByVal prop As JProperty, ByVal name As String) As String()
+            prop.CreateReader()
+            Return CType(prop.GetChildren().Single(Function(jtoken) jtoken.Name = name).Value, JArray).ToStringArray()
+        End Function
+
+        <Extension()>
+        Private Function ToStringArray(ByVal jarr As JArray) As String()
+            Dim str(jarr.Count - 1) As String
+            For i = 0 To jarr.Count - 1
+                str(i) = CType(jarr(i), JValue).ToString()
+            Next i
+            Return str
         End Function
     End Module
 End Namespace
