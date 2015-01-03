@@ -82,7 +82,10 @@ Namespace Forms.Character
                             Dim txt As String = TryCast(LoadInfo(tempSlotName, 0), String)
                             DirectCast(itemControl, Label).Tag = _pubGlyph
                             DirectCast(itemControl, Label).Cursor = Cursors.IBeam
-                            If _pubGlyph Is Nothing Then Continue For
+                            If _pubGlyph Is Nothing Then
+                                DirectCast(itemControl, Label).Text = txt
+                                Continue For
+                            End If
                             If txt Is Nothing Then
                                 txt = GetItemNameByItemId(_pubGlyph.Id, MySettings.Default.language)
                             End If
