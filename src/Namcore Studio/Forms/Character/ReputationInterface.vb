@@ -169,8 +169,6 @@ Namespace Forms.Character
                         Case Reputation.RepStatus.REPSTAT_EXALTED : progressPanel.BackColor = Color.LightGreen
                     End Select
                     standingCombo.Tag = pRepu
-
-                    standingCombo.Text = ResourceHandler.GetLocalizedString("standing_" & pRepu.Status.ToString)
                     repPanel.Controls.Add(standingCombo)
                     AddHandler standingCombo.SelectedIndexChanged, AddressOf StandingChanged
                 End If
