@@ -393,4 +393,7 @@
   <data name="profession_197" xml:space="preserve">
     <value>Tailoring</value>
   </data>
+  <data name="proficiency_9" xml:space="preserve">
+    <value>Draenor Master</value>
+  </data>
 </root>

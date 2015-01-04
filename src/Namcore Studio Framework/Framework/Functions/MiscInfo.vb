@@ -421,6 +421,7 @@ Namespace Framework.Functions
                 Case 350 To 424 : Return rm.GetString("proficiency_6")
                 Case 425 To 499 : Return rm.GetString("proficiency_7")
                 Case 500 To 600 : Return rm.GetString("proficiency_8")
+                Case 600 To 700 : Return rm.GetString("proficiency_9")
                 Case Else : Return MSG_ERROR
             End Select
         End Function
