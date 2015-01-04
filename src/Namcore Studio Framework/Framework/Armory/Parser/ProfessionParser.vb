@@ -22,6 +22,7 @@
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.My
+Imports Newtonsoft.Json.Linq
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
@@ -37,93 +38,78 @@ Namespace Framework.Armory.Parser
             '// Retrieving character
             Dim player As Character = GetCharacterSetBySetId(setId, account)
             player.Professions = New List(Of Profession)
-            Dim pProf As Profession
             Try
                 LogAppend(
                     "Loading character profession information - setId: " & setId.ToString() & " - apiLink: " & apiLink,
-                    "ProfessionParser_loadProfessions", True)
+                    "ProfessionParser_LoadProfessions", True)
                 '// Using API to load profession info
                 Dim pfContext As String = client.DownloadString(apiLink & "?fields=professions")
-                If pfContext Is Nothing Then
-                    LogAppend("pfContext is nothing - Failed to load Professions API",
-                              "ProfessionParser_loadProfessions",
-                              False, True)
-                    Exit Sub
-                Else
-                    LogAppend("pfContext loaded - length: " & pfContext.Length.ToString(),
-                              "ProfessionParser_loadProfessions", False)
+                If Not pfContext.Contains("""professions"":") Then
+                    LogAppend("No profession information found!?", "ProfessionParser_LoadProfessions", True)
+                    Exit Sub '// Skip if no professions
                 End If
-                Dim pfStr As String = SplitString(pfContext, """professions"":{", "]},"""")") & "#end#"
-                Dim primaryPf As String = SplitString(pfStr, """primary"":[", """secondary""")
-                Dim secondaryPf As String = SplitString(pfStr, """secondary"":[", "#end#")
-                Dim usePfString As String = primaryPf
-                Do
-                    Dim excounter As Integer = UBound(Split(usePfString, "}")) + 1
-                    Dim partsPf() As String = usePfString.Split("}"c)
-                    Dim loopcounter As Integer = 0
-                    Do
-                        pProf = New Profession()
-                        pProf.Recipes = New List(Of ProfessionSpell)()
-                        If usePfString = primaryPf Then
-                            pProf.Primary = True
+                Dim jResults As JObject = JObject.Parse(pfContext)
+                Dim results As List(Of JToken) = jResults.Children().ToList()
+                Dim token As JProperty =
+                        CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "professions"),
+                              JProperty)
+                If token.HasChildren Then
+                    For i = 0 To 1
+                        Dim specToken As JProperty
+                        If i = 0 Then
+                            specToken = token.GetChild("primary")
                         Else
-                            pProf.Primary = False
+                            specToken = token.GetChild("secondary")
                         End If
-                        Dim myPart As String = partsPf(loopcounter)
-                        If myPart.Length < 29 Then
-                            loopcounter += 1
-                        Else
-                            pProf.Id = TryInt(SplitString(myPart, """id"":", ","))
-                            pProf.Iconname = SplitString(myPart, """icon"":""", """,")
-                            pProf.Max = TryInt(SplitString(myPart, """max"":", ","))
-                            pProf.Name = SplitString(myPart, """name"":""", """,")
-                            pProf.Rank = TryInt(SplitString(myPart, """rank"":", ","))
-                            If pProf.Rank = 0 Then
-                                loopcounter += 1
-                                Continue Do
-                            End If
-                            LogAppend("Adding profession with id " & pProf.Id.ToString,
-                                      "ProfessionParser_loadProfessions", True)
-                            Dim recipes As String = SplitString(myPart, """recipes"":[", "]")
-                            If recipes.Length > 3 Then
-                                Dim useRecipes As String() = recipes.Split(","c)
-                                For i = 0 To useRecipes.Length - 1
-                                    pProf.Recipes.Add(
-                                        New ProfessionSpell() _
-                                                         With {.SpellId = TryInt(useRecipes(i)),
-                                                         .Name =
-                                                         GetSpellNameBySpellId(.SpellId, MySettings.Default.language),
-                                                         .MinSkill = GetMinimumSkillBySpellId(TryInt(useRecipes(i)))})
-                                Next
-                            End If
-                            If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
-                            player.Spells.Add(
-                                New Spell _
-                                                 With {.Active = 1, .Disabled = 0,
-                                                 .Id = GetSkillSpellIdBySkillRank(pProf.Id, pProf.Rank)})
-                            Dim specialSpells() As Integer = GetSkillSpecialSpellIdBySkill(pProf.Id)
-                            If Not specialSpells Is Nothing Then
-                                For i = 0 To specialSpells.Length - 1
-                                    LogAppend("Adding special profession spell " & specialSpells(i).ToString,
-                                              "ProfessionParser_loadProfessions", True)
-                                    player.Spells.Add(
-                                        New Spell _
-                                                         With {.Active = 1, .Disabled = 0, .Id = specialSpells(i)})
-                                Next
-                            End If
-                            player.Professions.Add(pProf)
-                            loopcounter += 1
+                        If specToken.HasChildren() Then
+                            For z = 0 To specToken.GetObjects().Count - 1
+                                Dim profToken As List(Of JProperty) =
+                                        specToken.GetObjects()(z).Children.Cast(Of JProperty).ToList()
+                                Dim pProfession As New Profession
+                                pProfession.Id = CInt(profToken.GetValue("id"))
+                                pProfession.Primary = Not CBool(i)
+                                pProfession.Iconname = profToken.GetValue("icon")
+                                pProfession.Name = profToken.GetValue("name")
+                                pProfession.Max = CInt(profToken.GetValue("max"))
+                                pProfession.Rank = CInt(profToken.GetValue("rank"))
+                                If pProfession.Rank = 0 Then Continue For
+                                pProfession.Recipes = New List(Of ProfessionSpell)()
+                                Dim recipes() As Integer =
+                                        profToken.GetValues("recipes").ToList().ConvertAll(
+                                            Function(str) Integer.Parse(str)) _
+                                        .ToArray()
+                                If Not recipes Is Nothing Then
+                                    For Each recipeId As Integer In recipes
+                                        pProfession.Recipes.Add(New ProfessionSpell() _
+                                                                   With {.SpellId = recipeId,
+                                                                   .Name =
+                                                                   GetSpellNameBySpellId( .SpellId,
+                                                                                         MySettings.Default.language),
+                                                                   .MinSkill = GetMinimumSkillBySpellId( .SpellId)})
+                                    Next
+                                Else
+                                    LogAppend("No recipes found for profession: " & pProfession.Id.ToString,
+                                              "ProfessionParser_LoadProfessions", True)
+                                End If
+                                Dim specialSpells() As Integer = GetSkillSpecialSpellIdBySkill(pProfession.Id)
+                                If Not specialSpells Is Nothing Then
+                                    For Each spellId In specialSpells
+                                        LogAppend("Adding special profession spell " & spellId.ToString,
+                                                  "ProfessionParser_LoadProfessions", True)
+                                        player.Spells.Add(New Spell With {.Active = 1, .Disabled = 0, .Id = spellId})
+                                    Next
+                                End If
+                                LogAppend("Adding profession with id " & pProfession.Id.ToString,
+                                          "ProfessionParser_LoadProfessions", True)
+                                player.Professions.Add(pProfession)
+                            Next z
                         End If
-                    Loop Until loopcounter = excounter
+                    Next i
                     LogAppend("Loaded " & player.Professions.Count.ToString & " professions",
-                              "ProfessionParser_loadProfessions",
+                              "ProfessionParser_LoadProfessions",
                               True)
-                    If usePfString = secondaryPf Then
-                        Exit Do
-                    Else
-                        usePfString = secondaryPf
-                    End If
-                Loop
+                End If
+
                 '// Saving changes to character
                 SetCharacterSet(setId, player, GetAccountSetBySetId(player.AccountSet))
             Catch ex As Exception

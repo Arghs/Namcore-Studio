@@ -228,7 +228,7 @@ Namespace Framework.Core
         Private Function GetTable() As DataTable
             Try
                 Dim dt As New DataTable()
-                Dim stext As String = libnc.My.Resources.talent
+                Dim stext As String = libnc.My.Resources.Talent
                 Dim a() As String
                 Dim strArray As String()
                 a = Split(stext, vbNewLine)
@@ -252,17 +252,17 @@ Namespace Framework.Core
         End Function
 
         Private Function Checkfield(ByVal lId As String, ByVal rank As String) As String
-            LogAppend("Loading SpellId of Talent " & lID & " with rank " & rank, "CharacterTalentsHandler_checkfield",
+            LogAppend("Loading SpellId of Talent " & lId & " with rank " & rank, "CharacterTalentsHandler_checkfield",
                       False)
-            Dim byRnk As String = executex("TalentId", lID, TryInt(rank))
+            Dim byRnk As String = Executex("TalentId", lId, TryInt(rank))
             If rank = "0" Then
-                LogAppend("Talent Rank is 0 -> Returning " & lID & "clear", "CharacterTalentsHandler_checkfield", False)
-                Return lID & "clear"
+                LogAppend("Talent Rank is 0 -> Returning " & lId & "clear", "CharacterTalentsHandler_checkfield", False)
+                Return lId & "clear"
             ElseIf Not byRnk = "-" Then
                 LogAppend("SpellID is " & byRnk, "CharacterTalentsHandler_checkfield", False)
                 Return byRnk
             Else
-                LogAppend("SpellID " & lID & " not found! -> Returning 0", "CharacterTalentsHandler_checkfield", False,
+                LogAppend("SpellID " & lId & " not found! -> Returning 0", "CharacterTalentsHandler_checkfield", False,
                           True)
                 Return "0"
             End If
@@ -271,7 +271,7 @@ Namespace Framework.Core
         Private Function Executex(ByVal field As String, ByVal sId As String, ByVal rank As Integer) As String
             Try
                 Dim foundRows() As DataRow
-                foundRows = _sDatatable.Select(field & " = '" & sID & "'")
+                foundRows = _sDatatable.Select(field & " = '" & sId & "'")
                 If foundRows.Length = 0 Then
                     Return "-"
                 Else
@@ -284,7 +284,7 @@ Namespace Framework.Core
                 End If
             Catch ex As Exception
                 LogAppend(
-                    "Something went wrong while checking talent dt for TalentId " & sID & " & rank " & rank &
+                    "Something went wrong while checking talent dt for TalentId " & sId & " & rank " & rank &
                     " -> Exception is: ###START###" & ex.ToString() & "###END###", "CharacterTalentsHandler_executex",
                     False,
                     True)
