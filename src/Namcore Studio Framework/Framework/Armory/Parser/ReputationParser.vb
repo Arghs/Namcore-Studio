@@ -21,6 +21,7 @@
 '*      /Description:   Contains functions for loading character reputation information from 
 '*                      wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports Newtonsoft.Json.Linq
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Extension
@@ -38,58 +39,48 @@ Namespace Framework.Armory.Parser
             Try
                 LogAppend(
                     "Loading character reputation information - setId: " & setId.ToString() & " - apiLink: " & apiLink,
-                    "ReputationParser_loadReputation", True)
+                    "ReputationParser_LoadReputation", True)
                 Dim reputationContext As String = client.DownloadString(apiLink & "?fields=reputation")
-                If reputationContext Is Nothing Then
-                    LogAppend("Failed to load Reputation API", "ReputationParser_loadReputation", False, True)
-                    Exit Sub
-                Else
-                    LogAppend("reputationContext loaded - length is: " & reputationContext.Length.ToString(),
-                              "ReputationParser_loadReputation", False)
+                If Not reputationContext.Contains("""reputation"":") Then
+                    LogAppend("No reputation information found!?", "ReputationParser_LoadReputation", True)
+                    Exit Sub '// Skip if no reputation info
                 End If
-                reputationContext = SplitString(reputationContext, """reputation"":[", "]")
-                If reputationContext.Length > 5 Then '// Not confirmed if properly working TODO
-                    Dim exCount As Integer = UBound(Split(reputationContext, ",{"))
-                    reputationContext = reputationContext.Replace(",{", "§")
-                    Dim parts() As String = reputationContext.Split("§"c)
-                    Dim loopcounter As Integer = 0
-                    Do
-                        Dim rep As New Reputation
-                        Try
-                            Dim factionId As String = SplitString(parts(loopcounter), """id"":", ",")
-                            LogAppend("Now adding fation with id: " & factionId, "ReputationParser_loadReputation",
-                                      False)
-                            Dim standing As Integer = TryInt(SplitString(parts(loopcounter), """value"":", ","))
-                            Dim orgstanding As Integer = TryInt(SplitString(parts(loopcounter), """standing"":", ","))
-                            rep.Status = CType(orgstanding, Reputation.RepStatus)
-                            rep.Max = TryInt(SplitString(parts(loopcounter), """max"":", "}"))
-                            rep.Value = standing
-                            loopcounter += 1
-                            If orgstanding > 3 Then standing += 3000
-                            If orgstanding > 4 Then standing += 6000
-                            If orgstanding > 5 Then standing += 12000
-                            If orgstanding > 6 Then standing += 21000
-                            LogAppend(
-                                "Adding reputation (factionID/standing):(" & factionId & "/" & standing.ToString & ")",
-                                "ReputationParser_loadReputation", False)
-                            rep.Faction = TryInt(factionId)
-                            rep.Standing = TryInt(CStr(standing))
-                            rep.Name = SplitString(parts(loopcounter), """name"":""", """,")
-                            rep.Flags = CType(1, Reputation.FlagEnum)
-                            player.PlayerReputation.Add(rep)
-                        Catch ex As Exception
-                            loopcounter += 1
-                            LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                                      "ReputationParser_loadReputation", False, True)
-                        End Try
-                    Loop Until loopcounter = exCount
-                    LogAppend("Loaded " & loopcounter.ToString & " factions", "ReputationParser_loadReputation", True)
-                    '// Saving changes to character
-                    SetCharacterSet(setId, player, GetAccountSetBySetId(player.AccountSet))
+                Dim jResults As JObject = JObject.Parse(reputationContext)
+                Dim results As List(Of JToken) = jResults.Children().ToList()
+                Dim token As JProperty =
+                        CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "reputation"),
+                              JProperty)
+                If token.HasChildren Then
+                    For i = 0 To token.GetObjects().Count - 1
+                        Dim repToken As List(Of JProperty) = token.GetObjects()(i).Children.Cast(Of JProperty).ToList()
+                        Dim pReputation As New Reputation
+                        pReputation.Faction = CInt(repToken.GetValue("id"))
+                        pReputation.Max = CInt(repToken.GetValue("max"))
+                        pReputation.Value = CInt(repToken.GetValue("value"))
+                        pReputation.Name = repToken.GetValue("name")
+                        pReputation.Status = CType(CInt(repToken.GetValue("standing")), Reputation.RepStatus)
+                        pReputation.Flags = Reputation.FlagEnum.FACTION_FLAG_VISIBLE
+                        pReputation.Standing = pReputation.Value
+                        With pReputation
+                            If .Status > 3 Then .Standing += 3000
+                            If .Status > 4 Then .Standing += 6000
+                            If .Status > 5 Then .Standing += 12000
+                            If .Status > 6 Then .Standing += 21000
+                        End With
+                        LogAppend(
+                            "Adding reputation (factionID/standing): (" & pReputation.Faction.ToString() & "/" &
+                            pReputation.Value.ToString() & ")",
+                            "ReputationParser_LoadReputation", False)
+                        player.PlayerReputation.Add(pReputation)
+                    Next i
                 End If
+                LogAppend("Loaded " & player.PlayerReputation.Count.ToString & " factions",
+                          "ReputationParser_LoadReputation", True)
+                '// Saving changes to character
+                SetCharacterSet(setId, player, GetAccountSetBySetId(player.AccountSet))
             Catch ex As Exception
                 LogAppend("Something went wrong! -> Exception is: ###START###" & ex.ToString() & "###END###",
-                          "ReputationParser_loadReputation", False, True)
+                          "ReputationParser_LoadReputation", False, True)
             End Try
         End Sub
     End Class
