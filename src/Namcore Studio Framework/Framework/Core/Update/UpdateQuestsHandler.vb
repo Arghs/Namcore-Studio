@@ -21,16 +21,11 @@
 '*      /Description:   Handles character glyph update requests
 '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Database
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Update
     Public Class UpdateQuestsHandler
-        '// Declaration
-        Dim _excounter As Integer
-        Dim _quests() As String
-        '// Declaration
 
         Public Sub UpdateQuestlog(ByVal player As Character, ByVal modPlayer As Character)
             LogAppend("Updating character questlog", "UpdateQuestsHandler_UpdateQuestlog", True)
@@ -40,35 +35,20 @@ Namespace Framework.Core.Update
                 If result Is Nothing Then CreateQuest(modPlayer, qst) : Continue For
                 If result.Status <> qst.Status Or result.Explored <> qst.Explored Then CreateQuest(modPlayer, qst, True)
             Next
-            If Not modPlayer.FinishedQuests Is Nothing Then
-                _excounter = UBound(Split(modPlayer.FinishedQuests, ","))
-                _quests = modPlayer.FinishedQuests.Split(","c)
-                For i = 0 To _excounter - 1
-                    Dim thisQuest As String = _quests(i)
-                    If _
-                        Not player.FinishedQuests.StartsWith(thisQuest & ",") AndAlso
-                        Not player.FinishedQuests.Contains("," & thisQuest & ",") Then
-                        CreateQuest(modPlayer, New Quest With {.Id = TryInt(thisQuest), .Status = 1, .Rewarded = 1})
-                    End If
-                Next
-            End If
-            '// Any deleted quests?
-            For Each qst As Quest In player.Quests
-                Dim result As Quest = modPlayer.Quests.Find(Function(quest) quest.Id = qst.Id)
-                If result Is Nothing Then DeleteQuest(modPlayer, qst)
+            For Each qst As Integer In
+                From qst1 In modPlayer.FinishedQuests Where Not player.FinishedQuests.Contains(qst1)
+                CreateQuest(modPlayer, New Quest With {.Id = qst, .Status = 1, .Rewarded = 1})
             Next
-            If Not player.FinishedQuests Is Nothing Then
-                _excounter = UBound(Split(player.FinishedQuests, ","))
-                _quests = player.FinishedQuests.Split(","c)
-                For i = 0 To _excounter - 1
-                    Dim thisQuest As String = _quests(i)
-                    If _
-                        Not modPlayer.FinishedQuests.StartsWith(thisQuest & ",") AndAlso
-                        Not modPlayer.FinishedQuests.Contains("," & thisQuest & ",") Then
-                        DeleteQuest(modPlayer, New Quest With {.Id = TryInt(thisQuest)})
-                    End If
-                Next
-            End If
+            '// Any deleted quests?
+            For Each qst As Quest In
+                From qst1 In player.Quests Let result = modPlayer.Quests.Find(Function(quest) quest.Id = qst1.Id)
+                Where result Is Nothing Select qst1
+                DeleteQuest(modPlayer, qst)
+            Next
+            For Each qst As Integer In
+                From qst1 In player.FinishedQuests Where Not modPlayer.FinishedQuests.Contains(qst1)
+                DeleteQuest(modPlayer, New Quest With {.Id = qst})
+            Next
         End Sub
 
         Private Sub CreateQuest(ByVal player As Character, ByVal qst2Add As Quest, Optional update As Boolean = False)

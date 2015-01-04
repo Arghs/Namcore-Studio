@@ -56,15 +56,10 @@ Namespace Forms.Character
             Hide()
             qst_lst.Items.Clear()
             _cmpFileListViewComparer = New ListViewComparer(qst_lst)
-            Dim realQstLst As New List(Of Quest)
             If GlobalVariables.currentEditedCharSet Is Nothing Then
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             End If
-            Dim qst() As String = GlobalVariables.currentEditedCharSet.FinishedQuests.Split(","c)
-            For i = 0 To qst.Length - 1
-                If qst(i).Length = 0 Then Continue For
-                realQstLst.Add(New Quest With {.Id = TryInt(qst(i)), .Rewarded = 1, .Explored = 1, .Status = 1})
-            Next
+            Dim realQstLst As List(Of Quest) = (From qst In GlobalVariables.currentEditedCharSet.FinishedQuests Select New Quest With {.Id = qst, .Rewarded = 1, .Explored = 1, .Status = 1}).ToList()
             If GlobalVariables.currentEditedCharSet.Quests IsNot Nothing Then
                 If GlobalVariables.currentEditedCharSet.Quests.Count > 0 Then
                     realQstLst.AddRange(GlobalVariables.currentEditedCharSet.Quests)
@@ -163,8 +158,7 @@ Namespace Forms.Character
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = CType(qstitm.Tag, Quest)
                 If qst.Rewarded = 1 Then
-                    GlobalVariables.currentEditedCharSet.FinishedQuests =
-                        GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.Id.ToString & ",", ",")
+                    GlobalVariables.currentEditedCharSet.FinishedQuests.Remove(qst.Id)
                 Else
                     If GlobalVariables.currentEditedCharSet.Quests Is Nothing Then _
                         GlobalVariables.currentEditedCharSet.Quests = New List(Of Quest)()
@@ -192,8 +186,7 @@ Namespace Forms.Character
                 Dim qst As Quest = CType(qstitm.Tag, Quest)
                 If qst.Status = 1 Then
                     If qst.Rewarded = 1 Then
-                        GlobalVariables.currentEditedCharSet.FinishedQuests =
-                            GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.Id.ToString & ",", ",")
+                        GlobalVariables.currentEditedCharSet.FinishedQuests.Remove(qst.Id)
                         qst.Status = 0
                         qst.Rewarded = 0
                         If GlobalVariables.currentEditedCharSet.Quests Is Nothing Then _
@@ -257,8 +250,7 @@ Namespace Forms.Character
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = CType(qstitm.Tag, Quest)
                 If qst.Rewarded = 1 Then
-                    GlobalVariables.currentEditedCharSet.FinishedQuests =
-                        GlobalVariables.currentEditedCharSet.FinishedQuests.Replace("," & qst.Id.ToString & ",", ",")
+                    GlobalVariables.currentEditedCharSet.FinishedQuests.Remove(qst.Id)
                     qstitm.SubItems(3).Text = "0"
                     qst.Rewarded = 0
                     If GlobalVariables.currentEditedCharSet.Quests Is Nothing Then _
@@ -281,14 +273,13 @@ Namespace Forms.Character
             For Each qstitm As ListViewItem In qst_lst.SelectedItems
                 Dim qst As Quest = CType(qstitm.Tag, Quest)
                 If qst.Rewarded = 0 Then
-                    GlobalVariables.currentEditedCharSet.FinishedQuests =
-                        GlobalVariables.currentEditedCharSet.FinishedQuests & qst.Id.ToString & ","
+                    GlobalVariables.currentEditedCharSet.FinishedQuests.SafeAdd(qst.Id)
                     qstitm.SubItems(2).Text = "1"
                     qstitm.SubItems(3).Text = "1"
                     If GlobalVariables.currentEditedCharSet.Quests Is Nothing Then _
                         GlobalVariables.currentEditedCharSet.Quests = New List(Of Quest)()
-                    For Each pqst As Quest In GlobalVariables.currentEditedCharSet.Quests
-                        If pqst.Id = qst.Id Then GlobalVariables.currentEditedCharSet.Quests.Remove(pqst)
+                    For Each pqst As Quest In From pqst1 In GlobalVariables.currentEditedCharSet.Quests Where pqst1.Id = qst.Id
+                        GlobalVariables.currentEditedCharSet.Quests.Remove(pqst)
                     Next
                     For Each qitm As ListViewItem In _lstitems
                         Dim subqst As Quest = CType(qitm.Tag, Quest)
@@ -307,7 +298,7 @@ Namespace Forms.Character
             '// Add new quest
             Dim retnvalue As Integer = TryInt(InputBox(MSG_ENTERQUESTID, MSG_ADDQUEST, "0"))
             If Not retnvalue = 0 Then
-                If GlobalVariables.currentEditedCharSet.FinishedQuests.Contains("," & retnvalue.ToString & ",") Then
+                If GlobalVariables.currentEditedCharSet.FinishedQuests.Contains(retnvalue) Then
                     MsgBox(MSG_QUESTALREADYPRESENT, MsgBoxStyle.Critical, MSG_ERROR)
                     Exit Sub
                 End If
@@ -324,8 +315,7 @@ Namespace Forms.Character
                 If qrewarded = 1 Then
                     newqst.Rewarded = 1
                     newqst.Status = 1
-                    GlobalVariables.currentEditedCharSet.FinishedQuests =
-                        GlobalVariables.currentEditedCharSet.FinishedQuests & "," & retnvalue.ToString
+                    GlobalVariables.currentEditedCharSet.FinishedQuests.SafeAdd(retnvalue)
                     Dim str(3) As String
                     str(0) = retnvalue.ToString
                     str(1) = newqst.Name

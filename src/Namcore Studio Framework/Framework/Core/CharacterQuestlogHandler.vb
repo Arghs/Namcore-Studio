@@ -21,6 +21,7 @@
 '*      /Description:   Contains functions for extracting information about the questlog 
 '*                      of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
@@ -139,7 +140,9 @@ Namespace Framework.Core
                 If Not lastcount = 0 Then
                     Do
                         Dim quest As String = (tempdt2.Rows(count).Item(0)).ToString
-                        If Not quest = "" Then player.FinishedQuests = quest & ","
+                        If Not quest = "" Then player.FinishedQuests.SafeAddRange(quest.Split(","c).ToList().ConvertAll(
+                            Function(str) Integer.Parse(str)) _
+                                                                                 .ToArray())
                         count += 1
                     Loop Until count = lastcount
                 End If
@@ -176,7 +179,7 @@ Namespace Framework.Core
                         Dim rewarded As String = (tempdt.Rows(count).Item(4)).ToString
                         qst.Rewarded = TryInt(rewarded)
                         If rewarded = "1" Then
-                            player.FinishedQuests = qst.Id & ","
+                            player.FinishedQuests.SafeAdd(qst.Id)
                         Else
                             If player.Quests Is Nothing Then player.Quests = New List(Of Quest)()
                             player.Quests.Add(qst)
@@ -218,7 +221,7 @@ Namespace Framework.Core
                         qst.Timer = TryInt((tempdt.Rows(count).Item(3)).ToString)
                         qst.Rewarded = TryInt((tempdt.Rows(count).Item(4)).ToString)
                         If qst.Rewarded = 1 Then
-                            player.FinishedQuests = qst.Id & ","
+                            player.FinishedQuests.SafeAdd(qst.Id)
                         Else
                             If player.Quests Is Nothing Then player.Quests = New List(Of Quest)()
                             player.Quests.Add(qst)

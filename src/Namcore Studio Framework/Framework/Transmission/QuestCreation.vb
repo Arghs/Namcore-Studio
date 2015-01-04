@@ -80,10 +80,8 @@ Namespace Framework.Transmission
                 End If
             Else : LogAppend("No quests in questlog", "QuestCreation_createAtArcemu", False)
             End If
-            Dim finishedQuestsString As String = player.FinishedQuests
-            If Not finishedQuestsString = "" Then _
-                runSQLCommand_characters_string(
-                    "UPDATE characters SET finished_quests='" & finishedQuestsString & "' WHERE guid='" &
+            runSQLCommand_characters_string(
+                    "UPDATE characters SET finished_quests='" & String.Join(",", player.FinishedQuests.Cast(Of String).ToArray()) & "' WHERE guid='" &
                     characterguid.ToString() & "'", True)
         End Sub
 
@@ -107,24 +105,15 @@ Namespace Framework.Transmission
                 End If
             Else : LogAppend("No quests in questlog", "QuestCreation_createAtTrinity", False)
             End If
-            Dim finishedQuestsString As String = player.FinishedQuests
-            If Not finishedQuestsString = "" Then
-                Try
-                    Dim parts() As String = finishedQuestsString.Split(","c)
-                    Dim excounter As Integer = UBound(finishedQuestsString.Split(CChar(",")))
-                    Dim startcounter As Integer = 0
-                    Do
-                        Dim questid As String = parts(startcounter)
-                        runSQLCommand_characters_string(
-                            "INSERT IGNORE INTO " &
-                            GlobalVariables.targetStructure.character_queststatus_rewarded_tbl(0) &
-                            " ( `" & GlobalVariables.targetStructure.qstre_guid_col(0) & "`, `" &
-                            GlobalVariables.targetStructure.qstre_quest_col(0) &
-                            "` ) VALUES ( '" & characterguid.ToString() & "', '" & questid & "' )", True)
-                        startcounter += 1
-                    Loop Until startcounter = excounter
-                Catch
-                End Try
+            If Not player.FinishedQuests Is Nothing Then
+                For Each questId As Integer In player.FinishedQuests
+                    runSQLCommand_characters_string(
+                        "INSERT IGNORE INTO " &
+                        GlobalVariables.targetStructure.character_queststatus_rewarded_tbl(0) &
+                        " ( `" & GlobalVariables.targetStructure.qstre_guid_col(0) & "`, `" &
+                        GlobalVariables.targetStructure.qstre_quest_col(0) &
+                        "` ) VALUES ( '" & characterguid.ToString() & "', '" & questId.ToString() & "' )", True)
+                Next
             End If
         End Sub
 
@@ -148,25 +137,16 @@ Namespace Framework.Transmission
                 End If
             Else : LogAppend("No quests in questlog", "QuestCreation_createAtMangos", False)
             End If
-            Dim finishedQuestsString As String = player.FinishedQuests
-            If Not finishedQuestsString = "" Then
-                Try
-                    Dim parts() As String = finishedQuestsString.Split(","c)
-                    Dim excounter As Integer = UBound(finishedQuestsString.Split(CChar(",")))
-                    Dim startcounter As Integer = 0
-                    Do
-                        Dim questid As String = parts(startcounter)
-                        runSQLCommand_characters_string(
+            If Not player.FinishedQuests Is Nothing Then
+                For Each questId As Integer In player.FinishedQuests
+                    runSQLCommand_characters_string(
                             "INSERT INTO " & GlobalVariables.targetStructure.character_queststatus_tbl(0) & " ( " &
                             GlobalVariables.targetStructure.qst_guid_col(0) & ", " &
                             GlobalVariables.targetStructure.qst_quest_col(0) & ", `" &
                             GlobalVariables.targetStructure.qst_status_col(0) & "`, `" &
                             GlobalVariables.targetStructure.qst_rewarded_col(0) & "` ) VALUES ( '" &
-                            characterguid.ToString() & "', '" & questid & "', '1', '1')", True)
-                        startcounter += 1
-                    Loop Until startcounter = excounter
-                Catch
-                End Try
+                            characterguid.ToString() & "', '" & questId.ToString() & "', '1', '1')", True)
+                Next
             End If
         End Sub
     End Class

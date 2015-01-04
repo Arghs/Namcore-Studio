@@ -215,7 +215,7 @@ Namespace Framework.Modules
         Public ExploredZones As String
         Public KnownTitles As String
         Public ArcEmuTalentPoints As String
-        Public FinishedQuests As String
+        Public FinishedQuests As List(Of Integer)
         Public CustomFaction As Integer
         Public BindMapId As Integer
         Public BindZoneId As Integer

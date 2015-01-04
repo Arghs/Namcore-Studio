@@ -21,6 +21,7 @@
 '*      /Description:   Contains functions for extracting information from the characters
 '*                      table for a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
@@ -362,7 +363,9 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_finishedQuests_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.FinishedQuests = _tempResult
+            tmpCharacter.FinishedQuests.SafeAddRange(_tempResult.Split(","c).ToList().ConvertAll(
+                                Function(str) Integer.Parse(str)) _
+                            .ToArray())
             LogAppend(
                 "Loaded character finishedQuests info for characterGuid: " & charguid.ToString & " and setId: " &
                 tarSetId &
@@ -1200,7 +1203,9 @@ Namespace Framework.Core
                     "SELECT " & GlobalVariables.sourceStructure.char_finishedQuests_col(0) & " FROM " &
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
-            tmpCharacter.FinishedQuests = _tempResult
+            tmpCharacter.FinishedQuests.SafeAddRange(_tempResult.Split(","c).ToList().ConvertAll(
+                                Function(str) Integer.Parse(str)) _
+                            .ToArray())
             LogAppend(
                 "Loaded character finishedQuests info for characterGuid: " & charguid.ToString & " and setId: " &
                 tarSetId &

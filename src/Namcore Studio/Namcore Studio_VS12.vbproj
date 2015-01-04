@@ -232,6 +232,7 @@
     <Compile Include="Modules\Interface\ItemPanel.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\Interface\ObjectExtension.vb" />
     <Compile Include="Modules\Interface\TrdQueueHandler.vb" />
     <Compile Include="Modules\Interface\Interface_Operator.vb" />
     <Compile Include="Modules\Interface\ListViewComparer.vb" />
@@ -418,7 +419,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseUniversalClock="True" BuildVersion_AssemblyInfoFilename="My Project\AssemblyInfo.vb" BuildVersion_DetectChanges="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_IncrementBeforeBuild="True" BuildVersion_DetectChanges="True" BuildVersion_AssemblyInfoFilename="My Project\AssemblyInfo.vb" BuildVersion_UseUniversalClock="True" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
