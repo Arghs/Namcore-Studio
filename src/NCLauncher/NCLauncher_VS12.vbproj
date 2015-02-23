@@ -31,7 +31,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\..\NamCore Studio\Release\</OutputPath>
+    <OutputPath>..\Namcore Studio\bin\Release\</OutputPath>
     <DocumentationFile>NCLauncher.xml</DocumentationFile>
     <NoWarn>
     </NoWarn>
@@ -137,7 +137,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_DetectChanges="False" BuildVersion_IncrementBeforeBuild="False" />
+      <UserProperties BuildVersion_IncrementBeforeBuild="False" BuildVersion_DetectChanges="False" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
