@@ -69,7 +69,7 @@ Namespace Framework.Armory
                               SplitString(armoryLink, "/character/", "/") & "/" & characterName
                     Dim apiContext As String = client.DownloadString(apiLink)
                     Dim jResults As JObject = JObject.Parse(apiContext)
-                    Dim results As List(Of JProperty) = jResults.Children().Cast(Of JProperty).ToList()
+                    Dim results As List(Of JProperty) = jResults.Children().Cast (Of JProperty).ToList()
                     setId += 1
                     LogAppend("Loading character " & characterName & " //ident is " & setId.ToString(),
                               "ArmoryHandler_DoLoad", True)
@@ -121,14 +121,16 @@ Namespace Framework.Armory
                     Try
                         LogAppend("Loading character's finished quests", "ArmoryHandler_DoLoad", True)
                         Dim qResult As JObject = JObject.Parse(client.DownloadString(apiLink & "?fields=quests"))
-                        Dim qToken As List(Of JProperty) = qResult.Children.Cast(Of JProperty).ToList()
-                        player.FinishedQuests.SafeAddRange(qToken.GetValues("quests").ToList().ConvertAll(Function(str) Integer.Parse(str)).ToArray())
+                        Dim qToken As List(Of JProperty) = qResult.Children.Cast (Of JProperty).ToList()
+                        player.FinishedQuests.SafeAddRange(
+                            qToken.GetValues("quests").ToList().ConvertAll(Function(str) Integer.Parse(str)).ToArray())
                     Catch ex As Exception
                         LogAppend("Exception occured: " & vbNewLine & ex.ToString(), "ArmoryHandler_DoLoad", False, True)
                     End Try
 
                     player.InventoryZeroItems = New List(Of Item)()
-                    player.InventoryZeroItems.Add(New Item _
+                    player.InventoryZeroItems.Add(
+                        New Item _
                                                      With {.Id = 6948, .Count = 1, .Bag = 0, .Container = 0, .Slot = 23,
                                                      .Guid = 0}) '// Adding hearthstone
                     player.SetIndex = setId

@@ -81,8 +81,9 @@ Namespace Framework.Transmission
             Else : LogAppend("No quests in questlog", "QuestCreation_createAtArcemu", False)
             End If
             runSQLCommand_characters_string(
-                    "UPDATE characters SET finished_quests='" & String.Join(",", player.FinishedQuests.Cast(Of String).ToArray()) & "' WHERE guid='" &
-                    characterguid.ToString() & "'", True)
+                "UPDATE characters SET finished_quests='" &
+                String.Join(",", player.FinishedQuests.Cast (Of String).ToArray()) & "' WHERE guid='" &
+                characterguid.ToString() & "'", True)
         End Sub
 
         Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
@@ -140,12 +141,12 @@ Namespace Framework.Transmission
             If Not player.FinishedQuests Is Nothing Then
                 For Each questId As Integer In player.FinishedQuests
                     runSQLCommand_characters_string(
-                            "INSERT INTO " & GlobalVariables.targetStructure.character_queststatus_tbl(0) & " ( " &
-                            GlobalVariables.targetStructure.qst_guid_col(0) & ", " &
-                            GlobalVariables.targetStructure.qst_quest_col(0) & ", `" &
-                            GlobalVariables.targetStructure.qst_status_col(0) & "`, `" &
-                            GlobalVariables.targetStructure.qst_rewarded_col(0) & "` ) VALUES ( '" &
-                            characterguid.ToString() & "', '" & questId.ToString() & "', '1', '1')", True)
+                        "INSERT INTO " & GlobalVariables.targetStructure.character_queststatus_tbl(0) & " ( " &
+                        GlobalVariables.targetStructure.qst_guid_col(0) & ", " &
+                        GlobalVariables.targetStructure.qst_quest_col(0) & ", `" &
+                        GlobalVariables.targetStructure.qst_status_col(0) & "`, `" &
+                        GlobalVariables.targetStructure.qst_rewarded_col(0) & "` ) VALUES ( '" &
+                        characterguid.ToString() & "', '" & questId.ToString() & "', '1', '1')", True)
                 Next
             End If
         End Sub

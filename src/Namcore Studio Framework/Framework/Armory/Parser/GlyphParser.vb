@@ -51,16 +51,19 @@ Namespace Framework.Armory.Parser
                               JProperty)
                 If token.HasChildren Then
                     For i = 0 To token.GetObjects().Count - 1
-                        Dim glyphToken As JProperty = token.GetObjects()(i).Children.Cast(Of JProperty).ToList().Find(Function(jProperty) jProperty.Name = "glyphs")
+                        Dim glyphToken As JProperty =
+                                token.GetObjects()(i).Children.Cast (Of JProperty).ToList().Find(
+                                    Function(jProperty) jProperty.Name = "glyphs")
                         If glyphToken.HasItem("major") Then
                             Dim majorToken As List(Of JObject) = glyphToken.GetChild("major").GetObjects()
                             For z = 0 To majorToken.Count - 1
-                                Dim singleGlyph As List(Of JProperty) = majorToken(z).Children.Cast(Of JProperty).ToList()
+                                Dim singleGlyph As List(Of JProperty) =
+                                        majorToken(z).Children.Cast (Of JProperty).ToList()
                                 Dim pGlyph As New Glyph
                                 With pGlyph
                                     .Id = CInt(singleGlyph.GetValue("item"))
                                     .Name = singleGlyph.GetValue("name")
-                                    .Image = GetItemIconByItemId( .Id, GlobalVariables.GlobalWebClient)
+                                    .Image = GetItemIconByItemId(.Id, GlobalVariables.GlobalWebClient)
                                     .Spec = i + 1
                                     .Type = Glyph.GlyphType.GLYTYPE_MAJOR
                                     .Slotname = "majorglyph" & (z + 1).ToString()
@@ -73,12 +76,13 @@ Namespace Framework.Armory.Parser
                         If glyphToken.HasItem("minor") Then
                             Dim minorToken As List(Of JObject) = glyphToken.GetChild("minor").GetObjects()
                             For z = 0 To minorToken.Count - 1
-                                Dim singleGlyph As List(Of JProperty) = minorToken(z).Children.Cast(Of JProperty).ToList()
+                                Dim singleGlyph As List(Of JProperty) =
+                                        minorToken(z).Children.Cast (Of JProperty).ToList()
                                 Dim pGlyph As New Glyph
                                 With pGlyph
                                     .Id = CInt(singleGlyph.GetValue("item"))
                                     .Name = singleGlyph.GetValue("name")
-                                    .Image = GetItemIconByItemId( .Id, GlobalVariables.GlobalWebClient)
+                                    .Image = GetItemIconByItemId(.Id, GlobalVariables.GlobalWebClient)
                                     .Spec = i + 1
                                     .Type = Glyph.GlyphType.GLYTYPE_MINOR
                                     .Slotname = "minorglyph" & (z + 1).ToString()

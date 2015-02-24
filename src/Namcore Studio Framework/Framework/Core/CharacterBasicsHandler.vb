@@ -364,8 +364,8 @@ Namespace Framework.Core
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
             tmpCharacter.FinishedQuests.SafeAddRange(_tempResult.Split(","c).ToList().ConvertAll(
-                                Function(str) Integer.Parse(str)) _
-                            .ToArray())
+                Function(str) Integer.Parse(str)) _
+                                                        .ToArray())
             LogAppend(
                 "Loaded character finishedQuests info for characterGuid: " & charguid.ToString & " and setId: " &
                 tarSetId &
@@ -1204,8 +1204,8 @@ Namespace Framework.Core
                     GlobalVariables.sourceStructure.character_tbl(0) & " WHERE " &
                     GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
             tmpCharacter.FinishedQuests.SafeAddRange(_tempResult.Split(","c).ToList().ConvertAll(
-                                Function(str) Integer.Parse(str)) _
-                            .ToArray())
+                Function(str) Integer.Parse(str)) _
+                                                        .ToArray())
             LogAppend(
                 "Loaded character finishedQuests info for characterGuid: " & charguid.ToString & " and setId: " &
                 tarSetId &

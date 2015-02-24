@@ -24,7 +24,6 @@ Imports NCFramework.Framework.Logging
 
 Namespace Framework.Functions
     Public Module Conversions
-
         Public Function TryInt(ByVal mystring As String) As Integer
             Try
                 Dim parseResult As Integer = CInt(Integer.TryParse(mystring, Nothing))

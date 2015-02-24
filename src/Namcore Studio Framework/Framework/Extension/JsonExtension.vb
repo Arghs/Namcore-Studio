@@ -38,13 +38,13 @@ Namespace Framework.Extension
         <Extension()>
         Public Function GetChildren(ByVal prop As JProperty) As List(Of JProperty)
             prop.CreateReader()
-            Return prop.Values().Cast(Of JProperty)().ToList()
+            Return prop.Values().Cast (Of JProperty)().ToList()
         End Function
 
         <Extension()>
         Public Function GetChild(ByVal prop As JProperty, ByVal itemName As String) As JProperty
             prop.CreateReader()
-            Return prop.Values().Cast(Of JProperty)().ToList().Find(Function(jProperty) jProperty.Name = itemName)
+            Return prop.Values().Cast (Of JProperty)().ToList().Find(Function(jProperty) jProperty.Name = itemName)
         End Function
 
         <Extension()>
@@ -56,7 +56,7 @@ Namespace Framework.Extension
         <Extension()>
         Public Function GetObjects(ByVal prop As JProperty) As List(Of JObject)
             prop.CreateReader()
-            Return CType(prop.Value, JArray).Cast(Of JObject).ToList()
+            Return CType(prop.Value, JArray).Cast (Of JObject).ToList()
         End Function
 
         <Extension()>

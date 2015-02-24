@@ -69,7 +69,7 @@ Namespace Framework.Armory.Parser
                                     i.ToString(), "AchievementParser_LoadAchievements", True, True)
                                 Exit Sub
                             End If
-                            playerAv.GainDate = CInt(completedStamps(i) / 1000)
+                            playerAv.GainDate = CInt(completedStamps(i)/1000)
                             playerAv.OwnerSet = setId
                             player.Achievements.Add(playerAv)
                         Next i

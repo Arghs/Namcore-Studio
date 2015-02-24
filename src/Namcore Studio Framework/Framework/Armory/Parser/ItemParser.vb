@@ -78,23 +78,29 @@ Namespace Framework.Armory.Parser
                             If tChlds.HasItem("gem0") Then
                                 LogAppend("Found gem socket @0", "ItemParser_LoadItems", False)
                                 playerItem.Socket1Id = CInt(tChlds.GetValue("gem0"))
-                                playerItem.Socket1Pic = GetItemIconByItemId(playerItem.Socket1Id, GlobalVariables.GlobalWebClient)
+                                playerItem.Socket1Pic = GetItemIconByItemId(playerItem.Socket1Id,
+                                                                            GlobalVariables.GlobalWebClient)
                                 playerItem.Socket1Effectid = GetEffectIdByGemId(playerItem.Socket1Id)
-                                playerItem.Socket1Name = GetEffectNameById(playerItem.Socket1Effectid, My.Settings.language)
+                                playerItem.Socket1Name = GetEffectNameById(playerItem.Socket1Effectid,
+                                                                           My.Settings.language)
                             End If
                             If tChlds.HasItem("gem1") Then
                                 LogAppend("Found gem socket @1", "ItemParser_LoadItems", False)
                                 playerItem.Socket2Id = CInt(tChlds.GetValue("gem1"))
-                                playerItem.Socket2Pic = GetItemIconByItemId(playerItem.Socket2Id, GlobalVariables.GlobalWebClient)
+                                playerItem.Socket2Pic = GetItemIconByItemId(playerItem.Socket2Id,
+                                                                            GlobalVariables.GlobalWebClient)
                                 playerItem.Socket2Effectid = GetEffectIdByGemId(playerItem.Socket2Id)
-                                playerItem.Socket2Name = GetEffectNameById(playerItem.Socket2Effectid, My.Settings.language)
+                                playerItem.Socket2Name = GetEffectNameById(playerItem.Socket2Effectid,
+                                                                           My.Settings.language)
                             End If
                             If tChlds.HasItem("gem2") Then
                                 LogAppend("Found gem socket @2", "ItemParser_LoadItems", False)
                                 playerItem.Socket3Id = CInt(tChlds.GetValue("gem2"))
-                                playerItem.Socket3Pic = GetItemIconByItemId(playerItem.Socket3Id, GlobalVariables.GlobalWebClient)
+                                playerItem.Socket3Pic = GetItemIconByItemId(playerItem.Socket3Id,
+                                                                            GlobalVariables.GlobalWebClient)
                                 playerItem.Socket3Effectid = GetEffectIdByGemId(playerItem.Socket3Id)
-                                playerItem.Socket3Name = GetEffectNameById(playerItem.Socket3Effectid, My.Settings.language)
+                                playerItem.Socket3Name = GetEffectNameById(playerItem.Socket3Effectid,
+                                                                           My.Settings.language)
                             End If
                             If tChlds.HasItem("enchant") Then
                                 LogAppend("Found item enchantment", "ItemParser_LoadItems", False)
@@ -104,7 +110,8 @@ Namespace Framework.Armory.Parser
                                 playerItem.EnchantmentType =
                                     CType(GetEnchantmentIdAndTypeByEffectId(playerItem.EnchantmentEffectid)(1),
                                           Item.EnchantmentTypes)
-                                playerItem.EnchantmentName = GetEffectNameById(playerItem.EnchantmentEffectid, My.Settings.language)
+                                playerItem.EnchantmentName = GetEffectNameById(playerItem.EnchantmentEffectid,
+                                                                               My.Settings.language)
                                 If playerItem.EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_ITEM Then
                                     LogAppend("Enchantment type: item!", "ItemParser_LoadItems", False)
                                 Else

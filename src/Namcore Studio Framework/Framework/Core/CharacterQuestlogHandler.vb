@@ -142,7 +142,7 @@ Namespace Framework.Core
                         Dim quest As String = (tempdt2.Rows(count).Item(0)).ToString
                         If Not quest = "" Then player.FinishedQuests.SafeAddRange(quest.Split(","c).ToList().ConvertAll(
                             Function(str) Integer.Parse(str)) _
-                                                                                 .ToArray())
+                                                                                     .ToArray())
                         count += 1
                     Loop Until count = lastcount
                 End If

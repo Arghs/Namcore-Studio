@@ -64,7 +64,7 @@ Namespace Framework.Armory.Parser
                         If specToken.HasChildren() Then
                             For z = 0 To specToken.GetObjects().Count - 1
                                 Dim profToken As List(Of JProperty) =
-                                        specToken.GetObjects()(z).Children.Cast(Of JProperty).ToList()
+                                        specToken.GetObjects()(z).Children.Cast (Of JProperty).ToList()
                                 Dim pProfession As New Profession
                                 pProfession.Id = CInt(profToken.GetValue("id"))
                                 pProfession.Primary = Not CBool(i)
@@ -80,12 +80,13 @@ Namespace Framework.Armory.Parser
                                         .ToArray()
                                 If Not recipes Is Nothing Then
                                     For Each recipeId As Integer In recipes
-                                        pProfession.Recipes.Add(New ProfessionSpell() _
+                                        pProfession.Recipes.Add(
+                                            New ProfessionSpell() _
                                                                    With {.SpellId = recipeId,
                                                                    .Name =
-                                                                   GetSpellNameBySpellId( .SpellId,
+                                                                   GetSpellNameBySpellId(.SpellId,
                                                                                          MySettings.Default.language),
-                                                                   .MinSkill = GetMinimumSkillBySpellId( .SpellId)})
+                                                                   .MinSkill = GetMinimumSkillBySpellId(.SpellId)})
                                     Next
                                 Else
                                     LogAppend("No recipes found for profession: " & pProfession.Id.ToString,

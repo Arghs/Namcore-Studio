@@ -126,7 +126,8 @@ Namespace Framework.Transmission
                         Next
                         If TryInt(CStr(spellEntry(0))) = 0 Then
                             '// 0: Every race
-                            LogAppend("Adding race specific spell: " & spellEntry(3).ToString(), "PlayerCreateHelper_GetRaceSpells")
+                            LogAppend("Adding race specific spell: " & spellEntry(3).ToString(),
+                                      "PlayerCreateHelper_GetRaceSpells")
                             newSpellList.Add(
                                 New Spell With
                                                 {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()),
@@ -135,7 +136,8 @@ Namespace Framework.Transmission
                         End If
                         Dim raceMask As ChrRaces = CType(TryInt(spellEntry(0).ToString()), ChrRaces)
                         If (raceMask And thisRaceBit) = thisRaceBit Then
-                            LogAppend("Adding race specific spell: " & spellEntry(3).ToString(), "PlayerCreateHelper_GetRaceSpells")
+                            LogAppend("Adding race specific spell: " & spellEntry(3).ToString(),
+                                      "PlayerCreateHelper_GetRaceSpells")
                             newSpellList.Add(
                                 New Spell With
                                                 {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()),
@@ -166,7 +168,8 @@ Namespace Framework.Transmission
                             If IsDBNull(spellEntry(i)) Then Continue For
                         Next
                         If TryInt(spellEntry(1).ToString()) = 0 Then
-                            LogAppend("Adding class specific spell: " & spellEntry(3).ToString(), "PlayerCreateHelper_GetRaceSpells")
+                            LogAppend("Adding class specific spell: " & spellEntry(3).ToString(),
+                                      "PlayerCreateHelper_GetRaceSpells")
                             newSpellList.Add(
                                 New Spell With
                                                 {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()),
@@ -175,7 +178,8 @@ Namespace Framework.Transmission
                         End If
                         Dim classMask As ChrClasses = CType(TryInt(spellEntry(1).ToString()), ChrClasses)
                         If (classMask And thisClassBit) = thisClassBit Then
-                            LogAppend("Adding class specific spell: " & spellEntry(3).ToString(), "PlayerCreateHelper_GetRaceSpells")
+                            LogAppend("Adding class specific spell: " & spellEntry(3).ToString(),
+                                      "PlayerCreateHelper_GetRaceSpells")
                             newSpellList.Add(
                                 New Spell With
                                                 {.Active = 1, .Disabled = 0, .Id = TryInt(spellEntry(2).ToString()),

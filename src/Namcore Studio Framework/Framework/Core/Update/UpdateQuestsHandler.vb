@@ -26,7 +26,6 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Update
     Public Class UpdateQuestsHandler
-
         Public Sub UpdateQuestlog(ByVal player As Character, ByVal modPlayer As Character)
             LogAppend("Updating character questlog", "UpdateQuestsHandler_UpdateQuestlog", True)
             '// Any new quests?
@@ -35,17 +34,17 @@ Namespace Framework.Core.Update
                 If result Is Nothing Then CreateQuest(modPlayer, qst) : Continue For
                 If result.Status <> qst.Status Or result.Explored <> qst.Explored Then CreateQuest(modPlayer, qst, True)
             Next
-            For Each qst As Integer In
+            For Each qst As Integer In _
                 From qst1 In modPlayer.FinishedQuests Where Not player.FinishedQuests.Contains(qst1)
                 CreateQuest(modPlayer, New Quest With {.Id = qst, .Status = 1, .Rewarded = 1})
             Next
             '// Any deleted quests?
-            For Each qst As Quest In
+            For Each qst As Quest In _
                 From qst1 In player.Quests Let result = modPlayer.Quests.Find(Function(quest) quest.Id = qst1.Id)
-                Where result Is Nothing Select qst1
+                    Where result Is Nothing Select qst1
                 DeleteQuest(modPlayer, qst)
             Next
-            For Each qst As Integer In
+            For Each qst As Integer In _
                 From qst1 In player.FinishedQuests Where Not modPlayer.FinishedQuests.Contains(qst1)
                 DeleteQuest(modPlayer, New Quest With {.Id = qst})
             Next

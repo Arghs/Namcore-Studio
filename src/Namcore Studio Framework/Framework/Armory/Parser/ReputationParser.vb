@@ -52,7 +52,7 @@ Namespace Framework.Armory.Parser
                               JProperty)
                 If token.HasChildren Then
                     For i = 0 To token.GetObjects().Count - 1
-                        Dim repToken As List(Of JProperty) = token.GetObjects()(i).Children.Cast(Of JProperty).ToList()
+                        Dim repToken As List(Of JProperty) = token.GetObjects()(i).Children.Cast (Of JProperty).ToList()
                         Dim pReputation As New Reputation
                         pReputation.Faction = CInt(repToken.GetValue("id"))
                         pReputation.Max = CInt(repToken.GetValue("max"))

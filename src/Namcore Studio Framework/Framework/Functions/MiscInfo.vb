@@ -24,9 +24,9 @@ Imports System.Drawing
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports libnc.Provider
+Imports NCFramework.My.Resources
 Imports System.Resources
 Imports System.Reflection
-Imports NCFramework.My.Resources
 
 Namespace Framework.Functions
     Public Module MiscInfo
@@ -446,7 +446,7 @@ Namespace Framework.Functions
                 Case 1 : Return CHAR_GENDER_FEMALE
                 Case Else
                     LogAppend("Invalid GenderId: " & genderId.ToString() & " // Returning nothing!",
-                               "Conversions_GetGenderNameById")
+                              "Conversions_GetGenderNameById")
                     Return Nothing
             End Select
         End Function
@@ -492,7 +492,7 @@ Namespace Framework.Functions
                     Return 18
                 Case Else
                     LogAppend("Invalid slot name: " & name, "Conversions_GetSlotIdByName", True, True)
-                    Return -1
+                    Return - 1
             End Select
         End Function
     End Module
