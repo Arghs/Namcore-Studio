@@ -51,6 +51,7 @@ Module Main
     Public SplEffectDic As Dictionary(Of Integer, String())
 
     Sub InitDics()
+        '// Init
         Log("Initializing structures...", LogLevel.NORMAL, , False)
         AchievementCatDeDic = New Dictionary(Of Integer, String())()
         AchievementCatDeDic.Add(0, {"int", "Id"})
