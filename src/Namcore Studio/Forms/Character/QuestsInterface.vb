@@ -59,7 +59,9 @@ Namespace Forms.Character
             If GlobalVariables.currentEditedCharSet Is Nothing Then
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             End If
-            Dim realQstLst As List(Of Quest) = (From qst In GlobalVariables.currentEditedCharSet.FinishedQuests Select New Quest With {.Id = qst, .Rewarded = 1, .Explored = 1, .Status = 1}).ToList()
+            Dim realQstLst As List(Of Quest) =
+                    (From qst In GlobalVariables.currentEditedCharSet.FinishedQuests
+                    Select New Quest With {.Id = qst, .Rewarded = 1, .Explored = 1, .Status = 1}).ToList()
             If GlobalVariables.currentEditedCharSet.Quests IsNot Nothing Then
                 If GlobalVariables.currentEditedCharSet.Quests.Count > 0 Then
                     realQstLst.AddRange(GlobalVariables.currentEditedCharSet.Quests)
@@ -278,7 +280,8 @@ Namespace Forms.Character
                     qstitm.SubItems(3).Text = "1"
                     If GlobalVariables.currentEditedCharSet.Quests Is Nothing Then _
                         GlobalVariables.currentEditedCharSet.Quests = New List(Of Quest)()
-                    For Each pqst As Quest In From pqst1 In GlobalVariables.currentEditedCharSet.Quests Where pqst1.Id = qst.Id
+                    For Each pqst As Quest In _
+                        From pqst1 In GlobalVariables.currentEditedCharSet.Quests Where pqst1.Id = qst.Id
                         GlobalVariables.currentEditedCharSet.Quests.Remove(pqst)
                     Next
                     For Each qitm As ListViewItem In _lstitems

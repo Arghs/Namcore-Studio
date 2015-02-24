@@ -200,7 +200,9 @@ Namespace Forms.Character
                                                     potBagItem.Name = GetItemNameByItemId(potBagItem.Id,
                                                                                           MySettings.Default.language)
                                                 If potBagItem.Image Is Nothing Then _
-                                                    potBagItem.Image = GetItemIconByItemId(potBagItem.Id, GlobalVariables.GlobalWebClient)
+                                                    potBagItem.Image = GetItemIconByItemId(potBagItem.Id,
+                                                                                           GlobalVariables.
+                                                                                              GlobalWebClient)
                                                 potCharBag.BagItems.Add(potBagItem)
                                             End If
                                         Next
@@ -209,7 +211,8 @@ Namespace Forms.Character
                                         For Each myPic As PictureBox In subctrl.Controls
                                             If myPic.Name Is Nothing Then Continue For
                                             If myPic.Name.EndsWith("_remove") Then Continue For
-                                            myPic.BackgroundImage = GetItemIconByItemId(potCharBag.Id, GlobalVariables.GlobalWebClient)
+                                            myPic.BackgroundImage = GetItemIconByItemId(potCharBag.Id,
+                                                                                        GlobalVariables.GlobalWebClient)
                                             myPic.Tag = potCharBag
                                         Next
                                     End If

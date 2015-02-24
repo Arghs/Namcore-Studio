@@ -25,8 +25,8 @@ Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Functions
 Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.My
-Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
+Imports NCFramework.Framework.Logging
 Imports Microsoft.Win32
 Imports System.Text
 Imports System.Xml

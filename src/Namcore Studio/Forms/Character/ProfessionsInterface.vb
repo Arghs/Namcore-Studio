@@ -196,7 +196,7 @@ Namespace Forms.Character
             _loaded = False
             _maxProgressSize = CType(rank_panel.Size.Width, UInteger)
             rank_slider.Size = New Size(rank_panel.Size.Width + 10, rank_slider.Size.Height)
-            _rank_color_panel.Size = New Size(CType((_maxProgressSize / 700 * _activeProfession.Rank), Integer),
+            _rank_color_panel.Size = New Size(CType((_maxProgressSize/700*_activeProfession.Rank), Integer),
                                               rank_color_panel.Size.Height)
             rank_slider.Value = EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet)
             progress_lbl.Text = EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet).ToString & "/700"
@@ -537,7 +537,7 @@ Namespace Forms.Character
 
         Private Sub rank_slider_Scroll(sender As Object, e As EventArgs) Handles rank_slider.Scroll
             _activeProfession.Rank = rank_slider.Value
-            rank_color_panel.Size = New Size(CType((_maxProgressSize / 700 * _activeProfession.Rank), Integer),
+            rank_color_panel.Size = New Size(CType((_maxProgressSize/700*_activeProfession.Rank), Integer),
                                              rank_color_panel.Size.Height)
             progress_lbl.Text = _activeProfession.Rank.ToString & "/700"
             rankname_lbl.Text = GetProficiencyLevelNameByLevel(_activeProfession.Rank)
