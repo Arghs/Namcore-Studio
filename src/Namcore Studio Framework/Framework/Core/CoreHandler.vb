@@ -55,7 +55,9 @@ Namespace Framework.Core
             tmpPlayer.LoadedDateTime = Date.Now
             SetCharacterSet(setId, tmpPlayer, account)
             Dim mBasicsHandler As New CharacterBasicsHandler
-            mBasicsHandler.GetBasicCharacterInformation(tmpPlayer.Guid, setId, Account)
+            mBasicsHandler.GetBasicCharacterInformation(tmpPlayer.Guid, setId, account)
+            Dim mSkillsHandler As New CharacterSkillsHandler
+            mSkillsHandler.GetCharacterSkills(tmpPlayer.Guid, setId, account)
             Dim mAvHandler As New CharacterAchievementHandler
             mAvHandler.GetCharacterAchievement(tmpPlayer.Guid, setId, Account)
             Dim mActionsHandler As New CharacterActionsHandler
@@ -70,8 +72,7 @@ Namespace Framework.Core
             mQuestlogHandler.GetCharacterQuestlog(tmpPlayer.Guid, setId, Account)
             Dim mReputationHandler As New CharacterReputationHandler
             mReputationHandler.GetCharacterReputation(tmpPlayer.Guid, setId, Account)
-            Dim mSkillsHandler As New CharacterSkillsHandler
-            mSkillsHandler.GetCharacterSkills(tmpPlayer.Guid, setId, Account)
+
             Dim mSpellsHandler As New CharacterSpellsHandler
             mSpellsHandler.GetCharacterSpells(tmpPlayer.Guid, setId, Account)
             Dim mTalentHandler As New CharacterTalentsHandler

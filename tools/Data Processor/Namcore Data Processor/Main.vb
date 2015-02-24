@@ -19,12 +19,14 @@
 Imports System.Threading
 Imports System.IO
 Imports System.Text
+Imports System.Reflection
 
 Module Main
     Public AchievementCatDeDic As Dictionary(Of Integer, String())
     Public AchievementCatEnDic As Dictionary(Of Integer, String())
     Public AchievementDeDic As Dictionary(Of Integer, String())
     Public AchievementEnDic As Dictionary(Of Integer, String())
+    Public AreaTableDic As Dictionary(Of Integer, String())
     Public EnchantmentDeDic As Dictionary(Of Integer, String())
     Public EnchantmentEnDic As Dictionary(Of Integer, String())
     Public FactionDeDic As Dictionary(Of Integer, String())
@@ -74,6 +76,10 @@ Module Main
         AchievementEnDic.Add(6, {"int", "CategoryId"})
         AchievementEnDic.Add(10, {"int", "IconId"})
 
+        AreaTableDic = New Dictionary(Of Integer, String())()
+        AreaTableDic.Add(0, {"int", "Id"})
+        AreaTableDic.Add(10, {"string", "Name"})
+
         EnchantmentDeDic = New Dictionary(Of Integer, String())()
         EnchantmentDeDic.Add(0, {"int", "EffectId"})
         EnchantmentDeDic.Add(5, {"int", "Points1"})
@@ -103,6 +109,7 @@ Module Main
         FileDataDic = New Dictionary(Of Integer, String())()
         FileDataDic.Add(0, {"int", "FileId"})
         FileDataDic.Add(1, {"string", "Name"})
+        FileDataDic.Add(2, {"string", "Path"})
 
         GlyphProps0Dic = New Dictionary(Of Integer, String())()
         GlyphProps0Dic.Add(0, {"int", "Id"})
@@ -219,6 +226,21 @@ Module Main
             Log("Waiting for command...", LogLevel.NORMAL)
             Console.ForegroundColor = ConsoleColor.White
             Dim command As String = Console.ReadLine()
+            InitDics()
+            'Dim results As String = ""
+            'For Each dra As FileInfo In New DirectoryInfo("C:\xampp\htdocs\DBFilesClient\").GetFiles()
+            '    For Each val As String In (GetStringTable(dra.FullName)).Values
+            '        If val.ToLower().Contains("mus_6") Then
+            '            results &= val & vbNewLine
+            '        End If
+            '    Next
+            'Next
+            Dim mpaths As String = (From dtRow As DataRow In ReadDb("\Test\FileData2.dbc", FileDataDic).Rows Where dtRow("Name").ToString().ToLower().Contains("mus_6")).Aggregate("", Function(current, dtRow) current & (dtRow("Path") & dtRow("Name") & vbNewLine))
+            Console.WriteLine("Found {0} relevant music entries", mpaths.Split(vbNewLine).Length - 1)
+            Dim mapPaths As String = (From dtRow As DataRow In ReadDb("\Test\FileData2.dbc", FileDataDic).Rows Where dtRow("Path").ToString().ToLower().Contains("interface\worldmap")).Aggregate("", Function(current, dtRow) current & (dtRow("Path") & dtRow("Name") & vbNewLine))
+            Console.WriteLine("Found {0} map entries", mapPaths.Split(vbNewLine).Length - 1)
+            Dim areaPaths As String = ReadDb("\Test\AreaTable2.dbc", AreaTableDic).Rows.Cast(Of DataRow)().Aggregate("", Function(current, dtRow) current & (dtRow("Name") & vbNewLine))
+            Console.WriteLine("Found {0} area entries", areaPaths.Split(vbNewLine).Length - 1)
             If command.StartsWith("/exit") Then
                 End
             ElseIf command.StartsWith("/structure") Then
@@ -283,7 +305,39 @@ Module Main
             End If
         Loop
     End Sub
+    Sub DataTable2CSV(ByVal table As DataTable, ByVal filename As String)
+        DataTable2CSV(table, filename, vbTab)
+    End Sub
+    Sub DataTable2CSV(ByVal table As DataTable, ByVal filename As String,
+    ByVal sepChar As String)
+        Dim writer As System.IO.StreamWriter
+        Try
+            writer = New System.IO.StreamWriter(filename)
 
+            ' first write a line with the columns name
+            Dim sep As String = ""
+            Dim builder As New System.Text.StringBuilder
+            For Each col As DataColumn In table.Columns
+                builder.Append(sep).Append(col.ColumnName)
+                sep = sepChar
+            Next
+            writer.WriteLine(builder.ToString())
+
+            ' then write all the rows
+            For Each row As DataRow In table.Rows
+                sep = ""
+                builder = New System.Text.StringBuilder
+
+                For Each col As DataColumn In table.Columns
+                    builder.Append(sep).Append(row(col.ColumnName))
+                    sep = sepChar
+                Next
+                writer.WriteLine(builder.ToString())
+            Next
+        Finally
+            If Not writer Is Nothing Then writer.Close()
+        End Try
+    End Sub
     Sub Process(Optional skipvalue As Integer = 0)
         DisableTime = False
         InitDics()

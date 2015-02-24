@@ -21,11 +21,21 @@ Imports System.Globalization
 Imports Namcore_Data_Processor.Reader
 
 Module DbHandler
+    Public Function GetStringTable(ByVal path As String) As Dictionary(Of Integer, String)
+        Try
+            Log("Reading file...", LogLevel.LOW, , False)
+            Dim mReader As IWowClientDbReader = DbReaderFactory.GetReader(path)
+            Return mReader.StringTable
+        Catch ex As Exception
+            Log("Exception: " & ex.ToString(), LogLevel.CRITICAL)
+            Return New Dictionary(Of Integer, String)()
+        End Try
+    End Function
     Public Function ReadDb(ByVal name As String, ByVal dic As Dictionary(Of Integer, String())) As DataTable
         Try
             Log("Reading file...", LogLevel.LOW, , False)
             Dim file As String = Environment.CurrentDirectory & name
-            Dim mReader As IWowClientDbReader = DBReaderFactory.GetReader(file)
+            Dim mReader As IWowClientDbReader = DbReaderFactory.GetReader(file)
             Dim mDataTable As New DataTable(Path.GetFileName(file))
             mDataTable.Locale = CultureInfo.InvariantCulture
             For z = 0 To mReader.FieldsCount - 1
