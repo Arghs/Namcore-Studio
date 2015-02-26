@@ -69,7 +69,7 @@ Namespace Framework.Armory
                               SplitString(armoryLink, "/character/", "/") & "/" & characterName
                     Dim apiContext As String = client.DownloadString(apiLink)
                     Dim jResults As JObject = JObject.Parse(apiContext)
-                    Dim results As List(Of JProperty) = jResults.Children().Cast (Of JProperty).ToList()
+                    Dim results As List(Of JProperty) = jResults.Children().Cast(Of JProperty).ToList()
                     setId += 1
                     LogAppend("Loading character " & characterName & " //ident is " & setId.ToString(),
                               "ArmoryHandler_DoLoad", True)
@@ -103,7 +103,7 @@ Namespace Framework.Armory
                         Dim appResult As JObject = JObject.Parse(appearanceContext)
                         Dim appResults As List(Of JToken) = appResult.Children().ToList()
                         Dim appToken As JProperty =
-                                CType(appResults.Find(Function(jtoken) CType(jtoken, JProperty).Name = "appearance"),
+                                CType(appResults.Find(Function(jtoken) CType(jtoken, JProperty).Name = "appearance"), 
                                       JProperty)
                         If appToken.HasChildren() Then
                             Dim appFace As Integer = CInt(Hex$(Long.Parse(appToken.GetValue("faceVariation"))))
@@ -121,7 +121,7 @@ Namespace Framework.Armory
                     Try
                         LogAppend("Loading character's finished quests", "ArmoryHandler_DoLoad", True)
                         Dim qResult As JObject = JObject.Parse(client.DownloadString(apiLink & "?fields=quests"))
-                        Dim qToken As List(Of JProperty) = qResult.Children.Cast (Of JProperty).ToList()
+                        Dim qToken As List(Of JProperty) = qResult.Children.Cast(Of JProperty).ToList()
                         player.FinishedQuests.SafeAddRange(
                             qToken.GetValues("quests").ToList().ConvertAll(Function(str) Integer.Parse(str)).ToArray())
                     Catch ex As Exception

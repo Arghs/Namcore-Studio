@@ -38,11 +38,11 @@ Namespace Framework.Extension
             Return itm
         End Function
 
-                                  
-                                  ''' <summary>
-                                  '''     Removes item gems by position
-                                  ''' </summary>
-                                  <Extension()>
+
+        ''' <summary>
+        '''     Removes item gems by position
+        ''' </summary>
+        <Extension()>
         Public Function RemoveGem(ByRef itm As Item, ByVal position As Integer) As Item
             Select Case position
                 Case 1

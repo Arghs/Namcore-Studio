@@ -80,7 +80,7 @@ Namespace Framework.Transmission
                         inventoryItem.Container.ToString() & "', '" &
                         inventoryItem.Slot.ToString() & "' )")
                     Select Case inventoryItem.Slot
-                        Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
+                        Case 19 To 22, 63 To 73
                             '//Item is a bag and has to be registered
                             bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";slot:" & newguid &
                                         ";"
@@ -181,7 +181,7 @@ Namespace Framework.Transmission
                         inventoryItem.Bag.ToString() & "', '" & inventoryItem.Slot.ToString() & "', '" & newguid &
                         "')")
                     Select Case inventoryItem.Slot
-                        Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
+                        Case 19 To 22, 63 To 73
                             '// Item is a bag and has to be registered
                             bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";newguid:" & newguid &
                                         ";"
@@ -295,7 +295,7 @@ Namespace Framework.Transmission
                         newguid & "', '" &
                         inventoryItem.Id.ToString() & "')")
                     Select Case inventoryItem.Slot
-                        Case 19, 20, 21, 22, 67, 68, 69, 70, 71, 72, 73
+                        Case 19 To 22, 63 To 73
                             '// Item is a bag and has to be registered
                             bagstring = bagstring & "oldguid:" & inventoryItem.Guid.ToString() & ";newguid:" & newguid &
                                         ";"

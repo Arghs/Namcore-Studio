@@ -108,7 +108,7 @@ Namespace Framework.Armory.Parser
                                 playerItem.EnchantmentId =
                                     GetEnchantmentIdAndTypeByEffectId(playerItem.EnchantmentEffectid)(0)
                                 playerItem.EnchantmentType =
-                                    CType(GetEnchantmentIdAndTypeByEffectId(playerItem.EnchantmentEffectid)(1),
+                                    CType(GetEnchantmentIdAndTypeByEffectId(playerItem.EnchantmentEffectid)(1), 
                                           Item.EnchantmentTypes)
                                 playerItem.EnchantmentName = GetEffectNameById(playerItem.EnchantmentEffectid,
                                                                                My.Settings.language)

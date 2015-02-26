@@ -196,7 +196,7 @@ Namespace Forms.Character
             _loaded = False
             _maxProgressSize = CType(rank_panel.Size.Width, UInteger)
             rank_slider.Size = New Size(rank_panel.Size.Width + 10, rank_slider.Size.Height)
-            _rank_color_panel.Size = New Size(CType((_maxProgressSize/700*_activeProfession.Rank), Integer),
+            _rank_color_panel.Size = New Size(CType((_maxProgressSize / 700 * _activeProfession.Rank), Integer),
                                               rank_color_panel.Size.Height)
             rank_slider.Value = EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet)
             progress_lbl.Text = EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet).ToString & "/700"
@@ -405,7 +405,7 @@ Namespace Forms.Character
                         prof = CType(senderPanel.Tag, Profession)
                         Dim spell2Add As Integer = GetSkillSpellIdBySkillRank(prof.Id, prof.Rank)
                         Dim specialSpells2Add() As Integer = GetSkillSpecialSpellIdBySkill(prof.Id)
-                        If Not spell2Add = - 1 And spell2Add <> 0 Then _
+                        If Not spell2Add = -1 And spell2Add <> 0 Then _
                             GlobalVariables.currentEditedCharSet.Spells.Add(
                                 New Spell _
                                                                                With {.Active = 1, .Disabled = 0,
@@ -523,13 +523,13 @@ Namespace Forms.Character
                         Function(profession) profession.Id = _activeProfession.Id)
             GlobalVariables.currentEditedCharSet.Professions(profIndex) = _activeProfession
             Dim spell2Remove As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _temporarySkillLevel)
-            If Not spell2Remove = - 1 And spell2Remove <> 0 Then
+            If Not spell2Remove = -1 And spell2Remove <> 0 Then
                 Dim result As Spell =
                         GlobalVariables.currentEditedCharSet.Spells.Find(Function(spell) spell.Id = spell2Remove)
                 If Not result Is Nothing Then GlobalVariables.currentEditedCharSet.Spells.Remove(result)
             End If
             Dim spell2Add As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _activeProfession.Rank)
-            If Not spell2Add = - 1 And spell2Add <> 0 Then _
+            If Not spell2Add = -1 And spell2Add <> 0 Then _
                 GlobalVariables.currentEditedCharSet.Spells.Add(
                     New Spell _
                                                                    With {.Active = 1, .Disabled = 0, .Id = spell2Add})
@@ -537,7 +537,7 @@ Namespace Forms.Character
 
         Private Sub rank_slider_Scroll(sender As Object, e As EventArgs) Handles rank_slider.Scroll
             _activeProfession.Rank = rank_slider.Value
-            rank_color_panel.Size = New Size(CType((_maxProgressSize/700*_activeProfession.Rank), Integer),
+            rank_color_panel.Size = New Size(CType((_maxProgressSize / 700 * _activeProfession.Rank), Integer),
                                              rank_color_panel.Size.Height)
             progress_lbl.Text = _activeProfession.Rank.ToString & "/700"
             rankname_lbl.Text = GetProficiencyLevelNameByLevel(_activeProfession.Rank)
