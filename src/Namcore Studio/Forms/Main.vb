@@ -136,9 +136,9 @@ Namespace Forms
             For Each itemControl As Control In controlLst
                 itemControl.SetDoubleBuffered()
             Next
-            Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2014"
+            Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2015"
             version_lbl.Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() &
-                               " - © megasus 2014"
+                               " - © megasus 2015"
             If GlobalVariables.DebugMode Then
                 NewProcessStatus()
             End If
