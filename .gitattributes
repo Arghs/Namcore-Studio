@@ -12,6 +12,8 @@
 ###############################################################################
 #*.cs     diff=csharp
 
+.csv   binary
+
 ###############################################################################
 # Set the merge driver for project and solution files
 #
@@ -40,9 +42,9 @@
 #
 # image files are treated as binary by default.
 ###############################################################################
-#*.jpg   binary
-#*.png   binary
-#*.gif   binary
+*.jpg   binary
+*.png   binary
+*.gif   binary
 
 ###############################################################################
 # diff behavior for common document formats
