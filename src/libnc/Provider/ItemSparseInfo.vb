@@ -104,7 +104,7 @@ Namespace Provider
         End Function
         Public Function GetItemBagFamilyByItemId(ByVal itemId As Integer) As Integer
             CheckInit()
-            Const targetField As Integer = 8
+            Const targetField As Integer = 7
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             Dim returnResult As Integer
             If myResult = "-" Then myresult = "0"
@@ -117,7 +117,7 @@ Namespace Provider
         End Function
         Public Function GetItemNameByItemId(ByVal itemId As Integer, ByVal locale As String) As String
             CheckInit()
-            Dim targetField As Integer = 6
+            Dim targetField As Integer = 5
             If locale = "en" Then targetField += 1
             Dim myResult As String = ExecuteCsvSearch(ItemSparseCsv, "ItemId", itemId.ToString(), targetField)(0)
             If myResult = "-" Then myResult = "Not found"
