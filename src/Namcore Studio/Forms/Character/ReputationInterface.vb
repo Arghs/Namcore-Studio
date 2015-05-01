@@ -122,6 +122,7 @@ Namespace Forms.Character
                     Dim slider As New TrackBar
                     slider.Name = "rep" & pRepu.Faction.ToString() & "_slider"
                     slider.Maximum = pRepu.Max
+                    If pRepu.Value > pRepu.Max Then pRepu.Value = pRepu.Max
                     slider.Value = pRepu.Value
                     slider.Size = reference_trackbar.Size
                     slider.Tag = pRepu
