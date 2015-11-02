@@ -21,17 +21,17 @@
 '*      /Description:   Extension to update an existing item by new id
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Runtime.CompilerServices
-Imports NCFramework.My
-Imports NCFramework.Framework.Modules
 Imports libnc.Provider
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
 
 Namespace Modules
     Module ReplaceItemExtension
-    ''' <summary>
-    '''     Replaces an Item
-    ''' </summary>
-                               <Extension()>
-        Public Function ReplaceItem(ByRef sourceItem As Item, ByVal newitemid As Integer) As Item
+        ''' <summary>
+        '''     Replaces an Item
+        ''' </summary>
+        <Extension>
+        Public Function ReplaceItem(ByRef sourceItem As Item, newitemid As Integer) As Item
             Dim itm As Item
             itm = SourceItem
             itm.Id = newitemid

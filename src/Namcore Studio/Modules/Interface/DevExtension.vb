@@ -20,19 +20,19 @@
 '*      /Filename:      DevExtension
 '*      /Description:   Extension for development purposes
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Runtime.CompilerServices
 Imports System.IO
+Imports System.Runtime.CompilerServices
+Imports System.Xml
+Imports System.Xml.Serialization
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports System.Xml.Serialization
-Imports System.Xml
 
 Namespace Modules.Interface
     Public Module DevExtension
-        <Extension()>
-        Public Sub CheckTag(ByVal ctrl As Control)
+        <Extension>
+        Public Sub CheckTag(ctrl As Control)
             If TypeOf (ctrl.Tag) Is Item Then
-                Dim locItm As Item = CType(ctrl.Tag, Item)
+                Dim locItm = CType(ctrl.Tag, Item)
                 Dim x As New XmlSerializer(locItm.GetType)
                 Dim memStream As New MemoryStream
                 Dim sw As New StreamWriter(memStream)

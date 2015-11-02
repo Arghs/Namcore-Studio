@@ -36,7 +36,7 @@ Namespace Forms
                            MSG_ERROR) : Exit Sub
                 Dim sLines() As String = accnames_txtbox.Lines
                 Dim removecount As Integer
-                For i As Integer = 0 To sLines.Length - 1
+                For i = 0 To sLines.Length - 1
                     If sLines(i) = "" Then
                         removecount += 1
                         If removecount = sLines.Length Then _
@@ -47,7 +47,7 @@ Namespace Forms
                         tempAccList.Add(tmpAccount)
                         For Each currentForm As Form In Application.OpenForms
                             If currentForm.Name.ToLower() = "liveview" Then
-                                Dim liveview As LiveView = DirectCast(currentForm, LiveView)
+                                Dim liveview = DirectCast(currentForm, LiveView)
                                 liveview.transChars_specificacc(tempAccList)
                             End If
                         Next
@@ -57,7 +57,7 @@ Namespace Forms
             Else
                 For Each currentForm As Form In Application.OpenForms
                     If currentForm.Name.ToLower() = "liveview" Then
-                        Dim liveview As LiveView = DirectCast(currentForm, LiveView)
+                        Dim liveview = DirectCast(currentForm, LiveView)
                         liveview.transChars_allacc()
                     End If
                 Next

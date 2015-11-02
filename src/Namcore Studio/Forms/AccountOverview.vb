@@ -20,16 +20,16 @@
 '*      /Filename:      AccountOverview
 '*      /Description:   Provides an interface to display account information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Database
 Imports NamCore_Studio.Forms.Character
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Core
-Imports NCFramework.Framework.Logging
-Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Forms.Extension
-Imports NCFramework.My.Resources
+Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Core
 Imports NCFramework.Framework.Core.Update
+Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My.Resources
 
 Namespace Forms
     Public Class AccountOverview
@@ -51,7 +51,7 @@ Namespace Forms
             AddHandler highlighter2.Click, AddressOf highlighter2_Click
         End Sub
 
-        Public Sub prepare_interface(ByVal accountSet As Account)
+        Public Sub prepare_interface(accountSet As Account)
             LogAppend("prepare_interface call", "AccountOverview_prepare_interface", False)
             _cmpFileListViewComparer = New ListViewComparer(characterview)
             _initComplete = False
@@ -148,9 +148,9 @@ Namespace Forms
         Private Sub EditToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem1.Click
             'Please remember that a character which is loaded from a database needs to be completely stored temporarily
             NewProcessStatus()
-            Dim charview As CharacterOverview = New CharacterOverview
-            Dim player As NCFramework.Framework.Modules.Character = CType(characterview.SelectedItems(0).Tag,
-                                                                          NCFramework.Framework.Modules.Character)
+            Dim charview = New CharacterOverview
+            Dim player = CType(characterview.SelectedItems(0).Tag,
+                               NCFramework.Framework.Modules.Character)
             If GlobalVariables.armoryMode = True Then
                 Userwait.Show()
                 charview.prepare_interface(GetAccountSetBySetId(player.AccountSet), player.SetIndex)
@@ -207,9 +207,9 @@ Namespace Forms
         End Sub
 
         Private Sub TextChangeRequest(sender As Object, e As EventArgs) Handles mail_lbl.Click
-            Dim oldSenderLabel As Label = CType(changepanel.Tag, Label)
+            Dim oldSenderLabel = CType(changepanel.Tag, Label)
             If Not oldSenderLabel Is Nothing Then oldSenderLabel.Visible = True
-            Dim senderLabel As Label = CType(sender, Label)
+            Dim senderLabel = CType(sender, Label)
             changepanel.Location = senderLabel.Location
             changepanel.Tag = senderLabel
             changeText_tb.Text = ""
@@ -218,7 +218,7 @@ Namespace Forms
         End Sub
 
         Private Sub updatePic_Click(sender As Object, e As EventArgs) Handles updatePic.Click
-            Dim senderLabel As Label = CType(changepanel.Tag, Label)
+            Dim senderLabel = CType(changepanel.Tag, Label)
             Select Case senderLabel.Name
                 Case mail_lbl.Name
                     If changeText_tb.Text.Length > 0 AndAlso Not changeText_tb.Text.Contains("@") Then

@@ -35,7 +35,7 @@ Namespace Forms.Extension
             'Application.AddMessageFilter(Me)
         End Sub
 
-        Protected Overrides Sub OnFormClosed(ByVal e As FormClosedEventArgs)
+        Protected Overrides Sub OnFormClosed(e As FormClosedEventArgs)
             Application.RemoveMessageFilter(Me)
         End Sub
 
@@ -54,7 +54,7 @@ Namespace Forms.Extension
             Return False
         End Function
 
-        Public Overridable Sub Meload(ByVal sender As Object, e As EventArgs) Handles MyBase.Load
+        Public Overridable Sub Meload(sender As Object, e As EventArgs) Handles MyBase.Load
             header.Size = New Size(Size.Width - 9, header.Size.Height)
             closepanel.Location = New Point(header.Size.Width - 125, closepanel.Location.Y)
         End Sub

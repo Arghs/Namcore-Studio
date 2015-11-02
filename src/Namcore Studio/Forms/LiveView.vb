@@ -22,20 +22,20 @@
 '*                      -List all accounts and characters
 '*                      -Editing/Deleting/Transferring accounts and characters
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Linq
 Imports System.IO
-Imports NCFramework.Framework
-Imports NamCore_Studio.Forms.Character
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Core
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Extension
-Imports NamCore_Studio.Modules.Interface
+Imports System.Linq
 Imports System.Threading
-Imports NCFramework.My.Resources
+Imports NamCore_Studio.Forms.Character
+Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework
+Imports NCFramework.Framework.Core
 Imports NCFramework.Framework.Core.Remove
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Transmission
+Imports NCFramework.My.Resources
 
 Namespace Forms
     Public Class LiveView
@@ -55,16 +55,16 @@ Namespace Forms
         Public Event OnCoreLoaded As EventHandler(Of CompletedEventArgs)
         Public Event OnTransmissionCompleted As EventHandler(Of CompletedEventArgs)
 
-        Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
+        Delegate Sub Prep(id As Integer, nxt As Boolean)
 
         Dim _filePath As String = ""
         '// Declaration
 
-        Protected Overridable Sub OnCoreCompleted(ByVal e As CompletedEventArgs)
+        Protected Overridable Sub OnCoreCompleted(e As CompletedEventArgs)
             RaiseEvent OnCoreLoaded(Me, e)
         End Sub
 
-        Protected Overridable Sub OnTransmissionEnded(ByVal e As CompletedEventArgs)
+        Protected Overridable Sub OnTransmissionEnded(e As CompletedEventArgs)
             RaiseEvent OnTransmissionCompleted(Me, e)
         End Sub
 
@@ -115,7 +115,7 @@ Namespace Forms
             _cmpFileListViewComparer = New ListViewComparer(accountview)
             _cmpFileListViewComparer2 = New ListViewComparer(characterview)
             _checkchangestatus = False
-            Dim mAcInfoProc As AccountCharacterInformationProcessing = New AccountCharacterInformationProcessing
+            Dim mAcInfoProc = New AccountCharacterInformationProcessing
             GlobalVariables.acctable = mAcInfoProc.ReturnAccountTable(GlobalVariables.GlobalConnection_Realm,
                                                                       GlobalVariables.sourceStructure)
             GlobalVariables.chartable = mAcInfoProc.ReturnCharacterTable(GlobalVariables.GlobalConnection,
@@ -125,8 +125,8 @@ Namespace Forms
             GlobalVariables.acctable.Columns.Add("setId")
             characterview.Items.Clear()
             accountview.Items.Clear()
-            Dim genSet As Integer = 0
-            Dim accountSetIndex As String = ""
+            Dim genSet = 0
+            Dim accountSetIndex = ""
             For Each rowitem As DataRow In GlobalVariables.acctable.Rows
                 genSet += 1
                 Dim accountHandler As New AccountHandler
@@ -219,7 +219,7 @@ Namespace Forms
             connect_bt.Visible = False
             filter_acc.Visible = False
             filter_char.Visible = False
-            Dim genGuid As Integer = 1
+            Dim genGuid = 1
             _checkchangestatus = False
             GlobalVariables.ModAccountSets = GlobalVariables.globChars.AccountSets
             GlobalVariables.acctable = New DataTable()
@@ -345,7 +345,7 @@ Namespace Forms
         End Sub
 
         Public Sub Loadtargetaccountsandchars()
-            Dim mAcInfoProc As AccountCharacterInformationProcessing = New AccountCharacterInformationProcessing
+            Dim mAcInfoProc = New AccountCharacterInformationProcessing
             _targetAcccharTable = mAcInfoProc.ReturnTargetAccCharTable(GlobalVariables.TargetConnection_Realm,
                                                                        GlobalVariables.targetStructure)
             target_accounts_tree.Nodes.Clear()
@@ -414,7 +414,7 @@ Namespace Forms
             CloseProcessStatus()
         End Sub
 
-        Public Sub Setaccountview(ByVal accounttable As DataTable)
+        Public Sub Setaccountview(accounttable As DataTable)
             _checkchangestatus = False
             characterview.Items.Clear()
             accountview.Items.Clear()
@@ -459,7 +459,7 @@ Namespace Forms
             chartotal.Text = "(" & characterview.Items.Count.ToString() & " Characters total)"
         End Sub
 
-        Public Sub Setcharacterview(ByVal charactertable As DataTable)
+        Public Sub Setcharacterview(charactertable As DataTable)
             _checkchangestatus = False
             characterview.Items.Clear()
             accountview.Items.Clear()
@@ -559,7 +559,7 @@ Namespace Forms
                     For i = characterview.Items.Count - 1 To 0 Step - 1
                         Dim itm As ListViewItem = characterview.Items(i)
                         itm.Checked = True
-                        Dim match As Boolean = False
+                        Dim match = False
                         For Each myAccId As Integer In validAccountIds
                             If CType(itm.Tag, NCFramework.Framework.Modules.Character).AccountSet = myAccId Then
                                 match = True
@@ -573,7 +573,7 @@ Namespace Forms
                     For i = _completeCharacterItems.Count - 1 To 0 Step - 1
                         Dim itm As ListViewItem = _completeCharacterItems.Item(i)
                         itm.Checked = True
-                        Dim match As Boolean = False
+                        Dim match = False
                         For Each myAccId As Integer In validAccountIds
                             If CType(itm.Tag, NCFramework.Framework.Modules.Character).AccountSet = myAccId Then
                                 match = True
@@ -673,7 +673,7 @@ Namespace Forms
                        MSG_WARNING)
             Else
                 Dim accview As New AccountOverview
-                Dim accTag As Account = CType(accountview.SelectedItems(0).Tag, Account)
+                Dim accTag = CType(accountview.SelectedItems(0).Tag, Account)
                 If GlobalVariables.armoryMode = False AndAlso accTag.IsArmory = False Then
                     Userwait.Show()
                     accview.prepare_interface(GetAccountSetBySetId(accTag.SetIndex))
@@ -784,7 +784,7 @@ Namespace Forms
                 Dim loc As Point = (CType(sender, TreeView)).PointToClient(New Point(e.X, e.Y))
                 Dim destNode As TreeNode = (CType(sender, TreeView)).GetNodeAt(loc)
                 Dim tnNew As TreeNode
-                Dim lstViewColl As ListView.SelectedListViewItemCollection =
+                Dim lstViewColl =
                         CType(e.Data.GetData(GetType(ListView.SelectedListViewItemCollection)),
                               ListView.SelectedListViewItemCollection)
                 For Each lvItem As ListViewItem In lstViewColl
@@ -809,9 +809,8 @@ Namespace Forms
                         End If
                         destNode.Nodes.Insert(destNode.Index + 1, tnNew)
                         destNode.Expand()
-                        Dim player As NCFramework.Framework.Modules.Character = CType(lvItem.Tag,
-                                                                                      NCFramework.Framework.Modules.
-                                Character)
+                        Dim player = CType(lvItem.Tag,
+                                           NCFramework.Framework.Modules.Character)
                         player.TargetAccount = CType(destNode.Tag, Account)
                         Dim nodes As New List(Of String)
                         For Each parentNode As TreeNode In target_accounts_tree.Nodes
@@ -848,7 +847,7 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub characterview_GiveFeedback(ByVal sender As Object, ByVal e As GiveFeedbackEventArgs) _
+        Private Sub characterview_GiveFeedback(sender As Object, e As GiveFeedbackEventArgs) _
             Handles characterview.GiveFeedback
             e.UseDefaultCursors = False
             If (e.Effect And DragDropEffects.Move) = DragDropEffects.Move Then
@@ -858,7 +857,7 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub accountview_GiveFeedback(ByVal sender As Object, ByVal e As GiveFeedbackEventArgs) _
+        Private Sub accountview_GiveFeedback(sender As Object, e As GiveFeedbackEventArgs) _
             Handles accountview.GiveFeedback
             e.UseDefaultCursors = False
             If (e.Effect And DragDropEffects.Move) = DragDropEffects.Move Then
@@ -925,7 +924,7 @@ Namespace Forms
         Private Sub SelectedAccountToolStripMenuItem_Click(sender As Object, e As EventArgs) _
             Handles SelectedAccountToolStripMenuItem.Click
             Dim temparray As New List(Of Account)
-            Dim acc As Account = CType(accountview.SelectedItems(0).Tag, Account)
+            Dim acc = CType(accountview.SelectedItems(0).Tag, Account)
             temparray.Add(acc)
             For Each checkeditem As ListViewItem In accountview.CheckedItems
                 checkeditem.Checked = False
@@ -946,7 +945,7 @@ Namespace Forms
             TransAccounts(temparray)
         End Sub
 
-        Public Sub TransAccounts(ByVal accounts As List(Of Account))
+        Public Sub TransAccounts(accounts As List(Of Account))
             Dim needtocreate As Boolean
             For Each playerAccount As Account In accounts
                 needtocreate = True
@@ -968,9 +967,8 @@ Namespace Forms
                     GlobalVariables.accountsToCreate.Add(newacc)
                 End If
                 For Each checkedChar As ListViewItem In characterview.CheckedItems
-                    Dim thischar As NCFramework.Framework.Modules.Character = CType(checkedChar.Tag,
-                                                                                    NCFramework.Framework.Modules.
-                            Character)
+                    Dim thischar = CType(checkedChar.Tag,
+                                         NCFramework.Framework.Modules.Character)
                     Dim newchar As NCFramework.Framework.Modules.Character = DeepCloneHelper.DeepClone(thischar)
                     If thischar.AccountSet = playerAccount.SetIndex Then
                         For Each targetaccount As TreeNode In target_accounts_tree.Nodes
@@ -1009,7 +1007,7 @@ Namespace Forms
             End If
         End Sub
 
-        Public Sub transChars_specificacc(ByVal accounts As ArrayList)
+        Public Sub transChars_specificacc(accounts As ArrayList)
             For Each character As NCFramework.Framework.Modules.Character In GlobalVariables.trans_charlist
                 For Each accountnode As TreeNode In target_accounts_tree.Nodes
                     For Each account () As String In accounts
@@ -1177,9 +1175,9 @@ Namespace Forms
                 MsgBox(MSG_WAITONTRANSMISSIONCOMPLETE, MsgBoxStyle.Critical, MSG_WARNING)
             Else
                 NewProcessStatus()
-                Dim charview As CharacterOverview = New CharacterOverview
-                Dim player As NCFramework.Framework.Modules.Character = CType(characterview.SelectedItems(0).Tag,
-                                                                              NCFramework.Framework.Modules.Character)
+                Dim charview = New CharacterOverview
+                Dim player = CType(characterview.SelectedItems(0).Tag,
+                                   NCFramework.Framework.Modules.Character)
                 If GlobalVariables.armoryMode = True Then
                     Userwait.Show()
                     charview.prepare_interface(GetAccountSetBySetId(player.AccountSet), player.SetIndex)
@@ -1238,7 +1236,7 @@ Namespace Forms
                     Size = New Size(e.Location.X, Size.Height)
                     Application.DoEvents()
                     mainpanel.Size = New Size(Size.Width - 10, mainpanel.Size.Height)
-                    Dim tmpwidth As Integer = CType(((Size.Width/1920)*9), Integer)
+                    Dim tmpwidth = CType(((Size.Width/1920)*9), Integer)
                     header.Location = New Point(tmpwidth, header.Location.Y)
                     header.Size = New Size(Size.Width - (2*tmpwidth), header.Size.Height)
                     closepanel.Location = New Point(header.Size.Width - 125, closepanel.Location.Y)
@@ -1282,7 +1280,7 @@ Namespace Forms
                 MsgBox(MSG_NOACCOUNTSELECTED, MsgBoxStyle.Critical, MSG_ERROR)
             Else
                 Dim locOfd As New SaveFileDialog()
-                Dim writepath As String = ""
+                Dim writepath = ""
                 With locOfd
                     .Filter = "NamCore Studio Template File (*.ncsf)|*.ncsf"
                     .Title = MSG_SAVETEMPLATE
@@ -1324,7 +1322,7 @@ Namespace Forms
                     Exit Sub
                 End If
                 If My.Computer.FileSystem.FileExists(_filePath) Then My.Computer.FileSystem.DeleteFile(_filePath)
-                Dim mSerializer As Serializer = New Serializer
+                Dim mSerializer = New Serializer
                 Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
                 Dim _
                     fs As _
@@ -1340,7 +1338,7 @@ Namespace Forms
             End If
         End Sub
 
-        Public Sub UpdateCharacter(ByVal modChar As NCFramework.Framework.Modules.Character)
+        Public Sub UpdateCharacter(modChar As NCFramework.Framework.Modules.Character)
             For Each listCharacterItem As ListViewItem In characterview.Items
                 If CType(listCharacterItem.Tag, NCFramework.Framework.Modules.Character).SetIndex = modChar.SetIndex _
                     Then
@@ -1349,7 +1347,7 @@ Namespace Forms
             Next
         End Sub
 
-        Public Sub UpdateAccount(ByVal modAccount As Account)
+        Public Sub UpdateAccount(modAccount As Account)
             For Each listAccountItem As ListViewItem In accountview.Items
                 If CType(listAccountItem.Tag, Account).SetIndex = modAccount.SetIndex Then
                     listAccountItem.Tag = modAccount
@@ -1378,7 +1376,7 @@ Namespace Forms
             GlobalVariables.forceTemplateCharVars = False
             LogAppend("Characters loaded!", "LiveView_OnCharacterLoaded", True)
             If My.Computer.FileSystem.FileExists(_filePath) Then My.Computer.FileSystem.DeleteFile(_filePath)
-            Dim mSerializer As Serializer = New Serializer
+            Dim mSerializer = New Serializer
             Dim useChars As GlobalCharVars = GlobalVariables.globChars
             If GlobalVariables.saveTemplateMode = True Then useChars = GlobalVariables.templateCharVars
             Dim ms As MemoryStream = mSerializer.Serialize(useChars)

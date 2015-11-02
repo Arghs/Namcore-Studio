@@ -6,8 +6,8 @@
 
 ' Die Werte der Assemblyattribute überprüfen
 Imports System.Reflection
-Imports System.Runtime.InteropServices
 Imports System.Resources
+Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("NamCore Studio")>
 <Assembly: AssemblyDescription("NamCore Studio")>

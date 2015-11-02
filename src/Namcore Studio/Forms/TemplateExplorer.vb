@@ -20,11 +20,11 @@
 '*      /Filename:      TemplateExplorer
 '*      /Description:   TODO
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Logging
+Imports NamCore_Studio.Forms.Extension
 Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework
+Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports NamCore_Studio.Forms.Extension
 Imports NCFramework.My.Resources
 
 Namespace Forms
@@ -45,7 +45,7 @@ Namespace Forms
                     locPath = .FileName()
                     If Not locPath = "" Then
                         GlobalVariables.LoadingTemplate = True
-                        Dim mSerializer As Serializer = New Serializer
+                        Dim mSerializer = New Serializer
                         GlobalVariables.globChars = mSerializer.DeSerialize(locPath, New GlobalCharVars)
                         Hide()
                         prepareLive_template()

@@ -21,15 +21,15 @@
 '*      /Description:   Provides an interface to display character's glyphs
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing.Imaging
-Imports NCFramework.Framework.Extension
-Imports NCFramework.My
-Imports NCFramework.Framework.Functions
-Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.Modules
-Imports NamCore_Studio.Forms.Extension
-Imports libnc.Provider
-Imports NCFramework.My.Resources
 Imports System.Net
+Imports libnc.Provider
+Imports NamCore_Studio.Forms.Extension
+Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
+Imports NCFramework.My.Resources
 
 Namespace Forms.Character
     Public Class GlyphsInterface
@@ -54,7 +54,7 @@ Namespace Forms.Character
             Next
         End Sub
 
-        Public Sub PrepareGlyphsInterface(ByVal setId As Integer, ByVal account As Account)
+        Public Sub PrepareGlyphsInterface(setId As Integer, account As Account)
             Dim player As NCFramework.Framework.Modules.Character
             If GlobalVariables.currentEditedCharSet Is Nothing Then
                 player = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
@@ -69,7 +69,7 @@ Namespace Forms.Character
                 Select Case True
                     Case TypeOf itemControl Is Label
                         If itemControl.Name.ToLower.EndsWith("_name") Then
-                            Dim tempSlotName As String = ""
+                            Dim tempSlotName = ""
                             If itemControl.Name.ToLower.StartsWith("sec_") Then tempSlotName = "sec"
                             If itemControl.Name.ToLower.Contains("prim") Then tempSlotName = tempSlotName & "primglyph"
                             If itemControl.Name.ToLower.Contains("major") Then _
@@ -79,7 +79,7 @@ Namespace Forms.Character
                             If itemControl.Name.ToLower.Contains("1") Then tempSlotName = tempSlotName & "1"
                             If itemControl.Name.ToLower.Contains("2") Then tempSlotName = tempSlotName & "2"
                             If itemControl.Name.ToLower.Contains("3") Then tempSlotName = tempSlotName & "3"
-                            Dim txt As String = TryCast(LoadInfo(tempSlotName, 0), String)
+                            Dim txt = TryCast(LoadInfo(tempSlotName, 0), String)
                             DirectCast(itemControl, Label).Tag = _pubGlyph
                             DirectCast(itemControl, Label).Cursor = Cursors.IBeam
                             If _pubGlyph Is Nothing Then
@@ -100,7 +100,7 @@ Namespace Forms.Character
                         End If
                     Case TypeOf itemControl Is PictureBox
                         If itemControl.Name.ToLower.EndsWith("_pic") Then
-                            Dim tempSlotName As String = ""
+                            Dim tempSlotName = ""
                             If itemControl.Name.ToLower.StartsWith("sec_") Then tempSlotName = "sec"
                             If itemControl.Name.ToLower.Contains("prim") Then tempSlotName = tempSlotName & "primglyph"
                             If itemControl.Name.ToLower.Contains("major") Then _
@@ -110,7 +110,7 @@ Namespace Forms.Character
                             If itemControl.Name.ToLower.Contains("1") Then tempSlotName = tempSlotName & "1"
                             If itemControl.Name.ToLower.Contains("2") Then tempSlotName = tempSlotName & "2"
                             If itemControl.Name.ToLower.Contains("3") Then tempSlotName = tempSlotName & "3"
-                            Dim img As Bitmap = CType(LoadInfo(tempSlotName, 1), Bitmap)
+                            Dim img = CType(LoadInfo(tempSlotName, 1), Bitmap)
                             If img Is Nothing Then
                                 DirectCast(itemControl, PictureBox).Image = My.Resources.empty
                             Else
@@ -122,7 +122,7 @@ Namespace Forms.Character
             Next
         End Sub
 
-        Private Function LoadInfo(ByVal slot As String, ByVal infotype As Integer) As Object
+        Private Function LoadInfo(slot As String, infotype As Integer) As Object
             Dim glyphitm As Glyph = GetCharacterGlyph(_usePlayer, slot)
             _pubGlyph = glyphitm
             If glyphitm Is Nothing Then Return Nothing
@@ -149,7 +149,7 @@ Namespace Forms.Character
             End If
             changepanel.Location = New Point(4000, 4000)
             addpanel.Location = New Point(4000, 4000)
-            Dim gly As Glyph = CType(TryCast(sender, PictureBox).Tag, Glyph)
+            Dim gly = CType(TryCast(sender, PictureBox).Tag, Glyph)
             If Not gly Is Nothing Then
                 If Not gly.id = 0 Then
                     Process.Start("http://wowhead.com/item=" & gly.id)
@@ -173,8 +173,8 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub SetBrightness(ByVal brightness As Single, ByVal g As Graphics, ByVal img As Image,
-                                  ByVal r As Rectangle,
+        Private Sub SetBrightness(brightness As Single, g As Graphics, img As Image,
+                                  r As Rectangle,
                                   ByRef picbox As PictureBox)
             ' Brightness should be -1 (black) to 0 (neutral) to 1 (white)
             Dim colorMatrixVal As Single()() = { _
@@ -203,7 +203,7 @@ Namespace Forms.Character
             If Not TryCast(sender, PictureBox).Image Is Nothing Then
                 _tmpPic = TryCast(sender, PictureBox).Image
                 Application.DoEvents()
-                Dim picbx As PictureBox = TryCast(sender, PictureBox)
+                Dim picbx = TryCast(sender, PictureBox)
                 Dim g As Graphics
                 Dim img As Image
                 Dim r As Rectangle
@@ -224,7 +224,7 @@ Namespace Forms.Character
                     minor_2_pic.MouseLeave, minor_1_pic.MouseLeave, major_3_pic.MouseLeave, major_2_pic.MouseLeave,
                     major_1_pic.MouseLeave
             If Not _tmpPic Is Nothing And Not TryCast(sender, PictureBox).Image Is Nothing Then
-                Dim picbox As PictureBox = TryCast(sender, PictureBox)
+                Dim picbox = TryCast(sender, PictureBox)
                 picbox.Image = _tmpPic
                 picbox.Refresh()
                 Application.DoEvents()
@@ -257,8 +257,8 @@ Namespace Forms.Character
         Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
             '// Delete glyph
             Dim newPoint As New Point
-            Dim senderLabel As Label = TryCast(_tempSender, Label)
-            Dim senderTag As Glyph = CType(DeepCloneHelper.DeepClone(senderLabel.Tag), Glyph)
+            Dim senderLabel = TryCast(_tempSender, Label)
+            Dim senderTag = CType(DeepCloneHelper.DeepClone(senderLabel.Tag), Glyph)
             newPoint.X = 4000
             newPoint.Y = 4000
             If TypeOf _tempSender Is Label Then
@@ -314,8 +314,8 @@ Namespace Forms.Character
         Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
             '// Change glyph
             Dim newPoint As New Point
-            Dim senderLabel As Label = CType(_tempSender, Label)
-            Dim senderTag As Glyph = CType(DeepCloneHelper.DeepClone(CType(_tempSender, Label).Tag), Glyph)
+            Dim senderLabel = CType(_tempSender, Label)
+            Dim senderTag = CType(DeepCloneHelper.DeepClone(CType(_tempSender, Label).Tag), Glyph)
             newPoint.X = 4000
             newPoint.Y = 4000
             If Not TextBox1.Text = _tempValue Then
@@ -381,7 +381,7 @@ Namespace Forms.Character
 
         Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
             '// Add glyph
-            Dim senderPic As PictureBox = CType(_tmpSenderPic, PictureBox)
+            Dim senderPic = CType(_tmpSenderPic, PictureBox)
             If Not TextBox2.Text = "" Then
                 Dim client As New WebClient
                 client.CheckProxy()
@@ -396,7 +396,7 @@ Namespace Forms.Character
                     gly.Name = GetItemNameByItemId(gly.Id, MySettings.Default.language)
                     gly.Image = GetItemIconByItemId(gly.Id, GlobalVariables.GlobalWebClient)
                     gly.slotname = ""
-                    Dim slot As String = ""
+                    Dim slot = ""
                     If senderPic.Name.Contains("minor") Then gly.Type = Glyph.GlyphType.GLYTYPE_MINOR : slot = "minor"
                     If senderPic.Name.Contains("major") Then gly.Type = Glyph.GlyphType.GLYTYPE_MAJOR : slot = "major"
                     If senderPic.Name.Contains("prim") Then gly.Type = Glyph.GlyphType.GLYTYPE_PRIME : slot = "prim"

@@ -21,17 +21,17 @@
 '*      /Description:   Provides an interface to load characters from WoW Armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
-Imports NCFramework.Framework
+Imports System.Net
+Imports NamCore_Studio.Forms.Extension
 Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework
+Imports NCFramework.Framework.Armory
+Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports NCFramework.My
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Armory
-Imports NamCore_Studio.Forms.Extension
 Imports NCFramework.My.Resources
-Imports System.Net
 
 Namespace Forms
     Public Class ArmoryInterface
@@ -47,7 +47,7 @@ Namespace Forms
 
         Private Sub addChar_bt_Click(sender As Object, e As EventArgs) Handles addChar_bt.Click
             LogAppend("Adding character", "Armory_interface_addChar_bt_Click", False)
-            Dim templink As String =
+            Dim templink =
                     "http://#replaceregion#.battle.net/wow/#replacelang#/character/#replacerealm#/#replacecharacter#/advanced"
 
             If globalregion.SelectedItem Is Nothing Then
@@ -196,7 +196,7 @@ Namespace Forms
             Close()
         End Sub
 
-        Private Sub m_handler_CountCompleted(ByVal sender As Object, ByVal e As CompletedEventArgs) _
+        Private Sub m_handler_CountCompleted(sender As Object, e As CompletedEventArgs) _
             Handles _mHandler.Completed
             prepareLive_armory()
         End Sub
@@ -243,7 +243,7 @@ Namespace Forms
 
         Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
             GlobalVariables.LoadingTemplate = True
-            Dim mSerializer As Serializer = New Serializer
+            Dim mSerializer = New Serializer
             GlobalVariables.globChars = mSerializer.DeSerialize("", New GlobalCharVars)
             prepareLive_armory()
             Close()

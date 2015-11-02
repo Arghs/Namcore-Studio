@@ -24,14 +24,14 @@ Imports System.Runtime.CompilerServices
 
 Namespace Modules
     Module Date2Timestamp
-    ''' <summary>
-    '''     timestamp converter
-    ''' </summary>
-                         <Extension()>
+        ''' <summary>
+        '''     timestamp converter
+        ''' </summary>
+        <Extension>
         Public Function ToDate(ByRef stamp As Integer) As DateTime
             Try
                 Dim span As TimeSpan
-                Dim startdate As Date = #1/1/1970#
+                Dim startdate = #1/1/1970#
                 If Stamp = 0 Then Return startdate
                 span = New TimeSpan(0, 0, Stamp)
                 Return startdate.Add(span)
@@ -40,10 +40,10 @@ Namespace Modules
             End Try
         End Function
 
-        <Extension()>
+        <Extension>
         Public Function ToTimeStamp(ByRef dt As DateTime) As Integer
             Try
-                Dim startdate As DateTime = #1/1/1970#
+                Dim startdate = #1/1/1970#
                 Dim spanne As TimeSpan
                 spanne = dt.Subtract(startdate)
                 Return CType(Math.Abs(spanne.TotalSeconds()), Integer)

@@ -20,17 +20,17 @@
 '*      /Filename:      Main
 '*      /Description:   Main menu
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports System.Net
+Imports System.Text
+Imports System.Xml
+Imports Microsoft.Win32
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Functions
-Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.My
-Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Logging
-Imports Microsoft.Win32
-Imports System.Text
-Imports System.Xml
-Imports System.Net
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
 
 Namespace Forms
     Public Class Main
@@ -120,7 +120,7 @@ Namespace Forms
             End If
             If Not My.Computer.FileSystem.FileExists(Application.StartupPath & "\version.xml") Then
                 Dim enc As New UnicodeEncoding
-                Dim xmLobj As XmlTextWriter = New XmlTextWriter("version.xml", enc)
+                Dim xmLobj = New XmlTextWriter("version.xml", enc)
                 With xmLobj
                     .Formatting = Formatting.Indented
                     .Indentation = 3
@@ -215,7 +215,7 @@ Namespace Forms
         Public Sub ExecuteParams()
             Dim args As String()
             args = Environment.GetCommandLineArgs()
-            For i As Integer = 1 To args.Length - 1
+            For i = 1 To args.Length - 1
                 Select Case args(i).ToLower
                     Case "update"
                         Hide()
@@ -227,7 +227,7 @@ Namespace Forms
                             LogAppend("Opening .ncsf file", "Main_ExecuteParams")
                             Application.DoEvents()
                             GlobalVariables.LoadingTemplate = True
-                            Dim mSerializer As Serializer = New Serializer
+                            Dim mSerializer = New Serializer
                             GlobalVariables.globChars = mSerializer.DeSerialize(args(i), New GlobalCharVars)
                             prepareLive_template()
                             HideTimer.Start()

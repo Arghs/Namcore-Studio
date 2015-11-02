@@ -24,7 +24,7 @@ Namespace Modules.Interface
     Public Class ItemPanel
         Inherits Panel
 
-        Protected Overrides Sub OnMouseLeave(ByVal e As EventArgs)
+        Protected Overrides Sub OnMouseLeave(e As EventArgs)
             Dim clientPoint As Point = PointToClient(Cursor.Position)
             If DisplayRectangle.Contains(clientPoint) Then
                 Return

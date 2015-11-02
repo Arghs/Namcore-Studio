@@ -20,14 +20,14 @@
 '*      /Filename:      SettingsInterface
 '*      /Description:   Proxy settings
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Functions
-Imports NCFramework.My
-Imports NamCore_Studio.Forms.Extension
 Imports System.Net
 Imports System.Text
 Imports System.Xml
+Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
 
 Namespace Forms
     Public Class SettingsInterface
@@ -140,7 +140,7 @@ Namespace Forms
                 End If
 
                 Dim enc As New UnicodeEncoding
-                Dim xmLobj As XmlTextWriter = New XmlTextWriter("settings.xml", enc)
+                Dim xmLobj = New XmlTextWriter("settings.xml", enc)
                 With xmLobj
                     .Formatting = Formatting.Indented
                     .Indentation = 3

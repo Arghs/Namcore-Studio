@@ -20,12 +20,12 @@
 '*      /Filename:      DoubleBufferedControls
 '*      /Description:   Extension that enables double buffering of controls
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Runtime.CompilerServices
 Imports System.Reflection
+Imports System.Runtime.CompilerServices
 
 Namespace Modules.Interface
     Module DoubleBufferedControls
-        <Extension()>
+        <Extension>
         Public Sub SetDoubleBuffered(control As Control)
             control.GetType().InvokeMember("DoubleBuffered", BindingFlags.SetProperty Or
                                                              BindingFlags.Instance Or BindingFlags.NonPublic, Nothing,

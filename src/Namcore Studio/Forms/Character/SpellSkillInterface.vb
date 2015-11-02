@@ -21,16 +21,16 @@
 '*      /Description:   Provides an interface to display character reputation information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
-Imports NCFramework.My
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
+Imports System.Threading
+Imports libnc.Provider
+Imports NamCore_Studio.Forms.Extension
 Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
-Imports NamCore_Studio.Forms.Extension
-Imports System.Threading
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
 Imports NCFramework.My.Resources
-Imports libnc.Provider
 
 Namespace Forms.Character
     Public Class SpellSkillInterface
@@ -61,11 +61,11 @@ Namespace Forms.Character
             Next
         End Sub
 
-        Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
+        Protected Overridable Sub OnCompleted(e As CompletedEventArgs)
             RaiseEvent ThisCompleted(Me, e)
         End Sub
 
-        Public Sub PrepareInterface(ByVal setId As Integer)
+        Public Sub PrepareInterface(setId As Integer)
             Hide()
             _cmpFileListViewComparer = New ListViewComparer(spellList)
             _cmpFileListViewComparer2 = New ListViewComparer(skillList)
@@ -89,7 +89,7 @@ Namespace Forms.Character
             CloseProcessStatus()
         End Sub
 
-        Public Function ContinueOperation(ByVal setId As Integer) As String
+        Public Function ContinueOperation(setId As Integer) As String
             LogAppend("Loading Spells/Skills", "SpellSkill_interface_continueOperation", True)
             If GlobalVariables.currentEditedCharSet Is Nothing Then
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
@@ -106,7 +106,7 @@ Namespace Forms.Character
                 Next
             End If
             If Not GlobalVariables.currentEditedCharSet.Skills Is Nothing Then
-                For i As Integer = 0 To GlobalVariables.currentEditedCharSet.Skills.Count - 1
+                For i = 0 To GlobalVariables.currentEditedCharSet.Skills.Count - 1
                     Dim pSkill As Skill = GlobalVariables.currentEditedCharSet.Skills(i)
                     If Not pSkill.Id = 0 Then
                         If pSkill.Name Is Nothing Then
@@ -306,7 +306,7 @@ Namespace Forms.Character
             If newValue = "0" OrElse TryInt(newValue) <> 0 Then
                 skillList.SelectedItems(0).SubItems(2).Text = newValue
                 Dim itm As ListViewItem = skillList.SelectedItems(0)
-                Dim pSkill As Skill = CType(itm.Tag, Skill)
+                Dim pSkill = CType(itm.Tag, Skill)
                 pSkill.Value = TryInt(newValue)
                 itm.Tag = pSkill
                 skillList.SelectedItems(0).Tag = pSkill
@@ -328,7 +328,7 @@ Namespace Forms.Character
             If newValue = "0" OrElse TryInt(newValue) <> 0 Then
                 skillList.SelectedItems(0).SubItems(3).Text = newValue
                 Dim itm As ListViewItem = skillList.SelectedItems(0)
-                Dim pSkill As Skill = CType(itm.Tag, Skill)
+                Dim pSkill = CType(itm.Tag, Skill)
                 pSkill.Value = TryInt(newValue)
                 itm.Tag = pSkill
                 skillList.SelectedItems(0).Tag = pSkill

@@ -22,16 +22,16 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing.Imaging
 Imports System.Linq
-Imports NCFramework.My
-Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Extension
-Imports NamCore_Studio.Forms.Extension
 Imports System.Threading
-Imports NCFramework.My.Resources
 Imports libnc.Provider
+Imports NamCore_Studio.Forms.Extension
+Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
+Imports NCFramework.My.Resources
 
 Namespace Forms.Character
     Public Class BankInterface
@@ -53,11 +53,11 @@ Namespace Forms.Character
         Shared _actionBlocked As Boolean = False
         '// Declaration
 
-        Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
+        Protected Overridable Sub OnCompleted(e As CompletedEventArgs)
             RaiseEvent Completed(Me, e)
         End Sub
 
-        Public Sub PrepareBankInterface(ByVal setId As Integer)
+        Public Sub PrepareBankInterface(setId As Integer)
             '// Setting up interface
             _visibleActionControls = New List(Of Control)()
             Hide()
@@ -72,7 +72,7 @@ Namespace Forms.Character
             For Each itemControl As Control In controlLst
                 itemControl.SetDoubleBuffered()
             Next
-            Dim trd As Thread = New Thread(DirectCast(Sub() DoWork(), ThreadStart))
+            Dim trd = New Thread(DirectCast(Sub() DoWork(), ThreadStart))
             If GlobalVariables.currentEditedCharSet Is Nothing Then _
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             trd.Start()
@@ -143,7 +143,7 @@ Namespace Forms.Character
                 If _
                     subctrl.Name.ToLower.Contains("panel") And subctrl.Name.ToLower.StartsWith("bag") And
                     Not subctrl.Name.ToLower.Contains("item") Then
-                    Dim bagPanel As ItemPanel = CType(subctrl, ItemPanel)
+                    Dim bagPanel = CType(subctrl, ItemPanel)
                     _actionBlocked = True
                     bagPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControllUpdate),
                                          bagPanel, True, Nothing)
@@ -164,7 +164,7 @@ Namespace Forms.Character
                                 If _
                                     subctrl.Name.ToLower.Contains("panel") And subctrl.Name.ToLower.StartsWith("bag") And
                                     Not subctrl.Name.ToLower.Contains("item") Then
-                                    Dim bagPanel As ItemPanel = CType(subctrl, ItemPanel)
+                                    Dim bagPanel = CType(subctrl, ItemPanel)
                                     _actionBlocked = True
                                     bagPanel.BeginInvoke(New UpdateControlDelegate(AddressOf DelegateControllUpdate),
                                                          bagPanel, False, potCharBag)
@@ -203,7 +203,7 @@ Namespace Forms.Character
                                 potCharBag.Count > 1 OrElse
                                 potCharBag.Count = 1 AndAlso GetItemMaxStackByItemId(potCharBag.Id) > 1 Then
                                 '// Set up item stack label
-                                Dim countLabel As Label =
+                                Dim countLabel =
                                         CType(
                                             entry.Controls.Find("bankitm_slot_" & potCharBag.Slot.ToString() & "_count",
                                                                 True)(0),
@@ -222,7 +222,7 @@ Namespace Forms.Character
 
         Private Sub ChangeCount(sender As Object, e As EventArgs)
             '// Changing item stack size
-            Dim locLabel As Label = CType(sender, Label)
+            Dim locLabel = CType(sender, Label)
             If locLabel.Visible = True Then
                 Dim result As String = InputBox(MSG_ENTERITEMCOUNT,
                                                 MSG_ITEMCOUNTCHANGE, locLabel.Text)
@@ -230,7 +230,7 @@ Namespace Forms.Character
                     LogAppend("User entered stack size: " & result, "BankInterface_ChangeCount")
                     Dim intResult As Integer = TryInt(result)
                     If intResult <> 0 Then
-                        Dim itm As Item = CType(locLabel.Tag, Item)
+                        Dim itm = CType(locLabel.Tag, Item)
                         Dim maxStackSize As Integer = GetItemMaxStackByItemId(itm.Id)
                         '// Check if stack size within limit
                         If intResult > maxStackSize Then
@@ -308,7 +308,7 @@ Namespace Forms.Character
             Else
                 '// Filling bag slot
                 If bagPanel.Name.Contains((potCharBag.Slot - 66).ToString()) Then
-                    Dim subItmRemovePic As PictureBox =
+                    Dim subItmRemovePic =
                             CType(bagPanel.Controls.Find("bag_" & (realBagSlot + 66).ToString() & "_remove", True)(0),
                                   PictureBox)
                     subItmRemovePic.BackgroundImage = My.Resources.trash__delete__16x16
@@ -339,7 +339,7 @@ Namespace Forms.Character
             _actionBlocked = False
         End Sub
 
-        Private Function GetRarityColor(ByVal rarity As Integer) As Color
+        Private Function GetRarityColor(rarity As Integer) As Color
             '// Get rarity color
             LogAppend("Loading item rarity color for value: " & rarity.ToString(), "BankInterface_GetRarityColor")
             Select Case rarity
@@ -385,9 +385,9 @@ Namespace Forms.Character
                 _visibleActionControls(i).Visible = False
                 _visibleActionControls.Remove(_visibleActionControls(i))
             Next
-            Dim parentPanel As ItemPanel = CType(sender, ItemPanel)
-            Dim itm As Item = CType(parentPanel.Tag, Item)
-            Dim removePic As PictureBox =
+            Dim parentPanel = CType(sender, ItemPanel)
+            Dim itm = CType(parentPanel.Tag, Item)
+            Dim removePic =
                     CType(parentPanel.Controls.Find("bag_" & itm.Slot.ToString() & "_remove", True)(0), PictureBox)
             If Not removePic Is Nothing Then
                 '// Add control pointer to list to allow referencing (hide) on new hover
@@ -413,7 +413,7 @@ Namespace Forms.Character
                 '// Highlighting image
                 _tmpImage = TryCast(sender, PictureBox).BackgroundImage
                 Application.DoEvents()
-                Dim picbx As PictureBox = CType(sender, PictureBox)
+                Dim picbx = CType(sender, PictureBox)
                 Dim g As Graphics
                 Dim img As Image
                 Dim r As Rectangle
@@ -432,15 +432,15 @@ Namespace Forms.Character
                     bag2Pic.MouseLeave, bag1Pic.MouseLeave
             If Not _tmpImage Is Nothing And Not TryCast(sender, PictureBox).BackgroundImage Is Nothing Then
                 '// Remove highlight
-                Dim picbox As PictureBox = TryCast(sender, PictureBox)
+                Dim picbox = TryCast(sender, PictureBox)
                 picbox.BackgroundImage = _tmpImage
                 picbox.Refresh()
                 Application.DoEvents()
             End If
         End Sub
 
-        Private Sub SetBrightness(ByVal brightness As Single, ByVal g As Graphics, ByVal img As Image,
-                                  ByVal r As Rectangle,
+        Private Sub SetBrightness(brightness As Single, g As Graphics, img As Image,
+                                  r As Rectangle,
                                   ByRef picbox As PictureBox)
             '// Set brightness of image
             '// Brightness should be -1 (black) to 0 (neutral) to 1 (white)
@@ -465,7 +465,7 @@ Namespace Forms.Character
                     bag1Pic.Click
             '// Opening bag
 
-            Dim bag As Item = CType(TryCast(sender, PictureBox).Tag, Item)
+            Dim bag = CType(TryCast(sender, PictureBox).Tag, Item)
             If bag Is Nothing Then Exit Sub
             If bag.Id = 0 AndAlso bag.Slot > 0 Then Exit Sub
             _currentBag = bag
@@ -546,9 +546,9 @@ Namespace Forms.Character
                 _visibleActionControls(i).Visible = False
                 _visibleActionControls.Remove(_visibleActionControls(i))
             Next
-            Dim parentPanel As ItemPanel = CType(sender, ItemPanel)
-            Dim itm As Item = CType(parentPanel.Tag, Item)
-            Dim removePic As PictureBox =
+            Dim parentPanel = CType(sender, ItemPanel)
+            Dim itm = CType(parentPanel.Tag, Item)
+            Dim removePic =
                     CType(parentPanel.Controls.Find("bankitm_slot_" & itm.Slot.ToString & "_remove", True)(0),
                           PictureBox)
             If Not removePic Is Nothing Then
@@ -569,9 +569,9 @@ Namespace Forms.Character
 
         Private Sub removeinventbox_Click(sender As Object, e As EventArgs)
             '// Delete/Add inventory item
-            Dim locPanel As ItemPanel = CType(CType(TryCast(sender, PictureBox).Tag, Object())(0), ItemPanel)
-            Dim locPic As PictureBox = CType(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
-            Dim oldItm As Item = CType(locPic.Tag, Item)
+            Dim locPanel = CType(CType(TryCast(sender, PictureBox).Tag, Object())(0), ItemPanel)
+            Dim locPic = CType(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
+            Dim oldItm = CType(locPic.Tag, Item)
             If oldItm.Id = 0 Then
                 '// Slot empty -> 'Add'-Mode
                 Dim result As String = InputBox(MSG_ENTERITEMID, MSG_ADDITEM, "0")
@@ -600,7 +600,7 @@ Namespace Forms.Character
                             replaceItm.Bag = oldItm.Bag
                             replaceItm.Bagguid = oldItm.Bagguid
                             '// Generate an available GUID
-                            Dim newGuid As Integer = 1
+                            Dim newGuid = 1
                             Do
                                 If GlobalVariables.nonUsableGuidList.Contains(newGuid) Then
                                     '// GUID already in use
@@ -629,7 +629,7 @@ Namespace Forms.Character
                             End If
                             If GetItemMaxStackByItemId(replaceItm.Id) > 1 Then
                                 '// Set up item stack size label
-                                Dim countLabel As Label =
+                                Dim countLabel =
                                         CType(
                                             locPanel.Controls.Find(
                                                 "bankitm_slot_" & replaceItm.Slot.ToString() & "_count",
@@ -684,7 +684,7 @@ Namespace Forms.Character
                                     Function(item) item.Slot = oldItm.Slot AndAlso item.Bagguid = oldItm.Bagguid))
                         End If
                     End If
-                    Dim countLabel As Label =
+                    Dim countLabel =
                             CType(
                                 locPanel.Controls.Find("bankitm_slot_" & replaceItm.Slot.ToString() & "_count", True)(0),
                                 Label)
@@ -698,9 +698,9 @@ Namespace Forms.Character
         End Sub
 
         Private Sub removeinventboxBag_Click(sender As Object, e As EventArgs)
-            Dim locPanel As ItemPanel = CType(CType(TryCast(sender, PictureBox).Tag, Object())(0), ItemPanel)
-            Dim locPic As PictureBox = CType(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
-            Dim oldItm As Item = CType(locPanel.Tag, Item)
+            Dim locPanel = CType(CType(TryCast(sender, PictureBox).Tag, Object())(0), ItemPanel)
+            Dim locPic = CType(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
+            Dim oldItm = CType(locPanel.Tag, Item)
             If oldItm.Id = 0 Then
                 Dim result As String = InputBox(MSG_ENTERITEMID, MSG_ADDITEM, "0")
                 If result.Length = 0 Then
@@ -720,7 +720,7 @@ Namespace Forms.Character
                             replaceItm.Name = checkName
                             replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.AddedBag = True
-                            Dim newGuid As Integer = 1
+                            Dim newGuid = 1
                             Do
                                 If GlobalVariables.nonUsableGuidList.Contains(newGuid) Then
                                     newGuid += 1
@@ -785,7 +785,7 @@ Namespace Forms.Character
             If Not TryCast(sender, PictureBox).BackgroundImage Is Nothing Then
                 _tmpImage = TryCast(sender, PictureBox).BackgroundImage
                 Application.DoEvents()
-                Dim picbx As PictureBox = TryCast(sender, PictureBox)
+                Dim picbx = TryCast(sender, PictureBox)
                 Dim g As Graphics
                 Dim img As Bitmap
                 Dim r As Rectangle
@@ -801,21 +801,21 @@ Namespace Forms.Character
 
         Private Sub removeinventbox_MouseLeave(sender As Object, e As EventArgs)
             If Not _tmpImage Is Nothing And Not TryCast(sender, PictureBox).BackgroundImage Is Nothing Then
-                Dim picbox As PictureBox = TryCast(sender, PictureBox)
+                Dim picbox = TryCast(sender, PictureBox)
                 picbox.BackgroundImage = _tmpImage
                 picbox.Refresh()
                 Application.DoEvents()
             End If
         End Sub
 
-        Private Sub SetInventorySlot(ByVal itm As Item, ByVal slot As Integer)
+        Private Sub SetInventorySlot(itm As Item, slot As Integer)
             For Each itmctrl As ItemPanel In _
                 From itmctrl1 As Object In BagItemPanel.Controls
                     Where TryCast(itmctrl1, ItemPanel).Name.Contains("_" & slot.ToString() & "_")
                 itmctrl.BackColor = GetItemQualityColor(GetItemQualityByItemId(itm.Id))
                 itmctrl.Tag = itm
                 If itm.Count > 1 OrElse itm.Count = 1 AndAlso GetItemMaxStackByItemId(itm.Id) > 1 Then
-                    Dim countLabel As Label =
+                    Dim countLabel =
                             CType(itmctrl.Controls.Find("bankitm_slot_" & slot.ToString() & "_count", True)(0), Label)
                     countLabel.Text = itm.Count.ToString()
                     countLabel.Tag = itm
@@ -825,7 +825,7 @@ Namespace Forms.Character
                 For Each itmPicCtrl As Control In itmctrl.Controls
                     If Not itmPicCtrl.Name Is Nothing Then
                         If itmPicCtrl.Name.EndsWith("_remove") Then
-                            Dim itmPicBox As PictureBox = CType(itmPicCtrl, PictureBox)
+                            Dim itmPicBox = CType(itmPicCtrl, PictureBox)
                             If itm.Id <> 0 Then
                                 itmPicBox.BackgroundImage = My.Resources.trash__delete__16x16
                                 InfoToolTip.SetToolTip(itmPicBox, TOOLTIP_REMOVE)
@@ -837,7 +837,7 @@ Namespace Forms.Character
                         End If
                     End If
                     If TypeOf itmPicCtrl Is PictureBox Then
-                        Dim itmPicBox As PictureBox = CType(itmPicCtrl, PictureBox)
+                        Dim itmPicBox = CType(itmPicCtrl, PictureBox)
                         itmPicBox.BackgroundImage = itm.Image
                         itmPicBox.Tag = itm
                         InfoToolTip.SetToolTip(itmPicBox, itm.Name)

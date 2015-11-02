@@ -20,15 +20,15 @@
 '*      /Filename:      ProfessionsInterface
 '*      /Description:   Provides an interface to display character profession information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports libnc.Provider
+Imports NamCore_Studio.Forms.Extension
+Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
-Imports NCFramework.My
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
-Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Modules
-Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.My
 Imports NCFramework.My.Resources
-Imports libnc.Provider
 
 Namespace Forms.Character
     Public Class ProfessionsInterface
@@ -46,7 +46,7 @@ Namespace Forms.Character
         Private _cmpFileListViewComparer As ListViewComparer
         '// Declaration
 
-        Public Sub PrepareInterface(ByVal setId As Integer)
+        Public Sub PrepareInterface(setId As Integer)
             LogAppend("Loading player professions", "ProfessionsInterface_PrepareInterface", True)
             _cmpFileListViewComparer = New ListViewComparer(prof_lst)
             Hide()
@@ -57,7 +57,7 @@ Namespace Forms.Character
                 GlobalVariables.currentEditedCharSet.Professions = New List(Of Profession)()
             If GlobalVariables.currentEditedCharSet.Spells Is Nothing Then _
                 GlobalVariables.currentEditedCharSet.Spells = New List(Of Spell)()
-            Dim firstResult As Boolean = True
+            Dim firstResult = True
             mainprof1_lbl.Text = MISC_PROFADD
             mainprof1_pic.BackgroundImage = Nothing
             mainprof2_lbl.Text = MISC_PROFADD
@@ -149,7 +149,7 @@ Namespace Forms.Character
             Show()
         End Sub
 
-        Private Function GetProfessionPic(ByVal professionId As Integer) As Image
+        Private Function GetProfessionPic(professionId As Integer) As Image
             Select Case professionId
                 Case 171 : Return My.Resources.trade_alchemy
                 Case 164 : Return My.Resources.trade_blacksmithing
@@ -175,7 +175,7 @@ Namespace Forms.Character
             Next
         End Sub
 
-        Private Sub profession_combo_DrawItem(ByVal sender As Object, ByVal e As DrawItemEventArgs) _
+        Private Sub profession_combo_DrawItem(sender As Object, e As DrawItemEventArgs) _
             Handles profession_combo.DrawItem
             If e.Index <> - 1 Then
                 e.Graphics.DrawImage(profImageList.Images(e.Index), e.Bounds.Left, e.Bounds.Top)
@@ -185,7 +185,7 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub profession_combo_MeasureItem(ByVal sender As Object, ByVal e As MeasureItemEventArgs) _
+        Private Sub profession_combo_MeasureItem(sender As Object, e As MeasureItemEventArgs) _
             Handles profession_combo.MeasureItem
             e.ItemHeight = profImageList.ImageSize.Height
             e.ItemWidth = profImageList.ImageSize.Width
@@ -196,7 +196,7 @@ Namespace Forms.Character
             _loaded = False
             _maxProgressSize = CType(rank_panel.Size.Width, UInteger)
             rank_slider.Size = New Size(rank_panel.Size.Width + 10, rank_slider.Size.Height)
-            _rank_color_panel.Size = New Size(CType((_maxProgressSize / 700 * _activeProfession.Rank), Integer),
+            _rank_color_panel.Size = New Size(CType((_maxProgressSize/700*_activeProfession.Rank), Integer),
                                               rank_color_panel.Size.Height)
             rank_slider.Value = EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet)
             progress_lbl.Text = EscapeRank(_activeProfession, GlobalVariables.currentEditedCharSet).ToString & "/700"
@@ -228,7 +228,7 @@ Namespace Forms.Character
             Next
             If _lstitems Is Nothing Then _lstitems = New List(Of ListViewItem)
             For Each itm As ListViewItem In prof_lst.Items
-                Dim itmnew As ListViewItem = CType(itm.Clone(), ListViewItem)
+                Dim itmnew = CType(itm.Clone(), ListViewItem)
                 _lstitems.Add(itmnew)
             Next
             _temporarySkillLevel = _activeProfession.Rank
@@ -237,7 +237,7 @@ Namespace Forms.Character
             LearnToolStrip.Text = MISC_PROFUNLEARN
         End Sub
 
-        Private Function ExecuteSkillLineSearch(ByVal startvalue As Integer) As IEnumerable(Of ProfessionSpell)
+        Private Function ExecuteSkillLineSearch(startvalue As Integer) As IEnumerable(Of ProfessionSpell)
             Dim retnLst As New List(Of ProfessionSpell)
             Try
                 Dim foundRows() As DataRow
@@ -310,12 +310,12 @@ Namespace Forms.Character
                 Exit Sub
             End If
             Dim value As Integer = TryInt(search_tb.Text)
-            Dim resultcounter As Integer = 0
+            Dim resultcounter = 0
             Dim itmstoshow As New List(Of ListViewItem)
             If Not value = 0 Then
                 prof_lst.Items.Clear()
                 For Each itm As ListViewItem In _lstitems
-                    Dim profspell As ProfessionSpell = CType(itm.Tag, ProfessionSpell)
+                    Dim profspell = CType(itm.Tag, ProfessionSpell)
                     If profspell.SpellId.ToString.Contains(value.ToString()) Then
                         resultcounter += 1
                         itmstoshow.Add(itm)
@@ -349,7 +349,7 @@ Namespace Forms.Character
             Else
                 senderPanel = TryCast(sender, Panel)
             End If
-            Dim prof As Profession = CType(senderPanel.Tag, Profession)
+            Dim prof = CType(senderPanel.Tag, Profession)
             If prof Is Nothing Then
                 If senderPanel.Name.StartsWith("minprof") Then
                     Dim msgResult As MsgBoxResult = MsgBox(MSG_TEACHPROFESSION, MsgBoxStyle.YesNo, MSG_PROFESSIONUNKNOWN)
@@ -405,7 +405,7 @@ Namespace Forms.Character
                         prof = CType(senderPanel.Tag, Profession)
                         Dim spell2Add As Integer = GetSkillSpellIdBySkillRank(prof.Id, prof.Rank)
                         Dim specialSpells2Add() As Integer = GetSkillSpecialSpellIdBySkill(prof.Id)
-                        If Not spell2Add = -1 And spell2Add <> 0 Then _
+                        If Not spell2Add = - 1 And spell2Add <> 0 Then _
                             GlobalVariables.currentEditedCharSet.Spells.Add(
                                 New Spell _
                                                                                With {.Active = 1, .Disabled = 0,
@@ -435,7 +435,7 @@ Namespace Forms.Character
                         removeId = DirectCast(mainprof2_select.Tag, Profession).Id
                     End If
                     _displayProfessionIds = New List(Of Integer)()
-                    Dim counter As Integer = 0
+                    Dim counter = 0
                     For Each id As Integer In profIds
                         If removeId <> id Then
                             items(counter) = ResourceHandler.GetLocalizedString("profession_" & id.ToString())
@@ -463,8 +463,8 @@ Namespace Forms.Character
                 For Each ctrl As Control In actrl.Controls
                     If ctrl.Name.EndsWith("_lbl") Then
                         DirectCast(ctrl, Label).ForeColor = Color.Black
-                        Dim thisPanel As Panel = CType(ctrl.Tag, Panel)
-                        Dim thisProf As Profession = CType(thisPanel.Tag, Profession)
+                        Dim thisPanel = CType(ctrl.Tag, Panel)
+                        Dim thisProf = CType(thisPanel.Tag, Profession)
                         If thisProf IsNot Nothing Then
                             If thisProf.Id = prof.Id Then
                                 DirectCast(ctrl, Label).ForeColor = Color.White
@@ -523,13 +523,13 @@ Namespace Forms.Character
                         Function(profession) profession.Id = _activeProfession.Id)
             GlobalVariables.currentEditedCharSet.Professions(profIndex) = _activeProfession
             Dim spell2Remove As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _temporarySkillLevel)
-            If Not spell2Remove = -1 And spell2Remove <> 0 Then
+            If Not spell2Remove = - 1 And spell2Remove <> 0 Then
                 Dim result As Spell =
                         GlobalVariables.currentEditedCharSet.Spells.Find(Function(spell) spell.Id = spell2Remove)
                 If Not result Is Nothing Then GlobalVariables.currentEditedCharSet.Spells.Remove(result)
             End If
             Dim spell2Add As Integer = GetSkillSpellIdBySkillRank(_activeProfession.Id, _activeProfession.Rank)
-            If Not spell2Add = -1 And spell2Add <> 0 Then _
+            If Not spell2Add = - 1 And spell2Add <> 0 Then _
                 GlobalVariables.currentEditedCharSet.Spells.Add(
                     New Spell _
                                                                    With {.Active = 1, .Disabled = 0, .Id = spell2Add})
@@ -537,7 +537,7 @@ Namespace Forms.Character
 
         Private Sub rank_slider_Scroll(sender As Object, e As EventArgs) Handles rank_slider.Scroll
             _activeProfession.Rank = rank_slider.Value
-            rank_color_panel.Size = New Size(CType((_maxProgressSize / 700 * _activeProfession.Rank), Integer),
+            rank_color_panel.Size = New Size(CType((_maxProgressSize/700*_activeProfession.Rank), Integer),
                                              rank_color_panel.Size.Height)
             progress_lbl.Text = _activeProfession.Rank.ToString & "/700"
             rankname_lbl.Text = GetProficiencyLevelNameByLevel(_activeProfession.Rank)
@@ -557,7 +557,7 @@ Namespace Forms.Character
             Next
             If _lstitems Is Nothing Then _lstitems = New List(Of ListViewItem)
             For Each itm As ListViewItem In prof_lst.Items
-                Dim itmnew As ListViewItem = CType(itm.Clone(), ListViewItem)
+                Dim itmnew = CType(itm.Clone(), ListViewItem)
                 _lstitems.Add(itmnew)
             Next
             resultstatus_lbl.Text = prof_lst.Items.Count.ToString & MISC_PROFRESULTS
@@ -579,7 +579,7 @@ Namespace Forms.Character
             Next
             If _lstitems Is Nothing Then _lstitems = New List(Of ListViewItem)
             For Each itm As ListViewItem In prof_lst.Items
-                Dim itmnew As ListViewItem = CType(itm.Clone(), ListViewItem)
+                Dim itmnew = CType(itm.Clone(), ListViewItem)
                 _lstitems.Add(itmnew)
             Next
             resultstatus_lbl.Text = prof_lst.Items.Count.ToString & MISC_PROFRESULTS
@@ -590,7 +590,7 @@ Namespace Forms.Character
         Private Sub LearnToolStrip_Click(sender As Object, e As EventArgs) Handles LearnToolStrip.Click
             prof_lst.BeginUpdate()
             For Each listOb As ListViewItem In prof_lst.SelectedItems
-                Dim senderTag As ProfessionSpell = CType(listOb.Tag, ProfessionSpell)
+                Dim senderTag = CType(listOb.Tag, ProfessionSpell)
                 Select Case learned_bt.Enabled
                     Case True
                         '// Learn
@@ -625,7 +625,7 @@ Namespace Forms.Character
             Handles LearnAllToolStripMenuItem.Click
             prof_lst.BeginUpdate()
             For Each listOb As ListViewItem In prof_lst.Items
-                Dim senderTag As ProfessionSpell = CType(listOb.Tag, ProfessionSpell)
+                Dim senderTag = CType(listOb.Tag, ProfessionSpell)
                 Select Case learned_bt.Enabled
                     Case True
                         '// Learn
@@ -680,7 +680,7 @@ Namespace Forms.Character
                 newProf.Name = profession_combo.SelectedItem.ToString()
                 newProf.Max = 75
                 GlobalVariables.currentEditedCharSet.Professions.Add(newProf)
-                Dim targetPanel As Panel = DirectCast(profession_combo.Tag, Panel)
+                Dim targetPanel = DirectCast(profession_combo.Tag, Panel)
                 targetPanel.Tag = newProf
                 If targetPanel.Name.StartsWith("mainprof1") Then
                     mainprof1_lbl.Enabled = True
@@ -714,7 +714,7 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Function EscapeRank(ByVal pProf As Profession, ByVal player As NCFramework.Framework.Modules.Character) _
+        Private Function EscapeRank(pProf As Profession, player As NCFramework.Framework.Modules.Character) _
             As Integer
             Select Case pProf.Id
                 Case 182

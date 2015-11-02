@@ -20,16 +20,16 @@
 '*      /Filename:      ReputationInterface
 '*      /Description:   Provides an interface to display character reputation information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Extension
-Imports NCFramework.My
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Modules
-Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.Logging
-Imports NamCore_Studio.Forms.Extension
-Imports libnc.Provider
-Imports NCFramework.My.Resources
 Imports System.Net
+Imports libnc.Provider
+Imports NamCore_Studio.Forms.Extension
+Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
+Imports NCFramework.My.Resources
 
 Namespace Forms.Character
     Public Class ReputationInterface
@@ -42,28 +42,28 @@ Namespace Forms.Character
         Dim _valueisok As Boolean = False
         '// Declaration
 
-        Public Sub PrepareRepInterface(ByVal setId As Integer)
+        Public Sub PrepareRepInterface(setId As Integer)
             LogAppend("Loading reputation", "Reputation_interface_prepareRepInterface", True)
             Dim controlLst As List(Of Control)
             controlLst = FindAllChildren()
             For Each itemControl As Control In controlLst
                 itemControl.SetDoubleBuffered()
             Next
-            Dim colorTicker As Integer = 0
+            Dim colorTicker = 0
             RepLayoutPanel.Controls.Add(addpanel)
             If GlobalVariables.currentEditedCharSet Is Nothing Then
                 GlobalVariables.currentEditedCharSet = DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
             End If
             If MySettings.Default.language = "de" Then
                 'todo
-                Dim cnt As Integer = 0
+                Dim cnt = 0
                 Do
 
                     reference_standing_combo.Items.Add(ResourceHandler.GetLocalizedString("standing_" & cnt.ToString))
                     cnt += 1
                 Loop Until cnt = 8
             Else
-                Dim cnt As Integer = 0
+                Dim cnt = 0
                 Do
 
                     reference_standing_combo.Items.Add(ResourceHandler.GetLocalizedString("standing_" & cnt.ToString))
@@ -177,8 +177,8 @@ Namespace Forms.Character
             CloseProcessStatus()
         End Sub
 
-        Private Sub slider_slide(ByVal sender As Object, ByVal e As EventArgs)
-            Dim slider As TrackBar = CType(sender, TrackBar)
+        Private Sub slider_slide(sender As Object, e As EventArgs)
+            Dim slider = CType(sender, TrackBar)
             If Not slider.Value = 0 Then
                 For Each pCtrl As Control In RepLayoutPanel.Controls
                     If pCtrl.Name.Contains("rep" & CType(slider.Tag, Reputation).Faction.ToString() & "_pnl") Then
@@ -211,7 +211,7 @@ Namespace Forms.Character
                                                 GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
                                                     Function(rep) rep.Faction = CType(pCtrl.Tag, Reputation).Faction)
                                         CType(pCtrl.Tag, Reputation).Value = slider.Value
-                                        Dim thisRep As Reputation = CType(pCtrl.Tag, Reputation)
+                                        Dim thisRep = CType(pCtrl.Tag, Reputation)
                                         pCtrl.Tag = thisRep.UpdateStanding()
                                         GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = CType(pCtrl.Tag,
                                                                                                            Reputation)
@@ -252,7 +252,7 @@ Namespace Forms.Character
                                                 GlobalVariables.currentEditedCharSet.PlayerReputation.FindIndex(
                                                     Function(rep) (pCtrl.Tag.Equals(rep)))
                                         CType(slider.Tag, Reputation).Value = slider.Value
-                                        Dim thisRep As Reputation = CType(slider.Tag, Reputation)
+                                        Dim thisRep = CType(slider.Tag, Reputation)
                                         pCtrl.Tag = thisRep.UpdateStanding()
                                         GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = CType(slider.Tag,
                                                                                                            Reputation)
@@ -265,7 +265,7 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub SetPanelPercentage(ByRef repPanel As Panel, ByVal percentage As Decimal)
+        Private Sub SetPanelPercentage(ByRef repPanel As Panel, percentage As Decimal)
             Const lengthrange As Integer = PanelMaxLength - PanelMinLength
             repPanel.Size = CType(New Point(CType((percentage*lengthrange + PanelMinLength), Integer),
                                             repPanel.Size.Height),
@@ -273,7 +273,7 @@ Namespace Forms.Character
         End Sub
 
         Private Sub StandingChanged(sender As Object, e As EventArgs)
-            Dim combo As ComboBox = CType(sender, ComboBox)
+            Dim combo = CType(sender, ComboBox)
             Dim max As Integer
             Dim col As Color
             Select Case combo.SelectedIndex
@@ -303,7 +303,7 @@ Namespace Forms.Character
                     CType(pCtrl.Tag, Reputation).Value = 0
                     CType(pCtrl.Tag, Reputation).Max = max
                     CType(pCtrl.Tag, Reputation).Status = CType(combo.SelectedIndex, Reputation.RepStatus)
-                    Dim thisRep As Reputation = CType(pCtrl.Tag, Reputation)
+                    Dim thisRep = CType(pCtrl.Tag, Reputation)
                     pCtrl.Tag = thisRep.UpdateStanding()
                     GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = CType(pCtrl.Tag, Reputation)
                     DirectCast(FindControl("rep" & CType(combo.Tag, Reputation).Faction.ToString() & "_slider", pCtrl),
@@ -338,7 +338,7 @@ Namespace Forms.Character
 
         Private Sub txt_changed(sender As Object, e As EventArgs)
             _valueisok = False
-            Dim txtbox As TextBox = CType(sender, TextBox)
+            Dim txtbox = CType(sender, TextBox)
             If Not txtbox.Text.Length < 1 Then
                 Dim int As Integer = TryInt(txtbox.Text)
                 If Not int = 0 OrElse txtbox.Text = "0" Then
@@ -369,7 +369,7 @@ Namespace Forms.Character
                                 SetPanelPercentage(CType(progresspanel, Panel),
                                                    CType((int/CType(pCtrl.Tag, Reputation).Max), Decimal))
                                 CType(pCtrl.Tag, Reputation).Value = int
-                                Dim thisRep As Reputation = CType(pCtrl.Tag, Reputation)
+                                Dim thisRep = CType(pCtrl.Tag, Reputation)
                                 pCtrl.Tag = thisRep.UpdateStanding()
                                 _valueisok = True
                                 GlobalVariables.currentEditedCharSet.PlayerReputation(loc) = CType(pCtrl.Tag, Reputation)
@@ -381,13 +381,13 @@ Namespace Forms.Character
         End Sub
 
         Private Sub txt_left(sender As Object, e As EventArgs)
-            Dim txtbox As TextBox = CType(sender, TextBox)
+            Dim txtbox = CType(sender, TextBox)
             If Not _valueisok Then
                 txtbox.Text = _lasttxtvalue
             End If
         End Sub
 
-        Private Function FindControl(ByVal controlname As String, ByVal repuControl As Control) As Control
+        Private Function FindControl(controlname As String, repuControl As Control) As Control
             Dim namectrl() As Control = repuControl.Controls.Find(controlname, True)
             Return namectrl(0)
         End Function

@@ -20,18 +20,18 @@
 '*      /Filename:      AchievementsInterface
 '*      /Description:   Provides an interface to display character achievement information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.My
+Imports System.Net
+Imports System.Threading
+Imports libnc.Provider
+Imports NamCore_Studio.Forms.Extension
 Imports NamCore_Studio.Modules
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Modules
 Imports NamCore_Studio.Modules.Interface
 Imports NCFramework.Framework.Extension
-Imports NamCore_Studio.Forms.Extension
-Imports System.Threading
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
 Imports NCFramework.My.Resources
-Imports libnc.Provider
-Imports System.Net
 
 Namespace Forms.Character
     Public Class AchievementsInterface
@@ -78,11 +78,11 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
+        Protected Overridable Sub OnCompleted(e As CompletedEventArgs)
             RaiseEvent AvCompleted(Me, e)
         End Sub
 
-        Protected Overridable Sub OnFilterCompleted(ByVal e As CompletedEventArgs)
+        Protected Overridable Sub OnFilterCompleted(e As CompletedEventArgs)
             RaiseEvent FilterCompleted(Me, e)
         End Sub
 
@@ -220,7 +220,7 @@ Namespace Forms.Character
                 Exit Sub
             End If
             '// Get the achievement object which is referenced in sender's tag
-            Dim charAv As Achievement = CType(TryCast(sender, PictureBox).Tag, Achievement)
+            Dim charAv = CType(TryCast(sender, PictureBox).Tag, Achievement)
             Dim msg As String = MSG_DELETEAV
             msg = msg.Replace("%avid%", charAv.Id.ToString)
             Dim result = MsgBox(msg, vbYesNo, MSG_AREYOUSURE)
@@ -251,7 +251,7 @@ Namespace Forms.Character
             Userwait.Close()
         End Sub
 
-        Public Function ContinueOperation(ByVal sender As Object, ByVal operationCount As Integer) As String
+        Public Function ContinueOperation(sender As Object, operationCount As Integer) As String
             _controlsToAdd = New List(Of Control)()
             If operationCount = 1 Then _
                 LogAppend("Loading achievements", "AchievementsInterface_ContinueOperation", True)
@@ -385,7 +385,7 @@ Namespace Forms.Character
                         charAv.Id = retnvalue
                         charAv.GainDate = Date.Today.ToTimeStamp()
                         GlobalVariables.currentEditedCharSet.Achievements.Add(charAv)
-                        Dim catBt As Button =
+                        Dim catBt =
                                 CType(
                                     Controls(
                                         "cat_id_" &
@@ -442,7 +442,7 @@ Namespace Forms.Character
                 For Each subctrl As Control In AVLayoutPanel.Controls
                     _preCatControlLst.Add(subctrl)
                     '// Get achievement pointer in every control tag and check for matching subcategory
-                    Dim charAv As Achievement = CType(subctrl.Tag, Achievement)
+                    Dim charAv = CType(subctrl.Tag, Achievement)
                     If Not charAv.SubCategory = catid Then
                         '// Subcategory does not match -> Remove control
                         Dim x As Control = subctrl
@@ -476,14 +476,14 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub FilterResults(ByVal searchTxt As String)
+        Private Sub FilterResults(searchTxt As String)
             '// Filter achievements by name or id
             LogAppend("Filtering achievements by search-text: '" & searchTxt & "'",
                       "Achievements_interface_FilterResults", True)
             GlobalVariables.trdRunning += 1
             Dim foundAvList As New List(Of Achievement)
             Dim searchId As Integer = TryInt(searchTxt)
-            Dim searchName As String = ""
+            Dim searchName = ""
             If searchId = 0 Then
                 searchName = searchTxt
             End If
@@ -522,7 +522,7 @@ Namespace Forms.Character
                                     New CompletedEventArgs())
         End Sub
 
-        Private Sub AddAvToLayout(ByVal charAv As Achievement)
+        Private Sub AddAvToLayout(charAv As Achievement)
             '// Add achievement to layout panel
             If charAv Is Nothing Then
                 LogAppend("Failed to add achievement to layout panel because it is null",
@@ -688,7 +688,7 @@ Namespace Forms.Character
             browse_tb.Enabled = False
             AVLayoutPanel.Controls.Clear()
             Application.DoEvents()
-            Dim trd As Thread = New Thread(DirectCast(Sub() FilterResults(browseTxt), ThreadStart))
+            Dim trd = New Thread(DirectCast(Sub() FilterResults(browseTxt), ThreadStart))
             trd.Start()
         End Sub
     End Class

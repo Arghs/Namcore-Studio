@@ -21,8 +21,8 @@
 '*      /Description:   Listing new features and changes
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
-Imports NCFramework.Framework.Logging
 Imports NamCore_Studio.Forms.Extension
+Imports NCFramework.Framework.Logging
 
 Namespace Forms
     Public Class ChangelogInterface

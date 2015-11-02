@@ -21,13 +21,13 @@
 '*      /Description:   Handles threadding queue items
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
-Imports NCFramework.Framework.Extension
 Imports NamCore_Studio.Forms.Character
+Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Modules
 
 Namespace Modules.Interface
     Public Class TrdQueueHandler
-        Public Function doOperate_av(ByVal sender As Object, ByVal cnt As Integer) As String
+        Public Function doOperate_av(sender As Object, cnt As Integer) As String
             For Each x As Form In _
                 From mForm As Object In Application.OpenForms Where TryCast(mForm, Form).Name = "AchievementsInterface"
                     Select mForm
@@ -39,7 +39,7 @@ Namespace Modules.Interface
             Return Nothing
         End Function
 
-        Public Function doOperate_qst(ByVal cnt As Integer, ByVal qsts As List(Of Quest)) As String
+        Public Function doOperate_qst(cnt As Integer, qsts As List(Of Quest)) As String
             For Each x As Form In _
                 From mForm As Object In Application.OpenForms Where TryCast(mForm, Form).Name = "QuestsInterface"
                     Select mForm
@@ -50,7 +50,7 @@ Namespace Modules.Interface
             Return Nothing
         End Function
 
-        Public Function doOperate_spellSkill(ByVal targetSetId As Integer) As String
+        Public Function doOperate_spellSkill(targetSetId As Integer) As String
             For Each x As Form In _
                 From mForm As Object In Application.OpenForms Where TryCast(mForm, Form).Name = "SpellSkillInterface"
                     Select mForm

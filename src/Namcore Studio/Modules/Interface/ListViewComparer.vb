@@ -30,32 +30,32 @@ Namespace Modules.Interface
         Private ReadOnly _cicComparer As CaseInsensitiveComparer
         '// Declaration
 
-        Public Sub New(ByVal parentListView As ListView)
+        Public Sub New(parentListView As ListView)
             _intColumn = 0
             _soSortOrder = SortOrder.None
             _cicComparer = New CaseInsensitiveComparer()
             ParentListView.ListViewItemSorter = Me
         End Sub
 
-        Public Property SortOrder() As SortOrder
+        Public Property SortOrder As SortOrder
             Get
                 Return _soSortOrder
             End Get
-            Set(ByVal value As SortOrder)
+            Set
                 _soSortOrder = value
             End Set
         End Property
 
-        Public Property SortColumn() As Integer
+        Public Property SortColumn As Integer
             Get
                 Return _intColumn
             End Get
-            Set(ByVal value As Integer)
+            Set
                 _intColumn = value
             End Set
         End Property
 
-        Public Function Compare(ByVal x As Object, ByVal y As Object) As Integer Implements IComparer.Compare
+        Public Function Compare(x As Object, y As Object) As Integer Implements IComparer.Compare
             Dim compareResult As Integer
             Dim listviewX As ListViewItem, listviewY As ListViewItem
             listviewX = CType(x, ListViewItem)

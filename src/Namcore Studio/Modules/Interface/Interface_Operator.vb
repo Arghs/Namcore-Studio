@@ -20,8 +20,8 @@
 '*      /Filename:      InterfaceOperator
 '*      /Description:   Includes functions to prepare interfaces
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Linq
 Imports System.IO
+Imports System.Linq
 Imports NamCore_Studio.Forms
 Imports NCFramework.Framework
 Imports NCFramework.Framework.Forms
@@ -53,7 +53,7 @@ Namespace Modules.Interface
                         Exit Sub
                     Next
                 Else
-                    Dim mSerializer As Serializer = New Serializer
+                    Dim mSerializer = New Serializer
                     Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
                     If _
                         My.Computer.FileSystem.FileExists(
@@ -70,7 +70,7 @@ Namespace Modules.Interface
                     ms.Close()
                 End If
             Else
-                Dim mSerializer As Serializer = New Serializer
+                Dim mSerializer = New Serializer
                 Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
                 If My.Computer.FileSystem.FileExists(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf") _
                     Then
@@ -114,7 +114,7 @@ Namespace Modules.Interface
                         Exit Sub
                     Next
                 Else
-                    Dim mSerializer As Serializer = New Serializer
+                    Dim mSerializer = New Serializer
                     Dim ms As MemoryStream = mSerializer.Serialize(GlobalVariables.globChars)
                     If _
                         My.Computer.FileSystem.FileExists(

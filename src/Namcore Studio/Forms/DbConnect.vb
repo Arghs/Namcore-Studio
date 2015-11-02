@@ -22,11 +22,11 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Linq
 Imports MySql.Data.MySqlClient
-Imports NCFramework.My
-Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Database
 Imports NamCore_Studio.Forms.Extension
+Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
 Imports NCFramework.My.Resources
 
 Namespace Forms
@@ -224,7 +224,7 @@ Namespace Forms
             End If
         End Sub
 
-        Private Sub highlighter2_click(ByVal sender As Object, ByVal e As EventArgs)
+        Private Sub highlighter2_click(sender As Object, e As EventArgs)
             Close()
         End Sub
 
@@ -248,7 +248,7 @@ Namespace Forms
 
         Private Sub selectdb_Browse(sender As Object, e As EventArgs) _
             Handles realmdbname_combo.DropDown, chardbname_combo.DropDown
-            Dim combo As ComboBox = CType(sender, ComboBox)
+            Dim combo = CType(sender, ComboBox)
             combo.Items.Clear()
             Dim cmd As MySqlCommand
             Dim dr As MySqlDataReader
@@ -270,7 +270,7 @@ Namespace Forms
 
         Private Sub dbname_combo_SelectedIndexChanged(sender As Object, e As EventArgs) _
             Handles realmdbname_combo.SelectedIndexChanged, chardbname_combo.SelectedIndexChanged
-            Dim combo As ComboBox = CType(sender, ComboBox)
+            Dim combo = CType(sender, ComboBox)
             combo.Text = combo.SelectedItem.ToString()
         End Sub
     End Class

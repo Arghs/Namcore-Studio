@@ -24,13 +24,13 @@ Imports System.Runtime.CompilerServices
 
 Namespace Modules.Interface
     Module ObjectExtension
-        <Extension()>
+        <Extension>
         Public Sub SafeAddRange (Of T)(ByRef lst As List(Of T), collection As IEnumerable(Of T))
             If lst Is Nothing Then lst = New List(Of T)()
             lst.AddRange(collection)
         End Sub
 
-        <Extension()>
+        <Extension>
         Public Sub SafeAdd (Of T)(ByRef lst As List(Of T), value As T)
             If lst Is Nothing Then lst = New List(Of T)()
             lst.Add(value)

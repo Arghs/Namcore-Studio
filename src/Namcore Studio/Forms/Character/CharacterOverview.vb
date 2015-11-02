@@ -20,22 +20,22 @@
 '*      /Filename:      CharacterOverview
 '*      /Description:   Displays character information
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Linq
 Imports System.Drawing.Imaging
-Imports NamCore_Studio.Modules
-Imports NCFramework.My
-Imports NCFramework.Framework.Core
-Imports NCFramework.Framework.Functions
-Imports NamCore_Studio.Modules.Interface
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Modules
-Imports NamCore_Studio.Forms.Extension
-Imports System.Threading
-Imports NCFramework.My.Resources
-Imports libnc.Provider
+Imports System.Linq
 Imports System.Net
+Imports System.Threading
+Imports libnc.Provider
+Imports NamCore_Studio.Forms.Extension
+Imports NamCore_Studio.Modules
+Imports NamCore_Studio.Modules.Interface
+Imports NCFramework.Framework.Core
 Imports NCFramework.Framework.Core.Update
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
+Imports NCFramework.My.Resources
 
 Namespace Forms.Character
     Public Class CharacterOverview
@@ -63,18 +63,18 @@ Namespace Forms.Character
         Public Event PrepareCompleted As EventHandler(Of CompletedEventArgs)
         Public Event OnCoreLoaded As EventHandler(Of CompletedEventArgs)
 
-        Delegate Sub Prep(ByVal id As Integer, ByVal nxt As Boolean)
+        Delegate Sub Prep(id As Integer, nxt As Boolean)
 
-        Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
+        Protected Overridable Sub OnCompleted(e As CompletedEventArgs)
             RaiseEvent PrepareCompleted(Me, e)
         End Sub
 
-        Protected Overridable Sub OnCoreCompleted(ByVal e As CompletedEventArgs)
+        Protected Overridable Sub OnCoreCompleted(e As CompletedEventArgs)
             RaiseEvent OnCoreLoaded(Me, e)
         End Sub
         '// Declaration
 
-        Public Sub prepare_interface(ByVal account As Account, ByVal setId As Integer,
+        Public Sub prepare_interface(account As Account, setId As Integer,
                                      Optional forceLoadChar As Boolean = False)
             LogAppend("prepare_interface call", "CharacterOverview_prepare_interface", False)
             _visibleActionControls = New List(Of Control)()
@@ -95,7 +95,7 @@ Namespace Forms.Character
                 If GlobalVariables.armoryMode = False And GlobalVariables.templateMode = False Then
                     '//Load charset
                     LogAppend("Loading character from database", "CharacterOverview_prepare_interface", True)
-                    Dim loadHandlerThread As Thread = New Thread(DirectCast(Sub() LoadCharacter(setId), ThreadStart))
+                    Dim loadHandlerThread = New Thread(DirectCast(Sub() LoadCharacter(setId), ThreadStart))
                     loadHandlerThread.Start()
                     Exit Sub
                 End If
@@ -105,7 +105,7 @@ Namespace Forms.Character
             LogAppend("Character loaded!", "CharacterOverview_prepare_interface", True)
         End Sub
 
-        Private Sub LoadCharacter(ByVal setId As Integer)
+        Private Sub LoadCharacter(setId As Integer)
             Dim mCoreHandler As New CoreHandler
             mCoreHandler.HandleLoadingRequests(_currentAccount, setId)
             ThreadExtensions.ScSend(_context, New Action(Of CompletedEventArgs)(AddressOf OnCoreCompleted),
@@ -126,7 +126,7 @@ Namespace Forms.Character
             CloseProcessStatus()
         End Sub
 
-        Private Sub Goprep(ByVal setId As Integer, ByVal nxt As Boolean)
+        Private Sub Goprep(setId As Integer, nxt As Boolean)
             _tmpSetId = setId
             _controlLst = New List(Of Control)
             _controlLst = FindAllChildren()
@@ -141,7 +141,7 @@ Namespace Forms.Character
             GlobalVariables.nonUsableGuidList = New List(Of Integer)()
             For Each subctrl As Control In GroupBox2.Controls
                 If subctrl.Name.ToLower.Contains("panel") Then
-                    Dim bagPanel As ItemPanel = TryCast(subctrl, ItemPanel)
+                    Dim bagPanel = TryCast(subctrl, ItemPanel)
                     Dim realBagSlot As Integer = TryInt(SplitString(subctrl.Name, "bag", "Panel")) + 17
                     Dim subItmRemovePic As New PictureBox
                     If realBagSlot = 18 Then Continue For
@@ -181,10 +181,10 @@ Namespace Forms.Character
                         Case 19 To 22
                             For Each subctrl As Control In GroupBox2.Controls
                                 If subctrl.Name.ToLower.Contains("panel") Then
-                                    Dim bagPanel As ItemPanel = TryCast(subctrl, ItemPanel)
+                                    Dim bagPanel = TryCast(subctrl, ItemPanel)
                                     Dim realBagSlot As Integer = TryInt(SplitString(subctrl.Name, "bag", "Panel")) + 17
                                     If subctrl.Name.Contains((potCharBag.Slot - 17).ToString()) Then
-                                        Dim subItmRemovePic As PictureBox =
+                                        Dim subItmRemovePic =
                                                 CType(
                                                     bagPanel.Controls.Find("bag_" & realBagSlot.ToString() & "_remove",
                                                                            True)(0),
@@ -229,7 +229,7 @@ Namespace Forms.Character
                 For Each subctrl As Control In GroupBox2.Controls
                     If subctrl.Name.Contains("1") Then
                         If subctrl.Name.ToLower.Contains("panel") Then
-                            Dim bagPanel As ItemPanel = CType(subctrl, ItemPanel)
+                            Dim bagPanel = CType(subctrl, ItemPanel)
                             Dim bag As New Item
                             bag.BagItems = New List(Of Item)()
                             For Each myItem In zeroBagItems
@@ -259,7 +259,7 @@ Namespace Forms.Character
                         Case TypeOf itemControl Is Label
                             If itemControl.Name.ToLower.Contains("_name") Then
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_name"))
-                                Dim txt As String = CStr(LoadInfo(setId, slot, 0))
+                                Dim txt = CStr(LoadInfo(setId, slot, 0))
                                 If Not txt Is Nothing Then
                                     InfoToolTip.SetToolTip(itemControl, txt)
                                     If txt.Length >= 25 Then
@@ -272,7 +272,7 @@ Namespace Forms.Character
                                 DirectCast(itemControl, Label).Cursor = Cursors.IBeam
                             ElseIf itemControl.Name.ToLower.EndsWith("enchant") Then
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_enchant"))
-                                Dim txt As String = CStr(LoadInfo(setId, slot, 1))
+                                Dim txt = CStr(LoadInfo(setId, slot, 1))
                                 If Not txt Is Nothing Then
                                     InfoToolTip.SetToolTip(itemControl, txt)
                                     If txt.Length >= 25 Then
@@ -309,7 +309,7 @@ Namespace Forms.Character
                             ElseIf itemControl.Name.ToLower.Contains("gem") Then
                                 Dim slot As Integer = TryInt(SplitString(itemControl.Name, "slot_", "_gem"))
                                 Dim gem As Integer = TryInt(SplitString(itemControl.Name, "gem", "_pic"))
-                                Dim img As Bitmap = CType(LoadInfo(setId, slot, 2 + gem), Bitmap)
+                                Dim img = CType(LoadInfo(setId, slot, 2 + gem), Bitmap)
                                 DirectCast(itemControl, PictureBox).Tag = _pubItm
                                 If Not _pubItm Is Nothing Then
                                     DirectCast(itemControl, PictureBox).Cursor = Cursors.Hand
@@ -356,7 +356,7 @@ Namespace Forms.Character
             End Try
         End Sub
 
-        Private Function LoadInfo(ByVal targetSet As Integer, ByVal slot As Integer, ByVal infotype As Integer) _
+        Private Function LoadInfo(targetSet As Integer, slot As Integer, infotype As Integer) _
             As Object
             LogAppend("Loading info for slot " & slot.ToString, "CharacterOverview_LoadInfo", True)
             _pubItm = New Item
@@ -418,9 +418,9 @@ Namespace Forms.Character
                     slot_13_enchant.Click, slot_12_name.Click, slot_12_enchant.Click, slot_11_name.Click,
                     slot_11_enchant.Click, slot_10_name.Click, slot_10_enchant.Click, slot_1_name.Click,
                     slot_1_enchant.Click, slot_0_name.Click, slot_0_enchant.Click
-            Dim senderLabel As Label = TryCast(sender, Label)
+            Dim senderLabel = TryCast(sender, Label)
             If senderLabel.Text = "" Then Exit Sub
-            Dim tagItm As Item = CType(senderLabel.Tag, Item)
+            Dim tagItm = CType(senderLabel.Tag, Item)
             If Not senderLabel.Text = "+" Then
                 If tagItm.EnchantmentId = 0 Then _
                     tagItm.EnchantmentId = GetSpellIdByEffectId(tagItm.EnchantmentEffectid,
@@ -453,7 +453,7 @@ Namespace Forms.Character
                 ElseIf senderLabel.Name.Contains("_lbl") Then
                     TextBox1.Text = senderLabel.Text
                 Else
-                    Dim itm As Item = CType(senderLabel.Tag, Item)
+                    Dim itm = CType(senderLabel.Tag, Item)
                     TextBox1.Text = itm.EnchantmentId.ToString
                 End If
                 _tempValue = TextBox1.Text
@@ -507,11 +507,11 @@ Namespace Forms.Character
                         Dim client As New WebClient
                         client.CheckProxy()
                         Dim spellcontext As String
-                        Dim foundspell As Boolean = False
-                        Dim spellname As String = ""
+                        Dim foundspell = False
+                        Dim spellname = ""
                         Dim itemcontext As String
-                        Dim founditem As Boolean = False
-                        Dim itemname As String = ""
+                        Dim founditem = False
+                        Dim itemname = ""
                         Try
                             spellcontext = client.DownloadString("http://www.wowhead.com/spell=" & TextBox1.Text)
                         Catch ex As Exception
@@ -547,7 +547,7 @@ Namespace Forms.Character
                             itmench.Text = "Item: " & itemname
                             itmench.Tag = itemname
                         ElseIf founditem = True Then
-                            Dim itm As Item = CType(senderLabel.Tag, Item)
+                            Dim itm = CType(senderLabel.Tag, Item)
                             senderLabel.Text = itemname
                             itm.EnchantmentType = Item.EnchantmentTypes.ENCHTYPE_SPELL
                             itm.EnchantmentId = TryInt(TextBox1.Text)
@@ -559,7 +559,7 @@ Namespace Forms.Character
                                     DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
                             SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, CType(senderLabel.Tag, Item))
                         ElseIf foundspell = True Then
-                            Dim itm As Item = CType(senderLabel.Tag, Item)
+                            Dim itm = CType(senderLabel.Tag, Item)
                             itm.EnchantmentId = TryInt(TextBox1.Text)
                             itm.EnchantmentEffectid = GetEffectIdBySpellId(itm.EnchantmentId,
                                                                            GlobalVariables.sourceExpansion)
@@ -583,7 +583,7 @@ Namespace Forms.Character
                             Then
                             MsgBox(MSG_INVALIDITEMCLASS, MsgBoxStyle.Critical, MSG_ERROR)
                         Else
-                            Dim newitm As Item = CType(senderLabel.Tag, Item)
+                            Dim newitm = CType(senderLabel.Tag, Item)
                             newitm.ReplaceItem(id)
                             senderLabel.Tag = newitm
                             Dim txt As String = CType(senderLabel.Tag, Item).Name
@@ -646,7 +646,7 @@ Namespace Forms.Character
                             Dim client As New WebClient
                             client.CheckProxy()
                             Dim gemContext As String
-                            Dim foundgem As Boolean = False
+                            Dim foundgem = False
                             Try
                                 gemContext =
                                     client.DownloadString("http://www.wowhead.com/item=" & TextBox1.Text & "&xml")
@@ -663,7 +663,7 @@ Namespace Forms.Character
                                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
                                     GlobalVariables.currentEditedCharSet =
                                         DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                                Dim itm As Item = CType(senderPic.Tag, Item)
+                                Dim itm = CType(senderPic.Tag, Item)
                                 Dim socketId As Integer = TryInt(TextBox1.Text)
                                 Select Case True
                                     Case senderPic.Name.Contains("gem1")
@@ -780,7 +780,7 @@ Namespace Forms.Character
                         If GlobalVariables.currentEditedCharSet Is Nothing Then _
                             GlobalVariables.currentEditedCharSet =
                                 DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                        Dim pubItem As Item = CType(tempSender.Tag, Item)
+                        Dim pubItem = CType(tempSender.Tag, Item)
                         pubItem.RemoveEnchantments()
                         SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, pubItem)
                         tempSender.Tag = pubItem
@@ -803,7 +803,7 @@ Namespace Forms.Character
                 If GlobalVariables.currentEditedCharSet Is Nothing Then _
                     GlobalVariables.currentEditedCharSet =
                         DeepCloneHelper.DeepClone(GlobalVariables.currentViewedCharSet)
-                Dim pubItem As Item = CType(senderPic.Tag, Item)
+                Dim pubItem = CType(senderPic.Tag, Item)
                 pubItem.RemoveGem(TryInt(SplitString(senderPic.Name, "_gem", "_")))
                 SetCharacterArmorItem(GlobalVariables.currentEditedCharSet, pubItem)
                 senderPic.Image = My.Resources.add_
@@ -919,7 +919,7 @@ Namespace Forms.Character
 
         Private Sub classrefresh_Click(sender As Object, e As EventArgs) Handles classrefresh.Click
             Dim newPoint As New Point
-            Dim senderLabel As Label = CType(_tempSender, Label)
+            Dim senderLabel = CType(_tempSender, Label)
             newPoint.X = 4000
             newPoint.Y = 4000
             If Not classcombo.SelectedText = _tempValue And Not classcombo.Text = _tempValue Then
@@ -934,7 +934,7 @@ Namespace Forms.Character
 
         Private Sub racerefresh_Click(sender As Object, e As EventArgs) Handles racerefresh.Click
             Dim newPoint As New Point
-            Dim senderLabel As Label = CType(_tempSender, Label)
+            Dim senderLabel = CType(_tempSender, Label)
             newPoint.X = 4000
             newPoint.Y = 4000
             If Not racecombo.SelectedText = _tempValue And Not racecombo.Text = _tempValue Then
@@ -949,7 +949,7 @@ Namespace Forms.Character
 
         Private Sub genderrefresh_Click(sender As Object, e As EventArgs) Handles genderrefresh.Click
             Dim newPoint As New Point
-            Dim senderLabel As Label = CType(_tempSender, Label)
+            Dim senderLabel = CType(_tempSender, Label)
             newPoint.X = 4000
             newPoint.Y = 4000
             If Not gendercombo.SelectedText = _tempValue And Not gendercombo.Text = _tempValue Then
@@ -968,7 +968,7 @@ Namespace Forms.Character
 
         Private Sub itmench_Click(sender As Object, e As EventArgs) Handles itmench.Click
             Dim newPoint As New Point
-            Dim senderLabel As Label = CType(_tempSender, Label)
+            Dim senderLabel = CType(_tempSender, Label)
             newPoint.X = 4000
             newPoint.Y = 4000
             senderLabel.Text = CStr(itmench.Tag)
@@ -980,7 +980,7 @@ Namespace Forms.Character
 
         Private Sub spellench_Click(sender As Object, e As EventArgs) Handles spellench.Click
             Dim newPoint As New Point
-            Dim senderLabel As Label = CType(_tempSender, Label)
+            Dim senderLabel = CType(_tempSender, Label)
             newPoint.X = 4000
             newPoint.Y = 4000
             senderLabel.Text = CStr(spellench.Tag)
@@ -1065,7 +1065,7 @@ Namespace Forms.Character
                 If Not TryCast(sender, PictureBox).Image Is Nothing Then
                     _tmpImage = CType(TryCast(sender, PictureBox).Image, Bitmap)
                     Application.DoEvents()
-                    Dim picbx As PictureBox = TryCast(sender, PictureBox)
+                    Dim picbx = TryCast(sender, PictureBox)
                     Dim g As Graphics
                     Dim img As Bitmap
                     Dim r As Rectangle
@@ -1087,15 +1087,15 @@ Namespace Forms.Character
                     slot_14_pic.MouseLeave, slot_13_pic.MouseLeave, slot_12_pic.MouseLeave, slot_11_pic.MouseLeave,
                     slot_10_pic.MouseLeave, slot_1_pic.MouseLeave, slot_0_pic.MouseLeave
             If Not _tmpImage Is Nothing And Not TryCast(sender, PictureBox).Image Is Nothing Then
-                Dim picbox As PictureBox = TryCast(sender, PictureBox)
+                Dim picbox = TryCast(sender, PictureBox)
                 picbox.Image = _tmpImage
                 picbox.Refresh()
                 Application.DoEvents()
             End If
         End Sub
 
-        Private Sub SetBrightness(ByVal brightness As Single, ByVal g As Graphics, ByVal img As Bitmap,
-                                  ByVal r As Rectangle,
+        Private Sub SetBrightness(brightness As Single, g As Graphics, img As Bitmap,
+                                  r As Rectangle,
                                   ByRef picbox As PictureBox)
             ' Brightness should be -1 (black) to 0 (neutral) to 1 (white)
             Dim colorMatrixVal As Single()() = { _
@@ -1129,7 +1129,7 @@ Namespace Forms.Character
 
         Private Sub PictureBox4_Click(sender As Object, e As EventArgs) Handles PictureBox4.Click
             'Add item
-            Dim senderPic As PictureBox = CType(_tmpSenderPic, PictureBox)
+            Dim senderPic = CType(_tmpSenderPic, PictureBox)
             If Not TextBox2.Text = "" Then
                 Dim meSlot As String = TryCast(sender, Label).Name
                 meSlot = meSlot.Replace("slot_", "")
@@ -1307,9 +1307,9 @@ Namespace Forms.Character
                     slot_17_gem3_pic.Click, slot_17_gem2_pic.Click, slot_17_gem1_pic.Click, slot_16_gem3_pic.Click,
                     slot_16_gem2_pic.Click, slot_16_gem1_pic.Click, slot_15_gem3_pic.Click, slot_15_gem2_pic.Click,
                     slot_15_gem1_pic.Click
-            Dim myPic As PictureBox = CType(sender, PictureBox)
-            Dim itm As Item = CType(myPic.Tag, Item)
-            Dim allowAdding As Boolean = False
+            Dim myPic = CType(sender, PictureBox)
+            Dim itm = CType(myPic.Tag, Item)
+            Dim allowAdding = False
             If itm IsNot Nothing Then
                 Select Case True
                     Case myPic.Name.Contains("gem1")
@@ -1406,7 +1406,7 @@ Namespace Forms.Character
         Private Sub BagOpen(sender As Object, e As EventArgs) _
             Handles bag5Pic.Click, bag4Pic.Click, bag3Pic.Click, bag2Pic.Click, bag1Pic.Click
             _inventoryControlLst = New List(Of Control)()
-            Dim bag As Item = CType(TryCast(sender, PictureBox).Tag, Item)
+            Dim bag = CType(TryCast(sender, PictureBox).Tag, Item)
             Dim reduceVal As UInteger = 0
             If TryCast(sender, PictureBox).Name = "bag1Pic" Then reduceVal = 23
             If bag Is Nothing Then Exit Sub
@@ -1482,13 +1482,13 @@ Namespace Forms.Character
         End Sub
 
         Private Sub ChangeCount(sender As Object, e As EventArgs)
-            Dim locLabel As Label = CType(sender, Label)
+            Dim locLabel = CType(sender, Label)
             If locLabel.Visible = True Then
                 Dim result As String = InputBox(MSG_ENTERITEMCOUNT, MSG_ITEMCOUNTCHANGE, locLabel.Text)
                 If Not result = "" Then
                     Dim intResult As Integer = TryInt(result)
                     If intResult <> 0 Then
-                        Dim itm As Item = CType(locLabel.Tag, Item)
+                        Dim itm = CType(locLabel.Tag, Item)
                         Dim maxStackSize As Integer = GetItemMaxStackByItemId(itm.Id)
                         If intResult > maxStackSize Then
                             MsgBox(MSG_STACKLIMITREACHED & " " & maxStackSize.ToString(),
@@ -1528,9 +1528,9 @@ Namespace Forms.Character
                     _visibleActionControls(i).Visible = False
                     _visibleActionControls.Remove(_visibleActionControls(i))
                 Next
-                Dim parentPanel As ItemPanel = CType(sender, ItemPanel)
-                Dim itm As Item = CType(parentPanel.Tag, Item)
-                Dim removePic As PictureBox =
+                Dim parentPanel = CType(sender, ItemPanel)
+                Dim itm = CType(parentPanel.Tag, Item)
+                Dim removePic =
                         CType(parentPanel.Controls.Find("bag_" & itm.Slot.ToString() & "_remove", True)(0), PictureBox)
                 If Not removePic Is Nothing Then
                     _visibleActionControls.Add(removePic)
@@ -1554,8 +1554,8 @@ Namespace Forms.Character
                     _visibleActionControls(i).Visible = False
                     _visibleActionControls.Remove(_visibleActionControls(i))
                 Next
-                Dim parentPanel As ItemPanel = CType(sender, ItemPanel)
-                Dim removePic As PictureBox = CType(parentPanel.Controls(1), PictureBox)
+                Dim parentPanel = CType(sender, ItemPanel)
+                Dim removePic = CType(parentPanel.Controls(1), PictureBox)
                 If Not removePic Is Nothing Then
                     _visibleActionControls.Add(removePic)
                     _lastRemovePic = removePic
@@ -1572,15 +1572,15 @@ Namespace Forms.Character
             End If
         End Sub
 
-        Private Sub SetInventorySlot(ByVal itm As Item, ByVal slot As Integer)
+        Private Sub SetInventorySlot(itm As Item, slot As Integer)
             For Each itmctrl As ItemPanel In _
                 From itmctrl1 As Object In InventoryLayout.Controls
                     Where TryCast(itmctrl1, ItemPanel).Name.Contains("_" & slot.ToString() & "_")
                 itmctrl.BackColor = GetItemQualityColor(GetItemQualityByItemId(itm.Id))
                 itmctrl.Tag = itm
                 If itm.Count > 1 OrElse itm.Count = 1 AndAlso GetItemMaxStackByItemId(itm.Id) > 1 Then
-                    Dim countLabel As Label = CType(itmctrl.Controls.Find("slot_" & slot.ToString() & "_count", True)(0),
-                                                    Label)
+                    Dim countLabel = CType(itmctrl.Controls.Find("slot_" & slot.ToString() & "_count", True)(0),
+                                           Label)
                     countLabel.Text = itm.Count.ToString()
                     countLabel.Tag = itm
                     countLabel.Visible = True
@@ -1589,7 +1589,7 @@ Namespace Forms.Character
                 For Each itmPicCtrl As Control In itmctrl.Controls
                     If Not itmPicCtrl.Name Is Nothing Then
                         If itmPicCtrl.Name.EndsWith("_remove") Then
-                            Dim itmPicBox As PictureBox = CType(itmPicCtrl, PictureBox)
+                            Dim itmPicBox = CType(itmPicCtrl, PictureBox)
                             If itm.Id <> 0 Then
                                 itmPicBox.BackgroundImage = My.Resources.trash__delete__16x16
                                 InfoToolTip.SetToolTip(itmPicBox, TOOLTIP_REMOVE)
@@ -1601,7 +1601,7 @@ Namespace Forms.Character
                         End If
                     End If
                     If TypeOf itmPicCtrl Is PictureBox Then
-                        Dim itmPicBox As PictureBox = CType(itmPicCtrl, PictureBox)
+                        Dim itmPicBox = CType(itmPicCtrl, PictureBox)
                         itmPicBox.BackgroundImage = itm.Image
                         itmPicBox.Tag = itm
                         InfoToolTip.SetToolTip(itmPicBox, itm.Name)
@@ -1670,9 +1670,9 @@ Namespace Forms.Character
         End Sub
 
         Private Sub removeinventbox_Click(sender As Object, e As EventArgs)
-            Dim locPanel As ItemPanel = TryCast(CType(TryCast(sender, PictureBox).Tag, Object())(0), ItemPanel)
-            Dim locPic As PictureBox = TryCast(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
-            Dim oldItm As Item = CType(locPic.Tag, Item)
+            Dim locPanel = TryCast(CType(TryCast(sender, PictureBox).Tag, Object())(0), ItemPanel)
+            Dim locPic = TryCast(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
+            Dim oldItm = CType(locPic.Tag, Item)
             If oldItm.Id = 0 Then
                 Dim result As String = InputBox(MSG_ENTERITEMID, MSG_ADDITEM, "0")
                 If result.Length = 0 Then
@@ -1693,7 +1693,7 @@ Namespace Forms.Character
                             replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.Bag = oldItm.Bag
                             replaceItm.Bagguid = oldItm.Bagguid
-                            Dim newGuid As Integer = 1
+                            Dim newGuid = 1
                             Do
                                 If GlobalVariables.nonUsableGuidList.Contains(newGuid) Then
                                     newGuid += 1
@@ -1713,7 +1713,7 @@ Namespace Forms.Character
                             End If
                             _currentBag.BagItems.Add(replaceItm)
                             If GetItemMaxStackByItemId(replaceItm.Id) > 1 Then
-                                Dim countLabel As Label =
+                                Dim countLabel =
                                         CType(
                                             locPanel.Controls.Find("slot_" & replaceItm.Slot.ToString() & "_count", True)(
                                                 0),
@@ -1753,7 +1753,7 @@ Namespace Forms.Character
                     InfoToolTip.SetToolTip(locPic, TOOLTIP_EMPTY)
                     InfoToolTip.SetToolTip(TryCast(sender, PictureBox), TOOLTIP_ADD)
                     _currentBag.BagItems.Remove(_currentBag.BagItems.Find(Function(item) item.Slot = replaceItm.Slot))
-                    Dim countLabel As Label =
+                    Dim countLabel =
                             CType(locPanel.Controls.Find("slot_" & replaceItm.Slot.ToString() & "_count", True)(0),
                                   Label)
                     countLabel.Text = ""
@@ -1778,9 +1778,9 @@ Namespace Forms.Character
         End Sub
 
         Private Sub removeinventboxBag_Click(sender As Object, e As EventArgs)
-            Dim locPanel As ItemPanel = TryCast(CType(TryCast(sender, PictureBox).Tag, Object())(0), ItemPanel)
-            Dim locPic As PictureBox = TryCast(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
-            Dim oldItm As Item = CType(locPanel.Tag, Item)
+            Dim locPanel = TryCast(CType(TryCast(sender, PictureBox).Tag, Object())(0), ItemPanel)
+            Dim locPic = TryCast(CType(TryCast(sender, PictureBox).Tag, Object())(1), PictureBox)
+            Dim oldItm = CType(locPanel.Tag, Item)
             If oldItm.Id = 0 Then
                 Dim result As String = InputBox(MSG_ENTERITEMID, MSG_ADDITEM, "0")
                 If result.Length = 0 Then
@@ -1800,7 +1800,7 @@ Namespace Forms.Character
                             replaceItm.Name = checkName
                             replaceItm.Rarity = CType(GetItemQualityByItemId(replaceItm.Id), Item.RarityType)
                             replaceItm.AddedBag = True
-                            Dim newGuid As Integer = 1
+                            Dim newGuid = 1
                             Do
                                 If GlobalVariables.nonUsableGuidList.Contains(newGuid) Then
                                     newGuid += 1
@@ -1865,7 +1865,7 @@ Namespace Forms.Character
                 If Not TryCast(sender, PictureBox).BackgroundImage Is Nothing Then
                     _tmpImage = CType(TryCast(sender, PictureBox).BackgroundImage, Bitmap)
                     Application.DoEvents()
-                    Dim picbx As PictureBox = TryCast(sender, PictureBox)
+                    Dim picbx = TryCast(sender, PictureBox)
                     Dim g As Graphics
                     Dim img As Bitmap
                     Dim r As Rectangle
@@ -1882,7 +1882,7 @@ Namespace Forms.Character
 
         Private Sub removeinventbox_MouseLeave(sender As Object, e As EventArgs)
             If Not _tmpImage Is Nothing And Not TryCast(sender, PictureBox).BackgroundImage Is Nothing Then
-                Dim picbox As PictureBox = TryCast(sender, PictureBox)
+                Dim picbox = TryCast(sender, PictureBox)
                 picbox.BackgroundImage = _tmpImage
                 picbox.Refresh()
                 Application.DoEvents()

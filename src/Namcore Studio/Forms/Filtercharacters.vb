@@ -49,7 +49,7 @@ Namespace Forms
             If guidcheck.Checked = True Then
                 If guidcombo1.SelectedIndex = - 1 Then GoTo SkipStatement0
                 Dim insertstring As String = " " & guidcombo1.SelectedItem.ToString() & " '" & guidtxtbox1.Text & "'"
-                Dim insertstring2 As String = ""
+                Dim insertstring2 = ""
                 If Not guidcombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & GlobalVariables.sourceStructure.char_guid_col(0) & " " &
                                     guidcombo2.SelectedItem.ToString & " '" & guidtxtbox2.Text & "'"
@@ -114,7 +114,7 @@ Namespace Forms
             If levelcheck.Checked = True Then
                 If levelcombo1.SelectedIndex = - 1 Then GoTo SkipStatement4
                 Dim insertstring As String = " " & levelcombo1.SelectedItem.ToString() & " '" & leveltxtbox1.Text & "'"
-                Dim insertstring2 As String = ""
+                Dim insertstring2 = ""
                 If Not levelcombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & GlobalVariables.sourceStructure.char_level_col(0) & " " &
                                     levelcombo2.SelectedItem.ToString & " '" & leveltxtbox2.Text & "'"

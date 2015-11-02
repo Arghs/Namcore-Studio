@@ -48,7 +48,7 @@ Namespace Forms
             If idcheck.Checked = True Then
                 If idcombo1.SelectedIndex = - 1 Then GoTo SkipStatement0
                 Dim insertstring As String = " " & idcombo1.SelectedItem.ToString() & " '" & idtxtbox1.Text & "'"
-                Dim insertstring2 As String = ""
+                Dim insertstring2 = ""
                 If Not idcombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & GlobalVariables.sourceStructure.acc_id_col(0) & " " &
                                     idcombo2.SelectedItem.ToString & " '" & idtxtbox2.Text & "'"
@@ -83,7 +83,7 @@ Namespace Forms
             If gmcheck.Checked = True Then
                 If gmcombo1.SelectedIndex = - 1 Then GoTo SkipStatement2
                 Dim insertstring As String = " " & gmcombo1.SelectedItem.ToString() & " '" & gmtxtbox1.Text & "'"
-                Dim insertstring2 As String = ""
+                Dim insertstring2 = ""
                 Dim gmlevelCol As String
                 If GlobalVariables.sourceStructure.acc_gmlevel_col(0) = Nothing Then
                     gmlevelCol = GlobalVariables.sourceStructure.accAcc_gmLevel_col(0)
@@ -106,7 +106,7 @@ Namespace Forms
             If logincheck.Checked = True Then
                 If logincombo1.SelectedIndex = - 1 Then GoTo SkipStatement3
                 Dim insertstring As String = " " & logincombo1.SelectedItem.ToString() & " '" & datemin.Text & "'"
-                Dim insertstring2 As String = ""
+                Dim insertstring2 = ""
                 GlobalVariables.sourceStructure.acc_lastlogin_col(0) = "last_login" 'todo
                 If Not logincombo2.SelectedItem Is Nothing Then
                     insertstring2 = " AND " & GlobalVariables.sourceStructure.acc_lastlogin_col(0) & " " &
@@ -143,7 +143,7 @@ Namespace Forms
             SkipStatement4:
             For Each currentForm As Form In Application.OpenForms
                 If currentForm.Name = "LiveView" Then
-                    Dim myliveview As LiveView = DirectCast(currentForm, LiveView)
+                    Dim myliveview = DirectCast(currentForm, LiveView)
                     myliveview.Setaccountview(GlobalVariables.modifiedAccTable)
                 End If
             Next
