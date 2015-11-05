@@ -28,8 +28,8 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterAchievementHandler
-        Public Sub GetCharacterAchievement(ByVal characterGuid As Integer, ByVal setId As Integer,
-                                           ByVal account As Account)
+        Public Sub GetCharacterAchievement(characterGuid As Integer, setId As Integer,
+                                           account As Account)
             LogAppend("Loading character Achievement for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterAchievementsHandler_GetCharacterAchievement", True)
             Select Case GlobalVariables.sourceCore
@@ -42,7 +42,7 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtArcemu(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Achievement @LoadAtArcemu", "CharacterAchievementHandler_LoadAtArcemu", False)
             Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             Dim tempdt As DataTable =
@@ -54,7 +54,7 @@ Namespace Framework.Core
             If tmpCharacter.Achievements Is Nothing Then tmpCharacter.Achievements = New List(Of Achievement)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim tmpAv As New Achievement
@@ -76,7 +76,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinity(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Achievement @LoadAtTrinity", "CharacterAchievementHandler_LoadAtTrinity", False)
             Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             Dim tempdt As DataTable =
@@ -88,7 +88,7 @@ Namespace Framework.Core
             If tmpCharacter.Achievements Is Nothing Then tmpCharacter.Achievements = New List(Of Achievement)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim tmpAv As New Achievement
@@ -110,7 +110,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtMangos(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Achievement @LoadAtMangos", "CharacterAchievementHandler_LoadAtMangos", False)
             Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             Dim tempdt As DataTable =
@@ -122,7 +122,7 @@ Namespace Framework.Core
             If tmpCharacter.Achievements Is Nothing Then tmpCharacter.Achievements = New List(Of Achievement)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim tmpAv As New Achievement

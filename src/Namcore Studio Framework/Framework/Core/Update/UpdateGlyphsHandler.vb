@@ -20,14 +20,14 @@
 '*      /Filename:      UpdateGlyphsHandler
 '*      /Description:   Handles character glyph update requests
 '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports libnc.Provider
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports libnc.Provider
 
 Namespace Framework.Core.Update
     Public Class UpdateGlyphsHandler
-        Public Sub UpdateGlyphs(ByVal player As Character, ByVal modPlayer As Character)
+        Public Sub UpdateGlyphs(player As Character, modPlayer As Character)
             LogAppend("Updating character glyphs", "UpdateGlyphsHandler_UpdateGlyphs", True)
             If GlobalVariables.sourceExpansion < 3 Then
                 '// Cannot create glyphs in pre WotLK db
@@ -50,7 +50,7 @@ Namespace Framework.Core.Update
             Next
         End Sub
 
-        Private Sub CreateGlyph(ByVal player As Character, ByVal glyph2Add As Glyph)
+        Private Sub CreateGlyph(player As Character, glyph2Add As Glyph)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     Try
@@ -112,7 +112,7 @@ Namespace Framework.Core.Update
                                       "UpdateGlyphsHandler_CreateGlyph", True, True)
                             Exit Sub
                         End If
-                        Dim targetCol As String = ""
+                        Dim targetCol = ""
                         Select Case True
                             Case glyph2Add.Slotname.Contains("minorglyph1")
                                 targetCol = GlobalVariables.sourceStructure.glyphs_glyph5_col(0)
@@ -155,7 +155,7 @@ Namespace Framework.Core.Update
                                       "UpdateGlyphsHandler_CreateGlyph", True, True)
                             Exit Sub
                         End If
-                        Dim targetSlot As Integer = 0
+                        Dim targetSlot = 0
                         Select Case True
                             Case glyph2Add.Slotname.Contains("minorglyph1") : targetSlot = 4
                             Case glyph2Add.Slotname.Contains("minorglyph2") : targetSlot = 1
@@ -186,7 +186,7 @@ Namespace Framework.Core.Update
             End Select
         End Sub
 
-        Private Sub DeleteGlyph(ByVal player As Character, ByVal glyph2Delete As Glyph)
+        Private Sub DeleteGlyph(player As Character, glyph2Delete As Glyph)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     Try
@@ -233,7 +233,7 @@ Namespace Framework.Core.Update
                     End Try
                 Case Modules.Core.TRINITY
                     Try
-                        Dim targetCol As String = ""
+                        Dim targetCol = ""
                         Select Case True
                             Case glyph2Delete.Slotname.Contains("minorglyph1")
                                 targetCol = GlobalVariables.sourceStructure.glyphs_glyph5_col(0)
@@ -269,7 +269,7 @@ Namespace Framework.Core.Update
                     End Try
                 Case Modules.Core.MANGOS
                     Try
-                        Dim targetSlot As Integer = 0
+                        Dim targetSlot = 0
                         Select Case True
                             Case glyph2Delete.Slotname.Contains("minorglyph1") : targetSlot = 4
                             Case glyph2Delete.Slotname.Contains("minorglyph2") : targetSlot = 1

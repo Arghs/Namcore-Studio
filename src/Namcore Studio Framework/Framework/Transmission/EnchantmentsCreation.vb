@@ -21,9 +21,9 @@
 '*      /Description:   Includes functions for setting enchantments of an equipped item of
 '*                      a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports libnc.Provider
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Modules
-Imports libnc.Provider
 
 Namespace Framework.Transmission
     Public Class EnchantmentsCreation
@@ -31,8 +31,8 @@ Namespace Framework.Transmission
         Private _locEnchString As String
         '// Declaration
 
-        Public Sub SetItemEnchantments(ByVal playerCharacter As Character, ByVal itm As Item, ByVal itmGuid As Integer,
-                                       ByVal core As Modules.Core, ByVal dbstruc As DbStructure)
+        Public Sub SetItemEnchantments(playerCharacter As Character, itm As Item, itmGuid As Integer,
+                                       core As Modules.Core, dbstruc As DbStructure)
             _locEnchString = ""
             Select Case core
                 Case Modules.Core.TRINITY
@@ -48,8 +48,8 @@ Namespace Framework.Transmission
             SetEnch(itm, itmGuid, core, dbstruc)
         End Sub
 
-        Private Sub SetGem1(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As Modules.Core,
-                            ByVal myStructure As DbStructure)
+        Private Sub SetGem1(myItem As Item, myItemGuid As Integer, myCore As Modules.Core,
+                            myStructure As DbStructure)
             Select Case myCore
                 Case Modules.Core.TRINITY
                     If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
@@ -71,8 +71,8 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Private Sub SetGem2(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As Modules.Core,
-                            ByVal myStructure As DbStructure)
+        Private Sub SetGem2(myItem As Item, myItemGuid As Integer, myCore As Modules.Core,
+                            myStructure As DbStructure)
             Select Case myCore
                 Case Modules.Core.TRINITY
                     If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
@@ -94,8 +94,8 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Private Sub SetGem3(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As Modules.Core,
-                            ByVal myStructure As DbStructure)
+        Private Sub SetGem3(myItem As Item, myItemGuid As Integer, myCore As Modules.Core,
+                            myStructure As DbStructure)
             Select Case myCore
                 Case Modules.Core.TRINITY
                     If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then
@@ -117,8 +117,8 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Private Sub SetEnch(ByVal myItem As Item, ByVal myItemGuid As Integer, ByVal myCore As Modules.Core,
-                            ByVal myStructure As DbStructure)
+        Private Sub SetEnch(myItem As Item, myItemGuid As Integer, myCore As Modules.Core,
+                            myStructure As DbStructure)
             Select Case myCore
                 Case Modules.Core.TRINITY
                     If IsDBNull(_locEnchString) Or _locEnchString.Length < 5 Then

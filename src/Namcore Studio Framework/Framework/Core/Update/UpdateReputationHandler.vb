@@ -26,7 +26,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Update
     Public Class UpdateReputationHandler
-        Public Sub UpdateReputation(ByVal player As Character, ByVal modPlayer As Character)
+        Public Sub UpdateReputation(player As Character, modPlayer As Character)
             LogAppend("Updating character Reputation", "UpdateReputationHandler_UpdateReputation", True)
             '// Any new factions?
             For Each fac As Reputation In _
@@ -52,7 +52,7 @@ Namespace Framework.Core.Update
             Next
         End Sub
 
-        Private Sub AddReputation(ByVal player As Character, ByVal fac As Reputation)
+        Private Sub AddReputation(player As Character, fac As Reputation)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     Dim repString As String = runSQLCommand_characters_string(
@@ -85,7 +85,7 @@ Namespace Framework.Core.Update
             LogAppend("Added faction reputations", "UpdateReputationHandler_AddReputation", True)
         End Sub
 
-        Private Sub DeleteReputation(ByVal player As Character, ByVal fac As Reputation)
+        Private Sub DeleteReputation(player As Character, fac As Reputation)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     Dim repString As String = runSQLCommand_characters_string(
@@ -123,7 +123,7 @@ Namespace Framework.Core.Update
             LogAppend("Removed faction reputation", "UpdateReputationHandler_DeleteReputation", True)
         End Sub
 
-        Private Sub ModReputation(ByVal player As Character, ByVal fac As Reputation)
+        Private Sub ModReputation(player As Character, fac As Reputation)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     Dim repString As String = runSQLCommand_characters_string(

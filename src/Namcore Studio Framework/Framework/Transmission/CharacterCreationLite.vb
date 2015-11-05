@@ -22,16 +22,16 @@
 '*                      parsed from the wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports MySql.Data.MySqlClient
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports NCFramework.My.Resources
 
 Namespace Framework.Transmission
     Public Class CharacterCreationLite
-        Public Function CreateNewLiteCharacter(ByVal charname As String, ByVal accountId As Integer,
-                                               ByVal player As Character,
+        Public Function CreateNewLiteCharacter(charname As String, accountId As Integer,
+                                               player As Character,
                                                Optional forceNameChange As Boolean = False) As Boolean
             LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString,
                       "CharacterCreationLite_CreateNewLiteCharacter", True)
@@ -47,7 +47,7 @@ Namespace Framework.Transmission
             End Select
         End Function
 
-        Public Function CharacterExist(ByVal charname As String) As Boolean
+        Public Function CharacterExist(charname As String) As Boolean
             Select Case GlobalVariables.targetCore
                 Case Modules.Core.ARCEMU, Modules.Core.TRINITY, Modules.Core.MANGOS
                     If _
@@ -61,8 +61,8 @@ Namespace Framework.Transmission
             End Select
         End Function
 
-        Private Function CreateAtArcemu(ByVal charactername As String, ByVal accId As Integer, ByRef player As Character,
-                                        ByVal nameChange As Boolean) As Boolean
+        Private Function CreateAtArcemu(charactername As String, accId As Integer, ByRef player As Character,
+                                        nameChange As Boolean) As Boolean
             LogAppend("Creating at arcemu", "CharacterCreationLite_createAtArcemu", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -150,9 +150,9 @@ Namespace Framework.Transmission
             End Try
         End Function
 
-        Private Function CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer,
+        Private Function CreateAtTrinity(charactername As String, accid As Integer,
                                          ByRef player As Character,
-                                         ByVal nameChange As Boolean) As Boolean
+                                         nameChange As Boolean) As Boolean
             LogAppend("Creating at Trinity", "CharacterCreationLite_createAtTrinity", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -250,8 +250,8 @@ Namespace Framework.Transmission
             End Try
         End Function
 
-        Private Function CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
-                                        ByVal nameChange As Boolean) As Boolean
+        Private Function CreateAtMangos(charactername As String, accid As Integer, ByRef player As Character,
+                                        nameChange As Boolean) As Boolean
             LogAppend("Creating at Mangos", "CharacterCreationLite_createAtMangos", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(

@@ -20,15 +20,15 @@
 '*      /Filename:      CharacterRemoveHandler
 '*      /Description:   Contains functions for removing characters
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports MySql.Data.MySqlClient
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports MySql.Data.MySqlClient
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Remove
     Public Class CharacterRemoveHandler
-        Public Sub RemoveCharacterFromDb(ByVal character As Character, ByVal connection As MySqlConnection,
-                                         ByVal dbstruc As DbStructure, ByVal core As Modules.Core)
+        Public Sub RemoveCharacterFromDb(character As Character, connection As MySqlConnection,
+                                         dbstruc As DbStructure, core As Modules.Core)
             LogAppend("Removing character " & character.Name & " from database",
                       "CharacterRemoveHandler_RemoveCharacterFromDb")
             Select Case core

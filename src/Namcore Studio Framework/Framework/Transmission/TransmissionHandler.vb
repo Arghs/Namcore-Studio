@@ -21,13 +21,13 @@
 '*      /Description:   Handles account/character migration requests
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports NCFramework.Framework.Core
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class TransmissionHandler
-        Public Sub HandleMigrationRequests(ByVal lite As Boolean)
+        Public Sub HandleMigrationRequests(lite As Boolean)
             NewProcessStatus()
             LogAppend("Handling migration requests", "TransmissionHandler_HandleMigrationRequests", True)
             If GlobalVariables.TargetConnection.State = ConnectionState.Closed Then _

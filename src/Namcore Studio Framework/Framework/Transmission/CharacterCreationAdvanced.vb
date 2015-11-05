@@ -22,15 +22,15 @@
 '*                      parsed from the wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports MySql.Data.MySqlClient
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports NCFramework.My.Resources
 
 Namespace Framework.Transmission
     Public Class CharacterCreationAdvanced
-        Public Function CreateNewAdvancedCharacter(ByVal charname As String, ByVal accountId As String,
+        Public Function CreateNewAdvancedCharacter(charname As String, accountId As String,
                                                    ByRef player As Character,
                                                    Optional forceNameChange As Boolean = False) As Boolean
             LogAppend("Creating new character: " & charname & " for account : " & accountId.ToString,
@@ -47,8 +47,8 @@ Namespace Framework.Transmission
             End Select
         End Function
 
-        Private Function CreateAtArcemu(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
-                                        ByVal nameChange As Boolean) As Boolean
+        Private Function CreateAtArcemu(charactername As String, accid As Integer, ByRef player As Character,
+                                        nameChange As Boolean) As Boolean
             LogAppend("Creating at arcemu", "CharacterCreationAdvanced_createAtArcemu", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -176,9 +176,9 @@ Namespace Framework.Transmission
             End Try
         End Function
 
-        Private Function CreateAtTrinity(ByVal charactername As String, ByVal accid As Integer,
+        Private Function CreateAtTrinity(charactername As String, accid As Integer,
                                          ByRef player As Character,
-                                         ByVal nameChange As Boolean) As Boolean
+                                         nameChange As Boolean) As Boolean
             LogAppend("Creating at Trinity", "CharacterCreationAdvanced_createAtTrinity", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -300,8 +300,8 @@ Namespace Framework.Transmission
             End Try
         End Function
 
-        Private Function CreateAtMangos(ByVal charactername As String, ByVal accid As Integer, ByRef player As Character,
-                                        ByVal nameChange As Boolean) As Boolean
+        Private Function CreateAtMangos(charactername As String, accid As Integer, ByRef player As Character,
+                                        nameChange As Boolean) As Boolean
             LogAppend("Creating at Mangos", "CharacterCreationAdvanced_createAtMangos", False)
             Dim newcharguid As Integer = TryInt(
                 runSQLCommand_characters_string(

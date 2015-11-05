@@ -21,14 +21,14 @@
 '*      /Description:   Includes functions for adding the items of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class InventoryCreation
-        Public Sub AddCharacterInventory(ByVal player As Character, Optional charguid As Integer = 0)
+        Public Sub AddCharacterInventory(player As Character, Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend(
                 "Adding inventory items to character: " & charguid.ToString(),
@@ -48,7 +48,7 @@ Namespace Framework.Transmission
             End Try
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtArcemu(characterguid As Integer, player As Character)
             LogAppend("Adding inventory at arcemu", "InventoryCreation_createAtArcemu", False)
             Dim bagGuidDic As New Dictionary(Of Integer, Integer) '// old GUID, new GUID
             If Not player.InventoryZeroItems Is Nothing Then
@@ -138,7 +138,7 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtTrinity(characterguid As Integer, player As Character)
             LogAppend("Adding inventory at trinity", "InventoryCreation_createAtTrinity", False)
             Dim bagGuidDic As New Dictionary(Of Integer, Integer) '// old GUID, new GUID
             If Not player.InventoryZeroItems Is Nothing Then
@@ -218,7 +218,8 @@ Namespace Framework.Transmission
                         GlobalVariables.targetStructure.invent_slot_col(0) & "`, `" &
                         GlobalVariables.targetStructure.invent_item_col(0) & "` ) VALUES ( '" & characterguid.ToString() &
                         "', '" &
-                        bagGuidDic(inventoryItem.Bagguid).ToString() & "', '" & inventoryItem.Slot.ToString() & "', '" & newguid & "')")
+                        bagGuidDic(inventoryItem.Bagguid).ToString() & "', '" & inventoryItem.Slot.ToString() & "', '" &
+                        newguid & "')")
                     Dim mEnchCreation As New EnchantmentsCreation
                     mEnchCreation.SetItemEnchantments(player,
                                                       New Item _
@@ -233,21 +234,21 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtMangos(characterguid As Integer, player As Character)
             LogAppend("Adding inventory at mangos", "InventoryCreation_createAtMangos", False)
             Dim bagGuidDic As New Dictionary(Of Integer, Integer) '// old GUID, new GUID
-            Const bagEnchString As String =
+            Const bagEnchString =
                       "0 1191182336 3 0 1065353216 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
-            Dim enchString As String =
+            Dim enchString =
                     "0 1191182336 3 0 1065353216 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
             If GlobalVariables.targetExpansion < 3 Then _
                 enchString =
                     "0 1191182336 3 0 1065353216 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
 
-           If Not player.InventoryZeroItems Is Nothing Then
+            If Not player.InventoryZeroItems Is Nothing Then
                 For Each inventoryItem As Item In player.InventoryZeroItems
                     Dim newguid As Integer =
-                           TryInt(
+                            TryInt(
                                 runSQLCommand_characters_string(
                                     "SELECT " & GlobalVariables.targetStructure.itmins_guid_col(0) & " FROM " &
                                     GlobalVariables.targetStructure.item_instance_tbl(0) & " WHERE " &

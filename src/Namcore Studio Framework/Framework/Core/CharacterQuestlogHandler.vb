@@ -21,15 +21,15 @@
 '*      /Description:   Contains functions for extracting information about the questlog 
 '*                      of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterQuestlogHandler
-        Public Sub GetCharacterQuestlog(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
+        Public Sub GetCharacterQuestlog(characterGuid As Integer, setId As Integer, account As Account)
             LogAppend("Loading character questlog for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterQuestlogHandler_GetCharacterQuestlog", True)
             Dim player As Character = GetCharacterSetBySetId(setId, account)
@@ -50,7 +50,7 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtArcemu(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character questlog @LoadAtArcemu", "CharacterQuestlogHandler_LoadAtArcemu", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -64,12 +64,12 @@ Namespace Framework.Core
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = TryInt(tempdt.Rows.Count.ToString)
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
-                        Const partscounter As Integer = 0
+                        Const partscounter = 0
                         Do
                             Dim qst As New Quest
                             qst.Id = TryInt((tempdt.Rows(count).Item(0)).ToString)
@@ -94,7 +94,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinity(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character questlog @LoadAtTrinity", "CharacterQuestlogHandler_LoadAtTrinity", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -108,7 +108,7 @@ Namespace Framework.Core
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim qst As New Quest
@@ -136,7 +136,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.qstre_guid_col(0) & "='" & charguid.ToString() & "'")
             Try
                 Dim lastcount As Integer = tempdt2.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim quest As String = (tempdt2.Rows(count).Item(0)).ToString
@@ -154,7 +154,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtTrinityTbc(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinityTbc(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character questlog @LoadAtTrinityTBC", "CharacterQuestlogHandler_LoadAtTrinityTBC", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -168,7 +168,7 @@ Namespace Framework.Core
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim qst As New Quest
@@ -197,7 +197,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtMangos(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character questlog @LoadAtMangos", "CharacterQuestlogHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -211,7 +211,7 @@ Namespace Framework.Core
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim qst As New Quest

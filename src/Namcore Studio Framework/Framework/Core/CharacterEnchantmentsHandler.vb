@@ -21,14 +21,14 @@
 '*      /Description:   Contains functions for extracting information about the enchantments 
 '*                      of the equipped items of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports libnc.Provider
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports libnc.Provider
 
 Namespace Framework.Core
     Public Class CharacterEnchantmentsHandler
-        Public Sub HandleEnchantments(ByVal setId As Integer, ByVal account As Account)
+        Public Sub HandleEnchantments(setId As Integer, account As Account)
             LogAppend("Handling item enchantments for setId: " & setId, "CharacterEnchantmentsHandler_GetItemStats",
                       True)
             Select Case GlobalVariables.sourceCore
@@ -41,13 +41,13 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtArcemu(tarSetId As Integer, account As Account)
             LogAppend("Handling item enchantments @LoadAtArcemu", "CharacterEnchantmentsHandler_LoadAtArcemu", False)
             Dim slotname(19) As String
             slotname =
                 {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance",
                  "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
-            Dim loopcounter As Integer = 0
+            Dim loopcounter = 0
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
 
             Do
@@ -81,7 +81,7 @@ Namespace Framework.Core
             Loop Until loopcounter = 18
         End Sub
 
-        Private Function ArcSplitEnchantString(ByVal input As String, ByVal player As Character, ByRef itm As Item) _
+        Private Function ArcSplitEnchantString(input As String, player As Character, ByRef itm As Item) _
             As String
             LogAppend(
                 "ArcSplitEnchantString call (input=" & input & " // character name=" & player.Name & " // itemslot= " &
@@ -145,7 +145,7 @@ Namespace Framework.Core
             End Try
         End Function
 
-        Private Function ArcSplitGemString(ByVal input As String, ByVal position As Integer) _
+        Private Function ArcSplitGemString(input As String, position As Integer) _
             As String
             LogAppend("ArcSplitGemString call (input=" & input & " // position=" & position.ToString() & ")",
                       "CharacterEnchantmentsHandler_ArcSplitGemString", False)
@@ -207,13 +207,13 @@ Namespace Framework.Core
             End Try
         End Function
 
-        Private Sub LoadAtTrinity(ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinity(tarSetId As Integer, account As Account)
             LogAppend("Handling item enchantments @LoadAtTrinity", "CharacterEnchantmentsHandler_LoadAtTrinity", False)
             Dim slotname(19) As String
             slotname =
                 {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance",
                  "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
-            Dim loopcounter As Integer = 0
+            Dim loopcounter = 0
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Do
                 Dim itm As Item
@@ -237,7 +237,7 @@ Namespace Framework.Core
             Loop Until loopcounter = 18
         End Sub
 
-        Private Function TrinitySplitEnchantString(ByVal input As String, ByRef itm As Item) _
+        Private Function TrinitySplitEnchantString(input As String, ByRef itm As Item) _
             As String
             LogAppend("TrinitySplitEnchantString call (input=" & input & " // itemslot=" & itm.Slotname & ")",
                       "CharacterEnchantmentsHandler_TrinitySplitEnchantString", False)
@@ -265,8 +265,8 @@ Namespace Framework.Core
             End Try
         End Function
 
-        Private Function TrinitySplitGemString(ByVal input As String,
-                                               ByVal position As Integer, ByRef itm As Item, ByVal gemnum As Integer) _
+        Private Function TrinitySplitGemString(input As String,
+                                               position As Integer, ByRef itm As Item, gemnum As Integer) _
             As String
             LogAppend("TrinitySplitGemString call (input=" & input & " // itemslot=" & itm.Slotname & ")",
                       "CharacterEnchantmentsHandler_TrinitySplitGemString", False)
@@ -302,13 +302,13 @@ Namespace Framework.Core
             End Try
         End Function
 
-        Private Sub LoadAtMangos(ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtMangos(tarSetId As Integer, account As Account)
             LogAppend("Handling item enchantments @LoadAtMangos", "CharacterEnchantmentsHandler_LoadAtMangos", False)
             Dim slotname(19) As String
             slotname =
                 {"head", "neck", "shoulder", "back", "chest", "shirt", "tabard", "wrists", "main", "off", "distance",
                  "hands", "waist", "legs", "feet", "finger1", "finger2", "trinket1", "trinket2"}
-            Dim loopcounter As Integer = 0
+            Dim loopcounter = 0
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Do
                 Dim itm As Item = GetCharacterArmorItem(player, slotname(loopcounter))
@@ -331,7 +331,7 @@ Namespace Framework.Core
             Loop Until loopcounter = 18
         End Sub
 
-        Private Function MangosSplitEnchantString(ByVal input As String, ByRef itm As Item) _
+        Private Function MangosSplitEnchantString(input As String, ByRef itm As Item) _
             As String
             LogAppend("MangosSplitEnchantString call (input=" & input & " // itemslot=" & itm.Slotname & ")",
                       "CharacterEnchantmentsHandler_MangosSplitEnchantString", False)
@@ -359,8 +359,8 @@ Namespace Framework.Core
             End Try
         End Function
 
-        Private Function MangosSplitGemString(ByVal input As String, ByVal position As Integer,
-                                              ByRef itm As Item, ByVal gemnum As Integer) As String
+        Private Function MangosSplitGemString(input As String, position As Integer,
+                                              ByRef itm As Item, gemnum As Integer) As String
             LogAppend("MangosSplitGemString call (input=" & input & " // slotname=" & itm.Slotname & ")",
                       "CharacterEnchantmentsHandler_MangosSplitGemString", False)
             Try

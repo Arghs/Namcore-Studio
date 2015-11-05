@@ -21,9 +21,9 @@
 '*      /Description:   Contains functions for extracting information from the characters
 '*                      table for a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
@@ -33,8 +33,8 @@ Namespace Framework.Core
         Private _tempResult As String
         '// Declaration
 
-        Public Sub GetBasicCharacterInformation(ByVal characterGuid As Integer, ByVal setId As Integer,
-                                                ByVal account As Account)
+        Public Sub GetBasicCharacterInformation(characterGuid As Integer, setId As Integer,
+                                                account As Account)
             LogAppend("Loading basic character information for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterBasicsHandler_GetBasicCharacterInformation", True)
             Select Case GlobalVariables.sourceCore
@@ -52,7 +52,7 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtArcemu(charguid As Integer, tarSetId As Integer, account As Account)
             'Character Table
             _tempResult =
                 runSQLCommand_characters_string(
@@ -434,7 +434,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinity(charguid As Integer, tarSetId As Integer, account As Account)
 
             'Character Table
             _tempResult =
@@ -847,7 +847,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtTrinityTbc(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinityTbc(charguid As Integer, tarSetId As Integer, account As Account)
             _tempResult =
                 runSQLCommand_characters_string(
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &
@@ -1276,7 +1276,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtMangos(charguid As Integer, tarSetId As Integer, account As Account)
             _tempResult =
                 runSQLCommand_characters_string(
                     "SELECT " & GlobalVariables.sourceStructure.char_name_col(0) & " FROM " &

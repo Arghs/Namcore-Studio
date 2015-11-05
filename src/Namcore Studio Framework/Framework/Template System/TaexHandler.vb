@@ -20,11 +20,11 @@
 '*      /Filename:      TaexHandler
 '*      /Description:   Template Explorer database handler
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Modules
 Imports System.Net
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
 
 Namespace Framework
     Public Class TaexHandler

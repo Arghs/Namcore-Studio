@@ -26,7 +26,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Update
     Public Class UpdateAccountHandler
-        Public Sub UpdateAccount(ByVal comparePlayer As Account, ByVal newPlayer As Account)
+        Public Sub UpdateAccount(comparePlayer As Account, newPlayer As Account)
             LogAppend("Updating Account " & comparePlayer.Name, "UpdateAccountHandler_UpdateAccount", True)
             If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then _
                 GlobalVariables.GlobalConnection.Open()

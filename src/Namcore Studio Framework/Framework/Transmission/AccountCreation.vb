@@ -27,8 +27,8 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class AccountCreation
-        Public Sub CreateNewAccount(ByVal accname As String, ByVal passhas As String, ByVal realmid As Integer,
-                                    ByVal account As Account, Optional gmlevel As String = "A",
+        Public Sub CreateNewAccount(accname As String, passhas As String, realmid As Integer,
+                                    account As Account, Optional gmlevel As String = "A",
                                     Optional email As String = "",
                                     Optional flags As String = "0")
             LogAppend("Creating new account " & accname, "AccountCreation_CreateNewAccount", True)
@@ -42,7 +42,7 @@ Namespace Framework.Transmission
                         LogAppend("Account " & accname & " does not exist -> Creating it",
                                   "AccountCreation_CreateNewAccount", False)
                         'TODO multi realm support
-                        Dim newid As Integer =
+                        Dim newid =
                                 CInt(
                                     runSQLCommand_realm_string(
                                         "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
@@ -82,7 +82,7 @@ Namespace Framework.Transmission
                             GlobalVariables.targetStructure.acc_name_col(0) & "`='" & accname & "'") = 0 Then
                         LogAppend("Account " & accname & " does not exist -> Creating it",
                                   "AccountCreation_CreateNewAccount", False)
-                        Dim newid As Integer =
+                        Dim newid =
                                 CInt(
                                     runSQLCommand_realm_string(
                                         "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &
@@ -138,7 +138,7 @@ Namespace Framework.Transmission
                             realmid = - 1
                         Else
                         End If
-                        Dim newid As Integer =
+                        Dim newid =
                                 CInt(
                                     runSQLCommand_realm_string(
                                         "SELECT MAX(" & GlobalVariables.targetStructure.acc_id_col(0) & ") + 1 FROM " &

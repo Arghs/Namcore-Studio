@@ -27,7 +27,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Module SkillCreation
-        Public Sub AddSkills(ByVal skillsstring As String, ByVal player As Character,
+        Public Sub AddSkills(skillsstring As String, player As Character,
                              Optional forceTargetCore As Boolean = False)
             'TODO
             Dim useCore As Modules.Core
@@ -59,7 +59,7 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Public Sub AddUpdateSkill(ByVal skill As Skill, ByVal player As Character,
+        Public Sub AddUpdateSkill(skill As Skill, player As Character,
                                   Optional forceTargetCore As Boolean = False)
             'TODO
             Dim useCore As Modules.Core
@@ -91,7 +91,7 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Public Sub AddProfession(ByVal prof As Profession, ByVal player As Character,
+        Public Sub AddProfession(prof As Profession, player As Character,
                                  Optional forceTargetCore As Boolean = False)
             'TODO
             Dim useCore As Modules.Core
@@ -123,7 +123,7 @@ Namespace Framework.Transmission
             End Select
         End Sub
 
-        Public Sub AddCharacterSkills(ByVal player As Character)
+        Public Sub AddCharacterSkills(player As Character)
             'TODO
             Select Case GlobalVariables.targetCore
                 Case Modules.Core.TRINITY, Modules.Core.MANGOS

@@ -27,7 +27,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class ProfessionCreation
-        Public Sub AddCharacterProfessions(ByVal player As Character)
+        Public Sub AddCharacterProfessions(player As Character)
             LogAppend("Adding character professions", "ProfessionCreation_AddCharacterProfessions")
             If Not player.Professions Is Nothing Then
                 For Each prof As Profession In player.Professions
@@ -36,7 +36,7 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Public Sub AddUpdateProfession(ByVal prof As Profession, ByVal player As Character, ByVal newAdding As Boolean,
+        Public Sub AddUpdateProfession(prof As Profession, player As Character, newAdding As Boolean,
                                        Optional forceTargetCore As Boolean = False)
             'TODO
             Dim useCore As Modules.Core

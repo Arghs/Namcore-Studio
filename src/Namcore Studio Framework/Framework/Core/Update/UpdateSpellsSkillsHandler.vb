@@ -27,7 +27,7 @@ Imports NCFramework.Framework.Transmission
 
 Namespace Framework.Core.Update
     Public Class UpdateSpellsSkillsHandler
-        Public Sub UpdateSpellsSkills(ByVal player As Character, ByVal modPlayer As Character)
+        Public Sub UpdateSpellsSkills(player As Character, modPlayer As Character)
             LogAppend("Updating character spells/skills", "UpdateSpellsSkillsHandler_UpdateSpellsSkills", True)
             '// Any new spells/skills?
             For Each spl As Spell In _
@@ -55,7 +55,7 @@ Namespace Framework.Core.Update
             Next
         End Sub
 
-        Public Sub DeleteSpell(ByVal player As Character, ByVal spell2Delete As Spell)
+        Public Sub DeleteSpell(player As Character, spell2Delete As Spell)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
@@ -68,7 +68,7 @@ Namespace Framework.Core.Update
             End Select
         End Sub
 
-        Public Sub DeleteRecipe(ByVal player As Character, ByVal spell2Delete As ProfessionSpell)
+        Public Sub DeleteRecipe(player As Character, spell2Delete As ProfessionSpell)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
@@ -81,7 +81,7 @@ Namespace Framework.Core.Update
             End Select
         End Sub
 
-        Public Sub DeleteSkill(ByVal player As Character, ByVal skill2Delete As Skill)
+        Public Sub DeleteSkill(player As Character, skill2Delete As Skill)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(
@@ -94,7 +94,7 @@ Namespace Framework.Core.Update
             End Select
         End Sub
 
-        Public Sub DeleteProfession(ByVal player As Character, ByVal prof2Delete As Profession)
+        Public Sub DeleteProfession(player As Character, prof2Delete As Profession)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.TRINITY
                     runSQLCommand_characters_string(

@@ -20,15 +20,15 @@
 '*      /Filename:      GlyphCreation
 '*      /Description:   Includes functions for creating the glyphs of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
+Imports libnc.Provider
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports libnc.Provider
 
 Namespace Framework.Transmission
     Public Class GlyphCreation
-        Public Sub SetCharacterGlyphs(ByVal player As Character, Optional charguid As Integer = 0)
+        Public Sub SetCharacterGlyphs(player As Character, Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Creating Glyphs for character: " & charguid.ToString(),
                       "GlyphCreation_SetCharacterGlyphs", True)
@@ -47,7 +47,7 @@ Namespace Framework.Transmission
             End Try
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtArcemu(characterguid As Integer, player As Character)
             LogAppend("Creating at arcemu", "GlyphCreation_createAtArcemu", False)
             runSQLCommand_characters_string(
                 "DELETE " & GlobalVariables.targetStructure.char_glyphs1_col(0) & " FROM " &
@@ -57,7 +57,7 @@ Namespace Framework.Transmission
                 "DELETE " & GlobalVariables.targetStructure.char_glyphs2_col(0) & " FROM " &
                 GlobalVariables.targetStructure.character_tbl(0) & " WHERE " &
                 GlobalVariables.targetStructure.char_guid_col(0) & " = '" & characterguid.ToString() & "'", True)
-            Dim glyphstring1 As String = "major1,minor1,minor2,major2,minor3,major3,"
+            Dim glyphstring1 = "major1,minor1,minor2,major2,minor3,major3,"
             Dim glyphstring2 As String = glyphstring1
             glyphstring1 = glyphstring1.Replace("minor1",
                                                 (GetGlyphIdByItemId(EscGly(GetCharacterGlyph(player, "minorglyph1")).Id,
@@ -111,7 +111,7 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.char_guid_col(0) & "='" & characterguid.ToString() & "'", True)
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtTrinity(characterguid As Integer, player As Character)
             LogAppend("Creating at Trinity", "GlyphCreation_createAtTrinity", False)
             runSQLCommand_characters_string(
                 "DELETE FROM " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " WHERE " &
@@ -294,7 +294,7 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtMangos(characterguid As Integer, player As Character)
             LogAppend("Creating at Mangos", "GlyphCreation_createAtMangos", False)
             runSQLCommand_characters_string(
                 "DELETE FROM " & GlobalVariables.targetStructure.character_glyphs_tbl(0) & " WHERE " &
@@ -485,7 +485,7 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Function EscGly(ByVal glyph As Glyph) As Glyph
+        Private Function EscGly(glyph As Glyph) As Glyph
             If glyph Is Nothing Then
                 Return New Glyph() With {.Id = 0}
             Else

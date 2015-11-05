@@ -20,12 +20,12 @@
 '*      /Filename:      ConnectionHandler
 '*      /Description:   Handles MySQL connections
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Logging
 Imports MySql.Data.MySqlClient
+Imports NCFramework.Framework.Logging
 
 Namespace Framework.Database
     Public Module ConnectionHandler
-        Public Sub OpenNewMySqlConnection(ByVal targetconnection As MySqlConnection, serverstring As String)
+        Public Sub OpenNewMySqlConnection(targetconnection As MySqlConnection, serverstring As String)
             LogAppend(
                 "Opening new MySQL connection (target: " & targetconnection.ToString() & " with connectionstring: " &
                 serverstring, "ConnectionHandler_OpenNewMySQLConnection", True)
@@ -61,7 +61,7 @@ Namespace Framework.Database
             End Try
         End Sub
 
-        Public Function TestConnection(ByVal connectionstring As String) As Boolean
+        Public Function TestConnection(connectionstring As String) As Boolean
             Dim sqlConnection As New MySqlConnection
             Try
                 sqlConnection.Close()
@@ -92,7 +92,7 @@ Namespace Framework.Database
             End Try
         End Function
 
-        Public Function TestConnectionAndReturn(ByVal connectionstring As String) As MySqlConnection
+        Public Function TestConnectionAndReturn(connectionstring As String) As MySqlConnection
             Dim sqlConnection As New MySqlConnection
             Try
                 sqlConnection.Close()

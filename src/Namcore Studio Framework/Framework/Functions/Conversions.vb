@@ -24,9 +24,9 @@ Imports NCFramework.Framework.Logging
 
 Namespace Framework.Functions
     Public Module Conversions
-        Public Function TryInt(ByVal mystring As String) As Integer
+        Public Function TryInt(mystring As String) As Integer
             Try
-                Dim parseResult As Integer = CInt(Integer.TryParse(mystring, Nothing))
+                Dim parseResult = CInt(Integer.TryParse(mystring, Nothing))
                 If parseResult = 0 Then
                     Return 0
                 Else
@@ -38,9 +38,9 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function TryUInt(ByVal mystring As String) As UInteger
+        Public Function TryUInt(mystring As String) As UInteger
             Try
-                Dim parseResult As Integer = CInt(Integer.TryParse(mystring, Nothing))
+                Dim parseResult = CInt(Integer.TryParse(mystring, Nothing))
                 If parseResult = 0 Then
                     Return 0
                 Else
@@ -52,7 +52,7 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function TrySingle(ByVal mystring As String) As Single
+        Public Function TrySingle(mystring As String) As Single
             Try
                 Return Convert.ToSingle(mystring)
             Catch ex As Exception

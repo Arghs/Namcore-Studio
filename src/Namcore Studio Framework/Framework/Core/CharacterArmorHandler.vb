@@ -28,7 +28,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterArmorHandler
-        Public Sub GetCharacterArmor(ByVal charguid As Integer, ByVal setId As Integer, ByVal account As Account)
+        Public Sub GetCharacterArmor(charguid As Integer, setId As Integer, account As Account)
             LogAppend("Loading character Armor for charguid: " & charguid & " and setId: " & setId,
                       "CharacterArmorHandler_GetCharacterArmor", True)
             Dim player As Character = GetCharacterSetBySetId(setId, account)
@@ -44,7 +44,7 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtArcemu(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Armor @LoadAtArcemu", "CharacterArmorHandler_LoadAtArcemu", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -54,13 +54,13 @@ Namespace Framework.Core
                         " FROM " & GlobalVariables.sourceStructure.item_instance_tbl(0) & " WHERE " &
                         GlobalVariables.sourceStructure.itmins_ownerGuid_col(0) & "='" & charguid.ToString &
                         "' AND " & GlobalVariables.sourceStructure.itmins_container_col(0) & "='-1'")
-            Dim mItmStatsHandler As CharacterItemStatsHandler = New CharacterItemStatsHandler
+            Dim mItmStatsHandler = New CharacterItemStatsHandler
             Dim itemguid As Integer
             Dim slotname As String
             Dim itementry As Integer
             Dim itemslot As Integer
             Dim entrycount As Integer = tempdt.Rows.Count
-            Dim loopcounter As Integer = 0
+            Dim loopcounter = 0
             If entrycount = 0 Then
                 LogAppend("No items found for character " & charguid.ToString & " -> Skipping",
                           "CharacterArmorHandler_LoadAtArcemu", True, False)
@@ -99,7 +99,7 @@ Namespace Framework.Core
             Loop Until loopcounter = entrycount
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinity(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Armor @LoadAtTrinity", "CharacterArmorHandler_LoadAtTrinity", False)
             Dim cmd As String = "SELECT " & GlobalVariables.sourceStructure.invent_item_col(0) & ", " &
                                 GlobalVariables.sourceStructure.invent_slot_col(0) & ", " &
@@ -116,13 +116,13 @@ Namespace Framework.Core
                                 GlobalVariables.sourceStructure.invent_bag_col(0) &
                                 "='0' AND " & GlobalVariables.sourceStructure.invent_slot_col(0) & " < '19'"
             Dim tempdt As DataTable = ReturnDataTable(cmd)
-            Dim mItmStatsHandler As CharacterItemStatsHandler = New CharacterItemStatsHandler
+            Dim mItmStatsHandler = New CharacterItemStatsHandler
             Dim itemguid As Integer
             Dim slotname As String
             Dim itementry As Integer
             Dim itemslot As Integer
             Dim entrycount As Integer = tempdt.Rows.Count
-            Dim loopcounter As Integer = 0
+            Dim loopcounter = 0
             If entrycount = 0 Then
                 LogAppend("No items found for character " & charguid.ToString & " -> Skipping",
                           "CharacterArmorHandler_LoadAtTrinity", True, False)
@@ -156,7 +156,7 @@ Namespace Framework.Core
             Loop Until loopcounter = entrycount
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtMangos(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Armor @LoadAtMangos", "CharacterArmorHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -167,13 +167,13 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.invent_guid_col(0) & "='" & charguid.ToString() &
                         "' AND " & GlobalVariables.sourceStructure.invent_bag_col(0) & "='0' AND " &
                         GlobalVariables.sourceStructure.invent_slot_col(0) & " < '19'")
-            Dim mItmStatsHandler As CharacterItemStatsHandler = New CharacterItemStatsHandler
+            Dim mItmStatsHandler = New CharacterItemStatsHandler
             Dim itemguid As Integer
             Dim slotname As String
             Dim itementry As Integer
             Dim itemslot As Integer
             Dim entrycount As Integer = tempdt.Rows.Count
-            Dim loopcounter As Integer = 0
+            Dim loopcounter = 0
             If entrycount = 0 Then
                 LogAppend("No items found for character " & charguid.ToString & " -> Skipping",
                           "CharacterArmorHandler_LoadAtMangos", True, False)
@@ -208,7 +208,7 @@ Namespace Framework.Core
             Loop Until loopcounter = entrycount
         End Sub
 
-        Private Function GetItemSlotNameById(ByVal itemslot As Integer) As String
+        Private Function GetItemSlotNameById(itemslot As Integer) As String
             Dim slotname As String
             Select Case itemslot
                 Case 0 : slotname = "head"

@@ -20,17 +20,17 @@
 '*      /Filename:      GlyphParser
 '*      /Description:   Contains functions for loading character glyphs from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports Newtonsoft.Json.Linq
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Modules
 Imports System.Net
 Imports libnc.Provider
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports Newtonsoft.Json.Linq
 
 Namespace Framework.Armory.Parser
     Public Class GlyphParser
-        Public Sub LoadGlyphs(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
+        Public Sub LoadGlyphs(setId As Integer, apiLink As String, account As Account)
             Dim client As New WebClient
             client.CheckProxy()
             '// Retrieving character
@@ -46,19 +46,19 @@ Namespace Framework.Armory.Parser
                 End If
                 Dim jResults As JObject = JObject.Parse(glyphContext)
                 Dim results As List(Of JToken) = jResults.Children().ToList()
-                Dim token As JProperty =
+                Dim token =
                         CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "talents"),
                               JProperty)
                 If token.HasChildren Then
                     For i = 0 To token.GetObjects().Count - 1
                         Dim glyphToken As JProperty =
-                                token.GetObjects()(i).Children.Cast(Of JProperty).ToList().Find(
+                                token.GetObjects()(i).Children.Cast (Of JProperty).ToList().Find(
                                     Function(jProperty) jProperty.Name = "glyphs")
                         If glyphToken.HasItem("major") Then
                             Dim majorToken As List(Of JObject) = glyphToken.GetChild("major").GetObjects()
                             For z = 0 To majorToken.Count - 1
                                 Dim singleGlyph As List(Of JProperty) =
-                                        majorToken(z).Children.Cast(Of JProperty).ToList()
+                                        majorToken(z).Children.Cast (Of JProperty).ToList()
                                 Dim pGlyph As New Glyph
                                 With pGlyph
                                     .Id = CInt(singleGlyph.GetValue("item"))
@@ -77,7 +77,7 @@ Namespace Framework.Armory.Parser
                             Dim minorToken As List(Of JObject) = glyphToken.GetChild("minor").GetObjects()
                             For z = 0 To minorToken.Count - 1
                                 Dim singleGlyph As List(Of JProperty) =
-                                        minorToken(z).Children.Cast(Of JProperty).ToList()
+                                        minorToken(z).Children.Cast (Of JProperty).ToList()
                                 Dim pGlyph As New Glyph
                                 With pGlyph
                                     .Id = CInt(singleGlyph.GetValue("item"))

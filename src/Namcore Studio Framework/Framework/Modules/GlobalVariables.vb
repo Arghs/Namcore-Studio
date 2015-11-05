@@ -20,11 +20,11 @@
 '*      /Filename:      GlobalVariables
 '*      /Description:   This file contains the main variables
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Windows.Forms
-Imports NCFramework.Framework.Forms
-Imports MySql.Data.MySqlClient
-Imports System.Threading
 Imports System.Net
+Imports System.Threading
+Imports System.Windows.Forms
+Imports MySql.Data.MySqlClient
+Imports NCFramework.Framework.Forms
 
 Namespace Framework.Modules
     Public Class GlobalVariables
@@ -103,7 +103,7 @@ Namespace Framework.Modules
         ' ReSharper restore InconsistentNaming
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class GlobalCharVars
         Public AccountSets As List(Of Account)
     End Class

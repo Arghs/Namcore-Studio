@@ -20,18 +20,18 @@
 '*      /Filename:      EventLogging
 '*      /Description:   Handles logging of events and exceptions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Drawing
 Imports System.ComponentModel
-Imports FastColoredTextBoxNS
+Imports System.Drawing
 Imports System.IO
-Imports System.Windows.Forms
-Imports NCFramework.Framework.Modules
 Imports System.Text
+Imports System.Windows.Forms
+Imports FastColoredTextBoxNS
+Imports NCFramework.Framework.Modules
 
 Namespace Framework.Logging
     Public Module EventLogging
         '// Declaration
-        Public Delegate Sub IncomingEventDelegate(ByVal [event] As String)
+        Public Delegate Sub IncomingEventDelegate([event] As String)
 
         Public Lastprogress As Integer
         Public Isbusy As Boolean = False
@@ -41,7 +41,7 @@ Namespace Framework.Logging
         '// Declaration
 
         <Localizable(False)>
-        Public Sub LogAppend(ByVal myevent As String, ByVal location As String, Optional userOut As Boolean = False,
+        Public Sub LogAppend(myevent As String, location As String, Optional userOut As Boolean = False,
                              Optional iserror As Boolean = False)
             _mUserOut = userOut
             While Isbusy
@@ -51,9 +51,9 @@ Namespace Framework.Logging
             Isbusy = False
         End Sub
 
-        Private Sub AppendStatus(ByVal status As String, ByVal loc As String, Optional iserror As Boolean = False)
+        Private Sub AppendStatus(status As String, loc As String, Optional iserror As Boolean = False)
             Dim timenow As String = Now.TimeOfDay.ToString
-            Dim append As String = ""
+            Dim append = ""
             If iserror Then append = "[ERROR]"
             If Not GlobalVariables.eventlog = "" Then
                 GlobalVariables.eventlog = GlobalVariables.eventlog & vbNewLine

@@ -21,18 +21,18 @@
 '*      /Description:   Contains functions for loading character profession information 
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.My
-Imports Newtonsoft.Json.Linq
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Modules
 Imports System.Net
 Imports libnc.Provider
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports NCFramework.My
+Imports Newtonsoft.Json.Linq
 
 Namespace Framework.Armory.Parser
     Public Class ProfessionParser
-        Public Sub LoadProfessions(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
+        Public Sub LoadProfessions(setId As Integer, apiLink As String, account As Account)
             Dim client As New WebClient
             client.CheckProxy()
             '// Retrieving character
@@ -50,7 +50,7 @@ Namespace Framework.Armory.Parser
                 End If
                 Dim jResults As JObject = JObject.Parse(pfContext)
                 Dim results As List(Of JToken) = jResults.Children().ToList()
-                Dim token As JProperty =
+                Dim token =
                         CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "professions"),
                               JProperty)
                 If token.HasChildren Then

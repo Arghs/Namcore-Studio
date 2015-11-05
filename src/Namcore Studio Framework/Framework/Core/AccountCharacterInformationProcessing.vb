@@ -20,13 +20,13 @@
 '*      /Filename:      AccountCharacterInformationProcessing
 '*      /Description:   Prepares basic account and character information for liveview
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports MySql.Data.MySqlClient
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Modules
-Imports MySql.Data.MySqlClient
 
 Namespace Framework.Core
     Public Class AccountCharacterInformationProcessing
-        Public Function ReturnAccountTable(ByVal sqlconnection As MySqlConnection, ByVal struc As DbStructure) _
+        Public Function ReturnAccountTable(sqlconnection As MySqlConnection, struc As DbStructure) _
             As DataTable
             '// Provides a DataTable listing detected accounts
             Select Case GlobalVariables.sourceCore
@@ -66,7 +66,7 @@ Namespace Framework.Core
             End Select
         End Function
 
-        Public Function ReturnCharacterTable(ByVal sqlconnection As MySqlConnection, ByVal struc As DbStructure) _
+        Public Function ReturnCharacterTable(sqlconnection As MySqlConnection, struc As DbStructure) _
             As DataTable
             '// Provides a DataTable listing detected characters
             Select Case GlobalVariables.sourceCore
@@ -105,7 +105,7 @@ Namespace Framework.Core
             End Select
         End Function
 
-        Public Function ReturnTargetAccCharTable(ByVal sqlconnection As MySqlConnection, ByVal struc As DbStructure) _
+        Public Function ReturnTargetAccCharTable(sqlconnection As MySqlConnection, struc As DbStructure) _
             As DataTable
             '// Provides a DataTable listing detected accounts/characters on target database
             Select Case GlobalVariables.targetCore

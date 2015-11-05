@@ -20,16 +20,16 @@
 '*      /Filename:      UpdateArmorHandler
 '*      /Description:   Handles character armor update requests
 '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 Imports NCFramework.Framework.Transmission
 
 Namespace Framework.Core.Update
     Public Class UpdateArmorHandler
-        Public Sub UpdateArmor(ByVal player As Character, ByVal modPlayer As Character, ByVal createItm As List(Of Item),
-                               ByVal deleteItm As List(Of Item), enchItm As List(Of Item))
+        Public Sub UpdateArmor(player As Character, modPlayer As Character, createItm As List(Of Item),
+                               deleteItm As List(Of Item), enchItm As List(Of Item))
             LogAppend("Updating character armor", "UpdateArmorHandler_UpdateArmor", True)
             For Each armorItm As Item In deleteItm
                 DeleteItem(modPlayer, armorItm)
@@ -75,7 +75,7 @@ Namespace Framework.Core.Update
             Next
         End Sub
 
-        Private Sub CreateItem(ByVal player As Character, ByVal itm2Add As Item)
+        Private Sub CreateItem(player As Character, itm2Add As Item)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     Dim newItemGuid As String =
@@ -157,7 +157,7 @@ Namespace Framework.Core.Update
                                                      GlobalVariables.sourceStructure)
                     '// Optional TODO: Set equipment cache
                 Case Modules.Core.MANGOS
-                    Const enchString As String =
+                    Const enchString =
                               "0 1191182336 3 0 1065353216 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3753 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 100 100 0 0 "
                     Dim newItemGuid As Integer =
                             ((TryInt(
@@ -216,7 +216,7 @@ Namespace Framework.Core.Update
             End Select
         End Sub
 
-        Private Sub DeleteItem(ByVal player As Character, ByVal itm2Delete As Item)
+        Private Sub DeleteItem(player As Character, itm2Delete As Item)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU
                     runSQLCommand_characters_string(

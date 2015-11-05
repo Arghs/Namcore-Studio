@@ -26,7 +26,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Update
     Public Class UpdateQuestsHandler
-        Public Sub UpdateQuestlog(ByVal player As Character, ByVal modPlayer As Character)
+        Public Sub UpdateQuestlog(player As Character, modPlayer As Character)
             LogAppend("Updating character questlog", "UpdateQuestsHandler_UpdateQuestlog", True)
             '// Any new quests?
             For Each qst As Quest In modPlayer.Quests
@@ -50,7 +50,7 @@ Namespace Framework.Core.Update
             Next
         End Sub
 
-        Private Sub CreateQuest(ByVal player As Character, ByVal qst2Add As Quest, Optional update As Boolean = False)
+        Private Sub CreateQuest(player As Character, qst2Add As Quest, Optional update As Boolean = False)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.TRINITY
                     If qst2Add.Rewarded = 1 Then
@@ -87,7 +87,7 @@ Namespace Framework.Core.Update
             End Select
         End Sub
 
-        Private Sub DeleteQuest(ByVal player As Character, ByVal quest2Delete As Quest)
+        Private Sub DeleteQuest(player As Character, quest2Delete As Quest)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.TRINITY
                     If quest2Delete.Rewarded = 1 Then

@@ -21,9 +21,9 @@
 '*      /Description:   Contains functions for checking database compatibility
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.ComponentModel
+Imports MySql.Data.MySqlClient
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports MySql.Data.MySqlClient
 
 Namespace Framework.Database
     <Localizable(False)>
@@ -39,10 +39,10 @@ Namespace Framework.Database
         Dim _xpac As Integer
         '// Declaration
 
-        Public Sub StartCheck(ByVal coreString As Modules.Core, ByVal expansion As Expansion,
-                              ByVal sqlconn As MySqlConnection,
-                              ByVal realmsqlconn As MySqlConnection, ByVal infosqlconn As MySqlConnection,
-                              ByVal characterDbname As String, ByVal authDbname As String, ByVal target As Boolean)
+        Public Sub StartCheck(coreString As Modules.Core, expansion As Expansion,
+                              sqlconn As MySqlConnection,
+                              realmsqlconn As MySqlConnection, infosqlconn As MySqlConnection,
+                              characterDbname As String, authDbname As String, target As Boolean)
             If target = True Then
                 GlobalVariables.targetStructure = Nothing
                 GlobalVariables.targetExpansion = expansion
@@ -375,7 +375,7 @@ Namespace Framework.Database
             If Not sqlconn.State = ConnectionState.Open Then sqlconn.Open()
         End Sub
 
-        Private Sub check_accounts(ByVal struc As DbStructure)
+        Private Sub check_accounts(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check_realm(struc.account_tbl)
@@ -396,7 +396,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_accountAccess(ByVal struc As DbStructure)
+        Private Sub check_accountAccess(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check_realm(struc.accountAccess_tbl)
@@ -407,7 +407,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_characters(ByVal struc As DbStructure)
+        Private Sub check_characters(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_tbl)
@@ -454,7 +454,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_achievement(ByVal struc As DbStructure)
+        Private Sub check_character_achievement(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_achievement_tbl)
@@ -465,7 +465,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_action(ByVal struc As DbStructure)
+        Private Sub check_character_action(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_action_tbl)
@@ -478,7 +478,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_glyphs(ByVal struc As DbStructure)
+        Private Sub check_character_glyphs(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_glyphs_tbl)
@@ -500,7 +500,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_homebind(ByVal struc As DbStructure)
+        Private Sub check_character_homebind(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_homebind_tbl)
@@ -514,7 +514,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_inventory(ByVal struc As DbStructure)
+        Private Sub check_character_inventory(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_inventory_tbl)
@@ -527,7 +527,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_queststatus(ByVal struc As DbStructure)
+        Private Sub check_character_queststatus(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_queststatus_tbl)
@@ -543,7 +543,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_queststatus_rewarded(ByVal struc As DbStructure)
+        Private Sub check_character_queststatus_rewarded(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_queststatus_rewarded_tbl)
@@ -553,7 +553,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_reputation(ByVal struc As DbStructure)
+        Private Sub check_character_reputation(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_reputation_tbl)
@@ -565,7 +565,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_skills(ByVal struc As DbStructure)
+        Private Sub check_character_skills(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_skills_tbl)
@@ -577,7 +577,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_spell(ByVal struc As DbStructure)
+        Private Sub check_character_spell(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_spells_tbl)
@@ -589,7 +589,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_character_talent(ByVal struc As DbStructure)
+        Private Sub check_character_talent(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.character_talent_tbl)
@@ -602,7 +602,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub check_item_instance(ByVal struc As DbStructure)
+        Private Sub check_item_instance(struc As DbStructure)
             Dim tmpReport As String = _dbReport
             _dbReport = ""
             tbl_check(struc.item_instance_tbl)
@@ -618,7 +618,7 @@ Namespace Framework.Database
             _dbReport = tmpReport & vbNewLine & _dbReport
         End Sub
 
-        Private Sub Gettablescheme(ByVal table As String, ByVal db As String)
+        Private Sub Gettablescheme(table As String, db As String)
             _tablescheme = _tablescheme & "######## " & table & " ########" & vbNewLine
             Dim _
                 da As _
@@ -639,8 +639,8 @@ Namespace Framework.Database
                     _tmpConnInfo.Dispose()
                 Catch
                 End Try
-                Dim lastcount As Integer = CInt(Val(dt.Rows.Count.ToString))
-                Dim count As Integer = 0
+                Dim lastcount = CInt(Val(dt.Rows.Count.ToString))
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
@@ -653,10 +653,10 @@ Namespace Framework.Database
             End Try
         End Sub
 
-        Private Sub tbl_check(ByVal tablename() As String)
+        Private Sub tbl_check(tablename() As String)
             If tablename Is Nothing Then Exit Sub
             Dim i As Integer = tablename.Length
-            Dim counter As Integer = 0
+            Dim counter = 0
             Do
                 If Not _tmpConn.State = ConnectionState.Open Then
                     _tmpConn.Open()
@@ -695,10 +695,10 @@ Namespace Framework.Database
             _tmpConn.Dispose()
         End Sub
 
-        Private Sub col_check(ByRef columnname() As String, ByVal tablename() As String)
+        Private Sub col_check(ByRef columnname() As String, tablename() As String)
             If tablename Is Nothing Or columnname Is Nothing Then Exit Sub
             Dim i As Integer = columnname.Length
-            Dim counter As Integer = 0
+            Dim counter = 0
             Do
                 If Not _tmpConn.State = ConnectionState.Open Then
                     _tmpConn.Open()
@@ -743,10 +743,10 @@ Namespace Framework.Database
             _tmpConn.Dispose()
         End Sub
 
-        Private Sub tbl_check_realm(ByVal tablename() As String)
+        Private Sub tbl_check_realm(tablename() As String)
             If tablename Is Nothing Then Exit Sub
             Dim i As Integer = tablename.Length
-            Dim counter As Integer = 0
+            Dim counter = 0
             Do
                 If Not _tmpConnRealm.State = ConnectionState.Open Then
                     _tmpConnRealm.Open()
@@ -785,10 +785,10 @@ Namespace Framework.Database
             _tmpConnRealm.Dispose()
         End Sub
 
-        Private Sub col_check_realm(ByRef columnname() As String, ByVal tablename() As String)
+        Private Sub col_check_realm(ByRef columnname() As String, tablename() As String)
             If tablename Is Nothing Or columnname Is Nothing Then Exit Sub
             Dim i As Integer = columnname.Length
-            Dim counter As Integer = 0
+            Dim counter = 0
             Do
                 If Not _tmpConnRealm.State = ConnectionState.Open Then
                     _tmpConnRealm.Open()

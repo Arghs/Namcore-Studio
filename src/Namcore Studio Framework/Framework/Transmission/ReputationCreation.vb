@@ -27,7 +27,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class ReputationCreation
-        Public Sub AddCharacterReputation(ByVal player As Character,
+        Public Sub AddCharacterReputation(player As Character,
                                           Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Adding reputation to character: " & charguid.ToString(),
@@ -45,12 +45,12 @@ Namespace Framework.Transmission
             End Try
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtArcemu(characterguid As Integer, player As Character)
             LogAppend("Adding reputation to character at arcemu", "ReputationCreation_CreateAtArcemu", False)
             Dim useStructure As DbStructure = GlobalVariables.targetStructure
-            Dim repString As String = ""
+            Dim repString = ""
             If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
-            Dim cnt As Integer = 0
+            Dim cnt = 0
             For Each playerReputation As Reputation In player.PlayerReputation '// TODO: Needs validation
                 repString &= playerReputation.Faction.ToString() & "," &
                              playerReputation.Flags.GetHashCode.ToString() & ",0," &
@@ -65,11 +65,11 @@ Namespace Framework.Transmission
             LogAppend("Added " & cnt.ToString() & " faction reputations", "ReputationCreation_createAtArcemu", True)
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtTrinity(characterguid As Integer, player As Character)
             LogAppend("Adding reputation to character at trinity", "ReputationCreation_createAtTrinity", False)
             Dim useStructure As DbStructure = GlobalVariables.targetStructure
             If player.PlayerReputation Is Nothing Then player.PlayerReputation = New List(Of Reputation)()
-            Dim cnt As Integer = 0
+            Dim cnt = 0
             For Each playerReputation As Reputation In player.PlayerReputation
                 runSQLCommand_characters_string(
                     "INSERT INTO `" & useStructure.character_reputation_tbl(0) &

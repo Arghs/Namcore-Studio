@@ -21,14 +21,14 @@
 '*      /Description:   Used to serialize objects for later saving
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.IO
-Imports System.Runtime.Serialization.Formatters.Binary
 Imports System.IO.Compression
-Imports NCFramework.Framework.Modules
+Imports System.Runtime.Serialization.Formatters.Binary
 Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
 
 Namespace Framework
     Public Class Serializer
-        Public Function Serialize (Of T)(ByVal compression As Boolean, ByVal instance As T) As MemoryStream
+        Public Function Serialize (Of T)(compression As Boolean, instance As T) As MemoryStream
             Dim fs As Stream = New MemoryStream()
             Try
                 Dim bf As New BinaryFormatter
@@ -45,12 +45,12 @@ Namespace Framework
             End Try
         End Function
 
-        Public Function Serialize (Of T)(ByVal instance As T) As MemoryStream
+        Public Function Serialize (Of T)(instance As T) As MemoryStream
             Return Serialize(False, instance)
         End Function
 
-        Public Shared Function DeSerialize (Of T)(ByVal compression As Boolean,
-                                                  ByVal serialString As String, ByVal defaultInstance As T) As T
+        Public Shared Function DeSerialize (Of T)(compression As Boolean,
+                                                  serialString As String, defaultInstance As T) As T
             GlobalVariables.DeserializationSuccessfull = False
             If serialString = "" Then
                 If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.Temp & "\lastset.ncsf") Then
@@ -75,18 +75,18 @@ Namespace Framework
             End Try
         End Function
 
-        Public Function DeSerialize (Of T)(ByVal serialString As String,
-                                           ByVal defaultInstance As T) As T
+        Public Function DeSerialize (Of T)(serialString As String,
+                                           defaultInstance As T) As T
 
             Return DeSerialize (Of T)(False, serialString, defaultInstance)
         End Function
 
-        Public Function DeSerialize (Of T As New)(ByVal serialString As String) As T
+        Public Function DeSerialize (Of T As New)(serialString As String) As T
             Return DeSerialize (Of T)(serialString, New T)
         End Function
 
         Public Function DeSerialize (Of T As New)(
-                                                  ByVal compression As Boolean, ByVal serialString As String) As T
+                                                  compression As Boolean, serialString As String) As T
 
             Return DeSerialize (Of T)(compression, serialString, New T)
         End Function

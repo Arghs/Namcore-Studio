@@ -21,10 +21,10 @@
 '*      /Description:   Handles and logs MySQL commands and exceptions
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.ComponentModel
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
 Imports MySql.Data.MySqlClient
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
 
 Namespace Framework.Database
     <Localizable(False)>
@@ -35,7 +35,7 @@ Namespace Framework.Database
         Public TempTable2Name As String
         Public TempTable2 As DataTable
         '// Declaration
-        Public Function runSQLCommand_characters_string(ByVal command As String,
+        Public Function runSQLCommand_characters_string(command As String,
                                                         Optional useTargetConnection As Boolean = False) As String
             If Not command.Contains("SELECT MAX(") AndAlso command.ToLower.StartsWith("select") Then
                 Dim table As String = SplitString(command.ToLower(), "from ", " where")
@@ -49,7 +49,7 @@ Namespace Framework.Database
                 column = column.Replace("`", "")
                 Dim args As String()
                 args = command.Split(" "c)
-                Dim newcommand As String = ""
+                Dim newcommand = ""
                 For i = 0 To args.Length - 1
                     If args(i) = "WHERE" Then
                         While i < args.Length - 1
@@ -97,7 +97,7 @@ Namespace Framework.Database
             End If
         End Function
 
-        Private Function RunUsualCommand(ByVal command As String, ByVal conn As MySqlConnection) As String
+        Private Function RunUsualCommand(command As String, conn As MySqlConnection) As String
             LogAppend("Executing new MySQL command. Command is: " & command,
                       "CommandHandler_RunUsualCommand", False)
             Dim da As New MySqlDataAdapter(command, conn)
@@ -130,7 +130,7 @@ Namespace Framework.Database
             End Try
         End Function
 
-        Public Function runSQLCommand_realm_string(ByVal command As String,
+        Public Function runSQLCommand_realm_string(command As String,
                                                    Optional useTargetConnection As Boolean = False) _
             As String
             If Not command.Contains("SELECT MAX(") AndAlso command.ToLower.StartsWith("select") Then
@@ -145,7 +145,7 @@ Namespace Framework.Database
                 column = column.Replace("`", "")
                 Dim args As String()
                 args = command.Split(" "c)
-                Dim newcommand As String = ""
+                Dim newcommand = ""
                 For i = 0 To args.Length - 1
                     If args(i) = "WHERE" Then
                         While i < args.Length - 1
@@ -192,8 +192,8 @@ Namespace Framework.Database
         End Function
 
         <Localizable(False)>
-        Public Function runSQLCommand_characters_string_setconn(ByVal command As String,
-                                                                ByVal targetConnection As MySqlConnection) As String
+        Public Function runSQLCommand_characters_string_setconn(command As String,
+                                                                targetConnection As MySqlConnection) As String
             If Not command.Contains("SELECT MAX(") AndAlso command.ToLower.StartsWith("select") Then
                 Dim table As String = SplitString(command.ToLower(), "from ", " where")
                 table = table.Replace("`", "")
@@ -206,7 +206,7 @@ Namespace Framework.Database
                 column = column.Replace("`", "")
                 Dim args As String()
                 args = command.Split(" "c)
-                Dim newcommand As String = ""
+                Dim newcommand = ""
                 For i = 0 To args.Length - 1
                     If args(i) = "WHERE" Then
                         While i < args.Length - 1
@@ -251,12 +251,12 @@ Namespace Framework.Database
             End If
         End Function
 
-        Public Function runSQLCommand_realm_string_setconn(ByVal command As String,
-                                                           ByVal targetConnection As MySqlConnection) As String
+        Public Function runSQLCommand_realm_string_setconn(command As String,
+                                                           targetConnection As MySqlConnection) As String
             Return runSQLCommand_characters_string_setconn(command, targetConnection)
         End Function
 
-        Public Function ReturnDataTable(ByVal command As String, Optional useTargetConnection As Boolean = False) _
+        Public Function ReturnDataTable(command As String, Optional useTargetConnection As Boolean = False) _
             As DataTable
             LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTable", False)
             Dim conn As MySqlConnection
@@ -279,7 +279,7 @@ Namespace Framework.Database
             End Try
         End Function
 
-        Public Function ReturnDataTableRealm(ByVal command As String, Optional useTargetConnection As Boolean = False) _
+        Public Function ReturnDataTableRealm(command As String, Optional useTargetConnection As Boolean = False) _
             As DataTable
             LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTableRealm",
                       False)
@@ -308,7 +308,7 @@ Namespace Framework.Database
             End Try
         End Function
 
-        Public Function ReturnDataTable_setconn(ByVal command As String, ByVal targetConnection As MySqlConnection) _
+        Public Function ReturnDataTable_setconn(command As String, targetConnection As MySqlConnection) _
             As DataTable
             LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnDataTable", False)
             Dim conn As MySqlConnection
@@ -326,7 +326,7 @@ Namespace Framework.Database
             End Try
         End Function
 
-        Public Function ReturnCountResults(ByVal command As String, Optional useTargetConnection As Boolean = False) _
+        Public Function ReturnCountResults(command As String, Optional useTargetConnection As Boolean = False) _
             As Integer
             LogAppend("Executing new MySQL command. Command is: " & command, "CommandHandler_ReturnCountResult", False)
             Dim conn As MySqlConnection
@@ -350,7 +350,7 @@ Namespace Framework.Database
             End Try
         End Function
 
-        Public Function ReturnResultWithRow(ByVal command As String, ByVal spalte As String, ByVal row As Integer,
+        Public Function ReturnResultWithRow(command As String, spalte As String, row As Integer,
                                             Optional useTargetConnection As Boolean = False) As String
             LogAppend(
                 "Executing new MySQL command. Column is: " & spalte & " / Row is: " & row.ToString & " / Command is: " &
@@ -385,7 +385,7 @@ Namespace Framework.Database
             End Try
         End Function
 
-        Public Function ReturnResultCount(ByVal command As String, Optional useTargetConnection As Boolean = False) _
+        Public Function ReturnResultCount(command As String, Optional useTargetConnection As Boolean = False) _
             As Integer
             LogAppend("Executing new MySQL command.", "CommandHandler_ReturnResultCount", False)
             Dim conn As MySqlConnection

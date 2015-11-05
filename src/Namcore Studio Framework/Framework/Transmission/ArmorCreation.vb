@@ -21,15 +21,15 @@
 '*      /Description:   Includes functions for creating the equipped items of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
+Imports System.Text.RegularExpressions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports System.Text.RegularExpressions
 
 Namespace Framework.Transmission
     Public Class ArmorCreation
-        Public Sub AddCharacterArmor(ByVal player As Character, Optional charguid As Integer = 0)
+        Public Sub AddCharacterArmor(player As Character, Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Adding armor to character: " & charguid.ToString(),
                       "ArmorCreation_AddCharacterArmor", True)
@@ -48,7 +48,7 @@ Namespace Framework.Transmission
             End Try
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtArcemu(characterguid As Integer, player As Character)
             LogAppend("Creating armor at arcemu", "ArmorCreation_createAtArcemu", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtArcemu", False)
             '// Adding weapon specific spells and skills
@@ -159,7 +159,7 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtTrinity(characterguid As Integer, player As Character)
             LogAppend("Creating armor at trinity", "ArmorCreation_createAtTrinity", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtTrinity", False)
             '// Adding weapon specific spells and skills
@@ -279,7 +279,7 @@ Namespace Framework.Transmission
                 GlobalVariables.targetStructure.char_guid_col(0) & "='" & characterguid.ToString() & "')")
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtMangos(characterguid As Integer, player As Character)
             LogAppend("Creating armor at mangos", "ArmorCreation_createAtMangos", False)
             LogAppend("Adding weapon specific spells and skills", "ArmorCreation_createAtMangos", False)
             'Adding weapon specific spells and skills

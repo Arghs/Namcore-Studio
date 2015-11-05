@@ -33,22 +33,22 @@ Namespace Framework.Extension
         Private _delegateToInvoke As [Delegate]
         '// Declaration
 
-        Public Shared Function QueueUserWorkItem(ByVal method As [Delegate], ByVal ParamArray args() As Object) _
+        Public Shared Function QueueUserWorkItem(method As [Delegate], ByVal ParamArray args() As Object) _
             As Boolean
             Return _
                 ThreadPool.QueueUserWorkItem(AddressOf ProperDelegate,
                                              New ThreadExtensions With {._args = args, ._delegateToInvoke = method})
         End Function
 
-        Public Shared Sub ScSend(ByVal sc As SynchronizationContext, ByVal del As [Delegate],
+        Public Shared Sub ScSend(sc As SynchronizationContext, del As [Delegate],
                                  ByVal ParamArray args() As Object)
             sc.Send(New SendOrPostCallback(AddressOf ProperDelegate),
                     New ThreadExtensions With {._args = args, ._delegateToInvoke = del})
         End Sub
 
-        Private Shared Sub ProperDelegate(ByVal state As Object)
+        Private Shared Sub ProperDelegate(state As Object)
             Try
-                Dim sd As ThreadExtensions = DirectCast(state, ThreadExtensions)
+                Dim sd = DirectCast(state, ThreadExtensions)
                 sd._delegateToInvoke.DynamicInvoke(sd._args)
             Catch ex As Exception
 

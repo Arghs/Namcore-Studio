@@ -21,15 +21,15 @@
 '*      /Description:   Contains functions for extracting information about the equipped 
 '*                      primary and secondary glyphs of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports libnc.Provider
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports libnc.Provider
 
 Namespace Framework.Core
     Public Class CharacterGlyphsHandler
-        Public Sub GetCharacterGlyphs(ByVal charguid As Integer, ByVal setId As Integer, ByVal account As Account)
+        Public Sub GetCharacterGlyphs(charguid As Integer, setId As Integer, account As Account)
             LogAppend("Loading character Glyphs for charguid: " & charguid & " and setId: " & setId,
                       "CharacterGlyphsHandler_GetCharacterGlyphs", True)
             Dim player As Character = GetCharacterSetBySetId(setId, account)
@@ -45,7 +45,7 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtArcemu(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Glyphs @LoadAtArcemu", "CharacterGlyphsHandler_LoadAtArcemu", False)
             Dim glyphstring As String =
                     runSQLCommand_characters_string(
@@ -262,7 +262,7 @@ Namespace Framework.Core
             End Try
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinity(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Glyphs @LoadAtTrinity", "CharacterGlyphsHandler_LoadAtTrinity", False)
             Dim tempdt As DataTable
             Dim tempdtsec As DataTable
@@ -516,7 +516,7 @@ Namespace Framework.Core
             End If
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtMangos(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Glyphs @LoadAtMangos", "CharacterGlyphsHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -529,7 +529,7 @@ Namespace Framework.Core
             Dim slot As Integer
             Dim spec As Integer
             Dim resultquantity As Integer = tempdt.Rows.Count
-            Dim proccounter As Integer = 0
+            Dim proccounter = 0
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Do
                 Try

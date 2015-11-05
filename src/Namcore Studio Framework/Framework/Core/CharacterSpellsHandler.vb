@@ -21,15 +21,15 @@
 '*      /Description:   Contains functions for extracting information about the known spells 
 '*                      of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
+Imports libnc.Provider
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports libnc.Provider
 
 Namespace Framework.Core
     Public Class CharacterSpellsHandler
-        Public Sub GetCharacterSpells(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
+        Public Sub GetCharacterSpells(characterGuid As Integer, setId As Integer, account As Account)
             LogAppend("Loading character spells for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterSpellsHandler_GetCharacterSpells", True)
             Select Case GlobalVariables.sourceCore
@@ -42,7 +42,7 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtArcemu(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character spells @LoadAtArcemu", "CharacterSpellsHandler_LoadAtArcemu", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -53,12 +53,12 @@ Namespace Framework.Core
             If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
                         Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
-                        Dim partscounter As Integer = 0
+                        Dim partscounter = 0
                         Do
                             Dim parts() As String = readedcode.Split(","c)
                             Dim spl As New Spell
@@ -89,7 +89,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinity(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character spells @LoadAtTrinity", "CharacterSpellsHandler_LoadAtTrinity", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -103,7 +103,7 @@ Namespace Framework.Core
             If player.Professions Is Nothing Then player.Professions = New List(Of Profession)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString
@@ -131,7 +131,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtMangos(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character spells @LoadAtMangos", "CharacterSpellsHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -144,7 +144,7 @@ Namespace Framework.Core
             If player.Spells Is Nothing Then player.Spells = New List(Of Spell)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim readedcode As String = (tempdt.Rows(count).Item(0)).ToString

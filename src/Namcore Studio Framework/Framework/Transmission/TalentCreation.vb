@@ -34,7 +34,7 @@ Namespace Framework.Transmission
         Private _talentId As String
         '// Declaration
 
-        Public Sub SetCharacterTalents(ByVal player As Character, Optional charguid As Integer = 0)
+        Public Sub SetCharacterTalents(player As Character, Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting Talents for character: " & charguid.ToString(),
                       "TalentCreation_SetCharacterTalents", True)
@@ -79,7 +79,7 @@ Namespace Framework.Transmission
             End Try
         End Function
 
-        Private Function Checkfield(ByVal lId As String) As String
+        Private Function Checkfield(lId As String) As String
             If Not executex("Rang1", lID) = "-" Then
                 _talentRank = "0"
                 _talentRank2 = "0"
@@ -107,7 +107,7 @@ Namespace Framework.Transmission
             End If
         End Function
 
-        Private Function Executex(ByVal field As String, ByVal sId As String) As String
+        Private Function Executex(field As String, sId As String) As String
             Try
                 Dim foundRows() As DataRow
                 foundRows = _sDatatable.Select(field & " = '" & sID & "'")
@@ -115,7 +115,7 @@ Namespace Framework.Transmission
                     Return "-"
                 Else
                     Dim i As Integer
-                    Dim tmpreturn As String = "-"
+                    Dim tmpreturn = "-"
                     For i = 0 To foundRows.GetUpperBound(0)
                         tmpreturn = (foundRows(i)(0)).ToString
                     Next i
@@ -128,7 +128,7 @@ Namespace Framework.Transmission
             End Try
         End Function
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtArcemu(characterguid As Integer, player As Character)
             LogAppend("Creating at arcemu", "TalentCreation_createAtArcemu", False)
             _talentRank = Nothing
             _talentRank2 = Nothing
@@ -287,7 +287,7 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtTrinity(characterguid As Integer, player As Character)
             LogAppend("Creating at Trinity", "TalentCreation_createAtTrinity", False)
             For Each tal As Talent In player.Talents
                 runSQLCommand_characters_string(
@@ -301,7 +301,7 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtMangos(characterguid As Integer, player As Character)
             LogAppend("Creating at Mangos", "TalentCreation_createAtMangos", False)
             _talentRank = Nothing
             _talentRank2 = Nothing

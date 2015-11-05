@@ -27,7 +27,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Module SpellCreation
-        Public Sub AddSpells(ByVal spellstring As String, ByVal player As Character,
+        Public Sub AddSpells(spellstring As String, player As Character,
                              Optional forceTargetCore As Boolean = False)
             'TODO
             Dim useCore As Modules.Core
@@ -59,7 +59,7 @@ Namespace Framework.Transmission
             Next
         End Sub
 
-        Public Sub AddCharacterSpells(ByVal player As Character)
+        Public Sub AddCharacterSpells(player As Character)
             'TODO
             Select Case GlobalVariables.targetCore
                 Case Modules.Core.TRINITY, Modules.Core.MANGOS

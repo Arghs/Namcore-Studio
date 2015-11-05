@@ -32,7 +32,7 @@ Namespace Framework.Core
         Private _sDatatable As New DataTable
         '// Declaration
 
-        Public Sub GetCharacterTalents(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
+        Public Sub GetCharacterTalents(characterGuid As Integer, setId As Integer, account As Account)
             LogAppend("Loading character talents for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterTalentsHandler_GetCharacterTalents", True)
             Select Case GlobalVariables.sourceCore
@@ -45,7 +45,7 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtArcemu(charguid As Integer, tarSetId As Integer, account As Account)
             _sDatatable.Clear()
             _sDatatable.Dispose()
             _sDatatable = GetTable()
@@ -59,7 +59,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
             If talentstring.Contains(",") Then
                 Dim excounter As Integer = UBound(talentstring.Split(CChar(",")))
-                Dim startcounter As Integer = 0
+                Dim startcounter = 0
                 Do
                     Dim parts() As String = talentstring.Split(","c)
                     Dim ctalentid As String = parts(startcounter)
@@ -79,7 +79,7 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.char_guid_col(0) & "='" & charguid.ToString & "'")
             If talentstring2.Contains(",") Then
                 Dim excounter As Integer = UBound(talentstring2.Split(CChar(",")))
-                Dim startcounter As Integer = 0
+                Dim startcounter = 0
                 Do
                     Dim parts() As String = talentstring2.Split(","c)
                     Dim ctalentid As String = parts(startcounter)
@@ -95,7 +95,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinity(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character talents @LoadAtTrinity", "CharacterTalentsHandler_LoadAtTrinity", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -107,7 +107,7 @@ Namespace Framework.Core
             If player.Talents Is Nothing Then player.Talents = New List(Of Talent)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim spell As String = (tempdt.Rows(count).Item(0)).ToString
@@ -135,7 +135,7 @@ Namespace Framework.Core
                         "='1'")
             Try
                 Dim lastcount As Integer = tempdt2.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim spell As String = (tempdt2.Rows(count).Item(0)).ToString
@@ -157,7 +157,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtMangos(charguid As Integer, tarSetId As Integer, account As Account)
             _sDatatable.Clear()
             _sDatatable.Dispose()
             _sDatatable = GetTable()
@@ -173,7 +173,7 @@ Namespace Framework.Core
             If player.Talents Is Nothing Then player.Talents = New List(Of Talent)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim idtalent As String = (tempdt.Rows(count).Item(0)).ToString
@@ -202,7 +202,7 @@ Namespace Framework.Core
                         "' AND " & GlobalVariables.sourceStructure.talent_spec_col(0) & "='1'")
             Try
                 Dim lastcount As Integer = tempdt2.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim idtalent As String = (tempdt2.Rows(count).Item(0)).ToString
@@ -251,7 +251,7 @@ Namespace Framework.Core
             End Try
         End Function
 
-        Private Function Checkfield(ByVal lId As String, ByVal rank As String) As String
+        Private Function Checkfield(lId As String, rank As String) As String
             LogAppend("Loading SpellId of Talent " & lId & " with rank " & rank, "CharacterTalentsHandler_checkfield",
                       False)
             Dim byRnk As String = Executex("TalentId", lId, TryInt(rank))
@@ -268,7 +268,7 @@ Namespace Framework.Core
             End If
         End Function
 
-        Private Function Executex(ByVal field As String, ByVal sId As String, ByVal rank As Integer) As String
+        Private Function Executex(field As String, sId As String, rank As Integer) As String
             Try
                 Dim foundRows() As DataRow
                 foundRows = _sDatatable.Select(field & " = '" & sId & "'")
@@ -276,7 +276,7 @@ Namespace Framework.Core
                     Return "-"
                 Else
                     Dim i As Integer
-                    Dim tmpreturn As String = "-"
+                    Dim tmpreturn = "-"
                     For i = 0 To foundRows.GetUpperBound(0)
                         tmpreturn = (foundRows(i)(rank)).ToString
                     Next i

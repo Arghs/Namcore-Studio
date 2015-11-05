@@ -21,16 +21,16 @@
 '*      /Description:   Contains functions for loading character reputation information from 
 '*                      wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports Newtonsoft.Json.Linq
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Modules
 Imports System.Net
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports Newtonsoft.Json.Linq
 
 Namespace Framework.Armory.Parser
     Public Class ReputationParser
-        Public Sub LoadReputation(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
+        Public Sub LoadReputation(setId As Integer, apiLink As String, account As Account)
             Dim client As New WebClient
             client.CheckProxy()
             '// Retrieving character
@@ -47,12 +47,12 @@ Namespace Framework.Armory.Parser
                 End If
                 Dim jResults As JObject = JObject.Parse(reputationContext)
                 Dim results As List(Of JToken) = jResults.Children().ToList()
-                Dim token As JProperty =
+                Dim token =
                         CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "reputation"),
                               JProperty)
                 If token.HasChildren Then
                     For i = 0 To token.GetObjects().Count - 1
-                        Dim repToken As List(Of JProperty) = token.GetObjects()(i).Children.Cast(Of JProperty).ToList()
+                        Dim repToken As List(Of JProperty) = token.GetObjects()(i).Children.Cast (Of JProperty).ToList()
                         Dim pReputation As New Reputation
                         pReputation.Faction = CInt(repToken.GetValue("id"))
                         pReputation.Max = CInt(repToken.GetValue("max"))

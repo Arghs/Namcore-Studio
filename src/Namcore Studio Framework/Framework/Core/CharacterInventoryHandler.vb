@@ -28,8 +28,8 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterInventoryHandler
-        Public Sub GetCharacterInventory(ByVal characterGuid As Integer, ByVal setId As Integer,
-                                         ByVal account As Account)
+        Public Sub GetCharacterInventory(characterGuid As Integer, setId As Integer,
+                                         account As Account)
             LogAppend("Loading character Inventory for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterInventoryHandler_GetCharacterInventory", True)
             Dim player As Character = GetCharacterSetBySetId(setId, account)
@@ -46,7 +46,7 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtArcemu(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Inventory @LoadAtArcemu", "CharacterInventoryHandler_LoadAtArcemu", False)
             Dim dt As DataTable =
                     ReturnDataTable(
@@ -55,10 +55,10 @@ Namespace Framework.Core
                         GlobalVariables.sourceStructure.itmins_guid_col(0) & "='" & charguid.ToString() & "'")
             Dim tmpext As Integer
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
-            Dim slotlist As String = ""
+            Dim slotlist = ""
             Try
                 Dim lastcount As Integer = TryInt(dt.Rows.Count.ToString)
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
@@ -83,7 +83,7 @@ Namespace Framework.Core
                                             charguid.ToString & "' AND " &
                                             GlobalVariables.sourceStructure.itmins_slot_col(0) &
                                             "='" & tmpext.ToString & "'")
-                                Dim bagguid As String = "-1"
+                                Dim bagguid = "-1"
                                 If Not containerslot = "-1" Then
                                     bagguid =
                                         runSQLCommand_characters_string(
@@ -210,7 +210,7 @@ Namespace Framework.Core
                                             charguid.ToString & "' AND " &
                                             GlobalVariables.sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString &
                                             "'", GlobalVariables.sourceStructure.itmins_container_col(0), 0)
-                                Dim bagguid As String = "-1"
+                                Dim bagguid = "-1"
                                 If Not containerslot = "-1" Then
                                     bagguid =
                                         runSQLCommand_characters_string(
@@ -336,7 +336,7 @@ Namespace Framework.Core
                                             charguid.ToString & "' AND " &
                                             GlobalVariables.sourceStructure.itmins_slot_col(0) & "='" & tmpext.ToString &
                                             "'", GlobalVariables.sourceStructure.itmins_container_col(0), 1)
-                                Dim bagguid2 As String = "-1"
+                                Dim bagguid2 = "-1"
                                 If Not containerslot2 = "-1" Then
                                     bagguid2 =
                                         runSQLCommand_characters_string(
@@ -467,7 +467,7 @@ Namespace Framework.Core
             End Try
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinity(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Inventory @LoadAtTrinity", "CharacterInventoryHandler_LoadAtTrinity", False)
             Dim inventoryDt As DataTable = ReturnDataTable(
                 "SELECT * FROM " &
@@ -488,7 +488,7 @@ Namespace Framework.Core
             End If
             Try
                 Dim lastcount As Integer = inventoryDt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim itemGuid As Integer = TryInt(inventoryDt.Rows(count).Item(3).ToString())
@@ -616,7 +616,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtMangos(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Inventory @LoadAtMangos", "CharacterInventoryHandler_LoadAtMangos", False)
             Dim dt As DataTable =
                     ReturnDataTable(
@@ -627,7 +627,7 @@ Namespace Framework.Core
             Dim player As Character = GetCharacterSetBySetId(tarSetId, account)
             Try
                 Dim lastcount As Integer = TryInt(dt.Rows.Count.ToString)
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim readedcode As String = (dt.Rows(count).Item(0)).ToString
@@ -737,7 +737,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Function Splititemdata(ByVal datastring As String, ByVal position As Integer) As String
+        Private Function Splititemdata(datastring As String, position As Integer) As String
             Try
                 Dim parts() As String = datastring.Split(" "c)
                 Return parts(position)

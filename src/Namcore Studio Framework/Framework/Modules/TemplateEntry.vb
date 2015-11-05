@@ -21,7 +21,7 @@
 '*      /Description:   TemplateEntry Object
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Namespace Framework.Modules
-    <Serializable()>
+    <Serializable>
     Public Class TemplateEntry
         Public Id As Integer
         Public Name As String

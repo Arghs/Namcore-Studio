@@ -23,7 +23,7 @@
 Imports System.Drawing
 
 Namespace Framework.Modules
-    <Serializable()>
+    <Serializable>
     Public Class Item
         Public Enum RarityType As Integer
             RARITY_POOR = 0
@@ -80,7 +80,7 @@ Namespace Framework.Modules
         End Sub
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class Glyph
         Public Enum GlyphType As Integer
             GLYTYPE_MINOR = 1
@@ -99,7 +99,7 @@ Namespace Framework.Modules
         End Sub
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class Achievement
         Public Id As Integer
         Public Name As String
@@ -114,7 +114,7 @@ Namespace Framework.Modules
         End Sub
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class Action
         Public Button As Integer
         Public Spec As Integer
@@ -126,7 +126,7 @@ Namespace Framework.Modules
         End Sub
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class Quest
         Public Id As Integer
         Public Name As String
@@ -140,7 +140,7 @@ Namespace Framework.Modules
         End Sub
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class Reputation
         Public Enum RepStatus As Integer
             REPSTAT_STRANGER = 0
@@ -178,7 +178,7 @@ Namespace Framework.Modules
         End Sub
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class Skill
         Public Id As Integer
         Public Value As Integer
@@ -189,7 +189,7 @@ Namespace Framework.Modules
         End Sub
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class Spell
         Public Id As Integer
         Public Active As Integer
@@ -200,7 +200,7 @@ Namespace Framework.Modules
         End Sub
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class Talent
         Public Spell As Integer
         Public Spec As Integer
@@ -209,7 +209,7 @@ Namespace Framework.Modules
         End Sub
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class Profession
         Public Id As Integer
         Public Name As String
@@ -223,7 +223,7 @@ Namespace Framework.Modules
         End Sub
     End Class
 
-    <Serializable()>
+    <Serializable>
     Public Class ProfessionSpell
         Public SpellId As Integer
         Public Name As String

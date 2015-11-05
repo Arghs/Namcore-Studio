@@ -25,10 +25,10 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Extension
     Public Module RepStandingExtension
-    ''' <summary>
-    '''     Updates reputation standing by value and status
-    ''' </summary>
-                                      <Extension()>
+        ''' <summary>
+        '''     Updates reputation standing by value and status
+        ''' </summary>
+        <Extension>
         Public Function UpdateStanding(rep As Reputation) As Reputation
             Try
                 Select Case rep.status
@@ -47,11 +47,11 @@ Namespace Framework.Extension
             End Try
         End Function
 
-                                      
-                                      ''' <summary>
-                                      '''     Updates reputation value, status and max by standing
-                                      ''' </summary>
-                                      <Extension()>
+
+        ''' <summary>
+        '''     Updates reputation value, status and max by standing
+        ''' </summary>
+        <Extension>
         Public Function UpdateValueMax(rep As Reputation) As Reputation
             Try
                 If rep.Standing >= - 42000 Then _

@@ -27,7 +27,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Update
     Public Class UpdateCharacterHandler
-        Public Sub UpdateCharacter(ByVal comparePlayer As Character, ByVal newPlayer As Character)
+        Public Sub UpdateCharacter(comparePlayer As Character, newPlayer As Character)
             LogAppend("Updating character " & comparePlayer.Name, "UpdateCharacterHandler_UpdateCharacter", True)
             ResetTempDataTables()
             If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then _

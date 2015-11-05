@@ -20,16 +20,16 @@
 '*      /Filename:      AccountRemoveHandler
 '*      /Description:   Contains functions for removing accounts
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports MySql.Data.MySqlClient
 Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Logging
-Imports MySql.Data.MySqlClient
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Remove
     Public Class AccountRemoveHandler
-        Public Sub RemoveAccountFromDb(ByVal account As Account, ByVal core As Modules.Core,
-                                       ByVal realmConnection As MySqlConnection, ByVal charConnection As MySqlConnection,
-                                       ByVal dbstruc As DbStructure)
+        Public Sub RemoveAccountFromDb(account As Account, core As Modules.Core,
+                                       realmConnection As MySqlConnection, charConnection As MySqlConnection,
+                                       dbstruc As DbStructure)
             LogAppend("Removing account " & account.Name & " from database", "AccountRemoveHandler_RemoveAccountFromDb")
             Select Case core
                 Case Modules.Core.TRINITY

@@ -27,7 +27,7 @@ Imports NCFramework.Framework.Transmission
 
 Namespace Framework.Core.Update
     Public Class UpdateProfessionsHandler
-        Public Sub UpdateProfessions(ByVal player As Character, ByVal modPlayer As Character)
+        Public Sub UpdateProfessions(player As Character, modPlayer As Character)
             LogAppend("Updating character professions", "UpdateProfessionsHandler_UpdateProfessions", True)
             Dim skillSpellUpdateHandler As New UpdateSpellsSkillsHandler
             Dim profCreateHandler As New ProfessionCreation

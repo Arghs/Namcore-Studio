@@ -28,7 +28,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterActionsHandler
-        Public Sub GetCharacterActions(ByVal characterGuid As Integer, ByVal setId As Integer, ByVal account As Account)
+        Public Sub GetCharacterActions(characterGuid As Integer, setId As Integer, account As Account)
             LogAppend("Loading character actions for characterGuid: " & characterGuid & " and setId: " & setId,
                       "CharacterActionssHandler_GetCharacterActions", True)
             Select Case GlobalVariables.sourceCore
@@ -42,7 +42,7 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtArcemu(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Actions @LoadAtArcemu", "CharacterActionsHandler_LoadAtArcemu", False)
             Dim tmpCharacter As Character = GetCharacterSetBySetId(tarSetId, account)
             tmpCharacter.ArcEmuAction1 =
@@ -62,9 +62,9 @@ Namespace Framework.Core
                     LogAppend("Warning! Actions1 seems to be invalid!", "CharacterActionsHandler_LoadAtArcemu", False,
                               True)
                 Dim excounter As Integer = UBound(readedcode.Split(CChar(",")))
-                Dim loopcounter As Integer = 0
-                Dim finalcounter As Integer = CInt(excounter/3)
-                Const partscounter As Integer = 0
+                Dim loopcounter = 0
+                Dim finalcounter = CInt(excounter/3)
+                Const partscounter = 0
                 Do
                     Dim act As New Action
                     Dim parts() As String = readedcode.Split(","c)
@@ -81,9 +81,9 @@ Namespace Framework.Core
                     LogAppend("Warning! Actions2 seems to be invalid!", "CharacterActionsHandler_LoadAtArcemu", False,
                               True)
                 Dim excounter2 As Integer = UBound(readedcode2.Split(CChar(",")))
-                Dim loopcounter2 As Integer = 0
-                Dim finalcounter2 As Integer = CInt(excounter2/3)
-                Dim partscounter2 As Integer = 0
+                Dim loopcounter2 = 0
+                Dim finalcounter2 = CInt(excounter2/3)
+                Dim partscounter2 = 0
                 Do
                     Dim act As New Action
                     Dim parts() As String = readedcode2.Split(","c)
@@ -104,7 +104,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtTrinity(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Actions @LoadAtTrinity", "CharacterActionsHandler_LoadAtTrinity", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -119,7 +119,7 @@ Namespace Framework.Core
             If tmpCharacter.Actions Is Nothing Then tmpCharacter.Actions = New List(Of Action)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim act As New Action
@@ -143,7 +143,7 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, tmpCharacter, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal charguid As Integer, ByVal tarSetId As Integer, ByVal account As Account)
+        Private Sub LoadAtMangos(charguid As Integer, tarSetId As Integer, account As Account)
             LogAppend("Loading character Actions @LoadAtMangos", "CharacterActionsHandler_LoadAtMangos", False)
             Dim tempdt As DataTable =
                     ReturnDataTable(
@@ -158,7 +158,7 @@ Namespace Framework.Core
             If tmpCharacter.Actions Is Nothing Then tmpCharacter.Actions = New List(Of Action)()
             Try
                 Dim lastcount As Integer = tempdt.Rows.Count
-                Dim count As Integer = 0
+                Dim count = 0
                 If Not lastcount = 0 Then
                     Do
                         Dim act As New Action

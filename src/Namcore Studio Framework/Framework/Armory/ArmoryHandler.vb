@@ -20,14 +20,14 @@
 '*      /Filename:      ArmoryHandler
 '*      /Description:   Contains functions for parsing character information from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Threading
-Imports Newtonsoft.Json.Linq
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Modules
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Extension
 Imports System.Net
+Imports System.Threading
 Imports NCFramework.Framework.Armory.Parser
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports Newtonsoft.Json.Linq
 
 Namespace Framework.Armory
     Public Class ArmoryHandler
@@ -36,18 +36,18 @@ Namespace Framework.Armory
         Public Event Completed As EventHandler(Of CompletedEventArgs)
         '// Declaration
 
-        Protected Overridable Sub OnCompleted(ByVal e As CompletedEventArgs)
+        Protected Overridable Sub OnCompleted(e As CompletedEventArgs)
             RaiseEvent Completed(Me, e)
         End Sub
 
-        Public Sub LoadArmoryCharacters(ByVal urllst As List(Of String))
+        Public Sub LoadArmoryCharacters(urllst As List(Of String))
             ThreadExtensions.QueueUserWorkItem(New Func(Of List(Of String), String)(AddressOf DoLoad), urllst)
         End Sub
 
-        Public Function DoLoad(ByVal linkList As List(Of String)) As String
+        Public Function DoLoad(linkList As List(Of String)) As String
             LogAppend("Loading characters from Armory (" & linkList.Count.ToString() & " character/s)",
                       "ArmoryHandler_DoLoad", True)
-            Dim setId As Integer = 0
+            Dim setId = 0
             Dim apiLink As String
             Dim characterName As String
             Dim client As New WebClient
@@ -69,7 +69,7 @@ Namespace Framework.Armory
                               SplitString(armoryLink, "/character/", "/") & "/" & characterName
                     Dim apiContext As String = client.DownloadString(apiLink)
                     Dim jResults As JObject = JObject.Parse(apiContext)
-                    Dim results As List(Of JProperty) = jResults.Children().Cast(Of JProperty).ToList()
+                    Dim results As List(Of JProperty) = jResults.Children().Cast (Of JProperty).ToList()
                     setId += 1
                     LogAppend("Loading character " & characterName & " //ident is " & setId.ToString(),
                               "ArmoryHandler_DoLoad", True)
@@ -102,15 +102,15 @@ Namespace Framework.Armory
                         Dim appearanceContext As String = client.DownloadString(apiLink & "?fields=appearance")
                         Dim appResult As JObject = JObject.Parse(appearanceContext)
                         Dim appResults As List(Of JToken) = appResult.Children().ToList()
-                        Dim appToken As JProperty =
-                                CType(appResults.Find(Function(jtoken) CType(jtoken, JProperty).Name = "appearance"), 
+                        Dim appToken =
+                                CType(appResults.Find(Function(jtoken) CType(jtoken, JProperty).Name = "appearance"),
                                       JProperty)
                         If appToken.HasChildren() Then
-                            Dim appFace As Integer = CInt(Hex$(Long.Parse(appToken.GetValue("faceVariation"))))
-                            Dim appSkin As Integer = CInt(Hex$(Long.Parse(appToken.GetValue("skinColor"))))
-                            Dim appHairStyle As Integer = CInt(Hex$(Long.Parse(appToken.GetValue("hairVariation"))))
-                            Dim appHairColor As Integer = CInt(Hex$(Long.Parse(appToken.GetValue("hairColor"))))
-                            Dim appFeatureVar As Integer = CInt(Hex$(Long.Parse(appToken.GetValue("featureVariation"))))
+                            Dim appFace = CInt(Hex$(Long.Parse(appToken.GetValue("faceVariation"))))
+                            Dim appSkin = CInt(Hex$(Long.Parse(appToken.GetValue("skinColor"))))
+                            Dim appHairStyle = CInt(Hex$(Long.Parse(appToken.GetValue("hairVariation"))))
+                            Dim appHairColor = CInt(Hex$(Long.Parse(appToken.GetValue("hairColor"))))
+                            Dim appFeatureVar = CInt(Hex$(Long.Parse(appToken.GetValue("featureVariation"))))
                             player.SetPlayerBytes(appSkin, appFace, appHairStyle, appHairColor)
                             player.SetPlayerBytes2(appFeatureVar)
                         End If
@@ -121,7 +121,7 @@ Namespace Framework.Armory
                     Try
                         LogAppend("Loading character's finished quests", "ArmoryHandler_DoLoad", True)
                         Dim qResult As JObject = JObject.Parse(client.DownloadString(apiLink & "?fields=quests"))
-                        Dim qToken As List(Of JProperty) = qResult.Children.Cast(Of JProperty).ToList()
+                        Dim qToken As List(Of JProperty) = qResult.Children.Cast (Of JProperty).ToList()
                         player.FinishedQuests.SafeAddRange(
                             qToken.GetValues("quests").ToList().ConvertAll(Function(str) Integer.Parse(str)).ToArray())
                     Catch ex As Exception
@@ -135,15 +135,15 @@ Namespace Framework.Armory
                                                      .Guid = 0}) '// Adding hearthstone
                     player.SetIndex = setId
                     AddCharacterSet(setId, player, armoryAccount)
-                    Dim mReputationParser As ReputationParser = New ReputationParser
+                    Dim mReputationParser = New ReputationParser
                     mReputationParser.LoadReputation(setId, apiLink, armoryAccount)
-                    Dim mGlyphParser As GlyphParser = New GlyphParser
+                    Dim mGlyphParser = New GlyphParser
                     mGlyphParser.LoadGlyphs(setId, apiLink, armoryAccount)
-                    Dim mAchievementParser As AchievementParser = New AchievementParser
+                    Dim mAchievementParser = New AchievementParser
                     mAchievementParser.LoadAchievements(setId, apiLink, armoryAccount)
-                    Dim mProfessionParser As ProfessionParser = New ProfessionParser
+                    Dim mProfessionParser = New ProfessionParser
                     mProfessionParser.LoadProfessions(setId, apiLink, armoryAccount)
-                    Dim mItemParser As ItemParser = New ItemParser
+                    Dim mItemParser = New ItemParser
                     mItemParser.LoadItems(setId, apiLink, armoryAccount)
                     player.Loaded = True
                     SetCharacterSet(setId, player, armoryAccount)

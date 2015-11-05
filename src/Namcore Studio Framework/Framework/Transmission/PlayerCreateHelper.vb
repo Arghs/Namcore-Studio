@@ -21,10 +21,10 @@
 '*      /Description:   Provides functions to load correct spells/items for character 
 '*                      races/classes
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports libnc.Provider
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
-Imports libnc.Provider
 
 Namespace Framework.Transmission
     '// Declaration
@@ -114,8 +114,8 @@ Namespace Framework.Transmission
         Public Sub GetRaceSpells(ByRef player As Character)
             LogAppend("Loading race specific spells for player " & player.Name, "PlayerCreateHelper_GetRaceSpells")
             Try
-                Dim thisRace As ChrRaceIds = CType(player.Race, ChrRaceIds)
-                Dim thisRaceBit As ChrRaces = CType(thisRace, ChrRaces)
+                Dim thisRace = CType(player.Race, ChrRaceIds)
+                Dim thisRaceBit = CType(thisRace, ChrRaces)
                 Dim newSpellList As New List(Of Spell)
                 Dim spellsDt As DataTable = GetCreateInfoTable()
                 For Each spellEntry As DataRow In spellsDt.Rows
@@ -134,7 +134,7 @@ Namespace Framework.Transmission
                                                 .Name = spellEntry(3).ToString()})
                             Continue For
                         End If
-                        Dim raceMask As ChrRaces = CType(TryInt(spellEntry(0).ToString()), ChrRaces)
+                        Dim raceMask = CType(TryInt(spellEntry(0).ToString()), ChrRaces)
                         If (raceMask And thisRaceBit) = thisRaceBit Then
                             LogAppend("Adding race specific spell: " & spellEntry(3).ToString(),
                                       "PlayerCreateHelper_GetRaceSpells")
@@ -157,8 +157,8 @@ Namespace Framework.Transmission
         Public Sub GetClassSpells(ByRef player As Character)
             LogAppend("Loading class specific spells for player " & player.Name, "PlayerCreateHelper_GetClassSpells")
             Try
-                Dim thisClass As ChrClassIds = CType(player.Cclass, ChrClassIds)
-                Dim thisClassBit As ChrClasses = CType(thisClass, ChrClasses)
+                Dim thisClass = CType(player.Cclass, ChrClassIds)
+                Dim thisClassBit = CType(thisClass, ChrClasses)
                 Dim newSpellList As New List(Of Spell)
                 Dim spellsDt As DataTable = GetCreateInfoTable()
                 For Each spellEntry As DataRow In spellsDt.Rows
@@ -176,7 +176,7 @@ Namespace Framework.Transmission
                                                 .Name = spellEntry(3).ToString()})
                             Continue For
                         End If
-                        Dim classMask As ChrClasses = CType(TryInt(spellEntry(1).ToString()), ChrClasses)
+                        Dim classMask = CType(TryInt(spellEntry(1).ToString()), ChrClasses)
                         If (classMask And thisClassBit) = thisClassBit Then
                             LogAppend("Adding class specific spell: " & spellEntry(3).ToString(),
                                       "PlayerCreateHelper_GetRaceSpells")

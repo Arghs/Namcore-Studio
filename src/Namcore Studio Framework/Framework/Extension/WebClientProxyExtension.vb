@@ -20,15 +20,15 @@
 '*      /Filename:      WebClientProxyExtension
 '*      /Description:   Extension to add proxy information to webclient
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports System.Runtime.CompilerServices
 Imports System.Net
+Imports System.Runtime.CompilerServices
 
 Namespace Framework.Extension
     Public Module WebClientProxyExtension
-    ''' <summary>
-    '''     proxy information handler
-    ''' </summary>
-                                         <Extension()>
+        ''' <summary>
+        '''     proxy information handler
+        ''' </summary>
+        <Extension>
         Public Function CheckProxy(ByRef client As WebClient) As WebClient
             Try
                 If My.Settings.proxy_enabled = True Then

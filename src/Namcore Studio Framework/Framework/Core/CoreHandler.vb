@@ -26,7 +26,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CoreHandler
-        Public Sub HandleLoadingRequests(ByVal account As Account, ByVal setId As Integer)
+        Public Sub HandleLoadingRequests(account As Account, setId As Integer)
             LogAppend("Loading character with setId " & setId.ToString() & " from database",
                       "CoreHandler_handleLoadingRequests")
             If GlobalVariables.GlobalConnection.State = ConnectionState.Closed Then _

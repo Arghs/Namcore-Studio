@@ -26,7 +26,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core.Update
     Public Class UpdateAchievementsHandler
-        Public Sub UpdateAchievements(ByVal player As Character, ByVal modPlayer As Character)
+        Public Sub UpdateAchievements(player As Character, modPlayer As Character)
             LogAppend("Updating character Achievements", "UpdateAchievementsHandler_UpdateAchievements", True)
             If GlobalVariables.sourceExpansion < 3 Then
                 '// Cannot create Achievements in pre WotLK db
@@ -50,7 +50,7 @@ Namespace Framework.Core.Update
             Next
         End Sub
 
-        Private Sub CreateAchievement(ByVal newPlayer As Character, ByVal av As Achievement)
+        Private Sub CreateAchievement(newPlayer As Character, av As Achievement)
             LogAppend("Creating achievement with id " & av.Id.ToString(), "UpdateAchievementsHandler_CreateAchievement",
                       True)
             Select Case GlobalVariables.sourceCore
@@ -67,7 +67,7 @@ Namespace Framework.Core.Update
             End Select
         End Sub
 
-        Private Sub RemoveAchievement(ByVal newPlayer As Character, ByVal av As Achievement)
+        Private Sub RemoveAchievement(newPlayer As Character, av As Achievement)
             LogAppend("Removing achievement with id " & av.Id.ToString(), "UpdateAchievementsHandler_RemoveAchievement",
                       True)
             Select Case GlobalVariables.sourceCore

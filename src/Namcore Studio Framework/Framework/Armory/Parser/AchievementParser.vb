@@ -21,16 +21,16 @@
 '*      /Description:   Contains functions for loading character achievement information 
 '*                      from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports Newtonsoft.Json.Linq
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Modules
 Imports System.Net
+Imports NCFramework.Framework.Extension
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports Newtonsoft.Json.Linq
 
 Namespace Framework.Armory.Parser
     Public Class AchievementParser
-        Public Sub LoadAchievements(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
+        Public Sub LoadAchievements(setId As Integer, apiLink As String, account As Account)
             Dim client As New WebClient
             client.CheckProxy()
             '// Retrieving character
@@ -48,7 +48,7 @@ Namespace Framework.Armory.Parser
                 End If
                 Dim jResults As JObject = JObject.Parse(avContext)
                 Dim results As List(Of JToken) = jResults.Children().ToList()
-                Dim token As JProperty =
+                Dim token =
                         CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "achievements"),
                               JProperty)
                 If token.HasChildren() Then

@@ -20,9 +20,9 @@
 '*      /Filename:      AccountHandler
 '*      /Description:   Contains functions for loading account
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Database
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
@@ -31,7 +31,7 @@ Namespace Framework.Core
         Private _tempResult As String
         '// Declaration
 
-        Public Sub LoadAccount(ByVal accountId As Integer, ByVal tarSetId As Integer,
+        Public Sub LoadAccount(accountId As Integer, tarSetId As Integer,
                                Optional account2Extend As Account = Nothing)
             Select Case GlobalVariables.sourceCore
                 Case Modules.Core.ARCEMU

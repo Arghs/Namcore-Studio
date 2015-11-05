@@ -21,13 +21,13 @@
 '*      /Description:   Provides an interface to display operation status
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.Drawing
-Imports FastColoredTextBoxNS
 Imports System.Windows.Forms
+Imports FastColoredTextBoxNS
 
 Namespace Framework.Forms
     Public Class ProcessStatus
         '// Declaration
-        Private Delegate Sub AppendTextBoxDelegate(ByVal txt As String, ByVal style As Style)
+        Private Delegate Sub AppendTextBoxDelegate(txt As String, style As Style)
 
         Private _ptMouseDownLocation As Point
         '// Declartaion

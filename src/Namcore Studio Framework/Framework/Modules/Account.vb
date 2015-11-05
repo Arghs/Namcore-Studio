@@ -21,9 +21,9 @@
 '*      /Description:   Account Object - account information class
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Namespace Framework.Modules
-    <Serializable()>
+    <Serializable>
     Public Class Account
-        <Flags()>
+        <Flags>
         Public Enum ArcEmuFlag
             EXPANSION_CLASSIC = 0
             EXPANSION_TBC = 8

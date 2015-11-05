@@ -27,7 +27,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class ActionCreation
-        Public Sub SetCharacterActions(ByVal player As Character, Optional charguid As Integer = 0)
+        Public Sub SetCharacterActions(player As Character, Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting Actions for character: " & charguid.ToString(),
                       "ActionCreation_SetCharacterActions", True)
@@ -46,7 +46,7 @@ Namespace Framework.Transmission
             End Try
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtTrinity(characterguid As Integer, player As Character)
             LogAppend("Creating at Trinity", "ActionCreation_createAtTrinity", False)
             If Not player.Actions Is Nothing Then
                 If Not player.Actions.Count = 0 Then
@@ -68,7 +68,7 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtMangos(characterguid As Integer, player As Character)
             LogAppend("Creating at Mangos", "ActionCreation_createAtMangos", False)
             If Not player.Actions Is Nothing Then
                 If Not player.Actions.Count = 0 Then

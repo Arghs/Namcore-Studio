@@ -21,14 +21,14 @@
 '*      /Description:   Includes functions for setting up the questlog of a specific
 '*                      character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class QuestCreation
-        Public Sub SetCharacterQuests(ByVal player As Character, Optional charguid As Integer = 0)
+        Public Sub SetCharacterQuests(player As Character, Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Setting quests for character: " & charguid.ToString(),
                       "QuestCreation_SetCharacterQuests", True)
@@ -47,7 +47,7 @@ Namespace Framework.Transmission
             End Try
         End Sub
 
-        Private Sub CreateAtArcemu(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtArcemu(characterguid As Integer, player As Character)
             LogAppend("Creating at arcemu", "QuestCreation_createAtArcemu", False)
             Dim lastslot As Integer = TryInt(
                 runSQLCommand_characters_string(
@@ -86,7 +86,7 @@ Namespace Framework.Transmission
                 characterguid.ToString() & "'", True)
         End Sub
 
-        Private Sub CreateAtTrinity(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtTrinity(characterguid As Integer, player As Character)
             LogAppend("Creating at Trinity", "QuestCreation_createAtTrinity", False)
             If Not player.Quests Is Nothing Then
                 If Not player.Quests.Count = 0 Then
@@ -118,7 +118,7 @@ Namespace Framework.Transmission
             End If
         End Sub
 
-        Private Sub CreateAtMangos(ByVal characterguid As Integer, ByVal player As Character)
+        Private Sub CreateAtMangos(characterguid As Integer, player As Character)
             LogAppend("Creating at Mangos", "QuestCreation_createAtMangos", False)
             If Not player.Quests Is Nothing Then
                 If Not player.Quests.Count = 0 Then

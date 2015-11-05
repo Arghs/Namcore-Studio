@@ -24,7 +24,7 @@ Imports libnc.Provider
 Imports NCFramework.Framework.Logging
 
 Namespace Framework.Modules
-    <Serializable()>
+    <Serializable>
     Public Class Character
         <Flags>
         Public Enum PlayerFlagsEnum As UInteger
@@ -128,60 +128,60 @@ Namespace Framework.Modules
         Public Level As Integer
         Private _charRace As RaceId
 
-        Public Overloads Property Race() As RaceId
+        Public Overloads Property Race As RaceId
             Get
                 Return _charRace
             End Get
-            Set(value As RaceId)
+            Set
                 _charRace = value
             End Set
         End Property
 
-        Public Overloads Property Race(ByVal id As UInteger) As UInteger
+        Public Overloads Property Race(id As UInteger) As UInteger
             Get
                 Return _charRace
             End Get
-            Set(value As UInteger)
+            Set
                 _charRace = CType(value, RaceId)
             End Set
         End Property
 
         Private _charClass As ClassId
 
-        Public Overloads Property Cclass() As ClassId
+        Public Overloads Property Cclass As ClassId
             Get
                 Return _charClass
             End Get
-            Set(value As ClassId)
+            Set
                 _charClass = value
             End Set
         End Property
 
-        Public Overloads Property Cclass(ByVal id As UInteger) As UInteger
+        Public Overloads Property Cclass(id As UInteger) As UInteger
             Get
                 Return _charClass
             End Get
-            Set(value As UInteger)
+            Set
                 _charClass = CType(value, ClassId)
             End Set
         End Property
 
         Private _charGender As GenderType
 
-        Public Property Gender() As GenderType
+        Public Property Gender As GenderType
             Get
                 Return _charGender
             End Get
-            Set(value As GenderType)
+            Set
                 _charGender = value
             End Set
         End Property
 
-        Public Property Gender(ByVal id As UInteger) As UInteger
+        Public Property Gender(id As UInteger) As UInteger
             Get
                 Return _charGender
             End Get
-            Set(value As UInteger)
+            Set
                 _charGender = CType(value, GenderType)
             End Set
         End Property
@@ -256,7 +256,7 @@ Namespace Framework.Modules
         Public Professions As List(Of Profession)
         Public AllInfoLoaded As Boolean = False
 
-        Public Sub AddRecipeToProfession(ByVal skillId As Integer, ByVal spellId As Integer)
+        Public Sub AddRecipeToProfession(skillId As Integer, spellId As Integer)
             If Professions Is Nothing Then
                 Professions = New List(Of Profession)()
                 Exit Sub
@@ -276,7 +276,7 @@ Namespace Framework.Modules
             End Try
         End Sub
 
-        Public Sub RemoveRecipeFromProfession(ByVal skillId As Integer, ByVal spellId As Integer)
+        Public Sub RemoveRecipeFromProfession(skillId As Integer, spellId As Integer)
             If Professions Is Nothing Then
                 Professions = New List(Of Profession)()
                 Exit Sub
@@ -305,7 +305,7 @@ Namespace Framework.Modules
             PlayerBytes = skinColor Or faceStyle << 8 Or hairStyle << 16 Or hairColor << 24
         End Sub
 
-        Public Sub SetPlayerBytes2(ByVal facialHair As Integer)
+        Public Sub SetPlayerBytes2(facialHair As Integer)
             PlayerBytes2 = facialHair Mod 256
         End Sub
     End Class

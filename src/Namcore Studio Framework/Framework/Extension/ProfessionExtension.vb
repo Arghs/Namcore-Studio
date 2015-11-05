@@ -25,12 +25,12 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Extension
     Public Module ProfessionExtension
-    ''' <summary>
-    '''     Updates reputation standing by value and status
-    ''' </summary>
-                                     <Extension()>
-        Public Function RecipeListsIdentical(ByVal prof As Profession,
-                                             ByVal recipeListB As List(Of ProfessionSpell)) As Boolean
+        ''' <summary>
+        '''     Updates reputation standing by value and status
+        ''' </summary>
+        <Extension>
+        Public Function RecipeListsIdentical(prof As Profession,
+                                             recipeListB As List(Of ProfessionSpell)) As Boolean
 
             If prof.Recipes Is Nothing Then
                 If recipeListB Is Nothing Then
@@ -53,7 +53,7 @@ Namespace Framework.Extension
                         Function(result) result IsNot Nothing)
         End Function
 
-        <Extension()>
+        <Extension>
         Public Function UpdateMax(ByRef prof As Profession) As Profession
             Select Case prof.Rank
                 Case 0 To 75 : prof.Max = 75

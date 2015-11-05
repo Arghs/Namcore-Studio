@@ -21,15 +21,15 @@
 '*      /Description:   Contains functions for extracting information about the enchantments 
 '*                      of all items in the inventory of a specific character
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Functions
 Imports NCFramework.Framework.Logging
 Imports NCFramework.Framework.Modules
 
 Namespace Framework.Core
     Public Class CharacterItemStatsHandler
-        Public Sub GetItemStats(ByVal cItemguid As Integer, ByRef itm As Item, ByRef player As Character,
-                                ByVal setId As Integer, ByVal account As Account)
+        Public Sub GetItemStats(cItemguid As Integer, ByRef itm As Item, ByRef player As Character,
+                                setId As Integer, account As Account)
             LogAppend("Loading character ItemStats for item: " & cItemguid.ToString() & " and setId: " & setId,
                       "CharacterItemStatssHandler_GetItemStats", True)
             Select Case GlobalVariables.sourceCore
@@ -42,8 +42,8 @@ Namespace Framework.Core
             End Select
         End Sub
 
-        Private Sub LoadAtArcemu(ByVal item As Integer, ByVal tarSetId As Integer, ByRef itm As Item,
-                                 ByRef player As Character, ByVal account As Account)
+        Private Sub LoadAtArcemu(item As Integer, tarSetId As Integer, ByRef itm As Item,
+                                 ByRef player As Character, account As Account)
             LogAppend("Loading ItemStats @LoadAtArcemu", "CharacterItemStatsHandler_LoadAtArcemu", False)
             itm.Enchstring =
                 runSQLCommand_characters_string(
@@ -54,8 +54,8 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtTrinity(ByVal item As Integer, ByVal tarSetId As Integer, ByRef itm As Item,
-                                  ByRef player As Character, ByVal account As Account)
+        Private Sub LoadAtTrinity(item As Integer, tarSetId As Integer, ByRef itm As Item,
+                                  ByRef player As Character, account As Account)
             LogAppend("Loading ItemStats @LoadAtTrinity", "CharacterItemStatsHandler_LoadAtTrinity", False)
             itm.Enchstring =
                 runSQLCommand_characters_string(
@@ -66,8 +66,8 @@ Namespace Framework.Core
             SetCharacterSet(tarSetId, player, account)
         End Sub
 
-        Private Sub LoadAtMangos(ByVal item As Integer, ByVal tarSetId As Integer, ByRef itm As Item,
-                                 ByRef player As Character, ByVal account As Account)
+        Private Sub LoadAtMangos(item As Integer, tarSetId As Integer, ByRef itm As Item,
+                                 ByRef player As Character, account As Account)
             LogAppend("Loading character ItemStats @LoadAtMangos", "CharacterItemStatsHandler_LoadAtMangos", False)
             itm.Enchstring =
                 runSQLCommand_characters_string(

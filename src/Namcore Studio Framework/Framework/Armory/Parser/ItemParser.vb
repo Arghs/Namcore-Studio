@@ -20,14 +20,14 @@
 '*      /Filename:      ItemParser
 '*      /Description:   Contains functions for loading character items from wow armory
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Imports Newtonsoft.Json.Linq
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Functions
-Imports NCFramework.Framework.Extension
-Imports NCFramework.Framework.Modules
 Imports System.Net
 Imports libnc.Provider
+Imports NCFramework.Framework.Extension
 Imports NCFramework.Framework.Extension.Special
+Imports NCFramework.Framework.Functions
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
+Imports Newtonsoft.Json.Linq
 
 Namespace Framework.Armory.Parser
     Public Class ItemParser
@@ -35,7 +35,7 @@ Namespace Framework.Armory.Parser
         Private _lastStamp As Integer = 0
         '// Declaration
 
-        Public Sub LoadItems(ByVal setId As Integer, ByVal apiLink As String, ByVal account As Account)
+        Public Sub LoadItems(setId As Integer, apiLink As String, account As Account)
             Dim client As New WebClient
             client.CheckProxy()
             '// Retrieving character
@@ -51,10 +51,10 @@ Namespace Framework.Armory.Parser
                 End If
                 Dim jResults As JObject = JObject.Parse(itemContext)
                 Dim results As List(Of JToken) = jResults.Children().ToList()
-                Dim token As JProperty = CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "items"),
-                                               JProperty)
+                Dim token = CType(results.Find(Function(jtoken) CType(jtoken, JProperty).Name = "items"),
+                                  JProperty)
                 If token.HasChildren() Then
-                    For i As Integer = 0 To token.GetChildren.Count - 1
+                    For i = 0 To token.GetChildren.Count - 1
                         Dim chld As JProperty = token.GetChildren(i)
                         If Not chld.HasChildren Then Continue For
                         If Not chld.HasItem("id") Then Continue For
@@ -108,7 +108,7 @@ Namespace Framework.Armory.Parser
                                 playerItem.EnchantmentId =
                                     GetEnchantmentIdAndTypeByEffectId(playerItem.EnchantmentEffectid)(0)
                                 playerItem.EnchantmentType =
-                                    CType(GetEnchantmentIdAndTypeByEffectId(playerItem.EnchantmentEffectid)(1), 
+                                    CType(GetEnchantmentIdAndTypeByEffectId(playerItem.EnchantmentEffectid)(1),
                                           Item.EnchantmentTypes)
                                 playerItem.EnchantmentName = GetEffectNameById(playerItem.EnchantmentEffectid,
                                                                                My.Settings.language)

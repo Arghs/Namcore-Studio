@@ -26,7 +26,7 @@ Imports NCFramework.Framework.Modules
 
 Namespace Framework.Transmission
     Public Class AchievementCreation
-        Public Sub AddCharacterAchievements(ByVal player As Character, Optional charguid As Integer = 0)
+        Public Sub AddCharacterAchievements(player As Character, Optional charguid As Integer = 0)
             If charguid = 0 Then charguid = player.Guid
             LogAppend("Adding achievements for character: " & charguid.ToString(),
                       "AchievementCreation_SetCharacterAchievements", True)

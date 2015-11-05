@@ -22,14 +22,14 @@
 '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 Imports System.ComponentModel
 Imports System.Drawing
-Imports System.Windows.Forms
-Imports NCFramework.Framework.Forms
-Imports NCFramework.Framework.Database
-Imports libnc
-Imports NCFramework.Framework.Logging
-Imports NCFramework.Framework.Modules
 Imports System.Net
 Imports System.Text
+Imports System.Windows.Forms
+Imports libnc
+Imports NCFramework.Framework.Database
+Imports NCFramework.Framework.Forms
+Imports NCFramework.Framework.Logging
+Imports NCFramework.Framework.Modules
 
 Namespace Framework.Functions
     Public Module Basics
@@ -49,7 +49,7 @@ Namespace Framework.Functions
             TempTable2Name = ""
         End Sub
 
-        Public Sub AddAccountSet(ByVal setId As Integer, ByVal player As Account,
+        Public Sub AddAccountSet(setId As Integer, player As Account,
                                  Optional globChars As GlobalCharVars = Nothing)
             Dim useChars As GlobalCharVars
             If GlobalVariables.forceTemplateCharVars = False Then
@@ -67,7 +67,7 @@ Namespace Framework.Functions
             End If
         End Sub
 
-        Public Function GetAccountSetBySetId(ByVal setId As Integer) As Account
+        Public Function GetAccountSetBySetId(setId As Integer) As Account
             Dim useChars As GlobalCharVars
             If GlobalVariables.forceTemplateCharVars = False Then
                 useChars = GlobalVariables.globChars
@@ -82,7 +82,7 @@ Namespace Framework.Functions
             End If
         End Function
 
-        Public Sub SetAccountSet(ByVal setId As Integer, ByVal playerAccount As Account)
+        Public Sub SetAccountSet(setId As Integer, playerAccount As Account)
             Dim useChars As GlobalCharVars
             If GlobalVariables.forceTemplateCharVars = False Then
                 useChars = GlobalVariables.globChars
@@ -96,7 +96,7 @@ Namespace Framework.Functions
             End If
         End Sub
 
-        Public Function GetCharacterSetBySetId(ByVal setId As Integer, ByVal playerAccount As Account) As Character
+        Public Function GetCharacterSetBySetId(setId As Integer, playerAccount As Account) As Character
             Dim charSet As Integer = playerAccount.Characters.FindIndex(Function(character) character.SetIndex = setId)
             If charSet <> - 1 Then
                 Return playerAccount.Characters(charSet)
@@ -105,21 +105,21 @@ Namespace Framework.Functions
             End If
         End Function
 
-        Public Sub AddCharacterSet(ByVal setId As Integer, ByVal player As Character, ByVal playerAccount As Account)
+        Public Sub AddCharacterSet(setId As Integer, player As Character, playerAccount As Account)
             player.SetIndex = setId
             player.AccountSet = playerAccount.SetIndex
             playerAccount.Characters.Add(player)
         End Sub
 
-        Public Sub SetCharacterSet(ByVal setId As Integer, ByVal playerCharacter As Character,
-                                   ByVal playerAccount As Account)
+        Public Sub SetCharacterSet(setId As Integer, playerCharacter As Character,
+                                   playerAccount As Account)
             Dim charSet As Integer = playerAccount.Characters.FindIndex(Function(character) character.SetIndex = setId)
             If charSet <> - 1 Then
                 playerAccount.Characters(charSet) = playerCharacter
             End If
         End Sub
 
-        Public Sub RemoveCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
+        Public Sub RemoveCharacterArmorItem(ByRef player As Character, itm As Item)
             If player.ArmorItems Is Nothing Then player.ArmorItems = New List(Of Item)
             Dim itmIndex As Integer = player.ArmorItems.FindIndex(Function(item) item.Slot = itm.Slot)
             If itmIndex <> - 1 Then
@@ -127,7 +127,7 @@ Namespace Framework.Functions
             End If
         End Sub
 
-        Public Sub SetCharacterArmorItem(ByRef player As Character, ByVal itm As Item)
+        Public Sub SetCharacterArmorItem(ByRef player As Character, itm As Item)
             Dim itmIndex As Integer = player.ArmorItems.FindIndex(Function(item) item.Slot = itm.Slot)
             If itmIndex = - 1 Then itmIndex = player.ArmorItems.FindIndex(Function(item) item.Slotname = itm.Slotname)
             If itmIndex <> - 1 Then
@@ -135,7 +135,7 @@ Namespace Framework.Functions
             End If
         End Sub
 
-        Public Function GetCharacterArmorItem(ByVal player As Character, ByVal slot As String,
+        Public Function GetCharacterArmorItem(player As Character, slot As String,
                                               Optional isint As Boolean = False) As Item
             Dim itmIndex As Integer
             If isint Then
@@ -150,19 +150,19 @@ Namespace Framework.Functions
             End If
         End Function
 
-        Public Sub AddCharacterGlyph(ByRef player As Character, ByVal gly As Glyph)
+        Public Sub AddCharacterGlyph(ByRef player As Character, gly As Glyph)
             If player.PlayerGlyphs Is Nothing Then player.PlayerGlyphs = New List(Of Glyph)
             player.PlayerGlyphs.Add(gly)
         End Sub
 
-        Public Sub SetCharacterGlyph(ByRef player As Character, ByVal glph As Glyph)
+        Public Sub SetCharacterGlyph(ByRef player As Character, glph As Glyph)
             Dim glyphIndex As Integer = player.PlayerGlyphs.FindIndex(Function(glyph) glyph.Slotname = glph.Slotname)
             If glyphIndex <> - 1 Then
                 player.PlayerGlyphs(glyphIndex) = glph
             End If
         End Sub
 
-        Public Function GetCharacterGlyph(ByVal player As Character, ByVal slot As String) As Glyph
+        Public Function GetCharacterGlyph(player As Character, slot As String) As Glyph
             If player.PlayerGlyphs Is Nothing Then Return Nothing
             Dim glyphIndex As Integer = player.PlayerGlyphs.FindIndex(Function(glyph) glyph.Slotname = slot)
             If glyphIndex <> - 1 Then
@@ -173,7 +173,7 @@ Namespace Framework.Functions
         End Function
 
         <Localizable(False)>
-        Public Function SplitString(ByVal source As String, ByVal start As String, ByVal ending As String) As String
+        Public Function SplitString(source As String, start As String, ending As String) As String
             If source Is Nothing Or start Is Nothing Or ending Is Nothing Then
                 LogAppend("Failed to split a string: source might be nothing", "Basics_splitString", False, True)
                 Return Nothing
@@ -197,7 +197,7 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function SplitList(ByVal source As String, ByVal category As String) As String
+        Public Function SplitList(source As String, category As String) As String
             LogAppend("Splitting a list. Sourcelength/-/Start/-/End: " & source.Length.ToString & "/-/" & category,
                       "Basics_splitList", False)
             Try
@@ -219,10 +219,10 @@ Namespace Framework.Functions
         Public Function LoadImageFromUrl(ByRef url As String) As Bitmap
             LogAppend("Loading image from url: " & url, "Basics_LoadImageFromUrl", False)
             Try
-                Dim request As HttpWebRequest = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
+                Dim request = DirectCast(HttpWebRequest.Create(url), HttpWebRequest)
                 request.Proxy = GlobalVariables.GlobalWebClient.Proxy
-                Dim response As HttpWebResponse = DirectCast(request.GetResponse, HttpWebResponse)
-                Dim img As Bitmap = CType(Image.FromStream(response.GetResponseStream()), Bitmap)
+                Dim response = DirectCast(request.GetResponse, HttpWebResponse)
+                Dim img = CType(Image.FromStream(response.GetResponseStream()), Bitmap)
                 response.Close()
                 Return img
             Catch ex As Exception
@@ -231,8 +231,8 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function ExecuteDataTableSearch(ByVal dt As DataTable, ByVal startfield As String,
-                                               ByVal startvalue As String, ByVal targetfield As Integer) As String()
+        Public Function ExecuteDataTableSearch(dt As DataTable, startfield As String,
+                                               startvalue As String, targetfield As Integer) As String()
             Try
                 Dim foundRows() As DataRow
                 foundRows = dt.Select(startfield & " = '" & EscapeLikeValue(startvalue) & "'")
@@ -251,7 +251,7 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function ExecuteDataTableSearch(ByVal dt As DataTable, ByVal command As String) As List(Of String())
+        Public Function ExecuteDataTableSearch(dt As DataTable, command As String) As List(Of String())
             Try
                 Dim foundRows() As DataRow
                 foundRows = dt.Select(command)
@@ -275,8 +275,8 @@ Namespace Framework.Functions
             End Try
         End Function
 
-        Public Function SafeExecuteDataTableSearch(ByVal dt As DataTable, ByVal command As String,
-                                                   ByVal position As Integer) As String
+        Public Function SafeExecuteDataTableSearch(dt As DataTable, command As String,
+                                                   position As Integer) As String
             Dim tmpLst As List(Of String()) = ExecuteDataTableSearch(dt, command)
             If tmpLst Is Nothing Then Return Nothing
             If tmpLst.Count >= 1 Then
@@ -287,7 +287,7 @@ Namespace Framework.Functions
             Return Nothing
         End Function
 
-        Public Function EscapeLikeValue(ByVal value As String) As String
+        Public Function EscapeLikeValue(value As String) As String
             Dim sb As New StringBuilder(value.Length)
             For i = 0 To value.Length - 1
                 Dim c As Char = value(i)
