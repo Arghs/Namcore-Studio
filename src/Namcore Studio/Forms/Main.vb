@@ -1,5 +1,5 @@
 ﻿'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'* Copyright (C) 2013-2015 NamCore Studio <https://github.com/megasus/Namcore-Studio>
+'* Copyright (C) 2013-2016 NamCore Studio <https://github.com/megasus/Namcore-Studio>
 '*
 '* This program is free software; you can redistribute it and/or modify it
 '* under the terms of the GNU General Public License as published by the
@@ -136,9 +136,9 @@ Namespace Forms
             For Each itemControl As Control In controlLst
                 itemControl.SetDoubleBuffered()
             Next
-            Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2015"
+            Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() & " - © megasus 2016"
             version_lbl.Text = "NamCore Studio - Development - " & My.Application.Info.Version.ToString() &
-                               " - © megasus 2015"
+                               " - © megasus 2016"
             If GlobalVariables.DebugMode Then
                 NewProcessStatus()
             End If

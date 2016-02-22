@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("NCFramework")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("NamCore Studio Framework")>
-<Assembly: AssemblyCopyright("Copyright © 2015 megasus")>
+<Assembly: AssemblyCopyright("Copyright © 2016 megasus")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(True)>
@@ -32,7 +32,7 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.1.10.46620")>
-<Assembly: AssemblyFileVersion("0.1.10.46620")>
+<Assembly: AssemblyVersion("0.1.10.46622")>
+<Assembly: AssemblyFileVersion("0.1.10.46622")>
 
 <Assembly: NeutralResourcesLanguage("en-US")>
