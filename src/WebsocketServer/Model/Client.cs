@@ -67,6 +67,7 @@ namespace TouchTableServer.Model
         {
             Logging.LogMsg(Logging.LogLevel.DEBUG, "Handling Opcode {0}", opcode);
             JToken payload = data.SelectToken("payload");
+            GameResponse gs;
             switch (opcode)
             {
                 case Opcodes.ClientOpcodes.CMSG_CONNECTION_READY:
@@ -134,13 +135,13 @@ namespace TouchTableServer.Model
                         throw;
                     }
                     break;
-                case Opcodes.ClientOpcodes.CMSG_GAME_END:
+                case Opcodes.ClientOpcodes.CMSG_GAME_REPORT_STATE:
                     if (!Initialized)
                     {
                         SendMsg(GetErrorCmd(Opcodes.ServerOpcodes.SMSG_ERR_CLIENT_NOT_INITIALIZED));
                         return;
                     }
-                    var gs = Functions.GetGameResponse(ClientIdent, payload);
+                    gs = Functions.GetGameResponse(ClientIdent, payload);
                     if (gs == null)
                     {
                         SendMsg(GetErrorCmd(Opcodes.ServerOpcodes.SMSG_ERR_INVALID_PACKET,
@@ -149,7 +150,31 @@ namespace TouchTableServer.Model
                     }
                     else
                     {
-                        SessionPointer.GameEndResponses.Add(ClientIdent, gs);
+                        if (SessionPointer.GameUpdateResponse.ContainsKey(ClientIdent))
+                            SessionPointer.GameUpdateResponse[ClientIdent] = gs;
+                        else
+                            SessionPointer.GameUpdateResponse.Add(ClientIdent, gs);
+                    }
+                    break;
+                case Opcodes.ClientOpcodes.CMSG_GAME_END:
+                    if (!Initialized)
+                    {
+                        SendMsg(GetErrorCmd(Opcodes.ServerOpcodes.SMSG_ERR_CLIENT_NOT_INITIALIZED));
+                        return;
+                    }
+                    gs = Functions.GetGameResponse(ClientIdent, payload);
+                    if (gs == null)
+                    {
+                        SendMsg(GetErrorCmd(Opcodes.ServerOpcodes.SMSG_ERR_INVALID_PACKET,
+                            "Ungültiges GameResponse Format."));
+                        return;
+                    }
+                    else
+                    {
+                        if (SessionPointer.GameEndResponses.ContainsKey(ClientIdent))
+                            SessionPointer.GameEndResponses[ClientIdent] = gs;
+                        else
+                            SessionPointer.GameEndResponses.Add(ClientIdent, gs);
                     }
                     break;
                 default:

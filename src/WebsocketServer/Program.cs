@@ -14,6 +14,7 @@ namespace TouchTableServer
     {
         public static void Main(string[] args)
         {
+            Logging.LogMsg(Logging.LogLevel.NORMAL, "Startup HTTPServer");
             // Create a new instance of the HttpServer class.
             //
             // If you would like to provide the secure connection, you should

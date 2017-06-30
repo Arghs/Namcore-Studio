@@ -73,7 +73,8 @@ namespace TouchTableServer.Framework
             _handler.GameReportTimer = new Timer(5000) { AutoReset = true };
             _handler.GameReportTimer.Elapsed += new ElapsedEventHandler(_handler.ReportGameStatusEvent);
             _handler.GameReportTimer.Start();
-            
+
+            _handler.SessionActive = true;
 
             Logging.LogMsg(Logging.LogLevel.NORMAL, "Starting Game Session");
             Functions.NotifyControl("Starting Session", _activeSession);
@@ -155,6 +156,8 @@ namespace TouchTableServer.Framework
 
             _handler.GameEndTimerActive = false;
             _handler.SheetSequenceTimerActive = false;
+
+            _handler.SessionActive = false;
 
             Functions.NotifyControl("Ending Game Session", _activeSession);
             Logging.LogMsg(Logging.LogLevel.NORMAL, "Ending Game Session");

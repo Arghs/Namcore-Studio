@@ -10,7 +10,7 @@ namespace TouchTableServer.Framework
 {
     public class RemoteControlHandler
     {
-        private Client _client;
+        private readonly Client _client;
         public RemoteControlHandler(Client client)
         {
             _client = client;
@@ -42,14 +42,37 @@ namespace TouchTableServer.Framework
                     case "setpipe":
                         var start = int.Parse(cmd[1]);
                         var end = int.Parse(cmd[2]);
-                        PipeStatus status = (PipeStatus) int.Parse(cmd[3]);
+                        PipeStatus status = (PipeStatus)int.Parse(cmd[3]);
                         handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE.SetPipe(start, end, status);
+                        break;
+                    case "initsession":
+                        if (handler == null) return;
+                        if (handler.SessionActive)
+                        {
+                            _client.SendMsg("Invalid action: Stop Phase first!");
+                            return;
+                        }
+                        if (cmd.Length >= 3 && !string.IsNullOrEmpty(cmd[2]))
+                        {
+                            handler.ActiveSession.SessionConfig.Timelimit = int.Parse(cmd[2]);
+                        }
+                        var gc = handler.ActiveSession.GetInitializedGameClients();
+                        if (gc == null) return;
+                        foreach (var g in gc)
+                        {
+                            g.GE.InitGame();
+                        }
+
                         break;
                     case "startsession":
                         if (handler == null) return;
+                        if (handler.SessionActive)
+                        {
+                            _client.SendMsg("Invalid action: Stop Phase first!");
+                            return;
+                        }
                         phase = int.Parse(cmd[1]);
-                        var timelimit = int.Parse(cmd[2]);
-                        handler.SessionEvents.StartGameSession(phase, timelimit);
+                        handler.SessionEvents.StartGameSession(phase);
                         break;
                     case "pausesession":
                         if (handler == null) return;
@@ -65,7 +88,12 @@ namespace TouchTableServer.Framework
                         break;
                     case "breakclient":
                         if (handler == null) return;
-                        Client.ClientType clientid = (Client.ClientType) int.Parse(cmd[1]);
+                        if (cmd.Length < 2 || string.IsNullOrEmpty(cmd[1]))
+                        {
+                            _client.SendMsg("Invalid action: Specify ClientId!");
+                            return;
+                        }
+                        Client.ClientType clientid = (Client.ClientType)int.Parse(cmd[1]);
                         handler.ActiveSession.GetClient(clientid)?.GE.InterruptGame();
                         break;
                     case "start":
@@ -86,10 +114,10 @@ namespace TouchTableServer.Framework
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-            
+
         }
     }
 }

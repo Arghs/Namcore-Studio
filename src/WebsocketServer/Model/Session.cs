@@ -23,6 +23,7 @@ namespace TouchTableServer.Model
         public SessionHandler HandlerInstance;
 
         public Dictionary<Client.ClientType, Client> Clients;
+        public Dictionary<Client.ClientType, GameResponse> GameUpdateResponse;
         public Dictionary<Client.ClientType, GameResponse> GameEndResponses;
 
         public Client GetClient(Client.ClientType ctype)

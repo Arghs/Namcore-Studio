@@ -10,6 +10,7 @@ namespace TouchTableServer.Framework
     {
         public static Dictionary<int, Session> AvaialbeSessions;
         public Session ActiveSession;
+        public bool SessionActive = false;
 
         public SessionEvents SessionEvents;
 
@@ -41,6 +42,7 @@ namespace TouchTableServer.Framework
                 SessionConfig = new Config(),
                 Clients = new Dictionary<Client.ClientType, Client>(),
                 GameEndResponses = new Dictionary<Client.ClientType, GameResponse>(),
+                GameUpdateResponse = new Dictionary<Client.ClientType, GameResponse>(),
                 GroupId = groupId,
                 HandlerInstance = this,
                 ActivePhase = phase
