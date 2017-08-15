@@ -13,16 +13,12 @@
         
         public double NeutralCreditPercentage;
         public int BeltSpeed;
-        public int TopHitZone;
-        public int MidHitZone;
     }
 
     public class PressenConfig : GameConfig
     {
         public double NeutralCreditPercentage;
         public int BeltSpeed;
-        public int TopHitZone;
-        public int MidHitZone;
     }
 
     public class SchweissenConfig : GameConfig

@@ -1,12 +1,13 @@
 using System;
 using System.Configuration;
+using System.Net;
 using System.Text;
 using TouchTableServer.Framework;
 using TouchTableServer.Model;
 using TouchTableServer.Tools;
 using WebSocketSharp;
-using WebSocketSharp.Net;
 using WebSocketSharp.Server;
+using HttpStatusCode = WebSocketSharp.Net.HttpStatusCode;
 
 namespace TouchTableServer
 {
@@ -20,9 +21,12 @@ namespace TouchTableServer
             // If you would like to provide the secure connection, you should
             // create a new instance with the 'secure' parameter set to true,
             // or an https scheme HTTP URL.
+            //var httpsv = new HttpServer(4649);
+            int port = 8080;//Convert.ToInt32(Console.ReadLine());
+            var httpsv = new HttpServer(IPAddress.Parse("188.64.57.167"), port);
+            //var httpsv = new HttpServer("http://188.64.57.167:80");
 
-            var httpsv = new HttpServer(4649);
-            //var httpsv = new HttpServer (5963, true);
+            //var httpsv = new HttpServer (8080, true);
 
             //var httpsv = new HttpServer (System.Net.IPAddress.Any, 4649);
             //var httpsv = new HttpServer (System.Net.IPAddress.Any, 5963, true);
@@ -42,7 +46,7 @@ namespace TouchTableServer
             //var httpsv = new HttpServer (System.Net.IPAddress.IPv6Loopback, 4649);
             //var httpsv = new HttpServer (System.Net.IPAddress.IPv6Loopback, 5963, true);
 
-            //var httpsv = new HttpServer ("http://localhost:4649");
+            //var httpsv = new HttpServer ("http://localhost:8080");
             //var httpsv = new HttpServer ("https://localhost:5963");
 
             //var httpsv = new HttpServer ("http://127.0.0.1:4649");
@@ -188,6 +192,9 @@ namespace TouchTableServer
                     {
                         case "start":
                             handler.SessionEvents.StartGameSession();
+                            break;
+                        case "test":
+                            handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE?.SetupPipes();
                             break;
                     }
                 }

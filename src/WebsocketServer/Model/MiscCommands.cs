@@ -19,4 +19,9 @@ namespace TouchTableServer.Model
     {
         public string Message;
     }
+
+    public class PauseCmd
+    {
+        public string Message;
+    }
 }

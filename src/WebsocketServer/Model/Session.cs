@@ -41,6 +41,14 @@ namespace TouchTableServer.Model
             return Clients.Values.Where(ctype => ctype.ClientIdent != Client.ClientType.ControlClient && ctype.Initialized).ToList();
         }
 
+        public List<Client> GetInitializedGameClientsForPhase(int phase)
+        {
+            int marginStart = 3;
+            if (phase == 2) marginStart = 7;
+            if (phase == 3) marginStart = 11;
+            return Clients.Values.Where(ctype => (int) ctype.ClientIdent >= marginStart && (int)ctype.ClientIdent <= (marginStart + 3) && ctype.Initialized).ToList();
+        }
+
         public void SendToClient(Client.ClientType ctype, string msg)
         {
             if (Clients.ContainsKey(ctype)) Clients[ctype].SendMsg(msg);

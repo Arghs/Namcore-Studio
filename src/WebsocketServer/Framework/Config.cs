@@ -13,8 +13,8 @@ namespace TouchTableServer.Framework
         public void LoadConfig()
         {
             // TODO: Load from DB
-            Timelimit = 60000;
-            InterruptDurotation = 3000;
+            Timelimit = 400;
+            InterruptDurotation = 3;
             ActiveSheetSquenceIdx = 0;
 
             SheetSqeuence = new List<SheetTime>();

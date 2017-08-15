@@ -40,7 +40,9 @@ namespace TouchTableServer.Model
 
         public void PauseGame()
         {
-            _client.SendMsg(_client.GetOpcodeCmd(Opcodes.ServerOpcodes.SMSG_PAUSE_GAME));
+            string master = _client.GetOpcodeCmd(Opcodes.ServerOpcodes.SMSG_PAUSE_GAME);
+            JToken cmd = JToken.FromObject(new PauseCmd() {Message = "Test"});
+            _client.SendMsg(_client.AddPayload(master, cmd));
         }
 
         public void ContinueGame()
@@ -50,6 +52,7 @@ namespace TouchTableServer.Model
 
         public void StopGame()
         {
+            _client.UserReady = false;
             _client.SendMsg(_client.GetOpcodeCmd(Opcodes.ServerOpcodes.SMSG_STOP_GAME));
         }
 

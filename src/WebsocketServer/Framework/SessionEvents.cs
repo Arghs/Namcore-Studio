@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TouchTableServer.Model;
 using TouchTableServer.Tools;
 using System.Timers;
+using Timer = System.Timers.Timer;
 
 namespace TouchTableServer.Framework
 {
@@ -28,6 +30,7 @@ namespace TouchTableServer.Framework
             Functions.NotifyControl("Starting Intro", _activeSession);
             if (phase > -1) _handler.SetPhase(phase);
             _handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE?.StartIntro();
+            _handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE?.SetupPipes(PipeStatus.INVISIBLE);
         }
 
         public void LoadGames(int phase = -1)
@@ -43,11 +46,12 @@ namespace TouchTableServer.Framework
             Logging.LogMsg(Logging.LogLevel.NORMAL, "Initializing Pipes. Group {0}, Phase {1}", _handler.ActiveSession.GroupId, phase);
             Functions.NotifyControl("Initializing Pipes", _activeSession);
             if (phase > -1) _handler.SetPhase(phase);
-            _handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE?.InitPipes();
+            //_handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE?.InitPipes();
         }
 
         public void StartGameSession(int phase = -1, int timelimit = -1)
         {
+            _handler.SessionActive = true;
             if (timelimit == -1) timelimit = _activeSession.SessionConfig.Timelimit;
             if (phase != -1) _handler.SetPhase(phase);
             _activeSession.SessionConfig.ActiveSheetSquenceIdx = 0;
@@ -57,7 +61,7 @@ namespace TouchTableServer.Framework
             _handler.GameEndStopwatch.Stop();
             _handler.GameEndStopwatch.Reset();
 
-            _handler.GameEndTimer = new Timer(timelimit) { AutoReset = false };
+            _handler.GameEndTimer = new Timer(timelimit * 1000) { AutoReset = false };
             _handler.GameEndTimer.Elapsed += new ElapsedEventHandler(_handler.EndGameSession);
             _handler.GameEndTimer.Start();
             _handler.GameEndStopwatch.Start();
@@ -70,11 +74,9 @@ namespace TouchTableServer.Framework
             _handler.SheetSequenceTimer.Elapsed += new ElapsedEventHandler(_handler.ChangeSheetEvent);
             //_sheetSequenceTimer.Start();
             
-            _handler.GameReportTimer = new Timer(5000) { AutoReset = true };
+            _handler.GameReportTimer = new Timer(2000) { AutoReset = true };
             _handler.GameReportTimer.Elapsed += new ElapsedEventHandler(_handler.ReportGameStatusEvent);
             _handler.GameReportTimer.Start();
-
-            _handler.SessionActive = true;
 
             Logging.LogMsg(Logging.LogLevel.NORMAL, "Starting Game Session");
             Functions.NotifyControl("Starting Session", _activeSession);
@@ -86,8 +88,11 @@ namespace TouchTableServer.Framework
                     g.GE.StartGame();
                 }
             }
+            Functions.NotifyControl("Initializing Pipes", _activeSession);
+            _handler.SessionEvents.InitPipes();
+            _handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE?.SetupPipes();
 
-            _activeSession.GetClient(Client.ClientType.Wrapper)?.WE?.InitPipes();
+            //_activeSession.GetClient(Client.ClientType.Wrapper)?.WE?.InitPipes();
         }
 
         public void PauseSession()
@@ -170,7 +175,40 @@ namespace TouchTableServer.Framework
                     g.GE.StopGame();
                 }
             }
-            //if (_activeSession.ActivePhase < 3) _handler.NextPhase();
+           
+            
+                _handler.NspTimer = new Timer(15000) { AutoReset = false };
+                _handler.NspTimer.Elapsed += new ElapsedEventHandler(NextSessionPhase);
+                _handler.NspTimer.Start();
+        
+                
+        }
+
+        private void NextSessionPhase(object source, ElapsedEventArgs e) {
+            _handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE?.SetupPipes(PipeStatus.INVISIBLE);
+            _handler.NspTimer.Stop();
+            if (_handler.ActiveSession.ActivePhase < 3)
+            {
+                _handler.SetPhase(_handler.ActiveSession.ActivePhase + 1);
+                _handler.SessionEvents.LoadGames(_handler.ActiveSession.ActivePhase);
+            }
+            else
+            {
+                ShowTeamFeedback();
+            }
+        }
+
+        public void ShowGameFeedback(int phase = -1, bool test = false)
+        {
+            Logging.LogMsg(Logging.LogLevel.NORMAL, "Showing game feedback");
+            if (phase != -1) _handler.SetPhase(phase);
+            _handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE?.ShowFeedback(test);
+        }
+
+        public void ShowTeamFeedback(bool test = false)
+        {
+            Logging.LogMsg(Logging.LogLevel.NORMAL, "Showing team feedback");
+           _handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE?.ShowTeamFeedback(test);
         }
 
         public void ReportGameStatus()

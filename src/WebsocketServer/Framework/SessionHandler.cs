@@ -8,7 +8,7 @@ namespace TouchTableServer.Framework
 {
     public class SessionHandler
     {
-        public static Dictionary<int, Session> AvaialbeSessions;
+        public static Dictionary<int, Session> AvailableSessions;
         public Session ActiveSession;
         public bool SessionActive = false;
 
@@ -20,6 +20,7 @@ namespace TouchTableServer.Framework
         public Timer SheetSequenceTimer;
         public Stopwatch SheetSequenceStopwatch;
         public Timer GameReportTimer;
+        public Timer NspTimer;
 
         public double GameEndTimerRemaining;
         public double SheetSequenceTimerRemaining;
@@ -30,11 +31,10 @@ namespace TouchTableServer.Framework
         public void StartSession(int groupId, int phase)
         {
             Logging.LogMsg(Logging.LogLevel.NORMAL, "Starting Session Group {0}, Phase {1}", groupId, phase);
-            if (AvaialbeSessions == null) AvaialbeSessions = new Dictionary<int, Session>();
+            if (AvailableSessions == null) AvailableSessions = new Dictionary<int, Session>();
 
-            if (AvaialbeSessions.ContainsKey(groupId))
+            if (AvailableSessions.ContainsKey(groupId))
             {
-                //TODO Session zurücksetzen?
                 return;
             }
             ActiveSession = new Session()
@@ -48,7 +48,15 @@ namespace TouchTableServer.Framework
                 ActivePhase = phase
             };
             ActiveSession.SessionConfig.LoadConfig();
-            AvaialbeSessions.Add(groupId, ActiveSession);
+            if (AvailableSessions.ContainsKey(groupId))
+            {
+                AvailableSessions[groupId] = ActiveSession;
+            }
+            else
+            {
+                AvailableSessions.Add(groupId, ActiveSession);
+            }
+            
             SessionEvents = new SessionEvents(this, ActiveSession);
 
             GameEndTimerActive = false;
@@ -63,8 +71,26 @@ namespace TouchTableServer.Framework
 
         }
 
+        public bool CheckAllClientsReady()
+        {
+            int cnt = ActiveSession.GetInitializedGameClientsForPhase(ActiveSession.ActivePhase).Count(c => c.UserReady);
+            return cnt >= 4;
+            //switch (ActiveSession.ActivePhase)
+            //{
+            //    case 1:
+            //        return cnt >= 4;
+            //    case 2:
+            //    case 3:
+            //        return cnt >= 3;
+            //    default:
+            //        return cnt >= 4;
+            //}
+            //return ActiveSession.Clients.Values.All(c => !c.Initialized || (int) c.ClientIdent < 3 || c.UserReady);
+        }
+
         public void ReportGameStatusEvent(object source, ElapsedEventArgs e)
         {
+
             SessionEvents.ReportGameStatus();
         }
         
@@ -88,6 +114,7 @@ namespace TouchTableServer.Framework
         {
             ActiveSession.ActivePhase = phase;
             ActiveSession.SessionConfig.LoadConfig();
+            Functions.NotifyControl("Phase " + phase + " is now active!", ActiveSession);
         }
 
         public void ChangeSheetEvent(object source, ElapsedEventArgs e)

@@ -37,13 +37,29 @@ namespace TouchTableServer.Framework
                         break;
                     case "initpipes":
                         phase = int.Parse(cmd[1]);
-                        handler.SessionEvents.InitPipes(phase);
+                        //handler.SessionEvents.InitPipes(phase);
+                        handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE?.SetupPipes();
                         break;
                     case "setpipe":
-                        var start = int.Parse(cmd[1]);
-                        var end = int.Parse(cmd[2]);
-                        PipeStatus status = (PipeStatus)int.Parse(cmd[3]);
-                        handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE.SetPipe(start, end, status);
+                        var id = int.Parse(cmd[1]);
+                        PipeStatus status = (PipeStatus)int.Parse(cmd[2]);
+                        handler.ActiveSession.GetClient(Client.ClientType.Wrapper)?.WE.SetPipe((PipeIdent) id, status);
+                        break;
+                    case "getfeedback":
+                        phase = int.Parse(cmd[1]);
+                        handler.SessionEvents.ShowGameFeedback(phase, true);
+                        break;
+                    case "getteamfeedback":
+                        handler.SessionEvents.ShowTeamFeedback(true);
+                        break;
+                    case "switchphase":
+                        if (handler == null) return;
+                        if (handler.SessionActive)
+                        {
+                            _client.SendMsg("Invalid action: Stop active Phase first!");
+                            return;
+                        }
+                        handler.SetPhase(int.Parse(cmd[1]));
                         break;
                     case "initsession":
                         if (handler == null) return;
